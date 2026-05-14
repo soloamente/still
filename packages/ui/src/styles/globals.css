@@ -6,77 +6,213 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ---------------------------------------------------------------------------
+ * Still / Aker — cinematic dark palette (Desert Orange accent). Vars are plain
+ * CSS custom properties usable from any `@still/*` consumer.
+ *
+ * — Typography: `--font-fraunces-stack` / `.font-display` (Next Fraunces);
+ *   `--font-proxima-nova` body UI sans (also aliased as legacy `font-serif`).
+ * — Atmosphere tokens: `--surface-theater`, `--cinema-grain-*`, `--cinema-vignette-*`,
+ *   `.cinema-theater-floor`, `.cinema-marquee-track`, iris hero `.cinema-hero-iris`,
+ *   projector boot `.cinema-projector-boot-overlay`, View Transitions `cinema-vt-*`.
+ * — Credits & tickets (Phases 5–6): `.cinema-credits-crawl-*`, `.watchlist-ticket-stack`,
+ *   `a.cinema-ticket-link` (diary / queued admission stubs).
+ * — Per‑film dyeing: inline `--movie-accent*` from `MovieThemeProvider`; `.movie-themed`
+ *   adapts `:focus-visible`, `::selection` — audit rare palettes against WCAG in QA.
+ * — Theater audio (Phase 7): `/public/audio/*.ogg` gated by prefs + gestures; CSS and
+ *   Web Audio both respect `prefers-reduced-motion: reduce`.
+ * --------------------------------------------------------------------------- */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.58 0.22 27);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Aker palette */
+  --color-absolute-black: #000000;
+  --color-pure-white: #ffffff;
+  --color-deep-graphite: #070707;
+  --color-medium-gray: #1c1c1c;
+  --color-fog: #e5e4e4;
+  --color-slate-border: #8d8d8d;
+  --color-soft-stone: #494949;
+  --color-moss-green: #193f32;
+  --color-desert-orange: #b75928;
+  --color-deep-teal: #002934;
+  --color-copper-clay: #776157;
+  --color-crimson-blush: #df6a6b;
+  --color-deep-ocean: #044152;
+
+  /* Surfaces — “theater floor” is a hair above #000 to reduce OLED banding on
+   * gradient/grain stacks while keeping a 70mm ink-black read. Pure #000 stays
+   * available as `--color-absolute-black` for letterbox bars + masks. */
+  --surface-theater: #020202;
+  --surface-canvas: var(--surface-theater);
+  --surface-card-base: #070707;
+  --surface-translucent-overlay: rgba(0, 0, 0, 0.5);
+  --surface-accent-card: #776157;
+
+  /* UI sans: Inter from next/font on `<html>` (`--font-inter`), with explicit fallback
+   * if the variable is not yet defined. */
+  --font-proxima-nova:
+    var(--font-inter, "Inter"), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  /* Kept as an alias so existing `font-serif` + heading utilities stay Inter-only. */
+  --font-serif: var(--font-proxima-nova);
+  /* Display: Fraunces from next/font (`--font-fraunces`), cinematic editorial serif
+   * with an opsz axis. Used by `.font-display` and the `font-display` Tailwind
+   * utility (auto-generated from the `@theme inline` `--font-display` token). */
+  --font-fraunces-stack:
+    var(--font-fraunces, "Fraunces"), "PP Editorial Old", "GT Sectra", ui-serif,
+    Georgia, "Times New Roman", serif;
+  --font-geist-mono-stack: var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular,
+    Menlo, monospace;
+
+  /* Type scale */
+  --text-body: 15px;
+  --leading-body: 1.5;
+  --tracking-body: 0.011px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.35;
+  --tracking-body-lg: 0.011px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.3;
+  --text-heading: 30px;
+  --leading-heading: 1.25;
+  --text-heading-lg: 62px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -0.025px;
+  --text-display: 168px;
+  --leading-display: 0.8;
+  --tracking-display: -0.02px;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing scale (in addition to tailwind defaults) */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-19: 19px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+
+  /* Layout */
+  --section-gap: 64px;
+
+  /* Pill radii */
+  --radius-pill: 80px;
+  --radius-pill-lg: 160px;
+  --radius-pill-xl: 800px;
+  --radius-badge: 1584px;
+
+  /* Aker is dark-first; the "light" shadcn surface palette is only used
+     when someone opts a localized section out of dark mode. */
+  --background: var(--surface-theater);
+  --foreground: var(--color-pure-white);
+  --card: var(--color-deep-graphite);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--color-deep-graphite);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --destructive: var(--color-crimson-blush);
+  --destructive-foreground: var(--color-pure-white);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: var(--color-desert-orange);
+  --chart-1: var(--color-desert-orange);
+  --chart-2: var(--color-copper-clay);
+  --chart-3: var(--color-moss-green);
+  --chart-4: var(--color-deep-ocean);
+  --chart-5: var(--color-crimson-blush);
+  --radius: 8px;
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: var(--color-desert-orange);
 }
 
+/* Mirror the dark variant explicitly so theme toggles work; dark === default. */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.87 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.371 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: var(--surface-theater);
+  --foreground: var(--color-pure-white);
+  --card: var(--color-deep-graphite);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--color-deep-graphite);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --destructive: var(--color-crimson-blush);
+  --destructive-foreground: var(--color-pure-white);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: var(--color-desert-orange);
 }
 
 @theme inline {
-  --font-sans: "Inter Variable", sans-serif;
+  /* Expose Aker palette as Tailwind color utilities (e.g. bg-desert-orange) */
+  --color-absolute-black: var(--color-absolute-black);
+  --color-pure-white: var(--color-pure-white);
+  --color-deep-graphite: var(--color-deep-graphite);
+  --color-medium-gray: var(--color-medium-gray);
+  --color-fog: var(--color-fog);
+  --color-slate-border: var(--color-slate-border);
+  --color-soft-stone: var(--color-soft-stone);
+  --color-moss-green: var(--color-moss-green);
+  --color-desert-orange: var(--color-desert-orange);
+  --color-deep-teal: var(--color-deep-teal);
+  --color-copper-clay: var(--color-copper-clay);
+  --color-crimson-blush: var(--color-crimson-blush);
+  --color-deep-ocean: var(--color-deep-ocean);
+  /* Theater floor — ink black; use `bg-theater` for surfaces that must match
+   * the shell without picking up semantic `background` overrides. */
+  --color-theater: var(--surface-theater);
+
+  /* Font utilities:
+   *   `font-sans` / `font-serif`     → Inter (kept aliased for backwards compat
+   *                                     and editorial body text).
+   *   `font-display`                  → Fraunces (cinematic headlines).
+   *   `font-mono`                     → Geist Mono.
+   * The `--font-display` token below auto-generates the `font-display` Tailwind
+   * utility under v4's `@theme inline` block. */
+  --font-sans: var(--font-proxima-nova);
+  --font-serif: var(--font-proxima-nova);
+  --font-display: var(--font-fraunces-stack);
+  --font-mono: var(--font-geist-mono-stack);
+
+  /* Map shadcn semantic vars */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -94,6 +230,7 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -108,6 +245,8 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+
+  /* Radius scale — Aker keeps it tight: 8px default, then pills. */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -115,16 +254,603 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --radius-pill: var(--radius-pill);
+  --radius-pill-lg: var(--radius-pill-lg);
+  --radius-pill-xl: var(--radius-pill-xl);
+  --radius-badge: var(--radius-badge);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    /* Subtly suppress text selection on chrome elements per the Aker
+       "Interactive elements should disable user-select" guideline. */
   }
-  body {
-    @apply font-sans bg-background text-foreground;
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-desert-orange) 30%, transparent);
+    color: var(--color-pure-white);
   }
   html {
-    @apply font-sans;
+    /* Prevent iOS Safari from upscaling text in landscape */
+    -webkit-text-size-adjust: 100%;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    /* Better legibility on dark surfaces (Aker guidance) */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* Disable the default iOS tap highlight; we use focus rings instead. */
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  /*
+   * Hand cursor on actionable controls — many UAs still show default arrow over
+   * <button>; this matches “looks clickable” without affecting text inputs.
+   * Single-choice <select> only: multi-select lists keep the browser cursor.
+   */
+  a[href]:not([aria-disabled="true"]),
+  button:not(:disabled):not([aria-disabled="true"]),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  select:not(:disabled, [multiple]),
+  input:is([type="button"], [type="submit"], [type="reset"], [type="file"], [type="image"]):not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"]:is(button, [role="button"]),
+  select:disabled,
+  input:is([type="button"], [type="submit"], [type="reset"], [type="file"], [type="image"]):disabled {
+    cursor: not-allowed;
+  }
+  /* Long-form copy: same Inter stack, slightly opened tracking for readability. */
+  .font-editorial {
+    font-family: var(--font-sans);
+    letter-spacing: 0.011em;
+    line-height: var(--leading-body-lg);
+  }
+  /* Display headlines — Fraunces, cinematic tracking. The opsz axis is left to
+   * the browser's `font-optical-sizing: auto` (default in modern engines), so a
+   * single utility scales gracefully from a `text-lg` subhead (text cut, narrow
+   * terminals, tight aperture) up to a `text-7xl` hero (display cut, looser
+   * tracking, dramatic terminals) without us juggling sibling classes. */
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
+    font-feature-settings:
+      "ss01" 1,
+      "ss02" 1;
+  }
+  /* Tabular figures for star ratings, timers, stats */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Aker motion philosophy: 0.2–0.35s, smooth ease-out spring */
+  :root {
+    --aker-ease: cubic-bezier(0.165, 0.84, 0.44, 1);
+    --aker-duration-fast: 0.18s;
+    --aker-duration: 0.24s;
+    --aker-duration-slow: 0.34s;
+  }
+}
+
+/* Scrollbar polish */
+@layer base {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-medium-gray);
+    border-radius: 999px;
+    /* Match the body wash — same edge as the theater floor */
+    border: 2px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-soft-stone);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Cinema / “movie house” atmosphere — grain, marquee, film strip, hero tint.
+ * Keeps pointer-events off overlays so clicks reach real controls underneath.
+ *
+ * Tuning (arthouse defaults on :root):
+ *   --surface-theater            App shell wash (#020202) — aliases `--background`.
+ *   --cinema-grain-opacity       Overall grain strength (raise ≈ grittier print).
+ *   --cinema-grain-tile        Noise tile size in px (smaller ≈ finer grain).
+ *   --cinema-marquee-duration  Full ticker loop; higher ≈ calmer lobby crawl.
+ *   --cinema-marquee-gap       Space between marquee phrases.
+ *   --cinema-vignette-spread / --cinema-vignette-alpha  Hero edge falloff.
+ *   --cinema-hero-accent-mix   How much genre color washes the hero spotlight.
+ *
+ * Optional “multiplex” booth: set on `<html>`: `data-cinema-preset="multiplex"`
+ * (brighter wash, faster ticker, heavier grain).
+ * --------------------------------------------------------------------------- */
+
+:root {
+  /* Arthouse-leaning: lighter grain, slower marquee, softer hero wash */
+  --cinema-grain-opacity: 0.13;
+  --cinema-grain-tile: 268px;
+  --cinema-marquee-duration: 58s;
+  --cinema-marquee-gap: 3.5rem;
+  --cinema-marquee-phrase-gap: 3rem;
+  /* Heavier vignette — deeper edge falloff reads “house lights down” on heroes */
+  --cinema-vignette-spread: 180px;
+  --cinema-vignette-alpha: 0.55;
+  --cinema-hero-accent-mix: 22%;
+}
+
+html[data-cinema-preset="multiplex"] {
+  --cinema-grain-opacity: 0.2;
+  --cinema-grain-tile: 220px;
+  --cinema-marquee-duration: 34s;
+  --cinema-marquee-gap: 2.25rem;
+  --cinema-marquee-phrase-gap: 2.25rem;
+  /* Multiplex: punchier booth — tighter spread but darker edge pool */
+  --cinema-vignette-spread: 130px;
+  --cinema-vignette-alpha: 0.62;
+  --cinema-hero-accent-mix: 30%;
+}
+
+/* Subtle film grain + vignette: stacked noise SVG + radial falloff. */
+.cinema-grain {
+  pointer-events: none;
+  opacity: var(--cinema-grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.48'/%3E%3C/svg%3E");
+  background-size: var(--cinema-grain-tile) var(--cinema-grain-tile);
+  mix-blend-mode: overlay;
+}
+
+/* Inset box-shadow alone does not need pointer blocking. `pointer-events: none`
+ * on this wrapper broke hero actions: hits fell through the whole section instead
+ * of resolving to the overlapping title/action column (Chrome / ultrawide overlap). */
+.cinema-vignette {
+  box-shadow: inset 0 0 var(--cinema-vignette-spread) rgba(0, 0, 0, var(--cinema-vignette-alpha));
+}
+
+/* Full-bleed theater wash — optional on marketing rails / lobby backgrounds;
+ * pointer-events none implied via child overlays when needed. */
+.cinema-theater-floor {
+  background-color: var(--surface-theater);
+  box-shadow: inset 0 0 min(160px, 22vw) rgba(0, 0, 0, 0.42);
+}
+
+/* Infinite horizontal ticker — duplicate inner content once for seamless loop. */
+@keyframes cinema-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.cinema-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--cinema-marquee-gap);
+  animation: cinema-marquee-scroll var(--cinema-marquee-duration) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Tailwind spinner — keep loaders visible without endless rotation under reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin {
+    animation: none !important;
+  }
+}
+/* Section enter: short, proportional fade-up (Aker-scale durations). */
+@keyframes cinema-curtain-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-cinema-curtain {
+  animation: cinema-curtain-in var(--aker-duration-slow) var(--aker-ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-cinema-curtain {
+    animation: none;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Scene cuts (native View Transitions + framer-motion veil fallback).
+ * When the browser exposes view transitions during App Router navigations, these
+ * curves match the scripted `CinemaSceneCut` duration (~180ms).
+ * ----------------------------------------------------------------------------- */
+@keyframes cinema-vt-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes cinema-vt-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media not (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 180ms;
+    animation-timing-function: var(--aker-ease);
+  }
+
+  ::view-transition-old(root) {
+    animation-name: cinema-vt-fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: cinema-vt-fade-in;
+  }
+}
+
+/* Iris reveal on movie heroes — centered slightly above midpoint (poster orbit). */
+@keyframes cinema-hero-iris-open {
+  from {
+    clip-path: circle(0% at 50% 38%);
+    filter: brightness(0.94);
+  }
+  to {
+    clip-path: circle(150% at 50% 38%);
+    filter: brightness(1);
+  }
+}
+
+@media not (prefers-reduced-motion: reduce) {
+  .cinema-hero-iris {
+    animation: cinema-hero-iris-open 0.42s var(--aker-ease) both;
+    /* Named VT surface when the UA + Router pair supports same-document snapshots. */
+    view-transition-name: hero-iris;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-hero-iris {
+    animation: none;
+  }
+}
+
+/* First-visit projector “strike” overlay (paired with `<ProjectorBoot />`). */
+@keyframes cinema-projector-boot {
+  0% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 0.08;
+  }
+  28% {
+    opacity: 0.94;
+  }
+  42% {
+    opacity: 0.12;
+  }
+  55% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 0.06;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media not (prefers-reduced-motion: reduce) {
+  .cinema-projector-boot-overlay {
+    opacity: 0;
+    animation: cinema-projector-boot 0.38s linear forwards;
+    will-change: opacity;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-projector-boot-overlay {
+    animation: none;
+    opacity: 0;
+    display: none;
+  }
+}
+
+/* Left “perforated” rail suggesting film stock beside diary grids. */
+.cinema-film-strip-rail {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.cinema-film-strip-rail::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-medium-gray) 0,
+    var(--color-medium-gray) 10px,
+    transparent 10px,
+    transparent 18px
+  );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/**
+ * Coded rail: microscopic stock / edge nomenclature in the gutter beside perfs.
+ * Set `data-edge-code` on the element (ASCII only for broad `attr()` support).
+ * Optional `data-edge-layout`: `vertical` (default via styles below) vs `horizontal` tick ladder.
+ */
+.cinema-film-strip-rail--coded {
+  padding-left: 2.125rem;
+}
+
+.cinema-film-strip-rail--coded[data-edge-code]::after {
+  content: attr(data-edge-code);
+  pointer-events: none;
+  position: absolute;
+  left: 0.85rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 0.72rem;
+  overflow: hidden;
+  font-family: var(--font-geist-mono-stack);
+  font-size: 6px;
+  line-height: 1.05;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  color: rgba(229, 228, 228, 0.55);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.cinema-film-strip-rail--coded[data-edge-code][data-edge-layout="horizontal"]::after {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  top: auto;
+  bottom: 0.35rem;
+  left: 1.9rem;
+  right: 2rem;
+  width: auto;
+  height: auto;
+  letter-spacing: 0.32em;
+  font-size: 5.5px;
+  white-space: nowrap;
+  opacity: 0.32;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-film-strip-rail--coded[data-edge-code]::after {
+    opacity: 0.26;
+  }
+}
+
+/* Brief lamp flicker on large hero imagery (paired with `.cinema-hero-flicker`). */
+@keyframes cinema-projector-flicker {
+  0% {
+    opacity: var(--cinema-hero-img-base-op, 0.4);
+    filter: brightness(1);
+  }
+  14% {
+    opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 1.06);
+    filter: brightness(1.05);
+  }
+  28% {
+    opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 0.92);
+    filter: brightness(0.97);
+  }
+  43% {
+    opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 1.03);
+    filter: brightness(1.02);
+  }
+  61% {
+    opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 0.94);
+    filter: brightness(0.99);
+  }
+  100% {
+    opacity: var(--cinema-hero-img-base-op, 0.4);
+    filter: brightness(1);
+  }
+}
+
+@media not (prefers-reduced-motion: reduce) {
+  .cinema-hero-flicker {
+    animation: cinema-projector-flicker 0.48s var(--aker-ease) 1 forwards;
+    will-change: opacity, filter;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-hero-flicker {
+    animation: none;
+    animation-play-state: paused;
+  }
+}
+
+/* Hero wash from per-film accent (set via inline --movie-accent on a parent). */
+.movie-hero-glow {
+  position: relative;
+}
+
+.movie-hero-glow::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    120% 70% at 50% 0%,
+    color-mix(
+      in oklab,
+      var(--movie-accent, var(--color-desert-orange)) var(--cinema-hero-accent-mix),
+      transparent
+    ),
+    transparent 62%
+  );
+}
+
+/*
+ * Per-film themed chrome when poster palette exists (see `MovieThemeProvider`).
+ * Inline vars override the color-mix fallbacks below. Scoped to descendants only.
+ */
+.movie-themed {
+  --movie-accent-muted: color-mix(in oklab, var(--movie-accent) 48%, #000000);
+  --movie-accent-foreground: color-mix(in oklab, var(--movie-accent) 68%, #ffffff);
+}
+
+.movie-themed ::selection {
+  background-color: color-mix(
+    in oklab,
+    var(--movie-accent-foreground, var(--movie-accent)) 34%,
+    transparent
+  );
+  color: var(--color-pure-white);
+}
+
+/* Per-film focus rings (links + primary buttons) — tinted so saturated palettes keep a predictable trail without fighting layered shadcn `ring-*` utilities. */
+.movie-themed a:focus-visible,
+.movie-themed button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px
+    color-mix(in oklab, var(--movie-accent-foreground, var(--movie-accent)) 75%, transparent);
+}
+
+/* Extra separation on neon / high-chroma keys — helps WCAG focus visibility when OS requests more contrast. */
+@media (prefers-contrast: more) {
+  .movie-themed a:focus-visible,
+  .movie-themed button:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--color-pure-white),
+      0 0 0 4px rgba(0, 0, 0, 0.75);
+  }
+}/* Marquee-style bulbs on stars: class applied from StarRating variant. */
+.star-marquee-bulb {
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--color-desert-orange) 55%, transparent));
+}
+
+/* ---------------------------------------------------------------------------
+ * Closing-credits marquee (`CreditsCrawl`) — seamless vertical loop; pauses on
+ * hover/focus. Duplicate track height is 100%, so translating -50% restarts cleanly.
+ * --------------------------------------------------------------------------- */
+@keyframes cinema-credits-crawl-shift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.cinema-credits-crawl-surface:hover .cinema-credits-crawl-track,
+.cinema-credits-crawl-surface:focus-within .cinema-credits-crawl-track {
+  animation-play-state: paused;
+}
+
+.cinema-credits-crawl-surface .cinema-credits-crawl-track {
+  animation: cinema-credits-crawl-shift var(--credits-duration, 120s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-credits-crawl-surface:not([data-force-credits-motion]) .cinema-credits-crawl-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Watchlist ticket stack (`ul.watchlist-ticket-stack`): fan + lift on hover via
+ * `:has`, neighbors ease down/dim — no JS. Disabled under reduced motion.
+ * --------------------------------------------------------------------------- */
+.watchlist-ticket-stack > li {
+  position: relative;
+  list-style: none;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.watchlist-ticket-stack > li:nth-child(odd) {
+  transform: rotate(-3.25deg);
+}
+
+.watchlist-ticket-stack > li:nth-child(even) {
+  transform: rotate(3.25deg);
+}
+
+.watchlist-ticket-stack:has(> li:hover) > li:not(:hover) {
+  opacity: 0.52;
+  transform: translateY(8px) scale(0.94) rotate(0deg);
+}
+
+.watchlist-ticket-stack > li:hover {
+  z-index: 32;
+  opacity: 1;
+  transform: translateY(-14px) scale(1.055) rotate(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .watchlist-ticket-stack > li,
+  .watchlist-ticket-stack:has(> li:hover) > li:not(:hover),
+  .watchlist-ticket-stack > li:hover {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-duration: 0.01ms;
+  }
+}
+
+/* `TicketStub` admission links lose hover lifts / easing once reduced-motion is asserted. */
+@media (prefers-reduced-motion: reduce) {
+  a.cinema-ticket-link {
+    transition-duration: 0.01ms !important;
+    transition-property: opacity, box-shadow !important;
+  }
+
+  @media (hover: hover) {
+    a.cinema-ticket-link:hover,
+    a.cinema-ticket-link:focus-visible {
+      transform: none !important;
+    }
+  }
+
+  a.cinema-ticket-link img {
+    transition: none !important;
+    filter: none !important;
   }
 }

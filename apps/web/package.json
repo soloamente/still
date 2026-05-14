@@ -12,19 +12,27 @@
   },
   "dependencies": {
     "@polar-sh/better-auth": "catalog:",
+    "@still/api-client": "workspace:*",
     "@still/env": "workspace:*",
     "@still/ui": "workspace:*",
     "@tanstack/react-form": "catalog:",
+    "@tanstack/react-query": "^5.62.0",
+    "agentation": "^3.0.2",
     "babel-plugin-react-compiler": "^1.0.0",
     "better-auth": "catalog:",
+    "cmdk": "^1.1.1",
+    "dialkit": "^1.2.0",
     "dotenv": "catalog:",
+    "framer-motion": "^12.38.0",
     "lucide-react": "catalog:",
+    "motion": "^12.38.0",
     "next": "^16.2.0",
     "next-themes": "catalog:",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "sonner": "catalog:",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "zustand": "^5.0.13"
   },
   "devDependencies": {
     "@still/config": "workspace:*",

@@ -32,10 +32,12 @@
     "db:studio": "turbo -F @still/db db:studio",
     "db:generate": "turbo -F @still/db db:generate",
     "db:migrate": "turbo -F @still/db db:migrate",
+    "db:baseline": "bun run ./packages/db/src/baseline-migrations.ts",
     "check": "biome check --write ."
   },
   "dependencies": {
     "@still/env": "workspace:*",
+    "agentation-mcp": "^1.2.0",
     "dotenv": "catalog:",
     "zod": "catalog:"
   },

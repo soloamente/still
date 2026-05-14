@@ -1,0 +1,21 @@
+{
+  "name": "@still/api-client",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@elysiajs/eden": "^1.4.9",
+    "elysia": "^1.4.28",
+    "server": "workspace:*"
+  },
+  "devDependencies": {
+    "@still/config": "workspace:*",
+    "typescript": "^6"
+  }
+}
