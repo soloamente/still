@@ -2,18 +2,25 @@ import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
 /**
- * "Still" wordmark — UI sans (Outfit) with a thin dot standing in for the projector lens.
+ * "Still" wordmark with a thin dot standing in for the projector lens.
+ * Default `display` applies Fraunces for cinematic headings; auth chrome passes `sans`
+ * so SF Pro Rounded (`font-sans` / `--font-proxima-nova`) can carry UI while Fraunces
+ * stays reserved for editorial pull quotes beside the split layout.
+ *
  * Visible aria-label keeps screen readers happy without relying on the SVG mark alone.
  * A single root <Link> avoids invalid nested anchors when the shell wraps the mark.
  */
 export function BrandMark({
 	size = "md",
+	wordmarkFont = "display",
 	withTagline = false,
 	href = "/",
 	className,
 	"aria-label": ariaLabel = "Still — go to home",
 }: {
 	size?: "sm" | "md" | "lg";
+	/** `display`: Fraunces. `sans`: SF Pro Rounded stack — use beside quote-only Fraunces. */
+	wordmarkFont?: "display" | "sans";
 	withTagline?: boolean;
 	/** Logged-in app shell uses `/home`; marketing and auth stay on `/`. */
 	href?: string;
@@ -36,7 +43,11 @@ export function BrandMark({
 			)}
 		>
 			<span
-				className={`font-display ${sizeClass} font-medium text-pure-white tracking-[-0.02em]`}
+				className={cn(
+					wordmarkFont === "sans" ? "font-sans" : "font-display",
+					sizeClass,
+					"font-medium text-pure-white tracking-[-0.02em]",
+				)}
 			>
 				Still
 			</span>

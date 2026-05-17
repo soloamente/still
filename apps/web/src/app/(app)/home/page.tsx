@@ -1,11 +1,11 @@
 import { buttonVariants } from "@still/ui/components/button";
-import IconSlider from "@still/ui/icons/slider";
 import { cn } from "@still/ui/lib/utils";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
 
 import { HomeCatalogSortChips } from "@/components/home/home-catalog-sort-chips";
+import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
 import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
 import { authServer } from "@/lib/auth-server";
@@ -162,11 +162,11 @@ export default async function HomePage({
 					browse === "community" ? "overflow-hidden" : "overflow-visible",
 				)}
 			>
-				<div className="flex shrink-0 items-center justify-between">
-					{/*
+				{/*
 						`useSearchParams` — keep inside Suspense so the home RSC shell can still
 						stream; the bar is tiny so a short fallback is acceptable.
 					*/}
+				<div className="flex shrink-0 items-center justify-between gap-3">
 					<Suspense
 						fallback={
 							<div
@@ -177,14 +177,18 @@ export default async function HomePage({
 					>
 						<HomeCatalogSortChips />
 					</Suspense>
-					<button
-						type="button"
-						className="flex items-center justify-center gap-2.5 rounded-full bg-background px-6 py-3.5"
-						aria-label="Filters — refine the catalogue view"
-					>
-						<IconSlider size="1.25rem" className="shrink-0" aria-hidden />
-						Filters
-					</button>
+					{browse !== "community" ? (
+						<Suspense
+							fallback={
+								<div
+									className="h-10 min-w-66 shrink-0 animate-pulse rounded-full bg-background"
+									aria-hidden
+								/>
+							}
+						>
+							<HomeCatalogViewModeToolbar />
+						</Suspense>
+					) : null}
 				</div>
 
 				{browse === "community" ? (
