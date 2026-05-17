@@ -1,24 +1,26 @@
 {
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "base-lyra",
-  "rsc": true,
-  "tsx": true,
-  "tailwind": {
-    "config": "",
-    "css": "src/styles/globals.css",
-    "baseColor": "neutral",
-    "cssVariables": true,
-    "prefix": ""
-  },
-  "iconLibrary": "lucide",
-  "aliases": {
-    "components": "@still/ui/components",
-    "utils": "@still/ui/lib/utils",
-    "hooks": "@still/ui/hooks",
-    "lib": "@still/ui/lib",
-    "ui": "@still/ui/components"
-  },
-  "menuColor": "default",
-  "menuAccent": "subtle",
-  "registries": {}
+	"$schema": "https://ui.shadcn.com/schema.json",
+	"style": "base-lyra",
+	"rsc": true,
+	"tsx": true,
+	"tailwind": {
+		"config": "",
+		"css": "src/styles/globals.css",
+		"baseColor": "neutral",
+		"cssVariables": true,
+		"prefix": ""
+	},
+	"iconLibrary": "lucide",
+	"menuColor": "default",
+	"menuAccent": "subtle",
+	"aliases": {
+		"components": "@still/ui/components",
+		"utils": "@still/ui/lib/utils",
+		"ui": "@still/ui/components",
+		"lib": "@still/ui/lib",
+		"hooks": "@still/ui/hooks"
+	},
+	"registries": {
+		"@skiper-ui": "https://skiper-ui.com/registry/{name}.json"
+	}
 }

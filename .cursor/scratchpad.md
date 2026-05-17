@@ -21,6 +21,20 @@ Direction confirmed via interview on 2026-05-13:
 
 The goal is a meaningful visual shift, not a subtle polish.
 
+### Secondary initiative (2026-05-14): product design system & screen IA
+
+The product direction is a **Letterboxd-class diary + social layer**, with more
+features (lists, chat, badges, richer home) and a **modern, enjoyable** feel so
+people return often. A **Mobbin (web)** pass surfaced recurring patterns: thin
+icon rail or labeled sidebar, pill search with removable scope tags, chip-based
+browse, tab + filter toolbars for libraries, masonry/timeline for personal
+media, centered profile heroes with stat-tabs, optional friend-activity column,
+floating primary composer. **Planner goal for this track:** define a **coherent
+design system** (tokens, layout primitives, key screens) that stays compatible
+with the existing **cinematic / 70mm** identity (Fraunces display, theater
+surfaces, grain, optional audio) without fighting it — *atmosphere on the
+canvas, clarity in the controls.*
+
 ## Key Challenges and Analysis
 
 ### 1. Typography is the single biggest gap
@@ -83,6 +97,21 @@ Keep `data-cinema-preset="arthouse"` as the default and use the same hook for
 70mm tuning rather than introducing a new preset name. (Adding "imax" or "70mm"
 would just be a third arbitrary label. The aesthetic IS arthouse 70mm — that's
 what the picks say.) Existing `multiplex` preset stays as a louder mode.
+
+### 7. Design system reboot vs. cinematic maximalism (2026-05-14)
+
+**Tension:** Heavy chrome (vignette, grain, tickets, credits) can **compete**
+with scanability if every surface is decorative. **Resolution:** treat UI in
+layers — **(A)** shell chrome and hero moments carry cinema; **(B)** lists,
+forms, settings, and dense feeds follow **quiet** patterns (consistent radius,
+spacing, one accent, predictable hit targets). **Technical anchor:** shadcn
+`base-lyra` + `packages/ui` tokens; avoid one-off components where a primitive
+(`AppShell`, `FilterToolbar`, `ContentGrid`) would unify behavior.
+
+**Success for Track B** is not “more screens” but **fewer decisions per
+interaction**: navigation depth, filter discoverability, empty states that
+invite the next log, and mobile-first tap targets (≥44px) without breaking
+desktop density.
 
 ## High-level Task Breakdown
 
@@ -336,6 +365,119 @@ forced on anyone.
 
 **Phase 8 deliverable**: ship-ready after manual matrix + Lighthouse/contrast checkpoints above.
 
+### Track B — Design system & screen IA (Mobbin-informed, 2026-05-14)
+
+Executor runs **one sub-task at a time**; human Planner confirms before the
+next. Each item has self-verifiable success criteria.
+
+**B.1 — Audit & principles doc (in-repo only: scratchpad + code comments)**
+
+- Inventory primary routes: landing, home, diary, movie, profile, lists,
+  reviews, search, watchlist, chat, settings.
+- For each: note layout pattern (rail vs top nav), density, duplicate CTAs,
+  a11y gaps (focus order, heading hierarchy).
+- Write **5–7 non-negotiable principles** (e.g. one global accent, display type
+  only for titles/H1–H2, chips for filters, popovers for dense filters).
+- **Success:** bullet audit + principles appended under this track in
+  `scratchpad.md` (Executor section cross-link); no behavior change.
+- **Delivered 2026-05-14 (Executor):** see `Executor's Feedback` → *B.1 complete*.
+
+**B.2 — Token & elevation pass (globals / theme)**
+
+- Formalize **surface ladder** (`canvas` → `raised` → `popover`) compatible
+  with `#020202` theater floor; ensure borders/contrast work on per-film tinted
+  pages (`.movie-themed`).
+- Document spacing scale usage for **page gutters vs card gutters** (avoid
+  arbitrary `p-4`/`p-6` mix).
+- **Success:** Storybook or static page not required; instead `globals.css`
+  comments + token names used by ≥3 representative components; `tsc`/build
+  green.
+- **Delivered 2026-05-14 (Executor):** elevation tokens + `@theme` utilities
+  (`surface-canvas` / `surface-raised` / `surface-overlay`); `--card` /
+  `--popover` mapping; `AppNav`, `ActivityItem`, `CommandPalette` + diary/home
+  empty states use `bg-surface-*`; `(app)/layout` gutter comment; `user-menu`
+  drops redundant `bg-card` on dropdown (uses `bg-popover`). `bun run build`
+  green — if Link/redirect route types falsely fail, delete `apps/web/.next` and
+  rebuild (stale `RouteImpl` cache).
+
+**B.3 — `AppShell` primitive (navigation contract)**
+
+- Choose **default:** icon rail + labeled section header *or* collapsible
+  sidebar (Mobbin: Threads/Sora vs Grain/Suno). Pick one for MVP consistency.
+- Spec: breakpoints where rail becomes drawer; where FAB / bottom bar appears
+  (if any).
+- **Success:** single shell component wraps `(app)` layout; no duplicate nav
+  markup; keyboard landmark (`nav`, `main`).
+- **Delivered 2026-05-14 (Executor):** `AppShell` in `components/app/app-shell.tsx`
+  wraps chrome + `main#main-content`; `(app)/layout.tsx` only auth/profile gates;
+  `appShellMainContentMinHeightStyle` + `APP_SHELL_BOTTOM_RESERVE_CSS` for person
+  page vertical centering; docblock states bottom-bar contract (no rail→drawer).
+
+**B.4 — Search + filter primitives**
+
+- **Global search:** pill, optional scope tag (“Movies”, “People”), clear action.
+- **Browse/discover:** chip row + optional advanced drawer (genre/year/service).
+- **Success:** `/search` and one browse surface (e.g. home or new `/explore`)
+  use the same primitives; applied filters show as dismissible chips.
+- **Delivered 2026-05-14 (Executor):** `SearchPillField` + `FilterChipRow` /
+  `FilterChipLink` / `FilterChipButton` (`components/ui/`); `SearchClient` uses
+  pill + scope “Films” + dismissible query chip; `/movies/popular` +
+  **`/movies/upcoming`** share `MovieCatalogSurfaceChips` + `PopularMoviesInfinite`
+  `catalogKind`; `fetchMoviesUpcoming` in `still-api-fetch.ts`; search skeleton
+  pill-shaped. Advanced drawer deferred to later browse work.
+
+**B.5 — Core screens (priority order — adjust with human)**
+
+1. **Home / following** — feed card anatomy (avatar, film line, rating, poster
+   thumb, actions); optional right rail “friend activity” (collapsible).
+   - **Delivered + human verified 2026-05-14:** `ActivityItem` + `FeedPersonAvatar`,
+     `HomeFriendActivityRail`, `deriveFriendRailEntries`; nested review/list links
+     removed; stable feed keys.
+2. **Discover** — grid + chips + sort; empty genre state.
+   - **Delivered 2026-05-14 (Executor):** `/movies/discover` + `GET /api/movies/discover` +
+     `GET /api/movies/genres`; `MovieDiscoverToolbar` (genre rail + sort chips);
+     `PopularMoviesInfinite` `catalogKind="discover"`; `MovieCatalogSurfaceChips`
+     adds **Discover**; home empty CTA → discover; empty catalogue panel when
+     TMDb returns zero rows.
+3. **Film detail** — hero + tabs (reviews / lists / related); sticky log CTA.
+   - **Delivered 2026-05-14 (Executor):** `MovieDetailExploreTabs` (Reviews / Lists /
+     Related + empty states); `GET /api/movies/:id/lists`; hero **MovieActions**
+     moved to **sticky** dock (`bottom` aligned with `AppShell` nav reserve);
+     lists tab surfaces public lists containing the title.
+4. **Quick log** — modal or bottom sheet: film → date → rating → note →
+   submit; disabled-until-valid.
+   - **Delivered + human verified 2026-05-14:** `QuickLogRoot` / `useQuickLog`; `MovieActions` Log opens sheet; `postLog` payload + validation as shipped (see Executor feedback B.5.4).
+5. **Diary** — month grouping + list/masonry toggle for user stills only.
+   - **Delivered + human verified 2026-05-14:** month buckets sorted **newest first**; rows within month by `watchedAt` desc; invalid dates → **Undated** section; `DiaryPageClient` toolbar (**Tickets** = ticket grid / **Stills** = CSS-column masonry of poster tiles + optional rating); preference `localStorage` `still.diary.layout`; `DiaryStillTile` for masonry-only; rows without joined `movie` skipped server-side.
+6. **Lists** — Savee-style row: title + count + horizontal poster strip.
+   - **Delivered + human verified 2026-05-14:** `withCoverPosterPaths` in `apps/server/src/lib/list-cover-posters.ts` — wired to `GET /api/lists` + `/popular` + `/me` + `/by-user/:userId`, list `POST`/`PATCH` return, and profile `lists` query; **`ListRowStrip`** (`apps/web/…/list-row-strip.tsx`) + **`toListBoardRow`** (`lib/list-board-row.ts`); `/lists` index + profile **Lists** section use bordered single-column rows (title, counts, likes, updated, optional description, overlapping poster strip from real `poster_path`); removed broken `ListCard` TMDB `movieId.jpg` URLs.
+7. **Profile** — centered header + stat tabs + content grid.
+   - **Delivered + human verified 2026-05-14:** centered hero (avatar overlap, display name, @handle, bio, stats row, actions); **`?tab=`** section tabs (`filmography` + `sectionOrder` rails with content); semantic **`<table>`** filmography; single **content grid** panel per tab; Biome-a11y-friendly vs prior `role="table"` on `div`.
+8. **Notifications** — grouped list, read state.
+9. **Settings** — left sub-nav sections.
+   - **Delivered (Executor 2026-05-15):** `(app)/me/layout.tsx` + **`MeAccountNav`** (`me-account-nav.tsx`) — **vertical** “Account” links on **`md+`** (icon + label + short description); **horizontal** underlined tabs on **`<md`** (profile-tabs pattern); wraps **`/me/settings`** and **`/me/customization`**.
+
+- **Success per screen:** responsive at `sm`/`md`/`lg`; one a11y pass (labels,
+  focus); loading/empty/error states specified and implemented where missing.
+
+**B.6 — Motion & delight budget**
+
+- Align with user rules: interaction motion **≤200ms**; route transitions may
+  stay cinematic but **lists/grids** avoid gratuitous stagger.
+- **Success:** checklist in scratchpad Lessons + no new `prefers-reduced-motion`
+  violations.
+- **Delivered + human verified 2026-05-14:** `--aker-duration` / `--aker-duration-slow` **0.2s**; Framer dialogs/sheets/onboarding **0.2s** + `useReducedMotion`; `AppNav` + landing poster rail; ticket stub filter **200ms**; **Lessons** entry — see Executor **Track B.6** log.
+
+**B.7 — Planner sign-off**
+
+- Human reviews Track B on staging: “easy + beautiful enough to return daily.”
+- **Success:** explicit Planner note in scratchpad closing Track B or listing follow-ups.
+- **Recorded 2026-05-14:** Executor section **“Human: B.6 signed off + Track B.7 Planner sign-off”** — Track B implementation arc closed for shipped B.3–B.6 + B.5.4–B.5.8 scope; **follow-ups** listed there (B.5.2/B.5.3/B.5.9, nav parity, B.1/B.2, Phase 8 manual). *(**2026-05-15 / 2026-05-16:** those follow-ups closed in Executor — **Human: B.5.2 / B.5.3 / B.5.9 signed off**, **Human: B.1 / B.2 signed off**.)*
+
+**Track B deliverable:** a **usable** product skin: predictable navigation,
+fast filtering, readable feeds, profiles that feel premium — **on top of** the
+existing cinematic identity rather than replacing it.
+
 ## Project Status Board
 
 ### Phase 1 — Foundation
@@ -378,14 +520,460 @@ forced on anyone.
 - [x] 7.2 `useCinematicAudio` / CinemaSound provider
 
 ### Phase 8 — Polish + verify
-- [ ] 8.1 Cross-browser smoke (manual — Chrome · Safari · Firefox · iOS Safari)
+
+**Manual QA playbooks:** **8.1**, **8.3**, and **8.4** have Executor-written checklists in **`### Phase 8.1 prep`**, **`### Phase 8.3 prep`**, and **`### Phase 8.4 prep`** (same file, below this list).
+
+- [ ] 8.1 Cross-browser smoke *(**Phase 8.1 prep** — Chrome · Safari · Firefox · iOS Safari)*
 - [x] 8.2 Reduced-motion audit — code sweep (globals + `cinema-ticket-link` + loaders)
-- [ ] 8.3 Lighthouse perf (manual — compare mobile score vs last tagged release)
-- [ ] 8.4 a11y contrast on per‑film palette (manual — extremes + WCAG probe)
+- [ ] 8.3 Lighthouse perf *(**Phase 8.3 prep** — mobile vs last tagged release, like-for-like build mode)*
+- [ ] 8.4 a11y contrast on per‑film palette *(**Phase 8.4 prep** — `.movie-themed` extremes + WCAG probe)*
 - [x] 8.5 `globals.css` token map prose + stray path cleanup + button focus parity
 - [x] 8.6 `next build` green: Suspense shells for `/sign-in` + `/search`; `prefers-contrast` focus boost on `.movie-themed` controls *(Executor verified `bun run build` in `apps/web/`)*
 
+### Phase 8.1 prep — Cross-browser smoke checklist *(Executor 2026-05-16)*
+
+**Browsers:** Chrome · Safari · Firefox · iOS Safari — same signed-in account (staging or local).
+
+**Per browser (ordered pass)**
+1. **`/home`** — feed scrolls; at **`lg+`**, friend-activity rail expands/collapses; no horizontal overflow around **390px** width.
+2. **`/movies/popular` → `/movies/upcoming` → `/movies/discover`** (chips) — on Discover, exercise genre + sort + scroll; **← Lobby** returns home; confirm infinite footer still sane.
+3. **`/movies/[id]`** (pick a real id) — hero legible; sticky dock clears bottom **`AppNav`**; switch among **Reviews / Lists / Related** once each.
+4. **⌘K / Ctrl+K** — palette opens; choose **Discover films** shortcut (lands on **`/movies/discover`**).
+5. **`/notifications`** on a **narrow** viewport — bell visible in **`AppNav`**; list scrolls; one row interaction if you have data.
+6. **`/me/settings` ↔ `/me/customization`** — mobile tab strip vs **`md+`** left rail; **`aria-current`** / active chrome reads correctly.
+
+**Pass criteria:** no blank shell, no stuck modal/palette, bottom **`AppNav`** remains tappable (≥ ~44px targets), **Firefox** tolerates absent **View Transitions** (instant nav is OK).
+
+### Phase 8.3 prep — Lighthouse mobile perf *(Executor 2026-05-16)*
+
+**Tool:** Chrome **Lighthouse** (DevTools) or hosted **PageSpeed Insights** against the staging origin.
+
+**Setup**
+- Preset: **Mobile** + default throttling; first run in a **clean profile** (or hard-reload with cache disabled) so scores are comparable run-to-run.
+- Compare **like vs like**: **`next start`** (or production deploy) vs the **same** for the last **git tag** you care about — do **not** compare **`next dev`** to **`next start`**.
+
+**URLs to capture (mobile)** — adjust host to staging:
+1. **`/`** (marketing — largest paint is usually hero / poster rail).
+2. **`/home`** (signed-in lobby — feed + rails).
+3. **`/movies/[id]`** — pick a **poster-heavy** film (large hero image).
+4. **`/diary`** — long ticket list (scroll cost).
+
+**Log per URL:** **Performance** score, **LCP** (element + time), **CLS**, **TBT** (or **INP** if shown), Chrome version, build mode.
+
+**Pass gate (relative, default):** no **> ~5 pt** drop in **Performance** on **`/home`** vs last tagged baseline **without** an obvious cause (new hero asset, removed `priority`, slower API); **LCP** not worse by **> ~500ms** on same network/hardware. *(Planner may tighten numbers.)*
+
+### Phase 8.4 prep — Per-film palette contrast *(Executor 2026-05-16)*
+
+**Scope:** Pages under **`.movie-themed`** (film detail and any chrome that inherits per-film CSS vars) — **WCAG AA** for text and controls that patrons actually read.
+
+**Pick 3 films** (swap ids for real rows in your DB): **high-chroma** poster, **muted / brown** poster, **dark-on-dark** edge case if you have one.
+
+**Per `/movies/[id]`**
+1. Chrome **Rendering → Emulate CSS `prefers-contrast: more`** — buttons, links, and focus rings remain visible on hero + dock.
+2. **Axe** (or another contrast tool) on **primary CTA**, **hero link**, **body/meta** near accent-tinted regions — export or screenshot failures.
+3. **Keyboard:** **Tab** from first focusable through hero + into **MovieDetailExploreTabs** — no focus trapped or invisible behind hero.
+
+**Pass criteria:** no **critical** contrast failures on the **read title → rate / log → open tabs** path; **`prefers-contrast: more`** remains shippable.
+
+### Track B — Design system & screen IA *(**B.1–B.7** + **B.5.1–B.5.9** human-verified per scratchpad where shipped; Phase 8 manual QA still open)*
+- [x] B.1 Route audit + written principles (scratchpad + code) *(human verified 2026-05-16)*
+- [x] B.2 Token & elevation ladder (surfaces, gutters, `.movie-themed` harmony) *(human verified 2026-05-16)*
+- [x] B.3 `AppShell` / navigation contract for `(app)` *(human verified 2026-05-14)*
+- [x] B.4 Search + filter primitives (global pill, chips, advanced drawer) *(human verified 2026-05-14; drawer deferred)*
+- [x] B.5 Core screens (…) — **one screen per Executor milestone** *(**B.5.1–B.5.9** human-verified **2026-05-15** where shipped: **B.5.2** Discover, **B.5.3** film detail, **B.5.9** settings sub-nav — user **ok** **2026-05-15**; **B.5.4–B.5.8** as previously verified **2026-05-14**.)*
+- [x] B.6 Motion budget checklist (≤200ms interactions; reduced-motion clean) *(human verified 2026-05-14)*
+- [x] B.7 Planner / human sign-off on Track B *(Planner note 2026-05-14 — see Executor; staging “daily return” bar met for shipped scope, follow-ups listed)*
+
 ## Executor's Feedback or Assistance Requests
+
+### 2026-05-15 — User `executor`: Section kicker — quiet Mobbin-style labels *(Executor)*
+
+**Shipped:** **`apps/web/src/components/ui/section.tsx`** — section kickers drop **forced uppercase** + **desert-orange** micro-marquee styling; they render as **sentence-case** strings from each call site, **`11px` / `font-medium` / `tracking-wide` / `text-muted-foreground`**, with slightly more vertical air (**`mb-1.5`**, section stack **`space-y-5`**). Applies everywhere **`Section`** is used (home, diary, catalogue billboards, movie detail tabs, etc.).
+
+**Verify (Executor):** repo root **`bun run check-types --filter=web`** → **exit 0**.
+
+**Human / Planner:** Spot-check **`/home`**, **`/movies/popular`**, **`/diary`** — kickers should read as quiet metadata, not orange ticker tape. Reply **`ok`** when it matches intent. **Project Status Board:** **8.1 / 8.3 / 8.4** remain **manual** (prep sections already in this file).
+
+### 2026-05-16 — User `go`: Catalogue **← Lobby** a11y + comment parity *(Executor)*
+
+**Shipped:** **`/movies/popular`**, **`/movies/upcoming`**, **`/movies/discover`** — **`aria-label="Back to home lobby"`** on the header **Lobby** link (visible **← Lobby** unchanged); **upcoming** / **discover** RSC comments aligned with **popular** (seed page, cookie jar, **`blockedReason`**).
+
+**Verify (Executor):** repo root **`bun run check-types`** + **`bun run build --filter=web`** → **exit 0**. *(Turbo may warn on querying **`apps/web/.next/dev/lock`** symlink metadata — benign when dev server touched that path.)*
+
+**Human:** user **`ok`** **2026-05-16** — **popular / upcoming / discover** billboard **← Lobby** (**`aria-label`**, touch-safe hover tint, RSC comment parity) **human verified**; does **not** close **Phase 8.1** (full cross-browser matrix still manual).
+
+### 2026-05-16 — User `go`: Phase 8 board ↔ prep cross-links *(Executor)*
+
+**Shipped:** **Phase 8** status list — intro line + each open row (**8.1**, **8.3**, **8.4**) now points at its **`### Phase 8.* prep`** playbook in the same scratchpad so the Project Status Board is navigable without hunting.
+
+**Verify (Executor):** repo root **`bun run check-types`** + **`bun run build`** → **exit 0**.
+
+### 2026-05-16 — User `go`: Phase 8.3 + 8.4 manual prep *(Executor)*
+
+**Shipped:** Scratchpad sections **Phase 8.3 prep — Lighthouse mobile perf** and **Phase 8.4 prep — Per-film palette contrast** — repeatable scripts + default pass gates so **8.3** / **8.4** can be ticked without ad-hoc notes.
+
+**Verify (Executor):** repo root **`bun run check-types`** + **`bun run build`** → **exit 0** (cache hit).
+
+### 2026-05-16 — User `go`: Phase 8.1 prep + regression *(Executor)*
+
+**Shipped:** Scratchpad **Phase 8.1 prep — Cross-browser smoke checklist** (route matrix + pass criteria) so **8.1** has a repeatable human script across **Chrome · Safari · Firefox · iOS Safari**.
+
+**Verify (Executor):** repo root **`bun run check-types`** + **`bun run build`** → **exit 0** (all cache hit).
+
+### 2026-05-15 — Track B.5.9: Settings account sub-nav *(human verified 2026-05-15)*
+
+**Shipped**
+- **`apps/web/src/app/(app)/me/layout.tsx`:** Wraps **`/me/settings`** and **`/me/customization`** in a flex row (`max-w-5xl` … `lg:max-w-6xl`) with shared sub-navigation.
+- **`apps/web/src/components/profile/me-account-nav.tsx`:** Client nav with **`usePathname`** — **`md+`**: left **Account** list (Settings / Customize + descriptions, `aria-current`); **`<md`**: horizontal scroll strip with bottom border (matches profile section tab affordance). Icons: **Settings**, **Palette**.
+
+**Verify (Executor):** `cd apps/web && bun run build` → **0**.
+
+**Verify (human)**
+- **`/me/settings`** and **`/me/customization`**: narrow viewport shows top tabs; **`md+`** shows left rail; active route highlights correctly; keyboard tab order sensible.
+
+**Human verify:** ok 2026-05-15.
+
+### 2026-05-15 — Command palette: Discover launcher *(Executor)*
+
+**Shipped**
+- **`apps/web/src/components/app/command-palette.tsx`:** **`NAV_SHORTCUTS`** adds **Discover films** → **`/movies/discover`** (`Compass` icon) after **Popular films**, matching **`MovieCatalogSurfaceChips`** and the home **Or just explore** CTA.
+
+**Verify (Executor):** `cd apps/web && bun run build` → **0** (2026-05-15).
+
+### 2026-05-15 — User `go`: monorepo verify *(Executor)*
+
+**Ran** (repo root **`C:\Users\adgv\Documents\Projects\still`**): **`bun run check-types`** then **`bun run build`** → **exit 0** (`turbo` **2.9.12** — **`@still/ui`**, **`server`**, **`@still/api-client`** typecheck; **`web`** `next build` **16.2.6**, **`server`** `tsdown`, **`extension`** `wxt build`). *At the time of this run, Turbo warned **`no output files found for task extension#build`** — addressed same day by **`turbo.json`** **`.output/**`** (see **User `go`: Turbo `build` outputs for WXT**).*
+
+**Human / Planner:** ~~Track B rows still open for explicit **`ok`**: **B.5.2** Discover, **B.5.3** film detail, **B.5.9** settings sub-nav~~ — user **ok** **2026-05-15** (see **Human: B.5.2 / B.5.3 / B.5.9 signed off**).
+
+### 2026-05-15 — User `go`: Turbo `build` outputs for WXT *(Executor)*
+
+**Shipped:** Root **`turbo.json`** — global **`build.outputs`** includes **`".output/**"`** so **`apps/extension`** (`wxt build` → **`apps/extension/.output/`**) participates in Turbo cache without **`no output files found for task extension#build`**.
+
+**Verify (Executor):** `bunx turbo build --filter=extension` twice → second run **`cache hit, replaying logs`**; no missing-output warning.
+
+### 2026-05-15 — User `go`: WXT `runner` → `webExt` *(Executor)*
+
+**Shipped:** **`apps/extension/wxt.config.ts`** — renamed top-level **`runner`** to **`webExt`** (same **`disabled: true`**), per WXT 0.20 deprecation (`InlineConfig#runner` → `webExt`).
+
+**Verify (Executor):** `bunx turbo build --filter=extension --force` → **exit 0**; build log no longer prints **`InlineConfig#runner is deprecated`**.
+
+### 2026-05-15 — User `go`: tsdown `noExternal` → `deps.alwaysBundle` *(Executor)*
+
+**Shipped:** **`apps/server/tsdown.config.ts`** — replaced deprecated **`noExternal: [/@still\/.*/]`** with **`deps: { alwaysBundle: [/@still\/.*/] }`** so workspace **`@still/*`** packages stay inlined per tsdown ≥0.21.
+
+**Verify (Executor):** `bunx turbo build --filter=server --force` → **exit 0**; log no longer shows **`noExternal` is deprecated**.
+
+### 2026-05-15 — User `go`: tsdown quiet `onlyBundle` hint *(Executor)*
+
+**Shipped:** **`apps/server/tsdown.config.ts`** — under **`deps`**, set **`onlyBundle: false`** so tsdown stops suggesting a whitelist while the server bundle still intentionally inlines **`node_modules`** (alongside **`alwaysBundle`** for **`@still/*`**).
+
+**Verify (Executor):** `bunx turbo build --filter=server --force` → **exit 0**; **`dist/index.mjs`** still **~1.55 MB**; build log no longer prints the **`deps.onlyBundle`** hint or the **Detected dependencies in bundle** list.
+
+### 2026-05-15 — User `go`: catalogue Lobby link touch-safe hover *(Executor)*
+
+**Shipped:** **`/movies/popular`**, **`/movies/upcoming`**, **`/movies/discover`** — **`← Lobby`** link uses **`[@media(hover:hover)]:hover:text-foreground`** instead of bare **`hover:text-foreground`**, plus a short JSX comment (matches Track B touch guidance: no transient hover flash on press).
+
+**Verify (Executor):** `cd apps/web && bun run build` → **0**; **`biome check --write`** on the three pages → clean.
+
+### 2026-05-15 — User `go`: catalogue pages drop useless fragments *(Executor)*
+
+**Shipped:** **`popular`**, **`upcoming`**, **`discover`** movie routes — removed redundant **`<>`** wrappers around **`Section`** body children (Biome **`noUselessFragments`**); **`ReactNode`** accepts multiple siblings without an extra fragment.
+
+**Verify (Executor):** **`biome check --write`** on the three files + **`bun run build`** in **`apps/web`** → **0**.
+
+### 2026-05-15 — User `go`: post–B.5 regression gate *(Executor)*
+
+**Ran:** repo root **`bun run check-types`** + **`bun run build`** → **exit 0** (after user **ok** closed **B.5.2 / B.5.3 / B.5.9**). **`extension`** / **`server`** mostly **cache hit**; **`web`** full **`next build` Next 16.2.6** — no **`no output files found for task extension#build`** (current **`turbo.json`** includes **`.output/**`**).
+
+**Scratchpad hygiene:** Track B board header updated for **B.5** closure; **B.4** “next milestone” text updated; **monorego** log footnoted to **Turbo** **`.output/**`** fix.
+
+### 2026-05-14 — Track B follow-up: notifications nav parity *(human verified 2026-05-14)*
+
+**Shipped**
+- **`apps/web/src/components/app/app-nav.tsx`:** Removed **`hidden sm:block`** from the notifications control — **bell is always** in the floating bar (next to overflow, before avatar). Added **`aria-current="page"`** and a subtle **`bg-muted/80`** when `pathname` is `/notifications`.
+
+**Verify (Executor):** `cd apps/web && bun run build` → **0**.
+
+**Verify (human):** `< sm` width: bell visible; one tap → `/notifications`; active state reads on the icon.
+
+**Human verify:** ok 2026-05-14.
+
+### 2026-05-14 — Human: notifications nav parity signed off
+
+User replied **ok** — **Track B follow-up** (always-visible notifications bell in `AppNav`, `aria-current` + active styling on `/notifications`) treated as **human verified** 2026-05-14.
+
+### 2026-05-14 — Human: B.6 signed off + Track B.7 Planner sign-off
+
+User replied **ok go** — **B.6 Motion budget** is **human verified** (2026-05-14): global `--aker-duration` / `--aker-duration-slow` at **0.2s**, Framer sheets/dialogs/onboarding at **0.2s** with **`useReducedMotion`** fast paths, **`AppNav`** pip + hover respecting reduced motion, **landing poster rail** stagger/duration capped, **ticket stub** filter hover **200ms**.
+
+**B.7 — Planner closes Track B (implementation arc)** for the **shipped Executor scope**: predictable `(app)` shell (B.3), search/filter primitives (B.4), core screens **B.5.4–B.5.8** + motion pass (B.6), aligned with the scratchpad **“usable product skin”** goal. **Staging / product bar:** acceptable for **daily return** for this slice; full polish still depends on Phase 8 manual QA and items below.
+
+**Documented follow-ups (not blocking this B.7 note)**
+- **B.5.2 / B.5.3 / B.5.9:** user **ok** **2026-05-15** — **human verified** (see Executor **Human: B.5.2 / B.5.3 / B.5.9 signed off**). **⌘K Discover** shortcut shipped 2026-05-15 (**Command palette: Discover launcher**).
+- **Nav parity:** ~~notifications bell `hidden sm:block`~~ **addressed + human verified 2026-05-14** — bell always in `AppNav`; user **ok** on narrow-viewport check.
+- **B.1 / B.2:** user **ok** **2026-05-16** — **human verified** (see **Human: B.1 / B.2 signed off**).
+- **Phase 8:** **8.1** cross-browser smoke (**Phase 8.1 prep**), **8.3** Lighthouse (**Phase 8.3 prep**), **8.4** per-film palette contrast (**Phase 8.4 prep**) — manual; use prep sections before ticking rows.
+
+### 2026-05-14 — Track B.6: Motion budget *(human verified 2026-05-14)*
+
+**Shipped**
+- **`packages/ui` `globals.css`:** `--aker-duration` and `--aker-duration-slow` set to **0.2s** (was 0.24s / 0.34s) so token-driven hovers/transitions meet **≤200ms**; comment notes cinematic one-shots (iris ~0.42s, VT ~180ms, flicker ~0.48s) stay explicit exceptions.
+- **Framer (dialogs / sheets / onboarding):** enter/exit tweens **0.2s** (was 0.22–0.3s) in `command-palette.tsx`, `review-composer.tsx`; `onboarding-flow.tsx` uses shared **`stepTransition`** + **`useReducedMotion`** (instant when OS requests reduced motion).
+- **`app-nav.tsx`:** `useReducedMotion` — disables bar `whileHover` nudge + uses **≤180ms** tweens for the active pip (`layoutId`) instead of springs that could overshoot the budget.
+- **`landing-poster-rail.tsx`:** `useReducedMotion` skips stagger and mount tween; otherwise **0.2s** motion, capped stagger delay **0.1s** max; row **`key`** from poster ids (not array index).
+- **`ticket-stub.tsx`:** poster filter hover **duration-200** (was 300ms).
+
+**Verify (Executor):** `cd apps/web && bun run build` → **0**.
+
+**Verify (human)**
+- Toggle OS “reduce motion”: nav pip + landing poster rail should feel instant or nearly so; hovers on buttons/cards still acceptable.
+- Normal motion: UI color/transform transitions feel snappy, not sluggish.
+
+**Human verify:** ok 2026-05-14.
+
+### 2026-05-14 — Human: B.5.8 signed off
+
+User replied **ok** — Track B **B.5.8** (notifications: calendar grouping, `title`/`body`, per-row read + `payload.href` enrichment) treated as **Planner/human verified**. Next Executor milestone when user sends **go**: **B.6 Motion budget** (≤200ms interactions; reduced-motion clean) per Planner.
+
+### 2026-05-14 — Track B.5.8: Notifications *(human verified 2026-05-14)*
+
+**Shipped**
+- **Server `GET /api/notifications`:** `withNavigationHints()` merges `payload.href` when absent — follow rows resolve `fromUserId` → `profile.handle` → `/profile/:handle`; chat → `/chat`; badge/achievement → `/achievements`.
+- **Inserts:** follow notification includes `href` when the follower has a handle; chat/badge/achievement payloads include `href` for new rows.
+- **Web:** `NotificationsList` groups by **local calendar day** (Today / Yesterday / older); shows **`title`** + optional **`body`**; icons by `kind` prefix; **Mark all read** unchanged; **per-row read** via `POST /api/notifications/:id/read` (`postNotificationRead` in `still-api-fetch`) on primary row button + **Open** link; optimistic UI with rollback on failure.
+- **Verify (Executor):** `apps/server` `bun run check-types` → **0**; `apps/web` `bun run build` → **0**.
+
+**Verify (human)**
+- `/notifications`: sections + unread highlight; tap row text or Open marks read (stays grouped under same day); Mark all read clears highlights.
+- Follow / chat / badge notifications show sensible Open targets (profile, chat, achievements).
+
+**Human verify:** ok 2026-05-14.
+
+### 2026-05-14 — Human: B.5.7 signed off
+
+User replied **ok** — Track B **B.5.7** (centered profile hero, `?tab=` section nav, semantic filmography table) treated as **Planner/human verified**. *(Next milestone after subsequent **go**: **B.5.8 Notifications** — now **human verified 2026-05-14**.)*
+
+### 2026-05-14 — Human: B.5.6 signed off
+
+User replied **ok** — Track B **B.5.6** (lists index Savee-style rows + `coverPosterPaths` API) treated as **Planner/human verified**. **B.5.7 Profile** followed in the next **go** and is now **human verified** as well.
+
+### 2026-05-14 — Track B.5.6: Lists index (Savee rows) *(human verified 2026-05-14)*
+
+**Shipped**
+- **Server:** `withCoverPosterPaths()` batches `movie.poster_path` for all `cover_movie_ids` on each list row; applied to `GET /api/lists`, `/popular`, `/me`, `/by-user/:userId`, plus `POST /` and `PATCH /:id` responses; profile `GET /:handle` list payload uses the same helper (`list-cover-posters.ts`).
+- **Web:** `ListRowStrip` + `toListBoardRow`; `/lists` “Your lists” + “Popular this week” as full-width bordered list; profile Lists rail matches; removed **`list-card.tsx`** (incorrect `…/w185/{tmdbId}.jpg` poster URLs).
+
+**Human verify:** ok 2026-05-14.
+
+### 2026-05-14 — Track B.5.7: Profile layout *(human verified 2026-05-14)*
+
+**Shipped**
+- **`/profile/[handle]`:** Centered hero under banner — **avatar** (image or initials) overlaps band, @handle, display name, pronouns, bio, **`<dl>`** stats (followers / following) + location / website, centered actions (Customize / Edit or **Follow**).
+- **Section nav:** `?tab=filmography|reviews|lists|favorites` — **filmography** always listed; other tabs only when that rail has rows; order follows **`sectionOrder`**; active link uses **`aria-current="page"`** + bottom border; bar scrolls horizontally on narrow viewports; entire nav omitted when only filmography applies.
+- **Panels:** one primary block per tab — **semantic `<table>`** filmography (replaces prior `div role="table"`); empty-ledger CTA; favorites **responsive grid**; reviews **2-col** `ReviewCard` list; lists reuse **`ListRowStrip`**.
+- Removed the nested **“Also credited for”** mega-`Section` wrapper.
+
+**Human verify:** ok 2026-05-14.
+
+### 2026-05-14 — Human: B.5.4 + B.5.5 signed off
+
+User replied **ok** — Track B **B.5.4** (quick log sheet) and **B.5.5** (diary Tickets / Stills layout + month ordering) treated as **Planner/human verified**. Next Executor milestone when user sends **go** was **B.5.6 Lists** (Savee-style row + poster strip) — now delivered; next **go**: **B.5.7 Profile** per Planner.
+
+### 2026-05-14 — Track B.5.5: Diary layout *(human verified 2026-05-14)*
+
+**Shipped**
+- **`/diary`:** Server builds **month sections** (with **Undated** fallback for bad timestamps); **newest month first**; logs inside each month **newest first**; drops rows with no `movie` join (cannot render).
+- **`DiaryPageClient`:** Toolbar **Tickets** (existing `DiaryEntry` grid) vs **Stills** (CSS `columns-*` masonry + `DiaryStillTile` poster cells, half-star overlay when rated); choice persisted in **`localStorage`** `still.diary.layout`.
+- **A11y:** Toolbar `role="toolbar"` + `aria-label`; layout buttons `aria-pressed`; still links expose composite `aria-label` (title · watched date).
+
+**Human verify:** ok 2026-05-14.
+
+### 2026-05-14 — Track B.5.4: Quick log sheet *(human verified 2026-05-14)*
+
+**Shipped**
+- **`quick-log-sheet.tsx`** — Zustand `useQuickLog` + `QuickLogRoot`: mobile bottom sheet / desktop centered dialog (Framer Motion **≤200ms**), Escape + backdrop close, `role="dialog"` + labelled title.
+- **Flow:** Film (pre-filled from movie page, or TMDb search when `open()` with no `movieId`) → **date** (`type="date"`, default today, noon local → ISO for `watchedAt`) → optional **rating** (`StarRating`) → optional **note** (500 cap) → **Save log** disabled until `movieId` + valid date + note length OK.
+- **`AppShell`** mounts `<QuickLogRoot />` next to review composer.
+- **`MovieActions`:** **Log** opens the sheet (sound + diary refetch on success via `onSuccess`); heart-without-log still one-tap `postLog` + like.
+
+**Human verify:** ok 2026-05-14.
+
+### 2026-05-14 — Human: B.3 signed off
+
+User replied **ok** — Track B **B.3** (`AppShell` + bottom nav contract) treated as **Planner/human verified**.
+
+### 2026-05-14 — Track B.5.3: Film detail *(human verified 2026-05-15)*
+
+**Shipped**
+- **`GET /api/movies/:id/lists`** — public `list` rows joined via `list_item` for this `movieId`, ordered by likes (max 24).
+- **`MovieDetailExploreTabs`** (`components/movie/movie-detail-explore-tabs.tsx`) — client tablist (Reviews / Lists / Related) with keyboard arrows, Home/End; Reviews consolidates featured + grid; Lists empty state + create-list link; Related = TMDb rail + `DoubleFeatureSuggestion` or empty copy.
+- **`/movies/[id]/page.tsx`** — fetches lists; removes duplicate hero `MovieActions`; **sticky** action dock under hero (`bottom-[max(6rem,…)]` to clear `AppShell` bottom nav); Reception section unchanged above tabs.
+
+**Verify (human)**
+- Sticky bar clears bottom nav on narrow + iOS safe-area; log/watchlist/like still work once.
+- Tab panels + empty states; lists tab populates when a public list includes the film.
+- `bun run build` (`apps/web`) and `bun run check-types` (`apps/server`) → **0** (Executor).
+
+**Human verify:** ok 2026-05-15.
+
+### 2026-05-14 — Track B.5.2: Discover *(human verified 2026-05-15)*
+
+**Shipped**
+- **API** (`apps/server`): `tmdbApi.discoverMovies` + `genreMovieList`; `GET /api/movies/discover?page&genre&sort` (whitelist `sort_by`, `vote_count.gte` for vote-average sorts); `GET /api/movies/genres` — routes registered **before** `/:id`.
+- **Web** (`still-api-fetch`): `fetchMoviesDiscover`, `fetchMovieGenres`.
+- **Route** `apps/web/src/app/(app)/movies/discover/page.tsx`: `searchParams` genre + sort; `MovieDiscoverToolbar` (horizontal genre rail + sort chips, shareable URLs via `discover-catalog-url.ts`); `DiscoverCatalogEmpty` when `total_results === 0`; `PopularMoviesInfinite` supports `catalogKind="discover"` + `key` reset on filter change.
+- **`MovieCatalogSurfaceChips`:** third chip **Discover**; home empty-feed **Or just explore** → `/movies/discover`.
+
+**Verify (human)**
+- `/movies/discover`, chip genre + sort, pagination, empty edge (e.g. impossible combo if any), TMDB-unconfigured hint.
+- `cd apps/web && bun run build` → **0**; `apps/server` `bun run check-types` → **0** (Executor).
+
+**Human verify:** ok 2026-05-15.
+
+### 2026-05-15 — Human: B.5.2 / B.5.3 / B.5.9 signed off
+
+User replied **ok** — Track **B.5.2** (Discover), **B.5.3** (film detail explore tabs + sticky dock), and **B.5.9** (settings account sub-nav) treated as **Planner / human verified** **2026-05-15**. **B.5** status board row marked **complete** for shipped milestones.
+
+### 2026-05-14 — Human: B.5.1 signed off
+
+User replied **ok** — Track B **B.5.1** (home lobby feed anatomy + collapsible friend-activity rail) treated as **Planner/human verified**. *(**B.5.2–B.5.9** closed out with user **ok** **2026-05-15** — see **Human: B.5.2 / B.5.3 / B.5.9 signed off**.)*
+
+### 2026-05-16 — Human: B.1 / B.2 signed off
+
+User replied **ok** — Track **B.1** (route audit + in-repo principles) and **B.2** (token & elevation ladder) treated as **Planner / human verified** **2026-05-16**. Project Status Board rows **B.1** and **B.2** updated.
+
+### 2026-05-14 — Track B.5.1: Home / following *(human verified 2026-05-14)*
+
+**Shipped**
+- **Feed cards** (`components/feed/activity-item.tsx`): `FeedPersonAvatar` + byline + film line + rating/meta + **poster thumb on the right** (`MoviePoster` `xs`) + **44px icon action** (film / read review / list). `article` + `focus-within` ring; **removed invalid nested `<Link>`** on review + list rows (whole-card link wrapped profile link before).
+- **`feed-person-avatar.tsx`**: profile disc with initials fallback, 44px tap target, ring on focus/hover.
+- **Friend activity rail** (`lg+`): `deriveFriendRailEntries` in `lib/home-friend-rail.ts`; `HomeFriendActivityRail` client aside — collapse persists in `localStorage` (`still.home.friendRail.collapsed`); empty copy when no follows data.
+- **`home/page.tsx`**: flex row layout for lobby section + rail; **stable list keys** via `activityRowKey` (payload ids, not array index).
+
+**Verify**
+- `/home` ≥`lg`: friend rail visible, collapse/expand, list scrolls if many friends; `<lg` rail hidden, feed full width.
+- Log / review / list rows: no nested-link warnings in a11y tree; poster + icon actions reachable by keyboard.
+- `cd apps/web && bun run build` → exit **0** (Executor verified).
+
+### 2026-05-14 — Human: B.4 signed off
+
+User replied **ok** — Track B **B.4** (search pill, filter chips, `/movies/upcoming`, home lobby links) treated as **Planner/human verified**. *(**B.5** milestones closed **2026-05-15** — **Human: B.5.2 / B.5.3 / B.5.9 signed off**; **B.1 / B.2** closed **2026-05-16** — **Human: B.1 / B.2 signed off**.)*
+
+### 2026-05-14 — B.4 complete: search + browse primitives *(human verified 2026-05-14)*
+
+**Shipped**
+- `components/ui/search-pill-field.tsx` — pill search (icon, optional scope, clear controls).
+- `components/ui/filter-chip-row.tsx` — `FilterChipRow` (`role="toolbar"`), `FilterChipLink`, `FilterChipButton`.
+- `SearchClient`: pill field + static **Films** scope + dismissible **Query · “…”** chip row; `showClearQuery={false}` to avoid duplicate clears.
+- `MovieCatalogSurfaceChips` + route **`/movies/upcoming`** (mirrors popular seed + infinite); `fetchMoviesUpcoming`; `PopularMoviesInfinite` gains `catalogKind` + correct footer catalogue label.
+- `movies/popular` + `movies/upcoming` render shared chips; search page `Suspense` fallback uses pill-shaped skeleton bar.
+- **Home** “Popular this week” header links: **Opening soon** → `/movies/upcoming`, **See all** → `/movies/popular`.
+
+**Deferred:** advanced filter drawer (genre/year/service) — needs API or client filter spec.
+
+**Verify:** `cd apps/web && bun run build` → exit **0**.
+
+### 2026-05-14 — Planner: Track B (design system) added
+
+**Context:** User requested a **full design system redo** for usability and
+delight (Mobbin web patterns: rails, pills, chips, library toolbars, profile
+layouts). This is **Track B** in `High-level Task Breakdown` and `Project Status
+Board`. It **does not** cancel Phases 1–7 (largely done) or Phase 8 manual QA.
+
+**Resolution (human “go”, 2026-05-14):** proceed with **B.1** before Phase 8
+manual QA; items **8.1 / 8.3 / 8.4** stay on the board as parallel ship debt.
+
+### 2026-05-14 — B.3 complete: `AppShell` + nav contract *(human verified 2026-05-14)*
+
+**Shipped**
+- `apps/web/src/components/app/app-shell.tsx`: single server component for
+  projector boot, grain, `AppNav`, `main#main-content` (bottom padding for
+  floating bar), `CinemaSceneCut`, gutter wrapper, command palette, review
+  composer, badge watcher. Docblock = Mobbin-style **bottom bar** MVP (no
+  sidebar rail).
+- `apps/web/src/app/(app)/layout.tsx`: auth + profile redirects only; renders
+  `<AppShell user={…}>{children}</AppShell>`.
+- `APP_SHELL_BOTTOM_RESERVE_CSS` + `appShellMainContentMinHeightStyle` exported
+  for pages that need viewport math in sync with `main` padding; `people/[id]`
+  imports shared style (removed local duplicate).
+
+**Verify**
+- `cd apps/web && bun run build` → exit **0**.
+
+### 2026-05-14 — B.2 complete: token & elevation ladder *(human verified 2026-05-16)*
+
+**Shipped**
+- `packages/ui/src/styles/globals.css`: formal ladder `--surface-canvas` →
+  `--surface-raised` (was `surface-card-base` / deep graphite) →
+  `--surface-overlay` (`#121212` between card and `muted`); `--background` /
+  `--card` / `--popover` map to those; header + cinema tuning comments updated;
+  `.movie-themed` note (don’t replace panel fills with accent floods).
+- `@theme inline`: `--color-surface-canvas`, `--color-surface-raised`,
+  `--color-surface-overlay` for Tailwind `bg-surface-*`.
+- **Components using explicit `bg-surface-*`:** `AppNav` (raised), `ActivityItem`
+  (raised), `CommandPalette` (overlay), `home` `EmptyFeed` + `diary` empty
+  dashed panels (raised/40).
+- `(app)/layout.tsx`: one-line comment that horizontal gutters are owned there.
+- `user-menu.tsx`: remove `className="bg-card"` on `DropdownMenuContent` so
+  default `bg-popover` (overlay tier) applies.
+
+**Verify**
+- `cd apps/web && bun run build` → exit **0** (Next 16.2.6).
+
+**Note:** First build after route work hit bogus `RouteImpl` errors for real
+paths; **`rm -rf apps/web/.next` + rebuild** cleared them — documented in
+`Lessons`.
+
+**Human verify:** ok 2026-05-16.
+
+### 2026-05-14 — B.1 complete: route audit + principles *(human verified 2026-05-16)*
+
+**Scope:** `apps/web/src/app` routes + shared `(app)` chrome (`layout.tsx`,
+`AppNav`). No code changes for B.1 — audit only.
+
+**App shell (shared):** `(app)/layout.tsx` → `main` + full-width horizontal
+padding (`px-4` … `2xl:px-16`), bottom padding for **fixed bottom nav**
+(`AppNav`: pill bar, `role="navigation"` `aria-label="Main"`, `BrandMark` on
+`sm+`, ⌘K search, overflow menu, **notifications bell** in the bar on **all** breakpoints *(Track B nav parity fix 2026-05-14 — was `hidden sm:block`)*). `CommandPaletteRoot`,
+`ReviewComposerRoot`, `BadgeWatcher`, grain + `CinemaSceneCut` + `ProjectorBoot`.
+
+**Route inventory**
+
+| Route | Layout / pattern | Density & chrome | CTAs / nav / a11y notes |
+|-------|-------------------|------------------|-------------------------|
+| `/` (`page.tsx`) | Marketing: theater floor, hero `Letterbox`, anchor nav (`md+`) | High atmosphere | Signed-in users redirect to `/home`. |
+| `/onboarding` | Centered `max-w-2xl` column, no `AppNav` | Medium | OK for focused funnel. |
+| `(auth)/sign-in`, `sign-up` | Auth layout | Medium | `Suspense` for searchParams consumers (Phase 8). |
+| `/home` | Stacked `Section`s: feed, popular grid, upcoming, news/tickets | Medium–high | Secondary “Your diary” duplicates global Diary nav — acceptable nudge. |
+| `/diary` | `Section` + per-month `cinema-film-strip-rail--coded` + ticket grid | High (tickets) | Strong empty state → `/search` + *Log*. |
+| `/watchlist` | Ticket stack (Phase 6) | High | Coherent with diary metaphor. |
+| `/news` | Single `Section` + `NewsStrip` | Low–medium | — |
+| `/chat` | Full-bleed `ChatPane` (threads + messages) | High | Primary nav item — good. |
+| `/movies/[id]` | Full-bleed hero (flush top), dense metadata + actions | High | Known hero hit-testing constraints (Executor log 2026-05-13). |
+| `/movies/popular` | Poster/browse grid | Medium | “Discover” split from home. |
+| `/search` | `SearchClient` + skeleton `Suspense` | Medium | Palette + `/search` should share primitives in **B.4**. |
+| `/lists`, `/lists/new`, `/lists/[id]` | `Section` + cards / form / detail | Medium | “Lists” in overflow menu + direct URL — discoverability OK for v1. |
+| `/reviews/[id]` | Long-form review + credits (Phase 5) | Medium | — |
+| `/profile/[handle]` | Banner `Letterbox`, filmography ledger, `Section`s | High | Rich; watch tab order on narrow widths in **B.5**. |
+| `/people/[id]` | Person detail, `Section`, filmography-style lists | Medium | Custom `minHeight` to align with floating nav — pattern to centralize in **B.3**. |
+| `/notifications` | `Section` + list | Low | **Bell in `AppNav` on all breakpoints** (2026-05-14); avatar menu “Notifications” kept as secondary path. |
+| `/me/settings`, `/me/customization` | Shared **`me/layout`**: `MeAccountNav` (vertical `md+`, tab strip mobile) + `max-w-2xl` form column | Medium | **B.5.9** sub-nav — **human verified 2026-05-15**. |
+| `/achievements` | Standard page (from overflow) | Medium | — |
+
+**Non-negotiable principles (Track B)** — align implementation in B.2–B.6:
+
+1. **Two visual layers:** *Cinema* (grain, letterbox, film strip, vignette, scene cuts) on shells and heroes; *Utility* (lists, forms, filters) stays calm: predictable spacing, minimal animation, no decorative pointer blocking.
+2. **One global accent role:** keep primary CTA / active nav pip on the existing accent token; per-film `.movie-themed` tints chrome but **does not** splinter button semantics (already Phase 2 policy — extend to Track B components).
+3. **Typography roles:** `font-display` for page `h1` / major section titles; UI sans for dense labels, scores, and card titles (current direction — formalize in code reviews).
+4. **Navigation parity:** every destination reachable on **mobile** without `sm-only` dead ends; if an icon is `hidden sm:block`, provide an equivalent in the always-visible cluster or overflow (**notifications bell** addressed in **`AppNav`** 2026-05-14).
+5. **Page gutter contract:** outer horizontal padding comes from `(app)` layout; inner components avoid re-introducing conflicting `mx-auto px-*` unless intentionally breaking full-bleed (document exceptions in **B.2**).
+6. **Touch targets:** maintain **≥44px** vertical hit areas on primary nav and global actions (`AppNav` links already `min-h-11` — don’t regress).
+7. **Motion budget:** interaction feedback **≤200ms** for hovers/focus; route transitions may stay cinematic; **no** gratuitous list stagger; honor `prefers-reduced-motion` (Phase 8 baseline).
+
+**Mobbin MCP:** use `"image_format": "jpg"` for `search_screens` if the agent environment rejects WebP.
+
+**Human verify:** ok 2026-05-16.
 
 ### 2026-05-13 — `/movies/[id]` hero taps (Log / Watchlist / overlap)
 
@@ -630,6 +1218,7 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 
 ## Lessons
 
+- **Track B.6 motion budget:** `--aker-duration` / `--aker-duration-slow` in `packages/ui/src/styles/globals.css` are **0.2s** max for tokenized UI transitions; hero iris, projector flicker, and view-transition durations stay **explicit longer values** where cinematic. Framer **`useReducedMotion`** should gate decorative stagger (e.g. marketing poster rail) and snap onboarding step transitions when the OS requests reduced motion.
 - `packages/db/src/migrate.ts` must load `.env` with **`../../../apps/server/.env`**
   (from `src/`), matching how `drizzle.config.ts` resolves `../../apps/server/.env`
   from the `packages/db/` cwd.
@@ -648,3 +1237,16 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
   in-page animations).
 - `framer-motion` imports are `from "framer-motion"`, not `motion/react` —
   per user rules.
+- **Mobbin MCP** (`search_screens`): some environments fail WebP decode — use
+  `"image_format": "jpg"` for reliable screen pulls when researching patterns.
+- **Next.js `RouteImpl` / Link href errors after route changes:** if `next build`
+  fails TypeScript on valid paths (e.g. `/search`, `/sign-in`) with
+  `typedRoutes: false`, delete **`apps/web/.next`** and rebuild — stale generated
+  types can linger and contradict the live `app/` tree.
+- **Turbo `extension#build`:** WXT writes artifacts under **`apps/extension/.output/`**, not **`dist/`**. Root **`turbo.json`** **`build.outputs`** must include **`".output/**"`** (or a package rule) or Turbo warns and skips caching that task’s outputs.
+- **WXT ≥0.20:** top-level **`runner`** in **`wxt.config.ts`** is deprecated — use **`webExt`** (same shape, e.g. **`disabled: true`** to skip auto-launching Chrome during dev/build tooling).
+- **tsdown ≥0.21:** top-level **`noExternal`** is deprecated — use **`deps.alwaysBundle`** (same patterns) to force bundling workspace packages like **`@still/*`**. For a **fat server bundle** that inlines many **`node_modules`** deps, **`deps.onlyBundle: false`** silences whitelist-audit noise (see **`apps/server/tsdown.config.ts`**).
+- **Phase 8.1 (cross-browser smoke):** repeatable route matrix + pass criteria live in **`.cursor/scratchpad.md`** under **`### Phase 8.1 prep — Cross-browser smoke checklist`** — run it before ticking **8.1** on the Project Status Board.
+- **Phase 8.3 (Lighthouse mobile):** prep + default relative pass gates under **`### Phase 8.3 prep — Lighthouse mobile perf`** — log scores against the **same** build mode as the last tagged baseline.
+- **Phase 8.4 (per-film contrast):** prep under **`### Phase 8.4 prep — Per-film palette contrast`** — sample **three** **`/movies/[id]`** extremes before ticking **8.4**.
+- **Catalogue billboard Lobby link:** **`popular` / `upcoming` / `discover`** header **`← Lobby`** uses **`aria-label="Back to home lobby"`** plus **`[@media(hover:hover)]:hover:text-foreground`** so touch avoids stuck-hover tint and screen readers get a clear target name.

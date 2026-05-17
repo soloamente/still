@@ -1,8 +1,8 @@
 {
-  "version": 1,
-  "lastRunAtMs": 1778714734372,
-  "turnsSinceLastRun": 11,
-  "lastTranscriptMtimeMs": 1778714734109,
-  "lastProcessedGenerationId": "400832b8-e191-4110-9b00-be416c61a3d1",
-  "trialStartedAtMs": null
+	"version": 1,
+	"lastRunAtMs": 1779018260994,
+	"turnsSinceLastRun": 0,
+	"lastTranscriptMtimeMs": 1779018260192,
+	"lastProcessedGenerationId": "d09bb400-4d20-4f1c-9b98-436f3164e64e",
+	"trialStartedAtMs": null
 }

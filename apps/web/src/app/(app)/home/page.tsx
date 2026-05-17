@@ -1,173 +1,269 @@
-import { Button } from "@still/ui/components/button";
+import { buttonVariants } from "@still/ui/components/button";
+import IconSlider from "@still/ui/icons/slider";
 import { cn } from "@still/ui/lib/utils";
-import { ArrowRight } from "lucide-react";
-import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { Suspense } from "react";
 
-import { TICK_COMPACT_FILL_RAIL_TW, TicketStub } from "@/components/cinema/ticket-stub";
-import { ActivityItem } from "@/components/feed/activity-item";
-import { NewsStrip } from "@/components/news/news-strip";
-import { Section } from "@/components/ui/section";
+import { HomeCatalogSortChips } from "@/components/home/home-catalog-sort-chips";
+import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
+import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
+import { authServer } from "@/lib/auth-server";
+import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
+import { parseHomeCatalogSort } from "@/lib/home-catalog-sort";
+import {
+	HOME_COMMUNITY_FEEDS,
+	parseHomeCommunityFeed,
+} from "@/lib/home-community-feed";
+import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+import { readCatalogMonochromePeersOnHoverPref } from "@/lib/profile-preferences";
 import { serverApi } from "@/lib/server-api";
+import {
+	fetchMoviesDiscover,
+	fetchMoviesPopular,
+	fetchTvDiscover,
+	fetchTvPopular,
+} from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 
-export const metadata: Metadata = { title: "Home" };
 export const dynamic = "force-dynamic";
 
-type ActivityKind = "log" | "review" | "list";
-type ActivityItemShape = { kind: ActivityKind; at: string; payload: unknown };
+/** First sheet from TMDb — client infinite scroll asks for page 2…N the same way as `/movies/popular`. */
+const SEED_PAGE = 1;
 
-export default async function HomePage() {
-  const api = await serverApi();
-  const [feedRes, popularRes, upcomingRes, newsRes] = await Promise.all([
-    api.api.feed.get().catch(() => ({ data: null })),
-    api.api.movies.popular.get().catch(() => ({ data: null })),
-    api.api.movies.upcoming.get().catch(() => ({ data: null })),
-    api.api.news.get().catch(() => ({ data: null })),
-  ]);
+/** “Latest” movie lobby rail — TMDb discover by primary release date (same vocabulary as `/movies/discover`). */
+const LATEST_DISCOVER_SORT = "primary_release_date.desc" as const;
 
-  const items: ActivityItemShape[] =
-    (feedRes.data as { items?: ActivityItemShape[] } | null)?.items ?? [];
-  const popularPayload = popularRes.data as { results?: { id: number; title: string; poster_url: string | null }[] } | null;
-  const popular = popularPayload?.results?.slice(0, 12) ?? [];
-  const tmdbHint = tmdbSetupHint(popularPayload);
-  const upcoming =
-    (upcomingRes.data as { results?: { id: number; title: string; poster_url: string | null }[] } | null)
-      ?.results?.slice(0, 12) ?? [];
-  const news = (newsRes.data as unknown as { article: NewsArticle; source: NewsSource | null }[] | null) ?? [];
+/** “Latest” TV lobby rail — TMDb discover TV by first air date (TV has no `primary_release_date`). */
+const LATEST_TV_DISCOVER_SORT = "first_air_date.desc" as const;
 
-  return (
-    <div className="space-y-12">
-      <Section
-        kicker="Lobby chatter"
-        title="Your week in film"
-        subtitle="What your circle has been watching and writing about — letters from the front row."
-        rightSlot={
-          <Link href="/diary">
-            <Button variant="ghost" size="sm">
-              Your diary <ArrowRight className="ml-1 size-3.5" />
-            </Button>
-          </Link>
-        }
-      >
-        {items.length ? (
-          <ul className="space-y-3">
-            {items.slice(0, 16).map((item, idx) => (
-              <li key={`${item.kind}-${item.at}-${idx}`}>
-                <ActivityItem item={item} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <EmptyFeed />
-        )}
-      </Section>
-
-      <Section
-        kicker="Now showing"
-        title="Popular this week"
-        rightSlot={
-          <Link href="/movies/popular" className="text-xs text-muted-foreground hover:text-foreground">
-            See all
-          </Link>
-        }
-      >
-        {tmdbHint ? (
-          <p className="text-sm text-muted-foreground" role="status">
-            {tmdbHint}
-          </p>
-        ) : null}
-        <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 sm:gap-5 md:grid-cols-6 md:gap-6 lg:gap-7 xl:gap-8">
-          {popular.map((m) => (
-            <TicketStub
-              key={m.id}
-              ariaLabel={`Open film: ${m.title}`}
-              href={`/movies/${m.id}`}
-              posterAlt={m.title}
-              posterFillFlexible
-              posterFillTicket
-              posterUrl={m.poster_url}
-              size="compact"
-              stubKicker="Now showing"
-            >
-              <h3 className="font-sans text-balance line-clamp-2 font-semibold tracking-[-0.015em] sm:tracking-tight">
-                {m.title}
-              </h3>
-            </TicketStub>
-          ))}
-        </div>
-      </Section>
-
-      <Section kicker="Coming attractions" title="Coming soon" subtitle="Admission slips you can skim — tactile contrast to poster grids elsewhere.">
-        {/* Horizontal rail: posterFillTicket = full-card cover art + uniform compact stub width */}
-        {upcoming.length ? (
-          <ul
-            aria-label="Upcoming releases as ticket stubs"
-            className="-mx-4 flex list-none gap-6 overflow-x-auto overscroll-x-contain px-5 py-2 [scrollbar-width:thin] max-md:snap-x max-md:snap-mandatory sm:-mx-6 sm:gap-8 sm:px-6 lg:-mx-8 lg:gap-10 lg:px-8 xl:-mx-12 xl:gap-12 xl:px-10 2xl:-mx-16 2xl:px-12"
-          >
-            {upcoming.map((m) => (
-              <li key={m.id} className={cn("max-md:snap-start shrink-0 list-none", TICK_COMPACT_FILL_RAIL_TW)}>
-                <TicketStub
-                  ariaLabel={`Open film: ${m.title}`}
-                  href={`/movies/${m.id}`}
-                  posterUrl={m.poster_url}
-                  posterAlt={m.title}
-                  posterFillTicket
-                  size="compact"
-                  stubKicker="Coming soon"
-                >
-                  <h3 className="font-sans line-clamp-2 font-medium tracking-[-0.01em]">
-                    {m.title}
-                  </h3>
-                </TicketStub>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-sm text-muted-foreground" role="status">
-            No upcoming previews from TMDb right now — check back after the catalog sync catches the next runway.
-          </p>
-        )}
-      </Section>
-
-      <Section kicker="Projectionist feed" title="From the wires">
-        <NewsStrip items={news.slice(0, 6)} />
-      </Section>
-    </div>
-  );
-}
-
-type NewsArticle = {
-  id: string;
-  title: string;
-  summary: string | null;
-  url: string;
-  imageUrl: string | null;
-  publishedAt: string;
-  movieIds: number[];
+type MovieSheetPayload = {
+	page: number;
+	total_pages?: number;
+	total_results?: number;
+	results?: { id: number; title: string; poster_url: string | null }[];
+	code?: string;
+	hint?: string;
 };
-type NewsSource = { id: string; name: string; kind: string };
 
-function EmptyFeed() {
-  return (
-    <div className="rounded-2xl border border-dashed border-border bg-card/40 p-10 text-center">
-      <p className="font-display text-xl">No screenings logged by your circle yet.</p>
-      <p className="mt-2 text-sm text-muted-foreground">
-        Follow a few people whose taste you trust — their logs and reviews show up like lobby
-        chatter while the house lights are still up.
-      </p>
-      <div className="mt-5 flex justify-center gap-2">
-        <Link href="/search">
-          <Button variant="accent" size="pill">
-            Find people
-          </Button>
-        </Link>
-        <Link href="/home?explore=true">
-          <Button variant="ghost-light" size="pill">
-            Or just explore
-          </Button>
-        </Link>
-      </div>
-    </div>
-  );
+export default async function HomePage({
+	searchParams,
+}: {
+	searchParams: Promise<{ sort?: string; browse?: string }>;
+}) {
+	const sp = await searchParams;
+	const sort = parseHomeCatalogSort(sp.sort);
+	const browse = parseHomeBrowseSurface(sp.browse);
+	const communityFeed =
+		browse === "community" ? parseHomeCommunityFeed(sp.sort) : null;
+	const communityFeedMeta = HOME_COMMUNITY_FEEDS.find(
+		(f) => f.id === communityFeed,
+	);
+	const communityFeedLabel = communityFeedMeta?.label ?? "Lists";
+	const communityFeedHint =
+		communityFeedMeta?.hint ??
+		"Member lists, reviews, diary, and activity will appear here.";
+
+	const jar = await cookies();
+	/** Forward session cookies so RSC `fetch` hits the API as the signed-in user (mirrors other catalogue pages). */
+	const cookieHeader = jar
+		.getAll()
+		.map((c) => `${c.name}=${c.value}`)
+		.join("; ");
+
+	const api = await serverApi();
+	const session = await authServer();
+
+	const lobbySheet =
+		browse === "community"
+			? Promise.resolve({ data: null, error: null })
+			: browse === "tv"
+				? sort === "popular"
+					? fetchTvPopular(SEED_PAGE, { cookieHeader })
+					: fetchTvDiscover(SEED_PAGE, {
+							cookieHeader,
+							sortBy: LATEST_TV_DISCOVER_SORT,
+						})
+				: sort === "popular"
+					? fetchMoviesPopular(SEED_PAGE, { cookieHeader })
+					: fetchMoviesDiscover(SEED_PAGE, {
+							cookieHeader,
+							sortBy: LATEST_DISCOVER_SORT,
+						});
+
+	const [{ data, error }, profileRes] = await Promise.all([
+		lobbySheet,
+		api.api.profiles.me.get().catch(() => ({ data: null })),
+	]);
+
+	const profileData = profileRes.data as {
+		handle: string;
+		displayName: string;
+		preferences?: Record<string, unknown> | null;
+	} | null;
+
+	const mePrefs = profileData?.preferences;
+	const monochromePeersOnHover = readCatalogMonochromePeersOnHoverPref(mePrefs);
+
+	const stickyUser =
+		session && profileData?.handle
+			? {
+					id: session.user.id,
+					name: session.user.name ?? profileData.displayName ?? "You",
+					image: session.user.image ?? null,
+					handle: profileData.handle,
+					email: session.user.email ?? null,
+				}
+			: null;
+
+	const payload = (data ?? null) as MovieSheetPayload | null;
+	const seedMovies = payload?.results ?? [];
+	const totalPages = payload?.total_pages ?? 0;
+	const totalResults = payload?.total_results ?? 0;
+
+	const unconfiguredHint = tmdbSetupHint(payload);
+	const blockedReason =
+		browse === "community"
+			? null
+			: error || unconfiguredHint
+				? (unconfiguredHint ?? "Could not load titles for the lobby right now.")
+				: null;
+
+	const discoverSortForLobby =
+		sort === "popular"
+			? "popularity.desc"
+			: browse === "tv"
+				? LATEST_TV_DISCOVER_SORT
+				: LATEST_DISCOVER_SORT;
+
+	return (
+		// Fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve) — do not use `min-h-svh` here or the card ignores shell padding above the nav inset.
+		<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
+			{/*
+				Middle column `minmax(20rem, 56rem)` gives the search a real width band;
+				`1fr auto 1fr` + `auto` alone shrink-wraps to input min-content so width
+				never grew past the old `48rem` cap even when `max-w-*` increased.
+			*/}
+			<Suspense
+				fallback={
+					<div
+						className="sticky top-0 z-20 h-14 w-full animate-pulse rounded-[2rem] bg-card/60"
+						aria-hidden
+					/>
+				}
+			>
+				<HomeStickyChrome user={stickyUser} />
+			</Suspense>
+
+			<section
+				className={cn(
+					/* `flex-1` + `min-h-0` lets this card fill the viewport under the sticky chrome so community can center a true empty state. */
+					"flex min-h-0 flex-1 flex-col gap-2.5 rounded-[2.5rem] bg-card p-4",
+					browse === "community" ? "overflow-hidden" : "overflow-visible",
+				)}
+			>
+				<div className="flex shrink-0 items-center justify-between">
+					{/*
+						`useSearchParams` — keep inside Suspense so the home RSC shell can still
+						stream; the bar is tiny so a short fallback is acceptable.
+					*/}
+					<Suspense
+						fallback={
+							<div
+								className="h-10 w-44 animate-pulse rounded-full bg-background"
+								aria-hidden
+							/>
+						}
+					>
+						<HomeCatalogSortChips />
+					</Suspense>
+					<button
+						type="button"
+						className="flex items-center justify-center gap-2.5 rounded-full bg-background px-6 py-3.5"
+						aria-label="Filters — refine the catalogue view"
+					>
+						<IconSlider size="1.25rem" className="shrink-0" aria-hidden />
+						Filters
+					</button>
+				</div>
+
+				{browse === "community" ? (
+					<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-6 sm:px-4 sm:py-10">
+						{/*
+							Dashed “plate” matches `/lists` empty rows — reads as intentional negative
+							space, not a broken grid (Mobbin-style empty states on dark chrome).
+						*/}
+						<div
+							className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl border border-border border-dashed bg-card/40 px-6 py-12 text-center sm:px-10 sm:py-14"
+							role="status"
+						>
+							<div className="space-y-2">
+								{/* `font-sans` = SF Pro Rounded stack (`--font-proxima-nova`) — not Fraunces display. */}
+								<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
+									{communityFeedLabel} — coming soon
+								</p>
+								<p className="text-muted-foreground text-sm leading-relaxed">
+									{communityFeedHint} This lobby will fill in as we ship
+									community surfaces. Until then, the TMDb catalogues are ready
+									below the header.
+								</p>
+							</div>
+							<div className="flex flex-wrap items-center justify-center gap-2">
+								<Link
+									href={buildHomeLobbyHref({
+										browse: "movies",
+										sort: "latest",
+									})}
+									className={buttonVariants({
+										variant: "outline",
+										size: "pill",
+									})}
+								>
+									Browse movies
+								</Link>
+								<Link
+									href={buildHomeLobbyHref({ browse: "tv", sort: "latest" })}
+									className={buttonVariants({
+										variant: "outline",
+										size: "pill",
+									})}
+								>
+									Browse TV
+								</Link>
+							</div>
+						</div>
+					</div>
+				) : blockedReason ? (
+					<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-12">
+						<p
+							className="max-w-md text-center text-muted-foreground text-sm"
+							role="status"
+						>
+							{blockedReason}
+						</p>
+					</div>
+				) : (
+					// `rounded-[3rem]` on links matches the poster frame so hover elevation shadow follows the curve.
+					<PopularMoviesInfinite
+						blockedReason={blockedReason}
+						catalogKind={sort === "popular" ? "popular" : "discover"}
+						catalogLabel={sort === "popular" ? "popular" : "latest"}
+						catalogMedia={browse === "tv" ? "tv" : "movie"}
+						discoverSortBy={discoverSortForLobby}
+						gridClassName="isolate grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-2 md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-2 xl:grid-cols-6 xl:gap-2"
+						posterFrameClassName="rounded-[3rem] border-0 bg-background"
+						posterHoverEffect="elevation"
+						posterLinkClassName="min-w-0 rounded-[3rem]"
+						monochromePeersOnHover={monochromePeersOnHover}
+						seedMovies={seedMovies}
+						seedPage={SEED_PAGE}
+						showTitle={false}
+						staggerPosterEntrance
+						totalPages={totalPages}
+						totalResults={totalResults}
+					/>
+				)}
+			</section>
+		</div>
+	);
 }
