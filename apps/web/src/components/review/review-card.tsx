@@ -1,45 +1,80 @@
-import { formatDistanceToNowStrict } from "@/lib/format";
+"use client";
+
+import { cn } from "@still/ui/lib/utils";
 import { Heart, MessageCircle } from "lucide-react";
-import Link from "next/link";
+import {
+	type ReviewPreview,
+	useReviewDetail,
+} from "@/components/review/review-detail-sheet";
+import { formatDistanceToNowStrict } from "@/lib/format";
+import { formatLogRatingDisplay } from "@/lib/log-rating";
 
-import { StarRating } from "@/components/rating/star-rating";
-
-type Review = {
-  id: string;
-  userId: string;
-  movieId: number;
-  title: string | null;
-  body: string;
-  rating: number | null;
-  likesCount: number;
-  commentsCount: number;
-  publishedAt: string;
+type Review = ReviewPreview & {
+	userId: string;
+	movieId: number;
 };
 
+/** Single-surface tile — matches film detail community cards on `bg-card`. */
+export const REVIEW_CARD_CLASS =
+	"block w-full rounded-2xl bg-background p-5 text-left";
+
 /**
- * Public review preview card. Body is clamped — clicking opens the
- * dedicated review page where comments live.
+ * Public review preview card. Body is clamped — tapping opens the bottom
+ * review reader sheet (comments + reactions) instead of leaving the page.
  */
 export function ReviewCard({ review }: { review: Review }) {
-  return (
-    <Link
-      href={`/reviews/${review.id}`}
-      className="group block rounded-2xl border border-border bg-card/60 p-4 transition-colors hover:border-desert-orange/40"
-    >
-      <header className="flex items-center justify-between text-xs text-muted-foreground">
-        <span>{formatDistanceToNowStrict(new Date(review.publishedAt))} ago</span>
-        {review.rating ? <StarRating value={review.rating} readOnly size="sm" /> : null}
-      </header>
-      {review.title ? <h3 className="mt-2 font-serif text-lg">{review.title}</h3> : null}
-      <p className="font-editorial mt-2 line-clamp-4 text-sm text-foreground/85">{review.body}</p>
-      <footer className="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
-        <span className="inline-flex items-center gap-1">
-          <Heart className="size-3" /> {review.likesCount}
-        </span>
-        <span className="inline-flex items-center gap-1">
-          <MessageCircle className="size-3" /> {review.commentsCount}
-        </span>
-      </footer>
-    </Link>
-  );
+	const openReviewDetail = useReviewDetail((s) => s.open);
+
+	return (
+		<button
+			type="button"
+			className={cn(REVIEW_CARD_CLASS, "group cursor-pointer")}
+			aria-haspopup="dialog"
+			aria-label={review.title ? `Read review: ${review.title}` : "Read review"}
+			onClick={() =>
+				openReviewDetail({
+					reviewId: review.id,
+					preview: {
+						id: review.id,
+						title: review.title,
+						body: review.body,
+						rating: review.rating,
+						likesCount: review.likesCount,
+						commentsCount: review.commentsCount,
+						publishedAt: review.publishedAt,
+					},
+				})
+			}
+		>
+			<header className="flex items-center justify-between gap-3 text-muted-foreground text-xs">
+				<span className="tabular-nums">
+					{formatDistanceToNowStrict(new Date(review.publishedAt))} ago
+				</span>
+				{review.rating != null ? (
+					<span className="font-medium text-foreground tabular-nums">
+						{formatLogRatingDisplay(review.rating)}
+						<span className="text-muted-foreground">/10</span>
+					</span>
+				) : null}
+			</header>
+			{review.title ? (
+				<h3 className="mt-3 font-serif text-foreground text-lg leading-snug tracking-tight group-hover:text-desert-orange">
+					{review.title}
+				</h3>
+			) : null}
+			<p className="mt-2 line-clamp-4 font-editorial text-foreground/85 text-sm leading-relaxed">
+				{review.body}
+			</p>
+			<footer className="mt-4 flex items-center gap-4 text-muted-foreground text-xs tabular-nums">
+				<span className="inline-flex items-center gap-1.5">
+					<Heart className="size-3.5 opacity-70" aria-hidden />
+					{review.likesCount}
+				</span>
+				<span className="inline-flex items-center gap-1.5">
+					<MessageCircle className="size-3.5 opacity-70" aria-hidden />
+					{review.commentsCount}
+				</span>
+			</footer>
+		</button>
+	);
 }

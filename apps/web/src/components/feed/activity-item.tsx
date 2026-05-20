@@ -1,5 +1,5 @@
 import { cn } from "@still/ui/lib/utils";
-import { ArrowUpRight, Film, Heart, ListPlus, Star } from "lucide-react";
+import { ArrowUpRight, Film, Heart, ListPlus, Star, Tv } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
@@ -43,6 +43,7 @@ type LogPayload = Person & {
 		note: string | null;
 	};
 	movie: { tmdbId: number; title: string; posterPath: string | null } | null;
+	tv?: { tmdbId: number; title: string; posterPath: string | null } | null;
 };
 
 type ReviewPayload = Person & {
@@ -116,8 +117,13 @@ function FeedIconAction({
 }
 
 function LogActivity({ payload }: { payload: LogPayload }) {
-	const { log, movie } = payload;
-	if (!movie) return null;
+	const { log, movie, tv } = payload;
+	const listing = movie ?? tv ?? null;
+	if (!listing) return null;
+	const isTv = movie == null && tv != null;
+	const detailHref = isTv
+		? `/tv/${listing.tmdbId}`
+		: `/movies/${listing.tmdbId}`;
 	return (
 		<article
 			className={cn(
@@ -130,10 +136,10 @@ function LogActivity({ payload }: { payload: LogPayload }) {
 				<p className="text-sm leading-snug">
 					<Byline {...payload} suffix={log.rewatch ? "rewatched" : "watched"} />{" "}
 					<Link
-						href={`/movies/${movie.tmdbId}`}
+						href={detailHref}
 						className="font-medium font-serif text-base text-foreground hover:underline"
 					>
-						{movie.title}
+						{listing.title}
 					</Link>
 				</p>
 				<div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-muted-foreground text-xs">
@@ -157,17 +163,22 @@ function LogActivity({ payload }: { payload: LogPayload }) {
 			</div>
 			<div className="flex shrink-0 flex-col items-end gap-2 sm:flex-row sm:items-center">
 				<MoviePoster
-					movieId={movie.tmdbId}
-					title={movie.title}
-					posterUrl={posterUrl(movie.posterPath)}
+					listingKind={isTv ? "tv" : "movie"}
+					movieId={listing.tmdbId}
+					title={listing.title}
+					posterUrl={posterUrl(listing.posterPath)}
 					size="xs"
 					className="shrink-0"
 				/>
 				<FeedIconAction
-					href={`/movies/${movie.tmdbId}`}
-					label={`Open film: ${movie.title}`}
+					href={detailHref}
+					label={`Open ${isTv ? "series" : "film"}: ${listing.title}`}
 				>
-					<Film className="size-4" aria-hidden />
+					{isTv ? (
+						<Tv className="size-4" aria-hidden />
+					) : (
+						<Film className="size-4" aria-hidden />
+					)}
 				</FeedIconAction>
 			</div>
 		</article>

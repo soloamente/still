@@ -1,4 +1,3 @@
-import { cn } from "@still/ui/lib/utils";
 import type { ReactNode } from "react";
 
 /**
@@ -24,8 +23,9 @@ export function Section({
 	className?: string;
 }) {
 	return (
-		<section className={cn("space-y-5", className)}>
-			<header className="flex items-end justify-between gap-3">
+		<section className={className}>
+			{/* Title block spacing — avoid `space-y-*` on the section root (adds a tall dead band on dense pages like `/movies/[id]`). */}
+			<header className="mb-4 flex items-end justify-between gap-3">
 				<div>
 					{kicker ? (
 						/* Quiet runway label (Mobbin-style): sentence case as authored, no marquee caps. */

@@ -13,6 +13,8 @@ const LENIS_SMOOTH: LenisOptions = {
 	lerp: 0.09,
 	wheelMultiplier: 1,
 	touchMultiplier: 1,
+	/** Let `overflow-x-auto` rails (e.g. streaming providers) use native smooth wheel / Shift+scroll. */
+	allowNestedScroll: true,
 	/** Next.js client navigations: kill wheel inertia so the new route doesn’t “coast” from the old one. */
 	stopInertiaOnNavigate: true,
 };

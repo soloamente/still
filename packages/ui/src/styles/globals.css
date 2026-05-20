@@ -196,8 +196,8 @@
 	/* Saans substitute: same UI stack as global (`--font-sf-pro-rounded` / `--font-inter`). */
 	--mobbin-font-saans:
 		var(--font-sf-pro-rounded, "SF Pro Rounded"), var(--font-inter, "Outfit"),
-		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		sans-serif;
+		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, sans-serif;
 	--mobbin-text-caption: 12px;
 	--mobbin-text-body-sm: 14px;
 	--mobbin-text-body: 16px;
@@ -430,6 +430,8 @@
 		-webkit-text-size-adjust: 100%;
 		font-family: var(--font-sans);
 		scroll-behavior: smooth;
+		/* Firefox: narrow scrollbar; leave thumb/track to the UA (WebKit uses rules below). */
+		scrollbar-width: thin;
 	}
 	body {
 		@apply bg-background text-foreground;

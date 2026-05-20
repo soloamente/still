@@ -29,9 +29,11 @@
 		"motion": "^12.38.0",
 		"next": "^16.2.0",
 		"next-themes": "catalog:",
+		"nucleo-flags": "^1.1.3",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",
 		"sonner": "catalog:",
+		"vaul": "^1.1.2",
 		"zod": "catalog:",
 		"zustand": "^5.0.13"
 	},

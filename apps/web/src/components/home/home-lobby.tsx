@@ -302,7 +302,7 @@ export function HomeLobby({
 						For now, search surfaces shows and cast in one place.
 					</p>
 					<Link
-						href="/search"
+						href="/home"
 						className={cn(
 							buttonVariants({ variant: "default", size: "pill" }),
 							"mt-6 inline-flex",
@@ -334,7 +334,7 @@ export function HomeLobby({
 									as soon as they post.
 								</p>
 								<Link
-									href="/search"
+									href="/home"
 									className={cn(
 										buttonVariants({ variant: "accent", size: "pill" }),
 										"mt-5 inline-flex",

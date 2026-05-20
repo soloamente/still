@@ -53,6 +53,7 @@ type ProfileData = {
 			liked: boolean;
 		};
 		movie: { tmdbId: number; title: string; posterPath: string | null } | null;
+		tv: { tmdbId: number; title: string; posterPath: string | null } | null;
 	}[];
 	recentReviews: {
 		review: {
@@ -104,19 +105,24 @@ const TAB_LABEL: Record<ProfileTab, string> = {
 function filmographyFromRecentlyWatched(
 	recentlyWatched: ProfileData["recentlyWatched"],
 ): ProfileData["recentlyWatched"] {
-	const byTmdbId = new Map<number, ProfileData["recentlyWatched"][number]>();
+	const byKey = new Map<string, ProfileData["recentlyWatched"][number]>();
 	for (const row of recentlyWatched) {
-		if (!row.movie) continue;
-		const existing = byTmdbId.get(row.movie.tmdbId);
+		const key = row.movie
+			? `m:${row.movie.tmdbId}`
+			: row.tv
+				? `t:${row.tv.tmdbId}`
+				: null;
+		if (!key) continue;
+		const existing = byKey.get(key);
 		const nextTs = new Date(row.log.watchedAt).getTime();
 		const prevTs = existing
 			? new Date(existing.log.watchedAt).getTime()
 			: Number.NEGATIVE_INFINITY;
 		if (!existing || nextTs >= prevTs) {
-			byTmdbId.set(row.movie.tmdbId, row);
+			byKey.set(key, row);
 		}
 	}
-	return [...byTmdbId.values()].sort(
+	return [...byKey.values()].sort(
 		(a, b) =>
 			new Date(b.log.watchedAt).getTime() - new Date(a.log.watchedAt).getTime(),
 	);
@@ -425,6 +431,13 @@ export default async function ProfilePage({
 												>
 													{row.movie.title}
 												</Link>
+											) : row.tv ? (
+												<Link
+													href={`/tv/${String(row.tv.tmdbId)}`}
+													className="font-display text-foreground hover:text-desert-orange"
+												>
+													{row.tv.title}
+												</Link>
 											) : (
 												<span className="text-muted-foreground">
 													Unknown title
@@ -453,7 +466,7 @@ export default async function ProfilePage({
 						) : (
 							<p className="mt-6 rounded-2xl border border-border border-dashed bg-card/30 p-8 text-center text-muted-foreground text-sm">
 								Nothing on the ledger yet — log a film from{" "}
-								<Link href="/search" className="text-foreground underline">
+								<Link href="/home" className="text-foreground underline">
 									search
 								</Link>{" "}
 								or your{" "}

@@ -27,13 +27,14 @@ export function FilterChipRow({
 	);
 }
 
+// Pills read as soft tokens on the canvas: no hairline border, background carries the shape.
 const chipBase =
-	"inline-flex items-center justify-center gap-1 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors duration-[var(--aker-duration)] ease-[var(--aker-ease)]";
+	"inline-flex items-center justify-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-[var(--aker-duration)] ease-[var(--aker-ease)]";
 
 const chipIdle =
-	"border-border/80 bg-surface-raised/50 text-muted-foreground hover:border-border hover:text-foreground";
+	"bg-background text-muted-foreground hover:bg-muted/45 hover:text-foreground";
 
-const chipSelected = "border-accent/60 bg-accent/15 text-foreground";
+const chipSelected = "bg-accent/15 text-foreground";
 
 /** Browse preset that navigates to another catalogue route (e.g. Popular vs Upcoming). */
 export function FilterChipLink({

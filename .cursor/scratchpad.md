@@ -586,6 +586,37 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-05-19 — TV diary + watchlist parity *(Executor)*
+
+**Shipped:** `tv` table + migration **`0003_conscious_quicksilver`**; `log` / `watchlist_item` support **exactly one of** `movie_id` or `tv_id` (CHECK + partial unique indexes). Server: **`ensureTvCached`**, **`POST /api/logs`** accepts **`movieId` XOR `tvId`**, **`GET /api/logs/me/by-tv/:tvId`**, watchlist **`POST`** same XOR, **`DELETE /api/watchlist/tv/:tvId`**, **`GET /api/watchlist/check/tv/:tvId`**, feed + profile queries join **`tv`**. Web: **`TvDetailPrimaryActions`**, **`useTvDetailUserState`**, **`QuickLog`** + **`still-api-fetch`** for TV, diary/watchlist lobbies + **`ActivityItem`** + profile filmography handle mixed rows.
+
+**Human / Planner:** Run **`bun run db:migrate`** in **`packages/db`** (direct Postgres `DATABASE_URL`) before QA. Verify: log a show from **`/tv/[id]`**, see it on **`/diary`** and **`/watchlist`** with correct **`/tv/`** links; home feed log rows for TV.
+
+**Verify (Executor):** `apps/server` **`bun run check-types`**, `apps/web` **`bunx tsc --noEmit -p tsconfig.json`** → **exit 0**.
+
+
+**Shipped:** **`HomeCatalogSortChips`** — third tab **Upcoming** for **Movies** only (TV unchanged). **`home/page.tsx`** — **In cinemas + Upcoming** seeds from **`fetchMoviesUpcoming`**; **At home + Upcoming** seeds from **`fetchMoviesDiscover`** (`flatrate`, **`primary_release_date.asc`**, **`release_gte`** = UTC today) with **`discoverReleaseGte`** passed through **`PopularMoviesInfinite`** for paging. **`HomeCatalogViewModeToolbar`** — Filters targets **`/movies/upcoming`** vs discover with **`release_gte`**. **`home-lobby-url`** docstring mentions **Upcoming**.
+
+**Verify (Executor):** `apps/web` **`bunx tsc --noEmit`**, `apps/server` **`bun run check-types`** → **exit 0**.
+
+**Human / Planner:** On **`/home`** (Movies), cycle **Latest / Popular / Upcoming** × **In cinemas / At home**; open **Filters** from **Upcoming + In cinemas** → **`/movies/upcoming`**; from **Upcoming + At home** → discover with ascending primary date + **`release_gte`**.
+
+### 2026-05-17 — Home lobby: streaming vs theatrical overlap *(Executor)*
+
+**Shipped:** **`/home` Movies + Popular + Streaming** now uses **TMDb discover** with **`with_watch_monetization_types=flatrate`** + **`watch_region`** (from optional **`TMDB_WATCH_REGION`** env, else **`US`**) instead of raw **`/movie/popular`**, so the rail skews toward titles with **subscription streaming** in that region. **Theatrical** rails (**now playing** / **upcoming**) get a short **footnote** explaining that many films stream the same week, so overlap with Streaming is expected. **`GET /api/movies/discover`** accepts **`monetization`** + **`watch_region`**; **`/movies/discover`**, **`MovieDiscoverToolbar`**, **`PopularMoviesInfinite`**, and **Filters** on home preserve the new query. **`packages/env`:** optional **`TMDB_WATCH_REGION`** (ISO alpha-2).
+
+**Verify (Executor):** `apps/web` **`bunx tsc --noEmit`**, `apps/server` **`bun run check-types`**, **`biome check`** on touched files → **exit 0**.
+
+**Human / Planner:** Spot-check **`/home`** (Movies, Popular, Streaming) vs Theaters; open **Filters** from Streaming+Popular — should land on discover with **`monetization=flatrate`**. Reply **`ok`** when behaviour matches intent.
+
+### 2026-05-18 — `/diary` lobby: **In cinemas / At home** stay on diary *(Executor)*
+
+**Shipped:** **`HomeCatalogViewModeToolbar`** uses **`usePathname()`**; on **`/diary`** venue chips use **`buildDiaryLobbyHref({ order, venue })`** (no **`buildHomeLobbyHref`** redirect). **`buildDiaryLobbyHref`** + **`parseDiaryLobbyVenue`** in **`diary-lobby-order.ts`** — default venue follows home **Popular** (**streaming**); diary **Filters** link mirrors that slice (**`/movies/now-playing`** vs discover **`flatrate` + popularity**). **`DiaryCatalogOrderChips`** preserves **`?venue=`** when changing **`?order=`**. **`diary/page.tsx`** reads **`venue`** for **`catalogueWaveKeyOverride`** only (no per-log venue in DB yet — grid still shows all logged films).
+
+**Verify (Executor):** repo root **`bun run build --filter=web`** → **exit 0**.
+
+**Human / Planner:** On **`/diary`**, tap **In cinemas** / **At home** — URL should stay under **`/diary`** with **`?venue=`**; order chips should keep the active venue. Reply **`ok`** when it matches intent.
+
 ### 2026-05-15 — User `executor`: Section kicker — quiet Mobbin-style labels *(Executor)*
 
 **Shipped:** **`apps/web/src/components/ui/section.tsx`** — section kickers drop **forced uppercase** + **desert-orange** micro-marquee styling; they render as **sentence-case** strings from each call site, **`11px` / `font-medium` / `tracking-wide` / `text-muted-foreground`**, with slightly more vertical air (**`mb-1.5`**, section stack **`space-y-5`**). Applies everywhere **`Section`** is used (home, diary, catalogue billboards, movie detail tabs, etc.).

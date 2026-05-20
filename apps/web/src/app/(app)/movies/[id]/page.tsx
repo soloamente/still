@@ -1,24 +1,33 @@
-import { Calendar, Clock, Star, Users } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { cn } from "@still/ui/lib/utils";
 import { notFound } from "next/navigation";
 
 import { CreditsCrawl } from "@/components/cinema/credits-crawl";
 import { CreditsFooter } from "@/components/cinema/credits-footer";
-import { EndCreditsChecklist } from "@/components/cinema/end-credits-checklist";
-import { FrameStamp } from "@/components/cinema/frame-stamp";
-import { Letterbox } from "@/components/cinema/letterbox";
-import { MovieProjectionHum } from "@/components/cinema/movie-projection-hum";
-import { MovieShareStub } from "@/components/cinema/movie-share-stub";
-import { MovieActions } from "@/components/movie/movie-actions";
-import { MovieCrewTable } from "@/components/movie/movie-crew-table";
+import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
+import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
-import { MoviePoster } from "@/components/movie/movie-poster";
+import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
+import { MovieDetailPrimaryActions } from "@/components/movie/movie-detail-primary-actions";
+import { MovieDetailSectionNav } from "@/components/movie/movie-detail-section-nav";
+import { MovieDetailStreaming } from "@/components/movie/movie-detail-streaming";
+import { MovieDetailTopBar } from "@/components/movie/movie-detail-top-bar";
+import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
-import { StarRating } from "@/components/rating/star-rating";
-import { Section } from "@/components/ui/section";
 import { accentFromGenres } from "@/lib/cinema-accents";
-import { formatDate, formatRuntime } from "@/lib/format";
+import { formatRuntime } from "@/lib/format";
+import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
+import { formatLogRatingDisplay } from "@/lib/log-rating";
+import {
+	mapCastToArcCards,
+	mapCrewToArcCards,
+} from "@/lib/movie-cast-crew-arc";
+import {
+	buildMovieDetailSectionNavItems,
+	MOVIE_DETAIL_SECTION,
+	MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
+	MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
+	movieDetailCreditsCrawlNavItem,
+} from "@/lib/movie-detail-sections";
 import {
 	buildCrewRows,
 	crewRowsToCreditsCrawlLines,
@@ -26,7 +35,10 @@ import {
 	festivalAndAwardKeywordNames,
 	mergeMoreLikeThis,
 } from "@/lib/movie-detail-tmdb";
+import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
+import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
 import { serverApi } from "@/lib/server-api";
+import { fetchWikidataMovieAwards } from "@/lib/wikidata-movie-awards";
 
 export const dynamic = "force-dynamic";
 
@@ -54,6 +66,13 @@ type CommunityShape = {
 	averageRating: number | null;
 	reviewsCount: number;
 };
+
+/** SQL aggregates may deserialize as strings — normalize before `.toFixed` / `Math.round`. */
+function toFiniteNumber(value: unknown): number | null {
+	if (value == null) return null;
+	const n = typeof value === "number" ? value : Number(value);
+	return Number.isFinite(n) ? n : null;
+}
 
 type TmdbJsonShape = {
 	genres?: { id: number; name: string }[];
@@ -95,7 +114,24 @@ type TmdbJsonShape = {
 			string,
 			{
 				link?: string;
-				flatrate?: { provider_name: string; logo_path: string }[];
+				flatrate?: {
+					provider_id: number;
+					provider_name: string;
+					logo_path: string;
+					display_priority?: number;
+				}[];
+				rent?: {
+					provider_id: number;
+					provider_name: string;
+					logo_path: string;
+					display_priority?: number;
+				}[];
+				buy?: {
+					provider_id: number;
+					provider_name: string;
+					logo_path: string;
+					display_priority?: number;
+				}[];
 			}
 		>;
 	};
@@ -103,6 +139,7 @@ type TmdbJsonShape = {
 
 type Detail = {
 	tmdbId: number;
+	imdbId: string | null;
 	title: string;
 	originalTitle: string | null;
 	overview: string | null;
@@ -127,10 +164,15 @@ type Detail = {
 
 export default async function MoviePage({
 	params,
+	searchParams,
 }: {
 	params: Promise<Params>;
+	searchParams: Promise<{ view?: string }>;
 }) {
 	const { id } = await params;
+	const sp = await searchParams;
+	const view: "about" | "streaming" =
+		sp.view === "streaming" ? "streaming" : "about";
 	const numericId = Number(id);
 	if (!Number.isFinite(numericId)) notFound();
 
@@ -154,33 +196,44 @@ export default async function MoviePage({
 	const j = data.tmdbJson;
 	const directors =
 		j?.credits?.crew?.filter((c) => c.job === "Director").slice(0, 2) ?? [];
-	const topCast = j?.credits?.cast?.slice(0, 14) ?? [];
-	const crewRows = buildCrewRows(
-		j?.credits?.crew as Parameters<typeof buildCrewRows>[0],
-	);
-	/** The table stays terse; the crawl can surface more departmental roles behind the marquee. */
-	const crewRowsForCrawl = buildCrewRows(
+	const arcCast = mapCastToArcCards(j?.credits?.cast);
+	const arcCrew = mapCrewToArcCards(j?.credits?.crew);
+	const fullCast = j?.credits?.cast ?? [];
+	const creditsCrewRows = buildCrewRows(
 		j?.credits?.crew as Parameters<typeof buildCrewRows>[0],
 		80,
 	);
+	/** The crawl can surface more departmental roles behind the marquee. */
+	const crewRowsForCrawl = creditsCrewRows;
 	const crewCrawlLines = crewRowsToCreditsCrawlLines(crewRowsForCrawl, {
 		maxNamesPerRole: 8,
 		maxRoles: 48,
 	});
 	const moreLikeThis = mergeMoreLikeThis(j?.recommendations, j?.similar);
-	const providersUs =
-		j?.["watch/providers"]?.results?.US?.flatrate?.slice(0, 6) ?? [];
+	const watchProviders = buildMovieWatchProvidersViewModel(
+		j?.["watch/providers"]?.results,
+	);
 	const premiereRows = extractPremiereRows(j?.release_dates);
 	const festivalKeywords = festivalAndAwardKeywordNames(j?.keywords?.keywords);
-	const recognitionPresent =
-		premiereRows.length > 0 || festivalKeywords.length > 0;
+	const wikidataAwards = await fetchWikidataMovieAwards({
+		tmdbId: data.tmdbId,
+		imdbId: data.imdbId,
+	});
+	const recognitionEntries = buildMovieRecognitionEntries(
+		festivalKeywords,
+		premiereRows,
+		data.year,
+		wikidataAwards,
+	);
+	const recognitionPresent = recognitionEntries.length > 0;
 
 	const { accent: movieAccent } = accentFromGenres(j?.genres);
-	const doubleFeaturePick =
-		moreLikeThis.find((m) => m.id !== data.tmdbId) ?? null;
-
-	const tmdbAvg = data.voteAverage;
-	const tmdbVotes = data.voteCount ?? 0;
+	const tmdbAvg = toFiniteNumber(data.voteAverage);
+	const communityAverage = toFiniteNumber(data.community?.averageRating);
+	const communityReviewsCount = Math.max(
+		0,
+		Math.floor(toFiniteNumber(data.community?.reviewsCount) ?? 0),
+	);
 
 	/** Highlight the most engaged write-ups as stand-ins for “critic pull quotes”. */
 	const featuredReviews = [...reviews]
@@ -192,6 +245,32 @@ export default async function MoviePage({
 	const featuredIds = new Set(featuredReviews.map((r) => r.id));
 	const reviewsAfterFeatured = reviews.filter((r) => !featuredIds.has(r.id));
 
+	const primaryGenre = j?.genres?.[0]?.name ?? null;
+	const heroMetaBits: string[] = [];
+	if (primaryGenre) heroMetaBits.push(primaryGenre);
+	if (data.year != null) heroMetaBits.push(String(data.year));
+	const runtimeLabel = formatRuntime(data.runtime);
+	if (runtimeLabel) heroMetaBits.push(runtimeLabel);
+	const heroMetaLine =
+		heroMetaBits.length > 0 ? heroMetaBits.join("\u00a0\u00a0") : null;
+	const heroBlurb =
+		data.tagline?.trim() ||
+		(data.overview
+			? data.overview.length > 280
+				? `${data.overview.slice(0, 277)}…`
+				: data.overview
+			: null);
+
+	const hasCast = arcCast.length > 0 || arcCrew.length > 0;
+	const sectionNavItems = [
+		...buildMovieDetailSectionNavItems({
+			hasCast,
+			hasAwards: recognitionPresent,
+		}),
+		...(crewCrawlLines.length ? [movieDetailCreditsCrawlNavItem()] : []),
+	];
+	const showSectionNav = view === "about" && sectionNavItems.length >= 2;
+
 	return (
 		<MovieThemeProvider
 			genreAccent={movieAccent}
@@ -199,368 +278,166 @@ export default async function MoviePage({
 			paletteMuted={data.paletteMuted}
 			paletteForeground={data.paletteForeground}
 		>
-			<MovieProjectionHum />
-			<article>
-				{/* Full viewport width so backdrop + poster band aren’t trapped in the layout column.
-          Backdrop sits in a Scope letterbox; title block overlaps the lower bar (~ Villeneuve overlap). */}
-				<section className="cinema-hero-iris movie-hero-glow relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden">
-					<FrameStamp label="4-PERF · SCOPE · 24FPS" />
-					{/*
-					 * No true-black mattes: the bottom matte was reading as dead space right where the portrait
-					 * poster overlaps the hero—which felt like broken padding.
-					 */}
-					{/* Entire Scope frame is decorative; keep it off the hit-test map so taps
-             always hit the overlapping poster / diary row above the backdrop wash. */}
-					<Letterbox
-						aspect="2.39"
-						bars={false}
-						className="pointer-events-none relative z-0 w-full"
+			<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
+				<MovieDetailTopBar
+					movieId={data.tmdbId}
+					title={data.title}
+					view={view}
+				/>
+				{showSectionNav ? (
+					<MovieDetailSectionNav sections={sectionNavItems} />
+				) : null}
+
+				{/*
+				 * Same rounded `bg-card` shell as `/home` + `/diary` catalogue (`HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME`).
+				 * Sticky chrome stays on `bg-background` above the card so we do not double-wrap `.movie-themed`.
+				 */}
+				<section
+					className={cn(
+						HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
+						"min-h-0 flex-1 overflow-visible",
+					)}
+				>
+					<article
+						className={cn(
+							"flex min-h-0 flex-1 flex-col",
+							showSectionNav && MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
+						)}
 					>
-						{/*
-						 * Hero imagery stacks under the overlapping title strip (`md:-mt-24`).
-						 * Without `pointer-events-none`, the overlap reads clicks first and diary / watchlist
-						 * buttons underneath never fire.
-						 */}
-						<div className="pointer-events-none absolute inset-0 [--cinema-hero-img-base-op:0.4]">
-							{data.backdrop_url ? (
-								<Image
-									src={data.backdrop_url}
-									alt=""
-									fill
-									priority
-									sizes="100vw"
-									className="cinema-hero-flicker object-cover opacity-40"
-								/>
+						{/* Centered hero column — matches `/home` + `/diary` lobby rhythm: soft canvas, generous spacing, pill chrome. */}
+						<div
+							id={MOVIE_DETAIL_SECTION.about}
+							className={cn(
+								MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
+								"mx-auto flex w-full max-w-lg flex-col items-center px-2.5 pt-12 pb-6 text-center sm:max-w-xl sm:px-3 sm:pt-14 sm:pb-8 md:pt-16 md:pb-10 lg:max-w-2xl lg:pt-20",
+							)}
+						>
+							{heroMetaLine ? (
+								<p className="mb-5 text-muted-foreground text-xs tracking-wide">
+									{heroMetaLine}
+								</p>
 							) : null}
-							<div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/85 to-background" />
-						</div>
-					</Letterbox>
-					{/* Elevate + explicitly re-enable hits on the overlapping strip — hero chrome
-             above the Scope frame stays reliably clickable at ultrawide sizes. */}
-					<div className="pointer-events-auto relative isolate z-20 w-full px-3 pt-0 pb-12 sm:px-4 md:mx-auto md:-mt-24 md:max-w-7xl md:px-5 md:pt-5 md:pb-20">
-						{/*
-						 * Stacked hero: poster (cover) first, then title/actions centered beneath — reads cleaner on
-						 * ultra-wide viewports than a wide empty wedge beside a fixed-width portrait.
-						 */}
-						<div className="flex flex-col items-center gap-8">
-							<MoviePoster
-								movieId={data.tmdbId}
+							<MovieDetailHeroMedia
 								title={data.title}
 								posterUrl={data.poster_url}
-								size="hero"
-								priority
+								backdropUrl={data.backdrop_url}
 							/>
-							<div className="w-full max-w-3xl space-y-4 px-3 text-center sm:px-4 md:px-0">
-								<p className="text-muted-foreground text-xs uppercase tracking-wider">
-									{data.releaseDate
-										? formatDate(new Date(data.releaseDate))
-										: data.year}
+							{/* Hero title: SF Pro Rounded (`font-sans`) — Mobbin comp uses UI sans, not Fraunces display. */}
+							<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
+								{data.title}
+							</h1>
+							{heroBlurb ? (
+								<p className="mt-4 w-full max-w-2xl text-balance font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+									{heroBlurb}
 								</p>
-								<h1 className="font-display font-medium text-4xl leading-[1] tracking-[-0.02em] md:text-6xl">
-									{data.title}
-								</h1>
-								{data.tagline ? (
-									<p className="font-editorial text-base text-muted-foreground md:text-lg">
-										{data.tagline}
-									</p>
-								) : null}
-								<ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-muted-foreground text-xs">
-									{data.year ? (
-										<li className="inline-flex items-center gap-1">
-											<Calendar className="size-3" /> {data.year}
-										</li>
-									) : null}
-									{data.runtime ? (
-										<li className="inline-flex items-center gap-1">
-											<Clock className="size-3" /> {formatRuntime(data.runtime)}
-										</li>
-									) : null}
-									{directors.length ? (
-										<li className="inline-flex items-center gap-1">
-											Directed by {directors.map((d) => d.name).join(", ")}
-										</li>
-									) : null}
-									{j?.genres?.slice(0, 3).map((g) => (
-										<li
-											key={g.id}
-											className="rounded-md border border-border px-1.5 py-0.5"
-										>
-											{g.name}
-										</li>
-									))}
-								</ul>
-								{data.community?.averageRating ? (
-									<div className="flex items-center justify-center gap-3">
-										<StarRating
-											value={Math.round(data.community.averageRating)}
-											readOnly
-											variant="marquee"
-										/>
-										<span className="text-muted-foreground text-xs">
-											{data.community.reviewsCount} reviews on Still
-										</span>
+							) : null}
+							{communityAverage != null ? (
+								<div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+									<span className="font-serif text-2xl tabular-nums">
+										{formatLogRatingDisplay(communityAverage)}
+										<span className="text-base text-muted-foreground">/10</span>
+									</span>
+									<span className="text-muted-foreground text-xs">
+										· {communityReviewsCount} reviews on Still
+									</span>
+								</div>
+							) : null}
+							<div className="mt-8 flex w-full justify-center">
+								<MovieDetailPrimaryActions
+									movieId={data.tmdbId}
+									title={data.title}
+									posterUrl={
+										data.poster_url ??
+										(data.posterPath
+											? `https://image.tmdb.org/t/p/w342${data.posterPath}`
+											: null)
+									}
+									averageRating={communityAverage ?? tmdbAvg ?? null}
+								/>
+							</div>
+						</div>
+
+						{view === "streaming" ? (
+							<section className="mx-auto flex min-h-0 w-full max-w-2xl flex-1 flex-col px-2.5 pt-6 pb-8 sm:px-3 sm:pt-8 sm:pb-10">
+								<MovieDetailStreaming watchProviders={watchProviders} />
+							</section>
+						) : null}
+
+						{view === "about" ? (
+							<div className="mx-auto max-w-7xl space-y-12 px-2.5 pt-8 pb-10 sm:px-4 sm:pt-10 md:px-5 md:pt-12">
+								{arcCast.length || arcCrew.length || recognitionPresent ? (
+									<div
+										className={cn(
+											(arcCast.length || arcCrew.length) &&
+												recognitionPresent &&
+												"flex flex-col gap-10 sm:gap-12",
+										)}
+									>
+										{arcCast.length || arcCrew.length ? (
+											<MovieCastCrewArc
+												movieId={data.tmdbId}
+												cast={arcCast}
+												crew={arcCrew}
+												creditsCatalog={{
+													title: data.title,
+													cast: fullCast,
+													crewRows: creditsCrewRows,
+												}}
+											/>
+										) : null}
+
+										{recognitionPresent ? (
+											<MoviePremieresFestivals entries={recognitionEntries} />
+										) : null}
 									</div>
 								) : null}
-							</div>
-						</div>
-					</div>
-				</section>
 
-				{/* Track B.5.3 — single log/watchlist/like strip that stays above the bottom nav while scrolling. */}
-				<div className="sticky bottom-[10px] z-40 -mx-3 border-border/80 border-y bg-background/90 px-3 py-3 backdrop-blur-md sm:-mx-4 md:-mx-5">
-					<div className="mx-auto flex max-w-3xl justify-center">
-						<MovieActions movieId={data.tmdbId} title={data.title} />
-					</div>
-				</div>
+								<MovieDetailExploreTabs
+									layout="stacked"
+									communityAverage={communityAverage}
+									communityReviewsCount={communityReviewsCount}
+									lists={movieLists}
+									featuredReviews={featuredReviews}
+									reviewsAfterFeatured={reviewsAfterFeatured}
+									reviews={reviews}
+									moreLikeThis={moreLikeThis}
+									movieId={numericId}
+									movieTitle={data.title}
+								/>
 
-				<div className="mx-auto max-w-7xl space-y-12 px-3 py-12 sm:px-4 md:px-5">
-					{data.overview ? (
-						<Section title="Synopsis">
-							<p className="max-w-3xl font-editorial text-foreground/85 text-lg">
-								{data.overview}
-							</p>
-						</Section>
-					) : null}
-
-					{topCast.length || crewRows.length ? (
-						<Section
-							title="Cast & crew"
-							subtitle="Headliners and key creative credits from TMDb."
-						>
-							{topCast.length ? (
-								<div className="mb-8">
-									<h3 className="mb-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-										Cast
-									</h3>
-									<ul className="flex gap-3 overflow-x-auto pb-2 [-webkit-overflow-scrolling:touch]">
-										{topCast.map((c) => (
-											<li
-												key={`${c.id}-${c.character ?? ""}`}
-												className="w-24 shrink-0 text-center"
-											>
-												<Link
-													href={`/people/${c.id}`}
-													aria-label={`${c.name}${c.character ? ` as ${c.character}` : ""}`}
-													className="group block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-												>
-													<div className="relative aspect-square overflow-hidden rounded-md border border-border bg-card transition-[transform,border-color] duration-[var(--aker-duration)] ease-[var(--aker-ease)] group-hover:-translate-y-0.5 group-hover:border-desert-orange/40">
-														{c.profile_path ? (
-															<Image
-																src={`https://image.tmdb.org/t/p/w185${c.profile_path}`}
-																alt=""
-																width={185}
-																height={185}
-																className="size-full object-cover"
-																sizes="96px"
-															/>
-														) : (
-															<div className="size-full bg-muted" />
-														)}
-													</div>
-													<p className="mt-1.5 line-clamp-1 text-xs group-hover:underline group-hover:underline-offset-2">
-														{c.name}
-													</p>
-													<p className="line-clamp-1 text-[10px] text-muted-foreground">
-														{c.character}
-													</p>
-												</Link>
-											</li>
-										))}
-									</ul>
-								</div>
-							) : null}
-							{crewRows.length ? (
-								<div>
-									<h3 className="mb-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-										Crew
-									</h3>
-									<MovieCrewTable rows={crewRows} />
-								</div>
-							) : null}
-						</Section>
-					) : null}
-
-					{recognitionPresent ? (
-						<Section
-							title="Premieres & festivals"
-							subtitle="Premiere windows from TMDb plus festival and award-flavored keywords."
-						>
-							{premiereRows.length ? (
-								<div className="mb-6">
-									<h3 className="mb-2 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-										Premieres & limited runs
-									</h3>
-									<ul className="space-y-1.5 text-sm">
-										{premiereRows.slice(0, 12).map((r) => (
-											<li
-												key={`${r.region}-${r.date}-${r.kind}`}
-												className="flex flex-wrap gap-x-2 gap-y-0.5"
-											>
-												<span className="font-medium tabular-nums">
-													{r.date}
-												</span>
-												<span className="text-muted-foreground">
-													{r.region}
-												</span>
-												<span className="text-muted-foreground text-xs">
-													({r.kind}
-													{r.note ? ` · ${r.note}` : ""})
-												</span>
-											</li>
-										))}
-									</ul>
-								</div>
-							) : null}
-							{festivalKeywords.length ? (
-								<div>
-									<h3 className="mb-2 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-										Awards & festival tags
-									</h3>
-									<ul className="flex flex-wrap gap-2">
-										{festivalKeywords.map((name) => (
-											<li
-												key={name}
-												className="rounded-full border border-border bg-card/70 px-3 py-1 text-foreground text-xs"
-											>
-												{name}
-											</li>
-										))}
-									</ul>
-								</div>
-							) : null}
-						</Section>
-					) : null}
-
-					{providersUs.length ? (
-						<Section title="Where to watch">
-							<p className="mb-2 text-muted-foreground text-xs">
-								Streaming in the US
-							</p>
-							<ul className="flex flex-wrap gap-3">
-								{providersUs.map((p) => (
-									<li
-										key={p.provider_name}
-										className="inline-flex items-center gap-2 rounded-md border border-border bg-card/60 px-2.5 py-2 text-xs"
+								{crewCrawlLines.length ? (
+									<MovieDetailBodySection
+										id={MOVIE_DETAIL_SECTION.credits}
+										title=""
+										showHeader={false}
+										className="pt-2 pb-2"
 									>
-										<Image
-											src={`https://image.tmdb.org/t/p/w92${p.logo_path}`}
-											alt=""
-											width={92}
-											height={92}
-											className="size-5 rounded-sm object-cover"
+										{/* Client-only crawl — no section chrome; right-rail legend uses “Credits”. */}
+										<CreditsCrawl
+											lines={crewCrawlLines}
+											durationSec={Math.min(
+												420,
+												Math.max(160, crewCrawlLines.length * 22),
+											)}
 										/>
-										{p.provider_name}
-									</li>
-								))}
-							</ul>
-						</Section>
-					) : null}
+									</MovieDetailBodySection>
+								) : null}
 
-					<Section
-						title="Reception"
-						subtitle="Global TMDb score beside averages from Still members."
-					>
-						<div className="grid gap-4 sm:grid-cols-2">
-							<div className="rounded-2xl border border-border bg-card/50 p-5">
-								<div className="flex items-center gap-2 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-									<Star className="size-3.5" aria-hidden />
-									TMDb audience
-								</div>
-								{tmdbAvg != null && tmdbVotes > 0 ? (
-									<>
-										<p className="mt-3 font-serif text-3xl tabular-nums">
-											{tmdbAvg.toFixed(1)}
-											<span className="text-lg text-muted-foreground">/10</span>
-										</p>
-										<p className="mt-1 text-muted-foreground text-xs">
-											{tmdbVotes.toLocaleString()} logged votes on The Movie
-											Database
-										</p>
-									</>
-								) : (
-									<p className="mt-3 text-muted-foreground text-sm">
-										No aggregate score yet.
-									</p>
-								)}
+								<CreditsFooter
+									lines={[
+										data.title,
+										data.year ? `Released ${data.year}` : "Year TBD",
+										directors.length
+											? `Directed by ${directors.map((d) => d.name).join(" & ")}`
+											: "Director TBD",
+										`Still showpage #${data.tmdbId}`,
+									]}
+								/>
 							</div>
-							<div className="rounded-2xl border border-border bg-card/50 p-5">
-								<div className="flex items-center gap-2 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-									<Users className="size-3.5" aria-hidden />
-									Still members
-								</div>
-								{data.community.averageRating != null &&
-								data.community.reviewsCount > 0 ? (
-									<>
-										<div className="mt-3 flex items-center gap-2">
-											<StarRating
-												value={Math.round(data.community.averageRating)}
-												readOnly
-												variant="marquee"
-											/>
-											<span className="font-serif text-3xl tabular-nums">
-												{data.community.averageRating.toFixed(1)}
-											</span>
-										</div>
-										<p className="mt-1 text-muted-foreground text-xs">
-											Averaged from {data.community.reviewsCount} published
-											reviews
-										</p>
-									</>
-								) : (
-									<p className="mt-3 text-muted-foreground text-sm">
-										Be the first to rate this film on Still.
-									</p>
-								)}
-							</div>
-						</div>
-					</Section>
-
-					<MovieDetailExploreTabs
-						lists={movieLists}
-						featuredReviews={featuredReviews}
-						reviewsAfterFeatured={reviewsAfterFeatured}
-						reviews={reviews}
-						moreLikeThis={moreLikeThis}
-						doubleFeaturePick={doubleFeaturePick}
-						currentTitle={data.title}
-					/>
-
-					<Section kicker="Ticket desk" title="Save this screening">
-						<div className="grid gap-6 lg:grid-cols-2">
-							<EndCreditsChecklist movieId={data.tmdbId} />
-							<MovieShareStub movieId={data.tmdbId} title={data.title} />
-						</div>
-					</Section>
-
-					{crewCrawlLines.length ? (
-						<Section
-							kicker="Projection booth"
-							title="Closing credits crawl"
-							subtitle="Slow scroll sourced from published crew metadata — linger with hover or focus to pause."
-						>
-							{/* Client-only crawl keeps SSR light; marquee duration scales with grouped roles so long films don’t feel rushed. */}
-							<CreditsCrawl
-								lines={crewCrawlLines}
-								durationSec={Math.min(
-									420,
-									Math.max(160, crewCrawlLines.length * 22),
-								)}
-							/>
-						</Section>
-					) : null}
-
-					<CreditsFooter
-						lines={[
-							data.title,
-							data.year ? `Released ${data.year}` : "Year TBD",
-							directors.length
-								? `Directed by ${directors.map((d) => d.name).join(" & ")}`
-								: "Director TBD",
-							`Still showpage #${data.tmdbId}`,
-						]}
-					/>
-				</div>
-			</article>
+						) : null}
+					</article>
+				</section>
+			</div>
 		</MovieThemeProvider>
 	);
 }

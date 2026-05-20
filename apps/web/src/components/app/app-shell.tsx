@@ -1,9 +1,12 @@
 import type { CSSProperties, ReactNode } from "react";
 
+import { AppScrollToTop } from "@/components/app/app-scroll-to-top";
 import { CommandPaletteRoot } from "@/components/app/command-palette";
 import { BadgeWatcher } from "@/components/gamification/badge-watcher";
 import { QuickLogRoot } from "@/components/log/quick-log-sheet";
+import { PersonFilmographyDrawerRoot } from "@/components/movie/person-filmography-drawer";
 import { ReviewComposerRoot } from "@/components/review/review-composer";
+import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
 
 /**
  * Track B — authenticated app chrome (single shell for `(app)` routes).
@@ -61,9 +64,12 @@ export function AppShell({
 			>
 				{children}
 			</main>
+			<AppScrollToTop />
 			<CommandPaletteRoot />
 			<QuickLogRoot />
 			<ReviewComposerRoot />
+			<ReviewDetailRoot />
+			<PersonFilmographyDrawerRoot />
 			<BadgeWatcher />
 		</div>
 	);

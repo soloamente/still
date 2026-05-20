@@ -1,84 +1,216 @@
+import { buttonVariants } from "@still/ui/components/button";
+import { cn } from "@still/ui/lib/utils";
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { DiaryLogRow } from "@/components/diary/diary-entry";
+import { Suspense } from "react";
+import { DiaryCatalogOrderChips } from "@/components/diary/diary-catalog-order-chips";
+import { DiaryLobbyCatalogue } from "@/components/diary/diary-lobby-catalogue";
+import { CatalogWatchRegionPrompt } from "@/components/home/catalog-watch-region-prompt";
+import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
+import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
+import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
+import { authServer } from "@/lib/auth-server";
 import {
-	DiaryPageClient,
-	type DiarySection,
-} from "@/components/diary/diary-page-client";
-import { Section } from "@/components/ui/section";
+	buildDiaryLobbyHref,
+	type DiaryLogWithListing,
+	diaryLogMatchesDiaryLobbyVenue,
+	isDiaryLogWithListing,
+	parseDiaryLobbyOrder,
+	parseDiaryLobbyVenue,
+	sortDiaryLobbyRowsForOrder,
+} from "@/lib/diary-lobby-order";
+import { fetchMyLogsMeServer } from "@/lib/fetch-my-logs-me-server";
+import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
+import {
+	readCatalogMonochromePeersOnHoverPref,
+	readCatalogTmdbWatchRegionPref,
+} from "@/lib/profile-preferences";
 import { serverApi } from "@/lib/server-api";
 
 export const metadata: Metadata = { title: "Diary" };
 export const dynamic = "force-dynamic";
 
-function monthBucketKey(watchedAt: string): string {
-	const date = new Date(watchedAt);
-	if (Number.isNaN(date.getTime())) return "undated";
-	return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+/** Lobby seeds — `listingKind` routes `/tv/` vs `/movies/` poster links in the shared grid. */
+function diaryRowToPopularSeed(row: DiaryLogWithListing): PopularMovieSeed {
+	const listing = row.movie ?? row.tv;
+	if (!listing) {
+		throw new Error("diaryRowToPopularSeed: row missing movie and tv");
+	}
+	let poster_url: string | null = listing.posterPath;
+	if (poster_url?.length && !poster_url.startsWith("http")) {
+		const fragment = poster_url.startsWith("/") ? poster_url : `/${poster_url}`;
+		poster_url = `https://image.tmdb.org/t/p/w780${fragment}`;
+	}
+	return {
+		id: listing.tmdbId,
+		title: listing.title,
+		poster_url,
+		listingKind: row.tv != null ? "tv" : "movie",
+	};
 }
 
-export default async function DiaryPage() {
-	const api = await serverApi();
-	const res = await api.api.logs.me.get().catch(() => ({ data: [] }));
-	const raw = (res.data as unknown as DiaryLogRow[]) ?? [];
-	/** Rows without a joined movie cannot render a stub — drop them before grouping. */
-	const items = raw.filter((row) => row.movie != null);
-
-	const grouped = items.reduce<Map<string, DiaryLogRow[]>>((acc, row) => {
-		const key = monthBucketKey(row.log.watchedAt);
-		const list = acc.get(key) ?? [];
-		list.push(row);
-		acc.set(key, list);
-		return acc;
-	}, new Map());
-
-	// Newest months first; within each month, newest screening first (Letterboxd diary order).
-	const sortedKeys = Array.from(grouped.keys()).sort((a, b) => {
-		if (a === "undated") return 1;
-		if (b === "undated") return -1;
-		return b.localeCompare(a);
+export default async function DiaryPage({
+	searchParams,
+}: {
+	searchParams: Promise<{ order?: string; venue?: string }>;
+}) {
+	const sp = await searchParams;
+	const lobbyOrder = parseDiaryLobbyOrder(sp.order);
+	const lobbyVenue = parseDiaryLobbyVenue(sp.venue);
+	const switchVenueHref = buildDiaryLobbyHref({
+		order: lobbyOrder,
+		venue: lobbyVenue === "theaters" ? "streaming" : "theaters",
 	});
 
-	const sections: DiarySection[] = sortedKeys.map((key) => {
-		const rows = (grouped.get(key) ?? []).slice().sort((a, b) => {
-			const ta = new Date(a.log.watchedAt).getTime();
-			const tb = new Date(b.log.watchedAt).getTime();
-			return tb - ta;
-		});
-		if (key === "undated") {
-			return { key, monthLabel: "Undated", year: "", rows };
-		}
-		const [year, month] = key.split("-");
-		const monthLabel = new Date(Number(year), Number(month) - 1).toLocaleString(
-			"en-US",
-			{
-				month: "long",
-			},
-		);
-		return { key, monthLabel, year, rows };
-	});
+	const [session, api] = await Promise.all([authServer(), serverApi()]);
+	const [raw, profileRes] = await Promise.all([
+		fetchMyLogsMeServer(api),
+		api.api.profiles.me.get().catch(() => ({ data: null })),
+	]);
+	const profileData = profileRes.data as {
+		handle: string;
+		displayName: string;
+		preferences?: Record<string, unknown> | null;
+	} | null;
+	const mePrefs = profileData?.preferences ?? null;
+	const monochromePeersOnHover = readCatalogMonochromePeersOnHoverPref(mePrefs);
+	const catalogWatchPref = readCatalogTmdbWatchRegionPref(mePrefs);
+	const needsCatalogWatchRegionPrompt = Boolean(
+		session && catalogWatchPref === null,
+	);
 
-	const hasRows = items.length > 0;
+	const stickyUser =
+		session && profileData?.handle
+			? {
+					id: session.user.id,
+					name: session.user.name ?? profileData.displayName ?? "You",
+					image: session.user.image ?? null,
+					handle: profileData.handle,
+					email: session.user.email ?? null,
+				}
+			: null;
+
+	const withListing = raw.filter(isDiaryLogWithListing);
+	const hasAnyDiaryLogs = withListing.length > 0;
+	const forVenue = withListing.filter((r) =>
+		diaryLogMatchesDiaryLobbyVenue(r, lobbyVenue),
+	);
+	const lobbyRows = sortDiaryLobbyRowsForOrder(forVenue, lobbyOrder);
+
+	const seeds = lobbyRows.map(diaryRowToPopularSeed);
+	const posterCellKeys = lobbyRows.map((r) => r.log.id);
+	const catalogueWaveKeyOverride = `${lobbyOrder}:${lobbyVenue}:${posterCellKeys.join("|")}`;
+	const hasRows = lobbyRows.length > 0;
 
 	return (
-		<div className="space-y-10">
-			<Section
-				kicker="Ticket book"
-				title="Your diary"
-				subtitle="Every film, every viewing — one stub per showtime."
+		// Match `/home` shell — fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve).
+		<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
+			<Suspense
+				fallback={
+					<div
+						className="sticky top-0 z-20 h-14 w-full animate-pulse rounded-[2rem] bg-card/60"
+						aria-hidden
+					/>
+				}
 			>
-				{!hasRows ? (
-					<p className="cinema-film-strip-rail rounded-2xl border border-border border-dashed bg-surface-raised/40 p-10 text-center text-muted-foreground text-sm">
-						No screenings logged yet — the booth is closed until you do. Open a{" "}
-						<Link href="/search" className="text-foreground underline">
-							film
-						</Link>{" "}
-						and tap <em>Log</em>.
-					</p>
-				) : (
-					<DiaryPageClient sections={sections} />
+				<HomeStickyChrome user={stickyUser} />
+			</Suspense>
+
+			<section
+				className={cn(
+					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
+					"overflow-visible",
 				)}
-			</Section>
+			>
+				<div className="flex shrink-0 items-center justify-between gap-3">
+					<Suspense
+						fallback={
+							<div
+								className="h-10 w-44 animate-pulse rounded-full bg-background"
+								aria-hidden
+							/>
+						}
+					>
+						<DiaryCatalogOrderChips />
+					</Suspense>
+					<Suspense
+						fallback={
+							<div
+								className="h-10 min-w-66 shrink-0 animate-pulse rounded-full bg-background"
+								aria-hidden
+							/>
+						}
+					>
+						<HomeCatalogViewModeToolbar />
+					</Suspense>
+				</div>
+
+				{!hasRows ? (
+					<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-6 sm:px-4 sm:py-10">
+						<div
+							className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl border border-border border-dashed bg-card/40 px-6 py-12 text-center sm:px-10 sm:py-14"
+							role="status"
+						>
+							{hasAnyDiaryLogs ? (
+								<>
+									<div className="space-y-2">
+										<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
+											No logs for{" "}
+											{lobbyVenue === "theaters" ? "in cinemas" : "at home"}
+										</p>
+										<p className="text-muted-foreground text-sm leading-relaxed">
+											Switch the venue chip above, or edit a screening and set
+											where you watched.
+										</p>
+									</div>
+									<Link
+										href={switchVenueHref}
+										className={buttonVariants({
+											variant: "outline",
+											size: "pill",
+										})}
+									>
+										Show {lobbyVenue === "theaters" ? "at home" : "in cinemas"}{" "}
+										instead
+									</Link>
+								</>
+							) : (
+								<>
+									<div className="space-y-2">
+										<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
+											No screenings logged yet
+										</p>
+										<p className="text-muted-foreground text-sm leading-relaxed">
+											Your diary will mirror the home lobby grid — open a film
+											and tap <em>Log</em> to fill this wall.
+										</p>
+									</div>
+									<Link
+										href="/home"
+										className={buttonVariants({
+											variant: "outline",
+											size: "pill",
+										})}
+									>
+										Search films
+									</Link>
+								</>
+							)}
+						</div>
+					</div>
+				) : (
+					<DiaryLobbyCatalogue
+						catalogueWaveKeyOverride={catalogueWaveKeyOverride}
+						monochromePeersOnHover={monochromePeersOnHover}
+						posterCellKeys={posterCellKeys}
+						seeds={seeds}
+					/>
+				)}
+			</section>
+
+			{session ? (
+				<CatalogWatchRegionPrompt open={needsCatalogWatchRegionPrompt} />
+			) : null}
 		</div>
 	);
 }

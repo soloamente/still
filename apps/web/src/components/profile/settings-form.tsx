@@ -9,9 +9,12 @@ import { toast } from "sonner";
 
 import { useCinematicAudio } from "@/components/cinema/sound-provider";
 import { api } from "@/lib/api";
+import { CATALOG_WATCH_REGION_OPTIONS } from "@/lib/catalog-watch-region-options";
 import {
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
+	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
 	readCatalogMonochromePeersOnHoverPref,
+	readCatalogTmdbWatchRegionPref,
 } from "@/lib/profile-preferences";
 
 /** Deep merge isn’t promised — PATCH `/profiles/me` shallow-merges one level so new keys never erase legacy prefs blobs. */
@@ -42,6 +45,11 @@ export function SettingsForm({ initial }: { initial: Me }) {
 		useState(() =>
 			readCatalogMonochromePeersOnHoverPref(initial?.preferences ?? null),
 		);
+	const [catalogTmdbWatchRegion, setCatalogTmdbWatchRegion] = useState(() => {
+		const p = readCatalogTmdbWatchRegionPref(initial?.preferences ?? null);
+		if (p === null) return "";
+		return p === "ALL" ? "ALL" : p;
+	});
 	const [saving, setSaving] = useState(false);
 
 	async function submit(e: React.FormEvent) {
@@ -53,6 +61,11 @@ export function SettingsForm({ initial }: { initial: Me }) {
 				theaterAudio,
 				[PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER]:
 					catalogMonochromePeersOnHover,
+				...(catalogTmdbWatchRegion.trim() !== ""
+					? {
+							[PROFILE_PREF_CATALOG_TMDB_WATCH_REGION]: catalogTmdbWatchRegion,
+						}
+					: {}),
 			};
 
 			await api.api.profiles.me.patch({
@@ -157,6 +170,30 @@ export function SettingsForm({ initial }: { initial: Me }) {
 						</span>
 					</span>
 				</label>
+			</div>
+			<div className="space-y-2">
+				<Label htmlFor="catalogTmdbWatchRegion">Catalogue region (TMDb)</Label>
+				<select
+					id="catalogTmdbWatchRegion"
+					value={catalogTmdbWatchRegion}
+					onChange={(e) => setCatalogTmdbWatchRegion(e.target.value)}
+					className="h-11 w-full max-w-md rounded-xl border border-input bg-background px-3 text-foreground text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/35"
+				>
+					<option value="">Not set yet (home will ask once)</option>
+					<option value="ALL">All regions</option>
+					{CATALOG_WATCH_REGION_OPTIONS.map(({ value, label }) => (
+						<option key={value} value={value}>
+							{label}
+						</option>
+					))}
+				</select>
+				<p className="text-muted-foreground text-xs leading-relaxed">
+					Subscription “At home” lists use this as the TMDb watch region. “In
+					cinemas” on Home and Discover uses the same country for theatrical
+					release dates when you pick a code (not “All regions”). TMDb also uses
+					this locale for catalogue and detail posters when a regional variant
+					exists. Leave unset to choose on first visit.
+				</p>
 			</div>
 			<div className="rounded-2xl border border-border/70 bg-card/40 px-4 py-4">
 				<label className="flex cursor-pointer items-start gap-3 text-foreground text-sm leading-snug">

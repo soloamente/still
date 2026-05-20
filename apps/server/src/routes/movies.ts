@@ -13,6 +13,7 @@ import Elysia, { t } from "elysia";
 import { context } from "../context";
 import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
 import { type TmdbMovieDetail, tmdbApi, tmdbImg } from "../lib/tmdb";
+import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 
 /** Returned when `TMDB_API_KEY` is missing so the UI can explain empty rails/search. */
 const TMDB_UNCONFIGURED = {
@@ -30,6 +31,27 @@ function tmdbUnconfiguredPaged(page: number) {
 	};
 }
 
+/** Shifts a UTC calendar day (`YYYY-MM-DD`) so discover windows do not double-count “today”. */
+function utcYyyyMmDdPlusDays(yyyyMmDd: string, days: number): string {
+	const [yRaw, mRaw, dRaw] = yyyyMmDd.split("-");
+	const y = Number(yRaw);
+	const m = Number(mRaw);
+	const d = Number(dRaw);
+	const t = Date.UTC(y, m - 1, d);
+	return new Date(t + days * 86_400_000).toISOString().slice(0, 10);
+}
+
+/**
+ * TMDb sometimes returns theatrical discover rows with an empty `release_date` (TBA / missing
+ * regional row). Date-sorted “in cinemas” surfaces should drop them so posters never imply a release.
+ */
+function tmdbDiscoverTheatricalRowHasCalendarDate(
+	releaseDate: string | undefined,
+): boolean {
+	const d = releaseDate?.trim();
+	return Boolean(d && /^\d{4}-\d{2}-\d{2}$/.test(d));
+}
+
 /** Allowed `sort_by` values for `/discover/movie` — anything else falls back to popularity. */
 const DISCOVER_SORT_WHITELIST = new Set([
 	"popularity.desc",
@@ -39,6 +61,15 @@ const DISCOVER_SORT_WHITELIST = new Set([
 	"vote_average.desc",
 	"vote_average.asc",
 	"original_title.asc",
+]);
+
+/** TMDb `with_watch_monetization_types` — single-token whitelist (comma AND is server-only later if needed). */
+const DISCOVER_MONETIZATION_WHITELIST = new Set([
+	"flatrate",
+	"rent",
+	"buy",
+	"ads",
+	"free",
 ]);
 
 /**
@@ -157,12 +188,15 @@ export const moviesRoute = new Elysia({
 	// the local DB clean of one-off lookups.
 	.get(
 		"/search",
-		async ({ query }) => {
+		async ({ query, user }) => {
 			const q = (query.q ?? "").trim();
 			if (!q) return { results: [], total_pages: 0, total_results: 0, page: 1 };
 			if (!env.TMDB_API_KEY)
 				return tmdbUnconfiguredPaged(Number(query.page ?? 1) || 1);
-			const data = await tmdbApi.searchMovies(q, Number(query.page ?? 1));
+			const language = await getTmdbLanguageForUser(user?.id);
+			const data = await tmdbApi.searchMovies(q, Number(query.page ?? 1), {
+				language,
+			});
 			return {
 				...data,
 				results: data.results.map((m) => ({
@@ -181,10 +215,11 @@ export const moviesRoute = new Elysia({
 	)
 	.get(
 		"/popular",
-		async ({ query }) => {
+		async ({ query, user }) => {
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
-			const data = await tmdbApi.popular(page);
+			const language = await getTmdbLanguageForUser(user?.id);
+			const data = await tmdbApi.popular(page, { language });
 			return {
 				...data,
 				results: data.results.map((m) => ({
@@ -198,10 +233,67 @@ export const moviesRoute = new Elysia({
 	)
 	.get(
 		"/upcoming",
-		async ({ query }) => {
+		async ({ query, user }) => {
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
-			const data = await tmdbApi.upcoming(page);
+			const language = await getTmdbLanguageForUser(user?.id);
+			// Theatrical “opening soon” via discover — not TMDb `/movie/upcoming` (curated, can drift).
+			// `Latest + in cinemas` uses `primary_release_date.lte=today`; use **gte = tomorrow** so
+			// same-day openings are not duplicated at the top of both grids (TMDb `gte`/`lte` are inclusive).
+			const regionFromQuery = (query.region ?? "").trim().toUpperCase();
+			const releaseRegionFromQuery =
+				regionFromQuery.length === 2 && /^[A-Z]{2}$/.test(regionFromQuery)
+					? regionFromQuery
+					: undefined;
+			const releaseRegionDefault = (env.TMDB_WATCH_REGION ?? "US")
+				.trim()
+				.toUpperCase();
+			const releaseRegionFallback =
+				releaseRegionDefault.length === 2 &&
+				/^[A-Z]{2}$/.test(releaseRegionDefault)
+					? releaseRegionDefault
+					: "US";
+			const discoveryRegion = releaseRegionFromQuery ?? releaseRegionFallback;
+			const todayUtc = new Date().toISOString().slice(0, 10);
+			// `Latest + in cinemas` uses `primary_release_date.lte=today` (includes same-day openings).
+			// If we also use `gte=today` here, TMDb surfaces the same “opens today” rows at the top of
+			// both grids — use **tomorrow** so Upcoming is strictly after the Latest window.
+			const primaryReleaseDateGte = utcYyyyMmDdPlusDays(todayUtc, 1);
+			const data = await tmdbApi.discoverMovies(page, {
+				sortBy: "primary_release_date.asc",
+				withReleaseTypes: "2|3",
+				region: discoveryRegion,
+				primaryReleaseDateGte,
+				language,
+			});
+			const theatricalRows = data.results.filter((m) =>
+				tmdbDiscoverTheatricalRowHasCalendarDate(m.release_date),
+			);
+			return {
+				...data,
+				results: theatricalRows.map((m) => ({
+					...m,
+					poster_url: tmdbImg.poster(m.poster_path),
+					backdrop_url: tmdbImg.backdrop(m.backdrop_path),
+				})),
+			};
+		},
+		{
+			query: t.Object({
+				page: t.Optional(t.String()),
+				/** Optional ISO 3166-1 alpha-2 — scopes primary release dates (defaults to `TMDB_WATCH_REGION`). */
+				region: t.Optional(t.String()),
+			}),
+		},
+	)
+	/** TMDb `/movie/now_playing` — titles currently in theatres (region-aware on TMDb’s side). */
+	.get(
+		"/now-playing",
+		async ({ query, user }) => {
+			const page = Number(query.page ?? 1) || 1;
+			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
+			const language = await getTmdbLanguageForUser(user?.id);
+			const data = await tmdbApi.nowPlaying(page, { language });
 			return {
 				...data,
 				results: data.results.map((m) => ({
@@ -215,12 +307,14 @@ export const moviesRoute = new Elysia({
 	)
 	.get(
 		"/trending",
-		async ({ query }) => {
+		async ({ query, user }) => {
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
+			const language = await getTmdbLanguageForUser(user?.id);
 			const data = await tmdbApi.trending(
 				(query.window as "day" | "week") ?? "day",
 				page,
+				{ language },
 			);
 			return {
 				...data,
@@ -238,20 +332,22 @@ export const moviesRoute = new Elysia({
 			}),
 		},
 	)
-	.get("/genres", async () => {
+	.get("/genres", async ({ user }) => {
 		if (!env.TMDB_API_KEY)
 			return {
 				genres: [] as { id: number; name: string }[],
 				...TMDB_UNCONFIGURED,
 			};
-		const data = await tmdbApi.genreMovieList();
+		const language = await getTmdbLanguageForUser(user?.id);
+		const data = await tmdbApi.genreMovieList({ language });
 		return { genres: data.genres ?? [] };
 	})
 	.get(
 		"/discover",
-		async ({ query }) => {
+		async ({ query, user }) => {
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
+			const language = await getTmdbLanguageForUser(user?.id);
 			const genreRaw = query.genre?.trim();
 			const withGenres =
 				genreRaw && Number.isFinite(Number(genreRaw))
@@ -261,15 +357,135 @@ export const moviesRoute = new Elysia({
 			const sortBy = DISCOVER_SORT_WHITELIST.has(sortRaw)
 				? sortRaw
 				: "popularity.desc";
-			const data = await tmdbApi.discoverMovies(page, { withGenres, sortBy });
+			const venueRaw = (query.venue ?? "").trim().toLowerCase();
+			const withReleaseTypes =
+				venueRaw === "theaters"
+					? "2|3"
+					: venueRaw === "streaming"
+						? "4"
+						: undefined;
+			const monetizationRaw = (query.monetization ?? "").trim().toLowerCase();
+			const withWatchMonetizationTypes = DISCOVER_MONETIZATION_WHITELIST.has(
+				monetizationRaw,
+			)
+				? monetizationRaw
+				: undefined;
+			const regionRaw = (query.watch_region ?? "").trim().toUpperCase();
+			const watchRegionAll =
+				regionRaw === "ALL" || regionRaw === "ANY" || regionRaw === "WORLD";
+			const watchRegionFromQuery =
+				!watchRegionAll &&
+				regionRaw.length === 2 &&
+				/^[A-Z]{2}$/.test(regionRaw)
+					? regionRaw
+					: undefined;
+			const watchRegionDefault = (env.TMDB_WATCH_REGION ?? "US")
+				.trim()
+				.toUpperCase();
+			const watchRegion =
+				withWatchMonetizationTypes !== undefined
+					? watchRegionAll
+						? undefined
+						: (watchRegionFromQuery ??
+							(watchRegionDefault.length === 2 &&
+							/^[A-Z]{2}$/.test(watchRegionDefault)
+								? watchRegionDefault
+								: "US"))
+					: undefined;
+
+			const todayUtc = new Date().toISOString().slice(0, 10);
+			const releaseGteRaw = (query.release_gte ?? "").trim();
+			const primaryReleaseDateGteFromQuery = /^\d{4}-\d{2}-\d{2}$/.test(
+				releaseGteRaw,
+			)
+				? releaseGteRaw
+				: undefined;
+
+			// “Latest + in cinemas” must not use `/movie/upcoming` semantics (future dates only).
+			// TMDb discover: theatrical release types + primary date ≤ today in `region` = already playing/released theatrically, newest first.
+			const regionFromQuery = (query.region ?? "").trim().toUpperCase();
+			const releaseRegionFromQuery =
+				regionFromQuery.length === 2 && /^[A-Z]{2}$/.test(regionFromQuery)
+					? regionFromQuery
+					: undefined;
+			const releaseRegionDefault = (env.TMDB_WATCH_REGION ?? "US")
+				.trim()
+				.toUpperCase();
+			const releaseRegionFallback =
+				releaseRegionDefault.length === 2 &&
+				/^[A-Z]{2}$/.test(releaseRegionDefault)
+					? releaseRegionDefault
+					: "US";
+			const applyTheatricalAlreadyReleased =
+				venueRaw === "theaters" &&
+				sortBy === "primary_release_date.desc" &&
+				withWatchMonetizationTypes === undefined;
+			const discoveryRegion = applyTheatricalAlreadyReleased
+				? (releaseRegionFromQuery ?? releaseRegionFallback)
+				: undefined;
+			// Streaming “newest at home” used to omit this cap — TMDb could still return far-future
+			// `release_date` rows. Any `primary_release_date.desc` without an explicit `release_gte`
+			// (upcoming uses asc + gte) means “already released / announced through today”.
+			const primaryReleaseDateLte =
+				sortBy === "primary_release_date.desc" &&
+				!primaryReleaseDateGteFromQuery
+					? todayUtc
+					: undefined;
+
+			const data = await tmdbApi.discoverMovies(page, {
+				withGenres,
+				sortBy,
+				withReleaseTypes,
+				region: discoveryRegion,
+				primaryReleaseDateLte,
+				primaryReleaseDateGte: primaryReleaseDateGteFromQuery,
+				watchRegion,
+				withWatchMonetizationTypes,
+				language,
+			});
+			// Theatrical venue: hide undated rows so “Latest in cinemas” never shows ambiguous TBA tiles.
+			let discoverRows =
+				venueRaw === "theaters"
+					? data.results.filter((m) =>
+							tmdbDiscoverTheatricalRowHasCalendarDate(m.release_date),
+						)
+					: data.results;
+			// Belt-and-suspenders: if TMDb ignores `primary_release_date.lte` for some combo, never show future calendar dates in “Latest / newest”.
+			if (
+				sortBy === "primary_release_date.desc" &&
+				!primaryReleaseDateGteFromQuery
+			) {
+				discoverRows = discoverRows.filter((m) => {
+					const d = m.release_date?.trim();
+					if (!d || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return false;
+					return d <= todayUtc;
+				});
+			}
 			return {
 				...data,
-				results: data.results.map((m) => ({
+				results: discoverRows.map((m) => ({
 					...m,
 					poster_url: tmdbImg.poster(m.poster_path),
 					backdrop_url: tmdbImg.backdrop(m.backdrop_path),
 				})),
-				applied: { genre: withGenres ?? null, sort: sortBy },
+				applied: {
+					genre: withGenres ?? null,
+					sort: sortBy,
+					venue:
+						venueRaw === "theaters" || venueRaw === "streaming"
+							? venueRaw
+							: null,
+					monetization: withWatchMonetizationTypes ?? null,
+					watch_region:
+						withWatchMonetizationTypes !== undefined
+							? watchRegionAll
+								? "ALL"
+								: (watchRegion ?? null)
+							: null,
+					region: discoveryRegion ?? null,
+					primary_release_date_lte: primaryReleaseDateLte ?? null,
+					release_gte: primaryReleaseDateGteFromQuery ?? null,
+				},
 			};
 		},
 		{
@@ -277,6 +493,11 @@ export const moviesRoute = new Elysia({
 				page: t.Optional(t.String()),
 				genre: t.Optional(t.String()),
 				sort: t.Optional(t.String()),
+				venue: t.Optional(t.String()),
+				monetization: t.Optional(t.String()),
+				watch_region: t.Optional(t.String()),
+				region: t.Optional(t.String()),
+				release_gte: t.Optional(t.String()),
 			}),
 		},
 	)
@@ -284,9 +505,11 @@ export const moviesRoute = new Elysia({
 	// fetch from TMDb and upsert.
 	.get(
 		"/:id",
-		async ({ params, status }) => {
+		async ({ params, status, user }) => {
 			const id = Number(params.id);
 			if (!Number.isFinite(id)) return status(400, "Invalid id");
+
+			const language = await getTmdbLanguageForUser(user?.id);
 
 			const [existing] = await db
 				.select()
@@ -316,6 +539,22 @@ export const moviesRoute = new Elysia({
 				.limit(1);
 			if (!row) return status(404, "Movie not found");
 
+			// Prefer TMDb’s locale-specific artwork when it differs from the canonical `en-US` cache row.
+			let posterPathForUrl = row.posterPath;
+			let backdropPathForUrl = row.backdropPath;
+			if (language !== "en-US") {
+				try {
+					const localized = await tmdbApi.movieDetail(id, { language });
+					posterPathForUrl = localized.poster_path ?? row.posterPath;
+					backdropPathForUrl = localized.backdrop_path ?? row.backdropPath;
+				} catch (err) {
+					console.warn(
+						"[movies] localized detail (poster) failed; using cache",
+						err,
+					);
+				}
+			}
+
 			// Aggregate community stats — average rating, review count.
 			const stats = await db
 				.select({
@@ -327,11 +566,13 @@ export const moviesRoute = new Elysia({
 
 			return {
 				...row,
-				poster_url: tmdbImg.poster(row.posterPath),
-				backdrop_url: tmdbImg.backdrop(row.backdropPath, "original"),
+				poster_url: tmdbImg.poster(posterPathForUrl),
+				backdrop_url: tmdbImg.backdrop(backdropPathForUrl, "original"),
 				community: {
-					averageRating: stats[0]?.avgRating ?? null,
-					reviewsCount: stats[0]?.reviewsCount ?? 0,
+					// Postgres `avg()` may arrive as a string through the driver — coerce for JSON.
+					averageRating:
+						stats[0]?.avgRating != null ? Number(stats[0].avgRating) : null,
+					reviewsCount: Number(stats[0]?.reviewsCount ?? 0) || 0,
 				},
 			};
 		},

@@ -8,6 +8,7 @@ import { appShellMainContentMinHeightStyle } from "@/components/app/app-shell";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { Section } from "@/components/ui/section";
 import { formatDate } from "@/lib/format";
+import { filmographyReleaseYear } from "@/lib/person-filmography";
 import { serverApi } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
@@ -27,6 +28,7 @@ type PersonPayload = {
 	} | null;
 	filmography: {
 		tmdbId: number;
+		mediaKind: "movie" | "tv";
 		title: string;
 		posterUrl: string | null;
 		/** ISO date string from the API; may deserialize oddly on the client in some stacks. */
@@ -34,22 +36,6 @@ type PersonPayload = {
 		roles: string[];
 	}[];
 };
-
-/**
- * Filmography rows use `releaseDate` for sorting and display; treat strings and
- * revived `Date` instances the same so `.slice` never runs on non-strings.
- */
-function filmographyReleaseYear(raw: unknown): string | null {
-	if (raw == null) return null;
-	if (typeof raw === "string") {
-		const s = raw.trim();
-		return s.length >= 4 ? s.slice(0, 4) : s || null;
-	}
-	if (raw instanceof Date && !Number.isNaN(raw.getTime())) {
-		return String(raw.getFullYear());
-	}
-	return null;
-}
 
 type Params = { id: string };
 
@@ -178,7 +164,7 @@ export default async function PersonPage({
 
 				<Section
 					title="Filmography"
-					subtitle={`${data.filmography.length} title${data.filmography.length === 1 ? "" : "s"} with this person in cast or crew.`}
+					subtitle={`${data.filmography.length} film and TV title${data.filmography.length === 1 ? "" : "s"} with this person in cast or crew.`}
 				>
 					{data.filmography.length === 0 ? (
 						<p className="rounded-2xl border border-border border-dashed bg-card/40 p-10 text-center text-muted-foreground text-sm">
@@ -190,11 +176,12 @@ export default async function PersonPage({
 							{data.filmography.map((m) => {
 								const yearLabel = filmographyReleaseYear(m.releaseDate);
 								return (
-									<div key={m.tmdbId} className="min-w-0">
+									<div key={`${m.mediaKind}-${m.tmdbId}`} className="min-w-0">
 										<MoviePoster
 											movieId={m.tmdbId}
 											title={m.title}
 											posterUrl={m.posterUrl}
+											listingKind={m.mediaKind === "tv" ? "tv" : "movie"}
 											showTitle
 										/>
 										<p className="mt-1 line-clamp-3 text-[10px] text-muted-foreground leading-snug">
@@ -214,7 +201,7 @@ export default async function PersonPage({
 
 				<p className="text-center text-muted-foreground text-xs">
 					<Link
-						href="/search"
+						href="/home"
 						className="underline underline-offset-2 hover:text-foreground"
 					>
 						Search films

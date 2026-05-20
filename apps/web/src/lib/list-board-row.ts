@@ -12,6 +12,8 @@ export interface ListBoardRow {
 	coverPosterPaths: (string | null)[];
 	updatedAt: string;
 	isPublic: boolean;
+	/** Present on `GET /api/lists/me?movieId=` — film already on this list. */
+	containsMovie?: boolean;
 }
 
 /** Coerce an API / JSON blob into a `ListBoardRow` (safe for mixed Eden payloads). */
@@ -33,5 +35,6 @@ export function toListBoardRow(raw: unknown): ListBoardRow {
 		coverPosterPaths,
 		updatedAt: String(r.updatedAt ?? ""),
 		isPublic: Boolean(r.isPublic ?? true),
+		containsMovie: "containsMovie" in r ? Boolean(r.containsMovie) : undefined,
 	};
 }

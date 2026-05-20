@@ -84,8 +84,6 @@ const NAV_SHORTCUTS = [
 		icon: Bell,
 		href: "/notifications",
 	},
-	/** Mirrors the standalone search page — shareable bookmarks + deep grids. */
-	{ id: "search", label: "Search screen", icon: Search, href: "/search" },
 ] as const;
 
 export function CommandPaletteRoot() {

@@ -6,6 +6,7 @@ import {
 	movie,
 	profile,
 	review,
+	tv,
 	user,
 	userBadge,
 } from "@still/db";
@@ -311,9 +312,10 @@ export const profilesRoute = new Elysia({
 
 			// Recently watched (last 6 logs).
 			const recent = await db
-				.select({ log, movie })
+				.select({ log, movie, tv })
 				.from(log)
 				.leftJoin(movie, eq(log.movieId, movie.tmdbId))
+				.leftJoin(tv, eq(log.tvId, tv.tmdbId))
 				.where(eq(log.userId, row.user.id))
 				.orderBy(desc(log.watchedAt))
 				.limit(6);

@@ -37,15 +37,41 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 		},
 		{ query: t.Object({ limit: t.Optional(t.String()) }) },
 	)
-	.get("/me", async ({ user, status }) => {
-		if (!user) return status(401, "Sign in");
-		const rows = await db
-			.select()
-			.from(list)
-			.where(eq(list.userId, user.id))
-			.orderBy(desc(list.updatedAt));
-		return withCoverPosterPaths(rows);
-	})
+	.get(
+		"/me",
+		async ({ user, status, query }) => {
+			if (!user) return status(401, "Sign in");
+			const rows = await db
+				.select()
+				.from(list)
+				.where(eq(list.userId, user.id))
+				.orderBy(desc(list.updatedAt));
+			const enriched = await withCoverPosterPaths(rows);
+
+			const movieIdRaw = query.movieId?.trim();
+			if (!movieIdRaw) return enriched;
+
+			const movieId = Number(movieIdRaw);
+			if (!Number.isFinite(movieId)) return enriched;
+
+			const memberships = await db
+				.select({ listId: listItem.listId })
+				.from(listItem)
+				.innerJoin(list, eq(listItem.listId, list.id))
+				.where(and(eq(list.userId, user.id), eq(listItem.movieId, movieId)));
+			const contains = new Set(memberships.map((m) => m.listId));
+
+			return enriched.map((row) => ({
+				...row,
+				containsMovie: contains.has(row.id),
+			}));
+		},
+		{
+			query: t.Object({
+				movieId: t.Optional(t.String()),
+			}),
+		},
+	)
 	.post(
 		"/",
 		async ({ body, user, status }) => {

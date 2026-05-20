@@ -12,17 +12,19 @@ import {
 	parseHomeCommunityFeed,
 } from "@/lib/home-community-feed";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+import { parseHomeVenue } from "@/lib/home-venue";
 
 /**
  * Second-row chips on `/home`:
- * - **Movies / TV:** Latest ↔ Popular (TMDb) with a sliding `layoutId` pill.
+ * - **Movies / TV:** Upcoming, Latest, and Popular (TMDb) with a sliding `layoutId` pill.
  * - **Community:** Lists, Reviews, Diary, Activity — member-made surfaces (URLs only; lobby body still WIP).
  */
 export function HomeCatalogSortChips() {
 	const searchParams = useSearchParams();
-	const catalogSort = parseHomeCatalogSort(searchParams.get("sort"));
 	const browse = parseHomeBrowseSurface(searchParams.get("browse"));
+	const catalogSort = parseHomeCatalogSort(searchParams.get("sort"), browse);
 	const communityFeed = parseHomeCommunityFeed(searchParams.get("sort"));
+	const effectiveVenue = parseHomeVenue(searchParams.get("venue"), catalogSort);
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -46,7 +48,7 @@ export function HomeCatalogSortChips() {
 	const sortToolbarDescription =
 		browse === "community"
 			? "Choose what kind of member-made content you want to browse first — lists, reviews, diary logs, or activity. Each tab will open its own community rail when the feature ships."
-			: "Popular highlights trending titles on TMDb. Latest prefers the newest theatrical or streaming releases in this catalogue.";
+			: "Upcoming, Latest, and Popular choose the TMDb list or discover sort. On Movies, the right rail also picks theatrical versus at-home digital releases — same knobs carry into Filters on discover. TV Upcoming can narrow the same way when that rail is active.";
 
 	if (browse === "community") {
 		return (
@@ -90,15 +92,47 @@ export function HomeCatalogSortChips() {
 				{sortToolbarDescription}
 			</p>
 			<div
-				className="flex w-fit rounded-full bg-background p-1"
+				className="flex max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
 				role="toolbar"
 				aria-label="Catalogue sort"
 				aria-describedby={sortToolbarDescId}
 			>
+				{/*
+					Three tabs — compact padding so Movies + TV both fit beside the venue toolbar.
+					Order: Upcoming first (future window), then Latest, then Popular.
+				*/}
 				<Link
-					href={buildHomeLobbyHref({ sort: "latest", browse })}
+					href={buildHomeLobbyHref({
+						sort: "upcoming",
+						browse,
+						venue: effectiveVenue,
+					})}
+					aria-current={catalogSort === "upcoming" ? "page" : undefined}
+					className={chipLink(catalogSort === "upcoming", true)}
+					title={
+						browse === "tv"
+							? "Shows with first air dates from today onward on TMDb"
+							: "Theatrical or streaming titles with primary release dates from today onward"
+					}
+					aria-label="Upcoming — releases ahead on TMDb"
+				>
+					{catalogSort === "upcoming" ? (
+						<motion.span
+							layoutId="home-catalog-sort-pill"
+							className="absolute inset-0 z-0 rounded-full bg-card"
+							transition={pillTransition}
+						/>
+					) : null}
+					<span className="relative z-10">Upcoming</span>
+				</Link>
+				<Link
+					href={buildHomeLobbyHref({
+						sort: "latest",
+						browse,
+						venue: effectiveVenue,
+					})}
 					aria-current={catalogSort === "latest" ? "page" : undefined}
-					className={chipLink(catalogSort === "latest", false)}
+					className={chipLink(catalogSort === "latest", true)}
 					title="Newest releases first in this TMDb catalogue"
 					aria-label="Latest — newest releases in this TMDb catalogue"
 				>
@@ -112,9 +146,13 @@ export function HomeCatalogSortChips() {
 					<span className="relative z-10">Latest</span>
 				</Link>
 				<Link
-					href={buildHomeLobbyHref({ sort: "popular", browse })}
+					href={buildHomeLobbyHref({
+						sort: "popular",
+						browse,
+						venue: effectiveVenue,
+					})}
 					aria-current={catalogSort === "popular" ? "page" : undefined}
-					className={chipLink(catalogSort === "popular", false)}
+					className={chipLink(catalogSort === "popular", true)}
 					title="Trending and most popular on TMDb right now"
 					aria-label="Popular — trending titles on TMDb"
 				>

@@ -6,6 +6,8 @@ import { MovieCatalogSurfaceChips } from "@/components/movie/movie-catalog-surfa
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
 import { Section } from "@/components/ui/section";
 
+import { readCatalogTmdbWatchRegionPref } from "@/lib/profile-preferences";
+import { serverApi } from "@/lib/server-api";
 import { fetchMoviesUpcoming } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 
@@ -40,8 +42,23 @@ export default async function UpcomingMoviesPage() {
 		.map((c) => `${c.name}=${c.value}`)
 		.join("; ");
 
+	const api = await serverApi();
+	const profileRes = await api.api.profiles.me
+		.get()
+		.catch(() => ({ data: null }));
+	const mePrefs = (
+		profileRes.data as { preferences?: Record<string, unknown> | null } | null
+	)?.preferences;
+	const catalogWatchPref = readCatalogTmdbWatchRegionPref(mePrefs ?? null);
+	/** Match lobby: optional patron territory for TMDb theatrical primary-release filters. */
+	const upcomingReleaseRegion =
+		typeof catalogWatchPref === "string" && catalogWatchPref !== "ALL"
+			? catalogWatchPref
+			: undefined;
+
 	const { data, error } = await fetchMoviesUpcoming(SEED_PAGE, {
 		cookieHeader,
+		region: upcomingReleaseRegion,
 	});
 	const payload = (data ?? null) as UpcomingPayload | null;
 
@@ -95,6 +112,7 @@ export default async function UpcomingMoviesPage() {
 					totalPages={totalPages}
 					totalResults={totalResults}
 					blockedReason={blockedReason}
+					upcomingReleaseRegion={upcomingReleaseRegion ?? null}
 				/>
 			</Section>
 		</div>

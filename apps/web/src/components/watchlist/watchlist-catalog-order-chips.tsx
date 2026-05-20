@@ -1,0 +1,103 @@
+"use client";
+
+import { cn } from "@still/ui/lib/utils";
+import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+
+import {
+	buildWatchlistLobbyHref,
+	parseWatchlistLobbyOrder,
+	type WatchlistLobbyOrder,
+} from "@/lib/watchlist-lobby-order";
+
+const CHIPS: readonly {
+	id: WatchlistLobbyOrder;
+	label: string;
+	title: string;
+	ariaLabel: string;
+}[] = [
+	{
+		id: "latest_added",
+		label: "Recently added",
+		title: "Newest saves first — when you clipped each title",
+		ariaLabel: "Recently added — order by when you saved the title",
+	},
+	{
+		id: "earliest_added",
+		label: "Oldest saves",
+		title: "Oldest clips first — chronological from your first save",
+		ariaLabel: "Oldest saves — order by oldest added date first",
+	},
+	{
+		id: "title_az",
+		label: "By title",
+		title:
+			"Alphabetical by film title (A–Z), then newest save within the same title",
+		ariaLabel: "By title — alphabetical order",
+	},
+] as const;
+
+/**
+ * Left chip rail on `/watchlist` — replaces TMDb **Upcoming / Latest / Popular** with patron-facing
+ * watchlist order. Visually matches `HomeCatalogSortChips` / `DiaryCatalogOrderChips`.
+ */
+export function WatchlistCatalogOrderChips() {
+	const searchParams = useSearchParams();
+	const order = parseWatchlistLobbyOrder(searchParams.get("order"));
+	const reduceMotion = useReducedMotion();
+
+	const pillTransition = reduceMotion
+		? { duration: 0 }
+		: {
+				type: "tween" as const,
+				duration: 0.22,
+				ease: [0.165, 0.84, 0.44, 1] as const,
+			};
+
+	const chipLink = (active: boolean) =>
+		cn(
+			/* `relative` pins the sliding `layoutId` pill (`absolute inset-0`). */
+			"relative inline-flex min-h-10 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-3.5",
+			active
+				? "text-foreground"
+				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
+		);
+
+	const sortToolbarDescId = "watchlist-catalog-order-desc";
+
+	return (
+		<div className="flex min-w-0 flex-col gap-1">
+			<p id={sortToolbarDescId} className="sr-only">
+				Choose how your watchlist is ordered in the poster wall — by when you
+				saved titles or alphabetically by film title.
+			</p>
+			<div
+				className="flex max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+				role="toolbar"
+				aria-label="Watchlist order"
+				aria-describedby={sortToolbarDescId}
+			>
+				{CHIPS.map(({ id, label, title, ariaLabel }) => (
+					<Link
+						key={id}
+						href={buildWatchlistLobbyHref({ order: id })}
+						aria-current={order === id ? "page" : undefined}
+						className={chipLink(order === id)}
+						title={title}
+						aria-label={ariaLabel}
+					>
+						{order === id ? (
+							<motion.span
+								layoutId="watchlist-catalog-order-pill"
+								className="absolute inset-0 z-0 rounded-full bg-card"
+								transition={pillTransition}
+							/>
+						) : null}
+						<span className="relative z-10">{label}</span>
+					</Link>
+				))}
+			</div>
+		</div>
+	);
+}

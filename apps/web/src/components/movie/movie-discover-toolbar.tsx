@@ -4,6 +4,7 @@ import {
 	DISCOVER_SORT_OPTIONS,
 	discoverCatalogUrl,
 } from "@/lib/discover-catalog-url";
+import type { HomeVenue } from "@/lib/home-venue";
 
 type Genre = { id: number; name: string };
 
@@ -15,12 +16,35 @@ export function MovieDiscoverToolbar({
 	genres,
 	appliedGenre,
 	appliedSort,
+	appliedVenue,
+	appliedMonetization,
+	appliedWatchRegion,
+	appliedReleaseRegion,
+	appliedReleaseGte,
 }: {
 	genres: Genre[];
 	appliedGenre: number | null;
 	appliedSort: string;
+	/** When set, genre + sort chip hrefs preserve the theatrical vs digital-at-home slice. */
+	appliedVenue?: HomeVenue | null;
+	/** Preserve subscription/rent filters when pivoting genre or sort (home “Streaming + Popular” deep-link). */
+	appliedMonetization?: string | null;
+	/** Optional region lock for monetization filters — rare in URLs; server defaults otherwise. */
+	appliedWatchRegion?: string | null;
+	/** TMDb theatrical `region` when using in-cinemas discover (optional override). */
+	appliedReleaseRegion?: string | null;
+	/** `release_gte` (YYYY-MM-DD) when using future-window discover (optional). */
+	appliedReleaseGte?: string | null;
 }) {
 	const sort = appliedSort.trim() || DISCOVER_SORT_DEFAULT;
+	const venueParam =
+		appliedVenue === "theaters" || appliedVenue === "streaming"
+			? appliedVenue
+			: undefined;
+	const mon = appliedMonetization?.trim() || null;
+	const wr = appliedWatchRegion?.trim().toUpperCase() || null;
+	const relReg = appliedReleaseRegion?.trim().toUpperCase() || null;
+	const relGte = appliedReleaseGte?.trim() || null;
 
 	return (
 		<div className="space-y-3">
@@ -30,7 +54,15 @@ export function MovieDiscoverToolbar({
 					className="min-w-min flex-nowrap gap-2 px-1"
 				>
 					<FilterChipLink
-						href={discoverCatalogUrl({ sort })}
+						href={discoverCatalogUrl({
+							sort,
+							venue: venueParam,
+							monetization: mon,
+							watchRegion: wr && /^[A-Z]{2}$/.test(wr) ? wr : null,
+							region: relReg && /^[A-Z]{2}$/.test(relReg) ? relReg : null,
+							releaseGte:
+								relGte && /^\d{4}-\d{2}-\d{2}$/.test(relGte) ? relGte : null,
+						})}
 						selected={appliedGenre == null}
 					>
 						All genres
@@ -41,6 +73,12 @@ export function MovieDiscoverToolbar({
 							href={discoverCatalogUrl({
 								genreId: g.id,
 								sort: sort !== DISCOVER_SORT_DEFAULT ? sort : null,
+								venue: venueParam,
+								monetization: mon,
+								watchRegion: wr && /^[A-Z]{2}$/.test(wr) ? wr : null,
+								region: relReg && /^[A-Z]{2}$/.test(relReg) ? relReg : null,
+								releaseGte:
+									relGte && /^\d{4}-\d{2}-\d{2}$/.test(relGte) ? relGte : null,
 							})}
 							selected={appliedGenre === g.id}
 						>
@@ -60,6 +98,12 @@ export function MovieDiscoverToolbar({
 						href={discoverCatalogUrl({
 							genreId: appliedGenre ?? undefined,
 							sort: opt.value,
+							venue: venueParam,
+							monetization: mon,
+							watchRegion: wr && /^[A-Z]{2}$/.test(wr) ? wr : null,
+							region: relReg && /^[A-Z]{2}$/.test(relReg) ? relReg : null,
+							releaseGte:
+								relGte && /^\d{4}-\d{2}-\d{2}$/.test(relGte) ? relGte : null,
 						})}
 						selected={sort === opt.value}
 					>

@@ -1,67 +1,189 @@
+import { buttonVariants } from "@still/ui/components/button";
+import { cn } from "@still/ui/lib/utils";
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Suspense } from "react";
 
-import { TicketStub } from "@/components/cinema/ticket-stub";
-import { Section } from "@/components/ui/section";
-import { formatDate } from "@/lib/format";
+import { CatalogWatchRegionPrompt } from "@/components/home/catalog-watch-region-prompt";
+import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
+import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
+import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
+import { WatchlistCatalogOrderChips } from "@/components/watchlist/watchlist-catalog-order-chips";
+import { WatchlistLobbyCatalogue } from "@/components/watchlist/watchlist-lobby-catalogue";
+import { authServer } from "@/lib/auth-server";
+import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
+import {
+	readCatalogMonochromePeersOnHoverPref,
+	readCatalogTmdbWatchRegionPref,
+} from "@/lib/profile-preferences";
 import { serverApi } from "@/lib/server-api";
+import {
+	isWatchlistRowWithListing,
+	parseWatchlistLobbyOrder,
+	sortWatchlistLobbyRowsForOrder,
+	type WatchlistLobbyRow,
+	type WatchlistLobbyRowWithListing,
+} from "@/lib/watchlist-lobby-order";
 
 export const metadata: Metadata = { title: "Watchlist" };
 export const dynamic = "force-dynamic";
 
-type WatchlistRow = {
-  item: { addedAt: string; movieId: number };
-  movie: { tmdbId: number; title: string; posterPath: string | null } | null;
-};
+/** Lobby seeds — `listingKind` drives `/tv/` vs `/movies/` links in the shared poster grid. */
+function watchlistRowToPopularSeed(
+	row: WatchlistLobbyRowWithListing,
+): PopularMovieSeed {
+	const listing = row.movie ?? row.tv;
+	if (!listing) {
+		throw new Error("watchlistRowToPopularSeed: row missing movie and tv");
+	}
+	let poster_url: string | null = listing.posterPath;
+	if (poster_url?.length && !poster_url.startsWith("http")) {
+		const fragment = poster_url.startsWith("/") ? poster_url : `/${poster_url}`;
+		poster_url = `https://image.tmdb.org/t/p/w780${fragment}`;
+	}
+	return {
+		id: listing.tmdbId,
+		title: listing.title,
+		poster_url,
+		listingKind: row.tv != null ? "tv" : "movie",
+	};
+}
 
-export default async function WatchlistPage() {
-  const api = await serverApi();
-  const res = await api.api.watchlist.get().catch(() => ({ data: [] }));
-  const items = (res.data as unknown as WatchlistRow[]) ?? [];
+export default async function WatchlistPage({
+	searchParams,
+}: {
+	searchParams: Promise<{ order?: string }>;
+}) {
+	const sp = await searchParams;
+	const lobbyOrder = parseWatchlistLobbyOrder(sp.order);
 
-  return (
-    <div className="space-y-10">
-      <Section
-        kicker="Concessions stand"
-        title="Watchlist"
-        subtitle={`${items.length} film${items.length === 1 ? "" : "s"} clipped to your concession rail — souvenirs for showtimes that haven’t started yet.`}
-      >
-        {items.length === 0 ? (
-          <p className="rounded-2xl border border-dashed border-border bg-card/40 p-10 text-center text-sm text-muted-foreground">
-            The booth is empty. When something catches your eye, open its page and tap{" "}
-            <strong className="text-foreground">Watchlist</strong> — we&apos;ll hold your seat.
-          </p>
-        ) : (
-          <ul
-            className="watchlist-ticket-stack mx-auto flex max-w-7xl flex-wrap justify-center gap-x-10 gap-y-16 pb-12 pt-4"
-            aria-label="Watchlist tickets — hover any slip to spotlight it."
-          >
-            {items.map((row) =>
-              row.movie ? (
-                <li key={row.item.movieId} className="flex justify-center">
-                  {/* `linkHoverGrow={false}` — stack CSS owns lift; avoids nested scale transforms */}
-                  <TicketStub
-                    linkHoverGrow={false}
-                    href={`/movies/${row.movie.tmdbId}`}
-                    ariaLabel={`Open film: ${row.movie.title}; held since ${formatDate(new Date(row.item.addedAt))}`}
-                    posterUrl={row.movie.posterPath}
-                    posterAlt=""
-                    stubBackground="#5c1730"
-                    size="default"
-                    stubKicker="Held ticket"
-                  >
-                    <h2 className="font-display line-clamp-4 text-center text-[1.05rem] leading-snug font-normal tracking-[-0.02em]">
-                      {row.movie.title}
-                    </h2>
-                    <p className="mt-2 text-center text-[10px] tabular-nums tracking-wide text-white/68">
-                      Clipped · {formatDate(new Date(row.item.addedAt), { month: "short", day: "numeric", year: "numeric" })}
-                    </p>
-                  </TicketStub>
-                </li>
-              ) : null,
-            )}
-          </ul>
-        )}
-      </Section>
-    </div>
-  );
+	const [session, api] = await Promise.all([authServer(), serverApi()]);
+	const [watchlistRes, profileRes] = await Promise.all([
+		api.api.watchlist.get().catch(() => ({ data: [] })),
+		api.api.profiles.me.get().catch(() => ({ data: null })),
+	]);
+
+	const profileData = profileRes.data as {
+		handle: string;
+		displayName: string;
+		preferences?: Record<string, unknown> | null;
+	} | null;
+
+	const mePrefs = profileData?.preferences ?? null;
+	const monochromePeersOnHover = readCatalogMonochromePeersOnHoverPref(mePrefs);
+	const catalogWatchPref = readCatalogTmdbWatchRegionPref(mePrefs);
+	const needsCatalogWatchRegionPrompt = Boolean(
+		session && catalogWatchPref === null,
+	);
+
+	const stickyUser =
+		session && profileData?.handle
+			? {
+					id: session.user.id,
+					name: session.user.name ?? profileData.displayName ?? "You",
+					image: session.user.image ?? null,
+					handle: profileData.handle,
+					email: session.user.email ?? null,
+				}
+			: null;
+
+	const raw = Array.isArray(watchlistRes.data)
+		? (watchlistRes.data as WatchlistLobbyRow[])
+		: [];
+
+	const withListing = raw.filter(isWatchlistRowWithListing);
+	const lobbyRows = sortWatchlistLobbyRowsForOrder(withListing, lobbyOrder);
+
+	const seeds = lobbyRows.map(watchlistRowToPopularSeed);
+	const posterCellKeys = lobbyRows.map((r) =>
+		r.tv != null ? `tv:${r.item.tvId}` : `m:${r.item.movieId}`,
+	);
+	const catalogueWaveKeyOverride = `${lobbyOrder}:${posterCellKeys.join("|")}`;
+	const hasRows = lobbyRows.length > 0;
+
+	return (
+		// Match `/home` + `/diary` shell — fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve).
+		<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
+			<Suspense
+				fallback={
+					<div
+						className="sticky top-0 z-20 h-14 w-full animate-pulse rounded-[2rem] bg-card/60"
+						aria-hidden
+					/>
+				}
+			>
+				<HomeStickyChrome user={stickyUser} />
+			</Suspense>
+
+			<section
+				className={cn(
+					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
+					"overflow-visible",
+				)}
+			>
+				<div className="flex shrink-0 items-center justify-between gap-3">
+					<Suspense
+						fallback={
+							<div
+								className="h-10 w-44 animate-pulse rounded-full bg-background"
+								aria-hidden
+							/>
+						}
+					>
+						<WatchlistCatalogOrderChips />
+					</Suspense>
+					<Suspense
+						fallback={
+							<div
+								className="h-10 min-w-66 shrink-0 animate-pulse rounded-full bg-background"
+								aria-hidden
+							/>
+						}
+					>
+						<HomeCatalogViewModeToolbar />
+					</Suspense>
+				</div>
+
+				{!hasRows ? (
+					<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-6 sm:px-4 sm:py-10">
+						<div
+							className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl border border-border border-dashed bg-card/40 px-6 py-12 text-center sm:px-10 sm:py-14"
+							role="status"
+						>
+							<div className="space-y-2">
+								<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
+									Your watchlist is empty
+								</p>
+								<p className="text-muted-foreground text-sm leading-relaxed">
+									When something catches your eye, open its page and tap{" "}
+									<strong className="text-foreground">Watchlist</strong> — it
+									will show up in this lobby wall.
+								</p>
+							</div>
+							<Link
+								href="/home"
+								className={buttonVariants({
+									variant: "outline",
+									size: "pill",
+								})}
+							>
+								Search films and shows
+							</Link>
+						</div>
+					</div>
+				) : (
+					<WatchlistLobbyCatalogue
+						catalogueWaveKeyOverride={catalogueWaveKeyOverride}
+						monochromePeersOnHover={monochromePeersOnHover}
+						posterCellKeys={posterCellKeys}
+						seeds={seeds}
+					/>
+				)}
+			</section>
+
+			{session ? (
+				<CatalogWatchRegionPrompt open={needsCatalogWatchRegionPrompt} />
+			) : null}
+		</div>
+	);
 }

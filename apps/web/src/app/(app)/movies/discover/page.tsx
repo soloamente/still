@@ -6,7 +6,13 @@ import { MovieCatalogSurfaceChips } from "@/components/movie/movie-catalog-surfa
 import { MovieDiscoverToolbar } from "@/components/movie/movie-discover-toolbar";
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
 import { Section } from "@/components/ui/section";
-import { normalizeDiscoverSort } from "@/lib/discover-catalog-url";
+import {
+	normalizeDiscoverMonetization,
+	normalizeDiscoverSort,
+} from "@/lib/discover-catalog-url";
+import { parseExplicitHomeVenue } from "@/lib/home-venue";
+import { readCatalogTmdbWatchRegionPref } from "@/lib/profile-preferences";
+import { serverApi } from "@/lib/server-api";
 import { fetchMovieGenres, fetchMoviesDiscover } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 
@@ -25,7 +31,15 @@ type DiscoverPayload = {
 	results?: { id: number; title: string; poster_url: string | null }[];
 	code?: string;
 	hint?: string;
-	applied?: { genre: number | null; sort: string };
+	applied?: {
+		genre: number | null;
+		sort: string;
+		monetization?: string | null;
+		watch_region?: string | null;
+		region?: string | null;
+		primary_release_date_lte?: string | null;
+		release_gte?: string | null;
+	};
 };
 
 /** Always hydrate from sheet 1 — the client sentinel requests 2…N as you scroll. */
@@ -40,7 +54,15 @@ function parseGenreId(raw: string | undefined): number | null {
 export default async function DiscoverMoviesPage({
 	searchParams,
 }: {
-	searchParams: Promise<{ genre?: string; sort?: string }>;
+	searchParams: Promise<{
+		genre?: string;
+		sort?: string;
+		venue?: string;
+		monetization?: string;
+		watch_region?: string;
+		region?: string;
+		release_gte?: string;
+	}>;
 }) {
 	const sp = await searchParams;
 	const jar = await cookies();
@@ -52,16 +74,51 @@ export default async function DiscoverMoviesPage({
 
 	const appliedGenre = parseGenreId(sp.genre);
 	const appliedSort = normalizeDiscoverSort(sp.sort);
+	const explicitVenue = parseExplicitHomeVenue(sp.venue);
+	const appliedMonetization = normalizeDiscoverMonetization(sp.monetization);
+	const wrRaw = (sp.watch_region ?? "").trim().toUpperCase();
+	const appliedWatchRegion =
+		wrRaw === "ALL" || wrRaw === "ANY" || wrRaw === "WORLD"
+			? "ALL"
+			: wrRaw.length === 2 && /^[A-Z]{2}$/.test(wrRaw)
+				? wrRaw
+				: null;
+	const regRaw = (sp.region ?? "").trim().toUpperCase();
+	const appliedReleaseRegion =
+		regRaw.length === 2 && /^[A-Z]{2}$/.test(regRaw) ? regRaw : null;
+	const rgRaw = (sp.release_gte ?? "").trim();
+	const appliedReleaseGte =
+		rgRaw && /^\d{4}-\d{2}-\d{2}$/.test(rgRaw) ? rgRaw : null;
 
-	const [{ data: discoverData, error: discoverError }, { data: genresData }] =
-		await Promise.all([
-			fetchMoviesDiscover(SEED_PAGE, {
-				cookieHeader,
-				genreId: appliedGenre ?? undefined,
-				sortBy: appliedSort,
-			}),
-			fetchMovieGenres({ cookieHeader }),
-		]);
+	const api = await serverApi();
+	const [profileRes, { data: genresData }] = await Promise.all([
+		api.api.profiles.me.get().catch(() => ({ data: null })),
+		fetchMovieGenres({ cookieHeader }),
+	]);
+	const mePrefs = (
+		profileRes.data as { preferences?: Record<string, unknown> | null } | null
+	)?.preferences;
+	const catalogWatchPref = readCatalogTmdbWatchRegionPref(mePrefs ?? null);
+	const profileTheatricalRegionIso =
+		typeof catalogWatchPref === "string" && catalogWatchPref !== "ALL"
+			? catalogWatchPref
+			: undefined;
+	/** Theatrical discover needs TMDb `region`; URL wins, then Settings catalogue country. */
+	const effectiveReleaseRegion =
+		appliedReleaseRegion ??
+		(explicitVenue === "theaters" ? profileTheatricalRegionIso : undefined);
+
+	const { data: discoverData, error: discoverError } =
+		await fetchMoviesDiscover(SEED_PAGE, {
+			cookieHeader,
+			genreId: appliedGenre ?? undefined,
+			sortBy: appliedSort,
+			venue: explicitVenue ?? undefined,
+			monetization: appliedMonetization ?? undefined,
+			watchRegion: appliedWatchRegion ?? undefined,
+			region: effectiveReleaseRegion,
+			releaseGte: appliedReleaseGte ?? undefined,
+		});
 
 	const payload = (discoverData ?? null) as DiscoverPayload | null;
 	const seedMovies = payload?.results ?? [];
@@ -117,6 +174,11 @@ export default async function DiscoverMoviesPage({
 
 				{!blockedReason ? (
 					<MovieDiscoverToolbar
+						appliedVenue={explicitVenue}
+						appliedMonetization={appliedMonetization}
+						appliedWatchRegion={appliedWatchRegion}
+						appliedReleaseRegion={appliedReleaseRegion}
+						appliedReleaseGte={appliedReleaseGte}
 						genres={genres}
 						appliedGenre={appliedGenre}
 						appliedSort={appliedSort}
@@ -127,10 +189,15 @@ export default async function DiscoverMoviesPage({
 					<DiscoverCatalogEmpty genreLabel={genreLabel} />
 				) : !blockedReason ? (
 					<PopularMoviesInfinite
-						key={`${appliedGenre ?? "all"}-${appliedSort}`}
+						key={`${appliedGenre ?? "all"}-${appliedSort}-${explicitVenue ?? "all-venues"}-${appliedMonetization ?? "no-mon"}-${appliedWatchRegion ?? "no-wr"}-${effectiveReleaseRegion ?? "no-reg"}-${appliedReleaseGte ?? "no-rg"}`}
 						catalogKind="discover"
 						discoverGenreId={appliedGenre}
 						discoverSortBy={appliedSort}
+						discoverVenue={explicitVenue}
+						discoverMonetization={appliedMonetization}
+						discoverWatchRegion={appliedWatchRegion}
+						discoverReleaseRegion={effectiveReleaseRegion ?? null}
+						discoverReleaseGte={appliedReleaseGte}
 						seedMovies={seedMovies}
 						seedPage={SEED_PAGE}
 						totalPages={totalPages}

@@ -85,6 +85,24 @@ export type TmdbMovieDetail = TmdbMovieSummary & {
 	};
 };
 
+/** Full TV series payload from `/tv/{id}` + append_to_response (subset typed for our UI). */
+export type TmdbTvDetail = TmdbTvSummary & {
+	tagline?: string;
+	status?: string;
+	last_air_date?: string | null;
+	number_of_seasons?: number;
+	number_of_episodes?: number;
+	episode_run_time?: number[];
+	genres?: { id: number; name: string }[];
+	credits?: { cast: TmdbCredit[]; crew: TmdbCredit[] };
+	similar?: { results: TmdbTvSummary[] };
+	recommendations?: { results: TmdbTvSummary[] };
+	videos?: { results: TmdbVideo[] };
+	"watch/providers"?: TmdbMovieDetail["watch/providers"];
+	/** TV keywords append returns `results` (movies use nested `keywords`). */
+	keywords?: { results?: { id: number; name: string }[] };
+};
+
 export type TmdbCredit = {
 	id: number;
 	credit_id: string;
@@ -125,6 +143,12 @@ export type TmdbPersonMovieCredit = TmdbMovieSummary & {
 	job?: string;
 };
 
+/** Combined `tv_credits` entries append role fields on top of the TV summary. */
+export type TmdbPersonTvCredit = TmdbTvSummary & {
+	character?: string;
+	job?: string;
+};
+
 export type TmdbPersonDetail = {
 	id: number;
 	name: string;
@@ -139,12 +163,52 @@ export type TmdbPersonDetail = {
 		cast: TmdbPersonMovieCredit[];
 		crew: TmdbPersonMovieCredit[];
 	};
+	tv_credits?: {
+		cast: TmdbPersonTvCredit[];
+		crew: TmdbPersonTvCredit[];
+	};
 };
+
+/** Optional TMDb v3 `language` — drives localized titles and regional poster picks. */
+export type TmdbFetchOptions = {
+	language?: string;
+};
+
+/** Gunzip when Bun’s fetch leaves `content-encoding: gzip` bytes on the wire. */
+function gunzipTmdbBody(bytes: Uint8Array): Uint8Array {
+	// Prefer Bun’s gunzip — Node `zlib.gunzipSync` can fail on some TMDb payloads.
+	return new Uint8Array(Bun.gunzipSync(bytes));
+}
+
+/** Decode a TMDb response body — Bun fetch may or may not transparently gunzip. */
+function parseTmdbResponseBody<T>(res: Response, body: ArrayBuffer): T {
+	const bytes = new Uint8Array(body);
+	const looksGzip = bytes.length >= 2 && bytes[0] === 0x1f && bytes[1] === 0x8b;
+	const attempts: Uint8Array[] = [bytes];
+	if (looksGzip || res.headers.get("content-encoding") === "gzip") {
+		try {
+			attempts.unshift(gunzipTmdbBody(bytes));
+		} catch {
+			// Body may already be plain JSON while the header still says gzip.
+		}
+	}
+	for (const chunk of attempts) {
+		try {
+			return JSON.parse(new TextDecoder().decode(chunk)) as T;
+		} catch {
+			// try next decoding strategy
+		}
+	}
+	throw new Error(
+		`TMDb response was not JSON (${res.url}, ${bytes.length} bytes)`,
+	);
+}
 
 /** Internal fetch wrapper with timeout, error formatting, and language defaults. */
 async function tmdb<T>(
 	path: string,
 	params: Record<string, string | number | undefined> = {},
+	fetchOpts: TmdbFetchOptions = {},
 ) {
 	if (!env.TMDB_API_KEY) {
 		// Dev fallback — return an empty paged shape so callers can keep going.
@@ -159,7 +223,9 @@ async function tmdb<T>(
 	for (const [k, v] of Object.entries(params)) {
 		if (v !== undefined) url.searchParams.set(k, String(v));
 	}
-	url.searchParams.set("language", "en-US");
+	// TMDb `language` is a locale tag (e.g. `de-DE`); callers pass the patron’s catalogue locale.
+	const lang = fetchOpts.language?.trim();
+	url.searchParams.set("language", lang && lang.length > 0 ? lang : "en-US");
 
 	// TMDb supports either Bearer (v4 token, starts with eyJ...) or api_key query (v3 key).
 	const isBearer = env.TMDB_API_KEY.startsWith("eyJ");
@@ -179,37 +245,89 @@ async function tmdb<T>(
 	if (!res.ok) {
 		throw new Error(`TMDb ${res.status} on ${path}: ${await res.text()}`);
 	}
-	return (await res.json()) as T;
+	const body = await res.arrayBuffer();
+	return parseTmdbResponseBody<T>(res, body);
 }
 
 export const tmdbApi = {
-	searchMovies(query: string, page = 1) {
-		return tmdb<TmdbPaged<TmdbMovieSummary>>("/search/movie", {
-			query,
-			page,
-			include_adult: "false",
-		});
+	searchMovies(query: string, page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbMovieSummary>>(
+			"/search/movie",
+			{
+				query,
+				page,
+				include_adult: "false",
+			},
+			fetchOpts,
+		);
 	},
-	movieDetail(id: number) {
+	/** TMDb `/search/tv` — list rows use `name`; callers map to `title` for shared grid components. */
+	searchTv(query: string, page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbTvSummary>>(
+			"/search/tv",
+			{
+				query,
+				page,
+				include_adult: "false",
+			},
+			fetchOpts,
+		);
+	},
+	movieDetail(id: number, fetchOpts: TmdbFetchOptions = {}) {
 		// `keywords` surfaces user-facing tags (often festivals, movements); keep append list in sync with movie UI.
-		return tmdb<TmdbMovieDetail>(`/movie/${id}`, {
-			append_to_response:
-				"credits,similar,recommendations,videos,watch/providers,release_dates,keywords",
-		});
+		return tmdb<TmdbMovieDetail>(
+			`/movie/${id}`,
+			{
+				append_to_response:
+					"credits,similar,recommendations,videos,watch/providers,release_dates,keywords",
+			},
+			fetchOpts,
+		);
 	},
-	popular(page = 1) {
-		return tmdb<TmdbPaged<TmdbMovieSummary>>("/movie/popular", { page });
+	/** TMDb `/tv/{id}` — append bundle mirrors film detail for shared show-page chrome. */
+	tvDetail(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbTvDetail>(
+			`/tv/${id}`,
+			{
+				append_to_response:
+					"credits,similar,recommendations,videos,watch/providers,keywords",
+			},
+			fetchOpts,
+		);
 	},
-	upcoming(page = 1) {
-		return tmdb<TmdbPaged<TmdbMovieSummary>>("/movie/upcoming", { page });
+	popular(page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbMovieSummary>>(
+			"/movie/popular",
+			{ page },
+			fetchOpts,
+		);
 	},
-	nowPlaying(page = 1) {
-		return tmdb<TmdbPaged<TmdbMovieSummary>>("/movie/now_playing", { page });
+	upcoming(page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbMovieSummary>>(
+			"/movie/upcoming",
+			{ page },
+			fetchOpts,
+		);
 	},
-	trending(window: "day" | "week" = "day", page = 1) {
-		return tmdb<TmdbPaged<TmdbMovieSummary>>(`/trending/movie/${window}`, {
-			page,
-		});
+	nowPlaying(page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbMovieSummary>>(
+			"/movie/now_playing",
+			{ page },
+			fetchOpts,
+		);
+	},
+	trending(
+		window: "day" | "week" = "day",
+		page = 1,
+		fetchOpts: TmdbFetchOptions = {},
+	) {
+		return tmdb<TmdbPaged<TmdbMovieSummary>>(
+			`/trending/movie/${window}`,
+			{
+				page,
+			},
+			fetchOpts,
+		);
 	},
 	/**
 	 * TMDb `/discover/movie` — filterable catalogue (genre + sort). `vote_count.gte`
@@ -217,7 +335,24 @@ export const tmdbApi = {
 	 */
 	discoverMovies(
 		page = 1,
-		opts: { withGenres?: number; sortBy?: string } = {},
+		opts: {
+			withGenres?: number;
+			sortBy?: string;
+			/** TMDb `with_release_type` — e.g. `2|3` theatrical, `4` digital. */
+			withReleaseTypes?: string;
+			/** TMDb `region` (ISO 3166-1) — scopes `primary_release_date.*` filters to that territory. */
+			region?: string;
+			/** TMDb `primary_release_date.lte` — YYYY-MM-DD (e.g. cap “newest” to already-released). */
+			primaryReleaseDateLte?: string;
+			/** TMDb `primary_release_date.gte` — YYYY-MM-DD (e.g. streaming titles with a future window). */
+			primaryReleaseDateGte?: string;
+			/** TMDb `watch_region` — pairs with `with_watch_monetization_types`. */
+			watchRegion?: string;
+			/** TMDb `with_watch_monetization_types` — e.g. `flatrate` for subscription streaming. */
+			withWatchMonetizationTypes?: string;
+			/** TMDb `language` — regional poster/title for the patron’s catalogue locale. */
+			language?: string;
+		} = {},
 	) {
 		const sortBy = opts.sortBy ?? "popularity.desc";
 		const params: Record<string, string | number | undefined> = {
@@ -229,26 +364,68 @@ export const tmdbApi = {
 		if (opts.withGenres !== undefined && Number.isFinite(opts.withGenres)) {
 			params.with_genres = String(opts.withGenres);
 		}
+		const reg = opts.region?.trim().toUpperCase();
+		if (reg && /^[A-Z]{2}$/.test(reg)) {
+			params.region = reg;
+		}
+		const prLte = opts.primaryReleaseDateLte?.trim();
+		if (prLte && /^\d{4}-\d{2}-\d{2}$/.test(prLte)) {
+			params["primary_release_date.lte"] = prLte;
+		}
+		const prGte = opts.primaryReleaseDateGte?.trim();
+		if (prGte && /^\d{4}-\d{2}-\d{2}$/.test(prGte)) {
+			params["primary_release_date.gte"] = prGte;
+		}
+		const wr = opts.watchRegion?.trim().toUpperCase();
+		if (wr && /^[A-Z]{2}$/.test(wr)) {
+			params.watch_region = wr;
+		}
+		const wm = opts.withWatchMonetizationTypes?.trim();
+		if (wm) {
+			params.with_watch_monetization_types = wm;
+		}
+		const rt = opts.withReleaseTypes?.trim();
+		if (rt) {
+			params.with_release_type = rt;
+		}
 		if (sortBy === "vote_average.desc" || sortBy === "vote_average.asc") {
 			params["vote_count.gte"] = 200;
 		}
-		return tmdb<TmdbPaged<TmdbMovieSummary>>("/discover/movie", params);
+		return tmdb<TmdbPaged<TmdbMovieSummary>>("/discover/movie", params, {
+			language: opts.language,
+		});
 	},
 	/** Static-ish list of official TMDb movie genre ids — powers browse chips. */
-	genreMovieList() {
+	genreMovieList(fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<{ genres: { id: number; name: string }[] }>(
 			"/genre/movie/list",
 			{},
+			fetchOpts,
 		);
 	},
-	popularTv(page = 1) {
-		return tmdb<TmdbPaged<TmdbTvSummary>>("/tv/popular", { page });
+	popularTv(page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbTvSummary>>("/tv/popular", { page }, fetchOpts);
 	},
 	/**
 	 * TMDb `/discover/tv` — same contract as `discoverMovies` but `first_air_date.*` replaces
 	 * `primary_release_date.*` for “what’s new on air” sorts.
 	 */
-	discoverTv(page = 1, opts: { withGenres?: number; sortBy?: string } = {}) {
+	discoverTv(
+		page = 1,
+		opts: {
+			withGenres?: number;
+			sortBy?: string;
+			/** TMDb `first_air_date.gte` — e.g. lobby “TV upcoming” from today onward. */
+			firstAirDateGte?: string;
+			/** TMDb `first_air_date.lte` — cap “latest aired” to dates ≤ this day (UTC). */
+			firstAirDateLte?: string;
+			/** Pairs with `with_watch_monetization_types` on `/discover/tv`. */
+			watchRegion?: string;
+			withWatchMonetizationTypes?: string;
+			/** TMDb `language` — regional show poster for the patron’s locale. */
+			language?: string;
+		} = {},
+	) {
 		const sortBy = opts.sortBy ?? "popularity.desc";
 		const params: Record<string, string | number | undefined> = {
 			page,
@@ -258,15 +435,37 @@ export const tmdbApi = {
 		if (opts.withGenres !== undefined && Number.isFinite(opts.withGenres)) {
 			params.with_genres = String(opts.withGenres);
 		}
+		const faGte = opts.firstAirDateGte?.trim();
+		if (faGte && /^\d{4}-\d{2}-\d{2}$/.test(faGte)) {
+			params["first_air_date.gte"] = faGte;
+		}
+		const faLte = opts.firstAirDateLte?.trim();
+		if (faLte && /^\d{4}-\d{2}-\d{2}$/.test(faLte)) {
+			params["first_air_date.lte"] = faLte;
+		}
+		const wr = opts.watchRegion?.trim().toUpperCase();
+		if (wr && /^[A-Z]{2}$/.test(wr)) {
+			params.watch_region = wr;
+		}
+		const wm = opts.withWatchMonetizationTypes?.trim();
+		if (wm) {
+			params.with_watch_monetization_types = wm;
+		}
 		if (sortBy === "vote_average.desc" || sortBy === "vote_average.asc") {
 			params["vote_count.gte"] = 200;
 		}
-		return tmdb<TmdbPaged<TmdbTvSummary>>("/discover/tv", params);
-	},
-	person(id: number) {
-		return tmdb<TmdbPersonDetail>(`/person/${id}`, {
-			append_to_response: "movie_credits",
+		return tmdb<TmdbPaged<TmdbTvSummary>>("/discover/tv", params, {
+			language: opts.language,
 		});
+	},
+	person(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPersonDetail>(
+			`/person/${id}`,
+			{
+				append_to_response: "movie_credits,tv_credits",
+			},
+			fetchOpts,
+		);
 	},
 };
 
