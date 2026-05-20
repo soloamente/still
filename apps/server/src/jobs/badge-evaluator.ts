@@ -155,6 +155,7 @@ async function awardBadge(
 			badgeId: badgeRow.id,
 			tier: badgeRow.tier,
 			points: badgeRow.points,
+			iconUrl: badgeRow.iconUrl,
 			href: "/achievements",
 		},
 	});

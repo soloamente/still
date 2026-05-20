@@ -210,6 +210,103 @@ export const profilesRoute = new Elysia({
 		return { url: blob.url };
 	})
 	/**
+	 * Avatar upload: multipart form with field `file`. Persists to Vercel Blob
+	 * and updates the auth `user.image` column (shown on profile + nav).
+	 */
+	.post("/me/avatar", async ({ request, user: authUser, status }) => {
+		if (!authUser) return status(401, "Sign in");
+		if (!env.BLOB_READ_WRITE_TOKEN) {
+			return status(503, {
+				error: "BLOB_READ_WRITE_TOKEN is not set",
+				code: "BLOB_UNCONFIGURED",
+				hint: "Add BLOB_READ_WRITE_TOKEN to apps/server .env (Vercel Blob read-write token).",
+			});
+		}
+		if (
+			!hit(`profile:avatar:${authUser.id}`, { limit: 10, windowMs: 60_000 }).ok
+		)
+			return status(429, "Slow down");
+
+		const formData = await request.formData();
+		const file = formData.get("file");
+		if (!(file instanceof File)) return status(400, "Missing file");
+		if (!file.type.startsWith("image/")) return status(400, "Image only");
+		if (file.size > 5_000_000) return status(413, "File too large (max 5MB)");
+
+		const key = `avatars/${authUser.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
+		let blob: { url: string };
+		try {
+			blob = await put(key, file, {
+				access: env.BLOB_STORE_ACCESS,
+				addRandomSuffix: false,
+				token: env.BLOB_READ_WRITE_TOKEN,
+			});
+		} catch (err) {
+			const msg = err instanceof Error ? err.message : String(err);
+			console.error("[profiles/me/avatar] put failed", err);
+			if (msg.includes("private store")) {
+				return status(502, {
+					error:
+						"Blob store is private but upload used public access (or the reverse).",
+					code: "BLOB_ACCESS_MISMATCH",
+					hint: "Set BLOB_STORE_ACCESS=private in apps/server .env to match a private Vercel Blob store (default in env is public).",
+				});
+			}
+			if (msg.includes("public store") || msg.includes("public access")) {
+				return status(502, {
+					error: msg,
+					code: "BLOB_ACCESS_MISMATCH",
+					hint: "Set BLOB_STORE_ACCESS=public in apps/server .env if your Blob store is public, or use a private store with BLOB_STORE_ACCESS=private.",
+				});
+			}
+			return status(502, { error: "Blob upload failed" });
+		}
+
+		await db
+			.update(user)
+			.set({ image: blob.url })
+			.where(eq(user.id, authUser.id));
+
+		return { url: blob.url };
+	})
+	/**
+	 * Streams the signed-in user's portrait. Required when Blob objects are private
+	 * (browser cannot load raw `user.image` URLs). Cookie-authenticated.
+	 */
+	.get("/me/avatar", async ({ user: authUser, status }) => {
+		if (!authUser) return status(401, "Sign in");
+
+		const [row] = await db
+			.select({ image: user.image })
+			.from(user)
+			.where(eq(user.id, authUser.id))
+			.limit(1);
+		if (!row?.image) return status(404, "No avatar");
+
+		if (!env.BLOB_READ_WRITE_TOKEN) {
+			return status(503, "BLOB_READ_WRITE_TOKEN is not set");
+		}
+
+		try {
+			const result = await get(row.image, {
+				access: env.BLOB_STORE_ACCESS,
+				token: env.BLOB_READ_WRITE_TOKEN,
+			});
+			if (!result || result.statusCode !== 200 || !result.stream) {
+				return status(404, "Avatar not found");
+			}
+			return new Response(result.stream, {
+				headers: {
+					"Content-Type": result.blob.contentType,
+					"Cache-Control": "private, no-cache",
+				},
+			});
+		} catch (err) {
+			console.error("[profiles/me/avatar] get failed", err);
+			return status(502, "Avatar load failed");
+		}
+	})
+	/**
 	 * Streams the profile banner for `handle`. Required for **private** Blob
 	 * stores (browser cannot load the raw blob URL). Public stores work here too.
 	 */
@@ -246,6 +343,72 @@ export const profilesRoute = new Elysia({
 				console.error("[profiles/banner] get failed", err);
 				return status(502, "Banner load failed");
 			}
+		},
+		{ params: t.Object({ handle: t.String() }) },
+	)
+	/**
+	 * Streams the profile user's portrait for `handle`. Matches `/banner/:handle`:
+	 * Vercel Blob objects may be **private** (raw `user.image` URLs do not load in the browser).
+	 * Non-blob URLs (OAuth headshots, etc.) are fetched server-side and streamed.
+	 */
+	.get(
+		"/avatar/:handle",
+		async ({ params, status }) => {
+			const handle = params.handle.toLowerCase();
+			const [row] = await db
+				.select({ image: user.image })
+				.from(profile)
+				.leftJoin(user, eq(profile.userId, user.id))
+				.where(eq(profile.handle, handle))
+				.limit(1);
+			const imageUrl = row?.image?.trim();
+			if (!imageUrl) return status(404, "No avatar");
+
+			const looksLikeVercelBlob = imageUrl.includes("blob.vercel-storage.com");
+
+			if (looksLikeVercelBlob) {
+				if (!env.BLOB_READ_WRITE_TOKEN) {
+					return status(503, "BLOB_READ_WRITE_TOKEN is not set");
+				}
+				try {
+					const result = await get(imageUrl, {
+						access: env.BLOB_STORE_ACCESS,
+						token: env.BLOB_READ_WRITE_TOKEN,
+					});
+					if (!result || result.statusCode !== 200 || !result.stream) {
+						return status(404, "Avatar not found");
+					}
+					return new Response(result.stream, {
+						headers: {
+							"Content-Type": result.blob.contentType,
+							"Cache-Control": "public, max-age=3600, s-maxage=86400",
+						},
+					});
+				} catch (err) {
+					console.error("[profiles/avatar] blob get failed", err);
+					return status(502, "Avatar load failed");
+				}
+			}
+
+			if (imageUrl.startsWith("https://") || imageUrl.startsWith("http://")) {
+				try {
+					const upstream = await fetch(imageUrl);
+					if (!upstream.ok) return status(404, "Avatar not found");
+					const contentType =
+						upstream.headers.get("content-type") ?? "image/jpeg";
+					return new Response(upstream.body, {
+						headers: {
+							"Content-Type": contentType,
+							"Cache-Control": "public, max-age=3600, s-maxage=86400",
+						},
+					});
+				} catch (err) {
+					console.error("[profiles/avatar] fetch failed", err);
+					return status(502, "Avatar load failed");
+				}
+			}
+
+			return status(404, "Avatar not found");
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)
@@ -310,7 +473,8 @@ export const profilesRoute = new Elysia({
 				isFollowing = Boolean(f);
 			}
 
-			// Recently watched (last 6 logs).
+			// Full watch ledger for profile Movies / TV grids (deduped per title on the web app).
+			const PROFILE_WATCH_LEDGER_LIMIT = 500;
 			const recent = await db
 				.select({ log, movie, tv })
 				.from(log)
@@ -318,7 +482,7 @@ export const profilesRoute = new Elysia({
 				.leftJoin(tv, eq(log.tvId, tv.tmdbId))
 				.where(eq(log.userId, row.user.id))
 				.orderBy(desc(log.watchedAt))
-				.limit(6);
+				.limit(PROFILE_WATCH_LEDGER_LIMIT);
 
 			// Recent reviews (3).
 			const recentReviews = await db

@@ -5,6 +5,7 @@ import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-sec
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
 import {
 	type FestivalRecognitionEntry,
+	MOVIE_FESTIVAL_RECOGNITION_COLUMNS,
 	MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
 } from "@/lib/movie-festival-recognition";
 

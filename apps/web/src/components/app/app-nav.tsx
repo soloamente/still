@@ -24,7 +24,6 @@ import {
 	Search,
 	Trophy,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -34,6 +33,7 @@ import {
 } from "@/components/app/app-user-account-menu";
 import { useCommandPalette } from "@/components/app/command-palette";
 import { BrandMark } from "@/components/brand-mark";
+import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 
 /** Core routes in the floating bar (icon-first, compact). */
 const NAV_MAIN = [
@@ -230,7 +230,11 @@ export function AppNav({ user }: { user: NavUser }) {
 										size="sm"
 										className="h-10 gap-1 rounded-xl px-1.5 sm:h-11 sm:px-2"
 									>
-										<NavUserAvatar src={user.image} name={user.name} />
+										<NavUserAvatar
+											src={user.image}
+											name={user.name}
+											handle={user.handle}
+										/>
 										<ChevronDown className="hidden size-3.5 opacity-60 sm:block" />
 									</Button>
 								}
@@ -252,49 +256,32 @@ export function AppNav({ user }: { user: NavUser }) {
 	);
 }
 
-/** Compact avatar — falls back to initials when no image is set (shared with sticky chrome). */
+/** Compact avatar — same proxy + `unoptimized` path as `ProfilePatronHeader`. */
 export function NavUserAvatar({
 	src,
 	name,
+	handle,
 	size = "default",
 }: {
 	src: string | null;
 	name: string;
+	handle: string;
 	/** `compact` = single `size-8` for dense header icon rows (e.g. home sticky). */
 	size?: "default" | "compact";
 }) {
-	const initials = name
-		.split(/\s+/)
-		.filter(Boolean)
-		.slice(0, 2)
-		.map((w) => w[0]?.toUpperCase())
-		.join("");
 	const frame =
 		size === "compact"
-			? "size-8 rounded-full object-cover"
-			: "size-8 rounded-full object-cover sm:size-9";
-	if (src) {
-		return (
-			<Image
-				src={src}
-				alt=""
-				width={72}
-				height={72}
-				className={frame}
-				loading="lazy"
-			/>
-		);
-	}
+			? "size-8 rounded-full text-[10px]"
+			: "size-8 rounded-full text-[10px] sm:size-9";
+
 	return (
-		<span
-			className={cn(
-				"inline-flex items-center justify-center rounded-full bg-soft-stone font-medium text-pure-white",
-				size === "compact"
-					? "size-8 text-[10px]"
-					: "size-8 text-[10px] sm:size-9",
-			)}
-		>
-			{initials}
-		</span>
+		<PatronPortraitAvatar
+			handle={handle}
+			avatarUrl={src}
+			name={name}
+			width={72}
+			height={72}
+			className={frame}
+		/>
 	);
 }

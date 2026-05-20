@@ -24,16 +24,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 				{/* Theater audio persists via profile JSON but still hydrates lazily behind gestures. */}
 				<CinemaSoundProvider>{children}</CinemaSoundProvider>
 			</LenisProvider>
-			<Toaster
-				richColors
-				theme="dark"
-				position="bottom-right"
-				toastOptions={{
-					classNames: {
-						toast: "border-border bg-card text-card-foreground",
-					},
-				}}
-			/>
+			{/* Pill chrome + chip helpers in `@still/ui`; toasts default to bottom-center. */}
+			<Toaster position="bottom-center" />
 		</ThemeProvider>
 	);
 }

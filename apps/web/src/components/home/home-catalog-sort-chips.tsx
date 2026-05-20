@@ -66,6 +66,7 @@ export function HomeCatalogSortChips() {
 						<Link
 							key={id}
 							href={buildHomeLobbyHref({ browse: "community", sort: id })}
+							scroll={false}
 							aria-current={communityFeed === id ? "page" : undefined}
 							className={chipLink(communityFeed === id, true)}
 							title={`${label} — ${hint} (coming soon)`}
@@ -107,6 +108,7 @@ export function HomeCatalogSortChips() {
 						browse,
 						venue: effectiveVenue,
 					})}
+					scroll={false}
 					aria-current={catalogSort === "upcoming" ? "page" : undefined}
 					className={chipLink(catalogSort === "upcoming", true)}
 					title={
@@ -131,6 +133,7 @@ export function HomeCatalogSortChips() {
 						browse,
 						venue: effectiveVenue,
 					})}
+					scroll={false}
 					aria-current={catalogSort === "latest" ? "page" : undefined}
 					className={chipLink(catalogSort === "latest", true)}
 					title="Newest releases first in this TMDb catalogue"
@@ -151,6 +154,7 @@ export function HomeCatalogSortChips() {
 						browse,
 						venue: effectiveVenue,
 					})}
+					scroll={false}
 					aria-current={catalogSort === "popular" ? "page" : undefined}
 					className={chipLink(catalogSort === "popular", true)}
 					title="Trending and most popular on TMDb right now"

@@ -84,6 +84,7 @@ export function DiaryCatalogOrderChips() {
 					<Link
 						key={id}
 						href={buildDiaryLobbyHref({ order: id, venue })}
+						scroll={false}
 						aria-current={order === id ? "page" : undefined}
 						className={chipLink(order === id)}
 						title={title}

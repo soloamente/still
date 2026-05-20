@@ -18,7 +18,9 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
+import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import { authClient } from "@/lib/auth-client";
+import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 
 /** Session + profile fields needed for the Mobbin-style account surface (nav + home header). */
 export type AccountMenuUser = {
@@ -36,6 +38,22 @@ type AppUserAccountMenuBodyProps = {
 	/** Opens universal search — “request a title” flows through discovery + chat. */
 	onRequestContent?: () => void;
 };
+
+/** Inset menu rows — 16px copy, rounded hover wash inside popup padding (Track B / home search). */
+export const accountMenuItemClassName = cn(
+	"gap-2.5 rounded-[1.75rem] px-3 py-3 text-base text-foreground",
+	"focus:bg-card focus:text-foreground not-data-[variant=destructive]:focus:**:text-foreground",
+	"[@media(hover:hover)]:hover:bg-card/80",
+);
+
+/**
+ * Floating menus — `bg-popover` (`--surface-overlay`) so panels read above page
+ * `bg-card` catalogue shells without blending into the canvas.
+ */
+export const accountMenuContentClassName = cn(
+	"!rounded-[2.5rem] w-[min(100vw-2rem,20rem)] min-w-[280px] max-w-[320px] overflow-hidden",
+	"border-0 bg-popover px-4 pt-3 pb-4 text-base text-popover-foreground shadow-mobbin-xl ring-1 ring-foreground/10",
+);
 
 /**
  * Rich account dropdown body: identity block, quick actions, settings, theme
@@ -67,83 +85,102 @@ export function AppUserAccountMenuBody({
 
 	return (
 		<>
-			{/* Identity — PRO chip, name, email/handle, primary profile CTA (no hairline border; separators below handle rhythm). */}
-			<div className="pt-3 pb-4">
-				<div className="flex flex-wrap items-center gap-2">
-					{user.isPro ? (
-						<span className="rounded-full bg-foreground px-2 py-0.5 font-semibold text-[10px] text-background uppercase tracking-wide">
-							Pro
-						</span>
-					) : null}
+			{/* Identity — avatar row, PRO chip, profile CTA on raised card (home / detail token rhythm). */}
+			<div className="pt-1 pb-3">
+				<div className="flex items-start gap-3">
+					<PatronPortraitAvatar
+						handle={user.handle}
+						avatarUrl={user.image}
+						name={user.name}
+						width={80}
+						height={80}
+						className="size-11 shrink-0 rounded-full text-[11px]"
+					/>
+					<div className="min-w-0 flex-1">
+						<div className="flex flex-wrap items-center gap-2">
+							<p
+								className="truncate font-semibold text-base text-foreground"
+								title={user.name}
+							>
+								{user.name || "Member"}
+							</p>
+							{user.isPro ? (
+								<span className="rounded-full bg-foreground px-2 py-0.5 font-semibold text-[10px] text-background uppercase tracking-wide">
+									Pro
+								</span>
+							) : null}
+						</div>
+						<p
+							className="truncate text-muted-foreground text-sm"
+							title={secondaryLine}
+						>
+							{secondaryLine}
+						</p>
+					</div>
 				</div>
-				<p
-					className="mt-2 truncate font-semibold text-base text-foreground"
-					title={user.name}
-				>
-					{user.name || "Member"}
-				</p>
-				<p
-					className="truncate text-base text-muted-foreground"
-					title={secondaryLine}
-				>
-					{secondaryLine}
-				</p>
 				<button
 					type="button"
-					className="mt-3 w-full rounded-full bg-card py-2.5 text-sm"
+					className={cn(
+						"mt-3 w-full rounded-full bg-background py-2.5 font-medium text-foreground text-sm shadow-sm transition-colors duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none",
+						DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+					)}
 					onClick={() => go(`/profile/${user.handle}`)}
 				>
 					View profile
 				</button>
 			</div>
 
+			<DropdownMenuSeparator className="my-2 h-px bg-border/50" />
+
 			<DropdownMenuGroup className="p-0">
 				<DropdownMenuItem
-					className="rounded-none px-0 py-3 text-base hover:text-foreground focus:bg-card"
+					className={accountMenuItemClassName}
 					onClick={() => {
 						if (onRequestContent) onRequestContent();
 						else go("/chat");
 					}}
 				>
-					<CirclePlus className="size-4" aria-hidden />
+					<CirclePlus className="size-4 shrink-0 opacity-90" aria-hidden />
 					Request feature
 				</DropdownMenuItem>
 				<DropdownMenuItem
-					className="rounded-none px-0 py-3 text-base"
+					className={accountMenuItemClassName}
 					onClick={() =>
 						openExternal(
 							"mailto:hello@still.app?subject=Still%20feedback&body=Tell%20us%20what%20you%20think…",
 						)
 					}
 				>
-					<MessageSquareText className="size-4 opacity-80" aria-hidden />
+					<MessageSquareText
+						className="size-4 shrink-0 opacity-80"
+						aria-hidden
+					/>
 					Give feedback
 				</DropdownMenuItem>
 			</DropdownMenuGroup>
 
-			<DropdownMenuSeparator className="-mx-4 my-0" />
+			<DropdownMenuSeparator className="my-2 h-px bg-border/50" />
 
 			<DropdownMenuGroup className="p-0">
 				<DropdownMenuItem
-					className="rounded-none px-0 py-3.5 text-base"
+					className={accountMenuItemClassName}
 					onClick={() => go("/me/settings")}
 				>
-					<Settings className="size-4 opacity-80" aria-hidden />
+					<Settings className="size-4 shrink-0 opacity-80" aria-hidden />
 					Settings
 				</DropdownMenuItem>
 			</DropdownMenuGroup>
 
-			<DropdownMenuSeparator className="-mx-4 my-0" />
+			<DropdownMenuSeparator className="my-2 h-px bg-border/50" />
 
-			{/* Theme — segmented control (light / dark / system) */}
+			{/* Theme — pill segment on `bg-card`, active option on `bg-background` (sticky browse chips). */}
 			<div
-				className="flex items-center justify-between gap-3 py-3.5"
-				// Keep clicks inside this toolbar from being treated as “outside” dismiss targets where possible.
+				className="flex items-center justify-between gap-3 py-1"
 				onPointerDown={(e) => e.stopPropagation()}
 			>
 				<span className="text-base text-foreground">Theme</span>
 				<fieldset
-					className="m-0 flex min-w-0 shrink-0 items-center gap-0.5 rounded-full border-0 p-0.5"
+					className="m-0 flex min-w-0 shrink-0 items-center gap-0.5 rounded-full bg-card p-0.5"
 					aria-label="Color theme"
 				>
 					{(
@@ -161,26 +198,21 @@ export function AppUserAccountMenuBody({
 								aria-label={label}
 								aria-pressed={active}
 								className={cn(
-									"relative flex size-8 items-center justify-center rounded-full text-muted-foreground transition-colors",
-									"[@media(hover:hover)]:hover:text-foreground",
-									active && "text-foreground",
+									"flex size-9 items-center justify-center rounded-full transition-colors duration-200 ease-out motion-reduce:transition-none",
+									active
+										? "bg-background text-foreground shadow-sm"
+										: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground",
 								)}
 								onClick={() => setTheme(id)}
 							>
-								{active ? (
-									<span
-										className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-foreground/90 ring-offset-0"
-										aria-hidden
-									/>
-								) : null}
-								<Icon className="relative z-1 size-4" />
+								<Icon className="size-4" aria-hidden />
 							</button>
 						);
 					})}
 				</fieldset>
 			</div>
 
-			<DropdownMenuSeparator className="-mx-4 my-0 bg-border/60" />
+			<DropdownMenuSeparator className="my-2 h-px bg-border/50" />
 
 			{/* <DropdownMenuGroup className="p-0">
 				<DropdownMenuItem
@@ -231,11 +263,12 @@ export function AppUserAccountMenuBody({
 				</DropdownMenuItem>
 			</DropdownMenuGroup> */}
 
-			<DropdownMenuSeparator className="-mx-4 my-0" />
-
 			<DropdownMenuGroup className="p-0">
 				<DropdownMenuItem
-					className="rounded-none px-0 py-3.5 font-semibold text-base"
+					className={cn(
+						accountMenuItemClassName,
+						"font-semibold data-[variant=destructive]:focus:bg-destructive/10",
+					)}
 					variant="destructive"
 					onClick={() =>
 						authClient.signOut({
@@ -299,11 +332,3 @@ export function AppUserAccountMenuBody({
 		</>
 	);
 }
-
-/** Shared panel chrome for both avatar menus — wide card, no default item padding bleed. */
-export const accountMenuContentClassName =
-	// Frosted sheet: darker neutral (lower L than before) + alpha so the page still blurs through.
-	// `text-base` = 16px body copy for the whole sheet (items default to `text-xs` in `@still/ui` dropdown primitives).
-	// Horizontal padding lives on the popup so menu rows (focus/hover backgrounds) inset from the rounded shell;
-	// separators use `-mx-4` in the body to cancel this and stay edge-to-edge.
-	"min-w-[280px] max-w-[320px] w-[min(100vw-2rem,10rem)] overflow-hidden rounded-3xl border-0 bg-[oklch(0.38_0_0/0.55)] px-4 pb-3 text-base text-popover-foreground ring-0 backdrop-blur-xl";

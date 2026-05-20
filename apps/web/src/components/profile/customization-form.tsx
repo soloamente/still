@@ -1,224 +1,328 @@
 "use client";
 
-import { Button } from "@still/ui/components/button";
-import { Input } from "@still/ui/components/input";
-import { Label } from "@still/ui/components/label";
 import { cn } from "@still/ui/lib/utils";
-import { env } from "@still/env/web";
-import { ArrowDown, ArrowUp, Upload } from "lucide-react";
-import { useRef, useState } from "react";
+import { Upload } from "lucide-react";
+import Image from "next/image";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
-import { api } from "@/lib/api";
+import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
+import { useRegisterMeAccountBarActions } from "@/components/profile/me-account-bar-actions-context";
+import {
+	MeAccountContentReveal,
+	MeAccountRevealItem,
+} from "@/components/profile/me-account-content-reveal";
+import { useMeAccountSession } from "@/components/profile/me-account-session-context";
+import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
+import { profileMeAvatarImageUrl } from "@/lib/profile-avatar";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
+import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
 
-type Me = {
-  bannerUrl: string | null;
-  accentColor: string | null;
-  sectionOrder: string[] | null;
-  handle: string;
-} | null;
+/** Placeholder banner wash when no image — matches `ProfilePatronHeader` default. */
+const PROFILE_BANNER_PLACEHOLDER_ACCENT = "#c45c26";
 
-const DEFAULT_SECTIONS = ["favorites", "recent", "reviews", "lists", "stats"];
+type MeProfile = {
+	bannerUrl: string | null;
+	handle: string;
+};
 
-const PRESET_ACCENTS = [
-  { name: "Desert", value: "#b75928" },
-  { name: "Moss", value: "#193f32" },
-  { name: "Crimson", value: "#df6a6b" },
-  { name: "Ocean", value: "#044152" },
-  { name: "Copper", value: "#776157" },
-];
+/** Load portrait via authenticated API (private Blob + cross-origin safe preview). */
+async function fetchAvatarObjectUrl(revision: number): Promise<string | null> {
+	const res = await fetch(profileMeAvatarImageUrl(revision), {
+		credentials: "include",
+		cache: "no-store",
+	});
+	if (!res.ok) return null;
+	const blob = await res.blob();
+	return URL.createObjectURL(blob);
+}
 
-export function CustomizationForm({ initial }: { initial: Me }) {
-  const [accent, setAccent] = useState(initial?.accentColor ?? "#b75928");
-  const [bannerUrl, setBannerUrl] = useState(initial?.bannerUrl ?? "");
-  const [sections, setSections] = useState<string[]>(
-    initial?.sectionOrder?.length ? initial.sectionOrder : DEFAULT_SECTIONS,
-  );
-  const [uploading, setUploading] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const fileRef = useRef<HTMLInputElement>(null);
+/**
+ * Customize page — profile-style preview; picks are staged until **Save** in the header.
+ */
+export function CustomizationForm({
+	profile,
+	hasAvatar: initialHasAvatar,
+	displayName,
+}: {
+	profile: MeProfile;
+	hasAvatar: boolean;
+	displayName: string;
+}) {
+	const {
+		pendingBanner,
+		pendingAvatar,
+		setPendingBanner,
+		setPendingAvatar,
+		revokeAllCustomizationPending,
+		syncCustomizationDirty,
+	} = useMeAccountSession();
+	const [bannerUrl, setBannerUrl] = useState(profile.bannerUrl ?? "");
+	const [bannerRevision, setBannerRevision] = useState(0);
+	const [avatarRevision, setAvatarRevision] = useState(0);
+	const [avatarObjectUrl, setAvatarObjectUrl] = useState<string | null>(null);
+	const [hasAvatar, setHasAvatar] = useState(initialHasAvatar);
+	const [saving, setSaving] = useState(false);
+	const bannerFileRef = useRef<HTMLInputElement>(null);
+	const avatarFileRef = useRef<HTMLInputElement>(null);
+	const avatarObjectUrlRef = useRef<string | null>(null);
 
-  async function onPickFile(file: File) {
-    setUploading(true);
-    try {
-      const form = new FormData();
-      form.append("file", file);
-      // Upload hits the Elysia API so `BLOB_READ_WRITE_TOKEN` is read from
-      // apps/server/.env (Next.js does not need the Blob token).
-      const res = await fetch(new URL("/api/profiles/me/banner", env.NEXT_PUBLIC_SERVER_URL), {
-        method: "POST",
-        body: form,
-        credentials: "include",
-      });
-      if (!res.ok) {
-        let msg = `Upload failed (${res.status})`;
-        try {
-          const body = (await res.json()) as { error?: string; code?: string; hint?: string };
-          if (body.code === "BLOB_UNCONFIGURED") {
-            msg =
-              body.hint ??
-              "Add BLOB_READ_WRITE_TOKEN to the API server .env (Vercel Blob token).";
-          } else if (body.code === "BLOB_ACCESS_MISMATCH" && body.hint) {
-            msg = body.hint;
-          } else if (body.error) msg = body.error;
-        } catch {
-          /* use default */
-        }
-        throw new Error(msg);
-      }
-      const { url } = (await res.json()) as { url: string };
-      setBannerUrl(url);
-      toast.success("Banner uploaded");
-    } catch (err) {
-      console.error(err);
-      toast.error(err instanceof Error ? err.message : "Banner upload failed");
-    } finally {
-      setUploading(false);
-    }
-  }
+	const hasBanner = Boolean(bannerUrl?.trim());
+	const bannerSrc =
+		profile.handle && hasBanner
+			? profileBannerImageUrl(profile.handle, bannerRevision)
+			: null;
 
-  function move(idx: number, direction: -1 | 1) {
-    setSections((current) => {
-      const next = [...current];
-      const target = idx + direction;
-      if (target < 0 || target >= next.length) return next;
-      [next[idx], next[target]] = [next[target]!, next[idx]!];
-      return next;
-    });
-  }
+	const dirty = Boolean(pendingBanner || pendingAvatar);
 
-  async function save() {
-    setSaving(true);
-    try {
-      await api.api.profiles.me.patch({
-        accentColor: accent,
-        bannerUrl: bannerUrl || undefined,
-        sectionOrder: sections,
-      });
-      toast.success("Profile updated");
-    } catch (err) {
-      console.error(err);
-      toast.error("Couldn't save");
-    } finally {
-      setSaving(false);
-    }
-  }
+	useEffect(() => {
+		syncCustomizationDirty(dirty);
+	}, [dirty, syncCustomizationDirty]);
 
-  return (
-    <div className="space-y-8">
-      <section className="space-y-3">
-        <Label>Banner</Label>
-        <div className="relative aspect-[3/1] overflow-hidden rounded-2xl border border-border bg-card">
-          {bannerUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={
-                initial?.handle
-                  ? profileBannerImageUrl(initial.handle)
-                  : bannerUrl
-              }
-              alt=""
-              className="size-full object-cover"
-            />
-          ) : (
-            <div
-              className="size-full"
-              style={{
-                background: `linear-gradient(120deg, ${accent}33, transparent 60%), var(--surface-card-base)`,
-              }}
-            />
-          )}
-          <Button
-            variant="ghost-light"
-            size="pill"
-            type="button"
-            className="absolute right-3 top-3"
-            onClick={() => fileRef.current?.click()}
-            disabled={uploading}
-          >
-            <Upload className="size-3.5" /> {uploading ? "Uploading…" : "Upload"}
-          </Button>
-        </div>
-        <input
-          ref={fileRef}
-          type="file"
-          accept="image/*"
-          hidden
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) void onPickFile(file);
-          }}
-        />
-      </section>
+	const revokePending = useCallback(() => {
+		revokeAllCustomizationPending();
+	}, [revokeAllCustomizationPending]);
 
-      <section className="space-y-3">
-        <Label>Accent color</Label>
-        <div className="flex flex-wrap items-center gap-2">
-          {PRESET_ACCENTS.map((preset) => (
-            <button
-              key={preset.value}
-              type="button"
-              className={cn(
-                "h-9 w-12 rounded-full border-2 transition-transform",
-                accent === preset.value ? "scale-110 border-foreground" : "border-transparent",
-              )}
-              style={{ backgroundColor: preset.value }}
-              onClick={() => setAccent(preset.value)}
-              aria-label={`Use ${preset.name} accent`}
-            />
-          ))}
-          <Input
-            type="color"
-            value={accent}
-            onChange={(e) => setAccent(e.target.value)}
-            className="h-9 w-16 p-1"
-          />
-        </div>
-      </section>
+	const resetToServer = useCallback(() => {
+		revokePending();
+		setBannerUrl(profile.bannerUrl ?? "");
+		setHasAvatar(initialHasAvatar);
+		setBannerRevision((r) => r + 1);
+		setAvatarRevision((r) => r + 1);
+	}, [profile.bannerUrl, initialHasAvatar, revokePending]);
 
-      <section className="space-y-3">
-        <Label>Section order</Label>
-        <p className="text-xs text-muted-foreground">
-          Choose what shows up first when someone visits @{initial?.handle}.
-        </p>
-        <ul className="space-y-2">
-          {sections.map((section, idx) => (
-            <li
-              key={section}
-              className="flex items-center justify-between rounded-md border border-border bg-card/60 px-3 py-2 text-sm"
-            >
-              <span className="capitalize">{section}</span>
-              <span className="flex gap-1">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => move(idx, -1)}
-                  aria-label="Move up"
-                >
-                  <ArrowUp className="size-3.5" />
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => move(idx, 1)}
-                  aria-label="Move down"
-                >
-                  <ArrowDown className="size-3.5" />
-                </Button>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
+	const applySave = useCallback(async () => {
+		if (!pendingBanner && !pendingAvatar) return;
+		setSaving(true);
+		try {
+			if (pendingBanner) {
+				const url = await uploadProfileMeAsset(
+					"/api/profiles/me/banner",
+					pendingBanner.file,
+				);
+				setPendingBanner(null);
+				setBannerUrl(url);
+				setBannerRevision(Date.now());
+			}
+			if (pendingAvatar) {
+				await uploadProfileMeAsset(
+					"/api/profiles/me/avatar",
+					pendingAvatar.file,
+				);
+				setPendingAvatar(null);
+				setHasAvatar(true);
+				setAvatarRevision(Date.now());
+			}
+			toast.success("Saved");
+		} catch (err) {
+			console.error(err);
+			toast.error(err instanceof Error ? err.message : "Couldn't save");
+		} finally {
+			setSaving(false);
+		}
+	}, [pendingBanner, pendingAvatar, setPendingAvatar, setPendingBanner]);
 
-      <div className="flex justify-end">
-        <Button variant="accent" size="pill" onClick={save} disabled={saving}>
-          {saving ? "Saving…" : "Save changes"}
-        </Button>
-      </div>
-    </div>
-  );
+	useRegisterMeAccountBarActions(
+		useMemo(
+			() => ({
+				onSave: () => void applySave(),
+				onCancel: resetToServer,
+				canSave: dirty,
+				saving,
+			}),
+			[applySave, dirty, resetToServer, saving],
+		),
+	);
+
+	// Stream committed portrait when not editing a pending pick.
+	useEffect(() => {
+		if (pendingAvatar) return;
+
+		if (!hasAvatar) {
+			if (avatarObjectUrlRef.current) {
+				URL.revokeObjectURL(avatarObjectUrlRef.current);
+				avatarObjectUrlRef.current = null;
+			}
+			setAvatarObjectUrl(null);
+			return;
+		}
+
+		let cancelled = false;
+		void (async () => {
+			const next = await fetchAvatarObjectUrl(avatarRevision);
+			if (cancelled) {
+				if (next) URL.revokeObjectURL(next);
+				return;
+			}
+			if (avatarObjectUrlRef.current) {
+				URL.revokeObjectURL(avatarObjectUrlRef.current);
+			}
+			avatarObjectUrlRef.current = next;
+			setAvatarObjectUrl(next);
+		})();
+
+		return () => {
+			cancelled = true;
+		};
+	}, [hasAvatar, avatarRevision, pendingAvatar]);
+
+	useEffect(() => {
+		return () => {
+			if (avatarObjectUrlRef.current) {
+				URL.revokeObjectURL(avatarObjectUrlRef.current);
+			}
+		};
+	}, []);
+
+	function onPickBannerFile(file: File) {
+		const previewUrl = URL.createObjectURL(file);
+		setPendingBanner({ file, previewUrl });
+	}
+
+	function onPickAvatarFile(file: File) {
+		const previewUrl = URL.createObjectURL(file);
+		setPendingAvatar({ file, previewUrl });
+	}
+
+	const portraitSrc = pendingAvatar?.previewUrl ?? avatarObjectUrl;
+
+	return (
+		<div>
+			<MeAccountContentReveal className="space-y-0">
+				<MeAccountRevealItem>
+					<div className="pb-4">
+						<header className="relative shrink-0">
+							<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25 shadow-md">
+								{pendingBanner ? (
+									// eslint-disable-next-line @next/next/no-img-element -- local file preview before save
+									<img
+										src={pendingBanner.previewUrl}
+										alt=""
+										className="absolute inset-0 size-full object-cover"
+									/>
+								) : bannerSrc ? (
+									<Image
+										key={bannerSrc}
+										src={bannerSrc}
+										alt=""
+										fill
+										unoptimized
+										className="object-cover"
+										sizes="(max-width: 1280px) 100vw, 1200px"
+										priority
+									/>
+								) : (
+									<div
+										className="size-full"
+										style={{
+											background: `linear-gradient(120deg, ${PROFILE_BANNER_PLACEHOLDER_ACCENT}44, transparent 55%), var(--surface-card-base, var(--card))`,
+										}}
+										aria-hidden
+									/>
+								)}
+								<div
+									className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent"
+									aria-hidden
+								/>
+								<div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+									<MeSecondaryButton
+										type="button"
+										onClick={() => bannerFileRef.current?.click()}
+										disabled={saving}
+										className={cn(
+											// `MeSecondaryButton` uses `DETAIL_CANVAS_ON_CARD_HOVER_CLASS` (foreground/10) which reads hollow on top of a photo; force a solid raised pill.
+											"bg-card/95 text-foreground shadow-md backdrop-blur-sm",
+											"[@media(hover:hover)]:hover:bg-card! [@media(hover:hover)]:hover:text-foreground",
+											"[@media(hover:hover)]:hover:shadow-lg",
+										)}
+									>
+										<Upload className="size-4" aria-hidden />
+										Choose banner
+									</MeSecondaryButton>
+								</div>
+							</div>
+
+							<div className="relative mx-auto -mt-14 max-w-md px-2 text-center sm:-mt-16 sm:px-4">
+								<div className="mx-auto mb-4 flex justify-center">
+									<button
+										type="button"
+										className={cn(
+											"group relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg ring-4 ring-card sm:w-24",
+											"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
+											"disabled:pointer-events-none disabled:opacity-50",
+										)}
+										onClick={() => avatarFileRef.current?.click()}
+										disabled={saving}
+										aria-label="Change profile photo"
+									>
+										{portraitSrc ? (
+											// eslint-disable-next-line @next/next/no-img-element -- blob preview or streamed avatar
+											<img
+												src={portraitSrc}
+												alt=""
+												className="relative z-0 size-full object-cover"
+											/>
+										) : (
+											<PersonCreditPortrait
+												name={displayName}
+												profilePath={null}
+												className="relative z-0 bg-muted/40"
+												grayscale={false}
+												sizes="96px"
+											/>
+										)}
+										<span
+											className={cn(
+												"pointer-events-none absolute inset-0 z-10 flex items-end justify-center bg-gradient-to-t from-card/80 via-transparent to-transparent pb-2 transition-opacity duration-200 ease-out",
+												"opacity-0 [@media(hover:hover)]:group-hover:opacity-100",
+											)}
+											aria-hidden
+										>
+											<span className="rounded-full bg-background/90 px-2.5 py-1 font-medium text-foreground text-xs">
+												Edit
+											</span>
+										</span>
+									</button>
+								</div>
+
+								<h1 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
+									{displayName}
+								</h1>
+								<p className="text-muted-foreground text-sm">
+									@{profile.handle}
+								</p>
+								<p className="mt-3 text-balance text-muted-foreground text-sm leading-relaxed">
+									Choose a banner or portrait, then use Save in the header to
+									apply. Cancel drops unstaged picks.
+								</p>
+							</div>
+
+							<input
+								ref={bannerFileRef}
+								type="file"
+								accept="image/*"
+								hidden
+								onChange={(e) => {
+									const file = e.target.files?.[0];
+									if (file) onPickBannerFile(file);
+									e.target.value = "";
+								}}
+							/>
+							<input
+								ref={avatarFileRef}
+								type="file"
+								accept="image/*"
+								hidden
+								onChange={(e) => {
+									const file = e.target.files?.[0];
+									if (file) onPickAvatarFile(file);
+									e.target.value = "";
+								}}
+							/>
+						</header>
+					</div>
+				</MeAccountRevealItem>
+			</MeAccountContentReveal>
+		</div>
+	);
 }

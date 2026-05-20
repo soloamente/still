@@ -1,4 +1,4 @@
-import { db, notification, profile } from "@still/db";
+import { badge, db, notification, profile } from "@still/db";
 import { and, desc, eq, inArray, isNull, sql } from "drizzle-orm";
 import Elysia, { t } from "elysia";
 
@@ -51,6 +51,35 @@ async function withNavigationHints(
 	});
 }
 
+/** Attach real badge `iconUrl` so the inbox can render medal art instead of a generic icon. */
+async function withBadgeArtwork(
+	rows: NotificationRow[],
+): Promise<NotificationRow[]> {
+	const badgeIds = new Set<string>();
+	for (const r of rows) {
+		if (r.kind !== "badge.awarded") continue;
+		const p = r.payload as Record<string, unknown>;
+		if (typeof p.badgeId === "string") badgeIds.add(p.badgeId);
+	}
+	if (badgeIds.size === 0) return rows;
+
+	const catalog = await db
+		.select({ id: badge.id, iconUrl: badge.iconUrl })
+		.from(badge)
+		.where(inArray(badge.id, [...badgeIds]));
+	const iconById = new Map(catalog.map((b) => [b.id, b.iconUrl]));
+
+	return rows.map((r) => {
+		if (r.kind !== "badge.awarded") return r;
+		const base = (r.payload ?? {}) as Record<string, unknown>;
+		const badgeId = base.badgeId;
+		if (typeof badgeId !== "string") return r;
+		const iconUrl = iconById.get(badgeId);
+		if (!iconUrl) return r;
+		return { ...r, payload: { ...base, iconUrl } };
+	});
+}
+
 export const notificationsRoute = new Elysia({
 	prefix: "/api/notifications",
 	tags: ["notifications"],
@@ -67,7 +96,7 @@ export const notificationsRoute = new Elysia({
 				.where(eq(notification.userId, user.id))
 				.orderBy(desc(notification.createdAt))
 				.limit(limit);
-			return await withNavigationHints(rows);
+			return await withBadgeArtwork(await withNavigationHints(rows));
 		},
 		{ query: t.Object({ limit: t.Optional(t.String()) }) },
 	)

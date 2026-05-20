@@ -586,6 +586,20 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-05-20 — `/achievements` lobby remake *(Executor)*
+
+**Shipped:** `/achievements` rebuilt on the **profile/diary lobby shell** — `AchievementsTopBar` (back pill), `rounded-[2.5rem] bg-card` tray, **Badges / Goals** tab chips (`?tab=goals`), patron intro line. **Badges** panel loads full **`/api/badges/catalog`** with earned state from **`/me`** (milestone tray glyphs, locked tiles muted). **Goals** panel merges **`/api/achievements/catalog`** + **`/me`** progress (divide-y rows, no card borders; hidden goals stay secret until progress/unlock). Shared glyphs in **`milestone-badge-glyph.tsx`**; **`profile-patron-milestones.tsx`** imports the same module.
+
+**Human / Planner:** Open **`/achievements`** — switch **Badges** / **Goals**, hover earned vs locked badges, confirm back pill returns to last browse context. Reply **`ok`** when the lobby matches home/profile rhythm.
+
+### 2026-05-20 — Marketing landing: Mobbin-pattern remake *(Executor)*
+
+**Shipped:** Root **`/`** rebuilt to match Mobbin marketing IA on Still’s dark canvas — floating pill nav (`shadow-mobbin-xl`, `rounded-full`, `bg-card`), centered hero with emblem + dual CTAs, social-proof band, large **rounded-top preview shelf** with poster marquee + home-lobby grid radii, zig-zag **2×2 feature** panels (no 3-column row). New modules under **`apps/web/src/app/_marketing/`** (`landing-nav`, `landing-hero`, `landing-preview`, `landing-poster-marquee`, `landing-features`, `landing-footer`, `landing-social-proof`). **`landing-poster-rail.tsx`** import switched to **`motion/react`** (legacy rail unused on page).
+
+**Mobbin reference:** MCP **`search_screens`** — Mobbin web landing (centered hero, pill nav, trusted-by strip, rounded product shelf).
+
+**Human / Planner:** Log out (or incognito) and open **`http://localhost:3001/`** — scroll **preview** + **features**, check nav anchors and sign-up CTAs. Reply **`ok`** when the Mobbin rhythm + Still tokens feel right.
+
 ### 2026-05-19 — TV diary + watchlist parity *(Executor)*
 
 **Shipped:** `tv` table + migration **`0003_conscious_quicksilver`**; `log` / `watchlist_item` support **exactly one of** `movie_id` or `tv_id` (CHECK + partial unique indexes). Server: **`ensureTvCached`**, **`POST /api/logs`** accepts **`movieId` XOR `tvId`**, **`GET /api/logs/me/by-tv/:tvId`**, watchlist **`POST`** same XOR, **`DELETE /api/watchlist/tv/:tvId`**, **`GET /api/watchlist/check/tv/:tvId`**, feed + profile queries join **`tv`**. Web: **`TvDetailPrimaryActions`**, **`useTvDetailUserState`**, **`QuickLog`** + **`still-api-fetch`** for TV, diary/watchlist lobbies + **`ActivityItem`** + profile filmography handle mixed rows.

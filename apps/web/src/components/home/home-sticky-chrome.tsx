@@ -70,6 +70,7 @@ export function HomeStickyChrome({
 	/** `?browse=` only applies on `/home` — on `/diary` we must not treat missing params as “Movies active” or the sliding pill stays left. */
 	const isHomeLobby = pathname === "/home" || pathname.startsWith("/home/");
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 	const reduceMotion = useReducedMotion();
 
 	const browsePillTransition = reduceMotion
@@ -274,7 +275,10 @@ export function HomeStickyChrome({
 						</Link>
 						<HomeNotificationsMenu authenticated={Boolean(user)} />
 						{user ? (
-							<DropdownMenu>
+							<DropdownMenu
+								open={accountMenuOpen}
+								onOpenChange={setAccountMenuOpen}
+							>
 								<DropdownMenuTrigger
 									render={
 										<Button
@@ -282,11 +286,16 @@ export function HomeStickyChrome({
 											variant="ghost"
 											size="icon"
 											aria-label="Account menu"
-											className="size-11 shrink-0 rounded-full bg-card [@media(hover:hover)]:hover:bg-muted/35"
+											aria-expanded={accountMenuOpen}
+											className={cn(
+												"size-11 shrink-0 rounded-full [@media(hover:hover)]:hover:bg-muted/35",
+												accountMenuOpen && "bg-card",
+											)}
 										>
 											<NavUserAvatar
 												src={user.image}
 												name={user.name}
+												handle={user.handle}
 												size="compact"
 											/>
 										</Button>

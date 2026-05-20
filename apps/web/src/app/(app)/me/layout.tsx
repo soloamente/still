@@ -1,17 +1,27 @@
-import type { ReactNode } from "react";
+import { redirect } from "next/navigation";
 
-import { MeAccountNav } from "@/components/profile/me-account-nav";
+import { MeAccountShell } from "@/components/profile/me-account-shell";
+import { authServer } from "@/lib/auth-server";
+import { serverApi } from "@/lib/server-api";
 
-/**
- * Track B.5.9 — shared **account** chrome for `/me/settings` and `/me/customization`:
- * sub-navigation (vertical on `md+`, horizontal strip on small screens) so users
- * can jump between identity vs presentation without relying on profile CTAs alone.
- */
-export default function MeLayout({ children }: { children: ReactNode }) {
-	return (
-		<div className="mx-auto flex w-full max-w-5xl flex-col gap-6 md:flex-row md:items-start md:gap-10 lg:max-w-6xl">
-			<MeAccountNav />
-			<div className="min-w-0 flex-1">{children}</div>
-		</div>
-	);
+export default async function MeLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	const session = await authServer();
+	if (!session) {
+		redirect("/sign-in");
+	}
+
+	const api = await serverApi();
+	const me = await api.api.profiles.me.get().catch(() => ({ data: null }));
+
+	if (!me.data) {
+		redirect("/onboarding");
+	}
+
+	const handle = me.data.handle;
+
+	return <MeAccountShell handle={handle}>{children}</MeAccountShell>;
 }

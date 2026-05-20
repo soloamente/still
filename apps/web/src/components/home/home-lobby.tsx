@@ -10,7 +10,6 @@ import {
 	SlidersHorizontal,
 	Tv,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -18,6 +17,7 @@ import { useCommandPalette } from "@/components/app/command-palette";
 import { ActivityItem } from "@/components/feed/activity-item";
 import { HomeFriendActivityRail } from "@/components/home/home-friend-activity-rail";
 import { MoviePoster } from "@/components/movie/movie-poster";
+import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import type { HomeFriendRailEntry } from "@/lib/home-friend-rail";
 
 type Browse = "movies" | "tv" | "community";
@@ -97,8 +97,6 @@ export function HomeLobby({
 
 	const gridMovies =
 		browse === "movies" ? (sort === "latest" ? upcoming : popular) : [];
-
-	const initial = user.name?.trim()?.charAt(0)?.toUpperCase() ?? "?";
 
 	return (
 		<div>
@@ -188,17 +186,14 @@ export function HomeLobby({
 						className="ml-0.5 flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border/80 bg-card font-semibold text-foreground text-sm shadow-sm transition-opacity hover:opacity-90"
 						aria-label="Your profile"
 					>
-						{user.image ? (
-							<Image
-								src={user.image}
-								alt={user.name}
-								width={36}
-								height={36}
-								className="size-full object-cover"
-							/>
-						) : (
-							<span aria-hidden>{initial}</span>
-						)}
+						<PatronPortraitAvatar
+							handle={user.handle}
+							avatarUrl={user.image}
+							name={user.name}
+							width={36}
+							height={36}
+							className="size-full rounded-full text-sm"
+						/>
 					</Link>
 				</div>
 			</div>

@@ -26,6 +26,10 @@ function isTvDetailPath(pathname: string): boolean {
 	return /^\/tv\/\d+(\/|$)/.test(pathname);
 }
 
+function isProfilePath(pathname: string): boolean {
+	return /^\/profile\/[^/]+(\/|$)/.test(pathname);
+}
+
 function returnForHomeSurface(surface: HomeBrowseSurface): MovieDetailReturn {
 	const persisted = readHomeLobbyPersisted() ?? emptyHomeLobbyPersisted();
 	return {
@@ -57,6 +61,14 @@ export function resolveMovieDetailReturnFromPath(
 	if (pathname === "/tv/discover" || pathname.startsWith("/tv/discover")) {
 		return returnForHomeSurface("tv");
 	}
+	const profileHandle = pathname.match(/^\/profile\/([^/]+)/)?.[1];
+	if (profileHandle) {
+		const qs = search.length > 0 ? search : "";
+		return {
+			href: `/profile/${profileHandle}${qs}`,
+			label: `@${decodeURIComponent(profileHandle)}`,
+		};
+	}
 	return null;
 }
 
@@ -73,6 +85,7 @@ export function resolveMovieDetailReturn(): MovieDetailReturn {
 		if (url.origin !== window.location.origin) return fallback;
 		if (isFilmDetailPath(url.pathname)) return fallback;
 		if (isTvDetailPath(url.pathname)) return fallback;
+		if (isProfilePath(url.pathname)) return fallback;
 		return (
 			resolveMovieDetailReturnFromPath(url.pathname, url.search) ?? fallback
 		);

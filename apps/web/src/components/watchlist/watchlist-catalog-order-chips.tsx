@@ -82,6 +82,7 @@ export function WatchlistCatalogOrderChips() {
 					<Link
 						key={id}
 						href={buildWatchlistLobbyHref({ order: id })}
+						scroll={false}
 						aria-current={order === id ? "page" : undefined}
 						className={chipLink(order === id)}
 						title={title}

@@ -5,12 +5,12 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@still/ui/components/popover";
+import { stillToast } from "@still/ui/components/still-toast";
 import IconListPlay from "@still/ui/icons/list-play";
 import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
 
 import { AddToListPicker } from "@/components/list/add-to-list-picker";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
@@ -104,7 +104,10 @@ export function AddToListControl({
 	async function addFilmToList(list: ListBoardRow) {
 		if (addingListId) return;
 		if (list.containsMovie) {
-			toast.message(`Already in ${list.title}`);
+			stillToast.alreadyInCollection({
+				entityLabel: "Movie",
+				listTitle: list.title,
+			});
 			return;
 		}
 		setAddingListId(list.id);
@@ -121,10 +124,13 @@ export function AddToListControl({
 						: row,
 				),
 			);
-			toast.success(`Added to ${list.title}`);
+			stillToast.addedToCollection({
+				entityLabel: "Movie",
+				destinationName: list.title,
+			});
 		} catch (err) {
 			console.error("[add-to-list-control] add item", err);
-			toast.error(`Couldn't add to ${list.title}`);
+			stillToast.error(`Couldn't add to ${list.title}`);
 		} finally {
 			setAddingListId(null);
 		}

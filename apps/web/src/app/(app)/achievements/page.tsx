@@ -1,58 +1,78 @@
 import type { Metadata } from "next";
-
-import { AchievementProgress } from "@/components/gamification/achievement-progress";
-import { BadgeShelf } from "@/components/gamification/badge-shelf";
-import { Section } from "@/components/ui/section";
+import type {
+	BadgeCatalogRow,
+	EarnedBadgeRow,
+} from "@/components/gamification/achievements-badges-panel";
+import type { AchievementCatalogRow } from "@/components/gamification/achievements-goals-panel";
+import { AchievementsLobby } from "@/components/gamification/achievements-lobby";
+import { parseAchievementsLobbyTab } from "@/lib/achievements-lobby-tab";
 import { serverApi } from "@/lib/server-api";
 
 export const metadata: Metadata = { title: "Achievements" };
 export const dynamic = "force-dynamic";
 
-type EarnedBadge = {
-  badge: { id: string; slug: string; name: string; description: string | null; iconUrl: string | null; tier: string };
-  userBadge: { awardedAt: string };
+type UserAchievementMeRow = {
+	userAchievement: {
+		achievementId: string;
+		progress: number;
+		unlockedAt: string | Date | null;
+	};
+	achievement: AchievementCatalogRow | null;
 };
 
-type AchievementProgressRow = {
-  achievement: { id: string; slug: string; name: string; description: string | null; iconUrl: string | null; target: number | null };
-  userAchievement: { progress: number; completedAt: string | null } | null;
-};
+export default async function AchievementsPage({
+	searchParams,
+}: {
+	searchParams: Promise<{ tab?: string }>;
+}) {
+	const sp = await searchParams;
+	const activeTab = parseAchievementsLobbyTab(sp.tab);
 
-export default async function AchievementsPage() {
-  const api = await serverApi();
-  const [badgesRes, achRes] = await Promise.all([
-    api.api.badges.me.get().catch(() => ({ data: [] })),
-    api.api.achievements.me.get().catch(() => ({ data: [] })),
-  ]);
-  const badges = (badgesRes.data as unknown as EarnedBadge[]) ?? [];
-  const achievements = (achRes.data as unknown as AchievementProgressRow[]) ?? [];
+	const api = await serverApi();
+	const [
+		profileRes,
+		badgeCatalogRes,
+		earnedRes,
+		achievementCatalogRes,
+		meAchRes,
+	] = await Promise.all([
+		api.api.profiles.me.get().catch(() => ({ data: null })),
+		api.api.badges.catalog.get().catch(() => ({ data: [] })),
+		api.api.badges.me.get().catch(() => ({ data: [] })),
+		api.api.achievements.catalog.get().catch(() => ({ data: [] })),
+		api.api.achievements.me.get().catch(() => ({ data: [] })),
+	]);
 
-  return (
-    <div className="space-y-10">
-      <Section
-        kicker="Lobby wall"
-        title="Badges"
-        subtitle="Collectibles from the booth — bragging rights, mostly."
-      >
-        <BadgeShelf badges={badges} />
-      </Section>
-      <Section
-        kicker="Festival circuit"
-        title="Achievements"
-        subtitle="Long-term goals with progress bars — the slow-burn route."
-      >
-        <ul className="grid gap-3 md:grid-cols-2">
-          {achievements.map((row) => (
-            <li key={row.achievement.id}>
-              <AchievementProgress
-                achievement={row.achievement}
-                progress={row.userAchievement?.progress ?? 0}
-                completedAt={row.userAchievement?.completedAt ?? null}
-              />
-            </li>
-          ))}
-        </ul>
-      </Section>
-    </div>
-  );
+	const profile = profileRes.data as {
+		handle: string;
+		displayName: string;
+	} | null;
+
+	const badgeCatalog =
+		(badgeCatalogRes.data as unknown as BadgeCatalogRow[]) ?? [];
+	const earnedBadges = (earnedRes.data as unknown as EarnedBadgeRow[]) ?? [];
+	const achievementCatalog =
+		(achievementCatalogRes.data as unknown as AchievementCatalogRow[]) ?? [];
+
+	const meAchievementRows =
+		(meAchRes.data as unknown as UserAchievementMeRow[]) ?? [];
+	const userAchievements = meAchievementRows
+		.filter((row) => row.achievement != null)
+		.map((row) => ({
+			achievementId: row.userAchievement.achievementId,
+			progress: row.userAchievement.progress,
+			unlockedAt: row.userAchievement.unlockedAt,
+		}));
+
+	return (
+		<AchievementsLobby
+			activeTab={activeTab}
+			handle={profile?.handle ?? "you"}
+			displayName={profile?.displayName ?? "Your"}
+			badgeCatalog={badgeCatalog}
+			earnedBadges={earnedBadges}
+			achievementCatalog={achievementCatalog}
+			userAchievements={userAchievements}
+		/>
+	);
 }

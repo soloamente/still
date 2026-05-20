@@ -41,8 +41,8 @@ function DropdownMenuContent({
 				<MenuPrimitive.Popup
 					data-slot="dropdown-menu-content"
 					className={cn(
-						/* Mobbin reference: floating menus use 24px corners + soft ambient shadow (`design.md`). */
-						"data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:fade-in-0 data-open:zoom-in-95 data-closed:fade-out-0 data-closed:zoom-out-95 z-50 max-h-(--available-height) w-(--anchor-width) min-w-32 origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-mobbin-3xl bg-popover text-popover-foreground shadow-mobbin-xl outline-none ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-open:animate-in data-closed:overflow-hidden",
+						/* Opacity transitions (Base UI starting/ending-style) — keyframe animate-in/out flickers on rapid toggle. */
+						"z-50 max-h-(--available-height) w-auto min-w-32 origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-[2rem] bg-popover text-popover-foreground opacity-0 shadow-mobbin-xl outline-none ring-1 ring-foreground/10 transition-opacity duration-150 ease-out data-closed:overflow-hidden data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0 motion-reduce:transition-none",
 						className,
 					)}
 					{...props}
@@ -252,6 +252,9 @@ function DropdownMenuShortcut({
 		/>
 	);
 }
+
+/** Imperative close/unmount handle for controlled flows (e.g. sign-in from menu body). */
+export type DropdownMenuActions = MenuPrimitive.Root.Actions;
 
 export {
 	DropdownMenu,

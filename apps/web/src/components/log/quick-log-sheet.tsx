@@ -3,6 +3,7 @@
 import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
 import { Label } from "@still/ui/components/label";
+import { stillToast } from "@still/ui/components/still-toast";
 import IconHeart from "@still/ui/icons/heart";
 import IconHeartFilled from "@still/ui/icons/heart-filled";
 import { cn } from "@still/ui/lib/utils";
@@ -339,7 +340,7 @@ export function QuickLogRoot() {
 					toast.error("Couldn't update this log");
 					return;
 				}
-				toast.success(
+				stillToast.updated(
 					movieTitle.trim() ? `Updated “${movieTitle}”` : "Diary log updated",
 				);
 				args.onSuccess?.();
@@ -371,7 +372,7 @@ export function QuickLogRoot() {
 				toast.error("Couldn't save this log");
 				return;
 			}
-			toast.success(
+			stillToast.logged(
 				movieTitle.trim() ? `Logged “${movieTitle}”` : "Saved to diary",
 			);
 			args.onSuccess?.();
