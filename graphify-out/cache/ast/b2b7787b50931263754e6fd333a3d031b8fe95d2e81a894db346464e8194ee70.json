@@ -1,0 +1,168 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"label": "sign-up.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_sign_up_signupschema",
+			"label": "signUpSchema",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "components_sign_up_geterrormessage",
+			"label": "getErrorMessage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L24"
+		},
+		{
+			"id": "components_sign_up_signup",
+			"label": "SignUp()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L51"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "react_form",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "heroui_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "zod",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "c_users_utente_documents_still_apps_native_lib_auth_client_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "lib_auth_client_authclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "components_sign_up_signupschema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "components_sign_up_geterrormessage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_sign_up_tsx",
+			"target": "components_sign_up_signup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L51",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "components_sign_up_geterrormessage",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "components_sign_up_signup",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "components_sign_up_signup",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "components_sign_up_signup",
+			"callee": "useToast",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "components_sign_up_signup",
+			"callee": "useForm",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\sign-up.tsx",
+			"source_location": "L56"
+		}
+	]
+}

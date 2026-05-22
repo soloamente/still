@@ -1,0 +1,177 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_cookie_ts",
+			"label": "home-lobby-cookie.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_lobby_cookie_homelobbysearchparams",
+			"label": "HomeLobbySearchParams",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"label": "parseHomeLobbyHrefCookie()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_home_lobby_cookie_writehomelobbyhrefcookie",
+			"label": "writeHomeLobbyHrefCookie()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L46"
+		},
+		{
+			"id": "lib_home_lobby_cookie_isbarehomelobbysearchparams",
+			"label": "isBareHomeLobbySearchParams()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L57"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_cookie_ts",
+			"target": "lib_home_lobby_cookie_homelobbysearchparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_cookie_ts",
+			"target": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_cookie_ts",
+			"target": "lib_home_lobby_cookie_writehomelobbyhrefcookie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_cookie_ts",
+			"target": "lib_home_lobby_cookie_isbarehomelobbysearchparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L57",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "decodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_parsehomelobbyhrefcookie",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_writehomelobbyhrefcookie",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_home_lobby_cookie_writehomelobbyhrefcookie",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts",
+			"source_location": "L50"
+		}
+	]
+}

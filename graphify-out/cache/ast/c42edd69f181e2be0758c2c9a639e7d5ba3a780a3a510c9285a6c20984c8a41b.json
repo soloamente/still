@@ -1,0 +1,591 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_20_tv_watching_progress_md",
+			"label": "2026-05-20-tv-watching-progress.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"label": "TV Watching Progress \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_phase_w_1_schema_api_core",
+			"label": "Phase W.1 \u2014 Schema + API core",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_1_drizzle_schema_for_tv_watch",
+			"label": "Task 1: Drizzle schema for `tv_watch`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_1",
+			"label": "code:ts (// packages/db/src/schema/tv-watch.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_2",
+			"label": "code:bash (cd packages/db && bun run db:generate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L110"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_3",
+			"label": "code:bash (cd packages/db && bun run db:migrate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_2_extend_log_for_scoped_tv_diary",
+			"label": "Task 2: Extend `log` for scoped TV diary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L124"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_4",
+			"label": "code:ts (logScope: text(\"log_scope\").$type<\"show\" | \"season\" | \"episo)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_5",
+			"label": "code:ts (// apps/server/src/routes/logs.ts \u2014 logCreateFields)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L144"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_6",
+			"label": "code:ts (import { describe, expect, it } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_7",
+			"label": "code:bash (cd apps/web && bun test src/lib/tv-log-scope.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_3_tmdb_season_episode_cache_routes",
+			"label": "Task 3: TMDb season/episode cache routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L189"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_8",
+			"label": "code:ts (tvSeasons(tvId: number, language?: string))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_9",
+			"label": "code:block9 (GET /api/tv/:id/seasons)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L207"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_10",
+			"label": "code:bash (curl -s \"http://localhost:3001/api/tv/1399/seasons\" -H \"Cook)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L216"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_4_tv_watch_api_routes",
+			"label": "Task 4: `tv-watch` API routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L224"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_11",
+			"label": "code:ts (export function defaultProgressModeForTv(detail: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L233"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_phase_w_2_tv_detail_ux",
+			"label": "Phase W.2 \u2014 TV detail UX",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L266"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_5_client_types_fetch_helpers",
+			"label": "Task 5: Client types + fetch helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L268"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_6_hero_actions_start_watching_status",
+			"label": "Task 6: Hero actions \u2014 Start watching + status",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L283"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_7_progress_panel_component",
+			"label": "Task 7: Progress panel component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L303"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_phase_w_3_scoped_quick_log_diary_display",
+			"label": "Phase W.3 \u2014 Scoped Quick Log + diary display",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L323"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_8_quick_log_tv_scope_ui",
+			"label": "Task 8: Quick Log TV scope UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L325"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_9_diary_cards_list_api_shape",
+			"label": "Task 9: Diary cards + list API shape",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L342"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_12",
+			"label": "code:ts (export function formatTvLogScopeLabel(scope: string, s?: num)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L350"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_phase_w_4_notifications_continue_rail",
+			"label": "Phase W.4 \u2014 Notifications + continue rail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L366"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_10_new_episode_sync_job",
+			"label": "Task 10: New-episode sync job",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L368"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_13",
+			"label": "code:ts (kind: \"tv.new_episode\",)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L380"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_11_notification_renderer_bell",
+			"label": "Task 11: Notification renderer + bell",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L390"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_task_12_continue_watching_rail_on_home",
+			"label": "Task 12: Continue watching rail on `/home`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L401"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L419"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_executor_workflow_repo_convention",
+			"label": "Executor workflow (repo convention)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L439"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_verification_commands",
+			"label": "Verification commands",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L447"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_codeblock_14",
+			"label": "code:bash (cd packages/db && bun run db:migrate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L449"
+		},
+		{
+			"id": "plans_2026_05_20_tv_watching_progress_plan_complete",
+			"label": "Plan complete",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L458"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_20_tv_watching_progress_md",
+			"target": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_phase_w_1_schema_api_core",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_1_schema_api_core",
+			"target": "plans_2026_05_20_tv_watching_progress_task_1_drizzle_schema_for_tv_watch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_1_drizzle_schema_for_tv_watch",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_1_drizzle_schema_for_tv_watch",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L110",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_1_drizzle_schema_for_tv_watch",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_1_schema_api_core",
+			"target": "plans_2026_05_20_tv_watching_progress_task_2_extend_log_for_scoped_tv_diary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_2_extend_log_for_scoped_tv_diary",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_2_extend_log_for_scoped_tv_diary",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L144",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_2_extend_log_for_scoped_tv_diary",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_2_extend_log_for_scoped_tv_diary",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_1_schema_api_core",
+			"target": "plans_2026_05_20_tv_watching_progress_task_3_tmdb_season_episode_cache_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L189",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_3_tmdb_season_episode_cache_routes",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_3_tmdb_season_episode_cache_routes",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L207",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_3_tmdb_season_episode_cache_routes",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L216",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_1_schema_api_core",
+			"target": "plans_2026_05_20_tv_watching_progress_task_4_tv_watch_api_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L224",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_4_tv_watch_api_routes",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L233",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_phase_w_2_tv_detail_ux",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L266",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_2_tv_detail_ux",
+			"target": "plans_2026_05_20_tv_watching_progress_task_5_client_types_fetch_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L268",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_2_tv_detail_ux",
+			"target": "plans_2026_05_20_tv_watching_progress_task_6_hero_actions_start_watching_status",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L283",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_2_tv_detail_ux",
+			"target": "plans_2026_05_20_tv_watching_progress_task_7_progress_panel_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L303",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_phase_w_3_scoped_quick_log_diary_display",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L323",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_3_scoped_quick_log_diary_display",
+			"target": "plans_2026_05_20_tv_watching_progress_task_8_quick_log_tv_scope_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L325",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_3_scoped_quick_log_diary_display",
+			"target": "plans_2026_05_20_tv_watching_progress_task_9_diary_cards_list_api_shape",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L342",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_9_diary_cards_list_api_shape",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L350",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_phase_w_4_notifications_continue_rail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L366",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_4_notifications_continue_rail",
+			"target": "plans_2026_05_20_tv_watching_progress_task_10_new_episode_sync_job",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L368",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_task_10_new_episode_sync_job",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L380",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_4_notifications_continue_rail",
+			"target": "plans_2026_05_20_tv_watching_progress_task_11_notification_renderer_bell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L390",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_phase_w_4_notifications_continue_rail",
+			"target": "plans_2026_05_20_tv_watching_progress_task_12_continue_watching_rail_on_home",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L401",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L419",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_executor_workflow_repo_convention",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L439",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_verification_commands",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L447",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_verification_commands",
+			"target": "plans_2026_05_20_tv_watching_progress_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L449",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_20_tv_watching_progress_tv_watching_progress_implementation_plan",
+			"target": "plans_2026_05_20_tv_watching_progress_plan_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-20-tv-watching-progress.md",
+			"source_location": "L458",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

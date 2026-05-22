@@ -1,0 +1,60 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_me_sticky_form_actions_tsx",
+			"label": "me-sticky-form-actions.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-sticky-form-actions.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_me_sticky_form_actions_mestickyformactions",
+			"label": "MeStickyFormActions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-sticky-form-actions.tsx",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_sticky_form_actions_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-sticky-form-actions.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_sticky_form_actions_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_content_reveal_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-sticky-form-actions.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_sticky_form_actions_tsx",
+			"target": "profile_me_account_content_reveal_meaccountrevealitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-sticky-form-actions.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_sticky_form_actions_tsx",
+			"target": "profile_me_sticky_form_actions_mestickyformactions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-sticky-form-actions.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

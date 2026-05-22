@@ -1,0 +1,64 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_beyond_festival_tsx",
+			"label": "beyond-festival.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\beyond-festival.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_beyond_festival_beyond_paths",
+			"label": "BEYOND_PATHS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\beyond-festival.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "icons_beyond_festival_iconbeyondfestival",
+			"label": "IconBeyondFestival()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\beyond-festival.tsx",
+			"source_location": "L22"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_beyond_festival_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\beyond-festival.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_beyond_festival_tsx",
+			"target": "icons_beyond_festival_beyond_paths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\beyond-festival.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_beyond_festival_tsx",
+			"target": "icons_beyond_festival_iconbeyondfestival",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\beyond-festival.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "icons_beyond_festival_iconbeyondfestival",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\beyond-festival.tsx",
+			"source_location": "L36"
+		}
+	]
+}

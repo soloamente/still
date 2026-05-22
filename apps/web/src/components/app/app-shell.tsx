@@ -4,6 +4,7 @@ import { CommandPaletteRoot } from "@/components/app/command-palette";
 import { DetailReturnCapture } from "@/components/app/detail-return-capture";
 import { BadgeWatcher } from "@/components/gamification/badge-watcher";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
+import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledger-drawer";
 import { QuickLogRoot } from "@/components/log/quick-log-sheet";
 import { PersonFilmographyDrawerRoot } from "@/components/movie/person-filmography-drawer";
 import { ReviewComposerRoot } from "@/components/review/review-composer";
@@ -75,6 +76,7 @@ export function AppShell({
 			<ReviewComposerRoot />
 			<ReviewDetailRoot />
 			<PersonFilmographyDrawerRoot />
+			<PatronWatchLedgerDrawerRoot />
 			<BadgeWatcher />
 		</div>
 	);

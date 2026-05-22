@@ -130,9 +130,13 @@ export function HomeCatalogViewModeToolbar() {
 		// Diary has no TMDb sort row — mirror **Popular** slice discover targets from venue.
 		const diaryVenue = parseDiaryLobbyVenue(searchParams.get("venue"));
 		if (diaryVenue === "theaters") {
-			filtersHref = "/movies/now-playing";
+			filtersHref = buildHomeLobbyHref({
+				browse: "movies",
+				sort: "popular",
+				venue: "theaters",
+			});
 			filtersAria =
-				"Filters — films currently in theatres (full scrolling list)";
+				"Filters — films currently in theatres on the home movies lobby";
 		} else {
 			filtersHref = discoverCatalogUrl({
 				sort: "popularity.desc",
@@ -191,9 +195,13 @@ export function HomeCatalogViewModeToolbar() {
 		const v = parseHomeVenue(searchParams.get("venue"), catalogSort);
 		const explicitVenue = parseExplicitHomeVenue(searchParams.get("venue"));
 		if (v === "theaters" && catalogSort === "popular") {
-			filtersHref = "/movies/now-playing";
+			filtersHref = buildHomeLobbyHref({
+				browse: "movies",
+				sort: "popular",
+				venue: "theaters",
+			});
 			filtersAria =
-				"Filters — TMDb films currently in theatres (full scrolling list)";
+				"Filters — in-cinema popular titles on the home movies lobby";
 		} else if (v === "theaters" && catalogSort === "latest") {
 			filtersHref = discoverCatalogUrl({
 				sort: "primary_release_date.desc",
@@ -202,9 +210,13 @@ export function HomeCatalogViewModeToolbar() {
 			filtersAria =
 				"Filters — newest films already released in cinemas in this region (TMDb discover)";
 		} else if (v === "theaters" && catalogSort === "upcoming") {
-			filtersHref = "/movies/upcoming";
+			filtersHref = buildHomeLobbyHref({
+				browse: "movies",
+				sort: "upcoming",
+				venue: "theaters",
+			});
 			filtersAria =
-				"Filters — TMDb films with upcoming theatrical release dates (full list)";
+				"Filters — theatrical upcoming releases on the home movies lobby";
 		} else if (v === "streaming" && catalogSort === "popular") {
 			filtersHref = discoverCatalogUrl({
 				sort: "popularity.desc",

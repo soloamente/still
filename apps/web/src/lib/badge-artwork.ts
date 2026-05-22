@@ -12,3 +12,10 @@ export const BADGE_ARTWORK = {
 export function isBadgeArtworkUrl(iconUrl: string | null | undefined): boolean {
 	return Boolean(iconUrl?.startsWith("/badges/"));
 }
+
+/**
+ * Shared `next/image` class for `/badges/*.png` — `max-h` / `max-w` can scale one axis;
+ * pairing with `h-auto w-auto` keeps aspect ratio and clears the dev console warning.
+ */
+export const BADGE_ARTWORK_IMAGE_CLASS =
+	"h-auto w-auto max-h-full max-w-full object-contain";

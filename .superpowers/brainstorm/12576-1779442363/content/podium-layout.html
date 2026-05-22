@@ -1,0 +1,278 @@
+<h2>Podium layout for the watch leaderboard</h2>
+<p class="subtitle">
+  Top 3 patrons by films logged in the selected period (week / month / year). Pick the layout that feels most at home next to Achievements — flat surfaces, no borders, portrait + count.
+</p>
+
+<style>
+  .lb-mock {
+    --canvas: oklch(0.2645 0 0);
+    --raised: oklch(0.2264 0 0);
+    --fg: #f4f4f5;
+    --muted: #a1a1aa;
+    --accent: #b75928;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    color: var(--fg);
+  }
+  .lb-tray {
+    background: var(--raised);
+    border-radius: 1.25rem;
+    padding: 1.25rem 1rem 1rem;
+    margin-top: 0.75rem;
+  }
+  .lb-toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    background: var(--canvas);
+    border-radius: 999px;
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lb-chip {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    color: var(--muted);
+  }
+  .lb-chip.on {
+    background: var(--raised);
+    color: var(--fg);
+  }
+  .lb-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #5c4a42, #2a2420);
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 auto 0.35rem;
+  }
+  .lb-avatar.lg { width: 4.25rem; height: 4.25rem; }
+  .lb-avatar.sm { width: 2.5rem; height: 2.5rem; }
+  .lb-name { font-size: 0.72rem; font-weight: 600; text-align: center; }
+  .lb-count {
+    font-variant-numeric: tabular-nums;
+    font-size: 1.35rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--fg);
+  }
+  .lb-rank {
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 0.15rem;
+  }
+  .lb-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.5rem;
+    border-radius: 0.75rem;
+    background: var(--canvas);
+    margin-top: 0.35rem;
+  }
+  .lb-row .lb-count { font-size: 1rem; margin-left: auto; }
+  .lb-pos {
+    width: 1.5rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  /* A — Olympic */
+  .podium-a {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 9rem;
+    padding-top: 0.5rem;
+  }
+  .podium-a .slot {
+    flex: 1;
+    max-width: 6.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .podium-a .pedestal {
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background: var(--canvas);
+    margin-top: 0.5rem;
+  }
+  .podium-a .slot:nth-child(1) .pedestal { height: 3.5rem; }
+  .podium-a .slot:nth-child(2) .pedestal { height: 5.25rem; background: color-mix(in oklab, var(--canvas) 70%, var(--accent) 30%); }
+  .podium-a .slot:nth-child(3) .pedestal { height: 2.75rem; }
+  .podium-a .medal { font-size: 1.1rem; margin-bottom: 0.15rem; }
+  /* B — Tier cards */
+  .podium-b {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 0.5rem;
+    align-items: end;
+  }
+  .podium-b .tier {
+    background: var(--canvas);
+    border-radius: 1rem;
+    padding: 0.85rem 0.5rem 0.65rem;
+    text-align: center;
+  }
+  .podium-b .tier.gold {
+    transform: translateY(-0.65rem);
+    background: color-mix(in oklab, var(--canvas) 55%, var(--accent) 12%);
+  }
+  /* C — Medal strip */
+  .podium-c {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 0.75rem 0 1rem;
+  }
+  .podium-c .medal-slot { text-align: center; min-width: 5rem; }
+  .podium-c .medal-ring {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 999px;
+    margin: 0 auto 0.35rem;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: var(--canvas);
+    outline: 1px solid rgba(255,255,255,0.08);
+  }
+  .podium-c .medal-slot:nth-child(2) .medal-ring {
+    width: 4.25rem;
+    height: 4.25rem;
+    font-size: 1rem;
+    background: color-mix(in oklab, var(--canvas) 60%, var(--accent) 25%);
+  }
+</style>
+
+<div class="cards">
+  <div class="card lb-mock" data-choice="olympic" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>A — Classic podium</h3>
+      <p>2nd · 1st · 3rd on raised pedestals; list starts at #4. Feels competitive and ceremonial.</p>
+    </div>
+    <div class="card-image">
+      <div class="lb-tray">
+        <div class="lb-toolbar">
+          <span class="lb-chip">Week</span>
+          <span class="lb-chip on">Month</span>
+          <span class="lb-chip">Year</span>
+        </div>
+        <div class="podium-a">
+          <div class="slot">
+            <div class="medal">🥈</div>
+            <div class="lb-avatar"></div>
+            <div class="lb-name">@mara</div>
+            <div class="lb-count">18</div>
+            <div class="pedestal"></div>
+          </div>
+          <div class="slot">
+            <div class="medal">🥇</div>
+            <div class="lb-avatar lg"></div>
+            <div class="lb-name">@you</div>
+            <div class="lb-count">24</div>
+            <div class="pedestal"></div>
+          </div>
+          <div class="slot">
+            <div class="medal">🥉</div>
+            <div class="lb-avatar sm"></div>
+            <div class="lb-name">@leo</div>
+            <div class="lb-count">14</div>
+            <div class="pedestal"></div>
+          </div>
+        </div>
+        <div class="lb-row"><span class="lb-pos">4</span><div class="lb-avatar sm"></div><span class="lb-name">@sam</span><span class="lb-count">11</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card lb-mock" data-choice="tier-cards" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>B — Tier cards (Achievements-like)</h3>
+      <p>Three equal tiles on <code>bg-card</code>; center tile slightly lifted. Softer, gallery feel.</p>
+    </div>
+    <div class="card-image">
+      <div class="lb-tray">
+        <div class="lb-toolbar">
+          <span class="lb-chip">Week</span>
+          <span class="lb-chip on">Month</span>
+          <span class="lb-chip">Year</span>
+        </div>
+        <div class="podium-b">
+          <div class="tier">
+            <div class="lb-rank">2nd</div>
+            <div class="lb-avatar"></div>
+            <div class="lb-name">@mara</div>
+            <div class="lb-count">18</div>
+          </div>
+          <div class="tier gold">
+            <div class="lb-rank">1st</div>
+            <div class="lb-avatar lg"></div>
+            <div class="lb-name">@you</div>
+            <div class="lb-count">24</div>
+          </div>
+          <div class="tier">
+            <div class="lb-rank">3rd</div>
+            <div class="lb-avatar sm"></div>
+            <div class="lb-name">@leo</div>
+            <div class="lb-count">14</div>
+          </div>
+        </div>
+        <div class="lb-row"><span class="lb-pos">4</span><div class="lb-avatar sm"></div><span class="lb-name">@sam</span><span class="lb-count">11</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card lb-mock" data-choice="medal-strip" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>C — Medal strip + dense list</h3>
+      <p>Compact top row; more vertical space for ranks 4+. Best if the list is long.</p>
+    </div>
+    <div class="card-image">
+      <div class="lb-tray">
+        <div class="lb-toolbar">
+          <span class="lb-chip">Week</span>
+          <span class="lb-chip on">Month</span>
+          <span class="lb-chip">Year</span>
+        </div>
+        <div class="podium-c">
+          <div class="medal-slot">
+            <div class="medal-ring">2</div>
+            <div class="lb-avatar sm"></div>
+            <div class="lb-name">@mara</div>
+            <div class="lb-count">18</div>
+          </div>
+          <div class="medal-slot">
+            <div class="medal-ring">1</div>
+            <div class="lb-avatar"></div>
+            <div class="lb-name">@you</div>
+            <div class="lb-count">24</div>
+          </div>
+          <div class="medal-slot">
+            <div class="medal-ring">3</div>
+            <div class="lb-avatar sm"></div>
+            <div class="lb-name">@leo</div>
+            <div class="lb-count">14</div>
+          </div>
+        </div>
+        <div class="lb-row"><span class="lb-pos">4</span><div class="lb-avatar sm"></div><span class="lb-name">@sam</span><span class="lb-count">11</span></div>
+        <div class="lb-row"><span class="lb-pos">5</span><div class="lb-avatar sm"></div><span class="lb-name">@jules</span><span class="lb-count">9</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top: 1.25rem">
+  All options use the same period chips as Achievements (<code>SegmentedPillToolbar</code> / sliding pill) and flat <code>bg-background</code> rows on a <code>bg-card</code> tray.
+</p>

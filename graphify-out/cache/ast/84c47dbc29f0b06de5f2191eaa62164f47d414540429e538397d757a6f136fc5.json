@@ -1,0 +1,96 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"label": "detail-action-motion.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_detail_action_motion_detail_button_spring",
+			"label": "DETAIL_BUTTON_SPRING",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_detail_action_motion_detail_swap_spring",
+			"label": "DETAIL_SWAP_SPRING",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_detail_action_motion_detailswapchildvariants",
+			"label": "detailSwapChildVariants",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_detail_action_motion_usedetailactionmotion",
+			"label": "useDetailActionMotion()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L35"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"target": "lib_detail_action_motion_detail_button_spring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"target": "lib_detail_action_motion_detail_swap_spring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"target": "lib_detail_action_motion_detailswapchildvariants",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"target": "lib_detail_action_motion_usedetailactionmotion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_detail_action_motion_usedetailactionmotion",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-action-motion.ts",
+			"source_location": "L36"
+		}
+	]
+}

@@ -6,10 +6,35 @@ export type HeroArtworkSlide = {
 	label: string;
 };
 
-type TmdbImageRow = {
+export type TmdbImageRow = {
 	file_path: string;
 	vote_average?: number;
 };
+
+/** Coerce cached TMDb JSON `images` blobs to rows safe for hero carousel assembly. */
+export function normalizeTmdbImagesBundle(
+	raw:
+		| {
+				posters?: unknown[];
+				backdrops?: unknown[];
+		  }
+		| null
+		| undefined,
+): { posters?: TmdbImageRow[]; backdrops?: TmdbImageRow[] } | null {
+	if (!raw) return null;
+	const isRow = (value: unknown): value is TmdbImageRow =>
+		typeof value === "object" &&
+		value != null &&
+		typeof (value as TmdbImageRow).file_path === "string";
+	const posters = Array.isArray(raw.posters)
+		? raw.posters.filter(isRow)
+		: undefined;
+	const backdrops = Array.isArray(raw.backdrops)
+		? raw.backdrops.filter(isRow)
+		: undefined;
+	if (!posters?.length && !backdrops?.length) return null;
+	return { posters, backdrops };
+}
 
 const DEFAULT_MAX_SLIDES = 8;
 

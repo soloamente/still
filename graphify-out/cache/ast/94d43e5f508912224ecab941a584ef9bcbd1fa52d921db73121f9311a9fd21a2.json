@@ -1,0 +1,247 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"label": "auth-background-carousel.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "auth_auth_background_carousel_shufflepaths",
+			"label": "shufflePaths()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L17"
+		},
+		{
+			"id": "auth_auth_background_carousel_preloadbackdrop",
+			"label": "preloadBackdrop()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L28"
+		},
+		{
+			"id": "auth_auth_background_carousel_authbackgroundcarousel",
+			"label": "AuthBackgroundCarousel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L42"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_auth_page_backgrounds_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "lib_auth_page_backgrounds_auth_background_crossfade_blur_px",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "lib_auth_page_backgrounds_auth_background_crossfade_ms",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "lib_auth_page_backgrounds_auth_background_interval_ms",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "lib_auth_page_backgrounds_auth_page_backdrop_paths",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "lib_auth_page_backgrounds_authbackdropurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "auth_auth_background_carousel_shufflepaths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "auth_auth_background_carousel_preloadbackdrop",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_background_carousel_tsx",
+			"target": "auth_auth_background_carousel_authbackgroundcarousel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "auth_auth_background_carousel_shufflepaths",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_shufflepaths",
+			"callee": "random",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "auth_auth_background_carousel_authbackgroundcarousel",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-background-carousel.tsx",
+			"source_location": "L114"
+		}
+	]
+}

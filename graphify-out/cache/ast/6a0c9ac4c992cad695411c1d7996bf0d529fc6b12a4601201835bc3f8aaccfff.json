@@ -1,0 +1,157 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"label": "country-flag-icon.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "ui_country_flag_icon_nucleoflagcomponent",
+			"label": "NucleoFlagComponent",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "ui_country_flag_icon_flag_icons",
+			"label": "FLAG_ICONS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L15"
+		},
+		{
+			"id": "ui_country_flag_icon_countryflagicon",
+			"label": "CountryFlagIcon()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "nucleo_flags",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "nucleo_flags",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_nucleo_flag_by_iso_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "lib_nucleo_flag_by_iso_nucleo_flag_by_iso",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "lib_nucleo_flag_by_iso_nucleoflagiconname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "ui_country_flag_icon_nucleoflagcomponent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "ui_country_flag_icon_flag_icons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"target": "ui_country_flag_icon_countryflagicon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "ui_country_flag_icon_countryflagicon",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "ui_country_flag_icon_countryflagicon",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\country-flag-icon.tsx",
+			"source_location": "L43"
+		}
+	]
+}

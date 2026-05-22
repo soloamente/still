@@ -1,0 +1,320 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"label": "movie-cast-crew-arc.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_arccreditcard",
+			"label": "ArcCreditCard",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_arcvisibleslotcount",
+			"label": "arcVisibleSlotCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"label": "reorderForCenterArc()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L34"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_arcrowvisual",
+			"label": "ArcRowVisual",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L65"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_arcrowvisualforslot",
+			"label": "arcRowVisualForSlot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L77"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_mapcasttoarccards",
+			"label": "mapCastToArcCards()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L95"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_arc_crew_job_priority",
+			"label": "ARC_CREW_JOB_PRIORITY",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L116"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"label": "mapCrewToArcCards()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L131"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"target": "lib_movie_cast_crew_arc_arccreditcard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"target": "lib_movie_cast_crew_arc_arcvisibleslotcount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"target": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"target": "lib_movie_cast_crew_arc_arcrowvisual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"target": "lib_movie_cast_crew_arc_arcrowvisualforslot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"target": "lib_movie_cast_crew_arc_mapcasttoarccards",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"target": "lib_movie_cast_crew_arc_arc_crew_job_priority",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"target": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"target": "lib_movie_cast_crew_arc_arcvisibleslotcount",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_cast_crew_arc_mapcasttoarccards",
+			"target": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"target": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L175",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_arcvisibleslotcount",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_arcvisibleslotcount",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_arcrowvisualforslot",
+			"callee": "abs",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_arcrowvisualforslot",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcasttoarccards",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L148"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L150"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L159"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L161"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L162"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L169"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "lib_movie_cast_crew_arc_mapcrewtoarccards",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts",
+			"source_location": "L176"
+		}
+	]
+}

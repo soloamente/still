@@ -576,6 +576,16 @@ existing cinematic identity rather than replacing it.
 
 **Pass criteria:** no **critical** contrast failures on the **read title → rate / log → open tabs** path; **`prefers-contrast: more`** remains shippable.
 
+### RadialToolkit — Catalogue lobbies (Scope A)
+- [x] RT.A Spec + plan approved *(2026-05-22)*
+- [x] RT.1 Recipe builder + tests (`catalogue-radial-items`)
+- [x] RT.2 `CataloguePosterTile` shell
+- [x] RT.3 Add-to-list from radial (`useAddToListRadial`)
+- [x] RT.4 `PopularMoviesInfinite` + `/home`
+- [x] RT.5 `/watchlist`
+- [x] RT.6 `/diary` (film + TV group poster)
+- [x] RT.7 Build, `graphify update`, `AGENTS.md` *(awaiting human QA **ok**)*
+
 ### Track B — Design system & screen IA *(**B.1–B.7** + **B.5.1–B.5.9** human-verified per scratchpad where shipped; Phase 8 manual QA still open)*
 - [x] B.1 Route audit + written principles (scratchpad + code) *(human verified 2026-05-16)*
 - [x] B.2 Token & elevation ladder (surfaces, gutters, `.movie-themed` harmony) *(human verified 2026-05-16)*
@@ -586,6 +596,22 @@ existing cinematic identity rather than replacing it.
 - [x] B.7 Planner / human sign-off on Track B *(Planner note 2026-05-14 — see Executor; staging “daily return” bar met for shipped scope, follow-ups listed)*
 
 ## Executor's Feedback or Assistance Requests
+
+### 2026-05-22 — App themes (Theater · Lobby Light · Noir) *(Executor)*
+
+**Shipped:** Spec `docs/superpowers/specs/2026-05-22-app-themes-design.md` + plan `docs/superpowers/plans/2026-05-22-app-themes.md`. Registry (`app-themes.ts` + server mirror), CSS `html.theme-*` blocks, `AppThemeShell` + `next-themes` (`still-app-theme`), Settings **Appearance** section, account menu chips, profile pref validation on PATCH, bundled cinema defaults + override flag.
+
+**Fix 2026-05-22 (Theater = Light):** React hydration was resetting `<html class>` to font vars only, dropping `theme-lobby-light` / `.dark`. **`RootHtmlClassSync`** + **`root-html-appearance.ts`** merge fonts + palette; **`ThemeFlashGuardScript`** applies stored palette before paint.
+
+**2026-05-22:** Removed patron-facing **Cinema atmosphere** (Quiet theater / Multiplex booth) — UI, profile prefs, `data-cinema-preset`, preset-specific CSS. Appearance is **color theme only**; legacy keys stripped on profile PATCH.
+
+**Human / Planner:** Settings **Appearance** + avatar menu chips — **Theater / Light / Noir** only. Reply **`ok`** when signed off.
+
+### 2026-05-22 — RadialToolkit catalogue lobbies (Scope A) *(Executor)*
+
+**Shipped:** `CataloguePosterTile`, `buildCatalogueRadialItemSpecs` (+ tests), `useAddToListRadial`; wired into **`PopularMoviesInfinite`** (`catalogueRadialSurface` + `signedIn`) on **`/home`**, **`/watchlist`**, and **`DiaryLobbyGrid`** / **`DiaryTvGroupCell`**. Build + unit tests pass.
+
+**Human / Planner:** RMB-hold on lobby posters on `/home` (Movies/TV), `/diary`, `/watchlist` — confirm menus match surface (watchlist **Remove** destructive; movies **Add to list**). Reply **`ok`** when signed off.
 
 ### 2026-05-20 — Auto Favorites list + profile filter *(Executor)*
 
@@ -673,6 +699,12 @@ existing cinematic identity rather than replacing it.
 **Human / Planner:** TV → **Upcoming** (right) shows first-air grid; cannot combine with Ongoing/Completed; **Popular** + **Completed** uses ended discover. **Human `ok` 2026-05-21** on overlap fix (Returning vs Ended).
 
 **Follow-up (Executor 2026-05-21):** `/tv/discover?status=returning|ended` now forwards to API; lobby persist restores `?run=`; home footnote link works.
+
+### 2026-05-22 — Community watch leaderboards *(Executor)*
+
+**Shipped:** **Film ranks** + **TV ranks** on `/home?browse=community` — five centered community chips; **`?period=week|month|year|all`** (persisted); tier-card podium + list from #4; server **`/api/leaderboard/films|tv`** + per-patron **`…/logs`** (public profiles only, every log in window); **`PatronWatchLedgerDrawer`** (filmography-style poster grid); client refetch with patron IANA **`tz`** after SSR (**`fetchCommunityLeaderboard`**); **`home-leaderboard-interactive.ts`** — subtle hover on **@handle** (underline) and **count** (soft wash + **`DetailMotionButton`** press). **Tests:** `leaderboard-period`, `home-community-feed`, `home-leaderboard-period` — **12 pass**. **`bun run build`** in **`apps/web`** — **exit 0** (also fixed unrelated TS: `normalizeTmdbImagesBundle`, `HomeLobbySearchParams.period`, onboarding profile cast, auth **`Field`** motion prop pick).
+
+**Human / Planner:** `/home?browse=community&sort=film-ranks&period=month` — podium + rows; tap **@** → profile; tap **count** → drawer with posters; switch **Week / Year** and return — period persists; **TV ranks** same flow. Reply **`ok`** when verified.
 
 ### 2026-05-21 — Community lobby on `/home` *(Executor)*
 

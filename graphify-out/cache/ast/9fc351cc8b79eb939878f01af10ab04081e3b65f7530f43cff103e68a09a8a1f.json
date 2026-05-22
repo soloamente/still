@@ -1,0 +1,50 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_app_lists_new_page_tsx",
+			"label": "page.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\new\\page.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "new_page_newlistpage",
+			"label": "NewListPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\new\\page.tsx",
+			"source_location": "L3"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_lists_new_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_list_new_list_form_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\new\\page.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_lists_new_page_tsx",
+			"target": "list_new_list_form_newlistform",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\new\\page.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_lists_new_page_tsx",
+			"target": "new_page_newlistpage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\new\\page.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

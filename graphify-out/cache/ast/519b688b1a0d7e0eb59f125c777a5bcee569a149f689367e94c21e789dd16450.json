@@ -1,0 +1,46 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_notifications_inbox_filter_ts",
+			"label": "notifications-inbox-filter.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\notifications-inbox-filter.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_notifications_inbox_filter_notificationsinboxfilter",
+			"label": "NotificationsInboxFilter",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\notifications-inbox-filter.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_notifications_inbox_filter_notifications_inbox_filter_label",
+			"label": "NOTIFICATIONS_INBOX_FILTER_LABEL",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\notifications-inbox-filter.ts",
+			"source_location": "L4"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_notifications_inbox_filter_ts",
+			"target": "lib_notifications_inbox_filter_notificationsinboxfilter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\notifications-inbox-filter.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_notifications_inbox_filter_ts",
+			"target": "lib_notifications_inbox_filter_notifications_inbox_filter_label",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\notifications-inbox-filter.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

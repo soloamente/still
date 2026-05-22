@@ -1,0 +1,408 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"label": "poster-palette.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_poster_palette_posterpalette",
+			"label": "PosterPalette",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_poster_palette_hextorgb",
+			"label": "hexToRgb()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_poster_palette_rgbtohex",
+			"label": "rgbToHex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_poster_palette_mixhex",
+			"label": "mixHex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L39"
+		},
+		{
+			"id": "lib_poster_palette_relativeluminance",
+			"label": "relativeLuminance()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L45"
+		},
+		{
+			"id": "lib_poster_palette_contrastratio",
+			"label": "contrastRatio()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L58"
+		},
+		{
+			"id": "lib_poster_palette_foregroundfordarkui",
+			"label": "foregroundForDarkUi()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L67"
+		},
+		{
+			"id": "lib_poster_palette_extractposterpalette",
+			"label": "extractPosterPalette()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L80"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "node_buffer",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "node",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "lib_poster_palette_posterpalette",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "lib_poster_palette_hextorgb",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "lib_poster_palette_rgbtohex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "lib_poster_palette_mixhex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "lib_poster_palette_relativeluminance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "lib_poster_palette_contrastratio",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "lib_poster_palette_foregroundfordarkui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_poster_palette_ts",
+			"target": "lib_poster_palette_extractposterpalette",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_poster_palette_mixhex",
+			"target": "lib_poster_palette_hextorgb",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_poster_palette_mixhex",
+			"target": "lib_poster_palette_rgbtohex",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_poster_palette_relativeluminance",
+			"target": "lib_poster_palette_hextorgb",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_poster_palette_contrastratio",
+			"target": "lib_poster_palette_relativeluminance",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_poster_palette_foregroundfordarkui",
+			"target": "lib_poster_palette_contrastratio",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_poster_palette_foregroundfordarkui",
+			"target": "lib_poster_palette_mixhex",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_poster_palette_extractposterpalette",
+			"target": "lib_poster_palette_foregroundfordarkui",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L100",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_poster_palette_hextorgb",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_poster_palette_hextorgb",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_poster_palette_hextorgb",
+			"callee": "parseInt",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_poster_palette_hextorgb",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_poster_palette_hextorgb",
+			"callee": "parseInt",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_poster_palette_hextorgb",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_poster_palette_hextorgb",
+			"callee": "parseInt",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_poster_palette_hextorgb",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_poster_palette_rgbtohex",
+			"callee": "c",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_poster_palette_rgbtohex",
+			"callee": "c",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_poster_palette_rgbtohex",
+			"callee": "c",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_poster_palette_relativeluminance",
+			"callee": "linearize",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_poster_palette_relativeluminance",
+			"callee": "linearize",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_poster_palette_relativeluminance",
+			"callee": "linearize",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_poster_palette_contrastratio",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "lib_poster_palette_contrastratio",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "timeout",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "arrayBuffer",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "getPalette",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "warn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_poster_palette_extractposterpalette",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\poster-palette.ts",
+			"source_location": "L103"
+		}
+	]
+}

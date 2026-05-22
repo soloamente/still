@@ -9,6 +9,7 @@ import IconGear from "@still/ui/icons/gear";
 import { cn } from "@still/ui/lib/utils";
 import { useRouter } from "next/navigation";
 
+import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
@@ -95,25 +96,27 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 						className="size-11 shrink-0 rounded-full text-[11px]"
 					/>
 					<div className="min-w-0 flex-1">
-						<div className="flex flex-wrap items-center gap-2">
+						<div className="flex flex-col gap-0">
+							<div className="flex flex-wrap items-center gap-2 leading-none">
+								<p
+									className="truncate font-semibold text-base text-foreground"
+									title={user.name}
+								>
+									{user.name || "Member"}
+								</p>
+								{user.isPro ? (
+									<span className="rounded-full bg-foreground px-2 py-0.5 font-semibold text-[10px] text-background uppercase tracking-wide">
+										Pro
+									</span>
+								) : null}
+							</div>
 							<p
-								className="truncate font-semibold text-base text-foreground"
-								title={user.name}
+								className="truncate text-muted-foreground text-sm leading-none"
+								title={secondaryLine}
 							>
-								{user.name || "Member"}
+								{secondaryLine}
 							</p>
-							{user.isPro ? (
-								<span className="rounded-full bg-foreground px-2 py-0.5 font-semibold text-[10px] text-background uppercase tracking-wide">
-									Pro
-								</span>
-							) : null}
 						</div>
-						<p
-							className="truncate text-muted-foreground text-sm"
-							title={secondaryLine}
-						>
-							{secondaryLine}
-						</p>
 					</div>
 				</div>
 				<button
@@ -129,6 +132,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 			</div>
 
 			<div className={cn(accountMenuBackgroundGroupClassName, "mt-1")}>
+				<AccountMenuThemePicker className="pb-1" />
 				<DropdownMenuGroup className="p-0">
 					<DropdownMenuItem
 						className={accountMenuPrimaryOnBackgroundClassName}

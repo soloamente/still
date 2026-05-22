@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_agents_skills_transitions_dev_12_error_state_shake_md",
+			"label": "12-error-state-shake.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_error_state_shake",
+			"label": "Error state shake",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_codeblock_1",
+			"label": "code:html (<!-- Apply .t-input-wrap to your wrapper, .t-input to the)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_codeblock_3",
+			"label": "code:css (/* Border-color tween. Define your input's default / focused)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L128"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_codeblock_4",
+			"label": "code:js (// Trigger the error state, replay the shake, and schedule t)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_recomputing_the_keyframe_stops",
+			"label": "Recomputing the keyframe stops",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_codeblock_5",
+			"label": "code:block5 (total                = 2\u00b7A + 2\u00b7B  =  2\u00b780 + 2\u00b760 = 280ms)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L186"
+		},
+		{
+			"id": "transitions_dev_12_error_state_shake_why_three_classes_is_error_on_wrap_input_is_shaking_on_input",
+			"label": "Why three classes (`.is-error` on wrap + input, `.is-shaking` on input)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L197"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_agents_skills_transitions_dev_12_error_state_shake_md",
+			"target": "transitions_dev_12_error_state_shake_error_state_shake",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_error_state_shake",
+			"target": "transitions_dev_12_error_state_shake_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_error_state_shake",
+			"target": "transitions_dev_12_error_state_shake_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_html_usage",
+			"target": "transitions_dev_12_error_state_shake_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_error_state_shake",
+			"target": "transitions_dev_12_error_state_shake_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_tunable_variables",
+			"target": "transitions_dev_12_error_state_shake_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_error_state_shake",
+			"target": "transitions_dev_12_error_state_shake_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_css",
+			"target": "transitions_dev_12_error_state_shake_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_error_state_shake",
+			"target": "transitions_dev_12_error_state_shake_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_javascript_orchestration",
+			"target": "transitions_dev_12_error_state_shake_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_javascript_orchestration",
+			"target": "transitions_dev_12_error_state_shake_recomputing_the_keyframe_stops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_recomputing_the_keyframe_stops",
+			"target": "transitions_dev_12_error_state_shake_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L186",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_12_error_state_shake_javascript_orchestration",
+			"target": "transitions_dev_12_error_state_shake_why_three_classes_is_error_on_wrap_input_is_shaking_on_input",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\12-error-state-shake.md",
+			"source_location": "L197",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

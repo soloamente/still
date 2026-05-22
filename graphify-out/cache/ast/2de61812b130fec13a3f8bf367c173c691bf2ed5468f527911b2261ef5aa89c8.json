@@ -1,0 +1,111 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"label": "use-catalog-tmdb-language.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_catalog_tmdb_language_invalidatecatalogtmdblanguagecache",
+			"label": "invalidateCatalogTmdbLanguageCache()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_use_catalog_tmdb_language_usecatalogtmdblanguage",
+			"label": "useCatalogTmdbLanguage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"target": "lib_profile_preferences_resolvecatalogtmdblanguage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"target": "lib_use_catalog_tmdb_language_invalidatecatalogtmdblanguagecache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"target": "lib_use_catalog_tmdb_language_usecatalogtmdblanguage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_catalog_tmdb_language_usecatalogtmdblanguage",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_use_catalog_tmdb_language_usecatalogtmdblanguage",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-tmdb-language.ts",
+			"source_location": "L21"
+		}
+	]
+}

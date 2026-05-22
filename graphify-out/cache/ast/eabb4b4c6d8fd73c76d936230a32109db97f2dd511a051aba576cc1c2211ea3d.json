@@ -1,0 +1,492 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"label": "home-search-recent-storage.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_search_recent_storage_recentsearchentryv2",
+			"label": "RecentSearchEntryV2",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_home_search_recent_storage_issearchtag",
+			"label": "isSearchTag()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_home_search_recent_storage_isrecententryv2",
+			"label": "isRecentEntryV2()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L50"
+		},
+		{
+			"id": "lib_home_search_recent_storage_refreshrecentsearchtaglabels",
+			"label": "refreshRecentSearchTagLabels()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L63"
+		},
+		{
+			"id": "lib_home_search_recent_storage_migratelegacyrecentstring",
+			"label": "migrateLegacyRecentString()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L77"
+		},
+		{
+			"id": "lib_home_search_recent_storage_canusehomesearchrecentstorage",
+			"label": "canUseHomeSearchRecentStorage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L92"
+		},
+		{
+			"id": "lib_home_search_recent_storage_readhomesearchrecents",
+			"label": "readHomeSearchRecents()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L97"
+		},
+		{
+			"id": "lib_home_search_recent_storage_persisthomesearchrecents",
+			"label": "persistHomeSearchRecents()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L133"
+		},
+		{
+			"id": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"label": "recordHomeSearchRecent()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L148"
+		},
+		{
+			"id": "lib_home_search_recent_storage_restorefromhomesearchrecent",
+			"label": "restoreFromHomeSearchRecent()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L176"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_search_dialog_studios_searchdialogstudio",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_search_query_tags_parserecentoptions",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_search_query_tags_parserecentstructuredquery",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_search_query_tags_searchtag",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_search_query_tags_serializestructuredquery",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_recentsearchentryv2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_issearchtag",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_isrecententryv2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_refreshrecentsearchtaglabels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_migratelegacyrecentstring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_canusehomesearchrecentstorage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L92",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_readhomesearchrecents",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_persisthomesearchrecents",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"target": "lib_home_search_recent_storage_restorefromhomesearchrecent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L176",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_migratelegacyrecentstring",
+			"target": "lib_home_search_recent_storage_refreshrecentsearchtaglabels",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_readhomesearchrecents",
+			"target": "lib_home_search_recent_storage_canusehomesearchrecentstorage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_readhomesearchrecents",
+			"target": "lib_home_search_recent_storage_migratelegacyrecentstring",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_readhomesearchrecents",
+			"target": "lib_home_search_recent_storage_isrecententryv2",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_readhomesearchrecents",
+			"target": "lib_home_search_recent_storage_refreshrecentsearchtaglabels",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_persisthomesearchrecents",
+			"target": "lib_home_search_recent_storage_canusehomesearchrecentstorage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"target": "lib_home_search_recent_storage_refreshrecentsearchtaglabels",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"target": "lib_home_search_recent_storage_readhomesearchrecents",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"target": "lib_home_search_recent_storage_persisthomesearchrecents",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L171",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_search_recent_storage_restorefromhomesearchrecent",
+			"target": "lib_home_search_recent_storage_refreshrecentsearchtaglabels",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L181",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_search_recent_storage_isrecententryv2",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_isrecententryv2",
+			"callee": "every",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_refreshrecentsearchtaglabels",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_migratelegacyrecentstring",
+			"callee": "parseRecentStructuredQuery",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L82"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_migratelegacyrecentstring",
+			"callee": "serializeStructuredQuery",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_readhomesearchrecents",
+			"callee": "getItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_readhomesearchrecents",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_readhomesearchrecents",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_readhomesearchrecents",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_readhomesearchrecents",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_readhomesearchrecents",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L117"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_readhomesearchrecents",
+			"callee": "serializeStructuredQuery",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_readhomesearchrecents",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_persisthomesearchrecents",
+			"callee": "setItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L136"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_persisthomesearchrecents",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L138"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_persisthomesearchrecents",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L138"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"callee": "serializeStructuredQuery",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L167"
+		},
+		{
+			"caller_nid": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts",
+			"source_location": "L169"
+		}
+	]
+}

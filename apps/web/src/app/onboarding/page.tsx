@@ -13,20 +13,21 @@ export default async function OnboardingPage() {
 	if (!session) redirect("/sign-in");
 
 	const api = await serverApi();
-	let profile: {
+	type OnboardingProfile = {
 		handle?: string;
 		displayName?: string;
 		bio?: string | null;
 		favoriteMovieIds?: number[];
 		onboardedAt?: string | null;
-	} | null = null;
+	};
+	let profile: OnboardingProfile | null = null;
 	let profileFetchFailed = false;
 	try {
 		const profileRes = await api.api.profiles.me.get();
 		if (profileRes.error) {
 			profileFetchFailed = true;
 		} else {
-			profile = (profileRes.data as typeof profile) ?? null;
+			profile = (profileRes.data as OnboardingProfile | undefined) ?? null;
 		}
 	} catch {
 		profileFetchFailed = true;

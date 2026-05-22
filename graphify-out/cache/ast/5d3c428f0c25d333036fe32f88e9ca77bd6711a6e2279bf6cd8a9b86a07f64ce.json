@@ -1,0 +1,50 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_auth_src_lib_payments_ts",
+			"label": "payments.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\payments.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_payments_polarclient",
+			"label": "polarClient",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\payments.ts",
+			"source_location": "L4"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_lib_payments_ts",
+			"target": "sdk",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\payments.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_lib_payments_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\payments.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_lib_payments_ts",
+			"target": "lib_payments_polarclient",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\payments.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

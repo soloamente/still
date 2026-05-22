@@ -1,0 +1,86 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_schema_notification_ts",
+			"label": "notification.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "schema_notification_notification",
+			"label": "notification",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "schema_notification_notificationrelations",
+			"label": "notificationRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L32"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_notification_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_notification_ts",
+			"target": "pg_core",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_notification_ts",
+			"target": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_notification_ts",
+			"target": "schema_auth_user",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_notification_ts",
+			"target": "schema_notification_notification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_notification_ts",
+			"target": "schema_notification_notificationrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\notification.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

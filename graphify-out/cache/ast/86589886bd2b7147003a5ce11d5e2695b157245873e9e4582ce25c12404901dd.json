@@ -1,0 +1,495 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_20_auto_favorites_list_design_md",
+			"label": "2026-05-20-auto-favorites-list-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"label": "Auto Favorites List & Profile Favorites Filter",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_user_stories",
+			"label": "User stories",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_data_model",
+			"label": "Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_extend_list",
+			"label": "Extend `list`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_extend_list_item",
+			"label": "Extend `list_item`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_no_new_favorite_table",
+			"label": "No new favorite table",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_sync_behavior",
+			"label": "Sync behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_ensure_system_list",
+			"label": "Ensure system list",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_on_liked_true",
+			"label": "On `liked: true`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_on_liked_false",
+			"label": "On `liked: false`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_idempotency",
+			"label": "Idempotency",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_api_guardrails",
+			"label": "API guardrails",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_profile_filter",
+			"label": "Profile filter",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L110"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_query_param",
+			"label": "Query param",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_chip_ui",
+			"label": "Chip UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_server_client_filter",
+			"label": "Server / client filter",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_empty_states",
+			"label": "Empty states",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_social_favorites_tab",
+			"label": "Social \u201cFavorites\u201d tab",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_web_ui",
+			"label": "Web UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_lists_lobby_detail",
+			"label": "Lists lobby & detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_detail_heart",
+			"label": "Detail heart",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_list_item_picker_community",
+			"label": "List item picker / community",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_out_of_scope_v1",
+			"label": "Out of scope (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L158"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_follow_up_post_v1",
+			"label": "Follow-up (post-v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L173"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_open_questions_none_blocking_defaults_above",
+			"label": "Open questions (none blocking \u2014 defaults above)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L189"
+		},
+		{
+			"id": "specs_2026_05_20_auto_favorites_list_design_references",
+			"label": "References",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L194"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_20_auto_favorites_list_design_md",
+			"target": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_user_stories",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_data_model",
+			"target": "specs_2026_05_20_auto_favorites_list_design_extend_list",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_data_model",
+			"target": "specs_2026_05_20_auto_favorites_list_design_extend_list_item",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_data_model",
+			"target": "specs_2026_05_20_auto_favorites_list_design_no_new_favorite_table",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_sync_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_sync_behavior",
+			"target": "specs_2026_05_20_auto_favorites_list_design_ensure_system_list",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_sync_behavior",
+			"target": "specs_2026_05_20_auto_favorites_list_design_on_liked_true",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_sync_behavior",
+			"target": "specs_2026_05_20_auto_favorites_list_design_on_liked_false",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_sync_behavior",
+			"target": "specs_2026_05_20_auto_favorites_list_design_idempotency",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_sync_behavior",
+			"target": "specs_2026_05_20_auto_favorites_list_design_api_guardrails",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_profile_filter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L110",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_profile_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_query_param",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_profile_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_chip_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_profile_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_server_client_filter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_profile_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_empty_states",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_profile_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_social_favorites_tab",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_web_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_web_ui",
+			"target": "specs_2026_05_20_auto_favorites_list_design_lists_lobby_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_web_ui",
+			"target": "specs_2026_05_20_auto_favorites_list_design_detail_heart",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_web_ui",
+			"target": "specs_2026_05_20_auto_favorites_list_design_list_item_picker_community",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_out_of_scope_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_follow_up_post_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L173",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_open_questions_none_blocking_defaults_above",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L189",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_auto_favorites_list_design_auto_favorites_list_profile_favorites_filter",
+			"target": "specs_2026_05_20_auto_favorites_list_design_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-auto-favorites-list-design.md",
+			"source_location": "L194",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

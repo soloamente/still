@@ -1,0 +1,74 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_app_loading_tsx",
+			"label": "loading.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_loading_app_loading_poster_keys",
+			"label": "APP_LOADING_POSTER_KEYS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx",
+			"source_location": "L4"
+		},
+		{
+			"id": "app_loading_apploading",
+			"label": "AppLoading()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_loading_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_skeleton_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_loading_tsx",
+			"target": "components_skeleton_skeleton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_loading_tsx",
+			"target": "app_loading_app_loading_poster_keys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_loading_tsx",
+			"target": "app_loading_apploading",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_loading_apploading",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx",
+			"source_location": "L31"
+		}
+	]
+}

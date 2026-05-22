@@ -1,0 +1,268 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"label": "profile-filmography-map.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_filmography_map_profileposterurlfrompath",
+			"label": "profilePosterUrlFromPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_profile_filmography_map_patronscorelabel",
+			"label": "patronScoreLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_profile_filmography_map_patronwatchedatiso",
+			"label": "patronWatchedAtIso()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_profile_filmography_map_profilewatchedrowtopersonfilmography",
+			"label": "profileWatchedRowToPersonFilmography()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_profile_filmography_map_profilewatchedrowstopersonfilmography",
+			"label": "profileWatchedRowsToPersonFilmography()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L52"
+		},
+		{
+			"id": "lib_profile_filmography_map_favoritetopersonfilmography",
+			"label": "favoriteToPersonFilmography()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L60"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_profile_filmography_panel_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "profile_profile_filmography_panel_profilefilmographyrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_person_filmography_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "lib_person_filmography_personfilmographyrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "lib_profile_filmography_map_profileposterurlfrompath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "lib_profile_filmography_map_patronscorelabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "lib_profile_filmography_map_patronwatchedatiso",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "lib_profile_filmography_map_profilewatchedrowtopersonfilmography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "lib_profile_filmography_map_profilewatchedrowstopersonfilmography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"target": "lib_profile_filmography_map_favoritetopersonfilmography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_filmography_map_profilewatchedrowtopersonfilmography",
+			"target": "lib_profile_filmography_map_patronscorelabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_filmography_map_profilewatchedrowtopersonfilmography",
+			"target": "lib_profile_filmography_map_profileposterurlfrompath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_filmography_map_profilewatchedrowtopersonfilmography",
+			"target": "lib_profile_filmography_map_patronwatchedatiso",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_filmography_map_favoritetopersonfilmography",
+			"target": "lib_profile_filmography_map_profileposterurlfrompath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L69",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_filmography_map_profileposterurlfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_patronscorelabel",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_patronwatchedatiso",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_patronwatchedatiso",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_patronwatchedatiso",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_patronwatchedatiso",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_patronwatchedatiso",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_patronwatchedatiso",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_profilewatchedrowtopersonfilmography",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_profilewatchedrowstopersonfilmography",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_map_profilewatchedrowstopersonfilmography",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-map.ts",
+			"source_location": "L55"
+		}
+	]
+}

@@ -1,0 +1,146 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"label": "auth.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "schema_auth_user",
+			"label": "user",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "schema_auth_session",
+			"label": "session",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "schema_auth_account",
+			"label": "account",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "schema_auth_verification",
+			"label": "verification",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L60"
+		},
+		{
+			"id": "schema_auth_userrelations",
+			"label": "userRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L76"
+		},
+		{
+			"id": "schema_auth_sessionrelations",
+			"label": "sessionRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L81"
+		},
+		{
+			"id": "schema_auth_accountrelations",
+			"label": "accountRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L88"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "pg_core",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "schema_auth_user",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "schema_auth_session",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "schema_auth_account",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "schema_auth_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "schema_auth_userrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "schema_auth_sessionrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"target": "schema_auth_accountrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts",
+			"source_location": "L88",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

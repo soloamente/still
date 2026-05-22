@@ -1,0 +1,868 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"label": "settings-form.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_settings_form_meprofile",
+			"label": "MeProfile",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L62"
+		},
+		{
+			"id": "profile_settings_form_settingsform",
+			"label": "SettingsForm()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L73"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_input_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "components_input_input",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_textarea_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "components_textarea_textarea",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_cinema_sound_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "cinema_sound_provider_usecinematicaudio",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_account_bar_actions_context_useregistermeaccountbaractions",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_content_reveal_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_account_content_reveal_meaccountcontentreveal",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_account_content_reveal_meaccountrevealitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_account_session_context_clearstoredsettingsdraft",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_account_session_context_readstoredsettingsdraft",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_account_session_context_usemeaccountsession",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_account_session_context_writestoredsettingsdraft",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_appearance_settings_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_appearance_settings_meappearancesettings",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_watch_region_select_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_catalog_watch_region_select_mecatalogwatchregionselect",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_form_field_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_form_field_meformfield",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_form_field_mefieldcontrolclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_preference_toggle_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_preference_toggle_mepreferencetoggle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_profile_visibility_toggle_meprofilevisibilitytoggle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_settings_layout_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_settings_layout_mesettingspanel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_me_settings_layout_mesettingssection",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_app_themes_appthemeclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_app_themes_cinemapresetid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_profile_pref_app_theme",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_profile_pref_catalog_monochrome_peers_on_hover",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_profile_pref_catalog_tmdb_language",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_profile_pref_catalog_tmdb_watch_region",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_profile_pref_cinema_preset",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_profile_pref_cinema_preset_user_override",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_readappthemepref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_readcatalogmonochromepeersonhoverpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_readcatalogtmdblanguagepref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_readcatalogtmdbwatchregionpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_readcinemapresetpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_readcinemapresetuseroverridepref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_profile_preferences_resolvecatalogtmdblanguage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_upload_profile_me_asset_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_use_catalog_tmdb_language_invalidatecatalogtmdblanguagecache",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_search_dialog_genres_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "lib_use_search_dialog_genres_clearsearchdialoggenrecache",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_settings_form_meprofile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_tsx",
+			"target": "profile_settings_form_settingsform",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L73",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useCinematicAudio",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useMeAccountSession",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L82"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L84"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L87"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L115"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L223"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L249"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L254"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useRegisterMeAccountBarActions",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L313"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L314"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L414"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L424"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L433"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L444"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L455"
+		},
+		{
+			"caller_nid": "profile_settings_form_settingsform",
+			"callee": "resolveCatalogTmdbLanguage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx",
+			"source_location": "L489"
+		}
+	]
+}

@@ -1,0 +1,115 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"label": "movie-poster.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "movie_movie_poster_movieposterhovereffect",
+			"label": "MoviePosterHoverEffect",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "movie_movie_poster_movieposter",
+			"label": "MoviePoster()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"target": "movie_movie_poster_movieposterhovereffect",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"target": "movie_movie_poster_movieposter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "movie_movie_poster_movieposter",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "movie_movie_poster_movieposter",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "movie_movie_poster_movieposter",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "movie_movie_poster_movieposter",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx",
+			"source_location": "L157"
+		}
+	]
+}

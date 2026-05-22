@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import type { DiaryLogRow } from "@/components/diary/diary-entry";
 import { DiaryLogRatingLabel } from "@/components/diary/diary-log-rating-label";
 import { TvLogScopeChip } from "@/components/diary/tv-log-scope-chip";
@@ -96,38 +96,52 @@ export function DiaryTvGroupCell({
 							: "transform-[rotateY(0deg)]",
 					)}
 				>
-					{/* Front — poster + scope scrim; tap to flip. */}
-					<button
-						type="button"
-						data-diary-poster-trigger
-						aria-expanded={expanded}
-						aria-label={`${title}, ${primaryLabel}${entryCountLine ? `, ${entryCountLine}` : ""}. Show diary entries.`}
-						className={cn(
-							"backface-hidden absolute inset-0 cursor-pointer select-none border-0 bg-transparent p-0 text-left",
-							expanded && "pointer-events-none",
-						)}
-						tabIndex={expanded ? -1 : 0}
-						onClick={onToggleExpand}
+					{/* Front — poster + scope scrim; tap to flip; RMB opens radial on the shell. */}
+					<CataloguePosterTile
+						className="backface-hidden absolute inset-0 size-full"
+						diaryTvLogs={logs}
+						hoverEffect="elevation"
+						listingKind="tv"
+						posterCaption={primaryLabel}
+						posterCaptionSubline={entryCountLine}
+						posterUrl={tmdbPosterUrl(posterPath)}
+						priority={priority}
+						surface="diary"
+						title={title}
+						tmdbId={tmdbId}
 					>
-						<MoviePoster
-							className="pointer-events-none size-full"
-							frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
-							hoverEffect="elevation"
-							linkable={false}
-							listingKind="tv"
-							movieId={tmdbId}
-							posterCaption={primaryLabel}
-							posterCaptionSubline={entryCountLine}
-							posterUrl={tmdbPosterUrl(posterPath)}
-							priority={priority}
-							showTitle={false}
-							title={title}
-						/>
-						<ChevronDown
-							className="pointer-events-none absolute top-3 right-4 z-20 size-4 text-white/80"
-							aria-hidden
-						/>
-					</button>
+						<button
+							type="button"
+							data-diary-poster-trigger
+							aria-expanded={expanded}
+							aria-label={`${title}, ${primaryLabel}${entryCountLine ? `, ${entryCountLine}` : ""}. Show diary entries.`}
+							className={cn(
+								"size-full cursor-pointer select-none border-0 bg-transparent p-0 text-left",
+								expanded && "pointer-events-none",
+							)}
+							tabIndex={expanded ? -1 : 0}
+							onClick={onToggleExpand}
+						>
+							<MoviePoster
+								className="pointer-events-none size-full"
+								frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
+								hoverEffect="elevation"
+								linkable={false}
+								listingKind="tv"
+								movieId={tmdbId}
+								posterCaption={primaryLabel}
+								posterCaptionSubline={entryCountLine}
+								posterUrl={tmdbPosterUrl(posterPath)}
+								priority={priority}
+								showTitle={false}
+								title={title}
+							/>
+							<ChevronDown
+								className="pointer-events-none absolute top-3 right-4 z-20 size-4 text-white/80"
+								aria-hidden
+							/>
+						</button>
+					</CataloguePosterTile>
 
 					{/* Back — tap header / empty space to flip; log rows + footer stay interactive. */}
 					<div

@@ -1,0 +1,148 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"label": "landing-preview.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "marketing_landing_preview_landingposter",
+			"label": "LandingPoster",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "marketing_landing_preview_landingpreview",
+			"label": "LandingPreview()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L21"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_catalogue_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_grid_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_frame_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_poster_marquee_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "marketing_landing_poster_marquee_landingpostermarquee",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "marketing_landing_preview_landingposter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_preview_tsx",
+			"target": "marketing_landing_preview_landingpreview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "marketing_landing_preview_landingpreview",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "marketing_landing_preview_landingpreview",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "marketing_landing_preview_landingpreview",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx",
+			"source_location": "L55"
+		}
+	]
+}

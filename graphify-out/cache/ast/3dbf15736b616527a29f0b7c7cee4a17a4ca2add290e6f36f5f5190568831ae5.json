@@ -1,0 +1,110 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_rate_limit_ts",
+			"label": "rate-limit.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_rate_limit_bucket",
+			"label": "Bucket",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_rate_limit_buckets",
+			"label": "buckets",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_rate_limit_hit",
+			"label": "hit()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_rate_limit_now",
+			"label": "now",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L31"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_rate_limit_ts",
+			"target": "lib_rate_limit_bucket",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_rate_limit_ts",
+			"target": "lib_rate_limit_buckets",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_rate_limit_ts",
+			"target": "lib_rate_limit_hit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_rate_limit_ts",
+			"target": "lib_rate_limit_now",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_rate_limit_hit",
+			"target": "lib_rate_limit_now",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_rate_limit_hit",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_rate_limit_hit",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_rate_limit_hit",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\rate-limit.ts",
+			"source_location": "L26"
+		}
+	]
+}

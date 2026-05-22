@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_agents_skills_transitions_dev_05_menu_dropdown_md",
+			"label": "05-menu-dropdown.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_menu_dropdown",
+			"label": "Menu dropdown",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_codeblock_1",
+			"label": "code:html (<div class=\"t-dropdown\" data-origin=\"top-center\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_codeblock_3",
+			"label": "code:css (.t-dropdown {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "transitions_dev_05_menu_dropdown_codeblock_4",
+			"label": "code:js (// Toggle .is-open / .is-closing with a setTimeout cleanup s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L87"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_agents_skills_transitions_dev_05_menu_dropdown_md",
+			"target": "transitions_dev_05_menu_dropdown_menu_dropdown",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_menu_dropdown",
+			"target": "transitions_dev_05_menu_dropdown_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_menu_dropdown",
+			"target": "transitions_dev_05_menu_dropdown_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_html_usage",
+			"target": "transitions_dev_05_menu_dropdown_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_menu_dropdown",
+			"target": "transitions_dev_05_menu_dropdown_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_tunable_variables",
+			"target": "transitions_dev_05_menu_dropdown_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_menu_dropdown",
+			"target": "transitions_dev_05_menu_dropdown_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_css",
+			"target": "transitions_dev_05_menu_dropdown_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_menu_dropdown",
+			"target": "transitions_dev_05_menu_dropdown_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_05_menu_dropdown_javascript_orchestration",
+			"target": "transitions_dev_05_menu_dropdown_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\05-menu-dropdown.md",
+			"source_location": "L87",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

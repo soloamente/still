@@ -1,0 +1,288 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"label": "page.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "achievements_page_metadata",
+			"label": "metadata",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "achievements_page_userachievementmerow",
+			"label": "UserAchievementMeRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "achievements_page_achievementspage",
+			"label": "AchievementsPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "next",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "gamification_achievements_badges_panel_badgecatalogrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "gamification_achievements_badges_panel_earnedbadgerow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_goals_panel_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "gamification_achievements_goals_panel_achievementcatalogrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_lobby_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "gamification_achievements_lobby_achievementslobby",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_achievements_lobby_tab_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "lib_achievements_lobby_tab_parseachievementslobbytab",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_server_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "lib_server_api_serverapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "achievements_page_metadata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "achievements_page_userachievementmerow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_achievements_page_tsx",
+			"target": "achievements_page_achievementspage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "parseAchievementsLobbyTab",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "serverApi",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "achievements_page_achievementspage",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\achievements\\page.tsx",
+			"source_location": "L59"
+		}
+	]
+}

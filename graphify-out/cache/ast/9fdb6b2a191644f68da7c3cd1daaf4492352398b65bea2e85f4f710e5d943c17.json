@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"label": "context-menu.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_context_menu_contextmenuroot",
+			"label": "ContextMenuRoot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "components_context_menu_usecontextmenuanchor",
+			"label": "useContextMenuAnchor()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L63"
+		},
+		{
+			"id": "components_context_menu_contextmenuitem",
+			"label": "ContextMenuItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L82"
+		},
+		{
+			"id": "components_context_menu_contextmenuseparator",
+			"label": "ContextMenuSeparator()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L105"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"target": "menu",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"target": "components_context_menu_contextmenuroot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"target": "components_context_menu_usecontextmenuanchor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"target": "components_context_menu_contextmenuitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_context_menu_tsx",
+			"target": "components_context_menu_contextmenuseparator",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L105",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "components_context_menu_contextmenuroot",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "components_context_menu_contextmenuroot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "components_context_menu_usecontextmenuanchor",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "components_context_menu_usecontextmenuanchor",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "components_context_menu_usecontextmenuanchor",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "components_context_menu_usecontextmenuanchor",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "components_context_menu_contextmenuitem",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "components_context_menu_contextmenuseparator",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\context-menu.tsx",
+			"source_location": "L112"
+		}
+	]
+}

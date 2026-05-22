@@ -1,0 +1,162 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_tv_cache_ts",
+			"label": "tv-cache.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_cache_ensuretvcached",
+			"label": "ensureTvCached()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_cache_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_cache_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_cache_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_cache_ts",
+			"target": "lib_tmdb_tmdbapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_cache_ts",
+			"target": "lib_tv_cache_ensuretvcached",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "tvDetail",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "onConflictDoNothing",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_tv_cache_ensuretvcached",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts",
+			"source_location": "L42"
+		}
+	]
+}

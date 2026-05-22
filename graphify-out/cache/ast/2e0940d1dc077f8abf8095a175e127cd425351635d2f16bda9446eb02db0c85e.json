@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_share_in_tsx",
+			"label": "share-in.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\share-in.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_share_in_iconsharein",
+			"label": "IconShareIn()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\share-in.tsx",
+			"source_location": "L4"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_share_in_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\share-in.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_share_in_tsx",
+			"target": "icons_share_in_iconsharein",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\share-in.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

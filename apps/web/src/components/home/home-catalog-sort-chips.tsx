@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -12,6 +12,7 @@ import {
 	HOME_COMMUNITY_FEEDS,
 	parseHomeCommunityFeed,
 } from "@/lib/home-community-feed";
+import { parseHomeCommunityPeriod } from "@/lib/home-leaderboard-period";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import { parseHomeVenue } from "@/lib/home-venue";
 
@@ -27,6 +28,7 @@ export function HomeCatalogSortChips() {
 	/** TV lifecycle filter — preserved when switching Popular / Latest / Upcoming. */
 	const catalogRun = parseHomeCatalogRun(searchParams.get("run"), browse);
 	const communityFeed = parseHomeCommunityFeed(searchParams.get("sort"));
+	const communityPeriod = parseHomeCommunityPeriod(searchParams.get("period"));
 	const effectiveVenue = parseHomeVenue(searchParams.get("venue"), catalogSort);
 	const reduceMotion = useReducedMotion();
 
@@ -62,7 +64,7 @@ export function HomeCatalogSortChips() {
 					{sortToolbarDescription}
 				</p>
 				<div
-					className="flex max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+					className="flex w-fit max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
 					role="toolbar"
 					aria-label="Community feeds"
 					aria-describedby={sortToolbarDescId}
@@ -70,7 +72,11 @@ export function HomeCatalogSortChips() {
 					{HOME_COMMUNITY_FEEDS.map(({ id, label, hint }) => (
 						<Link
 							key={id}
-							href={buildHomeLobbyHref({ browse: "community", sort: id })}
+							href={buildHomeLobbyHref({
+								browse: "community",
+								sort: id,
+								period: communityPeriod,
+							})}
 							scroll={false}
 							aria-current={communityFeed === id ? "page" : undefined}
 							className={chipLink(communityFeed === id, true)}

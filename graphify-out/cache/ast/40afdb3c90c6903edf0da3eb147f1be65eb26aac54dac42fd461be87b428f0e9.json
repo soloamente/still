@@ -1,0 +1,98 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"label": "detail-drawer-scroll-body.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "movie_detail_drawer_scroll_body_detaildrawerscrollbody",
+			"label": "DetailDrawerScrollBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_vaul_drawer_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"target": "lib_detail_vaul_drawer_movie_detail_drawer_scroll_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"target": "lib_detail_vaul_drawer_movie_detail_nested_drawer_scroll_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"target": "movie_detail_drawer_scroll_body_detaildrawerscrollbody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "movie_detail_drawer_scroll_body_detaildrawerscrollbody",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx",
+			"source_location": "L28"
+		}
+	]
+}

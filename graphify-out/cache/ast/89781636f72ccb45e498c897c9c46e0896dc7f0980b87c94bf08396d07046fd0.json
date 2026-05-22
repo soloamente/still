@@ -1,0 +1,170 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"label": "profile-lobby-chrome.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_profile_lobby_chrome_profilelobbychrome",
+			"label": "ProfileLobbyChrome()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L22"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "app_lobby_suspense_fallbacks_lobbycentertabfallback",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "app_lobby_suspense_fallbacks_lobbyorderchipfallback",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "profile_profile_catalog_venue_chips_profilecatalogvenuechips",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_profile_tab_toolbar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "profile_profile_tab_toolbar_profilesocialtabid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "profile_profile_tab_toolbar_profiletabid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "profile_profile_tab_toolbar_profiletabtoolbar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "lib_profile_lobby_order_profileledgertabid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_chrome_tsx",
+			"target": "profile_profile_lobby_chrome_profilelobbychrome",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

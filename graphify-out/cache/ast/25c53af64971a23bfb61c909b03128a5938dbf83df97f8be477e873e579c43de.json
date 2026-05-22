@@ -1,0 +1,124 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"label": "theme-toggle.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_theme_toggle_styledionicons",
+			"label": "StyledIonicons",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "components_theme_toggle_themetoggle",
+			"label": "ThemeToggle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "vector_icons",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "expo_haptics",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "react_native_reanimated",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "uniwind",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "contexts_app_theme_context_useapptheme",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "components_theme_toggle_styledionicons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_theme_toggle_tsx",
+			"target": "components_theme_toggle_themetoggle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "components_theme_toggle_themetoggle",
+			"callee": "useAppTheme",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\theme-toggle.tsx",
+			"source_location": "L12"
+		}
+	]
+}

@@ -1,0 +1,183 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"label": "me-profile-visibility-toggle.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_me_profile_visibility_toggle_profile_visibility_tooltips",
+			"label": "PROFILE_VISIBILITY_TOOLTIPS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L12"
+		},
+		{
+			"id": "profile_me_profile_visibility_toggle_segmentchip",
+			"label": "segmentChip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "profile_me_profile_visibility_toggle_visibilitysegment",
+			"label": "VisibilitySegment()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L31"
+		},
+		{
+			"id": "profile_me_profile_visibility_toggle_meprofilevisibilitytoggle",
+			"label": "MeProfileVisibilityToggle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L79"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_tooltip_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "components_tooltip_tooltip",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "components_tooltip_tooltipcontent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "components_tooltip_tooltipprovider",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "components_tooltip_tooltiptrigger",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "profile_me_profile_visibility_toggle_profile_visibility_tooltips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "profile_me_profile_visibility_toggle_segmentchip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "profile_me_profile_visibility_toggle_visibilitysegment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"target": "profile_me_profile_visibility_toggle_meprofilevisibilitytoggle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "profile_me_profile_visibility_toggle_visibilitysegment",
+			"target": "profile_me_profile_visibility_toggle_segmentchip",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L56",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_me_profile_visibility_toggle_segmentchip",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "profile_me_profile_visibility_toggle_meprofilevisibilitytoggle",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-visibility-toggle.tsx",
+			"source_location": "L86"
+		}
+	]
+}

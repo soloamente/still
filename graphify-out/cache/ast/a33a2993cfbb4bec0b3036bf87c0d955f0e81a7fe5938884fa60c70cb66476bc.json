@@ -1,0 +1,31 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_extension_readme_md",
+			"label": "README.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\README.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "extension_readme_wxt_react",
+			"label": "WXT + React",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\README.md",
+			"source_location": "L1"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_extension_readme_md",
+			"target": "extension_readme_wxt_react",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\README.md",
+			"source_location": "L1",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

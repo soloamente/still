@@ -1,0 +1,245 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"label": "skeleton-shimmer.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_skeleton_shimmer_shimmergradientstyle",
+			"label": "shimmerGradientStyle",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L10"
+		},
+		{
+			"id": "components_skeleton_shimmer_shimmermotion",
+			"label": "shimmerMotion",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "components_skeleton_shimmer_shimmertransition",
+			"label": "shimmerTransition()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L20"
+		},
+		{
+			"id": "components_skeleton_shimmer_shimmerboneprops",
+			"label": "ShimmerBoneProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L26"
+		},
+		{
+			"id": "components_skeleton_shimmer_shimmerbone",
+			"label": "ShimmerBone()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L34"
+		},
+		{
+			"id": "components_skeleton_shimmer_shimmerwrapprops",
+			"label": "ShimmerWrapProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L64"
+		},
+		{
+			"id": "components_skeleton_shimmer_shimmerwrap",
+			"label": "ShimmerWrap()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L75"
+		},
+		{
+			"id": "components_skeleton_shimmer_skeletoncardwipetransition",
+			"label": "skeletonCardWipeTransition",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L109"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "components_skeleton_shimmer_shimmergradientstyle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "components_skeleton_shimmer_shimmermotion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "components_skeleton_shimmer_shimmertransition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "components_skeleton_shimmer_shimmerboneprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "components_skeleton_shimmer_shimmerbone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "components_skeleton_shimmer_shimmerwrapprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "components_skeleton_shimmer_shimmerwrap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"target": "components_skeleton_shimmer_skeletoncardwipetransition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "components_skeleton_shimmer_shimmerbone",
+			"target": "components_skeleton_shimmer_shimmertransition",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "components_skeleton_shimmer_shimmerwrap",
+			"target": "components_skeleton_shimmer_shimmertransition",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L100",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "components_skeleton_shimmer_shimmerbone",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "components_skeleton_shimmer_shimmerbone",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "components_skeleton_shimmer_shimmerbone",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "components_skeleton_shimmer_shimmerwrap",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "components_skeleton_shimmer_shimmerwrap",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "components_skeleton_shimmer_shimmerwrap",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx",
+			"source_location": "L97"
+		}
+	]
+}

@@ -1,0 +1,101 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"label": "home-leaderboard-interactive.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_leaderboard_interactive_leaderboardhandlelinkclassname",
+			"label": "leaderboardHandleLinkClassName()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_home_leaderboard_interactive_leaderboardcountbuttonclassname",
+			"label": "leaderboardCountButtonClassName()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"target": "lib_detail_action_motion_detail_canvas_on_card_hover_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"target": "lib_home_leaderboard_interactive_leaderboardhandlelinkclassname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"target": "lib_home_leaderboard_interactive_leaderboardcountbuttonclassname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_leaderboard_interactive_leaderboardhandlelinkclassname",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_home_leaderboard_interactive_leaderboardcountbuttonclassname",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts",
+			"source_location": "L17"
+		}
+	]
+}

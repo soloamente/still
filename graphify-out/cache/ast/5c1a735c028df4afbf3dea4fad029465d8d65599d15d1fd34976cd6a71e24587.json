@@ -1,0 +1,114 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"label": "lobby-suspense-fallbacks.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_lobby_suspense_fallbacks_lobbystickychromefallback",
+			"label": "LobbyStickyChromeFallback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "app_lobby_suspense_fallbacks_lobbycatalogchipfallback",
+			"label": "LobbyCatalogChipFallback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "app_lobby_suspense_fallbacks_lobbyvenuechipfallback",
+			"label": "LobbyVenueChipFallback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L23"
+		},
+		{
+			"id": "app_lobby_suspense_fallbacks_lobbycentertabfallback",
+			"label": "LobbyCenterTabFallback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L33"
+		},
+		{
+			"id": "app_lobby_suspense_fallbacks_lobbyorderchipfallback",
+			"label": "LobbyOrderChipFallback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L42"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"target": "components_skeleton_shimmer_shimmerbone",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"target": "app_lobby_suspense_fallbacks_lobbystickychromefallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"target": "app_lobby_suspense_fallbacks_lobbycatalogchipfallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"target": "app_lobby_suspense_fallbacks_lobbyvenuechipfallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"target": "app_lobby_suspense_fallbacks_lobbycentertabfallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_lobby_suspense_fallbacks_tsx",
+			"target": "app_lobby_suspense_fallbacks_lobbyorderchipfallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

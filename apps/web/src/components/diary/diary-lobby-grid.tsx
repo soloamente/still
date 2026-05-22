@@ -11,8 +11,8 @@ import {
 	useState,
 } from "react";
 
+import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { DiaryTvGroupCell } from "@/components/diary/diary-tv-group-cell";
-import { MoviePoster } from "@/components/movie/movie-poster";
 import type { DiaryLobbyGridItem } from "@/lib/diary-lobby-grouping";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -43,10 +43,12 @@ export function DiaryLobbyGrid({
 	items,
 	waveKey,
 	monochromePeersOnHover,
+	signedIn = false,
 }: {
 	items: DiaryLobbyGridItem[];
 	waveKey: string;
 	monochromePeersOnHover: boolean;
+	signedIn?: boolean;
 }) {
 	const gridRef = useRef<HTMLDivElement>(null);
 	const [expandedKey, setExpandedKey] = useState<string | null>(null);
@@ -93,6 +95,7 @@ export function DiaryLobbyGrid({
 			const cell = renderCell(item, index, {
 				expandedKey,
 				onToggleExpand: handleToggleExpand,
+				signedIn,
 			});
 			return (
 				<motion.div
@@ -114,7 +117,7 @@ export function DiaryLobbyGrid({
 				</motion.div>
 			);
 		});
-	}, [motionCells, waveKey, items, expandedKey, handleToggleExpand]);
+	}, [motionCells, waveKey, items, expandedKey, handleToggleExpand, signedIn]);
 
 	return (
 		<div
@@ -132,6 +135,7 @@ export function DiaryLobbyGrid({
 						{renderCell(item, index, {
 							expandedKey,
 							onToggleExpand: handleToggleExpand,
+							signedIn,
 						})}
 					</Fragment>
 				))
@@ -146,6 +150,7 @@ function renderCell(
 	ctx: {
 		expandedKey: string | null;
 		onToggleExpand: (key: string) => void;
+		signedIn: boolean;
 	},
 ) {
 	if (item.kind === "tvGroup") {
@@ -165,18 +170,21 @@ function renderCell(
 	const listing = item.row.movie ?? item.row.tv;
 	if (!listing) return null;
 
+	const listingKind = item.row.tv != null ? "tv" : "movie";
+
 	return (
 		<div className="min-w-0">
-			<MoviePoster
+			<CataloguePosterTile
 				className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
+				diaryRow={item.row}
 				frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
 				hoverEffect="elevation"
-				listingKind={item.row.tv != null ? "tv" : "movie"}
-				movieId={listing.tmdbId}
+				listingKind={listingKind}
 				posterUrl={tmdbPosterUrl(listing.posterPath)}
 				priority={index < 6}
-				showTitle={false}
+				surface="diary"
 				title={listing.title}
+				tmdbId={listing.tmdbId}
 			/>
 		</div>
 	);

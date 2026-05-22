@@ -1,0 +1,246 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"label": "still-toast.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_still_toast_stilltoastchipvariants",
+			"label": "stillToastChipVariants",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "components_still_toast_stilltoastchipprops",
+			"label": "StillToastChipProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L30"
+		},
+		{
+			"id": "components_still_toast_stilltoastchip",
+			"label": "StillToastChip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L34"
+		},
+		{
+			"id": "components_still_toast_stilltoastaddedcopyprops",
+			"label": "StillToastAddedCopyProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L47"
+		},
+		{
+			"id": "components_still_toast_stilltoastaddedcopy",
+			"label": "StillToastAddedCopy()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L58"
+		},
+		{
+			"id": "components_still_toast_stilltoastalreadyincopyprops",
+			"label": "StillToastAlreadyInCopyProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L80"
+		},
+		{
+			"id": "components_still_toast_stilltoastalreadyincopy",
+			"label": "StillToastAlreadyInCopy()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L86"
+		},
+		{
+			"id": "components_still_toast_narrativetoastoptions",
+			"label": "narrativeToastOptions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L102"
+		},
+		{
+			"id": "components_still_toast_stilltoast",
+			"label": "stillToast",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L121"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "class_variance_authority",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_sonner_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_sonner_stilltoastleadingicons",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_stilltoastchipvariants",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_stilltoastchipprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_stilltoastchip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_stilltoastaddedcopyprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_stilltoastaddedcopy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_stilltoastalreadyincopyprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_stilltoastalreadyincopy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_narrativetoastoptions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_still_toast_tsx",
+			"target": "components_still_toast_stilltoast",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "components_still_toast_stilltoastchip",
+			"target": "components_still_toast_stilltoastchipvariants",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L41",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "components_still_toast_stilltoastchip",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\still-toast.tsx",
+			"source_location": "L41"
+		}
+	]
+}

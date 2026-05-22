@@ -1,8 +1,11 @@
+import type { HomeCatalogSort } from "@/lib/home-catalog-sort";
+import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import type { HomeVenue } from "@/lib/home-venue";
+import { defaultHomeVenueForSort } from "@/lib/home-venue";
 
 /**
- * Canonical query builder for `/movies/discover` — keeps chip hrefs and the
- * infinite-scroll fetcher aligned on the same sort + genre vocabulary.
+ * Canonical query builder for movie discover slices — now targets `/home?browse=movies`
+ * instead of the retired `/movies/discover` route.
  */
 export const DISCOVER_SORT_DEFAULT = "popularity.desc";
 
@@ -44,54 +47,85 @@ export function normalizeDiscoverSort(
 	) as DiscoverSortValue;
 }
 
-export function discoverCatalogUrl(parts: {
+function discoverSortToLobbySort(
+	raw: string | null | undefined,
+): HomeCatalogSort {
+	const s = raw?.trim() ?? "";
+	if (s === "primary_release_date.asc") return "upcoming";
+	if (s === "primary_release_date.desc") return "latest";
+	return "popular";
+}
+
+function venueFromDiscoverParts(parts: {
+	venue?: HomeVenue | null;
+	monetization?: string | null;
+	sort: HomeCatalogSort;
+}): HomeVenue | undefined {
+	if (parts.venue === "theaters" || parts.venue === "streaming") {
+		return parts.venue;
+	}
+	if (normalizeDiscoverMonetization(parts.monetization) === "flatrate") {
+		return "streaming";
+	}
+	return defaultHomeVenueForSort(parts.sort);
+}
+
+/** Maps discover filter parts to the matching `/home` movies lobby URL. */
+export function discoverPartsToHomeHref(parts: {
 	genreId?: number | null;
-	/** TMDb production company id — `?company=` on `/movies/discover`. */
 	companyId?: number | null;
 	sort?: string | null;
-	/** Theatrical vs digital-at-home slice — forwarded to TMDb `with_release_type`. */
 	venue?: HomeVenue | null;
-	/** Subscription / rent / etc. — `?monetization=` (server maps to TMDb + `watch_region`). */
 	monetization?: string | null;
-	/** Optional ISO 3166-1 alpha-2 for `watch_region` when monetization is set. */
 	watchRegion?: string | null;
-	/** Optional ISO 3166-1 alpha-2 — TMDb `region` for theatrical release-date filters. */
 	region?: string | null;
-	/** Optional YYYY-MM-DD — TMDb `primary_release_date.gte` (e.g. future streaming window). */
 	releaseGte?: string | null;
-}) {
-	const params = new URLSearchParams();
-	if (parts.genreId != null && parts.genreId > 0) {
-		params.set("genre", String(parts.genreId));
-	}
-	if (parts.companyId != null && parts.companyId > 0) {
-		params.set("company", String(parts.companyId));
-	}
-	const s = parts.sort?.trim();
-	if (s && s !== DISCOVER_SORT_DEFAULT) {
-		params.set("sort", s);
-	}
-	if (parts.venue === "theaters" || parts.venue === "streaming") {
-		params.set("venue", parts.venue);
-	}
-	const m = normalizeDiscoverMonetization(parts.monetization);
-	if (m) {
-		params.set("monetization", m);
-	}
-	const wr = parts.watchRegion?.trim().toUpperCase();
-	if (wr === "ALL" || wr === "ANY" || wr === "WORLD") {
-		params.set("watch_region", "ALL");
-	} else if (wr && /^[A-Z]{2}$/.test(wr)) {
-		params.set("watch_region", wr);
-	}
-	const reg = parts.region?.trim().toUpperCase();
-	if (reg && /^[A-Z]{2}$/.test(reg)) {
-		params.set("region", reg);
-	}
-	const rg = parts.releaseGte?.trim();
-	if (rg && /^\d{4}-\d{2}-\d{2}$/.test(rg)) {
-		params.set("release_gte", rg);
-	}
-	const q = params.toString();
-	return q ? `/movies/discover?${q}` : "/movies/discover";
+}): string {
+	void parts.genreId;
+	void parts.companyId;
+	void parts.watchRegion;
+	void parts.region;
+	void parts.releaseGte;
+
+	const lobbySort = discoverSortToLobbySort(parts.sort);
+	const venue = venueFromDiscoverParts({
+		venue: parts.venue,
+		monetization: parts.monetization,
+		sort: lobbySort,
+	});
+
+	return buildHomeLobbyHref({
+		browse: "movies",
+		sort: lobbySort,
+		venue,
+	});
+}
+
+/** Legacy name — returns `/home` href (not `/movies/discover`). */
+export function discoverCatalogUrl(
+	parts: Parameters<typeof discoverPartsToHomeHref>[0],
+) {
+	return discoverPartsToHomeHref(parts);
+}
+
+/** Parses retired `/movies/discover?…` query strings for redirects. */
+export function discoverSearchParamsToHomeHref(
+	params: URLSearchParams,
+): string {
+	const venueRaw = params.get("venue")?.trim().toLowerCase();
+	const venue =
+		venueRaw === "theaters" || venueRaw === "streaming"
+			? (venueRaw as HomeVenue)
+			: null;
+
+	return discoverPartsToHomeHref({
+		genreId: Number(params.get("genre")) || null,
+		companyId: Number(params.get("company")) || null,
+		sort: params.get("sort"),
+		venue,
+		monetization: params.get("monetization"),
+		watchRegion: params.get("watch_region"),
+		region: params.get("region"),
+		releaseGte: params.get("release_gte"),
+	});
 }

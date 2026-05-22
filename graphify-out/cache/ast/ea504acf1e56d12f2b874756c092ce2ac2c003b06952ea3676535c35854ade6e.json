@@ -1,0 +1,447 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_20_tv_watching_progress_design_md",
+			"label": "2026-05-20-tv-watching-progress-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"label": "TV Watching Progress & Scoped Diary Logs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_user_stories",
+			"label": "User stories",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_data_model",
+			"label": "Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_tv_watch_new_table",
+			"label": "`tv_watch` (new table)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_episode_progress_episode_mode",
+			"label": "Episode progress (episode mode)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L64"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_extend_log_diary",
+			"label": "Extend `log` (diary)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_notifications",
+			"label": "Notifications",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L91"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_tmdb_cache",
+			"label": "TMDb cache",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_api_surface_sketch",
+			"label": "API surface (sketch)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_ux",
+			"label": "UX",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L116"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_tv_detail_hero",
+			"label": "TV detail hero",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_progress_panel",
+			"label": "Progress panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_quick_log_tv",
+			"label": "Quick Log (TV)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_diary_diary",
+			"label": "Diary (`/diary`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L155"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_home",
+			"label": "Home",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_notifications_165",
+			"label": "Notifications",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L165"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_watchlist_vs_watching",
+			"label": "Watchlist vs Watching",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L171"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_heuristics_progress_mode_default",
+			"label": "Heuristics (progress mode default)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_out_of_scope_v1",
+			"label": "Out of scope (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_risks",
+			"label": "Risks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L199"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_testing_manual",
+			"label": "Testing (manual)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L209"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_implementation_phases_suggested",
+			"label": "Implementation phases (suggested)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L221"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_approval",
+			"label": "Approval",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L235"
+		},
+		{
+			"id": "specs_2026_05_20_tv_watching_progress_design_next_step",
+			"label": "Next step",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L244"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_20_tv_watching_progress_design_md",
+			"target": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_user_stories",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_data_model",
+			"target": "specs_2026_05_20_tv_watching_progress_design_tv_watch_new_table",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_data_model",
+			"target": "specs_2026_05_20_tv_watching_progress_design_episode_progress_episode_mode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_data_model",
+			"target": "specs_2026_05_20_tv_watching_progress_design_extend_log_diary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_data_model",
+			"target": "specs_2026_05_20_tv_watching_progress_design_notifications",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_data_model",
+			"target": "specs_2026_05_20_tv_watching_progress_design_tmdb_cache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_api_surface_sketch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_ux",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_ux",
+			"target": "specs_2026_05_20_tv_watching_progress_design_tv_detail_hero",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_ux",
+			"target": "specs_2026_05_20_tv_watching_progress_design_progress_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_ux",
+			"target": "specs_2026_05_20_tv_watching_progress_design_quick_log_tv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_ux",
+			"target": "specs_2026_05_20_tv_watching_progress_design_diary_diary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L155",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_ux",
+			"target": "specs_2026_05_20_tv_watching_progress_design_home",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_ux",
+			"target": "specs_2026_05_20_tv_watching_progress_design_notifications_165",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L165",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_watchlist_vs_watching",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L171",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_heuristics_progress_mode_default",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_out_of_scope_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_risks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L199",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_testing_manual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L209",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_implementation_phases_suggested",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L221",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_approval",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_tv_watching_progress_design_tv_watching_progress_scoped_diary_logs",
+			"target": "specs_2026_05_20_tv_watching_progress_design_next_step",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-tv-watching-progress-design.md",
+			"source_location": "L244",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

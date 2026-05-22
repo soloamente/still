@@ -1,0 +1,80 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_lib_auth_client_ts",
+			"label": "auth-client.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\lib\\auth-client.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_auth_client_authclient",
+			"label": "authClient",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\lib\\auth-client.ts",
+			"source_location": "L7"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_lib_auth_client_ts",
+			"target": "client",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\lib\\auth-client.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_lib_auth_client_ts",
+			"target": "native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\lib\\auth-client.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_lib_auth_client_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\lib\\auth-client.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_lib_auth_client_ts",
+			"target": "expo_constants",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\lib\\auth-client.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_lib_auth_client_ts",
+			"target": "expo_secure_store",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\lib\\auth-client.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_lib_auth_client_ts",
+			"target": "lib_auth_client_authclient",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\lib\\auth-client.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

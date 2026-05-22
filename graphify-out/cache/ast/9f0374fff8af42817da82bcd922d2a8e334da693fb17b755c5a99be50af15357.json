@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_profile_social_empty_tsx",
+			"label": "profile-social-empty.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-social-empty.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_profile_social_empty_profilesocialempty",
+			"label": "ProfileSocialEmpty()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-social-empty.tsx",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_social_empty_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-social-empty.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_social_empty_tsx",
+			"target": "profile_profile_social_empty_profilesocialempty",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-social-empty.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

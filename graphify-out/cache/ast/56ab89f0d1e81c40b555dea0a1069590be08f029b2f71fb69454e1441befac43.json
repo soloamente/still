@@ -1,0 +1,78 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_extension_entrypoints_popup_app_tsx",
+			"label": "App.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\popup\\App.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "popup_app_app",
+			"label": "App()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\popup\\App.tsx",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_extension_entrypoints_popup_app_tsx",
+			"target": "wxt_svg",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\popup\\App.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_entrypoints_popup_app_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\popup\\App.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_entrypoints_popup_app_tsx",
+			"target": "c_users_utente_documents_still_apps_extension_assets_react_svg",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\popup\\App.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_entrypoints_popup_app_tsx",
+			"target": "c_users_utente_documents_still_apps_extension_entrypoints_popup_app_css",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\popup\\App.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_entrypoints_popup_app_tsx",
+			"target": "popup_app_app",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\popup\\App.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "popup_app_app",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\popup\\App.tsx",
+			"source_location": "L9"
+		}
+	]
+}

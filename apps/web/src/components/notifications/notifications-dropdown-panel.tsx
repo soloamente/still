@@ -20,6 +20,7 @@ import {
 	HEPTAGON_CLIP,
 } from "@/components/gamification/milestone-badge-glyph";
 import { NotificationsInboxFilterChips } from "@/components/notifications/notifications-inbox-filter-chips";
+import { BADGE_ARTWORK_IMAGE_CLASS } from "@/lib/badge-artwork";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { resolveNotificationBadgeIconUrl } from "@/lib/notification-badge-icon";
@@ -53,7 +54,7 @@ const notificationRowClassName = cn(
 );
 
 const panelPillClassName = cn(
-	"shrink-0 rounded-full bg-card px-3 py-1.5 font-medium text-foreground text-sm shadow-sm transition-colors duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none",
+	"shrink-0 rounded-full bg-card px-3 py-1.5 font-medium text-foreground text-sm transition-colors duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none",
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 );
 
@@ -79,7 +80,7 @@ function NotificationMenuScrims({
 			<div
 				aria-hidden
 				className={cn(
-					"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-linear-to-t from-25% from-popover via-popover/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-linear-to-t from-15% from-popover/95 via-popover/25 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
 					showFooterFade ? "opacity-100" : "opacity-0",
 				)}
 			/>
@@ -102,7 +103,7 @@ function NotificationGlyph({ row }: { row: NotificationPreviewRow }) {
 					width={40}
 					height={48}
 					unoptimized
-					className="max-h-full max-w-full object-contain"
+					className={BADGE_ARTWORK_IMAGE_CLASS}
 				/>
 			</span>
 		);
@@ -124,7 +125,7 @@ function NotificationGlyph({ row }: { row: NotificationPreviewRow }) {
 
 	const Icon = iconForKind(row.kind);
 	return (
-		<span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-card text-desert-orange shadow-sm">
+		<span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-card text-desert-orange">
 			<Icon className="size-4 opacity-90" strokeWidth={1.5} aria-hidden />
 		</span>
 	);
@@ -142,7 +143,7 @@ function NotificationRowButton({
 	return (
 		<button
 			type="button"
-			className={cn(notificationRowClassName, unread && "bg-card/70 shadow-sm")}
+			className={cn(notificationRowClassName, unread && "bg-card/70")}
 			onClick={() => onActivate(row)}
 		>
 			<NotificationGlyph row={row} />
@@ -215,7 +216,7 @@ function NotificationScrollList({
 	if (rows.length === 0) {
 		return (
 			<div className="py-8 text-center" role="status">
-				<span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-card text-foreground shadow-sm">
+				<span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-card text-foreground">
 					<IconBell aria-hidden />
 				</span>
 				<p className="mt-3 font-medium text-base text-foreground">
@@ -294,7 +295,7 @@ export function NotificationsDropdownPanel({
 		return (
 			<div className="space-y-3 pt-1">
 				<div className="py-4 text-center">
-					<span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-card text-foreground shadow-sm">
+					<span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-card text-foreground">
 						<IconBell aria-hidden />
 					</span>
 					<p className="mt-3 font-medium text-base text-foreground">
@@ -327,19 +328,7 @@ export function NotificationsDropdownPanel({
 				};
 
 	return (
-		<div className="flex min-h-0 flex-col">
-			<div className="flex items-start justify-between gap-3 pb-1.5">
-				{filter === "unread" && hasUnread ? (
-					<button
-						type="button"
-						className={panelPillClassName}
-						onClick={onMarkAllRead}
-					>
-						Mark all read
-					</button>
-				) : null}
-			</div>
-
+		<div className="flex min-h-0 flex-col gap-2">
 			<NotificationsInboxFilterChips
 				active={filter}
 				onChange={onFilterChange}
@@ -352,6 +341,18 @@ export function NotificationsDropdownPanel({
 				emptyTitle={emptyCopy.title}
 				emptyBody={emptyCopy.body}
 			/>
+
+			{filter === "unread" && hasUnread ? (
+				<div className="flex justify-end pt-0.5">
+					<button
+						type="button"
+						className={panelPillClassName}
+						onClick={onMarkAllRead}
+					>
+						Mark all read
+					</button>
+				</div>
+			) : null}
 		</div>
 	);
 }

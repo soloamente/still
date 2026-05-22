@@ -1,0 +1,38 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_extension_entrypoints_content_ts",
+			"label": "content.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\content.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "entrypoints_content_main",
+			"label": "main()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\content.ts",
+			"source_location": "L3"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_extension_entrypoints_content_ts",
+			"target": "entrypoints_content_main",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\content.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "entrypoints_content_main",
+			"callee": "log",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\content.ts",
+			"source_location": "L4"
+		}
+	]
+}

@@ -1,0 +1,118 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"label": "watchlist-lobby-catalogue.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "watchlist_watchlist_lobby_catalogue_watchlistlobbycatalogue",
+			"label": "WatchlistLobbyCatalogue()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L19"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_popular_movies_infinite_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "movie_popular_movies_infinite_popularmovieseed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "movie_popular_movies_infinite_popularmoviesinfinite",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_catalogue_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_grid_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_frame_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_link_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_lobby_catalogue_tsx",
+			"target": "watchlist_watchlist_lobby_catalogue_watchlistlobbycatalogue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "watchlist_watchlist_lobby_catalogue_watchlistlobbycatalogue",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx",
+			"source_location": "L32"
+		}
+	]
+}

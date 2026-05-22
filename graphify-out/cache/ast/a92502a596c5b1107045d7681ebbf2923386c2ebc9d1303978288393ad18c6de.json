@@ -1,0 +1,198 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"label": "social.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "schema_social_reactionparenttype",
+			"label": "reactionParentType",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "schema_social_reactionkind",
+			"label": "reactionKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "schema_social_postkind",
+			"label": "postKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "schema_social_post",
+			"label": "post",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L44"
+		},
+		{
+			"id": "schema_social_comment",
+			"label": "comment",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L78"
+		},
+		{
+			"id": "schema_social_reaction",
+			"label": "reaction",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L102"
+		},
+		{
+			"id": "schema_social_postrelations",
+			"label": "postRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L121"
+		},
+		{
+			"id": "schema_social_commentrelations",
+			"label": "commentRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L125"
+		},
+		{
+			"id": "schema_social_reactionrelations",
+			"label": "reactionRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L129"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "pg_core",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_auth_user",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_reactionparenttype",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_reactionkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_postkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_post",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_comment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_reaction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_postrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_commentrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_social_ts",
+			"target": "schema_social_reactionrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts",
+			"source_location": "L129",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

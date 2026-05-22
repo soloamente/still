@@ -1,0 +1,74 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_list_detail_sections_ts",
+			"label": "list-detail-sections.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-detail-sections.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_list_detail_sections_list_detail_section",
+			"label": "LIST_DETAIL_SECTION",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-detail-sections.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_list_detail_sections_buildlistdetailsectionnavitems",
+			"label": "buildListDetailSectionNavItems()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-detail-sections.ts",
+			"source_location": "L9"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_detail_sections_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_sections_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-detail-sections.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_detail_sections_ts",
+			"target": "lib_movie_detail_sections_moviedetailsectionnavitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-detail-sections.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_detail_sections_ts",
+			"target": "lib_list_detail_sections_list_detail_section",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-detail-sections.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_detail_sections_ts",
+			"target": "lib_list_detail_sections_buildlistdetailsectionnavitems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-detail-sections.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_list_detail_sections_buildlistdetailsectionnavitems",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-detail-sections.ts",
+			"source_location": "L18"
+		}
+	]
+}

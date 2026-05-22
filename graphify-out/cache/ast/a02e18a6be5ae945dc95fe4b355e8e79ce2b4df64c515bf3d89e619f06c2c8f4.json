@@ -1,0 +1,138 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"label": "milestone-badge-glyph.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "gamification_milestone_badge_glyph_tierheptagonclass",
+			"label": "tierHeptagonClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "gamification_milestone_badge_glyph_milestonebadgeglyph",
+			"label": "MilestoneBadgeGlyph()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L40"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_badge_artwork_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"target": "lib_badge_artwork_isbadgeartworkurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"target": "gamification_milestone_badge_glyph_tierheptagonclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"target": "gamification_milestone_badge_glyph_milestonebadgeglyph",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "gamification_milestone_badge_glyph_milestonebadgeglyph",
+			"target": "gamification_milestone_badge_glyph_tierheptagonclass",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L77",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "gamification_milestone_badge_glyph_milestonebadgeglyph",
+			"callee": "isBadgeArtworkUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "gamification_milestone_badge_glyph_milestonebadgeglyph",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "gamification_milestone_badge_glyph_milestonebadgeglyph",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\milestone-badge-glyph.tsx",
+			"source_location": "L74"
+		}
+	]
+}

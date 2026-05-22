@@ -1,0 +1,131 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"label": "search-tag-pill.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_search_tag_pill_pilllabel",
+			"label": "pillLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "home_search_tag_pill_searchtagpill",
+			"label": "SearchTagPill()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L20"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"target": "lib_search_query_tags_searchtag",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"target": "home_search_tag_pill_pilllabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"target": "home_search_tag_pill_searchtagpill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "home_search_tag_pill_searchtagpill",
+			"target": "home_search_tag_pill_pilllabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_search_tag_pill_searchtagpill",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "home_search_tag_pill_searchtagpill",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx",
+			"source_location": "L32"
+		}
+	]
+}

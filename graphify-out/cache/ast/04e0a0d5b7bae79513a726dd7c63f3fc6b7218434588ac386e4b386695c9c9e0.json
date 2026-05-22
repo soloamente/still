@@ -1,0 +1,127 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"label": "container.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_container_animatedview",
+			"label": "AnimatedView",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L7"
+		},
+		{
+			"id": "components_container_props",
+			"label": "Props",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "components_container_container",
+			"label": "Container()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"target": "heroui_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"target": "react_native_reanimated",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"target": "react_native_safe_area_context",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"target": "components_container_animatedview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"target": "components_container_props",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"target": "components_container_container",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "components_container_container",
+			"callee": "useSafeAreaInsets",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "components_container_container",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\components\\container.tsx",
+			"source_location": "L26"
+		}
+	]
+}

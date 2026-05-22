@@ -1,0 +1,69 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_upload_list_cover_ts",
+			"label": "upload-list-cover.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-list-cover.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_upload_list_cover_uploadlistcover",
+			"label": "uploadListCover()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-list-cover.ts",
+			"source_location": "L4"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_upload_list_cover_ts",
+			"target": "web",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-list-cover.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_upload_list_cover_ts",
+			"target": "lib_upload_list_cover_uploadlistcover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-list-cover.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_upload_list_cover_uploadlistcover",
+			"callee": "append",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-list-cover.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "lib_upload_list_cover_uploadlistcover",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-list-cover.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_upload_list_cover_uploadlistcover",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-list-cover.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_upload_list_cover_uploadlistcover",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-list-cover.ts",
+			"source_location": "L38"
+		}
+	]
+}

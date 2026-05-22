@@ -1,0 +1,30 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_tv_detail_sections_ts",
+			"label": "tv-detail-sections.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-detail-sections.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_detail_sections_tv_detail_section",
+			"label": "TV_DETAIL_SECTION",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-detail-sections.ts",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_detail_sections_ts",
+			"target": "lib_tv_detail_sections_tv_detail_section",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-detail-sections.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

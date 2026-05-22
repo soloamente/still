@@ -1,0 +1,39 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_tsconfig_json",
+			"label": "tsconfig.json",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\tsconfig.json",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_tsconfig_extends",
+			"label": "extends",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\tsconfig.json",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_tsconfig_json",
+			"target": "still_tsconfig_extends",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\tsconfig.json",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_tsconfig_json",
+			"target": "ref_still_config_tsconfig_base_json",
+			"relation": "extends",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\tsconfig.json",
+			"source_location": "L2",
+			"weight": 1.0,
+			"context": "import"
+		}
+	]
+}

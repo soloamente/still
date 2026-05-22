@@ -24,6 +24,9 @@ import { postNotificationRead } from "@/lib/still-api-fetch";
 
 const INBOX_FETCH_LIMIT = 80;
 
+/** Matches {@link HOME_STICKY_HEADER_ICON_CLASS} in `home-sticky-chrome.tsx`. */
+const HEADER_ICON_CLASS = "size-5 shrink-0";
+
 /**
  * Sticky-header notifications — scrollable inbox on elevated `bg-popover` surface.
  */
@@ -151,16 +154,22 @@ export function HomeNotificationsMenu({
 					>
 						<span className="relative z-10 text-foreground">
 							{hasUnread ? (
-								<IconBellFilled aria-hidden />
+								<IconBellFilled aria-hidden className={HEADER_ICON_CLASS} />
 							) : (
 								<>
 									<IconBell
 										aria-hidden
-										className="group-data-popup-open:hidden"
+										className={cn(
+											HEADER_ICON_CLASS,
+											"group-data-popup-open:hidden",
+										)}
 									/>
 									<IconBellFilled
 										aria-hidden
-										className="hidden group-data-popup-open:block"
+										className={cn(
+											HEADER_ICON_CLASS,
+											"hidden group-data-popup-open:block",
+										)}
 									/>
 								</>
 							)}
@@ -179,7 +188,7 @@ export function HomeNotificationsMenu({
 				sideOffset={8}
 				className={cn(
 					accountMenuContentClassName,
-					"max-h-[min(72vh,34rem)] w-[min(100vw-2rem,22rem)]! min-w-[300px] max-w-[380px] rounded-[2.5rem]!",
+					"max-h-[min(72vh,34rem)] w-[min(100vw-2rem,22rem)]! min-w-[300px] max-w-[380px] rounded-[2.5rem]! pt-4 pb-0",
 				)}
 			>
 				<NotificationsDropdownPanel

@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_tiff_festival_tsx",
+			"label": "tiff-festival.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\tiff-festival.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_tiff_festival_icontifffestival",
+			"label": "IconTiffFestival()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\tiff-festival.tsx",
+			"source_location": "L21"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_tiff_festival_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\tiff-festival.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_tiff_festival_tsx",
+			"target": "icons_tiff_festival_icontifffestival",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\tiff-festival.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

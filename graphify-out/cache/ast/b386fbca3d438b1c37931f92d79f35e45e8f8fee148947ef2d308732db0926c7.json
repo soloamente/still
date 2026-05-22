@@ -1,0 +1,198 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"label": "movie-detail-streaming.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "movie_movie_detail_streaming_tmdb_logo",
+			"label": "TMDB_LOGO()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L12"
+		},
+		{
+			"id": "movie_movie_detail_streaming_moviedetailstreaming",
+			"label": "MovieDetailStreaming()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L19"
+		},
+		{
+			"id": "movie_movie_detail_streaming_availabilitycheck",
+			"label": "AvailabilityCheck()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L182"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_country_flag_icon_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "ui_country_flag_icon_countryflagicon",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_movie_watch_providers_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "lib_movie_watch_providers_moviewatchprovidersviewmodel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "movie_movie_detail_streaming_tmdb_logo",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "movie_movie_detail_streaming_moviedetailstreaming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_streaming_tsx",
+			"target": "movie_movie_detail_streaming_availabilitycheck",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L182",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "movie_movie_detail_streaming_moviedetailstreaming",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "movie_movie_detail_streaming_moviedetailstreaming",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "movie_movie_detail_streaming_moviedetailstreaming",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "movie_movie_detail_streaming_moviedetailstreaming",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "movie_movie_detail_streaming_moviedetailstreaming",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx",
+			"source_location": "L128"
+		}
+	]
+}

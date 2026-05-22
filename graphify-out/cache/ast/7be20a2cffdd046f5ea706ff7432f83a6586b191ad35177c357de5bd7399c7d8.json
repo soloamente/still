@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_cannes_festival_tsx",
+			"label": "cannes-festival.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\cannes-festival.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_cannes_festival_iconcannesfestival",
+			"label": "IconCannesFestival()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\cannes-festival.tsx",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_cannes_festival_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\cannes-festival.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_cannes_festival_tsx",
+			"target": "icons_cannes_festival_iconcannesfestival",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\cannes-festival.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

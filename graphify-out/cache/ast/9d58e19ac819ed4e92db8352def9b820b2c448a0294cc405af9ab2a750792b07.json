@@ -1,0 +1,14 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_expo_readme_md",
+			"label": "README.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\.expo\\README.md",
+			"source_location": "L1"
+		}
+	],
+	"edges": [],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

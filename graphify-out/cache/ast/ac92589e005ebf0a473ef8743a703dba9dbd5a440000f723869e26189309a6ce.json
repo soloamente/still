@@ -1,0 +1,240 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"label": "profile-catalog-order-chips.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_profile_catalog_order_chips_chips",
+			"label": "CHIPS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L17"
+		},
+		{
+			"id": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"label": "ProfileCatalogOrderChips()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L47"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "lib_profile_lobby_order_profileledgertabid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "lib_profile_lobby_order_buildprofilelobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "lib_profile_lobby_order_profilelobbyorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "lib_profile_lobby_order_parseprofilelobbyfavorites",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "lib_profile_lobby_order_parseprofilelobbyorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "lib_profile_lobby_order_parseprofilelobbyvenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "profile_profile_catalog_order_chips_chips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_order_chips_tsx",
+			"target": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "parseProfileLobbyOrder",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "parseProfileLobbyVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "parseProfileLobbyFavorites",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_order_chips_profilecatalogorderchips",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx",
+			"source_location": "L92"
+		}
+	]
+}

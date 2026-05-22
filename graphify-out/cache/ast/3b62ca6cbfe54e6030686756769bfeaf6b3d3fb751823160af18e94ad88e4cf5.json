@@ -1,0 +1,351 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_make_interfaces_feel_better_typography_md",
+			"label": "typography.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_typography",
+			"label": "Typography",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_text_wrapping",
+			"label": "Text Wrapping",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_text_wrap_balance",
+			"label": "text-wrap: balance",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_1",
+			"label": "code:css (/* Good \u2014 even line lengths on short text */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_2",
+			"label": "code:css (/* Bad \u2014 default wrapping leaves orphans */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_3",
+			"label": "code:css (/* Bad \u2014 balance on long paragraphs (silently ignored, waste)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_text_wrap_pretty",
+			"label": "text-wrap: pretty",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_4",
+			"label": "code:css (/* Good \u2014 descriptions, captions, short paragraphs */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_5",
+			"label": "code:tsx (// Tailwind)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_when_to_use_which",
+			"label": "When to Use Which",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_font_smoothing_macos",
+			"label": "Font Smoothing (macOS)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_6",
+			"label": "code:css (/* CSS */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L69"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_7",
+			"label": "code:tsx (// Tailwind \u2014 apply to root layout)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_good_vs_bad",
+			"label": "Good vs. Bad",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L82"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_8",
+			"label": "code:css (/* Good \u2014 applied once at the root */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L84"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_tabular_numbers",
+			"label": "Tabular Numbers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_9",
+			"label": "code:css (/* CSS */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_10",
+			"label": "code:tsx (// Tailwind)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_when_to_use",
+			"label": "When to Use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_caveat",
+			"label": "Caveat",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "make_interfaces_feel_better_typography_codeblock_11",
+			"label": "code:css (/* With Inter font:)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L131"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_make_interfaces_feel_better_typography_md",
+			"target": "make_interfaces_feel_better_typography_typography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_typography",
+			"target": "make_interfaces_feel_better_typography_text_wrapping",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_text_wrapping",
+			"target": "make_interfaces_feel_better_typography_text_wrap_balance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_text_wrap_balance",
+			"target": "make_interfaces_feel_better_typography_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_text_wrap_balance",
+			"target": "make_interfaces_feel_better_typography_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_text_wrap_balance",
+			"target": "make_interfaces_feel_better_typography_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_text_wrapping",
+			"target": "make_interfaces_feel_better_typography_text_wrap_pretty",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_text_wrap_pretty",
+			"target": "make_interfaces_feel_better_typography_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_text_wrap_pretty",
+			"target": "make_interfaces_feel_better_typography_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_text_wrapping",
+			"target": "make_interfaces_feel_better_typography_when_to_use_which",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_typography",
+			"target": "make_interfaces_feel_better_typography_font_smoothing_macos",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_font_smoothing_macos",
+			"target": "make_interfaces_feel_better_typography_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_font_smoothing_macos",
+			"target": "make_interfaces_feel_better_typography_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_font_smoothing_macos",
+			"target": "make_interfaces_feel_better_typography_good_vs_bad",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_good_vs_bad",
+			"target": "make_interfaces_feel_better_typography_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_typography",
+			"target": "make_interfaces_feel_better_typography_tabular_numbers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_tabular_numbers",
+			"target": "make_interfaces_feel_better_typography_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_tabular_numbers",
+			"target": "make_interfaces_feel_better_typography_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_tabular_numbers",
+			"target": "make_interfaces_feel_better_typography_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_tabular_numbers",
+			"target": "make_interfaces_feel_better_typography_caveat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_typography_caveat",
+			"target": "make_interfaces_feel_better_typography_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\typography.md",
+			"source_location": "L131",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

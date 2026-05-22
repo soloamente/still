@@ -1,0 +1,228 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"label": "movie-discover-toolbar.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "movie_movie_discover_toolbar_genre",
+			"label": "Genre",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"label": "MovieDiscoverToolbar()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_filter_chip_row_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "ui_filter_chip_row_filterchiplink",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "ui_filter_chip_row_filterchiprow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_discover_catalog_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "lib_discover_catalog_url_discover_sort_default",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "lib_discover_catalog_url_discover_sort_options",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "lib_discover_catalog_url_discovercatalogurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "lib_home_venue_homevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "movie_movie_discover_toolbar_genre",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_discover_toolbar_tsx",
+			"target": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "discoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "movie_movie_discover_toolbar_moviediscovertoolbar",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx",
+			"source_location": "L102"
+		}
+	]
+}

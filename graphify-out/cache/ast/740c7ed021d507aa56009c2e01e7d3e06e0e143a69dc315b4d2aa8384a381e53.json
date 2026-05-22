@@ -1,0 +1,46 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_extension_wxt_types_globals_d_ts",
+			"label": "globals.d.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.wxt\\types\\globals.d.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "types_globals_d_importmetaenv",
+			"label": "ImportMetaEnv",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.wxt\\types\\globals.d.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "types_globals_d_importmeta",
+			"label": "ImportMeta",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.wxt\\types\\globals.d.ts",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_extension_wxt_types_globals_d_ts",
+			"target": "types_globals_d_importmetaenv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.wxt\\types\\globals.d.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_wxt_types_globals_d_ts",
+			"target": "types_globals_d_importmeta",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.wxt\\types\\globals.d.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

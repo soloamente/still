@@ -1,0 +1,150 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"label": "skeleton-shimmer-reveal.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "ui_skeleton_shimmer_reveal_skeletonshimmerrevealprops",
+			"label": "SkeletonShimmerRevealProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L10"
+		},
+		{
+			"id": "ui_skeleton_shimmer_reveal_skeletonshimmerreveal",
+			"label": "SkeletonShimmerReveal()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L25"
+		},
+		{
+			"id": "ui_skeleton_shimmer_reveal_skeletonshimmerrevealinner",
+			"label": "SkeletonShimmerRevealInner()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L71"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"target": "components_skeleton_shimmer_skeleton_shimmer_duration_s",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"target": "components_skeleton_shimmer_skeletoncardwipetransition",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"target": "ui_skeleton_shimmer_reveal_skeletonshimmerrevealprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"target": "ui_skeleton_shimmer_reveal_skeletonshimmerreveal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"target": "ui_skeleton_shimmer_reveal_skeletonshimmerrevealinner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "ui_skeleton_shimmer_reveal_skeletonshimmerrevealinner",
+			"target": "animate_view",
+			"relation": "imports_from",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L81",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "ui_skeleton_shimmer_reveal_skeletonshimmerreveal",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "ui_skeleton_shimmer_reveal_skeletonshimmerreveal",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "ui_skeleton_shimmer_reveal_skeletonshimmerreveal",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "ui_skeleton_shimmer_reveal_skeletonshimmerrevealinner",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx",
+			"source_location": "L84"
+		}
+	]
+}

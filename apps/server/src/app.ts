@@ -10,6 +10,7 @@ import { chatRoute } from "./routes/chat";
 import { commentsRoute } from "./routes/comments";
 import { feedRoute } from "./routes/feed";
 import { followsRoute } from "./routes/follows";
+import { leaderboardRoute } from "./routes/leaderboard";
 import { listsRoute } from "./routes/lists";
 import { logsRoute } from "./routes/logs";
 import { moviesRoute } from "./routes/movies";
@@ -84,6 +85,7 @@ export const app = new Elysia()
 	.use(profilesRoute)
 	.use(followsRoute)
 	.use(feedRoute)
+	.use(leaderboardRoute)
 	.use(postsRoute)
 	.use(commentsRoute)
 	.use(badgesRoute)

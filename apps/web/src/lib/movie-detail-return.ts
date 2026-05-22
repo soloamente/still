@@ -23,6 +23,7 @@ type PersistedDetailReturn = {
 	search: string;
 };
 
+/** Retired standalone movie catalogue routes — back target is the movies home lobby. */
 const MOVIES_CATALOGUE_PATH =
 	/^\/movies\/(popular|upcoming|discover|now-playing)(\/|$)/;
 
@@ -99,7 +100,7 @@ export function resolveMovieDetailReturnFromPath(
 		return { href: hrefFromPath(pathname, search), label: "Review" };
 	}
 	if (pathname === "/search" || pathname.startsWith("/search")) {
-		return { href: hrefFromPath(pathname, search), label: "Search" };
+		return { href: "/home", label: "Home" };
 	}
 	if (pathname === "/achievements" || pathname.startsWith("/achievements")) {
 		return { href: "/achievements", label: "Achievements" };

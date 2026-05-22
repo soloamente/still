@@ -17,6 +17,7 @@ import Elysia, { t } from "elysia";
 import { context } from "../context";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { hit } from "../lib/rate-limit";
+import { sanitizeAppearancePreferences } from "../lib/sanitize-appearance-preferences";
 
 /** Lowercase letterboxd-style handle: letters, digits, underscore, dot, dash, 2–24 chars. */
 const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;
@@ -70,6 +71,18 @@ export const profilesRoute = new Elysia({
 						}
 					: undefined;
 
+			let preferencesForUpdate = mergedPreferences;
+			if (mergedPreferences !== undefined) {
+				const appearance = sanitizeAppearancePreferences(
+					mergedPreferences,
+					Boolean(existing?.isPro),
+				);
+				if (!appearance.ok) {
+					return status(appearance.status, appearance.error);
+				}
+				preferencesForUpdate = appearance.preferences;
+			}
+
 			const updates = {
 				handle: body.handle?.toLowerCase(),
 				displayName: body.displayName,
@@ -81,7 +94,7 @@ export const profilesRoute = new Elysia({
 				accentColor: body.accentColor,
 				favoriteMovieIds: body.favoriteMovieIds,
 				sectionOrder: body.sectionOrder,
-				preferences: mergedPreferences ?? undefined,
+				preferences: preferencesForUpdate ?? undefined,
 				isPrivate: body.isPrivate,
 				onboardedAt: body.markOnboarded ? new Date() : undefined,
 			};

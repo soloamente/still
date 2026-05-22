@@ -2,7 +2,10 @@ import { cn } from "@still/ui/lib/utils";
 import { Award } from "lucide-react";
 import Image from "next/image";
 
-import { isBadgeArtworkUrl } from "@/lib/badge-artwork";
+import {
+	BADGE_ARTWORK_IMAGE_CLASS,
+	isBadgeArtworkUrl,
+} from "@/lib/badge-artwork";
 
 type EarnedBadge = {
 	badge: {
@@ -48,7 +51,7 @@ export function BadgeShelf({ badges }: { badges: EarnedBadge[] }) {
 								width={56}
 								height={64}
 								unoptimized
-								className="max-h-full max-w-full object-contain"
+								className={BADGE_ARTWORK_IMAGE_CLASS}
 							/>
 						</span>
 					) : (
@@ -69,7 +72,7 @@ export function BadgeShelf({ badges }: { badges: EarnedBadge[] }) {
 									width={28}
 									height={28}
 									unoptimized
-									className="size-7 object-contain"
+									className="size-7 h-auto w-auto object-contain"
 								/>
 							) : (
 								<Award className="size-6" aria-hidden />

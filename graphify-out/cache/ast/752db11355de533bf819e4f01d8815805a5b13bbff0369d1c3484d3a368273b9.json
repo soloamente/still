@@ -1,0 +1,156 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"label": "home-leaderboard-period.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_leaderboard_period_home_leaderboard_periods",
+			"label": "HOME_LEADERBOARD_PERIODS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_leaderboard_period_homeleaderboardperiod",
+			"label": "HomeLeaderboardPeriod",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_home_leaderboard_period_parsehomecommunityperiod",
+			"label": "parseHomeCommunityPeriod()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_home_leaderboard_period_parsehomeleaderboardperiod",
+			"label": "parseHomeLeaderboardPeriod()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_home_leaderboard_period_leaderboardperiodlabel",
+			"label": "leaderboardPeriodLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L29"
+		},
+		{
+			"id": "lib_home_leaderboard_period_readviewertimezone",
+			"label": "readViewerTimeZone()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L36"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"target": "lib_home_leaderboard_period_home_leaderboard_periods",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"target": "lib_home_leaderboard_period_homeleaderboardperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"target": "lib_home_leaderboard_period_parsehomecommunityperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"target": "lib_home_leaderboard_period_parsehomeleaderboardperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"target": "lib_home_leaderboard_period_leaderboardperiodlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"target": "lib_home_leaderboard_period_readviewertimezone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_leaderboard_period_parsehomeleaderboardperiod",
+			"target": "lib_home_leaderboard_period_parsehomecommunityperiod",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_leaderboard_period_parsehomecommunityperiod",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_home_leaderboard_period_parsehomecommunityperiod",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_home_leaderboard_period_leaderboardperiodlabel",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_home_leaderboard_period_readviewertimezone",
+			"callee": "resolvedOptions",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_home_leaderboard_period_readviewertimezone",
+			"callee": "DateTimeFormat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-period.ts",
+			"source_location": "L39"
+		}
+	]
+}

@@ -1,0 +1,64 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_mill_valley_festival_tsx",
+			"label": "mill-valley-festival.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mill-valley-festival.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_mill_valley_festival_mill_valley_paths",
+			"label": "MILL_VALLEY_PATHS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mill-valley-festival.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "icons_mill_valley_festival_iconmillvalleyfestival",
+			"label": "IconMillValleyFestival()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mill-valley-festival.tsx",
+			"source_location": "L22"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_mill_valley_festival_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mill-valley-festival.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_mill_valley_festival_tsx",
+			"target": "icons_mill_valley_festival_mill_valley_paths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mill-valley-festival.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_mill_valley_festival_tsx",
+			"target": "icons_mill_valley_festival_iconmillvalleyfestival",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mill-valley-festival.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "icons_mill_valley_festival_iconmillvalleyfestival",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mill-valley-festival.tsx",
+			"source_location": "L36"
+		}
+	]
+}

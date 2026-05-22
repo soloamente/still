@@ -1,0 +1,211 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"label": "baseline-migrations.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_baseline_migrations_dirname",
+			"label": "__dirname",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "src_baseline_migrations_migrationsfolder",
+			"label": "migrationsFolder",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L37"
+		},
+		{
+			"id": "src_baseline_migrations_journalpath",
+			"label": "journalPath",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "src_baseline_migrations_journal",
+			"label": "Journal",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L40"
+		},
+		{
+			"id": "src_baseline_migrations_pool",
+			"label": "pool",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L46"
+		},
+		{
+			"id": "src_baseline_migrations_sqlpath",
+			"label": "sqlPath",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L60"
+		},
+		{
+			"id": "src_baseline_migrations_body",
+			"label": "body",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L61"
+		},
+		{
+			"id": "src_baseline_migrations_hash",
+			"label": "hash",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L62"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "node_crypto",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "node_fs",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "node_path",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "node_url",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "dotenv",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "pg",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_dirname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_migrationsfolder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_journalpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_journal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_journal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_pool",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_sqlpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_body",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_baseline_migrations_ts",
+			"target": "src_baseline_migrations_hash",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\baseline-migrations.ts",
+			"source_location": "L62",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

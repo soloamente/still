@@ -29,6 +29,7 @@ export type MeAccountSettingsDraftPayload = {
 	catalogMonochromePeersOnHover: boolean;
 	catalogTmdbWatchRegion: string;
 	catalogTmdbLanguage: string;
+	appTheme?: string;
 };
 
 export type MeAccountPendingImage = { file: File; previewUrl: string };

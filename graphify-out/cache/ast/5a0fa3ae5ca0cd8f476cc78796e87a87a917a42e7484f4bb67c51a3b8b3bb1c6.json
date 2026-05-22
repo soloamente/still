@@ -1,0 +1,127 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_22_app_themes_md",
+			"label": "2026-05-22-app-themes.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_22_app_themes_app_themes_implementation_plan",
+			"label": "App Themes Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_22_app_themes_task_1_theme_registry_tests_web",
+			"label": "Task 1: Theme registry + tests (web)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_05_22_app_themes_task_2_css_theme_classes",
+			"label": "Task 2: CSS theme classes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L24"
+		},
+		{
+			"id": "plans_2026_05_22_app_themes_task_3_runtime_shell",
+			"label": "Task 3: Runtime shell",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "plans_2026_05_22_app_themes_task_4_profile_prefs_server_validation",
+			"label": "Task 4: Profile prefs + server validation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "plans_2026_05_22_app_themes_task_5_settings_ui",
+			"label": "Task 5: Settings UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "plans_2026_05_22_app_themes_task_6_verify",
+			"label": "Task 6: Verify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L64"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_22_app_themes_md",
+			"target": "plans_2026_05_22_app_themes_app_themes_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_app_themes_app_themes_implementation_plan",
+			"target": "plans_2026_05_22_app_themes_task_1_theme_registry_tests_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_app_themes_app_themes_implementation_plan",
+			"target": "plans_2026_05_22_app_themes_task_2_css_theme_classes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_app_themes_app_themes_implementation_plan",
+			"target": "plans_2026_05_22_app_themes_task_3_runtime_shell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_app_themes_app_themes_implementation_plan",
+			"target": "plans_2026_05_22_app_themes_task_4_profile_prefs_server_validation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_app_themes_app_themes_implementation_plan",
+			"target": "plans_2026_05_22_app_themes_task_5_settings_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_app_themes_app_themes_implementation_plan",
+			"target": "plans_2026_05_22_app_themes_task_6_verify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md",
+			"source_location": "L64",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

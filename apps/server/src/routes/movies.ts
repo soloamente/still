@@ -11,7 +11,10 @@ import { env } from "@still/env/server";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import Elysia, { t } from "elysia";
 import { context } from "../context";
-import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
+import {
+	buildHeroArtworkSlides,
+	normalizeTmdbImagesBundle,
+} from "../lib/hero-artwork-slides";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
 import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
 import {
@@ -752,7 +755,7 @@ export const moviesRoute = new Elysia({
 					title,
 					posterPath: posterPathForUrl,
 					backdropPath: backdropPathForUrl,
-					images: imagesSource ?? null,
+					images: normalizeTmdbImagesBundle(imagesSource),
 				}),
 				community: {
 					// Postgres `avg()` may arrive as a string through the driver — coerce for JSON.

@@ -1,0 +1,345 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"label": "patron-watch-ledger-panel.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_patron_watch_ledger_panel_fetchpatronwatchledger",
+			"label": "fetchPatronWatchLedger()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L19"
+		},
+		{
+			"id": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"label": "PatronWatchLedgerPanel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L37"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_drawer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "home_patron_watch_ledger_drawer_patronwatchledgerseed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_grid_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "home_patron_watch_ledger_grid_patronwatchledgergrid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_drawer_scroll_body_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "movie_detail_drawer_scroll_body_detaildrawerscrollbody",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_sheet_scroll_scrims_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "movie_sheet_scroll_scrims_sheetscrollscrims",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "profile_patron_portrait_avatar_patronportraitavatar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "web",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "lib_home_leaderboard_period_leaderboardperiodlabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "lib_home_leaderboard_period_readviewertimezone",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "lib_home_leaderboard_types_leaderboardlogspayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_sheet_scroll_fades_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "lib_use_sheet_scroll_fades_usesheetscrollfades",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "home_patron_watch_ledger_panel_fetchpatronwatchledger",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_watch_ledger_panel_tsx",
+			"target": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_fetchpatronwatchledger",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_fetchpatronwatchledger",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_fetchpatronwatchledger",
+			"callee": "readViewerTimeZone",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_fetchpatronwatchledger",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_fetchpatronwatchledger",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_fetchpatronwatchledger",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"callee": "useSheetScrollFades",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"callee": "leaderboardPeriodLabel",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "home_patron_watch_ledger_panel_patronwatchledgerpanel",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx",
+			"source_location": "L122"
+		}
+	]
+}

@@ -1,0 +1,532 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"label": "tv-season-cache.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_season_cache_stillseasonscache",
+			"label": "StillSeasonsCache",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_tv_season_cache_stillseasondetailcache",
+			"label": "StillSeasonDetailCache",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_tv_season_cache_stilltvjsonextras",
+			"label": "StillTvJsonExtras",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_tv_season_cache_isfresh",
+			"label": "isFresh()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L29"
+		},
+		{
+			"id": "lib_tv_season_cache_readextras",
+			"label": "readExtras()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "lib_tv_season_cache_filterseasonsforprogress",
+			"label": "filterSeasonsForProgress()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "lib_tv_season_cache_gettvseasonscached",
+			"label": "getTvSeasonsCached()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L50"
+		},
+		{
+			"id": "lib_tv_season_cache_gettvseasondetailcached",
+			"label": "getTvSeasonDetailCached()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L86"
+		},
+		{
+			"id": "lib_tv_season_cache_nextepisodepointer",
+			"label": "NextEpisodePointer",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L139"
+		},
+		{
+			"id": "lib_tv_season_cache_computenextepisode",
+			"label": "computeNextEpisode()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L149"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tmdb_tmdbepisodesummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tmdb_tmdbseasondetail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tmdb_tmdbseasonsummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tmdb_tmdbapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_stillseasonscache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_stillseasondetailcache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_stilltvjsonextras",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_isfresh",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_readextras",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_filterseasonsforprogress",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_gettvseasonscached",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_gettvseasondetailcached",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_nextepisodepointer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"target": "lib_tv_season_cache_computenextepisode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_season_cache_gettvseasonscached",
+			"target": "lib_tv_season_cache_readextras",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_season_cache_gettvseasonscached",
+			"target": "lib_tv_season_cache_isfresh",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_season_cache_gettvseasonscached",
+			"target": "lib_tv_season_cache_filterseasonsforprogress",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_season_cache_gettvseasondetailcached",
+			"target": "lib_tv_season_cache_readextras",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_season_cache_gettvseasondetailcached",
+			"target": "lib_tv_season_cache_isfresh",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_season_cache_computenextepisode",
+			"target": "lib_tv_season_cache_gettvseasonscached",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_season_cache_computenextepisode",
+			"target": "lib_tv_season_cache_gettvseasondetailcached",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L160",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tv_season_cache_isfresh",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_isfresh",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_isfresh",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_filterseasonsforprogress",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_filterseasonsforprogress",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "tvSeasons",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasonscached",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "tvSeasonDetail",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L115"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_gettvseasondetailcached",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L134"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_computenextepisode",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "lib_tv_season_cache_computenextepisode",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-season-cache.ts",
+			"source_location": "L167"
+		}
+	]
+}

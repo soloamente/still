@@ -5,6 +5,11 @@ import { and, asc, desc, eq, ilike, sql } from "drizzle-orm";
 import Elysia, { t } from "elysia";
 
 import { context } from "../context";
+import {
+	communityPeriodQuery,
+	resolveCommunityPeriodQuery,
+	withinCommunityPeriod,
+} from "../lib/community-period";
 import { makeId } from "../lib/cuid";
 import { isFavoritesSystemList } from "../lib/favorites-list-sync";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
@@ -17,15 +22,26 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 		"/",
 		async ({ query }) => {
 			const limit = Math.min(Number(query.limit ?? 24), 60);
+			const { start, end } = resolveCommunityPeriodQuery(query);
 			const rows = await db
 				.select()
 				.from(list)
-				.where(eq(list.isPublic, true))
+				.where(
+					and(
+						eq(list.isPublic, true),
+						withinCommunityPeriod(list.updatedAt, start, end),
+					),
+				)
 				.orderBy(desc(list.likesCount), desc(list.updatedAt))
 				.limit(limit);
 			return withCoverPosterPaths(rows);
 		},
-		{ query: t.Object({ limit: t.Optional(t.String()) }) },
+		{
+			query: t.Composite([
+				t.Object({ limit: t.Optional(t.String()) }),
+				communityPeriodQuery,
+			]),
+		},
 	)
 	.get(
 		"/popular",

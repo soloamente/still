@@ -1,0 +1,169 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"label": "theme-flash-guard.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_theme_flash_guard_buildthemeflashguardscript",
+			"label": "buildThemeFlashGuardScript()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_theme_flash_guard_resolvethemeclassforssr",
+			"label": "resolveThemeClassForSsr()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_app_themes_app_theme_class_lobby_light",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_app_themes_app_theme_class_names",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_app_themes_app_theme_class_theater",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_app_themes_default_app_theme_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_app_themes_still_app_theme_storage_key",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_app_themes_appthemeclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_app_themes_isappthemeclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_theme_flash_guard_buildthemeflashguardscript",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_theme_flash_guard_ts",
+			"target": "lib_theme_flash_guard_resolvethemeclassforssr",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_theme_flash_guard_buildthemeflashguardscript",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "lib_theme_flash_guard_buildthemeflashguardscript",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_theme_flash_guard_buildthemeflashguardscript",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_theme_flash_guard_buildthemeflashguardscript",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "lib_theme_flash_guard_buildthemeflashguardscript",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_theme_flash_guard_resolvethemeclassforssr",
+			"callee": "isAppThemeClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts",
+			"source_location": "L25"
+		}
+	]
+}

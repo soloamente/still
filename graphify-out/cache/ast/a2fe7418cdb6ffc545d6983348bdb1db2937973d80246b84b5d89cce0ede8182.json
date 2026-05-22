@@ -1,0 +1,64 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_busan_festival_tsx",
+			"label": "busan-festival.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\busan-festival.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_busan_festival_busan_paths",
+			"label": "BUSAN_PATHS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\busan-festival.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "icons_busan_festival_iconbusanfestival",
+			"label": "IconBusanFestival()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\busan-festival.tsx",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_busan_festival_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\busan-festival.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_busan_festival_tsx",
+			"target": "icons_busan_festival_busan_paths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\busan-festival.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_busan_festival_tsx",
+			"target": "icons_busan_festival_iconbusanfestival",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\busan-festival.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "icons_busan_festival_iconbusanfestival",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\busan-festival.tsx",
+			"source_location": "L37"
+		}
+	]
+}

@@ -1,0 +1,639 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_22_community_watch_leaderboard_md",
+			"label": "2026-05-22-community-watch-leaderboard.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"label": "Community Watch Leaderboards \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_phase_1_server_period_leaderboard_api",
+			"label": "Phase 1 \u2014 Server period + leaderboard API",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_1_period_window_helper",
+			"label": "Task 1: Period window helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_1",
+			"label": "code:ts (// apps/server/src/lib/leaderboard-period.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_2",
+			"label": "code:bash (cd apps/server && bun test src/lib/leaderboard-period.test.t)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_3",
+			"label": "code:ts (// apps/server/src/lib/leaderboard-period.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_2_leaderboard_aggregate_query",
+			"label": "Task 2: Leaderboard aggregate query",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_4",
+			"label": "code:ts (export type LeaderboardKind = \"films\" | \"tv\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_3_elysia_routes",
+			"label": "Task 3: Elysia routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_5",
+			"label": "code:ts (export const leaderboardRoute = new Elysia({ prefix: \"/api/l)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L162"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_6",
+			"label": "code:ts (import { leaderboardRoute } from \"./routes/leaderboard\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_7",
+			"label": "code:bash (curl \"http://localhost:3001/api/leaderboard/films?period=mon)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_phase_2_web_url_community_feed_wiring",
+			"label": "Phase 2 \u2014 Web URL + community feed wiring",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L191"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_4_extend_community_feed_types",
+			"label": "Task 4: Extend community feed types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L193"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_8",
+			"label": "code:ts (export type HomeCommunityFeed =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L201"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_9",
+			"label": "code:ts (if (s === \"film-ranks\" || s === \"film-rank\" || s === \"films\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L218"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_10",
+			"label": "code:bash (cd apps/web && bun test src/lib/home-community-feed.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_5_period_param_lobby_url",
+			"label": "Task 5: Period param + lobby URL",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L233"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_11",
+			"label": "code:ts (export const HOME_LEADERBOARD_PERIODS = [)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L243"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_12",
+			"label": "code:bash (cd apps/web && bun test src/lib/home-leaderboard-period.test)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L272"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_6_center_community_chips_motion_import_fix",
+			"label": "Task 6: Center community chips + motion import fix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L278"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_13",
+			"label": "code:tsx (<div)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L285"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_14",
+			"label": "code:ts (import { motion, useReducedMotion } from \"motion/react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L295"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_phase_3_leaderboard_ui_components",
+			"label": "Phase 3 \u2014 Leaderboard UI components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L303"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_7_period_toolbar_component",
+			"label": "Task 7: Period toolbar component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L305"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_8_podium_row",
+			"label": "Task 8: Podium + row",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L316"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_15",
+			"label": "code:tsx (<DetailMotionPressable)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L330"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_9_watch_ledger_drawer",
+			"label": "Task 9: Watch ledger drawer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L343"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_16",
+			"label": "code:ts (export type PatronWatchLedgerSeed = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L352"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_10_community_lobby_integration",
+			"label": "Task 10: Community lobby integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L368"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_17",
+			"label": "code:ts (const period = parseHomeLeaderboardPeriod(searchParams.perio)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L380"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_18",
+			"label": "code:tsx (if (feed === \"film-ranks\" || feed === \"tv-ranks\") {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L394"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_phase_4_verification",
+			"label": "Phase 4 \u2014 Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L408"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_task_11_build_manual_qa",
+			"label": "Task 11: Build + manual QA",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L410"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_19",
+			"label": "code:bash (cd apps/web && bun run build)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L414"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_codeblock_20",
+			"label": "code:bash (cd apps/server && bun test src/lib/leaderboard-period.test.t)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L422"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L444"
+		},
+		{
+			"id": "plans_2026_05_22_community_watch_leaderboard_out_of_scope_do_not_implement_in_this_plan",
+			"label": "Out of scope (do not implement in this plan)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L459"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_22_community_watch_leaderboard_md",
+			"target": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"target": "plans_2026_05_22_community_watch_leaderboard_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"target": "plans_2026_05_22_community_watch_leaderboard_phase_1_server_period_leaderboard_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_1_server_period_leaderboard_api",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_1_period_window_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_1_period_window_helper",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_1_period_window_helper",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_1_period_window_helper",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_1_server_period_leaderboard_api",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_2_leaderboard_aggregate_query",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_2_leaderboard_aggregate_query",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_1_server_period_leaderboard_api",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_3_elysia_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_3_elysia_routes",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_3_elysia_routes",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_3_elysia_routes",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"target": "plans_2026_05_22_community_watch_leaderboard_phase_2_web_url_community_feed_wiring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L191",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_2_web_url_community_feed_wiring",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_4_extend_community_feed_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L193",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_4_extend_community_feed_types",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L201",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_4_extend_community_feed_types",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L218",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_4_extend_community_feed_types",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_2_web_url_community_feed_wiring",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_5_period_param_lobby_url",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L233",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_5_period_param_lobby_url",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_5_period_param_lobby_url",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L272",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_2_web_url_community_feed_wiring",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_6_center_community_chips_motion_import_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L278",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_6_center_community_chips_motion_import_fix",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L285",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_6_center_community_chips_motion_import_fix",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L295",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"target": "plans_2026_05_22_community_watch_leaderboard_phase_3_leaderboard_ui_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L303",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_3_leaderboard_ui_components",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_7_period_toolbar_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L305",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_3_leaderboard_ui_components",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_8_podium_row",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L316",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_8_podium_row",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L330",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_3_leaderboard_ui_components",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_9_watch_ledger_drawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L343",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_9_watch_ledger_drawer",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L352",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_3_leaderboard_ui_components",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_10_community_lobby_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L368",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_10_community_lobby_integration",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L380",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_10_community_lobby_integration",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L394",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"target": "plans_2026_05_22_community_watch_leaderboard_phase_4_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L408",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_phase_4_verification",
+			"target": "plans_2026_05_22_community_watch_leaderboard_task_11_build_manual_qa",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L410",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_11_build_manual_qa",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L414",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_task_11_build_manual_qa",
+			"target": "plans_2026_05_22_community_watch_leaderboard_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L422",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"target": "plans_2026_05_22_community_watch_leaderboard_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L444",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_22_community_watch_leaderboard_community_watch_leaderboards_implementation_plan",
+			"target": "plans_2026_05_22_community_watch_leaderboard_out_of_scope_do_not_implement_in_this_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-community-watch-leaderboard.md",
+			"source_location": "L459",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

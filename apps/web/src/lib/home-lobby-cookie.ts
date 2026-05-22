@@ -10,6 +10,8 @@ export type HomeLobbySearchParams = {
 	sort?: string;
 	venue?: string;
 	run?: string;
+	/** Leaderboard window when community sort is `film-ranks` or `tv-ranks`. */
+	period?: string;
 };
 
 /** Parses the saved href cookie into lobby query fields (server + client). */
@@ -25,13 +27,15 @@ export function parseHomeLobbyHrefCookie(
 			url.searchParams.has("browse") ||
 			url.searchParams.has("sort") ||
 			url.searchParams.has("venue") ||
-			url.searchParams.has("run");
+			url.searchParams.has("run") ||
+			url.searchParams.has("period");
 		if (!hasAny) return null;
 		return {
 			browse: url.searchParams.get("browse") ?? undefined,
 			sort: url.searchParams.get("sort") ?? undefined,
 			venue: url.searchParams.get("venue") ?? undefined,
 			run: url.searchParams.get("run") ?? undefined,
+			period: url.searchParams.get("period") ?? undefined,
 		};
 	} catch {
 		return null;
@@ -53,5 +57,5 @@ export function writeHomeLobbyHrefCookie(href: string): void {
 export function isBareHomeLobbySearchParams(
 	sp: HomeLobbySearchParams,
 ): boolean {
-	return !sp.browse && !sp.sort && !sp.venue && !sp.run;
+	return !sp.browse && !sp.sort && !sp.venue && !sp.run && !sp.period;
 }

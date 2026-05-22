@@ -1,4 +1,9 @@
 import {
+	type AppThemeClass,
+	DEFAULT_APP_THEME_CLASS,
+	resolveAppTheme,
+} from "@/lib/app-themes";
+import {
 	catalogWatchRegionIsoToTmdbLanguage,
 	isCatalogTmdbLanguageCode,
 } from "@/lib/catalog-tmdb-language";
@@ -23,6 +28,9 @@ export const PROFILE_PREF_CATALOG_TMDB_LANGUAGE =
  */
 export const PROFILE_PREF_CATALOG_TMDB_WATCH_REGION =
 	"catalogTmdbWatchRegion" as const;
+
+/** Named shell palette class on `<html>` (see `app-themes.ts`). */
+export const PROFILE_PREF_APP_THEME = "appTheme" as const;
 
 /** `null` = patron has not chosen yet (home shows one-time region prompt when signed in). */
 export type CatalogTmdbWatchRegionPref = "ALL" | string | null;
@@ -95,4 +103,19 @@ export function readCatalogMonochromePeersOnHoverPref(
 	const raw = preferences[PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER];
 	if (raw === false) return false;
 	return true;
+}
+
+/** True when the patron saved a palette in Settings / account menu (key present in JSON). */
+export function hasExplicitAppThemePref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	if (preferences == null) return false;
+	return PROFILE_PREF_APP_THEME in preferences;
+}
+
+export function readAppThemePref(
+	preferences: Record<string, unknown> | null | undefined,
+): AppThemeClass {
+	if (preferences == null) return DEFAULT_APP_THEME_CLASS;
+	return resolveAppTheme(preferences[PROFILE_PREF_APP_THEME]);
 }

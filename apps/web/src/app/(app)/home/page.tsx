@@ -1,3 +1,4 @@
+import { env } from "@still/env/web";
 import { cn } from "@still/ui/lib/utils";
 import { cookies } from "next/headers";
 import Link from "next/link";
@@ -12,6 +13,7 @@ import { CatalogWatchRegionPrompt } from "@/components/home/catalog-watch-region
 import { HomeCatalogSortChips } from "@/components/home/home-catalog-sort-chips";
 import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
 import { HomeCommunityLobby } from "@/components/home/home-community-lobby";
+import { HomeCommunityPeriodToolbar } from "@/components/home/home-community-period-toolbar";
 import { HomeContinueWatchingRail } from "@/components/home/home-continue-watching-rail";
 import { HomeLobbySessionRestore } from "@/components/home/home-lobby-session-restore";
 import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
@@ -31,8 +33,13 @@ import {
 	coerceActivityTimestamp,
 	type HomeCommunityActivityItem,
 } from "@/lib/home-community-activity";
-import { parseHomeCommunityFeed } from "@/lib/home-community-feed";
+import {
+	isHomeLeaderboardFeed,
+	parseHomeCommunityFeed,
+} from "@/lib/home-community-feed";
 import { deriveFriendRailEntries } from "@/lib/home-friend-rail";
+import { parseHomeCommunityPeriod } from "@/lib/home-leaderboard-period";
+import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
@@ -92,6 +99,7 @@ export default async function HomePage({
 		browse?: string;
 		venue?: string;
 		run?: string;
+		period?: string;
 	}>;
 }) {
 	const spRaw = await searchParams;
@@ -206,17 +214,29 @@ export default async function HomePage({
 	}[] = [];
 	let communityActivityItems: HomeCommunityActivityItem[] = [];
 	let communityFriendRail: ReturnType<typeof deriveFriendRailEntries> = [];
+	let communityLeaderboard: LeaderboardPayload | null = null;
+
+	const communityPeriod =
+		browse === "community" ? parseHomeCommunityPeriod(sp.period) : null;
+	const communityPeriodQuery =
+		communityPeriod != null
+			? { period: communityPeriod, tz: "UTC" as const }
+			: {};
 
 	if (browse === "community" && communityFeed) {
 		if (communityFeed === "lists") {
 			const listsRes = await api.api.lists
-				.get({ query: { limit: "24" } })
+				.get({
+					query: { limit: "24", ...communityPeriodQuery },
+				})
 				.catch(() => ({ data: [] }));
 			const rows = ((listsRes.data as unknown[]) ?? []).map(toListBoardRow);
 			communityListSeeds = rows.map(listBoardRowToLobbySeed);
 		} else if (communityFeed === "reviews") {
 			const reviewsRes = await api.api.reviews.recent
-				.get({ query: { limit: "20" } })
+				.get({
+					query: { limit: "20", ...communityPeriodQuery },
+				})
 				.catch(() => ({ data: [] }));
 			const rows = (reviewsRes.data as unknown[]) ?? [];
 			communityReviews = rows
@@ -265,12 +285,18 @@ export default async function HomePage({
 				.filter((r): r is NonNullable<typeof r> => r != null);
 		} else if (communityFeed === "activity") {
 			const activityRes = session
-				? await api.api.feed.get({ query: { limit: "40" } }).catch(() => ({
-						data: { items: [] },
-					}))
-				: await api.api.feed.discover.get().catch(() => ({
-						data: { items: [] },
-					}));
+				? await api.api.feed
+						.get({
+							query: { limit: "40", ...communityPeriodQuery },
+						})
+						.catch(() => ({
+							data: { items: [] },
+						}))
+				: await api.api.feed.discover
+						.get({ query: communityPeriodQuery })
+						.catch(() => ({
+							data: { items: [] },
+						}));
 			const items =
 				(
 					activityRes.data as {
@@ -296,6 +322,22 @@ export default async function HomePage({
 					payload: item.payload,
 				}));
 			communityFriendRail = deriveFriendRailEntries(communityActivityItems);
+		} else if (isHomeLeaderboardFeed(communityFeed)) {
+			const period = communityPeriod ?? parseHomeCommunityPeriod(sp.period);
+			const kindPath = communityFeed === "film-ranks" ? "films" : "tv";
+			const lbUrl = new URL(
+				`/api/leaderboard/${kindPath}`,
+				env.NEXT_PUBLIC_SERVER_URL,
+			);
+			lbUrl.searchParams.set("period", period);
+			lbUrl.searchParams.set("tz", "UTC");
+			const lbRes = await fetch(lbUrl.toString(), {
+				headers: cookieHeader ? { cookie: cookieHeader } : undefined,
+				cache: "no-store",
+			}).catch(() => null);
+			if (lbRes?.ok) {
+				communityLeaderboard = (await lbRes.json()) as LeaderboardPayload;
+			}
 		}
 	}
 
@@ -579,13 +621,19 @@ export default async function HomePage({
 					*/}
 				<div className="flex shrink-0 items-center justify-between gap-3">
 					<Suspense fallback={<LobbyCatalogChipFallback />}>
-						<HomeCatalogSortChips />
+						<div className="min-w-0 shrink">
+							<HomeCatalogSortChips />
+						</div>
 					</Suspense>
-					{browse !== "community" ? (
+					{browse === "community" ? (
+						<Suspense fallback={<LobbyVenueChipFallback />}>
+							<HomeCommunityPeriodToolbar />
+						</Suspense>
+					) : (
 						<Suspense fallback={<LobbyVenueChipFallback />}>
 							<HomeCatalogViewModeToolbar />
 						</Suspense>
-					) : null}
+					)}
 				</div>
 
 				{session && browse === "tv" && continueWatching.length > 0 ? (
@@ -601,6 +649,8 @@ export default async function HomePage({
 						friendRailEntries={communityFriendRail}
 						monochromePeersOnHover={monochromePeersOnHover}
 						signedIn={Boolean(session)}
+						leaderboard={communityLeaderboard}
+						viewerUserId={session?.user?.id ?? null}
 					/>
 				) : blockedReason ? (
 					<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-12">
@@ -615,6 +665,8 @@ export default async function HomePage({
 					<>
 						<PopularMoviesInfinite
 							key={lobbyCatalogueResetKey}
+							catalogueRadialSurface="home"
+							signedIn={Boolean(session)}
 							blockedReason={blockedReason}
 							catalogKind={catalogKindForInfinite}
 							catalogLabel={catalogLabelForLobby}
@@ -696,7 +748,11 @@ export default async function HomePage({
 								Ongoing — TMDb Returning Series (still in production or awaiting
 								new episodes). Ended shows sit under Completed only. Open{" "}
 								<Link
-									href="/tv/discover?status=returning"
+									href={buildHomeLobbyHref({
+										browse: "tv",
+										sort: "popular",
+										run: "ongoing",
+									})}
 									className="underline underline-offset-2 hover:text-foreground"
 								>
 									the full returning catalogue

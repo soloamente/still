@@ -1,0 +1,132 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_fetch_tv_watch_me_server_ts",
+			"label": "fetch-tv-watch-me-server.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_fetch_tv_watch_me_server_serverapiclient",
+			"label": "ServerApiClient",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_fetch_tv_watch_me_server_fetchtvwatchmeserver",
+			"label": "fetchTvWatchMeServer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_tv_watch_me_server_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_tv_watch_me_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_server_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_tv_watch_me_server_ts",
+			"target": "lib_server_api_serverapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_tv_watch_me_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_tv_watch_me_server_ts",
+			"target": "lib_tv_watch_types_tvwatchbundle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_tv_watch_me_server_ts",
+			"target": "lib_fetch_tv_watch_me_server_serverapiclient",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_tv_watch_me_server_ts",
+			"target": "lib_fetch_tv_watch_me_server_fetchtvwatchmeserver",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_fetch_tv_watch_me_server_fetchtvwatchmeserver",
+			"callee": "serverApi",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "lib_fetch_tv_watch_me_server_fetchtvwatchmeserver",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_fetch_tv_watch_me_server_fetchtvwatchmeserver",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_fetch_tv_watch_me_server_fetchtvwatchmeserver",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_fetch_tv_watch_me_server_fetchtvwatchmeserver",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-tv-watch-me-server.ts",
+			"source_location": "L34"
+		}
+	]
+}

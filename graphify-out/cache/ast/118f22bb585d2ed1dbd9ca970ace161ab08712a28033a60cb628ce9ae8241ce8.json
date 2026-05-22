@@ -1,0 +1,104 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_tv_log_scope_ts",
+			"label": "tv-log-scope.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_tv_log_scope_tvlogscopeinput",
+			"label": "TvLogScopeInput",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "src_tv_log_scope_validatetvlogscope",
+			"label": "validateTvLogScope()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "src_tv_log_scope_normalizetvlogscopeforinsert",
+			"label": "normalizeTvLogScopeForInsert()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L52"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_tv_log_scope_ts",
+			"target": "c_users_utente_documents_still_packages_db_src_schema_activity_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_tv_log_scope_ts",
+			"target": "schema_activity_tvlogscope",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_tv_log_scope_ts",
+			"target": "src_tv_log_scope_tvlogscopeinput",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_tv_log_scope_ts",
+			"target": "src_tv_log_scope_validatetvlogscope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_tv_log_scope_ts",
+			"target": "src_tv_log_scope_normalizetvlogscopeforinsert",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_tv_log_scope_validatetvlogscope",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "src_tv_log_scope_validatetvlogscope",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "src_tv_log_scope_validatetvlogscope",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\tv-log-scope.ts",
+			"source_location": "L42"
+		}
+	]
+}

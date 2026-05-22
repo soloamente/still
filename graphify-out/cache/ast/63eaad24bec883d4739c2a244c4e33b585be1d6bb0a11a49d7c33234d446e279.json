@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_agents_skills_transitions_dev_10_success_check_md",
+			"label": "10-success-check.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_10_success_check_success_check",
+			"label": "Success check",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_10_success_check_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_10_success_check_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_10_success_check_codeblock_1",
+			"label": "code:html (<!-- Wrap your icon (SVG, image, anything) in .t-success-che)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "transitions_dev_10_success_check_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "transitions_dev_10_success_check_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "transitions_dev_10_success_check_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "transitions_dev_10_success_check_codeblock_3",
+			"label": "code:css (/* Wrapper drives the appear animation; it doesn't own any)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "transitions_dev_10_success_check_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "transitions_dev_10_success_check_codeblock_4",
+			"label": "code:js (// Cold-load \u2192 \"out\" (no animation). On show, flip to \"in\".)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "transitions_dev_10_success_check_calibrating_stroke_dasharray_for_your_path",
+			"label": "Calibrating `stroke-dasharray` for your path",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "transitions_dev_10_success_check_codeblock_5",
+			"label": "code:js (document.querySelector(\".t-success-check svg path\").getTotal)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "transitions_dev_10_success_check_codeblock_6",
+			"label": "code:js (const path = wrapper.querySelector(\"svg path\");)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L161"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_agents_skills_transitions_dev_10_success_check_md",
+			"target": "transitions_dev_10_success_check_success_check",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_success_check",
+			"target": "transitions_dev_10_success_check_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_success_check",
+			"target": "transitions_dev_10_success_check_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_html_usage",
+			"target": "transitions_dev_10_success_check_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_success_check",
+			"target": "transitions_dev_10_success_check_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_tunable_variables",
+			"target": "transitions_dev_10_success_check_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_success_check",
+			"target": "transitions_dev_10_success_check_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_css",
+			"target": "transitions_dev_10_success_check_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_success_check",
+			"target": "transitions_dev_10_success_check_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_javascript_orchestration",
+			"target": "transitions_dev_10_success_check_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_javascript_orchestration",
+			"target": "transitions_dev_10_success_check_calibrating_stroke_dasharray_for_your_path",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_calibrating_stroke_dasharray_for_your_path",
+			"target": "transitions_dev_10_success_check_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_10_success_check_calibrating_stroke_dasharray_for_your_path",
+			"target": "transitions_dev_10_success_check_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\10-success-check.md",
+			"source_location": "L161",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

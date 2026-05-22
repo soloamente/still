@@ -1,0 +1,105 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_gamification_achievement_progress_tsx",
+			"label": "achievement-progress.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "gamification_achievement_progress_achievement",
+			"label": "Achievement",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L4"
+		},
+		{
+			"id": "gamification_achievement_progress_achievementprogress",
+			"label": "AchievementProgress()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievement_progress_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievement_progress_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievement_progress_tsx",
+			"target": "lib_format_formatdistancetonowstrict",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievement_progress_tsx",
+			"target": "gamification_achievement_progress_achievement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievement_progress_tsx",
+			"target": "gamification_achievement_progress_achievementprogress",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "gamification_achievement_progress_achievementprogress",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "gamification_achievement_progress_achievementprogress",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "gamification_achievement_progress_achievementprogress",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "gamification_achievement_progress_achievementprogress",
+			"callee": "formatDistanceToNowStrict",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx",
+			"source_location": "L44"
+		}
+	]
+}

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
-
 import { AppShell } from "@/components/app/app-shell";
+import { AppThemeShell } from "@/components/app/app-theme-shell";
 import { authServer } from "@/lib/auth-server";
 import { serverApi } from "@/lib/server-api";
 
@@ -12,7 +12,11 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	if (!session) redirect("/sign-in");
 
 	const api = await serverApi();
-	let profile: { handle?: string; displayName?: string } | null = null;
+	let profile: {
+		handle?: string;
+		displayName?: string;
+		preferences?: Record<string, unknown>;
+	} | null = null;
 	let profileFetchFailed = false;
 	try {
 		const profileRes = await api.api.profiles.me.get();
@@ -34,16 +38,18 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	if (!profileFetchFailed && !profile?.handle) redirect("/onboarding");
 
 	return (
-		<AppShell
-			user={{
-				id: session.user.id,
-				name: session.user.name ?? profile?.displayName ?? "",
-				image: session.user.image ?? null,
-				handle: profile?.handle ?? session.user.id,
-				email: session.user.email ?? null,
-			}}
-		>
-			{children}
-		</AppShell>
+		<AppThemeShell initialAppearance={profile?.preferences ?? null}>
+			<AppShell
+				user={{
+					id: session.user.id,
+					name: session.user.name ?? profile?.displayName ?? "",
+					image: session.user.image ?? null,
+					handle: profile?.handle ?? session.user.id,
+					email: session.user.email ?? null,
+				}}
+			>
+				{children}
+			</AppShell>
+		</AppThemeShell>
 	);
 }

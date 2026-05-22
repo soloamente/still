@@ -1,0 +1,607 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_design_md",
+			"label": "design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_design_mobbin_style_reference",
+			"label": "Mobbin \u2014 Style Reference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_design_tokens_colors",
+			"label": "Tokens \u2014 Colors",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "still_design_tokens_typography",
+			"label": "Tokens \u2014 Typography",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L24"
+		},
+		{
+			"id": "still_design_saans_every_text_element_on_the_site_fractional_weights_440_456_652_are_the_signature_they_occupy_visual_mass_between_regular_and_semibold_that_no_variable_axis_font_exposes_as_named_stops_display_headlines_at_80px_56px_run_weight_600_652_at_lineheight_1_00_1_13_with_negative_letter_spacing_0_011em_at_large_sizes_body_runs_14_16px_at_weight_400_with_tracking_0_013_0_017em_for_small_size_legibility_mobbin_font_saans",
+			"label": "saans \u2014 Every text element on the site. Fractional weights (440, 456, 652) are the signature \u2014 they occupy visual mass between Regular and Semibold that no variable-axis font exposes as named stops. Display headlines at 80px/56px run weight 600\u2013652 at lineHeight 1.00\u20131.13 with negative letter-spacing (-0.011em at large sizes). Body runs 14\u201316px at weight 400 with tracking +0.013\u20130.017em for small-size legibility. \u00b7 `--mobbin-font-saans`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "still_design_type_scale",
+			"label": "Type Scale",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "still_design_tokens_spacing_shapes",
+			"label": "Tokens \u2014 Spacing & Shapes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "still_design_spacing_scale",
+			"label": "Spacing Scale",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "still_design_border_radius",
+			"label": "Border Radius",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "still_design_shadows",
+			"label": "Shadows",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "still_design_layout",
+			"label": "Layout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "still_design_components",
+			"label": "Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "still_design_primary_filled_button",
+			"label": "Primary Filled Button",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L95"
+		},
+		{
+			"id": "still_design_outlined_pill_button",
+			"label": "Outlined Pill Button",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "still_design_muted_pill_button",
+			"label": "Muted Pill Button",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "still_design_inline_underline_link",
+			"label": "Inline Underline Link",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "still_design_app_screenshot_card",
+			"label": "App Screenshot Card",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "still_design_category_navigation_menu",
+			"label": "Category Navigation Menu",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L125"
+		},
+		{
+			"id": "still_design_top_navigation_bar",
+			"label": "Top Navigation Bar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "still_design_filter_pill_tab_row",
+			"label": "Filter Pill / Tab Row",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "still_design_search_input",
+			"label": "Search Input",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "still_design_section_stat_display",
+			"label": "Section Stat Display",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "still_design_do_s_and_don_ts",
+			"label": "Do's and Don'ts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L155"
+		},
+		{
+			"id": "still_design_do",
+			"label": "Do",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "still_design_don_t",
+			"label": "Don't",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "still_design_surfaces",
+			"label": "Surfaces",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L177"
+		},
+		{
+			"id": "still_design_elevation",
+			"label": "Elevation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L186"
+		},
+		{
+			"id": "still_design_imagery",
+			"label": "Imagery",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "still_design_layout_194",
+			"label": "Layout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L194"
+		},
+		{
+			"id": "still_design_agent_prompt_guide",
+			"label": "Agent Prompt Guide",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "still_design_fractional_weight_system",
+			"label": "Fractional Weight System",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L223"
+		},
+		{
+			"id": "still_design_similar_brands",
+			"label": "Similar Brands",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L235"
+		},
+		{
+			"id": "still_design_quick_start",
+			"label": "Quick Start",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L243"
+		},
+		{
+			"id": "still_design_css_custom_properties_repo_use_mobbin_prefix_in_globals_css",
+			"label": "CSS custom properties (repo: use `--mobbin-*` prefix in `globals.css`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L245"
+		},
+		{
+			"id": "still_design_codeblock_1",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L247"
+		},
+		{
+			"id": "still_design_tailwind_v4_theme_inline_in_globals_css",
+			"label": "Tailwind v4 (`@theme inline` in `globals.css`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L301"
+		},
+		{
+			"id": "still_design_design_tokens_json",
+			"label": "Design tokens (JSON)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L305"
+		},
+		{
+			"id": "still_design_codeblock_2",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L307"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_design_md",
+			"target": "still_design_mobbin_style_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_tokens_colors",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_tokens_typography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_tokens_typography",
+			"target": "still_design_saans_every_text_element_on_the_site_fractional_weights_440_456_652_are_the_signature_they_occupy_visual_mass_between_regular_and_semibold_that_no_variable_axis_font_exposes_as_named_stops_display_headlines_at_80px_56px_run_weight_600_652_at_lineheight_1_00_1_13_with_negative_letter_spacing_0_011em_at_large_sizes_body_runs_14_16px_at_weight_400_with_tracking_0_013_0_017em_for_small_size_legibility_mobbin_font_saans",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_tokens_typography",
+			"target": "still_design_type_scale",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_tokens_spacing_shapes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_tokens_spacing_shapes",
+			"target": "still_design_spacing_scale",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_tokens_spacing_shapes",
+			"target": "still_design_border_radius",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_tokens_spacing_shapes",
+			"target": "still_design_shadows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_tokens_spacing_shapes",
+			"target": "still_design_layout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_primary_filled_button",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_outlined_pill_button",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_muted_pill_button",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_inline_underline_link",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_app_screenshot_card",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_category_navigation_menu",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_top_navigation_bar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_filter_pill_tab_row",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_search_input",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_components",
+			"target": "still_design_section_stat_display",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_do_s_and_don_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L155",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_do_s_and_don_ts",
+			"target": "still_design_do",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_do_s_and_don_ts",
+			"target": "still_design_don_t",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_surfaces",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L177",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_elevation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L186",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_imagery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_layout_194",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_agent_prompt_guide",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_fractional_weight_system",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L223",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_similar_brands",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_quick_start",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_quick_start",
+			"target": "still_design_css_custom_properties_repo_use_mobbin_prefix_in_globals_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L245",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_css_custom_properties_repo_use_mobbin_prefix_in_globals_css",
+			"target": "still_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_quick_start",
+			"target": "still_design_tailwind_v4_theme_inline_in_globals_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L301",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_mobbin_style_reference",
+			"target": "still_design_design_tokens_json",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L305",
+			"weight": 1.0
+		},
+		{
+			"source": "still_design_design_tokens_json",
+			"target": "still_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\design.md",
+			"source_location": "L307",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

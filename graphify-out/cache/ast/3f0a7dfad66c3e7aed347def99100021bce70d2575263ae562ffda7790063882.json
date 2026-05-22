@@ -1,0 +1,236 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"label": "me-catalog-language-select.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_me_catalog_language_select_languageoption",
+			"label": "LanguageOption",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"label": "MeCatalogLanguageSelect()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L22"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_popover_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "components_popover_popover",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "components_popover_popovercontent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "components_popover_popovertrigger",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_form_field_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "profile_me_form_field_mefieldcontrolclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "lib_catalog_tmdb_language_catalog_tmdb_language_options",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "lib_detail_action_motion_detail_canvas_on_card_hover_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "profile_me_catalog_language_select_languageoption",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"target": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx",
+			"source_location": "L86"
+		}
+	]
+}

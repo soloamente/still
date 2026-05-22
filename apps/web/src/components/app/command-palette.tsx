@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { create } from "zustand";
 
+import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import { fetchMoviesSearch } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 
@@ -53,22 +54,17 @@ const NAV_SHORTCUTS = [
 	{ id: "home", label: "Home", icon: Film, href: "/home" },
 	{ id: "diary", label: "Diary", icon: Film, href: "/diary" },
 	{ id: "watchlist", label: "Watchlist", icon: ListMusic, href: "/watchlist" },
-	/**
-	 * Full TMDb popular billboard — surfaced here so ⌘K still routes people who typed
-	 * “popular” toward browse, not toward an empty TMDB substring match.
-	 */
 	{
 		id: "popular",
 		label: "Popular films",
 		icon: TrendingUp,
-		href: "/movies/popular",
+		href: buildHomeLobbyHref({ browse: "movies", sort: "popular" }),
 	},
-	/** Same route as catalog **Discover** chip + home “explore” CTA — keeps ⌘K aligned with browse IA. */
 	{
 		id: "discover",
 		label: "Discover films",
 		icon: Compass,
-		href: "/movies/discover",
+		href: buildHomeLobbyHref({ browse: "movies", sort: "latest" }),
 	},
 	{ id: "news", label: "News", icon: Newspaper, href: "/news" },
 	{

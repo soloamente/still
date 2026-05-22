@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_mtv_tsx",
+			"label": "mtv.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mtv.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_mtv_iconmtv",
+			"label": "IconMtv()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mtv.tsx",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_mtv_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mtv.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_mtv_tsx",
+			"target": "icons_mtv_iconmtv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\mtv.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,80 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_app_not_found_tsx",
+			"label": "+not-found.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_not_found_notfoundscreen",
+			"label": "NotFoundScreen()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx",
+			"source_location": "L7"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_not_found_tsx",
+			"target": "expo_router",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_not_found_tsx",
+			"target": "heroui_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_not_found_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_not_found_tsx",
+			"target": "c_users_utente_documents_still_apps_native_components_container_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_not_found_tsx",
+			"target": "components_container_container",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_not_found_tsx",
+			"target": "app_not_found_notfoundscreen",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

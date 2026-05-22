@@ -25,6 +25,7 @@ import {
 	useMeAccountSession,
 	writeStoredSettingsDraft,
 } from "@/components/profile/me-account-session-context";
+import { MeAppearanceSettings } from "@/components/profile/me-appearance-settings";
 import { MeCatalogLanguageSelect } from "@/components/profile/me-catalog-language-select";
 import { MeCatalogWatchRegionSelect } from "@/components/profile/me-catalog-watch-region-select";
 import {
@@ -38,10 +39,13 @@ import {
 	MeSettingsSection,
 } from "@/components/profile/me-settings-layout";
 import { api } from "@/lib/api";
+import type { AppThemeClass } from "@/lib/app-themes";
 import {
+	PROFILE_PREF_APP_THEME,
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
 	PROFILE_PREF_CATALOG_TMDB_LANGUAGE,
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
+	readAppThemePref,
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbLanguagePref,
 	readCatalogTmdbWatchRegionPref,
@@ -93,6 +97,9 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 	const [catalogTmdbLanguage, setCatalogTmdbLanguage] = useState(
 		() => readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
 	);
+	const [appTheme, setAppTheme] = useState<AppThemeClass>(() =>
+		readAppThemePref(profile.preferences ?? null),
+	);
 	const [saving, setSaving] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const didHydrateSettingsDraftRef = useRef(false);
@@ -140,6 +147,9 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				? stored.catalogTmdbLanguage
 				: (readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? ""),
 		);
+		if (stored.appTheme) {
+			setAppTheme(readAppThemePref({ appTheme: stored.appTheme }));
+		}
 	}, [profile]);
 
 	const dirty = useMemo(() => {
@@ -154,6 +164,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 					: regionFromProfile;
 		const languageFromProfile =
 			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "";
+		const themeFromProfile = readAppThemePref(profile.preferences ?? null);
 		return (
 			displayName.trim() !== (profile.displayName ?? "").trim() ||
 			bio.trim() !== (profile.bio ?? "").trim() ||
@@ -165,7 +176,8 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 			catalogMonochromePeersOnHover !==
 				readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null) ||
 			catalogTmdbWatchRegion.trim() !== regionStr ||
-			catalogTmdbLanguage.trim() !== languageFromProfile
+			catalogTmdbLanguage.trim() !== languageFromProfile ||
+			appTheme !== themeFromProfile
 		);
 	}, [
 		profile,
@@ -179,6 +191,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		catalogMonochromePeersOnHover,
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
+		appTheme,
 	]);
 
 	const resetToProfile = useCallback(() => {
@@ -199,6 +212,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		setCatalogTmdbLanguage(
 			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
 		);
+		setAppTheme(readAppThemePref(profile.preferences ?? null));
 	}, [profile, syncSettingsDirty]);
 
 	// Drive `/me` leave guards + `beforeunload` from the latest dirty snapshot (survives unmount).
@@ -224,6 +238,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
+				appTheme,
 			});
 		}, 280);
 		return () => {
@@ -241,6 +256,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
+				appTheme,
 			});
 		};
 	}, [
@@ -255,6 +271,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		catalogMonochromePeersOnHover,
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
+		appTheme,
 	]);
 
 	useRegisterMeAccountBarActions(
@@ -291,6 +308,9 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 			} else {
 				delete prefs[PROFILE_PREF_CATALOG_TMDB_LANGUAGE];
 			}
+			prefs[PROFILE_PREF_APP_THEME] = appTheme;
+			delete prefs.cinemaPreset;
+			delete prefs.cinemaPresetUserOverride;
 
 			await api.api.profiles.me.patch({
 				displayName: displayName.trim(),
@@ -443,6 +463,18 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 									onChange={setCatalogMonochromePeersOnHover}
 									title="Monochrome neighbors on hover"
 									description="On the home catalogue, posters you are not pointing at turn grayscale while one title is hovered. Turn off to keep every tile in full color."
+								/>
+							</MeSettingsPanel>
+						</MeSettingsSection>
+
+						<MeSettingsSection
+							title="Appearance"
+							description="Shell palette for the whole app."
+						>
+							<MeSettingsPanel>
+								<MeAppearanceSettings
+									appTheme={appTheme}
+									onAppThemeChange={setAppTheme}
 								/>
 							</MeSettingsPanel>
 						</MeSettingsSection>

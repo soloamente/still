@@ -1,0 +1,164 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"label": "app-theme-context.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "contexts_app_theme_context_themename",
+			"label": "ThemeName",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L4"
+		},
+		{
+			"id": "contexts_app_theme_context_appthemecontexttype",
+			"label": "AppThemeContextType",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "contexts_app_theme_context_appthemecontext",
+			"label": "AppThemeContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "contexts_app_theme_context_appthemeprovider",
+			"label": "AppThemeProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "contexts_app_theme_context_useapptheme",
+			"label": "useAppTheme()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L49"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"target": "uniwind",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"target": "contexts_app_theme_context_themename",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"target": "contexts_app_theme_context_appthemecontexttype",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"target": "contexts_app_theme_context_appthemecontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"target": "contexts_app_theme_context_appthemeprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"target": "contexts_app_theme_context_useapptheme",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L49",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "contexts_app_theme_context_appthemeprovider",
+			"callee": "useUniwind",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "contexts_app_theme_context_appthemeprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "contexts_app_theme_context_appthemeprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "contexts_app_theme_context_appthemeprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "contexts_app_theme_context_appthemeprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "contexts_app_theme_context_appthemeprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "contexts_app_theme_context_useapptheme",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\contexts\\app-theme-context.tsx",
+			"source_location": "L50"
+		}
+	]
+}

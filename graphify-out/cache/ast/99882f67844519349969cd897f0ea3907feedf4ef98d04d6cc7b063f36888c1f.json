@@ -1,0 +1,206 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"label": "tv-watch-types.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_watch_types_tvlogscope",
+			"label": "TvLogScope",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_tv_watch_types_tvwatchstatus",
+			"label": "TvWatchStatus",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_tv_watch_types_tvprogressmode",
+			"label": "TvProgressMode",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_tv_watch_types_tvwatchrow",
+			"label": "TvWatchRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_tv_watch_types_tvwatchepisoderow",
+			"label": "TvWatchEpisodeRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "lib_tv_watch_types_tvwatchnextepisode",
+			"label": "TvWatchNextEpisode",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "lib_tv_watch_types_tvwatchshowsummary",
+			"label": "TvWatchShowSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L39"
+		},
+		{
+			"id": "lib_tv_watch_types_tvwatchbundle",
+			"label": "TvWatchBundle",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L46"
+		},
+		{
+			"id": "lib_tv_watch_types_tvseasonsummary",
+			"label": "TvSeasonSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L53"
+		},
+		{
+			"id": "lib_tv_watch_types_tvepisodesummary",
+			"label": "TvEpisodeSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L62"
+		},
+		{
+			"id": "lib_tv_watch_types_tv_watch_status_labels",
+			"label": "TV_WATCH_STATUS_LABELS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L72"
+		},
+		{
+			"id": "lib_tv_watch_types_tv_progress_mode_labels",
+			"label": "TV_PROGRESS_MODE_LABELS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L80"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvlogscope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvwatchstatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvprogressmode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvwatchrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvwatchepisoderow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvwatchnextepisode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvwatchshowsummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvwatchbundle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvseasonsummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tvepisodesummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tv_watch_status_labels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"target": "lib_tv_watch_types_tv_progress_mode_labels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-types.ts",
+			"source_location": "L80",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

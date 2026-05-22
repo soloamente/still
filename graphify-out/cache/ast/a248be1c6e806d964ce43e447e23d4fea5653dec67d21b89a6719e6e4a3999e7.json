@@ -1,0 +1,847 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"label": "background.js",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L1"
+		},
+		{
+			"id": "chrome_mv3_dev_background_definebackground",
+			"label": "defineBackground()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L3"
+		},
+		{
+			"id": "chrome_mv3_dev_background_constructor",
+			"label": "constructor()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L32"
+		},
+		{
+			"id": "chrome_mv3_dev_background_includes",
+			"label": "includes()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L49"
+		},
+		{
+			"id": "chrome_mv3_dev_background_ishttpmatch",
+			"label": "isHttpMatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L60"
+		},
+		{
+			"id": "chrome_mv3_dev_background_ishttpsmatch",
+			"label": "isHttpsMatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L63"
+		},
+		{
+			"id": "chrome_mv3_dev_background_ishostpathmatch",
+			"label": "isHostPathMatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L66"
+		},
+		{
+			"id": "chrome_mv3_dev_background_isfilematch",
+			"label": "isFileMatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L72"
+		},
+		{
+			"id": "chrome_mv3_dev_background_isftpmatch",
+			"label": "isFtpMatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L75"
+		},
+		{
+			"id": "chrome_mv3_dev_background_isurnmatch",
+			"label": "isUrnMatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L78"
+		},
+		{
+			"id": "chrome_mv3_dev_background_convertpatterntoregex",
+			"label": "convertPatternToRegex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L81"
+		},
+		{
+			"id": "chrome_mv3_dev_background_escapeforregex",
+			"label": "escapeForRegex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L85"
+		},
+		{
+			"id": "chrome_mv3_dev_background_validateprotocol",
+			"label": "validateProtocol()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L102"
+		},
+		{
+			"id": "chrome_mv3_dev_background_validatehostname",
+			"label": "validateHostname()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L105"
+		},
+		{
+			"id": "chrome_mv3_dev_background_print",
+			"label": "print()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L111"
+		},
+		{
+			"id": "chrome_mv3_dev_background_getdevserverwebsocket",
+			"label": "getDevServerWebSocket()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L124"
+		},
+		{
+			"id": "chrome_mv3_dev_background_keepserviceworkeralive",
+			"label": "keepServiceWorkerAlive()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L156"
+		},
+		{
+			"id": "chrome_mv3_dev_background_reloadcontentscript",
+			"label": "reloadContentScript()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L161"
+		},
+		{
+			"id": "chrome_mv3_dev_background_reloadcontentscriptmv3",
+			"label": "reloadContentScriptMv3()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L165"
+		},
+		{
+			"id": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"label": "reloadManifestContentScriptMv3()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L169"
+		},
+		{
+			"id": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"label": "reloadRuntimeContentScriptMv3()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L192"
+		},
+		{
+			"id": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"label": "reloadTabsForContentScript()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L208"
+		},
+		{
+			"id": "chrome_mv3_dev_background_reloadcontentscriptmv2",
+			"label": "reloadContentScriptMv2()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L224"
+		},
+		{
+			"id": "chrome_mv3_dev_background_ws",
+			"label": "ws",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L228"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_definebackground",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_constructor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_includes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_ishttpmatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_ishttpsmatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_ishostpathmatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_isfilematch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_isftpmatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_isurnmatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_convertpatterntoregex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_escapeforregex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_constructor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_validateprotocol",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_validatehostname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_print",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_getdevserverwebsocket",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_keepserviceworkeralive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_reloadcontentscript",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_reloadcontentscriptmv3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L165",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L208",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_reloadcontentscriptmv2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L224",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_extension_output_chrome_mv3_dev_background_js",
+			"target": "chrome_mv3_dev_background_ws",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L228",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_constructor",
+			"target": "chrome_mv3_dev_background_validateprotocol",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_constructor",
+			"target": "chrome_mv3_dev_background_validatehostname",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_ishttpmatch",
+			"target": "chrome_mv3_dev_background_ishostpathmatch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_ishttpsmatch",
+			"target": "chrome_mv3_dev_background_ishostpathmatch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_ishostpathmatch",
+			"target": "chrome_mv3_dev_background_convertpatterntoregex",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_convertpatterntoregex",
+			"target": "chrome_mv3_dev_background_escapeforregex",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_validateprotocol",
+			"target": "chrome_mv3_dev_background_includes",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_validatehostname",
+			"target": "chrome_mv3_dev_background_includes",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_reloadcontentscript",
+			"target": "chrome_mv3_dev_background_reloadcontentscriptmv2",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_reloadcontentscript",
+			"target": "chrome_mv3_dev_background_reloadcontentscriptmv3",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_reloadcontentscriptmv3",
+			"target": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_reloadcontentscriptmv3",
+			"target": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"target": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"target": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L206",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "chrome_mv3_dev_background_constructor",
+			"callee": "exec",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_includes",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_ishostpathmatch",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_ishostpathmatch",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_ishostpathmatch",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_isfilematch",
+			"callee": "Error",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_isftpmatch",
+			"callee": "Error",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_isurnmatch",
+			"callee": "Error",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_convertpatterntoregex",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L82"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_convertpatterntoregex",
+			"callee": "RegExp",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_escapeforregex",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_constructor",
+			"callee": "super",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_validateprotocol",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_validatehostname",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_print",
+			"callee": "method",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_print",
+			"callee": "shift",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_print",
+			"callee": "method",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_getdevserverwebsocket",
+			"callee": "debug",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_getdevserverwebsocket",
+			"callee": "bind",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_getdevserverwebsocket",
+			"callee": "addEventListener",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_getdevserverwebsocket",
+			"callee": "addEventListener",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L138"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_getdevserverwebsocket",
+			"callee": "addEventListener",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L141"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_getdevserverwebsocket",
+			"callee": "addEventListener",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_keepserviceworkeralive",
+			"callee": "setInterval",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadcontentscript",
+			"callee": "getManifest",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L162"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"callee": "log",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"callee": "getRegisteredContentScripts",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"callee": "debug",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L174"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"callee": "debug",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"callee": "updateContentScripts",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"callee": "debug",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadmanifestcontentscriptmv3",
+			"callee": "registerContentScripts",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L184"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"callee": "log",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L193"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"callee": "getRegisteredContentScripts",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L194"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"callee": "debug",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L195"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L196"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"callee": "log",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadruntimecontentscriptmv3",
+			"callee": "updateContentScripts",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"callee": "query",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L209"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L211"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L216"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadtabsforcontentscript",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L216"
+		},
+		{
+			"caller_nid": "chrome_mv3_dev_background_reloadcontentscriptmv2",
+			"callee": "Error",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js",
+			"source_location": "L225"
+		}
+	]
+}

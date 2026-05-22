@@ -1,0 +1,403 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"label": "page.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "id_page_personpayload",
+			"label": "PersonPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "id_page_params",
+			"label": "Params",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L40"
+		},
+		{
+			"id": "id_page_generatemetadata",
+			"label": "generateMetadata()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L42"
+		},
+		{
+			"id": "id_page_personpage",
+			"label": "PersonPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L61"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "next",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_app_shell_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "app_app_shell_appshellmaincontentminheightstyle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "movie_movie_poster_movieposter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_section_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "ui_section_section",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "lib_format_formatdate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_person_filmography_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "lib_person_filmography_filmographyreleaseyear",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_server_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "lib_server_api_serverapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "id_page_personpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "id_page_params",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "id_page_generatemetadata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_people_id_page_tsx",
+			"target": "id_page_personpage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L61",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "id_page_generatemetadata",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "id_page_generatemetadata",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "id_page_generatemetadata",
+			"callee": "serverApi",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "id_page_generatemetadata",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "id_page_generatemetadata",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "id_page_generatemetadata",
+			"callee": "people",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "notFound",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "serverApi",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "people",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "notFound",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "notFound",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "formatDate",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "formatDate",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L147"
+		},
+		{
+			"caller_nid": "id_page_personpage",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\people\\[id]\\page.tsx",
+			"source_location": "L176"
+		}
+	]
+}

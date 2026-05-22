@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_academy_awards_tsx",
+			"label": "academy-awards.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\academy-awards.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_academy_awards_iconacademyawards",
+			"label": "IconAcademyAwards()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\academy-awards.tsx",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_academy_awards_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\academy-awards.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_academy_awards_tsx",
+			"target": "icons_academy_awards_iconacademyawards",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\academy-awards.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

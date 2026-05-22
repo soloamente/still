@@ -1,0 +1,123 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_search_curated_tags_ts",
+			"label": "search-curated-tags.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_search_curated_tags_curatedtagslug",
+			"label": "CuratedTagSlug",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_search_curated_tags_curatedtagdef",
+			"label": "CuratedTagDef",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_search_curated_tags_search_curated_tags",
+			"label": "SEARCH_CURATED_TAGS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_search_curated_tags_findcuratedsuggestions",
+			"label": "findCuratedSuggestions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_search_curated_tags_curatedtagbyslug",
+			"label": "curatedTagBySlug()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L33"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_curated_tags_ts",
+			"target": "lib_search_curated_tags_curatedtagslug",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_curated_tags_ts",
+			"target": "lib_search_curated_tags_curatedtagdef",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_curated_tags_ts",
+			"target": "lib_search_curated_tags_search_curated_tags",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_curated_tags_ts",
+			"target": "lib_search_curated_tags_findcuratedsuggestions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_curated_tags_ts",
+			"target": "lib_search_curated_tags_curatedtagbyslug",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_search_curated_tags_findcuratedsuggestions",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_search_curated_tags_findcuratedsuggestions",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_search_curated_tags_findcuratedsuggestions",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_search_curated_tags_curatedtagbyslug",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts",
+			"source_location": "L34"
+		}
+	]
+}

@@ -7,6 +7,7 @@ import { Fraunces, Geist_Mono, Outfit } from "next/font/google";
 import localFont from "next/font/local";
 
 import "../index.css";
+import { ThemeFlashGuardScript } from "@/components/app/theme-flash-guard-script";
 import Providers from "@/components/providers";
 
 /**
@@ -100,13 +101,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-	themeColor: "#09090a",
-	colorScheme: "dark",
+	themeColor: [
+		{ media: "(prefers-color-scheme: light)", color: "#f2f2f2" },
+		{ media: "(prefers-color-scheme: dark)", color: "#09090a" },
+	],
 };
 
 /**
- * Root shell: fonts, theme (`dark`), optional cinema atmosphere preset.
- * `NEXT_PUBLIC_CINEMA_PRESET=multiplex` → faster ticker, heavier grain (see `globals.css`).
+ * Root shell: fonts and palette classes on `<html>` (synced client-side after hydrate).
  */
 export default function RootLayout({
 	children,
@@ -116,20 +118,16 @@ export default function RootLayout({
 	/* next/font puts `--font-inter` on whichever node gets `variable`; it must live on
 	 * `<html>` so :root rules like `font-family: var(--font-sans)` resolve it (body-only
 	 * vars are invisible to `html`, which broke the stack → Times New Roman fallbacks). */
+	const htmlFontClass = `${sfProRounded.variable} ${outfit.variable} ${outfit.className} ${geistMono.variable} ${fraunces.variable}`;
+
 	return (
-		<html
-			lang="en"
-			suppressHydrationWarning
-			className={`${sfProRounded.variable} ${outfit.variable} ${outfit.className} ${geistMono.variable} ${fraunces.variable} dark`}
-			data-cinema-preset={
-				process.env.NEXT_PUBLIC_CINEMA_PRESET === "multiplex"
-					? "multiplex"
-					: "arthouse"
-			}
-		>
+		<html lang="en" suppressHydrationWarning>
+			<head>
+				<ThemeFlashGuardScript />
+			</head>
 			<body className="bg-background text-foreground antialiased">
 				{/* DialKit dev panel: sibling of app tree (does not wrap {children}). */}
-				<Providers>{children}</Providers>
+				<Providers htmlFontClass={htmlFontClass}>{children}</Providers>
 				{process.env.NODE_ENV === "development" ? <Agentation /> : null}
 				<DialRoot />
 			</body>

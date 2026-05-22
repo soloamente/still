@@ -1,0 +1,213 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"label": "use-tv-watch.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "tv_use_tv_watch_usetvwatch",
+			"label": "useTvWatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L25"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_still_api_fetch_deletetvwatchepisode",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_still_api_fetch_fetchtvwatchbytv",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_still_api_fetch_patchtvwatch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_still_api_fetch_posttvwatchcompleteseason",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_still_api_fetch_posttvwatchmarkepisode",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_still_api_fetch_posttvwatchmarknext",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_still_api_fetch_posttvwatchstart",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_tv_watch_types_tvprogressmode",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_tv_watch_types_tvwatchbundle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "lib_tv_watch_types_tvwatchstatus",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"target": "tv_use_tv_watch_usetvwatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "tv_use_tv_watch_usetvwatch",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "tv_use_tv_watch_usetvwatch",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "tv_use_tv_watch_usetvwatch",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "tv_use_tv_watch_usetvwatch",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "tv_use_tv_watch_usetvwatch",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "tv_use_tv_watch_usetvwatch",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts",
+			"source_location": "L58"
+		}
+	]
+}

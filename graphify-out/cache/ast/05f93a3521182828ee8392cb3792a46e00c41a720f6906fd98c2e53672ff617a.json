@@ -1,0 +1,174 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"label": "feed-listing-thumb.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_feed_listing_thumb_feedlistingthumblayout",
+			"label": "FeedListingThumbLayout",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L8"
+		},
+		{
+			"id": "feed_feed_listing_thumb_activity_poster_frame_class",
+			"label": "ACTIVITY_POSTER_FRAME_CLASS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "feed_feed_listing_thumb_feedlistingthumb",
+			"label": "FeedListingThumb()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L30"
+		},
+		{
+			"id": "feed_feed_listing_thumb_feedlistplaceholderframe",
+			"label": "FeedListPlaceholderFrame()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L107"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "feed_feed_listing_thumb_feedlistingthumblayout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "feed_feed_listing_thumb_activity_poster_frame_class",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "feed_feed_listing_thumb_feedlistingthumb",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"target": "feed_feed_listing_thumb_feedlistplaceholderframe",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L107",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "feed_feed_listing_thumb_feedlistingthumb",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "feed_feed_listing_thumb_feedlistingthumb",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "feed_feed_listing_thumb_feedlistingthumb",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "feed_feed_listing_thumb_feedlistingthumb",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "feed_feed_listing_thumb_feedlistplaceholderframe",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-listing-thumb.tsx",
+			"source_location": "L116"
+		}
+	]
+}

@@ -2,7 +2,10 @@ import { cn } from "@still/ui/lib/utils";
 import { Award } from "lucide-react";
 import Image from "next/image";
 
-import { isBadgeArtworkUrl } from "@/lib/badge-artwork";
+import {
+	BADGE_ARTWORK_IMAGE_CLASS,
+	isBadgeArtworkUrl,
+} from "@/lib/badge-artwork";
 
 /**
  * Regular heptagon clip (flat-top) — matches profile milestone tray silhouette.
@@ -63,7 +66,7 @@ export function MilestoneBadgeGlyph({
 					width={68}
 					height={80}
 					unoptimized
-					className="max-h-full max-w-full object-contain"
+					className={BADGE_ARTWORK_IMAGE_CLASS}
 				/>
 			</div>
 		);
@@ -85,7 +88,7 @@ export function MilestoneBadgeGlyph({
 					width={28}
 					height={28}
 					unoptimized
-					className="size-7 object-contain opacity-95"
+					className="size-7 h-auto w-auto object-contain opacity-95"
 				/>
 			) : (
 				<Award className="size-7 opacity-95" strokeWidth={1.5} aria-hidden />

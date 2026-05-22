@@ -1,0 +1,515 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"label": "movie-detail-tmdb.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_tmdbmoviesummary",
+			"label": "TmdbMovieSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_tmdbcrewentry",
+			"label": "TmdbCrewEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_crew_job_priority",
+			"label": "CREW_JOB_PRIORITY",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_crewrow",
+			"label": "CrewRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L40"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_buildcrewrows",
+			"label": "buildCrewRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L46"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_creditscrawllineseed",
+			"label": "CreditsCrawlLineSeed",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L95"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_crewrowstocreditscrawllines",
+			"label": "crewRowsToCreditsCrawlLines()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L100"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_premiererow",
+			"label": "PremiereRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L112"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"label": "tmdbDayStamp()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L123"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_extractpremiererows",
+			"label": "extractPremiereRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L139"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_festivalandawardkeywordnames",
+			"label": "festivalAndAwardKeywordNames()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L183"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_tvnamerowstomoviesummaries",
+			"label": "tvNameRowsToMovieSummaries()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L197"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_tvdetailkeywordlist",
+			"label": "tvDetailKeywordList()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L216"
+		},
+		{
+			"id": "lib_movie_detail_tmdb_mergemorelikethis",
+			"label": "mergeMoreLikeThis()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L231"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_tmdbmoviesummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_tmdbcrewentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_crew_job_priority",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_crewrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_buildcrewrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_creditscrawllineseed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_crewrowstocreditscrawllines",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_premiererow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_extractpremiererows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_festivalandawardkeywordnames",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_tvnamerowstomoviesummaries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L197",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_tvdetailkeywordlist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L216",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_tmdb_ts",
+			"target": "lib_movie_detail_tmdb_mergemorelikethis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L231",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_tmdb_extractpremiererows",
+			"target": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L159",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "keys",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L82"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L84"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_buildcrewrows",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_crewrowstocreditscrawllines",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_crewrowstocreditscrawllines",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_tmdbdaystamp",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_extractpremiererows",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L162"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_extractpremiererows",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L165"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_extractpremiererows",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_extractpremiererows",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_festivalandawardkeywordnames",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_festivalandawardkeywordnames",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_festivalandawardkeywordnames",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L190"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_tvnamerowstomoviesummaries",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_mergemorelikethis",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L242"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_mergemorelikethis",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L243"
+		},
+		{
+			"caller_nid": "lib_movie_detail_tmdb_mergemorelikethis",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-tmdb.ts",
+			"source_location": "L244"
+		}
+	]
+}

@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"label": "app-theme-shell.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_app_theme_shell_initialappearanceprefs",
+			"label": "InitialAppearancePrefs",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L27"
+		},
+		{
+			"id": "app_app_theme_shell_appthemeshellcontextvalue",
+			"label": "AppThemeShellContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L29"
+		},
+		{
+			"id": "app_app_theme_shell_appthemeshellcontext",
+			"label": "AppThemeShellContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L40"
+		},
+		{
+			"id": "app_app_theme_shell_useappthemeshell",
+			"label": "useAppThemeShell()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L44"
+		},
+		{
+			"id": "app_app_theme_shell_appthemeshell",
+			"label": "AppThemeShell()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L56"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "next_themes",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_root_html_font_class_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "app_root_html_font_class_context_useroothtmlfontclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "lib_app_themes_appthemeclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "lib_app_themes_cinemapresetid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "lib_app_themes_defaultcinemapresetfortheme",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "lib_app_themes_resolveapptheme",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "lib_root_html_appearance_applyappearancetodocument",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "lib_profile_preferences_readappthemepref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "lib_profile_preferences_readcinemapresetpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "app_app_theme_shell_initialappearanceprefs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "app_app_theme_shell_appthemeshellcontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "app_app_theme_shell_appthemeshellcontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "app_app_theme_shell_useappthemeshell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_theme_shell_tsx",
+			"target": "app_app_theme_shell_appthemeshell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L56",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_app_theme_shell_useappthemeshell",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useRootHtmlFontClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useTheme",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "app_app_theme_shell_appthemeshell",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx",
+			"source_location": "L143"
+		}
+	]
+}

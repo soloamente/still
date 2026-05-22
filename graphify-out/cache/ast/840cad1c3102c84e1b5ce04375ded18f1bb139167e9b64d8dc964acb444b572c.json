@@ -1,0 +1,73 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_cuid_ts",
+			"label": "cuid.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_cuid_makeid",
+			"label": "makeId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L6"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_cuid_ts",
+			"target": "lib_cuid_makeid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_cuid_makeid",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_cuid_makeid",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_cuid_makeid",
+			"callee": "padEnd",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_cuid_makeid",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_cuid_makeid",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_cuid_makeid",
+			"callee": "random",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts",
+			"source_location": "L8"
+		}
+	]
+}

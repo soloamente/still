@@ -7,7 +7,7 @@
 #   .\scripts\install-motion-plus.ps1 -Token "paste-token-here"
 
 param(
-	[string]$Version = "2.0.0-alpha.4",
+	[string]$Version = "2.10.0",
 	[string]$Token = $env:MOTION_AUTH_TOKEN
 )
 
@@ -46,8 +46,16 @@ if (-not (Test-Path $tarball) -or (Get-Item $tarball).Length -lt 1024) {
 	exit 1
 }
 
+# package.json pins `file:.cache/motion-plus.tgz` — stable path for Bun workspace installs.
+$stableTarball = Join-Path $cacheDir "motion-plus.tgz"
+Copy-Item -Path $tarball -Destination $stableTarball -Force
+
 Set-Location $root
 Write-Host "Installing from local file..."
-bun add "file:$tarball"
+bun add "file:.cache/motion-plus.tgz"
+if ($LASTEXITCODE -ne 0) {
+	Write-Host "bun add failed — run `bun install` from the repo root." -ForegroundColor Red
+	exit $LASTEXITCODE
+}
 
-Write-Host "Done — motion-plus added to package.json." -ForegroundColor Green
+Write-Host "Done — motion-plus installed (see file:.cache/motion-plus.tgz)." -ForegroundColor Green

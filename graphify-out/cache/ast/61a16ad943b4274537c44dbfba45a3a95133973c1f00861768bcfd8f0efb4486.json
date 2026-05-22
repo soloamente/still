@@ -1,0 +1,13 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_extension_entrypoints_background_ts",
+			"label": "background.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\extension\\entrypoints\\background.ts",
+			"source_location": "L1"
+		}
+	],
+	"edges": [],
+	"raw_calls": []
+}

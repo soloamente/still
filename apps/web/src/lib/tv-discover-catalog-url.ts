@@ -1,54 +1,84 @@
 import { normalizeDiscoverMonetization } from "@/lib/discover-catalog-url";
+import type { HomeCatalogRun } from "@/lib/home-catalog-run";
 import {
 	TV_COMPLETED_DISCOVER_STATUS,
 	TV_ONGOING_DISCOVER_STATUS,
 } from "@/lib/home-catalog-run";
+import type { HomeCatalogSort } from "@/lib/home-catalog-sort";
+import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+import type { HomeVenue } from "@/lib/home-venue";
 
 /**
- * Canonical query builder for `/tv/discover` — keeps home “Filters” links and any
- * future TV discover UI aligned with `GET /api/tv/discover`.
+ * Canonical query builder for TV discover slices — now targets `/home?browse=tv`
+ * instead of the retired `/tv/discover` route.
  */
-export function tvDiscoverCatalogUrl(parts: {
+export function tvDiscoverPartsToHomeHref(parts: {
 	genreId?: number | null;
 	sort?: string | null;
-	/** TMDb `first_air_date.gte` (YYYY-MM-DD). */
 	airDateGte?: string | null;
 	monetization?: string | null;
 	watchRegion?: string | null;
-	/** `ended` / `completed` for finished series. */
 	status?: string | null;
-}) {
-	const params = new URLSearchParams();
-	if (parts.genreId != null && parts.genreId > 0) {
-		params.set("genre", String(parts.genreId));
+}): string {
+	void parts.genreId;
+	void parts.watchRegion;
+
+	const status = parseTvDiscoverStatusParam(parts.status);
+	const hasUpcomingWindow = Boolean(parts.airDateGte?.trim());
+
+	let run: HomeCatalogRun | null = null;
+	if (status === TV_ONGOING_DISCOVER_STATUS) {
+		run = "ongoing";
+	} else if (status === TV_COMPLETED_DISCOVER_STATUS) {
+		run = "completed";
+	} else if (hasUpcomingWindow) {
+		run = "upcoming";
 	}
-	const s = parts.sort?.trim();
-	if (s && s !== "popularity.desc") {
-		params.set("sort", s);
+
+	const sortRaw = parts.sort?.trim() ?? "";
+	const lobbySort: HomeCatalogSort =
+		sortRaw === "first_air_date.desc" || sortRaw === "first_air_date.asc"
+			? "latest"
+			: "popular";
+
+	let venue: HomeVenue | undefined;
+	if (run === "upcoming") {
+		venue =
+			normalizeDiscoverMonetization(parts.monetization) === "flatrate"
+				? "streaming"
+				: "theaters";
 	}
-	const ag = parts.airDateGte?.trim();
-	if (ag && /^\d{4}-\d{2}-\d{2}$/.test(ag)) {
-		params.set("air_date_gte", ag);
-	}
-	const m = normalizeDiscoverMonetization(parts.monetization);
-	if (m) {
-		params.set("monetization", m);
-	}
-	const wr = parts.watchRegion?.trim().toUpperCase();
-	if (wr === "ALL" || wr === "ANY" || wr === "WORLD") {
-		params.set("watch_region", "ALL");
-	} else if (wr && /^[A-Z]{2}$/.test(wr)) {
-		params.set("watch_region", wr);
-	}
-	const st = parts.status?.trim().toLowerCase();
-	if (st) {
-		params.set("status", st);
-	}
-	const q = params.toString();
-	return q ? `/tv/discover?${q}` : "/tv/discover";
+
+	return buildHomeLobbyHref({
+		browse: "tv",
+		sort: run === "upcoming" ? "popular" : lobbySort,
+		run,
+		venue,
+	});
 }
 
-/** Normalises `?status=` for `/tv/discover` — same whitelist as `GET /api/tv/discover`. */
+/** Legacy name — returns `/home` href (not `/tv/discover`). */
+export function tvDiscoverCatalogUrl(
+	parts: Parameters<typeof tvDiscoverPartsToHomeHref>[0],
+) {
+	return tvDiscoverPartsToHomeHref(parts);
+}
+
+/** Parses retired `/tv/discover?…` query strings for redirects. */
+export function tvDiscoverSearchParamsToHomeHref(
+	params: URLSearchParams,
+): string {
+	return tvDiscoverPartsToHomeHref({
+		genreId: Number(params.get("genre")) || null,
+		sort: params.get("sort"),
+		airDateGte: params.get("air_date_gte"),
+		monetization: params.get("monetization"),
+		watchRegion: params.get("watch_region"),
+		status: params.get("status"),
+	});
+}
+
+/** Normalises `?status=` for TV discover — same whitelist as `GET /api/tv/discover`. */
 export function parseTvDiscoverStatusParam(
 	raw: string | undefined | null,
 ): string | null {

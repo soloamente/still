@@ -1,0 +1,88 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_filter_chips_tsx",
+			"label": "notifications-inbox-filter-chips.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "notifications_notifications_inbox_filter_chips_notificationsinboxfilterchips",
+			"label": "NotificationsInboxFilterChips()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_filter_chips_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_filter_chips_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_filter_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_notifications_inbox_filter_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_filter_chips_tsx",
+			"target": "lib_notifications_inbox_filter_notifications_inbox_filter_label",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_filter_chips_tsx",
+			"target": "lib_notifications_inbox_filter_notificationsinboxfilter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_filter_chips_tsx",
+			"target": "notifications_notifications_inbox_filter_chips_notificationsinboxfilterchips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "notifications_notifications_inbox_filter_chips_notificationsinboxfilterchips",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx",
+			"source_location": "L39"
+		}
+	]
+}

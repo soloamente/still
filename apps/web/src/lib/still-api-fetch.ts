@@ -1,5 +1,7 @@
 import { env } from "@still/env/web";
 
+import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
+import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import type { HomeVenue } from "@/lib/home-venue";
 import type {
 	TvEpisodeSummary,
@@ -1063,4 +1065,96 @@ export async function postNotificationRead(id: string) {
 		data: response.ok ? data : null,
 		error: response.ok ? null : { status: response.status, raw: data },
 	};
+}
+
+type CommunityPeriodQuery = {
+	period: HomeLeaderboardPeriod;
+	tz: string;
+};
+
+function communityPeriodSearchParams({
+	period,
+	tz,
+}: CommunityPeriodQuery): URLSearchParams {
+	const params = new URLSearchParams();
+	params.set("period", period);
+	params.set("tz", tz);
+	return params;
+}
+
+/** Public lists lobby — respects community period window. */
+export async function fetchCommunityLists(
+	period: HomeLeaderboardPeriod,
+	tz: string,
+	init?: Pick<RequestInit, "signal">,
+): Promise<unknown[] | null> {
+	const url = new URL("/api/lists", env.NEXT_PUBLIC_SERVER_URL);
+	url.searchParams.set("limit", "24");
+	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
+		url.searchParams.set(key, value);
+	}
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	if (!response.ok) return null;
+	return (await response.json()) as unknown[];
+}
+
+/** Recent public reviews — respects community period window. */
+export async function fetchCommunityReviewsRecent(
+	period: HomeLeaderboardPeriod,
+	tz: string,
+	init?: Pick<RequestInit, "signal">,
+): Promise<unknown[] | null> {
+	const url = new URL("/api/reviews/recent", env.NEXT_PUBLIC_SERVER_URL);
+	url.searchParams.set("limit", "20");
+	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
+		url.searchParams.set(key, value);
+	}
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	if (!response.ok) return null;
+	return (await response.json()) as unknown[];
+}
+
+/** Following or discover activity — respects community period window. */
+export async function fetchCommunityActivity(
+	period: HomeLeaderboardPeriod,
+	tz: string,
+	signedIn: boolean,
+	init?: Pick<RequestInit, "signal">,
+): Promise<{ items: unknown[] } | null> {
+	const path = signedIn ? "/api/feed" : "/api/feed/discover";
+	const url = new URL(path, env.NEXT_PUBLIC_SERVER_URL);
+	if (signedIn) url.searchParams.set("limit", "40");
+	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
+		url.searchParams.set(key, value);
+	}
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	if (!response.ok) return null;
+	return (await response.json()) as { items: unknown[] };
+}
+
+/** Community rank boards — client refetch with patron IANA `tz` after SSR (UTC). */
+export async function fetchCommunityLeaderboard(
+	kind: "films" | "tv",
+	period: HomeLeaderboardPeriod,
+	tz: string,
+	init?: Pick<RequestInit, "signal">,
+): Promise<LeaderboardPayload | null> {
+	const url = new URL(`/api/leaderboard/${kind}`, env.NEXT_PUBLIC_SERVER_URL);
+	url.searchParams.set("period", period);
+	url.searchParams.set("tz", tz);
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	if (!response.ok) return null;
+	return (await response.json()) as LeaderboardPayload;
 }

@@ -1,0 +1,186 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"label": "list-row-strip.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "list_list_row_strip_tmdbpostersrc",
+			"label": "tmdbPosterSrc()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "list_list_row_strip_listrowstrip",
+			"label": "ListRowStrip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L27"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "lib_format_formatdistancetonowstrict",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_list_board_row_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "lib_list_board_row_listboardrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_list_cover_image_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "lib_list_cover_image_resolvelistcoverimagesrc",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "list_list_row_strip_tmdbpostersrc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_row_strip_tsx",
+			"target": "list_list_row_strip_listrowstrip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "list_list_row_strip_tmdbpostersrc",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "list_list_row_strip_tmdbpostersrc",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "list_list_row_strip_listrowstrip",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "list_list_row_strip_listrowstrip",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "list_list_row_strip_listrowstrip",
+			"callee": "resolveListCoverImageSrc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "list_list_row_strip_listrowstrip",
+			"callee": "formatDistanceToNowStrict",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "list_list_row_strip_listrowstrip",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-row-strip.tsx",
+			"source_location": "L78"
+		}
+	]
+}

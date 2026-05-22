@@ -1,0 +1,78 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_auth_page_backgrounds_ts",
+			"label": "auth-page-backgrounds.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_auth_page_backgrounds_auth_page_backdrop_paths",
+			"label": "AUTH_PAGE_BACKDROP_PATHS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_auth_page_backgrounds_auth_backdrop_tmdb_size",
+			"label": "AUTH_BACKDROP_TMDB_SIZE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "lib_auth_page_backgrounds_authbackdropurl",
+			"label": "authBackdropUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "lib_auth_page_backgrounds_auth_page_backgrounds",
+			"label": "AUTH_PAGE_BACKGROUNDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L43"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_page_backgrounds_ts",
+			"target": "lib_auth_page_backgrounds_auth_page_backdrop_paths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_page_backgrounds_ts",
+			"target": "lib_auth_page_backgrounds_auth_backdrop_tmdb_size",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_page_backgrounds_ts",
+			"target": "lib_auth_page_backgrounds_authbackdropurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_page_backgrounds_ts",
+			"target": "lib_auth_page_backgrounds_auth_page_backgrounds",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

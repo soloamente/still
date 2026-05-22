@@ -1,0 +1,338 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"label": "achievements-badges-panel.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "gamification_achievements_badges_panel_badgecatalogrow",
+			"label": "BadgeCatalogRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "gamification_achievements_badges_panel_earnedbadgerow",
+			"label": "EarnedBadgeRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L25"
+		},
+		{
+			"id": "gamification_achievements_badges_panel_category_label",
+			"label": "CATEGORY_LABEL",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L30"
+		},
+		{
+			"id": "gamification_achievements_badges_panel_parseawarddate",
+			"label": "parseAwardDate()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L38"
+		},
+		{
+			"id": "gamification_achievements_badges_panel_formatawardedline",
+			"label": "formatAwardedLine()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L46"
+		},
+		{
+			"id": "gamification_achievements_badges_panel_categorylabel",
+			"label": "categoryLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L55"
+		},
+		{
+			"id": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"label": "AchievementsBadgesPanel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L62"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_tooltip_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "components_tooltip_tooltip",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "components_tooltip_tooltipcontent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "components_tooltip_tooltipprovider",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "components_tooltip_tooltiptrigger",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_gamification_milestone_badge_glyph_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "gamification_milestone_badge_glyph_milestonebadgeglyph",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "lib_format_formatdate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "gamification_achievements_badges_panel_badgecatalogrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "gamification_achievements_badges_panel_earnedbadgerow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "gamification_achievements_badges_panel_category_label",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "gamification_achievements_badges_panel_parseawarddate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "gamification_achievements_badges_panel_formatawardedline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "gamification_achievements_badges_panel_categorylabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_badges_panel_tsx",
+			"target": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "gamification_achievements_badges_panel_formatawardedline",
+			"target": "gamification_achievements_badges_panel_parseawarddate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L50",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "gamification_achievements_badges_panel_parseawarddate",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_parseawarddate",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_parseawarddate",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_parseawarddate",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_formatawardedline",
+			"callee": "formatDate",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_categorylabel",
+			"callee": "replaceAll",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"callee": "keys",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "gamification_achievements_badges_panel_achievementsbadgespanel",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-badges-panel.tsx",
+			"source_location": "L111"
+		}
+	]
+}

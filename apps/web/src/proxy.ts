@@ -1,4 +1,6 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
+
+import { retiredCatalogueRedirectUrl } from "@/lib/retired-catalogue-redirect";
 
 /**
  * Lightweight gate: redirects to /sign-in when accessing an authenticated
@@ -10,50 +12,62 @@ import { NextResponse, type NextRequest } from "next/server";
  * Next.js 16+ uses the `proxy` file convention (formerly `middleware`).
  */
 const PROTECTED_PREFIXES = [
-  "/home",
-  "/diary",
-  "/watchlist",
-  "/chat",
-  "/me",
-  "/achievements",
-  "/notifications",
+	"/home",
+	"/diary",
+	"/watchlist",
+	"/chat",
+	"/me",
+	"/achievements",
+	"/notifications",
 ];
 
 const AUTH_ONLY_PREFIXES = ["/sign-in", "/sign-up", "/onboarding"];
 
 const SESSION_COOKIE_NAMES = [
-  "better-auth.session_token",
-  "__Secure-better-auth.session_token",
+	"better-auth.session_token",
+	"__Secure-better-auth.session_token",
 ];
 
 export function proxy(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-  const hasSession = SESSION_COOKIE_NAMES.some((name) => req.cookies.has(name));
+	const { pathname } = req.nextUrl;
+	const catalogueRedirect = retiredCatalogueRedirectUrl(
+		pathname,
+		req.nextUrl.search,
+	);
+	if (catalogueRedirect) {
+		const url = req.nextUrl.clone();
+		const target = new URL(catalogueRedirect, req.nextUrl.origin);
+		url.pathname = target.pathname;
+		url.search = target.search;
+		return NextResponse.redirect(url);
+	}
 
-  if (PROTECTED_PREFIXES.some((p) => pathname.startsWith(p)) && !hasSession) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/sign-in";
-    url.searchParams.set("from", pathname);
-    return NextResponse.redirect(url);
-  }
-  if (AUTH_ONLY_PREFIXES.some((p) => pathname.startsWith(p)) && hasSession) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/home";
-    url.search = "";
-    return NextResponse.redirect(url);
-  }
-  return NextResponse.next();
+	const hasSession = SESSION_COOKIE_NAMES.some((name) => req.cookies.has(name));
+
+	if (PROTECTED_PREFIXES.some((p) => pathname.startsWith(p)) && !hasSession) {
+		const url = req.nextUrl.clone();
+		url.pathname = "/sign-in";
+		url.searchParams.set("from", pathname);
+		return NextResponse.redirect(url);
+	}
+	if (AUTH_ONLY_PREFIXES.some((p) => pathname.startsWith(p)) && hasSession) {
+		const url = req.nextUrl.clone();
+		url.pathname = "/home";
+		url.search = "";
+		return NextResponse.redirect(url);
+	}
+	return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all paths except:
-     * - api routes (Better Auth handler)
-     * - Next.js static (_next/static, _next/image)
-     * - favicon
-     * - Public files (have an extension)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.).*)",
-  ],
+	matcher: [
+		/*
+		 * Match all paths except:
+		 * - api routes (Better Auth handler)
+		 * - Next.js static (_next/static, _next/image)
+		 * - favicon
+		 * - Public files (have an extension)
+		 */
+		"/((?!api|_next/static|_next/image|favicon.ico|.*\\.).*)",
+	],
 };

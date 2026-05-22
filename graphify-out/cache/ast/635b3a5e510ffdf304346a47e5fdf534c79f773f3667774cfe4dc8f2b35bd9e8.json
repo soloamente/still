@@ -1,0 +1,250 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"label": "detail-motion-pressable.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "movie_detail_motion_pressable_motionlink",
+			"label": "MotionLink",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L17"
+		},
+		{
+			"id": "movie_detail_motion_pressable_motionlinkprops",
+			"label": "MotionLinkProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L19"
+		},
+		{
+			"id": "movie_detail_motion_pressable_motionbuttonprops",
+			"label": "MotionButtonProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "movie_detail_motion_pressable_detailmotionlink",
+			"label": "DetailMotionLink()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L29"
+		},
+		{
+			"id": "movie_detail_motion_pressable_detailmotionbutton",
+			"label": "DetailMotionButton()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L58"
+		},
+		{
+			"id": "movie_detail_motion_pressable_detailmotionbuttonwrap",
+			"label": "DetailMotionButtonWrap()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L113"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "lib_detail_action_motion_detail_motion_pressable_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "lib_detail_action_motion_detail_motion_swap_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "lib_detail_action_motion_usedetailactionmotion",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "movie_detail_motion_pressable_motionlink",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "movie_detail_motion_pressable_motionlinkprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "movie_detail_motion_pressable_motionbuttonprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionlink",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbutton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbuttonwrap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L113",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "movie_detail_motion_pressable_detailmotionlink",
+			"callee": "useDetailActionMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "movie_detail_motion_pressable_detailmotionlink",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "movie_detail_motion_pressable_detailmotionbutton",
+			"callee": "useDetailActionMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "movie_detail_motion_pressable_detailmotionbutton",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "movie_detail_motion_pressable_detailmotionbutton",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "movie_detail_motion_pressable_detailmotionbuttonwrap",
+			"callee": "useDetailActionMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "movie_detail_motion_pressable_detailmotionbuttonwrap",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-motion-pressable.tsx",
+			"source_location": "L126"
+		}
+	]
+}

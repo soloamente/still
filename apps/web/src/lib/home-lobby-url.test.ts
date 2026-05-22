@@ -15,4 +15,14 @@ describe("buildHomeLobbyHref", () => {
 			"/home?sort=popular",
 		);
 	});
+
+	test("Community activity preserves non-default period", () => {
+		expect(
+			buildHomeLobbyHref({
+				browse: "community",
+				sort: "activity",
+				period: "week",
+			}),
+		).toBe("/home?browse=community&sort=activity&period=week");
+	});
 });

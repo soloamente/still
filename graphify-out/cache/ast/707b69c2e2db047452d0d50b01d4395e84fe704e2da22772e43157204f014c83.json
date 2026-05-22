@@ -1,0 +1,215 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"label": "list-detail-films-grid.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "list_list_detail_films_grid_listdetailfilmrow",
+			"label": "ListDetailFilmRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "list_list_detail_films_grid_listdetailfilmsgrid",
+			"label": "ListDetailFilmsGrid()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L30"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "components_button_buttonvariants",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "movie_movie_poster_movieposter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_catalogue_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_frame_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_grid_monochrome_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_link_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "lib_home_lobby_catalogue_layout_list_detail_films_grid_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "lib_profile_filmography_map_profileposterurlfrompath",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "list_list_detail_films_grid_listdetailfilmrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"target": "list_list_detail_films_grid_listdetailfilmsgrid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "list_list_detail_films_grid_listdetailfilmsgrid",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "list_list_detail_films_grid_listdetailfilmsgrid",
+			"callee": "buttonVariants",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "list_list_detail_films_grid_listdetailfilmsgrid",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "list_list_detail_films_grid_listdetailfilmsgrid",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx",
+			"source_location": "L68"
+		}
+	]
+}

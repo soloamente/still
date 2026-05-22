@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_make_interfaces_feel_better_performance_md",
+			"label": "performance.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_performance",
+			"label": "Performance",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_transition_only_what_changes",
+			"label": "Transition Only What Changes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_why",
+			"label": "Why",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_css_example",
+			"label": "CSS Example",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_codeblock_1",
+			"label": "code:css (/* Good \u2014 only transition what changes */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_tailwind",
+			"label": "Tailwind",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_codeblock_2",
+			"label": "code:tsx (// Good \u2014 explicit properties)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_tailwind_transition_transform_note",
+			"label": "Tailwind `transition-transform` Note",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_use_will_change_sparingly",
+			"label": "Use `will-change` Sparingly",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_rules",
+			"label": "Rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_codeblock_3",
+			"label": "code:css (/* Good \u2014 specific property that benefits from GPU compositi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_useful_properties",
+			"label": "Useful Properties",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "make_interfaces_feel_better_performance_when_to_skip",
+			"label": "When to Skip",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L86"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_make_interfaces_feel_better_performance_md",
+			"target": "make_interfaces_feel_better_performance_performance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_performance",
+			"target": "make_interfaces_feel_better_performance_transition_only_what_changes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_transition_only_what_changes",
+			"target": "make_interfaces_feel_better_performance_why",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_transition_only_what_changes",
+			"target": "make_interfaces_feel_better_performance_css_example",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_css_example",
+			"target": "make_interfaces_feel_better_performance_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_transition_only_what_changes",
+			"target": "make_interfaces_feel_better_performance_tailwind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_tailwind",
+			"target": "make_interfaces_feel_better_performance_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_transition_only_what_changes",
+			"target": "make_interfaces_feel_better_performance_tailwind_transition_transform_note",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_performance",
+			"target": "make_interfaces_feel_better_performance_use_will_change_sparingly",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_use_will_change_sparingly",
+			"target": "make_interfaces_feel_better_performance_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_rules",
+			"target": "make_interfaces_feel_better_performance_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_use_will_change_sparingly",
+			"target": "make_interfaces_feel_better_performance_useful_properties",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "make_interfaces_feel_better_performance_use_will_change_sparingly",
+			"target": "make_interfaces_feel_better_performance_when_to_skip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\make-interfaces-feel-better\\performance.md",
+			"source_location": "L86",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

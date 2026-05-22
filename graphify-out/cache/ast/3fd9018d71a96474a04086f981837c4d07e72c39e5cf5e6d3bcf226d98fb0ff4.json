@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_agents_skills_transitions_dev_08_page_side_by_side_md",
+			"label": "08-page-side-by-side.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_page_side_by_side",
+			"label": "Page side-by-side",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_codeblock_1",
+			"label": "code:html (<div class=\"t-page-slide\" data-page=\"1\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L20"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_codeblock_3",
+			"label": "code:css (.t-page-slide {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "transitions_dev_08_page_side_by_side_codeblock_4",
+			"label": "code:js (// Flip data-page on the container \u2014 the CSS handles the res)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L91"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_agents_skills_transitions_dev_08_page_side_by_side_md",
+			"target": "transitions_dev_08_page_side_by_side_page_side_by_side",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_page_side_by_side",
+			"target": "transitions_dev_08_page_side_by_side_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_page_side_by_side",
+			"target": "transitions_dev_08_page_side_by_side_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_html_usage",
+			"target": "transitions_dev_08_page_side_by_side_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_page_side_by_side",
+			"target": "transitions_dev_08_page_side_by_side_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_tunable_variables",
+			"target": "transitions_dev_08_page_side_by_side_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_page_side_by_side",
+			"target": "transitions_dev_08_page_side_by_side_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_css",
+			"target": "transitions_dev_08_page_side_by_side_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_page_side_by_side",
+			"target": "transitions_dev_08_page_side_by_side_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_08_page_side_by_side_javascript_orchestration",
+			"target": "transitions_dev_08_page_side_by_side_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\.agents\\skills\\transitions-dev\\08-page-side-by-side.md",
+			"source_location": "L91",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

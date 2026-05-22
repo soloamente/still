@@ -12,6 +12,11 @@ import {
 	type HomeCommunityFeed,
 	parseHomeCommunityFeed,
 } from "@/lib/home-community-feed";
+import {
+	DEFAULT_HOME_LEADERBOARD_PERIOD,
+	type HomeLeaderboardPeriod,
+	parseHomeCommunityPeriod,
+} from "@/lib/home-leaderboard-period";
 import { writeHomeLobbyHrefCookie } from "@/lib/home-lobby-cookie";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import {
@@ -28,7 +33,10 @@ export interface HomeLobbyPersisted {
 		venue: HomeVenue;
 		run: HomeCatalogRun | null;
 	} | null;
-	community: { feed: HomeCommunityFeed } | null;
+	community: {
+		feed: HomeCommunityFeed;
+		period?: HomeLeaderboardPeriod;
+	} | null;
 	/** Last `/home` browse rail — used when film detail has no same-origin referrer. */
 	lastBrowseSurface?: HomeBrowseSurface | null;
 }
@@ -73,8 +81,10 @@ export function mergePersistFromHomeUrl(
 	const prev = readHomeLobbyPersisted() ?? emptyHomeLobbyPersisted();
 	prev.lastBrowseSurface = surface;
 	if (surface === "community") {
+		const feed = parseHomeCommunityFeed(params.get("sort"));
 		prev.community = {
-			feed: parseHomeCommunityFeed(params.get("sort")),
+			feed,
+			period: parseHomeCommunityPeriod(params.get("period")),
 		};
 		writeHomeLobbyPersisted(prev);
 		return;
@@ -101,9 +111,11 @@ export function homeLobbyHrefFromSearchParams(
 	params: URLSearchParams,
 ): string {
 	if (surface === "community") {
+		const feed = parseHomeCommunityFeed(params.get("sort"));
 		return buildHomeLobbyHref({
 			browse: "community",
-			sort: parseHomeCommunityFeed(params.get("sort")),
+			sort: feed,
+			period: parseHomeCommunityPeriod(params.get("period")),
 		});
 	}
 	const sort = parseHomeCatalogSort(params.get("sort"), surface);
@@ -132,7 +144,11 @@ export function buildHomeHrefFromPersisted(
 ): string {
 	if (surface === "community") {
 		const feed = persisted.community?.feed ?? DEFAULT_HOME_COMMUNITY_FEED;
-		return buildHomeLobbyHref({ browse: "community", sort: feed });
+		return buildHomeLobbyHref({
+			browse: "community",
+			sort: feed,
+			period: persisted.community?.period ?? DEFAULT_HOME_LEADERBOARD_PERIOD,
+		});
 	}
 	if (surface === "tv") {
 		const slot = persisted.tv;

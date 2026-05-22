@@ -1,0 +1,146 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"label": "root-html-appearance.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_root_html_appearance_buildroothtmlclassname",
+			"label": "buildRootHtmlClassName()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_root_html_appearance_applyappearancetodocument",
+			"label": "applyAppearanceToDocument()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L24"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"target": "lib_app_themes_appthemeclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"target": "lib_app_themes_cinemapresetid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"target": "lib_app_themes_isappthemelight",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"target": "lib_root_html_appearance_buildroothtmlclassname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"target": "lib_root_html_appearance_applyappearancetodocument",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_root_html_appearance_applyappearancetodocument",
+			"target": "lib_root_html_appearance_buildroothtmlclassname",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_root_html_appearance_buildroothtmlclassname",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_root_html_appearance_buildroothtmlclassname",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_root_html_appearance_buildroothtmlclassname",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "lib_root_html_appearance_buildroothtmlclassname",
+			"callee": "isAppThemeLight",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_root_html_appearance_buildroothtmlclassname",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_root_html_appearance_buildroothtmlclassname",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_root_html_appearance_applyappearancetodocument",
+			"callee": "isAppThemeLight",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts",
+			"source_location": "L34"
+		}
+	]
+}

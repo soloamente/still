@@ -1,0 +1,182 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"label": "chat.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "schema_chat_chatthreadkind",
+			"label": "chatThreadKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "schema_chat_chatmemberrole",
+			"label": "chatMemberRole",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "schema_chat_chatthread",
+			"label": "chatThread",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "schema_chat_chatmember",
+			"label": "chatMember",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "schema_chat_chatmessage",
+			"label": "chatMessage",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L65"
+		},
+		{
+			"id": "schema_chat_chatthreadrelations",
+			"label": "chatThreadRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L102"
+		},
+		{
+			"id": "schema_chat_chatmemberrelations",
+			"label": "chatMemberRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L107"
+		},
+		{
+			"id": "schema_chat_chatmessagerelations",
+			"label": "chatMessageRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L115"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "pg_core",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_auth_user",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_chat_chatthreadkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_chat_chatmemberrole",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_chat_chatthread",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_chat_chatmember",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_chat_chatmessage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_chat_chatthreadrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_chat_chatmemberrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_chat_ts",
+			"target": "schema_chat_chatmessagerelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts",
+			"source_location": "L115",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

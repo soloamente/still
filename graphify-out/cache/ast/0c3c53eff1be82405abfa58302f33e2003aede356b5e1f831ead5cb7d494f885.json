@@ -1,0 +1,367 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_md",
+			"label": "2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"label": "RadialToolkit \u2014 Catalogue Lobbies (Scope A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_user_stories",
+			"label": "User stories",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_information_architecture",
+			"label": "Information architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_surfaces",
+			"label": "Surfaces",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_action_matrix_signed_in",
+			"label": "Action matrix (signed-in)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_shortcut_letters_tentative",
+			"label": "Shortcut letters (tentative)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_component_design",
+			"label": "Component design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L70"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_cataloguepostertile_apps_web_src_components_catalogue_catalogue_poster_tile_tsx",
+			"label": "`CataloguePosterTile` (`apps/web/src/components/catalogue/catalogue-poster-tile.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_codeblock_1",
+			"label": "code:ts (type CatalogueRadialSurface = \"home\" | \"diary\" | \"watchlist\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L84"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_buildcatalogueradialitems_apps_web_src_lib_catalogue_radial_items_ts",
+			"label": "`buildCatalogueRadialItems` (`apps/web/src/lib/catalogue-radial-items.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L108"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_list_picker_from_radial",
+			"label": "List picker from radial",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L116"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_popularmoviesinfinite",
+			"label": "`PopularMoviesInfinite`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_diarylobbygrid",
+			"label": "`DiaryLobbyGrid`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L126"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_data_mutations",
+			"label": "Data & mutations",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_accessibility",
+			"label": "Accessibility",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L144"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L150"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_risks_mitigations",
+			"label": "Risks & mitigations",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L166"
+		},
+		{
+			"id": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_references",
+			"label": "References",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L174"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_md",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_user_stories",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_information_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_information_architecture",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_surfaces",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_information_architecture",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_action_matrix_signed_in",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_information_architecture",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_shortcut_letters_tentative",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_component_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_component_design",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_cataloguepostertile_apps_web_src_components_catalogue_catalogue_poster_tile_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_cataloguepostertile_apps_web_src_components_catalogue_catalogue_poster_tile_tsx",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_component_design",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_buildcatalogueradialitems_apps_web_src_lib_catalogue_radial_items_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_component_design",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_list_picker_from_radial",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_component_design",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_popularmoviesinfinite",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_component_design",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_diarylobbygrid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L126",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_data_mutations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_accessibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L144",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L150",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_risks_mitigations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_radialtoolkit_catalogue_lobbies_scope_a",
+			"target": "specs_2026_05_22_radial_toolkit_catalogue_lobbies_design_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-radial-toolkit-catalogue-lobbies-design.md",
+			"source_location": "L174",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,383 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_20_search_dialog_tagged_query_design_md",
+			"label": "2026-05-20-search-dialog-tagged-query-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"label": "Search dialog: tagged query bar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_user_experience",
+			"label": "User experience",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_query_bar",
+			"label": "Query bar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_codeblock_1",
+			"label": "code:block1 ([ A24 | \u00d7 ] [ Films | \u00d7 ]  marty\u2588)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_tag_vocabulary_v1",
+			"label": "Tag vocabulary (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_interaction_rules",
+			"label": "Interaction rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_result_column_while_typing",
+			"label": "Result column (while typing)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_auth",
+			"label": "Auth",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_client_state",
+			"label": "Client state",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_codeblock_2",
+			"label": "code:ts (type SearchTag =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_new_updated_modules",
+			"label": "New / updated modules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_server",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L108"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_search_orchestration_client",
+			"label": "Search orchestration (client)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_codeblock_3",
+			"label": "code:mermaid (flowchart TD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_recents_phase_4",
+			"label": "Recents (phase 4)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_phasing",
+			"label": "Phasing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_out_of_scope_v1",
+			"label": "Out of scope (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_risks",
+			"label": "Risks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L162"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_testing_manual",
+			"label": "Testing (manual)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L171"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_tagged_query_design_approval",
+			"label": "Approval",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L179"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_20_search_dialog_tagged_query_design_md",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_user_experience",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_query_bar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_tag_vocabulary_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_interaction_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_result_column_while_typing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_auth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_client_state",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_client_state",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_new_updated_modules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_search_orchestration_client",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_orchestration_client",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_recents_phase_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_phasing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_out_of_scope_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_risks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_testing_manual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L171",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_tagged_query_design_search_dialog_tagged_query_bar",
+			"target": "specs_2026_05_20_search_dialog_tagged_query_design_approval",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-tagged-query-design.md",
+			"source_location": "L179",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

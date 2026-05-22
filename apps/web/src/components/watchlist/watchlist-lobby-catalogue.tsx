@@ -21,11 +21,13 @@ export function WatchlistLobbyCatalogue({
 	posterCellKeys,
 	catalogueWaveKeyOverride,
 	monochromePeersOnHover,
+	signedIn = false,
 }: {
 	seeds: PopularMovieSeed[];
 	posterCellKeys: string[];
 	catalogueWaveKeyOverride: string;
 	monochromePeersOnHover: boolean;
+	signedIn?: boolean;
 }) {
 	const getPosterCellKey = useCallback(
 		(_movie: PopularMovieSeed, index: number) =>
@@ -36,6 +38,8 @@ export function WatchlistLobbyCatalogue({
 	return (
 		<PopularMoviesInfinite
 			blockedReason={null}
+			catalogueRadialSurface="watchlist"
+			signedIn={signedIn}
 			catalogKind="popular"
 			catalogLabel="watchlist"
 			catalogMedia="movie"

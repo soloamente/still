@@ -12,10 +12,12 @@ import {
 	useState,
 } from "react";
 
+import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import {
 	MoviePoster,
 	type MoviePosterHoverEffect,
 } from "@/components/movie/movie-poster";
+import type { CatalogueRadialSurface } from "@/lib/catalogue-radial-items";
 import { HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { HomeVenue } from "@/lib/home-venue";
 import {
@@ -123,6 +125,9 @@ interface PopularMoviesInfiniteProps {
 	 * Defaults to `String(movie.id)`.
 	 */
 	getPosterCellKey?: (movie: PopularMovieSeed, index: number) => string;
+	/** When set with `signedIn`, lobby cells use `CataloguePosterTile` radial menus. */
+	catalogueRadialSurface?: CatalogueRadialSurface;
+	signedIn?: boolean;
 }
 
 /** How far below the fold we start pulling the next sheet (pixels). Mirrors “feels infinite” pacing. */
@@ -158,6 +163,8 @@ export function PopularMoviesInfinite({
 	staticCatalogue = false,
 	catalogueWaveKeyOverride,
 	getPosterCellKey,
+	catalogueRadialSurface,
+	signedIn: _signedIn = false,
 }: PopularMoviesInfiniteProps) {
 	/** Single primitive for effect deps — mirrors `motion` remount keys below. */
 	const catalogueWaveKey = `${catalogMedia}:${catalogKind}:${discoverSortBy}:${discoverGenreId ?? ""}:${discoverCompanyId ?? ""}:${discoverVenue ?? ""}:${discoverMonetization ?? ""}:${discoverWatchRegion ?? ""}:${discoverReleaseRegion ?? ""}:${discoverReleaseGte ?? ""}:${discoverAirDateGte ?? ""}:${discoverTvStatus ?? ""}:${upcomingReleaseRegion ?? ""}`;
@@ -419,21 +426,42 @@ export function PopularMoviesInfinite({
 
 	/** Shared poster subtree for lobby grids — duplicated map branches would drift otherwise. */
 	const renderLobbyMoviePoster = useCallback(
-		(m: PopularMovieSeed, index: number) => (
-			<MoviePoster
-				className={posterLinkClassName}
-				frameClassName={posterFrameClassName}
-				hoverEffect={posterHoverEffect}
-				listingKind={m.listingKind ?? (catalogMedia === "tv" ? "tv" : "movie")}
-				movieId={m.id}
-				posterUrl={m.poster_url}
-				priority={index < 6}
-				posterCaption={m.scopeLabel}
-				showTitle={showTitle}
-				title={m.title}
-			/>
-		),
+		(m: PopularMovieSeed, index: number) => {
+			const listingKind =
+				m.listingKind ?? (catalogMedia === "tv" ? "tv" : "movie");
+			if (catalogueRadialSurface) {
+				return (
+					<CataloguePosterTile
+						className={posterLinkClassName}
+						frameClassName={posterFrameClassName}
+						hoverEffect={posterHoverEffect}
+						listingKind={listingKind}
+						posterCaption={m.scopeLabel}
+						posterUrl={m.poster_url}
+						priority={index < 6}
+						surface={catalogueRadialSurface}
+						title={m.title}
+						tmdbId={m.id}
+					/>
+				);
+			}
+			return (
+				<MoviePoster
+					className={posterLinkClassName}
+					frameClassName={posterFrameClassName}
+					hoverEffect={posterHoverEffect}
+					listingKind={listingKind}
+					movieId={m.id}
+					posterUrl={m.poster_url}
+					priority={index < 6}
+					posterCaption={m.scopeLabel}
+					showTitle={showTitle}
+					title={m.title}
+				/>
+			);
+		},
 		[
+			catalogueRadialSurface,
 			posterLinkClassName,
 			posterFrameClassName,
 			posterHoverEffect,

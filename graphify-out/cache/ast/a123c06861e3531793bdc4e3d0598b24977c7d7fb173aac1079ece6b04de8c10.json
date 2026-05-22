@@ -1,0 +1,221 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_list_cover_image_ts",
+			"label": "list-cover-image.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_list_cover_image_listcovercacheparam",
+			"label": "listCoverCacheParam()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_list_cover_image_listcoverimageproxyurl",
+			"label": "listCoverImageProxyUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_list_cover_image_islistcoverproxysrc",
+			"label": "isListCoverProxySrc()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L34"
+		},
+		{
+			"id": "lib_list_cover_image_resolvelistcoverimagesrc",
+			"label": "resolveListCoverImageSrc()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L48"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_cover_image_ts",
+			"target": "web",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_cover_image_ts",
+			"target": "lib_list_cover_image_listcovercacheparam",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_cover_image_ts",
+			"target": "lib_list_cover_image_listcoverimageproxyurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_cover_image_ts",
+			"target": "lib_list_cover_image_islistcoverproxysrc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_cover_image_ts",
+			"target": "lib_list_cover_image_resolvelistcoverimagesrc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_list_cover_image_listcoverimageproxyurl",
+			"target": "lib_list_cover_image_listcovercacheparam",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_list_cover_image_resolvelistcoverimagesrc",
+			"target": "lib_list_cover_image_listcoverimageproxyurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_list_cover_image_listcovercacheparam",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L6"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_listcovercacheparam",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_listcovercacheparam",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_listcovercacheparam",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_listcovercacheparam",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_listcovercacheparam",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_listcovercacheparam",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_listcoverimageproxyurl",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_listcoverimageproxyurl",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_islistcoverproxysrc",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_islistcoverproxysrc",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_islistcoverproxysrc",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_islistcoverproxysrc",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_islistcoverproxysrc",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_resolvelistcoverimagesrc",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_list_cover_image_resolvelistcoverimagesrc",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts",
+			"source_location": "L54"
+		}
+	]
+}

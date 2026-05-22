@@ -1,0 +1,172 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"label": "feed-activity-kind-badge.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_feed_activity_kind_badge_feedactivitykind",
+			"label": "FeedActivityKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "feed_feed_activity_kind_badge_badgespec",
+			"label": "BadgeSpec",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "feed_feed_activity_kind_badge_tone_class",
+			"label": "TONE_CLASS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L19"
+		},
+		{
+			"id": "feed_feed_activity_kind_badge_feedactivityverb",
+			"label": "FeedActivityVerb()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L26"
+		},
+		{
+			"id": "feed_feed_activity_kind_badge_feedactivitykindbadge",
+			"label": "FeedActivityKindBadge()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L55"
+		},
+		{
+			"id": "feed_feed_activity_kind_badge_feedactivityfavoritechip",
+			"label": "FeedActivityFavoriteChip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L87"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_heart_filled_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "feed_feed_activity_kind_badge_feedactivitykind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "feed_feed_activity_kind_badge_badgespec",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "feed_feed_activity_kind_badge_tone_class",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "feed_feed_activity_kind_badge_feedactivityverb",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "feed_feed_activity_kind_badge_feedactivitykindbadge",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"target": "feed_feed_activity_kind_badge_feedactivityfavoritechip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L87",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "feed_feed_activity_kind_badge_feedactivityverb",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "feed_feed_activity_kind_badge_feedactivitykindbadge",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "feed_feed_activity_kind_badge_feedactivityfavoritechip",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx",
+			"source_location": "L94"
+		}
+	]
+}

@@ -1,0 +1,121 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_display_ts",
+			"label": "tv-log-scope-display.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_log_scope_display_formattvlogscopechip",
+			"label": "formatTvLogScopeChip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_tv_log_scope_display_formattvlogscopelabel",
+			"label": "formatTvLogScopeLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_tv_log_scope_display_quicklogtvsubmitlabel",
+			"label": "quickLogTvSubmitLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L32"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_display_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_display_ts",
+			"target": "lib_tv_watch_types_tvlogscope",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_display_ts",
+			"target": "lib_tv_log_scope_display_formattvlogscopechip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_display_ts",
+			"target": "lib_tv_log_scope_display_formattvlogscopelabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_display_ts",
+			"target": "lib_tv_log_scope_display_quicklogtvsubmitlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_log_scope_display_formattvlogscopelabel",
+			"target": "lib_tv_log_scope_display_formattvlogscopechip",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tv_log_scope_display_formattvlogscopechip",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_tv_log_scope_display_formattvlogscopechip",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_tv_log_scope_display_formattvlogscopechip",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_tv_log_scope_display_formattvlogscopechip",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts",
+			"source_location": "L15"
+		}
+	]
+}

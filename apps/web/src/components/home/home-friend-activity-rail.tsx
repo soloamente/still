@@ -58,7 +58,7 @@ export function HomeFriendActivityRail({
 							className="ml-1 size-4 shrink-0 text-muted-foreground"
 							aria-hidden
 						/>
-						<h3 className="min-w-0 flex-1 truncate font-display font-medium text-sm tracking-tight">
+						<h3 className="min-w-0 flex-1 truncate font-medium font-sans text-sm tracking-tight">
 							Friend activity
 						</h3>
 					</>

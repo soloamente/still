@@ -1,0 +1,643 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"label": "favorites-list-sync.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_favorites_list_sync_isfavoritessystemlist",
+			"label": "isFavoritesSystemList()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_favorites_list_sync_ensurefavoriteslist",
+			"label": "ensureFavoritesList()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_favorites_list_sync_refreshlistaggregates",
+			"label": "refreshListAggregates()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L43"
+		},
+		{
+			"id": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"label": "syncFavoritesListForUserTitle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L78"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_cuid_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"target": "lib_cuid_makeid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"target": "lib_favorites_list_sync_isfavoritessystemlist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"target": "lib_favorites_list_sync_ensurefavoriteslist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"target": "lib_favorites_list_sync_refreshlistaggregates",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_favorites_list_sync_ts",
+			"target": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"target": "lib_favorites_list_sync_refreshlistaggregates",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"target": "lib_favorites_list_sync_ensurefavoriteslist",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L120",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "makeId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_ensurefavoriteslist",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_refreshlistaggregates",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L133"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "makeId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L136"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "lib_favorites_list_sync_syncfavoriteslistforusertitle",
+			"callee": "makeId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts",
+			"source_location": "L158"
+		}
+	]
+}

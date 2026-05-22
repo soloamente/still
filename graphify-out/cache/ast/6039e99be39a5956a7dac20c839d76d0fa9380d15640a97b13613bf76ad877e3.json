@@ -1,0 +1,169 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"label": "root-html-class-sync.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_root_html_class_sync_roothtmlclasssync",
+			"label": "RootHtmlClassSync()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "next_themes",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_root_html_font_class_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "app_root_html_font_class_context_useroothtmlfontclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "lib_app_themes_default_app_theme_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "lib_app_themes_resolveapptheme",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_root_html_appearance_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "lib_root_html_appearance_applyappearancetodocument",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "lib_profile_preferences_readcinemapresetpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_class_sync_tsx",
+			"target": "app_root_html_class_sync_roothtmlclasssync",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_root_html_class_sync_roothtmlclasssync",
+			"callee": "useRootHtmlFontClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "app_root_html_class_sync_roothtmlclasssync",
+			"callee": "useTheme",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "app_root_html_class_sync_roothtmlclasssync",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "app_root_html_class_sync_roothtmlclasssync",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx",
+			"source_location": "L27"
+		}
+	]
+}

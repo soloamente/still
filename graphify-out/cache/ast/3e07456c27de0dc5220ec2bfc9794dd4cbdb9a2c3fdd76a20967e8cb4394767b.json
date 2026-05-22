@@ -1,0 +1,553 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"label": "activity-item.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_activity_item_activitykind",
+			"label": "ActivityKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "feed_activity_item_item",
+			"label": "Item",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L19"
+		},
+		{
+			"id": "feed_activity_item_activityitem",
+			"label": "ActivityItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L29"
+		},
+		{
+			"id": "feed_activity_item_person",
+			"label": "Person",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L42"
+		},
+		{
+			"id": "feed_activity_item_logpayload",
+			"label": "LogPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L47"
+		},
+		{
+			"id": "feed_activity_item_reviewpayload",
+			"label": "ReviewPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L60"
+		},
+		{
+			"id": "feed_activity_item_listpayload",
+			"label": "ListPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L73"
+		},
+		{
+			"id": "feed_activity_item_patronhandle",
+			"label": "patronHandle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L85"
+		},
+		{
+			"id": "feed_activity_item_patronname",
+			"label": "patronName()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L89"
+		},
+		{
+			"id": "feed_activity_item_patronnamelink",
+			"label": "PatronNameLink()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L93"
+		},
+		{
+			"id": "feed_activity_item_listingtitlelink",
+			"label": "ListingTitleLink()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L106"
+		},
+		{
+			"id": "feed_activity_item_activitybyline",
+			"label": "ActivityByline()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L128"
+		},
+		{
+			"id": "feed_activity_item_activitymetarow",
+			"label": "ActivityMetaRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L158"
+		},
+		{
+			"id": "feed_activity_item_activitytextlink",
+			"label": "ActivityTextLink()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L177"
+		},
+		{
+			"id": "feed_activity_item_logactivity",
+			"label": "LogActivity()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L194"
+		},
+		{
+			"id": "feed_activity_item_reviewactivity",
+			"label": "ReviewActivity()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L247"
+		},
+		{
+			"id": "feed_activity_item_listactivity",
+			"label": "ListActivity()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L296"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "diary_diary_log_rating_label_diarylogratinglabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_feed_feed_activity_kind_badge_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_feed_activity_kind_badge_feedactivityfavoritechip",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_feed_activity_kind_badge_feedactivityverb",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_feed_listing_thumb_feedlistingthumb",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_feed_listing_thumb_feedlistplaceholderframe",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_feed_feed_person_avatar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_feed_person_avatar_feedpersonavatar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "lib_format_formattimeagolabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tmdb_poster_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "lib_tmdb_poster_url_tmdbposterurlfrompath",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_activitykind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_item",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_activityitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_person",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_logpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_reviewpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_listpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_patronhandle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_patronname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_patronnamelink",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_listingtitlelink",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_activitybyline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_activitymetarow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_activitytextlink",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L177",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_logactivity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_reviewactivity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"target": "feed_activity_item_listactivity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L296",
+			"weight": 1.0
+		},
+		{
+			"source": "feed_activity_item_patronnamelink",
+			"target": "feed_activity_item_patronhandle",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "feed_activity_item_patronnamelink",
+			"target": "feed_activity_item_patronname",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L95",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "feed_activity_item_listingtitlelink",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L118"
+		},
+		{
+			"caller_nid": "feed_activity_item_activitybyline",
+			"callee": "formatTimeAgoLabel",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L151"
+		},
+		{
+			"caller_nid": "feed_activity_item_activitymetarow",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L167"
+		},
+		{
+			"caller_nid": "feed_activity_item_logactivity",
+			"callee": "tmdbPosterUrlFromPath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L211"
+		},
+		{
+			"caller_nid": "feed_activity_item_logactivity",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L215"
+		},
+		{
+			"caller_nid": "feed_activity_item_reviewactivity",
+			"callee": "tmdbPosterUrlFromPath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L259"
+		},
+		{
+			"caller_nid": "feed_activity_item_reviewactivity",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L262"
+		},
+		{
+			"caller_nid": "feed_activity_item_listactivity",
+			"callee": "tmdbPosterUrlFromPath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx",
+			"source_location": "L307"
+		}
+	]
+}

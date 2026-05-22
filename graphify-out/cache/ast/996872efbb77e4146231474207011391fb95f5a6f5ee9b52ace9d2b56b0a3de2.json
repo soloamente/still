@@ -1,0 +1,114 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_schema_news_ts",
+			"label": "news.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "schema_news_newssourcekind",
+			"label": "newsSourceKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "schema_news_newssource",
+			"label": "newsSource",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "schema_news_newsarticle",
+			"label": "newsArticle",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "schema_news_newssourcerelations",
+			"label": "newsSourceRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L72"
+		},
+		{
+			"id": "schema_news_newsarticlerelations",
+			"label": "newsArticleRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L76"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_news_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_news_ts",
+			"target": "pg_core",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_news_ts",
+			"target": "schema_news_newssourcekind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_news_ts",
+			"target": "schema_news_newssource",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_news_ts",
+			"target": "schema_news_newsarticle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_news_ts",
+			"target": "schema_news_newssourcerelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_news_ts",
+			"target": "schema_news_newsarticlerelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\news.ts",
+			"source_location": "L76",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

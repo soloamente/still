@@ -1,0 +1,139 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"label": "catalog-tmdb-language.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_catalog_tmdb_language_catalog_tmdb_language_options",
+			"label": "CATALOG_TMDB_LANGUAGE_OPTIONS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_catalog_tmdb_language_catalogtmdblanguagecode",
+			"label": "CatalogTmdbLanguageCode",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_catalog_tmdb_language_tmdb_language_whitelist",
+			"label": "TMDB_LANGUAGE_WHITELIST",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_catalog_tmdb_language_watch_region_iso2_to_tmdb_language",
+			"label": "WATCH_REGION_ISO2_TO_TMDB_LANGUAGE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "lib_catalog_tmdb_language_catalogwatchregionisototmdblanguage",
+			"label": "catalogWatchRegionIsoToTmdbLanguage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L60"
+		},
+		{
+			"id": "lib_catalog_tmdb_language_iscatalogtmdblanguagecode",
+			"label": "isCatalogTmdbLanguageCode()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L72"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"target": "lib_catalog_tmdb_language_catalog_tmdb_language_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"target": "lib_catalog_tmdb_language_catalogtmdblanguagecode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"target": "lib_catalog_tmdb_language_tmdb_language_whitelist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"target": "lib_catalog_tmdb_language_watch_region_iso2_to_tmdb_language",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"target": "lib_catalog_tmdb_language_catalogwatchregionisototmdblanguage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"target": "lib_catalog_tmdb_language_iscatalogtmdblanguagecode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L72",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_catalog_tmdb_language_catalogwatchregionisototmdblanguage",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_catalog_tmdb_language_catalogwatchregionisototmdblanguage",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_catalog_tmdb_language_catalogwatchregionisototmdblanguage",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "lib_catalog_tmdb_language_iscatalogtmdblanguagecode",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-tmdb-language.ts",
+			"source_location": "L75"
+		}
+	]
+}

@@ -29,6 +29,7 @@ import {
 	parseHomeBrowseSurface,
 } from "@/lib/home-browse-surface";
 import { DEFAULT_HOME_COMMUNITY_FEED } from "@/lib/home-community-feed";
+import { DEFAULT_HOME_LEADERBOARD_PERIOD } from "@/lib/home-leaderboard-period";
 import {
 	buildHomeHrefFromPersisted,
 	emptyHomeLobbyPersisted,
@@ -36,6 +37,9 @@ import {
 	readHomeLobbyPersisted,
 } from "@/lib/home-lobby-persist";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+
+/** Header shortcut + menu icons — `size-5` (20px); Button `size="icon"` otherwise forces `size-4`. */
+const HOME_STICKY_HEADER_ICON_CLASS = "size-5 shrink-0";
 
 /** Browse rail — `?browse=` drives the lobby catalogue on the RSC page; we keep URL + UI in sync. */
 
@@ -122,7 +126,14 @@ export function HomeStickyChrome({
 
 		if (next === "community") {
 			const feed = persisted.community?.feed ?? DEFAULT_HOME_COMMUNITY_FEED;
-			router.push(buildHomeLobbyHref({ browse: "community", sort: feed }));
+			router.push(
+				buildHomeLobbyHref({
+					browse: "community",
+					sort: feed,
+					period:
+						persisted.community?.period ?? DEFAULT_HOME_LEADERBOARD_PERIOD,
+				}),
+			);
 			return;
 		}
 
@@ -254,7 +265,9 @@ export function HomeStickyChrome({
 								/>
 							) : null}
 							<span className="relative z-10">
-								<IconClockRotateClockwise />
+								<IconClockRotateClockwise
+									className={HOME_STICKY_HEADER_ICON_CLASS}
+								/>
 							</span>
 						</Link>
 						<Link
@@ -273,9 +286,11 @@ export function HomeStickyChrome({
 							) : null}
 							<span className="relative z-10">
 								{isListsRoute ? (
-									<IconListPlay size="20px" />
+									<IconListPlay className={HOME_STICKY_HEADER_ICON_CLASS} />
 								) : (
-									<IconPlaylistOutline size="20px" />
+									<IconPlaylistOutline
+										className={HOME_STICKY_HEADER_ICON_CLASS}
+									/>
 								)}
 							</span>
 						</Link>
@@ -294,7 +309,11 @@ export function HomeStickyChrome({
 								/>
 							) : null}
 							<span className="relative z-10">
-								{isDiaryRoute ? <IconTicketFilled /> : <IconTicket />}
+								{isDiaryRoute ? (
+									<IconTicketFilled className={HOME_STICKY_HEADER_ICON_CLASS} />
+								) : (
+									<IconTicket className={HOME_STICKY_HEADER_ICON_CLASS} />
+								)}
 							</span>
 						</Link>
 						<HomeNotificationsMenu authenticated={Boolean(user)} />

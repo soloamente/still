@@ -10,15 +10,18 @@ export function DiaryLobbyCatalogue({
 	items,
 	catalogueWaveKeyOverride,
 	monochromePeersOnHover,
+	signedIn = false,
 }: {
 	items: DiaryLobbyGridItem[];
 	catalogueWaveKeyOverride: string;
 	monochromePeersOnHover: boolean;
+	signedIn?: boolean;
 }) {
 	return (
 		<DiaryLobbyGrid
 			items={items}
 			monochromePeersOnHover={monochromePeersOnHover}
+			signedIn={signedIn}
 			waveKey={catalogueWaveKeyOverride}
 		/>
 	);

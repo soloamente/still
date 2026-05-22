@@ -1,0 +1,109 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"label": "diary-log-rating-label.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "diary_diary_log_rating_label_diarylogratinglabel",
+			"label": "DiaryLogRatingLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"target": "lib_log_rating_formatlogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"target": "lib_log_rating_logratingtodisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"target": "diary_diary_log_rating_label_diarylogratinglabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "diary_diary_log_rating_label_diarylogratinglabel",
+			"callee": "logRatingToDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "diary_diary_log_rating_label_diarylogratinglabel",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "diary_diary_log_rating_label_diarylogratinglabel",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "diary_diary_log_rating_label_diarylogratinglabel",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-rating-label.tsx",
+			"source_location": "L27"
+		}
+	]
+}

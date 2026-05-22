@@ -166,6 +166,7 @@ export default async function DiaryPage({
 						catalogueWaveKeyOverride={catalogueWaveKeyOverride}
 						items={gridItems}
 						monochromePeersOnHover={monochromePeersOnHover}
+						signedIn={Boolean(session)}
 					/>
 				)}
 			</section>

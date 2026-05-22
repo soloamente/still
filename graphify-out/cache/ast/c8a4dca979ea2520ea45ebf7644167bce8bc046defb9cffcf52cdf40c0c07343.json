@@ -1,0 +1,607 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_22_community_watch_leaderboard_design_md",
+			"label": "2026-05-22-community-watch-leaderboard-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"label": "Community Watch Leaderboards (Film & TV)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_user_stories",
+			"label": "User stories",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_information_architecture",
+			"label": "Information architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_url_shape",
+			"label": "URL shape",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_1",
+			"label": "code:block1 (/home?browse=community&sort=film-ranks&period=month)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_chip_row_centered",
+			"label": "Chip row (centered)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_period_toolbar",
+			"label": "Period toolbar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_ui_specification",
+			"label": "UI specification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_page_structure_inside_homecommunitylobby",
+			"label": "Page structure (inside `HomeCommunityLobby`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_2",
+			"label": "code:block2 ([ optional centered intro copy \u2014 one line ])",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_podium_tier_cards",
+			"label": "Podium (tier cards)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_rank_list_4",
+			"label": "Rank list (4+)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_empty_states",
+			"label": "Empty states",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_drawer_patronwatchledgerdrawer",
+			"label": "Drawer (`PatronWatchLedgerDrawer`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"label": "API specification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L142"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_films",
+			"label": "`GET /api/leaderboard/films`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L144"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_3",
+			"label": "code:ts (type LeaderboardResponse = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L150"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_tv",
+			"label": "`GET /api/leaderboard/tv`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L166"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_films_userid_logs",
+			"label": "`GET /api/leaderboard/films/:userId/logs`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L170"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_4",
+			"label": "code:ts ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_tv_userid_logs",
+			"label": "`GET /api/leaderboard/tv/:userId/logs`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_query_rules_server",
+			"label": "Query rules (server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L194"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_period_windows_viewer_timezone",
+			"label": "Period windows (viewer timezone)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L204"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_auth",
+			"label": "Auth",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L215"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_project_structure",
+			"label": "Project structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L221"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_code_style",
+			"label": "Code style",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L236"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_5",
+			"label": "code:tsx (// Period chip \u2014 URL-backed, matches SegmentedPillToolbar el)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L243"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_commands",
+			"label": "Commands",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L256"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_6",
+			"label": "code:bash (# Dev)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L258"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_testing_strategy",
+			"label": "Testing strategy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L272"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_boundaries",
+			"label": "Boundaries",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L282"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L304"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_open_questions",
+			"label": "Open questions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L315"
+		},
+		{
+			"id": "specs_2026_05_22_community_watch_leaderboard_design_out_of_scope_v1",
+			"label": "Out of scope (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L319"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_22_community_watch_leaderboard_design_md",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_user_stories",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_information_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_information_architecture",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_url_shape",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_url_shape",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_information_architecture",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_chip_row_centered",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_information_architecture",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_period_toolbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_ui_specification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_ui_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_page_structure_inside_homecommunitylobby",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_page_structure_inside_homecommunitylobby",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_ui_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_podium_tier_cards",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_ui_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_rank_list_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_ui_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_empty_states",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_ui_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_drawer_patronwatchledgerdrawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L142",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_films",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L144",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_films",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L150",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_tv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_films_userid_logs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_films_userid_logs",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_get_api_leaderboard_tv_userid_logs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_query_rules_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_period_windows_viewer_timezone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L204",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_api_specification",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_auth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_project_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L221",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_code_style",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_code_style",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_commands",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_commands",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L258",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_testing_strategy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L272",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_boundaries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L282",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L304",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_open_questions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L315",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_22_community_watch_leaderboard_design_community_watch_leaderboards_film_tv",
+			"target": "specs_2026_05_22_community_watch_leaderboard_design_out_of_scope_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-community-watch-leaderboard-design.md",
+			"source_location": "L319",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

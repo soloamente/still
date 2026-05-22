@@ -1,0 +1,197 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"label": "home-venue.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_venue_homevenue",
+			"label": "HomeVenue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_home_venue_defaulthomevenueforsort",
+			"label": "defaultHomeVenueForSort()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_home_venue_parsehomevenue",
+			"label": "parseHomeVenue()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_home_venue_parsetvlobbyvenue",
+			"label": "parseTvLobbyVenue()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "lib_home_venue_parseexplicithomevenue",
+			"label": "parseExplicitHomeVenue()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L45"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "lib_home_catalog_run_homecatalogrun",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_sort_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "lib_home_catalog_sort_homecatalogsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "lib_home_venue_homevenue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "lib_home_venue_defaulthomevenueforsort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "lib_home_venue_parsehomevenue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "lib_home_venue_parsetvlobbyvenue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"target": "lib_home_venue_parseexplicithomevenue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_venue_parsehomevenue",
+			"target": "lib_home_venue_defaulthomevenueforsort",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_venue_parsetvlobbyvenue",
+			"target": "lib_home_venue_defaulthomevenueforsort",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_venue_parsehomevenue",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_home_venue_parsehomevenue",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_home_venue_parsetvlobbyvenue",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_home_venue_parsetvlobbyvenue",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_home_venue_parseexplicithomevenue",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_home_venue_parseexplicithomevenue",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts",
+			"source_location": "L48"
+		}
+	]
+}

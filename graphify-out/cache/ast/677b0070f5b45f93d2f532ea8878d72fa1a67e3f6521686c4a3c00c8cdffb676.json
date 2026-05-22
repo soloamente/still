@@ -1,0 +1,74 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_components_ui_skiper_ui_skiper87_tsx",
+			"label": "skiper87.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\ui\\skiper-ui\\skiper87.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "skiper_ui_skiper87_ski87_demo_row_keys",
+			"label": "SKI87_DEMO_ROW_KEYS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\ui\\skiper-ui\\skiper87.tsx",
+			"source_location": "L4"
+		},
+		{
+			"id": "skiper_ui_skiper87_skiper87",
+			"label": "Skiper87()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\ui\\skiper-ui\\skiper87.tsx",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_ui_skiper_ui_skiper87_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_scroll_area_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\ui\\skiper-ui\\skiper87.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_ui_skiper_ui_skiper87_tsx",
+			"target": "components_scroll_area_scrollarea",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\ui\\skiper-ui\\skiper87.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_ui_skiper_ui_skiper87_tsx",
+			"target": "skiper_ui_skiper87_ski87_demo_row_keys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\ui\\skiper-ui\\skiper87.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_components_ui_skiper_ui_skiper87_tsx",
+			"target": "skiper_ui_skiper87_skiper87",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\ui\\skiper-ui\\skiper87.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "skiper_ui_skiper87_skiper87",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\ui\\skiper-ui\\skiper87.tsx",
+			"source_location": "L29"
+		}
+	]
+}

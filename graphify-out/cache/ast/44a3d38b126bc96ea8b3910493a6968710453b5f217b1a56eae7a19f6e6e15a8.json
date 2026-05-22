@@ -1,0 +1,77 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_cinema_accents_ts",
+			"label": "cinema-accents.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_cinema_accents_genre_accents",
+			"label": "GENRE_ACCENTS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_cinema_accents_genre_aliases",
+			"label": "GENRE_ALIASES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "lib_cinema_accents_accentfromgenres",
+			"label": "accentFromGenres()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L48"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_cinema_accents_ts",
+			"target": "lib_cinema_accents_genre_accents",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_cinema_accents_ts",
+			"target": "lib_cinema_accents_genre_aliases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_cinema_accents_ts",
+			"target": "lib_cinema_accents_accentfromgenres",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_cinema_accents_accentfromgenres",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "lib_cinema_accents_accentfromgenres",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts",
+			"source_location": "L56"
+		}
+	]
+}

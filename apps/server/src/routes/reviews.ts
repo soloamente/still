@@ -12,6 +12,10 @@ import { and, desc, eq, sql } from "drizzle-orm";
 import Elysia, { t } from "elysia";
 
 import { context } from "../context";
+import {
+	resolveCommunityPeriodQuery,
+	withinCommunityPeriod,
+} from "../lib/community-period";
 import { makeId } from "../lib/cuid";
 import { hit } from "../lib/rate-limit";
 
@@ -169,18 +173,37 @@ export const reviewsRoute = new Elysia({
 		"/recent",
 		async ({ query }) => {
 			const limit = Math.min(Number(query.limit ?? 20), 50);
+			const { start, end } = resolveCommunityPeriodQuery(query);
 			const rows = await db
 				.select({ review, movie, user, profile })
 				.from(review)
 				.leftJoin(movie, eq(review.movieId, movie.tmdbId))
 				.leftJoin(user, eq(review.userId, user.id))
 				.leftJoin(profile, eq(review.userId, profile.userId))
-				.where(eq(review.isPublic, true))
+				.where(
+					and(
+						eq(review.isPublic, true),
+						withinCommunityPeriod(review.publishedAt, start, end),
+					),
+				)
 				.orderBy(desc(review.publishedAt))
 				.limit(limit);
 			return rows;
 		},
-		{ query: t.Object({ limit: t.Optional(t.String()) }) },
+		{
+			query: t.Object({
+				limit: t.Optional(t.String()),
+				period: t.Optional(
+					t.Union([
+						t.Literal("week"),
+						t.Literal("month"),
+						t.Literal("year"),
+						t.Literal("all"),
+					]),
+				),
+				tz: t.Optional(t.String()),
+			}),
+		},
 	)
 	.get(
 		"/popular",

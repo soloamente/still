@@ -1,0 +1,172 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"label": "watchlist-catalog-order-chips.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "watchlist_watchlist_catalog_order_chips_chips",
+			"label": "CHIPS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "watchlist_watchlist_catalog_order_chips_watchlistcatalogorderchips",
+			"label": "WatchlistCatalogOrderChips()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L45"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "framer_motion",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_watchlist_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "lib_watchlist_lobby_order_buildwatchlistlobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "lib_watchlist_lobby_order_parsewatchlistlobbyorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "lib_watchlist_lobby_order_watchlistlobbyorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "watchlist_watchlist_catalog_order_chips_chips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_watchlist_watchlist_catalog_order_chips_tsx",
+			"target": "watchlist_watchlist_catalog_order_chips_watchlistcatalogorderchips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "watchlist_watchlist_catalog_order_chips_watchlistcatalogorderchips",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "watchlist_watchlist_catalog_order_chips_watchlistcatalogorderchips",
+			"callee": "parseWatchlistLobbyOrder",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "watchlist_watchlist_catalog_order_chips_watchlistcatalogorderchips",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "watchlist_watchlist_catalog_order_chips_watchlistcatalogorderchips",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "watchlist_watchlist_catalog_order_chips_watchlistcatalogorderchips",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx",
+			"source_location": "L81"
+		}
+	]
+}

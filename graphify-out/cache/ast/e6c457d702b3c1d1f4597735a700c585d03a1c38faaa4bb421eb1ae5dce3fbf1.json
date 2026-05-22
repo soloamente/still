@@ -1,0 +1,109 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_community_empty_tsx",
+			"label": "home-community-empty.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_community_empty_homecommunityempty",
+			"label": "HomeCommunityEmpty()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_empty_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_empty_tsx",
+			"target": "components_button_buttonvariants",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_empty_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_empty_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_empty_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_empty_tsx",
+			"target": "home_home_community_empty_homecommunityempty",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_community_empty_homecommunityempty",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "home_home_community_empty_homecommunityempty",
+			"callee": "buttonVariants",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "home_home_community_empty_homecommunityempty",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "home_home_community_empty_homecommunityempty",
+			"callee": "buttonVariants",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx",
+			"source_location": "L51"
+		}
+	]
+}

@@ -1,0 +1,54 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_social_proof_tsx",
+			"label": "landing-social-proof.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-social-proof.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "marketing_landing_social_proof_trusted_labels",
+			"label": "TRUSTED_LABELS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-social-proof.tsx",
+			"source_location": "L5"
+		},
+		{
+			"id": "marketing_landing_social_proof_landingsocialproof",
+			"label": "LandingSocialProof()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-social-proof.tsx",
+			"source_location": "L14"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_social_proof_tsx",
+			"target": "marketing_landing_social_proof_trusted_labels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-social-proof.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_social_proof_tsx",
+			"target": "marketing_landing_social_proof_landingsocialproof",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-social-proof.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "marketing_landing_social_proof_landingsocialproof",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-social-proof.tsx",
+			"source_location": "L24"
+		}
+	]
+}

@@ -3,6 +3,10 @@ import type { HomeCatalogRun } from "@/lib/home-catalog-run";
 import type { HomeCatalogSort } from "@/lib/home-catalog-sort";
 import type { HomeCommunityFeed } from "@/lib/home-community-feed";
 import { DEFAULT_HOME_COMMUNITY_FEED } from "@/lib/home-community-feed";
+import {
+	DEFAULT_HOME_LEADERBOARD_PERIOD,
+	type HomeLeaderboardPeriod,
+} from "@/lib/home-leaderboard-period";
 import { defaultHomeVenueForSort, type HomeVenue } from "@/lib/home-venue";
 
 /** Venue default for URL shortening — TV **Upcoming** run defaults to In cinemas. */
@@ -30,6 +34,8 @@ export function buildHomeLobbyHref(input: {
 	venue?: HomeVenue;
 	/** TV slice — `ongoing`, `completed`, or `upcoming`; omit for Popular/Latest only. */
 	run?: HomeCatalogRun | null;
+	/** Time window for Community tabs (`lists`, `activity`, ranks, …). */
+	period?: HomeLeaderboardPeriod;
 }): string {
 	const params = new URLSearchParams();
 
@@ -38,6 +44,10 @@ export function buildHomeLobbyHref(input: {
 		const feed = input.sort as HomeCommunityFeed;
 		if (feed !== DEFAULT_HOME_COMMUNITY_FEED) {
 			params.set("sort", feed);
+		}
+		const period = input.period ?? DEFAULT_HOME_LEADERBOARD_PERIOD;
+		if (period !== DEFAULT_HOME_LEADERBOARD_PERIOD) {
+			params.set("period", period);
 		}
 	} else {
 		if (input.browse === "tv") {

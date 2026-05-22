@@ -1,0 +1,64 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_telluride_festival_tsx",
+			"label": "telluride-festival.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\telluride-festival.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_telluride_festival_telluride_paths",
+			"label": "TELLURIDE_PATHS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\telluride-festival.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "icons_telluride_festival_icontelluridefestival",
+			"label": "IconTellurideFestival()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\telluride-festival.tsx",
+			"source_location": "L36"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_telluride_festival_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\telluride-festival.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_telluride_festival_tsx",
+			"target": "icons_telluride_festival_telluride_paths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\telluride-festival.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_telluride_festival_tsx",
+			"target": "icons_telluride_festival_icontelluridefestival",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\telluride-festival.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "icons_telluride_festival_icontelluridefestival",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\telluride-festival.tsx",
+			"source_location": "L50"
+		}
+	]
+}

@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_patron_score_leaf_right_tsx",
+			"label": "patron-score-leaf-right.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\patron-score-leaf-right.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_patron_score_leaf_right_iconpatronscoreleafright",
+			"label": "IconPatronScoreLeafRight()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\patron-score-leaf-right.tsx",
+			"source_location": "L9"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_patron_score_leaf_right_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\patron-score-leaf-right.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_patron_score_leaf_right_tsx",
+			"target": "icons_patron_score_leaf_right_iconpatronscoreleafright",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\patron-score-leaf-right.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

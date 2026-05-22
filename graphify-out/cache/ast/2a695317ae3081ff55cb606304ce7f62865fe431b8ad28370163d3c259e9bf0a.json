@@ -1,0 +1,579 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"label": "tv-new-episode-sync.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "jobs_tv_new_episode_sync_istvepisodesyncenabled",
+			"label": "isTvEpisodeSyncEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "jobs_tv_new_episode_sync_parseairdate",
+			"label": "parseAirDate()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L20"
+		},
+		{
+			"id": "jobs_tv_new_episode_sync_airedrecently",
+			"label": "airedRecently()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "jobs_tv_new_episode_sync_episodecode",
+			"label": "episodeCode()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "jobs_tv_new_episode_sync_notificationexists",
+			"label": "notificationExists()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L40"
+		},
+		{
+			"id": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"label": "syncTvNewEpisodeNotifications()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L66"
+		},
+		{
+			"id": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"label": "notifyNewEpisodesForWatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L88"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_cuid_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "lib_cuid_makeid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tv_season_cache_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "lib_tv_season_cache_gettvseasondetailcached",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "lib_tv_season_cache_gettvseasonscached",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "jobs_tv_new_episode_sync_istvepisodesyncenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "jobs_tv_new_episode_sync_parseairdate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "jobs_tv_new_episode_sync_airedrecently",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "jobs_tv_new_episode_sync_episodecode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "jobs_tv_new_episode_sync_notificationexists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tv_new_episode_sync_ts",
+			"target": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "jobs_tv_new_episode_sync_airedrecently",
+			"target": "jobs_tv_new_episode_sync_parseairdate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"target": "jobs_tv_new_episode_sync_istvepisodesyncenabled",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"target": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"target": "jobs_tv_new_episode_sync_airedrecently",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"target": "jobs_tv_new_episode_sync_notificationexists",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"target": "jobs_tv_new_episode_sync_episodecode",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L135",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_parseairdate",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_parseairdate",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_parseairdate",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_parseairdate",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_airedrecently",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_airedrecently",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_episodecode",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_episodecode",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_episodecode",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_episodecode",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notificationexists",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_synctvnewepisodenotifications",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "getTvSeasonsCached",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "getTvSeasonDetailCached",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L136"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "jobs_tv_new_episode_sync_notifynewepisodesforwatch",
+			"callee": "makeId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tv-new-episode-sync.ts",
+			"source_location": "L138"
+		}
+	]
+}

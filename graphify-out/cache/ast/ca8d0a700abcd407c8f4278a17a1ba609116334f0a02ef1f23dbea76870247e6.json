@@ -1,0 +1,132 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"label": "_layout.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_layout_unstable_settings",
+			"label": "unstable_settings",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "app_layout_stacklayout",
+			"label": "StackLayout()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "app_layout_layout",
+			"label": "Layout()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L22"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "c_users_utente_documents_still_apps_native_global_css",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "expo_router",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "heroui_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "react_native_gesture_handler",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "react_native_keyboard_controller",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "c_users_utente_documents_still_apps_native_contexts_app_theme_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "contexts_app_theme_context_appthemeprovider",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "app_layout_unstable_settings",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "app_layout_stacklayout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_layout_tsx",
+			"target": "app_layout_layout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\_layout.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

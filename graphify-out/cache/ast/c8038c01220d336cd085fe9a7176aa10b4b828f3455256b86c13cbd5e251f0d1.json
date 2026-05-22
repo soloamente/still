@@ -1,0 +1,117 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_cinema_cinema_scene_cut_tsx",
+			"label": "cinema-scene-cut.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "cinema_cinema_scene_cut_cinemascenecut",
+			"label": "CinemaSceneCut()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_cinema_scene_cut_tsx",
+			"target": "framer_motion",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_cinema_scene_cut_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_cinema_scene_cut_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_cinema_scene_cut_tsx",
+			"target": "cinema_cinema_scene_cut_cinemascenecut",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "cinema_cinema_scene_cut_cinemascenecut",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "cinema_cinema_scene_cut_cinemascenecut",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "cinema_cinema_scene_cut_cinemascenecut",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "cinema_cinema_scene_cut_cinemascenecut",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "cinema_cinema_scene_cut_cinemascenecut",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "cinema_cinema_scene_cut_cinemascenecut",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "cinema_cinema_scene_cut_cinemascenecut",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "cinema_cinema_scene_cut_cinemascenecut",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\cinema-scene-cut.tsx",
+			"source_location": "L25"
+		}
+	]
+}

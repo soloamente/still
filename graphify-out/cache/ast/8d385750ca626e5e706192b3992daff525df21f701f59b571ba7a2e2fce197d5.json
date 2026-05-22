@@ -1,0 +1,403 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"label": "app-scroll-to-top.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_app_scroll_to_top_scroll",
+			"label": "SCROLL",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L48"
+		},
+		{
+			"id": "app_app_scroll_to_top_chrome",
+			"label": "CHROME",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L54"
+		},
+		{
+			"id": "app_app_scroll_to_top_pill",
+			"label": "PILL",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L64"
+		},
+		{
+			"id": "app_app_scroll_to_top_label",
+			"label": "LABEL",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L81"
+		},
+		{
+			"id": "app_app_scroll_to_top_icon",
+			"label": "ICON",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L92"
+		},
+		{
+			"id": "app_app_scroll_to_top_press",
+			"label": "PRESS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L99"
+		},
+		{
+			"id": "app_app_scroll_to_top_scrolltopwidthprobe",
+			"label": "ScrollTopWidthProbe()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L107"
+		},
+		{
+			"id": "app_app_scroll_to_top_useexpandedpillwidth",
+			"label": "useExpandedPillWidth()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L138"
+		},
+		{
+			"id": "app_app_scroll_to_top_scrolltoppillprops",
+			"label": "ScrollTopPillProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L165"
+		},
+		{
+			"id": "app_app_scroll_to_top_scrolltoppill",
+			"label": "ScrollTopPill()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L174"
+		},
+		{
+			"id": "app_app_scroll_to_top_appscrolltotop",
+			"label": "AppScrollToTop()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L267"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "lib_detail_action_motion_detail_button_spring",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "lib_detail_action_motion_detail_motion_pressable_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_scroll",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_chrome",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_pill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_label",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_icon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L92",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_press",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_scrolltopwidthprobe",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_useexpandedpillwidth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_scrolltoppillprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L165",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_scrolltoppill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_app_scroll_to_top_tsx",
+			"target": "app_app_scroll_to_top_appscrolltotop",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L267",
+			"weight": 1.0
+		},
+		{
+			"source": "app_app_scroll_to_top_appscrolltotop",
+			"target": "app_app_scroll_to_top_useexpandedpillwidth",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L271",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_app_scroll_to_top_useexpandedpillwidth",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_useexpandedpillwidth",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_useexpandedpillwidth",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_useexpandedpillwidth",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_scrolltoppill",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_scrolltoppill",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_scrolltoppill",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L182"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_scrolltoppill",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_appscrolltotop",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L268"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_appscrolltotop",
+			"callee": "useLenis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L269"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_appscrolltotop",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L270"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_appscrolltotop",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L273"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_appscrolltotop",
+			"callee": "useLenis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L278"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_appscrolltotop",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L282"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_appscrolltotop",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L289"
+		},
+		{
+			"caller_nid": "app_app_scroll_to_top_appscrolltotop",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-scroll-to-top.tsx",
+			"source_location": "L303"
+		}
+	]
+}

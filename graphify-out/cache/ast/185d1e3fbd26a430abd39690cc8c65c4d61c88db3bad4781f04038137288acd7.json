@@ -1,0 +1,124 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"label": "metro.config.js",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L1"
+		},
+		{
+			"id": "native_metro_config_getdefaultconfig",
+			"label": "{ getDefaultConfig }",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L1"
+		},
+		{
+			"id": "native_metro_config_withuniwindconfig",
+			"label": "{ withUniwindConfig }",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L2"
+		},
+		{
+			"id": "native_metro_config_wrapwithreanimatedmetroconfig",
+			"label": "{ wrapWithReanimatedMetroConfig }",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L3"
+		},
+		{
+			"id": "native_metro_config_config",
+			"label": "config",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L6"
+		},
+		{
+			"id": "native_metro_config_uniwindconfig",
+			"label": "uniwindConfig",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"target": "metro_config",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"target": "native_metro_config_getdefaultconfig",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"target": "metro",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"target": "native_metro_config_withuniwindconfig",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"target": "metro_config",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"target": "native_metro_config_wrapwithreanimatedmetroconfig",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"target": "native_metro_config_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_metro_config_js",
+			"target": "native_metro_config_uniwindconfig",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\metro.config.js",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { Loader2, UserCheck, UserPlus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
@@ -108,7 +107,7 @@ function ProfileFollowAction({ targetUserId }: { targetUserId: string }) {
 				disabled
 				className={cn(secondaryPill, "opacity-60")}
 			>
-				<Loader2 className="size-3.5 animate-spin" /> Loading
+				Loading
 			</DetailMotionButton>
 		);
 	}
@@ -120,13 +119,6 @@ function ProfileFollowAction({ targetUserId }: { targetUserId: string }) {
 			onClick={toggle}
 			className={following ? secondaryPill : primaryPill}
 		>
-			{busy ? (
-				<Loader2 className="size-3.5 animate-spin" />
-			) : following ? (
-				<UserCheck className="size-3.5" />
-			) : (
-				<UserPlus className="size-3.5" />
-			)}
 			{following ? "Following" : "Follow"}
 		</DetailMotionButton>
 	);

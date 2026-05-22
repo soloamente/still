@@ -1,0 +1,463 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_20_search_dialog_catalogue_tags_v2_design_md",
+			"label": "2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"label": "Search dialog: catalogue tags v2 (genres, curated, TV studios)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_user_experience",
+			"label": "User experience",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_query_bar",
+			"label": "Query bar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_codeblock_1",
+			"label": "code:block1 ([ A24 | \u00d7 ] [ TV shows | \u00d7 ] [ Anime | \u00d7 ] [ Horror | \u00d7 ]  c)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_suggestion_panel",
+			"label": "Suggestion panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_chrome_under_the_bar",
+			"label": "Chrome under the bar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_result_column",
+			"label": "Result column",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_recents",
+			"label": "Recents",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_empty_browse",
+			"label": "Empty browse",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_tag_vocabulary_v2",
+			"label": "Tag vocabulary (v2)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_curated_anime_initial",
+			"label": "Curated: Anime (initial)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_client_types",
+			"label": "Client types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_codeblock_2",
+			"label": "code:ts (type SearchTag =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_codeblock_3",
+			"label": "code:ts (type CatalogueFilterBundle = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_modules",
+			"label": "Modules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L125"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_orchestration",
+			"label": "Search orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_codeblock_4",
+			"label": "code:mermaid (flowchart TD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_server_api_additions",
+			"label": "Server API additions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_phasing_implementation",
+			"label": "Phasing (implementation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L171"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_patron_locale_v2_5_planned_appended_2026_05_20",
+			"label": "Patron locale (V2.5 \u2014 planned, appended 2026-05-20)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L180"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_out_of_scope_v2_core",
+			"label": "Out of scope (v2 core)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L191"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_risks",
+			"label": "Risks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_testing_manual",
+			"label": "Testing (manual)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L210"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_testing_v2_5_locale",
+			"label": "Testing (V2.5 \u2014 locale)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L220"
+		},
+		{
+			"id": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_approval",
+			"label": "Approval",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L225"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_20_search_dialog_catalogue_tags_v2_design_md",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_user_experience",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_query_bar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_query_bar",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_suggestion_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_chrome_under_the_bar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_result_column",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_recents",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_user_experience",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_empty_browse",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_tag_vocabulary_v2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_tag_vocabulary_v2",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_curated_anime_initial",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_client_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_client_types",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_client_types",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_modules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_orchestration",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_architecture",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_server_api_additions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_phasing_implementation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L171",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_patron_locale_v2_5_planned_appended_2026_05_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_out_of_scope_v2_core",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L191",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_risks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_testing_manual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L210",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_testing_manual",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_testing_v2_5_locale",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L220",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_search_dialog_catalogue_tags_v2_genres_curated_tv_studios",
+			"target": "specs_2026_05_20_search_dialog_catalogue_tags_v2_design_approval",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-20-search-dialog-catalogue-tags-v2-design.md",
+			"source_location": "L225",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

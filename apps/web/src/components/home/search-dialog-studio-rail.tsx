@@ -1,5 +1,11 @@
 "use client";
 
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@still/ui/components/tooltip";
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 
@@ -12,11 +18,11 @@ import {
 
 /**
  * Canvas chip on the search dialog’s `bg-card` sheet — always `bg-background` so TMDb
- * logos read clearly; selected state is stronger opacity + shadow, never rings/borders.
+ * logos read clearly; selected state is full opacity, never rings/borders/shadows.
  */
 function studioChipClass(selected: boolean) {
 	return cn(
-		"inline-flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-background shadow-sm transition-[box-shadow,opacity,color] duration-200 ease-out motion-reduce:transition-none",
+		"inline-flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-background transition-[opacity,color] duration-200 ease-out motion-reduce:transition-none",
 		selected
 			? "text-foreground opacity-100"
 			: cn("opacity-85", DETAIL_CANVAS_ON_CARD_HOVER_CLASS),
@@ -44,57 +50,73 @@ export function SearchDialogStudioRail({
 			<div className="mb-2 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider">
 				Studios
 			</div>
-			<div
-				className="scrollbar-none flex flex-nowrap items-center gap-2 overflow-x-auto overscroll-x-contain pb-0.5"
-				role="toolbar"
-				aria-label="Filter by production company"
-			>
-				<button
-					type="button"
-					aria-pressed={selectedStudioId == null}
-					onClick={() => onSelectStudio(null)}
-					className={cn(
-						studioChipClass(selectedStudioId == null),
-						"font-medium text-[10px]",
-						selectedStudioId == null
-							? "text-foreground"
-							: "text-muted-foreground",
-					)}
+			<TooltipProvider delay={280} closeDelay={80}>
+				<div
+					className="scrollbar-none flex flex-nowrap items-center gap-2 overflow-x-auto overscroll-x-contain pb-0.5"
+					role="toolbar"
+					aria-label="Filter by production company"
 				>
-					All
-				</button>
-				{loading ? <SearchDialogStudioRailSkeleton /> : null}
-				{studios.map((studio) => {
-					const selected = selectedStudioId === studio.id;
-					const short = studioShortName(studio.name);
-					return (
-						<button
-							key={studio.id}
-							type="button"
-							aria-pressed={selected}
-							aria-label={`${studio.name} films`}
-							title={studio.name}
-							onClick={() => onSelectStudio(selected ? null : studio.id)}
-							className={studioChipClass(selected)}
-						>
-							{studio.logoUrl ? (
-								<Image
-									src={studio.logoUrl}
-									alt=""
-									width={44}
-									height={44}
-									className="size-9 object-contain p-1"
-									unoptimized
+					<Tooltip>
+						<TooltipTrigger
+							render={
+								<button
+									type="button"
+									aria-pressed={selectedStudioId == null}
+									onClick={() => onSelectStudio(null)}
+									className={cn(
+										studioChipClass(selectedStudioId == null),
+										"font-medium text-[10px]",
+										selectedStudioId == null
+											? "text-foreground"
+											: "text-muted-foreground",
+									)}
+								>
+									All
+								</button>
+							}
+						/>
+						<TooltipContent side="top">All studios</TooltipContent>
+					</Tooltip>
+					{loading ? <SearchDialogStudioRailSkeleton /> : null}
+					{studios.map((studio) => {
+						const selected = selectedStudioId === studio.id;
+						const short = studioShortName(studio.name);
+						return (
+							<Tooltip key={studio.id}>
+								<TooltipTrigger
+									render={
+										<button
+											type="button"
+											aria-pressed={selected}
+											aria-label={`${studio.name} films`}
+											onClick={() =>
+												onSelectStudio(selected ? null : studio.id)
+											}
+											className={studioChipClass(selected)}
+										>
+											{studio.logoUrl ? (
+												<Image
+													src={studio.logoUrl}
+													alt=""
+													width={44}
+													height={44}
+													className="size-9 object-contain p-1"
+													unoptimized
+												/>
+											) : (
+												<span className="px-1 font-semibold text-[9px] text-foreground uppercase tracking-wide">
+													{short.slice(0, 4)}
+												</span>
+											)}
+										</button>
+									}
 								/>
-							) : (
-								<span className="px-1 font-semibold text-[9px] text-foreground uppercase tracking-wide">
-									{short.slice(0, 4)}
-								</span>
-							)}
-						</button>
-					);
-				})}
-			</div>
+								<TooltipContent side="top">{studio.name}</TooltipContent>
+							</Tooltip>
+						);
+					})}
+				</div>
+			</TooltipProvider>
 		</div>
 	);
 }

@@ -32,9 +32,19 @@ export function Field({
 	className?: string;
 	inputClassName?: string;
 	placeholder?: string;
-} & Omit<
+} & Pick<
 	React.ComponentPropsWithoutRef<"input">,
-	"value" | "onChange" | "onBlur" | "name" | "placeholder"
+	| "type"
+	| "autoComplete"
+	| "autoCapitalize"
+	| "disabled"
+	| "readOnly"
+	| "required"
+	| "spellCheck"
+	| "inputMode"
+	| "maxLength"
+	| "minLength"
+	| "pattern"
 >) {
 	const reduceMotion = useReducedMotion();
 	const errorMessage = field.state.meta.errors.find(Boolean) as

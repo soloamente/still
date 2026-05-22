@@ -252,7 +252,7 @@
   --mobbin-surface-overlay-dropdown: #ffffff;
 }
 
-/* Mirror the dark variant explicitly so theme toggles work; dark === default. */
+/* Mirror the dark variant for shadcn `dark:` utilities on dark palettes. */
 .dark {
   --background: var(--surface-canvas);
   --foreground: var(--color-pure-white);
@@ -282,6 +282,142 @@
   --sidebar-accent-foreground: var(--color-pure-white);
   --sidebar-border: rgba(255, 255, 255, 0.055);
   --sidebar-ring: var(--color-desert-orange);
+}
+
+/* ---------------------------------------------------------------------------
+ * Named shell palettes (`next-themes` class on `<html>`). `:root` keeps Theater
+ * as the SSR default; `.theme-*` overrides when patrons pick another palette.
+ * --------------------------------------------------------------------------- */
+html.theme-theater {
+  color-scheme: dark;
+  --palette-canvas: oklch(0.2645 0 0);
+  --surface-theater: var(--palette-canvas);
+  --palette-raised: oklch(0.2264 0 0);
+  --color-deep-graphite: var(--palette-raised);
+  --color-medium-gray: var(--palette-raised);
+  --background: var(--surface-canvas);
+  --foreground: var(--color-pure-white);
+  --card: var(--surface-raised);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --border: rgba(255, 255, 255, 0.055);
+  --input: rgba(255, 255, 255, 0.085);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.055);
+  --sidebar-ring: var(--color-desert-orange);
+}
+
+html.theme-lobby-light {
+  color-scheme: light;
+  --palette-canvas: #f2f2f2;
+  --palette-raised: #ffffff;
+  --color-deep-graphite: #e0e0e0;
+  --color-medium-gray: #ededed;
+  --color-slate-border: #707070;
+  --color-soft-stone: #494949;
+  --surface-theater: var(--palette-canvas);
+  --surface-canvas: var(--palette-canvas);
+  --surface-card-base: var(--palette-raised);
+  --surface-raised: var(--palette-raised);
+  --surface-overlay: var(--palette-raised);
+  --surface-translucent-overlay: rgba(0, 0, 0, 0.35);
+  --background: var(--surface-canvas);
+  --foreground: #141414;
+  --card: var(--surface-raised);
+  --card-foreground: #141414;
+  --popover: var(--surface-overlay);
+  --popover-foreground: #141414;
+  --primary: #141414;
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: #141414;
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: #ffffff;
+  --destructive: var(--color-crimson-blush);
+  --destructive-foreground: #ffffff;
+  --border: rgba(20, 20, 20, 0.08);
+  --input: rgba(20, 20, 20, 0.12);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--palette-raised);
+  --sidebar-foreground: #141414;
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: #141414;
+  --sidebar-border: rgba(20, 20, 20, 0.08);
+  --sidebar-ring: var(--color-desert-orange);
+  --skeleton-shimmer-base: color-mix(in oklab, #141414 5%, transparent);
+  --skeleton-shimmer-highlight: color-mix(in oklab, #141414 9%, transparent);
+  /* Light palette — keep booth grain/vignette subtle on the bright canvas. */
+  --cinema-grain-opacity: 0.02;
+  --cinema-vignette-spread: 120px;
+  --cinema-vignette-alpha: 0.1;
+}
+
+html.theme-lobby-light ::selection {
+  background-color: color-mix(
+    in oklab,
+    var(--color-desert-orange) 22%,
+    transparent
+  );
+  color: #141414;
+}
+
+html.theme-noir {
+  color-scheme: dark;
+  --palette-canvas: oklch(0.18 0.02 250);
+  --surface-theater: var(--palette-canvas);
+  --palette-raised: oklch(0.14 0.02 250);
+  --color-deep-graphite: var(--palette-raised);
+  --color-medium-gray: var(--palette-raised);
+  --color-desert-orange: #9a4f2a;
+  --surface-canvas: var(--palette-canvas);
+  --surface-card-base: var(--palette-raised);
+  --surface-raised: var(--palette-raised);
+  --surface-overlay: var(--palette-raised);
+  --background: var(--surface-canvas);
+  --foreground: var(--color-pure-white);
+  --card: var(--surface-raised);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --border: rgba(255, 255, 255, 0.045);
+  --input: rgba(255, 255, 255, 0.07);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.045);
+  --sidebar-ring: var(--color-desert-orange);
+  --cinema-vignette-alpha: 0.68;
 }
 
 @theme inline {
@@ -579,8 +715,6 @@
  *   --cinema-vignette-spread / --cinema-vignette-alpha  Hero edge falloff.
  *   --cinema-hero-accent-mix   How much genre color washes the hero spotlight.
  *
- * Optional “multiplex” booth: set on `<html>`: `data-cinema-preset="multiplex"`
- * (brighter wash, faster ticker, heavier grain).
  * --------------------------------------------------------------------------- */
 
 :root {
@@ -596,16 +730,13 @@
   --cinema-hero-accent-mix: 22%;
 }
 
-html[data-cinema-preset="multiplex"] {
-  --cinema-grain-opacity: 0.2;
-  --cinema-grain-tile: 220px;
-  --cinema-marquee-duration: 34s;
-  --cinema-marquee-gap: 2.25rem;
-  --cinema-marquee-phrase-gap: 2.25rem;
-  /* Multiplex: punchier booth — tighter spread but darker edge pool */
-  --cinema-vignette-spread: 130px;
-  --cinema-vignette-alpha: 0.62;
-  --cinema-hero-accent-mix: 30%;
+html.theme-lobby-light .cinema-theater-floor {
+  box-shadow: inset 0 0 min(120px, 18vw) rgba(0, 0, 0, 0.06);
+}
+
+html.theme-lobby-light .cinema-vignette {
+  box-shadow: inset 0 0 var(--cinema-vignette-spread)
+    rgba(0, 0, 0, var(--cinema-vignette-alpha));
 }
 
 /* Subtle film grain + vignette: stacked noise SVG + radial falloff. */

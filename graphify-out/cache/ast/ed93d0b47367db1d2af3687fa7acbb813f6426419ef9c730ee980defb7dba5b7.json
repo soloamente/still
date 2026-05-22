@@ -1,0 +1,214 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"label": "gamification.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "schema_gamification_badgetier",
+			"label": "badgeTier",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "schema_gamification_badge",
+			"label": "badge",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L30"
+		},
+		{
+			"id": "schema_gamification_userbadge",
+			"label": "userBadge",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L49"
+		},
+		{
+			"id": "schema_gamification_achievement",
+			"label": "achievement",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L74"
+		},
+		{
+			"id": "schema_gamification_userachievement",
+			"label": "userAchievement",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L91"
+		},
+		{
+			"id": "schema_gamification_eventlog",
+			"label": "eventLog",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L119"
+		},
+		{
+			"id": "schema_gamification_badgerelations",
+			"label": "badgeRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L138"
+		},
+		{
+			"id": "schema_gamification_userbadgerelations",
+			"label": "userBadgeRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L142"
+		},
+		{
+			"id": "schema_gamification_achievementrelations",
+			"label": "achievementRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L147"
+		},
+		{
+			"id": "schema_gamification_userachievementrelations",
+			"label": "userAchievementRelations",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L151"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "pg_core",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "c_users_utente_documents_still_packages_db_src_schema_auth_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_auth_user",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_badgetier",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_badge",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_userbadge",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_achievement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_userachievement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_eventlog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_badgerelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_userbadgerelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L142",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_achievementrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_schema_gamification_ts",
+			"target": "schema_gamification_userachievementrelations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\gamification.ts",
+			"source_location": "L151",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

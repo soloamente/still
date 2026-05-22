@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_ui_src_icons_ticket_filled_tsx",
+			"label": "ticket-filled.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\ticket-filled.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "icons_ticket_filled_iconticketfilled",
+			"label": "IconTicketFilled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\ticket-filled.tsx",
+			"source_location": "L7"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_ticket_filled_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\ticket-filled.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_ui_src_icons_ticket_filled_tsx",
+			"target": "icons_ticket_filled_iconticketfilled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\ticket-filled.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

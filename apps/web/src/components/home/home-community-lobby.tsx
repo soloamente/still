@@ -1,7 +1,10 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+
 import { ActivityItem } from "@/components/feed/activity-item";
 import { HomeCommunityEmpty } from "@/components/home/home-community-empty";
+import { HomeCommunityLeaderboard } from "@/components/home/home-community-leaderboard";
 import { HomeFriendActivityRail } from "@/components/home/home-friend-activity-rail";
 import { ListsLobbyCatalogue } from "@/components/list/lists-lobby-catalogue";
 import {
@@ -12,8 +15,16 @@ import {
 	type HomeCommunityActivityItem,
 	homeCommunityActivityRowKey,
 } from "@/lib/home-community-activity";
-import type { HomeCommunityFeed } from "@/lib/home-community-feed";
+import {
+	type HomeCommunityFeed,
+	isHomeLeaderboardFeed,
+} from "@/lib/home-community-feed";
 import type { HomeFriendRailEntry } from "@/lib/home-friend-rail";
+import {
+	leaderboardPeriodLabel,
+	parseHomeCommunityPeriod,
+} from "@/lib/home-leaderboard-period";
+import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import type { ListLobbySeed } from "@/lib/lists-lobby-order";
 
@@ -41,6 +52,8 @@ export function HomeCommunityLobby({
 	friendRailEntries,
 	monochromePeersOnHover,
 	signedIn,
+	leaderboard,
+	viewerUserId,
 }: {
 	feed: HomeCommunityFeed;
 	listSeeds: ListLobbySeed[];
@@ -49,15 +62,42 @@ export function HomeCommunityLobby({
 	friendRailEntries: HomeFriendRailEntry[];
 	monochromePeersOnHover: boolean;
 	signedIn: boolean;
+	leaderboard: LeaderboardPayload | null;
+	viewerUserId: string | null;
 }) {
-	const catalogueWaveKey = `community:${feed}`;
+	const searchParams = useSearchParams();
+	const period = parseHomeCommunityPeriod(searchParams.get("period"));
+	const periodLabel = leaderboardPeriodLabel(period).toLowerCase();
+	const catalogueWaveKey = `community:${feed}:${period}`;
+
+	if (isHomeLeaderboardFeed(feed)) {
+		if (!leaderboard) {
+			return (
+				<HomeCommunityEmpty
+					title="Rankings unavailable"
+					description="We could not load the leaderboard. Try again in a moment."
+					primaryHref="/home?browse=community&sort=lists"
+					primaryLabel="Browse lists"
+				/>
+			);
+		}
+		return (
+			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+				<HomeCommunityLeaderboard
+					feed={feed}
+					data={leaderboard}
+					viewerUserId={viewerUserId}
+				/>
+			</div>
+		);
+	}
 
 	if (feed === "lists") {
 		if (listSeeds.length === 0) {
 			return (
 				<HomeCommunityEmpty
-					title="No public lists yet"
-					description="When members publish lists, they show up here — curated lanes, top tens, and shared canons."
+					title={`No public lists ${period === "all" ? "yet" : `this ${periodLabel}`}`}
+					description="When members publish lists in this window, they show up here — curated lanes, top tens, and shared canons."
 					primaryHref={signedIn ? "/lists/new" : "/sign-up"}
 					primaryLabel={signedIn ? "Create a list" : "Join Still"}
 					secondaryHref={buildHomeLobbyHref({
@@ -83,8 +123,8 @@ export function HomeCommunityLobby({
 		if (reviews.length === 0) {
 			return (
 				<HomeCommunityEmpty
-					title="No published reviews yet"
-					description="Written reviews from the community land here once members publish from a film page."
+					title={`No published reviews ${period === "all" ? "yet" : `this ${periodLabel}`}`}
+					description="Written reviews from the community land here once members publish from a film page in this window."
 					primaryHref={buildHomeLobbyHref({
 						browse: "movies",
 						sort: "popular",
@@ -114,12 +154,14 @@ export function HomeCommunityLobby({
 			<HomeCommunityEmpty
 				title={
 					signedIn
-						? "Nothing from your circle yet"
+						? period === "all"
+							? "Nothing from your circle yet"
+							: `Nothing from your circle this ${periodLabel}`
 						: "Sign in to see friend activity"
 				}
 				description={
 					signedIn
-						? "Follow people whose logs and lists you want here — the feed lights up as soon as they post."
+						? "Follow people whose logs and lists you want here — the feed lights up when they post in this window."
 						: "Your following feed shows logs, reviews, and lists from people you follow. Browse public highlights after you join."
 				}
 				primaryHref={signedIn ? "/home" : "/sign-in"}

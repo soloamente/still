@@ -1,0 +1,116 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_sections_ts",
+			"label": "movie-detail-sections.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_movie_detail_sections_movie_detail_section",
+			"label": "MOVIE_DETAIL_SECTION",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_movie_detail_sections_moviedetailsectionid",
+			"label": "MovieDetailSectionId",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_movie_detail_sections_moviedetailsectionnavitem",
+			"label": "MovieDetailSectionNavItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_movie_detail_sections_buildmoviedetailsectionnavitems",
+			"label": "buildMovieDetailSectionNavItems()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L39"
+		},
+		{
+			"id": "lib_movie_detail_sections_moviedetailcreditscrawlnavitem",
+			"label": "movieDetailCreditsCrawlNavItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L63"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_sections_ts",
+			"target": "lib_movie_detail_sections_movie_detail_section",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_sections_ts",
+			"target": "lib_movie_detail_sections_moviedetailsectionid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_sections_ts",
+			"target": "lib_movie_detail_sections_moviedetailsectionnavitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_sections_ts",
+			"target": "lib_movie_detail_sections_buildmoviedetailsectionnavitems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_sections_ts",
+			"target": "lib_movie_detail_sections_moviedetailcreditscrawlnavitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L63",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_movie_detail_sections_buildmoviedetailsectionnavitems",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_movie_detail_sections_buildmoviedetailsectionnavitems",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_movie_detail_sections_buildmoviedetailsectionnavitems",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts",
+			"source_location": "L55"
+		}
+	]
+}

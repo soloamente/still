@@ -161,6 +161,7 @@ export default async function WatchlistPage({
 						monochromePeersOnHover={monochromePeersOnHover}
 						posterCellKeys={posterCellKeys}
 						seeds={seeds}
+						signedIn={Boolean(session)}
 					/>
 				)}
 			</section>

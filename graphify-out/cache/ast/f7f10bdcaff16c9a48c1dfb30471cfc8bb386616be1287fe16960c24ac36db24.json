@@ -1,0 +1,80 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_root_html_font_class_context_tsx",
+			"label": "root-html-font-class-context.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_root_html_font_class_context_roothtmlfontclasscontext",
+			"label": "RootHtmlFontClassContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L5"
+		},
+		{
+			"id": "app_root_html_font_class_context_roothtmlfontclassprovider",
+			"label": "RootHtmlFontClassProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L7"
+		},
+		{
+			"id": "app_root_html_font_class_context_useroothtmlfontclass",
+			"label": "useRootHtmlFontClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L21"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_font_class_context_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_font_class_context_tsx",
+			"target": "app_root_html_font_class_context_roothtmlfontclasscontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_font_class_context_tsx",
+			"target": "app_root_html_font_class_context_roothtmlfontclassprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_root_html_font_class_context_tsx",
+			"target": "app_root_html_font_class_context_useroothtmlfontclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_root_html_font_class_context_useroothtmlfontclass",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx",
+			"source_location": "L22"
+		}
+	]
+}

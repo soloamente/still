@@ -924,7 +924,7 @@ export function HomeStickySearch() {
 			onClick={handleOpen}
 			layout={false}
 			className={cn(
-				"flex w-[min(100%,48rem)] min-w-0 shrink-0 cursor-pointer items-center gap-2 justify-self-center rounded-full bg-card px-5 py-3 text-left shadow-sm transition-shadow sm:w-[min(100%,36rem)] [@media(hover:hover)]:hover:shadow-md",
+				"flex w-[min(100%,48rem)] min-w-0 shrink-0 cursor-pointer items-center gap-2 justify-self-center rounded-full bg-card px-5 py-3 text-left sm:w-[min(100%,36rem)]",
 				"origin-center outline-none focus-visible:outline-none",
 			)}
 			aria-haspopup="dialog"

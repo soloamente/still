@@ -1,0 +1,50 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_hero_media_tsx",
+			"label": "list-detail-hero-media.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-hero-media.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "list_list_detail_hero_media_listdetailheromedia",
+			"label": "ListDetailHeroMedia()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-hero-media.tsx",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_hero_media_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_hero_media_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-hero-media.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_hero_media_tsx",
+			"target": "movie_movie_detail_hero_media_moviedetailheromedia",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-hero-media.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_hero_media_tsx",
+			"target": "list_list_detail_hero_media_listdetailheromedia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-hero-media.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,156 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"label": "me-account-bar-actions-context.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_me_account_bar_actions_context_meaccountbaractions",
+			"label": "MeAccountBarActions",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "profile_me_account_bar_actions_context_meaccountbaractionscontextvalue",
+			"label": "MeAccountBarActionsContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "profile_me_account_bar_actions_context_meaccountbaractionscontext",
+			"label": "MeAccountBarActionsContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L26"
+		},
+		{
+			"id": "profile_me_account_bar_actions_context_meaccountbaractionsprovider",
+			"label": "MeAccountBarActionsProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L29"
+		},
+		{
+			"id": "profile_me_account_bar_actions_context_useregistermeaccountbaractions",
+			"label": "useRegisterMeAccountBarActions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L47"
+		},
+		{
+			"id": "profile_me_account_bar_actions_context_usemeaccountbaractions",
+			"label": "useMeAccountBarActions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L63"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"target": "profile_me_account_bar_actions_context_meaccountbaractions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"target": "profile_me_account_bar_actions_context_meaccountbaractionscontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"target": "profile_me_account_bar_actions_context_meaccountbaractionscontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"target": "profile_me_account_bar_actions_context_meaccountbaractionsprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"target": "profile_me_account_bar_actions_context_useregistermeaccountbaractions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_bar_actions_context_tsx",
+			"target": "profile_me_account_bar_actions_context_usemeaccountbaractions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L63",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_me_account_bar_actions_context_meaccountbaractionsprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "profile_me_account_bar_actions_context_meaccountbaractionsprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "profile_me_account_bar_actions_context_useregistermeaccountbaractions",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "profile_me_account_bar_actions_context_useregistermeaccountbaractions",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "profile_me_account_bar_actions_context_usemeaccountbaractions",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-bar-actions-context.tsx",
+			"source_location": "L66"
+		}
+	]
+}
