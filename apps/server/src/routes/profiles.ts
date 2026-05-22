@@ -95,7 +95,7 @@ export const profilesRoute = new Elysia({
 					mergedPreferences,
 					Boolean(existing?.isPro),
 				);
-				if (!appearance.ok) {
+				if (appearance.ok === false) {
 					return status(appearance.status, appearance.error);
 				}
 				preferencesForUpdate = appearance.preferences;
