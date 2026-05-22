@@ -3,7 +3,25 @@ import { chatMember, db } from "@still/db";
 import { and, eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
+import { routeBody } from "../lib/route-body";
 import { broadcast, setTyping, subscribe } from "./hub";
+
+const wsChatMessageBody = t.Object({
+	kind: t.Union([
+		t.Literal("join"),
+		t.Literal("leave"),
+		t.Literal("typing"),
+		t.Literal("ping"),
+	]),
+	threadId: t.Optional(t.String()),
+	isTyping: t.Optional(t.Boolean()),
+});
+
+type WsChatMessage = {
+	kind: "join" | "leave" | "typing" | "ping";
+	threadId?: string;
+	isTyping?: boolean;
+};
 
 /**
  * /ws/chat — single socket per client; the client tells the server
@@ -12,16 +30,7 @@ import { broadcast, setTyping, subscribe } from "./hub";
  * upgrade request. Failing to auth closes the socket politely.
  */
 export const wsRoute = new Elysia({ tags: ["ws"] }).ws("/ws/chat", {
-	body: t.Object({
-		kind: t.Union([
-			t.Literal("join"),
-			t.Literal("leave"),
-			t.Literal("typing"),
-			t.Literal("ping"),
-		]),
-		threadId: t.Optional(t.String()),
-		isTyping: t.Optional(t.Boolean()),
-	}),
+	body: wsChatMessageBody,
 	async beforeHandle({ request, status, set }) {
 		const session = await auth.api.getSession({ headers: request.headers });
 		if (!session?.user) {
@@ -46,13 +55,16 @@ export const wsRoute = new Elysia({ tags: ["ws"] }).ws("/ws/chat", {
 			}
 		).store = { userId, joined: new Map<string, () => void>() };
 	},
-	async message(ws, msg) {
+	async message(ws, rawMsg) {
 		const store = (
 			ws.data as unknown as {
 				store?: { userId: string; joined: Map<string, () => void> };
 			}
 		).store;
 		if (!store) return;
+
+		// Vercel's Elysia WS pass does not infer message body from `body` schema.
+		const msg = routeBody<WsChatMessage>(rawMsg);
 
 		if (msg.kind === "ping") {
 			ws.send({ kind: "pong" });
