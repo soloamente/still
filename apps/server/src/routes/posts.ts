@@ -7,12 +7,20 @@ import { makeId } from "../lib/cuid";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
 
+/** Matches `post.attachments` jsonb in @still/db. */
+type PostAttachment = {
+	url: string;
+	kind: "image" | "gif";
+	width?: number;
+	height?: number;
+};
+
 type CreatePostBody = {
 	body: string;
 	kind?: "status" | "share" | "milestone";
 	refType?: string;
 	refId?: string;
-	attachments?: unknown[];
+	attachments?: PostAttachment[];
 };
 
 export const postsRoute = new Elysia({ prefix: "/api/posts", tags: ["posts"] })

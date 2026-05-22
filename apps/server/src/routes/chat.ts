@@ -34,10 +34,20 @@ const postChatMessageBody = t.Object({
 	attachments: t.Optional(t.Array(t.Any())),
 });
 
+/** Matches `chat_message.attachments` jsonb in @still/db — keep in sync with schema. */
+type ChatMessageAttachment = {
+	url: string;
+	kind: "image" | "gif" | "video" | "audio" | "movie" | "review";
+	refId?: string | number;
+	width?: number;
+	height?: number;
+	duration?: number;
+};
+
 type PostChatMessageBody = {
 	body?: string;
 	replyToId?: string;
-	attachments?: Array<{ kind?: string }>;
+	attachments?: ChatMessageAttachment[];
 };
 
 /** Threads the caller is a member of, with the last message preview. */
