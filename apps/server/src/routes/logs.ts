@@ -136,7 +136,9 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					seasonNumber: body.seasonNumber,
 					episodeNumber: body.episodeNumber,
 				});
-				if (!scopeCheck.ok) return status(400, scopeCheck.message);
+				if (scopeCheck.ok === false) {
+					return status(400, scopeCheck.message);
+				}
 			} else {
 				return status(400, "Send exactly one of movieId or tvId");
 			}
@@ -227,7 +229,9 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 							? existing.episodeNumber
 							: body.episodeNumber,
 				});
-				if (!scopeCheck.ok) return status(400, scopeCheck.message);
+				if (scopeCheck.ok === false) {
+					return status(400, scopeCheck.message);
+				}
 			}
 
 			const scopeFields =
