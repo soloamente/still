@@ -3,9 +3,12 @@ import { and, desc, eq, isNotNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { routeBody } from "../lib/route-body";
 
 /** Pin toggle payload — schema is reused in the route hook so runtime validation stays aligned. */
 const pinBadgeBody = t.Object({ pinned: t.Boolean() });
+
+type PinBadgeBody = { pinned: boolean };
 
 export const badgesRoute = new Elysia({
 	prefix: "/api/badges",
@@ -68,10 +71,9 @@ export const badgesRoute = new Elysia({
 	)
 	.post(
 		"/me/pin/:badgeId",
-		async ({ params, user, status, body }) => {
+		async ({ params, user, status, body: rawBody }) => {
 			if (!user) return status(401, "Sign in");
-			// Vercel's Elysia type pass does not infer `body` through `.use(context)`.
-			const { pinned } = body as { pinned: boolean };
+			const { pinned } = routeBody<PinBadgeBody>(rawBody);
 			await db
 				.update(userBadge)
 				.set({ isPinned: pinned })

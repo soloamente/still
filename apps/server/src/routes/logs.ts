@@ -16,6 +16,7 @@ import { context } from "../context";
 import { makeId } from "../lib/cuid";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
 import { tmdbApi } from "../lib/tmdb";
 import { ensureTvCached } from "../lib/tv-cache";
 
@@ -80,15 +81,44 @@ const logCreateFields = {
 	episodeNumber: t.Optional(t.Integer({ minimum: 1 })),
 };
 
+type LogCreateBody = {
+	movieId?: number;
+	tvId?: number;
+	rating?: number;
+	liked?: boolean;
+	rewatch?: boolean;
+	watchedAt?: string;
+	note?: string;
+	containsSpoilers?: boolean;
+	watchVenue?: "theaters" | "streaming";
+	logScope?: "show" | "season" | "episode";
+	seasonNumber?: number;
+	episodeNumber?: number;
+};
+
+type LogPatchBody = {
+	rating?: number | null;
+	liked?: boolean;
+	rewatch?: boolean;
+	watchedAt?: string;
+	note?: string | null;
+	containsSpoilers?: boolean;
+	watchVenue?: "theaters" | "streaming";
+	logScope?: "show" | "season" | "episode";
+	seasonNumber?: number | null;
+	episodeNumber?: number | null;
+};
+
 export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 	.use(context)
 	.post(
 		"/",
-		async ({ body, user, status }) => {
+		async ({ body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in to log a film");
 			if (!hit(`logs:create:${user.id}`, { limit: 30, windowMs: 60_000 }).ok) {
 				return status(429, "Slow down");
 			}
+			const body = routeBody<LogCreateBody>(rawBody);
 			const movieId = body.movieId;
 			const tvId = body.tvId;
 			if (movieId != null && tvId != null) {
@@ -174,8 +204,9 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 	)
 	.patch(
 		"/:id",
-		async ({ params, body, user, status }) => {
+		async ({ params, body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			const body = routeBody<LogPatchBody>(rawBody);
 			const [existing] = await db
 				.select()
 				.from(log)

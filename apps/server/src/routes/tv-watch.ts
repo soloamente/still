@@ -12,6 +12,7 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
 import { tmdbApi } from "../lib/tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 import { ensureTvCached } from "../lib/tv-cache";
@@ -34,6 +35,24 @@ const TV_PROGRESS_MODES = [
 	"season",
 	"episode",
 ] as const satisfies readonly TvProgressMode[];
+
+type CreateTvWatchBody = {
+	tvId: number;
+	progressMode?: TvProgressMode;
+};
+
+type PatchTvWatchBody = {
+	status?: TvWatchStatus;
+	progressMode?: TvProgressMode;
+	notifyNewEpisodes?: boolean;
+	lastSeason?: number | null;
+	lastEpisode?: number | null;
+};
+
+type TvEpisodeBody = {
+	seasonNumber: number;
+	episodeNumber: number;
+};
 
 async function loadWatchedEpisodes(tvWatchId: string) {
 	return db
@@ -152,13 +171,14 @@ export const tvWatchRoute = new Elysia({
 	)
 	.post(
 		"/",
-		async ({ user, status, body }) => {
+		async ({ user, status, body: rawBody }) => {
 			if (!user) return status(401, "Sign in");
 			if (
 				!hit(`tv-watch:create:${user.id}`, { limit: 40, windowMs: 60_000 }).ok
 			) {
 				return status(429, "Slow down");
 			}
+			const body = routeBody<CreateTvWatchBody>(rawBody);
 			const tvId = body.tvId;
 			if (!Number.isFinite(tvId)) return status(400, "Invalid tvId");
 
@@ -228,8 +248,9 @@ export const tvWatchRoute = new Elysia({
 	)
 	.patch(
 		"/:id",
-		async ({ user, status, params, body }) => {
+		async ({ user, status, params, body: rawBody }) => {
 			if (!user) return status(401, "Sign in");
+			const body = routeBody<PatchTvWatchBody>(rawBody);
 			const [existing] = await db
 				.select()
 				.from(tvWatch)
@@ -301,8 +322,9 @@ export const tvWatchRoute = new Elysia({
 	)
 	.post(
 		"/:id/episodes",
-		async ({ user, status, params, body }) => {
+		async ({ user, status, params, body: rawBody }) => {
 			if (!user) return status(401, "Sign in");
+			const body = routeBody<TvEpisodeBody>(rawBody);
 			const [existing] = await db
 				.select()
 				.from(tvWatch)
@@ -349,8 +371,9 @@ export const tvWatchRoute = new Elysia({
 	)
 	.delete(
 		"/:id/episodes",
-		async ({ user, status, params, body }) => {
+		async ({ user, status, params, body: rawBody }) => {
 			if (!user) return status(401, "Sign in");
+			const body = routeBody<TvEpisodeBody>(rawBody);
 			const [existing] = await db
 				.select()
 				.from(tvWatch)

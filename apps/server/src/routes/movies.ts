@@ -15,6 +15,7 @@ import {
 	buildHeroArtworkSlides,
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
+import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
 import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
 import {
@@ -803,7 +804,8 @@ export const moviesRoute = new Elysia({
 	// back to /movies/:id which fetches on demand.
 	.post(
 		"/batch",
-		async ({ body }) => {
+		async ({ body: rawBody }) => {
+			const body = routeBody<{ ids: number[] }>(rawBody);
 			if (!body.ids.length) return [];
 			const rows = await db
 				.select({

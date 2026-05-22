@@ -4,6 +4,15 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
+
+type WatchlistUpsertBody = {
+	movieId?: number;
+	tvId?: number;
+	priority?: number;
+	note?: string;
+};
+
 import {
 	upsertMovieWatchlistItem,
 	upsertTvWatchlistItem,
@@ -33,10 +42,11 @@ export const watchlistRoute = new Elysia({
 	)
 	.post(
 		"/",
-		async ({ body, user, status }) => {
+		async ({ body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
 			if (!hit(`wl:add:${user.id}`, { limit: 60, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
+			const body = routeBody<WatchlistUpsertBody>(rawBody);
 			const movieId = body.movieId;
 			const tvId = body.tvId;
 			if (movieId != null && tvId != null) {

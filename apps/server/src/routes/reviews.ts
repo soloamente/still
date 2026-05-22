@@ -18,6 +18,25 @@ import {
 } from "../lib/community-period";
 import { makeId } from "../lib/cuid";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
+
+type CreateReviewBody = {
+	movieId: number;
+	logId?: string;
+	title?: string;
+	body: string;
+	rating?: number;
+	containsSpoilers?: boolean;
+	isPublic?: boolean;
+};
+
+type PatchReviewBody = {
+	title?: string;
+	body?: string;
+	rating?: number;
+	containsSpoilers?: boolean;
+	isPublic?: boolean;
+};
 
 export const reviewsRoute = new Elysia({
 	prefix: "/api/reviews",
@@ -26,10 +45,11 @@ export const reviewsRoute = new Elysia({
 	.use(context)
 	.post(
 		"/",
-		async ({ body, user, status }) => {
+		async ({ body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
 			if (!hit(`reviews:create:${user.id}`, { limit: 12, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
+			const body = routeBody<CreateReviewBody>(rawBody);
 			const id = makeId("rev");
 			const [row] = await db
 				.insert(review)
@@ -67,8 +87,9 @@ export const reviewsRoute = new Elysia({
 	)
 	.patch(
 		"/:id",
-		async ({ params, body, user, status }) => {
+		async ({ params, body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			const body = routeBody<PatchReviewBody>(rawBody);
 			const [existing] = await db
 				.select()
 				.from(review)

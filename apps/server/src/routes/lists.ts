@@ -14,7 +14,32 @@ import { makeId } from "../lib/cuid";
 import { isFavoritesSystemList } from "../lib/favorites-list-sync";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
 import { vercelBlobImagePut } from "../lib/vercel-blob-image-put";
+
+type CreateListBody = {
+	title: string;
+	description?: string;
+	isRanked?: boolean;
+	isPublic?: boolean;
+	tags?: string[];
+};
+
+type PatchListBody = {
+	title?: string;
+	description?: string;
+	isRanked?: boolean;
+	isPublic?: boolean;
+	tags?: string[];
+	coverMovieId?: number | null;
+	coverImageUrl?: string | null;
+};
+
+type AddListItemBody = {
+	movieId: number;
+	position?: number;
+	note?: string;
+};
 
 export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	.use(context)
@@ -120,10 +145,11 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	)
 	.post(
 		"/",
-		async ({ body, user, status }) => {
+		async ({ body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
 			if (!hit(`list:create:${user.id}`, { limit: 8, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
+			const body = routeBody<CreateListBody>(rawBody);
 			const id = makeId("lst");
 			const [row] = await db
 				.insert(list)
@@ -232,8 +258,9 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	)
 	.patch(
 		"/:id",
-		async ({ params, body, user, status }) => {
+		async ({ params, body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			const body = routeBody<PatchListBody>(rawBody);
 			const [existing] = await db
 				.select()
 				.from(list)
@@ -363,8 +390,9 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	)
 	.post(
 		"/:id/items",
-		async ({ params, body, user, status }) => {
+		async ({ params, body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			const body = routeBody<AddListItemBody>(rawBody);
 			const [parent] = await db
 				.select()
 				.from(list)

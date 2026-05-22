@@ -13,7 +13,32 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
 import { broadcast } from "../ws/hub";
+
+const createChatThreadBody = t.Object({
+	kind: t.Union([t.Literal("dm"), t.Literal("group")]),
+	memberIds: t.Array(t.String(), { minItems: 1 }),
+	title: t.Optional(t.String({ maxLength: 80 })),
+});
+
+type CreateChatThreadBody = {
+	kind: "dm" | "group";
+	memberIds: string[];
+	title?: string;
+};
+
+const postChatMessageBody = t.Object({
+	body: t.Optional(t.String({ maxLength: 4000 })),
+	replyToId: t.Optional(t.String()),
+	attachments: t.Optional(t.Array(t.Any())),
+});
+
+type PostChatMessageBody = {
+	body?: string;
+	replyToId?: string;
+	attachments?: Array<{ kind?: string }>;
+};
 
 /** Threads the caller is a member of, with the last message preview. */
 async function threadsForUser(userId: string) {
@@ -61,11 +86,12 @@ export const chatRoute = new Elysia({ prefix: "/api/chat", tags: ["chat"] })
 	})
 	.post(
 		"/threads",
-		async ({ body, user: viewer, status }) => {
+		async ({ body: rawBody, user: viewer, status }) => {
 			if (!viewer) return status(401, "Sign in");
 			if (!hit(`chat:thread:${viewer.id}`, { limit: 20, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
 
+			const body = routeBody<CreateChatThreadBody>(rawBody);
 			const memberIds = Array.from(new Set([viewer.id, ...body.memberIds]));
 			if (memberIds.length < 2)
 				return status(400, "Need at least one other member");
@@ -106,13 +132,7 @@ export const chatRoute = new Elysia({ prefix: "/api/chat", tags: ["chat"] })
 			);
 			return { id, reused: false };
 		},
-		{
-			body: t.Object({
-				kind: t.Union([t.Literal("dm"), t.Literal("group")]),
-				memberIds: t.Array(t.String(), { minItems: 1 }),
-				title: t.Optional(t.String({ maxLength: 80 })),
-			}),
-		},
+		{ body: createChatThreadBody },
 	)
 	.get(
 		"/threads/:id/messages",
@@ -148,10 +168,11 @@ export const chatRoute = new Elysia({ prefix: "/api/chat", tags: ["chat"] })
 	)
 	.post(
 		"/threads/:id/messages",
-		async ({ params, body, user: viewer, status }) => {
+		async ({ params, body: rawBody, user: viewer, status }) => {
 			if (!viewer) return status(401, "Sign in");
 			if (!hit(`chat:msg:${viewer.id}`, { limit: 120, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
+			const body = routeBody<PostChatMessageBody>(rawBody);
 			const [member] = await db
 				.select()
 				.from(chatMember)
@@ -215,11 +236,7 @@ export const chatRoute = new Elysia({ prefix: "/api/chat", tags: ["chat"] })
 		},
 		{
 			params: t.Object({ id: t.String() }),
-			body: t.Object({
-				body: t.Optional(t.String({ maxLength: 4000 })),
-				replyToId: t.Optional(t.String()),
-				attachments: t.Optional(t.Array(t.Any())),
-			}),
+			body: postChatMessageBody,
 		},
 	)
 	.post(

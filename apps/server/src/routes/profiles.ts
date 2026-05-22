@@ -17,7 +17,24 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
 import { sanitizeAppearancePreferences } from "../lib/sanitize-appearance-preferences";
+
+type ProfileMePatchBody = {
+	handle?: string;
+	displayName?: string;
+	bio?: string;
+	pronouns?: string;
+	location?: string;
+	website?: string;
+	bannerUrl?: string;
+	accentColor?: string;
+	favoriteMovieIds?: number[];
+	sectionOrder?: string[];
+	preferences?: Record<string, unknown>;
+	isPrivate?: boolean;
+	markOnboarded?: boolean;
+};
 
 /** Lowercase letterboxd-style handle: letters, digits, underscore, dot, dash, 2–24 chars. */
 const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;
@@ -34,10 +51,11 @@ export const profilesRoute = new Elysia({
 	// Create/update your own profile. Used by the onboarding flow + settings.
 	.patch(
 		"/me",
-		async ({ body, user, status }) => {
+		async ({ body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
 			if (!hit(`profile:update:${user.id}`, { limit: 20, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
+			const body = routeBody<ProfileMePatchBody>(rawBody);
 
 			const [existing] = await db
 				.select()

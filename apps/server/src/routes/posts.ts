@@ -5,15 +5,25 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
+
+type CreatePostBody = {
+	body: string;
+	kind?: "status" | "share" | "milestone";
+	refType?: string;
+	refId?: string;
+	attachments?: unknown[];
+};
 
 export const postsRoute = new Elysia({ prefix: "/api/posts", tags: ["posts"] })
 	.use(context)
 	.post(
 		"/",
-		async ({ body, user: viewer, status }) => {
+		async ({ body: rawBody, user: viewer, status }) => {
 			if (!viewer) return status(401, "Sign in");
 			if (!hit(`post:create:${viewer.id}`, { limit: 30, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
+			const body = routeBody<CreatePostBody>(rawBody);
 			const id = makeId("pst");
 			const [row] = await db
 				.insert(post)

@@ -5,6 +5,14 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
 import { hit } from "../lib/rate-limit";
+import { routeBody } from "../lib/route-body";
+
+type CreateCommentBody = {
+	parentType: string;
+	parentId: string;
+	body: string;
+	replyToId?: string;
+};
 
 const parentTypes = ["review", "post", "list", "comment", "log"] as const;
 type ParentType = (typeof parentTypes)[number];
@@ -16,10 +24,11 @@ export const commentsRoute = new Elysia({
 	.use(context)
 	.post(
 		"/",
-		async ({ body, user: viewer, status }) => {
+		async ({ body: rawBody, user: viewer, status }) => {
 			if (!viewer) return status(401, "Sign in");
 			if (!hit(`comment:${viewer.id}`, { limit: 60, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
+			const body = routeBody<CreateCommentBody>(rawBody);
 			if (!parentTypes.includes(body.parentType as ParentType))
 				return status(400, "Bad parentType");
 
