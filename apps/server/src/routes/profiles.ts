@@ -13,7 +13,7 @@ import {
 import { env } from "@still/env/server";
 import { get, put } from "@vercel/blob";
 import { and, desc, eq, sql } from "drizzle-orm";
-import Elysia, { t } from "elysia";
+import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { hit } from "../lib/rate-limit";

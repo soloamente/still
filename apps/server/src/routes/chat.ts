@@ -8,7 +8,7 @@ import {
 	user,
 } from "@still/db";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
-import Elysia, { t } from "elysia";
+import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";

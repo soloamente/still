@@ -9,7 +9,7 @@ import {
 	user,
 } from "@still/db";
 import { and, desc, eq, sql } from "drizzle-orm";
-import Elysia, { t } from "elysia";
+import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import {

@@ -2,7 +2,7 @@ import { db, eventLog, list, listItem, movie, reaction, tv } from "@still/db";
 import { env } from "@still/env/server";
 import { get } from "@vercel/blob";
 import { and, asc, desc, eq, ilike, sql } from "drizzle-orm";
-import Elysia, { t } from "elysia";
+import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import {

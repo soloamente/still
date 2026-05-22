@@ -7,7 +7,7 @@ import {
 	tvWatchEpisode,
 } from "@still/db";
 import { and, asc, desc, eq, inArray } from "drizzle-orm";
-import Elysia, { t } from "elysia";
+import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";

@@ -1,6 +1,6 @@
 import { db, movie, tv, watchlistItem } from "@still/db";
 import { and, desc, eq, isNotNull } from "drizzle-orm";
-import Elysia, { t } from "elysia";
+import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { hit } from "../lib/rate-limit";

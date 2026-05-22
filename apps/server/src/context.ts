@@ -1,6 +1,6 @@
 import { auth } from "@still/auth";
 import { db } from "@still/db";
-import Elysia from "elysia";
+import { Elysia } from "elysia";
 
 /**
  * Shared Elysia plugin that derives a request context: the Better Auth

@@ -5,7 +5,18 @@
 		"build": {
 			"dependsOn": ["^build"],
 			"inputs": ["$TURBO_DEFAULT$", ".env*"],
-			"outputs": ["dist/**", ".next/**", ".output/**"]
+			"outputs": ["dist/**", ".next/**", ".output/**"],
+			"env": [
+				"BETTER_AUTH_SECRET",
+				"BETTER_AUTH_URL",
+				"POLAR_ACCESS_TOKEN",
+				"POLAR_SUCCESS_URL",
+				"CORS_ORIGIN",
+				"DATABASE_URL",
+				"BLOB_READ_WRITE_TOKEN",
+				"BLOB_STORE_ACCESS",
+				"TMDB_API_KEY"
+			]
 		},
 		"lint": {
 			"dependsOn": ["^lint"]

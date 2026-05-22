@@ -1,5 +1,5 @@
 import { env } from "@still/env/server";
-import Elysia, { t } from "elysia";
+import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { tmdbApi, tmdbImg } from "../lib/tmdb";
