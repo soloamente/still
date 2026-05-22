@@ -2,7 +2,7 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { type ReactNode, useEffect } from "react";
 import { AuthBackgroundCarousel } from "@/components/auth/auth-background-carousel";
 import { BrandMark } from "@/components/brand-mark";
@@ -38,14 +38,20 @@ export function AuthPageShell({
 	className?: string;
 }) {
 	const router = useRouter();
+	const searchParams = useSearchParams();
 	const reduceMotion = useReducedMotion();
 	const { data: session, isPending } = authClient.useSession();
+	// Honor `?from=/home` after sign-in so we do not fight the sign-in form redirect.
+	const redirectTo = (() => {
+		const from = searchParams.get("from");
+		return typeof from === "string" && from.startsWith("/") ? from : "/home";
+	})();
 	useEffect(() => {
 		if (isPending) return;
 		if (session) {
-			router.replace("/home");
+			router.replace(redirectTo);
 		}
-	}, [isPending, router, session]);
+	}, [isPending, redirectTo, router, session]);
 
 	if (!isPending && session) {
 		return null;

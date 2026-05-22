@@ -50,6 +50,28 @@ Open [http://localhost:3001](http://localhost:3001) in your browser to see the w
 Use the Expo Go app to run the mobile application.
 The API is running at [http://localhost:3000](http://localhost:3000).
 
+### Local env (`apps/web/.env`)
+
+```env
+# Browser + RSC call this origin; Next rewrites `/api/*` to the Elysia host.
+NEXT_PUBLIC_SERVER_URL=http://localhost:3001
+API_REWRITE_ORIGIN=http://localhost:3000
+```
+
+### Production (web + API on separate Vercel projects)
+
+Session cookies must be set on the **web** hostname. If `NEXT_PUBLIC_SERVER_URL` points at the API host, sign-in succeeds in the client but `/home` keeps redirecting to `/sign-in` because `proxy.ts` never sees a cookie.
+
+| Variable | Web project | API project (`apps/server`) |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SERVER_URL` | Your public web URL (e.g. `https://still.vercel.app`) | — |
+| `API_REWRITE_ORIGIN` | Your API URL (e.g. `https://cue-server-….vercel.app`) | — |
+| `BETTER_AUTH_URL` | — | Same as the **web** URL above |
+| `CORS_ORIGIN` | — | Same as the **web** URL above |
+| `BETTER_AUTH_SECRET` | — | Same secret on both (if you add web-side auth later) |
+
+Redeploy **both** projects after changing these values.
+
 ## UI Customization
 
 React web apps in this stack share shadcn/ui primitives through `packages/ui`.

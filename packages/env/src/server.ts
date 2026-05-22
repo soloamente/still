@@ -2,13 +2,31 @@ import "dotenv/config";
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
+/** Polar is opt-in — blank or invalid dashboard placeholders must not crash boot. */
+function optionalNonEmptyString() {
+	return z.preprocess((val) => {
+		if (typeof val !== "string") return undefined;
+		const trimmed = val.trim();
+		return trimmed.length > 0 ? trimmed : undefined;
+	}, z.string().min(1).optional());
+}
+
+function optionalUrl() {
+	return z.preprocess((val) => {
+		if (typeof val !== "string") return undefined;
+		const trimmed = val.trim();
+		if (!trimmed) return undefined;
+		return z.url().safeParse(trimmed).success ? trimmed : undefined;
+	}, z.url().optional());
+}
+
 /** Server-only env schema — extracted so `createEnv<undefined, …>` keeps `clientPrefix` unset under TS 6 / Vercel checks. */
 const serverEnv = {
 	DATABASE_URL: z.string().min(1),
 	BETTER_AUTH_SECRET: z.string().min(32),
 	BETTER_AUTH_URL: z.url(),
-	POLAR_ACCESS_TOKEN: z.string().min(1).optional(),
-	POLAR_SUCCESS_URL: z.url().optional(),
+	POLAR_ACCESS_TOKEN: optionalNonEmptyString(),
+	POLAR_SUCCESS_URL: optionalUrl(),
 	CORS_ORIGIN: z.url(),
 	NODE_ENV: z
 		.enum(["development", "production", "test"])
