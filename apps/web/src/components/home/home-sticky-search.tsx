@@ -111,6 +111,9 @@ export function CatalogSearchDialogRoot() {
 	const searchParams = useSearchParams();
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const homeTriggerEl = useCatalogSearchDialog((s) => s.homeTriggerEl);
+	const navSearchTriggerEl = useCatalogSearchDialog(
+		(s) => s.navSearchTriggerEl,
+	);
 	const openRequestId = useCatalogSearchDialog((s) => s.openRequestId);
 	const pendingAnchor = useCatalogSearchDialog((s) => s.pendingAnchor);
 	const setShellUi = useCatalogSearchDialog((s) => s.setShellUi);
@@ -291,6 +294,43 @@ export function CatalogSearchDialogRoot() {
 
 	/** Dim + panel mount together so Framer can fade the scrim with the sheet (native `::backdrop` only clears in `close()`). */
 	const showSheet = Boolean(panelLayout && panelVisible);
+
+	// Keep the anchored sheet aligned with the sticky pill (and clamped to the viewport) on resize / header reflow.
+	useEffect(() => {
+		if (!showSheet) return;
+		const trigger = homeTriggerEl ?? navSearchTriggerEl;
+		if (!trigger) return;
+
+		const syncPanelLayoutFromTrigger = () => {
+			const rect = trigger.getBoundingClientRect();
+			if (rect.width <= 0 || rect.height <= 0) return;
+			const layout = computeCatalogSearchAnchoredPanelStyle(rect);
+			setPanelLayout((prev) =>
+				prev
+					? {
+							...prev,
+							...layout,
+							anchorCenterX: rect.left + rect.width / 2,
+							anchorTop: rect.top,
+							anchorWidth: rect.width,
+							anchorHeight: rect.height,
+						}
+					: null,
+			);
+		};
+
+		const resizeObserver = new ResizeObserver(() => {
+			syncPanelLayoutFromTrigger();
+		});
+		resizeObserver.observe(trigger);
+		window.addEventListener("resize", syncPanelLayoutFromTrigger, {
+			passive: true,
+		});
+		return () => {
+			resizeObserver.disconnect();
+			window.removeEventListener("resize", syncPanelLayoutFromTrigger);
+		};
+	}, [showSheet, homeTriggerEl, navSearchTriggerEl]);
 
 	useEffect(() => {
 		setShellUi({ dialogOpen, showSheet });
@@ -924,7 +964,8 @@ export function HomeStickySearch() {
 			onClick={handleOpen}
 			layout={false}
 			className={cn(
-				"flex w-[min(100%,48rem)] min-w-0 shrink-0 cursor-pointer items-center gap-2 justify-self-center rounded-full bg-card px-5 py-3 text-left sm:w-[min(100%,36rem)]",
+				/* Width follows the center grid track (`minmax(0,36rem)`); full size until the header runs out of room. */
+				"flex w-[min(100%,48rem)] min-w-0 max-w-full cursor-pointer items-center gap-2 rounded-full bg-card px-5 py-3 text-left sm:w-full sm:max-w-xl",
 				"origin-center outline-none focus-visible:outline-none",
 			)}
 			aria-haspopup="dialog"

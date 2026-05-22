@@ -164,14 +164,18 @@ export function HomeStickyChrome({
 		<LayoutGroup id="home-sticky-chrome-browse-pill">
 			<header
 				className={cn(
-					"sticky top-0 z-20 grid w-full grid-cols-1 items-center gap-3 overflow-visible bg-background py-2.5 sm:grid-cols-[1fr_minmax(20rem,56rem)_1fr] sm:gap-4",
+					/*
+					 * Side tracks: `minmax(max-content,1fr)` keeps browse + shortcuts visible.
+					 * Center: `minmax(0,36rem)` — search shrinks first when horizontal space is tight.
+					 */
+					"sticky top-0 z-20 grid w-full grid-cols-1 items-center gap-3 bg-background py-2.5 sm:grid-cols-[minmax(max-content,1fr)_minmax(0,36rem)_minmax(max-content,1fr)] sm:gap-4",
 					// Full-opacity canvas at the seam, then a long multi-stop fade so the poster row
 					// eases in instead of meeting a razor line (same token as `bg-background`).
 					"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-300 after:ease-out after:content-[''] motion-reduce:after:transition-none",
 					isScrolled && "after:opacity-100",
 				)}
 			>
-				{/* Left — browse tabs (shared `layoutId` pill slides like `/home` Latest ↔ Popular). */}
+				{/* Left — browse tabs; side track min-width is `max-content` so chips are not clipped. */}
 				<div className="flex min-w-0 flex-wrap justify-center sm:justify-start">
 					<p id="home-sticky-browse-desc" className="sr-only">
 						Movies and TV load the TMDb catalogue. Community is where you will
@@ -179,7 +183,7 @@ export function HomeStickyChrome({
 						still in development.
 					</p>
 					<div
-						className="flex w-fit rounded-full bg-background p-1"
+						className="flex w-fit max-w-full shrink-0 rounded-full bg-background p-1"
 						role="toolbar"
 						aria-label="Lobby source"
 						aria-describedby="home-sticky-browse-desc"
@@ -240,16 +244,14 @@ export function HomeStickyChrome({
 					</div>
 				</div>
 
-				{/*
-				`justify-self-center`: when the pill is narrower than the middle track
-				(`minmax(20rem,56rem)`), it stays centered in that column — `w-lg` alone
-				stuck the bar to the start edge and broke optical centering.
-			*/}
-				<HomeStickySearch />
+				{/* Middle — fills the shrinkable grid track (up to 36rem). */}
+				<div className="flex w-full min-w-0 justify-center">
+					<HomeStickySearch />
+				</div>
 
 				{/* Right — shortcuts (watchlist, lists, diary share the browse-rail `layoutId` pill). */}
-				<div className="flex justify-center sm:justify-end">
-					<div className="flex gap-1">
+				<div className="flex min-w-0 shrink-0 justify-center sm:justify-end">
+					<div className="flex shrink-0 gap-1">
 						<Link
 							href="/watchlist"
 							className={stickyLobbyShortcutLinkClass}
