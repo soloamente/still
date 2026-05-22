@@ -2,9 +2,9 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { type ReactNode, useEffect } from "react";
+import type { ReactNode } from "react";
 import { AuthBackgroundCarousel } from "@/components/auth/auth-background-carousel";
+import { AuthSessionRedirect } from "@/components/auth/auth-session-redirect";
 import { BrandMark } from "@/components/brand-mark";
 import { authClient } from "@/lib/auth-client";
 
@@ -37,21 +37,8 @@ export function AuthPageShell({
 	footer?: ReactNode;
 	className?: string;
 }) {
-	const router = useRouter();
-	const searchParams = useSearchParams();
 	const reduceMotion = useReducedMotion();
 	const { data: session, isPending } = authClient.useSession();
-	// Honor `?from=/home` after sign-in so we do not fight the sign-in form redirect.
-	const redirectTo = (() => {
-		const from = searchParams.get("from");
-		return typeof from === "string" && from.startsWith("/") ? from : "/home";
-	})();
-	useEffect(() => {
-		if (isPending) return;
-		if (session) {
-			router.replace(redirectTo);
-		}
-	}, [isPending, redirectTo, router, session]);
 
 	if (!isPending && session) {
 		return null;
@@ -79,39 +66,42 @@ export function AuthPageShell({
 	);
 
 	return (
-		<main
-			aria-label="Authentication"
-			className={cn(
-				"relative flex min-h-dvh w-full max-w-[100vw] items-center justify-center overflow-x-hidden p-2.5 font-sans antialiased md:justify-end",
-				className,
-			)}
-		>
-			<AuthBackgroundCarousel className="z-0" />
+		<>
+			<AuthSessionRedirect />
+			<main
+				aria-label="Authentication"
+				className={cn(
+					"relative flex min-h-dvh w-full max-w-[100vw] items-center justify-center overflow-x-hidden p-2.5 font-sans antialiased md:justify-end",
+					className,
+				)}
+			>
+				<AuthBackgroundCarousel className="z-0" />
 
-			<div className="absolute isolate z-10 flex max-w-[calc(100%-1.25rem)] items-center max-md:pointer-events-none max-md:top-14 max-md:left-1/2 max-md:-translate-x-1/2 max-md:justify-center md:pointer-events-auto md:top-6 md:left-6 md:translate-x-0 md:justify-start">
-				<BrandMark href="/" size="lg" wordmarkFont="sans" />
-			</div>
+				<div className="absolute isolate z-10 flex max-w-[calc(100%-1.25rem)] items-center max-md:pointer-events-none max-md:top-14 max-md:left-1/2 max-md:-translate-x-1/2 max-md:justify-center md:pointer-events-auto md:top-6 md:left-6 md:translate-x-0 md:justify-start">
+					<BrandMark href="/" size="lg" wordmarkFont="sans" />
+				</div>
 
-			<div className="relative isolate z-10 flex h-[calc(100dvh-1.25rem)] w-full min-w-0 flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-card font-medium shadow-lg md:w-1/2 md:max-w-[50%]">
-				<div className="relative flex min-h-0 w-full min-w-0 flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden overscroll-contain p-8">
-					<div className="mx-auto w-full min-w-0 max-w-md">
-						{reduceMotion ? (
-							<div className="flex w-full min-w-0 flex-col space-y-8">
-								{routeContent}
-							</div>
-						) : (
-							<motion.div
-								animate={AUTH_PAGE_CONTENT_LOAD.animate}
-								className="flex w-full min-w-0 flex-col space-y-8"
-								initial={AUTH_PAGE_CONTENT_LOAD.initial}
-								transition={AUTH_PAGE_CONTENT_LOAD.transition}
-							>
-								{routeContent}
-							</motion.div>
-						)}
+				<div className="relative isolate z-10 flex h-[calc(100dvh-1.25rem)] w-full min-w-0 flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-card font-medium shadow-lg md:w-1/2 md:max-w-[50%]">
+					<div className="relative flex min-h-0 w-full min-w-0 flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden overscroll-contain p-8">
+						<div className="mx-auto w-full min-w-0 max-w-md">
+							{reduceMotion ? (
+								<div className="flex w-full min-w-0 flex-col space-y-8">
+									{routeContent}
+								</div>
+							) : (
+								<motion.div
+									animate={AUTH_PAGE_CONTENT_LOAD.animate}
+									className="flex w-full min-w-0 flex-col space-y-8"
+									initial={AUTH_PAGE_CONTENT_LOAD.initial}
+									transition={AUTH_PAGE_CONTENT_LOAD.transition}
+								>
+									{routeContent}
+								</motion.div>
+							)}
+						</div>
 					</div>
 				</div>
-			</div>
-		</main>
+			</main>
+		</>
 	);
 }
