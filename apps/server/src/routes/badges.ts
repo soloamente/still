@@ -4,6 +4,9 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 
+/** Pin toggle payload — schema is reused in the route hook so runtime validation stays aligned. */
+const pinBadgeBody = t.Object({ pinned: t.Boolean() });
+
 export const badgesRoute = new Elysia({
 	prefix: "/api/badges",
 	tags: ["gamification"],
@@ -67,9 +70,11 @@ export const badgesRoute = new Elysia({
 		"/me/pin/:badgeId",
 		async ({ params, user, status, body }) => {
 			if (!user) return status(401, "Sign in");
+			// Vercel's Elysia type pass does not infer `body` through `.use(context)`.
+			const { pinned } = body as { pinned: boolean };
 			await db
 				.update(userBadge)
-				.set({ isPinned: body.pinned })
+				.set({ isPinned: pinned })
 				.where(
 					and(
 						eq(userBadge.userId, user.id),
@@ -80,7 +85,7 @@ export const badgesRoute = new Elysia({
 		},
 		{
 			params: t.Object({ badgeId: t.String() }),
-			body: t.Object({ pinned: t.Boolean() }),
+			body: pinBadgeBody,
 		},
 	);
 
