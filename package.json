@@ -22,7 +22,6 @@
 	},
 	"type": "module",
 	"scripts": {
-		"preinstall": "node apps/web/scripts/ensure-motion-plus.mjs",
 		"dev": "turbo dev",
 		"build": "turbo build",
 		"check-types": "turbo check-types",

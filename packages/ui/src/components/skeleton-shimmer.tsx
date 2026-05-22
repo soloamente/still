@@ -105,7 +105,7 @@ export function ShimmerWrap({
 	);
 }
 
-/** View-transition wipe used when `motion-plus/animate-view` is wired for reveals. */
+/** View-transition wipe metadata for skeleton card reveals (CSS in globals). */
 export const skeletonCardWipeTransition = {
 	"--wipe": ["100%", "-100%"],
 	transition: { duration: 0.6, ease: "easeInOut" as const },

@@ -1,8 +1,14 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { useReducedMotion } from "motion/react";
-import { AnimateNumber } from "motion-plus/react";
+import {
+	animate,
+	motion,
+	useMotionValue,
+	useReducedMotion,
+	useTransform,
+} from "motion/react";
+import { useEffect } from "react";
 
 import {
 	clampLogRatingDisplay,
@@ -10,11 +16,11 @@ import {
 	logRatingToDisplay,
 } from "@/lib/log-rating";
 
-/** Patron score ticker — layout + digit roll when the value prop updates. */
-const PATRON_SCORE_NUMBER_TRANSITION = {
-	layout: { duration: 0.3, ease: "easeOut" as const },
-	y: { type: "spring" as const, visualDuration: 0.45, bounce: 0.12 },
-	opacity: { duration: 0.2, ease: "easeOut" as const },
+/** Patron score spring — matches prior Motion+ ticker feel without motion-plus. */
+const PATRON_SCORE_SPRING = {
+	type: "spring" as const,
+	visualDuration: 0.45,
+	bounce: 0.12,
 };
 
 function toPatronDisplayScore(storedOrAverage: number): number {
@@ -23,7 +29,7 @@ function toPatronDisplayScore(storedOrAverage: number): number {
 }
 
 /**
- * Still 0–10 patron score with Motion+ digit animation (community average, hero metrics).
+ * Still 0–10 patron score with a smooth numeric tween (community average, hero metrics).
  */
 export function StillAnimateRatingNumber({
 	value,
@@ -36,6 +42,18 @@ export function StillAnimateRatingNumber({
 }) {
 	const reducedMotion = useReducedMotion();
 	const displayScore = toPatronDisplayScore(value);
+	const motionScore = useMotionValue(displayScore);
+	const label = useTransform(motionScore, (current) =>
+		formatLogRatingDisplay(clampLogRatingDisplay(current)),
+	);
+
+	useEffect(() => {
+		if (reducedMotion) {
+			return;
+		}
+		const controls = animate(motionScore, displayScore, PATRON_SCORE_SPRING);
+		return () => controls.stop();
+	}, [displayScore, motionScore, reducedMotion]);
 
 	if (reducedMotion) {
 		return (
@@ -46,15 +64,11 @@ export function StillAnimateRatingNumber({
 	}
 
 	return (
-		<AnimateNumber
+		<motion.span
 			aria-hidden={ariaHidden}
 			className={cn("inline-flex tabular-nums", className)}
-			// Patron scores always use a dot decimal (matches formatLogRatingDisplay / toFixed).
-			locales="en-US"
-			format={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }}
-			transition={PATRON_SCORE_NUMBER_TRANSITION}
 		>
-			{displayScore}
-		</AnimateNumber>
+			{label}
+		</motion.span>
 	);
 }

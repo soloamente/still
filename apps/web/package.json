@@ -27,7 +27,6 @@
 		"lenis": "^1.3.23",
 		"lucide-react": "catalog:",
 		"motion": "^12.38.0",
-		"motion-plus": "file:.cache/motion-plus.tgz",
 		"next": "^16.2.0",
 		"next-themes": "catalog:",
 		"nucleo-flags": "^1.1.3",

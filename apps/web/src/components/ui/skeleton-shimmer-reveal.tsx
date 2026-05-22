@@ -1,9 +1,6 @@
 "use client";
 
-import {
-	SKELETON_SHIMMER_DURATION_S,
-	skeletonCardWipeTransition,
-} from "@still/ui/components/skeleton-shimmer";
+import { SKELETON_SHIMMER_DURATION_S } from "@still/ui/components/skeleton-shimmer";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { type ReactNode, startTransition, useEffect, useState } from "react";
 
@@ -18,10 +15,7 @@ type SkeletonShimmerRevealProps = {
 	className?: string;
 };
 
-/**
- * Cross-fades skeleton → content. Uses `AnimateView` from motion-plus when the
- * package is installed; otherwise falls back to `AnimatePresence` opacity.
- */
+/** Cross-fades skeleton → content with Motion opacity (no motion-plus on CI). */
 export function SkeletonShimmerReveal({
 	loaded,
 	fallback,
@@ -61,71 +55,29 @@ export function SkeletonShimmerReveal({
 
 	return (
 		<div className={className} aria-busy={!revealed}>
-			<SkeletonShimmerRevealInner revealed={revealed} fallback={fallback}>
-				{children}
-			</SkeletonShimmerRevealInner>
+			<AnimatePresence mode="popLayout" initial={false}>
+				{revealed ? (
+					<motion.div
+						key="content"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.2, ease: "easeOut" }}
+					>
+						{children}
+					</motion.div>
+				) : (
+					<motion.div
+						key="skeleton"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.15, ease: "easeOut" }}
+					>
+						{fallback}
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</div>
-	);
-}
-
-function SkeletonShimmerRevealInner({
-	revealed,
-	fallback,
-	children,
-}: {
-	revealed: boolean;
-	fallback: ReactNode;
-	children: ReactNode;
-}) {
-	const [AnimateView, setAnimateView] = useState<
-		typeof import("motion-plus/animate-view").AnimateView | null
-	>(null);
-
-	useEffect(() => {
-		let cancelled = false;
-		import("motion-plus/animate-view")
-			.then((mod) => {
-				if (!cancelled) setAnimateView(() => mod.AnimateView);
-			})
-			.catch(() => {
-				/* motion-plus optional — Motion+ token required at install time */
-			});
-		return () => {
-			cancelled = true;
-		};
-	}, []);
-
-	if (AnimateView) {
-		return (
-			<AnimateView name="skeleton-card" update={skeletonCardWipeTransition}>
-				{revealed ? children : fallback}
-			</AnimateView>
-		);
-	}
-
-	return (
-		<AnimatePresence mode="popLayout" initial={false}>
-			{revealed ? (
-				<motion.div
-					key="content"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ duration: 0.2, ease: "easeOut" }}
-				>
-					{children}
-				</motion.div>
-			) : (
-				<motion.div
-					key="skeleton"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ duration: 0.15, ease: "easeOut" }}
-				>
-					{fallback}
-				</motion.div>
-			)}
-		</AnimatePresence>
 	);
 }
