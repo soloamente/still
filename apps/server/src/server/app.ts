@@ -5,29 +5,32 @@ import { env } from "@still/env/server";
 import { sql } from "drizzle-orm";
 import { Elysia } from "elysia";
 
-import { achievementsRoute, badgesRoute } from "./routes/badges";
-import { chatRoute } from "./routes/chat";
-import { commentsRoute } from "./routes/comments";
-import { feedRoute } from "./routes/feed";
-import { followsRoute } from "./routes/follows";
-import { leaderboardRoute } from "./routes/leaderboard";
-import { listsRoute } from "./routes/lists";
-import { logsRoute } from "./routes/logs";
-import { moviesRoute } from "./routes/movies";
-import { newsRoute } from "./routes/news";
-import { notificationsRoute } from "./routes/notifications";
-import { peopleRoute } from "./routes/people";
-import { postsRoute } from "./routes/posts";
-import { profilesRoute } from "./routes/profiles";
-import { reviewsRoute } from "./routes/reviews";
-import { tvRoute } from "./routes/tv";
-import { tvWatchRoute } from "./routes/tv-watch";
-import { watchlistRoute } from "./routes/watchlist";
-import { wsRoute } from "./ws";
+import { achievementsRoute, badgesRoute } from "../routes/badges";
+import { chatRoute } from "../routes/chat";
+import { commentsRoute } from "../routes/comments";
+import { feedRoute } from "../routes/feed";
+import { followsRoute } from "../routes/follows";
+import { leaderboardRoute } from "../routes/leaderboard";
+import { listsRoute } from "../routes/lists";
+import { logsRoute } from "../routes/logs";
+import { moviesRoute } from "../routes/movies";
+import { newsRoute } from "../routes/news";
+import { notificationsRoute } from "../routes/notifications";
+import { peopleRoute } from "../routes/people";
+import { postsRoute } from "../routes/posts";
+import { profilesRoute } from "../routes/profiles";
+import { reviewsRoute } from "../routes/reviews";
+import { tvRoute } from "../routes/tv";
+import { tvWatchRoute } from "../routes/tv-watch";
+import { watchlistRoute } from "../routes/watchlist";
+import { wsRoute } from "../ws";
 
 /**
  * Pure Elysia app — no `listen`, no schedulers. Importable by clients
  * (via Eden Treaty) to grab the type without spinning up a process.
+ *
+ * Lives under `src/server/` so Vercel does not treat this file as the
+ * serverless entry (which would transpile workspace imports to missing `.ts` paths).
  *
  * Compose order matters: CORS first, then the auth pass-through, then
  * the typed route tree, then the WebSocket endpoint.
@@ -103,3 +106,6 @@ export const app = new Elysia()
 	});
 
 export type App = typeof app;
+
+// Vercel Elysia expects a default export when this module is the function entry.
+export default app;

@@ -1,37 +1,38 @@
 {
-  "name": "server",
-  "type": "module",
-  "main": "src/index.ts",
-  "exports": {
-    ".": "./src/index.ts",
-    "./app": "./src/app.ts"
-  },
-  "scripts": {
-    "build": "tsdown",
-    "check-types": "tsc -b",
-    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run dist/index.mjs"
-  },
-  "dependencies": {
-    "@elysiajs/cors": "^1.4.1",
-    "@elysiajs/eden": "^1.4.9",
-    "@sinclair/typebox": "^0.34.49",
-    "@still/auth": "workspace:*",
-    "@still/db": "workspace:*",
-    "@still/env": "workspace:*",
-    "@vercel/blob": "^2.3.3",
-    "better-auth": "catalog:",
-    "dotenv": "catalog:",
-    "drizzle-orm": "^0.45.2",
-    "elysia": "^1.4.28",
-    "node-vibrant": "^4.0.3",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
-    "@still/config": "workspace:*",
-    "@types/bun": "catalog:",
-    "tsdown": "^0.21.9",
-    "typescript": "^6"
-  }
+	"name": "server",
+	"type": "module",
+	"main": "src/local.ts",
+	"exports": {
+		".": "./src/local.ts",
+		"./app": "./src/server/app.ts"
+	},
+	"scripts": {
+		"build": "tsdown",
+		"build:vercel": "tsdown --config tsdown.vercel.config.ts && bun run ./scripts/sync-vercel-handler.ts",
+		"check-types": "tsc -b",
+		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/local.ts --outfile server",
+		"dev": "bun run --hot src/local.ts",
+		"start": "bun run dist/local.mjs"
+	},
+	"dependencies": {
+		"@elysiajs/cors": "^1.4.1",
+		"@elysiajs/eden": "^1.4.9",
+		"@sinclair/typebox": "^0.34.49",
+		"@still/auth": "workspace:*",
+		"@still/db": "workspace:*",
+		"@still/env": "workspace:*",
+		"@vercel/blob": "^2.3.3",
+		"better-auth": "catalog:",
+		"dotenv": "catalog:",
+		"drizzle-orm": "^0.45.2",
+		"elysia": "^1.4.28",
+		"node-vibrant": "^4.0.3",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@still/config": "workspace:*",
+		"@types/bun": "catalog:",
+		"tsdown": "^0.21.9",
+		"typescript": "^6"
+	}
 }
