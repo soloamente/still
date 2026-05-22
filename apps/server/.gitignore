@@ -1,6 +1,6 @@
 # prod
 dist/
-src/vercel-handler.mjs
+src/index.mjs
 /build
 /out/
 

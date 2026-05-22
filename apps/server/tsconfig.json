@@ -8,5 +8,5 @@
 		},
 		"jsx": "react-jsx"
 	},
-	"exclude": ["src/index.ts", "src/vercel-handler.mjs"]
+	"exclude": ["src/index.mjs"]
 }
