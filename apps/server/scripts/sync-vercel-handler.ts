@@ -1,11 +1,7 @@
-import { copyFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-
-// Vercel Elysia detects src/index.* — use a single bundled index.mjs (includes elysia + workspace packages).
-const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const from = join(root, "dist", "vercel.mjs");
-const to = join(root, "src", "index.mjs");
-
-copyFileSync(from, to);
-console.log(`[vercel] synced ${from} -> ${to}`);
+/**
+ * Legacy helper — `build:vercel` now runs `bun build` straight to `src/index.mjs`.
+ * Kept so old docs/scripts references do not break; safe to delete once unused.
+ */
+console.log(
+	"[vercel] sync-vercel-handler.ts is deprecated; build:vercel writes src/index.mjs directly.",
+);

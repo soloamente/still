@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"build": "tsdown",
-		"build:vercel": "tsdown --config tsdown.vercel.config.ts && bun run ./scripts/sync-vercel-handler.ts",
+		"build:vercel": "bun build ./src/server/app.ts --outfile ./src/index.mjs --target node --minify",
 		"check-types": "tsc -b",
 		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/local.ts --outfile server",
 		"dev": "bun run --hot src/local.ts",

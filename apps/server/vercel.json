@@ -1,5 +1,10 @@
 {
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"installCommand": "cd ../.. && bun install",
-	"buildCommand": "bun run build:vercel"
+	"buildCommand": "bun run build:vercel",
+	"functions": {
+		"src/index.mjs": {
+			"runtime": "nodejs22.x"
+		}
+	}
 }
