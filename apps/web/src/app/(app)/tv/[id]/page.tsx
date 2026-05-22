@@ -13,7 +13,9 @@ import { MovieDetailTopBar } from "@/components/movie/movie-detail-top-bar";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { StarRating } from "@/components/rating/star-rating";
+import { TvDetailClientRoot } from "@/components/tv/tv-detail-client-root";
 import { TvDetailPrimaryActions } from "@/components/tv/tv-detail-primary-actions";
+import { TvDetailProgressPanel } from "@/components/tv/tv-detail-progress-panel";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { formatRuntime } from "@/lib/format";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
@@ -23,6 +25,7 @@ import {
 } from "@/lib/movie-cast-crew-arc";
 import {
 	buildMovieDetailSectionNavItems,
+	MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME,
 	MOVIE_DETAIL_SECTION,
 	MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
 	MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
@@ -39,6 +42,7 @@ import {
 import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
 import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
 import { serverApi } from "@/lib/server-api";
+import { TV_DETAIL_SECTION } from "@/lib/tv-detail-sections";
 
 export const dynamic = "force-dynamic";
 
@@ -243,6 +247,16 @@ export default async function TvShowPage({
 		}),
 		...(crewCrawlLines.length ? [movieDetailCreditsCrawlNavItem()] : []),
 	];
+	if (
+		view === "about" &&
+		data.numberOfSeasons != null &&
+		data.numberOfSeasons > 0
+	) {
+		sectionNavItems.splice(1, 0, {
+			id: TV_DETAIL_SECTION.progress,
+			label: "Progress",
+		});
+	}
 	const showSectionNav = view === "about" && sectionNavItems.length >= 2;
 	const detailBasePath = `/tv/${data.tmdbId}`;
 
@@ -253,153 +267,170 @@ export default async function TvShowPage({
 			paletteMuted={data.paletteMuted}
 			paletteForeground={data.paletteForeground}
 		>
-			<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
-				<MovieDetailTopBar
-					movieId={data.tmdbId}
-					title={data.title}
-					view={view}
-					detailBasePath={detailBasePath}
-				/>
-				{showSectionNav ? (
-					<MovieDetailSectionNav sections={sectionNavItems} />
-				) : null}
+			<TvDetailClientRoot
+				tvId={data.tmdbId}
+				title={data.title}
+				posterUrl={data.poster_url}
+				averageRating={data.community?.averageRating ?? null}
+			>
+				<div className="flex min-h-0 flex-1 flex-col overflow-x-clip bg-background">
+					<MovieDetailTopBar
+						movieId={data.tmdbId}
+						title={data.title}
+						view={view}
+						detailBasePath={detailBasePath}
+					/>
+					{showSectionNav ? (
+						<MovieDetailSectionNav sections={sectionNavItems} />
+					) : null}
 
-				<section
-					className={cn(
-						HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-						"min-h-0 flex-1 overflow-visible",
-					)}
-				>
-					<article
+					<section
 						className={cn(
-							"flex min-h-0 flex-1 flex-col",
-							showSectionNav && MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
+							HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
+							"min-h-0 flex-1 overflow-visible",
 						)}
 					>
-						<div
-							id={MOVIE_DETAIL_SECTION.about}
+						<article
 							className={cn(
-								MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
-								"mx-auto flex w-full max-w-lg flex-col items-center px-2.5 pt-12 pb-6 text-center sm:max-w-xl sm:px-3 sm:pt-14 sm:pb-8 md:pt-16 md:pb-10 lg:max-w-2xl lg:pt-20",
+								"flex min-h-0 flex-1 flex-col",
+								showSectionNav && MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
 							)}
 						>
-							{heroMetaLine ? (
-								<p className="mb-5 text-muted-foreground text-xs tracking-wide">
-									{heroMetaLine}
-								</p>
-							) : null}
-							<MovieDetailHeroMedia
-								title={data.title}
-								posterUrl={data.poster_url}
-								backdropUrl={data.backdrop_url}
-							/>
-							<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
-								{data.title}
-							</h1>
-							{heroBlurb ? (
-								<p className="mt-4 w-full max-w-2xl text-balance font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
-									{heroBlurb}
-								</p>
-							) : null}
-							{data.community?.averageRating ? (
-								<div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-									<StarRating
-										value={Math.round(data.community.averageRating)}
-										readOnly
-										variant="marquee"
-									/>
-									<span className="text-muted-foreground text-xs">
-										{data.community.reviewsCount} reviews on Still
-									</span>
-								</div>
-							) : null}
-							<div className="mt-8 flex w-full justify-center">
-								<TvDetailPrimaryActions
-									averageRating={data.community?.averageRating ?? null}
-									posterUrl={data.poster_url}
+							<div
+								id={MOVIE_DETAIL_SECTION.about}
+								className={cn(
+									MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
+									"mx-auto flex w-full max-w-lg flex-col items-center px-2.5 pt-12 pb-6 text-center sm:max-w-xl sm:px-3 sm:pt-14 sm:pb-8 md:pt-16 md:pb-10 lg:max-w-2xl lg:pt-20",
+								)}
+							>
+								{heroMetaLine ? (
+									<p className="mb-5 text-muted-foreground text-xs tracking-wide">
+										{heroMetaLine}
+									</p>
+								) : null}
+								<MovieDetailHeroMedia
 									title={data.title}
-									tvId={data.tmdbId}
+									posterUrl={data.poster_url}
+									backdropUrl={data.backdrop_url}
+									artworkSlides={
+										(
+											data as {
+												hero_artwork?: {
+													key: string;
+													src: string;
+													label: string;
+												}[];
+											}
+										).hero_artwork
+									}
 								/>
-							</div>
-						</div>
-
-						{view === "streaming" ? (
-							<section className="mx-auto flex min-h-0 w-full max-w-2xl flex-1 flex-col px-2.5 pt-6 pb-8 sm:px-3 sm:pt-8 sm:pb-10">
-								<MovieDetailStreaming watchProviders={watchProviders} />
-							</section>
-						) : null}
-
-						{view === "about" ? (
-							<div className="mx-auto max-w-7xl space-y-12 px-2.5 pt-8 pb-10 sm:px-4 sm:pt-10 md:px-5 md:pt-12">
-								{arcCast.length || arcCrew.length || recognitionPresent ? (
-									<div
-										className={cn(
-											(arcCast.length || arcCrew.length) &&
-												recognitionPresent &&
-												"flex flex-col gap-10 sm:gap-12",
-										)}
-									>
-										{arcCast.length || arcCrew.length ? (
-											<MovieCastCrewArc
-												movieId={data.tmdbId}
-												cast={arcCast}
-												crew={arcCrew}
-												creditsCatalog={{
-													title: data.title,
-													cast: fullCast,
-													crewRows: creditsCrewRows,
-												}}
-											/>
-										) : null}
-
-										{recognitionPresent ? (
-											<MoviePremieresFestivals entries={recognitionEntries} />
-										) : null}
+								<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
+									{data.title}
+								</h1>
+								{heroBlurb ? (
+									<p className="mt-4 w-full max-w-2xl text-balance font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+										{heroBlurb}
+									</p>
+								) : null}
+								{data.community?.averageRating ? (
+									<div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+										<StarRating
+											value={Math.round(data.community.averageRating)}
+											readOnly
+											variant="marquee"
+										/>
+										<span className="text-muted-foreground text-xs">
+											{data.community.reviewsCount} reviews on Still
+										</span>
 									</div>
 								) : null}
-
-								<MovieDetailExploreTabs
-									layout="stacked"
-									lists={[]}
-									featuredReviews={[]}
-									reviewsAfterFeatured={[]}
-									reviews={[]}
-									moreLikeThis={moreLikeThis}
-									relatedListingKind="tv"
-								/>
-
-								{crewCrawlLines.length ? (
-									<MovieDetailBodySection
-										id={MOVIE_DETAIL_SECTION.credits}
-										title=""
-										showHeader={false}
-										className="pt-2 pb-2"
-									>
-										<CreditsCrawl
-											lines={crewCrawlLines}
-											durationSec={Math.min(
-												420,
-												Math.max(160, crewCrawlLines.length * 22),
-											)}
-										/>
-									</MovieDetailBodySection>
-								) : null}
-
-								<CreditsFooter
-									lines={[
-										data.title,
-										data.year ? `First aired ${data.year}` : "Year TBD",
-										data.numberOfEpisodes
-											? `${data.numberOfEpisodes} episodes`
-											: "Episode count TBD",
-										`Still TV showpage #${data.tmdbId}`,
-									]}
-								/>
+								<div className="mt-8 flex w-full justify-center">
+									<TvDetailPrimaryActions />
+								</div>
 							</div>
-						) : null}
-					</article>
-				</section>
-			</div>
+
+							{view === "streaming" ? (
+								<section className="mx-auto flex min-h-0 w-full max-w-2xl flex-1 flex-col px-2.5 pt-6 pb-8 sm:px-3 sm:pt-8 sm:pb-10">
+									<MovieDetailStreaming watchProviders={watchProviders} />
+								</section>
+							) : null}
+
+							{view === "about" ? (
+								<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
+									{data.numberOfSeasons != null && data.numberOfSeasons > 0 ? (
+										<TvDetailProgressPanel tvId={data.tmdbId} />
+									) : null}
+
+									{arcCast.length || arcCrew.length || recognitionPresent ? (
+										<div
+											className={cn(
+												(arcCast.length || arcCrew.length) &&
+													recognitionPresent &&
+													"flex flex-col gap-10 sm:gap-12",
+											)}
+										>
+											{arcCast.length || arcCrew.length ? (
+												<MovieCastCrewArc
+													movieId={data.tmdbId}
+													cast={arcCast}
+													crew={arcCrew}
+													creditsCatalog={{
+														title: data.title,
+														cast: fullCast,
+														crewRows: creditsCrewRows,
+													}}
+												/>
+											) : null}
+
+											{recognitionPresent ? (
+												<MoviePremieresFestivals entries={recognitionEntries} />
+											) : null}
+										</div>
+									) : null}
+
+									<MovieDetailExploreTabs
+										layout="stacked"
+										lists={[]}
+										featuredReviews={[]}
+										reviewsAfterFeatured={[]}
+										reviews={[]}
+										moreLikeThis={moreLikeThis}
+										relatedListingKind="tv"
+									/>
+
+									{crewCrawlLines.length ? (
+										<MovieDetailBodySection
+											id={MOVIE_DETAIL_SECTION.credits}
+											title=""
+											showHeader={false}
+											className="pt-2 pb-2"
+										>
+											<CreditsCrawl
+												lines={crewCrawlLines}
+												durationSec={Math.min(
+													420,
+													Math.max(160, crewCrawlLines.length * 22),
+												)}
+											/>
+										</MovieDetailBodySection>
+									) : null}
+
+									<CreditsFooter
+										lines={[
+											data.title,
+											data.year ? `First aired ${data.year}` : "Year TBD",
+											data.numberOfEpisodes
+												? `${data.numberOfEpisodes} episodes`
+												: "Episode count TBD",
+											`Still TV showpage #${data.tmdbId}`,
+										]}
+									/>
+								</div>
+							) : null}
+						</article>
+					</section>
+				</div>
+			</TvDetailClientRoot>
 		</MovieThemeProvider>
 	);
 }

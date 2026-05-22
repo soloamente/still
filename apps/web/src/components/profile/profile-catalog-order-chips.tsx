@@ -9,6 +9,7 @@ import type { ProfileLedgerTabId } from "@/lib/profile-lobby-order";
 import {
 	buildProfileLobbyHref,
 	type ProfileLobbyOrder,
+	parseProfileLobbyFavorites,
 	parseProfileLobbyOrder,
 	parseProfileLobbyVenue,
 } from "@/lib/profile-lobby-order";
@@ -53,6 +54,9 @@ export function ProfileCatalogOrderChips({
 	const searchParams = useSearchParams();
 	const order = parseProfileLobbyOrder(searchParams.get("order"));
 	const venue = parseProfileLobbyVenue(searchParams.get("venue"));
+	const favoritesOnly = parseProfileLobbyFavorites(
+		searchParams.get("favorites"),
+	);
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -93,6 +97,7 @@ export function ProfileCatalogOrderChips({
 							tab: ledgerTab,
 							order: id,
 							venue,
+							favoritesOnly,
 						})}
 						scroll={false}
 						aria-current={order === id ? "page" : undefined}

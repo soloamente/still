@@ -1,56 +1,84 @@
 "use client";
 
-import { Input } from "@still/ui/components/input";
-import { Label } from "@still/ui/components/label";
 import { cn } from "@still/ui/lib/utils";
 import type { AnyFieldApi } from "@tanstack/react-form";
-import * as React from "react";
+import { useReducedMotion } from "motion/react";
+import type * as React from "react";
+import {
+	AuthFieldErrors,
+	AuthMotionInput,
+} from "@/components/auth/auth-motion-field";
 
 /**
- * Small wrapper around a TanStack Form field + Aker-styled <Input>.
- * Renders the label, the field, validation message, and an optional
- * helper (used for handle availability hints, password meters, etc.).
+ * Sign-up field: icaru input styling. Uses a visible label when `showLabel` (handle hints);
+ * otherwise sr-only label + placeholder like login.
  */
 export function Field({
-  field,
-  label,
-  helper,
-  hint,
-  className,
-  inputClassName,
-  ...input
+	field,
+	label,
+	helper,
+	hint,
+	showLabel = false,
+	className,
+	inputClassName,
+	placeholder,
+	...input
 }: {
-  field: AnyFieldApi;
-  label: string;
-  helper?: React.ReactNode;
-  hint?: string;
-  className?: string;
-  inputClassName?: string;
-} & Omit<React.ComponentProps<"input">, "value" | "onChange" | "onBlur" | "name">) {
-  const errorMessage = field.state.meta.errors.find(Boolean) as { message?: string } | undefined;
-  return (
-    <div className={cn("space-y-1.5", className)}>
-      <div className="flex items-baseline justify-between">
-        <Label htmlFor={field.name}>{label}</Label>
-        {hint ? <span className="text-xs text-muted-foreground">{hint}</span> : null}
-      </div>
-      <Input
-        id={field.name}
-        name={field.name}
-        value={field.state.value as string}
-        onBlur={field.handleBlur}
-        onChange={(e) => field.handleChange(e.target.value)}
-        aria-invalid={errorMessage ? true : undefined}
-        className={inputClassName}
-        {...input}
-      />
-      <div className="min-h-4 text-xs">
-        {errorMessage ? (
-          <span className="text-destructive">{errorMessage.message}</span>
-        ) : (
-          <span className="text-muted-foreground">{helper}</span>
-        )}
-      </div>
-    </div>
-  );
+	field: AnyFieldApi;
+	label: string;
+	helper?: React.ReactNode;
+	hint?: string;
+	showLabel?: boolean;
+	className?: string;
+	inputClassName?: string;
+	placeholder?: string;
+} & Omit<
+	React.ComponentPropsWithoutRef<"input">,
+	"value" | "onChange" | "onBlur" | "name" | "placeholder"
+>) {
+	const reduceMotion = useReducedMotion();
+	const errorMessage = field.state.meta.errors.find(Boolean) as
+		| { message?: string }
+		| undefined;
+
+	return (
+		<div className={cn(className)}>
+			{showLabel ? (
+				<div className="mb-2 flex items-baseline justify-between gap-2">
+					<label
+						className="font-medium text-foreground text-sm"
+						htmlFor={field.name}
+					>
+						{label}
+					</label>
+					{hint ? (
+						<span className="text-muted-foreground text-xs">{hint}</span>
+					) : null}
+				</div>
+			) : (
+				<label className="sr-only" htmlFor={field.name}>
+					{label}
+				</label>
+			)}
+			<AuthMotionInput
+				aria-invalid={errorMessage ? true : undefined}
+				className={inputClassName}
+				id={field.name}
+				name={field.name}
+				onBlur={field.handleBlur}
+				onChange={(e) => field.handleChange(e.target.value)}
+				placeholder={placeholder ?? label}
+				reduceMotion={reduceMotion}
+				value={field.state.value as string}
+				{...input}
+			/>
+			{errorMessage ? (
+				<AuthFieldErrors errors={field.state.meta.errors} />
+			) : helper ? (
+				<div className="mt-1 min-h-4 text-muted-foreground text-xs">
+					{helper}
+				</div>
+			) : null}
+		</div>
+	);
 }

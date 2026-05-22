@@ -13,6 +13,7 @@ import {
 	postLog,
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
+import type { TvLogScope } from "@/lib/tv-watch-types";
 
 /** One row returned by `GET /api/logs/me/by-tv/:tvId` (full `log` row from Drizzle). */
 export interface MyTvLog {
@@ -24,6 +25,9 @@ export interface MyTvLog {
 	watchedAt?: string | null;
 	containsSpoilers?: boolean;
 	watchVenue?: string | null;
+	logScope?: TvLogScope | null;
+	seasonNumber?: number | null;
+	episodeNumber?: number | null;
 }
 
 /**
@@ -77,13 +81,20 @@ export function useTvDetailUserState(
 		};
 	}, [refreshUserState]);
 
-	function handleOpenQuickLog() {
+	function handleOpenQuickLog(scope?: {
+		logScope?: "show" | "season" | "episode";
+		seasonNumber?: number;
+		episodeNumber?: number;
+	}) {
 		openQuickLog({
 			tvId,
 			movieTitle: title,
 			posterUrl: options?.posterUrl ?? undefined,
 			averageRating: options?.averageRating ?? undefined,
 			priorLogCount: myLogs.length,
+			logScope: scope?.logScope,
+			seasonNumber: scope?.seasonNumber,
+			episodeNumber: scope?.episodeNumber,
 			onSuccess: () => {
 				void play("reel-clack").catch(() => undefined);
 				void refreshUserState();
@@ -110,6 +121,9 @@ export function useTvDetailUserState(
 			liked: log.liked,
 			rewatch: log.rewatch,
 			watchVenue,
+			logScope: log.logScope ?? "show",
+			seasonNumber: log.seasonNumber ?? undefined,
+			episodeNumber: log.episodeNumber ?? undefined,
 			onSuccess: () => {
 				void play("reel-clack").catch(() => undefined);
 				void refreshUserState();
@@ -127,6 +141,7 @@ export function useTvDetailUserState(
 					return;
 				}
 				toast.success("Removed from watchlist");
+				setInWatchlist(false);
 			} else {
 				const result = await postWatchlistAdd({ tvId });
 				if (!result.ok) {
@@ -138,6 +153,7 @@ export function useTvDetailUserState(
 					return;
 				}
 				toast.success("Added to watchlist");
+				setInWatchlist(true);
 			}
 			await refreshUserState();
 		} catch (err) {

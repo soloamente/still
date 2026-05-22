@@ -1,6 +1,8 @@
 import { cors } from "@elysiajs/cors";
 import { auth } from "@still/auth";
+import { db } from "@still/db";
 import { env } from "@still/env/server";
+import { sql } from "drizzle-orm";
 import { Elysia } from "elysia";
 
 import { achievementsRoute, badgesRoute } from "./routes/badges";
@@ -18,6 +20,7 @@ import { postsRoute } from "./routes/posts";
 import { profilesRoute } from "./routes/profiles";
 import { reviewsRoute } from "./routes/reviews";
 import { tvRoute } from "./routes/tv";
+import { tvWatchRoute } from "./routes/tv-watch";
 import { watchlistRoute } from "./routes/watchlist";
 import { wsRoute } from "./ws";
 
@@ -46,8 +49,33 @@ export const app = new Elysia()
 	})
 	// Liveness probe.
 	.get("/", () => ({ ok: true, name: "still-server", version: "0.1.0" }))
+	.get("/api/health/db", async ({ set }) => {
+		try {
+			await db.execute(sql`select 1 as ok`);
+			return { ok: true };
+		} catch (err) {
+			const message = err instanceof Error ? err.message : String(err);
+			const cause =
+				err instanceof Error && err.cause instanceof Error
+					? err.cause.message
+					: "";
+			const quotaExceeded =
+				message.includes("402") ||
+				cause.includes("data transfer quota") ||
+				cause.includes("exceeded the data transfer");
+			set.status = 503;
+			return {
+				ok: false,
+				code: quotaExceeded ? "NEON_QUOTA_EXCEEDED" : "DATABASE_UNAVAILABLE",
+				message: quotaExceeded
+					? "Neon data transfer quota exceeded — upgrade the plan or wait for reset."
+					: "Database is not reachable.",
+			};
+		}
+	})
 	.use(moviesRoute)
 	.use(tvRoute)
+	.use(tvWatchRoute)
 	.use(peopleRoute)
 	.use(logsRoute)
 	.use(reviewsRoute)

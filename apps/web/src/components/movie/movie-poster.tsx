@@ -16,6 +16,8 @@ export function MoviePoster({
 	posterUrl,
 	size = "md",
 	showTitle = false,
+	/** Caption under the frame — `1` keeps dense grids on one line. */
+	titleLines = 2,
 	/** Adds a subtle inner bezel so the poster reads like a framed print. */
 	filmFrame = false,
 	/** Merges onto the poster frame (e.g. `rounded-2xl` for lobby grids). */
@@ -24,10 +26,16 @@ export function MoviePoster({
 	priority = false,
 	/** Lobby catalogue: shadow + z-index instead of translate so the card reads over neighbors. */
 	hoverEffect = "lift",
+	/** `sheet` keeps hover lift under drawer scroll scrims (`z-30`). */
+	hoverStacking = "catalogue",
 	/** Catalogue tiles for TV use `/tv/[id]` (same poster shell as films). */
 	listingKind = "movie",
 	/** When false, renders a static frame (no self-link) for in-page hero art. */
 	linkable = true,
+	/** Optional chip over the poster (e.g. TV diary scope on `/diary` grid). */
+	posterCaption,
+	/** Second line on the bottom scrim (e.g. diary entry count). */
+	posterCaptionSubline,
 }: {
 	movieId: number;
 	title: string;
@@ -35,13 +43,17 @@ export function MoviePoster({
 	/** `hero` = full width of parent on small screens (detail page), larger fixed widths from `md` up. */
 	size?: "xs" | "sm" | "md" | "lg" | "hero";
 	showTitle?: boolean;
+	titleLines?: 1 | 2;
 	filmFrame?: boolean;
 	frameClassName?: string;
 	className?: string;
 	priority?: boolean;
 	hoverEffect?: MoviePosterHoverEffect;
+	hoverStacking?: "catalogue" | "sheet";
 	listingKind?: "movie" | "tv";
 	linkable?: boolean;
+	posterCaption?: string | null;
+	posterCaptionSubline?: string | null;
 }) {
 	/** Default `md` stretches with grid tracks so ultra-wide shells don’t strand tiny thumbnails. */
 	const dim =
@@ -68,6 +80,10 @@ export function MoviePoster({
 			: "(max-width: 640px) 38vw, (max-width: 1024px) 28vw, (max-width: 1536px) 220px, 260px";
 
 	const isElevation = hoverEffect === "elevation";
+	const elevationHoverZ =
+		hoverStacking === "sheet"
+			? "focus-within:z-[1] [@media(hover:hover)]:hover:z-[1]"
+			: "focus-within:z-[100] [@media(hover:hover)]:hover:z-[100]";
 	const detailHref =
 		listingKind === "tv" ? `/tv/${movieId}` : `/movies/${movieId}`;
 
@@ -82,7 +98,7 @@ export function MoviePoster({
 				"motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:focus-within:shadow-none",
 				// Card-tinted scrim only (`var(--card)` = same token as `bg-card`) — no black ink,
 				// stacked opaque mixes + large blurs so neighbors read clearly underneath.
-				"focus-within:z-[100] [@media(hover:hover)]:hover:z-[100]",
+				elevationHoverZ,
 				"[@media(hover:hover)]:hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
 				"focus-within:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
 			),
@@ -123,11 +139,24 @@ export function MoviePoster({
 						</p>
 					</div>
 				)}
+				{posterCaption ? (
+					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end bg-linear-to-t from-black/90 via-black/50 to-transparent px-3 pt-14 pb-3 text-center sm:pt-16 sm:pb-3.5">
+						<p className="max-w-full font-semibold text-sm text-white leading-snug tracking-wide drop-shadow-sm">
+							{posterCaption}
+						</p>
+						{posterCaptionSubline ? (
+							<p className="mt-0.5 max-w-full text-white/75 text-xs leading-snug">
+								{posterCaptionSubline}
+							</p>
+						) : null}
+					</div>
+				) : null}
 			</div>
 			{showTitle && posterUrl ? (
 				<p
 					className={cn(
-						"mt-2 line-clamp-2 text-[0.8rem] text-muted-foreground leading-snug sm:text-sm",
+						"mt-2 min-w-0 text-[0.8rem] text-muted-foreground leading-snug sm:text-sm",
+						titleLines === 1 ? "truncate" : "line-clamp-2 text-pretty",
 						linkable && "group-hover:text-foreground",
 					)}
 				>

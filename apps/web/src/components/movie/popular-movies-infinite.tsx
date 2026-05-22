@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Loader2 } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
 	Fragment,
 	useCallback,
@@ -24,6 +24,7 @@ import {
 	fetchMoviesPopular,
 	fetchMoviesUpcoming,
 	fetchTvDiscover,
+	fetchTvOnTheAir,
 	fetchTvPopular,
 } from "@/lib/still-api-fetch";
 
@@ -36,13 +37,16 @@ export type PopularMovieSeed = {
 	 * `/watchlist` mixed grids so TV posters open `/tv/[id]` while films stay on `/movies/[id]`.
 	 */
 	listingKind?: "movie" | "tv";
+	/** Diary TV scope chip — e.g. `S02E04` on poster overlay. */
+	scopeLabel?: string | null;
 };
 
 export type TmdbCatalogKind =
 	| "popular"
 	| "upcoming"
 	| "discover"
-	| "now_playing";
+	| "now_playing"
+	| "on_the_air";
 
 interface PopularMoviesInfiniteProps {
 	/** First TMDb page — server-rendered for fast paint. */
@@ -59,6 +63,8 @@ interface PopularMoviesInfiniteProps {
 	catalogMedia?: "movie" | "tv";
 	/** Discover: optional TMDb genre id (`with_genres`). */
 	discoverGenreId?: number | null;
+	/** Discover: optional TMDb production company id (`with_companies`). */
+	discoverCompanyId?: number | null;
 	/** Discover: `sort_by` passthrough (server whitelist). */
 	discoverSortBy?: string;
 	/** Discover (movies): theatrical vs digital-at-home — forwarded as `?venue=` on `/api/movies/discover`. */
@@ -73,6 +79,8 @@ interface PopularMoviesInfiniteProps {
 	discoverReleaseGte?: string | null;
 	/** Discover (TV): optional `air_date_gte` → TMDb `first_air_date.gte` (YYYY-MM-DD). */
 	discoverAirDateGte?: string | null;
+	/** Discover (TV): `ended` / `completed` for finished series (`with_status=3`). */
+	discoverTvStatus?: string | null;
 	/**
 	 * Theatrical upcoming (`catalogKind="upcoming"`) — optional ISO alpha-2 forwarded as
 	 * `GET /api/movies/upcoming?region=` so paging matches the RSC seed territory.
@@ -129,6 +137,7 @@ export function PopularMoviesInfinite({
 	catalogKind = "popular",
 	catalogMedia = "movie",
 	discoverGenreId = null,
+	discoverCompanyId = null,
 	discoverSortBy = "popularity.desc",
 	discoverVenue = null,
 	discoverMonetization = null,
@@ -136,6 +145,7 @@ export function PopularMoviesInfinite({
 	discoverReleaseRegion = null,
 	discoverReleaseGte = null,
 	discoverAirDateGte = null,
+	discoverTvStatus = null,
 	upcomingReleaseRegion = null,
 	gridClassName = "grid grid-cols-3 gap-4 sm:grid-cols-4 sm:gap-5 md:grid-cols-5 md:gap-6 lg:grid-cols-6 lg:gap-7",
 	posterLinkClassName,
@@ -150,7 +160,7 @@ export function PopularMoviesInfinite({
 	getPosterCellKey,
 }: PopularMoviesInfiniteProps) {
 	/** Single primitive for effect deps — mirrors `motion` remount keys below. */
-	const catalogueWaveKey = `${catalogMedia}:${catalogKind}:${discoverSortBy}:${discoverGenreId ?? ""}:${discoverVenue ?? ""}:${discoverMonetization ?? ""}:${discoverWatchRegion ?? ""}:${discoverReleaseRegion ?? ""}:${discoverReleaseGte ?? ""}:${discoverAirDateGte ?? ""}:${upcomingReleaseRegion ?? ""}`;
+	const catalogueWaveKey = `${catalogMedia}:${catalogKind}:${discoverSortBy}:${discoverGenreId ?? ""}:${discoverCompanyId ?? ""}:${discoverVenue ?? ""}:${discoverMonetization ?? ""}:${discoverWatchRegion ?? ""}:${discoverReleaseRegion ?? ""}:${discoverReleaseGte ?? ""}:${discoverAirDateGte ?? ""}:${discoverTvStatus ?? ""}:${upcomingReleaseRegion ?? ""}`;
 	const waveKey = catalogueWaveKeyOverride ?? catalogueWaveKey;
 
 	const reduceMotion = useReducedMotion();
@@ -228,32 +238,38 @@ export function PopularMoviesInfinite({
 						})
 					: catalogKind === "now_playing"
 						? await fetchMoviesNowPlaying(next)
-						: catalogKind === "discover"
-							? isTv
-								? await fetchTvDiscover(next, {
-										genreId: discoverGenreId ?? undefined,
-										sortBy: discoverSortBy,
-										airDateGte: discoverAirDateGte ?? undefined,
-										monetization: discoverMonetization ?? undefined,
-										watchRegion: discoverWatchRegion ?? undefined,
-									})
-								: await fetchMoviesDiscover(next, {
-										genreId: discoverGenreId ?? undefined,
-										sortBy: discoverSortBy,
-										venue:
-											catalogMedia === "movie" &&
-											(discoverVenue === "theaters" ||
-												discoverVenue === "streaming")
-												? discoverVenue
-												: undefined,
-										monetization: discoverMonetization ?? undefined,
-										watchRegion: discoverWatchRegion ?? undefined,
-										region: discoverReleaseRegion ?? undefined,
-										releaseGte: discoverReleaseGte ?? undefined,
-									})
-							: isTv
-								? await fetchTvPopular(next)
-								: await fetchMoviesPopular(next);
+						: catalogKind === "on_the_air"
+							? await fetchTvOnTheAir(next, {
+									sortBy: discoverSortBy,
+								})
+							: catalogKind === "discover"
+								? isTv
+									? await fetchTvDiscover(next, {
+											genreId: discoverGenreId ?? undefined,
+											sortBy: discoverSortBy,
+											airDateGte: discoverAirDateGte ?? undefined,
+											monetization: discoverMonetization ?? undefined,
+											watchRegion: discoverWatchRegion ?? undefined,
+											status: discoverTvStatus ?? undefined,
+										})
+									: await fetchMoviesDiscover(next, {
+											genreId: discoverGenreId ?? undefined,
+											companyId: discoverCompanyId ?? undefined,
+											sortBy: discoverSortBy,
+											venue:
+												catalogMedia === "movie" &&
+												(discoverVenue === "theaters" ||
+													discoverVenue === "streaming")
+													? discoverVenue
+													: undefined,
+											monetization: discoverMonetization ?? undefined,
+											watchRegion: discoverWatchRegion ?? undefined,
+											region: discoverReleaseRegion ?? undefined,
+											releaseGte: discoverReleaseGte ?? undefined,
+										})
+								: isTv
+									? await fetchTvPopular(next)
+									: await fetchMoviesPopular(next);
 
 			loadingRef.current = false;
 
@@ -310,6 +326,7 @@ export function PopularMoviesInfinite({
 		catalogKind,
 		catalogMedia,
 		discoverGenreId,
+		discoverCompanyId,
 		discoverSortBy,
 		discoverVenue,
 		discoverMonetization,
@@ -317,6 +334,7 @@ export function PopularMoviesInfinite({
 		discoverReleaseRegion,
 		discoverReleaseGte,
 		discoverAirDateGte,
+		discoverTvStatus,
 		upcomingReleaseRegion,
 		peekIfRoomForMore,
 		staticCatalogue,
@@ -393,9 +411,11 @@ export function PopularMoviesInfinite({
 			? "upcoming"
 			: catalogKind === "now_playing"
 				? "now playing in theatres"
-				: catalogKind === "discover"
-					? "discover"
-					: "popular");
+				: catalogKind === "on_the_air"
+					? "currently on the air"
+					: catalogKind === "discover"
+						? "discover"
+						: "popular");
 
 	/** Shared poster subtree for lobby grids — duplicated map branches would drift otherwise. */
 	const renderLobbyMoviePoster = useCallback(
@@ -408,6 +428,7 @@ export function PopularMoviesInfinite({
 				movieId={m.id}
 				posterUrl={m.poster_url}
 				priority={index < 6}
+				posterCaption={m.scopeLabel}
 				showTitle={showTitle}
 				title={m.title}
 			/>
@@ -443,6 +464,7 @@ export function PopularMoviesInfinite({
 			return (
 				<motion.div
 					key={presenceKey}
+					layout={false}
 					className="min-w-0"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -454,7 +476,7 @@ export function PopularMoviesInfinite({
 						},
 					}}
 					transition={{
-						// Slightly slower than default UI micro-motions so the lobby grid reads calm, not snappy.
+						// Opacity-only stagger — `popLayout` reflow on the grid caused flicker; keep calm cadence.
 						duration: 0.48,
 						ease: [0.22, 1, 0.36, 1],
 						delay: Math.min(index, 28) * 0.055,
@@ -486,7 +508,7 @@ export function PopularMoviesInfinite({
 				{presenceChildren ? (
 					// `AnimatePresence` + wave-scoped keys (see `presenceChildren` memo) so every tile exits
 					// when the catalogue slice changes, not only ids that disappear from TMDB between feeds.
-					<AnimatePresence mode="popLayout">{presenceChildren}</AnimatePresence>
+					<AnimatePresence mode="sync">{presenceChildren}</AnimatePresence>
 				) : (
 					items.map((m, index) => {
 						const cellKey = getPosterCellKey?.(m, index) ?? String(m.id);

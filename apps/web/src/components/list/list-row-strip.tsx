@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import type { ListBoardRow } from "@/lib/list-board-row";
+import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
 
 /** One list row from `GET /api/lists/*` after `coverPosterPaths` hydration (B.5.6). */
 export type { ListBoardRow } from "@/lib/list-board-row";
@@ -26,6 +27,14 @@ const STRIP_MAX = 7;
 export function ListRowStrip({ list }: { list: ListBoardRow }) {
 	const paths = list.coverPosterPaths ?? list.coverMovieIds.map(() => null);
 	const strip = paths.slice(0, STRIP_MAX);
+	const customCover = resolveListCoverImageSrc(
+		list.id,
+		list.coverImageUrl,
+		list.updatedAt,
+	);
+	if (customCover) {
+		strip[0] = customCover;
+	}
 
 	return (
 		<Link

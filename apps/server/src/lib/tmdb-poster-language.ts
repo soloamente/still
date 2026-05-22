@@ -6,6 +6,25 @@ import { eq } from "drizzle-orm";
  * `profile.preferences` when the patron picks a catalogue country in Settings.
  */
 const CATALOG_TMDB_WATCH_REGION_PREF_KEY = "catalogTmdbWatchRegion" as const;
+const CATALOG_TMDB_LANGUAGE_PREF_KEY = "catalogTmdbLanguage" as const;
+
+const TMDB_LANGUAGE_WHITELIST = new Set([
+	"en-US",
+	"en-GB",
+	"es-ES",
+	"fr-FR",
+	"de-DE",
+	"it-IT",
+	"pt-BR",
+	"pt-PT",
+	"nl-NL",
+	"ja-JP",
+	"ko-KR",
+	"sv-SE",
+	"da-DK",
+	"fi-FI",
+	"pl-PL",
+]);
 
 /**
  * ISO 3166-1 alpha-2 (TMDb `watch_region`) → TMDb v3 `language` query value.
@@ -59,17 +78,40 @@ export function catalogWatchRegionIsoToTmdbLanguage(
  * Resolves the TMDb locale for the current patron so list + detail posters match
  * the country they chose in Settings (`catalogTmdbWatchRegion`).
  */
+function readCatalogTmdbLanguagePref(
+	preferences: Record<string, unknown> | null | undefined,
+): string | null {
+	if (preferences == null) return null;
+	const raw = preferences[CATALOG_TMDB_LANGUAGE_PREF_KEY];
+	if (raw == null || raw === "") return null;
+	if (typeof raw !== "string") return null;
+	const s = raw.trim();
+	return TMDB_LANGUAGE_WHITELIST.has(s) ? s : null;
+}
+
 export async function getTmdbLanguageForUser(
 	userId: string | null | undefined,
 ): Promise<string> {
 	if (!userId) return "en-US";
-	const [row] = await db
-		.select({ preferences: profile.preferences })
-		.from(profile)
-		.where(eq(profile.userId, userId))
-		.limit(1);
-	const raw = row?.preferences?.[CATALOG_TMDB_WATCH_REGION_PREF_KEY];
-	if (raw == null || raw === "") return "en-US";
-	if (typeof raw !== "string") return "en-US";
-	return catalogWatchRegionIsoToTmdbLanguage(raw);
+	try {
+		const [row] = await db
+			.select({ preferences: profile.preferences })
+			.from(profile)
+			.where(eq(profile.userId, userId))
+			.limit(1);
+		const prefs = row?.preferences ?? null;
+		const explicit = readCatalogTmdbLanguagePref(prefs);
+		if (explicit) return explicit;
+		const regionRaw = prefs?.[CATALOG_TMDB_WATCH_REGION_PREF_KEY];
+		if (regionRaw == null || regionRaw === "") return "en-US";
+		if (typeof regionRaw !== "string") return "en-US";
+		return catalogWatchRegionIsoToTmdbLanguage(regionRaw);
+	} catch (err) {
+		// Neon quota / connectivity — catalogue routes should still return TMDb sheets.
+		console.error(
+			"[tmdb-poster-language] profile prefs unavailable, using en-US",
+			err,
+		);
+		return "en-US";
+	}
 }

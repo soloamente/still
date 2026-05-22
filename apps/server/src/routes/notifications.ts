@@ -47,6 +47,18 @@ async function withNavigationHints(
 		if (r.kind === "badge.awarded" || r.kind === "achievement.unlocked") {
 			return { ...r, payload: { ...base, href: "/achievements" } };
 		}
+		if (r.kind === "tv.new_episode") {
+			const tvId = base.tvId;
+			if (typeof tvId === "number" && Number.isFinite(tvId)) {
+				return {
+					...r,
+					payload: {
+						...base,
+						href: `/tv/${tvId}#tv-section-progress`,
+					},
+				};
+			}
+		}
 		return r;
 	});
 }

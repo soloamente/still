@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@still/ui/components/button";
+import { Skeleton } from "@still/ui/components/skeleton";
 import { cn } from "@still/ui/lib/utils";
 import { Loader2, MessageCircle, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -404,10 +405,9 @@ export function ReviewDetailRoot() {
 										) : loading ? (
 											<ul className="space-y-3" aria-hidden>
 												{[0, 1].map((i) => (
-													<li
-														key={i}
-														className="h-16 animate-pulse rounded-2xl bg-background"
-													/>
+													<li key={i}>
+														<Skeleton className="h-16 w-full rounded-2xl bg-background" />
+													</li>
 												))}
 											</ul>
 										) : (

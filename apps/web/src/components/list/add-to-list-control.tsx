@@ -61,7 +61,9 @@ export function AddToListControl({
 		try {
 			const res = await fetchListsMe(movieId);
 			if (gen !== fetchGen.current) return null;
-			const rows = ((res.data as unknown[]) ?? []).map(toListBoardRow);
+			const rows = ((res.data as unknown[]) ?? [])
+				.map(toListBoardRow)
+				.filter((row) => row.systemKind !== "favorites");
 			setLists(rows);
 			return rows;
 		} catch (err) {

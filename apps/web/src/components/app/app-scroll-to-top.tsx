@@ -137,7 +137,9 @@ function ScrollTopWidthProbe({
 
 function useExpandedPillWidth() {
 	const measureRef = useRef<HTMLDivElement>(null);
-	const [expandedWidth, setExpandedWidth] = useState(PILL.expandedFallback);
+	const [expandedWidth, setExpandedWidth] = useState<number>(
+		PILL.expandedFallback,
+	);
 
 	const measure = useCallback(() => {
 		const node = measureRef.current;

@@ -1,6 +1,7 @@
 import { cn } from "@still/ui/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
+
+import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 
 export type FeedPerson = {
 	user: { id: string; name: string; image: string | null } | null;
@@ -9,7 +10,8 @@ export type FeedPerson = {
 
 /**
  * Circular profile image for feed rows and the home “friend activity” rail.
- * Profile URL is derived from `profile.handle` (fallback: `user.id`).
+ * Uses the same avatar proxy as nav / profile (`PatronPortraitAvatar`) — raw
+ * `user.image` blob URLs are not fetchable by Next `<Image>` (403 on private blob).
  */
 export function FeedPersonAvatar({
 	person,
@@ -17,54 +19,42 @@ export function FeedPersonAvatar({
 	className,
 }: {
 	person: FeedPerson;
-	/** `md` = 44px — matches Track B minimum tap target. */
-	size?: "md" | "sm";
+	/** `md` = 44px tap target; `sm` / `xs` for inline feed bylines. */
+	size?: "md" | "sm" | "xs";
 	className?: string;
 }) {
 	const handle = person.profile?.handle ?? person.user?.id ?? "user";
 	const name = person.profile?.displayName ?? person.user?.name ?? "Someone";
-	const src = person.user?.image;
+	const px = size === "md" ? 44 : size === "sm" ? 36 : 32;
 	const box =
-		size === "md" ? "size-11 min-h-11 min-w-11" : "size-9 min-h-9 min-w-9";
-	const imgSizes = size === "md" ? "44px" : "36px";
+		size === "md"
+			? "size-11 min-h-11 min-w-11"
+			: size === "sm"
+				? "size-9 min-h-9 min-w-9"
+				: "size-8 min-h-8 min-w-8";
 
 	return (
 		<Link
 			href={`/profile/${handle}`}
 			className={cn(
-				"relative isolate shrink-0 overflow-hidden rounded-full border border-border bg-muted ring-offset-background",
-				"transition-[box-shadow,transform] duration-[var(--aker-duration)] ease-[var(--aker-ease)]",
-				"hover:ring-2 hover:ring-desert-orange/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-desert-orange/60 focus-visible:ring-offset-2",
-				"select-none",
+				"relative isolate shrink-0 overflow-hidden rounded-full bg-muted",
+				"transition-[transform,colors] duration-[var(--aker-duration)] ease-[var(--aker-ease)]",
+				"[@media(hover:hover)]:hover:bg-foreground/10",
+				"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-desert-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+				"select-none active:scale-[0.96] motion-reduce:active:scale-100",
 				box,
 				className,
 			)}
 			aria-label={`${name} profile`}
 		>
-			{src ? (
-				<Image
-					src={src}
-					alt=""
-					fill
-					className="object-cover"
-					sizes={imgSizes}
-				/>
-			) : (
-				<span className="flex h-full w-full items-center justify-center font-sans font-semibold text-muted-foreground text-xs uppercase">
-					{initials(name)}
-				</span>
-			)}
+			<PatronPortraitAvatar
+				handle={handle}
+				avatarUrl={person.user?.image}
+				name={name}
+				width={px}
+				height={px}
+				className="size-full rounded-full"
+			/>
 		</Link>
 	);
-}
-
-function initials(name: string) {
-	const parts = name.trim().split(/\s+/).filter(Boolean);
-	if (parts.length >= 2) {
-		const a = parts[0]?.charAt(0) ?? "";
-		const b = parts[1]?.charAt(0) ?? "";
-		return `${a}${b}`.toUpperCase();
-	}
-	const one = parts[0] ?? "?";
-	return one.slice(0, 2).toUpperCase();
 }

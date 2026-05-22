@@ -17,6 +17,15 @@ export type ProfileLobbyOrder = DiaryLobbyOrder;
 
 export const parseProfileLobbyOrder = parseDiaryLobbyOrder;
 
+/** `?favorites=1` narrows Movies / TV ledger to hearted diary logs only. */
+export function parseProfileLobbyFavorites(
+	raw: string | null | undefined,
+): boolean {
+	if (!raw) return false;
+	const v = raw.trim().toLowerCase();
+	return v === "1" || v === "true" || v === "yes";
+}
+
 function orderToParam(order: ProfileLobbyOrder): string {
 	switch (order) {
 		case "latest_seen":
@@ -91,12 +100,13 @@ export function sortProfileFilmographyRows(
 		.sort((a, b) => compareProfileFilmographyRows(a, b, order));
 }
 
-/** Builds `/profile/:handle` links — preserves `tab`, `order`, and `venue`. */
+/** Builds `/profile/:handle` links — preserves `tab`, `order`, `venue`, and favorites filter. */
 export function buildProfileLobbyHref(input: {
 	handle: string;
 	tab: ProfileLedgerTabId;
 	order: ProfileLobbyOrder;
 	venue: HomeVenue;
+	favoritesOnly?: boolean;
 }): string {
 	const params = new URLSearchParams();
 	params.set("tab", input.tab);
@@ -106,6 +116,9 @@ export function buildProfileLobbyHref(input: {
 	const defaultVenue = defaultHomeVenueForSort(DIARY_LOBBY_VENUE_SORT_AS);
 	if (input.venue !== defaultVenue) {
 		params.set("venue", input.venue);
+	}
+	if (input.favoritesOnly) {
+		params.set("favorites", "1");
 	}
 	return `/profile/${encodeURIComponent(input.handle)}?${params.toString()}`;
 }

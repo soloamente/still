@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
+import { parseHomeCatalogRun } from "@/lib/home-catalog-run";
 import { parseHomeCatalogSort } from "@/lib/home-catalog-sort";
 import {
 	HOME_COMMUNITY_FEEDS,
@@ -17,12 +18,14 @@ import { parseHomeVenue } from "@/lib/home-venue";
 /**
  * Second-row chips on `/home`:
  * - **Movies / TV:** Upcoming, Latest, and Popular (TMDb) with a sliding `layoutId` pill.
- * - **Community:** Lists, Reviews, Diary, Activity — member-made surfaces (URLs only; lobby body still WIP).
+ * - **Community:** Lists, Reviews, Diary, Activity — member-made surfaces.
  */
 export function HomeCatalogSortChips() {
 	const searchParams = useSearchParams();
 	const browse = parseHomeBrowseSurface(searchParams.get("browse"));
 	const catalogSort = parseHomeCatalogSort(searchParams.get("sort"), browse);
+	/** TV lifecycle filter — preserved when switching Popular / Latest / Upcoming. */
+	const catalogRun = parseHomeCatalogRun(searchParams.get("run"), browse);
 	const communityFeed = parseHomeCommunityFeed(searchParams.get("sort"));
 	const effectiveVenue = parseHomeVenue(searchParams.get("venue"), catalogSort);
 	const reduceMotion = useReducedMotion();
@@ -47,8 +50,10 @@ export function HomeCatalogSortChips() {
 	const sortToolbarDescId = "home-catalog-sort-desc";
 	const sortToolbarDescription =
 		browse === "community"
-			? "Choose what kind of member-made content you want to browse first — lists, reviews, diary logs, or activity. Each tab will open its own community rail when the feature ships."
-			: "Upcoming, Latest, and Popular choose the TMDb list or discover sort. On Movies, the right rail also picks theatrical versus at-home digital releases — same knobs carry into Filters on discover. TV Upcoming can narrow the same way when that rail is active.";
+			? "Choose what kind of member-made content to browse — public lists, reviews, or activity from people you follow."
+			: browse === "tv"
+				? "Latest and Popular choose the TMDb ordering. Ongoing, Completed, and Upcoming on the right pick the catalogue slice — only one at a time. On Movies, all three sorts stay on the left; the right rail picks theatrical versus at-home releases."
+				: "Upcoming, Latest, and Popular choose the TMDb list or discover sort. On Movies, the right rail picks theatrical versus at-home digital releases — same knobs carry into Filters on discover.";
 
 	if (browse === "community") {
 		return (
@@ -69,8 +74,8 @@ export function HomeCatalogSortChips() {
 							scroll={false}
 							aria-current={communityFeed === id ? "page" : undefined}
 							className={chipLink(communityFeed === id, true)}
-							title={`${label} — ${hint} (coming soon)`}
-							aria-label={`${label} — ${hint}. Coming soon.`}
+							title={hint}
+							aria-label={`${label} — ${hint}`}
 						>
 							{communityFeed === id ? (
 								<motion.span
@@ -98,40 +103,35 @@ export function HomeCatalogSortChips() {
 				aria-label="Catalogue sort"
 				aria-describedby={sortToolbarDescId}
 			>
-				{/*
-					Three tabs — compact padding so Movies + TV both fit beside the venue toolbar.
-					Order: Upcoming first (future window), then Latest, then Popular.
-				*/}
-				<Link
-					href={buildHomeLobbyHref({
-						sort: "upcoming",
-						browse,
-						venue: effectiveVenue,
-					})}
-					scroll={false}
-					aria-current={catalogSort === "upcoming" ? "page" : undefined}
-					className={chipLink(catalogSort === "upcoming", true)}
-					title={
-						browse === "tv"
-							? "Shows with first air dates from today onward on TMDb"
-							: "Theatrical or streaming titles with primary release dates from today onward"
-					}
-					aria-label="Upcoming — releases ahead on TMDb"
-				>
-					{catalogSort === "upcoming" ? (
-						<motion.span
-							layoutId="home-catalog-sort-pill"
-							className="absolute inset-0 z-0 rounded-full bg-card"
-							transition={pillTransition}
-						/>
-					) : null}
-					<span className="relative z-10">Upcoming</span>
-				</Link>
+				{browse !== "tv" ? (
+					<Link
+						href={buildHomeLobbyHref({
+							sort: "upcoming",
+							browse,
+							venue: effectiveVenue,
+						})}
+						scroll={false}
+						aria-current={catalogSort === "upcoming" ? "page" : undefined}
+						className={chipLink(catalogSort === "upcoming", true)}
+						title="Theatrical or streaming titles with primary release dates from today onward"
+						aria-label="Upcoming — releases ahead on TMDb"
+					>
+						{catalogSort === "upcoming" ? (
+							<motion.span
+								layoutId="home-catalog-sort-pill"
+								className="absolute inset-0 z-0 rounded-full bg-card"
+								transition={pillTransition}
+							/>
+						) : null}
+						<span className="relative z-10">Upcoming</span>
+					</Link>
+				) : null}
 				<Link
 					href={buildHomeLobbyHref({
 						sort: "latest",
 						browse,
 						venue: effectiveVenue,
+						run: catalogRun,
 					})}
 					scroll={false}
 					aria-current={catalogSort === "latest" ? "page" : undefined}
@@ -153,6 +153,7 @@ export function HomeCatalogSortChips() {
 						sort: "popular",
 						browse,
 						venue: effectiveVenue,
+						run: catalogRun,
 					})}
 					scroll={false}
 					aria-current={catalogSort === "popular" ? "page" : undefined}

@@ -6,6 +6,9 @@ import {
 	type PersonFilmographyRow,
 } from "@/lib/person-filmography";
 
+/** Filmography tiles — rounder than default `rounded-md` lobby posters. */
+const FILMOGRAPHY_POSTER_FRAME_CLASSNAME = "rounded-2xl border-0";
+
 /** Poster grid of a person’s TMDb film + TV credits (drawer or route). */
 export function PersonFilmographyGrid({
 	rows,
@@ -28,7 +31,10 @@ export function PersonFilmographyGrid({
 			{rows.map((m) => {
 				const yearLabel = filmographyReleaseYear(m.releaseDate);
 				return (
-					<div key={`${m.mediaKind}-${m.tmdbId}`} className="min-w-0">
+					<div
+						key={`${m.mediaKind}-${m.tmdbId}`}
+						className="min-w-0 text-center"
+					>
 						<MoviePoster
 							movieId={m.tmdbId}
 							title={m.title}
@@ -36,12 +42,14 @@ export function PersonFilmographyGrid({
 							listingKind={m.mediaKind === "tv" ? "tv" : "movie"}
 							showTitle
 							hoverEffect="elevation"
+							hoverStacking="sheet"
+							frameClassName={FILMOGRAPHY_POSTER_FRAME_CLASSNAME}
 						/>
-						<p className="mt-1 line-clamp-3 text-[10px] text-muted-foreground leading-snug">
+						<p className="mt-1 line-clamp-3 text-center text-[10px] text-muted-foreground leading-snug">
 							{m.roles.join(" · ")}
 						</p>
 						{yearLabel ? (
-							<p className="mt-0.5 text-[10px] text-muted-foreground/80 tabular-nums">
+							<p className="mt-0.5 text-center text-[10px] text-muted-foreground/80 tabular-nums">
 								{yearLabel}
 							</p>
 						) : null}

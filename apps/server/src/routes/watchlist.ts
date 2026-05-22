@@ -4,37 +4,10 @@ import Elysia, { t } from "elysia";
 
 import { context } from "../context";
 import { hit } from "../lib/rate-limit";
-import { tmdbApi } from "../lib/tmdb";
-import { ensureTvCached } from "../lib/tv-cache";
-
-async function ensureMovie(tmdbId: number) {
-	const [exists] = await db
-		.select({ id: movie.tmdbId })
-		.from(movie)
-		.where(eq(movie.tmdbId, tmdbId))
-		.limit(1);
-	if (exists) return;
-	try {
-		const detail = await tmdbApi.movieDetail(tmdbId);
-		await db
-			.insert(movie)
-			.values({
-				tmdbId: detail.id,
-				title: detail.title,
-				overview: detail.overview,
-				posterPath: detail.poster_path,
-				backdropPath: detail.backdrop_path,
-				releaseDate: detail.release_date ? new Date(detail.release_date) : null,
-				year: detail.release_date
-					? Number(detail.release_date.slice(0, 4))
-					: null,
-				runtime: detail.runtime ?? null,
-				tmdbJson: detail as unknown as Record<string, unknown>,
-				lastSyncedAt: new Date(),
-			})
-			.onConflictDoNothing();
-	} catch {}
-}
+import {
+	upsertMovieWatchlistItem,
+	upsertTvWatchlistItem,
+} from "../lib/watchlist-upsert";
 
 export const watchlistRoute = new Elysia({
 	prefix: "/api/watchlist",
@@ -73,39 +46,17 @@ export const watchlistRoute = new Elysia({
 				return status(400, "Send exactly one of movieId or tvId");
 			}
 			if (movieId != null && tvId == null) {
-				await ensureMovie(movieId);
-				const [row] = await db
-					.insert(watchlistItem)
-					.values({
-						userId: user.id,
-						movieId,
-						tvId: null,
-						note: body.note ?? null,
-						priority: body.priority ?? 50,
-					})
-					.onConflictDoUpdate({
-						target: [watchlistItem.userId, watchlistItem.movieId],
-						set: { note: body.note ?? null, priority: body.priority ?? 50 },
-					})
-					.returning();
+				const row = await upsertMovieWatchlistItem(user.id, movieId, {
+					note: body.note ?? null,
+					priority: body.priority ?? 50,
+				});
 				return row;
 			}
 			if (tvId != null && movieId == null) {
-				await ensureTvCached(tvId);
-				const [row] = await db
-					.insert(watchlistItem)
-					.values({
-						userId: user.id,
-						movieId: null,
-						tvId,
-						note: body.note ?? null,
-						priority: body.priority ?? 50,
-					})
-					.onConflictDoUpdate({
-						target: [watchlistItem.userId, watchlistItem.tvId],
-						set: { note: body.note ?? null, priority: body.priority ?? 50 },
-					})
-					.returning();
+				const row = await upsertTvWatchlistItem(user.id, tvId, {
+					note: body.note ?? null,
+					priority: body.priority ?? 50,
+				});
 				return row;
 			}
 			return status(400, "Send exactly one of movieId or tvId");

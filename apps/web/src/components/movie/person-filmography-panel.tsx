@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { PersonFilmographyGrid } from "@/components/movie/person-filmography-grid";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
@@ -14,20 +14,19 @@ import { fetchPersonFilmography } from "@/lib/still-api-fetch";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 /**
- * Scrollable film + TV catalogue for one person — shared by the global Vaul host
- * and the nested drawer inside cast & crew “View all”.
+ * Scrollable film + TV catalogue for one person — global Vaul sheet and nested cast sheet.
  */
 export function PersonFilmographyPanel({
 	seed,
 	active,
-	compact = false,
+	nested = false,
 }: {
 	seed: PersonFilmographySeed;
 	active: boolean;
-	/** Nested drawer — slightly shorter scroll viewport. */
-	compact?: boolean;
+	nested?: boolean;
 }) {
 	const scrollRef = useRef<HTMLDivElement>(null);
+
 	const contentKey = `${seed.personId}:${seed.roleHint ?? ""}`;
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
@@ -82,75 +81,75 @@ export function PersonFilmographyPanel({
 	const titleCount = filmography.length;
 
 	return (
-		<div className="relative min-h-0 flex-1">
-			<div
-				ref={scrollRef}
-				className={cn(
-					"overflow-y-auto overscroll-contain px-5 pt-2 pb-10 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-8 sm:pb-12 [&::-webkit-scrollbar]:hidden",
-					compact
-						? "max-h-[min(calc(85svh-5rem),760px)]"
-						: "max-h-[min(calc(96svh-6rem),820px)]",
-				)}
-			>
-				<header className="mx-auto mb-8 max-w-md text-center">
-					<div className="mx-auto mb-4 flex justify-center">
-						<div className="relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg sm:w-24">
-							<PersonCreditPortrait
-								name={displayName}
-								profilePath={person?.profilePath ?? seed.profilePath}
-								grayscale
-								sizes="96px"
-							/>
+		<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
+			<DetailDrawerScrollBody scrollRef={scrollRef} nested={nested}>
+				<div className="mx-auto w-full max-w-4xl">
+					<header className="mx-auto mb-8 max-w-md text-center">
+						<div className="mx-auto mb-4 flex justify-center">
+							<div className="relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg sm:w-24">
+								<PersonCreditPortrait
+									name={displayName}
+									profilePath={person?.profilePath ?? seed.profilePath}
+									grayscale
+									sizes="96px"
+								/>
+							</div>
 						</div>
-					</div>
-					<h2 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
-						{displayName}
-					</h2>
-					{knownFor ? (
-						<p className="mt-1 text-muted-foreground text-xs uppercase tracking-wider">
-							{knownFor}
+						<h2 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
+							{displayName}
+						</h2>
+						{knownFor ||
+						seed.roleHint ||
+						(!loading && !error && titleCount > 0) ? (
+							<div className="mt-2 flex flex-col gap-1">
+								{knownFor ? (
+									<p className="text-muted-foreground text-xs uppercase tracking-wider">
+										{knownFor}
+									</p>
+								) : null}
+								{seed.roleHint ? (
+									<p className="text-balance font-editorial text-muted-foreground text-sm leading-snug">
+										{seed.roleHint}
+									</p>
+								) : null}
+								{!loading && !error && titleCount > 0 ? (
+									<p className="text-muted-foreground text-sm leading-snug">
+										{titleCount} title{titleCount === 1 ? "" : "s"} in film
+										&amp; TV
+									</p>
+								) : null}
+							</div>
+						) : null}
+					</header>
+
+					{loading ? (
+						<div
+							className="flex justify-center py-16"
+							role="status"
+							aria-live="polite"
+						>
+							<Loader2 className="size-8 animate-spin text-muted-foreground" />
+						</div>
+					) : null}
+
+					{error ? (
+						<p
+							className="rounded-2xl bg-muted/25 p-8 text-center text-muted-foreground text-sm"
+							role="alert"
+						>
+							{error}
 						</p>
 					) : null}
-					{seed.roleHint ? (
-						<p className="mt-3 text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
-							{seed.roleHint}
-						</p>
-					) : null}
-					{!loading && !error && titleCount > 0 ? (
-						<p className="mt-3 text-muted-foreground text-sm">
-							{titleCount} title{titleCount === 1 ? "" : "s"} in film &amp; TV
-						</p>
-					) : null}
-				</header>
 
-				{loading ? (
-					<div
-						className="flex justify-center py-16"
-						role="status"
-						aria-live="polite"
-					>
-						<Loader2 className="size-8 animate-spin text-muted-foreground" />
-					</div>
-				) : null}
-
-				{error ? (
-					<p
-						className="rounded-2xl bg-muted/25 p-8 text-center text-muted-foreground text-sm"
-						role="alert"
-					>
-						{error}
-					</p>
-				) : null}
-
-				{!loading && !error ? (
-					<div className="mx-auto max-w-4xl">
+					{!loading && !error ? (
 						<PersonFilmographyGrid rows={filmography} />
-					</div>
-				) : null}
-			</div>
+					) : null}
+				</div>
+			</DetailDrawerScrollBody>
 			<SheetScrollScrims
 				showHeaderFade={showHeaderFade}
 				showFooterFade={showFooterFade}
+				footerTone="filmography"
 			/>
 		</div>
 	);

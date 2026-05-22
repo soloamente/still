@@ -33,6 +33,15 @@ export function formatLogRatingDisplay(value: number): string {
 	return clampLogRatingDisplay(value).toFixed(1);
 }
 
+/** Format API/DB `log.rating` / `review.rating` (tenths or legacy 1–10) for UI copy. */
+export function formatStoredLogRatingDisplay(
+	stored: number | null | undefined,
+): string | null {
+	const display = logRatingToDisplay(stored);
+	if (display == null) return null;
+	return formatLogRatingDisplay(display);
+}
+
 export function isValidStoredLogRating(stored: number): boolean {
 	return Number.isInteger(stored) && stored >= 0 && stored <= TENTHS_MAX;
 }

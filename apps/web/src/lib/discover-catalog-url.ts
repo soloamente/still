@@ -46,6 +46,8 @@ export function normalizeDiscoverSort(
 
 export function discoverCatalogUrl(parts: {
 	genreId?: number | null;
+	/** TMDb production company id — `?company=` on `/movies/discover`. */
+	companyId?: number | null;
 	sort?: string | null;
 	/** Theatrical vs digital-at-home slice — forwarded to TMDb `with_release_type`. */
 	venue?: HomeVenue | null;
@@ -61,6 +63,9 @@ export function discoverCatalogUrl(parts: {
 	const params = new URLSearchParams();
 	if (parts.genreId != null && parts.genreId > 0) {
 		params.set("genre", String(parts.genreId));
+	}
+	if (parts.companyId != null && parts.companyId > 0) {
+		params.set("company", String(parts.companyId));
 	}
 	const s = parts.sort?.trim();
 	if (s && s !== DISCOVER_SORT_DEFAULT) {

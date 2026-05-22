@@ -1,5 +1,9 @@
 import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
 import {
+	type HomeCatalogRun,
+	parseHomeCatalogRun,
+} from "@/lib/home-catalog-run";
+import {
 	type HomeCatalogSort,
 	parseHomeCatalogSort,
 } from "@/lib/home-catalog-sort";
@@ -8,6 +12,7 @@ import {
 	type HomeCommunityFeed,
 	parseHomeCommunityFeed,
 } from "@/lib/home-community-feed";
+import { writeHomeLobbyHrefCookie } from "@/lib/home-lobby-cookie";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import {
 	defaultHomeVenueForSort,
@@ -18,7 +23,11 @@ import {
 /** localStorage payload — each lobby rail remembers its own last chips / venue. */
 export interface HomeLobbyPersisted {
 	movies: { sort: HomeCatalogSort; venue: HomeVenue } | null;
-	tv: { sort: HomeCatalogSort; venue: HomeVenue } | null;
+	tv: {
+		sort: HomeCatalogSort;
+		venue: HomeVenue;
+		run: HomeCatalogRun | null;
+	} | null;
 	community: { feed: HomeCommunityFeed } | null;
 	/** Last `/home` browse rail — used when film detail has no same-origin referrer. */
 	lastBrowseSurface?: HomeBrowseSurface | null;
@@ -72,10 +81,48 @@ export function mergePersistFromHomeUrl(
 	}
 	const sort = parseHomeCatalogSort(params.get("sort"), surface);
 	const venue = parseHomeVenue(params.get("venue"), sort);
-	const slot = { sort, venue };
-	if (surface === "tv") prev.tv = slot;
-	else prev.movies = slot;
+	if (surface === "tv") {
+		prev.tv = {
+			sort,
+			venue,
+			run: parseHomeCatalogRun(params.get("run"), "tv"),
+		};
+	} else {
+		prev.movies = { sort, venue };
+	}
 	writeHomeLobbyPersisted(prev);
+	const href = homeLobbyHrefFromSearchParams(surface, params);
+	writeHomeLobbyHrefCookie(href);
+}
+
+/** Canonical `/home?…` for the active lobby URL — shared by persistence + cookies. */
+export function homeLobbyHrefFromSearchParams(
+	surface: HomeBrowseSurface,
+	params: URLSearchParams,
+): string {
+	if (surface === "community") {
+		return buildHomeLobbyHref({
+			browse: "community",
+			sort: parseHomeCommunityFeed(params.get("sort")),
+		});
+	}
+	const sort = parseHomeCatalogSort(params.get("sort"), surface);
+	const venue = parseHomeVenue(params.get("venue"), sort);
+	if (surface === "tv") {
+		const defVenue = defaultHomeVenueForSort(sort);
+		return buildHomeLobbyHref({
+			browse: "tv",
+			sort,
+			venue: venue !== defVenue ? venue : undefined,
+			run: parseHomeCatalogRun(params.get("run"), "tv"),
+		});
+	}
+	const defVenue = defaultHomeVenueForSort(sort);
+	return buildHomeLobbyHref({
+		browse: "movies",
+		sort,
+		venue: venue !== defVenue ? venue : undefined,
+	});
 }
 
 /** Builds `/home?…` for a browse rail using the last persisted slot (or sensible defaults). */
@@ -87,13 +134,22 @@ export function buildHomeHrefFromPersisted(
 		const feed = persisted.community?.feed ?? DEFAULT_HOME_COMMUNITY_FEED;
 		return buildHomeLobbyHref({ browse: "community", sort: feed });
 	}
-	const slot = surface === "tv" ? persisted.tv : persisted.movies;
-	if (!slot) {
-		return surface === "tv" ? "/home?browse=tv" : "/home";
+	if (surface === "tv") {
+		const slot = persisted.tv;
+		if (!slot) return "/home?browse=tv";
+		const defVenue = defaultHomeVenueForSort(slot.sort);
+		return buildHomeLobbyHref({
+			browse: "tv",
+			sort: slot.sort,
+			venue: slot.venue !== defVenue ? slot.venue : undefined,
+			run: slot.run,
+		});
 	}
+	const slot = persisted.movies;
+	if (!slot) return "/home";
 	const defVenue = defaultHomeVenueForSort(slot.sort);
 	return buildHomeLobbyHref({
-		browse: surface,
+		browse: "movies",
 		sort: slot.sort,
 		venue: slot.venue !== defVenue ? slot.venue : undefined,
 	});

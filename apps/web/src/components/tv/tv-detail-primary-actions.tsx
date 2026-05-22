@@ -1,6 +1,5 @@
 "use client";
 
-import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import IconListPlay from "@still/ui/icons/list-play";
 import IconPen2Fill from "@still/ui/icons/pen-2-fill";
 import IconPlayRotateAnticlockwise from "@still/ui/icons/play-rotate-anticlockwise";
@@ -9,41 +8,69 @@ import { Loader2 } from "lucide-react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { toast } from "sonner";
 
-import { useTvDetailUserState } from "@/components/tv/use-tv-detail-user-state";
+import { DetailWatchlistButton } from "@/components/movie/detail-watchlist-button";
+import { useTvDetailWatchContext } from "@/components/tv/tv-detail-watch-context";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import {
 	DETAIL_MOTION_PRESSABLE_CLASS,
 	DETAIL_MOTION_SWAP_CLASS,
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
+import { formatTvNextEpisodeLabel } from "@/lib/tv-watch-format";
+import {
+	TV_WATCH_STATUS_LABELS,
+	type TvWatchStatus,
+} from "@/lib/tv-watch-types";
+
+const STATUS_OPTIONS: TvWatchStatus[] = [
+	"watching",
+	"paused",
+	"abandoned",
+	"finished",
+	"rewatching",
+];
 
 /**
- * Hero action row for TV — watchlist + diary log + list picker. Matches film detail
- * layout (`MovieDetailPrimaryActions`) without the review composer (reviews are film-only for now).
+ * Hero block for TV — watchlist, start watching / mark next, diary log, status chips,
+ * and continue line. Uses `TvDetailWatchProvider` for a single progress + diary fetch.
  */
-export function TvDetailPrimaryActions({
-	tvId,
-	title,
-	posterUrl,
-	averageRating,
-}: {
-	tvId: number;
-	title: string;
-	posterUrl?: string | null;
-	averageRating?: number | null;
-}) {
+export function TvDetailPrimaryActions() {
+	const { tvId, tvWatch, userState } = useTvDetailWatchContext();
 	const {
-		hydrated,
+		hydrated: watchHydrated,
+		watch,
+		nextEpisode,
+		busy: watchBusy,
+		isActivelyTracking,
+		startWatching,
+		setStatus,
+		markNextEpisode,
+	} = tvWatch;
+
+	const {
+		hydrated: logHydrated,
 		myLogs,
 		inWatchlist,
-		busy,
+		busy: logBusy,
 		latestLog,
 		handleOpenQuickLog,
 		handleEditLatestLog,
 		toggleWatchlist,
-	} = useTvDetailUserState(tvId, title, { posterUrl, averageRating });
+	} = userState;
 
+	const hydrated = watchHydrated && logHydrated;
 	const hasLogged = myLogs.length > 0;
+	const hasWatch = watch != null;
 	const motionProps = useDetailActionMotion();
+	const continueLabel = formatTvNextEpisodeLabel(nextEpisode);
+
+	const showWatchlistSlot = !hasLogged && !hasWatch;
+	const episodeModeActive = watch?.progressMode === "episode";
+	const showMarkNext =
+		hasWatch && isActivelyTracking && episodeModeActive && nextEpisode != null;
+
+	/** Secondary diary control — only when primary is not already “Log to diary”. */
+	const showDiarySecondary = hasLogged ? true : hasWatch && showMarkNext;
 
 	const circle = cn(
 		"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background text-foreground",
@@ -59,16 +86,25 @@ export function TvDetailPrimaryActions({
 
 	const primaryKey = !hydrated
 		? "loading"
-		: hasLogged
-			? `watch-again-${myLogs.length}`
-			: "add-watched";
+		: showMarkNext
+			? "mark-next"
+			: !hasWatch && !hasLogged
+				? "start-watching"
+				: hasLogged
+					? `watch-again-${myLogs.length}`
+					: "log-watched";
 
-	const watchlistKey =
-		!hydrated || busy === "watchlist"
-			? "watchlist-busy"
-			: inWatchlist
-				? "watchlist-on"
-				: "watchlist-off";
+	function handlePrimaryClick() {
+		if (showMarkNext) {
+			void markNextEpisode();
+			return;
+		}
+		if (!hasWatch && !hasLogged) {
+			void startWatching();
+			return;
+		}
+		handleOpenQuickLog();
+	}
 
 	function handleAddToList() {
 		toast.info(
@@ -76,187 +112,194 @@ export function TvDetailPrimaryActions({
 		);
 	}
 
-	return (
-		<LayoutGroup id={`tv-detail-actions-${tvId}`}>
-			<motion.div
-				layout
-				className="flex w-full max-w-md origin-center items-center justify-center gap-3"
-			>
-				<AnimatePresence mode="popLayout" initial={false}>
-					{!hasLogged ? (
-						<motion.div
-							key="watchlist-slot"
-							layout
-							initial={motionProps.presenceInitial}
-							animate={motionProps.presenceAnimate}
-							exit={motionProps.presenceExit}
-							transition={motionProps.swapTransition}
-						>
-							<motion.button
-								type="button"
-								className={cn(circle, DETAIL_MOTION_PRESSABLE_CLASS)}
-								style={motionProps.style}
-								layout
-								data-primary-action
-								data-watchlist={inWatchlist || undefined}
-								whileHover={motionProps.hover}
-								whileTap={motionProps.tap}
-								transition={motionProps.buttonTransition}
-								onClick={toggleWatchlist}
-								disabled={!hydrated || busy === "watchlist"}
-								aria-pressed={inWatchlist}
-								aria-label={
-									inWatchlist ? "Remove from watchlist" : "Add to watchlist"
-								}
-							>
-								<AnimatePresence mode="popLayout" initial={false}>
-									<motion.span
-										key={watchlistKey}
-										className={cn(
-											"inline-flex items-center justify-center",
-											DETAIL_MOTION_SWAP_CLASS,
-										)}
-										layout="position"
-										initial={motionProps.swapInitial}
-										animate={motionProps.swapAnimate}
-										exit={motionProps.swapExit}
-										transition={motionProps.swapTransition}
-									>
-										{!hydrated || busy === "watchlist" ? (
-											<Loader2
-												className="size-5 animate-spin opacity-70"
-												aria-hidden
-											/>
-										) : (
-											<IconClockRotateClockwise
-												size="22px"
-												className={cn(
-													"shrink-0",
-													inWatchlist ? "opacity-100" : "opacity-80",
-												)}
-												aria-hidden
-											/>
-										)}
-									</motion.span>
-								</AnimatePresence>
-							</motion.button>
-						</motion.div>
-					) : null}
-				</AnimatePresence>
+	const primaryLabel = showMarkNext
+		? "Mark next episode"
+		: !hasWatch && !hasLogged
+			? "Start watching"
+			: hasLogged
+				? null
+				: "Log to diary";
 
-				<motion.button
-					type="button"
-					className={cn(
-						"inline-flex shrink-0 items-center justify-center rounded-full",
-						DETAIL_MOTION_PRESSABLE_CLASS,
-						"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-						"disabled:pointer-events-none disabled:opacity-45",
-						hasLogged ? cn(circle, "disabled:opacity-40") : primaryPill,
-					)}
-					style={motionProps.style}
+	return (
+		<div className="flex w-full max-w-lg flex-col items-center gap-4">
+			{hasWatch && continueLabel && isActivelyTracking ? (
+				<p className="text-balance text-center text-muted-foreground text-sm">
+					{continueLabel}
+				</p>
+			) : null}
+
+			{hasWatch ? (
+				<SegmentedPillToolbar
+					layoutId="tv-detail-watch-status-pill"
+					aria-label="Watching status"
+					value={watch.status}
+					onChange={(status) => void setStatus(status)}
+					disabled={watchBusy === "status"}
+					compact
+					options={STATUS_OPTIONS.map((status) => ({
+						id: status,
+						label: TV_WATCH_STATUS_LABELS[status],
+					}))}
+				/>
+			) : null}
+
+			<LayoutGroup id={`tv-detail-actions-${tvId}`}>
+				<motion.div
 					layout
-					data-primary-action
-					data-logged={hasLogged || undefined}
-					whileHover={motionProps.hover}
-					whileTap={motionProps.tap}
-					transition={motionProps.buttonTransition}
-					onClick={handleOpenQuickLog}
-					disabled={!hydrated}
-					aria-label={
-						hasLogged
-							? myLogs.length > 1
-								? `Record another watch (${myLogs.length} logs)`
-								: "Record another time you watched this show"
-							: "Record that you watched this show"
-					}
+					className="flex w-full max-w-md origin-center items-center justify-center gap-3"
 				>
 					<AnimatePresence mode="popLayout" initial={false}>
-						<motion.span
-							key={primaryKey}
-							className={cn(
-								"inline-flex items-center justify-center gap-1.5",
-								DETAIL_MOTION_SWAP_CLASS,
-							)}
-							layout="position"
-							initial={motionProps.swapInitial}
-							animate={motionProps.swapAnimate}
-							exit={motionProps.swapExit}
-							transition={motionProps.swapTransition}
-						>
-							{!hydrated ? (
-								<Loader2 className="size-5 animate-spin" aria-hidden />
-							) : hasLogged ? (
-								<span className="relative inline-flex">
-									<IconPlayRotateAnticlockwise
-										size="22px"
-										className="shrink-0 opacity-90"
-										aria-hidden
-									/>
-									{myLogs.length > 1 ? (
-										<span
-											className="absolute -top-1.5 -right-1.5 flex size-4 items-center justify-center rounded-full bg-foreground font-semibold text-[10px] text-background tabular-nums"
-											aria-hidden
-										>
-											{myLogs.length}
-										</span>
-									) : null}
-								</span>
-							) : (
-								"Add to Watched"
-							)}
-						</motion.span>
-					</AnimatePresence>
-				</motion.button>
-
-				<AnimatePresence mode="popLayout" initial={false}>
-					{hasLogged && latestLog ? (
-						<motion.div
-							key="edit-action"
-							layout
-							initial={motionProps.presenceInitial}
-							animate={motionProps.presenceAnimate}
-							exit={motionProps.presenceExit}
-							transition={motionProps.swapTransition}
-						>
-							<motion.button
-								type="button"
-								className={cn(circle, DETAIL_MOTION_PRESSABLE_CLASS)}
-								style={motionProps.style}
+						{showWatchlistSlot ? (
+							<motion.div
+								key="watchlist-slot"
 								layout
-								data-primary-action
-								whileHover={motionProps.hover}
-								whileTap={motionProps.tap}
-								transition={motionProps.buttonTransition}
-								onClick={handleEditLatestLog}
-								disabled={!hydrated}
-								aria-label="Edit your latest diary log"
+								initial={motionProps.presenceInitial}
+								animate={motionProps.presenceAnimate}
+								exit={motionProps.presenceExit}
+								transition={motionProps.swapTransition}
 							>
+								<DetailWatchlistButton
+									inWatchlist={inWatchlist}
+									hydrated={hydrated}
+									busy={logBusy === "watchlist"}
+									onToggle={toggleWatchlist}
+								/>
+							</motion.div>
+						) : null}
+					</AnimatePresence>
+
+					<motion.button
+						type="button"
+						className={cn(
+							"inline-flex shrink-0 items-center justify-center rounded-full",
+							DETAIL_MOTION_PRESSABLE_CLASS,
+							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+							"disabled:pointer-events-none disabled:opacity-45",
+							hasLogged && !showMarkNext
+								? cn(circle, "disabled:opacity-40")
+								: primaryPill,
+						)}
+						style={motionProps.style}
+						layout
+						data-primary-action
+						data-logged={hasLogged || undefined}
+						whileHover={motionProps.hover}
+						whileTap={motionProps.tap}
+						transition={motionProps.buttonTransition}
+						onClick={handlePrimaryClick}
+						disabled={
+							!hydrated || watchBusy === "start" || watchBusy === "mark"
+						}
+						aria-label={
+							showMarkNext
+								? "Mark the next unwatched episode as watched"
+								: !hasWatch && !hasLogged
+									? "Start watching this show"
+									: hasLogged
+										? myLogs.length > 1
+											? `Record another watch (${myLogs.length} logs)`
+											: "Record another time you watched this show"
+										: "Log this show to your diary"
+						}
+					>
+						<AnimatePresence mode="popLayout" initial={false}>
+							<motion.span
+								key={primaryKey}
+								className={cn(
+									"inline-flex items-center justify-center gap-1.5",
+									DETAIL_MOTION_SWAP_CLASS,
+								)}
+								layout="position"
+								initial={motionProps.swapInitial}
+								animate={motionProps.swapAnimate}
+								exit={motionProps.swapExit}
+								transition={motionProps.swapTransition}
+							>
+								{!hydrated || watchBusy === "start" || watchBusy === "mark" ? (
+									<Loader2 className="size-5 animate-spin" aria-hidden />
+								) : showMarkNext ? (
+									primaryLabel
+								) : hasLogged && !showMarkNext ? (
+									<span className="relative inline-flex">
+										<IconPlayRotateAnticlockwise
+											size="22px"
+											className="shrink-0 opacity-90"
+											aria-hidden
+										/>
+										{myLogs.length > 1 ? (
+											<span
+												className="absolute -top-1.5 -right-1.5 flex size-4 items-center justify-center rounded-full bg-foreground font-semibold text-[10px] text-background tabular-nums"
+												aria-hidden
+											>
+												{myLogs.length}
+											</span>
+										) : null}
+									</span>
+								) : (
+									primaryLabel
+								)}
+							</motion.span>
+						</AnimatePresence>
+					</motion.button>
+
+					{showDiarySecondary ? (
+						<motion.button
+							type="button"
+							className={cn(
+								hasLogged && !showMarkNext ? circle : primaryPill,
+								DETAIL_MOTION_PRESSABLE_CLASS,
+								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+								"disabled:pointer-events-none disabled:opacity-45",
+							)}
+							style={motionProps.style}
+							layout
+							data-primary-action
+							whileHover={motionProps.hover}
+							whileTap={motionProps.tap}
+							transition={motionProps.buttonTransition}
+							onClick={() => {
+								if (hasLogged && latestLog && !showMarkNext) {
+									handleEditLatestLog();
+								} else {
+									handleOpenQuickLog();
+								}
+							}}
+							disabled={!hydrated}
+							aria-label={
+								hasLogged && latestLog && !showMarkNext
+									? "Edit your latest diary log"
+									: "Log to diary"
+							}
+						>
+							{hasLogged && latestLog && !showMarkNext ? (
 								<IconPen2Fill
 									size="22px"
 									className="shrink-0 opacity-90"
 									aria-hidden
 								/>
-							</motion.button>
-						</motion.div>
+							) : (
+								<span className="font-semibold text-sm">Log to diary</span>
+							)}
+						</motion.button>
 					) : null}
-				</AnimatePresence>
 
-				<motion.button
-					type="button"
-					className={cn(circle, DETAIL_MOTION_PRESSABLE_CLASS)}
-					style={motionProps.style}
-					layout
-					data-primary-action
-					whileHover={motionProps.hover}
-					whileTap={motionProps.tap}
-					transition={motionProps.buttonTransition}
-					onClick={handleAddToList}
-					disabled={!hydrated}
-					aria-label="Add to list"
-				>
-					<IconListPlay size="22px" className="shrink-0 opacity-90" />
-				</motion.button>
-			</motion.div>
-		</LayoutGroup>
+					<motion.button
+						type="button"
+						className={cn(circle, DETAIL_MOTION_PRESSABLE_CLASS)}
+						style={motionProps.style}
+						layout
+						data-primary-action
+						whileHover={motionProps.hover}
+						whileTap={motionProps.tap}
+						transition={motionProps.buttonTransition}
+						onClick={handleAddToList}
+						disabled={!hydrated}
+						aria-label="Add to list"
+					>
+						<IconListPlay size="22px" className="shrink-0 opacity-90" />
+					</motion.button>
+				</motion.div>
+			</LayoutGroup>
+		</div>
 	);
 }

@@ -52,7 +52,7 @@ export function ProfilePatronHeader({
 
 	return (
 		<header className="relative mb-8 shrink-0">
-			<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25 shadow-md">
+			<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25">
 				{bannerSrc ? (
 					<Image
 						src={bannerSrc}

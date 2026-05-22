@@ -11,8 +11,16 @@ import { env } from "@still/env/server";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import Elysia, { t } from "elysia";
 import { context } from "../context";
+import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
+import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
 import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
-import { type TmdbMovieDetail, tmdbApi, tmdbImg } from "../lib/tmdb";
+import {
+	type TmdbMovieDetail,
+	type TmdbMovieSummary,
+	tmdbApi,
+	tmdbImg,
+} from "../lib/tmdb";
+import { parseCommaIntList } from "../lib/tmdb-discover-params";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 
 /** Returned when `TMDB_API_KEY` is missing so the UI can explain empty rails/search. */
@@ -29,6 +37,66 @@ function tmdbUnconfiguredPaged(page: number) {
 		results: [] as unknown[],
 		...TMDB_UNCONFIGURED,
 	};
+}
+
+const COMPANY_SEARCH_VERIFY_MAX = 20;
+const COMPANY_DISCOVER_SCAN_PAGES = 4;
+
+/** TMDb search rows do not include company ids — verify via `/movie/{id}`. */
+async function movieBelongsToCompany(
+	movieId: number,
+	companyId: number,
+	language: string,
+): Promise<boolean> {
+	const row = await tmdbApi.movieProductionCompanies(movieId, { language });
+	return (row.production_companies ?? []).some((c) => c.id === companyId);
+}
+
+async function filterSearchResultsByCompany(
+	movies: TmdbMovieSummary[],
+	companyId: number,
+	language: string,
+): Promise<TmdbMovieSummary[]> {
+	const candidates = movies.slice(0, COMPANY_SEARCH_VERIFY_MAX);
+	const verified = await Promise.all(
+		candidates.map(async (m) => ({
+			movie: m,
+			ok: await movieBelongsToCompany(m.id, companyId, language),
+		})),
+	);
+	return verified.filter((row) => row.ok).map((row) => row.movie);
+}
+
+/** Discover catalogue for one studio, then match title substring (search has no `with_companies`). */
+async function discoverCompanyMoviesMatchingTitle(
+	companyId: number,
+	titleNeedle: string,
+	language: string,
+): Promise<TmdbMovieSummary[]> {
+	const ql = titleNeedle.toLowerCase();
+	const out: TmdbMovieSummary[] = [];
+	const seen = new Set<number>();
+
+	for (let page = 1; page <= COMPANY_DISCOVER_SCAN_PAGES; page++) {
+		const disc = await tmdbApi.discoverMovies(page, {
+			withCompanies: companyId,
+			sortBy: "popularity.desc",
+			language,
+		});
+		for (const m of disc.results) {
+			if (seen.has(m.id)) continue;
+			const titleHaystack =
+				`${m.title} ${m.original_title ?? ""}`.toLowerCase();
+			if (!titleHaystack.includes(ql)) continue;
+			seen.add(m.id);
+			out.push(m);
+		}
+		if (out.length >= COMPANY_SEARCH_VERIFY_MAX) break;
+		const totalPages = disc.total_pages ?? 0;
+		if (page >= totalPages) break;
+	}
+
+	return out.slice(0, COMPANY_SEARCH_VERIFY_MAX);
 }
 
 /** Shifts a UTC calendar day (`YYYY-MM-DD`) so discover windows do not double-count “today”. */
@@ -71,6 +139,25 @@ const DISCOVER_MONETIZATION_WHITELIST = new Set([
 	"ads",
 	"free",
 ]);
+
+/** Prefer locale-specific copy when TMDb returns it; fall back to the cached `en-US` row. */
+function localizedMovieCopy(
+	localized: TmdbMovieDetail,
+	row: { title: string; tagline: string | null; overview: string | null },
+): { title: string; tagline: string | null; overview: string | null } {
+	const pick = (
+		local: string | null | undefined,
+		fallback: string | null,
+	): string | null => {
+		const trimmed = typeof local === "string" ? local.trim() : "";
+		return trimmed.length > 0 ? trimmed : fallback;
+	};
+	return {
+		title: pick(localized.title, row.title) ?? row.title,
+		tagline: pick(localized.tagline ?? null, row.tagline),
+		overview: pick(localized.overview, row.overview),
+	};
+}
 
 /**
  * Cache a TMDb detail response into the local `movie` + `person` + `movie_credit`
@@ -174,6 +261,7 @@ function tmdbJsonNeedsEnrichment(tmdbJson: unknown): boolean {
 	const o = tmdbJson as Record<string, unknown>;
 	if (!("keywords" in o)) return true;
 	if (!("recommendations" in o)) return true;
+	if (!("images" in o)) return true;
 	return false;
 }
 
@@ -194,22 +282,52 @@ export const moviesRoute = new Elysia({
 			if (!env.TMDB_API_KEY)
 				return tmdbUnconfiguredPaged(Number(query.page ?? 1) || 1);
 			const language = await getTmdbLanguageForUser(user?.id);
-			const data = await tmdbApi.searchMovies(q, Number(query.page ?? 1), {
-				language,
-			});
+			const page = Number(query.page ?? 1) || 1;
+			const companyRaw = query.company?.trim();
+			const companyId =
+				companyRaw && Number.isFinite(Number(companyRaw))
+					? Math.floor(Number(companyRaw))
+					: null;
+
+			const data = await tmdbApi.searchMovies(q, page, { language });
+			let rows = data.results;
+
+			if (companyId) {
+				// `/search/movie` never ships `production_company_ids` — verify each hit, then
+				// scan the studio discover sheet for title matches search may miss.
+				const verified = await filterSearchResultsByCompany(
+					rows,
+					companyId,
+					language,
+				);
+				const fromDiscover = await discoverCompanyMoviesMatchingTitle(
+					companyId,
+					q,
+					language,
+				);
+				const merged = new Map<number, TmdbMovieSummary>();
+				for (const m of [...verified, ...fromDiscover]) {
+					merged.set(m.id, m);
+				}
+				rows = [...merged.values()].slice(0, COMPANY_SEARCH_VERIFY_MAX);
+			}
+
 			return {
 				...data,
-				results: data.results.map((m) => ({
+				page,
+				results: rows.map((m) => ({
 					...m,
 					poster_url: tmdbImg.poster(m.poster_path),
 					backdrop_url: tmdbImg.backdrop(m.backdrop_path),
 				})),
+				total_results: companyId ? rows.length : data.total_results,
 			};
 		},
 		{
 			query: t.Object({
 				q: t.Optional(t.String()),
 				page: t.Optional(t.String()),
+				company: t.Optional(t.String()),
 			}),
 		},
 	)
@@ -332,15 +450,51 @@ export const moviesRoute = new Elysia({
 			}),
 		},
 	)
-	.get("/genres", async ({ user }) => {
-		if (!env.TMDB_API_KEY)
+	.get(
+		"/genres",
+		async ({ query, user }) => {
+			if (!env.TMDB_API_KEY)
+				return {
+					genres: [] as { id: number; name: string }[],
+					...TMDB_UNCONFIGURED,
+				};
+			const languageOverride = (query.language ?? "").trim();
+			const language =
+				languageOverride && /^[a-z]{2}(-[A-Z]{2})?$/i.test(languageOverride)
+					? languageOverride
+					: await getTmdbLanguageForUser(user?.id);
+			const data = await tmdbApi.genreMovieList({ language });
+			return { genres: data.genres ?? [] };
+		},
+		{ query: t.Object({ language: t.Optional(t.String()) }) },
+	)
+	/** Curated production companies for the search dialog studio rail (logos from TMDb). */
+	.get("/studios", async () => {
+		if (!env.TMDB_API_KEY) {
 			return {
-				genres: [] as { id: number; name: string }[],
+				studios: SEARCH_DIALOG_STUDIO_IDS.map((id) => ({
+					id,
+					name: String(id),
+					logo_url: null as string | null,
+				})),
 				...TMDB_UNCONFIGURED,
 			};
-		const language = await getTmdbLanguageForUser(user?.id);
-		const data = await tmdbApi.genreMovieList({ language });
-		return { genres: data.genres ?? [] };
+		}
+		const studios = await Promise.all(
+			SEARCH_DIALOG_STUDIO_IDS.map(async (id) => {
+				try {
+					const row = await tmdbApi.company(id);
+					return {
+						id,
+						name: row.name,
+						logo_url: tmdbImg.logo(row.logo_path, "w92"),
+					};
+				} catch {
+					return { id, name: String(id), logo_url: null as string | null };
+				}
+			}),
+		);
+		return { studios };
 	})
 	.get(
 		"/discover",
@@ -348,10 +502,12 @@ export const moviesRoute = new Elysia({
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
-			const genreRaw = query.genre?.trim();
-			const withGenres =
-				genreRaw && Number.isFinite(Number(genreRaw))
-					? Math.floor(Number(genreRaw))
+			const withGenres = parseCommaIntList(query.genre?.trim());
+			const withKeywords = parseCommaIntList(query.keywords?.trim());
+			const companyRaw = query.company?.trim();
+			const withCompanies =
+				companyRaw && Number.isFinite(Number(companyRaw))
+					? Math.floor(Number(companyRaw))
 					: undefined;
 			const sortRaw = (query.sort ?? "").trim();
 			const sortBy = DISCOVER_SORT_WHITELIST.has(sortRaw)
@@ -433,7 +589,9 @@ export const moviesRoute = new Elysia({
 					: undefined;
 
 			const data = await tmdbApi.discoverMovies(page, {
-				withGenres,
+				withGenres: withGenres.length > 0 ? withGenres : undefined,
+				withKeywords: withKeywords.length > 0 ? withKeywords : undefined,
+				withCompanies,
 				sortBy,
 				withReleaseTypes,
 				region: discoveryRegion,
@@ -470,6 +628,7 @@ export const moviesRoute = new Elysia({
 				})),
 				applied: {
 					genre: withGenres ?? null,
+					company: withCompanies ?? null,
 					sort: sortBy,
 					venue:
 						venueRaw === "theaters" || venueRaw === "streaming"
@@ -492,6 +651,10 @@ export const moviesRoute = new Elysia({
 			query: t.Object({
 				page: t.Optional(t.String()),
 				genre: t.Optional(t.String()),
+				/** Comma-separated TMDb keyword ids (AND). */
+				keywords: t.Optional(t.String()),
+				/** TMDb production company id (`with_companies`), e.g. A24 = 41077. */
+				company: t.Optional(t.String()),
 				sort: t.Optional(t.String()),
 				venue: t.Optional(t.String()),
 				monetization: t.Optional(t.String()),
@@ -539,19 +702,33 @@ export const moviesRoute = new Elysia({
 				.limit(1);
 			if (!row) return status(404, "Movie not found");
 
-			// Prefer TMDb’s locale-specific artwork when it differs from the canonical `en-US` cache row.
+			// Locale-specific artwork + copy (title, tagline, overview) from the patron’s catalogue language.
 			let posterPathForUrl = row.posterPath;
 			let backdropPathForUrl = row.backdropPath;
+			let title = row.title;
+			let tagline = row.tagline;
+			let overview = row.overview;
+			let imagesSource =
+				detail?.images ??
+				(
+					row.tmdbJson as {
+						images?: { posters?: unknown[]; backdrops?: unknown[] };
+					}
+				)?.images;
 			if (language !== "en-US") {
 				try {
 					const localized = await tmdbApi.movieDetail(id, { language });
 					posterPathForUrl = localized.poster_path ?? row.posterPath;
 					backdropPathForUrl = localized.backdrop_path ?? row.backdropPath;
+					const copy = localizedMovieCopy(localized, row);
+					title = copy.title;
+					tagline = copy.tagline;
+					overview = copy.overview;
+					if (localized.images) {
+						imagesSource = localized.images;
+					}
 				} catch (err) {
-					console.warn(
-						"[movies] localized detail (poster) failed; using cache",
-						err,
-					);
+					console.warn("[movies] localized detail failed; using cache", err);
 				}
 			}
 
@@ -566,8 +743,17 @@ export const moviesRoute = new Elysia({
 
 			return {
 				...row,
+				title,
+				tagline,
+				overview,
 				poster_url: tmdbImg.poster(posterPathForUrl),
 				backdrop_url: tmdbImg.backdrop(backdropPathForUrl, "original"),
+				hero_artwork: buildHeroArtworkSlides({
+					title,
+					posterPath: posterPathForUrl,
+					backdropPath: backdropPathForUrl,
+					images: imagesSource ?? null,
+				}),
 				community: {
 					// Postgres `avg()` may arrive as a string through the driver — coerce for JSON.
 					averageRating:

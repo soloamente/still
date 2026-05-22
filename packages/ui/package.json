@@ -20,6 +20,7 @@
 		"clsx": "^2.1.1",
 		"framer-motion": "^12.38.0",
 		"lucide-react": "catalog:",
+		"motion": "^12.38.0",
 		"next-themes": "catalog:",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",

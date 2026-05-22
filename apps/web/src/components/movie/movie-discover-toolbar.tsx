@@ -15,6 +15,7 @@ type Genre = { id: number; name: string };
 export function MovieDiscoverToolbar({
 	genres,
 	appliedGenre,
+	appliedCompany,
 	appliedSort,
 	appliedVenue,
 	appliedMonetization,
@@ -24,6 +25,8 @@ export function MovieDiscoverToolbar({
 }: {
 	genres: Genre[];
 	appliedGenre: number | null;
+	/** TMDb production company — preserved when changing genre or sort. */
+	appliedCompany?: number | null;
 	appliedSort: string;
 	/** When set, genre + sort chip hrefs preserve the theatrical vs digital-at-home slice. */
 	appliedVenue?: HomeVenue | null;
@@ -45,6 +48,8 @@ export function MovieDiscoverToolbar({
 	const wr = appliedWatchRegion?.trim().toUpperCase() || null;
 	const relReg = appliedReleaseRegion?.trim().toUpperCase() || null;
 	const relGte = appliedReleaseGte?.trim() || null;
+	const companyId =
+		appliedCompany != null && appliedCompany > 0 ? appliedCompany : null;
 
 	return (
 		<div className="space-y-3">
@@ -55,6 +60,7 @@ export function MovieDiscoverToolbar({
 				>
 					<FilterChipLink
 						href={discoverCatalogUrl({
+							companyId,
 							sort,
 							venue: venueParam,
 							monetization: mon,
@@ -71,6 +77,7 @@ export function MovieDiscoverToolbar({
 						<FilterChipLink
 							key={g.id}
 							href={discoverCatalogUrl({
+								companyId,
 								genreId: g.id,
 								sort: sort !== DISCOVER_SORT_DEFAULT ? sort : null,
 								venue: venueParam,
@@ -96,6 +103,7 @@ export function MovieDiscoverToolbar({
 					<FilterChipLink
 						key={opt.value}
 						href={discoverCatalogUrl({
+							companyId,
 							genreId: appliedGenre ?? undefined,
 							sort: opt.value,
 							venue: venueParam,

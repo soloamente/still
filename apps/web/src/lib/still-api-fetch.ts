@@ -1,6 +1,13 @@
 import { env } from "@still/env/web";
 
 import type { HomeVenue } from "@/lib/home-venue";
+import type {
+	TvEpisodeSummary,
+	TvProgressMode,
+	TvSeasonSummary,
+	TvWatchBundle,
+	TvWatchStatus,
+} from "@/lib/tv-watch-types";
 
 /**
  * Hand-rolled GET helpers for URLs that Eden Treaty mishandles today:
@@ -13,12 +20,77 @@ import type { HomeVenue } from "@/lib/home-venue";
  *   `signal` here so debounced lookups cancel correctly.
  */
 
+/** Shared shape for hand-rolled catalogue GET helpers used from RSC. */
+export type StillApiPagedGetResult = {
+	data: unknown;
+	error: { status: number; raw?: unknown; nonJson?: boolean } | null;
+	response: Response;
+};
+
+/** Avoid throwing when the API returns a plain-text 500 (e.g. Drizzle `Failed query: …`). */
+async function readStillApiJsonBody(
+	response: Response,
+): Promise<unknown | null> {
+	const text = await response.text();
+	if (!text.trim()) return null;
+	try {
+		return JSON.parse(text) as unknown;
+	} catch {
+		return null;
+	}
+}
+
+async function finishStillApiPagedGet(
+	response: Response,
+): Promise<StillApiPagedGetResult> {
+	const raw = await readStillApiJsonBody(response);
+	if (response.ok && raw != null) {
+		return { data: raw, error: null, response };
+	}
+	return {
+		data: null,
+		error: {
+			status: response.status,
+			...(raw != null ? { raw } : { nonJson: true }),
+		},
+		response,
+	};
+}
+
 export async function fetchMoviesSearch(
 	qRaw: string,
-	init?: Pick<RequestInit, "signal">,
+	init?: Pick<RequestInit, "signal"> & { companyId?: number },
 ) {
 	const url = new URL("/api/movies/search", env.NEXT_PUBLIC_SERVER_URL);
 	url.searchParams.set("q", qRaw.trim());
+	const cid = init?.companyId;
+	if (cid !== undefined && Number.isFinite(cid) && cid > 0) {
+		url.searchParams.set("company", String(Math.floor(cid)));
+	}
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+/** Signed-in patron list search — `GET /api/lists/search`. */
+export async function fetchListsSearch(
+	qRaw: string,
+	init?: Pick<RequestInit, "signal"> & { limit?: number },
+) {
+	const url = new URL("/api/lists/search", env.NEXT_PUBLIC_SERVER_URL);
+	const q = qRaw.trim();
+	if (q) url.searchParams.set("q", q);
+	const limit = init?.limit;
+	if (limit !== undefined && Number.isFinite(limit) && limit > 0) {
+		url.searchParams.set("limit", String(Math.floor(limit)));
+	}
 	const response = await fetch(url, {
 		credentials: "include",
 		signal: init?.signal,
@@ -34,10 +106,16 @@ export async function fetchMoviesSearch(
 /** TMDb TV search proxy — same response shape as `fetchMoviesSearch` (`title` + `poster_url` on rows). */
 export async function fetchTvSearch(
 	qRaw: string,
-	init?: Pick<RequestInit, "signal">,
+	init?: Pick<RequestInit, "signal"> & {
+		companyId?: number;
+	},
 ) {
 	const url = new URL("/api/tv/search", env.NEXT_PUBLIC_SERVER_URL);
 	url.searchParams.set("q", qRaw.trim());
+	const cid = init?.companyId;
+	if (cid !== undefined && Number.isFinite(cid) && cid > 0) {
+		url.searchParams.set("company", String(Math.floor(cid)));
+	}
 	const response = await fetch(url, {
 		credentials: "include",
 		signal: init?.signal,
@@ -67,12 +145,7 @@ export async function fetchMoviesPopular(
 		cache: cache ?? "no-store",
 		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
 	});
-	const data = (await response.json()) as unknown;
-	return {
-		data: response.ok ? data : null,
-		error: response.ok ? null : { status: response.status, raw: data },
-		response,
-	};
+	return finishStillApiPagedGet(response);
 }
 
 /** TMDb `/movie/now_playing` — same paging contract as `fetchMoviesPopular`. */
@@ -89,12 +162,7 @@ export async function fetchMoviesNowPlaying(
 		cache: cache ?? "no-store",
 		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
 	});
-	const data = (await response.json()) as unknown;
-	return {
-		data: response.ok ? data : null,
-		error: response.ok ? null : { status: response.status, raw: data },
-		response,
-	};
+	return finishStillApiPagedGet(response);
 }
 
 /** Theatrical “opening soon” sheet — server uses TMDb discover (not `/movie/upcoming`) so past regional dates are excluded. */
@@ -119,12 +187,7 @@ export async function fetchMoviesUpcoming(
 		cache: cache ?? "no-store",
 		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
 	});
-	const data = (await response.json()) as unknown;
-	return {
-		data: response.ok ? data : null,
-		error: response.ok ? null : { status: response.status, raw: data },
-		response,
-	};
+	return finishStillApiPagedGet(response);
 }
 
 /** TMDb `/discover/movie` — genre + sort; mirrors server `GET /api/movies/discover`. */
@@ -133,6 +196,12 @@ export async function fetchMoviesDiscover(
 	init?: Pick<RequestInit, "signal" | "cache"> & {
 		cookieHeader?: string;
 		genreId?: number;
+		/** Comma-joined TMDb genre ids (AND) — server `?genre=`. */
+		genreIds?: number[];
+		/** Comma-joined TMDb keyword ids (AND) — server `?keywords=`. */
+		keywordIds?: number[];
+		/** TMDb production company id — server `?company=`. */
+		companyId?: number;
 		sortBy?: string;
 		/** Matches server `GET /api/movies/discover?venue=` — theatrical vs digital window. */
 		venue?: "theaters" | "streaming";
@@ -148,9 +217,32 @@ export async function fetchMoviesDiscover(
 ) {
 	const url = new URL("/api/movies/discover", env.NEXT_PUBLIC_SERVER_URL);
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
-	const gid = init?.genreId;
-	if (gid !== undefined && Number.isFinite(gid) && gid > 0) {
-		url.searchParams.set("genre", String(Math.floor(gid)));
+	const genreIds = init?.genreIds?.filter(
+		(id) => Number.isFinite(id) && id > 0,
+	);
+	if (genreIds && genreIds.length > 0) {
+		url.searchParams.set(
+			"genre",
+			genreIds.map((id) => String(Math.floor(id))).join(","),
+		);
+	} else {
+		const gid = init?.genreId;
+		if (gid !== undefined && Number.isFinite(gid) && gid > 0) {
+			url.searchParams.set("genre", String(Math.floor(gid)));
+		}
+	}
+	const keywordIds = init?.keywordIds?.filter(
+		(id) => Number.isFinite(id) && id > 0,
+	);
+	if (keywordIds && keywordIds.length > 0) {
+		url.searchParams.set(
+			"keywords",
+			keywordIds.map((id) => String(Math.floor(id))).join(","),
+		);
+	}
+	const cid = init?.companyId;
+	if (cid !== undefined && Number.isFinite(cid) && cid > 0) {
+		url.searchParams.set("company", String(Math.floor(cid)));
 	}
 	const sort = init?.sortBy?.trim();
 	if (sort) {
@@ -184,12 +276,34 @@ export async function fetchMoviesDiscover(
 		cache: cache ?? "no-store",
 		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
 	});
-	const data = (await response.json()) as unknown;
-	return {
-		data: response.ok ? data : null,
-		error: response.ok ? null : { status: response.status, raw: data },
-		response,
-	};
+	return finishStillApiPagedGet(response);
+}
+
+/**
+ * TV **Ongoing** feed — `GET /api/tv/on-the-air` maps to discover **Returning Series**
+ * (`with_status=0`), not TMDb’s broadcast `on_the_air` sheet (that overlapped Ended).
+ */
+export async function fetchTvOnTheAir(
+	page: number,
+	init?: Pick<RequestInit, "signal" | "cache"> & {
+		cookieHeader?: string;
+		sortBy?: string;
+	},
+) {
+	const url = new URL("/api/tv/on-the-air", env.NEXT_PUBLIC_SERVER_URL);
+	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
+	const sort = init?.sortBy?.trim();
+	if (sort) {
+		url.searchParams.set("sort", sort);
+	}
+	const { cookieHeader, signal, cache } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		signal,
+		cache: cache ?? "no-store",
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	return finishStillApiPagedGet(response);
 }
 
 /** TMDb `/tv/popular` — same paging contract as `fetchMoviesPopular`. */
@@ -206,12 +320,7 @@ export async function fetchTvPopular(
 		cache: cache ?? "no-store",
 		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
 	});
-	const data = (await response.json()) as unknown;
-	return {
-		data: response.ok ? data : null,
-		error: response.ok ? null : { status: response.status, raw: data },
-		response,
-	};
+	return finishStillApiPagedGet(response);
 }
 
 /** TMDb `/discover/tv` — mirrors server `GET /api/tv/discover`. */
@@ -220,18 +329,50 @@ export async function fetchTvDiscover(
 	init?: Pick<RequestInit, "signal" | "cache"> & {
 		cookieHeader?: string;
 		genreId?: number;
+		genreIds?: number[];
+		keywordIds?: number[];
+		companyId?: number;
 		sortBy?: string;
 		/** TMDb `first_air_date.gte` — forwarded as `air_date_gte` on the API. */
 		airDateGte?: string;
 		monetization?: string;
 		watchRegion?: string;
+		/** `ended` / `completed` for finished series; `returning` / `ongoing` for returning. */
+		status?: string;
 	},
 ) {
 	const url = new URL("/api/tv/discover", env.NEXT_PUBLIC_SERVER_URL);
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
-	const gid = init?.genreId;
-	if (gid !== undefined && Number.isFinite(gid) && gid > 0) {
-		url.searchParams.set("genre", String(Math.floor(gid)));
+	const tvGenreIds = init?.genreIds?.filter(
+		(id) => Number.isFinite(id) && id > 0,
+	);
+	if (tvGenreIds && tvGenreIds.length > 0) {
+		url.searchParams.set(
+			"genre",
+			tvGenreIds.map((id) => String(Math.floor(id))).join(","),
+		);
+	} else {
+		const gid = init?.genreId;
+		if (gid !== undefined && Number.isFinite(gid) && gid > 0) {
+			url.searchParams.set("genre", String(Math.floor(gid)));
+		}
+	}
+	const tvKeywordIds = init?.keywordIds?.filter(
+		(id) => Number.isFinite(id) && id > 0,
+	);
+	if (tvKeywordIds && tvKeywordIds.length > 0) {
+		url.searchParams.set(
+			"keywords",
+			tvKeywordIds.map((id) => String(Math.floor(id))).join(","),
+		);
+	}
+	const tvCompanyId = init?.companyId;
+	if (
+		tvCompanyId !== undefined &&
+		Number.isFinite(tvCompanyId) &&
+		tvCompanyId > 0
+	) {
+		url.searchParams.set("company", String(Math.floor(tvCompanyId)));
 	}
 	const sort = init?.sortBy?.trim();
 	if (sort) {
@@ -251,6 +392,31 @@ export async function fetchTvDiscover(
 	} else if (wr && /^[A-Z]{2}$/.test(wr)) {
 		url.searchParams.set("watch_region", wr);
 	}
+	const st = init?.status?.trim().toLowerCase();
+	if (st) {
+		url.searchParams.set("status", st);
+	}
+	const { cookieHeader, signal, cache } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		signal,
+		cache: cache ?? "no-store",
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	return finishStillApiPagedGet(response);
+}
+
+/** Official TMDb TV genre list — powers search dialog genre suggestions on TV. */
+export async function fetchTvGenres(
+	init?: Pick<RequestInit, "signal" | "cache"> & {
+		cookieHeader?: string;
+		/** TMDb `language` — search autocomplete uses `en-US` for stable Tab labels. */
+		language?: string;
+	},
+) {
+	const url = new URL("/api/tv/genres", env.NEXT_PUBLIC_SERVER_URL);
+	const lang = init?.language?.trim();
+	if (lang) url.searchParams.set("language", lang);
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
 		credentials: "include",
@@ -268,9 +434,34 @@ export async function fetchTvDiscover(
 
 /** Official TMDb movie genre list — powers discover chips (same payload as TMDb `genre/movie/list`). */
 export async function fetchMovieGenres(
-	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
+	init?: Pick<RequestInit, "signal" | "cache"> & {
+		cookieHeader?: string;
+		language?: string;
+	},
 ) {
 	const url = new URL("/api/movies/genres", env.NEXT_PUBLIC_SERVER_URL);
+	const lang = init?.language?.trim();
+	if (lang) url.searchParams.set("language", lang);
+	const { cookieHeader, signal, cache } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		signal,
+		cache: cache ?? "no-store",
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+/** Curated production companies — logos for search dialog and discover studio filter. */
+export async function fetchMovieStudios(
+	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
+) {
+	const url = new URL("/api/movies/studios", env.NEXT_PUBLIC_SERVER_URL);
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
 		credentials: "include",
@@ -513,6 +704,9 @@ export async function postLog(payload: {
 	note?: string;
 	/** In-cinema vs at-home — server defaults to **streaming**. */
 	watchVenue?: HomeVenue;
+	logScope?: "show" | "season" | "episode";
+	seasonNumber?: number;
+	episodeNumber?: number;
 }) {
 	const response = await fetch(
 		new URL("/api/logs", env.NEXT_PUBLIC_SERVER_URL),
@@ -549,6 +743,9 @@ export async function patchLog(
 		rewatch: boolean;
 		/** In-cinema vs at-home — matches `/diary?venue=`. */
 		watchVenue?: HomeVenue;
+		logScope?: "show" | "season" | "episode";
+		seasonNumber?: number | null;
+		episodeNumber?: number | null;
 	}>,
 ) {
 	const response = await fetch(
@@ -604,6 +801,251 @@ export async function postWatchlistAdd(
  * Marks one notification read (`POST /api/notifications/:id/read`).
  * Uses fetch (not Eden) so the dynamic path is reliable from the client.
  */
+/** Active TV watches for continue-watching rail — `GET /api/tv-watch/me`. */
+export async function fetchTvWatchMe(
+	init?: Pick<RequestInit, "signal"> & { status?: string; limit?: number },
+) {
+	const url = new URL("/api/tv-watch/me", env.NEXT_PUBLIC_SERVER_URL);
+	if (init?.status) url.searchParams.set("status", init.status);
+	if (init?.limit != null) {
+		url.searchParams.set("limit", String(Math.floor(init.limit)));
+	}
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? (data as TvWatchBundle[]) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+/** Progress + status for one show page — `GET /api/tv-watch/me/by-tv/:tvId`. */
+export async function fetchTvWatchByTv(
+	tvId: number,
+	init?: Pick<RequestInit, "signal">,
+) {
+	const url = new URL(
+		`/api/tv-watch/me/by-tv/${tvId}`,
+		env.NEXT_PUBLIC_SERVER_URL,
+	);
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? (data as TvWatchBundle) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+export async function postTvWatchStart(payload: {
+	tvId: number;
+	progressMode?: TvProgressMode;
+}) {
+	const response = await fetch(
+		new URL("/api/tv-watch", env.NEXT_PUBLIC_SERVER_URL),
+		{
+			method: "POST",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify(payload),
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? (data as TvWatchBundle) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+export async function patchTvWatch(
+	watchId: string,
+	payload: Partial<{
+		status: TvWatchStatus;
+		progressMode: TvProgressMode;
+		notifyNewEpisodes: boolean;
+	}>,
+) {
+	const response = await fetch(
+		new URL(
+			`/api/tv-watch/${encodeURIComponent(watchId)}`,
+			env.NEXT_PUBLIC_SERVER_URL,
+		),
+		{
+			method: "PATCH",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify(payload),
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? (data as TvWatchBundle) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+export async function postTvWatchMarkEpisode(
+	watchId: string,
+	seasonNumber: number,
+	episodeNumber: number,
+) {
+	const response = await fetch(
+		new URL(
+			`/api/tv-watch/${encodeURIComponent(watchId)}/episodes`,
+			env.NEXT_PUBLIC_SERVER_URL,
+		),
+		{
+			method: "POST",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify({ seasonNumber, episodeNumber }),
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? (data as TvWatchBundle) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+export async function deleteTvWatchEpisode(
+	watchId: string,
+	seasonNumber: number,
+	episodeNumber: number,
+) {
+	const response = await fetch(
+		new URL(
+			`/api/tv-watch/${encodeURIComponent(watchId)}/episodes`,
+			env.NEXT_PUBLIC_SERVER_URL,
+		),
+		{
+			method: "DELETE",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify({ seasonNumber, episodeNumber }),
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? (data as TvWatchBundle) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+/** Mark every episode in a season watched — single request (fast season mode). */
+export async function postTvWatchCompleteSeason(
+	watchId: string,
+	seasonNumber: number,
+) {
+	const response = await fetch(
+		new URL(
+			`/api/tv-watch/${encodeURIComponent(watchId)}/seasons/${seasonNumber}/complete`,
+			env.NEXT_PUBLIC_SERVER_URL,
+		),
+		{
+			method: "POST",
+			credentials: "include",
+			headers: { Accept: "application/json" },
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? (data as TvWatchBundle) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+export async function postTvWatchMarkNext(watchId: string) {
+	const response = await fetch(
+		new URL(
+			`/api/tv-watch/${encodeURIComponent(watchId)}/mark-next`,
+			env.NEXT_PUBLIC_SERVER_URL,
+		),
+		{
+			method: "POST",
+			credentials: "include",
+			headers: { Accept: "application/json" },
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? (data as TvWatchBundle) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+/** TMDb season list — `GET /api/tv/:id/seasons`. */
+export async function fetchTvSeasons(
+	tvId: number,
+	init?: Pick<RequestInit, "signal">,
+) {
+	const url = new URL(`/api/tv/${tvId}/seasons`, env.NEXT_PUBLIC_SERVER_URL);
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await response.json()) as { seasons?: TvSeasonSummary[] };
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+/** Episodes for one season — `GET /api/tv/:id/season/:n`. */
+export async function fetchTvSeasonDetail(
+	tvId: number,
+	seasonNumber: number,
+	init?: Pick<RequestInit, "signal">,
+) {
+	const url = new URL(
+		`/api/tv/${tvId}/season/${seasonNumber}`,
+		env.NEXT_PUBLIC_SERVER_URL,
+	);
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await response.json()) as {
+		season?: { episodes?: TvEpisodeSummary[] };
+	};
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
 export async function postNotificationRead(id: string) {
 	const url = new URL(
 		`/api/notifications/${encodeURIComponent(id)}/read`,

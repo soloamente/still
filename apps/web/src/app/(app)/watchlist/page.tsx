@@ -4,6 +4,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 
+import {
+	LobbyCatalogChipFallback,
+	LobbyStickyChromeFallback,
+	LobbyVenueChipFallback,
+} from "@/components/app/lobby-suspense-fallbacks";
 import { CatalogWatchRegionPrompt } from "@/components/home/catalog-watch-region-prompt";
 import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
 import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
@@ -104,14 +109,7 @@ export default async function WatchlistPage({
 	return (
 		// Match `/home` + `/diary` shell — fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve).
 		<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
-			<Suspense
-				fallback={
-					<div
-						className="sticky top-0 z-20 h-14 w-full animate-pulse rounded-[2rem] bg-card/60"
-						aria-hidden
-					/>
-				}
-			>
+			<Suspense fallback={<LobbyStickyChromeFallback />}>
 				<HomeStickyChrome user={stickyUser} />
 			</Suspense>
 
@@ -122,24 +120,10 @@ export default async function WatchlistPage({
 				)}
 			>
 				<div className="flex shrink-0 items-center justify-between gap-3">
-					<Suspense
-						fallback={
-							<div
-								className="h-10 w-44 animate-pulse rounded-full bg-background"
-								aria-hidden
-							/>
-						}
-					>
+					<Suspense fallback={<LobbyCatalogChipFallback />}>
 						<WatchlistCatalogOrderChips />
 					</Suspense>
-					<Suspense
-						fallback={
-							<div
-								className="h-10 min-w-66 shrink-0 animate-pulse rounded-full bg-background"
-								aria-hidden
-							/>
-						}
-					>
+					<Suspense fallback={<LobbyVenueChipFallback />}>
 						<HomeCatalogViewModeToolbar />
 					</Suspense>
 				</div>

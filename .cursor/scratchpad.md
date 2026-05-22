@@ -541,6 +541,7 @@ existing cinematic identity rather than replacing it.
 4. **⌘K / Ctrl+K** — palette opens; choose **Discover films** shortcut (lands on **`/movies/discover`**).
 5. **`/notifications`** on a **narrow** viewport — bell visible in **`AppNav`**; list scrolls; one row interaction if you have data.
 6. **`/me/settings` ↔ `/me/customization`** — mobile tab strip vs **`md+`** left rail; **`aria-current`** / active chrome reads correctly.
+7. **`/achievements`** — **Badges** / **Goals** tab chips; back pill returns to last browse context; no horizontal overflow at **390px**.
 
 **Pass criteria:** no blank shell, no stuck modal/palette, bottom **`AppNav`** remains tappable (≥ ~44px targets), **Firefox** tolerates absent **View Transitions** (instant nav is OK).
 
@@ -586,11 +587,156 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-05-20 — Auto Favorites list + profile filter *(Executor)*
+
+**Shipped:** Migration **`0007_system_favorites_list`** (`list.system_kind`, `list_item.id` PK + `tv_id` XOR); **`favorites-list-sync.ts`**; logs POST/PATCH/DELETE hooks; lists API guards + TV join on GET `/:id`; profile **`?favorites=1`** with **All | Favorites** chips; social **Favorites** tab → `?tab=movies&favorites=1`; list detail read-only for system list + TV posters; add-to-list picker excludes system list.
+
+**Human / Planner:** Heart a film/TV on detail → confirm **Favorites** list appears under Lists; profile **Movies** → **Favorites** chip filters grid; unfavorite removes list item. Reply **`ok`** when signed off. **Follow-up (not blocking):** backfill script for existing `log.liked` rows.
+
+### 2026-05-20 — Search dialog catalogue tags **V2.1** *(Executor)*
+
+**Shipped (code):** Extended **`search-query-tags`** (`genre` / `curated`, **`deriveCatalogueFilterBundle`**, serialize/parse v2); **`search-curated-tags`**; **`useSearchDialogGenres`**; **`useCatalogueTagSearch`** (replaces structured hook in **`home-sticky-search`**); movie + TV discover **`genre`/`keywords`/`company`** (comma AND); **`GET /api/tv/genres`**; removed **“Studios filter Films only”** copy; studio suggestions allowed on TV media tag. **Tests:** `search-query-tags.test.ts` — 14 pass.
+
+**Human / Planner (V2.1 exit):** Open **`/home`** search → type **`hor`** → Tab → **Horror** pill → poster grid (discover, no title). Try **Anime** curated + **A24** on Films/TV. Recents: **`A24 · Horror · Anime · marty`**. Reply **`ok`** to advance **V2.2** (TV search company filter) or note gaps.
+
+**Pending:** V2.2–V2.4 per **`docs/superpowers/plans/2026-05-20-search-dialog-catalogue-tags-v2.md`**; TV text search + studio still movie-only until V2.2.
+
+**Hotfix (2026-05-20):** Genre suggestions temporarily fetch **`en-US`** labels + module cache (so `hor` → Horror regardless of region-derived locale). **Planner:** **V2.5** added to end of v2 plan — Settings **catalogue language** pref, localized genre Tab/recents, optional UI i18n (Task 13). Revert hardcoded English when V2.5 ships.
+
+### 2026-05-20 — Search dialog catalogue tags **V2.5 + V2.2/V2.4** *(Executor)*
+
+**Shipped:** **Settings → Catalogue language** (`catalogTmdbLanguage` pref, `MeCatalogLanguageSelect`); server `getTmdbLanguageForUser` (explicit → watch region → `en-US`); genre fetch uses patron language (`useCatalogTmdbLanguage` + per-language cache); **TV search** `?company=` + discover fallback; over-filter empty copy + **3+ tag** hint; removed `use-structured-catalog-search.ts`. **Tests:** 20 pass (`search-query-tags`, `profile-preferences`).
+
+**Human / Planner:** **ok** (2026-05-20) — V2.5 locale + TV studio search + polish signed off.
+
+**Planner:** Catalogue tags v2 core (**V2.1–V2.5**) complete for shipped scope. Optional stretch **Task 13** (UI message i18n) remains in plan if product wants Settings/search chrome translated later.
+
+### 2026-05-20 — TV watching progress *(Planner — brainstorm complete)*
+
+**Approved design (hybrid approach 3):** `tv_watch` tracker + scoped diary (`show` / `season` / `episode`); patron toggles **season vs episode** progress mode; statuses **watching · paused · abandoned · finished · rewatching**; in-app **`tv.new_episode`** notifications; anime = TV on TMDb (no separate community).
+
+**Docs:**
+- Spec: `docs/superpowers/specs/2026-05-20-tv-watching-progress-design.md`
+- Plan: `docs/superpowers/plans/2026-05-20-tv-watching-progress.md` (phases **W.1–W.4**)
+
+**Human:** **yes** (2026-05-20) — design §1–§3 approved; spec + plan written.
+
+**Next:** Human **`ok`** on **W.1** → **`go`** for **W.2** (TV detail UX). Apply migration `0006_tv_watch` locally (`cd packages/db && bun run db:migrate`).
+
+### 2026-05-20 — TV watching progress **W.1** *(Executor)*
+
+**Shipped:** `tv_watch` + `tv_watch_episode` schema; `log.log_scope` / `season_number` / `episode_number`; `validateTvLogScope` in `@still/db`; `GET /api/tv/:id/seasons` + `season/:n`; `GET/POST/PATCH /api/tv-watch/*` (start, status, mark episode, mark-next, seasons); logs POST/PATCH scope validation. Migration **`0006_tv_watch.sql`**. **Tests:** 4 pass (`packages/db/src/tv-log-scope.test.ts`). **Server build:** green.
+
+**Human / Planner:** Run `db:migrate`, smoke API (below), reply **`ok`** for W.2.
+
+### 2026-05-20 — TV watching progress **W.2** *(Executor)*
+
+**Shipped:** `TvDetailWatchProvider` + `useTvWatch`; hero **Start watching** / **Mark next episode** / status chips / continue line; **Your progress** section (season vs episode modes, checklists, mark season complete); `still-api-fetch` tv-watch helpers; About tab **Progress** nav rail entry. Files: `tv-detail-primary-actions.tsx`, `tv-detail-progress-panel.tsx`, `tv-detail-watch-context.tsx`, `tv-detail-client-root.tsx`, `tv/[id]/page.tsx`.
+
+**Human / Planner:** Open `/tv/[id]` (signed in) → **Start watching** → toggle episodes → **Mark next episode** → switch status **Paused** → **Progress** section in About. Reply **`ok`** for **W.3** (scoped Quick Log + diary chips).
+
+### 2026-05-20 — TV watching progress **W.3** *(Executor)*
+
+**Shipped:** `TvLogScopePicker` in Quick Log (Episode / Season / Whole show + season/episode selects); scope state on create + PATCH; `coerceDiaryLogRows` normalises `log_scope` / season / episode from **`GET /api/logs/me`**; diary poster grid **`scopeLabel`** chip (`S02E04`, `Season 2`); `TvLogScopeChip` on ticket stubs; edit flows pass scope (`diary-log-edit-button`, `use-tv-detail-user-state`). Files: `tv-log-scope-picker.tsx`, `tv-log-scope-display.ts`, `tv-log-scope-chip.tsx`, `quick-log-sheet.tsx`, `diary-entry.tsx`, `diary/page.tsx`, `movie-poster.tsx`.
+
+**Human / Planner:** Quick Log on a series → pick **Episode** + season/episode → save → **`/diary`** shows scope chip on poster; **Edit log** reopens with same scope. Reply **`ok`** for **W.4**.
+
+### 2026-05-20 — Diary TV grouping (in-place expand) *(Executor)*
+
+**Shipped:** Client-side **`buildDiaryLobbyGridItems`** (`diary-lobby-grouping.ts`) — films one tile per log; TV logs group by **`tmdbId`**. **`DiaryLobbyGrid`** + **`DiaryTvGroupCell`**: collapsed poster shows **most specific scope** + **`N diary entries`** subline; tap **flips** card (poster front → log list back, same 2∶3 footprint); scope/date/rating rows → Quick Log edit; **Open series** / **Add diary entry** on back; one flipped group at a time (outside click + Escape). **`formatTvLogScopeLabel`** → **Whole series** never blank. Spec corrected: patron chose flip **(3)**, not row-span — `docs/superpowers/specs/2026-05-20-diary-tv-grouping-design.md`. Tests: `diary-lobby-grouping.test.ts` (2 pass).
+
+**Human / Planner:** On **`/diary`**, two logs same series → one tile; tap → **card flips** (grid does not grow); back shows labeled rows; flip back via poster-side tap or ↺ on back. Reply **`ok`** when verified.
+
+### 2026-05-20 — TV watching progress **W.4** *(Executor)*
+
+**Shipped:** `apps/server/src/jobs/tv-new-episode-sync.ts` — scans `tv_watch` (`watching`/`rewatching` + `notify_new_episodes`), dedupes `tv.new_episode` per episode, one stub per show per pass; scheduled every **6h** in `apps/server/src/index.ts` (`TV_EPISODE_SYNC_ENABLED` env, default on). **`notifications.ts`** — `tv.new_episode` href → `/tv/{id}#tv-section-progress`. Notification icons: **`Tv`** in list + dropdown. **`fetch-tv-watch-me-server.ts`** + **`HomeContinueWatchingRail`** on **`/home`** (signed-in, `watching,rewatching`, limit 12, hidden when empty).
+
+**Human / Planner:** (1) Start watching two series → **`/home`** shows **Continue watching** with **Next: S…E…** captions. (2) Pause one → it drops off the rail. (3) With notifications on, after a recent episode airs, bell shows **New episode · {show}** → opens TV detail **Progress** section. Reply **`ok`** when verified.
+
+**Project Status Board (TV progress):**
+- [x] W.1 Schema + API core (`tv_watch`, log scope, seasons routes, tv-watch CRUD) — **Executor 2026-05-20**; human **`ok`**
+- [x] W.2 TV detail UX (start watching, status, progress panel) — **Executor 2026-05-20**; human **`ok`**
+- [x] W.3 Scoped Quick Log + diary chips — **Executor 2026-05-20**; human **`ok`** **2026-05-20**
+- [x] Diary TV grouping (lobby flip) — **Executor 2026-05-20**; human **`ok`** **2026-05-20**
+- [x] W.4 Notifications job + continue-watching rail — **Executor 2026-05-20**; human **`ok`** **2026-05-20** (nested `<a>` + rail polish)
+
+### 2026-05-20 — Search V2.5 recents locale round-trip *(Executor)*
+
+**Shipped:** `home-search-recent-storage.ts` — v2 localStorage rows store `tags` + `freeText` + display `label`; genre pills refresh names from current `catalogTmdbLanguage` on read/restore (legacy string rows migrate on read). Wired in `home-sticky-search.tsx`. **Tests:** `home-search-recent-storage.test.ts` (4 pass) + `search-query-tags.test.ts` (20 pass).
+
+**Human / Planner:** Settings → **Español** → search `ter` → save recent → switch back to English → pick recent chip → genre id **27** still applies with updated label. Reply **`ok`** or note gaps. **TV progress W.1–W.4** closed for shipped scope.
+
+### 2026-05-20 — TV lobby **Ongoing / Completed** right rail *(Executor)*
+
+**Shipped:** TV **Ongoing** → discover `with_status=0` (Returning), **Completed** → `ended` (3) — fixes overlap from old `on_the_air` sheet. Upcoming discover unchanged. TV **left:** **Latest | Popular** only. TV **right:** **Ongoing | Completed | Upcoming** | sep | **Filters**; **In cinemas / At home** only when **`run=upcoming`**. Slices are mutually exclusive (`?run=`). Example: `/home?browse=tv&sort=popular&run=upcoming`. Legacy `?sort=ongoing|upcoming` still maps. **Tests:** 6 pass across `home-catalog-run` + `home-catalog-sort`.
+
+**Human / Planner:** TV → **Upcoming** (right) shows first-air grid; cannot combine with Ongoing/Completed; **Popular** + **Completed** uses ended discover. **Human `ok` 2026-05-21** on overlap fix (Returning vs Ended).
+
+**Follow-up (Executor 2026-05-21):** `/tv/discover?status=returning|ended` now forwards to API; lobby persist restores `?run=`; home footnote link works.
+
+### 2026-05-21 — Community lobby on `/home` *(Executor)*
+
+**Shipped:** Replaced “coming soon” placeholder with live community feeds — **Lists** (public list poster grid), **Reviews** (recent public reviews + `ReviewCard`), **Diary** (`GET /api/logs/recent` + `ActivityItem`), **Activity** (following feed or `/api/feed/discover` + friend rail). **`HomeCommunityLobby`**, **`HomeCommunityEmpty`**, server **`/api/logs/recent`**, enriched **`/api/reviews/recent`** with profile. Sort chips no longer say “coming soon”.
+
+**Human / Planner:** `/home` → **Community** → cycle **Lists / Reviews / Diary / Activity**; confirm rows or centered empty states. Reply **`ok`** when verified.
+
+### 2026-05-21 — Community Reviews + Activity polish *(Executor)*
+
+**Shipped:** **`ReviewCard`** — optional **`listing`** with left **`FeedListingThumb`** (poster from `/api/reviews/recent` `movie` join). **`ActivityItem`** — poster-first row layout, no **`MoviePoster`** elevation (fixes clipped action buttons); list rows use **`coverPosterPaths`** from feed API. Server: **`feed-items.ts`** (`feedAtMs`, `enrichFeedListRows`, ISO `at`); **`/api/feed/discover`** sort fixed (`Number(Date)` → **`feedAtMs`**). Community catalogue shell **`overflow-visible`** (was clipping feed chrome).
+
+**Human / Planner:** `/home?browse=community&sort=reviews` — each review shows film poster on the left; **Activity** tab — posters load, right-side actions not cut off. Reply **`ok`** when verified.
+
+### 2026-05-21 — Community feed polish: borders, ratings, avatars *(Executor)*
+
+**Shipped:** **`ActivityItem`** / friend rail — borderless **`bg-background`** + shadow (matches **`ReviewCard`**); **`FeedPersonAvatar`** + friend rail use **`PatronPortraitAvatar`** / **`profilePatronAvatarImageUrl`** (fixes private Blob **403** in terminal). Ratings use **`DiaryLogRatingLabel`** / **`formatStoredLogRatingDisplay`** (0.0–10.0, not raw tenths → **47.5**). **`AGENTS.md`** documents rating + avatar contracts.
+
+**Open (not blocking):** Search V2.5 Task 13 UI i18n stretch; Phase **8.1 / 8.3 / 8.4** manual QA.
+
+### 2026-05-21 — Build green + type fixes *(Executor)*
+
+**Shipped:** `bun run build --filter=web` **exit 0** after fixes: `tmdb.ts` gunzip cast, `app-scroll-to-top` expanded width state, `tv-detail-primary-actions` diary `onClick` wrapper, `MyTvLog` scope fields, `fetch-tv-watch-me-server` cast. **Tests:** search + catalog **26 pass**.
+
+**Human / Planner:** Open **`/achievements`** (Badges / Goals, back pill) → **`ok`**. Or run Phase **8.1** checklist from scratchpad.
+
+### 2026-05-21 — `/achievements` lobby verify prep *(Executor)*
+
+**Shipped:** Unit tests **`achievements-lobby-tab.test.ts`** (5 pass) — `parseAchievementsLobbyTab`, `buildAchievementsLobbyHref`, `isAchievementsLobbyTabId`. **`bun run build --filter=web`** exit 0. HTTP smoke: **`/achievements?tab=goals`** → **200** on dev (**307** when unauthenticated redirect applies).
+
+**Human / Planner:** Signed in → **`/achievements`** — **Badges** grid (earned vs locked tooltips); **Goals** tab (`?tab=goals`) — progress rows; back pill label matches last browse (e.g. **Lobby** from `/home`). **Human `ok` 2026-05-21** — verified.
+
+### 2026-05-21 — Continue watching: TV browse only *(Executor)*
+
+**Shipped:** **`/home`** — **`HomeContinueWatchingRail`** and **`fetchTvWatchMeServer`** only when **`browse=tv`** (hidden on **Movies** / **Community**). **`home-continue-watching-rail.tsx`** docstring updated; **`AGENTS.md`** notes TV-only rail.
+
+**Human / Planner:** Signed in with active TV watches → **Movies** on `/home` has **no** Continue watching strip; switch to **TV** → rail appears with **Next: S…E…** captions. **Human `ok` 2026-05-21** — verified.
+
+### 2026-05-20 — Search dialog catalogue tags **V2.5 planned** *(Planner)*
+
+**Added to** `docs/superpowers/plans/2026-05-20-search-dialog-catalogue-tags-v2.md` **and** design spec § Patron locale (now implemented — see Executor entry above).
+
+### 2026-05-20 — Search dialog tagged query **Phases 2–3** *(Executor)*
+
+**Shipped:** **`GET /api/movies/search?company=`** (TMDb filter + discover title fallback); **`GET /api/lists/search`** (own lists, auth); **`useStructuredCatalogSearch`** + **`SearchDialogListResults`**. Combined flow: A24 pill + Films + **`marty`** hits company-scoped movie search; **lists** tag searches patron lists (sign-in prompt when logged out).
+
+**Human / Planner:** Retest A24 + marty; add **lists** tag + title filter. Reply **`ok`** for Phase 4 (serialized recents) or note issues.
+
+### 2026-05-20 — Search dialog tagged query **Phase 4 + closure** *(Executor)*
+
+**Shipped:** **`serializeStructuredQuery`** / **`parseRecentStructuredQuery`** (recents round-trip); open-animation height/overflow fixes (content-fit panel, skeletons, horizontal clip). **Task 10 closure:** TV media tag blocks studio Tab suggestions; **`searchResultsStatusMessage`** in **`aria-live`** regions; focus returns to search pill on close; **`motion/react`** import; **Recent searches** **`sr-only`** heading.
+
+**Planner:** Tagged-query plan **Phases 1–4 complete** per **`docs/superpowers/plans/2026-05-20-search-dialog-tagged-query.md`**. No Phase 5 in scope — run **manual test checklist** in that plan (§ Manual test checklist) then mark feature signed off.
+
+**Human / Planner:** Full checklist (A24+marty, lists, recents, reduced motion) → reply **`ok`** for Planner sign-off on tagged search.
+
+### 2026-05-20 — Search dialog tagged query **Phase 1** *(Executor)*
+
+**Shipped:** Token field in **`HomeStickySearch`** — **`search-query-tags.ts`**, **`SearchTagPill`**, **`SearchTokenField`**. Human verified pill padding + tag UX (**ok**).
+
 ### 2026-05-20 — `/achievements` lobby remake *(Executor)*
 
 **Shipped:** `/achievements` rebuilt on the **profile/diary lobby shell** — `AchievementsTopBar` (back pill), `rounded-[2.5rem] bg-card` tray, **Badges / Goals** tab chips (`?tab=goals`), patron intro line. **Badges** panel loads full **`/api/badges/catalog`** with earned state from **`/me`** (milestone tray glyphs, locked tiles muted). **Goals** panel merges **`/api/achievements/catalog`** + **`/me`** progress (divide-y rows, no card borders; hidden goals stay secret until progress/unlock). Shared glyphs in **`milestone-badge-glyph.tsx`**; **`profile-patron-milestones.tsx`** imports the same module.
 
-**Human / Planner:** Open **`/achievements`** — switch **Badges** / **Goals**, hover earned vs locked badges, confirm back pill returns to last browse context. Reply **`ok`** when the lobby matches home/profile rhythm.
+**Human / Planner:** Open **`/achievements`** — switch **Badges** / **Goals**, hover earned vs locked badges, confirm back pill returns to last browse context. **Human `ok` 2026-05-21** — verified.
 
 ### 2026-05-20 — Marketing landing: Mobbin-pattern remake *(Executor)*
 

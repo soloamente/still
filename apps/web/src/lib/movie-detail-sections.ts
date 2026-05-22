@@ -13,7 +13,8 @@ export type MovieDetailSectionId =
 	(typeof MOVIE_DETAIL_SECTION)[keyof typeof MOVIE_DETAIL_SECTION];
 
 export type MovieDetailSectionNavItem = {
-	id: MovieDetailSectionId;
+	/** DOM `id` on the scroll target — film and list detail share `MovieDetailSectionNav`. */
+	id: string;
 	label: string;
 };
 
@@ -26,6 +27,13 @@ export const MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS =
  * the fixed right-rail legend sits in the gutter (never `pr-*` alone — that shifts content left).
  */
 export const MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS = "xl:px-28 2xl:px-32";
+
+/**
+ * About-tab column — widens on `lg+` for cast arc / awards grids without `100vw` breakout
+ * (viewport width units include the scrollbar gutter and cause a stray vertical scrollbar).
+ */
+export const MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME =
+	"mx-auto max-w-7xl space-y-12 px-2.5 pt-8 pb-10 sm:px-4 sm:pt-10 md:px-5 md:pt-12 lg:max-w-[96rem] xl:max-w-[108rem]";
 
 /** Nav labels for the fixed right-rail legend (order matches scroll depth). */
 export function buildMovieDetailSectionNavItems({

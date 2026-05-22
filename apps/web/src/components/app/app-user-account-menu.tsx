@@ -3,20 +3,11 @@
 import {
 	DropdownMenuGroup,
 	DropdownMenuItem,
-	DropdownMenuSeparator,
 } from "@still/ui/components/dropdown-menu";
+import IconAwardFill from "@still/ui/icons/award-fill";
+import IconGear from "@still/ui/icons/gear";
 import { cn } from "@still/ui/lib/utils";
-import {
-	CirclePlus,
-	MessageSquareText,
-	Monitor,
-	Moon,
-	Settings,
-	Sun,
-} from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import { authClient } from "@/lib/auth-client";
@@ -35,16 +26,39 @@ export type AccountMenuUser = {
 
 type AppUserAccountMenuBodyProps = {
 	user: AccountMenuUser;
-	/** Opens universal search — “request a title” flows through discovery + chat. */
-	onRequestContent?: () => void;
 };
 
-/** Inset menu rows — 16px copy, rounded hover wash inside popup padding (Track B / home search). */
+/**
+ * Inset menu rows — 16px copy, generous horizontal padding.
+ * Hover uses `bg-background` (canvas), not `bg-card`: popover and card share `--surface-raised`.
+ */
 export const accountMenuItemClassName = cn(
-	"gap-2.5 rounded-[1.75rem] px-3 py-3 text-base text-foreground",
-	"focus:bg-card focus:text-foreground not-data-[variant=destructive]:focus:**:text-foreground",
-	"[@media(hover:hover)]:hover:bg-card/80",
+	"gap-2.5 rounded-[1.75rem] px-5 py-3 text-base text-foreground transition-colors duration-200 ease-out motion-reduce:transition-none",
+	"not-data-[variant=destructive]:focus:bg-background not-data-[variant=destructive]:focus:text-foreground not-data-[variant=destructive]:focus:**:text-foreground",
+	"not-data-[variant=destructive]:[@media(hover:hover)]:hover:bg-background",
 );
+
+/** Primary destinations — same weight and inset rhythm as Log out (without destructive chrome). */
+export const accountMenuPrimaryItemClassName = cn(
+	accountMenuItemClassName,
+	"font-semibold",
+);
+
+/** Rows inside a `bg-background` inset group — hover lifts to `bg-card` on the popover canvas. */
+const accountMenuItemOnBackgroundClassName = cn(
+	accountMenuItemClassName,
+	"not-data-[variant=destructive]:focus:bg-card not-data-[variant=destructive]:focus:text-foreground not-data-[variant=destructive]:focus:**:text-foreground",
+	"not-data-[variant=destructive]:[@media(hover:hover)]:hover:bg-card",
+);
+
+const accountMenuPrimaryOnBackgroundClassName = cn(
+	accountMenuItemOnBackgroundClassName,
+	"font-semibold",
+);
+
+/** Inset canvas block for grouped patron routes (replaces separator dividers). */
+const accountMenuBackgroundGroupClassName =
+	"rounded-[1.75rem] bg-background p-1.5";
 
 /**
  * Floating menus — `bg-popover` (`--surface-overlay`) so panels read above page
@@ -56,29 +70,13 @@ export const accountMenuContentClassName = cn(
 );
 
 /**
- * Rich account dropdown body: identity block, quick actions, settings, theme
- * segment control, marketing links, and legal footer — matches the reference
- * layout the team picked for avatar menus.
+ * Rich account dropdown body: identity block, primary patron routes, settings, log out.
  */
-export function AppUserAccountMenuBody({
-	user,
-	onRequestContent,
-}: AppUserAccountMenuBodyProps) {
+export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 	const router = useRouter();
-	const { theme, setTheme } = useTheme();
-	const [mounted, setMounted] = useState(false);
-
-	// `next-themes` reads `localStorage` after mount — avoid SSR/client theme mismatch on the segment.
-	useEffect(() => {
-		setMounted(true);
-	}, []);
 
 	const go = (path: string) => {
 		router.push(path);
-	};
-
-	const openExternal = (href: string) => {
-		window.open(href, "_blank", "noopener,noreferrer");
 	};
 
 	const secondaryLine = user.email?.trim() || `@${user.handle}`;
@@ -86,7 +84,7 @@ export function AppUserAccountMenuBody({
 	return (
 		<>
 			{/* Identity — avatar row, PRO chip, profile CTA on raised card (home / detail token rhythm). */}
-			<div className="pt-1 pb-3">
+			<div className="pt-1 pb-1">
 				<div className="flex items-start gap-3">
 					<PatronPortraitAvatar
 						handle={user.handle}
@@ -121,7 +119,7 @@ export function AppUserAccountMenuBody({
 				<button
 					type="button"
 					className={cn(
-						"mt-3 w-full rounded-full bg-background py-2.5 font-medium text-foreground text-sm shadow-sm transition-colors duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none",
+						"mt-4 w-full rounded-full bg-background py-3 font-medium text-foreground transition-colors duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none",
 						DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 					)}
 					onClick={() => go(`/profile/${user.handle}`)}
@@ -130,89 +128,24 @@ export function AppUserAccountMenuBody({
 				</button>
 			</div>
 
-			<DropdownMenuSeparator className="my-2 h-px bg-border/50" />
-
-			<DropdownMenuGroup className="p-0">
-				<DropdownMenuItem
-					className={accountMenuItemClassName}
-					onClick={() => {
-						if (onRequestContent) onRequestContent();
-						else go("/chat");
-					}}
-				>
-					<CirclePlus className="size-4 shrink-0 opacity-90" aria-hidden />
-					Request feature
-				</DropdownMenuItem>
-				<DropdownMenuItem
-					className={accountMenuItemClassName}
-					onClick={() =>
-						openExternal(
-							"mailto:hello@still.app?subject=Still%20feedback&body=Tell%20us%20what%20you%20think…",
-						)
-					}
-				>
-					<MessageSquareText
-						className="size-4 shrink-0 opacity-80"
-						aria-hidden
-					/>
-					Give feedback
-				</DropdownMenuItem>
-			</DropdownMenuGroup>
-
-			<DropdownMenuSeparator className="my-2 h-px bg-border/50" />
-
-			<DropdownMenuGroup className="p-0">
-				<DropdownMenuItem
-					className={accountMenuItemClassName}
-					onClick={() => go("/me/settings")}
-				>
-					<Settings className="size-4 shrink-0 opacity-80" aria-hidden />
-					Settings
-				</DropdownMenuItem>
-			</DropdownMenuGroup>
-
-			<DropdownMenuSeparator className="my-2 h-px bg-border/50" />
-
-			{/* Theme — pill segment on `bg-card`, active option on `bg-background` (sticky browse chips). */}
-			<div
-				className="flex items-center justify-between gap-3 py-1"
-				onPointerDown={(e) => e.stopPropagation()}
-			>
-				<span className="text-base text-foreground">Theme</span>
-				<fieldset
-					className="m-0 flex min-w-0 shrink-0 items-center gap-0.5 rounded-full bg-card p-0.5"
-					aria-label="Color theme"
-				>
-					{(
-						[
-							{ id: "light" as const, icon: Sun, label: "Light theme" },
-							{ id: "dark" as const, icon: Moon, label: "Dark theme" },
-							{ id: "system" as const, icon: Monitor, label: "System theme" },
-						] as const
-					).map(({ id, icon: Icon, label }) => {
-						const active = mounted && theme === id;
-						return (
-							<button
-								key={id}
-								type="button"
-								aria-label={label}
-								aria-pressed={active}
-								className={cn(
-									"flex size-9 items-center justify-center rounded-full transition-colors duration-200 ease-out motion-reduce:transition-none",
-									active
-										? "bg-background text-foreground shadow-sm"
-										: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground",
-								)}
-								onClick={() => setTheme(id)}
-							>
-								<Icon className="size-4" aria-hidden />
-							</button>
-						);
-					})}
-				</fieldset>
+			<div className={cn(accountMenuBackgroundGroupClassName, "mt-1")}>
+				<DropdownMenuGroup className="p-0">
+					<DropdownMenuItem
+						className={accountMenuPrimaryOnBackgroundClassName}
+						onClick={() => go("/achievements")}
+					>
+						<IconAwardFill size="20px" className="size-5 shrink-0 opacity-90" />
+						Achievements
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className={accountMenuItemOnBackgroundClassName}
+						onClick={() => go("/me/settings")}
+					>
+						<IconGear size="20px" className="size-5 shrink-0 opacity-80" />
+						Settings
+					</DropdownMenuItem>
+				</DropdownMenuGroup>
 			</div>
-
-			<DropdownMenuSeparator className="my-2 h-px bg-border/50" />
 
 			{/* <DropdownMenuGroup className="p-0">
 				<DropdownMenuItem
@@ -263,11 +196,12 @@ export function AppUserAccountMenuBody({
 				</DropdownMenuItem>
 			</DropdownMenuGroup> */}
 
-			<DropdownMenuGroup className="p-0">
+			<DropdownMenuGroup className={cn("mt-2 p-0")}>
 				<DropdownMenuItem
 					className={cn(
 						accountMenuItemClassName,
-						"font-semibold data-[variant=destructive]:focus:bg-destructive/10",
+						"font-semibold",
+						"justify-center bg-destructive/10 text-center data-[variant=destructive]:focus:bg-destructive/10",
 					)}
 					variant="destructive"
 					onClick={() =>

@@ -7,6 +7,8 @@ import {
 	DropdownMenuTrigger,
 } from "@still/ui/components/dropdown-menu";
 import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
+import IconListPlay from "@still/ui/icons/list-play";
+import IconPlaylistOutline from "@still/ui/icons/playlist-outline";
 import IconTicket from "@still/ui/icons/ticket";
 import IconTicketFilled from "@still/ui/icons/ticket-filled";
 import { cn } from "@still/ui/lib/utils";
@@ -20,7 +22,6 @@ import {
 	AppUserAccountMenuBody,
 	accountMenuContentClassName,
 } from "@/components/app/app-user-account-menu";
-import { useCommandPalette } from "@/components/app/command-palette";
 import { HomeNotificationsMenu } from "@/components/home/home-notifications-menu";
 import { HomeStickySearch } from "@/components/home/home-sticky-search";
 import {
@@ -58,7 +59,6 @@ export function HomeStickyChrome({
 	user: HomeStickyChromeUser | null;
 }) {
 	const router = useRouter();
-	const openCommand = useCommandPalette((s) => s.open);
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const browseSurface = parseHomeBrowseSurface(searchParams.get("browse"));
@@ -67,6 +67,8 @@ export function HomeStickyChrome({
 	/** Watchlist shortcut — keeps **clock** iconography; chip + `href` match diary (`layoutId`). */
 	const isWatchlistRoute =
 		pathname === "/watchlist" || pathname.startsWith("/watchlist/");
+	/** Lists shortcut — filled on `/lists`, outline elsewhere (same pattern as diary ticket). */
+	const isListsRoute = pathname === "/lists" || pathname.startsWith("/lists/");
 	/** `?browse=` only applies on `/home` — on `/diary` we must not treat missing params as “Movies active” or the sliding pill stays left. */
 	const isHomeLobby = pathname === "/home" || pathname.startsWith("/home/");
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -90,7 +92,7 @@ export function HomeStickyChrome({
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
 		);
 
-	/** Watchlist + diary icon links share one interaction shell (pill, hover, focus). */
+	/** Watchlist, lists, and diary icon links share one interaction shell (pill, hover, focus). */
 	const stickyLobbyShortcutLinkClass = cn(
 		"relative flex h-11 w-11 items-center justify-center rounded-full text-foreground outline-none transition-colors duration-200 ease-out",
 		"[@media(hover:hover)]:hover:bg-muted/35",
@@ -234,7 +236,7 @@ export function HomeStickyChrome({
 			*/}
 				<HomeStickySearch />
 
-				{/* Right — shortcuts (watchlist + diary share the browse-rail `layoutId` pill). */}
+				{/* Right — shortcuts (watchlist, lists, diary share the browse-rail `layoutId` pill). */}
 				<div className="flex justify-center sm:justify-end">
 					<div className="flex gap-1">
 						<Link
@@ -253,6 +255,28 @@ export function HomeStickyChrome({
 							) : null}
 							<span className="relative z-10">
 								<IconClockRotateClockwise />
+							</span>
+						</Link>
+						<Link
+							href="/lists"
+							className={stickyLobbyShortcutLinkClass}
+							aria-label="Your lists"
+							aria-current={isListsRoute ? "page" : undefined}
+							title="Lists you have created"
+						>
+							{isListsRoute ? (
+								<motion.span
+									layoutId="home-sticky-browse-pill"
+									className="absolute inset-0 z-0 rounded-full bg-card"
+									transition={browsePillTransition}
+								/>
+							) : null}
+							<span className="relative z-10">
+								{isListsRoute ? (
+									<IconListPlay size="20px" />
+								) : (
+									<IconPlaylistOutline size="20px" />
+								)}
 							</span>
 						</Link>
 						<Link
@@ -314,7 +338,6 @@ export function HomeStickyChrome({
 											email: user.email,
 											isPro: user.isPro,
 										}}
-										onRequestContent={openCommand}
 									/>
 								</DropdownMenuContent>
 							</DropdownMenu>

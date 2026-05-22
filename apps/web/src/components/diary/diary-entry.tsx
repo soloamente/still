@@ -3,9 +3,11 @@ import Link from "next/link";
 
 import { TicketStub } from "@/components/cinema/ticket-stub";
 import { DiaryLogEditButton } from "@/components/diary/diary-log-edit-button";
+import { TvLogScopeChip } from "@/components/diary/tv-log-scope-chip";
 import { StarRating } from "@/components/rating/star-rating";
 import { formatDate } from "@/lib/format";
 import type { HomeVenue } from "@/lib/home-venue";
+import type { TvLogScope } from "@/lib/tv-watch-types";
 
 /** Shared poster/title fields for diary rows — either a film or a series. */
 export type DiaryListingSnapshot = {
@@ -26,6 +28,9 @@ export type DiaryLogRow = {
 		note: string | null;
 		/** In-cinema vs at-home — matches `/diary?venue=`; absent rows default to **streaming**. */
 		watchVenue?: HomeVenue;
+		logScope?: TvLogScope;
+		seasonNumber?: number | null;
+		episodeNumber?: number | null;
 	};
 	movie: DiaryListingSnapshot | null;
 	/** Present when this diary row is for a TV series (`log.tv_id` on the server). */
@@ -80,6 +85,16 @@ export function DiaryEntry({ row }: { row: DiaryLogRow }) {
 			<p className="mt-1.5 text-center text-[11px] text-white/72 tabular-nums tracking-wide">
 				{watchedLine}
 			</p>
+
+			{isTv ? (
+				<div className="mt-2 flex justify-center">
+					<TvLogScopeChip
+						logScope={row.log.logScope}
+						seasonNumber={row.log.seasonNumber}
+						episodeNumber={row.log.episodeNumber}
+					/>
+				</div>
+			) : null}
 
 			{row.log.rating != null || row.log.liked || row.log.rewatch ? (
 				<div className="mt-2 flex flex-wrap items-center justify-center gap-2">

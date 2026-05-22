@@ -1,8 +1,9 @@
-import type { CSSProperties, ReactNode } from "react";
-
+import { type CSSProperties, type ReactNode, Suspense } from "react";
 import { AppScrollToTop } from "@/components/app/app-scroll-to-top";
 import { CommandPaletteRoot } from "@/components/app/command-palette";
+import { DetailReturnCapture } from "@/components/app/detail-return-capture";
 import { BadgeWatcher } from "@/components/gamification/badge-watcher";
+import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
 import { QuickLogRoot } from "@/components/log/quick-log-sheet";
 import { PersonFilmographyDrawerRoot } from "@/components/movie/person-filmography-drawer";
 import { ReviewComposerRoot } from "@/components/review/review-composer";
@@ -12,7 +13,7 @@ import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
  * Track B — authenticated app chrome (single shell for `(app)` routes).
  *
  * **Navigation contract (MVP):** floating **bottom** bar (`AppNav`) — icon + short
- * label, `min-h-11` tap targets; wordmark from `sm`; search opens ⌘K palette;
+ * label, `min-h-11` tap targets; wordmark from `sm`; search opens ⌘K catalog sheet;
  * overflow menu for Lists / Achievements; **notifications bell** in the bar on **all** breakpoints (Track B nav parity, 2026-05-14). There is **no** left rail → drawer
  * breakpoint: the bar stays bottom-anchored at all widths.
  *
@@ -53,6 +54,9 @@ export function AppShell({
 }) {
 	return (
 		<div className="relative flex min-h-svh flex-col bg-background">
+			<Suspense fallback={null}>
+				<DetailReturnCapture />
+			</Suspense>
 			{/*
 				`min-h-svh` gives `<main>` a definite block axis so `flex-1` children (e.g. `/home`)
 				fill the **content** box; bottom padding lives in `globals.css` `#main-content`
@@ -65,6 +69,7 @@ export function AppShell({
 				{children}
 			</main>
 			<AppScrollToTop />
+			<CatalogSearchDialogRoot />
 			<CommandPaletteRoot />
 			<QuickLogRoot />
 			<ReviewComposerRoot />

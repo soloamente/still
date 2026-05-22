@@ -1,58 +1,25 @@
 "use client";
 
-import { useCallback } from "react";
-import {
-	type PopularMovieSeed,
-	PopularMoviesInfinite,
-} from "@/components/movie/popular-movies-infinite";
-import {
-	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
-	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
-	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
-} from "@/lib/home-lobby-catalogue-layout";
+import { DiaryLobbyGrid } from "@/components/diary/diary-lobby-grid";
+import type { DiaryLobbyGridItem } from "@/lib/diary-lobby-grouping";
 
 /**
- * Client boundary for `/diary` — `PopularMoviesInfinite` needs `getPosterCellKey`, which cannot
- * be passed from a Server Component as a function prop.
+ * Client boundary for `/diary` — grouped TV cells and expand state live in `DiaryLobbyGrid`.
  */
 export function DiaryLobbyCatalogue({
-	seeds,
-	posterCellKeys,
+	items,
 	catalogueWaveKeyOverride,
 	monochromePeersOnHover,
 }: {
-	seeds: PopularMovieSeed[];
-	posterCellKeys: string[];
+	items: DiaryLobbyGridItem[];
 	catalogueWaveKeyOverride: string;
 	monochromePeersOnHover: boolean;
 }) {
-	/** Stable identity for `AnimatePresence` memo deps inside `PopularMoviesInfinite`. */
-	const getPosterCellKey = useCallback(
-		(_movie: PopularMovieSeed, index: number) =>
-			posterCellKeys[index] ?? `diary-${index}`,
-		[posterCellKeys],
-	);
-
 	return (
-		<PopularMoviesInfinite
-			blockedReason={null}
-			catalogKind="popular"
-			catalogLabel="diary"
-			catalogMedia="movie"
-			catalogueWaveKeyOverride={catalogueWaveKeyOverride}
-			getPosterCellKey={getPosterCellKey}
-			gridClassName={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}
+		<DiaryLobbyGrid
+			items={items}
 			monochromePeersOnHover={monochromePeersOnHover}
-			posterFrameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
-			posterHoverEffect="elevation"
-			posterLinkClassName={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
-			seedMovies={seeds}
-			seedPage={1}
-			showTitle={false}
-			staggerPosterEntrance
-			staticCatalogue
-			totalPages={1}
-			totalResults={seeds.length}
+			waveKey={catalogueWaveKeyOverride}
 		/>
 	);
 }

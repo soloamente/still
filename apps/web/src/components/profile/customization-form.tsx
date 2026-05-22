@@ -192,9 +192,9 @@ export function CustomizationForm({
 				<MeAccountRevealItem>
 					<div className="pb-4">
 						<header className="relative shrink-0">
-							<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25 shadow-md">
+							<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25">
 								{pendingBanner ? (
-									// eslint-disable-next-line @next/next/no-img-element -- local file preview before save
+									// biome-ignore lint/performance/noImgElement: local file preview before save
 									<img
 										src={pendingBanner.previewUrl}
 										alt=""
@@ -256,7 +256,7 @@ export function CustomizationForm({
 										aria-label="Change profile photo"
 									>
 										{portraitSrc ? (
-											// eslint-disable-next-line @next/next/no-img-element -- blob preview or streamed avatar
+											// biome-ignore lint/performance/noImgElement: blob preview or streamed avatar
 											<img
 												src={portraitSrc}
 												alt=""

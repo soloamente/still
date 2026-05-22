@@ -1,5 +1,5 @@
 import { cn } from "@still/ui/lib/utils";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import type { ProfileFilmographyRow } from "@/components/profile/profile-filmography-panel";
 import { ProfileLobbyChrome } from "@/components/profile/profile-lobby-chrome";
@@ -20,6 +20,8 @@ import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-ca
 import type { HomeVenue } from "@/lib/home-venue";
 import {
 	buildProfileLobbyHref,
+	type ProfileLedgerTabId,
+	parseProfileLobbyFavorites,
 	parseProfileLobbyOrder,
 	parseProfileLobbyVenue,
 	profileLogMatchesProfileLobbyVenue,
@@ -182,18 +184,21 @@ function titleCountLineForTab(
 	tab: ProfileTabId,
 	movieCount: number,
 	tvCount: number,
-	favoritesCount: number,
+	favoritesOnly: boolean,
 	reviewsCount: number,
 	listsCount: number,
 ): string | null {
+	if (tab === "favorites" && movieCount > 0) {
+		return `${movieCount} favorite film${movieCount === 1 ? "" : "s"}`;
+	}
 	if (tab === "movies" && movieCount > 0) {
 		return `${movieCount} film${movieCount === 1 ? "" : "s"} logged`;
 	}
 	if (tab === "tv" && tvCount > 0) {
+		if (favoritesOnly) {
+			return `${tvCount} favorite show${tvCount === 1 ? "" : "s"}`;
+		}
 		return `${tvCount} TV show${tvCount === 1 ? "" : "s"} logged`;
-	}
-	if (tab === "favorites" && favoritesCount > 0) {
-		return `${favoritesCount} favorite${favoritesCount === 1 ? "" : "s"}`;
 	}
 	if (tab === "reviews" && reviewsCount > 0) {
 		return `${reviewsCount} review${reviewsCount === 1 ? "" : "s"}`;
@@ -209,7 +214,12 @@ export default async function ProfilePage({
 	searchParams,
 }: {
 	params: Promise<{ handle: string }>;
-	searchParams: Promise<{ tab?: string; order?: string; venue?: string }>;
+	searchParams: Promise<{
+		tab?: string;
+		order?: string;
+		venue?: string;
+		favorites?: string;
+	}>;
 }) {
 	const { handle } = await params;
 	const sp = await searchParams;
@@ -242,39 +252,58 @@ export default async function ProfilePage({
 		.filter((row): row is ProfileUnlockedAchievement => row.achievement != null)
 		.slice(0, 8);
 
-	const favoritesRes = profile.favoriteMovieIds.length
-		? await api.api.movies.batch
-				.post({ ids: profile.favoriteMovieIds })
-				.catch(() => ({ data: [] }))
-		: { data: [] };
-	const favorites =
-		(favoritesRes.data as unknown as {
-			tmdbId: number;
-			title: string;
-			posterPath: string | null;
-		}[]) ?? [];
-
 	const lobbyOrder = parseProfileLobbyOrder(sp.order);
 	const lobbyVenue = parseProfileLobbyVenue(sp.venue);
+	const favoritesOnly = parseProfileLobbyFavorites(sp.favorites);
 	const allFilmographyRows = sortProfileFilmographyRows(
 		filmographyFromRecentlyWatched(data.recentlyWatched),
 		lobbyOrder,
 	);
 	const { movieRows: moviesAll, tvRows: tvAll } =
 		splitFilmographyLedger(allFilmographyRows);
-	const filmographyRows = allFilmographyRows.filter((row) =>
+
+	if (sp.tab?.toLowerCase() === "favorites") {
+		const ledgerTab =
+			moviesAll.some((row) => row.log.liked) || tvAll.length === 0
+				? "movies"
+				: "tv";
+		redirect(
+			buildProfileLobbyHref({
+				handle: profile.handle,
+				tab: ledgerTab,
+				order: lobbyOrder,
+				venue: lobbyVenue,
+				favoritesOnly: true,
+			}),
+		);
+	}
+
+	const venueFilteredRows = allFilmographyRows.filter((row) =>
 		profileLogMatchesProfileLobbyVenue(row, lobbyVenue),
 	);
+	const filmographyRows = favoritesOnly
+		? venueFilteredRows.filter((row) => row.log.liked)
+		: venueFilteredRows;
 	const { movieRows, tvRows } = splitFilmographyLedger(filmographyRows);
+	const { movieRows: moviesVenueAll, tvRows: tvVenueAll } =
+		splitFilmographyLedger(venueFilteredRows);
+	const likedFilmographyCount = allFilmographyRows.filter(
+		(row) => row.log.liked,
+	).length;
 
 	const socialTabs = PROFILE_TOOLBAR_SOCIAL_ORDER.filter((sec) => {
-		if (sec === "favorites") return favorites.length > 0;
+		if (sec === "favorites") return likedFilmographyCount > 0;
 		if (sec === "reviews") return data.recentReviews.length > 0;
 		if (sec === "lists") return data.lists.length > 0;
 		return false;
 	});
 
-	const activeTab = resolveProfileTab(sp.tab, socialTabs, moviesAll, tvAll);
+	const contentTab = resolveProfileTab(sp.tab, socialTabs, moviesAll, tvAll);
+	const toolbarActiveTab: ProfileTabId =
+		favoritesOnly && socialTabs.includes("favorites")
+			? "favorites"
+			: contentTab;
+	const ledgerTab: ProfileLedgerTabId = contentTab === "tv" ? "tv" : "movies";
 
 	let viewerPrefs: Record<string, unknown> | null = null;
 	if (isMe) {
@@ -287,34 +316,35 @@ export default async function ProfilePage({
 		readCatalogMonochromePeersOnHoverPref(viewerPrefs);
 
 	const ledgerPosterKeys =
-		activeTab === "movies"
+		contentTab === "movies"
 			? movieRows.map((r) => r.log.id)
-			: activeTab === "tv"
+			: contentTab === "tv"
 				? tvRows.map((r) => r.log.id)
 				: [];
-	const catalogueWaveKey = `${activeTab}:${lobbyOrder}:${lobbyVenue}:${ledgerPosterKeys.join("|")}`;
+	const catalogueWaveKey =
+		contentTab === "lists"
+			? `lists:${data.lists.map((l) => l.id).join("|")}`
+			: `${contentTab}:${lobbyOrder}:${lobbyVenue}:${favoritesOnly ? "fav" : "all"}:${ledgerPosterKeys.join("|")}`;
 
 	const titleCountLine = titleCountLineForTab(
-		activeTab,
+		toolbarActiveTab,
 		movieRows.length,
 		tvRows.length,
-		favorites.length,
+		favoritesOnly,
 		data.recentReviews.length,
 		data.lists.length,
 	);
 
 	const sharePath =
-		activeTab === "movies" || activeTab === "tv"
+		contentTab === "movies" || contentTab === "tv"
 			? buildProfileLobbyHref({
 					handle: profile.handle,
-					tab: activeTab,
+					tab: contentTab,
 					order: lobbyOrder,
 					venue: lobbyVenue,
+					favoritesOnly,
 				})
-			: `/profile/${encodeURIComponent(profile.handle)}?tab=${activeTab}`;
-
-	const ledgerTab =
-		activeTab === "movies" || activeTab === "tv" ? activeTab : "movies";
+			: `/profile/${encodeURIComponent(profile.handle)}?tab=${toolbarActiveTab}`;
 	const switchVenue: HomeVenue =
 		lobbyVenue === "theaters" ? "streaming" : "theaters";
 	const switchVenueHref = buildProfileLobbyHref({
@@ -322,6 +352,14 @@ export default async function ProfilePage({
 		tab: ledgerTab,
 		order: lobbyOrder,
 		venue: switchVenue,
+		favoritesOnly,
+	});
+	const showAllLedgerHref = buildProfileLobbyHref({
+		handle: profile.handle,
+		tab: ledgerTab,
+		order: lobbyOrder,
+		venue: lobbyVenue,
+		favoritesOnly: false,
 	});
 
 	return (
@@ -359,19 +397,23 @@ export default async function ProfilePage({
 				<ProfileLobbyChrome
 					handle={profile.handle}
 					socialTabs={socialTabs}
-					activeTab={activeTab}
+					activeTab={toolbarActiveTab}
+					ledgerTab={ledgerTab}
 				/>
 
 				<div className="min-h-0 flex-1">
 					<ProfileTabPanels
-						activeTab={activeTab}
+						activeTab={contentTab}
 						movieRows={movieRows}
 						tvRows={tvRows}
 						moviesAllCount={moviesAll.length}
 						tvAllCount={tvAll.length}
+						moviesVenueCount={moviesVenueAll.length}
+						tvVenueCount={tvVenueAll.length}
+						favoritesOnly={favoritesOnly}
+						showAllLedgerHref={showAllLedgerHref}
 						lobbyVenue={lobbyVenue}
 						switchVenueHref={switchVenueHref}
-						favorites={favorites}
 						reviews={data.recentReviews}
 						lists={data.lists}
 						catalogueWaveKey={catalogueWaveKey}

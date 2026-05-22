@@ -10,6 +10,7 @@ import { useCallback, useId, useState } from "react";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
+import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { ReviewCard } from "@/components/review/review-card";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
@@ -21,7 +22,7 @@ import {
 	HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
-import { formatLogRatingDisplay } from "@/lib/log-rating";
+import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
 import type { TmdbMovieSummary } from "@/lib/movie-detail-tmdb";
 
@@ -35,81 +36,6 @@ function MovieDetailSubsectionLabel({ children }: { children: ReactNode }) {
 		<p className="mb-4 text-center font-medium text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
 			{children}
 		</p>
-	);
-}
-
-function MovieDetailCommunityStats({
-	communityAverage,
-	communityReviewsCount,
-	reviewsCount,
-	listsCount,
-}: {
-	communityAverage: number | null;
-	communityReviewsCount: number;
-	reviewsCount: number;
-	listsCount: number;
-}) {
-	const hasAverage = communityAverage != null && communityReviewsCount > 0;
-
-	return (
-		<ul className="grid gap-4 sm:grid-cols-3">
-			<li className={cn(COMMUNITY_CARD, "px-5 py-7 text-center")}>
-				<p className="font-medium text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
-					Still average
-				</p>
-				{hasAverage ? (
-					<>
-						<p className="mt-4 font-serif text-4xl text-foreground tabular-nums tracking-tight sm:text-5xl">
-							{formatLogRatingDisplay(communityAverage)}
-							<span className="text-lg text-muted-foreground sm:text-xl">
-								/10
-							</span>
-						</p>
-						<p className="mt-2 text-balance font-editorial text-muted-foreground text-xs leading-relaxed">
-							From {communityReviewsCount} published{" "}
-							{communityReviewsCount === 1 ? "review" : "reviews"}
-						</p>
-					</>
-				) : (
-					<p className="mt-4 font-editorial text-muted-foreground text-sm leading-relaxed">
-						No member ratings yet — publish a review to seed the average.
-					</p>
-				)}
-			</li>
-			<li
-				className={cn(
-					COMMUNITY_CARD,
-					"flex flex-col justify-center px-5 py-7 text-center",
-				)}
-			>
-				<p className="font-medium text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
-					Reviews
-				</p>
-				<p className="mt-4 font-serif text-4xl text-foreground tabular-nums tracking-tight">
-					{reviewsCount}
-				</p>
-				<p className="mt-2 font-editorial text-muted-foreground text-xs">
-					{reviewsCount === 1 ? "Published write-up" : "Published write-ups"}
-				</p>
-			</li>
-			<li
-				className={cn(
-					COMMUNITY_CARD,
-					"flex flex-col justify-center px-5 py-7 text-center",
-				)}
-			>
-				<p className="font-medium text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
-					Lists
-				</p>
-				<p className="mt-4 font-serif text-4xl text-foreground tabular-nums tracking-tight">
-					{listsCount}
-				</p>
-				<p className="mt-2 font-editorial text-muted-foreground text-xs">
-					{listsCount === 1 ? "Public list" : "Public lists"} featuring this
-					title
-				</p>
-			</li>
-		</ul>
 	);
 }
 
@@ -299,11 +225,9 @@ export function MovieDetailExploreTabs({
 	const hasRelatedBody = moreLikeThis.length > 0;
 
 	const communityStatsPanel = (
-		<MovieDetailCommunityStats
+		<MovieDetailCommunityRatingHero
 			communityAverage={communityAverage}
 			communityReviewsCount={communityReviewsCount}
-			reviewsCount={reviews.length}
-			listsCount={lists.length}
 		/>
 	);
 
@@ -354,7 +278,7 @@ export function MovieDetailExploreTabs({
 										<span>Still member · {r.likesCount} likes</span>
 										{r.rating != null ? (
 											<span className="font-medium text-foreground tabular-nums">
-												{formatLogRatingDisplay(r.rating)}
+												{formatStoredLogRatingDisplay(r.rating)}
 												<span className="text-muted-foreground">/10</span>
 											</span>
 										) : null}

@@ -1,9 +1,20 @@
-import { db, eventLog, log, movie, tv } from "@still/db";
+import {
+	db,
+	eventLog,
+	log,
+	movie,
+	normalizeTvLogScopeForInsert,
+	profile,
+	tv,
+	user,
+	validateTvLogScope,
+} from "@still/db";
 import { and, desc, eq, isNotNull } from "drizzle-orm";
 import Elysia, { t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
+import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
 import { hit } from "../lib/rate-limit";
 import { tmdbApi } from "../lib/tmdb";
 import { ensureTvCached } from "../lib/tv-cache";
@@ -62,6 +73,11 @@ const logCreateFields = {
 	watchVenue: t.Optional(
 		t.Union([t.Literal("theaters"), t.Literal("streaming")]),
 	),
+	logScope: t.Optional(
+		t.Union([t.Literal("show"), t.Literal("season"), t.Literal("episode")]),
+	),
+	seasonNumber: t.Optional(t.Integer({ minimum: 1 })),
+	episodeNumber: t.Optional(t.Integer({ minimum: 1 })),
 };
 
 export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
@@ -85,9 +101,21 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				await ensureMovieCached(movieId);
 			} else if (tvId != null && movieId == null) {
 				await ensureTvCached(tvId);
+				const scopeCheck = validateTvLogScope({
+					logScope: body.logScope,
+					seasonNumber: body.seasonNumber,
+					episodeNumber: body.episodeNumber,
+				});
+				if (!scopeCheck.ok) return status(400, scopeCheck.message);
 			} else {
 				return status(400, "Send exactly one of movieId or tvId");
 			}
+
+			const scopeFields = normalizeTvLogScopeForInsert(tvId ?? null, {
+				logScope: body.logScope,
+				seasonNumber: body.seasonNumber,
+				episodeNumber: body.episodeNumber,
+			});
 
 			const id = makeId("log");
 			const watchedAt = body.watchedAt ? new Date(body.watchedAt) : new Date();
@@ -110,6 +138,9 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					note: body.note ?? null,
 					containsSpoilers: body.containsSpoilers ?? false,
 					watchVenue,
+					logScope: scopeFields.logScope,
+					seasonNumber: scopeFields.seasonNumber,
+					episodeNumber: scopeFields.episodeNumber,
 				})
 				.returning();
 
@@ -125,6 +156,15 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					liked: body.liked,
 				},
 			});
+
+			if (row?.liked) {
+				await syncFavoritesListForUserTitle({
+					userId: user.id,
+					movieId: row.movieId,
+					tvId: row.tvId,
+					liked: true,
+				});
+			}
 
 			return row;
 		},
@@ -143,6 +183,41 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Log not found");
+
+			if (existing.tvId != null) {
+				const scopeCheck = validateTvLogScope({
+					logScope: body.logScope ?? existing.logScope,
+					seasonNumber:
+						body.seasonNumber === undefined
+							? existing.seasonNumber
+							: body.seasonNumber,
+					episodeNumber:
+						body.episodeNumber === undefined
+							? existing.episodeNumber
+							: body.episodeNumber,
+				});
+				if (!scopeCheck.ok) return status(400, scopeCheck.message);
+			}
+
+			const scopeFields =
+				existing.tvId != null
+					? normalizeTvLogScopeForInsert(existing.tvId, {
+							logScope: body.logScope ?? existing.logScope,
+							seasonNumber:
+								body.seasonNumber === undefined
+									? existing.seasonNumber
+									: body.seasonNumber,
+							episodeNumber:
+								body.episodeNumber === undefined
+									? existing.episodeNumber
+									: body.episodeNumber,
+						})
+					: {
+							logScope: "show" as const,
+							seasonNumber: null,
+							episodeNumber: null,
+						};
+
 			const [updated] = await db
 				.update(log)
 				.set({
@@ -166,9 +241,22 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 									body.watchVenue === "streaming"
 								? body.watchVenue
 								: existing.watchVenue,
+					logScope: scopeFields.logScope,
+					seasonNumber: scopeFields.seasonNumber,
+					episodeNumber: scopeFields.episodeNumber,
 				})
 				.where(eq(log.id, params.id))
 				.returning();
+
+			if (updated && body.liked !== undefined) {
+				await syncFavoritesListForUserTitle({
+					userId: user.id,
+					movieId: updated.movieId,
+					tvId: updated.tvId,
+					liked: updated.liked,
+				});
+			}
+
 			return updated;
 		},
 		{
@@ -185,6 +273,19 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				watchVenue: t.Optional(
 					t.Union([t.Literal("theaters"), t.Literal("streaming")]),
 				),
+				logScope: t.Optional(
+					t.Union([
+						t.Literal("show"),
+						t.Literal("season"),
+						t.Literal("episode"),
+					]),
+				),
+				seasonNumber: t.Optional(
+					t.Union([t.Integer({ minimum: 1 }), t.Null()]),
+				),
+				episodeNumber: t.Optional(
+					t.Union([t.Integer({ minimum: 1 }), t.Null()]),
+				),
 			}),
 		},
 	)
@@ -199,10 +300,37 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Log not found");
+			if (existing.liked) {
+				await syncFavoritesListForUserTitle({
+					userId: user.id,
+					movieId: existing.movieId,
+					tvId: existing.tvId,
+					liked: false,
+				});
+			}
 			await db.delete(log).where(eq(log.id, params.id));
 			return { ok: true };
 		},
 		{ params: t.Object({ id: t.String() }) },
+	)
+	// Public diary discover — recent logs from patrons with public profiles (community lobby).
+	.get(
+		"/recent",
+		async ({ query }) => {
+			const limit = Math.min(Number(query.limit ?? 30), 60);
+			const rows = await db
+				.select({ log, movie, tv, user, profile })
+				.from(log)
+				.innerJoin(profile, eq(log.userId, profile.userId))
+				.leftJoin(user, eq(log.userId, user.id))
+				.leftJoin(movie, eq(log.movieId, movie.tmdbId))
+				.leftJoin(tv, eq(log.tvId, tv.tmdbId))
+				.where(eq(profile.isPrivate, false))
+				.orderBy(desc(log.watchedAt))
+				.limit(limit);
+			return rows;
+		},
+		{ query: t.Object({ limit: t.Optional(t.String()) }) },
 	)
 	// My diary — convenience endpoint for the signed-in user.
 	.get(

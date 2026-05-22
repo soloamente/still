@@ -23,6 +23,7 @@ import {
 } from "@/lib/movie-cast-crew-arc";
 import {
 	buildMovieDetailSectionNavItems,
+	MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME,
 	MOVIE_DETAIL_SECTION,
 	MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
 	MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
@@ -278,7 +279,7 @@ export default async function MoviePage({
 			paletteMuted={data.paletteMuted}
 			paletteForeground={data.paletteForeground}
 		>
-			<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
+			<div className="flex min-h-0 flex-1 flex-col overflow-x-clip bg-background">
 				<MovieDetailTopBar
 					movieId={data.tmdbId}
 					title={data.title}
@@ -321,6 +322,17 @@ export default async function MoviePage({
 								title={data.title}
 								posterUrl={data.poster_url}
 								backdropUrl={data.backdrop_url}
+								artworkSlides={
+									(
+										data as {
+											hero_artwork?: {
+												key: string;
+												src: string;
+												label: string;
+											}[];
+										}
+									).hero_artwork
+								}
 							/>
 							{/* Hero title: SF Pro Rounded (`font-sans`) — Mobbin comp uses UI sans, not Fraunces display. */}
 							<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
@@ -364,7 +376,7 @@ export default async function MoviePage({
 						) : null}
 
 						{view === "about" ? (
-							<div className="mx-auto max-w-7xl space-y-12 px-2.5 pt-8 pb-10 sm:px-4 sm:pt-10 md:px-5 md:pt-12">
+							<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
 								{arcCast.length || arcCrew.length || recognitionPresent ? (
 									<div
 										className={cn(

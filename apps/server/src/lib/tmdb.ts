@@ -83,9 +83,48 @@ export type TmdbMovieDetail = TmdbMovieSummary & {
 	keywords?: {
 		keywords: { id: number; name: string }[];
 	};
+	/** Appended via `append_to_response=images` — extra posters/backdrops for hero carousel. */
+	images?: {
+		backdrops: TmdbImageAsset[];
+		posters: TmdbImageAsset[];
+	};
+};
+
+export type TmdbImageAsset = {
+	file_path: string;
+	vote_average?: number;
+	vote_count?: number;
+	width?: number;
+	height?: number;
+	aspect_ratio?: number;
 };
 
 /** Full TV series payload from `/tv/{id}` + append_to_response (subset typed for our UI). */
+export type TmdbSeasonSummary = {
+	id: number;
+	name: string;
+	overview?: string;
+	poster_path: string | null;
+	season_number: number;
+	episode_count: number;
+	air_date?: string | null;
+};
+
+export type TmdbEpisodeSummary = {
+	id: number;
+	name: string;
+	overview?: string;
+	episode_number: number;
+	season_number: number;
+	air_date?: string | null;
+	still_path: string | null;
+	runtime?: number | null;
+};
+
+export type TmdbSeasonDetail = TmdbSeasonSummary & {
+	episodes: TmdbEpisodeSummary[];
+};
+
 export type TmdbTvDetail = TmdbTvSummary & {
 	tagline?: string;
 	status?: string;
@@ -101,6 +140,10 @@ export type TmdbTvDetail = TmdbTvSummary & {
 	"watch/providers"?: TmdbMovieDetail["watch/providers"];
 	/** TV keywords append returns `results` (movies use nested `keywords`). */
 	keywords?: { results?: { id: number; name: string }[] };
+	images?: {
+		backdrops: TmdbImageAsset[];
+		posters: TmdbImageAsset[];
+	};
 };
 
 export type TmdbCredit = {
@@ -177,7 +220,8 @@ export type TmdbFetchOptions = {
 /** Gunzip when Bun’s fetch leaves `content-encoding: gzip` bytes on the wire. */
 function gunzipTmdbBody(bytes: Uint8Array): Uint8Array {
 	// Prefer Bun’s gunzip — Node `zlib.gunzipSync` can fail on some TMDb payloads.
-	return new Uint8Array(Bun.gunzipSync(bytes));
+	// Cast: `ArrayBuffer` from `Response` is narrower than Bun’s `ArrayBufferLike` param.
+	return new Uint8Array(Bun.gunzipSync(bytes as Uint8Array<ArrayBuffer>));
 }
 
 /** Decode a TMDb response body — Bun fetch may or may not transparently gunzip. */
@@ -279,8 +323,24 @@ export const tmdbApi = {
 			`/movie/${id}`,
 			{
 				append_to_response:
-					"credits,similar,recommendations,videos,watch/providers,release_dates,keywords",
+					"credits,similar,recommendations,videos,watch/providers,release_dates,keywords,images",
 			},
+			fetchOpts,
+		);
+	},
+	/** Lightweight company check — `/search/movie` rows omit `production_company_ids`. */
+	movieProductionCompanies(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ production_companies?: { id: number }[] }>(
+			`/movie/${id}`,
+			{},
+			fetchOpts,
+		);
+	},
+	/** Company membership for TV search filtering (search rows omit company ids). */
+	tvProductionCompanies(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ production_companies?: { id: number }[] }>(
+			`/tv/${id}`,
+			{},
 			fetchOpts,
 		);
 	},
@@ -290,8 +350,24 @@ export const tmdbApi = {
 			`/tv/${id}`,
 			{
 				append_to_response:
-					"credits,similar,recommendations,videos,watch/providers,keywords",
+					"credits,similar,recommendations,videos,watch/providers,keywords,images",
 			},
+			fetchOpts,
+		);
+	},
+	/** Season list embedded on the TV detail payload — powers progress pickers. */
+	tvSeasons(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ seasons: TmdbSeasonSummary[] }>(`/tv/${id}`, {}, fetchOpts);
+	},
+	/** Full episode list for one season — checklist UI + next-episode math. */
+	tvSeasonDetail(
+		id: number,
+		seasonNumber: number,
+		fetchOpts: TmdbFetchOptions = {},
+	) {
+		return tmdb<TmdbSeasonDetail>(
+			`/tv/${id}/season/${seasonNumber}`,
+			{},
 			fetchOpts,
 		);
 	},
@@ -336,7 +412,11 @@ export const tmdbApi = {
 	discoverMovies(
 		page = 1,
 		opts: {
-			withGenres?: number;
+			withGenres?: number | number[];
+			/** TMDb `with_keywords` — comma-joined AND when array. */
+			withKeywords?: number | number[];
+			/** TMDb `with_companies` — production company id (e.g. A24 = 41077). */
+			withCompanies?: number;
 			sortBy?: string;
 			/** TMDb `with_release_type` — e.g. `2|3` theatrical, `4` digital. */
 			withReleaseTypes?: string;
@@ -361,8 +441,31 @@ export const tmdbApi = {
 			include_adult: "false",
 			include_video: "false",
 		};
-		if (opts.withGenres !== undefined && Number.isFinite(opts.withGenres)) {
-			params.with_genres = String(opts.withGenres);
+		if (Array.isArray(opts.withGenres) && opts.withGenres.length > 0) {
+			params.with_genres = opts.withGenres
+				.map((id) => String(Math.floor(id)))
+				.join(",");
+		} else if (
+			typeof opts.withGenres === "number" &&
+			Number.isFinite(opts.withGenres)
+		) {
+			params.with_genres = String(Math.floor(opts.withGenres));
+		}
+		if (Array.isArray(opts.withKeywords) && opts.withKeywords.length > 0) {
+			params.with_keywords = opts.withKeywords
+				.map((id) => String(Math.floor(id)))
+				.join(",");
+		} else if (
+			typeof opts.withKeywords === "number" &&
+			Number.isFinite(opts.withKeywords)
+		) {
+			params.with_keywords = String(Math.floor(opts.withKeywords));
+		}
+		if (
+			opts.withCompanies !== undefined &&
+			Number.isFinite(opts.withCompanies)
+		) {
+			params.with_companies = String(Math.floor(opts.withCompanies));
 		}
 		const reg = opts.region?.trim().toUpperCase();
 		if (reg && /^[A-Z]{2}$/.test(reg)) {
@@ -403,8 +506,23 @@ export const tmdbApi = {
 			fetchOpts,
 		);
 	},
+	genreTvList(fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ genres: { id: number; name: string }[] }>(
+			"/genre/tv/list",
+			{},
+			fetchOpts,
+		);
+	},
 	popularTv(page = 1, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<TmdbPaged<TmdbTvSummary>>("/tv/popular", { page }, fetchOpts);
+	},
+	/** TMDb `/tv/on_the_air` — series with episodes airing in the current window. */
+	onTheAirTv(page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbTvSummary>>(
+			"/tv/on_the_air",
+			{ page },
+			fetchOpts,
+		);
 	},
 	/**
 	 * TMDb `/discover/tv` — same contract as `discoverMovies` but `first_air_date.*` replaces
@@ -413,7 +531,9 @@ export const tmdbApi = {
 	discoverTv(
 		page = 1,
 		opts: {
-			withGenres?: number;
+			withGenres?: number | number[];
+			withKeywords?: number | number[];
+			withCompanies?: number;
 			sortBy?: string;
 			/** TMDb `first_air_date.gte` — e.g. lobby “TV upcoming” from today onward. */
 			firstAirDateGte?: string;
@@ -424,6 +544,8 @@ export const tmdbApi = {
 			withWatchMonetizationTypes?: string;
 			/** TMDb `language` — regional show poster for the patron’s locale. */
 			language?: string;
+			/** TMDb `with_status` — e.g. `3` ended, `0` returning. */
+			withStatus?: number | number[];
 		} = {},
 	) {
 		const sortBy = opts.sortBy ?? "popularity.desc";
@@ -432,8 +554,31 @@ export const tmdbApi = {
 			sort_by: sortBy,
 			include_adult: "false",
 		};
-		if (opts.withGenres !== undefined && Number.isFinite(opts.withGenres)) {
-			params.with_genres = String(opts.withGenres);
+		if (Array.isArray(opts.withGenres) && opts.withGenres.length > 0) {
+			params.with_genres = opts.withGenres
+				.map((id) => String(Math.floor(id)))
+				.join(",");
+		} else if (
+			typeof opts.withGenres === "number" &&
+			Number.isFinite(opts.withGenres)
+		) {
+			params.with_genres = String(Math.floor(opts.withGenres));
+		}
+		if (Array.isArray(opts.withKeywords) && opts.withKeywords.length > 0) {
+			params.with_keywords = opts.withKeywords
+				.map((id) => String(Math.floor(id)))
+				.join(",");
+		} else if (
+			typeof opts.withKeywords === "number" &&
+			Number.isFinite(opts.withKeywords)
+		) {
+			params.with_keywords = String(Math.floor(opts.withKeywords));
+		}
+		if (
+			opts.withCompanies !== undefined &&
+			Number.isFinite(opts.withCompanies)
+		) {
+			params.with_companies = String(Math.floor(opts.withCompanies));
 		}
 		const faGte = opts.firstAirDateGte?.trim();
 		if (faGte && /^\d{4}-\d{2}-\d{2}$/.test(faGte)) {
@@ -451,6 +596,16 @@ export const tmdbApi = {
 		if (wm) {
 			params.with_watch_monetization_types = wm;
 		}
+		if (Array.isArray(opts.withStatus) && opts.withStatus.length > 0) {
+			params.with_status = opts.withStatus
+				.map((id) => String(Math.floor(id)))
+				.join(",");
+		} else if (
+			typeof opts.withStatus === "number" &&
+			Number.isFinite(opts.withStatus)
+		) {
+			params.with_status = String(Math.floor(opts.withStatus));
+		}
 		if (sortBy === "vote_average.desc" || sortBy === "vote_average.asc") {
 			params["vote_count.gte"] = 200;
 		}
@@ -464,6 +619,14 @@ export const tmdbApi = {
 			{
 				append_to_response: "movie_credits,tv_credits",
 			},
+			fetchOpts,
+		);
+	},
+	/** Production company metadata — powers search-dialog studio logo rail. */
+	company(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ id: number; name: string; logo_path: string | null }>(
+			`/company/${id}`,
+			{},
 			fetchOpts,
 		);
 	},

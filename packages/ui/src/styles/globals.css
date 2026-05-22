@@ -112,6 +112,18 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
 
+  /* Skeleton shimmer — subtle white sweep on dark raised surfaces. */
+  --skeleton-shimmer-base: color-mix(
+    in oklab,
+    var(--color-pure-white) 6%,
+    transparent
+  );
+  --skeleton-shimmer-highlight: color-mix(
+    in oklab,
+    var(--color-pure-white) 12%,
+    transparent
+  );
+
   /* Spacing scale (in addition to tailwind defaults) */
   --spacing-4: 4px;
   --spacing-5: 5px;
@@ -430,17 +442,29 @@
     -webkit-text-size-adjust: 100%;
     font-family: var(--font-sans);
     scroll-behavior: smooth;
-    /* Firefox: narrow scrollbar; leave thumb/track to the UA (WebKit uses rules below). */
-    scrollbar-width: thin;
+    /* Page scroll stays usable; visual bar hidden (see `.scrollbar-none` + rules below). */
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
   }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     font-size: var(--text-body);
     line-height: var(--leading-body);
+    /* Match `html` — Lenis / drawer scroll-lock toggles overflow on both. */
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     /* Better legibility on dark surfaces (Aker guidance) */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+  body::-webkit-scrollbar {
+    display: none;
   }
   /*
 	 * Authenticated shell — small bottom gutter for main scroll area.
@@ -528,23 +552,17 @@
   }
 }
 
-/* Scrollbar polish */
-@layer base {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+/*
+ * Hide scrollbars on overflow containers while keeping wheel / trackpad / touch scroll.
+ * Pair with `overflow-x-auto` or `overflow-y-auto` on the same element.
+ */
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--color-medium-gray);
-    border-radius: 999px;
-    /* Match the body wash — same edge as the theater floor */
-    border: 2px solid var(--background);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-soft-stone);
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -957,7 +975,32 @@ html[data-cinema-preset="multiplex"] {
       0 0 0 2px var(--color-pure-white),
       0 0 0 4px rgba(0, 0, 0, 0.75);
   }
-} /* Marquee-style bulbs on stars: class applied from StarRating variant. */
+}
+
+/* Cast / filmography Vaul sheets — keep drag handle, hide Vaul’s gray pill (opacity/bg/size on hover). */
+[data-still-detail-drawer] [data-vaul-handle] {
+  opacity: 1 !important;
+  background: transparent !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0 !important;
+}
+
+[data-still-detail-drawer] [data-vaul-handle]:hover,
+[data-still-detail-drawer] [data-vaul-handle]:active {
+  opacity: 1 !important;
+  background: transparent !important;
+}
+
+[data-still-detail-drawer] [data-vaul-handle-hitarea] {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Marquee-style bulbs on stars: class applied from StarRating variant. */
 .star-marquee-bulb {
   filter: drop-shadow(
     0 0 5px color-mix(in oklab, var(--color-desert-orange) 55%, transparent)
@@ -1111,6 +1154,70 @@ html[data-cinema-preset="multiplex"] {
   }
 }
 
+/*
+ * Skeleton card view transitions — pairs with `motion-plus/animate-view` name
+ * `skeleton-card` when Motion+ is installed; harmless when unused.
+ */
+@property --wipe {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: -100%;
+}
+
+::view-transition-group(skeleton-card) {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+::view-transition-image-pair(skeleton-card) {
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(skeleton-card) {
+  z-index: 2;
+  mask-image: linear-gradient(
+    to right,
+    black var(--wipe),
+    transparent calc(var(--wipe) + 100%)
+  );
+}
+
+/*
+ * Catalog search query field (sticky dialog + token input) — neutral focus/selection;
+ * overrides the global `outline-ring/50` and desert-orange `::selection` on the bar only.
+ */
+@layer components {
+  .catalog-search-query input:is([type="search"], [type="text"]) {
+    accent-color: var(--foreground);
+  }
+  .catalog-search-query input:is([type="search"], [type="text"]):focus,
+  .catalog-search-query input:is([type="search"], [type="text"]):focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+  .catalog-search-query ::selection {
+    background-color: color-mix(in oklab, var(--muted) 70%, transparent);
+    color: var(--foreground);
+  }
+
+  /*
+   * Auth inputs (`bg-input` on `bg-card`) — WebKit autofill paints a light/yellow fill;
+   * inset shadow + long transition keeps the raised input surface on sign-in / sign-up.
+   */
+  .auth-input:-webkit-autofill,
+  .auth-input:-webkit-autofill:hover,
+  .auth-input:-webkit-autofill:focus,
+  .auth-input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--foreground) !important;
+    caret-color: var(--foreground);
+    -webkit-box-shadow: 0 0 0 1000px
+      color-mix(in oklab, var(--card) 88%, white 12%) inset !important;
+    box-shadow: 0 0 0 1000px color-mix(in oklab, var(--card) 88%, white 12%) inset !important;
+    transition: background-color 9999s ease-out 0s;
+  }
+
+}
+
 /* ---------------------------------------------------------------------------
  * Sonner — Still pill toasts (overrides injected base styles from the library).
  * Track B: depth comes from shadow tokens, not outline rings on the shell.
@@ -1118,6 +1225,16 @@ html[data-cinema-preset="multiplex"] {
 [data-sonner-toaster][data-x-position="center"] {
   /* Sonner toasts are absolutely positioned — the list needs a real width for translateX(-50%). */
   width: min(420px, calc(100vw - 32px)) !important;
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-icon] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  align-self: center !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  margin: 0 !important;
 }
 
 [data-sonner-toaster]

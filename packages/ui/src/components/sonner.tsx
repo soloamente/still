@@ -13,15 +13,15 @@ import { Toaster as Sonner, type ToasterProps } from "sonner";
 
 import { cn } from "../lib/utils";
 
-/** Shared leading-well size — 28px circle reads clearly beside 13px toast copy. */
+/** Shared leading-well size — 28px circle; grid centers Lucide glyphs optically. */
 const toastIconCircleClass =
-	"flex size-7 shrink-0 items-center justify-center rounded-full";
+	"inline-grid size-7 shrink-0 place-items-center rounded-full leading-none";
 
 /** Leading marks for narrative toasts — always on a light pill over the dark app shell. */
 export const stillToastLeadingIcons = {
 	added: (
 		<span className={cn(toastIconCircleClass, "bg-sky-400 text-white")}>
-			<Plus className="size-4" strokeWidth={2.5} aria-hidden />
+			<Plus className="block size-4 shrink-0" strokeWidth={2.5} aria-hidden />
 		</span>
 	),
 	updated: (
@@ -70,7 +70,7 @@ const defaultStillToastClassNames: NonNullable<
 		"!font-normal !leading-snug !text-inherit [&:empty]:min-h-0 [&:empty]:hidden",
 	description:
 		"!mt-0.5 !text-[13px] !font-normal !leading-snug !text-neutral-500",
-	icon: "!m-0 flex !h-auto !w-auto shrink-0 !self-center",
+	icon: "!m-0 !flex !size-7 !shrink-0 !items-center !justify-center !self-center [&>span]:!grid [&>span]:!size-7 [&>span]:!place-items-center",
 	closeButton:
 		"border-neutral-200/90 bg-white text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900",
 	success: "!border-0 !bg-white !text-neutral-900",

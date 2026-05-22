@@ -5,6 +5,13 @@
 export const HOME_LOBBY_CATALOGUE_GRID_CLASSNAME =
 	"isolate grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-2 md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-2 xl:grid-cols-6 xl:gap-2";
 
+/**
+ * List detail films — wide `minmax` tracks so the films section reads larger than lobby grids.
+ * `auto-fill` keeps sparse lists from shrinking a lone poster into a tiny cell.
+ */
+export const LIST_DETAIL_FILMS_GRID_CLASSNAME =
+	"isolate grid w-full max-w-7xl gap-4 sm:gap-5 [grid-template-columns:repeat(auto-fill,minmax(10.5rem,1fr))] md:[grid-template-columns:repeat(auto-fill,minmax(12.5rem,1fr))] lg:[grid-template-columns:repeat(auto-fill,minmax(14rem,1fr))] xl:[grid-template-columns:repeat(auto-fill,minmax(16rem,1fr))] 2xl:[grid-template-columns:repeat(auto-fill,minmax(17.5rem,1fr))]";
+
 export const HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME =
 	"min-w-0 rounded-[3rem]";
 

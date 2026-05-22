@@ -131,6 +131,7 @@ export function useMovieDetailUserState(
 					return;
 				}
 				toast.success("Removed from watchlist");
+				setInWatchlist(false);
 			} else {
 				const result = await postWatchlistAdd({ movieId });
 				if (!result.ok) {
@@ -142,6 +143,7 @@ export function useMovieDetailUserState(
 					return;
 				}
 				toast.success("Added to watchlist");
+				setInWatchlist(true);
 			}
 			await refreshUserState();
 		} catch (err) {

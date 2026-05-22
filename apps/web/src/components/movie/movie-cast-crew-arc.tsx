@@ -1,4 +1,3 @@
-import { cn } from "@still/ui/lib/utils";
 import type { CSSProperties } from "react";
 import { CastCrewViewAllDrawer } from "@/components/movie/cast-crew-view-all-drawer";
 import type { CreditsCastMember } from "@/components/movie/credits-catalog";
@@ -39,12 +38,7 @@ export function MovieCastCrewArc({
 		<MovieDetailBodySection
 			id={MOVIE_DETAIL_SECTION.cast}
 			title="Cast & Crew"
-			className={cn(
-				// Break out of the film page `max-w-7xl` column on large viewports so 11 portraits can scale up.
-				"pt-2 pb-4 sm:pb-6",
-				"lg:left-1/2 lg:w-[min(100vw-2rem,96rem)] lg:max-w-none lg:-translate-x-1/2",
-				"xl:w-[min(100vw-3rem,108rem)]",
-			)}
+			className="pt-2 pb-4 sm:pb-6"
 			contentClassName="mt-8"
 		>
 			<div

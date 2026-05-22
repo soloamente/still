@@ -1,13 +1,20 @@
 import { env } from "@still/env/web";
 import type { NextConfig } from "next";
 
-/** Profile portrait/banner proxies (`PatronPortraitAvatar`, `profileBannerImageUrl`). */
+/** API image proxies (profiles, list covers) — Next `<Image>` cannot read private Blob URLs. */
 const serverOrigin = new URL(env.NEXT_PUBLIC_SERVER_URL);
-const profileAssetPattern = {
+const serverAssetPattern = {
 	protocol: serverOrigin.protocol.replace(":", "") as "http" | "https",
 	hostname: serverOrigin.hostname,
 	...(serverOrigin.port ? { port: serverOrigin.port } : {}),
+} as const;
+const profileAssetPattern = {
+	...serverAssetPattern,
 	pathname: "/api/profiles/**",
+} as const;
+const listCoverAssetPattern = {
+	...serverAssetPattern,
+	pathname: "/api/lists/**",
 } as const;
 
 const nextConfig: NextConfig = {
@@ -23,6 +30,7 @@ const nextConfig: NextConfig = {
 	images: {
 		remotePatterns: [
 			profileAssetPattern,
+			listCoverAssetPattern,
 			// TMDb poster / backdrop / logo CDN
 			{ protocol: "https", hostname: "image.tmdb.org" },
 			// Vercel Blob (avatars / banners)

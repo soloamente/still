@@ -2,6 +2,10 @@
 
 import { Suspense } from "react";
 
+import {
+	LobbyCenterTabFallback,
+	LobbyOrderChipFallback,
+} from "@/components/app/lobby-suspense-fallbacks";
 import { ProfileCatalogOrderChips } from "@/components/profile/profile-catalog-order-chips";
 import { ProfileCatalogVenueChips } from "@/components/profile/profile-catalog-venue-chips";
 import {
@@ -18,21 +22,19 @@ import type { ProfileLedgerTabId } from "@/lib/profile-lobby-order";
 export function ProfileLobbyChrome({
 	handle,
 	activeTab,
+	ledgerTab,
 	socialTabs,
 }: {
 	handle: string;
+	/** Highlighted center pill (Favorites when `?favorites=1`). */
 	activeTab: ProfileTabId;
+	/** Movies / TV ledger slice — order + venue rails follow this, not the pill label. */
+	ledgerTab: ProfileLedgerTabId;
 	socialTabs: readonly ProfileSocialTabId[];
 }) {
-	const showLedgerRails = activeTab === "movies" || activeTab === "tv";
-
-	const ledgerTab = activeTab as ProfileLedgerTabId;
-	const chipFallback = (
-		<div
-			className="h-10 w-40 animate-pulse rounded-full bg-background"
-			aria-hidden
-		/>
-	);
+	const showLedgerRails =
+		ledgerTab === "movies" || ledgerTab === "tv" || activeTab === "favorites";
+	const chipFallback = <LobbyOrderChipFallback />;
 
 	return (
 		<div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
@@ -45,14 +47,7 @@ export function ProfileLobbyChrome({
 			</div>
 
 			<div className="flex min-w-0 justify-center">
-				<Suspense
-					fallback={
-						<div
-							className="h-10 w-48 shrink-0 animate-pulse rounded-full bg-background"
-							aria-hidden
-						/>
-					}
-				>
+				<Suspense fallback={<LobbyCenterTabFallback />}>
 					<ProfileTabToolbar
 						handle={handle}
 						socialTabs={socialTabs}

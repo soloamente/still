@@ -1,6 +1,5 @@
 "use client";
 
-import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import IconPen2Fill from "@still/ui/icons/pen-2-fill";
 import IconPlayRotateAnticlockwise from "@still/ui/icons/play-rotate-anticlockwise";
 import { cn } from "@still/ui/lib/utils";
@@ -8,6 +7,7 @@ import { Loader2 } from "lucide-react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 
 import { AddToListControl } from "@/components/list/add-to-list-control";
+import { DetailWatchlistButton } from "@/components/movie/detail-watchlist-button";
 import { useMovieDetailUserState } from "@/components/movie/use-movie-detail-user-state";
 import { useReviewComposer } from "@/components/review/review-composer";
 import {
@@ -71,13 +71,6 @@ export function MovieDetailPrimaryActions({
 			? `watch-again-${myLogs.length}`
 			: "add-watched";
 
-	const watchlistKey =
-		!hydrated || busy === "watchlist"
-			? "watchlist-busy"
-			: inWatchlist
-				? "watchlist-on"
-				: "watchlist-off";
-
 	function handleOpenReview() {
 		openReviewComposer({
 			movieId,
@@ -103,54 +96,12 @@ export function MovieDetailPrimaryActions({
 							exit={motionProps.presenceExit}
 							transition={motionProps.swapTransition}
 						>
-							<motion.button
-								type="button"
-								className={cn(circle, DETAIL_MOTION_PRESSABLE_CLASS)}
-								style={motionProps.style}
-								layout
-								data-primary-action
-								data-watchlist={inWatchlist || undefined}
-								whileHover={motionProps.hover}
-								whileTap={motionProps.tap}
-								transition={motionProps.buttonTransition}
-								onClick={toggleWatchlist}
-								disabled={!hydrated || busy === "watchlist"}
-								aria-pressed={inWatchlist}
-								aria-label={
-									inWatchlist ? "Remove from watchlist" : "Add to watchlist"
-								}
-							>
-								<AnimatePresence mode="popLayout" initial={false}>
-									<motion.span
-										key={watchlistKey}
-										className={cn(
-											"inline-flex items-center justify-center",
-											DETAIL_MOTION_SWAP_CLASS,
-										)}
-										layout="position"
-										initial={motionProps.swapInitial}
-										animate={motionProps.swapAnimate}
-										exit={motionProps.swapExit}
-										transition={motionProps.swapTransition}
-									>
-										{!hydrated || busy === "watchlist" ? (
-											<Loader2
-												className="size-5 animate-spin opacity-70"
-												aria-hidden
-											/>
-										) : (
-											<IconClockRotateClockwise
-												size="22px"
-												className={cn(
-													"shrink-0",
-													inWatchlist ? "opacity-100" : "opacity-80",
-												)}
-												aria-hidden
-											/>
-										)}
-									</motion.span>
-								</AnimatePresence>
-							</motion.button>
+							<DetailWatchlistButton
+								inWatchlist={inWatchlist}
+								hydrated={hydrated}
+								busy={busy === "watchlist"}
+								onToggle={toggleWatchlist}
+							/>
 						</motion.div>
 					) : null}
 				</AnimatePresence>

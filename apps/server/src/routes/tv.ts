@@ -2,8 +2,15 @@ import { env } from "@still/env/server";
 import Elysia, { t } from "elysia";
 
 import { context } from "../context";
-import { tmdbApi, tmdbImg } from "../lib/tmdb";
+import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
+import { type TmdbTvSummary, tmdbApi, tmdbImg } from "../lib/tmdb";
+import { parseCommaIntList } from "../lib/tmdb-discover-params";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
+import { ensureTvCached } from "../lib/tv-cache";
+import {
+	getTvSeasonDetailCached,
+	getTvSeasonsCached,
+} from "../lib/tv-season-cache";
 
 /** Returned when `TMDB_API_KEY` is missing so the UI can explain empty rails. */
 const TMDB_UNCONFIGURED = {
@@ -41,6 +48,64 @@ const DISCOVER_MONETIZATION_WHITELIST = new Set([
 	"free",
 ]);
 
+const COMPANY_SEARCH_VERIFY_MAX = 20;
+const COMPANY_DISCOVER_SCAN_PAGES = 4;
+
+async function tvBelongsToCompany(
+	tvId: number,
+	companyId: number,
+	language: string,
+): Promise<boolean> {
+	const row = await tmdbApi.tvProductionCompanies(tvId, { language });
+	return (row.production_companies ?? []).some((c) => c.id === companyId);
+}
+
+async function filterTvSearchResultsByCompany(
+	shows: TmdbTvSummary[],
+	companyId: number,
+	language: string,
+): Promise<TmdbTvSummary[]> {
+	const candidates = shows.slice(0, COMPANY_SEARCH_VERIFY_MAX);
+	const verified = await Promise.all(
+		candidates.map(async (show) => ({
+			show,
+			ok: await tvBelongsToCompany(show.id, companyId, language),
+		})),
+	);
+	return verified.filter((row) => row.ok).map((row) => row.show);
+}
+
+async function discoverCompanyTvMatchingTitle(
+	companyId: number,
+	titleNeedle: string,
+	language: string,
+): Promise<TmdbTvSummary[]> {
+	const ql = titleNeedle.toLowerCase();
+	const out: TmdbTvSummary[] = [];
+	const seen = new Set<number>();
+
+	for (let page = 1; page <= COMPANY_DISCOVER_SCAN_PAGES; page++) {
+		const disc = await tmdbApi.discoverTv(page, {
+			withCompanies: companyId,
+			sortBy: "popularity.desc",
+			language,
+		});
+		for (const show of disc.results) {
+			if (seen.has(show.id)) continue;
+			const titleHaystack =
+				`${show.name} ${show.original_name ?? ""}`.toLowerCase();
+			if (!titleHaystack.includes(ql)) continue;
+			seen.add(show.id);
+			out.push(show);
+		}
+		if (out.length >= COMPANY_SEARCH_VERIFY_MAX) break;
+		const totalPages = disc.total_pages ?? 0;
+		if (page >= totalPages) break;
+	}
+
+	return out.slice(0, COMPANY_SEARCH_VERIFY_MAX);
+}
+
 export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 	.use(context)
 	// Text search — TMDb passthrough (same contract as `/api/movies/search` for the web dialog).
@@ -52,23 +117,51 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			if (!env.TMDB_API_KEY)
 				return tmdbUnconfiguredPaged(Number(query.page ?? 1) || 1);
 			const language = await getTmdbLanguageForUser(user?.id);
-			const data = await tmdbApi.searchTv(q, Number(query.page ?? 1), {
-				language,
-			});
+			const page = Number(query.page ?? 1) || 1;
+			const companyRaw = query.company?.trim();
+			const companyId =
+				companyRaw && Number.isFinite(Number(companyRaw))
+					? Math.floor(Number(companyRaw))
+					: null;
+
+			const data = await tmdbApi.searchTv(q, page, { language });
+			let rows = data.results;
+
+			if (companyId) {
+				const verified = await filterTvSearchResultsByCompany(
+					rows,
+					companyId,
+					language,
+				);
+				const fromDiscover = await discoverCompanyTvMatchingTitle(
+					companyId,
+					q,
+					language,
+				);
+				const merged = new Map<number, TmdbTvSummary>();
+				for (const show of [...verified, ...fromDiscover]) {
+					merged.set(show.id, show);
+				}
+				rows = [...merged.values()].slice(0, COMPANY_SEARCH_VERIFY_MAX);
+			}
+
 			return {
 				...data,
-				results: data.results.map((show) => ({
+				page,
+				results: rows.map((show) => ({
 					...show,
 					title: show.name,
 					poster_url: tmdbImg.poster(show.poster_path),
 					backdrop_url: tmdbImg.backdrop(show.backdrop_path),
 				})),
+				total_results: companyId ? rows.length : data.total_results,
 			};
 		},
 		{
 			query: t.Object({
 				q: t.Optional(t.String()),
 				page: t.Optional(t.String()),
+				company: t.Optional(t.String()),
 			}),
 		},
 	)
@@ -93,15 +186,68 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 		{ query: t.Object({ page: t.Optional(t.String()) }) },
 	)
 	.get(
+		"/on-the-air",
+		async ({ query, user }) => {
+			const page = Number(query.page ?? 1) || 1;
+			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
+			const language = await getTmdbLanguageForUser(user?.id);
+			const sortRaw = (query.sort ?? "").trim();
+			const sortBy = DISCOVER_TV_SORT_WHITELIST.has(sortRaw)
+				? sortRaw
+				: "popularity.desc";
+			// Align with home **Ongoing** — Returning Series (`0`), not `/tv/on_the_air` (broadcast window overlaps Ended).
+			const data = await tmdbApi.discoverTv(page, {
+				sortBy,
+				withStatus: 0,
+				language,
+			});
+			return {
+				...data,
+				results: data.results.map((show) => ({
+					...show,
+					title: show.name,
+					poster_url: tmdbImg.poster(show.poster_path),
+					backdrop_url: tmdbImg.backdrop(show.backdrop_path),
+				})),
+			};
+		},
+		{
+			query: t.Object({
+				page: t.Optional(t.String()),
+				sort: t.Optional(t.String()),
+			}),
+		},
+	)
+	.get(
+		"/genres",
+		async ({ query, user }) => {
+			if (!env.TMDB_API_KEY)
+				return {
+					genres: [] as { id: number; name: string }[],
+					...TMDB_UNCONFIGURED,
+				};
+			const languageOverride = (query.language ?? "").trim();
+			const language =
+				languageOverride && /^[a-z]{2}(-[A-Z]{2})?$/i.test(languageOverride)
+					? languageOverride
+					: await getTmdbLanguageForUser(user?.id);
+			const data = await tmdbApi.genreTvList({ language });
+			return { genres: data.genres ?? [] };
+		},
+		{ query: t.Object({ language: t.Optional(t.String()) }) },
+	)
+	.get(
 		"/discover",
 		async ({ query, user }) => {
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
-			const genreRaw = query.genre?.trim();
-			const withGenres =
-				genreRaw && Number.isFinite(Number(genreRaw))
-					? Math.floor(Number(genreRaw))
+			const withGenres = parseCommaIntList(query.genre?.trim());
+			const withKeywords = parseCommaIntList(query.keywords?.trim());
+			const companyRaw = query.company?.trim();
+			const withCompanies =
+				companyRaw && Number.isFinite(Number(companyRaw))
+					? Math.floor(Number(companyRaw))
 					: undefined;
 			const sortRaw = (query.sort ?? "").trim();
 			const sortBy = DISCOVER_TV_SORT_WHITELIST.has(sortRaw)
@@ -147,13 +293,26 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					? todayUtc
 					: undefined;
 
+			const statusRaw = (query.status ?? "").trim().toLowerCase();
+			const withStatus =
+				statusRaw === "ended" ||
+				statusRaw === "completed" ||
+				statusRaw === "complete"
+					? 3
+					: statusRaw === "returning" || statusRaw === "ongoing"
+						? 0
+						: undefined;
+
 			const data = await tmdbApi.discoverTv(page, {
-				withGenres,
+				withGenres: withGenres.length > 0 ? withGenres : undefined,
+				withKeywords: withKeywords.length > 0 ? withKeywords : undefined,
+				withCompanies,
 				sortBy,
 				firstAirDateGte,
 				firstAirDateLte,
 				watchRegion,
 				withWatchMonetizationTypes,
+				withStatus,
 				language,
 			});
 			let rows = data.results;
@@ -173,7 +332,9 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					backdrop_url: tmdbImg.backdrop(show.backdrop_path),
 				})),
 				applied: {
-					genre: withGenres ?? null,
+					genre: withGenres.length > 0 ? withGenres : null,
+					keywords: withKeywords.length > 0 ? withKeywords : null,
+					company: withCompanies ?? null,
 					sort: sortBy,
 					air_date_gte: firstAirDateGte ?? null,
 					air_date_lte: firstAirDateLte ?? null,
@@ -191,10 +352,49 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			query: t.Object({
 				page: t.Optional(t.String()),
 				genre: t.Optional(t.String()),
+				keywords: t.Optional(t.String()),
+				company: t.Optional(t.String()),
 				sort: t.Optional(t.String()),
 				air_date_gte: t.Optional(t.String()),
 				monetization: t.Optional(t.String()),
 				watch_region: t.Optional(t.String()),
+				/** `ended` / `completed` → TMDb status 3; `returning` / `ongoing` → 0. */
+				status: t.Optional(t.String()),
+			}),
+		},
+	)
+	// Season list for progress pickers — cached on `tv.tmdbJson` for 24h.
+	.get(
+		"/:id/seasons",
+		async ({ params, status, user }) => {
+			const id = Number(params.id);
+			if (!Number.isFinite(id)) return status(400, "Invalid id");
+			if (!env.TMDB_API_KEY) return { seasons: [], ...TMDB_UNCONFIGURED };
+			const language = await getTmdbLanguageForUser(user?.id);
+			await ensureTvCached(id);
+			const seasons = await getTvSeasonsCached(id, language);
+			return { seasons };
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	.get(
+		"/:id/season/:seasonNumber",
+		async ({ params, status, user }) => {
+			const id = Number(params.id);
+			const seasonNumber = Number(params.seasonNumber);
+			if (!Number.isFinite(id) || !Number.isFinite(seasonNumber)) {
+				return status(400, "Invalid id or season");
+			}
+			if (!env.TMDB_API_KEY) return { season: null, ...TMDB_UNCONFIGURED };
+			const language = await getTmdbLanguageForUser(user?.id);
+			await ensureTvCached(id);
+			const season = await getTvSeasonDetailCached(id, seasonNumber, language);
+			return { season };
+		},
+		{
+			params: t.Object({
+				id: t.String(),
+				seasonNumber: t.String(),
 			}),
 		},
 	)
@@ -233,6 +433,12 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					backdropPath: detail.backdrop_path,
 					poster_url: tmdbImg.poster(detail.poster_path),
 					backdrop_url: tmdbImg.backdrop(detail.backdrop_path, "original"),
+					hero_artwork: buildHeroArtworkSlides({
+						title: detail.name,
+						posterPath: detail.poster_path,
+						backdropPath: detail.backdrop_path,
+						images: detail.images ?? null,
+					}),
 					genreIds: (detail.genres ?? []).map((g) => g.id),
 					voteAverage: detail.vote_average ?? null,
 					voteCount: detail.vote_count ?? null,

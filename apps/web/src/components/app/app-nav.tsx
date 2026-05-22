@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
 	AppUserAccountMenuBody,
 	accountMenuContentClassName,
@@ -34,6 +34,7 @@ import {
 import { useCommandPalette } from "@/components/app/command-palette";
 import { BrandMark } from "@/components/brand-mark";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 
 /** Core routes in the floating bar (icon-first, compact). */
 const NAV_MAIN = [
@@ -62,14 +63,28 @@ export function AppNav({ user }: { user: NavUser }) {
 	const pathname = usePathname();
 	const router = useRouter();
 	const openCommand = useCommandPalette((s) => s.open);
+	const requestCatalogSearch = useCatalogSearchDialog((s) => s.requestOpen);
+	const setNavSearchTriggerEl = useCatalogSearchDialog(
+		(s) => s.setNavSearchTriggerEl,
+	);
+	const navSearchRef = useRef<HTMLButtonElement>(null);
 	const reduceMotion = useReducedMotion();
 	const notificationsActive =
 		pathname === "/notifications" || pathname.startsWith("/notifications/");
 
-	// ⌘K / Ctrl+K opens the universal search palette.
+	useEffect(() => {
+		setNavSearchTriggerEl(navSearchRef.current);
+		return () => setNavSearchTriggerEl(null);
+	}, [setNavSearchTriggerEl]);
+
+	// ⌘⇧K / Ctrl+Shift+K — launcher palette (catalog search uses ⌘K in `CatalogSearchDialogRoot`).
 	useEffect(() => {
 		const handler = (e: KeyboardEvent) => {
-			if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+			if (
+				(e.metaKey || e.ctrlKey) &&
+				e.shiftKey &&
+				e.key.toLowerCase() === "k"
+			) {
 				e.preventDefault();
 				openCommand();
 			}
@@ -157,12 +172,18 @@ export function AppNav({ user }: { user: NavUser }) {
 
 					<div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
 						<Button
+							ref={navSearchRef}
 							type="button"
 							variant="ghost"
 							size="icon"
 							className="size-10 rounded-xl sm:size-11"
-							onClick={openCommand}
-							aria-label="Search — ⌘K"
+							onClick={() => {
+								const el = navSearchRef.current;
+								requestCatalogSearch(
+									el ? el.getBoundingClientRect() : undefined,
+								);
+							}}
+							aria-label="Search films and TV — ⌘K"
 						>
 							<Search className="size-5" />
 						</Button>
@@ -243,10 +264,7 @@ export function AppNav({ user }: { user: NavUser }) {
 								align="end"
 								className={accountMenuContentClassName}
 							>
-								<AppUserAccountMenuBody
-									user={user}
-									onRequestContent={openCommand}
-								/>
+								<AppUserAccountMenuBody user={user} />
 							</DropdownMenuContent>
 						</DropdownMenu>
 					</div>

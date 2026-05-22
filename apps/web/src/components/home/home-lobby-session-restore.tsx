@@ -1,21 +1,22 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useLayoutEffect } from "react";
 
+import { writeHomeLobbyHrefCookie } from "@/lib/home-lobby-cookie";
 import {
 	buildHomeHrefFromPersisted,
 	readHomeLobbyPersisted,
+	readLastHomeBrowseSurface,
 } from "@/lib/home-lobby-persist";
 
 /**
- * When the patron lands on a **bare** `/home` (no query), restore their last Movies-lobby
- * chips from localStorage so the sort pill + venue match the previous session after
- * visiting diary, watchlist, or other routes that dropped `?sort=` / `?venue=`.
+ * When the patron lands on a **bare** `/home` (no query), sync the address bar to their
+ * last lobby chips without `router.replace` — that path triggers Next 307 redirects in dev.
+ * The RSC page already reads the same prefs from the `still.home-lobby-href-v1` cookie.
  */
 export function HomeLobbySessionRestore() {
 	const pathname = usePathname();
-	const router = useRouter();
 
 	useLayoutEffect(() => {
 		if (pathname !== "/home") return;
@@ -24,10 +25,15 @@ export function HomeLobbySessionRestore() {
 		if (!isBare) return;
 		const persisted = readHomeLobbyPersisted();
 		if (!persisted) return;
-		const href = buildHomeHrefFromPersisted(persisted, "movies");
+		const surface = readLastHomeBrowseSurface();
+		const href = buildHomeHrefFromPersisted(persisted, surface);
 		if (href === "/home") return;
-		router.replace(href);
-	}, [pathname, router]);
+		const current = `${pathname}${search}`;
+		if (href === current) return;
+		// URL-only update — no RSC round-trip, no 307.
+		window.history.replaceState(null, "", href);
+		writeHomeLobbyHrefCookie(href);
+	}, [pathname]);
 
 	return null;
 }

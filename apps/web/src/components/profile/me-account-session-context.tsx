@@ -28,6 +28,7 @@ export type MeAccountSettingsDraftPayload = {
 	theaterAudio: boolean;
 	catalogMonochromePeersOnHover: boolean;
 	catalogTmdbWatchRegion: string;
+	catalogTmdbLanguage: string;
 };
 
 export type MeAccountPendingImage = { file: File; previewUrl: string };

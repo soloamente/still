@@ -1,5 +1,6 @@
 "use client";
 
+import { Skeleton } from "@still/ui/components/skeleton";
 import IconBell from "@still/ui/icons/bell";
 import { cn } from "@still/ui/lib/utils";
 import type { LucideIcon } from "lucide-react";
@@ -9,6 +10,7 @@ import {
 	Flame,
 	MessageCircle,
 	Trophy,
+	Tv,
 	UserPlus,
 } from "lucide-react";
 import Image from "next/image";
@@ -40,6 +42,7 @@ function iconForKind(kind: string): LucideIcon {
 	if (kind.startsWith("chat.")) return MessageCircle;
 	if (kind.startsWith("badge.")) return Award;
 	if (kind.startsWith("achievement.")) return Trophy;
+	if (kind === "tv.new_episode") return Tv;
 	return Bell;
 }
 
@@ -173,10 +176,10 @@ function NotificationPreviewSkeleton() {
 		<div className="space-y-1 px-0.5" aria-hidden>
 			{[0, 1, 2, 3].map((key) => (
 				<div key={key} className="flex gap-3 rounded-[1.75rem] px-3 py-3.5">
-					<div className="size-10 shrink-0 animate-pulse rounded-full bg-card" />
+					<Skeleton className="size-10 shrink-0 rounded-full bg-card" />
 					<div className="min-w-0 flex-1 space-y-2 py-0.5">
-						<div className="h-4 w-[78%] animate-pulse rounded-full bg-card" />
-						<div className="h-3 w-[52%] animate-pulse rounded-full bg-card/80" />
+						<Skeleton className="h-4 w-[78%] rounded-full bg-card" />
+						<Skeleton className="h-3 w-[52%] rounded-full bg-card/80" />
 					</div>
 				</div>
 			))}

@@ -5,8 +5,13 @@ import Link from "next/link";
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
 import { Section } from "@/components/ui/section";
 import { normalizeDiscoverMonetization } from "@/lib/discover-catalog-url";
+import {
+	TV_COMPLETED_DISCOVER_STATUS,
+	TV_ONGOING_DISCOVER_STATUS,
+} from "@/lib/home-catalog-run";
 import { fetchTvDiscover } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
+import { parseTvDiscoverStatusParam } from "@/lib/tv-discover-catalog-url";
 
 export const metadata: Metadata = {
 	title: "Discover TV",
@@ -65,6 +70,7 @@ export default async function TvDiscoverPage({
 		air_date_gte?: string;
 		monetization?: string;
 		watch_region?: string;
+		status?: string;
 	}>;
 }) {
 	const sp = await searchParams;
@@ -88,6 +94,7 @@ export default async function TvDiscoverPage({
 	const agRaw = (sp.air_date_gte ?? "").trim();
 	const appliedAirDateGte =
 		agRaw && /^\d{4}-\d{2}-\d{2}$/.test(agRaw) ? agRaw : null;
+	const appliedStatus = parseTvDiscoverStatusParam(sp.status);
 
 	const { data: discoverData, error: discoverError } = await fetchTvDiscover(
 		SEED_PAGE,
@@ -98,8 +105,28 @@ export default async function TvDiscoverPage({
 			airDateGte: appliedAirDateGte ?? undefined,
 			monetization: appliedMonetization ?? undefined,
 			watchRegion: appliedWatchRegion ?? undefined,
+			status: appliedStatus ?? undefined,
 		},
 	);
+
+	const statusKicker =
+		appliedStatus === TV_ONGOING_DISCOVER_STATUS
+			? "Returning series"
+			: appliedStatus === TV_COMPLETED_DISCOVER_STATUS
+				? "Completed series"
+				: "Billboard";
+	const statusTitle =
+		appliedStatus === TV_ONGOING_DISCOVER_STATUS
+			? "Returning TV"
+			: appliedStatus === TV_COMPLETED_DISCOVER_STATUS
+				? "Completed TV"
+				: "Discover TV";
+	const statusSubtitle =
+		appliedStatus === TV_ONGOING_DISCOVER_STATUS
+			? "TMDb Returning Series (`with_status=0`) — matches Home → TV → Ongoing."
+			: appliedStatus === TV_COMPLETED_DISCOVER_STATUS
+				? "TMDb Ended (`with_status=3`) — matches Home → TV → Completed."
+				: "TMDb `/discover/tv` — sort and optional first-air floor; URLs match the home lobby Filters link for TV Upcoming.";
 
 	const payload = (discoverData ?? null) as TvDiscoverPayload | null;
 	const seedShows = payload?.results ?? [];
@@ -117,13 +144,19 @@ export default async function TvDiscoverPage({
 	return (
 		<div className="space-y-8">
 			<Section
-				kicker="Billboard"
-				title="Discover TV"
-				subtitle="TMDb `/discover/tv` — sort and optional first-air floor; URLs match the home lobby Filters link for TV Upcoming."
+				kicker={statusKicker}
+				title={statusTitle}
+				subtitle={statusSubtitle}
 				rightSlot={
 					<Link
-						href="/home"
-						aria-label="Back to home lobby"
+						href={
+							appliedStatus === TV_ONGOING_DISCOVER_STATUS
+								? "/home?browse=tv&run=ongoing"
+								: appliedStatus === TV_COMPLETED_DISCOVER_STATUS
+									? "/home?browse=tv&run=completed"
+									: "/home?browse=tv"
+						}
+						aria-label="Back to home TV lobby"
 						className="text-muted-foreground text-xs [@media(hover:hover)]:hover:text-foreground"
 					>
 						← Lobby
@@ -155,14 +188,22 @@ export default async function TvDiscoverPage({
 					</div>
 				) : !blockedReason ? (
 					<PopularMoviesInfinite
-						key={`${appliedGenre ?? "all"}-${appliedSort}-${appliedMonetization ?? "no-mon"}-${appliedWatchRegion ?? "no-wr"}-${appliedAirDateGte ?? "no-air"}`}
+						key={`${appliedGenre ?? "all"}-${appliedSort}-${appliedMonetization ?? "no-mon"}-${appliedWatchRegion ?? "no-wr"}-${appliedAirDateGte ?? "no-air"}-${appliedStatus ?? "no-status"}`}
 						blockedReason={blockedReason}
 						catalogKind="discover"
+						catalogLabel={
+							appliedStatus === TV_ONGOING_DISCOVER_STATUS
+								? "returning series"
+								: appliedStatus === TV_COMPLETED_DISCOVER_STATUS
+									? "completed series"
+									: undefined
+						}
 						catalogMedia="tv"
 						discoverAirDateGte={appliedAirDateGte}
 						discoverGenreId={appliedGenre}
 						discoverMonetization={appliedMonetization}
 						discoverSortBy={appliedSort}
+						discoverTvStatus={appliedStatus}
 						discoverWatchRegion={appliedWatchRegion}
 						seedMovies={seedShows}
 						seedPage={SEED_PAGE}

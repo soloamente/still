@@ -3,7 +3,11 @@
 import { env } from "@still/env/web";
 import { useEffect, useState } from "react";
 
-import { fetchMoviesPopular, fetchTvPopular } from "@/lib/still-api-fetch";
+import {
+	fetchMoviesDiscover,
+	fetchMoviesPopular,
+	fetchTvPopular,
+} from "@/lib/still-api-fetch";
 
 /** Left-rail categories in the empty search dialog. */
 export type SearchDialogBrowseCategory = "movies" | "tv" | "community";
@@ -17,6 +21,7 @@ export type SearchDialogBrowsePreviewItem = {
 };
 
 const PREVIEW_LIMIT = 4;
+const STUDIO_PREVIEW_LIMIT = 8;
 
 type TmdbSheetRow = {
 	id: number;
@@ -33,8 +38,9 @@ function posterUrlFromDbPath(path: string | null | undefined): string | null {
 function mapTmdbSheetRows(
 	rows: TmdbSheetRow[],
 	listingKind: "movie" | "tv",
+	limit = PREVIEW_LIMIT,
 ): SearchDialogBrowsePreviewItem[] {
-	return rows.slice(0, PREVIEW_LIMIT).map((row) => ({
+	return rows.slice(0, limit).map((row) => ({
 		id: row.id,
 		title: row.title ?? "Untitled",
 		posterUrl: row.poster_url ?? null,
@@ -96,10 +102,25 @@ function parseListPopularRows(data: unknown): SearchDialogBrowsePreviewItem[] {
 
 async function fetchBrowsePreview(
 	category: SearchDialogBrowseCategory,
+	studioCompanyId: number | null,
 	signal: AbortSignal,
 ): Promise<SearchDialogBrowsePreviewItem[]> {
 	switch (category) {
 		case "movies": {
+			if (studioCompanyId != null) {
+				const res = await fetchMoviesDiscover(1, {
+					signal,
+					companyId: studioCompanyId,
+					sortBy: "popularity.desc",
+				});
+				if (res.error || signal.aborted) return [];
+				const payload = res.data as { results?: TmdbSheetRow[] } | null;
+				return mapTmdbSheetRows(
+					payload?.results ?? [],
+					"movie",
+					STUDIO_PREVIEW_LIMIT,
+				);
+			}
 			const res = await fetchMoviesPopular(1, { signal });
 			if (res.error || signal.aborted) return [];
 			const payload = res.data as { results?: TmdbSheetRow[] } | null;
@@ -152,6 +173,7 @@ async function fetchBrowsePreview(
  */
 export function useSearchDialogBrowsePreview(
 	category: SearchDialogBrowseCategory,
+	studioCompanyId: number | null,
 	enabled: boolean,
 ) {
 	const [items, setItems] = useState<SearchDialogBrowsePreviewItem[]>([]);
@@ -165,7 +187,8 @@ export function useSearchDialogBrowsePreview(
 		}
 		setLoading(true);
 		const ctrl = new AbortController();
-		void fetchBrowsePreview(category, ctrl.signal)
+		const companyId = category === "movies" ? studioCompanyId : null;
+		void fetchBrowsePreview(category, companyId, ctrl.signal)
 			.then((next) => {
 				if (!ctrl.signal.aborted) setItems(next);
 			})
@@ -176,7 +199,7 @@ export function useSearchDialogBrowsePreview(
 				if (!ctrl.signal.aborted) setLoading(false);
 			});
 		return () => ctrl.abort();
-	}, [category, enabled]);
+	}, [category, studioCompanyId, enabled]);
 
 	return { items, loading };
 }

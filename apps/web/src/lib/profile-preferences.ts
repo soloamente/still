@@ -1,9 +1,21 @@
+import {
+	catalogWatchRegionIsoToTmdbLanguage,
+	isCatalogTmdbLanguageCode,
+} from "@/lib/catalog-tmdb-language";
+
 /**
  * Stable keys under profile `preferences` (opaque JSON; Settings PATCH shallow-merges).
  * Use these constants in the web app so reads/writes stay aligned.
  */
 export const PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER =
 	"catalogMonochromePeersOnHover" as const;
+
+/**
+ * TMDb `language` for catalogue copy (genre pills, search tags, title locale).
+ * When unset, {@link resolveCatalogTmdbLanguage} falls back to watch region.
+ */
+export const PROFILE_PREF_CATALOG_TMDB_LANGUAGE =
+	"catalogTmdbLanguage" as const;
 
 /**
  * TMDb catalogue `watch_region` for **subscription / streaming** slices (ISO 3166-1 alpha-2),
@@ -49,6 +61,33 @@ export function catalogWatchRegionToApiQuery(
  * Default `true` so existing users keep current behavior until they turn it off in Settings.
  * Persisted `false` disables the effect.
  */
+/** Explicit catalogue language, or `null` to derive from watch region. */
+export function readCatalogTmdbLanguagePref(
+	preferences: Record<string, unknown> | null | undefined,
+): string | null {
+	if (preferences == null) return null;
+	const raw = preferences[PROFILE_PREF_CATALOG_TMDB_LANGUAGE];
+	if (raw == null || raw === "") return null;
+	if (typeof raw !== "string") return null;
+	const s = raw.trim();
+	return isCatalogTmdbLanguageCode(s) ? s : null;
+}
+
+/**
+ * Patron-facing TMDb language: explicit Settings choice → watch region map → `en-US`.
+ */
+export function resolveCatalogTmdbLanguage(
+	preferences: Record<string, unknown> | null | undefined,
+): string {
+	const explicit = readCatalogTmdbLanguagePref(preferences);
+	if (explicit) return explicit;
+	const region = readCatalogTmdbWatchRegionPref(preferences);
+	if (region && region !== "ALL") {
+		return catalogWatchRegionIsoToTmdbLanguage(region);
+	}
+	return "en-US";
+}
+
 export function readCatalogMonochromePeersOnHoverPref(
 	preferences: Record<string, unknown> | null | undefined,
 ): boolean {

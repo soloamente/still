@@ -1,22 +1,24 @@
 import { db, movie } from "@still/db";
 import { inArray } from "drizzle-orm";
 
+import { listDisplayCoverMovieIds } from "./list-display-cover";
+
 /**
- * Joins `movie.poster_path` for each id in `list.cover_movie_ids` (order preserved).
+ * Joins `movie.poster_path` for list cover ids (pinned `coverMovieId` first when set).
  * Used by list list endpoints so UIs can paint Savee-style strips without N+1 queries.
  */
 export async function withCoverPosterPaths<
-	L extends { coverMovieIds: number[] },
+	L extends { coverMovieIds: number[]; coverMovieId?: number | null },
 >(rows: L[]): Promise<(L & { coverPosterPaths: (string | null)[] })[]> {
 	const unique = new Set<number>();
 	for (const r of rows) {
-		for (const id of r.coverMovieIds) unique.add(id);
+		for (const id of listDisplayCoverMovieIds(r)) unique.add(id);
 	}
 	const ids = [...unique];
 	if (ids.length === 0) {
 		return rows.map((r) => ({
 			...r,
-			coverPosterPaths: r.coverMovieIds.map(() => null),
+			coverPosterPaths: listDisplayCoverMovieIds(r).map(() => null),
 		}));
 	}
 	const hits = await db
@@ -24,8 +26,11 @@ export async function withCoverPosterPaths<
 		.from(movie)
 		.where(inArray(movie.tmdbId, ids));
 	const map = new Map(hits.map((h) => [h.tmdbId, h.posterPath]));
-	return rows.map((r) => ({
-		...r,
-		coverPosterPaths: r.coverMovieIds.map((id) => map.get(id) ?? null),
-	}));
+	return rows.map((r) => {
+		const displayIds = listDisplayCoverMovieIds(r);
+		return {
+			...r,
+			coverPosterPaths: displayIds.map((id) => map.get(id) ?? null),
+		};
+	});
 }

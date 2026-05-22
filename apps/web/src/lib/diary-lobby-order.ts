@@ -5,6 +5,7 @@ import {
 	type HomeVenue,
 	parseHomeVenue,
 } from "@/lib/home-venue";
+import type { TvLogScope } from "@/lib/tv-watch-types";
 
 /**
  * Diary has no `?sort=` row — treat venue defaults like home **Popular** (streaming-first)
@@ -41,13 +42,43 @@ function readLogWatchVenueRaw(
  * Normalises each row after `GET /api/logs/me` — some stacks still surface `watch_venue`
  * while the UI types expect `watchVenue`.
  */
+function readTvLogScope(
+	log: DiaryLogRow["log"] & {
+		log_scope?: unknown;
+		season_number?: unknown;
+		episode_number?: unknown;
+	},
+): {
+	logScope: TvLogScope;
+	seasonNumber: number | null;
+	episodeNumber: number | null;
+} {
+	const rawScope = log.logScope ?? log.log_scope;
+	const logScope: TvLogScope =
+		rawScope === "episode" || rawScope === "season" || rawScope === "show"
+			? rawScope
+			: "show";
+	const sn = log.seasonNumber ?? log.season_number;
+	const en = log.episodeNumber ?? log.episode_number;
+	return {
+		logScope,
+		seasonNumber: typeof sn === "number" ? sn : null,
+		episodeNumber: typeof en === "number" ? en : null,
+	};
+}
+
 export function coerceDiaryLogRows(rows: DiaryLogRow[]): DiaryLogRow[] {
 	return rows.map((row) => {
-		const raw = readLogWatchVenueRaw(
-			row.log as DiaryLogRow["log"] & { watch_venue?: unknown },
-		);
+		const logRaw = row.log as DiaryLogRow["log"] & {
+			watch_venue?: unknown;
+			log_scope?: unknown;
+			season_number?: unknown;
+			episode_number?: unknown;
+		};
+		const raw = readLogWatchVenueRaw(logRaw);
 		const watchVenue =
 			raw === "theaters" || raw === "streaming" ? raw : undefined;
+		const scopeFields = readTvLogScope(logRaw);
 		const base = row as DiaryLogRow & { tv?: DiaryLogRow["tv"] };
 		return {
 			...row,
@@ -56,6 +87,7 @@ export function coerceDiaryLogRows(rows: DiaryLogRow[]): DiaryLogRow[] {
 			log: {
 				...row.log,
 				watchVenue,
+				...scopeFields,
 			},
 		};
 	});

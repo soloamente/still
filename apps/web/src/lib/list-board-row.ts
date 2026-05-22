@@ -10,8 +10,12 @@ export interface ListBoardRow {
 	likesCount: number;
 	coverMovieIds: number[];
 	coverPosterPaths: (string | null)[];
+	coverImageUrl?: string | null;
+	coverMovieId?: number | null;
 	updatedAt: string;
 	isPublic: boolean;
+	/** `favorites` = auto-synced from diary hearts; hidden from add-to-list picker. */
+	systemKind?: string | null;
 	/** Present on `GET /api/lists/me?movieId=` — film already on this list. */
 	containsMovie?: boolean;
 }
@@ -33,8 +37,16 @@ export function toListBoardRow(raw: unknown): ListBoardRow {
 		likesCount: Number(r.likesCount ?? 0),
 		coverMovieIds,
 		coverPosterPaths,
+		coverImageUrl: typeof r.coverImageUrl === "string" ? r.coverImageUrl : null,
+		coverMovieId: typeof r.coverMovieId === "number" ? r.coverMovieId : null,
 		updatedAt: String(r.updatedAt ?? ""),
 		isPublic: Boolean(r.isPublic ?? true),
+		systemKind:
+			typeof r.systemKind === "string"
+				? r.systemKind
+				: typeof r.system_kind === "string"
+					? r.system_kind
+					: null,
 		containsMovie: "containsMovie" in r ? Boolean(r.containsMovie) : undefined,
 	};
 }

@@ -11,3 +11,4 @@ export * from "./notification";
 export * from "./profile";
 export * from "./social";
 export * from "./tv";
+export * from "./tv-watch";

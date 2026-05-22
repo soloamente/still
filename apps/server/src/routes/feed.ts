@@ -13,6 +13,11 @@ import { desc, eq, inArray, or } from "drizzle-orm";
 import Elysia, { t } from "elysia";
 
 import { context } from "../context";
+import {
+	enrichFeedListRows,
+	feedAtMs,
+	serializeFeedAt,
+} from "../lib/feed-items";
 
 /**
  * Personalized activity feed: logs + reviews + new lists from people the
@@ -63,6 +68,8 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					.limit(limit),
 			]);
 
+			const listsEnriched = await enrichFeedListRows(lists);
+
 			const items = [
 				...logs.map((row) => ({
 					kind: "log" as const,
@@ -76,14 +83,19 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 						at: row.review.publishedAt,
 						payload: row,
 					})),
-				...lists.map((row) => ({
+				...listsEnriched.map((row) => ({
 					kind: "list" as const,
 					at: row.list.updatedAt,
 					payload: row,
 				})),
 			]
-				.sort((a, b) => b.at.getTime() - a.at.getTime())
-				.slice(0, limit);
+				.sort((a, b) => feedAtMs(b.at) - feedAtMs(a.at))
+				.slice(0, limit)
+				.map((row) => ({
+					kind: row.kind,
+					at: serializeFeedAt(row.at),
+					payload: row.payload,
+				}));
 
 			return { items };
 		},
@@ -111,17 +123,25 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 				.orderBy(desc(list.likesCount))
 				.limit(12),
 		]);
+		const topListsEnriched = await enrichFeedListRows(topLists);
+
 		const items = [
 			...topReviews.map((row) => ({
 				kind: "review" as const,
 				at: row.review.publishedAt,
 				payload: row,
 			})),
-			...topLists.map((row) => ({
+			...topListsEnriched.map((row) => ({
 				kind: "list" as const,
 				at: row.list.updatedAt,
 				payload: row,
 			})),
-		].sort((a, b) => Number(b.at) - Number(a.at));
+		]
+			.sort((a, b) => feedAtMs(b.at) - feedAtMs(a.at))
+			.map((row) => ({
+				kind: row.kind,
+				at: serializeFeedAt(row.at),
+				payload: row.payload,
+			}));
 		return { items };
 	});

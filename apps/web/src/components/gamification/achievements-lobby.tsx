@@ -3,6 +3,7 @@
 import { cn } from "@still/ui/lib/utils";
 import { Suspense } from "react";
 
+import { LobbyCenterTabFallback } from "@/components/app/lobby-suspense-fallbacks";
 import {
 	AchievementsBadgesPanel,
 	type BadgeCatalogRow,
@@ -51,7 +52,7 @@ function mergeAchievementRows(
 }
 
 /**
- * Achievements lobby — profile/diary shell (`bg-card` tray, sticky top bar, tab chips).
+ * Achievements lobby ÔÇö profile/diary shell (`bg-card` tray, sticky top bar, tab chips).
  */
 export function AchievementsLobby({
 	activeTab,
@@ -82,19 +83,12 @@ export function AchievementsLobby({
 					</p>
 					<p className="mx-auto max-w-xs text-balance text-muted-foreground text-sm leading-relaxed">
 						Badges mark moments on the circuit. <br /> Goals track the slow-burn
-						routes — log, review, and show up for your circle.
+						routes ÔÇö log, review, and show up for your circle.
 					</p>
 				</header>
 
 				<div className="flex justify-center">
-					<Suspense
-						fallback={
-							<div
-								className="h-10 w-48 shrink-0 animate-pulse rounded-full bg-background"
-								aria-hidden
-							/>
-						}
-					>
+					<Suspense fallback={<LobbyCenterTabFallback />}>
 						<AchievementsTabToolbar activeTab={activeTab} />
 					</Suspense>
 				</div>

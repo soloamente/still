@@ -4,36 +4,41 @@ import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import { isListCoverProxySrc } from "@/lib/list-cover-image";
+
+export type MovieDetailHeroSlide = {
+	key: string;
+	src: string;
+	label: string;
+};
+
 /**
- * Hero stills strip — poster + optional backdrop; **page indicators** match the comp:
+ * Hero poster strip — TMDb posters only (no scene backdrops). **Page indicators** match the comp:
  * one elongated white pill for the active slide, short muted pills for the rest, tight `gap`,
  * no outer track (pills sit on the canvas).
  */
 export function MovieDetailHeroMedia({
 	title,
 	posterUrl,
-	backdropUrl,
+	backdropUrl: _backdropUrl,
+	/** When set (film/TV detail API), extra TMDb posters from `hero_artwork` (posters only). */
+	artworkSlides,
 	className,
 }: {
 	title: string;
 	posterUrl: string | null;
 	backdropUrl: string | null;
+	artworkSlides?: MovieDetailHeroSlide[];
 	className?: string;
 }) {
 	const slides = useMemo(() => {
-		const out: { key: string; src: string; label: string }[] = [];
+		if (artworkSlides?.length) return artworkSlides;
+		const out: MovieDetailHeroSlide[] = [];
 		if (posterUrl) {
 			out.push({ key: "poster", src: posterUrl, label: `${title} poster` });
 		}
-		if (backdropUrl && backdropUrl !== posterUrl) {
-			out.push({
-				key: "backdrop",
-				src: backdropUrl,
-				label: `${title} still`,
-			});
-		}
 		return out;
-	}, [backdropUrl, posterUrl, title]);
+	}, [artworkSlides, posterUrl, title]);
 
 	const slideWaveKey = slides.map((s) => s.key).join("|");
 
@@ -53,7 +58,7 @@ export function MovieDetailHeroMedia({
 		return (
 			<div
 				className={cn(
-					"relative mx-auto aspect-2/3 w-full max-w-[min(100%,22rem)] overflow-hidden rounded-[1.25rem] bg-muted/25 sm:rounded-[1.5rem]",
+					"relative mx-auto aspect-2/3 w-full max-w-[min(100%,22rem)] overflow-hidden rounded-[1.25rem] bg-background sm:rounded-[1.5rem]",
 					className,
 				)}
 			>
@@ -67,32 +72,23 @@ export function MovieDetailHeroMedia({
 	return (
 		<div className={cn("mx-auto w-full max-w-[min(100%,22rem)]", className)}>
 			<div className="relative aspect-2/3 overflow-hidden rounded-[1.25rem] bg-muted/20 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.55)] sm:rounded-[1.5rem]">
-				{slides.map((s, i) => (
-					<div
-						key={s.key}
-						className={cn(
-							"absolute inset-0 transition-opacity duration-300 ease-out motion-reduce:transition-none",
-							i === safeIndex ? "opacity-100" : "pointer-events-none opacity-0",
-						)}
-						aria-hidden={i === safeIndex ? undefined : true}
-					>
-						<Image
-							src={s.src}
-							alt={s.label}
-							fill
-							className={cn(
-								"object-cover",
-								s.key === "backdrop" && "object-center",
-							)}
-							sizes="(max-width: 768px) 100vw, 360px"
-							priority={i === 0}
-						/>
-					</div>
-				))}
+				{/* One <Image> at a time — stacked hidden slides triggered removeChild races on refresh. */}
+				<div className="absolute inset-0">
+					<Image
+						key={active.src}
+						src={active.src}
+						alt={active.label}
+						fill
+						className="object-cover"
+						sizes="(max-width: 768px) 100vw, 360px"
+						priority
+						unoptimized={isListCoverProxySrc(active.src)}
+					/>
+				</div>
 			</div>
 			{showDots ? (
 				<div
-					className="mx-auto mt-4 flex h-1 items-center justify-center gap-1"
+					className="mx-auto mt-4 flex h-1.5 items-center justify-center gap-1.5"
 					role="tablist"
 					aria-label="Artwork slides"
 				>
@@ -109,8 +105,8 @@ export function MovieDetailHeroMedia({
 								className={cn(
 									"block shrink-0 rounded-full transition-[width,background-color] duration-200 ease-out motion-reduce:transition-none",
 									i === safeIndex
-										? "h-1 w-8 bg-foreground"
-										: "h-1 w-1.5 bg-muted-foreground/45 [@media(hover:hover)]:group-hover:bg-muted-foreground/60",
+										? "h-1.5 w-9 bg-foreground"
+										: "h-1.5 w-2 bg-muted-foreground/45 [@media(hover:hover)]:group-hover:bg-muted-foreground/60",
 								)}
 							/>
 							<span className="sr-only">{s.label}</span>
@@ -118,7 +114,7 @@ export function MovieDetailHeroMedia({
 					))}
 				</div>
 			) : (
-				<div className="mt-4 h-1" aria-hidden />
+				<div className="mt-4 h-1.5" aria-hidden />
 			)}
 		</div>
 	);

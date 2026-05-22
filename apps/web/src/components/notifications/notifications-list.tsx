@@ -2,7 +2,7 @@
 
 import { Button } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
-import { Award, Bell, MessageCircle, Trophy, UserPlus } from "lucide-react";
+import { Award, Bell, MessageCircle, Trophy, Tv, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
@@ -57,6 +57,7 @@ function iconForKind(kind: string) {
 	if (kind.startsWith("chat.")) return MessageCircle;
 	if (kind.startsWith("badge.")) return Award;
 	if (kind.startsWith("achievement.")) return Trophy;
+	if (kind === "tv.new_episode") return Tv;
 	return Bell;
 }
 

@@ -1,3 +1,4 @@
+import type { HomeCatalogRun } from "@/lib/home-catalog-run";
 import type { HomeCatalogSort } from "@/lib/home-catalog-sort";
 
 /** Where the patron wants catalogue emphasis — orthogonal to Latest vs Popular (`sort`). */
@@ -20,6 +21,23 @@ export function parseHomeVenue(
 	if (s === "streaming" || s === "home" || s === "digital") {
 		return "streaming";
 	}
+	return defaultHomeVenueForSort(catalogSort);
+}
+
+/** TV `/home` venue default — **Upcoming** run uses broadcast (In cinemas); Popular/Latest follow sort. */
+export function parseTvLobbyVenue(
+	raw: string | null | undefined,
+	catalogSort: HomeCatalogSort,
+	catalogRun: HomeCatalogRun | null,
+): HomeVenue {
+	const s = raw?.trim().toLowerCase() ?? "";
+	if (s === "theaters" || s === "theatre" || s === "theatrical") {
+		return "theaters";
+	}
+	if (s === "streaming" || s === "home" || s === "digital") {
+		return "streaming";
+	}
+	if (catalogRun === "upcoming") return "theaters";
 	return defaultHomeVenueForSort(catalogSort);
 }
 

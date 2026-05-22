@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import type { ProfileLedgerTabId } from "@/lib/profile-lobby-order";
 import {
 	buildProfileLobbyHref,
+	parseProfileLobbyFavorites,
 	parseProfileLobbyOrder,
 	parseProfileLobbyVenue,
 } from "@/lib/profile-lobby-order";
@@ -25,6 +26,9 @@ export function ProfileCatalogVenueChips({
 	const searchParams = useSearchParams();
 	const order = parseProfileLobbyOrder(searchParams.get("order"));
 	const venue = parseProfileLobbyVenue(searchParams.get("venue"));
+	const favoritesOnly = parseProfileLobbyFavorites(
+		searchParams.get("favorites"),
+	);
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -65,6 +69,7 @@ export function ProfileCatalogVenueChips({
 						tab: ledgerTab,
 						order,
 						venue: "theaters",
+						favoritesOnly,
 					})}
 					scroll={false}
 					aria-current={theatersActive ? "page" : undefined}
@@ -87,6 +92,7 @@ export function ProfileCatalogVenueChips({
 						tab: ledgerTab,
 						order,
 						venue: "streaming",
+						favoritesOnly,
 					})}
 					scroll={false}
 					aria-current={streamingActive ? "page" : undefined}

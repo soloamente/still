@@ -3,16 +3,20 @@ import { cn } from "@still/ui/lib/utils";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import {
+	LobbyCatalogChipFallback,
+	LobbyStickyChromeFallback,
+	LobbyVenueChipFallback,
+} from "@/components/app/lobby-suspense-fallbacks";
 import { DiaryCatalogOrderChips } from "@/components/diary/diary-catalog-order-chips";
 import { DiaryLobbyCatalogue } from "@/components/diary/diary-lobby-catalogue";
 import { CatalogWatchRegionPrompt } from "@/components/home/catalog-watch-region-prompt";
 import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
 import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
-import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import { authServer } from "@/lib/auth-server";
+import { buildDiaryLobbyGridItems } from "@/lib/diary-lobby-grouping";
 import {
 	buildDiaryLobbyHref,
-	type DiaryLogWithListing,
 	diaryLogMatchesDiaryLobbyVenue,
 	isDiaryLogWithListing,
 	parseDiaryLobbyOrder,
@@ -29,25 +33,6 @@ import { serverApi } from "@/lib/server-api";
 
 export const metadata: Metadata = { title: "Diary" };
 export const dynamic = "force-dynamic";
-
-/** Lobby seeds — `listingKind` routes `/tv/` vs `/movies/` poster links in the shared grid. */
-function diaryRowToPopularSeed(row: DiaryLogWithListing): PopularMovieSeed {
-	const listing = row.movie ?? row.tv;
-	if (!listing) {
-		throw new Error("diaryRowToPopularSeed: row missing movie and tv");
-	}
-	let poster_url: string | null = listing.posterPath;
-	if (poster_url?.length && !poster_url.startsWith("http")) {
-		const fragment = poster_url.startsWith("/") ? poster_url : `/${poster_url}`;
-		poster_url = `https://image.tmdb.org/t/p/w780${fragment}`;
-	}
-	return {
-		id: listing.tmdbId,
-		title: listing.title,
-		poster_url,
-		listingKind: row.tv != null ? "tv" : "movie",
-	};
-}
 
 export default async function DiaryPage({
 	searchParams,
@@ -97,22 +82,14 @@ export default async function DiaryPage({
 	);
 	const lobbyRows = sortDiaryLobbyRowsForOrder(forVenue, lobbyOrder);
 
-	const seeds = lobbyRows.map(diaryRowToPopularSeed);
-	const posterCellKeys = lobbyRows.map((r) => r.log.id);
-	const catalogueWaveKeyOverride = `${lobbyOrder}:${lobbyVenue}:${posterCellKeys.join("|")}`;
-	const hasRows = lobbyRows.length > 0;
+	const gridItems = buildDiaryLobbyGridItems(lobbyRows, lobbyOrder);
+	const catalogueWaveKeyOverride = `${lobbyOrder}:${lobbyVenue}:${gridItems.map((item) => item.key).join("|")}`;
+	const hasRows = gridItems.length > 0;
 
 	return (
-		// Match `/home` shell — fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve).
+		// Match `/home` shell ÔÇö fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve).
 		<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
-			<Suspense
-				fallback={
-					<div
-						className="sticky top-0 z-20 h-14 w-full animate-pulse rounded-[2rem] bg-card/60"
-						aria-hidden
-					/>
-				}
-			>
+			<Suspense fallback={<LobbyStickyChromeFallback />}>
 				<HomeStickyChrome user={stickyUser} />
 			</Suspense>
 
@@ -123,24 +100,10 @@ export default async function DiaryPage({
 				)}
 			>
 				<div className="flex shrink-0 items-center justify-between gap-3">
-					<Suspense
-						fallback={
-							<div
-								className="h-10 w-44 animate-pulse rounded-full bg-background"
-								aria-hidden
-							/>
-						}
-					>
+					<Suspense fallback={<LobbyCatalogChipFallback />}>
 						<DiaryCatalogOrderChips />
 					</Suspense>
-					<Suspense
-						fallback={
-							<div
-								className="h-10 min-w-66 shrink-0 animate-pulse rounded-full bg-background"
-								aria-hidden
-							/>
-						}
-					>
+					<Suspense fallback={<LobbyVenueChipFallback />}>
 						<HomeCatalogViewModeToolbar />
 					</Suspense>
 				</div>
@@ -181,7 +144,7 @@ export default async function DiaryPage({
 											No screenings logged yet
 										</p>
 										<p className="text-muted-foreground text-sm leading-relaxed">
-											Your diary will mirror the home lobby grid — open a film
+											Your diary will mirror the home lobby grid ÔÇö open a film
 											and tap <em>Log</em> to fill this wall.
 										</p>
 									</div>
@@ -201,9 +164,8 @@ export default async function DiaryPage({
 				) : (
 					<DiaryLobbyCatalogue
 						catalogueWaveKeyOverride={catalogueWaveKeyOverride}
+						items={gridItems}
 						monochromePeersOnHover={monochromePeersOnHover}
-						posterCellKeys={posterCellKeys}
-						seeds={seeds}
 					/>
 				)}
 			</section>

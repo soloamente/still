@@ -20,6 +20,7 @@ import {
 	useCallback,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from "react";
 import { toast } from "sonner";
@@ -27,6 +28,7 @@ import { create } from "zustand";
 
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { LogWatchedDatePicker } from "@/components/log/log-watched-date-picker";
+import { TvLogScopePicker } from "@/components/log/tv-log-scope-picker";
 import {
 	DetailMotionButton,
 	DetailMotionButtonWrap,
@@ -44,6 +46,8 @@ import {
 import { formatTodayYmd, isValidYmd } from "@/lib/log-watched-date";
 import { fetchMoviesSearch, patchLog, postLog } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
+import { quickLogTvSubmitLabel } from "@/lib/tv-log-scope-display";
+import type { TvLogScope } from "@/lib/tv-watch-types";
 
 /** Max note length — keep in sync with `apps/server` log create validation. */
 const NOTE_MAX = 500;
@@ -57,7 +61,7 @@ type MovieHit = {
 	poster_url: string | null;
 };
 
-type QuickLogArgs = {
+export type QuickLogArgs = {
 	movieId?: number;
 	/** TMDb TV id — mutually exclusive with `movieId` for new logs; same numeric space as films on TMDb. */
 	tvId?: number;
@@ -80,6 +84,10 @@ type QuickLogArgs = {
 	watchVenue?: HomeVenue;
 	/** When logging again after an existing diary row — defaults rewatch on. */
 	priorLogCount?: number;
+	/** TV diary scope — defaults to whole show when omitted. */
+	logScope?: "show" | "season" | "episode";
+	seasonNumber?: number;
+	episodeNumber?: number;
 	onSuccess?: () => void;
 };
 
@@ -118,6 +126,32 @@ function posterSrcFromPath(path: string | null | undefined): string | null {
 	return `https://image.tmdb.org/t/p/w342${fragment}`;
 }
 
+/** Mirrors server `validateTvLogScope` — blocks submit until season/episode picks are set. */
+function tvLogScopeIsComplete(
+	scope: TvLogScope,
+	seasonNumber: number | null,
+	episodeNumber: number | null,
+): boolean {
+	if (scope === "show") return true;
+	if (scope === "season") return seasonNumber != null;
+	if (scope === "episode") {
+		return seasonNumber != null && episodeNumber != null;
+	}
+	return false;
+}
+
+function tvLogScopePayload(
+	scope: TvLogScope,
+	seasonNumber: number | null,
+	episodeNumber: number | null,
+) {
+	return {
+		logScope: scope,
+		seasonNumber: scope === "show" ? null : seasonNumber,
+		episodeNumber: scope === "episode" ? episodeNumber : null,
+	};
+}
+
 /**
  * Cinematic log / edit sheet — rating slider, watch venue, rewatch, and favorite.
  * Mounted in `AppShell` so any client surface can open it via `useQuickLog`.
@@ -136,6 +170,9 @@ export function QuickLogRoot() {
 	const [watchVenue, setWatchVenue] = useState<HomeVenue>("streaming");
 	const [liked, setLiked] = useState(false);
 	const [rewatch, setRewatch] = useState(false);
+	const [logScope, setLogScope] = useState<TvLogScope>("show");
+	const [seasonNumber, setSeasonNumber] = useState<number | null>(null);
+	const [episodeNumber, setEpisodeNumber] = useState<number | null>(null);
 	const [saving, setSaving] = useState(false);
 
 	const [searchQuery, setSearchQuery] = useState("");
@@ -166,6 +203,24 @@ export function QuickLogRoot() {
 	 * otherwise projects venue pill + meta row controls from the wrong origin on open.
 	 */
 	const [sheetLayoutActive, setSheetLayoutActive] = useState(false);
+	const [showFooterFade, setShowFooterFade] = useState(true);
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const scrollContentKey = [
+		needsCatalogPick,
+		tvId,
+		logScope,
+		seasonNumber,
+		episodeNumber,
+		searchResults.length,
+	].join("|");
+
+	/** Hide the bottom scrim once the patron scrolls to the end — mirrors `ReviewComposerRoot`. */
+	const syncFooterFade = useCallback(() => {
+		const el = scrollRef.current;
+		if (!el) return;
+		const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+		setShowFooterFade(distanceFromBottom > 8);
+	}, []);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -175,6 +230,19 @@ export function QuickLogRoot() {
 		const timer = window.setTimeout(() => setSheetLayoutActive(true), 190);
 		return () => clearTimeout(timer);
 	}, [isOpen]);
+
+	useEffect(() => {
+		void scrollContentKey;
+		if (!isOpen) {
+			setShowFooterFade(true);
+			return;
+		}
+		const el = scrollRef.current;
+		if (!el) return;
+		syncFooterFade();
+		el.addEventListener("scroll", syncFooterFade, { passive: true });
+		return () => el.removeEventListener("scroll", syncFooterFade);
+	}, [isOpen, syncFooterFade, scrollContentKey]);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -190,6 +258,9 @@ export function QuickLogRoot() {
 			setWatchVenue("streaming");
 			setLiked(false);
 			setRewatch(false);
+			setLogScope("show");
+			setSeasonNumber(null);
+			setEpisodeNumber(null);
 			setSearchQuery("");
 			setSearchResults([]);
 			setSearching(false);
@@ -227,6 +298,9 @@ export function QuickLogRoot() {
 					? args.watchVenue
 					: "streaming",
 			);
+			setLogScope(args.logScope ?? "show");
+			setSeasonNumber(args.seasonNumber ?? null);
+			setEpisodeNumber(args.episodeNumber ?? null);
 			return;
 		}
 		if (typeof args.movieId === "number" && args.movieTitle) {
@@ -250,6 +324,9 @@ export function QuickLogRoot() {
 		setLiked(false);
 		setRewatch(Boolean(args.rewatch) || (args.priorLogCount ?? 0) > 0);
 		setWatchVenue("streaming");
+		setLogScope(args.logScope ?? "show");
+		setSeasonNumber(args.seasonNumber ?? null);
+		setEpisodeNumber(args.episodeNumber ?? null);
 	}, [isOpen, args]);
 
 	useEffect(() => {
@@ -300,8 +377,22 @@ export function QuickLogRoot() {
 		if (movieId == null && tvId == null) return false;
 		if (!isValidYmd(watchedDate)) return false;
 		if (note.length > NOTE_MAX) return false;
+		if (
+			tvId != null &&
+			!tvLogScopeIsComplete(logScope, seasonNumber, episodeNumber)
+		) {
+			return false;
+		}
 		return true;
-	}, [movieId, tvId, watchedDate, note.length]);
+	}, [
+		movieId,
+		tvId,
+		watchedDate,
+		note.length,
+		logScope,
+		seasonNumber,
+		episodeNumber,
+	]);
 
 	const handleClose = useCallback(() => {
 		close();
@@ -334,6 +425,9 @@ export function QuickLogRoot() {
 					watchVenue,
 					liked: options.skipDetails ? false : liked,
 					rewatch: options.skipDetails ? false : rewatch,
+					...(tvId != null
+						? tvLogScopePayload(logScope, seasonNumber, episodeNumber)
+						: {}),
 				});
 				if (!result.ok || !result.data) {
 					console.error("[quick-log] patch failed", result.error);
@@ -357,6 +451,13 @@ export function QuickLogRoot() {
 				watchVenue,
 				liked: options.skipDetails ? undefined : liked || undefined,
 				rewatch: options.skipDetails ? undefined : rewatch || undefined,
+				...(tvId != null && args.logScope
+					? {
+							logScope: args.logScope,
+							seasonNumber: args.seasonNumber,
+							episodeNumber: args.episodeNumber,
+						}
+					: {}),
 			};
 
 			let result: Awaited<ReturnType<typeof postLog>>;
@@ -399,7 +500,7 @@ export function QuickLogRoot() {
 	const primaryLabel = isEditMode
 		? "Save"
 		: isSeriesLog
-			? "Add show"
+			? quickLogTvSubmitLabel(logScope)
 			: "Add movie";
 
 	// Match `HomeCatalogViewModeToolbar` venue chips (track + sliding pill).
@@ -451,242 +552,273 @@ export function QuickLogRoot() {
 							</Button>
 						</div>
 
-						<div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-20 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-							{needsCatalogPick ? (
-								<div className="mb-6 space-y-2">
-									<Label htmlFor="quick-log-search">Pick a film</Label>
-									<Input
-										id="quick-log-search"
-										type="search"
-										autoComplete="off"
-										spellCheck={false}
-										value={searchQuery}
-										onChange={(e) => setSearchQuery(e.target.value)}
-										placeholder="Search by title…"
-										className="min-h-11 text-base"
-									/>
-									{searchHint ? (
-										<p className="text-amber-600 text-xs">{searchHint}</p>
-									) : null}
-									{searching ? (
-										<p className="text-muted-foreground text-xs">Searching…</p>
-									) : searchQuery.trim() && searchResults.length === 0 ? (
-										<p className="text-muted-foreground text-xs">
-											No matches — try another title.
-										</p>
-									) : null}
-									<ul className="max-h-48 space-y-1 overflow-y-auto rounded-2xl bg-muted/25 p-1">
-										{searchResults.map((m) => (
-											<li key={m.id}>
-												<button
-													type="button"
-													className="flex w-full items-center gap-2 rounded-xl px-2 py-2 text-left text-sm [@media(hover:hover)]:hover:bg-muted/60"
-													onClick={() => {
-														setMovieId(m.id);
-														setTvId(null);
-														setMovieTitle(
-															m.title + (m.year ? ` (${m.year})` : ""),
-														);
-														setPosterUrl(m.poster_url);
-														setSearchQuery("");
-														setSearchResults([]);
-													}}
-												>
-													<span className="line-clamp-2 font-medium">
-														{m.title}
-													</span>
-													{m.year ? (
-														<span className="shrink-0 text-muted-foreground text-xs tabular-nums">
-															{m.year}
-														</span>
-													) : null}
-												</button>
-											</li>
-										))}
-									</ul>
-								</div>
-							) : null}
-
-							{posterUrl ? (
-								<div className="mx-auto mb-5 flex justify-center">
-									<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
-										<Image
-											src={posterUrl}
-											alt=""
-											fill
-											sizes="120px"
-											className="object-cover"
-											unoptimized
-										/>
-									</div>
-								</div>
-							) : null}
-
-							<h2
-								id="quick-log-title"
-								className="mb-6 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+						<div className="relative">
+							<div
+								ref={scrollRef}
+								className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 							>
-								{heading}
-							</h2>
+								{needsCatalogPick ? (
+									<div className="mb-6 space-y-2">
+										<Label htmlFor="quick-log-search">Pick a film</Label>
+										<Input
+											id="quick-log-search"
+											type="search"
+											autoComplete="off"
+											spellCheck={false}
+											value={searchQuery}
+											onChange={(e) => setSearchQuery(e.target.value)}
+											placeholder="Search by title…"
+											className="min-h-11 text-base"
+										/>
+										{searchHint ? (
+											<p className="text-amber-600 text-xs">{searchHint}</p>
+										) : null}
+										{searching ? (
+											<p className="text-muted-foreground text-xs">
+												Searching…
+											</p>
+										) : searchQuery.trim() && searchResults.length === 0 ? (
+											<p className="text-muted-foreground text-xs">
+												No matches — try another title.
+											</p>
+										) : null}
+										<ul className="max-h-48 space-y-1 overflow-y-auto rounded-2xl bg-muted/25 p-1">
+											{searchResults.map((m) => (
+												<li key={m.id}>
+													<button
+														type="button"
+														className="flex w-full items-center gap-2 rounded-xl px-2 py-2 text-left text-sm [@media(hover:hover)]:hover:bg-muted/60"
+														onClick={() => {
+															setMovieId(m.id);
+															setTvId(null);
+															setMovieTitle(
+																m.title + (m.year ? ` (${m.year})` : ""),
+															);
+															setPosterUrl(m.poster_url);
+															setSearchQuery("");
+															setSearchResults([]);
+														}}
+													>
+														<span className="line-clamp-2 font-medium">
+															{m.title}
+														</span>
+														{m.year ? (
+															<span className="shrink-0 text-muted-foreground text-xs tabular-nums">
+																{m.year}
+															</span>
+														) : null}
+													</button>
+												</li>
+											))}
+										</ul>
+									</div>
+								) : null}
 
-							<fieldset className="mx-auto mb-5 w-fit border-0 p-0">
-								<legend className="sr-only">Where did you watch?</legend>
-								<LayoutGroup id="quick-log-venue">
-									<div className="flex w-fit items-center rounded-full bg-background p-1">
-										<div className="flex min-w-0">
-											<label className={venueChip(watchVenue === "theaters")}>
-												<input
-													type="radio"
-													name="quick-log-venue"
-													value="theaters"
-													className="sr-only"
-													checked={watchVenue === "theaters"}
-													onChange={() => setWatchVenue("theaters")}
-												/>
-												{watchVenue === "theaters" ? (
-													sheetLayoutActive ? (
-														<motion.span
-															className="absolute inset-0 z-0 rounded-full bg-card"
-															layoutId="quick-log-venue-pill"
-															transition={venuePillTransition}
-														/>
-													) : (
-														<span className="absolute inset-0 z-0 rounded-full bg-card" />
-													)
-												) : null}
-												<span className="relative z-10">In cinemas</span>
-											</label>
-											<label className={venueChip(watchVenue === "streaming")}>
-												<input
-													type="radio"
-													name="quick-log-venue"
-													value="streaming"
-													className="sr-only"
-													checked={watchVenue === "streaming"}
-													onChange={() => setWatchVenue("streaming")}
-												/>
-												{watchVenue === "streaming" ? (
-													sheetLayoutActive ? (
-														<motion.span
-															className="absolute inset-0 z-0 rounded-full bg-card"
-															layoutId="quick-log-venue-pill"
-															transition={venuePillTransition}
-														/>
-													) : (
-														<span className="absolute inset-0 z-0 rounded-full bg-card" />
-													)
-												) : null}
-												<span className="relative z-10">At home</span>
-											</label>
+								{posterUrl ? (
+									<div className="mx-auto mb-5 flex justify-center">
+										<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
+											<Image
+												src={posterUrl}
+												alt=""
+												fill
+												sizes="120px"
+												className="object-cover"
+												unoptimized
+											/>
 										</div>
 									</div>
-								</LayoutGroup>
-							</fieldset>
+								) : null}
 
-							<LogRatingSlider
-								value={clampLogRatingDisplay(ratingDisplay)}
-								onChange={(next) => {
-									setRatingDisplay(next);
-									setIncludeRating(true);
-								}}
-								averageRating={averageRating}
-								className="mb-5"
-							/>
+								<h2
+									id="quick-log-title"
+									className="mb-6 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+								>
+									{heading}
+								</h2>
 
-							<div className="mb-6 space-y-5">
-								<div className="flex flex-wrap items-end justify-center gap-2">
-									<fieldset className="w-fit border-0 p-0">
-										<LayoutGroup id="quick-log-screening">
-											<div className="flex w-fit items-center rounded-full bg-background p-1">
-												<div className="flex min-w-0">
-													<label className={venueChip(!rewatch)}>
-														<input
-															type="radio"
-															name="quick-log-screening"
-															value="first"
-															className="sr-only"
-															checked={!rewatch}
-															onChange={() => setRewatch(false)}
-														/>
-														{!rewatch ? (
-															sheetLayoutActive ? (
-																<motion.span
-																	className="absolute inset-0 z-0 rounded-full bg-card"
-																	layoutId="quick-log-screening-pill"
-																	transition={venuePillTransition}
-																/>
-															) : (
-																<span className="absolute inset-0 z-0 rounded-full bg-card" />
-															)
-														) : null}
-														<span className="relative z-10">First watch</span>
-													</label>
-													<label className={venueChip(rewatch)}>
-														<input
-															type="radio"
-															name="quick-log-screening"
-															value="rewatch"
-															className="sr-only"
-															checked={rewatch}
-															onChange={() => setRewatch(true)}
-														/>
-														{rewatch ? (
-															sheetLayoutActive ? (
-																<motion.span
-																	className="absolute inset-0 z-0 rounded-full bg-card"
-																	layoutId="quick-log-screening-pill"
-																	transition={venuePillTransition}
-																/>
-															) : (
-																<span className="absolute inset-0 z-0 rounded-full bg-card" />
-															)
-														) : null}
-														<span className="relative z-10">Rewatch</span>
-													</label>
-												</div>
+								{tvId != null ? (
+									<TvLogScopePicker
+										tvId={tvId}
+										logScope={logScope}
+										seasonNumber={seasonNumber}
+										episodeNumber={episodeNumber}
+										onScopeChange={setLogScope}
+										onSeasonChange={setSeasonNumber}
+										onEpisodeChange={setEpisodeNumber}
+									/>
+								) : null}
+
+								<fieldset className="mx-auto mb-5 w-fit border-0 p-0">
+									<legend className="sr-only">Where did you watch?</legend>
+									<LayoutGroup id="quick-log-venue">
+										<div className="flex w-fit items-center rounded-full bg-background p-1">
+											<div className="flex min-w-0">
+												<label className={venueChip(watchVenue === "theaters")}>
+													<input
+														type="radio"
+														name="quick-log-venue"
+														value="theaters"
+														className="sr-only"
+														checked={watchVenue === "theaters"}
+														onChange={() => setWatchVenue("theaters")}
+													/>
+													{watchVenue === "theaters" ? (
+														sheetLayoutActive ? (
+															<motion.span
+																className="absolute inset-0 z-0 rounded-full bg-card"
+																layoutId="quick-log-venue-pill"
+																transition={venuePillTransition}
+															/>
+														) : (
+															<span className="absolute inset-0 z-0 rounded-full bg-card" />
+														)
+													) : null}
+													<span className="relative z-10">In cinemas</span>
+												</label>
+												<label
+													className={venueChip(watchVenue === "streaming")}
+												>
+													<input
+														type="radio"
+														name="quick-log-venue"
+														value="streaming"
+														className="sr-only"
+														checked={watchVenue === "streaming"}
+														onChange={() => setWatchVenue("streaming")}
+													/>
+													{watchVenue === "streaming" ? (
+														sheetLayoutActive ? (
+															<motion.span
+																className="absolute inset-0 z-0 rounded-full bg-card"
+																layoutId="quick-log-venue-pill"
+																transition={venuePillTransition}
+															/>
+														) : (
+															<span className="absolute inset-0 z-0 rounded-full bg-card" />
+														)
+													) : null}
+													<span className="relative z-10">At home</span>
+												</label>
 											</div>
-										</LayoutGroup>
-									</fieldset>
-									<DetailMotionButton
-										layout={sheetLayoutActive ? "position" : false}
-										className={cn(
-											"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
-											!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-											liked && "bg-foreground text-background",
-										)}
-										aria-pressed={liked}
-										aria-label={liked ? "Remove favorite" : "Mark as favorite"}
-										transition={{
-											...detailMotion.buttonTransition,
-											layout: metaRowLayoutTransition,
-										}}
-										onClick={() => setLiked((v) => !v)}
-									>
-										{liked ? (
-											<IconHeartFilled className="size-5" aria-hidden />
-										) : (
-											<IconHeart className="size-5" aria-hidden />
-										)}
-									</DetailMotionButton>
-								</div>
+										</div>
+									</LayoutGroup>
+								</fieldset>
 
-								<div className="mx-auto w-full max-w-sm space-y-2">
-									{/* <Label
+								<LogRatingSlider
+									value={clampLogRatingDisplay(ratingDisplay)}
+									onChange={(next) => {
+										setRatingDisplay(next);
+										setIncludeRating(true);
+									}}
+									averageRating={averageRating}
+									className="mb-5"
+								/>
+
+								<div className="mb-6 space-y-5">
+									<div className="flex flex-wrap items-end justify-center gap-2">
+										<fieldset className="w-fit border-0 p-0">
+											<LayoutGroup id="quick-log-screening">
+												<div className="flex w-fit items-center rounded-full bg-background p-1">
+													<div className="flex min-w-0">
+														<label className={venueChip(!rewatch)}>
+															<input
+																type="radio"
+																name="quick-log-screening"
+																value="first"
+																className="sr-only"
+																checked={!rewatch}
+																onChange={() => setRewatch(false)}
+															/>
+															{!rewatch ? (
+																sheetLayoutActive ? (
+																	<motion.span
+																		className="absolute inset-0 z-0 rounded-full bg-card"
+																		layoutId="quick-log-screening-pill"
+																		transition={venuePillTransition}
+																	/>
+																) : (
+																	<span className="absolute inset-0 z-0 rounded-full bg-card" />
+																)
+															) : null}
+															<span className="relative z-10">First watch</span>
+														</label>
+														<label className={venueChip(rewatch)}>
+															<input
+																type="radio"
+																name="quick-log-screening"
+																value="rewatch"
+																className="sr-only"
+																checked={rewatch}
+																onChange={() => setRewatch(true)}
+															/>
+															{rewatch ? (
+																sheetLayoutActive ? (
+																	<motion.span
+																		className="absolute inset-0 z-0 rounded-full bg-card"
+																		layoutId="quick-log-screening-pill"
+																		transition={venuePillTransition}
+																	/>
+																) : (
+																	<span className="absolute inset-0 z-0 rounded-full bg-card" />
+																)
+															) : null}
+															<span className="relative z-10">Rewatch</span>
+														</label>
+													</div>
+												</div>
+											</LayoutGroup>
+										</fieldset>
+										<DetailMotionButton
+											layout={sheetLayoutActive ? "position" : false}
+											className={cn(
+												"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
+												!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+												liked && "bg-foreground text-background",
+											)}
+											aria-pressed={liked}
+											aria-label={
+												liked ? "Remove favorite" : "Mark as favorite"
+											}
+											transition={{
+												...detailMotion.buttonTransition,
+												layout: metaRowLayoutTransition,
+											}}
+											onClick={() => setLiked((v) => !v)}
+										>
+											{liked ? (
+												<IconHeartFilled className="size-5" aria-hidden />
+											) : (
+												<IconHeart className="size-5" aria-hidden />
+											)}
+										</DetailMotionButton>
+									</div>
+
+									<div className="mx-auto w-full max-w-sm space-y-2">
+										{/* <Label
 										htmlFor="quick-log-date"
 										className="w-full justify-center text-center text-muted-foreground text-xs"
 									>
 										Watched on
 									</Label> */}
-									<LogWatchedDatePicker
-										id="quick-log-date"
-										value={watchedDate}
-										onChange={setWatchedDate}
-									/>
+										<LogWatchedDatePicker
+											id="quick-log-date"
+											value={watchedDate}
+											onChange={setWatchedDate}
+										/>
+									</div>
 								</div>
 							</div>
+							{/* Compose-only scrim — sibling of scroll, not measured for layout (review composer). */}
+							<div
+								aria-hidden
+								className={cn(
+									"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+									showFooterFade ? "opacity-100" : "opacity-0",
+								)}
+							/>
 						</div>
 
-						<footer className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
+						<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
 							{!isEditMode ? (
 								<DetailMotionButtonWrap>
 									<Button

@@ -12,23 +12,34 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	if (!session) redirect("/sign-in");
 
 	const api = await serverApi();
-	const profileRes = await api.api.profiles.me
-		.get()
-		.catch(() => ({ data: null }));
-	const profile =
-		(profileRes.data as { handle?: string; displayName?: string } | null) ??
-		null;
+	let profile: { handle?: string; displayName?: string } | null = null;
+	let profileFetchFailed = false;
+	try {
+		const profileRes = await api.api.profiles.me.get();
+		if (profileRes.error) {
+			profileFetchFailed = true;
+			console.error("[app layout] profiles.me error", profileRes.error);
+		} else {
+			profile =
+				(profileRes.data as { handle?: string; displayName?: string } | null) ??
+				null;
+		}
+	} catch (err) {
+		profileFetchFailed = true;
+		console.error("[app layout] profiles.me failed", err);
+	}
 
 	// First-run users with no profile yet get nudged to onboarding.
-	if (!profile?.handle) redirect("/onboarding");
+	// When the API/DB is down, do not bounce between `/home` ↔ `/onboarding` (307 loops).
+	if (!profileFetchFailed && !profile?.handle) redirect("/onboarding");
 
 	return (
 		<AppShell
 			user={{
 				id: session.user.id,
-				name: session.user.name ?? profile.displayName ?? "",
+				name: session.user.name ?? profile?.displayName ?? "",
 				image: session.user.image ?? null,
-				handle: profile.handle,
+				handle: profile?.handle ?? session.user.id,
 				email: session.user.email ?? null,
 			}}
 		>

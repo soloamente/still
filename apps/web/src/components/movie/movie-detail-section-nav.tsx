@@ -6,10 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 
-import type {
-	MovieDetailSectionId,
-	MovieDetailSectionNavItem,
-} from "@/lib/movie-detail-sections";
+import type { MovieDetailSectionNavItem } from "@/lib/movie-detail-sections";
 
 /** Fixed inner pill height — avoids height spring fighting position during section changes. */
 const THUMB_HEIGHT_PX = 24;
@@ -27,14 +24,14 @@ export function MovieDetailSectionNav({
 	sections: MovieDetailSectionNavItem[];
 }) {
 	const reduceMotion = useReducedMotion();
-	const [activeId, setActiveId] = useState<MovieDetailSectionId>(
+	const [activeId, setActiveId] = useState(
 		sections[0]?.id ?? "movie-section-about",
 	);
 	const labelRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
 	const trackRef = useRef<HTMLDivElement>(null);
 	const [thumbTop, setThumbTop] = useState(0);
 	/** While smooth-scrolling to a clicked label, ignore interim scroll spy updates. */
-	const scrollLockTargetRef = useRef<MovieDetailSectionId | null>(null);
+	const scrollLockTargetRef = useRef<string | null>(null);
 	const scrollLockReleaseTimerRef = useRef<ReturnType<
 		typeof setTimeout
 	> | null>(null);
@@ -63,8 +60,7 @@ export function MovieDetailSectionNav({
 		// Bias below the sticky header so the last section whose top crossed the line wins.
 		const probeY = window.scrollY + 120;
 
-		let nextActive: MovieDetailSectionId =
-			sections[0]?.id ?? "movie-section-about";
+		let nextActive = sections[0]?.id ?? "movie-section-about";
 		for (const section of sections) {
 			const el = document.getElementById(section.id);
 			if (!el) continue;
@@ -115,7 +111,7 @@ export function MovieDetailSectionNav({
 	}, []);
 
 	const scrollToSection = useCallback(
-		(id: MovieDetailSectionId) => {
+		(id: string) => {
 			const el = document.getElementById(id);
 			if (!el) return;
 

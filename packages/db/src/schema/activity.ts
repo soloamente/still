@@ -18,6 +18,9 @@ import { tv } from "./tv";
 /** Where the patron watched the film — aligns with `/home` + `/diary` venue chips (`?venue=`). */
 export type LogWatchVenue = "theaters" | "streaming";
 
+/** TV diary granularity — whole series, one season, or a single episode. */
+export type TvLogScope = "show" | "season" | "episode";
+
 /**
  * A "watch" record — Letterboxd's diary entry. Exactly one of `movieId` or `tvId`
  * is set (enforced by DB check + partial indexes on watchlist).
@@ -50,6 +53,10 @@ export const log = pgTable(
 			.$type<LogWatchVenue>()
 			.notNull()
 			.default("streaming"),
+		/** TV-only — `show` is default for legacy rows and whole-series logs. */
+		logScope: text("log_scope").$type<TvLogScope>().notNull().default("show"),
+		seasonNumber: smallint("season_number"),
+		episodeNumber: smallint("episode_number"),
 		createdAt: timestamp("created_at").defaultNow().notNull(),
 		updatedAt: timestamp("updated_at")
 			.defaultNow()

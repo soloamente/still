@@ -25,10 +25,12 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { createPortal } from "react-dom";
 import { toast } from "sonner";
 
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import { api } from "@/lib/api";
+import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 
 const SHEET_EASE = [0.165, 0.84, 0.44, 1] as const;
@@ -71,6 +73,7 @@ export function CreateListDialog({
 	onCreated,
 }: CreateListDialogProps) {
 	const reduceMotion = useReducedMotion();
+	const [mounted, setMounted] = useState(false);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
@@ -82,6 +85,10 @@ export function CreateListDialog({
 	const handleClose = useCallback(() => {
 		onOpenChange(false);
 	}, [onOpenChange]);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	useEffect(() => {
 		if (!open) {
@@ -186,7 +193,9 @@ export function CreateListDialog({
 
 	const canCreate = title.trim().length > 0;
 
-	return (
+	if (!mounted) return null;
+
+	const portal = (
 		<AnimatePresence>
 			{open ? (
 				<motion.div
@@ -194,7 +203,7 @@ export function CreateListDialog({
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.18 }}
-					className="fixed inset-0 z-50 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center"
+					className={APP_MODAL_OVERLAY_CLASS}
 					onClick={handleClose}
 				>
 					<motion.div
@@ -399,6 +408,8 @@ export function CreateListDialog({
 			) : null}
 		</AnimatePresence>
 	);
+
+	return createPortal(portal, document.body);
 }
 
 type CreateListSegmentOptionProps = {

@@ -25,6 +25,7 @@ import {
 	useMeAccountSession,
 	writeStoredSettingsDraft,
 } from "@/components/profile/me-account-session-context";
+import { MeCatalogLanguageSelect } from "@/components/profile/me-catalog-language-select";
 import { MeCatalogWatchRegionSelect } from "@/components/profile/me-catalog-watch-region-select";
 import {
 	MeFormField,
@@ -39,11 +40,16 @@ import {
 import { api } from "@/lib/api";
 import {
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
+	PROFILE_PREF_CATALOG_TMDB_LANGUAGE,
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
 	readCatalogMonochromePeersOnHoverPref,
+	readCatalogTmdbLanguagePref,
 	readCatalogTmdbWatchRegionPref,
+	resolveCatalogTmdbLanguage,
 } from "@/lib/profile-preferences";
 import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
+import { invalidateCatalogTmdbLanguageCache } from "@/lib/use-catalog-tmdb-language";
+import { clearSearchDialogGenreCache } from "@/lib/use-search-dialog-genres";
 
 type MeProfile = {
 	handle: string;
@@ -84,6 +90,9 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		if (p === null) return "";
 		return p === "ALL" ? "ALL" : p;
 	});
+	const [catalogTmdbLanguage, setCatalogTmdbLanguage] = useState(
+		() => readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
+	);
 	const [saving, setSaving] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const didHydrateSettingsDraftRef = useRef(false);
@@ -126,6 +135,11 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 						return p === "ALL" ? "ALL" : p;
 					})(),
 		);
+		setCatalogTmdbLanguage(
+			typeof stored.catalogTmdbLanguage === "string"
+				? stored.catalogTmdbLanguage
+				: (readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? ""),
+		);
 	}, [profile]);
 
 	const dirty = useMemo(() => {
@@ -138,6 +152,8 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				: regionFromProfile === "ALL"
 					? "ALL"
 					: regionFromProfile;
+		const languageFromProfile =
+			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "";
 		return (
 			displayName.trim() !== (profile.displayName ?? "").trim() ||
 			bio.trim() !== (profile.bio ?? "").trim() ||
@@ -148,7 +164,8 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 			theaterAudio !== Boolean(profile.preferences?.theaterAudio === true) ||
 			catalogMonochromePeersOnHover !==
 				readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null) ||
-			catalogTmdbWatchRegion.trim() !== regionStr
+			catalogTmdbWatchRegion.trim() !== regionStr ||
+			catalogTmdbLanguage.trim() !== languageFromProfile
 		);
 	}, [
 		profile,
@@ -161,6 +178,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		theaterAudio,
 		catalogMonochromePeersOnHover,
 		catalogTmdbWatchRegion,
+		catalogTmdbLanguage,
 	]);
 
 	const resetToProfile = useCallback(() => {
@@ -178,6 +196,9 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		);
 		const p = readCatalogTmdbWatchRegionPref(profile.preferences ?? null);
 		setCatalogTmdbWatchRegion(p === null ? "" : p === "ALL" ? "ALL" : p);
+		setCatalogTmdbLanguage(
+			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
+		);
 	}, [profile, syncSettingsDirty]);
 
 	// Drive `/me` leave guards + `beforeunload` from the latest dirty snapshot (survives unmount).
@@ -202,6 +223,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				theaterAudio,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
+				catalogTmdbLanguage,
 			});
 		}, 280);
 		return () => {
@@ -218,6 +240,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				theaterAudio,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
+				catalogTmdbLanguage,
 			});
 		};
 	}, [
@@ -231,6 +254,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		theaterAudio,
 		catalogMonochromePeersOnHover,
 		catalogTmdbWatchRegion,
+		catalogTmdbLanguage,
 	]);
 
 	useRegisterMeAccountBarActions(
@@ -251,7 +275,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		e.preventDefault();
 		setSaving(true);
 		try {
-			const prefs = {
+			const prefs: Record<string, unknown> = {
 				...(profile.preferences ?? {}),
 				theaterAudio,
 				[PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER]:
@@ -262,6 +286,11 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 						}
 					: {}),
 			};
+			if (catalogTmdbLanguage.trim() !== "") {
+				prefs[PROFILE_PREF_CATALOG_TMDB_LANGUAGE] = catalogTmdbLanguage.trim();
+			} else {
+				delete prefs[PROFILE_PREF_CATALOG_TMDB_LANGUAGE];
+			}
 
 			await api.api.profiles.me.patch({
 				displayName: displayName.trim(),
@@ -294,6 +323,8 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				syncCustomizationDirty(false);
 			}
 			toast.success("Saved");
+			invalidateCatalogTmdbLanguageCache();
+			clearSearchDialogGenreCache();
 			clearStoredSettingsDraft();
 			syncSettingsDirty(false);
 		} catch (err) {
@@ -393,6 +424,17 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 										id="catalogTmdbWatchRegion"
 										value={catalogTmdbWatchRegion}
 										onChange={setCatalogTmdbWatchRegion}
+									/>
+								</MeFormField>
+								<MeFormField
+									id="catalogTmdbLanguage"
+									label="Catalogue language"
+									hint={`Titles, genres, and search tags use this language. Default follows watch region (${resolveCatalogTmdbLanguage(profile.preferences ?? null)}).`}
+								>
+									<MeCatalogLanguageSelect
+										id="catalogTmdbLanguage"
+										value={catalogTmdbLanguage}
+										onChange={setCatalogTmdbLanguage}
 									/>
 								</MeFormField>
 								<MePreferenceToggle

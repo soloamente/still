@@ -2,10 +2,10 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { ChevronLeft, ChevronRight, Users } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import type { HomeFriendRailEntry } from "@/lib/home-friend-rail";
 
 const STORAGE_KEY = "still.home.friendRail.collapsed";
@@ -42,13 +42,13 @@ export function HomeFriendActivityRail({
 		<aside
 			aria-label="Friend activity"
 			className={cn(
-				"hidden min-h-0 shrink-0 flex-col rounded-2xl border border-border bg-surface-raised/50 lg:flex",
+				"hidden min-h-0 shrink-0 flex-col rounded-2xl bg-background lg:flex",
 				collapsed ? "w-12 self-stretch" : "w-full min-w-0 lg:w-72",
 			)}
 		>
 			<div
 				className={cn(
-					"flex items-center gap-1 border-border/70 border-b p-2",
+					"flex items-center gap-1 p-2",
 					collapsed ? "justify-center" : "",
 				)}
 			>
@@ -101,20 +101,15 @@ export function HomeFriendActivityRail({
 								href={`/profile/${e.handle}`}
 								className="flex gap-2 rounded-xl p-2 transition-colors hover:bg-surface-overlay/50"
 							>
-								<span className="relative size-9 shrink-0 overflow-hidden rounded-full border border-border bg-muted">
-									{e.image ? (
-										<Image
-											src={e.image}
-											alt=""
-											fill
-											className="object-cover"
-											sizes="36px"
-										/>
-									) : (
-										<span className="flex h-full w-full items-center justify-center font-semibold text-[10px] text-muted-foreground uppercase">
-											{railInitials(e.displayName)}
-										</span>
-									)}
+								<span className="relative size-9 shrink-0 overflow-hidden rounded-full bg-muted">
+									<PatronPortraitAvatar
+										handle={e.handle}
+										avatarUrl={e.image}
+										name={e.displayName}
+										width={36}
+										height={36}
+										className="size-full rounded-full"
+									/>
 								</span>
 								<span className="min-w-0 flex-1">
 									<span className="block truncate font-medium text-foreground text-sm">
@@ -131,14 +126,4 @@ export function HomeFriendActivityRail({
 			) : null}
 		</aside>
 	);
-}
-
-function railInitials(name: string) {
-	const parts = name.trim().split(/\s+/).filter(Boolean);
-	if (parts.length >= 2) {
-		const a = parts[0]?.charAt(0) ?? "";
-		const b = parts[1]?.charAt(0) ?? "";
-		return `${a}${b}`.toUpperCase();
-	}
-	return (parts[0] ?? "?").slice(0, 2).toUpperCase();
 }

@@ -11,7 +11,7 @@ import {
 } from "@/components/review/review-detail-sheet";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
-import { formatLogRatingDisplay } from "@/lib/log-rating";
+import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
 
 export type ProfileReviewRow = {
@@ -113,7 +113,7 @@ function ProfileReviewTile({ row }: { row: ProfileReviewRow }) {
 					</span>
 					{review.rating != null ? (
 						<span className="shrink-0 font-medium text-foreground text-xs tabular-nums">
-							{formatLogRatingDisplay(review.rating)}
+							{formatStoredLogRatingDisplay(review.rating)}
 							<span className="text-muted-foreground">/10</span>
 						</span>
 					) : null}

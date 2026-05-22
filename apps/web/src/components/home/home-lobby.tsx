@@ -12,12 +12,11 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-import { useCommandPalette } from "@/components/app/command-palette";
 import { ActivityItem } from "@/components/feed/activity-item";
 import { HomeFriendActivityRail } from "@/components/home/home-friend-activity-rail";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 import type { HomeFriendRailEntry } from "@/lib/home-friend-rail";
 
 type Browse = "movies" | "tv" | "community";
@@ -85,7 +84,7 @@ export function HomeLobby({
 }) {
 	const [browse, setBrowse] = useState<Browse>("movies");
 	const [sort, setSort] = useState<Sort>("popular");
-	const openCommand = useCommandPalette((s) => s.open);
+	const requestCatalogSearch = useCatalogSearchDialog((s) => s.requestOpen);
 	const [searchHint, setSearchHint] = useState("⌘K");
 
 	useEffect(() => {
@@ -127,10 +126,10 @@ export function HomeLobby({
 				</nav>
 
 				<div className="flex min-w-0 flex-1 flex-col gap-2 lg:items-center">
-					{/* Opens the same ⌘K palette as the floating nav — keeps one search system. */}
+					{/* Opens the same ⌘K catalog sheet as the floating nav — one search system. */}
 					<button
 						type="button"
-						onClick={() => openCommand()}
+						onClick={() => requestCatalogSearch()}
 						className={cn(
 							"flex w-full items-center gap-2.5 rounded-full border border-border/80 bg-card px-3 py-2.5 text-left shadow-sm transition-[box-shadow,transform] duration-[var(--aker-duration-fast)] ease-[var(--aker-ease)]",
 							"hover:border-border hover:shadow-md active:scale-[0.99]",

@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 
 import { SearchPillField } from "@/components/ui/search-pill-field";
 import type { ListBoardRow } from "@/lib/list-board-row";
+import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
 
 /** Resolve a TMDb still URL from a DB path fragment (same as `ListRowStrip`). */
 function tmdbPosterSrc(path: string | null): string | null {
@@ -30,7 +31,9 @@ function listMetaLine(list: ListBoardRow): string {
 /** First cover still for the row thumbnail — falls back to a neutral tile. */
 function ListPickerThumb({ list }: { list: ListBoardRow }) {
 	const paths = list.coverPosterPaths ?? list.coverMovieIds.map(() => null);
-	const src = tmdbPosterSrc(paths[0] ?? null);
+	const src =
+		resolveListCoverImageSrc(list.id, list.coverImageUrl, list.updatedAt) ??
+		tmdbPosterSrc(paths[0] ?? null);
 
 	return (
 		<div className="relative size-11 shrink-0 overflow-hidden rounded-xl bg-muted/35 shadow-sm">

@@ -12,8 +12,13 @@ import {
 } from "@/lib/discover-catalog-url";
 import { parseExplicitHomeVenue } from "@/lib/home-venue";
 import { readCatalogTmdbWatchRegionPref } from "@/lib/profile-preferences";
+import { findSearchDialogStudio } from "@/lib/search-dialog-studios";
 import { serverApi } from "@/lib/server-api";
-import { fetchMovieGenres, fetchMoviesDiscover } from "@/lib/still-api-fetch";
+import {
+	fetchMovieGenres,
+	fetchMovieStudios,
+	fetchMoviesDiscover,
+} from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 
 export const metadata: Metadata = {
@@ -51,6 +56,12 @@ function parseGenreId(raw: string | undefined): number | null {
 	return Number.isFinite(n) && n > 0 ? n : null;
 }
 
+function parseCompanyId(raw: string | undefined): number | null {
+	if (!raw?.trim()) return null;
+	const n = Math.floor(Number(raw));
+	return Number.isFinite(n) && n > 0 ? n : null;
+}
+
 export default async function DiscoverMoviesPage({
 	searchParams,
 }: {
@@ -61,6 +72,7 @@ export default async function DiscoverMoviesPage({
 		monetization?: string;
 		watch_region?: string;
 		region?: string;
+		company?: string;
 		release_gte?: string;
 	}>;
 }) {
@@ -73,6 +85,7 @@ export default async function DiscoverMoviesPage({
 		.join("; ");
 
 	const appliedGenre = parseGenreId(sp.genre);
+	const appliedCompany = parseCompanyId(sp.company);
 	const appliedSort = normalizeDiscoverSort(sp.sort);
 	const explicitVenue = parseExplicitHomeVenue(sp.venue);
 	const appliedMonetization = normalizeDiscoverMonetization(sp.monetization);
@@ -91,10 +104,14 @@ export default async function DiscoverMoviesPage({
 		rgRaw && /^\d{4}-\d{2}-\d{2}$/.test(rgRaw) ? rgRaw : null;
 
 	const api = await serverApi();
-	const [profileRes, { data: genresData }] = await Promise.all([
-		api.api.profiles.me.get().catch(() => ({ data: null })),
-		fetchMovieGenres({ cookieHeader }),
-	]);
+	const [profileRes, { data: genresData }, { data: studiosData }] =
+		await Promise.all([
+			api.api.profiles.me.get().catch(() => ({ data: null })),
+			fetchMovieGenres({ cookieHeader }),
+			appliedCompany != null
+				? fetchMovieStudios({ cookieHeader })
+				: Promise.resolve({ data: null }),
+		]);
 	const mePrefs = (
 		profileRes.data as { preferences?: Record<string, unknown> | null } | null
 	)?.preferences;
@@ -112,6 +129,7 @@ export default async function DiscoverMoviesPage({
 		await fetchMoviesDiscover(SEED_PAGE, {
 			cookieHeader,
 			genreId: appliedGenre ?? undefined,
+			companyId: appliedCompany ?? undefined,
 			sortBy: appliedSort,
 			venue: explicitVenue ?? undefined,
 			monetization: appliedMonetization ?? undefined,
@@ -140,13 +158,28 @@ export default async function DiscoverMoviesPage({
 		appliedGenre != null
 			? genres.find((g) => g.id === appliedGenre)?.name
 			: null;
+	const studioRows =
+		(
+			studiosData as {
+				studios?: { id: number; name: string; logo_url?: string | null }[];
+			} | null
+		)?.studios?.map((s) => ({
+			id: s.id,
+			name: s.name,
+			logoUrl: s.logo_url ?? null,
+		})) ?? [];
+	const activeStudio = findSearchDialogStudio(studioRows, appliedCompany);
+	const discoverTitle = activeStudio ? activeStudio.name : "Discover";
+	const discoverSubtitle = activeStudio
+		? `Films from ${activeStudio.name} on TMDb’s discover sheet — same chip language as Popular; URLs stay shareable.`
+		: "TMDb’s discover sheet — pick a genre mood, then a sort order. Same chip language as Popular and Opening soon; URLs stay shareable.";
 
 	return (
 		<div className="space-y-8">
 			<Section
 				kicker="Billboard"
-				title="Discover"
-				subtitle="TMDb’s discover sheet — pick a genre mood, then a sort order. Same chip language as Popular and Opening soon; URLs stay shareable."
+				title={discoverTitle}
+				subtitle={discoverSubtitle}
 				rightSlot={
 					/* Hover tint only on true hover devices — skips the brief “stuck hover” flash on touch. */
 					<Link
@@ -181,17 +214,22 @@ export default async function DiscoverMoviesPage({
 						appliedReleaseGte={appliedReleaseGte}
 						genres={genres}
 						appliedGenre={appliedGenre}
+						appliedCompany={appliedCompany}
 						appliedSort={appliedSort}
 					/>
 				) : null}
 
 				{emptyCatalog ? (
-					<DiscoverCatalogEmpty genreLabel={genreLabel} />
+					<DiscoverCatalogEmpty
+						genreLabel={genreLabel}
+						studioLabel={activeStudio?.name}
+					/>
 				) : !blockedReason ? (
 					<PopularMoviesInfinite
-						key={`${appliedGenre ?? "all"}-${appliedSort}-${explicitVenue ?? "all-venues"}-${appliedMonetization ?? "no-mon"}-${appliedWatchRegion ?? "no-wr"}-${effectiveReleaseRegion ?? "no-reg"}-${appliedReleaseGte ?? "no-rg"}`}
+						key={`${appliedGenre ?? "all"}-${appliedCompany ?? "all-co"}-${appliedSort}-${explicitVenue ?? "all-venues"}-${appliedMonetization ?? "no-mon"}-${appliedWatchRegion ?? "no-wr"}-${effectiveReleaseRegion ?? "no-reg"}-${appliedReleaseGte ?? "no-rg"}`}
 						catalogKind="discover"
 						discoverGenreId={appliedGenre}
+						discoverCompanyId={appliedCompany}
 						discoverSortBy={appliedSort}
 						discoverVenue={explicitVenue}
 						discoverMonetization={appliedMonetization}
@@ -213,8 +251,10 @@ export default async function DiscoverMoviesPage({
 /** When TMDb returns zero rows for this genre + sort pair — keep chips visible so patrons can pivot. */
 function DiscoverCatalogEmpty({
 	genreLabel,
+	studioLabel,
 }: {
 	genreLabel: string | null | undefined;
+	studioLabel?: string | null;
 }) {
 	return (
 		<div
@@ -223,9 +263,11 @@ function DiscoverCatalogEmpty({
 		>
 			<p className="font-display text-lg">No titles in this slice</p>
 			<p className="mt-2 text-muted-foreground text-sm">
-				{genreLabel
-					? `TMDb did not return any ${genreLabel} films for this combination of filters right now — try another genre or sort order.`
-					: "TMDb returned an empty sheet for these filters — widen the mood or pick a different sort."}
+				{studioLabel
+					? `TMDb did not return any ${studioLabel} films for this combination of filters right now — try another studio or sort order.`
+					: genreLabel
+						? `TMDb did not return any ${genreLabel} films for this combination of filters right now — try another genre or sort order.`
+						: "TMDb returned an empty sheet for these filters — widen the mood or pick a different sort."}
 			</p>
 		</div>
 	);

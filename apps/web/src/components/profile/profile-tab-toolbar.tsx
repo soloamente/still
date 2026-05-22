@@ -33,12 +33,24 @@ function profileTabHref(
 	orderRaw: string | null,
 	venueRaw: string | null,
 ): string {
+	const order = parseProfileLobbyOrder(orderRaw);
+	const venue = parseProfileLobbyVenue(venueRaw);
+	if (tab === "favorites") {
+		return buildProfileLobbyHref({
+			handle,
+			tab: "movies",
+			order,
+			venue,
+			favoritesOnly: true,
+		});
+	}
 	if (tab === "movies" || tab === "tv") {
 		return buildProfileLobbyHref({
 			handle,
 			tab,
-			order: parseProfileLobbyOrder(orderRaw),
-			venue: parseProfileLobbyVenue(venueRaw),
+			order,
+			venue,
+			favoritesOnly: false,
 		});
 	}
 	return `/profile/${encodeURIComponent(handle)}?tab=${tab}`;

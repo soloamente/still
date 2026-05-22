@@ -2,16 +2,26 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { Heart, MessageCircle } from "lucide-react";
+import { FeedListingThumb } from "@/components/feed/feed-listing-thumb";
 import {
 	type ReviewPreview,
 	useReviewDetail,
 } from "@/components/review/review-detail-sheet";
 import { formatDistanceToNowStrict } from "@/lib/format";
-import { formatLogRatingDisplay } from "@/lib/log-rating";
+import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
+
+/** Film or series shown beside review copy on community surfaces. */
+export type ReviewCardListing = {
+	title: string;
+	posterUrl: string | null;
+	href: string;
+	listingKind?: "movie" | "tv";
+};
 
 type Review = ReviewPreview & {
 	userId: string;
 	movieId: number;
+	listing?: ReviewCardListing;
 };
 
 /** Single-surface tile — matches film detail community cards on `bg-card`. */
@@ -24,11 +34,16 @@ export const REVIEW_CARD_CLASS =
  */
 export function ReviewCard({ review }: { review: Review }) {
 	const openReviewDetail = useReviewDetail((s) => s.open);
+	const listing = review.listing;
 
 	return (
 		<button
 			type="button"
-			className={cn(REVIEW_CARD_CLASS, "group cursor-pointer")}
+			className={cn(
+				REVIEW_CARD_CLASS,
+				"group flex cursor-pointer gap-4 transition-transform duration-150 ease-out active:scale-[0.96] motion-reduce:active:scale-100",
+				listing ? "items-start" : "flex-col",
+			)}
 			aria-haspopup="dialog"
 			aria-label={review.title ? `Read review: ${review.title}` : "Read review"}
 			onClick={() =>
@@ -46,35 +61,46 @@ export function ReviewCard({ review }: { review: Review }) {
 				})
 			}
 		>
-			<header className="flex items-center justify-between gap-3 text-muted-foreground text-xs">
-				<span className="tabular-nums">
-					{formatDistanceToNowStrict(new Date(review.publishedAt))} ago
-				</span>
-				{review.rating != null ? (
-					<span className="font-medium text-foreground tabular-nums">
-						{formatLogRatingDisplay(review.rating)}
-						<span className="text-muted-foreground">/10</span>
-					</span>
-				) : null}
-			</header>
-			{review.title ? (
-				<h3 className="mt-3 font-serif text-foreground text-lg leading-snug tracking-tight group-hover:text-desert-orange">
-					{review.title}
-				</h3>
+			{listing ? (
+				<FeedListingThumb
+					title={listing.title}
+					posterUrl={listing.posterUrl}
+					href={listing.href}
+					listingKind={listing.listingKind ?? "movie"}
+					linkable={false}
+				/>
 			) : null}
-			<p className="mt-2 line-clamp-4 font-editorial text-foreground/85 text-sm leading-relaxed">
-				{review.body}
-			</p>
-			<footer className="mt-4 flex items-center gap-4 text-muted-foreground text-xs tabular-nums">
-				<span className="inline-flex items-center gap-1.5">
-					<Heart className="size-3.5 opacity-70" aria-hidden />
-					{review.likesCount}
-				</span>
-				<span className="inline-flex items-center gap-1.5">
-					<MessageCircle className="size-3.5 opacity-70" aria-hidden />
-					{review.commentsCount}
-				</span>
-			</footer>
+			<div className="min-w-0 flex-1">
+				<header className="flex items-center justify-between gap-3 text-muted-foreground text-xs">
+					<span className="tabular-nums">
+						{formatDistanceToNowStrict(new Date(review.publishedAt))} ago
+					</span>
+					{review.rating != null ? (
+						<span className="font-medium text-foreground tabular-nums">
+							{formatStoredLogRatingDisplay(review.rating)}
+							<span className="text-muted-foreground">/10</span>
+						</span>
+					) : null}
+				</header>
+				{review.title ? (
+					<h3 className="mt-3 text-balance font-serif text-foreground text-lg leading-snug tracking-tight group-hover:text-desert-orange">
+						{review.title}
+					</h3>
+				) : null}
+				<p className="mt-2 line-clamp-4 text-pretty font-editorial text-foreground/85 text-sm leading-relaxed">
+					{review.body}
+				</p>
+				<footer className="mt-4 flex items-center gap-4 text-muted-foreground text-xs tabular-nums">
+					<span className="inline-flex items-center gap-1.5">
+						<Heart className="size-3.5 opacity-70" aria-hidden />
+						{review.likesCount}
+					</span>
+					<span className="inline-flex items-center gap-1.5">
+						<MessageCircle className="size-3.5 opacity-70" aria-hidden />
+						{review.commentsCount}
+					</span>
+				</footer>
+			</div>
 		</button>
 	);
 }

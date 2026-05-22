@@ -83,11 +83,7 @@ export function MoviePremieresFestivals({
 		<MovieDetailBodySection
 			id={MOVIE_DETAIL_SECTION.awards}
 			title="Awards & festivals"
-			className={cn(
-				"pt-2 pb-2 sm:pt-4",
-				"lg:left-1/2 lg:w-[min(100vw-2rem,96rem)] lg:max-w-none lg:-translate-x-1/2",
-				"xl:w-[min(100vw-3rem,108rem)]",
-			)}
+			className="pt-2 pb-2 sm:pt-4"
 		>
 			{/* Up to 12 columns — six per row on `lg+`, wrapping to a second row instead of horizontal scroll. */}
 			<div className="relative px-3 pt-1 pb-2 sm:px-5">
