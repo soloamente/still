@@ -5,21 +5,22 @@ import { serverApi } from "@/lib/server-api";
 import { LandingFeatures } from "./_marketing/landing-features";
 import { LandingFooter } from "./_marketing/landing-footer";
 import { LandingHero } from "./_marketing/landing-hero";
+import { LandingIntro } from "./_marketing/landing-intro";
 import { LandingNav } from "./_marketing/landing-nav";
-import type { LandingPoster } from "./_marketing/landing-preview";
+import type { LandingPoster } from "./_marketing/landing-poster";
 import { LandingPreview } from "./_marketing/landing-preview";
-import { LandingSocialProof } from "./_marketing/landing-social-proof";
+import { LandingScrollScenes } from "./_marketing/landing-scroll-scenes";
+import { LandingWorkStack } from "./_marketing/landing-work-stack";
 
 export const metadata: Metadata = {
 	title: "Still — your cinematic memory",
 	description:
-		"Log every film you watch, rate it, share it. A modern social home for cinephiles — diaries, reviews, lists, chat, and badges.",
+		"Log every film you watch, rate it, share it. A modern social home for cinephiles — diaries, reviews, lists, and community.",
 };
 
 export const dynamic = "force-dynamic";
 
 export default async function LandingPage() {
-	// Signed-in visitors land on /home — keep the marketing surface for logged-out browsers only.
 	const cookieStore = await cookies();
 	const hasSession = [
 		"better-auth.session_token",
@@ -34,7 +35,12 @@ export default async function LandingPage() {
 	const posters: LandingPoster[] =
 		(
 			popular.data as {
-				results?: { id: number; title: string; poster_url: string | null }[];
+				results?: {
+					id: number;
+					title: string;
+					poster_url: string | null;
+					backdrop_url: string | null;
+				}[];
 			} | null
 		)?.results
 			?.slice(0, 18)
@@ -42,22 +48,20 @@ export default async function LandingPage() {
 				id: m.id,
 				title: m.title,
 				posterUrl: m.poster_url,
+				backdropUrl: m.backdrop_url,
 			})) ?? [];
 
 	return (
-		<div className="relative min-h-dvh overflow-x-hidden bg-background text-foreground">
-			{/* Quiet cinematic wash — Mobbin clarity on Still canvas, not full theater floor. */}
-			<div
-				aria-hidden
-				className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_50%_at_50%_-20%,rgba(183,89,40,0.12),transparent_55%),radial-gradient(40%_35%_at_100%_80%,rgba(4,65,82,0.14),transparent_50%)]"
-			/>
+		<div className="min-h-dvh bg-background text-foreground">
+			<LandingNav />
 
-			<main className="relative z-10">
-				<LandingNav />
-				<LandingHero />
-				<LandingSocialProof />
-				<LandingPreview posters={posters} />
+			<main>
+				<LandingHero posters={posters} />
+				<LandingIntro />
+				<LandingWorkStack posters={posters} />
+				<LandingScrollScenes posters={posters} />
 				<LandingFeatures />
+				<LandingPreview posters={posters} />
 			</main>
 			<LandingFooter />
 		</div>

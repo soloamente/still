@@ -1,8 +1,7 @@
-import { env } from "@still/env/web";
-
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import type { HomeVenue } from "@/lib/home-venue";
+import { stillApiOrigin } from "@/lib/still-api-origin";
 import type {
 	TvEpisodeSummary,
 	TvProgressMode,
@@ -63,7 +62,7 @@ export async function fetchMoviesSearch(
 	qRaw: string,
 	init?: Pick<RequestInit, "signal"> & { companyId?: number },
 ) {
-	const url = new URL("/api/movies/search", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/movies/search", stillApiOrigin());
 	url.searchParams.set("q", qRaw.trim());
 	const cid = init?.companyId;
 	if (cid !== undefined && Number.isFinite(cid) && cid > 0) {
@@ -86,7 +85,7 @@ export async function fetchListsSearch(
 	qRaw: string,
 	init?: Pick<RequestInit, "signal"> & { limit?: number },
 ) {
-	const url = new URL("/api/lists/search", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/lists/search", stillApiOrigin());
 	const q = qRaw.trim();
 	if (q) url.searchParams.set("q", q);
 	const limit = init?.limit;
@@ -112,7 +111,7 @@ export async function fetchTvSearch(
 		companyId?: number;
 	},
 ) {
-	const url = new URL("/api/tv/search", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/tv/search", stillApiOrigin());
 	url.searchParams.set("q", qRaw.trim());
 	const cid = init?.companyId;
 	if (cid !== undefined && Number.isFinite(cid) && cid > 0) {
@@ -138,7 +137,7 @@ export async function fetchMoviesPopular(
 	page: number,
 	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
 ) {
-	const url = new URL("/api/movies/popular", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/movies/popular", stillApiOrigin());
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
@@ -155,7 +154,7 @@ export async function fetchMoviesNowPlaying(
 	page: number,
 	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
 ) {
-	const url = new URL("/api/movies/now-playing", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/movies/now-playing", stillApiOrigin());
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
@@ -176,7 +175,7 @@ export async function fetchMoviesUpcoming(
 		region?: string;
 	},
 ) {
-	const url = new URL("/api/movies/upcoming", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/movies/upcoming", stillApiOrigin());
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	const { cookieHeader, region, signal, cache } = init ?? {};
 	const reg = region?.trim().toUpperCase();
@@ -217,7 +216,7 @@ export async function fetchMoviesDiscover(
 		releaseGte?: string;
 	},
 ) {
-	const url = new URL("/api/movies/discover", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/movies/discover", stillApiOrigin());
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	const genreIds = init?.genreIds?.filter(
 		(id) => Number.isFinite(id) && id > 0,
@@ -292,7 +291,7 @@ export async function fetchTvOnTheAir(
 		sortBy?: string;
 	},
 ) {
-	const url = new URL("/api/tv/on-the-air", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/tv/on-the-air", stillApiOrigin());
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	const sort = init?.sortBy?.trim();
 	if (sort) {
@@ -313,7 +312,7 @@ export async function fetchTvPopular(
 	page: number,
 	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
 ) {
-	const url = new URL("/api/tv/popular", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/tv/popular", stillApiOrigin());
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
@@ -343,7 +342,7 @@ export async function fetchTvDiscover(
 		status?: string;
 	},
 ) {
-	const url = new URL("/api/tv/discover", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/tv/discover", stillApiOrigin());
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	const tvGenreIds = init?.genreIds?.filter(
 		(id) => Number.isFinite(id) && id > 0,
@@ -416,7 +415,7 @@ export async function fetchTvGenres(
 		language?: string;
 	},
 ) {
-	const url = new URL("/api/tv/genres", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/tv/genres", stillApiOrigin());
 	const lang = init?.language?.trim();
 	if (lang) url.searchParams.set("language", lang);
 	const { cookieHeader, signal, cache } = init ?? {};
@@ -441,7 +440,7 @@ export async function fetchMovieGenres(
 		language?: string;
 	},
 ) {
-	const url = new URL("/api/movies/genres", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/movies/genres", stillApiOrigin());
 	const lang = init?.language?.trim();
 	if (lang) url.searchParams.set("language", lang);
 	const { cookieHeader, signal, cache } = init ?? {};
@@ -463,7 +462,7 @@ export async function fetchMovieGenres(
 export async function fetchMovieStudios(
 	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
 ) {
-	const url = new URL("/api/movies/studios", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/movies/studios", stillApiOrigin());
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
 		credentials: "include",
@@ -480,7 +479,7 @@ export async function fetchMovieStudios(
 }
 
 export async function fetchBadgesRecent(sinceIso: string) {
-	const url = new URL("/api/badges/me/recent", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/badges/me/recent", stillApiOrigin());
 	url.searchParams.set("since", sinceIso);
 	const response = await fetch(url, { credentials: "include" });
 	const data = (await response.json()) as unknown;
@@ -499,7 +498,7 @@ export async function fetchProfileHandleAvailable(
 	const handle = handleParam.trim().toLowerCase();
 	const url = new URL(
 		`/api/profiles/check-handle/${encodeURIComponent(handle)}`,
-		env.NEXT_PUBLIC_SERVER_URL,
+		stillApiOrigin(),
 	);
 	const response = await fetch(url, {
 		credentials: "include",
@@ -521,10 +520,7 @@ export async function fetchMyLogsForMovie(
 	movieId: number,
 	init?: Pick<RequestInit, "signal">,
 ) {
-	const url = new URL(
-		`/api/logs/me/by-movie/${movieId}`,
-		env.NEXT_PUBLIC_SERVER_URL,
-	);
+	const url = new URL(`/api/logs/me/by-movie/${movieId}`, stillApiOrigin());
 	const response = await fetch(url, {
 		credentials: "include",
 		signal: init?.signal,
@@ -542,7 +538,7 @@ export async function fetchMyLogsForTv(
 	tvId: number,
 	init?: Pick<RequestInit, "signal">,
 ) {
-	const url = new URL(`/api/logs/me/by-tv/${tvId}`, env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL(`/api/logs/me/by-tv/${tvId}`, stillApiOrigin());
 	const response = await fetch(url, {
 		credentials: "include",
 		signal: init?.signal,
@@ -560,7 +556,7 @@ export async function fetchListsMe(
 	movieId?: number,
 	init?: Pick<RequestInit, "signal">,
 ) {
-	const url = new URL("/api/lists/me", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/lists/me", stillApiOrigin());
 	if (movieId != null && Number.isFinite(movieId)) {
 		url.searchParams.set("movieId", String(movieId));
 	}
@@ -581,10 +577,7 @@ export async function fetchWatchlistCheck(
 	movieId: number,
 	init?: Pick<RequestInit, "signal">,
 ) {
-	const url = new URL(
-		`/api/watchlist/check/${movieId}`,
-		env.NEXT_PUBLIC_SERVER_URL,
-	);
+	const url = new URL(`/api/watchlist/check/${movieId}`, stillApiOrigin());
 	const response = await fetch(url, {
 		credentials: "include",
 		signal: init?.signal,
@@ -602,10 +595,7 @@ export async function fetchWatchlistCheckTv(
 	tvId: number,
 	init?: Pick<RequestInit, "signal">,
 ) {
-	const url = new URL(
-		`/api/watchlist/check/tv/${tvId}`,
-		env.NEXT_PUBLIC_SERVER_URL,
-	);
+	const url = new URL(`/api/watchlist/check/tv/${tvId}`, stillApiOrigin());
 	const response = await fetch(url, {
 		credentials: "include",
 		signal: init?.signal,
@@ -619,7 +609,7 @@ export async function fetchWatchlistCheckTv(
 }
 
 export async function deleteWatchlistItem(movieId: number) {
-	const url = new URL(`/api/watchlist/${movieId}`, env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL(`/api/watchlist/${movieId}`, stillApiOrigin());
 	const response = await fetch(url, {
 		method: "DELETE",
 		credentials: "include",
@@ -633,7 +623,7 @@ export async function deleteWatchlistItem(movieId: number) {
 }
 
 export async function deleteWatchlistTvItem(tvId: number) {
-	const url = new URL(`/api/watchlist/tv/${tvId}`, env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL(`/api/watchlist/tv/${tvId}`, stillApiOrigin());
 	const response = await fetch(url, {
 		method: "DELETE",
 		credentials: "include",
@@ -649,7 +639,7 @@ export async function deleteWatchlistTvItem(tvId: number) {
 export async function deleteLog(logId: string) {
 	const url = new URL(
 		`/api/logs/${encodeURIComponent(logId)}`,
-		env.NEXT_PUBLIC_SERVER_URL,
+		stillApiOrigin(),
 	);
 	const response = await fetch(url, {
 		method: "DELETE",
@@ -670,7 +660,7 @@ export async function fetchPersonFilmography(
 ) {
 	const url = new URL(
 		`/api/people/${encodeURIComponent(String(personId))}`,
-		env.NEXT_PUBLIC_SERVER_URL,
+		stillApiOrigin(),
 	);
 	const response = await fetch(url, {
 		credentials: "include",
@@ -710,18 +700,15 @@ export async function postLog(payload: {
 	seasonNumber?: number;
 	episodeNumber?: number;
 }) {
-	const response = await fetch(
-		new URL("/api/logs", env.NEXT_PUBLIC_SERVER_URL),
-		{
-			method: "POST",
-			credentials: "include",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json",
-			},
-			body: JSON.stringify(payload),
+	const response = await fetch(new URL("/api/logs", stillApiOrigin()), {
+		method: "POST",
+		credentials: "include",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
 		},
-	);
+		body: JSON.stringify(payload),
+	});
 	const data = await parseJsonBlob(response);
 	return {
 		ok: response.ok,
@@ -751,10 +738,7 @@ export async function patchLog(
 	}>,
 ) {
 	const response = await fetch(
-		new URL(
-			`/api/logs/${encodeURIComponent(logId)}`,
-			env.NEXT_PUBLIC_SERVER_URL,
-		),
+		new URL(`/api/logs/${encodeURIComponent(logId)}`, stillApiOrigin()),
 		{
 			method: "PATCH",
 			credentials: "include",
@@ -778,18 +762,15 @@ export async function patchLog(
 export async function postWatchlistAdd(
 	payload: { movieId: number; note?: string } | { tvId: number; note?: string },
 ) {
-	const response = await fetch(
-		new URL("/api/watchlist", env.NEXT_PUBLIC_SERVER_URL),
-		{
-			method: "POST",
-			credentials: "include",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json",
-			},
-			body: JSON.stringify(payload),
+	const response = await fetch(new URL("/api/watchlist", stillApiOrigin()), {
+		method: "POST",
+		credentials: "include",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
 		},
-	);
+		body: JSON.stringify(payload),
+	});
 	const data = await parseJsonBlob(response);
 	return {
 		ok: response.ok,
@@ -807,7 +788,7 @@ export async function postWatchlistAdd(
 export async function fetchTvWatchMe(
 	init?: Pick<RequestInit, "signal"> & { status?: string; limit?: number },
 ) {
-	const url = new URL("/api/tv-watch/me", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/tv-watch/me", stillApiOrigin());
 	if (init?.status) url.searchParams.set("status", init.status);
 	if (init?.limit != null) {
 		url.searchParams.set("limit", String(Math.floor(init.limit)));
@@ -829,10 +810,7 @@ export async function fetchTvWatchByTv(
 	tvId: number,
 	init?: Pick<RequestInit, "signal">,
 ) {
-	const url = new URL(
-		`/api/tv-watch/me/by-tv/${tvId}`,
-		env.NEXT_PUBLIC_SERVER_URL,
-	);
+	const url = new URL(`/api/tv-watch/me/by-tv/${tvId}`, stillApiOrigin());
 	const response = await fetch(url, {
 		credentials: "include",
 		signal: init?.signal,
@@ -849,18 +827,15 @@ export async function postTvWatchStart(payload: {
 	tvId: number;
 	progressMode?: TvProgressMode;
 }) {
-	const response = await fetch(
-		new URL("/api/tv-watch", env.NEXT_PUBLIC_SERVER_URL),
-		{
-			method: "POST",
-			credentials: "include",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json",
-			},
-			body: JSON.stringify(payload),
+	const response = await fetch(new URL("/api/tv-watch", stillApiOrigin()), {
+		method: "POST",
+		credentials: "include",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
 		},
-	);
+		body: JSON.stringify(payload),
+	});
 	const data = await parseJsonBlob(response);
 	return {
 		ok: response.ok,
@@ -879,10 +854,7 @@ export async function patchTvWatch(
 	}>,
 ) {
 	const response = await fetch(
-		new URL(
-			`/api/tv-watch/${encodeURIComponent(watchId)}`,
-			env.NEXT_PUBLIC_SERVER_URL,
-		),
+		new URL(`/api/tv-watch/${encodeURIComponent(watchId)}`, stillApiOrigin()),
 		{
 			method: "PATCH",
 			credentials: "include",
@@ -910,7 +882,7 @@ export async function postTvWatchMarkEpisode(
 	const response = await fetch(
 		new URL(
 			`/api/tv-watch/${encodeURIComponent(watchId)}/episodes`,
-			env.NEXT_PUBLIC_SERVER_URL,
+			stillApiOrigin(),
 		),
 		{
 			method: "POST",
@@ -939,7 +911,7 @@ export async function deleteTvWatchEpisode(
 	const response = await fetch(
 		new URL(
 			`/api/tv-watch/${encodeURIComponent(watchId)}/episodes`,
-			env.NEXT_PUBLIC_SERVER_URL,
+			stillApiOrigin(),
 		),
 		{
 			method: "DELETE",
@@ -968,7 +940,7 @@ export async function postTvWatchCompleteSeason(
 	const response = await fetch(
 		new URL(
 			`/api/tv-watch/${encodeURIComponent(watchId)}/seasons/${seasonNumber}/complete`,
-			env.NEXT_PUBLIC_SERVER_URL,
+			stillApiOrigin(),
 		),
 		{
 			method: "POST",
@@ -989,7 +961,7 @@ export async function postTvWatchMarkNext(watchId: string) {
 	const response = await fetch(
 		new URL(
 			`/api/tv-watch/${encodeURIComponent(watchId)}/mark-next`,
-			env.NEXT_PUBLIC_SERVER_URL,
+			stillApiOrigin(),
 		),
 		{
 			method: "POST",
@@ -1011,7 +983,7 @@ export async function fetchTvSeasons(
 	tvId: number,
 	init?: Pick<RequestInit, "signal">,
 ) {
-	const url = new URL(`/api/tv/${tvId}/seasons`, env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL(`/api/tv/${tvId}/seasons`, stillApiOrigin());
 	const response = await fetch(url, {
 		credentials: "include",
 		signal: init?.signal,
@@ -1032,7 +1004,7 @@ export async function fetchTvSeasonDetail(
 ) {
 	const url = new URL(
 		`/api/tv/${tvId}/season/${seasonNumber}`,
-		env.NEXT_PUBLIC_SERVER_URL,
+		stillApiOrigin(),
 	);
 	const response = await fetch(url, {
 		credentials: "include",
@@ -1051,7 +1023,7 @@ export async function fetchTvSeasonDetail(
 export async function postNotificationRead(id: string) {
 	const url = new URL(
 		`/api/notifications/${encodeURIComponent(id)}/read`,
-		env.NEXT_PUBLIC_SERVER_URL,
+		stillApiOrigin(),
 	);
 	const response = await fetch(url, {
 		method: "POST",
@@ -1088,7 +1060,7 @@ export async function fetchCommunityLists(
 	tz: string,
 	init?: Pick<RequestInit, "signal">,
 ): Promise<unknown[] | null> {
-	const url = new URL("/api/lists", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/lists", stillApiOrigin());
 	url.searchParams.set("limit", "24");
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
@@ -1107,7 +1079,7 @@ export async function fetchCommunityReviewsRecent(
 	tz: string,
 	init?: Pick<RequestInit, "signal">,
 ): Promise<unknown[] | null> {
-	const url = new URL("/api/reviews/recent", env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL("/api/reviews/recent", stillApiOrigin());
 	url.searchParams.set("limit", "20");
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
@@ -1128,7 +1100,7 @@ export async function fetchCommunityActivity(
 	init?: Pick<RequestInit, "signal">,
 ): Promise<{ items: unknown[] } | null> {
 	const path = signedIn ? "/api/feed" : "/api/feed/discover";
-	const url = new URL(path, env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL(path, stillApiOrigin());
 	if (signedIn) url.searchParams.set("limit", "40");
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
@@ -1148,7 +1120,7 @@ export async function fetchCommunityLeaderboard(
 	tz: string,
 	init?: Pick<RequestInit, "signal">,
 ): Promise<LeaderboardPayload | null> {
-	const url = new URL(`/api/leaderboard/${kind}`, env.NEXT_PUBLIC_SERVER_URL);
+	const url = new URL(`/api/leaderboard/${kind}`, stillApiOrigin());
 	url.searchParams.set("period", period);
 	url.searchParams.set("tz", tz);
 	const response = await fetch(url, {

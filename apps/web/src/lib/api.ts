@@ -1,5 +1,6 @@
 import { createClient } from "@still/api-client";
-import { env } from "@still/env/web";
+
+import { stillApiOrigin } from "@/lib/still-api-origin";
 
 /**
  * Browser-side singleton — uses the Better Auth cookie via credentials:include.
@@ -9,4 +10,4 @@ import { env } from "@still/env/web";
  * Prefer thin `still-api-fetch` helpers for brittle GET URLs (movie search querystring,
  * optional `AbortSignal`).
  */
-export const api = createClient({ baseURL: env.NEXT_PUBLIC_SERVER_URL });
+export const api = createClient({ baseURL: stillApiOrigin() });

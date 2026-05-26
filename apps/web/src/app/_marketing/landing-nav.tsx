@@ -1,65 +1,94 @@
-import { Button } from "@still/ui/components/button";
+"use client";
+
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
+import { useState } from "react";
 
-import { BrandMark } from "@/components/brand-mark";
+import { LANDING_GLASS_PILL, LANDING_GLASS_PILL_LINK } from "./landing-glass";
+import { LandingMarkPill } from "./landing-mark-pill";
 
-/**
- * Mobbin-style floating pill nav — sticky in the page flow (no fixed
- * pointer-events shell that blocks clicks below the bar).
- */
+/** La Nube nav labels — Work, Info, Contact. */
+const CHAPTERS = [
+	{ href: "#work", label: "Work" },
+	{ href: "#diary", label: "Info" },
+	{ href: "#start", label: "Contact" },
+] as const;
+
 export function LandingNav({ className }: { className?: string }) {
+	const [open, setOpen] = useState(false);
+
 	return (
-		<div
-			className={cn(
-				"sticky top-0 z-20 flex justify-center px-4 pt-4 pb-3 sm:pt-5 sm:pb-4",
-				className,
-			)}
-		>
-			<header
+		<>
+			<div
 				className={cn(
-					"flex w-full max-w-mobbin-page items-center justify-between gap-4",
-					"rounded-full bg-card px-4 py-2.5 shadow-mobbin-xl sm:px-5 sm:py-3",
+					"pointer-events-none fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-5 sm:pt-6",
+					className,
 				)}
 			>
-				<BrandMark size="md" wordmarkFont="sans" href="/" />
-				<nav
-					className="hidden items-center gap-1 text-muted-foreground text-sm md:flex"
-					aria-label="Marketing"
+				<div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+					<LandingMarkPill />
+					<nav
+						className={cn(
+							LANDING_GLASS_PILL,
+							"hidden h-11 items-center gap-0.5 px-2 sm:flex",
+						)}
+						aria-label="Site sections"
+					>
+						{CHAPTERS.map((link) => (
+							<Link
+								key={link.href}
+								href={link.href}
+								className={cn(
+									LANDING_GLASS_PILL_LINK,
+									"rounded-full px-4 py-2",
+								)}
+							>
+								{link.label}
+							</Link>
+						))}
+					</nav>
+					<button
+						type="button"
+						className={cn(
+							LANDING_GLASS_PILL,
+							"flex h-11 items-center px-4 font-sans text-foreground/90 text-sm sm:hidden",
+						)}
+						aria-expanded={open}
+						aria-controls="landing-mobile-menu"
+						onClick={() => setOpen((v) => !v)}
+					>
+						{open ? "Close" : "Menu"}
+					</button>
+				</div>
+			</div>
+
+			{open ? (
+				<div
+					id="landing-mobile-menu"
+					role="dialog"
+					aria-modal="true"
+					aria-label="Site menu"
+					className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 bg-background/96 px-6 backdrop-blur-md sm:hidden"
 				>
-					<Link
-						href="#preview"
-						className="rounded-full px-3 py-2 transition-colors duration-200 [@media(hover:hover)]:hover:text-foreground"
-					>
-						Catalogue
-					</Link>
-					<Link
-						href="#features"
-						className="rounded-full px-3 py-2 transition-colors duration-200 [@media(hover:hover)]:hover:text-foreground"
-					>
-						Features
-					</Link>
-				</nav>
-				<div className="flex shrink-0 items-center gap-2">
-					<Link href="/sign-in">
-						<Button variant="ghost" size="sm" className="rounded-full">
-							Sign in
-						</Button>
-					</Link>
-					<Link href="/sign-up">
-						<Button
-							variant="accent"
-							size="pill"
-							className="hidden sm:inline-flex"
+					{CHAPTERS.map((link) => (
+						<Link
+							key={link.href}
+							href={link.href}
+							className="font-medium font-sans text-2xl tracking-[-0.03em]"
+							onClick={() => setOpen(false)}
 						>
-							Start logging
-						</Button>
-						<Button variant="accent" size="sm" className="sm:hidden">
-							Join
-						</Button>
+							{link.label}
+						</Link>
+					))}
+					<Link
+						href="/sign-up"
+						className="font-medium font-sans text-foreground"
+						onClick={() => setOpen(false)}
+					>
+						Create account
 					</Link>
 				</div>
-			</header>
-		</div>
+			) : null}
+		</>
 	);
 }
