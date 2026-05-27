@@ -78,17 +78,20 @@ export function useAddToListRadial(media: AddToListMedia) {
 		void loadLists();
 	}, [lists, listsLoading, loadLists]);
 
-	function bumpListCounts(row: ListBoardRow): ListBoardRow {
-		const isMovie = media.listingKind === "movie";
-		return {
-			...row,
-			containsTitle: true,
-			containsMovie: true,
-			itemsCount: row.itemsCount + 1,
-			movieItemsCount: row.movieItemsCount + (isMovie ? 1 : 0),
-			tvItemsCount: row.tvItemsCount + (isMovie ? 0 : 1),
-		};
-	}
+	const bumpListCounts = useCallback(
+		(row: ListBoardRow): ListBoardRow => {
+			const isMovie = media.listingKind === "movie";
+			return {
+				...row,
+				containsTitle: true,
+				containsMovie: true,
+				itemsCount: row.itemsCount + 1,
+				movieItemsCount: row.movieItemsCount + (isMovie ? 1 : 0),
+				tvItemsCount: row.tvItemsCount + (isMovie ? 0 : 1),
+			};
+		},
+		[media.listingKind],
+	);
 
 	const addTitleToList = useCallback(
 		async (list: ListBoardRow) => {
@@ -121,7 +124,7 @@ export function useAddToListRadial(media: AddToListMedia) {
 				setAddingListId(null);
 			}
 		},
-		[addingListId, entityLabel, media],
+		[addingListId, bumpListCounts, entityLabel, media],
 	);
 
 	// Mount popover only while open — avoids one hidden `PopoverTrigger` per lobby poster cell.

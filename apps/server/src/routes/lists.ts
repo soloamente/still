@@ -137,18 +137,19 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			if (movieId == null && tvId == null) return enriched;
 			if (movieId != null && tvId != null) return enriched;
 
+			const titleInList =
+				movieId != null
+					? eq(listItem.movieId, movieId)
+					: tvId != null
+						? eq(listItem.tvId, tvId)
+						: null;
+			if (titleInList == null) return enriched;
+
 			const memberships = await db
 				.select({ listId: listItem.listId })
 				.from(listItem)
 				.innerJoin(list, eq(listItem.listId, list.id))
-				.where(
-					and(
-						eq(list.userId, user.id),
-						movieId != null
-							? eq(listItem.movieId, movieId)
-							: eq(listItem.tvId, tvId!),
-					),
-				);
+				.where(and(eq(list.userId, user.id), titleInList));
 			const contains = new Set(memberships.map((m) => m.listId));
 
 			return enriched.map((row) => {

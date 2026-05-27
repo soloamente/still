@@ -1,5 +1,5 @@
 import { db, listItem, movie, tv } from "@still/db";
-import { desc, eq, inArray } from "drizzle-orm";
+import { desc, inArray } from "drizzle-orm";
 
 import { listDisplayCoverMovieIds } from "./list-display-cover";
 

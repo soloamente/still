@@ -15,7 +15,6 @@ import {
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
-import type { TvLogScope } from "@/lib/tv-watch-types";
 
 export type { MyTvLog } from "@/lib/my-tv-log";
 
