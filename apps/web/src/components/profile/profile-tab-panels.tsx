@@ -10,7 +10,6 @@ import {
 import type { ProfileTabId } from "@/components/profile/profile-tab-toolbar";
 import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
-import { toListBoardRow } from "@/lib/list-board-row";
 export function ProfileTabPanels({
 	activeTab,
 	movieRows,
@@ -89,7 +88,7 @@ export function ProfileTabPanels({
 	if (activeTab === "lists") {
 		return (
 			<ProfileListsPanel
-				lists={lists.map((l) => toListBoardRow(l))}
+				lists={lists}
 				catalogueWaveKey={catalogueWaveKey}
 				monochromePeersOnHover={monochromePeersOnHover}
 			/>

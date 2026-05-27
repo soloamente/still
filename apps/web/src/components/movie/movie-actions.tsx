@@ -53,7 +53,7 @@ export function MovieActions({
 			<Button
 				variant="accent"
 				size="pill"
-				onClick={handleOpenQuickLog}
+				onClick={() => handleOpenQuickLog()}
 				disabled={!hydrated}
 			>
 				{!hydrated ? (

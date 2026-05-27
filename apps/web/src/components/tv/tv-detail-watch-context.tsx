@@ -7,6 +7,7 @@ import { useTvWatch } from "@/components/tv/use-tv-watch";
 
 type TvDetailWatchContextValue = {
 	tvId: number;
+	title: string;
 	tvWatch: ReturnType<typeof useTvWatch>;
 	userState: ReturnType<typeof useTvDetailUserState>;
 };
@@ -36,7 +37,7 @@ export function TvDetailWatchProvider({
 	});
 
 	return (
-		<TvDetailWatchContext.Provider value={{ tvId, tvWatch, userState }}>
+		<TvDetailWatchContext.Provider value={{ tvId, title, tvWatch, userState }}>
 			{children}
 		</TvDetailWatchContext.Provider>
 	);

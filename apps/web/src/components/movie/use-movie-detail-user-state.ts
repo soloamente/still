@@ -81,13 +81,15 @@ export function useMovieDetailUserState(
 		};
 	}, [refreshUserState]);
 
-	function handleOpenQuickLog() {
+	function handleOpenQuickLog(openOpts?: { asRewatch?: boolean }) {
+		const isRewatch = openOpts?.asRewatch ?? myLogs.length > 0;
 		openQuickLog({
 			movieId,
 			movieTitle: title,
 			posterUrl: options?.posterUrl ?? undefined,
 			averageRating: options?.averageRating ?? undefined,
 			priorLogCount: myLogs.length,
+			rewatch: isRewatch,
 			onSuccess: () => {
 				void play("reel-clack").catch(() => undefined);
 				void refreshUserState();

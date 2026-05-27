@@ -20,10 +20,10 @@ export const LIST_SYSTEM_KIND_FAVORITES = "favorites" as const;
 export type ListSystemKind = typeof LIST_SYSTEM_KIND_FAVORITES;
 
 /**
- * User-curated movie lists. `isRanked` toggles whether `position` matters
- * for display; `coverMovieIds` snapshots the four posters used to render
- * the list cover so we don't have to query items just to draw a card.
- * `coverMovieId` pins one list item as the hero / primary tile when set.
+ * User-curated film/TV lists. `isRanked` toggles whether `position` matters
+ * for display; `coverMovieIds` / `coverTvIds` snapshot poster ids for lobby
+ * strips; `movieItemsCount` / `tvItemsCount` power split picker meta lines.
+ * `coverMovieId` pins one film as the hero tile when set.
  */
 export const list = pgTable(
 	"list",
@@ -44,12 +44,16 @@ export const list = pgTable(
 			.$type<number[]>()
 			.default([])
 			.notNull(),
+		/** TMDb tv ids for cover strip — parallel to `coverMovieIds`. */
+		coverTvIds: jsonb("cover_tv_ids").$type<number[]>().default([]).notNull(),
 		coverMovieId: integer("cover_movie_id"),
 		coverImageUrl: text("cover_image_url"),
 		tags: jsonb("tags").$type<string[]>().default([]).notNull(),
 		likesCount: integer("likes_count").default(0).notNull(),
 		commentsCount: integer("comments_count").default(0).notNull(),
 		itemsCount: integer("items_count").default(0).notNull(),
+		movieItemsCount: integer("movie_items_count").default(0).notNull(),
+		tvItemsCount: integer("tv_items_count").default(0).notNull(),
 		createdAt: timestamp("created_at").defaultNow().notNull(),
 		updatedAt: timestamp("updated_at")
 			.defaultNow()

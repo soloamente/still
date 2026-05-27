@@ -102,7 +102,7 @@ export function buildCatalogueRadialItemSpecs(
 		});
 	}
 
-	if (isMovie && surface !== "watchlist") {
+	if (surface !== "watchlist") {
 		specs.push({
 			id: "add-to-list",
 			label: "Add to list",
@@ -111,7 +111,7 @@ export function buildCatalogueRadialItemSpecs(
 	}
 
 	// Watchlist lobby: add-to-list before destructive remove (sort order).
-	if (isMovie && surface === "watchlist") {
+	if (surface === "watchlist") {
 		specs.push({
 			id: "add-to-list",
 			label: "Add to list",

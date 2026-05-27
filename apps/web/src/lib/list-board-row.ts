@@ -7,6 +7,8 @@ export interface ListBoardRow {
 	title: string;
 	description: string | null;
 	itemsCount: number;
+	movieItemsCount: number;
+	tvItemsCount: number;
 	likesCount: number;
 	coverMovieIds: number[];
 	coverPosterPaths: (string | null)[];
@@ -16,7 +18,9 @@ export interface ListBoardRow {
 	isPublic: boolean;
 	/** `favorites` = auto-synced from diary hearts; hidden from add-to-list picker. */
 	systemKind?: string | null;
-	/** Present on `GET /api/lists/me?movieId=` — film already on this list. */
+	/** Present on `GET /api/lists/me?movieId=` or `?tvId=` — title already on list. */
+	containsTitle?: boolean;
+	/** @deprecated Use `containsTitle`. */
 	containsMovie?: boolean;
 }
 
@@ -34,6 +38,22 @@ export function toListBoardRow(raw: unknown): ListBoardRow {
 		title: String(r.title ?? ""),
 		description: r.description != null ? String(r.description) : null,
 		itemsCount: Number(r.itemsCount ?? 0),
+		movieItemsCount: (() => {
+			const itemsCount = Number(r.itemsCount ?? 0);
+			const rawMovie = r.movieItemsCount ?? r.movie_items_count;
+			const rawTv = r.tvItemsCount ?? r.tv_items_count;
+			if (rawMovie != null || rawTv != null) {
+				return Number(rawMovie ?? 0);
+			}
+			return itemsCount;
+		})(),
+		tvItemsCount: (() => {
+			const rawTv = r.tvItemsCount ?? r.tv_items_count;
+			if (rawTv != null) return Number(rawTv);
+			const rawMovie = r.movieItemsCount ?? r.movie_items_count;
+			if (rawMovie != null) return 0;
+			return 0;
+		})(),
 		likesCount: Number(r.likesCount ?? 0),
 		coverMovieIds,
 		coverPosterPaths,
@@ -47,6 +67,17 @@ export function toListBoardRow(raw: unknown): ListBoardRow {
 				: typeof r.system_kind === "string"
 					? r.system_kind
 					: null,
-		containsMovie: "containsMovie" in r ? Boolean(r.containsMovie) : undefined,
+		containsTitle:
+			"containsTitle" in r
+				? Boolean(r.containsTitle)
+				: "containsMovie" in r
+					? Boolean(r.containsMovie)
+					: undefined,
+		containsMovie:
+			"containsMovie" in r
+				? Boolean(r.containsMovie)
+				: "containsTitle" in r
+					? Boolean(r.containsTitle)
+					: undefined,
 	};
 }

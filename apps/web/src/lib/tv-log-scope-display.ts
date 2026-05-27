@@ -28,7 +28,7 @@ export function formatTvLogScopeLabel(
 	);
 }
 
-/** Quick Log primary CTA for new TV logs — matches Episode / Season / Whole show picker. */
+/** @deprecated Use `quickLogSubmitLabel` from `@/lib/quick-log-copy` */
 export function quickLogTvSubmitLabel(
 	scope: TvLogScope | null | undefined,
 ): string {

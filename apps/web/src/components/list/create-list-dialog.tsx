@@ -29,6 +29,10 @@ import { createPortal } from "react-dom";
 import { toast } from "sonner";
 
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import {
+	type AddToListMedia,
+	addToListItemPostBody,
+} from "@/lib/add-to-list-media";
 import { api } from "@/lib/api";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
@@ -54,10 +58,13 @@ const CREATE_LIST_ORDERING_TOOLTIPS = {
 export type CreateListDialogProps = {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
-	/** When set, the new list receives this film immediately after creation. */
+	/** When set, the new list receives this title immediately after creation. */
+	media?: AddToListMedia;
+	/** @deprecated Prefer `media`. */
 	movieId?: number;
+	/** @deprecated Prefer `media`. */
 	movieTitle?: string;
-	/** Called after list (+ optional film) is saved successfully. */
+	/** Called after list (+ optional title) is saved successfully. */
 	onCreated?: (listId: string) => void;
 };
 
@@ -68,10 +75,20 @@ export type CreateListDialogProps = {
 export function CreateListDialog({
 	open,
 	onOpenChange,
+	media,
 	movieId,
 	movieTitle,
 	onCreated,
 }: CreateListDialogProps) {
+	const seedMedia: AddToListMedia | null =
+		media ??
+		(typeof movieId === "number"
+			? {
+					listingKind: "movie",
+					tmdbId: movieId,
+					title: movieTitle ?? "",
+				}
+			: null);
 	const reduceMotion = useReducedMotion();
 	const [mounted, setMounted] = useState(false);
 	const scrollRef = useRef<HTMLDivElement>(null);
@@ -147,14 +164,16 @@ export function CreateListDialog({
 				return;
 			}
 
-			if (typeof movieId === "number") {
-				await api.api.lists({ id: listId }).items.post({ movieId });
+			if (seedMedia) {
+				await api.api
+					.lists({ id: listId })
+					.items.post(addToListItemPostBody(seedMedia));
 			}
 
 			const label = created?.title ?? trimmed;
 			toast.success(
-				typeof movieId === "number" && movieTitle
-					? `Added ${movieTitle} to ${label}`
+				seedMedia?.title
+					? `Added ${seedMedia.title} to ${label}`
 					: `Created ${label}`,
 			);
 			onCreated?.(listId);
@@ -253,9 +272,9 @@ export function CreateListDialog({
 									New list
 								</h2>
 								<p className="mb-6 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
-									{typeof movieId === "number" && movieTitle
-										? `“${movieTitle}” joins this list as soon as you create it.`
-										: "Organize films into a ranked or casual collection."}
+									{seedMedia?.title
+										? `“${seedMedia.title}” joins this list as soon as you create it.`
+										: "Organize films and shows into a ranked or casual collection."}
 								</p>
 
 								<form id={FORM_ID} onSubmit={submit} className="space-y-5">

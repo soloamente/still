@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { SearchPillField } from "@/components/ui/search-pill-field";
 import type { ListBoardRow } from "@/lib/list-board-row";
 import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
+import { formatListMetaLine } from "@/lib/list-meta-line";
 
 /** Resolve a TMDb still URL from a DB path fragment (same as `ListRowStrip`). */
 function tmdbPosterSrc(path: string | null): string | null {
@@ -16,16 +17,6 @@ function tmdbPosterSrc(path: string | null): string | null {
 	if (path.startsWith("http")) return path;
 	const fragment = path.startsWith("/") ? path : `/${path}`;
 	return `https://image.tmdb.org/t/p/w185${fragment}`;
-}
-
-function listVisibilityLabel(list: ListBoardRow): string {
-	return list.isPublic ? "Public" : "Private";
-}
-
-function listMetaLine(list: ListBoardRow): string {
-	const count = list.itemsCount;
-	const films = count === 1 ? "film" : "films";
-	return `${count} ${films} · ${listVisibilityLabel(list)}`;
 }
 
 /** First cover still for the row thumbnail — falls back to a neutral tile. */
@@ -58,21 +49,21 @@ function ListPickerThumb({ list }: { list: ListBoardRow }) {
 /** Trailing slot — white check when this film is already on the list (aligned with “New list” +). */
 function ListPickerSelectionMark({
 	busy,
-	containsMovie,
+	containsTitle,
 	listTitle,
 }: {
 	busy: boolean;
-	containsMovie: boolean;
+	containsTitle: boolean;
 	listTitle: string;
 }) {
 	return (
 		<span
 			className="inline-flex size-9 shrink-0 items-center justify-center text-muted-foreground"
-			aria-hidden={!containsMovie && !busy}
+			aria-hidden={!containsTitle && !busy}
 		>
 			{busy ? (
 				<Loader2 className="size-5 animate-spin" aria-hidden />
-			) : containsMovie ? (
+			) : containsTitle ? (
 				<span className="inline-flex size-5 items-center justify-center rounded-full bg-foreground text-background">
 					<span className="sr-only">Already in {listTitle}</span>
 					<Check className="size-3 stroke-[2.5]" aria-hidden />
@@ -84,7 +75,7 @@ function ListPickerSelectionMark({
 
 type AddToListPickerProps = {
 	lists: ListBoardRow[];
-	movieTitle: string;
+	titleLabel: string;
 	addingListId: string | null;
 	onSelectList: (list: ListBoardRow) => void;
 	onCreateNew: () => void;
@@ -96,7 +87,7 @@ type AddToListPickerProps = {
  */
 export function AddToListPicker({
 	lists,
-	movieTitle,
+	titleLabel,
 	addingListId,
 	onSelectList,
 	onCreateNew,
@@ -121,7 +112,7 @@ export function AddToListPicker({
 						Add to list
 					</p>
 					<p className="line-clamp-2 text-balance text-muted-foreground text-sm leading-snug">
-						{movieTitle}
+						{titleLabel}
 					</p>
 				</div>
 			</div>
@@ -209,12 +200,18 @@ export function AddToListPicker({
 												{list.title}
 											</p>
 											<p className="truncate text-muted-foreground text-sm tabular-nums leading-snug">
-												{listMetaLine(list)}
+												{formatListMetaLine({
+													movieItemsCount: list.movieItemsCount,
+													tvItemsCount: list.tvItemsCount,
+													isPublic: list.isPublic,
+												})}
 											</p>
 										</div>
 										<ListPickerSelectionMark
 											busy={busy}
-											containsMovie={Boolean(list.containsMovie)}
+											containsTitle={Boolean(
+												list.containsTitle ?? list.containsMovie,
+											)}
 											listTitle={list.title}
 										/>
 									</button>

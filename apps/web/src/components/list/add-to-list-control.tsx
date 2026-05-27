@@ -14,6 +14,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { AddToListPicker } from "@/components/list/add-to-list-picker";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
+import {
+	type AddToListMedia,
+	addToListEntityLabel,
+	addToListItemPostBody,
+} from "@/lib/add-to-list-media";
 import { api } from "@/lib/api";
 import {
 	DETAIL_MOTION_PRESSABLE_CLASS,
@@ -23,8 +28,7 @@ import { type ListBoardRow, toListBoardRow } from "@/lib/list-board-row";
 import { fetchListsMe } from "@/lib/still-api-fetch";
 
 type AddToListControlProps = {
-	movieId: number;
-	movieTitle: string;
+	media: AddToListMedia;
 	disabled?: boolean;
 	/** Optional layout wrapper for hero `LayoutGroup` siblings. */
 	layout?: boolean;
@@ -35,8 +39,7 @@ type AddToListControlProps = {
  * otherwise a Mobbin-style picker sheet to search lists or start a new one.
  */
 export function AddToListControl({
-	movieId,
-	movieTitle,
+	media,
 	disabled = false,
 	layout = true,
 }: AddToListControlProps) {
@@ -48,6 +51,7 @@ export function AddToListControl({
 	const [addingListId, setAddingListId] = useState<string | null>(null);
 	const [pickerSession, setPickerSession] = useState(0);
 	const fetchGen = useRef(0);
+	const entityLabel = addToListEntityLabel(media.listingKind);
 
 	const circle = cn(
 		"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background text-foreground",
@@ -59,7 +63,10 @@ export function AddToListControl({
 		const gen = ++fetchGen.current;
 		setListsLoading(true);
 		try {
-			const res = await fetchListsMe(movieId);
+			const res = await fetchListsMe({
+				listingKind: media.listingKind,
+				tmdbId: media.tmdbId,
+			});
 			if (gen !== fetchGen.current) return null;
 			const rows = ((res.data as unknown[]) ?? [])
 				.map(toListBoardRow)
@@ -73,7 +80,7 @@ export function AddToListControl({
 		} finally {
 			if (gen === fetchGen.current) setListsLoading(false);
 		}
-	}, [movieId]);
+	}, [media.listingKind, media.tmdbId]);
 
 	// Warm patron lists once the hero row is interactive.
 	useEffect(() => {
@@ -103,31 +110,39 @@ export function AddToListControl({
 		setPickerOpen(true);
 	}
 
-	async function addFilmToList(list: ListBoardRow) {
+	function bumpListCounts(row: ListBoardRow): ListBoardRow {
+		const isMovie = media.listingKind === "movie";
+		return {
+			...row,
+			containsTitle: true,
+			containsMovie: true,
+			itemsCount: row.itemsCount + 1,
+			movieItemsCount: row.movieItemsCount + (isMovie ? 1 : 0),
+			tvItemsCount: row.tvItemsCount + (isMovie ? 0 : 1),
+		};
+	}
+
+	async function addTitleToList(list: ListBoardRow) {
 		if (addingListId) return;
-		if (list.containsMovie) {
+		if (list.containsTitle ?? list.containsMovie) {
 			stillToast.alreadyInCollection({
-				entityLabel: "Movie",
+				entityLabel,
 				listTitle: list.title,
 			});
 			return;
 		}
 		setAddingListId(list.id);
 		try {
-			await api.api.lists({ id: list.id }).items.post({ movieId });
+			await api.api
+				.lists({ id: list.id })
+				.items.post(addToListItemPostBody(media));
 			setLists((prev) =>
 				(prev ?? []).map((row) =>
-					row.id === list.id
-						? {
-								...row,
-								containsMovie: true,
-								itemsCount: row.itemsCount + 1,
-							}
-						: row,
+					row.id === list.id ? bumpListCounts(row) : row,
 				),
 			);
 			stillToast.addedToCollection({
-				entityLabel: "Movie",
+				entityLabel,
 				destinationName: list.title,
 			});
 		} catch (err) {
@@ -191,9 +206,9 @@ export function AddToListControl({
 						<AddToListPicker
 							key={pickerSession}
 							lists={lists ?? []}
-							movieTitle={movieTitle}
+							titleLabel={media.title}
 							addingListId={addingListId}
-							onSelectList={(list) => void addFilmToList(list)}
+							onSelectList={(list) => void addTitleToList(list)}
 							onCreateNew={() => {
 								handlePickerOpenChange(false);
 								setCreateOpen(true);
@@ -208,8 +223,7 @@ export function AddToListControl({
 			<CreateListDialog
 				open={createOpen}
 				onOpenChange={setCreateOpen}
-				movieId={movieId}
-				movieTitle={movieTitle}
+				media={media}
 				onCreated={handleListCreated}
 			/>
 		</>

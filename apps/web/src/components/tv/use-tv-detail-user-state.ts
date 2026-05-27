@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { useCinematicAudio } from "@/components/cinema/sound-provider";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
+import type { MyTvLog } from "@/lib/my-tv-log";
 import {
 	deleteWatchlistTvItem,
 	fetchMyLogsForTv,
@@ -13,22 +14,10 @@ import {
 	postLog,
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
+import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
 
-/** One row returned by `GET /api/logs/me/by-tv/:tvId` (full `log` row from Drizzle). */
-export interface MyTvLog {
-	id: string;
-	liked: boolean;
-	rewatch?: boolean;
-	rating?: number | null;
-	note?: string | null;
-	watchedAt?: string | null;
-	containsSpoilers?: boolean;
-	watchVenue?: string | null;
-	logScope?: TvLogScope | null;
-	seasonNumber?: number | null;
-	episodeNumber?: number | null;
-}
+export type { MyTvLog } from "@/lib/my-tv-log";
 
 /**
  * Diary + watchlist hydration for TV detail — same contract as `useMovieDetailUserState`
@@ -81,17 +70,30 @@ export function useTvDetailUserState(
 		};
 	}, [refreshUserState]);
 
-	function handleOpenQuickLog(scope?: {
-		logScope?: "show" | "season" | "episode";
-		seasonNumber?: number;
-		episodeNumber?: number;
-	}) {
+	function handleOpenQuickLog(
+		scope?: {
+			logScope?: "show" | "season" | "episode";
+			seasonNumber?: number;
+			episodeNumber?: number;
+		},
+		openOpts?: { asRewatch?: boolean },
+	) {
+		const logScope = scope?.logScope ?? "show";
+		const scopeTarget = {
+			logScope,
+			seasonNumber: scope?.seasonNumber ?? null,
+			episodeNumber: scope?.episodeNumber ?? null,
+		};
+		const scopedPrior = countTvLogsInScope(myLogs, scopeTarget);
+		const isRewatch = openOpts?.asRewatch ?? scopedPrior > 0;
 		openQuickLog({
 			tvId,
 			movieTitle: title,
 			posterUrl: options?.posterUrl ?? undefined,
 			averageRating: options?.averageRating ?? undefined,
-			priorLogCount: myLogs.length,
+			priorLogCount: scopedPrior,
+			priorTvLogs: myLogs,
+			rewatch: isRewatch,
 			logScope: scope?.logScope,
 			seasonNumber: scope?.seasonNumber,
 			episodeNumber: scope?.episodeNumber,
@@ -102,8 +104,7 @@ export function useTvDetailUserState(
 		});
 	}
 
-	function handleEditLatestLog() {
-		const log = latestLog;
+	function handleEditLog(log: MyTvLog) {
 		if (!log) return;
 		const watchVenue =
 			log.watchVenue === "theaters" || log.watchVenue === "streaming"
@@ -129,6 +130,11 @@ export function useTvDetailUserState(
 				void refreshUserState();
 			},
 		});
+	}
+
+	function handleEditLatestLog() {
+		if (!latestLog) return;
+		handleEditLog(latestLog);
 	}
 
 	async function toggleWatchlist() {
@@ -206,6 +212,7 @@ export function useTvDetailUserState(
 		latestLog,
 		refreshUserState,
 		handleOpenQuickLog,
+		handleEditLog,
 		handleEditLatestLog,
 		toggleWatchlist,
 		toggleHeart,

@@ -1473,3 +1473,36 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 - **Phase 8.3 (Lighthouse mobile):** prep + default relative pass gates under **`### Phase 8.3 prep — Lighthouse mobile perf`** — log scores against the **same** build mode as the last tagged baseline.
 - **Phase 8.4 (per-film contrast):** prep under **`### Phase 8.4 prep — Per-film palette contrast`** — sample **three** **`/movies/[id]`** extremes before ticking **8.4**.
 - **Catalogue billboard Lobby link:** **`popular` / `upcoming` / `discover`** header **`← Lobby`** uses **`aria-label="Back to home lobby"`** plus **`[@media(hover:hover)]:hover:text-foreground`** so touch avoids stuck-hover tint and screen readers get a clear target name.
+
+### 2026-05-27 — TV on lists (Planner)
+
+**Approved:** `docs/superpowers/specs/2026-05-27-tv-on-lists-design.md` — Approach A, full parity, split picker meta (`0 titles` empty, `N films · M shows` mixed).
+
+**Plan:** `docs/superpowers/plans/2026-05-27-tv-on-lists.md` (11 tasks: migration → aggregates → API → meta line → shared picker → TV hero → radial → QA).
+
+**Project Status Board:**
+- [x] TL.1 DB migration (`cover_tv_ids`, `movie_items_count`, `tv_items_count`) — migration `0008` applied
+- [x] TL.2 `refreshListAggregates` + cover poster order
+- [x] TL.3 Lists API POST/DELETE/me TV
+- [x] TL.4 Web `AddToListMedia` + meta line + radial + TV hero
+- [x] TL.5 Build + manual QA — human **`ok`** (2026-05-27)
+
+**Shipped (2026-05-27):** TV on lists — migration `0008`, lists API `tvId`, split picker meta (`0 titles` / `N films · M shows`), `AddToListMedia` on TV detail + catalogue radial. Spec: `docs/superpowers/specs/2026-05-27-tv-on-lists-design.md`.
+
+### 2026-05-27 — TV diary rewatch scope (Executor)
+
+**Approved:** `docs/superpowers/specs/2026-05-27-tv-log-rewatch-scope-design.md` — Approach A (scoped prior counts + auto season diary on mark complete).
+
+**Project Status Board:**
+- [x] TR.1 `tv-log-scope-prior.ts` + unit tests
+- [x] TR.2 `use-tv-detail-user-state` scoped `priorLogCount` / `priorTvLogs` / `handleEditLog`
+- [x] TR.3 `quick-log-sheet` scope-aware rewatch + form scope payload on POST
+- [x] TR.4 `tv-detail-primary-actions` show-scoped hero badge
+- [x] TR.5 `tv-detail-progress-panel` per-season counts, auto `postLog`, Edit diary
+- [x] TR.6 `catalogue-poster-tile` TV show-scoped prior count
+- [x] TR.7 `apps/web` build + unit tests pass
+- [ ] TR.8 Human manual QA — reply **`ok`** when verified
+
+**Executor's Feedback or Assistance Requests:** Please verify on a TV detail page: (1) log S1 → Quick Log S2 → Rewatch **off**; (2) log S1 again → Rewatch **on**; (3) hero badge counts **show** logs only; (4) mark season complete creates diary row without “Log to diary” toast CTA; (5) complete season with existing log shows **Edit diary**.
+
+**Shipped (code, pending QA):** `apps/web/src/lib/tv-log-scope-prior.ts`, `my-tv-log.ts`, updates to quick log, TV detail hero/progress, catalogue radial TV quick log.

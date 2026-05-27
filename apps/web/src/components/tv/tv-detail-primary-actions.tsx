@@ -1,13 +1,11 @@
 "use client";
 
-import IconListPlay from "@still/ui/icons/list-play";
 import IconPen2Fill from "@still/ui/icons/pen-2-fill";
 import IconPlayRotateAnticlockwise from "@still/ui/icons/play-rotate-anticlockwise";
 import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
-import { toast } from "sonner";
-
+import { AddToListControl } from "@/components/list/add-to-list-control";
 import { DetailWatchlistButton } from "@/components/movie/detail-watchlist-button";
 import { useTvDetailWatchContext } from "@/components/tv/tv-detail-watch-context";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
@@ -16,6 +14,7 @@ import {
 	DETAIL_MOTION_SWAP_CLASS,
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
+import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import { formatTvNextEpisodeLabel } from "@/lib/tv-watch-format";
 import {
 	TV_WATCH_STATUS_LABELS,
@@ -35,7 +34,7 @@ const STATUS_OPTIONS: TvWatchStatus[] = [
  * and continue line. Uses `TvDetailWatchProvider` for a single progress + diary fetch.
  */
 export function TvDetailPrimaryActions() {
-	const { tvId, tvWatch, userState } = useTvDetailWatchContext();
+	const { tvId, title, tvWatch, userState } = useTvDetailWatchContext();
 	const {
 		hydrated: watchHydrated,
 		watch,
@@ -60,6 +59,8 @@ export function TvDetailPrimaryActions() {
 
 	const hydrated = watchHydrated && logHydrated;
 	const hasLogged = myLogs.length > 0;
+	/** Whole-series diary count — badge only; season/episode logs do not inflate it. */
+	const showLogCount = countTvLogsInScope(myLogs, { logScope: "show" });
 	const hasWatch = watch != null;
 	const motionProps = useDetailActionMotion();
 	const continueLabel = formatTvNextEpisodeLabel(nextEpisode);
@@ -91,7 +92,7 @@ export function TvDetailPrimaryActions() {
 			: !hasWatch && !hasLogged
 				? "start-watching"
 				: hasLogged
-					? `watch-again-${myLogs.length}`
+					? `watch-again-${showLogCount}`
 					: "log-watched";
 
 	function handlePrimaryClick() {
@@ -103,13 +104,7 @@ export function TvDetailPrimaryActions() {
 			void startWatching();
 			return;
 		}
-		handleOpenQuickLog();
-	}
-
-	function handleAddToList() {
-		toast.info(
-			"Lists are for films — open the movie page to add this title to a list.",
-		);
+		handleOpenQuickLog(undefined, { asRewatch: hasLogged });
 	}
 
 	const primaryLabel = showMarkNext
@@ -196,9 +191,11 @@ export function TvDetailPrimaryActions() {
 								: !hasWatch && !hasLogged
 									? "Start watching this show"
 									: hasLogged
-										? myLogs.length > 1
-											? `Record another watch (${myLogs.length} logs)`
-											: "Record another time you watched this show"
+										? showLogCount > 1
+											? `Record another watch (${showLogCount} series logs)`
+											: showLogCount === 1
+												? "Record another time you watched this series"
+												: "Log this show to your diary"
 										: "Log this show to your diary"
 						}
 					>
@@ -226,12 +223,12 @@ export function TvDetailPrimaryActions() {
 											className="shrink-0 opacity-90"
 											aria-hidden
 										/>
-										{myLogs.length > 1 ? (
+										{showLogCount > 1 ? (
 											<span
 												className="absolute -top-1.5 -right-1.5 flex size-4 items-center justify-center rounded-full bg-foreground font-semibold text-[10px] text-background tabular-nums"
 												aria-hidden
 											>
-												{myLogs.length}
+												{showLogCount}
 											</span>
 										) : null}
 									</span>
@@ -283,21 +280,10 @@ export function TvDetailPrimaryActions() {
 						</motion.button>
 					) : null}
 
-					<motion.button
-						type="button"
-						className={cn(circle, DETAIL_MOTION_PRESSABLE_CLASS)}
-						style={motionProps.style}
-						layout
-						data-primary-action
-						whileHover={motionProps.hover}
-						whileTap={motionProps.tap}
-						transition={motionProps.buttonTransition}
-						onClick={handleAddToList}
+					<AddToListControl
+						media={{ listingKind: "tv", tmdbId: tvId, title }}
 						disabled={!hydrated}
-						aria-label="Add to list"
-					>
-						<IconListPlay size="22px" className="shrink-0 opacity-90" />
-					</motion.button>
+					/>
 				</motion.div>
 			</LayoutGroup>
 		</div>

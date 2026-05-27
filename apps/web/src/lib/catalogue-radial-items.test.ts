@@ -65,7 +65,7 @@ describe("buildCatalogueRadialItemSpecs", () => {
 		expect(log?.shortcut).toBe("R");
 	});
 
-	test("home signed-in tv — no add to list", () => {
+	test("home signed-in tv — add to list", () => {
 		expect(
 			ids(
 				buildCatalogueRadialItemSpecs({
@@ -74,7 +74,7 @@ describe("buildCatalogueRadialItemSpecs", () => {
 					signedIn: true,
 				}),
 			),
-		).toEqual(["open", "copy", "quick-log", "watchlist"]);
+		).toEqual(["open", "copy", "quick-log", "watchlist", "add-to-list"]);
 	});
 
 	test("diary with edit — includes edit-log, no quick-log", () => {
@@ -107,7 +107,7 @@ describe("buildCatalogueRadialItemSpecs", () => {
 		expect(remove?.variant).toBe("destructive");
 	});
 
-	test("watchlist tv — no add to list", () => {
+	test("watchlist tv — add to list", () => {
 		expect(
 			ids(
 				buildCatalogueRadialItemSpecs({
@@ -116,7 +116,7 @@ describe("buildCatalogueRadialItemSpecs", () => {
 					signedIn: true,
 				}),
 			),
-		).toEqual(["open", "copy", "quick-log", "remove-watchlist"]);
+		).toEqual(["open", "copy", "quick-log", "add-to-list", "remove-watchlist"]);
 	});
 });
 

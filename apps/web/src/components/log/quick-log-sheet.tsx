@@ -25,7 +25,6 @@ import {
 } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
-
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { LogWatchedDatePicker } from "@/components/log/log-watched-date-picker";
 import { TvLogScopePicker } from "@/components/log/tv-log-scope-picker";
@@ -44,9 +43,14 @@ import {
 	logRatingToStored,
 } from "@/lib/log-rating";
 import { formatTodayYmd, isValidYmd } from "@/lib/log-watched-date";
+import type { MyTvLog } from "@/lib/my-tv-log";
+import {
+	quickLogSheetHeading,
+	quickLogSubmitLabel,
+} from "@/lib/quick-log-copy";
 import { fetchMoviesSearch, patchLog, postLog } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
-import { quickLogTvSubmitLabel } from "@/lib/tv-log-scope-display";
+import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
 
 /** Max note length — keep in sync with `apps/server` log create validation. */
@@ -84,6 +88,8 @@ export type QuickLogArgs = {
 	watchVenue?: HomeVenue;
 	/** When logging again after an existing diary row — defaults rewatch on. */
 	priorLogCount?: number;
+	/** TV only — recompute rewatch when scope/season/episode changes in the sheet. */
+	priorTvLogs?: MyTvLog[];
 	/** TV diary scope — defaults to whole show when omitted. */
 	logScope?: "show" | "season" | "episode";
 	seasonNumber?: number;
@@ -147,8 +153,8 @@ function tvLogScopePayload(
 ) {
 	return {
 		logScope: scope,
-		seasonNumber: scope === "show" ? null : seasonNumber,
-		episodeNumber: scope === "episode" ? episodeNumber : null,
+		...(scope !== "show" && seasonNumber != null ? { seasonNumber } : {}),
+		...(scope === "episode" && episodeNumber != null ? { episodeNumber } : {}),
 	};
 }
 
@@ -205,6 +211,8 @@ export function QuickLogRoot() {
 	const [sheetLayoutActive, setSheetLayoutActive] = useState(false);
 	const [showFooterFade, setShowFooterFade] = useState(true);
 	const scrollRef = useRef<HTMLDivElement>(null);
+	/** Skip first TV scope effect pass so `args.rewatch` is not cleared on open. */
+	const tvScopeEffectReady = useRef(false);
 	const scrollContentKey = [
 		needsCatalogPick,
 		tvId,
@@ -265,6 +273,7 @@ export function QuickLogRoot() {
 			setSearchResults([]);
 			setSearching(false);
 			setSearchHint(null);
+			tvScopeEffectReady.current = false;
 		}
 	}, [isOpen]);
 
@@ -322,12 +331,46 @@ export function QuickLogRoot() {
 		setIncludeRating(true);
 		setNote("");
 		setLiked(false);
-		setRewatch(Boolean(args.rewatch) || (args.priorLogCount ?? 0) > 0);
+		const scope = args.logScope ?? "show";
+		const scopedPrior =
+			args.priorTvLogs != null
+				? countTvLogsInScope(args.priorTvLogs, {
+						logScope: scope,
+						seasonNumber: args.seasonNumber ?? null,
+						episodeNumber: args.episodeNumber ?? null,
+					})
+				: (args.priorLogCount ?? 0);
+		// Honor explicit rewatch from rewatch entry points (hero / season row).
+		setRewatch(Boolean(args.rewatch) || scopedPrior > 0);
+		tvScopeEffectReady.current = false;
 		setWatchVenue("streaming");
-		setLogScope(args.logScope ?? "show");
+		setLogScope(scope);
 		setSeasonNumber(args.seasonNumber ?? null);
 		setEpisodeNumber(args.episodeNumber ?? null);
 	}, [isOpen, args]);
+
+	// TV: recompute rewatch when scope changes after open (not on first paint).
+	useEffect(() => {
+		if (!isOpen || !args?.priorTvLogs || args.logId || tvId == null) return;
+		if (!tvScopeEffectReady.current) {
+			tvScopeEffectReady.current = true;
+			return;
+		}
+		const count = countTvLogsInScope(args.priorTvLogs, {
+			logScope,
+			seasonNumber,
+			episodeNumber,
+		});
+		setRewatch(count > 0);
+	}, [
+		isOpen,
+		args?.priorTvLogs,
+		args?.logId,
+		tvId,
+		logScope,
+		seasonNumber,
+		episodeNumber,
+	]);
 
 	useEffect(() => {
 		const trimmed = searchQuery.trim();
@@ -451,12 +494,8 @@ export function QuickLogRoot() {
 				watchVenue,
 				liked: options.skipDetails ? undefined : liked || undefined,
 				rewatch: options.skipDetails ? undefined : rewatch || undefined,
-				...(tvId != null && args.logScope
-					? {
-							logScope: args.logScope,
-							seasonNumber: args.seasonNumber,
-							episodeNumber: args.episodeNumber,
-						}
+				...(tvId != null
+					? tvLogScopePayload(logScope, seasonNumber, episodeNumber)
 					: {}),
 			};
 
@@ -493,15 +532,19 @@ export function QuickLogRoot() {
 	const isSeriesLog = tvId != null;
 	const heading = isEditMode
 		? "Update your screening"
-		: isSeriesLog
-			? "How much did you like this show?"
-			: "How much did you like this movie?";
+		: quickLogSheetHeading({
+				isSeries: isSeriesLog,
+				rewatch,
+				logScope,
+			});
 
 	const primaryLabel = isEditMode
 		? "Save"
-		: isSeriesLog
-			? quickLogTvSubmitLabel(logScope)
-			: "Add movie";
+		: quickLogSubmitLabel({
+				isSeries: isSeriesLog,
+				rewatch,
+				logScope,
+			});
 
 	// Match `HomeCatalogViewModeToolbar` venue chips (track + sliding pill).
 	const venueChip = (active: boolean) =>

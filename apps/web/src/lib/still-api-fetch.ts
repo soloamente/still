@@ -551,14 +551,20 @@ export async function fetchMyLogsForTv(
 	};
 }
 
-/** Patron lists — optional `movieId` adds `containsMovie` per row for add-to-list UI. */
+export type FetchListsMeMedia =
+	| { listingKind: "movie"; tmdbId: number }
+	| { listingKind: "tv"; tmdbId: number };
+
+/** Patron lists — optional media query adds `containsTitle` per row for add-to-list UI. */
 export async function fetchListsMe(
-	movieId?: number,
+	media?: FetchListsMeMedia,
 	init?: Pick<RequestInit, "signal">,
 ) {
 	const url = new URL("/api/lists/me", stillApiOrigin());
-	if (movieId != null && Number.isFinite(movieId)) {
-		url.searchParams.set("movieId", String(movieId));
+	if (media?.listingKind === "movie" && Number.isFinite(media.tmdbId)) {
+		url.searchParams.set("movieId", String(media.tmdbId));
+	} else if (media?.listingKind === "tv" && Number.isFinite(media.tmdbId)) {
+		url.searchParams.set("tvId", String(media.tmdbId));
 	}
 	const response = await fetch(url, {
 		credentials: "include",

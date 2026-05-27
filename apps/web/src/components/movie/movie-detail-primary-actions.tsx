@@ -122,7 +122,7 @@ export function MovieDetailPrimaryActions({
 					whileHover={motionProps.hover}
 					whileTap={motionProps.tap}
 					transition={motionProps.buttonTransition}
-					onClick={handleOpenQuickLog}
+					onClick={() => handleOpenQuickLog()}
 					disabled={!hydrated}
 					aria-label={
 						hasLogged
@@ -231,8 +231,7 @@ export function MovieDetailPrimaryActions({
 				</AnimatePresence>
 
 				<AddToListControl
-					movieId={movieId}
-					movieTitle={title}
+					media={{ listingKind: "movie", tmdbId: movieId, title }}
 					disabled={!hydrated}
 				/>
 			</motion.div>

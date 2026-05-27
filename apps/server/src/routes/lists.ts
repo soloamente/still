@@ -11,10 +11,14 @@ import {
 	withinCommunityPeriod,
 } from "../lib/community-period";
 import { makeId } from "../lib/cuid";
-import { isFavoritesSystemList } from "../lib/favorites-list-sync";
+import {
+	isFavoritesSystemList,
+	refreshListAggregates,
+} from "../lib/favorites-list-sync";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
+import { ensureTvCached } from "../lib/tv-cache";
 import { vercelBlobImagePut } from "../lib/vercel-blob-image-put";
 
 type CreateListBody = {
@@ -36,7 +40,8 @@ type PatchListBody = {
 };
 
 type AddListItemBody = {
-	movieId: number;
+	movieId?: number;
+	tvId?: number;
 	position?: number;
 	note?: string;
 };
@@ -120,26 +125,45 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			const enriched = await withCoverPosterPaths(rows);
 
 			const movieIdRaw = query.movieId?.trim();
-			if (!movieIdRaw) return enriched;
+			const tvIdRaw = query.tvId?.trim();
+			if (!movieIdRaw && !tvIdRaw) return enriched;
 
-			const movieId = Number(movieIdRaw);
-			if (!Number.isFinite(movieId)) return enriched;
+			const movieId =
+				movieIdRaw && Number.isFinite(Number(movieIdRaw))
+					? Number(movieIdRaw)
+					: null;
+			const tvId =
+				tvIdRaw && Number.isFinite(Number(tvIdRaw)) ? Number(tvIdRaw) : null;
+			if (movieId == null && tvId == null) return enriched;
+			if (movieId != null && tvId != null) return enriched;
 
 			const memberships = await db
 				.select({ listId: listItem.listId })
 				.from(listItem)
 				.innerJoin(list, eq(listItem.listId, list.id))
-				.where(and(eq(list.userId, user.id), eq(listItem.movieId, movieId)));
+				.where(
+					and(
+						eq(list.userId, user.id),
+						movieId != null
+							? eq(listItem.movieId, movieId)
+							: eq(listItem.tvId, tvId!),
+					),
+				);
 			const contains = new Set(memberships.map((m) => m.listId));
 
-			return enriched.map((row) => ({
-				...row,
-				containsMovie: contains.has(row.id),
-			}));
+			return enriched.map((row) => {
+				const containsTitle = contains.has(row.id);
+				return {
+					...row,
+					containsTitle,
+					containsMovie: containsTitle,
+				};
+			});
 		},
 		{
 			query: t.Object({
 				movieId: t.Optional(t.String()),
+				tvId: t.Optional(t.String()),
 			}),
 		},
 	)
@@ -393,6 +417,14 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 		async ({ params, body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
 			const body = routeBody<AddListItemBody>(rawBody);
+			const movieId = body.movieId;
+			const tvId = body.tvId;
+			if (movieId != null && tvId != null) {
+				return status(400, "Send exactly one of movieId or tvId");
+			}
+			if (movieId == null && tvId == null) {
+				return status(400, "Send exactly one of movieId or tvId");
+			}
 			const [parent] = await db
 				.select()
 				.from(list)
@@ -402,32 +434,30 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				return status(403, "Cannot edit this list");
 			if (isFavoritesSystemList(parent))
 				return status(403, "This list is synced from your favorites");
+			if (tvId != null) {
+				await ensureTvCached(tvId);
+			}
 			const [row] = await db
 				.insert(listItem)
 				.values({
 					id: makeId("lit"),
 					listId: params.id,
-					movieId: body.movieId,
-					tvId: null,
+					movieId: movieId ?? null,
+					tvId: tvId ?? null,
 					position: body.position ?? parent.itemsCount,
 					note: body.note ?? null,
 					addedById: user.id,
 				})
 				.onConflictDoNothing()
 				.returning();
-			await db
-				.update(list)
-				.set({
-					itemsCount: sql`(select count(*) from list_item where list_id = ${params.id})`,
-					coverMovieIds: sql`(select coalesce(json_agg(movie_id order by position) filter (where position < 4), '[]'::json) from list_item where list_id = ${params.id})`,
-				})
-				.where(eq(list.id, params.id));
+			await refreshListAggregates(params.id);
 			return row;
 		},
 		{
 			params: t.Object({ id: t.String() }),
 			body: t.Object({
-				movieId: t.Number(),
+				movieId: t.Optional(t.Number()),
+				tvId: t.Optional(t.Number()),
 				position: t.Optional(t.Integer()),
 				note: t.Optional(t.String({ maxLength: 500 })),
 			}),
@@ -446,25 +476,48 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				return status(403, "Cannot edit this list");
 			if (isFavoritesSystemList(parent))
 				return status(403, "This list is synced from your favorites");
+			const movieId = Number(params.movieId);
+			await db
+				.delete(listItem)
+				.where(
+					and(eq(listItem.listId, params.id), eq(listItem.movieId, movieId)),
+				);
+			if (parent.coverMovieId === movieId) {
+				await db
+					.update(list)
+					.set({ coverMovieId: null })
+					.where(eq(list.id, params.id));
+			}
+			await refreshListAggregates(params.id);
+			return { ok: true };
+		},
+		{ params: t.Object({ id: t.String(), movieId: t.String() }) },
+	)
+	.delete(
+		"/:id/items/tv/:tvId",
+		async ({ params, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			const [parent] = await db
+				.select()
+				.from(list)
+				.where(eq(list.id, params.id))
+				.limit(1);
+			if (!parent || (parent.userId !== user.id && !parent.isCollaborative))
+				return status(403, "Cannot edit this list");
+			if (isFavoritesSystemList(parent))
+				return status(403, "This list is synced from your favorites");
 			await db
 				.delete(listItem)
 				.where(
 					and(
 						eq(listItem.listId, params.id),
-						eq(listItem.movieId, Number(params.movieId)),
+						eq(listItem.tvId, Number(params.tvId)),
 					),
 				);
-			await db
-				.update(list)
-				.set({
-					itemsCount: sql`(select count(*) from list_item where list_id = ${params.id})`,
-					coverMovieIds: sql`(select coalesce(json_agg(movie_id order by position) filter (where position < 4), '[]'::json) from list_item where list_id = ${params.id})`,
-					coverMovieId: sql`case when ${list.coverMovieId} = ${Number(params.movieId)} then null else ${list.coverMovieId} end`,
-				})
-				.where(eq(list.id, params.id));
+			await refreshListAggregates(params.id);
 			return { ok: true };
 		},
-		{ params: t.Object({ id: t.String(), movieId: t.String() }) },
+		{ params: t.Object({ id: t.String(), tvId: t.String() }) },
 	)
 	.post(
 		"/:id/like",

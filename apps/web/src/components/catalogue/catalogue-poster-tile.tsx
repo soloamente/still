@@ -38,6 +38,7 @@ import {
 	isCatalogueRadialGatedAction,
 } from "@/lib/catalogue-radial-items";
 import { diaryLogToQuickLogOpenPayload } from "@/lib/diary-open-log";
+import type { MyTvLog } from "@/lib/my-tv-log";
 import {
 	deleteWatchlistItem,
 	deleteWatchlistTvItem,
@@ -47,6 +48,7 @@ import {
 	fetchWatchlistCheckTv,
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
+import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 
 /** Elevation shell — matches `ListLobbyPoster` so radial aim stacks above neighbors. */
 const CATALOGUE_POSTER_SHELL_CLASSNAME = cn(
@@ -113,6 +115,8 @@ export function CataloguePosterTile({
 
 	const [inWatchlist, setInWatchlist] = useState(false);
 	const [priorLogCount, setPriorLogCount] = useState(0);
+	/** TV radial quick log — full rows for scope-aware rewatch in the sheet. */
+	const [priorTvLogs, setPriorTvLogs] = useState<MyTvLog[]>([]);
 	const [watchlistBusy, setWatchlistBusy] = useState(false);
 
 	const isMovie = listingKind === "movie";
@@ -126,7 +130,11 @@ export function CataloguePosterTile({
 
 	const canEditLog = Boolean(editRow && (editRow.movie ?? editRow.tv));
 
-	const addToList = useAddToListRadial(tmdbId, title);
+	const addToList = useAddToListRadial({
+		listingKind,
+		tmdbId,
+		title,
+	});
 
 	/** Home / watchlist — hydrate diary + (home only) watchlist when radial opens. */
 	useEffect(() => {
@@ -139,7 +147,14 @@ export function CataloguePosterTile({
 				: await fetchMyLogsForTv(tmdbId);
 			if (cancelled) return;
 			const logRows = Array.isArray(logRes.data) ? logRes.data : [];
-			setPriorLogCount(logRows.length);
+			if (isMovie) {
+				setPriorTvLogs([]);
+				setPriorLogCount(logRows.length);
+			} else {
+				const tvLogs = logRows as MyTvLog[];
+				setPriorTvLogs(tvLogs);
+				setPriorLogCount(countTvLogsInScope(tvLogs, { logScope: "show" }));
+			}
 
 			if (surface !== "home") return;
 			const wlRes = isMovie
@@ -190,12 +205,18 @@ export function CataloguePosterTile({
 			movieTitle: title,
 			posterUrl: posterUrl ?? undefined,
 			priorLogCount,
+			rewatch: priorLogCount > 0,
 			onSuccess,
 		};
 		if (isMovie) {
 			openQuickLog({ ...logArgs, movieId: tmdbId });
 		} else {
-			openQuickLog({ ...logArgs, tvId: tmdbId });
+			openQuickLog({
+				...logArgs,
+				tvId: tmdbId,
+				logScope: "show",
+				priorTvLogs,
+			});
 		}
 	}, [
 		isMovie,
@@ -204,6 +225,7 @@ export function CataloguePosterTile({
 		openQuickLog,
 		posterUrl,
 		priorLogCount,
+		priorTvLogs,
 		refreshAfterMutation,
 		surface,
 		title,

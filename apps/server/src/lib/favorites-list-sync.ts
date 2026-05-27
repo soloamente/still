@@ -39,33 +39,44 @@ export async function ensureFavoritesList(userId: string): Promise<string> {
 	return id;
 }
 
-/** Recompute `itemsCount` and `coverMovieIds` from current list items. */
+/** Recompute counts and cover id snapshots from current list items. */
 export async function refreshListAggregates(listId: string): Promise<void> {
-	const items = await db
+	const recentItems = await db
 		.select({
 			movieId: listItem.movieId,
-			addedAt: listItem.addedAt,
+			tvId: listItem.tvId,
 		})
 		.from(listItem)
 		.where(eq(listItem.listId, listId))
 		.orderBy(desc(listItem.addedAt))
 		.limit(4);
 
-	const coverMovieIds = items
+	const coverMovieIds = recentItems
 		.map((row) => row.movieId)
 		.filter((id): id is number => id != null);
+	const coverTvIds = recentItems
+		.map((row) => row.tvId)
+		.filter((id): id is number => id != null);
 
-	const countRow = await db
-		.select({ count: sql<number>`count(*)::int` })
+	const [counts] = await db
+		.select({
+			movieItemsCount: sql<number>`count(*) filter (where ${listItem.movieId} is not null)::int`,
+			tvItemsCount: sql<number>`count(*) filter (where ${listItem.tvId} is not null)::int`,
+		})
 		.from(listItem)
 		.where(eq(listItem.listId, listId));
-	const itemsCount = countRow[0]?.count ?? 0;
+
+	const movieItemsCount = counts?.movieItemsCount ?? 0;
+	const tvItemsCount = counts?.tvItemsCount ?? 0;
 
 	await db
 		.update(list)
 		.set({
-			itemsCount,
+			itemsCount: movieItemsCount + tvItemsCount,
+			movieItemsCount,
+			tvItemsCount,
 			coverMovieIds,
+			coverTvIds,
 			updatedAt: new Date(),
 		})
 		.where(eq(list.id, listId));

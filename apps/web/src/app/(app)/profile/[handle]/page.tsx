@@ -18,6 +18,7 @@ import { ProfileTopBar } from "@/components/profile/profile-top-bar";
 import { authServer } from "@/lib/auth-server";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { HomeVenue } from "@/lib/home-venue";
+import { toListBoardRow } from "@/lib/list-board-row";
 import {
 	buildProfileLobbyHref,
 	type ProfileLedgerTabId,
@@ -415,7 +416,7 @@ export default async function ProfilePage({
 						lobbyVenue={lobbyVenue}
 						switchVenueHref={switchVenueHref}
 						reviews={data.recentReviews}
-						lists={data.lists}
+						lists={data.lists.map((l) => toListBoardRow(l))}
 						catalogueWaveKey={catalogueWaveKey}
 						monochromePeersOnHover={monochromePeersOnHover}
 					/>
