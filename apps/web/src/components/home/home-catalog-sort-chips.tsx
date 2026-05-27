@@ -2,34 +2,96 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
+import { useHomeCommunityLobbyParams } from "@/components/home/home-community-lobby-params-context";
+import { useHomeTmdbLobbyParams } from "@/components/home/home-tmdb-lobby-params-context";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
-import { parseHomeCatalogRun } from "@/lib/home-catalog-run";
-import { parseHomeCatalogSort } from "@/lib/home-catalog-sort";
-import {
-	HOME_COMMUNITY_FEEDS,
-	parseHomeCommunityFeed,
-} from "@/lib/home-community-feed";
-import { parseHomeCommunityPeriod } from "@/lib/home-leaderboard-period";
+import { HOME_COMMUNITY_FEEDS } from "@/lib/home-community-feed";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
-import { parseHomeVenue } from "@/lib/home-venue";
 
 /**
  * Second-row chips on `/home`:
  * - **Movies / TV:** Upcoming, Latest, and Popular (TMDb) with a sliding `layoutId` pill.
  * - **Community:** Lists, Reviews, Diary, Activity — member-made surfaces.
  */
-export function HomeCatalogSortChips() {
-	const searchParams = useSearchParams();
-	const browse = parseHomeBrowseSurface(searchParams.get("browse"));
-	const catalogSort = parseHomeCatalogSort(searchParams.get("sort"), browse);
-	/** TV lifecycle filter — preserved when switching Popular / Latest / Upcoming. */
-	const catalogRun = parseHomeCatalogRun(searchParams.get("run"), browse);
-	const communityFeed = parseHomeCommunityFeed(searchParams.get("sort"));
-	const communityPeriod = parseHomeCommunityPeriod(searchParams.get("period"));
-	const effectiveVenue = parseHomeVenue(searchParams.get("venue"), catalogSort);
+function HomeCommunityFeedChips({
+	sortToolbarDescId,
+	description,
+}: {
+	sortToolbarDescId: string;
+	description: string;
+}) {
+	const { feed, selectFeed } = useHomeCommunityLobbyParams();
+	const reduceMotion = useReducedMotion();
+	const pillTransition = reduceMotion
+		? { duration: 0 }
+		: {
+				type: "tween" as const,
+				duration: 0.22,
+				ease: [0.165, 0.84, 0.44, 1] as const,
+			};
+
+	const chipButton = (active: boolean) =>
+		cn(
+			"relative inline-flex min-h-10 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-3.5",
+			active
+				? "text-foreground"
+				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
+		);
+
+	return (
+		<div className="flex min-w-0 flex-col gap-1">
+			<p id={sortToolbarDescId} className="sr-only">
+				{description}
+			</p>
+			<div
+				className="flex w-fit max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+				role="toolbar"
+				aria-label="Community feeds"
+				aria-describedby={sortToolbarDescId}
+			>
+				{HOME_COMMUNITY_FEEDS.map(({ id, label, hint }) => (
+					<button
+						key={id}
+						type="button"
+						aria-current={feed === id ? "page" : undefined}
+						className={chipButton(feed === id)}
+						title={hint}
+						aria-label={`${label} — ${hint}`}
+						onClick={() => selectFeed(id)}
+					>
+						{feed === id ? (
+							<motion.span
+								layoutId="home-catalog-sort-pill"
+								className="absolute inset-0 z-0 rounded-full bg-card"
+								transition={pillTransition}
+							/>
+						) : null}
+						<span className="relative z-10">{label}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	);
+}
+
+/** Movies·TV sort rail on `/home` — instant `navigate` + prefetch (inside `HomeTmdbLobbyChrome`). */
+function HomeTmdbSortChips({
+	sortToolbarDescId,
+	description,
+}: {
+	sortToolbarDescId: string;
+	description: string;
+}) {
+	const {
+		browse,
+		sort: catalogSort,
+		venue,
+		run: catalogRun,
+		selectSort,
+		prefetchLobby,
+	} = useHomeTmdbLobbyParams();
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -40,7 +102,7 @@ export function HomeCatalogSortChips() {
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	const chipLink = (active: boolean, compact: boolean) =>
+	const chipButton = (active: boolean, compact: boolean) =>
 		cn(
 			"relative inline-flex min-h-10 items-center justify-center rounded-full text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
 			compact ? "px-3 py-2 sm:px-3.5" : "px-5 py-2.5",
@@ -48,6 +110,80 @@ export function HomeCatalogSortChips() {
 				? "text-foreground"
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
 		);
+
+	const chipFor = (sort: "upcoming" | "latest" | "popular") => {
+		const href = buildHomeLobbyHref({
+			sort,
+			browse,
+			venue,
+			run: catalogRun,
+		});
+		const active = catalogSort === sort;
+		const labels =
+			sort === "upcoming"
+				? {
+						label: "Upcoming",
+						title:
+							"Theatrical or streaming titles with primary release dates from today onward",
+						ariaLabel: "Upcoming — releases ahead on TMDb",
+					}
+				: sort === "latest"
+					? {
+							label: "Latest",
+							title: "Newest releases first in this TMDb catalogue",
+							ariaLabel: "Latest — newest releases in this TMDb catalogue",
+						}
+					: {
+							label: "Popular",
+							title: "Trending and most popular on TMDb right now",
+							ariaLabel: "Popular — trending titles on TMDb",
+						};
+
+		return (
+			<button
+				key={sort}
+				type="button"
+				aria-current={active ? "page" : undefined}
+				className={chipButton(active, true)}
+				title={labels.title}
+				aria-label={labels.ariaLabel}
+				onClick={() => selectSort(sort)}
+				onPointerEnter={() => prefetchLobby(href)}
+			>
+				{active ? (
+					<motion.span
+						layoutId="home-catalog-sort-pill"
+						className="absolute inset-0 z-0 rounded-full bg-card"
+						transition={pillTransition}
+					/>
+				) : null}
+				<span className="relative z-10">{labels.label}</span>
+			</button>
+		);
+	};
+
+	return (
+		<div className="flex min-w-0 flex-col gap-1">
+			<p id={sortToolbarDescId} className="sr-only">
+				{description}
+			</p>
+			<div
+				className="flex max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+				role="toolbar"
+				aria-label="Catalogue sort"
+				aria-describedby={sortToolbarDescId}
+			>
+				{browse !== "tv" ? chipFor("upcoming") : null}
+				{chipFor("latest")}
+				{chipFor("popular")}
+			</div>
+		</div>
+	);
+}
+
+export function HomeCatalogSortChips() {
+	const searchParams = useSearchParams();
+	const browse = parseHomeBrowseSurface(searchParams.get("browse"));
 
 	const sortToolbarDescId = "home-catalog-sort-desc";
 	const sortToolbarDescription =
@@ -59,124 +195,17 @@ export function HomeCatalogSortChips() {
 
 	if (browse === "community") {
 		return (
-			<div className="flex min-w-0 flex-col gap-1">
-				<p id={sortToolbarDescId} className="sr-only">
-					{sortToolbarDescription}
-				</p>
-				<div
-					className="flex w-fit max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
-					role="toolbar"
-					aria-label="Community feeds"
-					aria-describedby={sortToolbarDescId}
-				>
-					{HOME_COMMUNITY_FEEDS.map(({ id, label, hint }) => (
-						<Link
-							key={id}
-							href={buildHomeLobbyHref({
-								browse: "community",
-								sort: id,
-								period: communityPeriod,
-							})}
-							scroll={false}
-							aria-current={communityFeed === id ? "page" : undefined}
-							className={chipLink(communityFeed === id, true)}
-							title={hint}
-							aria-label={`${label} — ${hint}`}
-						>
-							{communityFeed === id ? (
-								<motion.span
-									layoutId="home-catalog-sort-pill"
-									className="absolute inset-0 z-0 rounded-full bg-card"
-									transition={pillTransition}
-								/>
-							) : null}
-							<span className="relative z-10">{label}</span>
-						</Link>
-					))}
-				</div>
-			</div>
+			<HomeCommunityFeedChips
+				sortToolbarDescId={sortToolbarDescId}
+				description={sortToolbarDescription}
+			/>
 		);
 	}
 
 	return (
-		<div className="flex min-w-0 flex-col gap-1">
-			<p id={sortToolbarDescId} className="sr-only">
-				{sortToolbarDescription}
-			</p>
-			<div
-				className="flex max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
-				role="toolbar"
-				aria-label="Catalogue sort"
-				aria-describedby={sortToolbarDescId}
-			>
-				{browse !== "tv" ? (
-					<Link
-						href={buildHomeLobbyHref({
-							sort: "upcoming",
-							browse,
-							venue: effectiveVenue,
-						})}
-						scroll={false}
-						aria-current={catalogSort === "upcoming" ? "page" : undefined}
-						className={chipLink(catalogSort === "upcoming", true)}
-						title="Theatrical or streaming titles with primary release dates from today onward"
-						aria-label="Upcoming — releases ahead on TMDb"
-					>
-						{catalogSort === "upcoming" ? (
-							<motion.span
-								layoutId="home-catalog-sort-pill"
-								className="absolute inset-0 z-0 rounded-full bg-card"
-								transition={pillTransition}
-							/>
-						) : null}
-						<span className="relative z-10">Upcoming</span>
-					</Link>
-				) : null}
-				<Link
-					href={buildHomeLobbyHref({
-						sort: "latest",
-						browse,
-						venue: effectiveVenue,
-						run: catalogRun,
-					})}
-					scroll={false}
-					aria-current={catalogSort === "latest" ? "page" : undefined}
-					className={chipLink(catalogSort === "latest", true)}
-					title="Newest releases first in this TMDb catalogue"
-					aria-label="Latest — newest releases in this TMDb catalogue"
-				>
-					{catalogSort === "latest" ? (
-						<motion.span
-							layoutId="home-catalog-sort-pill"
-							className="absolute inset-0 z-0 rounded-full bg-card"
-							transition={pillTransition}
-						/>
-					) : null}
-					<span className="relative z-10">Latest</span>
-				</Link>
-				<Link
-					href={buildHomeLobbyHref({
-						sort: "popular",
-						browse,
-						venue: effectiveVenue,
-						run: catalogRun,
-					})}
-					scroll={false}
-					aria-current={catalogSort === "popular" ? "page" : undefined}
-					className={chipLink(catalogSort === "popular", true)}
-					title="Trending and most popular on TMDb right now"
-					aria-label="Popular — trending titles on TMDb"
-				>
-					{catalogSort === "popular" ? (
-						<motion.span
-							layoutId="home-catalog-sort-pill"
-							className="absolute inset-0 z-0 rounded-full bg-card"
-							transition={pillTransition}
-						/>
-					) : null}
-					<span className="relative z-10">Popular</span>
-				</Link>
-			</div>
-		</div>
+		<HomeTmdbSortChips
+			sortToolbarDescId={sortToolbarDescId}
+			description={sortToolbarDescription}
+		/>
 	);
 }

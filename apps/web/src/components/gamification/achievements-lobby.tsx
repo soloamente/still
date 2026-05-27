@@ -66,7 +66,7 @@ export function AchievementsLobby({
 	const goalRows = mergeAchievementRows(achievementCatalog, userAchievements);
 
 	return (
-		<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
+		<div className="flex flex-1 flex-col overflow-visible bg-background">
 			<AchievementsTopBar />
 			<section
 				className={cn(

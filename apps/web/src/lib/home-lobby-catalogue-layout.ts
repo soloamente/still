@@ -24,4 +24,4 @@ export const HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME =
 
 /** Base `className` for the rounded card that wraps sort chips + `PopularMoviesInfinite`. */
 export const HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME =
-	"flex min-h-0 flex-1 flex-col gap-2.5 rounded-[2.5rem] bg-card p-4";
+	"flex flex-1 flex-col gap-2.5 rounded-[2.5rem] bg-card p-4";

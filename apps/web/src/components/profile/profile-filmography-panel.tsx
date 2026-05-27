@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+
+import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 
 import { ProfileLobbyCatalogue } from "@/components/profile/profile-lobby-catalogue";
 import { profileWatchedRowsToPersonFilmography } from "@/lib/profile-filmography-map";
@@ -44,6 +48,7 @@ export function ProfileFilmographyPanel({
 	switchVenueHref,
 	lobbyVenue = "streaming",
 }: ProfileFilmographyPanelProps) {
+	const { navigate } = useLobbyNavigation();
 	const gridRows = profileWatchedRowsToPersonFilmography(rows);
 	const posterCellKeys = rows.map((r) => r.log.id);
 
@@ -65,13 +70,13 @@ export function ProfileFilmographyPanel({
 							this venue slice. Switch to All or favorite a title from its
 							detail page.
 						</p>
-						<Link
-							href={showAllLedgerHref}
-							scroll={false}
+						<button
+							type="button"
 							className="mt-4 inline-flex min-h-10 items-center justify-center rounded-full bg-background px-5 py-2.5 font-medium text-foreground text-sm"
+							onClick={() => navigate(showAllLedgerHref)}
 						>
 							Show all {label}
-						</Link>
+						</button>
 					</>
 				) : hasLogsOtherVenue && switchVenueHref ? (
 					<>
@@ -82,14 +87,14 @@ export function ProfileFilmographyPanel({
 							Switch the venue chip above to see logs from the other watch
 							setting.
 						</p>
-						<Link
-							href={switchVenueHref}
-							scroll={false}
+						<button
+							type="button"
 							className="mt-4 inline-flex min-h-10 items-center justify-center rounded-full bg-background px-5 py-2.5 font-medium text-foreground text-sm"
+							onClick={() => navigate(switchVenueHref)}
 						>
 							Show {lobbyVenue === "theaters" ? "at home" : "in cinemas"}{" "}
 							instead
-						</Link>
+						</button>
 					</>
 				) : favoritesOnly ? (
 					<>

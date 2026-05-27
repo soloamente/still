@@ -21,7 +21,7 @@ export function MeAccountShell({
 	return (
 		<MeAccountSessionProvider>
 			<MeAccountBarActionsProvider>
-				<div className="flex min-h-0 flex-1 flex-col bg-background">
+				<div className="flex flex-1 flex-col bg-background">
 					<MeAccountTopBar handle={handle} />
 					<section
 						className={cn(

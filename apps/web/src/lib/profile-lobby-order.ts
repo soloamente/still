@@ -1,4 +1,5 @@
 import type { ProfileFilmographyRow } from "@/components/profile/profile-filmography-panel";
+import type { ProfileTabId } from "@/components/profile/profile-tab-toolbar";
 import {
 	DIARY_LOBBY_VENUE_SORT_AS,
 	type DiaryLobbyOrder,
@@ -8,6 +9,35 @@ import {
 import { defaultHomeVenueForSort, type HomeVenue } from "@/lib/home-venue";
 
 export type ProfileLedgerTabId = "movies" | "tv";
+
+/** Section tab links — ledger tabs use `buildProfileLobbyHref`; social tabs use `?tab=`. */
+export function buildProfileTabHref(input: {
+	handle: string;
+	tab: ProfileTabId;
+	order: ProfileLobbyOrder;
+	venue: HomeVenue;
+	favoritesOnly: boolean;
+}): string {
+	if (input.tab === "favorites") {
+		return buildProfileLobbyHref({
+			handle: input.handle,
+			tab: "movies",
+			order: input.order,
+			venue: input.venue,
+			favoritesOnly: true,
+		});
+	}
+	if (input.tab === "movies" || input.tab === "tv") {
+		return buildProfileLobbyHref({
+			handle: input.handle,
+			tab: input.tab,
+			order: input.order,
+			venue: input.venue,
+			favoritesOnly: false,
+		});
+	}
+	return `/profile/${encodeURIComponent(input.handle)}?tab=${input.tab}`;
+}
 
 /** Same `?venue=` tokens as `/diary` (`theaters` / `streaming`). */
 export const parseProfileLobbyVenue = parseDiaryLobbyVenue;

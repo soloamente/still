@@ -64,6 +64,8 @@ export type ListLobbySeed = {
 	poster_url: string | null;
 	isPublic: boolean;
 	itemsCount: number;
+	/** Last edit — community period chips filter on this (lists lobby sort uses it too). */
+	updatedAt: string;
 	/** `favorites` lists are system-managed — hide destructive context actions. */
 	systemKind?: string | null;
 };
@@ -82,6 +84,7 @@ export function listBoardRowToLobbySeed(row: ListBoardRow): ListLobbySeed {
 			poster_url: customCover,
 			isPublic: row.isPublic,
 			itemsCount: row.itemsCount,
+			updatedAt: row.updatedAt,
 			systemKind: row.systemKind ?? null,
 		};
 	}
@@ -102,6 +105,7 @@ export function listBoardRowToLobbySeed(row: ListBoardRow): ListLobbySeed {
 		poster_url,
 		isPublic: row.isPublic,
 		itemsCount: row.itemsCount,
+		updatedAt: row.updatedAt,
 		systemKind: row.systemKind ?? null,
 	};
 }

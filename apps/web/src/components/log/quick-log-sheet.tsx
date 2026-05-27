@@ -15,6 +15,7 @@ import {
 	useReducedMotion,
 } from "motion/react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import {
 	type CSSProperties,
 	useCallback,
@@ -164,6 +165,8 @@ function tvLogScopePayload(
  */
 export function QuickLogRoot() {
 	const { isOpen, args, close } = useQuickLog();
+	const router = useRouter();
+	const pathname = usePathname();
 	const [movieId, setMovieId] = useState<number | null>(null);
 	const [tvId, setTvId] = useState<number | null>(null);
 	const [movieTitle, setMovieTitle] = useState("");
@@ -481,6 +484,10 @@ export function QuickLogRoot() {
 					movieTitle.trim() ? `Updated “${movieTitle}”` : "Diary log updated",
 				);
 				args.onSuccess?.();
+				// Diary lobby hoists logs in the RSC shell — refresh so edits show without a full navigation.
+				if (pathname.startsWith("/diary")) {
+					router.refresh();
+				}
 				handleClose();
 				return;
 			}

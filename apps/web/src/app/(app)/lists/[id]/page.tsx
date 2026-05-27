@@ -177,7 +177,7 @@ export default async function ListDetailPage({
 			: "Every title in this collection — open a poster to visit its page.";
 
 	return (
-		<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
+		<div className="flex flex-1 flex-col overflow-visible bg-background">
 			<ListDetailTopBar title={data.title} sharePath={`/lists/${data.id}`} />
 			{showSectionNav ? (
 				<MovieDetailSectionNav sections={sectionNavItems} />
@@ -186,12 +186,12 @@ export default async function ListDetailPage({
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"min-h-0 flex-1 overflow-visible",
+					"flex-1 overflow-x-clip overflow-y-visible",
 				)}
 			>
 				<article
 					className={cn(
-						"flex min-h-0 flex-1 flex-col",
+						"flex flex-1 flex-col",
 						showSectionNav && MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
 					)}
 				>

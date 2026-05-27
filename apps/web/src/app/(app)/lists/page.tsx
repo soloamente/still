@@ -67,7 +67,7 @@ export default async function ListsPage({
 	const hasRows = seeds.length > 0;
 
 	return (
-		<div className="flex min-h-0 flex-1 flex-col overflow-visible bg-background">
+		<div className="flex flex-1 flex-col overflow-visible bg-background">
 			<Suspense fallback={<LobbyStickyChromeFallback />}>
 				<HomeStickyChrome user={stickyUser} />
 			</Suspense>

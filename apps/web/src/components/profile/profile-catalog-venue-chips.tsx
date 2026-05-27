@@ -2,33 +2,19 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
+import { useProfileLobbyParams } from "@/components/profile/profile-lobby-params-context";
 import type { ProfileLedgerTabId } from "@/lib/profile-lobby-order";
-import {
-	buildProfileLobbyHref,
-	parseProfileLobbyFavorites,
-	parseProfileLobbyOrder,
-	parseProfileLobbyVenue,
-} from "@/lib/profile-lobby-order";
 
 /**
  * Watch-venue rail on profile Movies / TV — **In cinemas** vs **At home** (diary parity).
  */
 export function ProfileCatalogVenueChips({
-	handle,
-	ledgerTab,
+	ledgerTab: _ledgerTab,
 }: {
-	handle: string;
 	ledgerTab: ProfileLedgerTabId;
 }) {
-	const searchParams = useSearchParams();
-	const order = parseProfileLobbyOrder(searchParams.get("order"));
-	const venue = parseProfileLobbyVenue(searchParams.get("venue"));
-	const favoritesOnly = parseProfileLobbyFavorites(
-		searchParams.get("favorites"),
-	);
+	const { venue, selectVenue } = useProfileLobbyParams();
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -39,7 +25,7 @@ export function ProfileCatalogVenueChips({
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	const chipLink = (active: boolean) =>
+	const chipButton = (active: boolean) =>
 		cn(
 			"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
 			active
@@ -63,19 +49,13 @@ export function ProfileCatalogVenueChips({
 				aria-label="Watch venue"
 				aria-describedby={toolbarDescId}
 			>
-				<Link
-					href={buildProfileLobbyHref({
-						handle,
-						tab: ledgerTab,
-						order,
-						venue: "theaters",
-						favoritesOnly,
-					})}
-					scroll={false}
+				<button
+					type="button"
 					aria-current={theatersActive ? "page" : undefined}
-					className={chipLink(theatersActive)}
+					className={chipButton(theatersActive)}
 					title="Screenings logged as watched in cinemas"
 					aria-label="In cinemas — theatrical watch logs"
+					onClick={() => selectVenue("theaters")}
 				>
 					{theatersActive ? (
 						<motion.span
@@ -85,20 +65,14 @@ export function ProfileCatalogVenueChips({
 						/>
 					) : null}
 					<span className="relative z-10">In cinemas</span>
-				</Link>
-				<Link
-					href={buildProfileLobbyHref({
-						handle,
-						tab: ledgerTab,
-						order,
-						venue: "streaming",
-						favoritesOnly,
-					})}
-					scroll={false}
+				</button>
+				<button
+					type="button"
 					aria-current={streamingActive ? "page" : undefined}
-					className={chipLink(streamingActive)}
+					className={chipButton(streamingActive)}
 					title="Screenings logged as watched at home"
 					aria-label="At home — streaming or home watch logs"
+					onClick={() => selectVenue("streaming")}
 				>
 					{streamingActive ? (
 						<motion.span
@@ -108,7 +82,7 @@ export function ProfileCatalogVenueChips({
 						/>
 					) : null}
 					<span className="relative z-10">At home</span>
-				</Link>
+				</button>
 			</div>
 		</div>
 	);

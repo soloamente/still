@@ -34,7 +34,7 @@ export function MovieThemeProvider({
 			className={cn(
 				"movie-themed",
 				// Participate in `AppShell` `<main>` flex column so detail `bg-card` shells can `flex-1` to viewport height when content is short (e.g. Streaming tab).
-				"flex min-h-0 flex-1 flex-col",
+				"flex flex-1 flex-col",
 			)}
 			style={style}
 		>

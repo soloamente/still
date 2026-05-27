@@ -10,11 +10,16 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
+import { useLobbyNavigationOptional } from "@/components/lobby/lobby-navigation-provider";
 import {
 	DetailMotionButton,
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
 import { useMovieDetailReturn } from "@/components/movie/use-movie-detail-return";
+import {
+	buildMovieDetailViewHref,
+	type MovieDetailView,
+} from "@/lib/movie-detail-view";
 
 /**
  * Track B film header — dynamic back pill (last lobby / diary / watchlist) in the leading
@@ -27,15 +32,17 @@ export function MovieDetailTopBar({
 	view,
 	/** Defaults to `/movies/[id]`; TV detail passes `/tv/[id]`. */
 	detailBasePath,
+	/** Optimistic tab highlight while `router.replace` runs (detail view shell). */
+	onViewChange,
 }: {
 	movieId: number;
 	title: string;
-	view: "about" | "streaming";
+	view: MovieDetailView;
 	detailBasePath?: string;
+	onViewChange?: (view: MovieDetailView) => void;
 }) {
 	const basePath = detailBasePath ?? `/movies/${movieId}`;
-	const aboutHref = basePath;
-	const streamingHref = `${basePath}?view=streaming`;
+	const lobbyNav = useLobbyNavigationOptional();
 
 	const reduceMotion = useReducedMotion();
 	const pathname = usePathname();
@@ -94,6 +101,62 @@ export function MovieDetailTopBar({
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
 		);
 
+	function handleViewSelect(nextView: MovieDetailView) {
+		onViewChange?.(nextView);
+		if (lobbyNav) {
+			lobbyNav.navigate(buildMovieDetailViewHref(basePath, nextView));
+		}
+	}
+
+	function ViewTab({
+		tabView,
+		label,
+	}: {
+		tabView: MovieDetailView;
+		label: string;
+	}) {
+		const active = view === tabView;
+		const className = segLink(active);
+
+		if (lobbyNav) {
+			return (
+				<button
+					type="button"
+					className={className}
+					aria-current={active ? "page" : undefined}
+					onClick={() => handleViewSelect(tabView)}
+				>
+					{active ? (
+						<motion.span
+							layoutId="movie-detail-view-pill"
+							className="absolute inset-0 z-0 rounded-full bg-background"
+							transition={pillTransition}
+						/>
+					) : null}
+					<span className="relative z-10">{label}</span>
+				</button>
+			);
+		}
+
+		const href = buildMovieDetailViewHref(basePath, tabView);
+		return (
+			<Link
+				href={href}
+				className={className}
+				aria-current={active ? "page" : undefined}
+			>
+				{active ? (
+					<motion.span
+						layoutId="movie-detail-view-pill"
+						className="absolute inset-0 z-0 rounded-full bg-background"
+						transition={pillTransition}
+					/>
+				) : null}
+				<span className="relative z-10">{label}</span>
+			</Link>
+		);
+	}
+
 	return (
 		<header
 			className={cn(
@@ -114,35 +177,8 @@ export function MovieDetailTopBar({
 					aria-label="Film detail"
 					className="flex shrink-0 gap-1 rounded-full bg-card p-1"
 				>
-					{/* Tab segments: sliding pill only — no hero-row scale on press. */}
-					<Link
-						href={aboutHref}
-						className={segLink(view === "about")}
-						aria-current={view === "about" ? "page" : undefined}
-					>
-						{view === "about" ? (
-							<motion.span
-								layoutId="movie-detail-view-pill"
-								className="absolute inset-0 z-0 rounded-full bg-background"
-								transition={pillTransition}
-							/>
-						) : null}
-						<span className="relative z-10">About</span>
-					</Link>
-					<Link
-						href={streamingHref}
-						className={segLink(view === "streaming")}
-						aria-current={view === "streaming" ? "page" : undefined}
-					>
-						{view === "streaming" ? (
-							<motion.span
-								layoutId="movie-detail-view-pill"
-								className="absolute inset-0 z-0 rounded-full bg-background"
-								transition={pillTransition}
-							/>
-						) : null}
-						<span className="relative z-10">Streaming</span>
-					</Link>
+					<ViewTab tabView="about" label="About" />
+					<ViewTab tabView="streaming" label="Streaming" />
 				</nav>
 				<div className="flex min-w-0 justify-end">
 					<DetailMotionButton

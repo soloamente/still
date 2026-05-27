@@ -591,8 +591,8 @@ html.theme-noir {
 		font-family: var(--font-sans);
 		font-size: var(--text-body);
 		line-height: var(--leading-body);
-		/* Match `html` — Lenis / drawer scroll-lock toggles overflow on both. */
-		overflow-y: auto;
+		/* Document scroll lives on `html` — `body { overflow-y: auto }` breaks `position: sticky`. */
+		overflow-y: visible;
 		-ms-overflow-style: none;
 		scrollbar-width: none;
 		/* Better legibility on dark surfaces (Aker guidance) */
@@ -794,6 +794,30 @@ html.theme-lobby-light .cinema-vignette {
 		animation: none !important;
 	}
 }
+
+/* TMDb lobby grid — smooth dim pulse while `useTransition` waits on RSC (no spinner). */
+@keyframes lobby-grid-dim-pulse {
+	0%,
+	100% {
+		opacity: 0.58;
+	}
+	50% {
+		opacity: 0.36;
+	}
+}
+
+.lobby-grid-dim-pulse {
+	animation: lobby-grid-dim-pulse 1.35s ease-in-out infinite;
+	pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lobby-grid-dim-pulse {
+		animation: none;
+		opacity: 0.52;
+	}
+}
+
 /* Section enter: short, proportional fade-up (Aker-scale durations). */
 @keyframes cinema-curtain-in {
 	from {

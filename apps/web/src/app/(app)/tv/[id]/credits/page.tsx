@@ -90,7 +90,7 @@ export default async function TvCreditsPage({
 			paletteMuted={data.paletteMuted}
 			paletteForeground={data.paletteForeground}
 		>
-			<div className="flex min-h-0 flex-1 flex-col bg-background">
+			<div className="flex flex-1 flex-col bg-background">
 				<header className="sticky top-0 z-30 w-full bg-background px-2.5 py-2 sm:px-3">
 					<div className="flex items-center gap-3">
 						<Link

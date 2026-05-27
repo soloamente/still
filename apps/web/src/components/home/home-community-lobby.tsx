@@ -1,7 +1,5 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-
 import { ActivityItem } from "@/components/feed/activity-item";
 import { HomeCommunityEmpty } from "@/components/home/home-community-empty";
 import { HomeCommunityLeaderboard } from "@/components/home/home-community-leaderboard";
@@ -21,8 +19,8 @@ import {
 } from "@/lib/home-community-feed";
 import type { HomeFriendRailEntry } from "@/lib/home-friend-rail";
 import {
+	type HomeLeaderboardPeriod,
 	leaderboardPeriodLabel,
-	parseHomeCommunityPeriod,
 } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
@@ -54,6 +52,7 @@ export function HomeCommunityLobby({
 	signedIn,
 	leaderboard,
 	viewerUserId,
+	period,
 }: {
 	feed: HomeCommunityFeed;
 	listSeeds: ListLobbySeed[];
@@ -64,9 +63,8 @@ export function HomeCommunityLobby({
 	signedIn: boolean;
 	leaderboard: LeaderboardPayload | null;
 	viewerUserId: string | null;
+	period: HomeLeaderboardPeriod;
 }) {
-	const searchParams = useSearchParams();
-	const period = parseHomeCommunityPeriod(searchParams.get("period"));
 	const periodLabel = leaderboardPeriodLabel(period).toLowerCase();
 	const catalogueWaveKey = `community:${feed}:${period}`;
 

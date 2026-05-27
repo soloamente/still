@@ -1,15 +1,10 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { motion, useReducedMotion } from "motion/react";
 
-import {
-	buildWatchlistLobbyHref,
-	parseWatchlistLobbyOrder,
-	type WatchlistLobbyOrder,
-} from "@/lib/watchlist-lobby-order";
+import { useWatchlistLobbyParams } from "@/components/watchlist/watchlist-lobby-params-context";
+import type { WatchlistLobbyOrder } from "@/lib/watchlist-lobby-order";
 
 const CHIPS: readonly {
 	id: WatchlistLobbyOrder;
@@ -39,12 +34,10 @@ const CHIPS: readonly {
 ] as const;
 
 /**
- * Left chip rail on `/watchlist` — replaces TMDb **Upcoming / Latest / Popular** with patron-facing
- * watchlist order. Visually matches `HomeCatalogSortChips` / `DiaryCatalogOrderChips`.
+ * Left chip rail on `/watchlist` — patron-facing order (diary parity).
  */
 export function WatchlistCatalogOrderChips() {
-	const searchParams = useSearchParams();
-	const order = parseWatchlistLobbyOrder(searchParams.get("order"));
+	const { order, selectOrder } = useWatchlistLobbyParams();
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -55,9 +48,8 @@ export function WatchlistCatalogOrderChips() {
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	const chipLink = (active: boolean) =>
+	const chipButton = (active: boolean) =>
 		cn(
-			/* `relative` pins the sliding `layoutId` pill (`absolute inset-0`). */
 			"relative inline-flex min-h-10 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-3.5",
 			active
 				? "text-foreground"
@@ -79,14 +71,14 @@ export function WatchlistCatalogOrderChips() {
 				aria-describedby={sortToolbarDescId}
 			>
 				{CHIPS.map(({ id, label, title, ariaLabel }) => (
-					<Link
+					<button
 						key={id}
-						href={buildWatchlistLobbyHref({ order: id })}
-						scroll={false}
+						type="button"
 						aria-current={order === id ? "page" : undefined}
-						className={chipLink(order === id)}
+						className={chipButton(order === id)}
 						title={title}
 						aria-label={ariaLabel}
+						onClick={() => selectOrder(id)}
 					>
 						{order === id ? (
 							<motion.span
@@ -96,7 +88,7 @@ export function WatchlistCatalogOrderChips() {
 							/>
 						) : null}
 						<span className="relative z-10">{label}</span>
-					</Link>
+					</button>
 				))}
 			</div>
 		</div>

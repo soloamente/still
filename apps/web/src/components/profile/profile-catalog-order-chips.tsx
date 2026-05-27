@@ -2,16 +2,11 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
-import type { ProfileLedgerTabId } from "@/lib/profile-lobby-order";
-import {
-	buildProfileLobbyHref,
-	type ProfileLobbyOrder,
-	parseProfileLobbyFavorites,
-	parseProfileLobbyOrder,
-	parseProfileLobbyVenue,
+import { useProfileLobbyParams } from "@/components/profile/profile-lobby-params-context";
+import type {
+	ProfileLedgerTabId,
+	ProfileLobbyOrder,
 } from "@/lib/profile-lobby-order";
 
 const CHIPS: readonly {
@@ -45,18 +40,11 @@ const CHIPS: readonly {
  * Left chip rail on profile Movies / TV — same order model as `/diary`.
  */
 export function ProfileCatalogOrderChips({
-	handle,
-	ledgerTab,
+	ledgerTab: _ledgerTab,
 }: {
-	handle: string;
 	ledgerTab: ProfileLedgerTabId;
 }) {
-	const searchParams = useSearchParams();
-	const order = parseProfileLobbyOrder(searchParams.get("order"));
-	const venue = parseProfileLobbyVenue(searchParams.get("venue"));
-	const favoritesOnly = parseProfileLobbyFavorites(
-		searchParams.get("favorites"),
-	);
+	const { order, selectOrder } = useProfileLobbyParams();
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -67,7 +55,7 @@ export function ProfileCatalogOrderChips({
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	const chipLink = (active: boolean) =>
+	const chipButton = (active: boolean) =>
 		cn(
 			"relative inline-flex min-h-10 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-3.5",
 			active
@@ -90,20 +78,14 @@ export function ProfileCatalogOrderChips({
 				aria-describedby={sortToolbarDescId}
 			>
 				{CHIPS.map(({ id, label, title, ariaLabel }) => (
-					<Link
+					<button
 						key={id}
-						href={buildProfileLobbyHref({
-							handle,
-							tab: ledgerTab,
-							order: id,
-							venue,
-							favoritesOnly,
-						})}
-						scroll={false}
+						type="button"
 						aria-current={order === id ? "page" : undefined}
-						className={chipLink(order === id)}
+						className={chipButton(order === id)}
 						title={title}
 						aria-label={ariaLabel}
+						onClick={() => selectOrder(id)}
 					>
 						{order === id ? (
 							<motion.span
@@ -113,7 +95,7 @@ export function ProfileCatalogOrderChips({
 							/>
 						) : null}
 						<span className="relative z-10">{label}</span>
-					</Link>
+					</button>
 				))}
 			</div>
 		</div>

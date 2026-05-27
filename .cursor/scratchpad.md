@@ -1460,6 +1460,11 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
   in-page animations).
 - `framer-motion` imports are `from "framer-motion"`, not `motion/react` —
   per user rules.
+- **Sticky headers + flex lobbies:** `flex min-h-0 flex-1` on page shells inside
+  `AppShell` `<main>` caps height to the viewport and breaks `position: sticky`
+  (scroll moves inside the flex child). Prefer `flex flex-1 flex-col` without
+  `min-h-0` on document-scroll pages; keep `overflow-x-clip` off ancestors of
+  sticky top bars; avoid `overflow-y: auto` on both `html` and `body`.
 - **Mobbin MCP** (`search_screens`): some environments fail WebP decode — use
   `"image_format": "jpg"` for reliable screen pulls when researching patterns.
 - **Next.js `RouteImpl` / Link href errors after route changes:** if `next build`
@@ -1506,3 +1511,28 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 **Executor's Feedback or Assistance Requests:** Please verify on a TV detail page: (1) log S1 → Quick Log S2 → Rewatch **off**; (2) log S1 again → Rewatch **on**; (3) hero badge counts **show** logs only; (4) mark season complete creates diary row without “Log to diary” toast CTA; (5) complete season with existing log shows **Edit diary**.
 
 **Shipped (code, pending QA):** `apps/web/src/lib/tv-log-scope-prior.ts`, `my-tv-log.ts`, updates to quick log, TV detail hero/progress, catalogue radial TV quick log.
+
+### 2026-05-27 — Instant lobby navigation / perceived performance (Planner)
+
+**Approved:** `docs/superpowers/specs/2026-05-27-instant-lobby-navigation-design.md` — Approach **A** (client patron lobby shells + `useLobbyTransition`) + **C** (Suspense/streaming on TMDb + detail). Scope **C** app-wide; URL **instant UI first** then `router.replace`.
+
+**Phases:** (1) `/diary`, `/profile/[handle]`, `/watchlist` — (2) community/order chips — (3) `/home` TMDb grids — (4) detail tab streaming.
+
+**Plan:** `docs/superpowers/plans/2026-05-27-instant-lobby-navigation.md` (Phase 1: tasks 1–7 — hook → diary → profile → watchlist → QA gates).
+
+**Project Status Board:**
+- [x] IL.1 Spec human review — **`ok`** (2026-05-27)
+- [x] IL.2 Implementation plan
+- [x] IL.3 Task 1 — `useLobbyTransition` + provider
+- [x] IL.4 Task 2–3 — Diary shell + chips — human **`ok`**
+- [x] IL.5 Task 4–5 — Profile shell + chips — human **`ok`**
+- [x] IL.6 Task 6–7 — Watchlist shell + order chips — human **`ok`**
+- [x] IL.8 Phase 1 closure — patron lobbies shipped (2026-05-27)
+- [x] IL.9 Phase 2 — `/home` community period + post-log `router.refresh` — human **`ok`** (2026-05-27)
+- [x] IL.10 Phase 3 — `/home` TMDb instant chips + grid dim pulse — assumed complete on **`go to next`** (2026-05-27)
+- [x] IL.10b Sticky header regression fix — human **`ok good`** (2026-05-27)
+- [x] IL.11 Phase 4 — film/TV detail About·Streaming instant tabs + Suspense About body — human **`ok`** (2026-05-27)
+
+**Executor's Feedback or Assistance Requests:** Instant lobby navigation (IL.1–IL.11) **complete** through Phase 4 human sign-off (2026-05-27). Optional follow-ups (not in v1 spec): list-detail query tabs if added later; `router.refresh()` polish on more mutation paths; diary `waveKey` venue-only remount skip.
+
+Symptom **B** (frozen full page) on chip taps — root cause is `<Link>` + `force-dynamic` RSC awaiting all data; `loading.tsx` does not help query-only navigations.

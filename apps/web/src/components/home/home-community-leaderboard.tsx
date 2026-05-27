@@ -35,11 +35,28 @@ export function HomeCommunityLeaderboard({
 		if (tz === "UTC") return;
 
 		const controller = new AbortController();
-		void fetchCommunityLeaderboard(kind, initialData.period, tz, {
-			signal: controller.signal,
-		}).then((next) => {
-			if (next) setData(next);
-		});
+		void (async () => {
+			try {
+				const next = await fetchCommunityLeaderboard(
+					kind,
+					initialData.period,
+					tz,
+					{ signal: controller.signal },
+				);
+				// Period chip / feed changes abort the in-flight TZ refetch — not an error.
+				if (controller.signal.aborted) return;
+				if (next) setData(next);
+			} catch (err) {
+				if (
+					controller.signal.aborted ||
+					(err instanceof DOMException && err.name === "AbortError") ||
+					(err instanceof Error && err.name === "AbortError")
+				) {
+					return;
+				}
+				console.error("[home-community-leaderboard] tz refetch failed", err);
+			}
+		})();
 
 		return () => controller.abort();
 	}, [kind, initialData.period]);

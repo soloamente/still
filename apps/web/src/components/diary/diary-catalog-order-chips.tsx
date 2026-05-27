@@ -1,16 +1,10 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { motion, useReducedMotion } from "motion/react";
 
-import {
-	buildDiaryLobbyHref,
-	type DiaryLobbyOrder,
-	parseDiaryLobbyOrder,
-	parseDiaryLobbyVenue,
-} from "@/lib/diary-lobby-order";
+import { useDiaryLobbyParams } from "@/components/diary/diary-lobby-params-context";
+import type { DiaryLobbyOrder } from "@/lib/diary-lobby-order";
 
 const CHIPS: readonly {
 	id: DiaryLobbyOrder;
@@ -44,10 +38,7 @@ const CHIPS: readonly {
  * diary order. Visually matches `HomeCatalogSortChips` so the lobby stays one system.
  */
 export function DiaryCatalogOrderChips() {
-	const searchParams = useSearchParams();
-	const order = parseDiaryLobbyOrder(searchParams.get("order"));
-	// Preserve **In cinemas / At home** (`?venue=`) when switching diary order chips.
-	const venue = parseDiaryLobbyVenue(searchParams.get("venue"));
+	const { order, selectOrder } = useDiaryLobbyParams();
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -58,7 +49,7 @@ export function DiaryCatalogOrderChips() {
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	const chipLink = (active: boolean) =>
+	const chipButton = (active: boolean) =>
 		cn(
 			"relative inline-flex min-h-10 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-3.5",
 			active
@@ -81,14 +72,14 @@ export function DiaryCatalogOrderChips() {
 				aria-describedby={sortToolbarDescId}
 			>
 				{CHIPS.map(({ id, label, title, ariaLabel }) => (
-					<Link
+					<button
 						key={id}
-						href={buildDiaryLobbyHref({ order: id, venue })}
-						scroll={false}
+						type="button"
 						aria-current={order === id ? "page" : undefined}
-						className={chipLink(order === id)}
+						className={chipButton(order === id)}
 						title={title}
 						aria-label={ariaLabel}
+						onClick={() => selectOrder(id)}
 					>
 						{order === id ? (
 							<motion.span
@@ -98,7 +89,7 @@ export function DiaryCatalogOrderChips() {
 							/>
 						) : null}
 						<span className="relative z-10">{label}</span>
-					</Link>
+					</button>
 				))}
 			</div>
 		</div>
