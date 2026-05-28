@@ -1,0 +1,383 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_drizzle_md",
+			"label": "drizzle.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_drizzle_drizzle_integration",
+			"label": "Drizzle Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_drizzle_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "integrations_drizzle_flow",
+			"label": "Flow",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_1",
+			"label": "code:block1 (Drizzle \u2192 drizzle-typebox \u2192 Elysia validation \u2192 OpenAPI + Ed)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "integrations_drizzle_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_2",
+			"label": "code:bash (bun add drizzle-orm drizzle-typebox)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "integrations_drizzle_pin_typebox_version",
+			"label": "Pin TypeBox Version",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_3",
+			"label": "code:bash (grep \"@sinclair/typebox\" node_modules/elysia/package.json)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_4",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "integrations_drizzle_drizzle_schema",
+			"label": "Drizzle Schema",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_5",
+			"label": "code:typescript (// src/database/schema.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "integrations_drizzle_drizzle_typebox",
+			"label": "drizzle-typebox",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_6",
+			"label": "code:typescript (import { t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "integrations_drizzle_type_instantiation_error",
+			"label": "Type Instantiation Error",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_7",
+			"label": "code:typescript (// \u2705 Works)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "integrations_drizzle_utility_functions",
+			"label": "Utility Functions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_8",
+			"label": "code:typescript (// src/database/utils.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_9",
+			"label": "code:typescript (// \u2705 Using spread)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "integrations_drizzle_table_singleton_pattern",
+			"label": "Table Singleton Pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L204"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_10",
+			"label": "code:typescript (// src/database/model.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L206"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_11",
+			"label": "code:typescript (// src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L219"
+		},
+		{
+			"id": "integrations_drizzle_refinement",
+			"label": "Refinement",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L233"
+		},
+		{
+			"id": "integrations_drizzle_codeblock_12",
+			"label": "code:typescript (// src/database/model.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L235"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_drizzle_md",
+			"target": "integrations_drizzle_drizzle_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_flow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_flow",
+			"target": "integrations_drizzle_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_installation",
+			"target": "integrations_drizzle_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_installation",
+			"target": "integrations_drizzle_pin_typebox_version",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_pin_typebox_version",
+			"target": "integrations_drizzle_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_pin_typebox_version",
+			"target": "integrations_drizzle_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_drizzle_schema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_schema",
+			"target": "integrations_drizzle_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_drizzle_typebox",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_typebox",
+			"target": "integrations_drizzle_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_type_instantiation_error",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_type_instantiation_error",
+			"target": "integrations_drizzle_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_utility_functions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_utility_functions",
+			"target": "integrations_drizzle_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_utility_functions",
+			"target": "integrations_drizzle_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_table_singleton_pattern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L204",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_table_singleton_pattern",
+			"target": "integrations_drizzle_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L206",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_table_singleton_pattern",
+			"target": "integrations_drizzle_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L219",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_drizzle_integration",
+			"target": "integrations_drizzle_refinement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L233",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_drizzle_refinement",
+			"target": "integrations_drizzle_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md",
+			"source_location": "L235",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

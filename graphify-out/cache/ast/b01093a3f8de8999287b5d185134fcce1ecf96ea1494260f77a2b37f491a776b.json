@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_graphql_apollo_md",
+			"label": "graphql-apollo.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_graphql_apollo_graphql_apollo",
+			"label": "GraphQL Apollo",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_graphql_apollo_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "plugins_graphql_apollo_codeblock_1",
+			"label": "code:bash (bun add graphql @elysiajs/apollo @apollo/server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "plugins_graphql_apollo_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plugins_graphql_apollo_codeblock_2",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plugins_graphql_apollo_context",
+			"label": "Context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "plugins_graphql_apollo_codeblock_3",
+			"label": "code:typescript (const app = new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "plugins_graphql_apollo_config",
+			"label": "Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "plugins_graphql_apollo_path",
+			"label": "path",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "plugins_graphql_apollo_enableplayground",
+			"label": "enablePlayground",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L87"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_graphql_apollo_md",
+			"target": "plugins_graphql_apollo_graphql_apollo",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_graphql_apollo",
+			"target": "plugins_graphql_apollo_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_installation",
+			"target": "plugins_graphql_apollo_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_graphql_apollo",
+			"target": "plugins_graphql_apollo_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_basic_usage",
+			"target": "plugins_graphql_apollo_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_graphql_apollo",
+			"target": "plugins_graphql_apollo_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_context",
+			"target": "plugins_graphql_apollo_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_graphql_apollo",
+			"target": "plugins_graphql_apollo_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_config",
+			"target": "plugins_graphql_apollo_path",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_apollo_config",
+			"target": "plugins_graphql_apollo_enableplayground",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md",
+			"source_location": "L87",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { serverApi } from "@/lib/server-api";
 import { LandingFeatures } from "./_marketing/landing-features";
+import { LandingFlows } from "./_marketing/landing-flows";
 import { LandingFooter } from "./_marketing/landing-footer";
 import { LandingHero } from "./_marketing/landing-hero";
 import { LandingIntro } from "./_marketing/landing-intro";
@@ -10,7 +11,6 @@ import { LandingNav } from "./_marketing/landing-nav";
 import type { LandingPoster } from "./_marketing/landing-poster";
 import { LandingPreview } from "./_marketing/landing-preview";
 import { LandingScrollScenes } from "./_marketing/landing-scroll-scenes";
-import { LandingWorkStack } from "./_marketing/landing-work-stack";
 
 export const metadata: Metadata = {
 	title: "Still — your cinematic memory",
@@ -56,11 +56,11 @@ export default async function LandingPage() {
 			<LandingNav />
 
 			<main>
-				<LandingHero posters={posters} />
+				<LandingHero />
 				<LandingIntro />
-				<LandingWorkStack posters={posters} />
 				<LandingScrollScenes posters={posters} />
-				<LandingFeatures />
+				<LandingFeatures posters={posters} />
+				<LandingFlows posters={posters} />
 				<LandingPreview posters={posters} />
 			</main>
 			<LandingFooter />

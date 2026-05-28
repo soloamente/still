@@ -1,0 +1,79 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_skills_components_21st_community_md",
+			"label": "21st-community.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_21st_community_21st_community_components",
+			"label": "21st Community Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_21st_community_high_level_discovery_pages",
+			"label": "High-level discovery pages",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "components_21st_community_visually_rich_community_references",
+			"label": "Visually rich community references",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "components_21st_community_production_primitives_from_the_community_sitemap",
+			"label": "Production primitives from the community sitemap",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L26"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_skills_components_21st_community_md",
+			"target": "components_21st_community_21st_community_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "components_21st_community_21st_community_components",
+			"target": "components_21st_community_high_level_discovery_pages",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "components_21st_community_21st_community_components",
+			"target": "components_21st_community_visually_rich_community_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "components_21st_community_21st_community_components",
+			"target": "components_21st_community_production_primitives_from_the_community_sitemap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md",
+			"source_location": "L26",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

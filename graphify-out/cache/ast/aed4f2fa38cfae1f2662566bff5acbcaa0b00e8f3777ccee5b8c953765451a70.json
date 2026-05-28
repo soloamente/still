@@ -1,0 +1,271 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_async_patterns_md",
+			"label": "async-patterns.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_async_patterns_async_patterns",
+			"label": "Async Patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_async_patterns_async_params_and_searchparams",
+			"label": "Async Params and SearchParams",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_async_patterns_pages_and_layouts",
+			"label": "Pages and Layouts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "next_best_practices_async_patterns_codeblock_1",
+			"label": "code:tsx (type Props = { params: Promise<{ slug: string }> };)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "next_best_practices_async_patterns_route_handlers",
+			"label": "Route Handlers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "next_best_practices_async_patterns_codeblock_2",
+			"label": "code:tsx (export async function GET(request: Request, { params }: { pa)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "next_best_practices_async_patterns_searchparams",
+			"label": "SearchParams",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "next_best_practices_async_patterns_codeblock_3",
+			"label": "code:tsx (type Props = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "next_best_practices_async_patterns_synchronous_components",
+			"label": "Synchronous Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "next_best_practices_async_patterns_codeblock_4",
+			"label": "code:tsx (import { use } from \"react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "next_best_practices_async_patterns_generatemetadata",
+			"label": "generateMetadata",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "next_best_practices_async_patterns_codeblock_5",
+			"label": "code:tsx (type Props = { params: Promise<{ slug: string }> };)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "next_best_practices_async_patterns_async_cookies_and_headers",
+			"label": "Async Cookies and Headers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "next_best_practices_async_patterns_codeblock_6",
+			"label": "code:tsx (import { cookies, headers } from \"next/headers\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "next_best_practices_async_patterns_migration_codemod",
+			"label": "Migration Codemod",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "next_best_practices_async_patterns_codeblock_7",
+			"label": "code:bash (npx @next/codemod@latest next-async-request-api .)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L82"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_async_patterns_md",
+			"target": "next_best_practices_async_patterns_async_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_patterns",
+			"target": "next_best_practices_async_patterns_async_params_and_searchparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_params_and_searchparams",
+			"target": "next_best_practices_async_patterns_pages_and_layouts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_pages_and_layouts",
+			"target": "next_best_practices_async_patterns_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_params_and_searchparams",
+			"target": "next_best_practices_async_patterns_route_handlers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_route_handlers",
+			"target": "next_best_practices_async_patterns_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_params_and_searchparams",
+			"target": "next_best_practices_async_patterns_searchparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_searchparams",
+			"target": "next_best_practices_async_patterns_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_params_and_searchparams",
+			"target": "next_best_practices_async_patterns_synchronous_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_synchronous_components",
+			"target": "next_best_practices_async_patterns_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_params_and_searchparams",
+			"target": "next_best_practices_async_patterns_generatemetadata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_generatemetadata",
+			"target": "next_best_practices_async_patterns_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_patterns",
+			"target": "next_best_practices_async_patterns_async_cookies_and_headers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_cookies_and_headers",
+			"target": "next_best_practices_async_patterns_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_async_patterns",
+			"target": "next_best_practices_async_patterns_migration_codemod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_async_patterns_migration_codemod",
+			"target": "next_best_practices_async_patterns_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md",
+			"source_location": "L82",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

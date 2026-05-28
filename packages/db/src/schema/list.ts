@@ -23,7 +23,7 @@ export type ListSystemKind = typeof LIST_SYSTEM_KIND_FAVORITES;
  * User-curated film/TV lists. `isRanked` toggles whether `position` matters
  * for display; `coverMovieIds` / `coverTvIds` snapshot poster ids for lobby
  * strips; `movieItemsCount` / `tvItemsCount` power split picker meta lines.
- * `coverMovieId` pins one film as the hero tile when set.
+ * `coverMovieId` / `coverTvId` pin one list item poster as the hero tile when set.
  */
 export const list = pgTable(
 	"list",
@@ -47,6 +47,7 @@ export const list = pgTable(
 		/** TMDb tv ids for cover strip — parallel to `coverMovieIds`. */
 		coverTvIds: jsonb("cover_tv_ids").$type<number[]>().default([]).notNull(),
 		coverMovieId: integer("cover_movie_id"),
+		coverTvId: integer("cover_tv_id"),
 		coverImageUrl: text("cover_image_url"),
 		tags: jsonb("tags").$type<string[]>().default([]).notNull(),
 		likesCount: integer("likes_count").default(0).notNull(),

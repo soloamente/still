@@ -1,0 +1,559 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_jwt_md",
+			"label": "jwt.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_jwt_jwt_plugin",
+			"label": "JWT Plugin",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_jwt_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "plugins_jwt_codeblock_1",
+			"label": "code:bash (bun add @elysiajs/jwt)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "plugins_jwt_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plugins_jwt_codeblock_2",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plugins_jwt_config",
+			"label": "Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "plugins_jwt_name",
+			"label": "name",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "plugins_jwt_codeblock_3",
+			"label": "code:typescript (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "plugins_jwt_secret",
+			"label": "secret",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "plugins_jwt_schema",
+			"label": "schema",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "plugins_jwt_alg",
+			"label": "alg",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "plugins_jwt_iss",
+			"label": "iss",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "plugins_jwt_sub",
+			"label": "sub",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "plugins_jwt_aud",
+			"label": "aud",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "plugins_jwt_jti",
+			"label": "jti",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "plugins_jwt_nbf",
+			"label": "nbf",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L125"
+		},
+		{
+			"id": "plugins_jwt_exp",
+			"label": "exp",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "plugins_jwt_iat",
+			"label": "iat",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "plugins_jwt_b64",
+			"label": "b64",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "plugins_jwt_kid",
+			"label": "kid",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "plugins_jwt_x5t",
+			"label": "x5t",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "plugins_jwt_x5c",
+			"label": "x5c",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L153"
+		},
+		{
+			"id": "plugins_jwt_x5u",
+			"label": "x5u",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "plugins_jwt_jwk",
+			"label": "jwk",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "plugins_jwt_typ",
+			"label": "typ",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "plugins_jwt_ctr",
+			"label": "ctr",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L173"
+		},
+		{
+			"id": "plugins_jwt_handler",
+			"label": "Handler",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L179"
+		},
+		{
+			"id": "plugins_jwt_jwt_sign",
+			"label": "jwt.sign",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "plugins_jwt_codeblock_4",
+			"label": "code:typescript (sign: (payload: JWTPayloadSpec): Promise<string>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L189"
+		},
+		{
+			"id": "plugins_jwt_jwt_verify",
+			"label": "jwt.verify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L195"
+		},
+		{
+			"id": "plugins_jwt_codeblock_5",
+			"label": "code:typescript (verify(payload: string) => Promise<JWTPayloadSpec | false>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L201"
+		},
+		{
+			"id": "plugins_jwt_pattern",
+			"label": "Pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L207"
+		},
+		{
+			"id": "plugins_jwt_set_jwt_expiration_date",
+			"label": "Set JWT expiration date",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L211"
+		},
+		{
+			"id": "plugins_jwt_codeblock_6",
+			"label": "code:typescript (const app = new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L215"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_jwt_md",
+			"target": "plugins_jwt_jwt_plugin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_jwt_plugin",
+			"target": "plugins_jwt_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_installation",
+			"target": "plugins_jwt_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_jwt_plugin",
+			"target": "plugins_jwt_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_basic_usage",
+			"target": "plugins_jwt_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_jwt_plugin",
+			"target": "plugins_jwt_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_name",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_name",
+			"target": "plugins_jwt_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_secret",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_schema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_alg",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_iss",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_sub",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_aud",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_jti",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_nbf",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_exp",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_iat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_b64",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_kid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_x5t",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_x5c",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_x5u",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_jwk",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_typ",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_config",
+			"target": "plugins_jwt_ctr",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L173",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_jwt_plugin",
+			"target": "plugins_jwt_handler",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L179",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_handler",
+			"target": "plugins_jwt_jwt_sign",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_jwt_sign",
+			"target": "plugins_jwt_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L189",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_handler",
+			"target": "plugins_jwt_jwt_verify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L195",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_jwt_verify",
+			"target": "plugins_jwt_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L201",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_jwt_plugin",
+			"target": "plugins_jwt_pattern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L207",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_jwt_plugin",
+			"target": "plugins_jwt_set_jwt_expiration_date",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L211",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_jwt_set_jwt_expiration_date",
+			"target": "plugins_jwt_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md",
+			"source_location": "L215",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

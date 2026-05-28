@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_nuxt_md",
+			"label": "nuxt.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_nuxt_nuxt_integration",
+			"label": "Nuxt Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_nuxt_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "integrations_nuxt_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "integrations_nuxt_codeblock_1",
+			"label": "code:bash (bun add elysia @elysiajs/eden)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "integrations_nuxt_setup",
+			"label": "Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "integrations_nuxt_codeblock_2",
+			"label": "code:typescript (export default defineNuxtConfig({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "integrations_nuxt_codeblock_3",
+			"label": "code:typescript (// api.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "integrations_nuxt_codeblock_4",
+			"label": "code:vue (<template>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "integrations_nuxt_prefix",
+			"label": "Prefix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "integrations_nuxt_codeblock_5",
+			"label": "code:typescript (export default defineNuxtConfig({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "integrations_nuxt_pnpm",
+			"label": "pnpm",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L70"
+		},
+		{
+			"id": "integrations_nuxt_codeblock_6",
+			"label": "code:bash (pnpm add @sinclair/typebox openapi-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L74"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_nuxt_md",
+			"target": "integrations_nuxt_nuxt_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_nuxt_integration",
+			"target": "integrations_nuxt_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_nuxt_integration",
+			"target": "integrations_nuxt_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_installation",
+			"target": "integrations_nuxt_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_nuxt_integration",
+			"target": "integrations_nuxt_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_setup",
+			"target": "integrations_nuxt_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_setup",
+			"target": "integrations_nuxt_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_setup",
+			"target": "integrations_nuxt_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_nuxt_integration",
+			"target": "integrations_nuxt_prefix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_prefix",
+			"target": "integrations_nuxt_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_nuxt_integration",
+			"target": "integrations_nuxt_pnpm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nuxt_pnpm",
+			"target": "integrations_nuxt_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md",
+			"source_location": "L74",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

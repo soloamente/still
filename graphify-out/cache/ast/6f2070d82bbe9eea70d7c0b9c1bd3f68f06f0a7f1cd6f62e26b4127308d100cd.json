@@ -1,0 +1,457 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"label": "diary-tv-group-cell.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "diary_diary_tv_group_cell_diary_flip_btn_primary",
+			"label": "DIARY_FLIP_BTN_PRIMARY",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L28"
+		},
+		{
+			"id": "diary_diary_tv_group_cell_diary_flip_btn_secondary",
+			"label": "DIARY_FLIP_BTN_SECONDARY",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L32"
+		},
+		{
+			"id": "diary_diary_tv_group_cell_tmdbposterurl",
+			"label": "tmdbPosterUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L37"
+		},
+		{
+			"id": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"label": "DiaryTvGroupCell()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L47"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_catalogue_catalogue_poster_tile_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "catalogue_catalogue_poster_tile_cataloguepostertile",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_diary_diary_entry_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "diary_diary_entry_diarylogrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_diary_diary_log_rating_label_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "diary_diary_log_rating_label_diarylogratinglabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_diary_tv_log_scope_chip_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "diary_tv_log_scope_chip_tvlogscopechip",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_sheet_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "log_quick_log_sheet_usequicklog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "movie_movie_poster_movieposter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_lobby_grouping_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "lib_diary_lobby_grouping_pickprimarytvscopelabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_open_log_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "lib_diary_open_log_diarylogtoquicklogopenpayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "lib_format_formatdate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_catalogue_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_frame_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_link_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "diary_diary_tv_group_cell_diary_flip_btn_primary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "diary_diary_tv_group_cell_diary_flip_btn_secondary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "diary_diary_tv_group_cell_tmdbposterurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_tv_group_cell_tsx",
+			"target": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"target": "diary_diary_tv_group_cell_tmdbposterurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L107",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "diary_diary_tv_group_cell_tmdbposterurl",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_tmdbposterurl",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "useQuickLog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "pickPrimaryTvScopeLabel",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L118"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L182"
+		},
+		{
+			"caller_nid": "diary_diary_tv_group_cell_diarytvgroupcell",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx",
+			"source_location": "L227"
+		}
+	]
+}

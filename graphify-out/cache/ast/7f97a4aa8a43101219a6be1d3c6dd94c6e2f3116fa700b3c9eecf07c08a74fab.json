@@ -1,0 +1,190 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"label": "diary-venue-chips.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "diary_diary_venue_chips_diaryvenuechips",
+			"label": "DiaryVenueChips()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_slider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_params_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "diary_diary_lobby_params_context_usediarylobbyparams",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_discover_catalog_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "lib_discover_catalog_url_discovercatalogurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "lib_home_lobby_url_buildhomelobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"target": "diary_diary_venue_chips_diaryvenuechips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "diary_diary_venue_chips_diaryvenuechips",
+			"callee": "useDiaryLobbyParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "diary_diary_venue_chips_diaryvenuechips",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "diary_diary_venue_chips_diaryvenuechips",
+			"callee": "buildHomeLobbyHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "diary_diary_venue_chips_diaryvenuechips",
+			"callee": "discoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "diary_diary_venue_chips_diaryvenuechips",
+			"callee": "chipButton",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "diary_diary_venue_chips_diaryvenuechips",
+			"callee": "chipButton",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "diary_diary_venue_chips_diaryvenuechips",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx",
+			"source_location": "L115"
+		}
+	]
+}

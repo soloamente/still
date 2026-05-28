@@ -1,0 +1,13 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_scripts_install_motion_plus_ps1",
+			"label": "install-motion-plus.ps1",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\scripts\\install-motion-plus.ps1",
+			"source_location": "L1"
+		}
+	],
+	"edges": [],
+	"raw_calls": []
+}

@@ -1,0 +1,527 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_patterns_mvc_md",
+			"label": "mvc.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "patterns_mvc_mvc_pattern",
+			"label": "MVC pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "patterns_mvc_controller",
+			"label": "Controller",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L20"
+		},
+		{
+			"id": "patterns_mvc_1_elysia_instance_as_a_controller",
+			"label": "1. Elysia instance as a controller",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "patterns_mvc_codeblock_1",
+			"label": "code:typescript (// Do)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "patterns_mvc_codeblock_2",
+			"label": "code:typescript (// Don't)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "patterns_mvc_2_controller_without_http_request",
+			"label": "2. Controller without HTTP request",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "patterns_mvc_codeblock_3",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "patterns_mvc_don_t_pass_entire_context_to_a_controller",
+			"label": "Don't: Pass entire `Context` to a controller",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "patterns_mvc_codeblock_4",
+			"label": "code:typescript (import type { Context } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "patterns_mvc_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "patterns_mvc_codeblock_5",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "patterns_mvc_service",
+			"label": "Service",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L142"
+		},
+		{
+			"id": "patterns_mvc_1_abstract_away_non_request_dependent_service",
+			"label": "1. Abstract away Non-request dependent service",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L153"
+		},
+		{
+			"id": "patterns_mvc_codeblock_6",
+			"label": "code:typescript (import { Elysia, t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "patterns_mvc_2_request_dependent_service_as_elysia_instance",
+			"label": "2. Request dependent service as Elysia instance",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "patterns_mvc_codeblock_7",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "patterns_mvc_do_decorate_only_request_dependent_property",
+			"label": "Do: Decorate only request dependent property",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L208"
+		},
+		{
+			"id": "patterns_mvc_codeblock_8",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L214"
+		},
+		{
+			"id": "patterns_mvc_don_t_pass_entire_context_to_a_service",
+			"label": "Don't: Pass entire `Context` to a service",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L226"
+		},
+		{
+			"id": "patterns_mvc_codeblock_9",
+			"label": "code:typescript (import type { Context } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L232"
+		},
+		{
+			"id": "patterns_mvc_model",
+			"label": "Model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L247"
+		},
+		{
+			"id": "patterns_mvc_do_use_elysia_s_validation_system",
+			"label": "Do: Use Elysia's validation system",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L253"
+		},
+		{
+			"id": "patterns_mvc_codeblock_10",
+			"label": "code:typescript (// Do)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L259"
+		},
+		{
+			"id": "patterns_mvc_codeblock_11",
+			"label": "code:typescript (// Do)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L279"
+		},
+		{
+			"id": "patterns_mvc_don_t_declare_a_class_instance_as_a_model",
+			"label": "Don't: Declare a class instance as a model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L292"
+		},
+		{
+			"id": "patterns_mvc_codeblock_12",
+			"label": "code:typescript (// Don't)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L296"
+		},
+		{
+			"id": "patterns_mvc_don_t_declare_type_separate_from_the_model",
+			"label": "Don't: Declare type separate from the model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L315"
+		},
+		{
+			"id": "patterns_mvc_codeblock_13",
+			"label": "code:typescript (// Don't)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L319"
+		},
+		{
+			"id": "patterns_mvc_group",
+			"label": "Group",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L342"
+		},
+		{
+			"id": "patterns_mvc_codeblock_14",
+			"label": "code:typescript (import { Elysia, t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L346"
+		},
+		{
+			"id": "patterns_mvc_model_injection",
+			"label": "Model Injection",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L359"
+		},
+		{
+			"id": "patterns_mvc_codeblock_15",
+			"label": "code:typescript (import { Elysia, t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L365"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_patterns_mvc_md",
+			"target": "patterns_mvc_mvc_pattern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_mvc_pattern",
+			"target": "patterns_mvc_controller",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_controller",
+			"target": "patterns_mvc_1_elysia_instance_as_a_controller",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_1_elysia_instance_as_a_controller",
+			"target": "patterns_mvc_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_1_elysia_instance_as_a_controller",
+			"target": "patterns_mvc_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_controller",
+			"target": "patterns_mvc_2_controller_without_http_request",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_2_controller_without_http_request",
+			"target": "patterns_mvc_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_controller",
+			"target": "patterns_mvc_don_t_pass_entire_context_to_a_controller",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_don_t_pass_entire_context_to_a_controller",
+			"target": "patterns_mvc_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_controller",
+			"target": "patterns_mvc_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_testing",
+			"target": "patterns_mvc_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_mvc_pattern",
+			"target": "patterns_mvc_service",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L142",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_service",
+			"target": "patterns_mvc_1_abstract_away_non_request_dependent_service",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_1_abstract_away_non_request_dependent_service",
+			"target": "patterns_mvc_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_service",
+			"target": "patterns_mvc_2_request_dependent_service_as_elysia_instance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_2_request_dependent_service_as_elysia_instance",
+			"target": "patterns_mvc_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_service",
+			"target": "patterns_mvc_do_decorate_only_request_dependent_property",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L208",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_do_decorate_only_request_dependent_property",
+			"target": "patterns_mvc_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L214",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_service",
+			"target": "patterns_mvc_don_t_pass_entire_context_to_a_service",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L226",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_don_t_pass_entire_context_to_a_service",
+			"target": "patterns_mvc_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L232",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_mvc_pattern",
+			"target": "patterns_mvc_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_model",
+			"target": "patterns_mvc_do_use_elysia_s_validation_system",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L253",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_do_use_elysia_s_validation_system",
+			"target": "patterns_mvc_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_do_use_elysia_s_validation_system",
+			"target": "patterns_mvc_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L279",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_model",
+			"target": "patterns_mvc_don_t_declare_a_class_instance_as_a_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L292",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_don_t_declare_a_class_instance_as_a_model",
+			"target": "patterns_mvc_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L296",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_model",
+			"target": "patterns_mvc_don_t_declare_type_separate_from_the_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L315",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_don_t_declare_type_separate_from_the_model",
+			"target": "patterns_mvc_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L319",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_model",
+			"target": "patterns_mvc_group",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L342",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_group",
+			"target": "patterns_mvc_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L346",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_model",
+			"target": "patterns_mvc_model_injection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L359",
+			"weight": 1.0
+		},
+		{
+			"source": "patterns_mvc_model_injection",
+			"target": "patterns_mvc_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md",
+			"source_location": "L365",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

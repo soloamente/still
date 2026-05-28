@@ -1,0 +1,351 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_error_handling_md",
+			"label": "error-handling.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_error_handling_error_handling",
+			"label": "Error Handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_error_handling_error_boundaries",
+			"label": "Error Boundaries",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "next_best_practices_error_handling_error_tsx",
+			"label": "`error.tsx`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_1",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "next_best_practices_error_handling_global_error_tsx",
+			"label": "`global-error.tsx`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_2",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "next_best_practices_error_handling_server_actions_navigation_api_gotcha",
+			"label": "Server Actions: Navigation API Gotcha",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_3",
+			"label": "code:tsx ('use server')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_4",
+			"label": "code:tsx (import { unstable_rethrow } from \"next/navigation\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "next_best_practices_error_handling_redirects",
+			"label": "Redirects",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_5",
+			"label": "code:tsx (import { redirect, permanentRedirect } from \"next/navigation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L135"
+		},
+		{
+			"id": "next_best_practices_error_handling_auth_errors",
+			"label": "Auth Errors",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_6",
+			"label": "code:tsx (import { forbidden, unauthorized } from \"next/navigation\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_7",
+			"label": "code:tsx (// app/forbidden.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L169"
+		},
+		{
+			"id": "next_best_practices_error_handling_not_found",
+			"label": "Not Found",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "next_best_practices_error_handling_not_found_tsx",
+			"label": "`not-found.tsx`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_8",
+			"label": "code:tsx (export default function NotFound() {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "next_best_practices_error_handling_triggering_not_found",
+			"label": "Triggering Not Found",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_9",
+			"label": "code:tsx (import { notFound } from \"next/navigation\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "next_best_practices_error_handling_error_hierarchy",
+			"label": "Error Hierarchy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L215"
+		},
+		{
+			"id": "next_best_practices_error_handling_codeblock_10",
+			"label": "code:block10 (app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L219"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_error_handling_md",
+			"target": "next_best_practices_error_handling_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_handling",
+			"target": "next_best_practices_error_handling_error_boundaries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_boundaries",
+			"target": "next_best_practices_error_handling_error_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_tsx",
+			"target": "next_best_practices_error_handling_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_boundaries",
+			"target": "next_best_practices_error_handling_global_error_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_global_error_tsx",
+			"target": "next_best_practices_error_handling_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_handling",
+			"target": "next_best_practices_error_handling_server_actions_navigation_api_gotcha",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_server_actions_navigation_api_gotcha",
+			"target": "next_best_practices_error_handling_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_server_actions_navigation_api_gotcha",
+			"target": "next_best_practices_error_handling_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_handling",
+			"target": "next_best_practices_error_handling_redirects",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_redirects",
+			"target": "next_best_practices_error_handling_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L135",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_handling",
+			"target": "next_best_practices_error_handling_auth_errors",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_auth_errors",
+			"target": "next_best_practices_error_handling_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_auth_errors",
+			"target": "next_best_practices_error_handling_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_handling",
+			"target": "next_best_practices_error_handling_not_found",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_not_found",
+			"target": "next_best_practices_error_handling_not_found_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_not_found_tsx",
+			"target": "next_best_practices_error_handling_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_not_found",
+			"target": "next_best_practices_error_handling_triggering_not_found",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_triggering_not_found",
+			"target": "next_best_practices_error_handling_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_handling",
+			"target": "next_best_practices_error_handling_error_hierarchy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_error_handling_error_hierarchy",
+			"target": "next_best_practices_error_handling_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md",
+			"source_location": "L219",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

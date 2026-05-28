@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_oklch_skill_palette_generation_md",
+			"label": "palette-generation.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_palette_generation_palette_generation",
+			"label": "Palette Generation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_palette_generation_the_scale_convention",
+			"label": "The scale convention",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "oklch_skill_palette_generation_algorithm",
+			"label": "Algorithm",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "oklch_skill_palette_generation_codeblock_1",
+			"label": "code:block1 (delta = 0.4)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "oklch_skill_palette_generation_codeblock_2",
+			"label": "code:block2 (maxChroma = findMaxChroma(step[i].L, hue, colorSpace))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "oklch_skill_palette_generation_css_variable_output",
+			"label": "CSS variable output",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "oklch_skill_palette_generation_codeblock_3",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "oklch_skill_palette_generation_multi_hue_palettes",
+			"label": "Multi-hue palettes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "oklch_skill_palette_generation_codeblock_4",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "oklch_skill_palette_generation_dark_mode",
+			"label": "Dark mode",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "oklch_skill_palette_generation_codeblock_5",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "oklch_skill_palette_generation_why_not_hsl_palettes",
+			"label": "Why not HSL palettes?",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L89"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_oklch_skill_palette_generation_md",
+			"target": "oklch_skill_palette_generation_palette_generation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_palette_generation",
+			"target": "oklch_skill_palette_generation_the_scale_convention",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_palette_generation",
+			"target": "oklch_skill_palette_generation_algorithm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_algorithm",
+			"target": "oklch_skill_palette_generation_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_algorithm",
+			"target": "oklch_skill_palette_generation_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_palette_generation",
+			"target": "oklch_skill_palette_generation_css_variable_output",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_css_variable_output",
+			"target": "oklch_skill_palette_generation_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_palette_generation",
+			"target": "oklch_skill_palette_generation_multi_hue_palettes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_multi_hue_palettes",
+			"target": "oklch_skill_palette_generation_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_palette_generation",
+			"target": "oklch_skill_palette_generation_dark_mode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_dark_mode",
+			"target": "oklch_skill_palette_generation_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_palette_generation_palette_generation",
+			"target": "oklch_skill_palette_generation_why_not_hsl_palettes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md",
+			"source_location": "L89",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

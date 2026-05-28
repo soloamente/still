@@ -1,0 +1,255 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_skills_components_style_recipes_md",
+			"label": "style-recipes.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_style_recipes_style_recipes",
+			"label": "Style Recipes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_style_recipes_brutalism",
+			"label": "Brutalism",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "components_style_recipes_cinematic_product",
+			"label": "Cinematic Product",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "components_style_recipes_dark_luxe",
+			"label": "Dark Luxe",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "components_style_recipes_dashboards",
+			"label": "Dashboards",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "components_style_recipes_editorial_premium",
+			"label": "Editorial Premium",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "components_style_recipes_gallery_minimal",
+			"label": "Gallery Minimal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "components_style_recipes_minimalism",
+			"label": "Minimalism",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "components_style_recipes_monochrome_modern",
+			"label": "Monochrome Modern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "components_style_recipes_premium_bento",
+			"label": "Premium Bento",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L69"
+		},
+		{
+			"id": "components_style_recipes_quiet_luxury",
+			"label": "Quiet Luxury",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "components_style_recipes_soft",
+			"label": "Soft",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "components_style_recipes_soft_brutalism",
+			"label": "Soft Brutalism",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "components_style_recipes_swiss_system",
+			"label": "Swiss System",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "components_style_recipes_warm_modern",
+			"label": "Warm Modern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L109"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_skills_components_style_recipes_md",
+			"target": "components_style_recipes_style_recipes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_brutalism",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_cinematic_product",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_dark_luxe",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_dashboards",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_editorial_premium",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_gallery_minimal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_minimalism",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_monochrome_modern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_premium_bento",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_quiet_luxury",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_soft",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_soft_brutalism",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_swiss_system",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "components_style_recipes_style_recipes",
+			"target": "components_style_recipes_warm_modern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md",
+			"source_location": "L109",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

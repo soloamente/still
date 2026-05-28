@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_oklch_skill_skill_md",
+			"label": "SKILL.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_skill_oklch_colors",
+			"label": "OKLCH Colors",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "oklch_skill_skill_quick_reference",
+			"label": "Quick Reference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L10"
+		},
+		{
+			"id": "oklch_skill_skill_why_oklch",
+			"label": "Why OKLCH",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "oklch_skill_skill_oklch_syntax",
+			"label": "OKLCH Syntax",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "oklch_skill_skill_codeblock_1",
+			"label": "code:block1 (oklch(L C H))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "oklch_skill_skill_codeblock_2",
+			"label": "code:css (oklch(0.637 0.237 25.331))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "oklch_skill_skill_key_thresholds",
+			"label": "Key Thresholds",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "oklch_skill_skill_review_output_format",
+			"label": "Review Output Format",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "oklch_skill_skill_common_mistakes",
+			"label": "Common Mistakes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "oklch_skill_skill_reference_files",
+			"label": "Reference Files",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L85"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_oklch_skill_skill_md",
+			"target": "oklch_skill_skill_oklch_colors",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_colors",
+			"target": "oklch_skill_skill_quick_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_colors",
+			"target": "oklch_skill_skill_why_oklch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_colors",
+			"target": "oklch_skill_skill_oklch_syntax",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_syntax",
+			"target": "oklch_skill_skill_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_syntax",
+			"target": "oklch_skill_skill_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_colors",
+			"target": "oklch_skill_skill_key_thresholds",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_colors",
+			"target": "oklch_skill_skill_review_output_format",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_colors",
+			"target": "oklch_skill_skill_common_mistakes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_skill_oklch_colors",
+			"target": "oklch_skill_skill_reference_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md",
+			"source_location": "L85",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

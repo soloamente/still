@@ -1,0 +1,383 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_font_md",
+			"label": "font.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_font_font_optimization",
+			"label": "Font Optimization",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_font_google_fonts",
+			"label": "Google Fonts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_1",
+			"label": "code:tsx (// app/layout.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "next_best_practices_font_multiple_fonts",
+			"label": "Multiple Fonts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L22"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_2",
+			"label": "code:tsx (import { Inter, Roboto_Mono } from \"next/font/google\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L24"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_3",
+			"label": "code:css (body {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "next_best_practices_font_font_weights_and_styles",
+			"label": "Font Weights and Styles",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_4",
+			"label": "code:tsx (// Single weight)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "next_best_practices_font_local_fonts",
+			"label": "Local Fonts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_5",
+			"label": "code:tsx (import localFont from \"next/font/local\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "next_best_practices_font_tailwind_css_integration",
+			"label": "Tailwind CSS Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_6",
+			"label": "code:tsx (// app/layout.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_7",
+			"label": "code:js (// tailwind.config.js)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L138"
+		},
+		{
+			"id": "next_best_practices_font_preloading_subsets",
+			"label": "Preloading Subsets",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_8",
+			"label": "code:tsx (// Latin only (most common))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L155"
+		},
+		{
+			"id": "next_best_practices_font_display_strategy",
+			"label": "Display Strategy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L163"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_9",
+			"label": "code:tsx (const inter = Inter({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "next_best_practices_font_don_t_use_manual_font_links",
+			"label": "Don't Use Manual Font Links",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_10",
+			"label": "code:tsx (// Bad: Manual link tag (blocks rendering, no optimization))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L185"
+		},
+		{
+			"id": "next_best_practices_font_common_mistakes",
+			"label": "Common Mistakes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_11",
+			"label": "code:tsx (// Bad: Importing font in every component)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "next_best_practices_font_font_in_specific_components",
+			"label": "Font in Specific Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L230"
+		},
+		{
+			"id": "next_best_practices_font_codeblock_12",
+			"label": "code:tsx (// For component-specific fonts, export from a shared file)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L232"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_font_md",
+			"target": "next_best_practices_font_font_optimization",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_google_fonts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_google_fonts",
+			"target": "next_best_practices_font_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_multiple_fonts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_multiple_fonts",
+			"target": "next_best_practices_font_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_multiple_fonts",
+			"target": "next_best_practices_font_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_font_weights_and_styles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_weights_and_styles",
+			"target": "next_best_practices_font_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_local_fonts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_local_fonts",
+			"target": "next_best_practices_font_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_tailwind_css_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_tailwind_css_integration",
+			"target": "next_best_practices_font_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_tailwind_css_integration",
+			"target": "next_best_practices_font_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_preloading_subsets",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_preloading_subsets",
+			"target": "next_best_practices_font_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L155",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_display_strategy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_display_strategy",
+			"target": "next_best_practices_font_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_don_t_use_manual_font_links",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_don_t_use_manual_font_links",
+			"target": "next_best_practices_font_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L185",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_common_mistakes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_common_mistakes",
+			"target": "next_best_practices_font_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_optimization",
+			"target": "next_best_practices_font_font_in_specific_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L230",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_font_font_in_specific_components",
+			"target": "next_best_practices_font_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md",
+			"source_location": "L232",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

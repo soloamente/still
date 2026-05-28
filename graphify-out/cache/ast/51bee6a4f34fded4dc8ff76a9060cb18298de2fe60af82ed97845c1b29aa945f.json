@@ -1,0 +1,159 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_skills_skill_md",
+			"label": "SKILL.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "skills_skill_taste_skill_pack_router",
+			"label": "Taste Skill Pack Router",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "skills_skill_1_core_job",
+			"label": "1. Core job",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "skills_skill_2_required_workflow",
+			"label": "2. Required workflow",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "skills_skill_3_explicit_style_override",
+			"label": "3. Explicit style override",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "skills_skill_4_style_selection_map",
+			"label": "4. Style selection map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "skills_skill_5_choosing_without_user_input",
+			"label": "5. Choosing without user input",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "skills_skill_6_shared_components_rule",
+			"label": "6. Shared components rule",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L147"
+		},
+		{
+			"id": "skills_skill_7_quality_bar",
+			"label": "7. Quality bar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "skills_skill_8_anti_slop_routing_rule",
+			"label": "8. Anti-slop routing rule",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L182"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_skills_skill_md",
+			"target": "skills_skill_taste_skill_pack_router",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "skills_skill_taste_skill_pack_router",
+			"target": "skills_skill_1_core_job",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "skills_skill_taste_skill_pack_router",
+			"target": "skills_skill_2_required_workflow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "skills_skill_taste_skill_pack_router",
+			"target": "skills_skill_3_explicit_style_override",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "skills_skill_taste_skill_pack_router",
+			"target": "skills_skill_4_style_selection_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "skills_skill_taste_skill_pack_router",
+			"target": "skills_skill_5_choosing_without_user_input",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "skills_skill_taste_skill_pack_router",
+			"target": "skills_skill_6_shared_components_rule",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "skills_skill_taste_skill_pack_router",
+			"target": "skills_skill_7_quality_bar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "skills_skill_taste_skill_pack_router",
+			"target": "skills_skill_8_anti_slop_routing_rule",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md",
+			"source_location": "L182",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

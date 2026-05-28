@@ -1,0 +1,55 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_optimistic_lobby_param_ts",
+			"label": "use-optimistic-lobby-param.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-optimistic-lobby-param.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_optimistic_lobby_param_useoptimisticlobbyparam",
+			"label": "useOptimisticLobbyParam()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-optimistic-lobby-param.ts",
+			"source_location": "L9"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_optimistic_lobby_param_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-optimistic-lobby-param.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_optimistic_lobby_param_ts",
+			"target": "lib_use_optimistic_lobby_param_useoptimisticlobbyparam",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-optimistic-lobby-param.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_optimistic_lobby_param_useoptimisticlobbyparam",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-optimistic-lobby-param.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_use_optimistic_lobby_param_useoptimisticlobbyparam",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-optimistic-lobby-param.ts",
+			"source_location": "L13"
+		}
+	]
+}

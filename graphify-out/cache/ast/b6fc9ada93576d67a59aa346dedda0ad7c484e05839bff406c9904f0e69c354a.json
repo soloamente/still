@@ -1,0 +1,431 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_cron_md",
+			"label": "cron.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_cron_cron_plugin",
+			"label": "Cron Plugin",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_cron_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "plugins_cron_codeblock_1",
+			"label": "code:bash (bun add @elysiajs/cron)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "plugins_cron_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plugins_cron_codeblock_2",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plugins_cron_config",
+			"label": "Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "plugins_cron_cron",
+			"label": "cron",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "plugins_cron_codeblock_3",
+			"label": "code:block3 (cron(config: CronConfig, callback: (Instance['store']) => vo)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "plugins_cron_cronconfig_name",
+			"label": "CronConfig.name",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "plugins_cron_cronconfig_pattern",
+			"label": "CronConfig.pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "plugins_cron_codeblock_4",
+			"label": "code:block4 (\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 second (optional))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "plugins_cron_cronconfig_timezone",
+			"label": "CronConfig.timezone",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "plugins_cron_cronconfig_startat",
+			"label": "CronConfig.startAt",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "plugins_cron_cronconfig_stopat",
+			"label": "CronConfig.stopAt",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "plugins_cron_cronconfig_maxruns",
+			"label": "CronConfig.maxRuns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L91"
+		},
+		{
+			"id": "plugins_cron_cronconfig_catch",
+			"label": "CronConfig.catch",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "plugins_cron_cronconfig_interval",
+			"label": "CronConfig.interval",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "plugins_cron_cronconfig_pattern_107",
+			"label": "CronConfig.Pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "plugins_cron_pattern",
+			"label": "Pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "plugins_cron_stop_cronjob",
+			"label": "Stop cronjob",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "plugins_cron_codeblock_5",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "plugins_cron_predefined_patterns",
+			"label": "Predefined patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L152"
+		},
+		{
+			"id": "plugins_cron_codeblock_6",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L156"
+		},
+		{
+			"id": "plugins_cron_functions",
+			"label": "Functions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L185"
+		},
+		{
+			"id": "plugins_cron_function_aliases_to_constants",
+			"label": "Function aliases to constants",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "plugins_cron_constants",
+			"label": "Constants",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L213"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_cron_md",
+			"target": "plugins_cron_cron_plugin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cron_plugin",
+			"target": "plugins_cron_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_installation",
+			"target": "plugins_cron_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cron_plugin",
+			"target": "plugins_cron_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_basic_usage",
+			"target": "plugins_cron_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cron_plugin",
+			"target": "plugins_cron_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cron",
+			"target": "plugins_cron_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cronconfig_name",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cronconfig_pattern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cronconfig_pattern",
+			"target": "plugins_cron_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cronconfig_timezone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cronconfig_startat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cronconfig_stopat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cronconfig_maxruns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cronconfig_catch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_config",
+			"target": "plugins_cron_cronconfig_interval",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cron_plugin",
+			"target": "plugins_cron_cronconfig_pattern_107",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cron_plugin",
+			"target": "plugins_cron_pattern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cron_plugin",
+			"target": "plugins_cron_stop_cronjob",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_stop_cronjob",
+			"target": "plugins_cron_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_cron_plugin",
+			"target": "plugins_cron_predefined_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_predefined_patterns",
+			"target": "plugins_cron_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_predefined_patterns",
+			"target": "plugins_cron_functions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L185",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_predefined_patterns",
+			"target": "plugins_cron_function_aliases_to_constants",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_cron_predefined_patterns",
+			"target": "plugins_cron_constants",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md",
+			"source_location": "L213",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,1071 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_skills_brutalism_skill_md",
+			"label": "skill.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"label": "High-Agency Brutalism Frontend Skill",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "brutalism_skill_1_active_baseline_configuration",
+			"label": "1. ACTIVE BASELINE CONFIGURATION",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L10"
+		},
+		{
+			"id": "brutalism_skill_2_default_architecture_conventions",
+			"label": "2. DEFAULT ARCHITECTURE & CONVENTIONS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "brutalism_skill_3_design_engineering_directives_bias_correction",
+			"label": "3. DESIGN ENGINEERING DIRECTIVES (Bias Correction)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "brutalism_skill_typography",
+			"label": "Typography",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "brutalism_skill_color_and_brand",
+			"label": "Color and Brand",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "brutalism_skill_layout_and_hierarchy",
+			"label": "Layout and Hierarchy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "brutalism_skill_materiality_cards_and_components",
+			"label": "Materiality, Cards, and Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "brutalism_skill_states_forms_and_copy_behavior",
+			"label": "States, Forms, and Copy Behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "brutalism_skill_4_creative_proactivity_motion_and_performance",
+			"label": "4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "brutalism_skill_creative_proactivity",
+			"label": "Creative Proactivity",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L95"
+		},
+		{
+			"id": "brutalism_skill_motion_and_interaction",
+			"label": "Motion and Interaction",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "brutalism_skill_performance_guardrails",
+			"label": "Performance Guardrails",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "brutalism_skill_5_technical_reference_dial_definitions",
+			"label": "5. TECHNICAL REFERENCE (Dial Definitions)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "brutalism_skill_design_variance_level_1_10",
+			"label": "DESIGN_VARIANCE (Level 1-10)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "brutalism_skill_motion_intensity_level_1_10",
+			"label": "MOTION_INTENSITY (Level 1-10)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "brutalism_skill_visual_density_level_1_10",
+			"label": "VISUAL_DENSITY (Level 1-10)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "brutalism_skill_6_ai_tells_forbidden_patterns",
+			"label": "6. AI TELLS (Forbidden Patterns)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "brutalism_skill_visual_and_surface_tells",
+			"label": "Visual and Surface Tells",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "brutalism_skill_layout_tells",
+			"label": "Layout Tells",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "brutalism_skill_content_and_copy_tells",
+			"label": "Content and Copy Tells",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "brutalism_skill_component_and_code_tells",
+			"label": "Component and Code Tells",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "brutalism_skill_7_style_direction_brutalism",
+			"label": "7. STYLE DIRECTION: Brutalism",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "brutalism_skill_core_identity",
+			"label": "Core Identity",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "brutalism_skill_brutalism_modes",
+			"label": "Brutalism Modes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L194"
+		},
+		{
+			"id": "brutalism_skill_palette_and_material",
+			"label": "Palette and Material",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "brutalism_skill_typography_character",
+			"label": "Typography Character",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L207"
+		},
+		{
+			"id": "brutalism_skill_hero_direction",
+			"label": "Hero Direction",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L215"
+		},
+		{
+			"id": "brutalism_skill_navigation_direction",
+			"label": "Navigation Direction",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L225"
+		},
+		{
+			"id": "brutalism_skill_layout_tendencies",
+			"label": "Layout Tendencies",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L232"
+		},
+		{
+			"id": "brutalism_skill_component_vocabulary",
+			"label": "Component Vocabulary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L244"
+		},
+		{
+			"id": "brutalism_skill_media_and_imagery",
+			"label": "Media and Imagery",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L249"
+		},
+		{
+			"id": "brutalism_skill_motion_profile",
+			"label": "Motion Profile",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L258"
+		},
+		{
+			"id": "brutalism_skill_ux_guardrails_for_this_style",
+			"label": "UX Guardrails For This Style",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L264"
+		},
+		{
+			"id": "brutalism_skill_creative_arsenal_for_this_style",
+			"label": "Creative Arsenal For This Style",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L275"
+		},
+		{
+			"id": "brutalism_skill_style_specific_avoidances",
+			"label": "Style-Specific Avoidances",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L283"
+		},
+		{
+			"id": "brutalism_skill_copy_tone",
+			"label": "Copy Tone",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L294"
+		},
+		{
+			"id": "brutalism_skill_current_production_priorities",
+			"label": "Current Production Priorities",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L301"
+		},
+		{
+			"id": "brutalism_skill_components_library",
+			"label": "Components Library",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L307"
+		},
+		{
+			"id": "brutalism_skill_8_full_taste_core_overlay",
+			"label": "8. FULL TASTE CORE OVERLAY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L317"
+		},
+		{
+			"id": "brutalism_skill_8_1_core_priority",
+			"label": "8.1 CORE PRIORITY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L319"
+		},
+		{
+			"id": "brutalism_skill_8_2_active_baseline_interpretation",
+			"label": "8.2 ACTIVE BASELINE INTERPRETATION",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L333"
+		},
+		{
+			"id": "brutalism_skill_8_3_default_architecture_conventions",
+			"label": "8.3 DEFAULT ARCHITECTURE & CONVENTIONS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L345"
+		},
+		{
+			"id": "brutalism_skill_8_4_design_engineering_directives",
+			"label": "8.4 DESIGN ENGINEERING DIRECTIVES",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L372"
+		},
+		{
+			"id": "brutalism_skill_8_5_creative_proactivity",
+			"label": "8.5 CREATIVE PROACTIVITY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L398"
+		},
+		{
+			"id": "brutalism_skill_8_6_performance_guardrails",
+			"label": "8.6 PERFORMANCE GUARDRAILS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L419"
+		},
+		{
+			"id": "brutalism_skill_8_7_technical_reference_design_variance",
+			"label": "8.7 TECHNICAL REFERENCE: DESIGN_VARIANCE",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L433"
+		},
+		{
+			"id": "brutalism_skill_8_8_technical_reference_motion_intensity",
+			"label": "8.8 TECHNICAL REFERENCE: MOTION_INTENSITY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L445"
+		},
+		{
+			"id": "brutalism_skill_8_9_technical_reference_visual_density",
+			"label": "8.9 TECHNICAL REFERENCE: VISUAL_DENSITY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L459"
+		},
+		{
+			"id": "brutalism_skill_8_10_ai_tells_forbidden_patterns",
+			"label": "8.10 AI TELLS (FORBIDDEN PATTERNS)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L473"
+		},
+		{
+			"id": "brutalism_skill_8_11_creative_arsenal",
+			"label": "8.11 CREATIVE ARSENAL",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L500"
+		},
+		{
+			"id": "brutalism_skill_8_12_motion_engine_bento_paradigm",
+			"label": "8.12 MOTION-ENGINE BENTO PARADIGM",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L527"
+		},
+		{
+			"id": "brutalism_skill_8_13_hero_and_page_checksum_rules",
+			"label": "8.13 HERO AND PAGE CHECKSUM RULES",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L540"
+		},
+		{
+			"id": "brutalism_skill_9_page_and_component_construction_matrix",
+			"label": "9. PAGE AND COMPONENT CONSTRUCTION MATRIX",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L554"
+		},
+		{
+			"id": "brutalism_skill_9_1_hero_systems",
+			"label": "9.1 HERO SYSTEMS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L556"
+		},
+		{
+			"id": "brutalism_skill_9_2_navigation_systems",
+			"label": "9.2 NAVIGATION SYSTEMS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L574"
+		},
+		{
+			"id": "brutalism_skill_9_3_section_pacing",
+			"label": "9.3 SECTION PACING",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L588"
+		},
+		{
+			"id": "brutalism_skill_9_4_card_and_surface_systems",
+			"label": "9.4 CARD AND SURFACE SYSTEMS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L602"
+		},
+		{
+			"id": "brutalism_skill_9_5_imagery_and_media",
+			"label": "9.5 IMAGERY AND MEDIA",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L616"
+		},
+		{
+			"id": "brutalism_skill_9_6_typography_and_copy_blocks",
+			"label": "9.6 TYPOGRAPHY AND COPY BLOCKS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L630"
+		},
+		{
+			"id": "brutalism_skill_9_7_component_library",
+			"label": "9.7 COMPONENT LIBRARY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L644"
+		},
+		{
+			"id": "brutalism_skill_9_8_rare_ui_moves",
+			"label": "9.8 RARE UI MOVES",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L674"
+		},
+		{
+			"id": "brutalism_skill_9_9_output_algorithm",
+			"label": "9.9 OUTPUT ALGORITHM",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L696"
+		},
+		{
+			"id": "brutalism_skill_10_failure_modes_and_recovery_loop",
+			"label": "10. FAILURE MODES AND RECOVERY LOOP",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L710"
+		},
+		{
+			"id": "brutalism_skill_10_1_quick_decision_shortcuts",
+			"label": "10.1 QUICK DECISION SHORTCUTS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L730"
+		},
+		{
+			"id": "brutalism_skill_11_final_pre_flight_check",
+			"label": "11. FINAL PRE-FLIGHT CHECK",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L746"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_skills_brutalism_skill_md",
+			"target": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_1_active_baseline_configuration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_2_default_architecture_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_3_design_engineering_directives_bias_correction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_3_design_engineering_directives_bias_correction",
+			"target": "brutalism_skill_typography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_3_design_engineering_directives_bias_correction",
+			"target": "brutalism_skill_color_and_brand",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_3_design_engineering_directives_bias_correction",
+			"target": "brutalism_skill_layout_and_hierarchy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_3_design_engineering_directives_bias_correction",
+			"target": "brutalism_skill_materiality_cards_and_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_3_design_engineering_directives_bias_correction",
+			"target": "brutalism_skill_states_forms_and_copy_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_4_creative_proactivity_motion_and_performance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_4_creative_proactivity_motion_and_performance",
+			"target": "brutalism_skill_creative_proactivity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_4_creative_proactivity_motion_and_performance",
+			"target": "brutalism_skill_motion_and_interaction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_4_creative_proactivity_motion_and_performance",
+			"target": "brutalism_skill_performance_guardrails",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_5_technical_reference_dial_definitions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_5_technical_reference_dial_definitions",
+			"target": "brutalism_skill_design_variance_level_1_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_5_technical_reference_dial_definitions",
+			"target": "brutalism_skill_motion_intensity_level_1_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_5_technical_reference_dial_definitions",
+			"target": "brutalism_skill_visual_density_level_1_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_6_ai_tells_forbidden_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_6_ai_tells_forbidden_patterns",
+			"target": "brutalism_skill_visual_and_surface_tells",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_6_ai_tells_forbidden_patterns",
+			"target": "brutalism_skill_layout_tells",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_6_ai_tells_forbidden_patterns",
+			"target": "brutalism_skill_content_and_copy_tells",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_6_ai_tells_forbidden_patterns",
+			"target": "brutalism_skill_component_and_code_tells",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_7_style_direction_brutalism",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_core_identity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_brutalism_modes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_palette_and_material",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_typography_character",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L207",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_hero_direction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_navigation_direction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L225",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_layout_tendencies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L232",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_component_vocabulary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L244",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_media_and_imagery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L249",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_motion_profile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L258",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_ux_guardrails_for_this_style",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L264",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_creative_arsenal_for_this_style",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L275",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_style_specific_avoidances",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L283",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_copy_tone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L294",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_current_production_priorities",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L301",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_7_style_direction_brutalism",
+			"target": "brutalism_skill_components_library",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L307",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_8_full_taste_core_overlay",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L317",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_1_core_priority",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L319",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_2_active_baseline_interpretation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L333",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_3_default_architecture_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L345",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_4_design_engineering_directives",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L372",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_5_creative_proactivity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L398",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_6_performance_guardrails",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L419",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_7_technical_reference_design_variance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L433",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_8_technical_reference_motion_intensity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L445",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_9_technical_reference_visual_density",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L459",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_10_ai_tells_forbidden_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L473",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_11_creative_arsenal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L500",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_12_motion_engine_bento_paradigm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L527",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_8_full_taste_core_overlay",
+			"target": "brutalism_skill_8_13_hero_and_page_checksum_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L540",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_9_page_and_component_construction_matrix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L554",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_1_hero_systems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L556",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_2_navigation_systems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L574",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_3_section_pacing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L588",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_4_card_and_surface_systems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L602",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_5_imagery_and_media",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L616",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_6_typography_and_copy_blocks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L630",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_7_component_library",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L644",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_8_rare_ui_moves",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L674",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_9_page_and_component_construction_matrix",
+			"target": "brutalism_skill_9_9_output_algorithm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L696",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_10_failure_modes_and_recovery_loop",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L710",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_10_failure_modes_and_recovery_loop",
+			"target": "brutalism_skill_10_1_quick_decision_shortcuts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L730",
+			"weight": 1.0
+		},
+		{
+			"source": "brutalism_skill_high_agency_brutalism_frontend_skill",
+			"target": "brutalism_skill_11_final_pre_flight_check",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md",
+			"source_location": "L746",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

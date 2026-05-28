@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_oklch_skill_accessibility_contrast_md",
+			"label": "accessibility-contrast.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_accessibility_contrast",
+			"label": "Accessibility & Contrast",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_apca_thresholds_recommended",
+			"label": "APCA thresholds (recommended)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_wcag_2_thresholds_for_legal_compliance",
+			"label": "WCAG 2 thresholds (for legal compliance)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_fixing_contrast_with_oklch",
+			"label": "Fixing contrast with oklch",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_codeblock_1",
+			"label": "code:css (/* Failing: text too close in lightness to its background */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_quick_lightness_gap_guide",
+			"label": "Quick lightness gap guide",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_light_vs_dark_color_detection",
+			"label": "Light vs dark color detection",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_codeblock_2",
+			"label": "code:block2 (if L > 0.6 \u2192 use dark text on this background)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_hue_drift_detection",
+			"label": "Hue drift detection",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "oklch_skill_accessibility_contrast_codeblock_3",
+			"label": "code:css (/* HSL blue ramp \u2014 hue shifts toward purple */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L69"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_oklch_skill_accessibility_contrast_md",
+			"target": "oklch_skill_accessibility_contrast_accessibility_contrast",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_accessibility_contrast",
+			"target": "oklch_skill_accessibility_contrast_apca_thresholds_recommended",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_accessibility_contrast",
+			"target": "oklch_skill_accessibility_contrast_wcag_2_thresholds_for_legal_compliance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_accessibility_contrast",
+			"target": "oklch_skill_accessibility_contrast_fixing_contrast_with_oklch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_fixing_contrast_with_oklch",
+			"target": "oklch_skill_accessibility_contrast_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_accessibility_contrast",
+			"target": "oklch_skill_accessibility_contrast_quick_lightness_gap_guide",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_accessibility_contrast",
+			"target": "oklch_skill_accessibility_contrast_light_vs_dark_color_detection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_light_vs_dark_color_detection",
+			"target": "oklch_skill_accessibility_contrast_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_accessibility_contrast",
+			"target": "oklch_skill_accessibility_contrast_hue_drift_detection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_accessibility_contrast_hue_drift_detection",
+			"target": "oklch_skill_accessibility_contrast_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md",
+			"source_location": "L69",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

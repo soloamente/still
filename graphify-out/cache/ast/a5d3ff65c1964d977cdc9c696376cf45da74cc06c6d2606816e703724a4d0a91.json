@@ -1,0 +1,62 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_view_ts",
+			"label": "movie-detail-view.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-view.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_movie_detail_view_moviedetailview",
+			"label": "MovieDetailView",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-view.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_movie_detail_view_parsemoviedetailview",
+			"label": "parseMovieDetailView()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-view.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_movie_detail_view_buildmoviedetailviewhref",
+			"label": "buildMovieDetailViewHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-view.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_view_ts",
+			"target": "lib_movie_detail_view_moviedetailview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-view.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_view_ts",
+			"target": "lib_movie_detail_view_parsemoviedetailview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-view.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_view_ts",
+			"target": "lib_movie_detail_view_buildmoviedetailviewhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-view.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

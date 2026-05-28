@@ -1,0 +1,255 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_better_auth_md",
+			"label": "better-auth.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_better_auth_better_auth_integration",
+			"label": "Better Auth Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_better_auth_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "integrations_better_auth_setup",
+			"label": "Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "integrations_better_auth_codeblock_1",
+			"label": "code:typescript (import { betterAuth } from \"better-auth\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "integrations_better_auth_handler_mounting",
+			"label": "Handler Mounting",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L20"
+		},
+		{
+			"id": "integrations_better_auth_codeblock_2",
+			"label": "code:typescript (import { auth } from \"./auth\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L22"
+		},
+		{
+			"id": "integrations_better_auth_custom_endpoint",
+			"label": "Custom Endpoint",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "integrations_better_auth_codeblock_3",
+			"label": "code:typescript (// Mount with prefix)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "integrations_better_auth_openapi_integration",
+			"label": "OpenAPI Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "integrations_better_auth_codeblock_4",
+			"label": "code:typescript (import { openAPI } from \"better-auth/plugins\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "integrations_better_auth_codeblock_5",
+			"label": "code:typescript (new Elysia().use()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "integrations_better_auth_cors",
+			"label": "CORS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "integrations_better_auth_codeblock_6",
+			"label": "code:typescript (import { cors } from \"@elysiajs/cors\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "integrations_better_auth_macro_for_auth",
+			"label": "Macro for Auth",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "integrations_better_auth_codeblock_7",
+			"label": "code:typescript (const betterAuth = new Elysia({ name: \"better-auth\" }).mount)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L109"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_better_auth_md",
+			"target": "integrations_better_auth_better_auth_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_better_auth_integration",
+			"target": "integrations_better_auth_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_better_auth_integration",
+			"target": "integrations_better_auth_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_setup",
+			"target": "integrations_better_auth_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_better_auth_integration",
+			"target": "integrations_better_auth_handler_mounting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_handler_mounting",
+			"target": "integrations_better_auth_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_handler_mounting",
+			"target": "integrations_better_auth_custom_endpoint",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_custom_endpoint",
+			"target": "integrations_better_auth_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_better_auth_integration",
+			"target": "integrations_better_auth_openapi_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_openapi_integration",
+			"target": "integrations_better_auth_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_openapi_integration",
+			"target": "integrations_better_auth_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_better_auth_integration",
+			"target": "integrations_better_auth_cors",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_cors",
+			"target": "integrations_better_auth_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_better_auth_integration",
+			"target": "integrations_better_auth_macro_for_auth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_better_auth_macro_for_auth",
+			"target": "integrations_better_auth_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md",
+			"source_location": "L109",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

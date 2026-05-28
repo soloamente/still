@@ -1,0 +1,1535 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_references_validation_md",
+			"label": "validation.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_validation_validation_schema_skills_md",
+			"label": "Validation Schema - SKILLS.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_validation_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "references_validation_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "references_validation_codeblock_1",
+			"label": "code:typescript (import { Elysia, t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "references_validation_schema_types",
+			"label": "Schema Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "references_validation_standard_schema_support",
+			"label": "Standard Schema Support",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "references_validation_codeblock_2",
+			"label": "code:typescript (import { z } from 'zod')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "references_validation_body",
+			"label": "Body",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "references_validation_codeblock_3",
+			"label": "code:typescript (body: t.Object({ name: t.String() });)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "references_validation_file_upload",
+			"label": "File Upload",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "references_validation_codeblock_4",
+			"label": "code:typescript (body: t.Object({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "references_validation_file_standard_schema",
+			"label": "File (Standard Schema)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "references_validation_codeblock_5",
+			"label": "code:typescript (import { fileType } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "references_validation_query",
+			"label": "Query",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "references_validation_codeblock_6",
+			"label": "code:typescript (query: t.Object({ name: t.String() });)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "references_validation_arrays",
+			"label": "Arrays",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "references_validation_codeblock_7",
+			"label": "code:typescript (query: t.Object({ name: t.Array(t.String()) });)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "references_validation_params",
+			"label": "Params",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "references_validation_codeblock_8",
+			"label": "code:typescript (params: t.Object({ id: t.Number() });)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "references_validation_headers",
+			"label": "Headers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "references_validation_codeblock_9",
+			"label": "code:typescript (headers: t.Object({ authorization: t.String() });)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "references_validation_cookie",
+			"label": "Cookie",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "references_validation_codeblock_10",
+			"label": "code:typescript (cookie: t.Cookie()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "references_validation_response",
+			"label": "Response",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "references_validation_codeblock_11",
+			"label": "code:typescript (response: t.Object({ name: t.String() });)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "references_validation_per_status",
+			"label": "Per Status",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "references_validation_codeblock_12",
+			"label": "code:typescript (response: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "references_validation_error_handling",
+			"label": "Error Handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "references_validation_inline_error_property",
+			"label": "Inline Error Property",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "references_validation_codeblock_13",
+			"label": "code:typescript (body: t.Object({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L150"
+		},
+		{
+			"id": "references_validation_codeblock_14",
+			"label": "code:typescript (x: t.Number({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L158"
+		},
+		{
+			"id": "references_validation_onerror_hook",
+			"label": "onError Hook",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L166"
+		},
+		{
+			"id": "references_validation_codeblock_15",
+			"label": "code:typescript (.onError(({ code, error }) => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L168"
+		},
+		{
+			"id": "references_validation_reference_models",
+			"label": "Reference Models",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L177"
+		},
+		{
+			"id": "references_validation_codeblock_16",
+			"label": "code:typescript (.model({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "references_validation_codeblock_17",
+			"label": "code:typescript (// auth.model.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L196"
+		},
+		{
+			"id": "references_validation_naming_convention",
+			"label": "Naming Convention",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L204"
+		},
+		{
+			"id": "references_validation_codeblock_18",
+			"label": "code:typescript (.model({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L208"
+		},
+		{
+			"id": "references_validation_codeblock_19",
+			"label": "code:typescript (.model({ sign: t.Object({...}) }))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L217"
+		},
+		{
+			"id": "references_validation_typescript_types",
+			"label": "TypeScript Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "references_validation_codeblock_20",
+			"label": "code:typescript (const MyType = t.Object({ hello: t.Literal(\"Elysia\") });)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L229"
+		},
+		{
+			"id": "references_validation_guard",
+			"label": "Guard",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L236"
+		},
+		{
+			"id": "references_validation_basic_usage_240",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L240"
+		},
+		{
+			"id": "references_validation_codeblock_21",
+			"label": "code:typescript (import { Elysia, t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L242"
+		},
+		{
+			"id": "references_validation_behavior",
+			"label": "Behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L258"
+		},
+		{
+			"id": "references_validation_precedence",
+			"label": "Precedence",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L267"
+		},
+		{
+			"id": "references_validation_schema_types_272",
+			"label": "Schema Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L272"
+		},
+		{
+			"id": "references_validation_codeblock_22",
+			"label": "code:typescript (.guard({ query: t.Object({ name: t.String() }) }))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L277"
+		},
+		{
+			"id": "references_validation_codeblock_23",
+			"label": "code:typescript (.guard({ query: t.Object({ name: t.String() }) }, { type: 's)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L286"
+		},
+		{
+			"id": "references_validation_typebox_validation_elysia_t",
+			"label": "Typebox Validation (Elysia.t)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L292"
+		},
+		{
+			"id": "references_validation_basic_types",
+			"label": "Basic Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L298"
+		},
+		{
+			"id": "references_validation_attributes_json_schema_7",
+			"label": "Attributes (JSON Schema 7)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L310"
+		},
+		{
+			"id": "references_validation_codeblock_24",
+			"label": "code:ts (// Email format)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L312"
+		},
+		{
+			"id": "references_validation_common_patterns",
+			"label": "Common Patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L332"
+		},
+		{
+			"id": "references_validation_union_multiple_types",
+			"label": "Union (Multiple Types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L334"
+		},
+		{
+			"id": "references_validation_codeblock_25",
+			"label": "code:ts (t.Union([t.String(), t.Number()]);)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L336"
+		},
+		{
+			"id": "references_validation_optional_field_optional",
+			"label": "Optional (Field Optional)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L342"
+		},
+		{
+			"id": "references_validation_codeblock_26",
+			"label": "code:ts (t.Object({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L344"
+		},
+		{
+			"id": "references_validation_partial_all_fields_optional",
+			"label": "Partial (All Fields Optional)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L353"
+		},
+		{
+			"id": "references_validation_codeblock_27",
+			"label": "code:ts (t.Partial()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L355"
+		},
+		{
+			"id": "references_validation_elysia_specific_types",
+			"label": "Elysia-Specific Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L366"
+		},
+		{
+			"id": "references_validation_unionenum_one_of_values",
+			"label": "UnionEnum (One of Values)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L368"
+		},
+		{
+			"id": "references_validation_codeblock_28",
+			"label": "code:ts (t.UnionEnum([\"rapi\", \"anis\", 1, true, false]);)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L370"
+		},
+		{
+			"id": "references_validation_file_single_file_upload",
+			"label": "File (Single File Upload)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L374"
+		},
+		{
+			"id": "references_validation_codeblock_29",
+			"label": "code:ts (t.File({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L376"
+		},
+		{
+			"id": "references_validation_files_multiple_files",
+			"label": "Files (Multiple Files)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L389"
+		},
+		{
+			"id": "references_validation_codeblock_30",
+			"label": "code:ts (t.Files(); // extends File + array)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L391"
+		},
+		{
+			"id": "references_validation_cookie_cookie_jar",
+			"label": "Cookie (Cookie Jar)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L395"
+		},
+		{
+			"id": "references_validation_codeblock_31",
+			"label": "code:ts (t.Cookie()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L397"
+		},
+		{
+			"id": "references_validation_nullable_allow_null",
+			"label": "Nullable (Allow null)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L408"
+		},
+		{
+			"id": "references_validation_codeblock_32",
+			"label": "code:ts (t.Nullable(t.String());)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L410"
+		},
+		{
+			"id": "references_validation_maybeempty_allow_null_undefined",
+			"label": "MaybeEmpty (Allow null + undefined)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L415"
+		},
+		{
+			"id": "references_validation_codeblock_33",
+			"label": "code:ts (t.MaybeEmpty(t.String());)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L417"
+		},
+		{
+			"id": "references_validation_form_formdata_validation",
+			"label": "Form (FormData Validation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L422"
+		},
+		{
+			"id": "references_validation_codeblock_34",
+			"label": "code:ts (t.Form({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L424"
+		},
+		{
+			"id": "references_validation_uint8array_buffer_uint8array",
+			"label": "UInt8Array (Buffer \u2192 Uint8Array)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L431"
+		},
+		{
+			"id": "references_validation_codeblock_35",
+			"label": "code:ts (t.UInt8Array();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L433"
+		},
+		{
+			"id": "references_validation_arraybuffer_buffer_arraybuffer",
+			"label": "ArrayBuffer (Buffer \u2192 ArrayBuffer)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L438"
+		},
+		{
+			"id": "references_validation_codeblock_36",
+			"label": "code:ts (t.ArrayBuffer();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L440"
+		},
+		{
+			"id": "references_validation_objectstring_string_object",
+			"label": "ObjectString (String \u2192 Object)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L445"
+		},
+		{
+			"id": "references_validation_codeblock_37",
+			"label": "code:ts (t.ObjectString();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L447"
+		},
+		{
+			"id": "references_validation_booleanstring_string_boolean",
+			"label": "BooleanString (String \u2192 Boolean)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L453"
+		},
+		{
+			"id": "references_validation_codeblock_38",
+			"label": "code:ts (t.BooleanString();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L455"
+		},
+		{
+			"id": "references_validation_numeric_string_number_number",
+			"label": "Numeric (String/Number \u2192 Number)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L461"
+		},
+		{
+			"id": "references_validation_codeblock_39",
+			"label": "code:ts (t.Numeric();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L463"
+		},
+		{
+			"id": "references_validation_elysia_behavior_differences_from_typebox",
+			"label": "Elysia Behavior Differences from TypeBox",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L469"
+		},
+		{
+			"id": "references_validation_1_optional_behavior",
+			"label": "1. Optional Behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L471"
+		},
+		{
+			"id": "references_validation_codeblock_40",
+			"label": "code:ts (.get('/optional', ({ query }) => query, {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L475"
+		},
+		{
+			"id": "references_validation_2_number_numeric_auto_conversion",
+			"label": "2. Number \u2192 Numeric Auto-Conversion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L485"
+		},
+		{
+			"id": "references_validation_codeblock_41",
+			"label": "code:ts (.get('/:id', ({ id }) => id, {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L489"
+		},
+		{
+			"id": "references_validation_3_boolean_booleanstring_auto_conversion",
+			"label": "3. Boolean \u2192 BooleanString Auto-Conversion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L505"
+		},
+		{
+			"id": "references_validation_codeblock_42",
+			"label": "code:ts (.get('/:active', ({ active }) => active, {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L509"
+		},
+		{
+			"id": "references_validation_usage_pattern",
+			"label": "Usage Pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L520"
+		},
+		{
+			"id": "references_validation_codeblock_43",
+			"label": "code:ts (import { Elysia, t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L522"
+		},
+		{
+			"id": "references_validation_notes",
+			"label": "Notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L539"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_references_validation_md",
+			"target": "references_validation_validation_schema_skills_md",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_basic_usage",
+			"target": "references_validation_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_schema_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_standard_schema_support",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_standard_schema_support",
+			"target": "references_validation_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_body",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_body",
+			"target": "references_validation_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_body",
+			"target": "references_validation_file_upload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_file_upload",
+			"target": "references_validation_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_body",
+			"target": "references_validation_file_standard_schema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_file_standard_schema",
+			"target": "references_validation_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_query",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_query",
+			"target": "references_validation_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_query",
+			"target": "references_validation_arrays",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_arrays",
+			"target": "references_validation_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_params",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_params",
+			"target": "references_validation_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_headers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_headers",
+			"target": "references_validation_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_cookie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_cookie",
+			"target": "references_validation_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_response",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_response",
+			"target": "references_validation_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_response",
+			"target": "references_validation_per_status",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_per_status",
+			"target": "references_validation_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_error_handling",
+			"target": "references_validation_inline_error_property",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_inline_error_property",
+			"target": "references_validation_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L150",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_inline_error_property",
+			"target": "references_validation_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_error_handling",
+			"target": "references_validation_onerror_hook",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_onerror_hook",
+			"target": "references_validation_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_reference_models",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L177",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_reference_models",
+			"target": "references_validation_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_reference_models",
+			"target": "references_validation_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L196",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_reference_models",
+			"target": "references_validation_naming_convention",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L204",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_naming_convention",
+			"target": "references_validation_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L208",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_naming_convention",
+			"target": "references_validation_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_typescript_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_typescript_types",
+			"target": "references_validation_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L229",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_validation_schema_skills_md",
+			"target": "references_validation_guard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_guard",
+			"target": "references_validation_basic_usage_240",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L240",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_basic_usage_240",
+			"target": "references_validation_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L242",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_guard",
+			"target": "references_validation_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L258",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_guard",
+			"target": "references_validation_precedence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L267",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_guard",
+			"target": "references_validation_schema_types_272",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L272",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_schema_types_272",
+			"target": "references_validation_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L277",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_schema_types_272",
+			"target": "references_validation_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L286",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_references_validation_md",
+			"target": "references_validation_typebox_validation_elysia_t",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L292",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_typebox_validation_elysia_t",
+			"target": "references_validation_basic_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L298",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_typebox_validation_elysia_t",
+			"target": "references_validation_attributes_json_schema_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L310",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_attributes_json_schema_7",
+			"target": "references_validation_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L312",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_typebox_validation_elysia_t",
+			"target": "references_validation_common_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L332",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_common_patterns",
+			"target": "references_validation_union_multiple_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L334",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_union_multiple_types",
+			"target": "references_validation_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L336",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_common_patterns",
+			"target": "references_validation_optional_field_optional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L342",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_optional_field_optional",
+			"target": "references_validation_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L344",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_common_patterns",
+			"target": "references_validation_partial_all_fields_optional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L353",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_partial_all_fields_optional",
+			"target": "references_validation_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L355",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_typebox_validation_elysia_t",
+			"target": "references_validation_elysia_specific_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L366",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_unionenum_one_of_values",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L368",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_unionenum_one_of_values",
+			"target": "references_validation_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L370",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_file_single_file_upload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L374",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_file_single_file_upload",
+			"target": "references_validation_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L376",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_files_multiple_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L389",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_files_multiple_files",
+			"target": "references_validation_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L391",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_cookie_cookie_jar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L395",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_cookie_cookie_jar",
+			"target": "references_validation_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L397",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_nullable_allow_null",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L408",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_nullable_allow_null",
+			"target": "references_validation_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L410",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_maybeempty_allow_null_undefined",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L415",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_maybeempty_allow_null_undefined",
+			"target": "references_validation_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L417",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_form_formdata_validation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L422",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_form_formdata_validation",
+			"target": "references_validation_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L424",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_uint8array_buffer_uint8array",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L431",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_uint8array_buffer_uint8array",
+			"target": "references_validation_codeblock_35",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L433",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_arraybuffer_buffer_arraybuffer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L438",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_arraybuffer_buffer_arraybuffer",
+			"target": "references_validation_codeblock_36",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L440",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_objectstring_string_object",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L445",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_objectstring_string_object",
+			"target": "references_validation_codeblock_37",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L447",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_booleanstring_string_boolean",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L453",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_booleanstring_string_boolean",
+			"target": "references_validation_codeblock_38",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L455",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_specific_types",
+			"target": "references_validation_numeric_string_number_number",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L461",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_numeric_string_number_number",
+			"target": "references_validation_codeblock_39",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L463",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_typebox_validation_elysia_t",
+			"target": "references_validation_elysia_behavior_differences_from_typebox",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L469",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_behavior_differences_from_typebox",
+			"target": "references_validation_1_optional_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L471",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_1_optional_behavior",
+			"target": "references_validation_codeblock_40",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L475",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_behavior_differences_from_typebox",
+			"target": "references_validation_2_number_numeric_auto_conversion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L485",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_2_number_numeric_auto_conversion",
+			"target": "references_validation_codeblock_41",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L489",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_elysia_behavior_differences_from_typebox",
+			"target": "references_validation_3_boolean_booleanstring_auto_conversion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L505",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_3_boolean_booleanstring_auto_conversion",
+			"target": "references_validation_codeblock_42",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L509",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_typebox_validation_elysia_t",
+			"target": "references_validation_usage_pattern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L520",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_usage_pattern",
+			"target": "references_validation_codeblock_43",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L522",
+			"weight": 1.0
+		},
+		{
+			"source": "references_validation_typebox_validation_elysia_t",
+			"target": "references_validation_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md",
+			"source_location": "L539",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

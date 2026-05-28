@@ -1,0 +1,46 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_poster_ts",
+			"label": "landing-poster.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-poster.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "marketing_landing_poster_landingposter",
+			"label": "LandingPoster",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-poster.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "marketing_landing_poster_landingsceneimageurl",
+			"label": "landingSceneImageUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-poster.ts",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_poster_ts",
+			"target": "marketing_landing_poster_landingposter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-poster.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_poster_ts",
+			"target": "marketing_landing_poster_landingsceneimageurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-poster.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

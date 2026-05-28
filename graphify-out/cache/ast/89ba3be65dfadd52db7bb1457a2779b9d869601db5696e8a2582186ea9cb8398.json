@@ -1,0 +1,671 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_references_route_md",
+			"label": "route.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_route_elysiajs_routing_handlers_context",
+			"label": "ElysiaJS: Routing, Handlers & Context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_route_routing",
+			"label": "Routing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "references_route_path_types",
+			"label": "Path Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "references_route_codeblock_1",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "references_route_dynamic_paths",
+			"label": "Dynamic Paths",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L16"
+		},
+		{
+			"id": "references_route_codeblock_2",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "references_route_http_verbs",
+			"label": "HTTP Verbs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "references_route_grouping_routes",
+			"label": "Grouping Routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "references_route_codeblock_3",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "references_route_handlers",
+			"label": "Handlers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "references_route_handler_function_accepting_http_request_returning_response",
+			"label": "Handler = function accepting HTTP request, returning response",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "references_route_codeblock_4",
+			"label": "code:ts (// Inline value (compiled ahead, optimized))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "references_route_context_properties",
+			"label": "Context Properties",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L64"
+		},
+		{
+			"id": "references_route_context_utilities",
+			"label": "Context Utilities",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "references_route_codeblock_5",
+			"label": "code:ts (import { redirect, form } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "references_route_streaming",
+			"label": "Streaming",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "references_route_codeblock_6",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "references_route_context_extension",
+			"label": "Context Extension",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L124"
+		},
+		{
+			"id": "references_route_state_global_mutable",
+			"label": "state() - Global Mutable",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "references_route_codeblock_7",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "references_route_codeblock_8",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L150"
+		},
+		{
+			"id": "references_route_decorate_additional_context_props",
+			"label": "decorate() - Additional Context Props",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "references_route_codeblock_9",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "references_route_derive_create_from_existing_transform_lifecycle",
+			"label": "derive() - Create from Existing (Transform Lifecycle)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L172"
+		},
+		{
+			"id": "references_route_codeblock_10",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "references_route_resolve_type_safe_derive_beforehandle_lifecycle",
+			"label": "resolve() - Type-Safe Derive (beforeHandle Lifecycle)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L185"
+		},
+		{
+			"id": "references_route_codeblock_11",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "references_route_error_from_derive_resolve",
+			"label": "Error from derive/resolve",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L202"
+		},
+		{
+			"id": "references_route_codeblock_12",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L204"
+		},
+		{
+			"id": "references_route_patterns",
+			"label": "Patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L214"
+		},
+		{
+			"id": "references_route_affix_bulk_remap",
+			"label": "Affix (Bulk Remap)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L216"
+		},
+		{
+			"id": "references_route_codeblock_13",
+			"label": "code:ts (const plugin = new Elysia({ name: \"setup\" }).decorate({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L218"
+		},
+		{
+			"id": "references_route_assignment_patterns",
+			"label": "Assignment Patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L230"
+		},
+		{
+			"id": "references_route_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L236"
+		},
+		{
+			"id": "references_route_codeblock_14",
+			"label": "code:ts (const app = new Elysia().get(\"/\", \"hi\");)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L238"
+		},
+		{
+			"id": "references_route_to_throw_or_return",
+			"label": "To Throw or Return",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L245"
+		},
+		{
+			"id": "references_route_codeblock_15",
+			"label": "code:typescript (import { Elysia, file } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L258"
+		},
+		{
+			"id": "references_route_to_throw_or_return_275",
+			"label": "To Throw or Return",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L275"
+		},
+		{
+			"id": "references_route_codeblock_16",
+			"label": "code:ts (import { Elysia, status } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L281"
+		},
+		{
+			"id": "references_route_codeblock_17",
+			"label": "code:typescript (import { Elysia, file } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L304"
+		},
+		{
+			"id": "references_route_notes",
+			"label": "Notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L321"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_references_route_md",
+			"target": "references_route_elysiajs_routing_handlers_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_elysiajs_routing_handlers_context",
+			"target": "references_route_routing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_routing",
+			"target": "references_route_path_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_path_types",
+			"target": "references_route_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_routing",
+			"target": "references_route_dynamic_paths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_dynamic_paths",
+			"target": "references_route_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_routing",
+			"target": "references_route_http_verbs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_routing",
+			"target": "references_route_grouping_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_grouping_routes",
+			"target": "references_route_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_elysiajs_routing_handlers_context",
+			"target": "references_route_handlers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_handlers",
+			"target": "references_route_handler_function_accepting_http_request_returning_response",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_handler_function_accepting_http_request_returning_response",
+			"target": "references_route_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_handlers",
+			"target": "references_route_context_properties",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_handlers",
+			"target": "references_route_context_utilities",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_context_utilities",
+			"target": "references_route_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_handlers",
+			"target": "references_route_streaming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_streaming",
+			"target": "references_route_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_elysiajs_routing_handlers_context",
+			"target": "references_route_context_extension",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_context_extension",
+			"target": "references_route_state_global_mutable",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_state_global_mutable",
+			"target": "references_route_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_state_global_mutable",
+			"target": "references_route_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L150",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_context_extension",
+			"target": "references_route_decorate_additional_context_props",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_decorate_additional_context_props",
+			"target": "references_route_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_context_extension",
+			"target": "references_route_derive_create_from_existing_transform_lifecycle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L172",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_derive_create_from_existing_transform_lifecycle",
+			"target": "references_route_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_context_extension",
+			"target": "references_route_resolve_type_safe_derive_beforehandle_lifecycle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L185",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_resolve_type_safe_derive_beforehandle_lifecycle",
+			"target": "references_route_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_context_extension",
+			"target": "references_route_error_from_derive_resolve",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L202",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_error_from_derive_resolve",
+			"target": "references_route_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L204",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_elysiajs_routing_handlers_context",
+			"target": "references_route_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L214",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_patterns",
+			"target": "references_route_affix_bulk_remap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L216",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_affix_bulk_remap",
+			"target": "references_route_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L218",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_patterns",
+			"target": "references_route_assignment_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L230",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_elysiajs_routing_handlers_context",
+			"target": "references_route_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_testing",
+			"target": "references_route_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L238",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_elysiajs_routing_handlers_context",
+			"target": "references_route_to_throw_or_return",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L245",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_to_throw_or_return",
+			"target": "references_route_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L258",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_elysiajs_routing_handlers_context",
+			"target": "references_route_to_throw_or_return_275",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L275",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_to_throw_or_return_275",
+			"target": "references_route_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L281",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_to_throw_or_return_275",
+			"target": "references_route_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L304",
+			"weight": 1.0
+		},
+		{
+			"source": "references_route_elysiajs_routing_handlers_context",
+			"target": "references_route_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md",
+			"source_location": "L321",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

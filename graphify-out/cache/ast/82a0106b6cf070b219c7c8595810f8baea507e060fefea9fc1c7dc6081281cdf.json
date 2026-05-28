@@ -1,0 +1,367 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_27_tv_on_lists_design_md",
+			"label": "2026-05-27-tv-on-lists-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"label": "TV on lists \u2014 design spec",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_goals",
+			"label": "Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_non_goals",
+			"label": "Non-goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L20"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_picker_meta_line",
+			"label": "Picker \u201cmeta line\u201d",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_api_mirror_watchlist_logs",
+			"label": "API (mirror watchlist / logs)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_cover_aggregation",
+			"label": "Cover aggregation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_favorites_sync",
+			"label": "Favorites sync",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_ui",
+			"label": "UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_shared_add_to_list_module",
+			"label": "Shared add-to-list module",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_codeblock_1",
+			"label": "code:ts (type AddToListMedia = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_tv_detail",
+			"label": "TV detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_catalogue_radial",
+			"label": "Catalogue radial",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_picker_copy",
+			"label": "Picker copy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_types",
+			"label": "Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_entry_point_checklist_acceptance",
+			"label": "Entry-point checklist (acceptance)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L152"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L165"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L173"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_migration",
+			"label": "Migration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L194"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_risks_notes",
+			"label": "Risks / notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "specs_2026_05_27_tv_on_lists_design_implementation_plan",
+			"label": "Implementation plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L206"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_27_tv_on_lists_design_md",
+			"target": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_non_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_picker_meta_line",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_architecture",
+			"target": "specs_2026_05_27_tv_on_lists_design_api_mirror_watchlist_logs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_architecture",
+			"target": "specs_2026_05_27_tv_on_lists_design_cover_aggregation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_architecture",
+			"target": "specs_2026_05_27_tv_on_lists_design_favorites_sync",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_ui",
+			"target": "specs_2026_05_27_tv_on_lists_design_shared_add_to_list_module",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_shared_add_to_list_module",
+			"target": "specs_2026_05_27_tv_on_lists_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_ui",
+			"target": "specs_2026_05_27_tv_on_lists_design_tv_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_ui",
+			"target": "specs_2026_05_27_tv_on_lists_design_catalogue_radial",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_ui",
+			"target": "specs_2026_05_27_tv_on_lists_design_picker_copy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_ui",
+			"target": "specs_2026_05_27_tv_on_lists_design_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_entry_point_checklist_acceptance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L165",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L173",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_migration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_risks_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_on_lists_design_tv_on_lists_design_spec",
+			"target": "specs_2026_05_27_tv_on_lists_design_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md",
+			"source_location": "L206",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

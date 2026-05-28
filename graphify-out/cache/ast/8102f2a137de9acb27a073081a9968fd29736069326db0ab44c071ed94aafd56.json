@@ -1,0 +1,591 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_skills_components_gsap_explore_md",
+			"label": "gsap-explore.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_gsap_explore_gsap_explore_components",
+			"label": "GSAP Explore Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_gsap_explore_curated_official_demos_34",
+			"label": "Curated official demos (34)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "components_gsap_explore_01_animate_along_a_path",
+			"label": "01. Animate Along A Path",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "components_gsap_explore_02_animate_auto_height",
+			"label": "02. Animate Auto Height",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L22"
+		},
+		{
+			"id": "components_gsap_explore_03_animate_between_layout_positions",
+			"label": "03. Animate Between Layout Positions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "components_gsap_explore_04_animate_css_grid_positions",
+			"label": "04. Animate CSS Grid Positions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "components_gsap_explore_05_animate_scroll_position",
+			"label": "05. Animate Scroll Position",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "components_gsap_explore_06_animate_text",
+			"label": "06. Animate Text",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "components_gsap_explore_07_animate_text_replacement",
+			"label": "07. Animate Text Replacement",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "components_gsap_explore_08_card_stack",
+			"label": "08. Card Stack",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "components_gsap_explore_09_cursor_driven_perspective_tilt",
+			"label": "09. Cursor Driven Perspective Tilt",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "components_gsap_explore_10_cursor_follower",
+			"label": "10. Cursor Follower",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "components_gsap_explore_11_cursor_tracking_image_preview",
+			"label": "11. Cursor Tracking Image Preview",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "components_gsap_explore_12_cursor_trail",
+			"label": "12. Cursor Trail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "components_gsap_explore_13_curve_swipe",
+			"label": "13. Curve Swipe",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "components_gsap_explore_14_directionally_aware_header",
+			"label": "14. Directionally Aware Header",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "components_gsap_explore_15_directional_marquee",
+			"label": "15. Directional Marquee",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "components_gsap_explore_16_draw_a_path",
+			"label": "16. Draw A Path",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "components_gsap_explore_17_dynamic_morphing",
+			"label": "17. Dynamic Morphing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "components_gsap_explore_18_enter_and_exit",
+			"label": "18. Enter AND Exit",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L166"
+		},
+		{
+			"id": "components_gsap_explore_19_flip_carousel",
+			"label": "19. Flip Carousel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "components_gsap_explore_20_flip_gallery_modal",
+			"label": "20. Flip Gallery Modal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L184"
+		},
+		{
+			"id": "components_gsap_explore_21_horizontal_scrolling_gallery",
+			"label": "21. Horizontal Scrolling Gallery",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L193"
+		},
+		{
+			"id": "components_gsap_explore_22_image_mask_on_scroll",
+			"label": "22. Image Mask ON Scroll",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L202"
+		},
+		{
+			"id": "components_gsap_explore_23_image_sequence",
+			"label": "23. Image Sequence",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L211"
+		},
+		{
+			"id": "components_gsap_explore_24_infinite_card_slider",
+			"label": "24. Infinite Card Slider",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L220"
+		},
+		{
+			"id": "components_gsap_explore_25_macos_dock_effect",
+			"label": "25. Macos Dock Effect",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L229"
+		},
+		{
+			"id": "components_gsap_explore_26_motionpath_waypoints",
+			"label": "26. Motionpath Waypoints",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L238"
+		},
+		{
+			"id": "components_gsap_explore_27_pinned_panels_with_overscroll",
+			"label": "27. Pinned Panels With Overscroll",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L247"
+		},
+		{
+			"id": "components_gsap_explore_28_responsive_line_splits_on_scroll",
+			"label": "28. Responsive Line Splits ON Scroll",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L256"
+		},
+		{
+			"id": "components_gsap_explore_29_scrubbed_bento_gallery",
+			"label": "29. Scrubbed Bento Gallery",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L265"
+		},
+		{
+			"id": "components_gsap_explore_30_smooth_scrolling",
+			"label": "30. Smooth Scrolling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L274"
+		},
+		{
+			"id": "components_gsap_explore_31_text_masking",
+			"label": "31. Text Masking",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L283"
+		},
+		{
+			"id": "components_gsap_explore_32_text_scrambling",
+			"label": "32. Text Scrambling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L292"
+		},
+		{
+			"id": "components_gsap_explore_33_trigger_on_scroll",
+			"label": "33. Trigger ON Scroll",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L301"
+		},
+		{
+			"id": "components_gsap_explore_34_velocity_skew",
+			"label": "34. Velocity Skew",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L310"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_skills_components_gsap_explore_md",
+			"target": "components_gsap_explore_gsap_explore_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_curated_official_demos_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_01_animate_along_a_path",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_02_animate_auto_height",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_03_animate_between_layout_positions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_04_animate_css_grid_positions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_05_animate_scroll_position",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_06_animate_text",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_07_animate_text_replacement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_08_card_stack",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_09_cursor_driven_perspective_tilt",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_10_cursor_follower",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_11_cursor_tracking_image_preview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_12_cursor_trail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_13_curve_swipe",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_14_directionally_aware_header",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_15_directional_marquee",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_16_draw_a_path",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_17_dynamic_morphing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_18_enter_and_exit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_19_flip_carousel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_20_flip_gallery_modal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L184",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_21_horizontal_scrolling_gallery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L193",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_22_image_mask_on_scroll",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L202",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_23_image_sequence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L211",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_24_infinite_card_slider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L220",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_25_macos_dock_effect",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L229",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_26_motionpath_waypoints",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L238",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_27_pinned_panels_with_overscroll",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_28_responsive_line_splits_on_scroll",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_29_scrubbed_bento_gallery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L265",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_30_smooth_scrolling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L274",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_31_text_masking",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L283",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_32_text_scrambling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L292",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_33_trigger_on_scroll",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L301",
+			"weight": 1.0
+		},
+		{
+			"source": "components_gsap_explore_gsap_explore_components",
+			"target": "components_gsap_explore_34_velocity_skew",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md",
+			"source_location": "L310",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

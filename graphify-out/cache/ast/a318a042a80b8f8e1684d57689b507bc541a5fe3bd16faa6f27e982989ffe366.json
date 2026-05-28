@@ -1,0 +1,191 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_graphql_yoga_md",
+			"label": "graphql-yoga.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_graphql_yoga_graphql_yoga",
+			"label": "GraphQL Yoga",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_graphql_yoga_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "plugins_graphql_yoga_codeblock_1",
+			"label": "code:bash (bun add @elysiajs/graphql-yoga)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "plugins_graphql_yoga_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plugins_graphql_yoga_codeblock_2",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plugins_graphql_yoga_codeblock_3",
+			"label": "code:bash (bun add graphql graphql-yoga)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "plugins_graphql_yoga_resolver",
+			"label": "Resolver",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "plugins_graphql_yoga_context",
+			"label": "Context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "plugins_graphql_yoga_codeblock_4",
+			"label": "code:ts (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "plugins_graphql_yoga_config",
+			"label": "Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "plugins_graphql_yoga_path",
+			"label": "path",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L85"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_graphql_yoga_md",
+			"target": "plugins_graphql_yoga_graphql_yoga",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_graphql_yoga",
+			"target": "plugins_graphql_yoga_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_installation",
+			"target": "plugins_graphql_yoga_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_graphql_yoga",
+			"target": "plugins_graphql_yoga_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_basic_usage",
+			"target": "plugins_graphql_yoga_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_basic_usage",
+			"target": "plugins_graphql_yoga_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_graphql_yoga",
+			"target": "plugins_graphql_yoga_resolver",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_graphql_yoga",
+			"target": "plugins_graphql_yoga_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_context",
+			"target": "plugins_graphql_yoga_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_graphql_yoga",
+			"target": "plugins_graphql_yoga_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_graphql_yoga_config",
+			"target": "plugins_graphql_yoga_path",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md",
+			"source_location": "L85",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

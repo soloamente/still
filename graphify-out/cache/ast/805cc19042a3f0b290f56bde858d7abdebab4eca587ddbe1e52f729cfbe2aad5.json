@@ -1,0 +1,271 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_react_email_md",
+			"label": "react-email.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_react_email_react_email_integration",
+			"label": "React Email Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_react_email_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "integrations_react_email_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "integrations_react_email_codeblock_1",
+			"label": "code:bash (bun add -d react-email)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "integrations_react_email_codeblock_2",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L16"
+		},
+		{
+			"id": "integrations_react_email_typescript",
+			"label": "TypeScript",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "integrations_react_email_codeblock_3",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "integrations_react_email_email_template",
+			"label": "Email Template",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "integrations_react_email_codeblock_4",
+			"label": "code:tsx (// src/emails/otp.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "integrations_react_email_preview",
+			"label": "Preview",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "integrations_react_email_codeblock_5",
+			"label": "code:bash (bun email)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "integrations_react_email_send_email",
+			"label": "Send Email",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "integrations_react_email_nodemailer",
+			"label": "Nodemailer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L84"
+		},
+		{
+			"id": "integrations_react_email_codeblock_6",
+			"label": "code:typescript (import { renderToStaticMarkup } from 'react-dom/server')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "integrations_react_email_resend",
+			"label": "Resend",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L114"
+		},
+		{
+			"id": "integrations_react_email_codeblock_7",
+			"label": "code:typescript (import OTPEmail from './emails/otp')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L116"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_react_email_md",
+			"target": "integrations_react_email_react_email_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_react_email_integration",
+			"target": "integrations_react_email_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_react_email_integration",
+			"target": "integrations_react_email_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_installation",
+			"target": "integrations_react_email_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_installation",
+			"target": "integrations_react_email_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_installation",
+			"target": "integrations_react_email_typescript",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_typescript",
+			"target": "integrations_react_email_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_react_email_integration",
+			"target": "integrations_react_email_email_template",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_email_template",
+			"target": "integrations_react_email_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_react_email_integration",
+			"target": "integrations_react_email_preview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_preview",
+			"target": "integrations_react_email_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_react_email_integration",
+			"target": "integrations_react_email_send_email",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_send_email",
+			"target": "integrations_react_email_nodemailer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_nodemailer",
+			"target": "integrations_react_email_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_send_email",
+			"target": "integrations_react_email_resend",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_react_email_resend",
+			"target": "integrations_react_email_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md",
+			"source_location": "L116",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

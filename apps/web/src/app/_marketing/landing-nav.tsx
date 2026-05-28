@@ -6,11 +6,18 @@ import { useState } from "react";
 
 import { LANDING_GLASS_PILL, LANDING_GLASS_PILL_LINK } from "./landing-glass";
 import { LandingMarkPill } from "./landing-mark-pill";
+import {
+	LANDING_HERO_CTA_PRIMARY_CLASS,
+	LANDING_HERO_CTA_SECONDARY_CLASS,
+	LANDING_NAV_CTA_PRIMARY_CLASS,
+	LANDING_NAV_FLOAT_CLUSTER_CLASS,
+	LANDING_NAV_FLOAT_ROOT_CLASS,
+} from "./landing-mobbin-hero";
 
-/** La Nube nav labels — Work, Info, Contact. */
+/** In-page anchors — Mobbin-style sparse center nav. */
 const CHAPTERS = [
-	{ href: "#work", label: "Work" },
-	{ href: "#diary", label: "Info" },
+	{ href: "#intro", label: "Product" },
+	{ href: "#diary", label: "Features" },
 	{ href: "#start", label: "Contact" },
 ] as const;
 
@@ -19,18 +26,14 @@ export function LandingNav({ className }: { className?: string }) {
 
 	return (
 		<>
-			<div
-				className={cn(
-					"pointer-events-none fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-5 sm:pt-6",
-					className,
-				)}
-			>
-				<div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+			<header className={cn(LANDING_NAV_FLOAT_ROOT_CLASS, className)}>
+				<div className={LANDING_NAV_FLOAT_CLUSTER_CLASS}>
 					<LandingMarkPill />
+
 					<nav
 						className={cn(
 							LANDING_GLASS_PILL,
-							"hidden h-11 items-center gap-0.5 px-2 sm:flex",
+							"hidden h-11 min-w-0 items-center gap-0.5 px-2 md:flex",
 						)}
 						aria-label="Site sections"
 					>
@@ -47,20 +50,41 @@ export function LandingNav({ className }: { className?: string }) {
 							</Link>
 						))}
 					</nav>
+
+					<div
+						className={cn(
+							LANDING_GLASS_PILL,
+							"hidden h-11 items-center gap-0.5 p-1 pl-3 md:flex",
+						)}
+					>
+						<Link
+							href="/sign-in"
+							className={cn(
+								LANDING_GLASS_PILL_LINK,
+								"rounded-full px-3 py-2 text-foreground/80 [@media(hover:hover)]:text-foreground",
+							)}
+						>
+							Sign in
+						</Link>
+						<Link href="/sign-up" className={LANDING_NAV_CTA_PRIMARY_CLASS}>
+							Create account
+						</Link>
+					</div>
+
 					<button
 						type="button"
 						className={cn(
 							LANDING_GLASS_PILL,
-							"flex h-11 items-center px-4 font-sans text-foreground/90 text-sm sm:hidden",
+							"flex h-11 items-center px-4 font-sans text-foreground/90 text-sm md:hidden",
 						)}
 						aria-expanded={open}
 						aria-controls="landing-mobile-menu"
-						onClick={() => setOpen((v) => !v)}
+						onClick={() => setOpen((value) => !value)}
 					>
 						{open ? "Close" : "Menu"}
 					</button>
 				</div>
-			</div>
+			</header>
 
 			{open ? (
 				<div
@@ -68,25 +92,40 @@ export function LandingNav({ className }: { className?: string }) {
 					role="dialog"
 					aria-modal="true"
 					aria-label="Site menu"
-					className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 bg-background/96 px-6 backdrop-blur-md sm:hidden"
+					className="fixed inset-0 z-50 flex flex-col bg-background/96 px-6 pt-20 pb-10 backdrop-blur-md md:hidden"
 				>
-					{CHAPTERS.map((link) => (
+					<nav
+						className="flex flex-1 flex-col gap-6"
+						aria-label="Site sections"
+					>
+						{CHAPTERS.map((link) => (
+							<Link
+								key={link.href}
+								href={link.href}
+								className="font-sans font-semibold text-2xl text-foreground tracking-[-0.03em]"
+								onClick={() => setOpen(false)}
+							>
+								{link.label}
+							</Link>
+						))}
+					</nav>
+
+					<div className="flex flex-col gap-3 border-border/50 border-t pt-8">
 						<Link
-							key={link.href}
-							href={link.href}
-							className="font-medium font-sans text-2xl tracking-[-0.03em]"
+							href="/sign-in"
+							className={LANDING_HERO_CTA_SECONDARY_CLASS}
 							onClick={() => setOpen(false)}
 						>
-							{link.label}
+							Sign in
 						</Link>
-					))}
-					<Link
-						href="/sign-up"
-						className="font-medium font-sans text-foreground"
-						onClick={() => setOpen(false)}
-					>
-						Create account
-					</Link>
+						<Link
+							href="/sign-up"
+							className={LANDING_HERO_CTA_PRIMARY_CLASS}
+							onClick={() => setOpen(false)}
+						>
+							Create account
+						</Link>
+					</div>
 				</div>
 			) : null}
 		</>

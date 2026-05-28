@@ -1,0 +1,13 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_scripts_sync_vercel_handler_ts",
+			"label": "sync-vercel-handler.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\scripts\\sync-vercel-handler.ts",
+			"source_location": "L1"
+		}
+	],
+	"edges": [],
+	"raw_calls": []
+}

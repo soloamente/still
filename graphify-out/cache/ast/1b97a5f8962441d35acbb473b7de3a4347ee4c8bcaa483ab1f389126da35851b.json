@@ -1,0 +1,479 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_references_eden_md",
+			"label": "eden.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_eden_eden_treaty",
+			"label": "Eden Treaty",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_eden_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "references_eden_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "references_eden_codeblock_1",
+			"label": "code:bash (bun add @elysiajs/eden)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "references_eden_codeblock_2",
+			"label": "code:typescript (const app = new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "references_eden_codeblock_3",
+			"label": "code:typescript (import { treaty } from \"@elysiajs/eden\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "references_eden_common_errors_fixes",
+			"label": "Common Errors & Fixes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "references_eden_monorepo_path_alias",
+			"label": "Monorepo Path Alias",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "references_eden_codeblock_4",
+			"label": "code:json (// tsconfig.json at root)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "references_eden_syntax_mapping",
+			"label": "Syntax Mapping",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "references_eden_parameters",
+			"label": "Parameters",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "references_eden_with_body_post_put_patch_delete",
+			"label": "With body (POST/PUT/PATCH/DELETE):",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L91"
+		},
+		{
+			"id": "references_eden_codeblock_5",
+			"label": "code:typescript (.user.post()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "references_eden_no_body_get_head",
+			"label": "No body (GET/HEAD):",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "references_eden_codeblock_6",
+			"label": "code:typescript (.hello.get({ headers: {}, query: {}, fetch: {} }))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "references_eden_empty_body_with_query_headers",
+			"label": "Empty body with query/headers:",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "references_eden_codeblock_7",
+			"label": "code:typescript (.user.post(null, { query: { name: 'Ely' } }))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L108"
+		},
+		{
+			"id": "references_eden_fetch_options",
+			"label": "Fetch options:",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "references_eden_codeblock_8",
+			"label": "code:typescript (.hello.get({ fetch: { signal: controller.signal } }))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L114"
+		},
+		{
+			"id": "references_eden_file_upload",
+			"label": "File upload:",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "references_eden_codeblock_9",
+			"label": "code:typescript (// Accepts: File | File[] | FileList | Blob)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "references_eden_response",
+			"label": "Response",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L128"
+		},
+		{
+			"id": "references_eden_codeblock_10",
+			"label": "code:typescript (const { data, error, response, status, headers } = await api)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "references_eden_stream_sse",
+			"label": "Stream/SSE",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L147"
+		},
+		{
+			"id": "references_eden_codeblock_11",
+			"label": "code:typescript (const { data, error } = await treaty(app).ok.get();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "references_eden_utility_types",
+			"label": "Utility Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L158"
+		},
+		{
+			"id": "references_eden_codeblock_12",
+			"label": "code:typescript (import { Treaty } from \"@elysiajs/eden\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "references_eden_websocket",
+			"label": "WebSocket",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "references_eden_codeblock_13",
+			"label": "code:typescript (const chat = api.chat.subscribe();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L169"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_references_eden_md",
+			"target": "references_eden_eden_treaty",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_installation",
+			"target": "references_eden_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_installation",
+			"target": "references_eden_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_installation",
+			"target": "references_eden_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_common_errors_fixes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_common_errors_fixes",
+			"target": "references_eden_monorepo_path_alias",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_monorepo_path_alias",
+			"target": "references_eden_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_syntax_mapping",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_parameters",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_parameters",
+			"target": "references_eden_with_body_post_put_patch_delete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_with_body_post_put_patch_delete",
+			"target": "references_eden_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_parameters",
+			"target": "references_eden_no_body_get_head",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_no_body_get_head",
+			"target": "references_eden_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_parameters",
+			"target": "references_eden_empty_body_with_query_headers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_empty_body_with_query_headers",
+			"target": "references_eden_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_parameters",
+			"target": "references_eden_fetch_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_fetch_options",
+			"target": "references_eden_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_parameters",
+			"target": "references_eden_file_upload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_file_upload",
+			"target": "references_eden_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_response",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_response",
+			"target": "references_eden_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_stream_sse",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_stream_sse",
+			"target": "references_eden_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_utility_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_utility_types",
+			"target": "references_eden_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_eden_treaty",
+			"target": "references_eden_websocket",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "references_eden_websocket",
+			"target": "references_eden_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md",
+			"source_location": "L169",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

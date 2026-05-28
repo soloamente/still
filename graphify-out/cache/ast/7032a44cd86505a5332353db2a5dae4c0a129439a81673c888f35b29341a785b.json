@@ -1,0 +1,415 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_references_websocket_md",
+			"label": "websocket.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_websocket_websocket",
+			"label": "WebSocket",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_websocket_basic_websocket",
+			"label": "Basic WebSocket",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "references_websocket_codeblock_1",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "references_websocket_with_validation",
+			"label": "With Validation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "references_websocket_codeblock_2",
+			"label": "code:typescript (import { Elysia, t } from 'elysia')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "references_websocket_lifecycle_events",
+			"label": "Lifecycle Events",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "references_websocket_codeblock_3",
+			"label": "code:typescript (.ws('/chat', {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "references_websocket_broadcasting",
+			"label": "Broadcasting",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "references_websocket_codeblock_4",
+			"label": "code:typescript (const connections = new Set<any>().ws(\"/chat\", {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "references_websocket_with_authentication",
+			"label": "With Authentication",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "references_websocket_codeblock_5",
+			"label": "code:typescript (.ws('/chat', {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "references_websocket_room_based_chat",
+			"label": "Room-Based Chat",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L95"
+		},
+		{
+			"id": "references_websocket_codeblock_6",
+			"label": "code:typescript (const rooms = new Map<string, Set<any>>().ws(\"/chat/:room\", )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "references_websocket_with_state_context",
+			"label": "With State/Context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "references_websocket_codeblock_7",
+			"label": "code:typescript (.ws('/chat', {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "references_websocket_client_usage_browser",
+			"label": "Client Usage (Browser)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "references_websocket_codeblock_8",
+			"label": "code:typescript (const ws = new WebSocket(\"ws://localhost:3000/chat\");)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "references_websocket_eden_treaty_websocket",
+			"label": "Eden Treaty WebSocket",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L172"
+		},
+		{
+			"id": "references_websocket_codeblock_9",
+			"label": "code:typescript (// Server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "references_websocket_headers_in_websocket",
+			"label": "Headers in WebSocket",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "references_websocket_codeblock_10",
+			"label": "code:typescript (.ws('/chat', {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "references_websocket_query_parameters",
+			"label": "Query Parameters",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L215"
+		},
+		{
+			"id": "references_websocket_codeblock_11",
+			"label": "code:typescript (.ws('/chat', {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L217"
+		},
+		{
+			"id": "references_websocket_compression",
+			"label": "Compression",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L232"
+		},
+		{
+			"id": "references_websocket_codeblock_12",
+			"label": "code:typescript (new Elysia({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L234"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_references_websocket_md",
+			"target": "references_websocket_websocket",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_basic_websocket",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_basic_websocket",
+			"target": "references_websocket_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_with_validation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_with_validation",
+			"target": "references_websocket_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_lifecycle_events",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_lifecycle_events",
+			"target": "references_websocket_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_broadcasting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_broadcasting",
+			"target": "references_websocket_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_with_authentication",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_with_authentication",
+			"target": "references_websocket_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_room_based_chat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_room_based_chat",
+			"target": "references_websocket_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_with_state_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_with_state_context",
+			"target": "references_websocket_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_client_usage_browser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_client_usage_browser",
+			"target": "references_websocket_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_eden_treaty_websocket",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L172",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_eden_treaty_websocket",
+			"target": "references_websocket_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_headers_in_websocket",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_headers_in_websocket",
+			"target": "references_websocket_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_query_parameters",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_query_parameters",
+			"target": "references_websocket_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_websocket",
+			"target": "references_websocket_compression",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L232",
+			"weight": 1.0
+		},
+		{
+			"source": "references_websocket_compression",
+			"target": "references_websocket_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md",
+			"source_location": "L234",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

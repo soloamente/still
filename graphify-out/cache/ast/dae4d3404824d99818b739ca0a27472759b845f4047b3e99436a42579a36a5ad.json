@@ -1,0 +1,129 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_auth_auth_session_redirect_tsx",
+			"label": "auth-session-redirect.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "auth_auth_session_redirect_authsessionredirectinner",
+			"label": "AuthSessionRedirectInner()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "auth_auth_session_redirect_authsessionredirect",
+			"label": "AuthSessionRedirect()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L31"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_session_redirect_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_session_redirect_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_session_redirect_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_auth_client_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_session_redirect_tsx",
+			"target": "lib_auth_client_authclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_session_redirect_tsx",
+			"target": "auth_auth_session_redirect_authsessionredirectinner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_session_redirect_tsx",
+			"target": "auth_auth_session_redirect_authsessionredirect",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "auth_auth_session_redirect_authsessionredirectinner",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "auth_auth_session_redirect_authsessionredirectinner",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "auth_auth_session_redirect_authsessionredirectinner",
+			"callee": "useSession",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "auth_auth_session_redirect_authsessionredirectinner",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "auth_auth_session_redirect_authsessionredirectinner",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "auth_auth_session_redirect_authsessionredirectinner",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx",
+			"source_location": "L20"
+		}
+	]
+}

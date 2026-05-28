@@ -1,0 +1,415 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_27_instant_lobby_navigation_design_md",
+			"label": "2026-05-27-instant-lobby-navigation-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"label": "Instant Lobby Navigation \u2014 Perceived Performance",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_user_stories",
+			"label": "User stories",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_primitives_apps_web_src_lib_apps_web_src_components_lobby",
+			"label": "Primitives (`apps/web/src/lib/` + `apps/web/src/components/lobby/`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_page_shape",
+			"label": "Page shape",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_codeblock_1",
+			"label": "code:block1 (RSC page (thin))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L64"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_rules",
+			"label": "Rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_route_tiers_rollout",
+			"label": "Route tiers & rollout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L84"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_phase_1_patron_owned_lobbies_tier_1",
+			"label": "Phase 1 \u2014 Patron-owned lobbies (Tier 1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_phase_2_community_order_chips_tier_2",
+			"label": "Phase 2 \u2014 Community & order chips (Tier 2)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_phase_3_tmdb_catalogue_tier_3",
+			"label": "Phase 3 \u2014 TMDb catalogue (Tier 3)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_phase_4_detail_routes_tier_4_streaming_only",
+			"label": "Phase 4 \u2014 Detail routes (Tier 4, streaming only)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_component_migration_notes",
+			"label": "Component migration notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_diary_apps_web_src_app_app_diary_page_tsx",
+			"label": "Diary (`apps/web/src/app/(app)/diary/page.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_profile_apps_web_src_app_app_profile_handle_page_tsx",
+			"label": "Profile (`apps/web/src/app/(app)/profile/[handle]/page.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_home_venue_sort_chips_home_catalog_view_mode_toolbar_tsx_home_catalog_sort_chips_tsx",
+			"label": "Home venue/sort chips (`home-catalog-view-mode-toolbar.tsx`, `home-catalog-sort-chips.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_url_history_and_hydration",
+			"label": "URL, history, and hydration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L138"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_ux",
+			"label": "UX",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_risks_mitigations",
+			"label": "Risks & mitigations",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L153"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L163"
+		},
+		{
+			"id": "specs_2026_05_27_instant_lobby_navigation_design_references",
+			"label": "References",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L173"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_27_instant_lobby_navigation_design_md",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_user_stories",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_architecture",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_primitives_apps_web_src_lib_apps_web_src_components_lobby",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_architecture",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_page_shape",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_page_shape",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_architecture",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_route_tiers_rollout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_route_tiers_rollout",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_phase_1_patron_owned_lobbies_tier_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_route_tiers_rollout",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_phase_2_community_order_chips_tier_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_route_tiers_rollout",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_phase_3_tmdb_catalogue_tier_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_route_tiers_rollout",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_phase_4_detail_routes_tier_4_streaming_only",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_component_migration_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_component_migration_notes",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_diary_apps_web_src_app_app_diary_page_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_component_migration_notes",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_profile_apps_web_src_app_app_profile_handle_page_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_component_migration_notes",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_home_venue_sort_chips_home_catalog_view_mode_toolbar_tsx_home_catalog_sort_chips_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_url_history_and_hydration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_ux",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_risks_mitigations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_instant_lobby_navigation_design_instant_lobby_navigation_perceived_performance",
+			"target": "specs_2026_05_27_instant_lobby_navigation_design_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md",
+			"source_location": "L173",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

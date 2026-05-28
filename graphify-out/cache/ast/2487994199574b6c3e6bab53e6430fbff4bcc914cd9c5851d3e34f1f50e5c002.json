@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_vercel_md",
+			"label": "vercel.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_vercel_vercel_integration",
+			"label": "Vercel Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_vercel_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "integrations_vercel_setup",
+			"label": "Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "integrations_vercel_codeblock_1",
+			"label": "code:typescript (import { Elysia, t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "integrations_vercel_codeblock_2",
+			"label": "code:bash (vc dev)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "integrations_vercel_codeblock_3",
+			"label": "code:bash (vc deploy)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "integrations_vercel_node_js_runtime",
+			"label": "Node.js Runtime",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "integrations_vercel_codeblock_4",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "integrations_vercel_bun_runtime",
+			"label": "Bun Runtime",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "integrations_vercel_codeblock_5",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "integrations_vercel_pnpm",
+			"label": "pnpm",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "integrations_vercel_codeblock_6",
+			"label": "code:bash (pnpm add @sinclair/typebox openapi-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "integrations_vercel_troubleshooting",
+			"label": "Troubleshooting",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L66"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_vercel_md",
+			"target": "integrations_vercel_vercel_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_vercel_integration",
+			"target": "integrations_vercel_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_vercel_integration",
+			"target": "integrations_vercel_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_setup",
+			"target": "integrations_vercel_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_setup",
+			"target": "integrations_vercel_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_setup",
+			"target": "integrations_vercel_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_vercel_integration",
+			"target": "integrations_vercel_node_js_runtime",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_node_js_runtime",
+			"target": "integrations_vercel_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_vercel_integration",
+			"target": "integrations_vercel_bun_runtime",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_bun_runtime",
+			"target": "integrations_vercel_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_vercel_integration",
+			"target": "integrations_vercel_pnpm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_pnpm",
+			"target": "integrations_vercel_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_vercel_vercel_integration",
+			"target": "integrations_vercel_troubleshooting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md",
+			"source_location": "L66",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

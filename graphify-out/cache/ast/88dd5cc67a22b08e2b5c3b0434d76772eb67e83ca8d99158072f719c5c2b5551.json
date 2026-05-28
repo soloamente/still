@@ -1,0 +1,383 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_28_ranked_list_drag_reorder_design_md",
+			"label": "2026-05-28-ranked-list-drag-reorder-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"label": "Ranked List Drag Reorder Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_background_and_motivation",
+			"label": "Background and Motivation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_confirmed_product_decisions",
+			"label": "Confirmed Product Decisions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_goals",
+			"label": "Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_non_goals",
+			"label": "Non-Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_user_experience",
+			"label": "User Experience",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_entry_conditions",
+			"label": "Entry Conditions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_interaction_model",
+			"label": "Interaction Model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_failure_handling",
+			"label": "Failure Handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_technical_design",
+			"label": "Technical Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_api_changes_server",
+			"label": "API Changes (Server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_web_changes",
+			"label": "Web Changes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_fetch_helper",
+			"label": "Fetch Helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_component_structure",
+			"label": "Component Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_reorder_state",
+			"label": "Reorder State",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_data_integrity_and_concurrency",
+			"label": "Data Integrity and Concurrency",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_accessibility_and_input",
+			"label": "Accessibility and Input",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_testing_strategy",
+			"label": "Testing Strategy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_server_tests",
+			"label": "Server Tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_web_tests",
+			"label": "Web Tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_rollout_plan",
+			"label": "Rollout Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L168"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_success_criteria",
+			"label": "Success Criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "specs_2026_05_28_ranked_list_drag_reorder_design_risks_and_mitigations",
+			"label": "Risks and Mitigations",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L183"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_28_ranked_list_drag_reorder_design_md",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_background_and_motivation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_confirmed_product_decisions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_non_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_user_experience",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_user_experience",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_entry_conditions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_user_experience",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_interaction_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_user_experience",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_failure_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_technical_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_api_changes_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_web_changes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_web_changes",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_fetch_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_web_changes",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_component_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_web_changes",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_reorder_state",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_data_integrity_and_concurrency",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_accessibility_and_input",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_testing_strategy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_server_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_web_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_rollout_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_28_ranked_list_drag_reorder_design_ranked_list_drag_reorder_design",
+			"target": "specs_2026_05_28_ranked_list_drag_reorder_design_risks_and_mitigations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md",
+			"source_location": "L183",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

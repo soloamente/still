@@ -1,0 +1,150 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"label": "tv-detail-watch-context.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "tv_tv_detail_watch_context_tvdetailwatchcontextvalue",
+			"label": "TvDetailWatchContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L8"
+		},
+		{
+			"id": "tv_tv_detail_watch_context_tvdetailwatchcontext",
+			"label": "TvDetailWatchContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L15"
+		},
+		{
+			"id": "tv_tv_detail_watch_context_tvdetailwatchprovider",
+			"label": "TvDetailWatchProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L20"
+		},
+		{
+			"id": "tv_tv_detail_watch_context_usetvdetailwatchcontext",
+			"label": "useTvDetailWatchContext()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L46"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_detail_user_state_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "tv_use_tv_detail_user_state_usetvdetailuserstate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_tv_use_tv_watch_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "tv_use_tv_watch_usetvwatch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "tv_tv_detail_watch_context_tvdetailwatchcontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "tv_tv_detail_watch_context_tvdetailwatchcontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "tv_tv_detail_watch_context_tvdetailwatchprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_watch_context_tsx",
+			"target": "tv_tv_detail_watch_context_usetvdetailwatchcontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L46",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "tv_tv_detail_watch_context_tvdetailwatchprovider",
+			"callee": "useTvWatch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "tv_tv_detail_watch_context_tvdetailwatchprovider",
+			"callee": "useTvDetailUserState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "tv_tv_detail_watch_context_usetvdetailwatchcontext",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx",
+			"source_location": "L47"
+		}
+	]
+}

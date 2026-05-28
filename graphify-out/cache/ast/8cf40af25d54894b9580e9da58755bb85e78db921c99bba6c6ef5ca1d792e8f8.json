@@ -1,0 +1,271 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_scripts_md",
+			"label": "scripts.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_scripts_scripts",
+			"label": "Scripts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_scripts_use_next_script",
+			"label": "Use next/script",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_scripts_codeblock_1",
+			"label": "code:tsx (// Bad: Native script tag)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "next_best_practices_scripts_inline_scripts_need_id",
+			"label": "Inline Scripts Need ID",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "next_best_practices_scripts_codeblock_2",
+			"label": "code:tsx (// Bad: Missing id)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "next_best_practices_scripts_don_t_put_script_in_head",
+			"label": "Don't Put Script in Head",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "next_best_practices_scripts_codeblock_3",
+			"label": "code:tsx (// Bad: Script inside Head)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "next_best_practices_scripts_loading_strategies",
+			"label": "Loading Strategies",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "next_best_practices_scripts_codeblock_4",
+			"label": "code:tsx (// afterInteractive (default) - Load after page is interacti)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "next_best_practices_scripts_google_analytics",
+			"label": "Google Analytics",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "next_best_practices_scripts_codeblock_5",
+			"label": "code:tsx (// Bad: Inline GA script)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "next_best_practices_scripts_google_tag_manager",
+			"label": "Google Tag Manager",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "next_best_practices_scripts_codeblock_6",
+			"label": "code:tsx (import { GoogleTagManager } from \"@next/third-parties/google)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "next_best_practices_scripts_other_third_party_scripts",
+			"label": "Other Third-Party Scripts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "next_best_practices_scripts_codeblock_7",
+			"label": "code:tsx (// YouTube embed)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "next_best_practices_scripts_quick_reference",
+			"label": "Quick Reference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L129"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_scripts_md",
+			"target": "next_best_practices_scripts_scripts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_scripts",
+			"target": "next_best_practices_scripts_use_next_script",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_use_next_script",
+			"target": "next_best_practices_scripts_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_scripts",
+			"target": "next_best_practices_scripts_inline_scripts_need_id",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_inline_scripts_need_id",
+			"target": "next_best_practices_scripts_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_scripts",
+			"target": "next_best_practices_scripts_don_t_put_script_in_head",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_don_t_put_script_in_head",
+			"target": "next_best_practices_scripts_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_scripts",
+			"target": "next_best_practices_scripts_loading_strategies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_loading_strategies",
+			"target": "next_best_practices_scripts_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_scripts",
+			"target": "next_best_practices_scripts_google_analytics",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_google_analytics",
+			"target": "next_best_practices_scripts_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_scripts",
+			"target": "next_best_practices_scripts_google_tag_manager",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_google_tag_manager",
+			"target": "next_best_practices_scripts_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_scripts",
+			"target": "next_best_practices_scripts_other_third_party_scripts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_other_third_party_scripts",
+			"target": "next_best_practices_scripts_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_scripts_scripts",
+			"target": "next_best_practices_scripts_quick_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md",
+			"source_location": "L129",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -6,6 +6,12 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@still/ui/components/dropdown-menu";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@still/ui/components/tooltip";
 import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import IconListPlay from "@still/ui/icons/list-play";
 import IconPlaylistOutline from "@still/ui/icons/playlist-outline";
@@ -40,6 +46,8 @@ import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 
 /** Header shortcut + menu icons — `size-5` (20px); Button `size="icon"` otherwise forces `size-4`. */
 const HOME_STICKY_HEADER_ICON_CLASS = "size-5 shrink-0";
+/** Compact shortcut tooltips: smaller label and tighter trigger gap for icon-only buttons. */
+const HOME_STICKY_SHORTCUT_TOOLTIP_CLASS = "px-2 py-2 text-xs leading-none";
 
 /** Browse rail — `?browse=` drives the lobby catalogue on the RSC page; we keep URL + UI in sync. */
 
@@ -251,124 +259,168 @@ export function HomeStickyChrome({
 
 				{/* Right — shortcuts (watchlist, lists, diary share the browse-rail `layoutId` pill). */}
 				<div className="flex min-w-0 shrink-0 justify-center sm:justify-end">
-					<div className="flex shrink-0 gap-1">
-						<Link
-							href="/watchlist"
-							className={stickyLobbyShortcutLinkClass}
-							aria-label="Your watchlist"
-							aria-current={isWatchlistRoute ? "page" : undefined}
-							title="Titles you have marked to watch"
-						>
-							{isWatchlistRoute ? (
-								<motion.span
-									layoutId="home-sticky-browse-pill"
-									className="absolute inset-0 z-0 rounded-full bg-card"
-									transition={browsePillTransition}
-								/>
-							) : null}
-							<span className="relative z-10">
-								<IconClockRotateClockwise
-									className={HOME_STICKY_HEADER_ICON_CLASS}
-								/>
-							</span>
-						</Link>
-						<Link
-							href="/lists"
-							className={stickyLobbyShortcutLinkClass}
-							aria-label="Your lists"
-							aria-current={isListsRoute ? "page" : undefined}
-							title="Lists you have created"
-						>
-							{isListsRoute ? (
-								<motion.span
-									layoutId="home-sticky-browse-pill"
-									className="absolute inset-0 z-0 rounded-full bg-card"
-									transition={browsePillTransition}
-								/>
-							) : null}
-							<span className="relative z-10">
-								{isListsRoute ? (
-									<IconListPlay className={HOME_STICKY_HEADER_ICON_CLASS} />
-								) : (
-									<IconPlaylistOutline
-										className={HOME_STICKY_HEADER_ICON_CLASS}
-									/>
-								)}
-							</span>
-						</Link>
-						<Link
-							href="/diary"
-							className={stickyLobbyShortcutLinkClass}
-							aria-label="Your diary"
-							aria-current={isDiaryRoute ? "page" : undefined}
-							title="Your logged screenings"
-						>
-							{isDiaryRoute ? (
-								<motion.span
-									layoutId="home-sticky-browse-pill"
-									className="absolute inset-0 z-0 rounded-full bg-card"
-									transition={browsePillTransition}
-								/>
-							) : null}
-							<span className="relative z-10">
-								{isDiaryRoute ? (
-									<IconTicketFilled className={HOME_STICKY_HEADER_ICON_CLASS} />
-								) : (
-									<IconTicket className={HOME_STICKY_HEADER_ICON_CLASS} />
-								)}
-							</span>
-						</Link>
-						<HomeNotificationsMenu authenticated={Boolean(user)} />
-						{user ? (
-							<DropdownMenu
-								open={accountMenuOpen}
-								onOpenChange={setAccountMenuOpen}
-							>
-								<DropdownMenuTrigger
+					<TooltipProvider delay={220} closeDelay={80}>
+						<div className="flex shrink-0 gap-1">
+							<Tooltip>
+								<TooltipTrigger
 									render={
-										<Button
-											type="button"
-											variant="ghost"
-											size="icon"
-											aria-label="Account menu"
-											aria-expanded={accountMenuOpen}
-											className={cn(
-												"size-11 shrink-0 rounded-full [@media(hover:hover)]:hover:bg-muted/35",
-												accountMenuOpen && "bg-card",
-											)}
+										<Link
+											href="/watchlist"
+											className={stickyLobbyShortcutLinkClass}
+											aria-label="Your watchlist"
+											aria-current={isWatchlistRoute ? "page" : undefined}
+											title="Titles you have marked to watch"
 										>
-											<NavUserAvatar
-												src={user.image}
-												name={user.name}
-												handle={user.handle}
-												size="compact"
-											/>
-										</Button>
+											{isWatchlistRoute ? (
+												<motion.span
+													layoutId="home-sticky-browse-pill"
+													className="absolute inset-0 z-0 rounded-full bg-card"
+													transition={browsePillTransition}
+												/>
+											) : null}
+											<span className="relative z-10">
+												<IconClockRotateClockwise
+													className={HOME_STICKY_HEADER_ICON_CLASS}
+												/>
+											</span>
+										</Link>
 									}
 								/>
-								<DropdownMenuContent
-									align="end"
-									className={accountMenuContentClassName}
+								<TooltipContent
+									sideOffset={2}
+									className={HOME_STICKY_SHORTCUT_TOOLTIP_CLASS}
 								>
-									<AppUserAccountMenuBody
-										user={{
-											id: user.id,
-											name: user.name,
-											image: user.image,
-											handle: user.handle,
-											email: user.email,
-											isPro: user.isPro,
-										}}
+									Watchlist
+								</TooltipContent>
+							</Tooltip>
+							<Tooltip>
+								<TooltipTrigger
+									render={
+										<Link
+											href="/lists"
+											className={stickyLobbyShortcutLinkClass}
+											aria-label="Your lists"
+											aria-current={isListsRoute ? "page" : undefined}
+											title="Lists you have created"
+										>
+											{isListsRoute ? (
+												<motion.span
+													layoutId="home-sticky-browse-pill"
+													className="absolute inset-0 z-0 rounded-full bg-card"
+													transition={browsePillTransition}
+												/>
+											) : null}
+											<span className="relative z-10">
+												{isListsRoute ? (
+													<IconListPlay
+														className={HOME_STICKY_HEADER_ICON_CLASS}
+													/>
+												) : (
+													<IconPlaylistOutline
+														className={HOME_STICKY_HEADER_ICON_CLASS}
+													/>
+												)}
+											</span>
+										</Link>
+									}
+								/>
+								<TooltipContent
+									sideOffset={2}
+									className={HOME_STICKY_SHORTCUT_TOOLTIP_CLASS}
+								>
+									Lists
+								</TooltipContent>
+							</Tooltip>
+							<Tooltip>
+								<TooltipTrigger
+									render={
+										<Link
+											href="/diary"
+											className={stickyLobbyShortcutLinkClass}
+											aria-label="Your diary"
+											aria-current={isDiaryRoute ? "page" : undefined}
+											title="Your logged screenings"
+										>
+											{isDiaryRoute ? (
+												<motion.span
+													layoutId="home-sticky-browse-pill"
+													className="absolute inset-0 z-0 rounded-full bg-card"
+													transition={browsePillTransition}
+												/>
+											) : null}
+											<span className="relative z-10">
+												{isDiaryRoute ? (
+													<IconTicketFilled
+														className={HOME_STICKY_HEADER_ICON_CLASS}
+													/>
+												) : (
+													<IconTicket
+														className={HOME_STICKY_HEADER_ICON_CLASS}
+													/>
+												)}
+											</span>
+										</Link>
+									}
+								/>
+								<TooltipContent
+									sideOffset={2}
+									className={HOME_STICKY_SHORTCUT_TOOLTIP_CLASS}
+								>
+									Diary
+								</TooltipContent>
+							</Tooltip>
+							<HomeNotificationsMenu authenticated={Boolean(user)} />
+							{user ? (
+								<DropdownMenu
+									open={accountMenuOpen}
+									onOpenChange={setAccountMenuOpen}
+								>
+									<DropdownMenuTrigger
+										render={
+											<Button
+												type="button"
+												variant="ghost"
+												size="icon"
+												aria-label="Account menu"
+												aria-expanded={accountMenuOpen}
+												className={cn(
+													"size-11 shrink-0 rounded-full [@media(hover:hover)]:hover:bg-muted/35",
+													accountMenuOpen && "bg-card",
+												)}
+											>
+												<NavUserAvatar
+													src={user.image}
+													name={user.name}
+													handle={user.handle}
+													size="compact"
+												/>
+											</Button>
+										}
 									/>
-								</DropdownMenuContent>
-							</DropdownMenu>
-						) : (
-							<div
-								className="size-11 shrink-0 rounded-full bg-muted/40"
-								aria-hidden
-							/>
-						)}
-					</div>
+									<DropdownMenuContent
+										align="end"
+										className={accountMenuContentClassName}
+									>
+										<AppUserAccountMenuBody
+											user={{
+												id: user.id,
+												name: user.name,
+												image: user.image,
+												handle: user.handle,
+												email: user.email,
+												isPro: user.isPro,
+											}}
+										/>
+									</DropdownMenuContent>
+								</DropdownMenu>
+							) : (
+								<div
+									className="size-11 shrink-0 rounded-full bg-muted/40"
+									aria-hidden
+								/>
+							)}
+						</div>
+					</TooltipProvider>
 				</div>
 			</header>
 		</LayoutGroup>

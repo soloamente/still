@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_html_md",
+			"label": "html.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_html_html",
+			"label": "HTML",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_html_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "plugins_html_codeblock_1",
+			"label": "code:bash (bun add @elysiajs/html)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "plugins_html_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plugins_html_codeblock_2",
+			"label": "code:tsx (import React from \"react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plugins_html_jsx",
+			"label": "JSX",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "plugins_html_codeblock_3",
+			"label": "code:jsonc (// tsconfig.json)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "plugins_html_codeblock_4",
+			"label": "code:tsx (import React from \"react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "plugins_html_codeblock_5",
+			"label": "code:tsx (import { Html } from \"@elysiajs/html\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "plugins_html_xss",
+			"label": "XSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "plugins_html_codeblock_6",
+			"label": "code:tsx (import { Elysia, t } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "plugins_html_codeblock_7",
+			"label": "code:sh (bun add @kitajs/ts-html-plugin)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "plugins_html_codeblock_8",
+			"label": "code:jsonc (// tsconfig.json)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "plugins_html_config",
+			"label": "Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L152"
+		},
+		{
+			"id": "plugins_html_contenttype",
+			"label": "contentType",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L156"
+		},
+		{
+			"id": "plugins_html_autodetect",
+			"label": "autoDetect",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L163"
+		},
+		{
+			"id": "plugins_html_autodoctype",
+			"label": "autoDoctype",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L170"
+		},
+		{
+			"id": "plugins_html_codeblock_9",
+			"label": "code:ts (// without the plugin)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L179"
+		},
+		{
+			"id": "plugins_html_ishtml",
+			"label": "isHtml",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L187"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_html_md",
+			"target": "plugins_html_html",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_html",
+			"target": "plugins_html_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_installation",
+			"target": "plugins_html_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_html",
+			"target": "plugins_html_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_basic_usage",
+			"target": "plugins_html_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_html",
+			"target": "plugins_html_jsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_jsx",
+			"target": "plugins_html_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_jsx",
+			"target": "plugins_html_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_jsx",
+			"target": "plugins_html_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_html",
+			"target": "plugins_html_xss",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_xss",
+			"target": "plugins_html_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_xss",
+			"target": "plugins_html_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_xss",
+			"target": "plugins_html_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_html",
+			"target": "plugins_html_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_config",
+			"target": "plugins_html_contenttype",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_config",
+			"target": "plugins_html_autodetect",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_config",
+			"target": "plugins_html_autodoctype",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_autodoctype",
+			"target": "plugins_html_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L179",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_html_config",
+			"target": "plugins_html_ishtml",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md",
+			"source_location": "L187",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,13 +1,18 @@
 import { cn } from "@still/ui/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ListDetailCoverPicker } from "@/components/list/list-detail-cover-picker";
 import {
 	type ListDetailFilmRow,
 	ListDetailFilmsGrid,
 } from "@/components/list/list-detail-films-grid";
 import { ListDetailHeroMedia } from "@/components/list/list-detail-hero-media";
+import { ListDetailOwnerControls } from "@/components/list/list-detail-owner-controls";
+import {
+	canReorderRankedList,
+	toRankedReorderRows,
+} from "@/components/list/list-detail-page-branching";
 import { ListDetailTopBar } from "@/components/list/list-detail-top-bar";
+import { RankedListReorderGrid } from "@/components/list/ranked-list-reorder-grid";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailSectionNav } from "@/components/movie/movie-detail-section-nav";
 import { authServer } from "@/lib/auth-server";
@@ -36,9 +41,11 @@ type ListDetail = {
 	itemsCount: number;
 	coverMovieIds: number[];
 	coverMovieId: number | null;
+	coverTvId?: number | null;
 	coverImageUrl: string | null;
 	isPublic: boolean;
 	isRanked: boolean;
+	isCollaborative?: boolean;
 	updatedAt: string;
 	items: {
 		item: {
@@ -72,6 +79,7 @@ function listHeroPosterUrls(
 	listId: string,
 	rows: ListDetailFilmRow[],
 	coverMovieId: number | null,
+	coverTvId: number | null,
 	coverImageUrl: string | null,
 	updatedAt: string,
 ): {
@@ -103,7 +111,12 @@ function listHeroPosterUrls(
 					...rows.filter((r) => r.movie?.tmdbId === coverMovieId),
 					...rows.filter((r) => r.movie?.tmdbId !== coverMovieId),
 				]
-			: rows;
+			: coverTvId != null
+				? [
+						...rows.filter((r) => r.tv?.tmdbId === coverTvId),
+						...rows.filter((r) => r.tv?.tmdbId !== coverTvId),
+					]
+				: rows;
 
 	const urls: string[] = [];
 	for (const row of ordered) {
@@ -141,16 +154,25 @@ export default async function ListDetailPage({
 
 	const coverMovieId =
 		typeof data.coverMovieId === "number" ? data.coverMovieId : null;
+	const coverTvId = typeof data.coverTvId === "number" ? data.coverTvId : null;
 	const coverImageUrl =
 		typeof data.coverImageUrl === "string" ? data.coverImageUrl : null;
 	const { posterUrl, backdropUrl } = listHeroPosterUrls(
 		data.id,
 		filmRows,
 		coverMovieId,
+		coverTvId,
 		coverImageUrl,
 		data.updatedAt,
 	);
 	const isOwner = session?.user?.id === data.userId;
+	const canReorder = canReorderRankedList({
+		isRanked: data.isRanked,
+		viewerId: session?.user?.id,
+		ownerId: data.userId,
+		isCollaborative: Boolean(data.isCollaborative),
+	});
+	const rankedRows = canReorder ? toRankedReorderRows(filmRows) : null;
 	const hasFilms = filmRows.length > 0;
 	const sectionNavItems = buildListDetailSectionNavItems({ hasFilms });
 	const showSectionNav = sectionNavItems.length >= 2;
@@ -212,13 +234,17 @@ export default async function ListDetailPage({
 							posterUrl={posterUrl}
 							backdropUrl={backdropUrl}
 						/>
-						{isOwner && !isSystemFavorites ? (
-							<ListDetailCoverPicker
+						{isOwner ? (
+							<ListDetailOwnerControls
 								listId={data.id}
 								films={filmRows}
 								coverMovieId={coverMovieId}
+								coverTvId={coverTvId}
 								coverImageUrl={coverImageUrl}
 								updatedAt={data.updatedAt}
+								initialTitle={data.title}
+								initialDescription={data.description}
+								allowEditDetails={!isSystemFavorites}
 							/>
 						) : null}
 						<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
@@ -238,7 +264,18 @@ export default async function ListDetailPage({
 							subtitle={filmsSectionSubtitle}
 							className="pt-2 pb-2"
 						>
-							<ListDetailFilmsGrid items={filmRows} isRanked={data.isRanked} />
+							{canReorder && rankedRows ? (
+								<RankedListReorderGrid
+									listId={data.id}
+									items={rankedRows}
+									allItemIds={data.items.map((entry) => entry.item.id)}
+								/>
+							) : (
+								<ListDetailFilmsGrid
+									items={filmRows}
+									isRanked={data.isRanked}
+								/>
+							)}
 						</MovieDetailBodySection>
 					</div>
 				</article>

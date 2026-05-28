@@ -1,0 +1,415 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_bundling_md",
+			"label": "bundling.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_bundling_bundling",
+			"label": "Bundling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_bundling_server_incompatible_packages",
+			"label": "Server-Incompatible Packages",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_bundling_error_signs",
+			"label": "Error Signs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_1",
+			"label": "code:block1 (ReferenceError: window is not defined)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "next_best_practices_bundling_solution_1_mark_as_client_only",
+			"label": "Solution 1: Mark as Client-Only",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_2",
+			"label": "code:tsx (// Bad: Fails - package uses window)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L22"
+		},
+		{
+			"id": "next_best_practices_bundling_solution_2_externalize_from_server_bundle",
+			"label": "Solution 2: Externalize from Server Bundle",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_3",
+			"label": "code:js (// next.config.js)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "next_best_practices_bundling_solution_3_client_component_wrapper",
+			"label": "Solution 3: Client Component Wrapper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_4",
+			"label": "code:tsx (// components/ChartWrapper.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "next_best_practices_bundling_css_imports",
+			"label": "CSS Imports",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_5",
+			"label": "code:tsx (// Bad: Manual link tag)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "next_best_practices_bundling_polyfills",
+			"label": "Polyfills",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L96"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_6",
+			"label": "code:tsx (// Bad: Redundant polyfills)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "next_best_practices_bundling_esm_commonjs_issues",
+			"label": "ESM/CommonJS Issues",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "next_best_practices_bundling_error_signs_111",
+			"label": "Error Signs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_7",
+			"label": "code:block7 (SyntaxError: Cannot use import statement outside a module)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "next_best_practices_bundling_solution_transpile_package",
+			"label": "Solution: Transpile Package",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_8",
+			"label": "code:js (// next.config.js)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "next_best_practices_bundling_common_problematic_packages",
+			"label": "Common Problematic Packages",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L128"
+		},
+		{
+			"id": "next_best_practices_bundling_bundle_analysis",
+			"label": "Bundle Analysis",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_9",
+			"label": "code:bash (next experimental-analyze)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_10",
+			"label": "code:bash (next experimental-analyze --output)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "next_best_practices_bundling_migrating_from_webpack_to_turbopack",
+			"label": "Migrating from Webpack to Turbopack",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "next_best_practices_bundling_codeblock_11",
+			"label": "code:js (// next.config.js)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L168"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_bundling_md",
+			"target": "next_best_practices_bundling_bundling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundling",
+			"target": "next_best_practices_bundling_server_incompatible_packages",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_server_incompatible_packages",
+			"target": "next_best_practices_bundling_error_signs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_error_signs",
+			"target": "next_best_practices_bundling_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_server_incompatible_packages",
+			"target": "next_best_practices_bundling_solution_1_mark_as_client_only",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_solution_1_mark_as_client_only",
+			"target": "next_best_practices_bundling_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_server_incompatible_packages",
+			"target": "next_best_practices_bundling_solution_2_externalize_from_server_bundle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_solution_2_externalize_from_server_bundle",
+			"target": "next_best_practices_bundling_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_server_incompatible_packages",
+			"target": "next_best_practices_bundling_solution_3_client_component_wrapper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_solution_3_client_component_wrapper",
+			"target": "next_best_practices_bundling_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundling",
+			"target": "next_best_practices_bundling_css_imports",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_css_imports",
+			"target": "next_best_practices_bundling_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundling",
+			"target": "next_best_practices_bundling_polyfills",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_polyfills",
+			"target": "next_best_practices_bundling_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundling",
+			"target": "next_best_practices_bundling_esm_commonjs_issues",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_esm_commonjs_issues",
+			"target": "next_best_practices_bundling_error_signs_111",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_error_signs_111",
+			"target": "next_best_practices_bundling_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_esm_commonjs_issues",
+			"target": "next_best_practices_bundling_solution_transpile_package",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_solution_transpile_package",
+			"target": "next_best_practices_bundling_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundling",
+			"target": "next_best_practices_bundling_common_problematic_packages",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundling",
+			"target": "next_best_practices_bundling_bundle_analysis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundle_analysis",
+			"target": "next_best_practices_bundling_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundle_analysis",
+			"target": "next_best_practices_bundling_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_bundling",
+			"target": "next_best_practices_bundling_migrating_from_webpack_to_turbopack",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_bundling_migrating_from_webpack_to_turbopack",
+			"target": "next_best_practices_bundling_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md",
+			"source_location": "L168",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

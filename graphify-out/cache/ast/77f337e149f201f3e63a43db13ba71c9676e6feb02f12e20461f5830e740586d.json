@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_rsc_boundaries_md",
+			"label": "rsc-boundaries.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_rsc_boundaries",
+			"label": "RSC Boundaries",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_detection_rules",
+			"label": "Detection Rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_1_async_client_components_are_invalid",
+			"label": "1. Async Client Components Are Invalid",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_codeblock_1",
+			"label": "code:tsx (// Bad: async client component)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_codeblock_2",
+			"label": "code:tsx (// Bad: async arrow function client component)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_2_non_serializable_props_to_client_components",
+			"label": "2. Non-Serializable Props to Client Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_codeblock_3",
+			"label": "code:tsx (// Bad: Function prop)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_codeblock_4",
+			"label": "code:tsx (// Bad: Date object (silently becomes string, then crashes))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_codeblock_5",
+			"label": "code:tsx (// Bad: Class instance)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_codeblock_6",
+			"label": "code:tsx (// Bad: Map/Set)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_3_server_actions_are_the_exception",
+			"label": "3. Server Actions Are the Exception",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L124"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_codeblock_7",
+			"label": "code:tsx (// Valid: Server Action can be passed)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L128"
+		},
+		{
+			"id": "next_best_practices_rsc_boundaries_quick_reference",
+			"label": "Quick Reference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L149"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_rsc_boundaries_md",
+			"target": "next_best_practices_rsc_boundaries_rsc_boundaries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_rsc_boundaries",
+			"target": "next_best_practices_rsc_boundaries_detection_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_detection_rules",
+			"target": "next_best_practices_rsc_boundaries_1_async_client_components_are_invalid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_1_async_client_components_are_invalid",
+			"target": "next_best_practices_rsc_boundaries_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_1_async_client_components_are_invalid",
+			"target": "next_best_practices_rsc_boundaries_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_detection_rules",
+			"target": "next_best_practices_rsc_boundaries_2_non_serializable_props_to_client_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_2_non_serializable_props_to_client_components",
+			"target": "next_best_practices_rsc_boundaries_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_2_non_serializable_props_to_client_components",
+			"target": "next_best_practices_rsc_boundaries_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_2_non_serializable_props_to_client_components",
+			"target": "next_best_practices_rsc_boundaries_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_2_non_serializable_props_to_client_components",
+			"target": "next_best_practices_rsc_boundaries_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_detection_rules",
+			"target": "next_best_practices_rsc_boundaries_3_server_actions_are_the_exception",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_3_server_actions_are_the_exception",
+			"target": "next_best_practices_rsc_boundaries_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_rsc_boundaries_rsc_boundaries",
+			"target": "next_best_practices_rsc_boundaries_quick_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md",
+			"source_location": "L149",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

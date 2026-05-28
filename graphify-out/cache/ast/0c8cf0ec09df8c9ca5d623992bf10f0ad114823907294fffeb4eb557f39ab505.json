@@ -1,0 +1,495 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_metadata_md",
+			"label": "metadata.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_metadata_metadata",
+			"label": "Metadata",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_metadata_important_server_components_only",
+			"label": "Important: Server Components Only",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_metadata_static_metadata",
+			"label": "Static Metadata",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_1",
+			"label": "code:tsx (import type { Metadata } from \"next\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "next_best_practices_metadata_dynamic_metadata",
+			"label": "Dynamic Metadata",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_2",
+			"label": "code:tsx (import type { Metadata } from \"next\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "next_best_practices_metadata_avoid_duplicate_fetches",
+			"label": "Avoid Duplicate Fetches",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_3",
+			"label": "code:tsx (import { cache } from \"react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "next_best_practices_metadata_viewport",
+			"label": "Viewport",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_4",
+			"label": "code:tsx (import type { Viewport } from \"next\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "next_best_practices_metadata_title_templates",
+			"label": "Title Templates",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_5",
+			"label": "code:tsx (export const metadata: Metadata = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "next_best_practices_metadata_metadata_file_conventions",
+			"label": "Metadata File Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "next_best_practices_metadata_seo_best_practice_static_files_are_often_enough",
+			"label": "SEO Best Practice: Static Files Are Often Enough",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_6",
+			"label": "code:block6 (app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "next_best_practices_metadata_og_image_generation",
+			"label": "OG Image Generation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "next_best_practices_metadata_important_rules",
+			"label": "Important Rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_7",
+			"label": "code:tsx (// Good)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "next_best_practices_metadata_basic_og_image",
+			"label": "Basic OG Image",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L138"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_8",
+			"label": "code:tsx (// app/opengraph-image.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "next_best_practices_metadata_dynamic_og_image",
+			"label": "Dynamic OG Image",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L168"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_9",
+			"label": "code:tsx (// app/blog/[slug]/opengraph-image.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L170"
+		},
+		{
+			"id": "next_best_practices_metadata_custom_fonts",
+			"label": "Custom Fonts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L207"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_10",
+			"label": "code:tsx (import { ImageResponse } from \"next/og\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L209"
+		},
+		{
+			"id": "next_best_practices_metadata_file_naming",
+			"label": "File Naming",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L229"
+		},
+		{
+			"id": "next_best_practices_metadata_styling_notes",
+			"label": "Styling Notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L234"
+		},
+		{
+			"id": "next_best_practices_metadata_multiple_og_images",
+			"label": "Multiple OG Images",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L242"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_11",
+			"label": "code:tsx (// app/blog/[slug]/opengraph-image.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L246"
+		},
+		{
+			"id": "next_best_practices_metadata_multiple_sitemaps",
+			"label": "Multiple Sitemaps",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L267"
+		},
+		{
+			"id": "next_best_practices_metadata_codeblock_12",
+			"label": "code:tsx (// app/sitemap.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L271"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_metadata_md",
+			"target": "next_best_practices_metadata_metadata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_metadata",
+			"target": "next_best_practices_metadata_important_server_components_only",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_metadata",
+			"target": "next_best_practices_metadata_static_metadata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_static_metadata",
+			"target": "next_best_practices_metadata_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_metadata",
+			"target": "next_best_practices_metadata_dynamic_metadata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_dynamic_metadata",
+			"target": "next_best_practices_metadata_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_metadata",
+			"target": "next_best_practices_metadata_avoid_duplicate_fetches",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_avoid_duplicate_fetches",
+			"target": "next_best_practices_metadata_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_metadata",
+			"target": "next_best_practices_metadata_viewport",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_viewport",
+			"target": "next_best_practices_metadata_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_metadata",
+			"target": "next_best_practices_metadata_title_templates",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_title_templates",
+			"target": "next_best_practices_metadata_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_metadata",
+			"target": "next_best_practices_metadata_metadata_file_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_metadata",
+			"target": "next_best_practices_metadata_seo_best_practice_static_files_are_often_enough",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_seo_best_practice_static_files_are_often_enough",
+			"target": "next_best_practices_metadata_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_metadata_md",
+			"target": "next_best_practices_metadata_og_image_generation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_og_image_generation",
+			"target": "next_best_practices_metadata_important_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_important_rules",
+			"target": "next_best_practices_metadata_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_og_image_generation",
+			"target": "next_best_practices_metadata_basic_og_image",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_basic_og_image",
+			"target": "next_best_practices_metadata_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_og_image_generation",
+			"target": "next_best_practices_metadata_dynamic_og_image",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_dynamic_og_image",
+			"target": "next_best_practices_metadata_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_og_image_generation",
+			"target": "next_best_practices_metadata_custom_fonts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L207",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_custom_fonts",
+			"target": "next_best_practices_metadata_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L209",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_og_image_generation",
+			"target": "next_best_practices_metadata_file_naming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L229",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_og_image_generation",
+			"target": "next_best_practices_metadata_styling_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L234",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_og_image_generation",
+			"target": "next_best_practices_metadata_multiple_og_images",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L242",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_multiple_og_images",
+			"target": "next_best_practices_metadata_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L246",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_og_image_generation",
+			"target": "next_best_practices_metadata_multiple_sitemaps",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L267",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_metadata_multiple_sitemaps",
+			"target": "next_best_practices_metadata_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md",
+			"source_location": "L271",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

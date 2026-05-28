@@ -1,0 +1,87 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_examples_error_ts",
+			"label": "error.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "examples_error_customerror",
+			"label": "CustomError",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "examples_error_customerror_constructor",
+			"label": ".constructor()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "examples_error_error",
+			"label": "error()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L34"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_examples_error_ts",
+			"target": "elysia",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_examples_error_ts",
+			"target": "examples_error_customerror",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "examples_error_customerror",
+			"target": "examples_error_customerror_constructor",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_examples_error_ts",
+			"target": "examples_error_error",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "examples_error_customerror_constructor",
+			"callee": "super",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L5"
+		},
+		{
+			"caller_nid": "examples_error_error",
+			"callee": "log",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts",
+			"source_location": "L35"
+		}
+	]
+}

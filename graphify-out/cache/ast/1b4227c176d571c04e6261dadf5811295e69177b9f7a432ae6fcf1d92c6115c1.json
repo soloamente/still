@@ -1,0 +1,173 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"label": "tv-log-scope-prior.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_test_s1",
+			"label": "s1",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_test_s2",
+			"label": "s2",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_test_show",
+			"label": "show",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_test_legacyshow",
+			"label": "legacyShow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_test_logs",
+			"label": "logs",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L55"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "vitest",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_my_tv_log_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_my_tv_log_mytvlog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_counttvlogsinscope",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_findlatesttvloginscope",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_tvlogmatchesscope",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_test_s1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_test_s2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_test_show",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_test_legacyshow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_test_logs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_test_ts",
+			"target": "lib_tv_log_scope_prior_test_logs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts",
+			"source_location": "L67",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -224,6 +224,15 @@ export function ListLobbyPoster({
 			},
 		];
 
+		items.push({
+			id: "cover",
+			label: "Change cover",
+			shortcut: "V",
+			disabled: uploadingCover,
+			icon: <IconCloneImageDashedFill className="opacity-90" aria-hidden />,
+			onSelect: openCoverFilePicker,
+		});
+
 		if (!isFavoritesList) {
 			items.push(
 				{
@@ -235,14 +244,6 @@ export function ListLobbyPoster({
 						onOpenChange(false);
 						setEditOpen(true);
 					},
-				},
-				{
-					id: "cover",
-					label: "Change cover",
-					shortcut: "V",
-					disabled: uploadingCover,
-					icon: <IconCloneImageDashedFill className="opacity-90" aria-hidden />,
-					onSelect: openCoverFilePicker,
 				},
 				{
 					id: "privacy",
@@ -335,21 +336,19 @@ export function ListLobbyPoster({
 				</div>
 			</Link>
 
-			{!isFavoritesList ? (
-				<input
-					ref={coverInputRef}
-					id={coverInputId}
-					type="file"
-					accept="image/*"
-					className="sr-only"
-					tabIndex={-1}
-					aria-hidden
-					onChange={(event) => {
-						const file = event.target.files?.[0];
-						void handleCoverFile(file);
-					}}
-				/>
-			) : null}
+			<input
+				ref={coverInputRef}
+				id={coverInputId}
+				type="file"
+				accept="image/*"
+				className="sr-only"
+				tabIndex={-1}
+				aria-hidden
+				onChange={(event) => {
+					const file = event.target.files?.[0];
+					void handleCoverFile(file);
+				}}
+			/>
 
 			<RadialToolkit
 				open={open}

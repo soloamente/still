@@ -5,8 +5,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\package.json": {
-		"mtime": 1779015945.9596052,
-		"ast_hash": "eef0c70e6fa0711abacaf12828e12924",
+		"mtime": 1779968960.726053,
+		"ast_hash": "d020a52e104a4487c1bca3a24b6163a4",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\skills-lock.json": {
@@ -20,8 +20,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\turbo.json": {
-		"mtime": 1779015945.9964762,
-		"ast_hash": "6e113b216eb9c7f9e6741b3ff0727752",
+		"mtime": 1779968960.73457,
+		"ast_hash": "934236cb032825ca03d5a32d195c1b44",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\mcp.json": {
@@ -35,8 +35,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json": {
-		"mtime": 1779439643.4537234,
-		"ast_hash": "d06861f925c1114ecc979b3a8b2978da",
+		"mtime": 1779968960.5309515,
+		"ast_hash": "5329c3c9fcf4269ca48f5dd5b844f357",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\idea-refine\\scripts\\idea-refine.sh": {
@@ -60,22 +60,22 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\background.js": {
-		"mtime": 1779453346.4329088,
+		"mtime": 1779976192.2669115,
 		"ast_hash": "a1a05b849a9a47ee8030091bf304598e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\manifest.json": {
-		"mtime": 1779453346.5434313,
+		"mtime": 1779976192.3700416,
 		"ast_hash": "40a43b604c69794848de00c71c3eb596",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\chunks\\popup-q0A9gKOX.js": {
-		"mtime": 1779453346.5249186,
+		"mtime": 1779976192.3490436,
 		"ast_hash": "cc96fdb28c1a4ad387bcdf6f83c3a3f3",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\content-scripts\\content.js": {
-		"mtime": 1779453346.4719095,
+		"mtime": 1779976192.3029137,
 		"ast_hash": "963c02f3fbc551e450892c8af77607d8",
 		"semantic_hash": ""
 	},
@@ -140,7 +140,7 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\native\\expo-env.d.ts": {
-		"mtime": 1779453411.5524857,
+		"mtime": 1779976263.8316593,
 		"ast_hash": "0dd9dccdb4b08595bc83df70d6a154d3",
 		"semantic_hash": ""
 	},
@@ -170,8 +170,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\native\\.expo\\types\\router.d.ts": {
-		"mtime": 1779453817.370237,
-		"ast_hash": "2883f845ff19e263054b55d99e9cd96f",
+		"mtime": 1779978182.3012116,
+		"ast_hash": "d2fee703fc6e51b81f9ef86d920bbf3d",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\+not-found.tsx": {
@@ -245,18 +245,18 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\package.json": {
-		"mtime": 1779015945.6709952,
-		"ast_hash": "04d03e2ede14959b814e0118155e735e",
+		"mtime": 1779968960.5626204,
+		"ast_hash": "48d4cee2204571e843faee6b62fe345b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\tsconfig.json": {
-		"mtime": 1779015945.687544,
-		"ast_hash": "4eeeb5bd33b79bbb0c80c85480cdecdc",
+		"mtime": 1779968960.618524,
+		"ast_hash": "f6243baddba72a52a678a34b413d39d5",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\tsdown.config.ts": {
-		"mtime": 1779015945.687544,
-		"ast_hash": "fa42553e002bfb62b553c6291cc213d1",
+		"mtime": 1779968960.6195304,
+		"ast_hash": "4b390baa20480cffcf13d978b515bf9c",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\scripts\\check-db.ts": {
@@ -264,19 +264,14 @@
 		"ast_hash": "edd12a39c2e5e9ca02bf8bee6ea0a62c",
 		"semantic_hash": ""
 	},
-	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\app.ts": {
-		"mtime": 1779450039.5587747,
-		"ast_hash": "f0ae1413196643afdfa24ce489f76530",
-		"semantic_hash": ""
-	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\context.ts": {
-		"mtime": 1779439643.4587214,
-		"ast_hash": "accb61c9e68bdccf7af5e30f3f8220aa",
+		"mtime": 1779968960.5646205,
+		"ast_hash": "3a66eca706c16bbbcf86980cb6b9818f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\index.ts": {
-		"mtime": 1779439643.4597228,
-		"ast_hash": "67348745022d0b980007e90148b04085",
+		"mtime": 1779968960.5945768,
+		"ast_hash": "9855601e4d8df66890bd7102215b24dc",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\badge-evaluator.ts": {
@@ -305,8 +300,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts": {
-		"mtime": 1779450040.2763772,
-		"ast_hash": "39c6c27ccccda6f255a2229fe03e86fe",
+		"mtime": 1779467669.323651,
+		"ast_hash": "bb520e3b6f14612eef07de19fa89514b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\cuid.ts": {
@@ -320,8 +315,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\favorites-list-sync.ts": {
-		"mtime": 1779439643.4617221,
-		"ast_hash": "156cb712a726c1b3151908c241b54209",
+		"mtime": 1779968960.5955772,
+		"ast_hash": "338085c5ae9bf6daf88a5253f40e0eed",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\feed-items.ts": {
@@ -345,13 +340,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\leaderboard-query.ts": {
-		"mtime": 1779450039.5277512,
-		"ast_hash": "b67fa3af4f9170cf488a45beba8ef79c",
+		"mtime": 1779467345.2028131,
+		"ast_hash": "b47906599f04f94c53b21e1f24d26124",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-cover-posters.ts": {
-		"mtime": 1779439643.4637234,
-		"ast_hash": "8cd4e28e6740155c85cd21ac56ab405c",
+		"mtime": 1779968960.5965772,
+		"ast_hash": "c297191c9be4a5969f5fded1ef4057b9",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-display-cover.ts": {
@@ -420,93 +415,93 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\badges.ts": {
-		"mtime": 1779271165.9150808,
-		"ast_hash": "7323d61f8b8b1be3d5f58850fb140a49",
+		"mtime": 1779968960.5985773,
+		"ast_hash": "91751530ba5ac0f49d7d0a198a240f36",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\chat.ts": {
-		"mtime": 1779015945.679548,
-		"ast_hash": "57489aa924a47d79ed9d70dd5d7b19db",
+		"mtime": 1779968960.599944,
+		"ast_hash": "c2c014693068629714cdfe25b8d58286",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\comments.ts": {
-		"mtime": 1779015945.679548,
-		"ast_hash": "966c7e5ff07a1a07735f1dc71667170a",
+		"mtime": 1779968960.6009436,
+		"ast_hash": "030697adfd33ce0a85abaf936e0d1f68",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\feed.ts": {
-		"mtime": 1779450040.3158984,
-		"ast_hash": "b273472caf160452725581df29067776",
+		"mtime": 1779968960.601945,
+		"ast_hash": "6bf566bb11ad55c454798bd4b5174391",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\follows.ts": {
-		"mtime": 1779015945.680546,
-		"ast_hash": "becbdf1be910b997c1054d33a87e2f51",
+		"mtime": 1779968960.6029897,
+		"ast_hash": "3cd0cdc6245d29bb29263cb4dc3a0b39",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\leaderboard.ts": {
-		"mtime": 1779450039.5437708,
-		"ast_hash": "c463d88b99c7f879fb0a6969e631cb63",
+		"mtime": 1779968960.6039896,
+		"ast_hash": "ea246a28e4e67bc6f066db422389b424",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\lists.ts": {
-		"mtime": 1779450040.3586364,
-		"ast_hash": "2358542214bd55bf3fa87fedcec31b9b",
+		"mtime": 1779976927.7404222,
+		"ast_hash": "4ab93489803e6fd351fa97a3d0d9a948",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\logs.ts": {
-		"mtime": 1779439643.4717221,
-		"ast_hash": "9aa2790baf315fe87f4781b285bfd11b",
+		"mtime": 1779968960.6059895,
+		"ast_hash": "3dec0e761273584c657b40deffa78871",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\movies.ts": {
-		"mtime": 1779450039.9572089,
-		"ast_hash": "5447651cedda1983f47b5e91065405a8",
+		"mtime": 1779968960.6069913,
+		"ast_hash": "239246864f4bbd668db13ba76e7e97f9",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\news.ts": {
-		"mtime": 1779015945.6825433,
-		"ast_hash": "4886372cb3ee7c11aca92254af8fe8cc",
+		"mtime": 1779968960.6069913,
+		"ast_hash": "f933d1937f4b63784d52458eaee77163",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\notifications.ts": {
-		"mtime": 1779439643.4737215,
-		"ast_hash": "3788c75a9e11d9b3a75ce5be60cd71f8",
+		"mtime": 1779968960.608497,
+		"ast_hash": "8086a95fc7444b0f7a1a524431c5272b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\people.ts": {
-		"mtime": 1779251031.6036503,
-		"ast_hash": "5a54727c1c4424a0bea01a3cd59a23e5",
+		"mtime": 1779968960.609503,
+		"ast_hash": "29b6405f01e412a1063c892ca1e2bdc4",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\posts.ts": {
-		"mtime": 1779015945.6845436,
-		"ast_hash": "0da00aaa8421579a9b9c4756c543c5be",
+		"mtime": 1779968960.6105025,
+		"ast_hash": "2a798090420aaed9cc52fab85e0b5f64",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts": {
-		"mtime": 1779452595.052657,
-		"ast_hash": "0006df3b39ac87d2eab01bb1eec09e26",
+		"mtime": 1779968960.6105025,
+		"ast_hash": "43445739a9944e10bbe9beb976095db5",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\reviews.ts": {
-		"mtime": 1779450040.3356347,
-		"ast_hash": "34901f726bf4980bd263f3b192206715",
+		"mtime": 1779968960.6120102,
+		"ast_hash": "3770c7fa27136508065a1323d13d6463",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\tv-watch.ts": {
-		"mtime": 1779439643.475723,
-		"ast_hash": "945ddcb220655306138d848340318af8",
+		"mtime": 1779968960.6130164,
+		"ast_hash": "e7bfbfa00f563281b9373d54f50edefa",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\tv.ts": {
-		"mtime": 1779439643.476722,
-		"ast_hash": "32de24a6298d6042b54c10fa2e278d72",
+		"mtime": 1779968960.6140158,
+		"ast_hash": "8c5c61cf7d93f18df569cdaab34de554",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\watchlist.ts": {
-		"mtime": 1779439643.4777224,
-		"ast_hash": "c8f2b52f1821b48cb35b9c849dfdfa40",
+		"mtime": 1779968960.616017,
+		"ast_hash": "dec2ab2f0874bbb73cb9802ed1e36daf",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\ws\\hub.ts": {
@@ -515,8 +510,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\ws\\index.ts": {
-		"mtime": 1779015945.6865435,
-		"ast_hash": "07b5ef10135f55424aac0b1c136de7ca",
+		"mtime": 1779968960.6170177,
+		"ast_hash": "df4da58c9f39863f54440221395818bd",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\components.json": {
@@ -525,18 +520,18 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\next-env.d.ts": {
-		"mtime": 1779453855.1435993,
-		"ast_hash": "b698cdd97fe8e3bd16dcd74899ad7cef",
+		"mtime": 1779974433.523873,
+		"ast_hash": "29f60a376e12bf72b67d4994fcc84214",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\next.config.ts": {
-		"mtime": 1779439643.4777224,
-		"ast_hash": "6424852093848be5267d405406febf95",
+		"mtime": 1779968960.6215315,
+		"ast_hash": "110819358e3d9f101c548c552ca6d0f9",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\package.json": {
-		"mtime": 1779439643.4787226,
-		"ast_hash": "888cf86e4b78183406d3154bc778766b",
+		"mtime": 1779974312.0978472,
+		"ast_hash": "78d78ff4096a504a230191d640e6b185",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\postcss.config.mjs": {
@@ -555,13 +550,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\scripts\\install-motion-plus.ps1": {
-		"mtime": 1779440695.836559,
-		"ast_hash": "57adfd5902a5f26d3584c957dc404386",
+		"mtime": 1779968960.624043,
+		"ast_hash": "d7821d210a98b816f62b5c46887f1f01",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\proxy.ts": {
-		"mtime": 1779450914.7005868,
-		"ast_hash": "c29b6cb70d33a374a74f5bd10974825c",
+		"mtime": 1779467345.409403,
+		"ast_hash": "615126050395e812be45ba9a39b96fcc",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\global-error.tsx": {
@@ -570,13 +565,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\layout.tsx": {
-		"mtime": 1779453806.1743286,
-		"ast_hash": "308b664dad1ad9d438654c4a67ab25ba",
+		"mtime": 1779467345.2362852,
+		"ast_hash": "b39065149eddb9ab50434b51c9308208",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\page.tsx": {
-		"mtime": 1779295389.601538,
-		"ast_hash": "226bdde7ee6e0576ae54efcd9effde80",
+		"mtime": 1779968960.6486747,
+		"ast_hash": "17c3b61f5dd9cc8fec66fa072a2a49ea",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\error.tsx": {
@@ -585,8 +580,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\layout.tsx": {
-		"mtime": 1779452586.2973847,
-		"ast_hash": "7ee560c438914cb546d262a0f12abdce",
+		"mtime": 1779467345.1988132,
+		"ast_hash": "c1c5cb9d370c8e151504239877412fa5",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx": {
@@ -605,18 +600,18 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\diary\\page.tsx": {
-		"mtime": 1779450040.7229264,
-		"ast_hash": "1197db3ad25c0a075d8672d859d73aab",
+		"mtime": 1779968960.625043,
+		"ast_hash": "4fc890242a32c265ec941f6a8c5b4ac8",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\home\\page.tsx": {
-		"mtime": 1779450932.712561,
-		"ast_hash": "236d341f4b3e3a0c40120bd313434729",
+		"mtime": 1779968960.6260433,
+		"ast_hash": "bf5427844e4228cb977152e760e91b14",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\page.tsx": {
-		"mtime": 1779439643.4837205,
-		"ast_hash": "9ade2a05b8d4520a87cd2da22f106112",
+		"mtime": 1779968960.6295586,
+		"ast_hash": "2d559989638c40bbde6bc2ab63da5686",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\new\\page.tsx": {
@@ -625,8 +620,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\[id]\\page.tsx": {
-		"mtime": 1779439643.4827206,
-		"ast_hash": "c3ae55b663dd05589e9dbd4bcba4d15a",
+		"mtime": 1779978187.5169327,
+		"ast_hash": "ce5f83db440a912b2f907a685179b8ba",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\layout.tsx": {
@@ -655,13 +650,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\movies\\[id]\\page.tsx": {
-		"mtime": 1779439643.4867206,
-		"ast_hash": "06dcbdfb4d5c76fc51d260833796f592",
+		"mtime": 1779968960.6315615,
+		"ast_hash": "5da517e779f22776c175e9becb95e06f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\movies\\[id]\\credits\\page.tsx": {
-		"mtime": 1779251031.6096518,
-		"ast_hash": "6f487be3bc80f7fdad875cd9ab4e6316",
+		"mtime": 1779968960.630559,
+		"ast_hash": "81c357ca62aafa0bb0fbc96caa346b51",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\news\\page.tsx": {
@@ -680,13 +675,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\profile\\[handle]\\loading.tsx": {
-		"mtime": 1779255896.5485427,
-		"ast_hash": "dda4f5b0a19d8a1cb62bfe3b2e6bd030",
+		"mtime": 1779968960.6330705,
+		"ast_hash": "596ac13c9c91781b31f9dd56be11584f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\profile\\[handle]\\page.tsx": {
-		"mtime": 1779439643.4887226,
-		"ast_hash": "32469ea73c59d6539bd95887ad4026d7",
+		"mtime": 1779968960.6340804,
+		"ast_hash": "314a751d3bb6e3e2ebd5863426a1e83f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\reviews\\[id]\\page.tsx": {
@@ -705,18 +700,18 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\tv\\[id]\\page.tsx": {
-		"mtime": 1779439643.4907231,
-		"ast_hash": "60b3c369c794505875c8ead1d4d57e93",
+		"mtime": 1779968960.6370802,
+		"ast_hash": "a8c3a1e20e430ce5517875bfb7ac00e7",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\tv\\[id]\\credits\\page.tsx": {
-		"mtime": 1779251031.6146507,
-		"ast_hash": "d5009d1f6a57165f1d1d1060d9e948e3",
+		"mtime": 1779968960.6360786,
+		"ast_hash": "aa45da41cd313c42dcd39e962535913e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\watchlist\\page.tsx": {
-		"mtime": 1779450040.664928,
-		"ast_hash": "2b8250fd68fe679b276c987937aaed97",
+		"mtime": 1779968960.6370802,
+		"ast_hash": "fbecb99e5cd022541be5876b896e9bf5",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(auth)\\layout.tsx": {
@@ -740,43 +735,28 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-features.tsx": {
-		"mtime": 1779295389.5932243,
-		"ast_hash": "b6ae8dd8a48df0c57bb19abbd87aa814",
+		"mtime": 1779968960.6385877,
+		"ast_hash": "856e109d810e87e48991056670a35d3d",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-footer.tsx": {
-		"mtime": 1779295389.592717,
-		"ast_hash": "8d1bf86776d32978e2b189359be3590d",
+		"mtime": 1779968960.6395943,
+		"ast_hash": "4ceda3bb698e32c15b8cdf00c02a1b4e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-hero.tsx": {
-		"mtime": 1779295389.5945294,
-		"ast_hash": "03d44aa45ec52ec98ada855280e6b94e",
+		"mtime": 1779968960.6415944,
+		"ast_hash": "dafd54f941bfd3cb73ca1dab02a9a97c",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-nav.tsx": {
-		"mtime": 1779295389.5975394,
-		"ast_hash": "ef612059ad7d61cbe6d3fa51ebce9f73",
-		"semantic_hash": ""
-	},
-	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-poster-marquee.tsx": {
-		"mtime": 1779295425.1357183,
-		"ast_hash": "d8879e07c9a3b62ec0f14282beab8904",
-		"semantic_hash": ""
-	},
-	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-poster-rail.tsx": {
-		"mtime": 1779295389.601538,
-		"ast_hash": "2dd2a081b9275fbdea76b4f13d07926a",
+		"mtime": 1779968960.6435952,
+		"ast_hash": "98b81718de764e630dca188fb177ecdd",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-preview.tsx": {
-		"mtime": 1779295389.5995383,
-		"ast_hash": "5a7e5023cc9f4225f293d289d915d824",
-		"semantic_hash": ""
-	},
-	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-social-proof.tsx": {
-		"mtime": 1779295389.5975394,
-		"ast_hash": "f8aab9bd0b8f9afcf5737c945d6ab3bd",
+		"mtime": 1779968960.6446757,
+		"ast_hash": "e382602f7b07fd7042868553e1cd5673",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\brand-mark.tsx": {
@@ -800,8 +780,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\providers.tsx": {
-		"mtime": 1779453837.9424083,
-		"ast_hash": "39bfb4a7cf5a5332bf33c92b6b87652f",
+		"mtime": 1779968876.5611615,
+		"ast_hash": "a0e81ae2d57b1173844ecc6a5832ec0f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\theme-provider.tsx": {
@@ -825,18 +805,18 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-shell.tsx": {
-		"mtime": 1779450039.8023245,
-		"ast_hash": "32a68ebd48bead9287dc2e682fd50d61",
+		"mtime": 1779467345.2525253,
+		"ast_hash": "82271e3edad21f446f443f0cb90b6642",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-user-account-menu.tsx": {
-		"mtime": 1779452932.708521,
-		"ast_hash": "cb1339b2f286f31b8dfe61ef1e8d27bb",
+		"mtime": 1779467345.2592597,
+		"ast_hash": "27219f6f0178e8407e0c271c35a38b41",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\command-palette.tsx": {
-		"mtime": 1779450927.6481884,
-		"ast_hash": "2e9691b8b06e6568e7e4417509dfa4f9",
+		"mtime": 1779467345.2702582,
+		"ast_hash": "61a25e8ff8019edbfc58293ccb9ef99a",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\detail-return-capture.tsx": {
@@ -860,8 +840,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-page-shell.tsx": {
-		"mtime": 1779439643.502723,
-		"ast_hash": "f09b4ebc3928ceb18622f15960489736",
+		"mtime": 1779968960.649817,
+		"ast_hash": "bbfd7da54665ce6eb51ad146e51ce651",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx": {
@@ -890,13 +870,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\catalogue\\catalogue-poster-tile.tsx": {
-		"mtime": 1779450040.5582507,
-		"ast_hash": "9ad6e1b96cd2d877a5efa1f487705f6e",
+		"mtime": 1779968960.6518176,
+		"ast_hash": "3a75b40ecad3a161216707f594a45b1e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\catalogue\\use-add-to-list-radial.tsx": {
-		"mtime": 1779450040.539478,
-		"ast_hash": "1a0ba8869a8dead5d1f5bf3d69d9eb81",
+		"mtime": 1779968960.6528175,
+		"ast_hash": "83284f8b9d4f89877fbd001d88518d90",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx": {
@@ -970,8 +950,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-catalog-order-chips.tsx": {
-		"mtime": 1779255896.7095437,
-		"ast_hash": "ba4c535157f1a0d5cb261f752b4aa17a",
+		"mtime": 1779968960.653819,
+		"ast_hash": "0494ffd8214e965f2e77ae84567888f4",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-entry.tsx": {
@@ -985,8 +965,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-grid.tsx": {
-		"mtime": 1779450040.7389283,
-		"ast_hash": "930cf99dad53199b62a21bed41600e3c",
+		"mtime": 1779467670.4156542,
+		"ast_hash": "8cd807391344e17783d1d22f0132c9d8",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-log-edit-button.tsx": {
@@ -1005,8 +985,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-tv-group-cell.tsx": {
-		"mtime": 1779450040.754926,
-		"ast_hash": "4d3b07ca417023e4deb758bd25f9678a",
+		"mtime": 1779467345.3228955,
+		"ast_hash": "2bfb77fcb391938991a962acb09403fd",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\tv-log-scope-chip.tsx": {
@@ -1050,8 +1030,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-lobby.tsx": {
-		"mtime": 1779439643.5147214,
-		"ast_hash": "be3079c39aa561247f908b8ba4471b28",
+		"mtime": 1779968960.6569684,
+		"ast_hash": "acb777f241296fadea412715b7d0b7ae",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-tab-toolbar.tsx": {
@@ -1085,13 +1065,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-sort-chips.tsx": {
-		"mtime": 1779450039.6737726,
-		"ast_hash": "562f4be4a648dddb414c49aa6b425b44",
+		"mtime": 1779968960.6584735,
+		"ast_hash": "626d861992f0d15aca8cb73a80eeccda",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx": {
-		"mtime": 1779450922.039051,
-		"ast_hash": "6c8d1a338c89f0c4731365f226e42a81",
+		"mtime": 1779968960.6594849,
+		"ast_hash": "e6e2b7b7d2194a129803e1a352e5d9f4",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx": {
@@ -1100,18 +1080,18 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-leaderboard.tsx": {
-		"mtime": 1779450039.7697718,
-		"ast_hash": "14d97073fed84947272e7ec2c64cfcd4",
+		"mtime": 1779968960.6604798,
+		"ast_hash": "ad67e6adc2a58ed333396fc8b873805d",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-lobby.tsx": {
-		"mtime": 1779450039.7837756,
-		"ast_hash": "aef2a037b8811c137afa448b874d8e0d",
+		"mtime": 1779968960.66248,
+		"ast_hash": "dcddda2791a85768f30b939cf9446d43",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-period-toolbar.tsx": {
-		"mtime": 1779450040.3876345,
-		"ast_hash": "7fb83b60582d80f245940f0fa86c1080",
+		"mtime": 1779968960.6639862,
+		"ast_hash": "4f0dca0134f85ebf6f96754c6f238a62",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-continue-watching-rail.tsx": {
@@ -1140,33 +1120,33 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-notifications-menu.tsx": {
-		"mtime": 1779450040.4206376,
-		"ast_hash": "23cc5cda9383c56e8e879b71ce5ce5b0",
+		"mtime": 1779467345.363429,
+		"ast_hash": "c4c1bf2890ffc0527862077b49ee6ae9",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-chrome.tsx": {
-		"mtime": 1779450039.8463216,
-		"ast_hash": "7808803d1e6e46fad3a15950019c0b1a",
+		"mtime": 1779969841.040315,
+		"ast_hash": "7850f8b27954eb1fd02de8484b73c2d4",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx": {
-		"mtime": 1779439643.5227208,
-		"ast_hash": "398677d15f1cdafc9a365b1e38a40841",
+		"mtime": 1779968960.6659927,
+		"ast_hash": "c80e040fa01f71991e0b57dcc82fb857",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-drawer.tsx": {
-		"mtime": 1779450039.739771,
-		"ast_hash": "46169a14389208980251f1d586e520fa",
+		"mtime": 1779467345.3073778,
+		"ast_hash": "07155d605097676b727d5440af2b59ae",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-grid.tsx": {
-		"mtime": 1779450039.8743234,
-		"ast_hash": "4cd94e031d0ba44ecf6dd8d01db0df8f",
+		"mtime": 1779467345.312379,
+		"ast_hash": "87abfb2d4f1bbcf519cc9ab265629534",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx": {
-		"mtime": 1779450039.754771,
-		"ast_hash": "a518b0053674cac9d579d92d8177f12a",
+		"mtime": 1779467345.3168957,
+		"ast_hash": "3078ebf9083144f632d110736297da8a",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-list-results.tsx": {
@@ -1180,8 +1160,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-studio-rail.tsx": {
-		"mtime": 1779439643.5247228,
-		"ast_hash": "374b05e1e689f131b3e2d31f955da822",
+		"mtime": 1779467345.34042,
+		"ast_hash": "445080b088d5b7ca0dad8021c8f0ee05",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx": {
@@ -1190,28 +1170,28 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\add-to-list-control.tsx": {
-		"mtime": 1779439643.5267215,
-		"ast_hash": "f95aa0c28aa46cdf1f14509dad796380",
+		"mtime": 1779968960.6684997,
+		"ast_hash": "97f18a7b9169e5c5fccc1985db9b0721",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\add-to-list-picker.tsx": {
-		"mtime": 1779439643.5277214,
-		"ast_hash": "bcb827167b3c33e5ea00feec4233d273",
+		"mtime": 1779968960.6695087,
+		"ast_hash": "d227f24b44480935ddd693074af0d695",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\create-list-dialog.tsx": {
-		"mtime": 1779439643.5277214,
-		"ast_hash": "6dc712405514bbfe757fd1fe8721bb06",
+		"mtime": 1779968960.670507,
+		"ast_hash": "21a0fbebece3bd53f7591113310f6572",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-cover-picker.tsx": {
-		"mtime": 1779439643.5287237,
-		"ast_hash": "eac3f39689fa1d6955ae77c66b6043d3",
+		"mtime": 1779978193.2870133,
+		"ast_hash": "077936094114e5c8cb73172921524b26",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx": {
-		"mtime": 1779439643.5297234,
-		"ast_hash": "6a80a9125fa3fe835e0a95bc477fc6bb",
+		"mtime": 1779972342.1095855,
+		"ast_hash": "3ed2733614f99e826e6c1a5a6600f7d4",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-hero-media.tsx": {
@@ -1280,8 +1260,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-sheet.tsx": {
-		"mtime": 1779439643.53572,
-		"ast_hash": "e3b9c2ae5c9abe5edde5e288eed1f3f1",
+		"mtime": 1779968960.6725066,
+		"ast_hash": "af8b62816c79c2c2c0d3a7eca7d482ae",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\tv-log-scope-picker.tsx": {
@@ -1325,8 +1305,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-actions.tsx": {
-		"mtime": 1779251031.6348817,
-		"ast_hash": "f4d280135184c729a784d23e7895c270",
+		"mtime": 1779968960.6735072,
+		"ast_hash": "616dff2c090fcc49043b7691de5808a1",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-cast-crew-arc-cards.tsx": {
@@ -1365,8 +1345,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-primary-actions.tsx": {
-		"mtime": 1779439643.5427241,
-		"ast_hash": "e41d1999b4b7fd00f06342e0a0225a0b",
+		"mtime": 1779968960.6765664,
+		"ast_hash": "c7c9e57e26d4af58ad6f0cfe1a4f6b49",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-section-nav.tsx": {
@@ -1380,8 +1360,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-top-bar.tsx": {
-		"mtime": 1779251031.6408825,
-		"ast_hash": "1e58942eb54e0dd9b77253c02a89bdfb",
+		"mtime": 1779968960.6765664,
+		"ast_hash": "be63e654ef8bbf02c6d39bb4836f5b2b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-poster.tsx": {
@@ -1395,8 +1375,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-theme-provider.tsx": {
-		"mtime": 1779251031.6428802,
-		"ast_hash": "3ccf596ae30e0ba81d0d4c679cbfa2e7",
+		"mtime": 1779968960.678567,
+		"ast_hash": "9806e26ba186d131d1a7d11ff2893678",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\person-credit-portrait.tsx": {
@@ -1420,8 +1400,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\popular-movies-infinite.tsx": {
-		"mtime": 1779450040.5976734,
-		"ast_hash": "c922402764c2061a27dab4d118ec70ad",
+		"mtime": 1779467671.092347,
+		"ast_hash": "ff18a7698f705d9c54265e3553d628bf",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\sheet-scroll-scrims.tsx": {
@@ -1435,8 +1415,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\use-movie-detail-user-state.ts": {
-		"mtime": 1779439643.5507214,
-		"ast_hash": "58aa16a58c85ec4631bbc2141072efc4",
+		"mtime": 1779968960.6795957,
+		"ast_hash": "35f9b9673bb0d97030fb9aa159ef3676",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\news\\news-strip.tsx": {
@@ -1445,13 +1425,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-dropdown-panel.tsx": {
-		"mtime": 1779450144.2054534,
-		"ast_hash": "4a6be5be047b136c7c9affc51d586642",
+		"mtime": 1779467345.3218937,
+		"ast_hash": "e9629280d7ad23c213ef87efe9eb8e27",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx": {
-		"mtime": 1779439640.985817,
-		"ast_hash": "753efd9f075d877a2403eaaf4659ab7c",
+		"mtime": 1779467345.3133786,
+		"ast_hash": "b007a34e15de007e7d6c6655c609a41d",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list.tsx": {
@@ -1500,13 +1480,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx": {
-		"mtime": 1779452634.1305296,
-		"ast_hash": "83bdfd575b2e7aab26b83af42da8b49e",
+		"mtime": 1779467345.3289049,
+		"ast_hash": "b8ca44d606ce8dda17931fab8a9d947e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-shell.tsx": {
-		"mtime": 1779266254.812424,
-		"ast_hash": "463a12006272557a32742a4d7ddab7f2",
+		"mtime": 1779968960.6805947,
+		"ast_hash": "914c2a9f16fdb7a74f73bf1569a2a235",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-top-bar.tsx": {
@@ -1570,18 +1550,18 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx": {
-		"mtime": 1779439643.5557227,
-		"ast_hash": "01f9f48f1dd7008139e90fcaa7fdd39f",
+		"mtime": 1779968960.681596,
+		"ast_hash": "902c196a31acd1c02c735225eb8e934e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx": {
-		"mtime": 1779439643.5567234,
-		"ast_hash": "436c68ee940aa84131c4422d77eecdab",
+		"mtime": 1779968960.682594,
+		"ast_hash": "6c8eec57e3aca4c4ae44549454e3618a",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-filmography-panel.tsx": {
-		"mtime": 1779439643.5567234,
-		"ast_hash": "f438e82fe55eeb5de5ac10557b6b6436",
+		"mtime": 1779968960.6835938,
+		"ast_hash": "982d5d876b84a2d28d8aa2d361ece3ab",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lists-panel.tsx": {
@@ -1595,13 +1575,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx": {
-		"mtime": 1779439643.5597212,
-		"ast_hash": "b4ac2bcd1e1666d86e899d6bfb8a6bd2",
+		"mtime": 1779968960.684595,
+		"ast_hash": "f8c5ae8740c101eb629bc1b84ba6928b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-actions.tsx": {
-		"mtime": 1779295389.6665404,
-		"ast_hash": "a57a60867f6117701d81a4e722311882",
+		"mtime": 1779455381.9342804,
+		"ast_hash": "6daf0ed47de6947c244e9c99b7c4c592",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-header.tsx": {
@@ -1625,13 +1605,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-tab-panels.tsx": {
-		"mtime": 1779439643.561721,
-		"ast_hash": "9f6e657f423bd831538268db10af1e07",
+		"mtime": 1779968960.6867173,
+		"ast_hash": "77e94fc207253dcb5c8bf89e5739c628",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-tab-toolbar.tsx": {
-		"mtime": 1779439643.5627203,
-		"ast_hash": "bc1a00d758082371b1e93e9fb5db39ae",
+		"mtime": 1779968960.687716,
+		"ast_hash": "ba9590167ccafd3a0bdeb04f883ebb32",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-top-bar.tsx": {
@@ -1640,8 +1620,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx": {
-		"mtime": 1779452631.4597766,
-		"ast_hash": "5eb0f89cc236922be76481dd139231ef",
+		"mtime": 1779467345.3983953,
+		"ast_hash": "b0bda2e3930eb037f9d702f126434f0e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\rating\\star-rating.tsx": {
@@ -1680,23 +1660,23 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-primary-actions.tsx": {
-		"mtime": 1779439643.5667212,
-		"ast_hash": "f3e91dccfef054aad276c01d5f0a5996",
+		"mtime": 1779968960.6897788,
+		"ast_hash": "d8e79d2cae3b26c34ec74c4c478202a6",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-progress-panel.tsx": {
-		"mtime": 1779439643.5667212,
-		"ast_hash": "1fa0354bf816aca2987dd4503081ccee",
+		"mtime": 1779968960.6907854,
+		"ast_hash": "b613863c00ba9d2914ebc5ea978adb2b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-watch-context.tsx": {
-		"mtime": 1779439643.5677202,
-		"ast_hash": "974438b1151003caf108e353d1463d91",
+		"mtime": 1779968960.6907854,
+		"ast_hash": "68633b170967ba5abf9f83682eafd235",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-detail-user-state.ts": {
-		"mtime": 1779439643.5677202,
-		"ast_hash": "60383e904ae6018bf325bdc8c6466848",
+		"mtime": 1779968960.6917853,
+		"ast_hash": "13e20dc1850bc167e671d522128d5a13",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\use-tv-watch.ts": {
@@ -1730,8 +1710,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\skeleton-shimmer-reveal.tsx": {
-		"mtime": 1779439643.5707214,
-		"ast_hash": "e0007611a86ba9407291f5b00c223f56",
+		"mtime": 1779968960.692785,
+		"ast_hash": "8acd723560b94af8f6ee4c2526519f50",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\spinner.tsx": {
@@ -1740,8 +1720,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\still-animate-rating-number.tsx": {
-		"mtime": 1779439643.5717216,
-		"ast_hash": "49c0b085432c409370734e362c97683f",
+		"mtime": 1779968960.6937864,
+		"ast_hash": "e2529ef4f841509cd829146c8cef8c13",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\still-popover-select.tsx": {
@@ -1750,8 +1730,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-catalog-order-chips.tsx": {
-		"mtime": 1779255896.7205403,
-		"ast_hash": "99c1bda8464eecf0467ee3c875d11d19",
+		"mtime": 1779968960.6947856,
+		"ast_hash": "3f26c2e1bd99e8df0e29a0ddf42db3c0",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx": {
@@ -1770,8 +1750,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\api.ts": {
-		"mtime": 1779015945.9463055,
-		"ast_hash": "f552d8ce39f96a62f9ff9b5f62bd9f30",
+		"mtime": 1779968960.69702,
+		"ast_hash": "9914500ce9e9f68a987cc15933b19f0e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-modal-layer.ts": {
@@ -1780,8 +1760,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-client.ts": {
-		"mtime": 1779015945.9473057,
-		"ast_hash": "d703a89b0dcc0f31f2d228f93109ee45",
+		"mtime": 1779968960.6988208,
+		"ast_hash": "a2b3e28b3fc1e45293b589bf79581f30",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts": {
@@ -1790,8 +1770,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts": {
-		"mtime": 1779015945.9473057,
-		"ast_hash": "b3d907e82cb51326b707cde1b344f9fe",
+		"mtime": 1779968960.699828,
+		"ast_hash": "e8c59539f226864b05ac882fa376793f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\badge-artwork.ts": {
@@ -1815,13 +1795,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-radial-items.test.ts": {
-		"mtime": 1779450040.5236344,
-		"ast_hash": "1f04787d66084b1a88c9d07678a5539d",
+		"mtime": 1779968960.7018282,
+		"ast_hash": "6e88dc8a16939db103e8e885170624b2",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-radial-items.ts": {
-		"mtime": 1779450040.508639,
-		"ast_hash": "0d664f877d4b1aace5a488b1eccbef13",
+		"mtime": 1779968960.7028265,
+		"ast_hash": "b5368415a74c7108f8c40774622d2d63",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts": {
@@ -1860,8 +1840,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\discover-catalog-url.ts": {
-		"mtime": 1779451005.1686766,
-		"ast_hash": "6c459e78eb3d05ff4edfdf3df6213115",
+		"mtime": 1779467345.358428,
+		"ast_hash": "4e24f8d671e91752b26bb5f85f6b1348",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-my-logs-me-server.ts": {
@@ -1945,8 +1925,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-catalogue-layout.ts": {
-		"mtime": 1779439643.583721,
-		"ast_hash": "3e02d1ebc514b1723d4c786b0386c772",
+		"mtime": 1779968960.7038283,
+		"ast_hash": "df2c1670862cb7d41914c1eab13e7abf",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts": {
@@ -1955,8 +1935,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-persist.ts": {
-		"mtime": 1779450039.6577709,
-		"ast_hash": "d91db6e5ae4f5d8d2edfd21cb28d111d",
+		"mtime": 1779467345.4184015,
+		"ast_hash": "83d499a952c947ad49dc6c44cfc63e7f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-url.test.ts": {
@@ -1985,8 +1965,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts": {
-		"mtime": 1779439643.588729,
-		"ast_hash": "b61ec6205800faadddb13c31ccb2a713",
+		"mtime": 1779968960.7048283,
+		"ast_hash": "1679f0c3b533c4b24738a35268169ad4",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-cover-image.ts": {
@@ -2005,8 +1985,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\lists-lobby-order.ts": {
-		"mtime": 1779439643.5907278,
-		"ast_hash": "1f163bc3fda47e8e005a264673ab36bf",
+		"mtime": 1779968960.706872,
+		"ast_hash": "77ec86150ab1f4a8e5b69c2b796fe7e8",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts": {
@@ -2030,8 +2010,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts": {
-		"mtime": 1779450930.5489278,
-		"ast_hash": "78e53558c2a86afb152b7e8e56b6f9fb",
+		"mtime": 1779467345.4753215,
+		"ast_hash": "eb3025a132a90df129d28c49abb5f95b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts": {
@@ -2090,8 +2070,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-lobby-order.ts": {
-		"mtime": 1779439643.5937274,
-		"ast_hash": "d50adffb800ac0277215c6a995a25f90",
+		"mtime": 1779968960.7103877,
+		"ast_hash": "ce253fb63522d2904822f50863e87c8e",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.test.ts": {
@@ -2100,8 +2080,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts": {
-		"mtime": 1779452457.8017359,
-		"ast_hash": "f4e1d8de9394f805c2124e82ba85afe5",
+		"mtime": 1779467345.4184015,
+		"ast_hash": "bdf6596dc31cd7f80d007139285dc3b7",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts": {
@@ -2135,8 +2115,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts": {
-		"mtime": 1779450040.0079238,
-		"ast_hash": "816513be811699224403c8a6e3ee6eb2",
+		"mtime": 1779972337.6787424,
+		"ast_hash": "ceef9a29856cbbeec1302bd8f601439b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tmdb-config.ts": {
@@ -2155,13 +2135,13 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts": {
-		"mtime": 1779450908.1072795,
-		"ast_hash": "414c7ad935ffb477f91c444659bff30c",
+		"mtime": 1779467345.409403,
+		"ast_hash": "ca0d11d4a168fd72a02f6cb23b632802",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-display.ts": {
-		"mtime": 1779439643.6017268,
-		"ast_hash": "b741673e26ffc8eb177f04003bfe866c",
+		"mtime": 1779968960.713515,
+		"ast_hash": "0ae9dc434346f5ce5a69fb450a1fb868",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-watch-format.ts": {
@@ -2232,11 +2212,6 @@
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\wikidata-movie-awards.ts": {
 		"mtime": 1779251031.666881,
 		"ast_hash": "5533ad317ae79c4fc27cec4dda7f4ea2",
-		"semantic_hash": ""
-	},
-	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\types\\motion-plus-animate-view.d.ts": {
-		"mtime": 1779439643.6068995,
-		"ast_hash": "79bf62c03cdcaa395b282d231d8b4171",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src-tauri\\build.rs": {
@@ -2420,8 +2395,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\meta\\_journal.json": {
-		"mtime": 1779439643.6304111,
-		"ast_hash": "64365a85e405aab23c3e3b3edf3a1354",
+		"mtime": 1779968960.7285626,
+		"ast_hash": "64f5c5f511b7cc1fa8dd861f7250748c",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\activity.ts": {
@@ -2450,8 +2425,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\list.ts": {
-		"mtime": 1779439643.6324117,
-		"ast_hash": "1acf304188c93b0f8546ed8f22f86e7a",
+		"mtime": 1779968960.7295716,
+		"ast_hash": "642d4b4a7d830b55159fdb634355d75f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\movie.ts": {
@@ -2560,8 +2535,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton-shimmer.tsx": {
-		"mtime": 1779439643.6384118,
-		"ast_hash": "c0bb8c536acf70414374bbe9f799046a",
+		"mtime": 1779968960.7315707,
+		"ast_hash": "14bcf8194d38f2bf5c897847902e68df",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\skeleton.tsx": {
@@ -2570,7 +2545,7 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\sonner.tsx": {
-		"mtime": 1779440136.0231087,
+		"mtime": 1779968876.5611615,
 		"ast_hash": "79e6f9fe4d93ce725a97b43fa65d1327",
 		"semantic_hash": ""
 	},
@@ -2795,8 +2770,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\AGENTS.md": {
-		"mtime": 1779450040.1764436,
-		"ast_hash": "79eb5d12e48d3200b08152e812668f19",
+		"mtime": 1779968960.5591097,
+		"ast_hash": "60a241e2b6133490f0e8d392b755bb8b",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\design.md": {
@@ -2810,8 +2785,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\README.md": {
-		"mtime": 1779015945.6409903,
-		"ast_hash": "3ba336745a9812ee715cd209e8afbb6c",
+		"mtime": 1779968960.5596144,
+		"ast_hash": "4528b76b7b74b3bfd5735e978db3eca6",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\brandkit\\SKILL.md": {
@@ -2905,8 +2880,8 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md": {
-		"mtime": 1779452739.8107305,
-		"ast_hash": "4f7818dbf4b72536c4f7da6889ebf49e",
+		"mtime": 1779974406.3085456,
+		"ast_hash": "3d0525b884e85f3655f142543acfe586",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\api-and-interface-design\\SKILL.md": {
@@ -3055,7 +3030,7 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\extension\\.output\\chrome-mv3-dev\\popup.html": {
-		"mtime": 1779453346.5259185,
+		"mtime": 1779976192.3510463,
 		"ast_hash": "042304be7c34196cf6e42a1884dd508a",
 		"semantic_hash": ""
 	},
@@ -3510,43 +3485,43 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\retired-catalogue-redirect.test.ts": {
-		"mtime": 1779450959.8567784,
-		"ast_hash": "ecf3067930456c5728768320b6b1478d",
+		"mtime": 1779467345.3963943,
+		"ast_hash": "e685cce4eba76968f95ae08e0281b93f",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\retired-catalogue-redirect.ts": {
-		"mtime": 1779450947.1056573,
-		"ast_hash": "54af05e7e2831e3735130f54eb8d8363",
+		"mtime": 1779467672.7276895,
+		"ast_hash": "3bf3cf13bdcc4d6ad33e20a0bce3be15",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\app-themes.ts": {
-		"mtime": 1779452432.2206013,
-		"ast_hash": "83d4302e771aeef5a4d34594a65c12b3",
+		"mtime": 1779467345.1978126,
+		"ast_hash": "53797a4672dbd303f4c4c72cf96d5cab",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts": {
-		"mtime": 1779452439.6859727,
-		"ast_hash": "1b3d35167bb51bedf530a55d25ee7354",
+		"mtime": 1779467345.1918142,
+		"ast_hash": "3c23d899b82ea35052bc1b6dbfe92f48",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-theme-shell.tsx": {
-		"mtime": 1779453725.1820853,
-		"ast_hash": "fed989c4763b225219e8993e26342fe0",
+		"mtime": 1779467345.3103778,
+		"ast_hash": "75913ea234eb4095b9d12bda88e957e6",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-appearance-settings.tsx": {
-		"mtime": 1779453728.9088538,
-		"ast_hash": "c34c6c601e1a40dac0bc6dc3e157bb4d",
+		"mtime": 1779467345.3279023,
+		"ast_hash": "970c417b2aff9589f6631fe634dd5726",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.test.ts": {
-		"mtime": 1779452428.5662384,
-		"ast_hash": "beb9920d75fd85ee6efc7227e19e0851",
+		"mtime": 1779467345.3319042,
+		"ast_hash": "63594396bd0593ad1ed74ef625d3251a",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts": {
-		"mtime": 1779453786.622156,
-		"ast_hash": "857ad35086f3ccd5c693b487d9f12908",
+		"mtime": 1779467345.3414202,
+		"ast_hash": "8679a0a5201229c2219160346aaffef0",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-22-app-themes.md": {
@@ -3560,33 +3535,873 @@
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\account-menu-theme-picker.tsx": {
-		"mtime": 1779453238.851817,
-		"ast_hash": "ab72f7b49d2bccb6a557b0b1049dd32a",
+		"mtime": 1779467345.2490127,
+		"ast_hash": "6628c8581f12edb744ab26bb5b435c94",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-class-sync.tsx": {
-		"mtime": 1779453785.431648,
-		"ast_hash": "75f4a756b808a671972f1e5bcc12dc7a",
+		"mtime": 1779467345.2480142,
+		"ast_hash": "32f40e12f88636bf454909d7cad94c01",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\root-html-font-class-context.tsx": {
-		"mtime": 1779453709.0617564,
-		"ast_hash": "31b5abb059a9e2647750f123cdf13367",
+		"mtime": 1779467345.2480142,
+		"ast_hash": "5d7c576da8519d03ef5db467f0af44b7",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\theme-flash-guard-script.tsx": {
-		"mtime": 1779453805.3027992,
-		"ast_hash": "39c1a1d75a908e70b94ca94f0dd48ab9",
+		"mtime": 1779467345.2532506,
+		"ast_hash": "72f338409dbeda6b525fef46aab489ad",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\root-html-appearance.ts": {
-		"mtime": 1779453816.2503872,
-		"ast_hash": "24080d905583a2eeedb4daf1ed2d39af",
+		"mtime": 1779467345.3973956,
+		"ast_hash": "2ea13f02cd7940c5f9a459e67c3fcfc8",
 		"semantic_hash": ""
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\theme-flash-guard.ts": {
-		"mtime": 1779453805.3018022,
-		"ast_hash": "5c965dfdf8d9bb20edda64afdbca51ff",
+		"mtime": 1779467345.4013934,
+		"ast_hash": "cae8f7c1fb178de45903f6b43643e0d0",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\basic.ts": {
+		"mtime": 1779968960.471393,
+		"ast_hash": "692f0580d50d88f6b380cd67fd2482b1",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\body-parser.ts": {
+		"mtime": 1779968960.4723942,
+		"ast_hash": "04ef805a00bb9a16f24ae21d3dc7720b",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\complex.ts": {
+		"mtime": 1779968960.4723942,
+		"ast_hash": "0a72f0c8b8529e5062965f90b576b874",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\cookie.ts": {
+		"mtime": 1779968960.4733944,
+		"ast_hash": "cc980eae2ff07ac5295505ad534ad288",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\error.ts": {
+		"mtime": 1779968960.4743927,
+		"ast_hash": "0a61958a232c9977924d6143516956cd",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\file.ts": {
+		"mtime": 1779968960.4743927,
+		"ast_hash": "409144a46afbbd2352ade96ceadf2aec",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\guard.ts": {
+		"mtime": 1779968960.4753935,
+		"ast_hash": "720145181e7fe228f41e9f420abd17e6",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\map-response.ts": {
+		"mtime": 1779968960.4753935,
+		"ast_hash": "11a41c36355e0c3c1d3e45819482011a",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\redirect.ts": {
+		"mtime": 1779968960.4763937,
+		"ast_hash": "49101a217f596068e18fed5d0d70c693",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\rename.ts": {
+		"mtime": 1779968960.4773932,
+		"ast_hash": "830fd230d5e00845be3804a0388952d4",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\schema.ts": {
+		"mtime": 1779968960.4773932,
+		"ast_hash": "24c155c9078da81958759dce25c0e947",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\state.ts": {
+		"mtime": 1779968960.4783926,
+		"ast_hash": "566672628cd9a1923cc5e985503e532c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\upload-file.ts": {
+		"mtime": 1779968960.479442,
+		"ast_hash": "c7b70f49eb4d9325770183bb17998d72",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\websocket.ts": {
+		"mtime": 1779968960.479442,
+		"ast_hash": "e96864214ab499921d02c50f91893144",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\tsdown.vercel.config.ts": {
+		"mtime": 1779968960.6195304,
+		"ast_hash": "f242e85eabc95cc005a660f7681571f8",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\vercel.json": {
+		"mtime": 1779968960.6205301,
+		"ast_hash": "267c27bccb7f680dc90780ade2571989",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\scripts\\sync-vercel-handler.ts": {
+		"mtime": 1779968960.5636213,
+		"ast_hash": "cc05133dcc56ee29638e555ef0872067",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\index.bun.mjs": {
+		"mtime": 1779968960.5774899,
+		"ast_hash": "aa18a2dae04c77a5dc8174b64b7a6608",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\index.mjs.d.ts": {
+		"mtime": 1779968960.579002,
+		"ast_hash": "f73d7411ff34d3547cd4ae979016fbbf",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\index.node.mjs": {
+		"mtime": 1779968960.5935764,
+		"ast_hash": "bb7b1a585500f432a85a415340c697ae",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\local.ts": {
+		"mtime": 1779968960.5975766,
+		"ast_hash": "b19696e0a6f849475ce0491df3f3c4db",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\route-body.ts": {
+		"mtime": 1779968960.5975766,
+		"ast_hash": "d7f0ec5a149f3dbede9b9a0fa46ef6f1",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\server\\app.ts": {
+		"mtime": 1779968960.6170177,
+		"ast_hash": "c2a81d4c7a73be00692cd3976b2ca698",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\scripts\\ensure-motion-plus.mjs": {
+		"mtime": 1779968960.6230364,
+		"ast_hash": "c2edcad9cc5289f0c6cf1c2d8dfc32d7",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-glass.ts": {
+		"mtime": 1779968960.640595,
+		"ast_hash": "ed3908cbbdd767702deb69b75743e26b",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-intro.tsx": {
+		"mtime": 1779968960.6425943,
+		"ast_hash": "ab342b42ab9fc3e15c7e5d2c4aca19ea",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-mark-pill.tsx": {
+		"mtime": 1779968960.6425943,
+		"ast_hash": "223adf1b2e6e2c2750f4b5af6dee9d23",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-poster.ts": {
+		"mtime": 1779968960.6446757,
+		"ast_hash": "bee279aafebac6859f9002ac960efc5f",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-scroll-reveal.tsx": {
+		"mtime": 1779968960.645674,
+		"ast_hash": "a9d4ed9f90053b9946ccf757cb42a6bc",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-scroll-scenes.tsx": {
+		"mtime": 1779968960.6466763,
+		"ast_hash": "43d658d69bd5728ff1619f8f82e2393c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-section.ts": {
+		"mtime": 1779968960.6466763,
+		"ast_hash": "214f6ab8b91ae575f63479dfcdfda013",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-text-box-reveal.tsx": {
+		"mtime": 1779968960.6476765,
+		"ast_hash": "2625e3a18b3433391559c49fbcb7a07c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-work-stack.tsx": {
+		"mtime": 1779968960.6486747,
+		"ast_hash": "575f11703f5d298bbd7491f4f0ef7c33",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-session-redirect.tsx": {
+		"mtime": 1779968960.6508174,
+		"ast_hash": "b120238fe8982cf2856d4180e3f7f0f8",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-params-context.tsx": {
+		"mtime": 1779968960.6549647,
+		"ast_hash": "c973b17c9173e2dbc3aaf2594e41a7c2",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-patron-lobby-shell.tsx": {
+		"mtime": 1779968960.6549647,
+		"ast_hash": "e014bf2e7d7033d4002f6db2afb4fbc6",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx": {
+		"mtime": 1779968960.6559649,
+		"ast_hash": "f40577dec8b235ba4404dcb2abb02ee1",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-lobby-params-context.tsx": {
+		"mtime": 1779968960.6614802,
+		"ast_hash": "5d8f9b84ab2a466f4f13019b1c8b4e09",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-patron-shell.tsx": {
+		"mtime": 1779968960.66248,
+		"ast_hash": "5b4ac5de94d172c6368f1fd15b76d0bf",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-chrome.tsx": {
+		"mtime": 1779968960.6669927,
+		"ast_hash": "8772e7ed69b30ef46e8c2f1341edb405",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx": {
+		"mtime": 1779968960.6669927,
+		"ast_hash": "6725fa86667cc5466a0b1642e824299a",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\lobby\\lobby-navigation-provider.tsx": {
+		"mtime": 1779968960.6715074,
+		"ast_hash": "5026ef9bad19e9b8f3cd218299b4de95",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-async.tsx": {
+		"mtime": 1779968960.6745067,
+		"ast_hash": "763f0c0649a8acdbffd9f51b9232e908",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-fallback.tsx": {
+		"mtime": 1779968960.6745067,
+		"ast_hash": "df02ecbe52fddc63af6dd7639d2eeb18",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-view-shell.tsx": {
+		"mtime": 1779968960.6775684,
+		"ast_hash": "78975b1a84edfa2e59b5e61799e25027",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-params-context.tsx": {
+		"mtime": 1779968960.6857178,
+		"ast_hash": "76a687f9d9e419f158933a9699e0a00e",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-lobby-shell.tsx": {
+		"mtime": 1779968960.6857178,
+		"ast_hash": "b6fd634afa1ca3bd62b52133ea22cc6d",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-about-panel.tsx": {
+		"mtime": 1779968960.6887167,
+		"ast_hash": "db81a13734e81f9fd03271fc1d0cee2d",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-params-context.tsx": {
+		"mtime": 1779968960.6960206,
+		"ast_hash": "feb1add7320053aaedddad732be3b317",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-patron-lobby-shell.tsx": {
+		"mtime": 1779968960.6960206,
+		"ast_hash": "f28b9986147a78eec4629e4d895e3a39",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts": {
+		"mtime": 1779968960.69702,
+		"ast_hash": "bd7040bc458ffad9082a12239604a284",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-request-origin.ts": {
+		"mtime": 1779968960.699828,
+		"ast_hash": "8097eefcf5d515038f7e0d387899cd4e",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalog-search-dialog-store.test.ts": {
+		"mtime": 1779968960.7008278,
+		"ast_hash": "49791c7119b22e291bd483d363d54298",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts": {
+		"mtime": 1779968960.7038283,
+		"ast_hash": "42b7bff63e373026fa43ddf8b88b0783",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-meta-line.test.ts": {
+		"mtime": 1779968960.7058713,
+		"ast_hash": "474e9d9f239807070591af2434072b37",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-meta-line.ts": {
+		"mtime": 1779968960.7058713,
+		"ast_hash": "54edfc05bbecc2334a5eb8ebca526732",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-view.ts": {
+		"mtime": 1779968960.7083795,
+		"ast_hash": "6bd5efa48ac84b9757fcebd7fd4507d2",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\my-tv-log.ts": {
+		"mtime": 1779968960.7083795,
+		"ast_hash": "a901020937f17488df92ebe5c573ff69",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-lobby-derive.ts": {
+		"mtime": 1779968960.7093873,
+		"ast_hash": "e396bc71f599ed2d4c3f7e9b767630d0",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.test.ts": {
+		"mtime": 1779968960.7103877,
+		"ast_hash": "975633c52a77b12e640b6cfcf0e6ecc6",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.ts": {
+		"mtime": 1779968960.7115138,
+		"ast_hash": "fe67cd442ad36b4fec444f1576361d82",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-origin.ts": {
+		"mtime": 1779968960.713515,
+		"ast_hash": "a3ec52632decd2a61c4a64715fd3ca0a",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.test.ts": {
+		"mtime": 1779968960.7150226,
+		"ast_hash": "b19d0d71601990dbc9b20c8b02b1ad69",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts": {
+		"mtime": 1779968960.7150226,
+		"ast_hash": "f7ff89a39d98fa8bb89c105b59f72544",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-lobby-transition.ts": {
+		"mtime": 1779968960.7160313,
+		"ast_hash": "da9d0ebecb28ec3cd7952c7cefc7061f",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-optimistic-lobby-param.ts": {
+		"mtime": 1779968960.7160313,
+		"ast_hash": "e768fcb7541c50f3c3451704b50f3459",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\0008_list_tv_covers_and_counts.sql": {
+		"mtime": 1779968960.7270558,
+		"ast_hash": "dab47ea7c976e047ec7e99364ca8dce3",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.tmp-lanube.html": {
+		"mtime": 1779968960.5576038,
+		"ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md": {
+		"mtime": 1779968960.4703915,
+		"ast_hash": "120f81eec543f86ea7332cf30ba418c9",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md": {
+		"mtime": 1779968960.4804432,
+		"ast_hash": "67dea7bf320a8ea3ff28ed7023ba099f",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\astro.md": {
+		"mtime": 1779968960.4814415,
+		"ast_hash": "9f5a21e52ac8882f5eeafbebd188e288",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\better-auth.md": {
+		"mtime": 1779968960.4824417,
+		"ast_hash": "1adc2b72a74342fa0df370ea46bf4d6d",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md": {
+		"mtime": 1779968960.4824417,
+		"ast_hash": "0c32975e611598e3bb9b5bcd6b59df50",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md": {
+		"mtime": 1779968960.483441,
+		"ast_hash": "03f177a496ad23d1aef4dccfa270e913",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\drizzle.md": {
+		"mtime": 1779968960.484442,
+		"ast_hash": "115b226ecc71981ece5db2267a243a7d",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\expo.md": {
+		"mtime": 1779968960.4854405,
+		"ast_hash": "9f596aff03794874b705dd1ac02e38e3",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md": {
+		"mtime": 1779968960.4854405,
+		"ast_hash": "38526b0fcfcb4aa024f4e651a3a017d0",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nodejs.md": {
+		"mtime": 1779968960.4864411,
+		"ast_hash": "a6ddbe4b7148ccf07b0207922b5d7307",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nuxt.md": {
+		"mtime": 1779968960.4874415,
+		"ast_hash": "cb3e2372704228f56407f452b6e24d29",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\prisma.md": {
+		"mtime": 1779968960.4874415,
+		"ast_hash": "0896ac37cbc67f2033772e0e479be1c4",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\react-email.md": {
+		"mtime": 1779968960.4884417,
+		"ast_hash": "56994bf45cd41fe2028447bab1a0185b",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\sveltekit.md": {
+		"mtime": 1779968960.4895644,
+		"ast_hash": "c93560f78b3fe5819d206eb6d4b8d509",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\tanstack-start.md": {
+		"mtime": 1779968960.4895644,
+		"ast_hash": "508cb1fbf59e7a1655b2310056ffaec3",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\vercel.md": {
+		"mtime": 1779968960.4905722,
+		"ast_hash": "b1dcdc7af3fc7ce5fdb55bdb43d9ec2f",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\patterns\\mvc.md": {
+		"mtime": 1779968960.4915705,
+		"ast_hash": "20bb0a65f64eeac2a908e4700bcd6626",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\bearer.md": {
+		"mtime": 1779968960.4928625,
+		"ast_hash": "bc71a3bc2123fe61244faa4801b7c598",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cors.md": {
+		"mtime": 1779968960.4939437,
+		"ast_hash": "459c420533e7f774fdc883c1b4256c28",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\cron.md": {
+		"mtime": 1779968960.4944673,
+		"ast_hash": "2916e5ddf906b73ccb20b648b54a3cbe",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-apollo.md": {
+		"mtime": 1779968960.4949987,
+		"ast_hash": "7954a1e58c8153f99fcbb585389be8c6",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\graphql-yoga.md": {
+		"mtime": 1779968960.495528,
+		"ast_hash": "d4fc833314c8ea033e13a30af2ad5dc2",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\html.md": {
+		"mtime": 1779968960.4960518,
+		"ast_hash": "57b83935c95b206a48a913e0f04c5094",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\jwt.md": {
+		"mtime": 1779968960.4971046,
+		"ast_hash": "750fc50aa8c5d8ea8d36aff54aea83a7",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md": {
+		"mtime": 1779968960.4976296,
+		"ast_hash": "0d41d91571a233219257fa7c2ca63a9c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md": {
+		"mtime": 1779968960.4981482,
+		"ast_hash": "e2f305c12c2644ebbad7b438d92b2381",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\server-timing.md": {
+		"mtime": 1779968960.4991953,
+		"ast_hash": "ce4cd9757ad1f72eddf2cdfd6a1a31fd",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md": {
+		"mtime": 1779968960.4997175,
+		"ast_hash": "cb0827323d381a02f58b4156a27a2aad",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\bun-fullstack-dev-server.md": {
+		"mtime": 1779968960.5007622,
+		"ast_hash": "34558c3ef9d5408cd69d0d3b40a7b180",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\cookie.md": {
+		"mtime": 1779968960.5018106,
+		"ast_hash": "b789650b4b5967a10c18ac821b642371",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md": {
+		"mtime": 1779968960.5023296,
+		"ast_hash": "e81df4de870116e5b22f9e68fe160f03",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\eden.md": {
+		"mtime": 1779968960.5028565,
+		"ast_hash": "c3bd2c592793d0d961e6efadca98564c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\lifecycle.md": {
+		"mtime": 1779968960.503377,
+		"ast_hash": "7d3d6f0fc6b90fa8cba670c330838a81",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\macro.md": {
+		"mtime": 1779968960.5044289,
+		"ast_hash": "578f998cf76f4f2e837105511012c467",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\plugin.md": {
+		"mtime": 1779968960.5054705,
+		"ast_hash": "0f0d293bce2808df2874e3b6e380339a",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\route.md": {
+		"mtime": 1779968960.5059924,
+		"ast_hash": "e3c1e427bbe9351e0ae7a944f6adbaa0",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\testing.md": {
+		"mtime": 1779968960.506518,
+		"ast_hash": "4e9fecd3995b845276606b5fdc63f64c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\validation.md": {
+		"mtime": 1779968960.507627,
+		"ast_hash": "8d56f78b97922efd19068b0bebebd68f",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\websocket.md": {
+		"mtime": 1779968960.508671,
+		"ast_hash": "c5d8d7404efc151d5ea3b64bce1efce9",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\async-patterns.md": {
+		"mtime": 1779968960.5107641,
+		"ast_hash": "da275dc1bf45016859dce88f3d2d8dc0",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\bundling.md": {
+		"mtime": 1779968960.511292,
+		"ast_hash": "9d92d3847154eb02832ef4f1a9cf6875",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md": {
+		"mtime": 1779968960.5118144,
+		"ast_hash": "9acd69fe07f045a4e548a991303dae42",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\debug-tricks.md": {
+		"mtime": 1779968960.5128677,
+		"ast_hash": "131b456e9c8960196e24c8830ca0a974",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\directives.md": {
+		"mtime": 1779968960.5139165,
+		"ast_hash": "9a1d892b334619b47fc9c5ee016faa49",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\error-handling.md": {
+		"mtime": 1779968960.5149722,
+		"ast_hash": "93d584dfccb424fa32c9f1bbcf555495",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md": {
+		"mtime": 1779968960.5160255,
+		"ast_hash": "eccbe9ca349f54314e257c6a7669db3e",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\font.md": {
+		"mtime": 1779968960.5165584,
+		"ast_hash": "4583a65e650c04400a7edb49e619ead4",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\functions.md": {
+		"mtime": 1779968960.5176268,
+		"ast_hash": "4affe3cf0e514fc55d3ff0f8ab4c706f",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\hydration-error.md": {
+		"mtime": 1779968960.5176268,
+		"ast_hash": "eda09b3451f0e64c79ba7e8ee9d6bee0",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md": {
+		"mtime": 1779968960.5186355,
+		"ast_hash": "0d39121853deada296be6f7fe4f24ee9",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\metadata.md": {
+		"mtime": 1779968960.519142,
+		"ast_hash": "714fe12f93a82ff2cb77f7ba6836faf8",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\parallel-routes.md": {
+		"mtime": 1779968960.5201485,
+		"ast_hash": "8a08093fe4a44595e525bc59ed8bf5b4",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\route-handlers.md": {
+		"mtime": 1779968960.521155,
+		"ast_hash": "6ee71e919724795f26ec5e335a9b1149",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\rsc-boundaries.md": {
+		"mtime": 1779968960.521155,
+		"ast_hash": "3c7923c482ee64be64b4f207f3c4ee86",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\runtime-selection.md": {
+		"mtime": 1779968960.5221572,
+		"ast_hash": "bee0e3a04ed41b04555ead9d8a536f7f",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\scripts.md": {
+		"mtime": 1779968960.5231564,
+		"ast_hash": "75d00bf0aaab9fc52c8afc1b1dc1b1b3",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\self-hosting.md": {
+		"mtime": 1779968960.523662,
+		"ast_hash": "4488caae423f1d8b134a2dcd0b20ea13",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\SKILL.md": {
+		"mtime": 1779968960.5097115,
+		"ast_hash": "854e84d4a821b5ac0d18993d72ceaed3",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md": {
+		"mtime": 1779968960.5246713,
+		"ast_hash": "a8aba5f9bb798c96117d60287a860493",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-cache-components\\SKILL.md": {
+		"mtime": 1779968960.5256689,
+		"ast_hash": "4e77f3ecfc2ae50cd7c485828818ea41",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\accessibility-contrast.md": {
+		"mtime": 1779968960.5276704,
+		"ast_hash": "35fb136fc36a8f6afc650ae03e194b74",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md": {
+		"mtime": 1779968960.5286694,
+		"ast_hash": "03c8e0c7992f0643aa0715af96ce04cc",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md": {
+		"mtime": 1779968960.5286694,
+		"ast_hash": "28671a08eab43dd0530b49ae5e4ae790",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\palette-generation.md": {
+		"mtime": 1779968960.529951,
+		"ast_hash": "07d8790c5e7b1e6e670db094ce617d87",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\SKILL.md": {
+		"mtime": 1779968960.5276704,
+		"ast_hash": "5663f0fa8cf07ee28ae76873dcad682d",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\SKILL.md": {
+		"mtime": 1779968960.5339499,
+		"ast_hash": "d328c3f3a235cf24725c0121b4793a56",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\brutalism\\skill.md": {
+		"mtime": 1779968960.5349503,
+		"ast_hash": "ad8218a5ceb202199c81312eaf49710c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\cinematic-product\\skill.md": {
+		"mtime": 1779968960.5359502,
+		"ast_hash": "9856beb52c349f8b21664181a5850275",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\21st-community.md": {
+		"mtime": 1779968960.5369499,
+		"ast_hash": "0178f8ed93bed92b2b32fe0cbcb0ff1a",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\aceternity-ui.md": {
+		"mtime": 1779968960.539036,
+		"ast_hash": "40ee5e1646c5f8fe4e99d4e1325d5523",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\gsap-explore.md": {
+		"mtime": 1779968960.539036,
+		"ast_hash": "47bc4f955d31751db14cf12dc176124f",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\reactbits.md": {
+		"mtime": 1779968960.5400422,
+		"ast_hash": "3222aba529bafaa4285d7525588fd0b2",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md": {
+		"mtime": 1779968960.5384555,
+		"ast_hash": "ba7893efe2c7606872c4e77dc97d4537",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\style-recipes.md": {
+		"mtime": 1779968960.5410426,
+		"ast_hash": "25ea5904e20315fb1179005726b04d7c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\dark-luxe\\skill.md": {
+		"mtime": 1779968960.5420444,
+		"ast_hash": "dbc957f520441ae6fef1d0d19e924080",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\dashboards\\skill.md": {
+		"mtime": 1779968960.543042,
+		"ast_hash": "3573418ec2402b35ac8951751a0f7224",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\editorial-premium\\skill.md": {
+		"mtime": 1779968960.5440426,
+		"ast_hash": "532565c813c4d03474441668f6995694",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\gallery-minimal\\skill.md": {
+		"mtime": 1779968960.546045,
+		"ast_hash": "d08127f598e1fc1d584376e8847e4856",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\minimalism\\skill.md": {
+		"mtime": 1779968960.5470467,
+		"ast_hash": "8cd0742a13d7d691b980dec88c5c23fb",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md": {
+		"mtime": 1779968960.548554,
+		"ast_hash": "1466611b95b065005bbecc409045faaf",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\premium-bento\\skill.md": {
+		"mtime": 1779968960.5495627,
+		"ast_hash": "82cd4c87dc157ae9c6455125a87a7f4b",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\quiet-luxury\\skill.md": {
+		"mtime": 1779968960.5516038,
+		"ast_hash": "5f9cea0a0ab3e6d38a03b2ef746ce9e0",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\soft\\skill.md": {
+		"mtime": 1779968960.5546072,
+		"ast_hash": "2ef7e63a2d004745c4e41ceb4e7c538c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\soft-brutalism\\skill.md": {
+		"mtime": 1779968960.552605,
+		"ast_hash": "8a51f2df647855e9497449875cfb0e31",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\swiss-system\\skill.md": {
+		"mtime": 1779968960.5556028,
+		"ast_hash": "2f1a426fcd0f3aecf14ecf060d8fefed",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\warm-modern\\skill.md": {
+		"mtime": 1779968960.5566041,
+		"ast_hash": "706a530ddf5935555ccc76eea312d645",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-instant-lobby-navigation.md": {
+		"mtime": 1779968960.7215462,
+		"ast_hash": "591dbab747e63b65b13906360c634955",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md": {
+		"mtime": 1779968960.7215462,
+		"ast_hash": "4d0ff63f90073a9fa1fabb2cd2174878",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-22-home-sticky-search-responsive-design.md": {
+		"mtime": 1779968960.7225466,
+		"ast_hash": "e14cb35a20ae741b82094d8967309b6c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-instant-lobby-navigation-design.md": {
+		"mtime": 1779968960.7235465,
+		"ast_hash": "20c91558f6ad931e88672d0cc4f2968e",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md": {
+		"mtime": 1779968960.724545,
+		"ast_hash": "ff0ae4be303b1fe9dc40e1759aaf688c",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-on-lists-design.md": {
+		"mtime": 1779968960.724545,
+		"ast_hash": "c74d28abfa5e2e50d6bb555ac1348f15",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\lists.test.ts": {
+		"mtime": 1779972096.3321636,
+		"ast_hash": "53aa025c4fc985561df242bbdd44a174",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-28-ranked-list-drag-reorder.md": {
+		"mtime": 1779971797.31223,
+		"ast_hash": "561695e7b82bab0d3ccf9c1f7db3b2ae",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-28-ranked-list-drag-reorder-design.md": {
+		"mtime": 1779971641.0468626,
+		"ast_hash": "5dcd1362efc885ad5953643d3f9dc863",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\ranked-list-reorder-grid.test.tsx": {
+		"mtime": 1779975233.1689827,
+		"ast_hash": "39662b6df5f6acf832cb508a89befc24",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\ranked-list-reorder-grid.tsx": {
+		"mtime": 1779977575.6296208,
+		"ast_hash": "7d6bd22b762a51f8a1d9d291b92dda2e",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\[id]\\page.test.ts": {
+		"mtime": 1779972763.4115891,
+		"ast_hash": "b5ea8945f2b2f8d0ce3a30a218993649",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-owner-controls.tsx": {
+		"mtime": 1779978181.1493535,
+		"ast_hash": "c8995b2338c4ad055550c57bbe170476",
+		"semantic_hash": ""
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-page-branching.ts": {
+		"mtime": 1779972755.801845,
+		"ast_hash": "7c904bc1e2403caca88817cc981793fd",
 		"semantic_hash": ""
 	}
 }

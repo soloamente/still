@@ -1,0 +1,47 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_skills_components_reactbits_md",
+			"label": "reactbits.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\reactbits.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_reactbits_react_bits_components",
+			"label": "React Bits Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\reactbits.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_reactbits_curated_source_index",
+			"label": "Curated source index",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\reactbits.md",
+			"source_location": "L7"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_skills_components_reactbits_md",
+			"target": "components_reactbits_react_bits_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\reactbits.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "components_reactbits_react_bits_components",
+			"target": "components_reactbits_curated_source_index",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\reactbits.md",
+			"source_location": "L7",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

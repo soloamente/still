@@ -1,0 +1,66 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_quick_log_copy_ts",
+			"label": "quick-log-copy.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_quick_log_copy_quicklogsheetheading",
+			"label": "quickLogSheetHeading()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_quick_log_copy_quicklogsubmitlabel",
+			"label": "quickLogSubmitLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.ts",
+			"source_location": "L25"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quick_log_copy_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quick_log_copy_ts",
+			"target": "lib_tv_watch_types_tvlogscope",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quick_log_copy_ts",
+			"target": "lib_quick_log_copy_quicklogsheetheading",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quick_log_copy_ts",
+			"target": "lib_quick_log_copy_quicklogsubmitlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

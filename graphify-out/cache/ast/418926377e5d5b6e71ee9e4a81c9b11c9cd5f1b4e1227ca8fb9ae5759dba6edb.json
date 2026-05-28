@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"label": "tv-log-scope-prior.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_tvlogscopetarget",
+			"label": "TvLogScopeTarget",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_normalizelogscope",
+			"label": "normalizeLogScope()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_tvlogmatchesscope",
+			"label": "tvLogMatchesScope()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_counttvlogsinscope",
+			"label": "countTvLogsInScope()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L34"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_findlatesttvloginscope",
+			"label": "findLatestTvLogInScope()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_tv_log_scope_prior_formattvseasondiarycount",
+			"label": "formatTvSeasonDiaryCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L49"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_my_tv_log_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "lib_my_tv_log_mytvlog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "lib_tv_watch_types_tvlogscope",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "lib_tv_log_scope_prior_tvlogscopetarget",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "lib_tv_log_scope_prior_normalizelogscope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "lib_tv_log_scope_prior_tvlogmatchesscope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "lib_tv_log_scope_prior_counttvlogsinscope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "lib_tv_log_scope_prior_findlatesttvloginscope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_prior_ts",
+			"target": "lib_tv_log_scope_prior_formattvseasondiarycount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_log_scope_prior_tvlogmatchesscope",
+			"target": "lib_tv_log_scope_prior_normalizelogscope",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tv_log_scope_prior_counttvlogsinscope",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_tv_log_scope_prior_findlatesttvloginscope",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-log-scope-prior.ts",
+			"source_location": "L46"
+		}
+	]
+}

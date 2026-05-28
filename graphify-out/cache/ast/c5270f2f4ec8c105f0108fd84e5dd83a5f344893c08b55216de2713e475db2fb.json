@@ -1,0 +1,287 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_cloudflare_worker_md",
+			"label": "cloudflare-worker.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"label": "Cloudflare Worker Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_cloudflare_worker_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "integrations_cloudflare_worker_setup",
+			"label": "Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_1",
+			"label": "code:bash (wrangler init elysia-on-cloudflare)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_2",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_3",
+			"label": "code:json (// wrangler.json)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_4",
+			"label": "code:bash (wrangler dev)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "integrations_cloudflare_worker_limitations",
+			"label": "Limitations",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_5",
+			"label": "code:typescript (// \u274c Throws error)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "integrations_cloudflare_worker_static_files",
+			"label": "Static Files",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_6",
+			"label": "code:json (// wrangler.json)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_7",
+			"label": "code:block7 (\u251c\u2500 public)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "integrations_cloudflare_worker_binding",
+			"label": "Binding",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_8",
+			"label": "code:typescript (import { env } from \"cloudflare:workers\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L91"
+		},
+		{
+			"id": "integrations_cloudflare_worker_aot_compilation",
+			"label": "AoT Compilation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "integrations_cloudflare_worker_pnpm",
+			"label": "pnpm",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "integrations_cloudflare_worker_codeblock_9",
+			"label": "code:bash (pnpm add @sinclair/typebox openapi-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L109"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_cloudflare_worker_md",
+			"target": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"target": "integrations_cloudflare_worker_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"target": "integrations_cloudflare_worker_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_setup",
+			"target": "integrations_cloudflare_worker_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_setup",
+			"target": "integrations_cloudflare_worker_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_setup",
+			"target": "integrations_cloudflare_worker_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_setup",
+			"target": "integrations_cloudflare_worker_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"target": "integrations_cloudflare_worker_limitations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_limitations",
+			"target": "integrations_cloudflare_worker_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"target": "integrations_cloudflare_worker_static_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_static_files",
+			"target": "integrations_cloudflare_worker_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_static_files",
+			"target": "integrations_cloudflare_worker_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"target": "integrations_cloudflare_worker_binding",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_binding",
+			"target": "integrations_cloudflare_worker_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"target": "integrations_cloudflare_worker_aot_compilation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_cloudflare_worker_integration",
+			"target": "integrations_cloudflare_worker_pnpm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_cloudflare_worker_pnpm",
+			"target": "integrations_cloudflare_worker_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\cloudflare-worker.md",
+			"source_location": "L109",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

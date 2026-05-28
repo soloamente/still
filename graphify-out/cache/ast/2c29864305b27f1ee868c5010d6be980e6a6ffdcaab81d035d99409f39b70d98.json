@@ -1,0 +1,79 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_skills_components_readme_md",
+			"label": "README.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_readme_components_library",
+			"label": "Components Library",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "components_readme_files",
+			"label": "Files",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "components_readme_how_to_use_this_library",
+			"label": "How to use this library",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "components_readme_fast_source_mapping",
+			"label": "Fast source mapping",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L21"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_skills_components_readme_md",
+			"target": "components_readme_components_library",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "components_readme_components_library",
+			"target": "components_readme_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "components_readme_components_library",
+			"target": "components_readme_how_to_use_this_library",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "components_readme_components_library",
+			"target": "components_readme_fast_source_mapping",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\components\\README.md",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

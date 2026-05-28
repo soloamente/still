@@ -1,0 +1,463 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_opentelemetry_md",
+			"label": "opentelemetry.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"label": "OpenTelemetry Plugin - SKILLS.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_opentelemetry_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_1",
+			"label": "code:bash (bun add @elysiajs/opentelemetry)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "plugins_opentelemetry_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_2",
+			"label": "code:typescript (import { opentelemetry } from \"@elysiajs/opentelemetry\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plugins_opentelemetry_config",
+			"label": "Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "plugins_opentelemetry_resource_detectors_via_env",
+			"label": "Resource Detectors via Env",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_3",
+			"label": "code:bash (export OTEL_NODE_RESOURCE_DETECTORS=\"env,host\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "plugins_opentelemetry_export_to_backends",
+			"label": "Export to Backends",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_4",
+			"label": "code:typescript (.use(opentelemetry({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "plugins_opentelemetry_opentelemetry_sdk",
+			"label": "OpenTelemetry SDK",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L70"
+		},
+		{
+			"id": "plugins_opentelemetry_record_utility",
+			"label": "Record Utility",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_5",
+			"label": "code:typescript (import { record } from '@elysiajs/opentelemetry')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "plugins_opentelemetry_function_naming",
+			"label": "Function Naming",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_6",
+			"label": "code:typescript (// \u26a0\ufe0f Anonymous span)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "plugins_opentelemetry_getcurrentspan",
+			"label": "getCurrentSpan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_7",
+			"label": "code:typescript (import { getCurrentSpan } from \"@elysiajs/opentelemetry\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L110"
+		},
+		{
+			"id": "plugins_opentelemetry_setattributes",
+			"label": "setAttributes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_8",
+			"label": "code:typescript (import { setAttributes } from \"@elysiajs/opentelemetry\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "plugins_opentelemetry_instrumentations_advanced",
+			"label": "Instrumentations (Advanced)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "plugins_opentelemetry_setup",
+			"label": "Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L135"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_9",
+			"label": "code:typescript (// src/instrumentation.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_10",
+			"label": "code:typescript (// src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_11",
+			"label": "code:toml (# bunfig.toml)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "plugins_opentelemetry_production_deployment_advanced",
+			"label": "Production Deployment (Advanced)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_12",
+			"label": "code:bash (bun build --compile --external pg --outfile server src/index)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L168"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_13",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "plugins_opentelemetry_codeblock_14",
+			"label": "code:bash (bun install --production)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L186"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_opentelemetry_md",
+			"target": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_installation",
+			"target": "plugins_opentelemetry_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_basic_usage",
+			"target": "plugins_opentelemetry_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_config",
+			"target": "plugins_opentelemetry_resource_detectors_via_env",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_resource_detectors_via_env",
+			"target": "plugins_opentelemetry_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_export_to_backends",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_export_to_backends",
+			"target": "plugins_opentelemetry_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_opentelemetry_sdk",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_record_utility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_record_utility",
+			"target": "plugins_opentelemetry_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_function_naming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_function_naming",
+			"target": "plugins_opentelemetry_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_getcurrentspan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_getcurrentspan",
+			"target": "plugins_opentelemetry_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L110",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_setattributes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_setattributes",
+			"target": "plugins_opentelemetry_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_opentelemetry_plugin_skills_md",
+			"target": "plugins_opentelemetry_instrumentations_advanced",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_instrumentations_advanced",
+			"target": "plugins_opentelemetry_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L135",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_setup",
+			"target": "plugins_opentelemetry_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_setup",
+			"target": "plugins_opentelemetry_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_setup",
+			"target": "plugins_opentelemetry_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_instrumentations_advanced",
+			"target": "plugins_opentelemetry_production_deployment_advanced",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_production_deployment_advanced",
+			"target": "plugins_opentelemetry_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_production_deployment_advanced",
+			"target": "plugins_opentelemetry_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_opentelemetry_production_deployment_advanced",
+			"target": "plugins_opentelemetry_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\opentelemetry.md",
+			"source_location": "L186",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

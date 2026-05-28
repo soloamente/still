@@ -1,0 +1,159 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_deno_md",
+			"label": "deno.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_deno_deno_integration",
+			"label": "Deno Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_deno_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "integrations_deno_setup",
+			"label": "Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "integrations_deno_codeblock_1",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "integrations_deno_codeblock_2",
+			"label": "code:bash (deno serve --watch src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "integrations_deno_port_config",
+			"label": "Port Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "integrations_deno_codeblock_3",
+			"label": "code:typescript (Deno.serve(app.fetch); // Default)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "integrations_deno_pnpm",
+			"label": "pnpm",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "integrations_deno_codeblock_4",
+			"label": "code:bash (pnpm add @sinclair/typebox openapi-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L38"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_deno_md",
+			"target": "integrations_deno_deno_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_deno_deno_integration",
+			"target": "integrations_deno_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_deno_deno_integration",
+			"target": "integrations_deno_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_deno_setup",
+			"target": "integrations_deno_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_deno_setup",
+			"target": "integrations_deno_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_deno_deno_integration",
+			"target": "integrations_deno_port_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_deno_port_config",
+			"target": "integrations_deno_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_deno_deno_integration",
+			"target": "integrations_deno_pnpm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_deno_pnpm",
+			"target": "integrations_deno_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\deno.md",
+			"source_location": "L38",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

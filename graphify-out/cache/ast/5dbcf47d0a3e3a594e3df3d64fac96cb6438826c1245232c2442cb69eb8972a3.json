@@ -1,0 +1,1039 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_skills_monochrome_modern_skill_md",
+			"label": "skill.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"label": "High-Agency Monochrome Modern Frontend Skill",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "monochrome_modern_skill_1_active_baseline_configuration",
+			"label": "1. ACTIVE BASELINE CONFIGURATION",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L10"
+		},
+		{
+			"id": "monochrome_modern_skill_2_default_architecture_conventions",
+			"label": "2. DEFAULT ARCHITECTURE & CONVENTIONS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "monochrome_modern_skill_3_design_engineering_directives_bias_correction",
+			"label": "3. DESIGN ENGINEERING DIRECTIVES (Bias Correction)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "monochrome_modern_skill_typography",
+			"label": "Typography",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "monochrome_modern_skill_color_and_brand",
+			"label": "Color and Brand",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "monochrome_modern_skill_layout_and_hierarchy",
+			"label": "Layout and Hierarchy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "monochrome_modern_skill_materiality_cards_and_components",
+			"label": "Materiality, Cards, and Components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "monochrome_modern_skill_states_forms_and_copy_behavior",
+			"label": "States, Forms, and Copy Behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "monochrome_modern_skill_4_creative_proactivity_motion_and_performance",
+			"label": "4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L84"
+		},
+		{
+			"id": "monochrome_modern_skill_creative_proactivity",
+			"label": "Creative Proactivity",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "monochrome_modern_skill_motion_and_interaction",
+			"label": "Motion and Interaction",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "monochrome_modern_skill_performance_guardrails",
+			"label": "Performance Guardrails",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "monochrome_modern_skill_5_technical_reference_dial_definitions",
+			"label": "5. TECHNICAL REFERENCE (Dial Definitions)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "monochrome_modern_skill_design_variance_level_1_10",
+			"label": "DESIGN_VARIANCE (Level 1-10)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "monochrome_modern_skill_motion_intensity_level_1_10",
+			"label": "MOTION_INTENSITY (Level 1-10)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L128"
+		},
+		{
+			"id": "monochrome_modern_skill_visual_density_level_1_10",
+			"label": "VISUAL_DENSITY (Level 1-10)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "monochrome_modern_skill_6_ai_tells_forbidden_patterns",
+			"label": "6. AI TELLS (Forbidden Patterns)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "monochrome_modern_skill_visual_and_surface_tells",
+			"label": "Visual and Surface Tells",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L142"
+		},
+		{
+			"id": "monochrome_modern_skill_layout_tells",
+			"label": "Layout Tells",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L150"
+		},
+		{
+			"id": "monochrome_modern_skill_content_and_copy_tells",
+			"label": "Content and Copy Tells",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L158"
+		},
+		{
+			"id": "monochrome_modern_skill_component_and_code_tells",
+			"label": "Component and Code Tells",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L166"
+		},
+		{
+			"id": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"label": "7. STYLE DIRECTION: Monochrome Modern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "monochrome_modern_skill_core_identity",
+			"label": "Core Identity",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L178"
+		},
+		{
+			"id": "monochrome_modern_skill_palette_and_material",
+			"label": "Palette and Material",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "monochrome_modern_skill_typography_character",
+			"label": "Typography Character",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L188"
+		},
+		{
+			"id": "monochrome_modern_skill_hero_direction",
+			"label": "Hero Direction",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L193"
+		},
+		{
+			"id": "monochrome_modern_skill_navigation_direction",
+			"label": "Navigation Direction",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "monochrome_modern_skill_layout_tendencies",
+			"label": "Layout Tendencies",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L203"
+		},
+		{
+			"id": "monochrome_modern_skill_component_vocabulary",
+			"label": "Component Vocabulary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L208"
+		},
+		{
+			"id": "monochrome_modern_skill_media_and_imagery",
+			"label": "Media and Imagery",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L212"
+		},
+		{
+			"id": "monochrome_modern_skill_motion_profile",
+			"label": "Motion Profile",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L217"
+		},
+		{
+			"id": "monochrome_modern_skill_creative_arsenal_for_this_style",
+			"label": "Creative Arsenal For This Style",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L222"
+		},
+		{
+			"id": "monochrome_modern_skill_style_specific_avoidances",
+			"label": "Style-Specific Avoidances",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "monochrome_modern_skill_copy_tone",
+			"label": "Copy Tone",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L235"
+		},
+		{
+			"id": "monochrome_modern_skill_current_production_priorities",
+			"label": "Current Production Priorities",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L241"
+		},
+		{
+			"id": "monochrome_modern_skill_components_library",
+			"label": "Components Library",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L247"
+		},
+		{
+			"id": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"label": "8. FULL TASTE CORE OVERLAY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L257"
+		},
+		{
+			"id": "monochrome_modern_skill_8_1_core_priority",
+			"label": "8.1 CORE PRIORITY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L259"
+		},
+		{
+			"id": "monochrome_modern_skill_8_2_active_baseline_interpretation",
+			"label": "8.2 ACTIVE BASELINE INTERPRETATION",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L273"
+		},
+		{
+			"id": "monochrome_modern_skill_8_3_default_architecture_conventions",
+			"label": "8.3 DEFAULT ARCHITECTURE & CONVENTIONS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L285"
+		},
+		{
+			"id": "monochrome_modern_skill_8_4_design_engineering_directives",
+			"label": "8.4 DESIGN ENGINEERING DIRECTIVES",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L312"
+		},
+		{
+			"id": "monochrome_modern_skill_8_5_creative_proactivity",
+			"label": "8.5 CREATIVE PROACTIVITY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L338"
+		},
+		{
+			"id": "monochrome_modern_skill_8_6_performance_guardrails",
+			"label": "8.6 PERFORMANCE GUARDRAILS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L359"
+		},
+		{
+			"id": "monochrome_modern_skill_8_7_technical_reference_design_variance",
+			"label": "8.7 TECHNICAL REFERENCE: DESIGN_VARIANCE",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L373"
+		},
+		{
+			"id": "monochrome_modern_skill_8_8_technical_reference_motion_intensity",
+			"label": "8.8 TECHNICAL REFERENCE: MOTION_INTENSITY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L385"
+		},
+		{
+			"id": "monochrome_modern_skill_8_9_technical_reference_visual_density",
+			"label": "8.9 TECHNICAL REFERENCE: VISUAL_DENSITY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L399"
+		},
+		{
+			"id": "monochrome_modern_skill_8_10_ai_tells_forbidden_patterns",
+			"label": "8.10 AI TELLS (FORBIDDEN PATTERNS)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L413"
+		},
+		{
+			"id": "monochrome_modern_skill_8_11_creative_arsenal",
+			"label": "8.11 CREATIVE ARSENAL",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L440"
+		},
+		{
+			"id": "monochrome_modern_skill_8_12_motion_engine_bento_paradigm",
+			"label": "8.12 MOTION-ENGINE BENTO PARADIGM",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L467"
+		},
+		{
+			"id": "monochrome_modern_skill_8_13_hero_and_page_checksum_rules",
+			"label": "8.13 HERO AND PAGE CHECKSUM RULES",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L480"
+		},
+		{
+			"id": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"label": "9. PAGE AND COMPONENT CONSTRUCTION MATRIX",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L494"
+		},
+		{
+			"id": "monochrome_modern_skill_9_1_hero_systems",
+			"label": "9.1 HERO SYSTEMS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L496"
+		},
+		{
+			"id": "monochrome_modern_skill_9_2_navigation_systems",
+			"label": "9.2 NAVIGATION SYSTEMS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L514"
+		},
+		{
+			"id": "monochrome_modern_skill_9_3_section_pacing",
+			"label": "9.3 SECTION PACING",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L528"
+		},
+		{
+			"id": "monochrome_modern_skill_9_4_card_and_surface_systems",
+			"label": "9.4 CARD AND SURFACE SYSTEMS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L542"
+		},
+		{
+			"id": "monochrome_modern_skill_9_5_imagery_and_media",
+			"label": "9.5 IMAGERY AND MEDIA",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L556"
+		},
+		{
+			"id": "monochrome_modern_skill_9_6_typography_and_copy_blocks",
+			"label": "9.6 TYPOGRAPHY AND COPY BLOCKS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L570"
+		},
+		{
+			"id": "monochrome_modern_skill_9_7_component_library",
+			"label": "9.7 COMPONENT LIBRARY",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L584"
+		},
+		{
+			"id": "monochrome_modern_skill_9_8_rare_ui_moves",
+			"label": "9.8 RARE UI MOVES",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L614"
+		},
+		{
+			"id": "monochrome_modern_skill_9_9_output_algorithm",
+			"label": "9.9 OUTPUT ALGORITHM",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L636"
+		},
+		{
+			"id": "monochrome_modern_skill_10_failure_modes_and_recovery_loop",
+			"label": "10. FAILURE MODES AND RECOVERY LOOP",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L650"
+		},
+		{
+			"id": "monochrome_modern_skill_10_1_quick_decision_shortcuts",
+			"label": "10.1 QUICK DECISION SHORTCUTS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L670"
+		},
+		{
+			"id": "monochrome_modern_skill_11_final_pre_flight_check",
+			"label": "11. FINAL PRE-FLIGHT CHECK",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L686"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_skills_monochrome_modern_skill_md",
+			"target": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_1_active_baseline_configuration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_2_default_architecture_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_3_design_engineering_directives_bias_correction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_3_design_engineering_directives_bias_correction",
+			"target": "monochrome_modern_skill_typography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_3_design_engineering_directives_bias_correction",
+			"target": "monochrome_modern_skill_color_and_brand",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_3_design_engineering_directives_bias_correction",
+			"target": "monochrome_modern_skill_layout_and_hierarchy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_3_design_engineering_directives_bias_correction",
+			"target": "monochrome_modern_skill_materiality_cards_and_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_3_design_engineering_directives_bias_correction",
+			"target": "monochrome_modern_skill_states_forms_and_copy_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_4_creative_proactivity_motion_and_performance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_4_creative_proactivity_motion_and_performance",
+			"target": "monochrome_modern_skill_creative_proactivity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_4_creative_proactivity_motion_and_performance",
+			"target": "monochrome_modern_skill_motion_and_interaction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_4_creative_proactivity_motion_and_performance",
+			"target": "monochrome_modern_skill_performance_guardrails",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_5_technical_reference_dial_definitions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_5_technical_reference_dial_definitions",
+			"target": "monochrome_modern_skill_design_variance_level_1_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_5_technical_reference_dial_definitions",
+			"target": "monochrome_modern_skill_motion_intensity_level_1_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_5_technical_reference_dial_definitions",
+			"target": "monochrome_modern_skill_visual_density_level_1_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_6_ai_tells_forbidden_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_6_ai_tells_forbidden_patterns",
+			"target": "monochrome_modern_skill_visual_and_surface_tells",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L142",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_6_ai_tells_forbidden_patterns",
+			"target": "monochrome_modern_skill_layout_tells",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L150",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_6_ai_tells_forbidden_patterns",
+			"target": "monochrome_modern_skill_content_and_copy_tells",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_6_ai_tells_forbidden_patterns",
+			"target": "monochrome_modern_skill_component_and_code_tells",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_core_identity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L178",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_palette_and_material",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_typography_character",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L188",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_hero_direction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L193",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_navigation_direction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_layout_tendencies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L203",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_component_vocabulary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L208",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_media_and_imagery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L212",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_motion_profile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_creative_arsenal_for_this_style",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L222",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_style_specific_avoidances",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_copy_tone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_current_production_priorities",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_7_style_direction_monochrome_modern",
+			"target": "monochrome_modern_skill_components_library",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L257",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_1_core_priority",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_2_active_baseline_interpretation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L273",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_3_default_architecture_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L285",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_4_design_engineering_directives",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L312",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_5_creative_proactivity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L338",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_6_performance_guardrails",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L359",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_7_technical_reference_design_variance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L373",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_8_technical_reference_motion_intensity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L385",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_9_technical_reference_visual_density",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L399",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_10_ai_tells_forbidden_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L413",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_11_creative_arsenal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L440",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_12_motion_engine_bento_paradigm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L467",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_8_full_taste_core_overlay",
+			"target": "monochrome_modern_skill_8_13_hero_and_page_checksum_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L480",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L494",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_1_hero_systems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L496",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_2_navigation_systems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L514",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_3_section_pacing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L528",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_4_card_and_surface_systems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L542",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_5_imagery_and_media",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L556",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_6_typography_and_copy_blocks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L570",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_7_component_library",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L584",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_8_rare_ui_moves",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L614",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_9_page_and_component_construction_matrix",
+			"target": "monochrome_modern_skill_9_9_output_algorithm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L636",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_10_failure_modes_and_recovery_loop",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L650",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_10_failure_modes_and_recovery_loop",
+			"target": "monochrome_modern_skill_10_1_quick_decision_shortcuts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L670",
+			"weight": 1.0
+		},
+		{
+			"source": "monochrome_modern_skill_high_agency_monochrome_modern_frontend_skill",
+			"target": "monochrome_modern_skill_11_final_pre_flight_check",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\monochrome-modern\\skill.md",
+			"source_location": "L686",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -787,6 +787,35 @@ export async function postWatchlistAdd(
 }
 
 /**
+ * Ranked list reorder mutation — body must include the **full** ordered set of
+ * list item ids so the server can validate and persist canonical positions.
+ */
+export async function postListReorder(listId: string, itemIds: string[]) {
+	const response = await fetch(
+		new URL(
+			`/api/lists/${encodeURIComponent(listId)}/reorder`,
+			stillApiOrigin(),
+		),
+		{
+			method: "POST",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify({ itemIds }),
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+/**
  * Marks one notification read (`POST /api/notifications/:id/read`).
  * Uses fetch (not Eden) so the dynamic path is reliable from the client.
  */

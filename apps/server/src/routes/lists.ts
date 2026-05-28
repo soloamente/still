@@ -36,6 +36,7 @@ type PatchListBody = {
 	isPublic?: boolean;
 	tags?: string[];
 	coverMovieId?: number | null;
+	coverTvId?: number | null;
 	coverImageUrl?: string | null;
 };
 
@@ -45,6 +46,21 @@ type AddListItemBody = {
 	position?: number;
 	note?: string;
 };
+
+type ReorderListItemsBody = {
+	itemIds: string[];
+};
+
+/** System favorites lists stay metadata-synced; patrons may still set cover art. */
+function patchTouchesNonCoverFields(body: PatchListBody): boolean {
+	return (
+		body.title !== undefined ||
+		body.description !== undefined ||
+		body.isRanked !== undefined ||
+		body.isPublic !== undefined ||
+		body.tags !== undefined
+	);
+}
 
 export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	.use(context)
@@ -293,8 +309,9 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Not found");
-			if (isFavoritesSystemList(existing))
+			if (isFavoritesSystemList(existing) && patchTouchesNonCoverFields(body)) {
 				return status(403, "This list is synced from your favorites");
+			}
 			if (body.coverMovieId !== undefined && body.coverMovieId !== null) {
 				const [onList] = await db
 					.select({ movieId: listItem.movieId })
@@ -308,25 +325,57 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 					.limit(1);
 				if (!onList) return status(400, "That title is not on this list");
 			}
+			if (body.coverTvId !== undefined && body.coverTvId !== null) {
+				const [onList] = await db
+					.select({ tvId: listItem.tvId })
+					.from(listItem)
+					.where(
+						and(
+							eq(listItem.listId, params.id),
+							eq(listItem.tvId, body.coverTvId),
+						),
+					)
+					.limit(1);
+				if (!onList) return status(400, "That title is not on this list");
+			}
 
 			const coverPatch: Partial<typeof list.$inferInsert> = {};
 			if (body.coverMovieId !== undefined) {
 				coverPatch.coverMovieId = body.coverMovieId;
-				if (body.coverMovieId !== null) coverPatch.coverImageUrl = null;
+				if (body.coverMovieId !== null) {
+					coverPatch.coverImageUrl = null;
+					coverPatch.coverTvId = null;
+				}
+			}
+			if (body.coverTvId !== undefined) {
+				coverPatch.coverTvId = body.coverTvId;
+				if (body.coverTvId !== null) {
+					coverPatch.coverImageUrl = null;
+					coverPatch.coverMovieId = null;
+				}
 			}
 			if (body.coverImageUrl !== undefined) {
 				coverPatch.coverImageUrl = body.coverImageUrl;
-				if (body.coverImageUrl !== null) coverPatch.coverMovieId = null;
+				if (body.coverImageUrl !== null) {
+					coverPatch.coverMovieId = null;
+					coverPatch.coverTvId = null;
+				}
 			}
+
+			const metadataPatch = isFavoritesSystemList(existing)
+				? {}
+				: {
+						title: body.title ?? existing.title,
+						description: body.description ?? existing.description,
+						isRanked: body.isRanked ?? existing.isRanked,
+						isPublic: body.isPublic ?? existing.isPublic,
+						tags: body.tags ?? existing.tags,
+					};
 
 			const [updated] = await db
 				.update(list)
 				.set({
-					title: body.title ?? existing.title,
-					description: body.description ?? existing.description,
-					isRanked: body.isRanked ?? existing.isRanked,
-					isPublic: body.isPublic ?? existing.isPublic,
-					tags: body.tags ?? existing.tags,
+					...metadataPatch,
 					...coverPatch,
 				})
 				.where(eq(list.id, params.id))
@@ -344,6 +393,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				tags: t.Optional(t.Array(t.String())),
 				/** Pin a list item poster as hero + primary tile; `null` clears the pin. */
 				coverMovieId: t.Optional(t.Union([t.Number(), t.Null()])),
+				coverTvId: t.Optional(t.Union([t.Number(), t.Null()])),
 				/** Custom upload URL; `null` clears. Setting a movie pin clears this. */
 				coverImageUrl: t.Optional(t.Union([t.String(), t.Null()])),
 			}),
@@ -360,8 +410,6 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Not found");
-			if (isFavoritesSystemList(existing))
-				return status(403, "This list is synced from your favorites");
 			if (!hit(`list:cover:${user.id}`, { limit: 10, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
 
@@ -387,7 +435,11 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 
 			const [updated] = await db
 				.update(list)
-				.set({ coverImageUrl: uploaded.url, coverMovieId: null })
+				.set({
+					coverImageUrl: uploaded.url,
+					coverMovieId: null,
+					coverTvId: null,
+				})
 				.where(eq(list.id, params.id))
 				.returning();
 			const [enriched] = await withCoverPosterPaths(updated ? [updated] : []);
@@ -412,6 +464,78 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			return { ok: true };
 		},
 		{ params: t.Object({ id: t.String() }) },
+	)
+	.post(
+		"/:id/reorder",
+		async ({ params, body: rawBody, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			const body = routeBody<ReorderListItemsBody>(rawBody);
+			const [parent] = await db
+				.select()
+				.from(list)
+				.where(eq(list.id, params.id))
+				.limit(1);
+			if (!parent || (parent.userId !== user.id && !parent.isCollaborative))
+				return status(403, "Cannot edit this list");
+			if (isFavoritesSystemList(parent))
+				return status(403, "This list is synced from your favorites");
+
+			const currentItems = await db
+				.select({ id: listItem.id })
+				.from(listItem)
+				.where(eq(listItem.listId, params.id));
+			const currentIds = currentItems.map((item) => item.id);
+			const requestedIds = body.itemIds;
+			const requestedIdSet = new Set(requestedIds);
+			const currentIdSet = new Set(currentIds);
+
+			if (requestedIdSet.size !== requestedIds.length) {
+				return status(400, "itemIds must not contain duplicates");
+			}
+			if (requestedIds.length !== currentIds.length) {
+				return status(400, "itemIds must include every list item exactly once");
+			}
+			if (
+				requestedIds.some((id) => !currentIdSet.has(id)) ||
+				currentIds.some((id) => !requestedIdSet.has(id))
+			) {
+				return status(400, "itemIds must include every list item exactly once");
+			}
+
+			try {
+				// Neon HTTP driver does not support explicit transactions.
+				// Apply deterministic position updates sequentially.
+				for (const [position, id] of requestedIds.entries()) {
+					await db
+						.update(listItem)
+						.set({ position })
+						.where(and(eq(listItem.id, id), eq(listItem.listId, params.id)));
+				}
+			} catch (error) {
+				console.error("[lists/reorder] failed", {
+					listId: params.id,
+					userId: user.id,
+					error,
+				});
+				return status(500, {
+					error: "Failed to reorder list",
+					detail: error instanceof Error ? error.message : String(error),
+				});
+			}
+
+			const items = await db
+				.select({ item: listItem, movie, tv })
+				.from(listItem)
+				.leftJoin(movie, eq(listItem.movieId, movie.tmdbId))
+				.leftJoin(tv, eq(listItem.tvId, tv.tmdbId))
+				.where(eq(listItem.listId, params.id))
+				.orderBy(asc(listItem.position), asc(listItem.addedAt));
+			return { ok: true, items };
+		},
+		{
+			params: t.Object({ id: t.String() }),
+			body: t.Object({ itemIds: t.Array(t.String()) }),
+		},
 	)
 	.post(
 		"/:id/items",

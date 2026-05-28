@@ -64,6 +64,13 @@
 			"when": 1779200400000,
 			"tag": "0008_list_tv_covers_and_counts",
 			"breakpoints": true
+		},
+		{
+			"idx": 9,
+			"version": "7",
+			"when": 1779200500000,
+			"tag": "0009_list_cover_tv_id",
+			"breakpoints": true
 		}
 	]
 }

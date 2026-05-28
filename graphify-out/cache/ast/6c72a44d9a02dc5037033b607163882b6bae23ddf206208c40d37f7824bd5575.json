@@ -1,0 +1,399 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_27_tv_on_lists_md",
+			"label": "2026-05-27-tv-on-lists.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_tv_on_lists_implementation_plan",
+			"label": "TV on Lists \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_1_database_migration",
+			"label": "Task 1: Database migration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_1",
+			"label": "code:ts (coverTvIds: jsonb(\"cover_tv_ids\").$type<number[]>().default()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_2",
+			"label": "code:bash (cd packages/db && bun run db:migrate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_2_refreshlistaggregates_server_core",
+			"label": "Task 2: `refreshListAggregates` (server core)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_3_cover_poster_hydration_ordered_strip",
+			"label": "Task 3: Cover poster hydration (ordered strip)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_3",
+			"label": "code:ts (// Pseudocode: for listIds[], select list_item ordered by ad)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_4_lists_api_write_membership",
+			"label": "Task 4: Lists API \u2014 write + membership",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L110"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_4",
+			"label": "code:ts (type AddListItemBody = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_5_listmetaline_listboardrow_tdd",
+			"label": "Task 5: `listMetaLine` + `ListBoardRow` (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_5",
+			"label": "code:ts (import { describe, expect, test } from \"vitest\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_6_fetchlistsme_api_client_types",
+			"label": "Task 6: `fetchListsMe` + API client types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L206"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_6",
+			"label": "code:ts (export async function fetchListsMe()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L213"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_7_shared_addtolistcontrol_radial_hook",
+			"label": "Task 7: Shared `AddToListControl` / radial hook",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L232"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_7",
+			"label": "code:ts (export type AddToListMedia = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L241"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_8_tv_detail_hero",
+			"label": "Task 8: TV detail hero",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L265"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_9_catalogue_radial_parity",
+			"label": "Task 9: Catalogue radial parity",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L278"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_10_backfill_verify_build",
+			"label": "Task 10: Backfill + verify build",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L295"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_8",
+			"label": "code:bash (# Example: bun run apps/server/src/scripts/refresh-list-aggr)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L302"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_codeblock_9",
+			"label": "code:bash (cd apps/web && bun run build)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L308"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_task_11_manual_qa_human",
+			"label": "Task 11: Manual QA (human)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L318"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_plan_self_review_spec_coverage",
+			"label": "Plan self-review (spec coverage)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L331"
+		},
+		{
+			"id": "plans_2026_05_27_tv_on_lists_executor_handoff",
+			"label": "Executor handoff",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L351"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_27_tv_on_lists_md",
+			"target": "plans_2026_05_27_tv_on_lists_tv_on_lists_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_tv_on_lists_implementation_plan",
+			"target": "plans_2026_05_27_tv_on_lists_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_1_database_migration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_1_database_migration",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_1_database_migration",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_2_refreshlistaggregates_server_core",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_3_cover_poster_hydration_ordered_strip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_3_cover_poster_hydration_ordered_strip",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_4_lists_api_write_membership",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L110",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_4_lists_api_write_membership",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_5_listmetaline_listboardrow_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_5_listmetaline_listboardrow_tdd",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_6_fetchlistsme_api_client_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L206",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_6_fetchlistsme_api_client_types",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L213",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_7_shared_addtolistcontrol_radial_hook",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L232",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_7_shared_addtolistcontrol_radial_hook",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_8_tv_detail_hero",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L265",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_9_catalogue_radial_parity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L278",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_10_backfill_verify_build",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L295",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_10_backfill_verify_build",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L302",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_task_10_backfill_verify_build",
+			"target": "plans_2026_05_27_tv_on_lists_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L308",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_file_map",
+			"target": "plans_2026_05_27_tv_on_lists_task_11_manual_qa_human",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L318",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_tv_on_lists_implementation_plan",
+			"target": "plans_2026_05_27_tv_on_lists_plan_self_review_spec_coverage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L331",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_27_tv_on_lists_tv_on_lists_implementation_plan",
+			"target": "plans_2026_05_27_tv_on_lists_executor_handoff",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-27-tv-on-lists.md",
+			"source_location": "L351",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

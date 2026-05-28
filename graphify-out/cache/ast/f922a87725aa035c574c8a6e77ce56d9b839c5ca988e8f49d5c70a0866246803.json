@@ -1,0 +1,127 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_oklch_skill_color_conversion_md",
+			"label": "color-conversion.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_color_conversion_color_conversion",
+			"label": "Color Conversion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_color_conversion_supported_input_formats",
+			"label": "Supported input formats",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "oklch_skill_color_conversion_conversion_examples",
+			"label": "Conversion examples",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "oklch_skill_color_conversion_codeblock_1",
+			"label": "code:css (/* Before */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "oklch_skill_color_conversion_codeblock_2",
+			"label": "code:css (/* Before */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "oklch_skill_color_conversion_what_to_leave_alone",
+			"label": "What to leave alone",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "oklch_skill_color_conversion_bulk_conversion",
+			"label": "Bulk conversion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L45"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_oklch_skill_color_conversion_md",
+			"target": "oklch_skill_color_conversion_color_conversion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_color_conversion_color_conversion",
+			"target": "oklch_skill_color_conversion_supported_input_formats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_color_conversion_color_conversion",
+			"target": "oklch_skill_color_conversion_conversion_examples",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_color_conversion_conversion_examples",
+			"target": "oklch_skill_color_conversion_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_color_conversion_conversion_examples",
+			"target": "oklch_skill_color_conversion_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_color_conversion_color_conversion",
+			"target": "oklch_skill_color_conversion_what_to_leave_alone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_color_conversion_color_conversion",
+			"target": "oklch_skill_color_conversion_bulk_conversion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\color-conversion.md",
+			"source_location": "L45",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

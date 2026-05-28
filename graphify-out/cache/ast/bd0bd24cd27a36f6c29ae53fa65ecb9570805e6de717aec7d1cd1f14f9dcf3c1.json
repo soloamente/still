@@ -1,0 +1,225 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"label": "app-themes.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_app_themes_app_theme_class_theater",
+			"label": "APP_THEME_CLASS_THEATER",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_app_themes_app_theme_class_lobby_light",
+			"label": "APP_THEME_CLASS_LOBBY_LIGHT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_app_themes_app_theme_class_noir",
+			"label": "APP_THEME_CLASS_NOIR",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_app_themes_appthemeclass",
+			"label": "AppThemeClass",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_app_themes_appthemetier",
+			"label": "AppThemeTier",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_app_themes_appthemedefinition",
+			"label": "AppThemeDefinition",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_app_themes_app_theme_list",
+			"label": "APP_THEME_LIST",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L83"
+		},
+		{
+			"id": "lib_app_themes_app_theme_class_names",
+			"label": "APP_THEME_CLASS_NAMES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L87"
+		},
+		{
+			"id": "lib_app_themes_legacy_theme_aliases",
+			"label": "LEGACY_THEME_ALIASES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L97"
+		},
+		{
+			"id": "lib_app_themes_isappthemeclass",
+			"label": "isAppThemeClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L105"
+		},
+		{
+			"id": "lib_app_themes_resolveapptheme",
+			"label": "resolveAppTheme()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L111"
+		},
+		{
+			"id": "lib_app_themes_isappthemelight",
+			"label": "isAppThemeLight()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L123"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_app_theme_class_theater",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_app_theme_class_lobby_light",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_app_theme_class_noir",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_appthemeclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_appthemetier",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_appthemedefinition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_app_theme_list",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_app_theme_class_names",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_legacy_theme_aliases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_isappthemeclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_resolveapptheme",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_isappthemelight",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"target": "lib_app_themes_appthemetier",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_app_themes_resolveapptheme",
+			"target": "lib_app_themes_isappthemeclass",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.ts",
+			"source_location": "L114",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

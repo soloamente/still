@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_ai_sdk_md",
+			"label": "ai-sdk.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_ai_sdk_ai_sdk_integration",
+			"label": "AI SDK Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_ai_sdk_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "integrations_ai_sdk_response_streaming",
+			"label": "Response Streaming",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "integrations_ai_sdk_codeblock_1",
+			"label": "code:typescript (import { streamText } from \"ai\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "integrations_ai_sdk_server_sent_events",
+			"label": "Server-Sent Events",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "integrations_ai_sdk_codeblock_2",
+			"label": "code:typescript (import { sse } from 'elysia')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "integrations_ai_sdk_as_response",
+			"label": "As Response",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "integrations_ai_sdk_codeblock_3",
+			"label": "code:typescript (.get('/', () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "integrations_ai_sdk_manual_streaming",
+			"label": "Manual Streaming",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "integrations_ai_sdk_codeblock_4",
+			"label": "code:typescript (import { sse } from 'elysia')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "integrations_ai_sdk_fetch_for_unsupported_models",
+			"label": "Fetch for Unsupported Models",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "integrations_ai_sdk_codeblock_5",
+			"label": "code:typescript (.get('/', () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L83"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_ai_sdk_md",
+			"target": "integrations_ai_sdk_ai_sdk_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_ai_sdk_integration",
+			"target": "integrations_ai_sdk_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_ai_sdk_integration",
+			"target": "integrations_ai_sdk_response_streaming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_response_streaming",
+			"target": "integrations_ai_sdk_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_ai_sdk_integration",
+			"target": "integrations_ai_sdk_server_sent_events",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_server_sent_events",
+			"target": "integrations_ai_sdk_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_ai_sdk_integration",
+			"target": "integrations_ai_sdk_as_response",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_as_response",
+			"target": "integrations_ai_sdk_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_ai_sdk_integration",
+			"target": "integrations_ai_sdk_manual_streaming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_manual_streaming",
+			"target": "integrations_ai_sdk_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_ai_sdk_integration",
+			"target": "integrations_ai_sdk_fetch_for_unsupported_models",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_ai_sdk_fetch_for_unsupported_models",
+			"target": "integrations_ai_sdk_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\ai-sdk.md",
+			"source_location": "L83",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

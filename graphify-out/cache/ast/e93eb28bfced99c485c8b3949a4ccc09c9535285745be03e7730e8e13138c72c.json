@@ -1,0 +1,24 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_examples_guard_ts",
+			"label": "guard.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\guard.ts",
+			"source_location": "L1"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_examples_guard_ts",
+			"target": "elysia",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\examples\\guard.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,143 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_suspense_boundaries_md",
+			"label": "suspense-boundaries.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_suspense_boundaries_suspense_boundaries",
+			"label": "Suspense Boundaries",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_suspense_boundaries_usesearchparams",
+			"label": "useSearchParams",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_suspense_boundaries_codeblock_1",
+			"label": "code:tsx (// Bad: Entire page becomes CSR)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "next_best_practices_suspense_boundaries_codeblock_2",
+			"label": "code:tsx (// Good: Wrap in Suspense)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "next_best_practices_suspense_boundaries_usepathname",
+			"label": "usePathname",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "next_best_practices_suspense_boundaries_codeblock_3",
+			"label": "code:tsx (// In dynamic route [slug])",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "next_best_practices_suspense_boundaries_codeblock_4",
+			"label": "code:tsx (// Good: Wrap in Suspense)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "next_best_practices_suspense_boundaries_quick_reference",
+			"label": "Quick Reference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L60"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_suspense_boundaries_md",
+			"target": "next_best_practices_suspense_boundaries_suspense_boundaries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_suspense_boundaries_suspense_boundaries",
+			"target": "next_best_practices_suspense_boundaries_usesearchparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_suspense_boundaries_usesearchparams",
+			"target": "next_best_practices_suspense_boundaries_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_suspense_boundaries_usesearchparams",
+			"target": "next_best_practices_suspense_boundaries_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_suspense_boundaries_suspense_boundaries",
+			"target": "next_best_practices_suspense_boundaries_usepathname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_suspense_boundaries_usepathname",
+			"target": "next_best_practices_suspense_boundaries_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_suspense_boundaries_usepathname",
+			"target": "next_best_practices_suspense_boundaries_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_suspense_boundaries_suspense_boundaries",
+			"target": "next_best_practices_suspense_boundaries_quick_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\suspense-boundaries.md",
+			"source_location": "L60",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,239 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_oklch_skill_gamut_and_tailwind_md",
+			"label": "gamut-and-tailwind.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_gamut_awareness_tailwind_v4",
+			"label": "Gamut Awareness & Tailwind v4",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_srgb_vs_display_p3",
+			"label": "sRGB vs Display P3",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_max_chroma_varies_by_lightness_and_hue",
+			"label": "Max chroma varies by lightness and hue",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_gamut_checking",
+			"label": "Gamut checking",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_codeblock_1",
+			"label": "code:css (/* Out of sRGB gamut */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_css_fallback_patterns",
+			"label": "CSS fallback patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_codeblock_2",
+			"label": "code:css (/* sRGB fallback for all browsers */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_codeblock_3",
+			"label": "code:css (.accent {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_tailwind_v4",
+			"label": "Tailwind v4",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_custom_color_scale_with_theme",
+			"label": "Custom color scale with @theme",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L69"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_codeblock_4",
+			"label": "code:css (@theme {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_opacity_modifiers",
+			"label": "Opacity modifiers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_codeblock_5",
+			"label": "code:html (<div class=\"bg-brand-500/50\"></div>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "oklch_skill_gamut_and_tailwind_migrating_existing_themes",
+			"label": "Migrating existing themes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L98"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_oklch_skill_gamut_and_tailwind_md",
+			"target": "oklch_skill_gamut_and_tailwind_gamut_awareness_tailwind_v4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_gamut_awareness_tailwind_v4",
+			"target": "oklch_skill_gamut_and_tailwind_srgb_vs_display_p3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_gamut_awareness_tailwind_v4",
+			"target": "oklch_skill_gamut_and_tailwind_max_chroma_varies_by_lightness_and_hue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_gamut_awareness_tailwind_v4",
+			"target": "oklch_skill_gamut_and_tailwind_gamut_checking",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_gamut_checking",
+			"target": "oklch_skill_gamut_and_tailwind_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_gamut_awareness_tailwind_v4",
+			"target": "oklch_skill_gamut_and_tailwind_css_fallback_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_css_fallback_patterns",
+			"target": "oklch_skill_gamut_and_tailwind_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_css_fallback_patterns",
+			"target": "oklch_skill_gamut_and_tailwind_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_gamut_awareness_tailwind_v4",
+			"target": "oklch_skill_gamut_and_tailwind_tailwind_v4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_tailwind_v4",
+			"target": "oklch_skill_gamut_and_tailwind_custom_color_scale_with_theme",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_custom_color_scale_with_theme",
+			"target": "oklch_skill_gamut_and_tailwind_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_tailwind_v4",
+			"target": "oklch_skill_gamut_and_tailwind_opacity_modifiers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_opacity_modifiers",
+			"target": "oklch_skill_gamut_and_tailwind_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "oklch_skill_gamut_and_tailwind_tailwind_v4",
+			"target": "oklch_skill_gamut_and_tailwind_migrating_existing_themes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\oklch-skill\\gamut-and-tailwind.md",
+			"source_location": "L98",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

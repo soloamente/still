@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_27_tv_log_rewatch_scope_design_md",
+			"label": "2026-05-27-tv-log-rewatch-scope-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"label": "TV diary rewatch scope \u2014 design spec",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_goals",
+			"label": "Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_non_goals",
+			"label": "Non-goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_scope_matching_rules",
+			"label": "Scope matching rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_ui_behavior",
+			"label": "UI behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_hero_tv_detail_primary_actions",
+			"label": "Hero (`tv-detail-primary-actions`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_quick_log_sheet",
+			"label": "Quick Log sheet",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_progress_panel_season_mode_tv_detail_progress_panel",
+			"label": "Progress panel \u2014 season mode (`tv-detail-progress-panel`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_mark_season_complete_auto_diary",
+			"label": "Mark season complete \u2192 auto diary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_implementation_notes",
+			"label": "Implementation notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_acceptance",
+			"label": "Acceptance",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "specs_2026_05_27_tv_log_rewatch_scope_design_related_specs",
+			"label": "Related specs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L109"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_27_tv_log_rewatch_scope_design_md",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_non_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_scope_matching_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_ui_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_ui_behavior",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_hero_tv_detail_primary_actions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_ui_behavior",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_quick_log_sheet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_ui_behavior",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_progress_panel_season_mode_tv_detail_progress_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_ui_behavior",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_mark_season_complete_auto_diary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_implementation_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_acceptance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_27_tv_log_rewatch_scope_design_tv_diary_rewatch_scope_design_spec",
+			"target": "specs_2026_05_27_tv_log_rewatch_scope_design_related_specs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-27-tv-log-rewatch-scope-design.md",
+			"source_location": "L109",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

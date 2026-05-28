@@ -15,6 +15,7 @@ import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
 
 export type ListDetailFilmRow = {
 	item: {
+		id: string;
 		position: number;
 		note: string | null;
 		movieId: number | null;

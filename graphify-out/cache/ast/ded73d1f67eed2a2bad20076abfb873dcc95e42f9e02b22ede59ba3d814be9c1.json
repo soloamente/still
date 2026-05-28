@@ -1,0 +1,303 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_file_conventions_md",
+			"label": "file-conventions.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_file_conventions_file_conventions",
+			"label": "File Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_file_conventions_project_structure",
+			"label": "Project Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_file_conventions_codeblock_1",
+			"label": "code:block1 (app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "next_best_practices_file_conventions_special_files",
+			"label": "Special Files",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "next_best_practices_file_conventions_route_segments",
+			"label": "Route Segments",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "next_best_practices_file_conventions_codeblock_2",
+			"label": "code:block2 (app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "next_best_practices_file_conventions_parallel_routes",
+			"label": "Parallel Routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "next_best_practices_file_conventions_codeblock_3",
+			"label": "code:block3 (app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "next_best_practices_file_conventions_intercepting_routes",
+			"label": "Intercepting Routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "next_best_practices_file_conventions_codeblock_4",
+			"label": "code:block4 (app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "next_best_practices_file_conventions_private_folders",
+			"label": "Private Folders",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "next_best_practices_file_conventions_codeblock_5",
+			"label": "code:block5 (app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "next_best_practices_file_conventions_middleware_proxy",
+			"label": "Middleware / Proxy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "next_best_practices_file_conventions_next_js_14_15_middleware_ts",
+			"label": "Next.js 14-15: `middleware.ts`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L96"
+		},
+		{
+			"id": "next_best_practices_file_conventions_codeblock_6",
+			"label": "code:ts (// middleware.ts (root of project))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "next_best_practices_file_conventions_next_js_16_proxy_ts",
+			"label": "Next.js 16+: `proxy.ts`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "next_best_practices_file_conventions_codeblock_7",
+			"label": "code:ts (// proxy.ts (root of project))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "next_best_practices_file_conventions_file_conventions_reference",
+			"label": "File Conventions Reference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L139"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_file_conventions_md",
+			"target": "next_best_practices_file_conventions_file_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_file_conventions",
+			"target": "next_best_practices_file_conventions_project_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_project_structure",
+			"target": "next_best_practices_file_conventions_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_file_conventions",
+			"target": "next_best_practices_file_conventions_special_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_file_conventions",
+			"target": "next_best_practices_file_conventions_route_segments",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_route_segments",
+			"target": "next_best_practices_file_conventions_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_file_conventions",
+			"target": "next_best_practices_file_conventions_parallel_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_parallel_routes",
+			"target": "next_best_practices_file_conventions_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_file_conventions",
+			"target": "next_best_practices_file_conventions_intercepting_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_intercepting_routes",
+			"target": "next_best_practices_file_conventions_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_file_conventions",
+			"target": "next_best_practices_file_conventions_private_folders",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_private_folders",
+			"target": "next_best_practices_file_conventions_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_file_conventions",
+			"target": "next_best_practices_file_conventions_middleware_proxy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_middleware_proxy",
+			"target": "next_best_practices_file_conventions_next_js_14_15_middleware_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_next_js_14_15_middleware_ts",
+			"target": "next_best_practices_file_conventions_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_middleware_proxy",
+			"target": "next_best_practices_file_conventions_next_js_16_proxy_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_next_js_16_proxy_ts",
+			"target": "next_best_practices_file_conventions_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_file_conventions_file_conventions",
+			"target": "next_best_practices_file_conventions_file_conventions_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\file-conventions.md",
+			"source_location": "L139",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

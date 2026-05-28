@@ -597,6 +597,22 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-05-28 — List detail cover dialog redesign follow-up *(Executor)*
+
+**Shipped:** Reworked `ListDetailCoverPicker` dialog to match existing sheet/dialog patterns used across list flows: `APP_MODAL_OVERLAY_CLASS` overlay, motion entry/exit with `motion/react`, top-right close affordance, centered title/description treatment, scrollable body, and anchored action footer (`Reset` + `Done`) using shared button variants and `DetailMotionButtonWrap`.
+
+**Checks run:** `bun test "apps/web/src/app/(app)/lists/[id]/page.test.ts"` (pass), `ReadLints` clean on `list-detail-cover-picker.tsx` after Biome class-order fix.
+
+**Human / Planner:** Verify `/lists/<id>` → **Change cover** opens the new sheet style, closes on overlay/Escape/X/Done, and reset/upload/poster pick still persist correctly. Reply **`ok`** when signed off.
+
+### 2026-05-28 — List detail owner controls polish (`/lists/[id]`) *(Executor)*
+
+**Shipped:** Removed the shadow from the list detail **Choose cover** button in `list-detail-cover-picker.tsx`. Added owner-only `ListDetailOwnerControls` on list detail hero with two actions: existing **Choose cover** and new **Edit details** (title + description) using `ListLobbyEditDialog`, with `router.refresh()` after save so hero content updates immediately.
+
+**Checks run:** `bun test "apps/web/src/app/(app)/lists/[id]/page.test.ts"` (pass), `NEXT_PUBLIC_SERVER_URL=http://localhost:3000 bun test "apps/web/src/components/list/ranked-list-reorder-grid.test.tsx"` (pass), `ReadLints` on touched files (no issues), `graphify update .` (completed).
+
+**Human / Planner:** On `/lists/<id>` as owner, verify **Choose cover** has no shadow and **Edit details** opens the edit sheet, saves title/description, and updates the hero text after close. Reply **`ok`** when signed off.
+
 ### 2026-05-22 — App themes (Theater · Lobby Light · Noir) *(Executor)*
 
 **Shipped:** Spec `docs/superpowers/specs/2026-05-22-app-themes-design.md` + plan `docs/superpowers/plans/2026-05-22-app-themes.md`. Registry (`app-themes.ts` + server mirror), CSS `html.theme-*` blocks, `AppThemeShell` + `next-themes` (`still-app-theme`), Settings **Appearance** section, account menu chips, profile pref validation on PATCH, bundled cinema defaults + override flag.
@@ -1536,3 +1552,45 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 **Executor's Feedback or Assistance Requests:** Instant lobby navigation (IL.1–IL.11) **complete** through Phase 4 human sign-off (2026-05-27). Optional follow-ups (not in v1 spec): list-detail query tabs if added later; `router.refresh()` polish on more mutation paths; diary `waveKey` venue-only remount skip.
 
 Symptom **B** (frozen full page) on chip taps — root cause is `<Link>` + `force-dynamic` RSC awaiting all data; `loading.tsx` does not help query-only navigations.
+
+### 2026-05-28 — Home sticky icon tooltips (Executor)
+
+**Project Status Board:**
+- [x] HT.1 Add hover tooltips to `/home` sticky icon shortcuts (watchlist, lists, diary)
+- [x] HT.2 Keep existing accessible labels/titles intact and preserve active-state pill behavior
+- [ ] HT.3 Human QA on `/home?sort=popular` at desktop viewport — confirm tooltip copy/position feels right
+
+**Executor's Feedback or Assistance Requests:** Please verify on `/home?sort=popular` (desktop) that hovering each icon shortcut shows a tooltip (`Watchlist`, `Lists`, `Diary`) and that click/active behavior still matches previous behavior. Reply **`ok`** when this looks right.
+
+### 2026-05-28 — Ranked list drag reorder (Planner)
+
+**Approved:** `docs/superpowers/specs/2026-05-28-ranked-list-drag-reorder-design.md` — Approach **1** (client drag + bulk reorder API + optimistic save + undo).
+
+**Plan:** `docs/superpowers/plans/2026-05-28-ranked-list-drag-reorder.md` (7 tasks: server route/tests -> transactional reorder -> web fetch helper -> client sortable grid -> page gating -> verify -> manual QA).
+
+**Project Status Board:**
+- [x] RL.1 Spec approved by human (`approach 1`)
+- [x] RL.2 Implementation plan written
+- [x] RL.3 Server reorder API + tests
+- [x] RL.4 Web reorder grid + optimistic save/undo
+- [x] RL.5 Lists page gate wiring (ranked editable only)
+- [x] RL.6 Build + automated verification
+- [ ] RL.7 Human QA on ranked/non-ranked/read-only list behavior
+
+**Executor's Feedback or Assistance Requests:** RL.3 is complete via subagent and verified in workspace: `POST /api/lists/:id/reorder` now exists with exact-set validation (`itemIds`), owner/collaborative permissions, favorites guard, transactional position normalization, and route tests in `apps/server/src/routes/lists.test.ts` (including duplicate/partial/foreign validation). Please reply **`ok`** to proceed to RL.4 (web reorder UI with optimistic save + undo).
+
+**Executor's Feedback or Assistance Requests:** RL.4 is complete via subagent and verified in workspace: `postListReorder` helper added, `ranked-list-reorder-grid.tsx` created with pointer drag + optimistic reorder + rollback on failure + undo toast flow, and focused tests in `ranked-list-reorder-grid.test.tsx` passing. Please reply **`ok`** to proceed to RL.5 (wire `/lists/[id]` gating so ranked editable lists use the reorder grid while others stay static).
+
+**Executor's Feedback or Assistance Requests:** RL.5 is complete in workspace: `/lists/[id]` now gates reorder UI via `canReorderRankedList` (ranked + signed-in owner/collaborative only), renders `RankedListReorderGrid` only under that gate, and keeps `ListDetailFilmsGrid` unchanged for non-ranked/read-only flows. Added focused branch tests in `apps/web/src/app/(app)/lists/[id]/page.test.ts` and helper coverage in `list-detail-page-branching.ts`; verified with `bun test "src/app/(app)/lists/[id]/page.test.ts" "src/components/list/ranked-list-reorder-grid.test.tsx"` (pass). Please reply **`ok`** to proceed to RL.6 (broader automated verification / typecheck-build pass).
+
+**Executor's Feedback or Assistance Requests:** RL.6 verification is complete. Results: (1) `apps/server` reorder tests pass (`bun test src/routes/lists.test.ts`), (2) web ranked-list tests pass (`bun test "src/app/(app)/lists/[id]/page.test.ts" "src/components/list/ranked-list-reorder-grid.test.tsx"`), (3) web production build passes (`bun run build`). Note: `bun run check-types` is not a valid script in `apps/web`, but `next build` includes TypeScript checking and completed successfully. Please run RL.7 manual QA and reply **`ok`** (or report issues).
+
+**Executor's Feedback or Assistance Requests:** Bugfix applied for manual QA blocker: native browser image/link drag was hijacking ranked-list pointer drag. In `apps/web/src/components/list/ranked-list-reorder-grid.tsx`, each tile now blocks native `dragstart`, prevents default on pointer down to avoid selection drag, and suppresses click navigation when interaction became a drag. Regression tests still pass (`bun test "src/components/list/ranked-list-reorder-grid.test.tsx" "src/app/(app)/lists/[id]/page.test.ts"`). Please re-test ranked drag behavior and report back.
+
+**Executor's Feedback or Assistance Requests:** Replaced custom pointer drag with `@dnd-kit` sortable implementation in `ranked-list-reorder-grid.tsx` after QA reported brittle behavior (no proper slot snapping/drag feedback). Current behavior now uses `DndContext` + `SortableContext` + `useSortable` transforms while preserving existing optimistic save + undo + rollback flows. Added dependencies `@dnd-kit/core`, `@dnd-kit/sortable`, `@dnd-kit/utilities` in `apps/web/package.json`. Verification: `bun test "src/components/list/ranked-list-reorder-grid.test.tsx" "src/app/(app)/lists/[id]/page.test.ts"` and `bun run build` both pass. Please re-run ranked-list drag QA and confirm if interaction now matches expected snap/reorder behavior.
+
+### 2026-05-28 — Landing hero Mobbin layout on dark canvas (Executor)
+
+**Shipped (approach 2):** Replaced La Nube full-bleed poster hero with Mobbin **IA** on Still tokens — centered mark + display headline + subline + dual pill CTAs (`/sign-up`, `/sign-in`) + raised **three-window product stage** (Home grid / Diary rows / Lists duo) using TMDb posters. New modules: `landing-mobbin-hero.ts`, `landing-hero-preview-stage.tsx`; `landing-hero.tsx` is now a server component (no glass pager / old marquee build).
+
+**Human / Planner:** Log out or incognito → **`/`** — confirm first section reads Mobbin-like (copy stack + product shelf) while sections below stay unchanged. Reply **`ok`** or note tweaks (copy, CTA labels, stage overlap).

@@ -1,0 +1,61 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_vercel_json",
+			"label": "vercel.json",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\vercel.json",
+			"source_location": "L1"
+		},
+		{
+			"id": "server_vercel_schema",
+			"label": "$schema",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\vercel.json",
+			"source_location": "L2"
+		},
+		{
+			"id": "server_vercel_installcommand",
+			"label": "installCommand",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\vercel.json",
+			"source_location": "L3"
+		},
+		{
+			"id": "server_vercel_buildcommand",
+			"label": "buildCommand",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\vercel.json",
+			"source_location": "L4"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_vercel_json",
+			"target": "server_vercel_schema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\vercel.json",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_vercel_json",
+			"target": "server_vercel_installcommand",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\vercel.json",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_vercel_json",
+			"target": "server_vercel_buildcommand",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\vercel.json",
+			"source_location": "L4",
+			"weight": 1.0
+		}
+	]
+}

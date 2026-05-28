@@ -1,0 +1,337 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"label": "tv-discover-catalog-url.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"label": "tvDiscoverPartsToHomeHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_tv_discover_catalog_url_tvdiscovercatalogurl",
+			"label": "tvDiscoverCatalogUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L61"
+		},
+		{
+			"id": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"label": "tvDiscoverSearchParamsToHomeHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L68"
+		},
+		{
+			"id": "lib_tv_discover_catalog_url_parsetvdiscoverstatusparam",
+			"label": "parseTvDiscoverStatusParam()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L82"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_discover_catalog_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_discover_catalog_url_normalizediscovermonetization",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_home_catalog_run_homecatalogrun",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_home_catalog_run_tv_completed_discover_status",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_home_catalog_run_tv_ongoing_discover_status",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_sort_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_home_catalog_sort_homecatalogsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_home_lobby_url_buildhomelobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_home_venue_homevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_tv_discover_catalog_url_tvdiscovercatalogurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"target": "lib_tv_discover_catalog_url_parsetvdiscoverstatusparam",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"target": "lib_tv_discover_catalog_url_parsetvdiscoverstatusparam",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_discover_catalog_url_tvdiscovercatalogurl",
+			"target": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"target": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L71",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"callee": "normalizeDiscoverMonetization",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoverpartstohomehref",
+			"callee": "buildHomeLobbyHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_tvdiscoversearchparamstohomehref",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_parsetvdiscoverstatusparam",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_tv_discover_catalog_url_parsetvdiscoverstatusparam",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-discover-catalog-url.ts",
+			"source_location": "L85"
+		}
+	]
+}

@@ -1,0 +1,719 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_openapi_md",
+			"label": "openapi.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_openapi_openapi_plugin",
+			"label": "OpenAPI Plugin",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_openapi_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "plugins_openapi_codeblock_1",
+			"label": "code:bash (bun add @elysiajs/openapi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "plugins_openapi_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "plugins_openapi_codeblock_2",
+			"label": "code:typescript (import { openapi } from \"@elysiajs/openapi\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plugins_openapi_detail_object",
+			"label": "Detail Object",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "plugins_openapi_codeblock_3",
+			"label": "code:typescript (.get('/', () => 'hello', {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "plugins_openapi_documentation_config",
+			"label": "Documentation Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "plugins_openapi_codeblock_4",
+			"label": "code:typescript (openapi({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "plugins_openapi_standard_schema_mapping",
+			"label": "Standard Schema Mapping",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "plugins_openapi_codeblock_5",
+			"label": "code:typescript (mapJsonSchema: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "plugins_openapi_openapi_type_gen",
+			"label": "OpenAPI Type Gen",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "plugins_openapi_codeblock_6",
+			"label": "code:typescript (import { fromTypes } from \"@elysiajs/openapi\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "plugins_openapi_production",
+			"label": "Production",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "plugins_openapi_codeblock_7",
+			"label": "code:typescript (references: fromTypes(process.env.NODE_ENV === \"production\" )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "plugins_openapi_options",
+			"label": "Options",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "plugins_openapi_codeblock_8",
+			"label": "code:typescript (fromTypes(\"src/index.ts\", {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L91"
+		},
+		{
+			"id": "plugins_openapi_caveat_explicit_types",
+			"label": "Caveat: Explicit Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "plugins_openapi_codeblock_9",
+			"label": "code:typescript (type Prettify<T> = { [K in keyof T]: T[K] } & {};)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "plugins_openapi_schema_description",
+			"label": "Schema Description",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L108"
+		},
+		{
+			"id": "plugins_openapi_codeblock_10",
+			"label": "code:typescript (body: t.Object({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L110"
+		},
+		{
+			"id": "plugins_openapi_response_headers",
+			"label": "Response Headers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L126"
+		},
+		{
+			"id": "plugins_openapi_codeblock_11",
+			"label": "code:typescript (import { withHeader } from \"@elysiajs/openapi\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L128"
+		},
+		{
+			"id": "plugins_openapi_tags",
+			"label": "Tags",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L136"
+		},
+		{
+			"id": "plugins_openapi_codeblock_12",
+			"label": "code:typescript (.use(openapi({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "plugins_openapi_instance_tags",
+			"label": "Instance Tags",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "plugins_openapi_codeblock_13",
+			"label": "code:typescript (new Elysia({ tags: [\"user\"] }).get(\"/user\", \"user\");)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L156"
+		},
+		{
+			"id": "plugins_openapi_reference_models",
+			"label": "Reference Models",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "plugins_openapi_codeblock_14",
+			"label": "code:typescript (.model({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "plugins_openapi_guard",
+			"label": "Guard",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L177"
+		},
+		{
+			"id": "plugins_openapi_codeblock_15",
+			"label": "code:typescript (.guard({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "plugins_openapi_security",
+			"label": "Security",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "plugins_openapi_codeblock_16",
+			"label": "code:typescript (.use(openapi({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L192"
+		},
+		{
+			"id": "plugins_openapi_config",
+			"label": "Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L217"
+		},
+		{
+			"id": "plugins_openapi_enabled",
+			"label": "enabled",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L221"
+		},
+		{
+			"id": "plugins_openapi_documentation",
+			"label": "documentation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L226"
+		},
+		{
+			"id": "plugins_openapi_exclude",
+			"label": "exclude",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L231"
+		},
+		{
+			"id": "plugins_openapi_exclude_methods",
+			"label": "exclude.methods",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L235"
+		},
+		{
+			"id": "plugins_openapi_exclude_paths",
+			"label": "exclude.paths",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L239"
+		},
+		{
+			"id": "plugins_openapi_exclude_staticfile",
+			"label": "exclude.staticFile",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L243"
+		},
+		{
+			"id": "plugins_openapi_exclude_tags",
+			"label": "exclude.tags",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L249"
+		},
+		{
+			"id": "plugins_openapi_mapjsonschema",
+			"label": "mapJsonSchema",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L253"
+		},
+		{
+			"id": "plugins_openapi_path",
+			"label": "path",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L257"
+		},
+		{
+			"id": "plugins_openapi_provider",
+			"label": "provider",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L262"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_openapi_md",
+			"target": "plugins_openapi_openapi_plugin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_installation",
+			"target": "plugins_openapi_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_basic_usage",
+			"target": "plugins_openapi_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_detail_object",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_detail_object",
+			"target": "plugins_openapi_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_detail_object",
+			"target": "plugins_openapi_documentation_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_documentation_config",
+			"target": "plugins_openapi_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_detail_object",
+			"target": "plugins_openapi_standard_schema_mapping",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_standard_schema_mapping",
+			"target": "plugins_openapi_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_openapi_type_gen",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_type_gen",
+			"target": "plugins_openapi_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_type_gen",
+			"target": "plugins_openapi_production",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_production",
+			"target": "plugins_openapi_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_type_gen",
+			"target": "plugins_openapi_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_options",
+			"target": "plugins_openapi_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_type_gen",
+			"target": "plugins_openapi_caveat_explicit_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_caveat_explicit_types",
+			"target": "plugins_openapi_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_schema_description",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_schema_description",
+			"target": "plugins_openapi_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L110",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_response_headers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L126",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_response_headers",
+			"target": "plugins_openapi_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_tags",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L136",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_tags",
+			"target": "plugins_openapi_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_tags",
+			"target": "plugins_openapi_instance_tags",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_instance_tags",
+			"target": "plugins_openapi_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_reference_models",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_reference_models",
+			"target": "plugins_openapi_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_guard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L177",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_guard",
+			"target": "plugins_openapi_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_security",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_security",
+			"target": "plugins_openapi_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_openapi_plugin",
+			"target": "plugins_openapi_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_enabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L221",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_documentation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L226",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_exclude",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L231",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_exclude_methods",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_exclude_paths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L239",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_exclude_staticfile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_exclude_tags",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L249",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_mapjsonschema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L253",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_path",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L257",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_openapi_config",
+			"target": "plugins_openapi_provider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\openapi.md",
+			"source_location": "L262",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

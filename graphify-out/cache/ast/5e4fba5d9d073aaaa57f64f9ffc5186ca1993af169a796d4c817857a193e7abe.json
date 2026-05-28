@@ -1,0 +1,927 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_references_deployment_md",
+			"label": "deployment.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_deployment_deployment",
+			"label": "Deployment",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "references_deployment_production_build",
+			"label": "Production Build",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "references_deployment_compile_to_binary_recommended",
+			"label": "Compile to Binary (Recommended)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "references_deployment_codeblock_1",
+			"label": "code:bash (bun build \\)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "references_deployment_codeblock_2",
+			"label": "code:bash (./server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "references_deployment_compile_to_javascript",
+			"label": "Compile to JavaScript",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "references_deployment_codeblock_3",
+			"label": "code:bash (bun build \\)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "references_deployment_codeblock_4",
+			"label": "code:bash (NODE_ENV=production bun ./dist/index.js)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "references_deployment_docker",
+			"label": "Docker",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "references_deployment_basic_dockerfile",
+			"label": "Basic Dockerfile",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "references_deployment_codeblock_5",
+			"label": "code:dockerfile (FROM oven/bun:1 AS build)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "references_deployment_build_and_run",
+			"label": "Build and Run",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "references_deployment_codeblock_6",
+			"label": "code:bash (docker build -t my-elysia-app .)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "references_deployment_with_environment_variables",
+			"label": "With Environment Variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "references_deployment_codeblock_7",
+			"label": "code:dockerfile (FROM gcr.io/distroless/base)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L92"
+		},
+		{
+			"id": "references_deployment_cluster_mode_multiple_cpu_cores",
+			"label": "Cluster Mode (Multiple CPU Cores)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "references_deployment_codeblock_8",
+			"label": "code:typescript (// src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "references_deployment_codeblock_9",
+			"label": "code:typescript (// src/server.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "references_deployment_environment_variables",
+			"label": "Environment Variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "references_deployment_env_file",
+			"label": ".env File",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L136"
+		},
+		{
+			"id": "references_deployment_codeblock_10",
+			"label": "code:env (NODE_ENV=production)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L138"
+		},
+		{
+			"id": "references_deployment_load_in_app",
+			"label": "Load in App",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "references_deployment_codeblock_11",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "references_deployment_platform_specific_deployments",
+			"label": "Platform-Specific Deployments",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "references_deployment_railway",
+			"label": "Railway",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "references_deployment_codeblock_12",
+			"label": "code:typescript (// Railway assigns random PORT via env variable)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L163"
+		},
+		{
+			"id": "references_deployment_vercel",
+			"label": "Vercel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L168"
+		},
+		{
+			"id": "references_deployment_codeblock_13",
+			"label": "code:typescript (// src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L170"
+		},
+		{
+			"id": "references_deployment_codeblock_14",
+			"label": "code:json (// vercel.json)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L180"
+		},
+		{
+			"id": "references_deployment_cloudflare_workers",
+			"label": "Cloudflare Workers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L188"
+		},
+		{
+			"id": "references_deployment_codeblock_15",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "references_deployment_codeblock_16",
+			"label": "code:toml (# wrangler.toml)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L201"
+		},
+		{
+			"id": "references_deployment_node_js_adapter",
+			"label": "Node.js Adapter",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L208"
+		},
+		{
+			"id": "references_deployment_codeblock_17",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L210"
+		},
+		{
+			"id": "references_deployment_performance_optimization",
+			"label": "Performance Optimization",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L217"
+		},
+		{
+			"id": "references_deployment_enable_aot_compilation",
+			"label": "Enable AoT Compilation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L219"
+		},
+		{
+			"id": "references_deployment_codeblock_18",
+			"label": "code:typescript (new Elysia({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L221"
+		},
+		{
+			"id": "references_deployment_use_native_static_response",
+			"label": "Use Native Static Response",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "references_deployment_codeblock_19",
+			"label": "code:typescript (new Elysia({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L229"
+		},
+		{
+			"id": "references_deployment_precompile_routes",
+			"label": "Precompile Routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L235"
+		},
+		{
+			"id": "references_deployment_codeblock_20",
+			"label": "code:typescript (new Elysia({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L237"
+		},
+		{
+			"id": "references_deployment_health_checks",
+			"label": "Health Checks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L243"
+		},
+		{
+			"id": "references_deployment_codeblock_21",
+			"label": "code:typescript (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L245"
+		},
+		{
+			"id": "references_deployment_graceful_shutdown",
+			"label": "Graceful Shutdown",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L263"
+		},
+		{
+			"id": "references_deployment_codeblock_22",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L265"
+		},
+		{
+			"id": "references_deployment_monitoring",
+			"label": "Monitoring",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L283"
+		},
+		{
+			"id": "references_deployment_opentelemetry",
+			"label": "OpenTelemetry",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L285"
+		},
+		{
+			"id": "references_deployment_codeblock_23",
+			"label": "code:typescript (import { opentelemetry } from \"@elysiajs/opentelemetry\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L287"
+		},
+		{
+			"id": "references_deployment_custom_logging",
+			"label": "Custom Logging",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L298"
+		},
+		{
+			"id": "references_deployment_codeblock_24",
+			"label": "code:typescript (.onRequest(({ request }) => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L300"
+		},
+		{
+			"id": "references_deployment_ssl_tls_https",
+			"label": "SSL/TLS (HTTPS)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L309"
+		},
+		{
+			"id": "references_deployment_codeblock_25",
+			"label": "code:typescript (import { Elysia, file } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L311"
+		},
+		{
+			"id": "references_deployment_best_practices",
+			"label": "Best Practices",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L326"
+		},
+		{
+			"id": "references_deployment_example_production_setup",
+			"label": "Example Production Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L354"
+		},
+		{
+			"id": "references_deployment_codeblock_26",
+			"label": "code:typescript (// src/server.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L356"
+		},
+		{
+			"id": "references_deployment_codeblock_27",
+			"label": "code:typescript (// src/index.ts (cluster))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L387"
+		},
+		{
+			"id": "references_deployment_codeblock_28",
+			"label": "code:dockerfile (# Dockerfile)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L401"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_references_deployment_md",
+			"target": "references_deployment_deployment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_production_build",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_production_build",
+			"target": "references_deployment_compile_to_binary_recommended",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_compile_to_binary_recommended",
+			"target": "references_deployment_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_compile_to_binary_recommended",
+			"target": "references_deployment_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_production_build",
+			"target": "references_deployment_compile_to_javascript",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_compile_to_javascript",
+			"target": "references_deployment_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_compile_to_javascript",
+			"target": "references_deployment_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_docker",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_docker",
+			"target": "references_deployment_basic_dockerfile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_basic_dockerfile",
+			"target": "references_deployment_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_docker",
+			"target": "references_deployment_build_and_run",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_build_and_run",
+			"target": "references_deployment_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_docker",
+			"target": "references_deployment_with_environment_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_with_environment_variables",
+			"target": "references_deployment_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L92",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_cluster_mode_multiple_cpu_cores",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_cluster_mode_multiple_cpu_cores",
+			"target": "references_deployment_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_cluster_mode_multiple_cpu_cores",
+			"target": "references_deployment_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_environment_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_environment_variables",
+			"target": "references_deployment_env_file",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L136",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_env_file",
+			"target": "references_deployment_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_environment_variables",
+			"target": "references_deployment_load_in_app",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_load_in_app",
+			"target": "references_deployment_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_platform_specific_deployments",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_platform_specific_deployments",
+			"target": "references_deployment_railway",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_railway",
+			"target": "references_deployment_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_platform_specific_deployments",
+			"target": "references_deployment_vercel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_vercel",
+			"target": "references_deployment_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_vercel",
+			"target": "references_deployment_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_platform_specific_deployments",
+			"target": "references_deployment_cloudflare_workers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L188",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_cloudflare_workers",
+			"target": "references_deployment_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_cloudflare_workers",
+			"target": "references_deployment_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L201",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_platform_specific_deployments",
+			"target": "references_deployment_node_js_adapter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L208",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_node_js_adapter",
+			"target": "references_deployment_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L210",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_performance_optimization",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_performance_optimization",
+			"target": "references_deployment_enable_aot_compilation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L219",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_enable_aot_compilation",
+			"target": "references_deployment_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L221",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_performance_optimization",
+			"target": "references_deployment_use_native_static_response",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_use_native_static_response",
+			"target": "references_deployment_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L229",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_performance_optimization",
+			"target": "references_deployment_precompile_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_precompile_routes",
+			"target": "references_deployment_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L237",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_health_checks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_health_checks",
+			"target": "references_deployment_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L245",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_graceful_shutdown",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L263",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_graceful_shutdown",
+			"target": "references_deployment_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L265",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_monitoring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L283",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_monitoring",
+			"target": "references_deployment_opentelemetry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L285",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_opentelemetry",
+			"target": "references_deployment_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L287",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_monitoring",
+			"target": "references_deployment_custom_logging",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L298",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_custom_logging",
+			"target": "references_deployment_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_ssl_tls_https",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L309",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_ssl_tls_https",
+			"target": "references_deployment_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L311",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_best_practices",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L326",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_deployment",
+			"target": "references_deployment_example_production_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L354",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_example_production_setup",
+			"target": "references_deployment_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L356",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_example_production_setup",
+			"target": "references_deployment_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L387",
+			"weight": 1.0
+		},
+		{
+			"source": "references_deployment_example_production_setup",
+			"target": "references_deployment_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\references\\deployment.md",
+			"source_location": "L401",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

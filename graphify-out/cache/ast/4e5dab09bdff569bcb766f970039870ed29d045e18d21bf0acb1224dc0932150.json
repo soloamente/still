@@ -1,0 +1,1071 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_skill_md",
+			"label": "SKILL.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "elysiajs_skill_elysiajs_development_skill",
+			"label": "ElysiaJS Development Skill",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "elysiajs_skill_overview",
+			"label": "Overview",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L10"
+		},
+		{
+			"id": "elysiajs_skill_when_to_use_this_skill",
+			"label": "When to Use This Skill",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "elysiajs_skill_quick_start",
+			"label": "Quick Start",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_1",
+			"label": "code:bash (bun create elysia app)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "elysiajs_skill_basic_server",
+			"label": "Basic Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_2",
+			"label": "code:typescript (import { Elysia, t, status } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "elysiajs_skill_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L70"
+		},
+		{
+			"id": "elysiajs_skill_http_methods",
+			"label": "HTTP Methods",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_3",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "elysiajs_skill_path_parameters",
+			"label": "Path Parameters",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_4",
+			"label": "code:typescript (.get('/user/:id', ({ params: { id } }) => id))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "elysiajs_skill_query_parameters",
+			"label": "Query Parameters",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_5",
+			"label": "code:typescript (.get('/search', ({ query }) => query.q))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L96"
+		},
+		{
+			"id": "elysiajs_skill_request_body",
+			"label": "Request Body",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_6",
+			"label": "code:typescript (.post('/user', ({ body }) => body))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "elysiajs_skill_headers",
+			"label": "Headers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_7",
+			"label": "code:typescript (.get('/', ({ headers }) => headers.authorization))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "elysiajs_skill_typebox_validation",
+			"label": "TypeBox Validation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "elysiajs_skill_basic_types",
+			"label": "Basic Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_8",
+			"label": "code:typescript (import { Elysia, t } from 'elysia')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "elysiajs_skill_nested_objects",
+			"label": "Nested Objects",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_9",
+			"label": "code:typescript (body: t.Object({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "elysiajs_skill_arrays",
+			"label": "Arrays",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L144"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_10",
+			"label": "code:typescript (body: t.Object({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "elysiajs_skill_file_upload",
+			"label": "File Upload",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L158"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_11",
+			"label": "code:typescript (.post('/upload', ({ body }) => body.file, {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "elysiajs_skill_response_validation",
+			"label": "Response Validation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_12",
+			"label": "code:typescript (.get('/user/:id', ({ params: { id } }) => ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L176"
+		},
+		{
+			"id": "elysiajs_skill_standard_schema_zod_valibot_arktype",
+			"label": "Standard Schema (Zod, Valibot, ArkType)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L196"
+		},
+		{
+			"id": "elysiajs_skill_zod",
+			"label": "Zod",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_13",
+			"label": "code:typescript (import { z } from 'zod')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "elysiajs_skill_error_handling",
+			"label": "Error Handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L212"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_14",
+			"label": "code:typescript (.get('/user/:id', ({ params: { id }, status }) => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L214"
+		},
+		{
+			"id": "elysiajs_skill_guards_apply_to_multiple_routes",
+			"label": "Guards (Apply to Multiple Routes)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L226"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_15",
+			"label": "code:typescript (.guard({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L228"
+		},
+		{
+			"id": "elysiajs_skill_macro",
+			"label": "Macro",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L239"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_16",
+			"label": "code:typescript (.macro({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L241"
+		},
+		{
+			"id": "elysiajs_skill_project_structure_recommended",
+			"label": "Project Structure (Recommended)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L250"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_17",
+			"label": "code:block17 (src/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L254"
+		},
+		{
+			"id": "elysiajs_skill_best_practice",
+			"label": "Best Practice",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L279"
+		},
+		{
+			"id": "elysiajs_skill_elysia_key_concept",
+			"label": "Elysia Key Concept",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L298"
+		},
+		{
+			"id": "elysiajs_skill_encapsulation_isolates_by_default",
+			"label": "Encapsulation - Isolates by Default",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L302"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_18",
+			"label": "code:ts (.onBeforeHandle(() => {}) // only local instance)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L312"
+		},
+		{
+			"id": "elysiajs_skill_method_chaining_required_for_types",
+			"label": "Method Chaining - Required for Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L317"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_19",
+			"label": "code:ts (const app = new Elysia();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L323"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_20",
+			"label": "code:ts (new Elysia().state(\"build\", 1).get(\"/\", ({ store }) => store)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L331"
+		},
+		{
+			"id": "elysiajs_skill_explicit_dependencies",
+			"label": "Explicit Dependencies",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L335"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_21",
+			"label": "code:ts (const auth = new Elysia().decorate(\"Auth\", Auth).model(Auth.)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L339"
+		},
+		{
+			"id": "elysiajs_skill_deduplication",
+			"label": "Deduplication",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L359"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_22",
+			"label": "code:ts (new Elysia(); // rerun on `.use`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L363"
+		},
+		{
+			"id": "elysiajs_skill_order_matters",
+			"label": "Order Matters",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L368"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_23",
+			"label": "code:ts (.onBeforeHandle(() => console.log('1')))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L372"
+		},
+		{
+			"id": "elysiajs_skill_type_inference",
+			"label": "Type Inference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L378"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_24",
+			"label": "code:ts (.post('/', ({ body }) => Controller.greet(body), {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L384"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_25",
+			"label": "code:ts (type MyType = typeof MyType.static;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L392"
+		},
+		{
+			"id": "elysiajs_skill_reference_model",
+			"label": "Reference Model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L396"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_26",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L400"
+		},
+		{
+			"id": "elysiajs_skill_codeblock_27",
+			"label": "code:ts (new Elysia())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L414"
+		},
+		{
+			"id": "elysiajs_skill_technical_terms",
+			"label": "Technical Terms",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L429"
+		},
+		{
+			"id": "elysiajs_skill_resources",
+			"label": "Resources",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L436"
+		},
+		{
+			"id": "elysiajs_skill_references",
+			"label": "references/",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L444"
+		},
+		{
+			"id": "elysiajs_skill_plugins",
+			"label": "plugins/",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L460"
+		},
+		{
+			"id": "elysiajs_skill_integrations",
+			"label": "integrations/",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L476"
+		},
+		{
+			"id": "elysiajs_skill_examples_optional",
+			"label": "examples/ (optional)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L496"
+		},
+		{
+			"id": "elysiajs_skill_patterns_optional",
+			"label": "patterns/ (optional)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L513"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_skill_md",
+			"target": "elysiajs_skill_elysiajs_development_skill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_overview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_when_to_use_this_skill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_quick_start",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_quick_start",
+			"target": "elysiajs_skill_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_quick_start",
+			"target": "elysiajs_skill_basic_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_basic_server",
+			"target": "elysiajs_skill_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_basic_usage",
+			"target": "elysiajs_skill_http_methods",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_http_methods",
+			"target": "elysiajs_skill_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_basic_usage",
+			"target": "elysiajs_skill_path_parameters",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_path_parameters",
+			"target": "elysiajs_skill_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_basic_usage",
+			"target": "elysiajs_skill_query_parameters",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_query_parameters",
+			"target": "elysiajs_skill_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_basic_usage",
+			"target": "elysiajs_skill_request_body",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_request_body",
+			"target": "elysiajs_skill_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_basic_usage",
+			"target": "elysiajs_skill_headers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_headers",
+			"target": "elysiajs_skill_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_typebox_validation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_typebox_validation",
+			"target": "elysiajs_skill_basic_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_basic_types",
+			"target": "elysiajs_skill_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_typebox_validation",
+			"target": "elysiajs_skill_nested_objects",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_nested_objects",
+			"target": "elysiajs_skill_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_typebox_validation",
+			"target": "elysiajs_skill_arrays",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L144",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_arrays",
+			"target": "elysiajs_skill_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_typebox_validation",
+			"target": "elysiajs_skill_file_upload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_file_upload",
+			"target": "elysiajs_skill_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_typebox_validation",
+			"target": "elysiajs_skill_response_validation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_response_validation",
+			"target": "elysiajs_skill_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L176",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_standard_schema_zod_valibot_arktype",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L196",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_standard_schema_zod_valibot_arktype",
+			"target": "elysiajs_skill_zod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_zod",
+			"target": "elysiajs_skill_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L212",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_error_handling",
+			"target": "elysiajs_skill_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L214",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_guards_apply_to_multiple_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L226",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_guards_apply_to_multiple_routes",
+			"target": "elysiajs_skill_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L228",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_macro",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L239",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_macro",
+			"target": "elysiajs_skill_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_macro",
+			"target": "elysiajs_skill_project_structure_recommended",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L250",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_project_structure_recommended",
+			"target": "elysiajs_skill_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L254",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_best_practice",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L279",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_elysia_key_concept",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L298",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_encapsulation_isolates_by_default",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L302",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_encapsulation_isolates_by_default",
+			"target": "elysiajs_skill_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L312",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_method_chaining_required_for_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L317",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_method_chaining_required_for_types",
+			"target": "elysiajs_skill_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L323",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_method_chaining_required_for_types",
+			"target": "elysiajs_skill_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L331",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_explicit_dependencies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L335",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_explicit_dependencies",
+			"target": "elysiajs_skill_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L339",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_deduplication",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L359",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_deduplication",
+			"target": "elysiajs_skill_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L363",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_order_matters",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L368",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_order_matters",
+			"target": "elysiajs_skill_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L372",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_type_inference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L378",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_type_inference",
+			"target": "elysiajs_skill_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L384",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_type_inference",
+			"target": "elysiajs_skill_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L392",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_reference_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L396",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_reference_model",
+			"target": "elysiajs_skill_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L400",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_reference_model",
+			"target": "elysiajs_skill_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L414",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_technical_terms",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L429",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_elysiajs_development_skill",
+			"target": "elysiajs_skill_resources",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L436",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_resources",
+			"target": "elysiajs_skill_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L444",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_resources",
+			"target": "elysiajs_skill_plugins",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L460",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_resources",
+			"target": "elysiajs_skill_integrations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L476",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_resources",
+			"target": "elysiajs_skill_examples_optional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L496",
+			"weight": 1.0
+		},
+		{
+			"source": "elysiajs_skill_resources",
+			"target": "elysiajs_skill_patterns_optional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\SKILL.md",
+			"source_location": "L513",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

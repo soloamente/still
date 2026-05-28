@@ -1,7 +1,10 @@
 "use client";
 
+import { Button } from "@still/ui/components/button";
+import IconCloneImageDashedFill from "@still/ui/icons/clone-image-dashed-fill";
 import { cn } from "@still/ui/lib/utils";
-import { Check, ImageIcon, Loader2, Upload } from "lucide-react";
+import { Check, Loader2, Upload, X } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -10,6 +13,7 @@ import { toast } from "sonner";
 import type { ListDetailFilmRow } from "@/components/list/list-detail-films-grid";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import { api } from "@/lib/api";
+import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
 import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
@@ -18,28 +22,38 @@ import { uploadListCover } from "@/lib/upload-list-cover";
 /**
  * Owner control — pick a list poster or upload a custom image for hero + lobby tile.
  */
+type CoverSaving =
+	| { kind: "movie"; id: number }
+	| { kind: "tv"; id: number }
+	| "upload"
+	| "clear"
+	| null;
+
 export function ListDetailCoverPicker({
 	listId,
 	films,
 	coverMovieId,
+	coverTvId,
 	coverImageUrl,
 	updatedAt,
 }: {
 	listId: string;
 	films: ListDetailFilmRow[];
 	coverMovieId: number | null;
+	coverTvId: number | null;
 	coverImageUrl: string | null;
 	/** List `updatedAt` — cache-busts the cover proxy URL after upload. */
 	updatedAt: string;
 }) {
 	const router = useRouter();
+	const reduceMotion = useReducedMotion();
 	const fileInputId = useId();
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const scrollRef = useRef<HTMLDivElement>(null);
 	const [open, setOpen] = useState(false);
-	const [portalReady, setPortalReady] = useState(false);
-	const [savingId, setSavingId] = useState<number | "clear" | "upload" | null>(
-		null,
-	);
+	const [mounted, setMounted] = useState(false);
+	const [saving, setSaving] = useState<CoverSaving>(null);
+	const [showFooterFade, setShowFooterFade] = useState(true);
 
 	/** Refresh after the dialog unmounts so Next/Image is not torn down mid-commit. */
 	const refreshAfterClose = useCallback(() => {
@@ -47,9 +61,7 @@ export function ListDetailCoverPicker({
 		window.setTimeout(() => router.refresh(), 0);
 	}, [router]);
 
-	useEffect(() => {
-		setPortalReady(true);
-	}, []);
+	useEffect(() => setMounted(true), []);
 
 	useEffect(() => {
 		if (!open) return;
@@ -60,34 +72,76 @@ export function ListDetailCoverPicker({
 		return () => window.removeEventListener("keydown", onKey);
 	}, [open]);
 
-	const handlePick = useCallback(
-		async (nextId: number | null) => {
-			setSavingId(nextId ?? "clear");
+	const syncFooterFade = useCallback(() => {
+		const el = scrollRef.current;
+		if (!el) return;
+		const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+		setShowFooterFade(distanceFromBottom > 8);
+	}, []);
+
+	useEffect(() => {
+		if (!open) return;
+		const el = scrollRef.current;
+		if (!el) return;
+		syncFooterFade();
+		el.addEventListener("scroll", syncFooterFade, { passive: true });
+		return () => el.removeEventListener("scroll", syncFooterFade);
+	}, [open, syncFooterFade]);
+
+	const handlePickMovie = useCallback(
+		async (nextId: number) => {
+			setSaving({ kind: "movie", id: nextId });
 			try {
 				const res = await api.api.lists({ id: listId }).patch({
 					coverMovieId: nextId,
+					coverTvId: null,
 					coverImageUrl: null,
 				});
 				if (res.error) {
 					toast.error("Couldn't update cover");
 					return;
 				}
-				toast.success(nextId ? "Cover updated" : "Cover reset to default");
+				toast.success("Cover updated");
 				refreshAfterClose();
 			} catch {
 				toast.error("Couldn't update cover");
 			} finally {
-				setSavingId(null);
+				setSaving(null);
+			}
+		},
+		[listId, refreshAfterClose],
+	);
+
+	const handlePickTv = useCallback(
+		async (nextId: number) => {
+			setSaving({ kind: "tv", id: nextId });
+			try {
+				const res = await api.api.lists({ id: listId }).patch({
+					coverTvId: nextId,
+					coverMovieId: null,
+					coverImageUrl: null,
+				});
+				if (res.error) {
+					toast.error("Couldn't update cover");
+					return;
+				}
+				toast.success("Cover updated");
+				refreshAfterClose();
+			} catch {
+				toast.error("Couldn't update cover");
+			} finally {
+				setSaving(null);
 			}
 		},
 		[listId, refreshAfterClose],
 	);
 
 	const handleReset = useCallback(async () => {
-		setSavingId("clear");
+		setSaving("clear");
 		try {
 			const res = await api.api.lists({ id: listId }).patch({
 				coverMovieId: null,
+				coverTvId: null,
 				coverImageUrl: null,
 			});
 			if (res.error) {
@@ -99,7 +153,7 @@ export function ListDetailCoverPicker({
 		} catch {
 			toast.error("Couldn't reset cover");
 		} finally {
-			setSavingId(null);
+			setSaving(null);
 		}
 	}, [listId, refreshAfterClose]);
 
@@ -114,7 +168,7 @@ export function ListDetailCoverPicker({
 				toast.error("Image must be 5MB or smaller");
 				return;
 			}
-			setSavingId("upload");
+			setSaving("upload");
 			try {
 				await uploadListCover(listId, file);
 				toast.success("Custom cover uploaded");
@@ -124,7 +178,7 @@ export function ListDetailCoverPicker({
 					err instanceof Error ? err.message : "Couldn't upload cover",
 				);
 			} finally {
-				setSavingId(null);
+				setSaving(null);
 				if (fileInputRef.current) fileInputRef.current.value = "";
 			}
 		},
@@ -137,22 +191,41 @@ export function ListDetailCoverPicker({
 		updatedAt,
 	);
 	const hasCustomCover = Boolean(customCoverPreview);
-	const hasPinnedPoster = coverMovieId != null && !hasCustomCover;
-	const canReset = hasCustomCover || hasPinnedPoster;
+	const hasPinnedMovie = coverMovieId != null && !hasCustomCover;
+	const hasPinnedTv = coverTvId != null && !hasCustomCover;
+	const canReset = hasCustomCover || hasPinnedMovie || hasPinnedTv;
+	const pinnedPosterSrc = hasPinnedMovie
+		? profilePosterUrlFromPath(
+				films.find((row) => row.movie?.tmdbId === coverMovieId)?.movie
+					?.posterPath ?? null,
+			)
+		: hasPinnedTv
+			? profilePosterUrlFromPath(
+					films.find((row) => row.tv?.tmdbId === coverTvId)?.tv?.posterPath ??
+						null,
+				)
+			: null;
+	const deviceCoverSrc = customCoverPreview ?? pinnedPosterSrc ?? null;
+	const isSaving = saving !== null;
+	const dialogMotion = reduceMotion
+		? { duration: 0 }
+		: { duration: 0.2, ease: [0.165, 0.84, 0.44, 1] as const };
+
+	if (!mounted) return null;
 
 	return (
 		<>
-			<DetailMotionButtonWrap className="mt-4">
+			<DetailMotionButtonWrap>
 				<button
 					type="button"
 					onClick={() => setOpen(true)}
 					className={cn(
-						"inline-flex min-h-10 items-center gap-2 rounded-full bg-background px-4 py-2 font-medium text-foreground text-sm shadow-sm",
+						"inline-flex min-h-10 items-center gap-2 rounded-full bg-background px-4 py-2 font-medium text-foreground text-sm",
 						DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 					)}
 				>
-					<ImageIcon className="size-4 opacity-80" aria-hidden />
-					Choose cover
+					<IconCloneImageDashedFill className="opacity-80" aria-hidden />
+					Change cover
 				</button>
 			</DetailMotionButtonWrap>
 
@@ -165,98 +238,154 @@ export function ListDetailCoverPicker({
 				onChange={(e) => void handleFile(e.target.files?.[0])}
 			/>
 
-			{open && portalReady
-				? createPortal(
-						// biome-ignore lint/a11y/noStaticElementInteractions: backdrop dismiss only; dialog holds focusable controls.
-						<div
-							className="fixed inset-0 z-50 flex items-end justify-center bg-background/80 p-3 backdrop-blur-sm sm:items-center sm:p-6"
-							role="presentation"
+			{createPortal(
+				<AnimatePresence>
+					{open ? (
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.18 }}
+							className={APP_MODAL_OVERLAY_CLASS}
 							onClick={() => setOpen(false)}
 						>
-							<div
+							<motion.div
 								role="dialog"
+								aria-modal="true"
 								aria-labelledby="list-cover-picker-title"
-								className="max-h-[min(85svh,40rem)] w-full max-w-lg overflow-hidden rounded-[2rem] bg-card shadow-xl"
-								onClick={(e) => e.stopPropagation()}
-								onKeyDown={(e) => e.stopPropagation()}
+								initial={{ y: 28, opacity: 0, scale: 0.98 }}
+								animate={{ y: 0, opacity: 1, scale: 1 }}
+								exit={{ y: 16, opacity: 0, scale: 0.98 }}
+								transition={dialogMotion}
+								onClick={(event) => event.stopPropagation()}
+								className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
 							>
-								<div className="border-border/40 border-b px-5 py-4">
-									<h2
-										id="list-cover-picker-title"
-										className="font-sans font-semibold text-foreground text-lg tracking-tight"
+								<div className="mb-4 flex justify-end">
+									<Button
+										type="button"
+										variant="ghost"
+										size="icon-pill"
+										onClick={() => setOpen(false)}
+										aria-label="Close"
+										className="text-muted-foreground"
 									>
-										Choose cover
-									</h2>
-									<p className="mt-1 text-muted-foreground text-sm leading-relaxed">
-										Upload your own image or pick a poster from this list.
-									</p>
+										<X className="size-4" aria-hidden />
+									</Button>
 								</div>
-								<div className="max-h-[min(60svh,28rem)] space-y-5 overflow-y-auto px-4 py-4">
-									<div>
-										<p className="mb-2 font-medium text-foreground text-sm">
-											From your device
-										</p>
-										<button
-											type="button"
-											disabled={savingId !== null}
-											onClick={() => fileInputRef.current?.click()}
-											className={cn(
-												"flex w-full items-center justify-center gap-2 rounded-2xl border border-border/60 border-dashed bg-muted/20 px-4 py-6 font-medium text-foreground text-sm",
-												DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-												hasCustomCover &&
-													"ring-2 ring-foreground ring-offset-2 ring-offset-card",
-											)}
-											aria-pressed={hasCustomCover}
-										>
-											{savingId === "upload" ? (
-												<Loader2 className="size-5 animate-spin" aria-hidden />
-											) : (
-												<Upload className="size-5 opacity-80" aria-hidden />
-											)}
-											{hasCustomCover ? "Replace custom image" : "Upload image"}
-										</button>
-										{hasCustomCover && customCoverPreview ? (
-											<div className="relative mx-auto mt-3 aspect-2/3 w-24 overflow-hidden rounded-xl bg-muted/30 shadow-sm">
-												{/* biome-ignore lint/performance/noImgElement: blob preview URL before upload */}
-												<img
-													src={customCoverPreview}
-													alt=""
-													className="size-full object-cover"
-												/>
-											</div>
-										) : null}
-									</div>
 
-									{films.length > 0 ? (
+								<div className="relative min-h-0 flex-1">
+									<div
+										ref={scrollRef}
+										className="scrollbar-none max-h-[min(calc(92svh-11rem),640px)] space-y-5 overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+									>
 										<div>
-											<p className="mb-2 font-medium text-foreground text-sm">
-												From this list
+											<h2
+												id="list-cover-picker-title"
+												className="text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+											>
+												Change cover
+											</h2>
+											<p className="mt-2 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+												Upload your own image or pick a poster from this list.
 											</p>
-											<div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
-												{films
-													.filter(
-														(
-															row,
-														): row is typeof row & {
-															movie: NonNullable<(typeof row)["movie"]>;
-														} => row.movie != null,
-													)
-													.map((row) => {
-														const movie = row.movie;
-														const movieId = movie.tmdbId;
+										</div>
+										<div>
+											<p className="mb-2 text-center font-medium text-foreground text-sm">
+												From your device
+											</p>
+											<button
+												type="button"
+												disabled={isSaving}
+												onClick={() => fileInputRef.current?.click()}
+												className={cn(
+													"relative mx-auto flex aspect-2/3 w-28 flex-col items-center justify-center gap-2 overflow-hidden rounded-2xl border border-border/60 border-dashed bg-muted/20 px-3 py-4 text-center font-medium text-foreground text-sm",
+													DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+													deviceCoverSrc && "border-solid",
+													hasCustomCover &&
+														"ring-2 ring-foreground ring-offset-2 ring-offset-card",
+												)}
+												aria-pressed={hasCustomCover}
+											>
+												{deviceCoverSrc ? (
+													<>
+														{/* biome-ignore lint/performance/noImgElement: current list cover preview */}
+														<img
+															src={deviceCoverSrc}
+															alt=""
+															className="absolute inset-0 size-full object-cover"
+														/>
+														<span className="absolute inset-0 bg-background/45" />
+													</>
+												) : null}
+												<span className="relative z-10 flex flex-col items-center gap-2">
+													{saving === "upload" ? (
+														<Loader2
+															className="size-5 animate-spin"
+															aria-hidden
+														/>
+													) : (
+														<Upload className="size-5 opacity-80" aria-hidden />
+													)}
+													<span>
+														{deviceCoverSrc ? "Replace image" : "Upload image"}
+													</span>
+												</span>
+											</button>
+										</div>
+
+										{films.length > 0 ? (
+											<div>
+												<p className="mb-2 text-center font-medium text-foreground text-sm">
+													From this list
+												</p>
+												<div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
+													{films.map((row) => {
+														const media = row.movie ?? row.tv;
+														const movieId = row.movie?.tmdbId ?? null;
+														const tvId = row.tv?.tmdbId ?? null;
 														const src = profilePosterUrlFromPath(
-															movie.posterPath,
+															media?.posterPath ?? null,
 														);
-														const selected =
-															hasPinnedPoster && coverMovieId === movieId;
-														const busy = savingId === movieId;
+														const selectedMovie =
+															movieId != null &&
+															hasPinnedMovie &&
+															coverMovieId === movieId;
+														const selectedTv =
+															tvId != null && hasPinnedTv && coverTvId === tvId;
+														const selected = selectedMovie || selectedTv;
+														const busyMovie =
+															movieId != null &&
+															saving !== null &&
+															saving !== "upload" &&
+															saving !== "clear" &&
+															saving.kind === "movie" &&
+															saving.id === movieId;
+														const busyTv =
+															tvId != null &&
+															saving !== null &&
+															saving !== "upload" &&
+															saving !== "clear" &&
+															saving.kind === "tv" &&
+															saving.id === tvId;
+														const busy = busyMovie || busyTv;
+														const title =
+															media?.title ??
+															(row.movie ? "Movie" : row.tv ? "Show" : "Title");
 
 														return (
 															<button
-																key={movie.tmdbId}
+																key={row.item.id}
 																type="button"
-																disabled={savingId !== null}
-																onClick={() => void handlePick(movieId)}
+																disabled={isSaving}
+																onClick={() => {
+																	if (movieId != null) {
+																		void handlePickMovie(movieId);
+																		return;
+																	}
+																	if (tvId != null) {
+																		void handlePickTv(tvId);
+																	}
+																}}
 																className={cn(
 																	"relative aspect-2/3 min-h-0 min-w-0 overflow-hidden rounded-2xl bg-muted/30 text-left shadow-sm transition-shadow duration-200",
 																	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -264,7 +393,7 @@ export function ListDetailCoverPicker({
 																		"ring-2 ring-foreground ring-offset-2 ring-offset-card",
 																	"[@media(hover:hover)]:hover:shadow-md",
 																)}
-																aria-label={`Use ${movie.title} as cover${selected ? " (current)" : ""}`}
+																aria-label={`Use ${title} as cover${selected ? " (current)" : ""}`}
 																aria-pressed={selected}
 															>
 																{src ? (
@@ -275,7 +404,7 @@ export function ListDetailCoverPicker({
 																		className="absolute inset-0 size-full object-cover"
 																	/>
 																) : (
-																	<span className="grid size-full place-items-center text-muted-foreground text-xs">
+																	<span className="grid size-full place-items-center text-center text-muted-foreground text-xs">
 																		No art
 																	</span>
 																)}
@@ -294,42 +423,56 @@ export function ListDetailCoverPicker({
 															</button>
 														);
 													})}
+												</div>
 											</div>
-										</div>
-									) : null}
-								</div>
-								<div className="flex flex-wrap items-center justify-between gap-2 border-border/40 border-t px-5 py-4">
-									<button
-										type="button"
-										disabled={savingId !== null || !canReset}
-										onClick={() => void handleReset()}
-										className={cn(
-											"rounded-full px-4 py-2 font-medium text-muted-foreground text-sm",
-											DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-											"disabled:pointer-events-none disabled:opacity-40",
-										)}
-									>
-										{savingId === "clear" ? (
-											<Loader2
-												className="inline size-4 animate-spin"
-												aria-hidden
-											/>
 										) : null}
-										Reset to default
-									</button>
-									<button
-										type="button"
-										onClick={() => setOpen(false)}
-										className="rounded-full bg-foreground px-5 py-2 font-medium text-background text-sm"
-									>
-										Done
-									</button>
+									</div>
+									<div
+										aria-hidden
+										className={cn(
+											"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-linear-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+											showFooterFade ? "opacity-100" : "opacity-0",
+										)}
+									/>
 								</div>
-							</div>
-						</div>,
-						document.body,
-					)
-				: null}
+
+								<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
+									<DetailMotionButtonWrap>
+										<Button
+											type="button"
+											variant="ghost"
+											size="pill"
+											className={cn(
+												"h-auto min-h-10 min-w-26 border-transparent bg-background py-2.5 text-muted-foreground",
+												DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+											)}
+											disabled={isSaving || !canReset}
+											onClick={() => void handleReset()}
+										>
+											{saving === "clear" ? (
+												<Loader2 className="size-4 animate-spin" aria-hidden />
+											) : null}
+											Reset
+										</Button>
+									</DetailMotionButtonWrap>
+									<DetailMotionButtonWrap>
+										<Button
+											type="button"
+											variant="default"
+											size="pill"
+											className="h-auto min-h-10 min-w-26 bg-foreground px-5 py-2.5 text-background text-base"
+											onClick={() => setOpen(false)}
+										>
+											Done
+										</Button>
+									</DetailMotionButtonWrap>
+								</footer>
+							</motion.div>
+						</motion.div>
+					) : null}
+				</AnimatePresence>,
+				document.body,
+			)}
 		</>
 	);
 }

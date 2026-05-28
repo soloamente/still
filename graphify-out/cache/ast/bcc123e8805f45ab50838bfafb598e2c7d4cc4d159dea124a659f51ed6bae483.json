@@ -1,0 +1,239 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_nextjs_md",
+			"label": "nextjs.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_nextjs_next_js_integration",
+			"label": "Next.js Integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "integrations_nextjs_what_it_is",
+			"label": "What It Is",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "integrations_nextjs_setup",
+			"label": "Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "integrations_nextjs_codeblock_1",
+			"label": "code:typescript (// app/api/[[...slugs]]/route.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "integrations_nextjs_prefix_for_non_root",
+			"label": "Prefix for Non-Root",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "integrations_nextjs_codeblock_2",
+			"label": "code:typescript (const app = new Elysia({ prefix: \"/user\" }).get(\"/\", \"Hello )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "integrations_nextjs_eden_end_to_end_type_safety",
+			"label": "Eden (End-to-End Type Safety)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "integrations_nextjs_codeblock_3",
+			"label": "code:typescript (// app/api/[[...slugs]]/route.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "integrations_nextjs_codeblock_4",
+			"label": "code:typescript (// lib/eden.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "integrations_nextjs_codeblock_5",
+			"label": "code:tsx (// app/page.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "integrations_nextjs_react_query",
+			"label": "React Query",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "integrations_nextjs_codeblock_6",
+			"label": "code:tsx (import { useQuery } from \"@tanstack/react-query\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "integrations_nextjs_pnpm",
+			"label": "pnpm",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "integrations_nextjs_codeblock_7",
+			"label": "code:bash (pnpm add @sinclair/typebox openapi-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L108"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_integrations_nextjs_md",
+			"target": "integrations_nextjs_next_js_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_next_js_integration",
+			"target": "integrations_nextjs_what_it_is",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_next_js_integration",
+			"target": "integrations_nextjs_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_setup",
+			"target": "integrations_nextjs_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_next_js_integration",
+			"target": "integrations_nextjs_prefix_for_non_root",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_prefix_for_non_root",
+			"target": "integrations_nextjs_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_next_js_integration",
+			"target": "integrations_nextjs_eden_end_to_end_type_safety",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_eden_end_to_end_type_safety",
+			"target": "integrations_nextjs_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_eden_end_to_end_type_safety",
+			"target": "integrations_nextjs_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_eden_end_to_end_type_safety",
+			"target": "integrations_nextjs_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_next_js_integration",
+			"target": "integrations_nextjs_react_query",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_react_query",
+			"target": "integrations_nextjs_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_next_js_integration",
+			"target": "integrations_nextjs_pnpm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "integrations_nextjs_pnpm",
+			"target": "integrations_nextjs_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\integrations\\nextjs.md",
+			"source_location": "L108",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

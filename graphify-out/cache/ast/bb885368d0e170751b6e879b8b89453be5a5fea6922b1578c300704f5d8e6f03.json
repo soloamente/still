@@ -1,0 +1,463 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_data_patterns_md",
+			"label": "data-patterns.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_data_patterns_data_patterns",
+			"label": "Data Patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_data_patterns_decision_tree",
+			"label": "Decision Tree",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_1",
+			"label": "code:block1 (Need to fetch data?)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "next_best_practices_data_patterns_pattern_1_server_components_preferred_for_reads",
+			"label": "Pattern 1: Server Components (Preferred for Reads)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_2",
+			"label": "code:tsx (// app/users/page.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "next_best_practices_data_patterns_pattern_2_server_actions_preferred_for_mutations",
+			"label": "Pattern 2: Server Actions (Preferred for Mutations)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_3",
+			"label": "code:tsx (// app/actions.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_4",
+			"label": "code:tsx (// app/posts/new/page.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "next_best_practices_data_patterns_pattern_3_route_handlers_apis",
+			"label": "Pattern 3: Route Handlers (APIs)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_5",
+			"label": "code:tsx (// app/api/posts/route.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "next_best_practices_data_patterns_avoiding_data_waterfalls",
+			"label": "Avoiding Data Waterfalls",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "next_best_practices_data_patterns_problem_sequential_fetches",
+			"label": "Problem: Sequential Fetches",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_6",
+			"label": "code:tsx (// Bad: Sequential waterfalls)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "next_best_practices_data_patterns_solution_1_parallel_fetching_with_promise_all",
+			"label": "Solution 1: Parallel Fetching with Promise.all",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L156"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_7",
+			"label": "code:tsx (// Good: Parallel fetching)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L158"
+		},
+		{
+			"id": "next_best_practices_data_patterns_solution_2_streaming_with_suspense",
+			"label": "Solution 2: Streaming with Suspense",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_8",
+			"label": "code:tsx (// Good: Show content progressively)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L169"
+		},
+		{
+			"id": "next_best_practices_data_patterns_solution_3_preload_pattern",
+			"label": "Solution 3: Preload Pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L197"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_9",
+			"label": "code:tsx (// lib/data.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L199"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_10",
+			"label": "code:tsx (// app/user/[id]/page.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L212"
+		},
+		{
+			"id": "next_best_practices_data_patterns_client_component_data_fetching",
+			"label": "Client Component Data Fetching",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L230"
+		},
+		{
+			"id": "next_best_practices_data_patterns_option_1_pass_from_server_component_preferred",
+			"label": "Option 1: Pass from Server Component (Preferred)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L234"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_11",
+			"label": "code:tsx (// Server Component)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L236"
+		},
+		{
+			"id": "next_best_practices_data_patterns_option_2_fetch_on_mount_when_necessary",
+			"label": "Option 2: Fetch on Mount (When Necessary)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L251"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_12",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L253"
+		},
+		{
+			"id": "next_best_practices_data_patterns_option_3_server_action_for_reads_works_but_not_ideal",
+			"label": "Option 3: Server Action for Reads (Works But Not Ideal)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L271"
+		},
+		{
+			"id": "next_best_practices_data_patterns_codeblock_13",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L275"
+		},
+		{
+			"id": "next_best_practices_data_patterns_quick_reference",
+			"label": "Quick Reference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L293"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_data_patterns_md",
+			"target": "next_best_practices_data_patterns_data_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_data_patterns",
+			"target": "next_best_practices_data_patterns_decision_tree",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_decision_tree",
+			"target": "next_best_practices_data_patterns_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_data_patterns",
+			"target": "next_best_practices_data_patterns_pattern_1_server_components_preferred_for_reads",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_pattern_1_server_components_preferred_for_reads",
+			"target": "next_best_practices_data_patterns_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_data_patterns",
+			"target": "next_best_practices_data_patterns_pattern_2_server_actions_preferred_for_mutations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_pattern_2_server_actions_preferred_for_mutations",
+			"target": "next_best_practices_data_patterns_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_pattern_2_server_actions_preferred_for_mutations",
+			"target": "next_best_practices_data_patterns_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_data_patterns",
+			"target": "next_best_practices_data_patterns_pattern_3_route_handlers_apis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_pattern_3_route_handlers_apis",
+			"target": "next_best_practices_data_patterns_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_data_patterns",
+			"target": "next_best_practices_data_patterns_avoiding_data_waterfalls",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_avoiding_data_waterfalls",
+			"target": "next_best_practices_data_patterns_problem_sequential_fetches",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_problem_sequential_fetches",
+			"target": "next_best_practices_data_patterns_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_avoiding_data_waterfalls",
+			"target": "next_best_practices_data_patterns_solution_1_parallel_fetching_with_promise_all",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_solution_1_parallel_fetching_with_promise_all",
+			"target": "next_best_practices_data_patterns_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_avoiding_data_waterfalls",
+			"target": "next_best_practices_data_patterns_solution_2_streaming_with_suspense",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_solution_2_streaming_with_suspense",
+			"target": "next_best_practices_data_patterns_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_avoiding_data_waterfalls",
+			"target": "next_best_practices_data_patterns_solution_3_preload_pattern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L197",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_solution_3_preload_pattern",
+			"target": "next_best_practices_data_patterns_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L199",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_solution_3_preload_pattern",
+			"target": "next_best_practices_data_patterns_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L212",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_data_patterns",
+			"target": "next_best_practices_data_patterns_client_component_data_fetching",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L230",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_client_component_data_fetching",
+			"target": "next_best_practices_data_patterns_option_1_pass_from_server_component_preferred",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L234",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_option_1_pass_from_server_component_preferred",
+			"target": "next_best_practices_data_patterns_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_client_component_data_fetching",
+			"target": "next_best_practices_data_patterns_option_2_fetch_on_mount_when_necessary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L251",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_option_2_fetch_on_mount_when_necessary",
+			"target": "next_best_practices_data_patterns_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L253",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_client_component_data_fetching",
+			"target": "next_best_practices_data_patterns_option_3_server_action_for_reads_works_but_not_ideal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L271",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_option_3_server_action_for_reads_works_but_not_ideal",
+			"target": "next_best_practices_data_patterns_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L275",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_data_patterns_data_patterns",
+			"target": "next_best_practices_data_patterns_quick_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\data-patterns.md",
+			"source_location": "L293",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,287 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_next_best_practices_image_md",
+			"label": "image.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_image_image_optimization",
+			"label": "Image Optimization",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "next_best_practices_image_always_use_next_image",
+			"label": "Always Use next/image",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "next_best_practices_image_codeblock_1",
+			"label": "code:tsx (// Bad: Avoid native img)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "next_best_practices_image_required_props",
+			"label": "Required Props",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L16"
+		},
+		{
+			"id": "next_best_practices_image_codeblock_2",
+			"label": "code:tsx (// Local images - dimensions inferred automatically)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L20"
+		},
+		{
+			"id": "next_best_practices_image_remote_images_configuration",
+			"label": "Remote Images Configuration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "next_best_practices_image_codeblock_3",
+			"label": "code:js (// next.config.js)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "next_best_practices_image_responsive_images",
+			"label": "Responsive Images",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "next_best_practices_image_codeblock_4",
+			"label": "code:tsx (// Full-width hero)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "next_best_practices_image_blur_placeholder",
+			"label": "Blur Placeholder",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "next_best_practices_image_codeblock_5",
+			"label": "code:tsx (// Local images - automatic blur hash)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L92"
+		},
+		{
+			"id": "next_best_practices_image_priority_loading",
+			"label": "Priority Loading",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "next_best_practices_image_codeblock_6",
+			"label": "code:tsx (// Hero image - loads immediately)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "next_best_practices_image_common_mistakes",
+			"label": "Common Mistakes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "next_best_practices_image_codeblock_7",
+			"label": "code:tsx (// Bad: Missing sizes with fill - downloads largest image)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "next_best_practices_image_static_export",
+			"label": "Static Export",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L152"
+		},
+		{
+			"id": "next_best_practices_image_codeblock_8",
+			"label": "code:tsx (// Option 1: Disable optimization)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L156"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_next_best_practices_image_md",
+			"target": "next_best_practices_image_image_optimization",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_image_optimization",
+			"target": "next_best_practices_image_always_use_next_image",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_always_use_next_image",
+			"target": "next_best_practices_image_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_image_optimization",
+			"target": "next_best_practices_image_required_props",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_required_props",
+			"target": "next_best_practices_image_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_image_optimization",
+			"target": "next_best_practices_image_remote_images_configuration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_remote_images_configuration",
+			"target": "next_best_practices_image_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_image_optimization",
+			"target": "next_best_practices_image_responsive_images",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_responsive_images",
+			"target": "next_best_practices_image_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_image_optimization",
+			"target": "next_best_practices_image_blur_placeholder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_blur_placeholder",
+			"target": "next_best_practices_image_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L92",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_image_optimization",
+			"target": "next_best_practices_image_priority_loading",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_priority_loading",
+			"target": "next_best_practices_image_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_image_optimization",
+			"target": "next_best_practices_image_common_mistakes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_common_mistakes",
+			"target": "next_best_practices_image_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_image_optimization",
+			"target": "next_best_practices_image_static_export",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "next_best_practices_image_static_export",
+			"target": "next_best_practices_image_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\next-best-practices\\image.md",
+			"source_location": "L156",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

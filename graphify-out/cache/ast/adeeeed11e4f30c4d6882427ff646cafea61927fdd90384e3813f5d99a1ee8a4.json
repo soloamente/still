@@ -1,0 +1,62 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_add_to_list_media_ts",
+			"label": "add-to-list-media.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_add_to_list_media_addtolistmedia",
+			"label": "AddToListMedia",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_add_to_list_media_addtolistentitylabel",
+			"label": "addToListEntityLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_add_to_list_media_addtolistitempostbody",
+			"label": "addToListItemPostBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts",
+			"source_location": "L14"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_add_to_list_media_ts",
+			"target": "lib_add_to_list_media_addtolistmedia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_add_to_list_media_ts",
+			"target": "lib_add_to_list_media_addtolistentitylabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_add_to_list_media_ts",
+			"target": "lib_add_to_list_media_addtolistitempostbody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

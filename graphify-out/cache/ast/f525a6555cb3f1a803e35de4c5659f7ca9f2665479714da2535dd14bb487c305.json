@@ -1,0 +1,287 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_static_md",
+			"label": "static.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_static_static_plugin",
+			"label": "Static Plugin",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plugins_static_installation",
+			"label": "Installation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "plugins_static_codeblock_1",
+			"label": "code:bash (bun add @elysiajs/static)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "plugins_static_basic_usage",
+			"label": "Basic Usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plugins_static_codeblock_2",
+			"label": "code:typescript (import { Elysia } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plugins_static_codeblock_3",
+			"label": "code:block3 (| - src)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L24"
+		},
+		{
+			"id": "plugins_static_config",
+			"label": "Config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "plugins_static_assets",
+			"label": "assets",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "plugins_static_prefix",
+			"label": "prefix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "plugins_static_ignorepatterns",
+			"label": "ignorePatterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "plugins_static_staticlimit",
+			"label": "staticLimit",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "plugins_static_alwaysstatic",
+			"label": "alwaysStatic",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "plugins_static_headers",
+			"label": "headers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "plugins_static_indexhtml",
+			"label": "indexHTML",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "plugins_static_pattern",
+			"label": "Pattern",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "plugins_static_single_file",
+			"label": "Single file",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "plugins_static_codeblock_4",
+			"label": "code:typescript (import { Elysia, file } from \"elysia\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L93"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_elysiajs_plugins_static_md",
+			"target": "plugins_static_static_plugin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_static_plugin",
+			"target": "plugins_static_installation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_installation",
+			"target": "plugins_static_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_static_plugin",
+			"target": "plugins_static_basic_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_basic_usage",
+			"target": "plugins_static_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_basic_usage",
+			"target": "plugins_static_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_static_plugin",
+			"target": "plugins_static_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_config",
+			"target": "plugins_static_assets",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_config",
+			"target": "plugins_static_prefix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_config",
+			"target": "plugins_static_ignorepatterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_config",
+			"target": "plugins_static_staticlimit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_config",
+			"target": "plugins_static_alwaysstatic",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_config",
+			"target": "plugins_static_headers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_config",
+			"target": "plugins_static_indexhtml",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_static_plugin",
+			"target": "plugins_static_pattern",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_static_plugin",
+			"target": "plugins_static_single_file",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "plugins_static_single_file",
+			"target": "plugins_static_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\elysiajs\\plugins\\static.md",
+			"source_location": "L93",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

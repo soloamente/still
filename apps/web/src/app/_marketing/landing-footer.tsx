@@ -1,103 +1,122 @@
 import Link from "next/link";
 
-import { LANDING_GLASS_PANEL, LANDING_GLASS_PILL } from "./landing-glass";
-import { LandingMarkPill } from "./landing-mark-pill";
+import {
+	LANDING_FEATURES_SECTION_TITLE_CLASS,
+	LANDING_HERO_CTA_PRIMARY_CLASS,
+	LANDING_HERO_CTA_ROW_CLASS,
+	LANDING_HERO_CTA_SECONDARY_CLASS,
+	LANDING_SECTION_CLASS,
+	LANDING_SECTION_INNER_CLASS,
+} from "./landing-mobbin-hero";
 import { LandingScrollReveal } from "./landing-scroll-reveal";
 
-/** La Nube footer — newsletter pill, columns, credits. */
+/**
+ * Mobbin closing CTA band + minimal footer links.
+ */
 export function LandingFooter() {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer
-			id="start"
-			className="scroll-mt-24 bg-card px-4 py-20 sm:px-6 sm:py-28"
-		>
-			<LandingScrollReveal>
-				<div className="mx-auto max-w-[1400px]">
-					<div
-						className={`${LANDING_GLASS_PANEL} flex flex-col gap-3 p-2 sm:flex-row sm:items-stretch sm:gap-2`}
-					>
-						<div className="flex min-h-14 flex-1 flex-col justify-center rounded-full px-6 py-3">
-							<span className="font-sans text-foreground/90 text-sm">
-								Subscribe to your diary
-							</span>
-							<span className="mt-0.5 text-muted-foreground text-xs">
-								Free account — log your next screening tonight
-							</span>
+		<footer id="start" className="scroll-mt-24 bg-background">
+			<section className={`${LANDING_SECTION_CLASS} border-border/40 border-t`}>
+				<div className={LANDING_SECTION_INNER_CLASS}>
+					<LandingScrollReveal>
+						<div className="mx-auto max-w-[40ch] text-center">
+							<h2 className={LANDING_FEATURES_SECTION_TITLE_CLASS}>
+								Never lose track of what you watch
+							</h2>
+							<p className="mt-4 font-sans text-muted-foreground text-sm leading-relaxed">
+								Start a free account — log tonight, build lists tomorrow, and
+								share reviews when you are ready.
+							</p>
+							<div
+								className={`${LANDING_HERO_CTA_ROW_CLASS} mt-8 justify-center`}
+							>
+								<Link
+									href="/sign-up"
+									className={LANDING_HERO_CTA_PRIMARY_CLASS}
+								>
+									Create account
+								</Link>
+								<Link
+									href="/sign-in"
+									className={LANDING_HERO_CTA_SECONDARY_CLASS}
+								>
+									Sign in
+								</Link>
+							</div>
 						</div>
-						<Link
-							href="/sign-up"
-							className={`${LANDING_GLASS_PILL} inline-flex h-12 shrink-0 items-center justify-center px-8 font-medium font-sans text-foreground text-sm sm:min-h-14`}
-						>
-							Create account
-						</Link>
-					</div>
+					</LandingScrollReveal>
+				</div>
+			</section>
 
-					<div className="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-						<div className="space-y-3">
-							<p className="text-muted-foreground text-xs uppercase tracking-wider">
-								Mail
-							</p>
-							<p className="font-sans text-foreground/90 text-sm">
-								hello@still.app
-							</p>
-						</div>
-						<nav aria-label="Site" className="space-y-3">
-							<p className="text-muted-foreground text-xs uppercase tracking-wider">
-								Site
-							</p>
-							<ul className="space-y-2 font-sans text-foreground/90 text-sm">
-								<li>
-									<Link href="/">Home</Link>
-								</li>
-								<li>
-									<Link href="#work">Work</Link>
-								</li>
-								<li>
-									<Link href="#diary">Info</Link>
-								</li>
-							</ul>
-						</nav>
-						<nav aria-label="Product" className="space-y-3">
-							<p className="text-muted-foreground text-xs uppercase tracking-wider">
-								Product
-							</p>
-							<ul className="space-y-2 font-sans text-foreground/90 text-sm">
-								<li>
-									<Link href="/sign-up">Create account</Link>
-								</li>
-								<li>
-									<Link href="/sign-in">Sign in</Link>
-								</li>
-								<li>
-									<Link href="#catalogue">Catalogue</Link>
-								</li>
-							</ul>
-						</nav>
-						<div className="space-y-3">
-							<p className="text-muted-foreground text-xs uppercase tracking-wider">
-								Legal
-							</p>
-							<p className="font-sans text-foreground/90 text-sm">
-								Privacy policy
-							</p>
-						</div>
-					</div>
-
-					<div className="mt-16 flex flex-col gap-4 border-foreground/10 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
-						<div className="flex items-center gap-3">
-							<LandingMarkPill href="/" />
-							<p className="font-sans text-muted-foreground text-xs">
-								Still — All rights reserved © {year}
-							</p>
-						</div>
-						<p className="text-muted-foreground text-xs">
-							Your cinematic memory
+			<div className="border-border/40 border-t px-4 py-12 sm:px-6">
+				<div className="mx-auto flex w-full max-w-mobbin-page flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
+					<div>
+						<p className="font-sans font-semibold text-foreground text-sm">
+							Still
+						</p>
+						<p className="mt-2 max-w-xs font-sans text-muted-foreground text-xs leading-relaxed">
+							Your cinematic memory — diary, lists, and community for people who
+							care how they watch.
 						</p>
 					</div>
+
+					<nav
+						aria-label="Site"
+						className="flex flex-wrap gap-x-10 gap-y-6 font-sans text-sm"
+					>
+						<ul className="space-y-2 text-muted-foreground">
+							<li>
+								<Link
+									href="#intro"
+									className="transition-colors duration-200 [@media(hover:hover)]:text-foreground"
+								>
+									Product
+								</Link>
+							</li>
+							<li>
+								<Link
+									href="#diary"
+									className="transition-colors duration-200 [@media(hover:hover)]:text-foreground"
+								>
+									Features
+								</Link>
+							</li>
+							<li>
+								<Link
+									href="#catalogue"
+									className="transition-colors duration-200 [@media(hover:hover)]:text-foreground"
+								>
+									Catalogue
+								</Link>
+							</li>
+						</ul>
+						<ul className="space-y-2 text-muted-foreground">
+							<li>
+								<Link
+									href="/sign-up"
+									className="transition-colors duration-200 [@media(hover:hover)]:text-foreground"
+								>
+									Create account
+								</Link>
+							</li>
+							<li>
+								<Link
+									href="/sign-in"
+									className="transition-colors duration-200 [@media(hover:hover)]:text-foreground"
+								>
+									Sign in
+								</Link>
+							</li>
+						</ul>
+					</nav>
 				</div>
-			</LandingScrollReveal>
+
+				<p className="mx-auto mt-10 w-full max-w-mobbin-page font-sans text-muted-foreground text-xs">
+					© {year} Still. All rights reserved.
+				</p>
+			</div>
 		</footer>
 	);
 }

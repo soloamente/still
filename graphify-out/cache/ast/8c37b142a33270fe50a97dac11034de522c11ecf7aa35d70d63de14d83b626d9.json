@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_readme_md",
+			"label": "README.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_readme_still",
+			"label": "still",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_readme_features",
+			"label": "Features",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "still_readme_getting_started",
+			"label": "Getting Started",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L22"
+		},
+		{
+			"id": "still_readme_codeblock_1",
+			"label": "code:bash (bun install)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "still_readme_database_setup",
+			"label": "Database Setup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "still_readme_codeblock_2",
+			"label": "code:bash (bun run db:push)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "still_readme_codeblock_3",
+			"label": "code:bash (bun run dev)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "still_readme_local_env_apps_web_env",
+			"label": "Local env (`apps/web/.env`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "still_readme_codeblock_4",
+			"label": "code:env (# Browser + RSC call this origin; Next rewrites `/api/*` to )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "still_readme_production_web_api_on_separate_vercel_projects",
+			"label": "Production (web + API on separate Vercel projects)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "still_readme_ui_customization",
+			"label": "UI Customization",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "still_readme_add_more_shared_components",
+			"label": "Add more shared components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "still_readme_codeblock_5",
+			"label": "code:bash (npx shadcn@latest add accordion dialog popover sheet table -)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "still_readme_codeblock_6",
+			"label": "code:tsx (import { Button } from \"@still/ui/components/button\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "still_readme_add_app_specific_blocks",
+			"label": "Add app-specific blocks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "still_readme_git_hooks_and_formatting",
+			"label": "Git Hooks and Formatting",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "still_readme_project_structure",
+			"label": "Project Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "still_readme_codeblock_7",
+			"label": "code:block7 (still/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "still_readme_available_scripts",
+			"label": "Available Scripts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L119"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_readme_md",
+			"target": "still_readme_still",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_still",
+			"target": "still_readme_features",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_still",
+			"target": "still_readme_getting_started",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_getting_started",
+			"target": "still_readme_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_still",
+			"target": "still_readme_database_setup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_database_setup",
+			"target": "still_readme_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_database_setup",
+			"target": "still_readme_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_database_setup",
+			"target": "still_readme_local_env_apps_web_env",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_local_env_apps_web_env",
+			"target": "still_readme_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_database_setup",
+			"target": "still_readme_production_web_api_on_separate_vercel_projects",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_still",
+			"target": "still_readme_ui_customization",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_ui_customization",
+			"target": "still_readme_add_more_shared_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_add_more_shared_components",
+			"target": "still_readme_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_add_more_shared_components",
+			"target": "still_readme_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_ui_customization",
+			"target": "still_readme_add_app_specific_blocks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_still",
+			"target": "still_readme_git_hooks_and_formatting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_still",
+			"target": "still_readme_project_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_project_structure",
+			"target": "still_readme_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "still_readme_still",
+			"target": "still_readme_available_scripts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\README.md",
+			"source_location": "L119",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

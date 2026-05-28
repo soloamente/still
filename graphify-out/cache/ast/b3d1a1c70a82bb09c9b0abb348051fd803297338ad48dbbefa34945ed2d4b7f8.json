@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"label": "community-period.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_community_period_communityperiodquery",
+			"label": "communityPeriodQuery",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_community_period_resolvecommunityperiodquery",
+			"label": "resolveCommunityPeriodQuery()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_community_period_withincommunityperiod",
+			"label": "withinCommunityPeriod()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L40"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "elysia",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "lib_leaderboard_period_leaderboardperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "lib_leaderboard_period_normalizeleaderboardtimezone",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "lib_leaderboard_period_parseleaderboardperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "lib_leaderboard_period_resolveleaderboardwindow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "lib_community_period_communityperiodquery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "lib_community_period_resolvecommunityperiodquery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"target": "lib_community_period_withincommunityperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_community_period_resolvecommunityperiodquery",
+			"callee": "parseLeaderboardPeriod",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_community_period_resolvecommunityperiodquery",
+			"callee": "normalizeLeaderboardTimeZone",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_community_period_resolvecommunityperiodquery",
+			"callee": "resolveLeaderboardWindow",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_community_period_withincommunityperiod",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_community_period_withincommunityperiod",
+			"callee": "gte",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_community_period_withincommunityperiod",
+			"callee": "lt",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-period.ts",
+			"source_location": "L45"
+		}
+	]
+}

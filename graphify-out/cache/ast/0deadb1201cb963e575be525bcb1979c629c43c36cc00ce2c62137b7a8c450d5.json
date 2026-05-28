@@ -1,0 +1,101 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_sanitize_appearance_preferences_ts",
+			"label": "sanitize-appearance-preferences.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_sanitize_appearance_preferences_legacy_cinema_pref_keys",
+			"label": "LEGACY_CINEMA_PREF_KEYS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_sanitize_appearance_preferences_sanitizeappearancepreferences",
+			"label": "sanitizeAppearancePreferences()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_sanitize_appearance_preferences_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_sanitize_appearance_preferences_ts",
+			"target": "lib_app_themes_appthemeid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_sanitize_appearance_preferences_ts",
+			"target": "lib_app_themes_appthemetier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_sanitize_appearance_preferences_ts",
+			"target": "lib_app_themes_isappthemeid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_sanitize_appearance_preferences_ts",
+			"target": "lib_sanitize_appearance_preferences_legacy_cinema_pref_keys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_sanitize_appearance_preferences_ts",
+			"target": "lib_sanitize_appearance_preferences_sanitizeappearancepreferences",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_sanitize_appearance_preferences_sanitizeappearancepreferences",
+			"callee": "isAppThemeId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_sanitize_appearance_preferences_sanitizeappearancepreferences",
+			"callee": "appThemeTier",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sanitize-appearance-preferences.ts",
+			"source_location": "L32"
+		}
+	]
+}
