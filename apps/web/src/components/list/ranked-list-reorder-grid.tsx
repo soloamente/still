@@ -442,15 +442,19 @@ function RankedSortableTile({
 		transition,
 	};
 	const reorderLabel = `${listing.title}, rank ${index + 1}. Drag to reorder.`;
+	// Pull keys we override so TypeScript does not flag duplicate JSX props vs {...attributes}.
+	const {
+		tabIndex: sortableTabIndex,
+		"aria-disabled": _sortableAriaDisabled,
+		role: _sortableRole,
+		...sortableAttributes
+	} = attributes;
 
 	return (
 		// biome-ignore lint/a11y/useSemanticElements: dnd-kit sortable cell; poster may render a link when not dragging.
 		<div
 			ref={setNodeRef}
 			style={style}
-			role="button"
-			aria-label={reorderLabel}
-			aria-disabled={isSaving || undefined}
 			className={cn(
 				"relative min-w-0 cursor-grab touch-none",
 				(isDragging || isActive) && "z-50 cursor-grabbing",
@@ -465,9 +469,12 @@ function RankedSortableTile({
 				event.preventDefault();
 				event.stopPropagation();
 			}}
-			{...attributes}
+			{...sortableAttributes}
 			{...listeners}
-			tabIndex={isSaving ? -1 : (attributes.tabIndex ?? 0)}
+			role="button"
+			aria-label={reorderLabel}
+			aria-disabled={isSaving || undefined}
+			tabIndex={isSaving ? -1 : (sortableTabIndex ?? 0)}
 		>
 			<MoviePoster
 				movieId={listing.tmdbId}
