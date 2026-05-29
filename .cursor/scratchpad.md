@@ -1553,6 +1553,30 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 
 Symptom **B** (frozen full page) on chip taps — root cause is `<Link>` + `force-dynamic` RSC awaiting all data; `loading.tsx` does not help query-only navigations.
 
+### 2026-05-29 — Unified ⌘K search + people (Planner)
+
+**Brainstorm approved:** `docs/superpowers/specs/2026-05-29-unified-search-people-design.md` — merge cmdk into catalog dialog; `GET /api/profiles/search` (public profiles, following/mutual-first); follow suggestions on empty query; retire ⌘⇧K palette. Plan: `docs/superpowers/plans/2026-05-29-unified-search-people.md`. Friends product deferred (mutual follow boost only).
+
+### 2026-05-29 — Home browse instant navigation (Planner)
+
+**Brainstorm:** Human confirmed pill freeze on all browse tabs (**A**), Community slowest; prefetch **D** (implementor choice → hover + idle prefetch, not mount bundle).
+
+**Draft spec:** `docs/superpowers/specs/2026-05-29-home-browse-instant-navigation-design.md` — extends IL with `HomeBrowseSurfaceProvider`, `HomeLobbyBodyGate`, Community core-first + deferred leaderboards (waves A/B).
+
+**Project Status Board:**
+- [x] HB.1 Human spec review — **`va bene`** (2026-05-29)
+- [x] HB.2 Implementation plan — `docs/superpowers/plans/2026-05-29-home-browse-instant-navigation.md`
+- [x] HB.3.1 Task 1 — `home-browse-surface-nav` + provider + tests (5 pass, build ok)
+- [x] HB.3.2 Task 2 — `HomeLobbyNavigationRoot` on `/home`; deduped `LobbyNavigationProvider` (build ok)
+- [x] HB.3.3 Task 3 — `HomeLobbyBodyGate`, `CommunityLobbySkeleton`, `TmdbLobbySkeleton` (build ok)
+- [x] HB.3.4 Task 4 — `HomeStickyChrome` optimistic browse pill + `selectBrowseSurface` (build ok)
+- [x] HB.3.5 Task 5 — Community `router.prefetch` on hover/focus + idle on Movies/TV (build ok)
+- [x] HB.3.6 Wave A human QA — **`ok`**
+- [x] HB.4 Wave B — core RSC (`fetchHomeCommunityCore` + `HomeCommunityRscPayload` Suspense), client-deferred leaderboards + ranks skeleton/retry (build ok)
+- [ ] HB.4.1 Wave B human QA — Community Lists fast; Film/TV ranks skeleton then podium; reply **`ok`**
+- **HB.4 fix (2026-05-29):** Activity → Film ranks flashed podium then stuck skeleton — `useEffect` re-synced empty RSC `{}` leaderboard props on in-lobby `?sort=` changes, wiped client hydration, set `leaderboardsLoading` without re-fetch. Removed that sync; ranks skeleton only when loading **and** no board for active period.
+- [ ] HB.4 Wave B — Community core RSC + leaderboard defer + prefetch
+
 ### 2026-05-28 — Home sticky icon tooltips (Executor)
 
 **Project Status Board:**
