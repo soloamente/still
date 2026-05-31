@@ -3,6 +3,8 @@
  * feed payload the lobby list uses — no extra API round-trip.
  */
 
+import type { HomeCommunityActivityItem } from "./home-community-activity";
+
 export type HomeFriendRailEntry = {
 	handle: string;
 	displayName: string;
@@ -12,18 +14,20 @@ export type HomeFriendRailEntry = {
 	atMs: number;
 };
 
-type ActivityKind = "log" | "review" | "list";
-
-type FeedItem = {
-	kind: ActivityKind;
-	at: string;
-	payload: unknown;
-};
-
 type PersonRow = {
 	user: { id: string; name: string; image: string | null } | null;
 	profile: { handle: string; displayName: string } | null;
 };
+
+type FriendRailActivityItem = HomeCommunityActivityItem & {
+	kind: "log" | "review" | "list";
+};
+
+function isFriendRailActivityItem(
+	item: HomeCommunityActivityItem,
+): item is FriendRailActivityItem {
+	return item.kind === "log" || item.kind === "review" || item.kind === "list";
+}
 
 function personFromPayload(payload: unknown): PersonRow | null {
 	if (!payload || typeof payload !== "object") return null;
@@ -33,7 +37,7 @@ function personFromPayload(payload: unknown): PersonRow | null {
 	return p;
 }
 
-function snippetForItem(item: FeedItem): string {
+function snippetForItem(item: FriendRailActivityItem): string {
 	const payload = item.payload as Record<string, unknown>;
 	if (item.kind === "log") {
 		const movie = payload.movie as { title?: string } | null;
@@ -49,12 +53,15 @@ function snippetForItem(item: FeedItem): string {
 
 /** Keeps the most recent row per `handle` (by `at`), then sorts newest-first. */
 export function deriveFriendRailEntries(
-	items: FeedItem[],
+	items: HomeCommunityActivityItem[],
 	limit = 8,
 ): HomeFriendRailEntry[] {
 	const best = new Map<string, HomeFriendRailEntry>();
 
 	for (const item of items) {
+		// Divergence rows have no single patron — skip for the friend rail.
+		if (!isFriendRailActivityItem(item)) continue;
+
 		const person = personFromPayload(item.payload);
 		if (!person) continue;
 		const handle = person.profile?.handle ?? person.user?.id ?? "";

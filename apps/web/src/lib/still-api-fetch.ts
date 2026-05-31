@@ -1262,7 +1262,9 @@ export async function fetchCommunityActivity(
 	tz: string,
 	signedIn: boolean,
 	init?: Pick<RequestInit, "signal">,
-): Promise<{ items: unknown[] } | null> {
+): Promise<{
+	items: { kind: string; at: string | Date; payload: unknown }[];
+} | null> {
 	const path = signedIn ? "/api/feed" : "/api/feed/discover";
 	const url = new URL(path, stillApiOrigin());
 	if (signedIn) url.searchParams.set("limit", "40");
@@ -1274,7 +1276,9 @@ export async function fetchCommunityActivity(
 		signal: init?.signal,
 	});
 	if (!response.ok) return null;
-	return (await response.json()) as { items: unknown[] };
+	return (await response.json()) as {
+		items: { kind: string; at: string | Date; payload: unknown }[];
+	};
 }
 
 /** Community rank boards — client refetch with patron IANA `tz` after SSR (UTC). */

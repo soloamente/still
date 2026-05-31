@@ -6,6 +6,7 @@ import { DiaryLogRatingLabel } from "@/components/diary/diary-log-rating-label";
 import { ActivityDivergenceRow } from "@/components/feed/activity-divergence-row";
 import {
 	FeedActivityFavoriteChip,
+	type FeedActivityKind,
 	FeedActivityVerb,
 } from "@/components/feed/feed-activity-kind-badge";
 import {
@@ -140,7 +141,7 @@ function ActivityByline({
 	timestamp,
 }: {
 	person: Person;
-	kind: HomeCommunityActivityKind;
+	kind: FeedActivityKind;
 	rewatch?: boolean;
 	timestamp: string;
 }) {

@@ -10,6 +10,8 @@ export type HomeLobbySearchParams = {
 	sort?: string;
 	venue?: string;
 	run?: string;
+	/** TV seasonal anime slice (`?animeSeason=1`, SN.17.2). */
+	animeSeason?: string;
 	/** Leaderboard window when community sort is `film-ranks` or `tv-ranks`. */
 	period?: string;
 };
@@ -28,6 +30,7 @@ export function parseHomeLobbyHrefCookie(
 			url.searchParams.has("sort") ||
 			url.searchParams.has("venue") ||
 			url.searchParams.has("run") ||
+			url.searchParams.has("animeSeason") ||
 			url.searchParams.has("period");
 		if (!hasAny) return null;
 		return {
@@ -35,6 +38,7 @@ export function parseHomeLobbyHrefCookie(
 			sort: url.searchParams.get("sort") ?? undefined,
 			venue: url.searchParams.get("venue") ?? undefined,
 			run: url.searchParams.get("run") ?? undefined,
+			animeSeason: url.searchParams.get("animeSeason") ?? undefined,
 			period: url.searchParams.get("period") ?? undefined,
 		};
 	} catch {
@@ -57,5 +61,12 @@ export function writeHomeLobbyHrefCookie(href: string): void {
 export function isBareHomeLobbySearchParams(
 	sp: HomeLobbySearchParams,
 ): boolean {
-	return !sp.browse && !sp.sort && !sp.venue && !sp.run && !sp.period;
+	return (
+		!sp.browse &&
+		!sp.sort &&
+		!sp.venue &&
+		!sp.run &&
+		!sp.animeSeason &&
+		!sp.period
+	);
 }

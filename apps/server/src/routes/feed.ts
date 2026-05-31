@@ -24,7 +24,17 @@ import {
 	feedAtMs,
 	serializeFeedAt,
 } from "../lib/feed-items";
-import { findFeedRatingDivergence } from "../lib/feed-rating-divergence";
+import {
+	type FeedRatingDivergencePayload,
+	findFeedRatingDivergence,
+} from "../lib/feed-rating-divergence";
+
+/** Timeline rows returned from `GET /api/feed` before serialization. */
+type FeedMergedTimelineItem = {
+	kind: "log" | "review" | "list" | "divergence";
+	at: Date;
+	payload: unknown;
+};
 
 /**
  * Personalized activity feed: logs + reviews + new lists from people the
@@ -94,7 +104,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 
 			const listsEnriched = await enrichFeedListRows(lists);
 
-			const merged = [
+			const merged: FeedMergedTimelineItem[] = [
 				...logs.map((row) => ({
 					kind: "log" as const,
 					at: row.log.watchedAt,
@@ -125,11 +135,12 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					: null;
 
 			if (divergence) {
-				merged.splice(Math.min(3, merged.length), 0, {
-					kind: "divergence" as const,
+				const divergenceRow: FeedMergedTimelineItem = {
+					kind: "divergence",
 					at: divergence.at,
-					payload: divergence.payload,
-				});
+					payload: divergence.payload satisfies FeedRatingDivergencePayload,
+				};
+				merged.splice(Math.min(3, merged.length), 0, divergenceRow);
 			}
 
 			const items = merged.slice(0, limit).map((row) => ({

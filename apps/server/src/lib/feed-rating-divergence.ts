@@ -33,7 +33,8 @@ type DivergenceLogRow = {
 		userId: string;
 		movieId: number | null;
 		tvId: number | null;
-		rating: number;
+		/** Nullable in DB; callers filter with `isNotNull` or skip in the picker. */
+		rating: number | null;
 		watchedAt: Date;
 	};
 	movie: {
@@ -146,8 +147,8 @@ export function pickFeedRatingDivergence(
  */
 export async function findFeedRatingDivergence(args: {
 	followingUserIds: string[];
-	periodStart: Date | null;
-	periodEnd: Date | null;
+	periodStart: Date;
+	periodEnd: Date;
 }): Promise<{ at: Date; payload: FeedRatingDivergencePayload } | null> {
 	if (args.followingUserIds.length < 2) return null;
 
