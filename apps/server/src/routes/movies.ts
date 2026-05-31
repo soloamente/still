@@ -508,6 +508,7 @@ export const moviesRoute = new Elysia({
 			const language = await getTmdbLanguageForUser(user?.id);
 			const withGenres = parseCommaIntList(query.genre?.trim());
 			const withKeywords = parseCommaIntList(query.keywords?.trim());
+			const textQuery = (query.q ?? "").trim() || undefined;
 			const companyRaw = query.company?.trim();
 			const withCompanies =
 				companyRaw && Number.isFinite(Number(companyRaw))
@@ -604,6 +605,7 @@ export const moviesRoute = new Elysia({
 				watchRegion,
 				withWatchMonetizationTypes,
 				language,
+				withTextQuery: textQuery,
 			});
 			// Theatrical venue: hide undated rows so “Latest in cinemas” never shows ambiguous TBA tiles.
 			let discoverRows =
@@ -648,6 +650,7 @@ export const moviesRoute = new Elysia({
 					region: discoveryRegion ?? null,
 					primary_release_date_lte: primaryReleaseDateLte ?? null,
 					release_gte: primaryReleaseDateGteFromQuery ?? null,
+					text_query: textQuery ?? null,
 				},
 			};
 		},
@@ -655,6 +658,8 @@ export const moviesRoute = new Elysia({
 			query: t.Object({
 				page: t.Optional(t.String()),
 				genre: t.Optional(t.String()),
+				/** TMDb discover `with_text_query` — strict AND with genre/keyword/company filters. */
+				q: t.Optional(t.String()),
 				/** Comma-separated TMDb keyword ids (AND). */
 				keywords: t.Optional(t.String()),
 				/** TMDb production company id (`with_companies`), e.g. A24 = 41077. */

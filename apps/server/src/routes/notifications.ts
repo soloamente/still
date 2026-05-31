@@ -44,8 +44,55 @@ async function withNavigationHints(
 		if (r.kind === "chat.message") {
 			return { ...r, payload: { ...base, href: "/chat" } };
 		}
+		if (r.kind === "challenge.completed") {
+			const href = base.href;
+			if (typeof href === "string") return r;
+			return {
+				...r,
+				payload: { ...base, href: "/achievements?tab=challenges" },
+			};
+		}
+		if (r.kind === "taste.challenge") {
+			const challengerHandle = base.challengerHandle;
+			if (typeof challengerHandle === "string" && challengerHandle.length > 0) {
+				return {
+					...r,
+					payload: {
+						...base,
+						href: `/profile/${challengerHandle}?tasteCompare=1`,
+					},
+				};
+			}
+		}
 		if (r.kind === "badge.awarded" || r.kind === "achievement.unlocked") {
 			return { ...r, payload: { ...base, href: "/achievements" } };
+		}
+		if (
+			r.kind === "comment.on_review" ||
+			r.kind === "comment.replied" ||
+			r.kind === "review.liked"
+		) {
+			const reviewId = base.reviewId;
+			const movieId = base.movieId;
+			if (
+				typeof reviewId === "string" &&
+				reviewId.length > 0 &&
+				typeof movieId === "number" &&
+				Number.isFinite(movieId)
+			) {
+				return {
+					...r,
+					payload: {
+						...base,
+						href: `/movies/${movieId}?review=${encodeURIComponent(reviewId)}`,
+					},
+				};
+			}
+		}
+		if (r.kind === "import.completed") {
+			const href = base.href;
+			if (typeof href === "string") return r;
+			return { ...r, payload: { ...base, href: "/diary" } };
 		}
 		if (r.kind === "tv.new_episode") {
 			const tvId = base.tvId;

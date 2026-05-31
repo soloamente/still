@@ -2,11 +2,9 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
-import { useSearchParams } from "next/navigation";
-
 import { useHomeCommunityLobbyParams } from "@/components/home/home-community-lobby-params-context";
 import { useHomeTmdbLobbyParams } from "@/components/home/home-tmdb-lobby-params-context";
-import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
+import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
 import { HOME_COMMUNITY_FEEDS } from "@/lib/home-community-feed";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 
@@ -89,7 +87,9 @@ function HomeTmdbSortChips({
 		sort: catalogSort,
 		venue,
 		run: catalogRun,
+		animeSeason,
 		selectSort,
+		selectAnimeSeason,
 		prefetchLobby,
 	} = useHomeTmdbLobbyParams();
 	const reduceMotion = useReducedMotion();
@@ -117,6 +117,7 @@ function HomeTmdbSortChips({
 			browse,
 			venue,
 			run: catalogRun,
+			animeSeason,
 		});
 		const active = catalogSort === sort;
 		const labels =
@@ -162,6 +163,14 @@ function HomeTmdbSortChips({
 		);
 	};
 
+	const seasonChipHref = buildHomeLobbyHref({
+		sort: catalogSort,
+		browse,
+		venue,
+		animeSeason: !animeSeason,
+		run: null,
+	});
+
 	return (
 		<div className="flex min-w-0 flex-col gap-1">
 			<p id={sortToolbarDescId} className="sr-only">
@@ -176,24 +185,50 @@ function HomeTmdbSortChips({
 				{browse !== "tv" ? chipFor("upcoming") : null}
 				{chipFor("latest")}
 				{chipFor("popular")}
+				{browse === "tv" ? (
+					<button
+						type="button"
+						aria-current={animeSeason ? "page" : undefined}
+						className={chipButton(animeSeason, true)}
+						title="Animation TV that started airing within the last 90 days and is still returning"
+						aria-label="This season — airing anime simulcasts"
+						onClick={() => selectAnimeSeason()}
+						onPointerEnter={() => prefetchLobby(seasonChipHref)}
+					>
+						{animeSeason ? (
+							<motion.span
+								layoutId="home-catalog-anime-season-pill"
+								className="absolute inset-0 z-0 rounded-full bg-card"
+								transition={pillTransition}
+							/>
+						) : null}
+						<span className="relative z-10">This season</span>
+					</button>
+				) : null}
 			</div>
 		</div>
 	);
 }
 
-export function HomeCatalogSortChips() {
-	const searchParams = useSearchParams();
-	const browse = parseHomeBrowseSurface(searchParams.get("browse"));
-
+/**
+ * Chip rail variant comes from the parent RSC branch — not client `?browse=`.
+ * Otherwise a fast Community URL update can mount community chips inside the
+ * Movies·TV provider tree (no `HomeCommunityLobbyParamsProvider`).
+ */
+export function HomeCatalogSortChips({
+	catalogBrowse,
+}: {
+	catalogBrowse: HomeBrowseSurface;
+}) {
 	const sortToolbarDescId = "home-catalog-sort-desc";
 	const sortToolbarDescription =
-		browse === "community"
+		catalogBrowse === "community"
 			? "Choose what kind of member-made content to browse — public lists, reviews, or activity from people you follow."
-			: browse === "tv"
-				? "Latest and Popular choose the TMDb ordering. Ongoing, Completed, and Upcoming on the right pick the catalogue slice — only one at a time. On Movies, all three sorts stay on the left; the right rail picks theatrical versus at-home releases."
+			: catalogBrowse === "tv"
+				? "Latest and Popular choose TMDb ordering. This season narrows to airing animation from the last 90 days. Ongoing, Completed, and Upcoming on the right pick a different catalogue slice — only one right-rail slice at a time."
 				: "Upcoming, Latest, and Popular choose the TMDb list or discover sort. On Movies, the right rail picks theatrical versus at-home digital releases — same knobs carry into Filters on discover.";
 
-	if (browse === "community") {
+	if (catalogBrowse === "community") {
 		return (
 			<HomeCommunityFeedChips
 				sortToolbarDescId={sortToolbarDescId}

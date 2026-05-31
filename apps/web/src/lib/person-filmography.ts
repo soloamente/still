@@ -6,6 +6,8 @@ export type PersonFilmographyRow = {
 	posterUrl: string | null;
 	releaseDate: string | null;
 	roles: string[];
+	/** Patron diary score on poster scrim (profile filmography lobby). */
+	posterCaption?: string | null;
 };
 
 export type PersonFilmographyPayload = {

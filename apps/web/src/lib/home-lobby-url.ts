@@ -9,6 +9,11 @@ import {
 } from "@/lib/home-leaderboard-period";
 import { defaultHomeVenueForSort, type HomeVenue } from "@/lib/home-venue";
 
+/** Serialize `?animeSeason=1` for the TV seasonal anime slice (SN.17.2). */
+export function serializeHomeAnimeSeason(active: boolean): string | undefined {
+	return active ? "1" : undefined;
+}
+
 /** Venue default for URL shortening — TV **Upcoming** run defaults to In cinemas. */
 function defaultVenueForLobbyHref(input: {
 	browse: HomeBrowseSurface;
@@ -34,6 +39,8 @@ export function buildHomeLobbyHref(input: {
 	venue?: HomeVenue;
 	/** TV slice — `ongoing`, `completed`, or `upcoming`; omit for Popular/Latest only. */
 	run?: HomeCatalogRun | null;
+	/** TV seasonal anime discover — animation genre + returning + rolling 90d first air. */
+	animeSeason?: boolean;
 	/** Time window for Community tabs (`lists`, `activity`, ranks, …). */
 	period?: HomeLeaderboardPeriod;
 }): string {
@@ -70,6 +77,10 @@ export function buildHomeLobbyHref(input: {
 			}
 			if (input.browse === "tv" && input.run) {
 				params.set("run", input.run);
+			}
+			const animeSeason = serializeHomeAnimeSeason(Boolean(input.animeSeason));
+			if (animeSeason) {
+				params.set("animeSeason", animeSeason);
 			}
 		}
 		if (

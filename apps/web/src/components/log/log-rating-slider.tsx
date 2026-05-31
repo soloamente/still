@@ -41,7 +41,7 @@ function ratingFromClientX(rect: DOMRect, clientX: number): number {
 export function LogRatingSlider({
 	value,
 	onChange,
-	/** TMDb or Still community average on 0–10 — static fill + label inside the same track as the thumb. */
+	/** TMDb or Sense community average on 0–10 — static fill + label inside the same track as the thumb. */
 	averageRating,
 	className,
 }: {

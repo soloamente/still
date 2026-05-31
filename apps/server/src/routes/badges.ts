@@ -3,6 +3,10 @@ import { and, desc, eq, isNotNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import {
+	badgePrestigeScore,
+	isProfileShowcaseBadge,
+} from "../lib/badge-prestige";
 import { routeBody } from "../lib/route-body";
 
 /** Pin toggle payload — schema is reused in the route hook so runtime validation stays aligned. */
@@ -16,11 +20,16 @@ export const badgesRoute = new Elysia({
 })
 	.use(context)
 	.get("/catalog", async () => {
-		const rows = await db
-			.select()
-			.from(badge)
-			.orderBy(badge.category, badge.tier);
-		return rows;
+		const rows = await db.select().from(badge);
+		return rows.sort((a, b) => {
+			const aCat = a.category ?? "";
+			const bCat = b.category ?? "";
+			if (aCat === "watch_milestone" && bCat !== "watch_milestone") return 1;
+			if (bCat === "watch_milestone" && aCat !== "watch_milestone") return -1;
+			const cat = aCat.localeCompare(bCat);
+			if (cat !== 0) return cat;
+			return badgePrestigeScore(b) - badgePrestigeScore(a);
+		});
 	})
 	.get("/me", async ({ user, status }) => {
 		if (!user) return status(401, "Sign in");
@@ -74,6 +83,27 @@ export const badgesRoute = new Elysia({
 		async ({ params, user, status, body: rawBody }) => {
 			if (!user) return status(401, "Sign in");
 			const { pinned } = routeBody<PinBadgeBody>(rawBody);
+			if (pinned) {
+				const [badgeRow] = await db
+					.select()
+					.from(badge)
+					.where(eq(badge.id, params.badgeId))
+					.limit(1);
+				if (
+					badgeRow &&
+					!isProfileShowcaseBadge({
+						id: badgeRow.id,
+						category: badgeRow.category,
+						tier: badgeRow.tier,
+						points: badgeRow.points,
+					})
+				) {
+					return status(
+						400,
+						"Volume milestones stay in Achievements — only prestige badges can be pinned.",
+					);
+				}
+			}
 			await db
 				.update(userBadge)
 				.set({ isPinned: pinned })

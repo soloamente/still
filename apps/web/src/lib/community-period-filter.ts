@@ -216,5 +216,10 @@ export function filterActivityByCommunityPeriod(
 	items: HomeCommunityActivityItem[],
 	period: LeaderboardPeriod,
 ): HomeCommunityActivityItem[] {
-	return items.filter((item) => isTimestampInCommunityPeriod(item.at, period));
+	// Divergence is injected editorially — keep it when the API returned it (ST.5).
+	return items.filter(
+		(item) =>
+			item.kind === "divergence" ||
+			isTimestampInCommunityPeriod(item.at, period),
+	);
 }

@@ -11,10 +11,12 @@ import { useHomeTmdbLobbyParamsOptional } from "@/components/home/home-tmdb-lobb
 import {
 	buildDiaryLobbyHref,
 	type DiaryLobbyOrder,
+	parseDiaryLedgerTab,
 	parseDiaryLobbyOrder,
 	parseDiaryLobbyVenue,
 } from "@/lib/diary-lobby-order";
 import { discoverCatalogUrl } from "@/lib/discover-catalog-url";
+import { parseHomeAnimeSeason } from "@/lib/home-anime-season";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
 import {
 	type HomeCatalogRun,
@@ -53,6 +55,10 @@ export function HomeCatalogViewModeToolbar() {
 			: browse === "tv" && ["upcoming", "coming", "soon"].includes(sortParam)
 				? "upcoming"
 				: null);
+	const animeSeasonActive =
+		browse === "tv" &&
+		(tmdbLobby?.animeSeason ??
+			parseHomeAnimeSeason(searchParams.get("animeSeason")));
 	const reduceMotion = useReducedMotion();
 
 	/** `/diary` reuses this toolbar — venue + filters must stay on diary URLs, not `/home`. */
@@ -149,7 +155,16 @@ export function HomeCatalogViewModeToolbar() {
 				"Filters — popular titles with subscription streaming at home in the catalogue region";
 		}
 	} else if (browse === "tv") {
-		if (catalogRun === "ongoing") {
+		if (animeSeasonActive) {
+			const tvLobbySort = catalogSort === "popular" ? "popular" : "latest";
+			filtersHref = buildHomeLobbyHref({
+				browse: "tv",
+				sort: tvLobbySort,
+				animeSeason: true,
+			});
+			filtersAria =
+				"Filters — airing animation TV that started within the last 90 days";
+		} else if (catalogRun === "ongoing") {
 			const tvLobbySort = catalogSort === "popular" ? "popular" : "latest";
 			filtersHref = tvDiscoverCatalogUrl({
 				sort: tvDiscoverSortByForLobbySort(tvLobbySort),
@@ -267,11 +282,12 @@ export function HomeCatalogViewModeToolbar() {
 			: parseTvLobbyVenue(searchParams.get("venue"), catalogSort, catalogRun);
 		const activeSort = tmdbLobby?.sort ?? catalogSort;
 		const activeRun = tmdbLobby?.run ?? catalogRun;
+		const seasonActive = tmdbLobby?.animeSeason ?? animeSeasonActive;
 		const theatersActive = effectiveVenue === "theaters";
 		const streamingActive = effectiveVenue === "streaming";
-		const ongoingActive = activeRun === "ongoing";
-		const completedActive = activeRun === "completed";
-		const upcomingActive = activeRun === "upcoming";
+		const ongoingActive = !seasonActive && activeRun === "ongoing";
+		const completedActive = !seasonActive && activeRun === "completed";
+		const upcomingActive = !seasonActive && activeRun === "upcoming";
 		const showUpcomingVenue = activeRun === "upcoming";
 
 		const tvRunChipHref = (run: HomeCatalogRun) =>
@@ -280,11 +296,12 @@ export function HomeCatalogViewModeToolbar() {
 				sort: activeSort,
 				venue: showUpcomingVenue ? effectiveVenue : undefined,
 				run: activeRun === run ? null : run,
+				animeSeason: false,
 			});
 
 		const tvToolbarDescId = "home-catalog-tv-run-desc";
 		const tvToolbarCopy =
-			"Pick one catalogue slice: Ongoing (TMDb returning series), Completed (ended), or Upcoming (first air dates ahead). Popular and Latest on the left order titles inside each slice. Ongoing and Completed do not overlap. Upcoming can narrow In cinemas versus At home.";
+			"Pick one catalogue slice: Ongoing (all returning series), Completed (ended), or Upcoming (first air dates ahead). Latest, Popular, and This season on the left order or narrow the grid.";
 
 		const runChip = (
 			run: HomeCatalogRun,
@@ -351,6 +368,7 @@ export function HomeCatalogViewModeToolbar() {
 				browse: "tv",
 				venue,
 				run: activeRun,
+				animeSeason: seasonActive,
 			});
 			if (tmdbLobby) {
 				return (
@@ -525,6 +543,9 @@ export function HomeCatalogViewModeToolbar() {
 	const diaryOrder: DiaryLobbyOrder = isDiaryLobby
 		? parseDiaryLobbyOrder(searchParams.get("order"))
 		: "latest_seen";
+	const diaryTab = isDiaryLobby
+		? (parseDiaryLedgerTab(searchParams.get("tab")) ?? "movies")
+		: "movies";
 
 	const srToolbarCopy = isDiaryLobby
 		? "On your diary, In cinemas vs At home sets which catalogue slice the filters button opens; your logged films list is ordered by the left chips."
@@ -547,6 +568,7 @@ export function HomeCatalogViewModeToolbar() {
 							? buildDiaryLobbyHref({
 									order: diaryOrder,
 									venue: "theaters",
+									tab: diaryTab,
 								})
 							: buildHomeLobbyHref({
 									sort: activeCatalogSort,
@@ -607,6 +629,7 @@ export function HomeCatalogViewModeToolbar() {
 							? buildDiaryLobbyHref({
 									order: diaryOrder,
 									venue: "streaming",
+									tab: diaryTab,
 								})
 							: buildHomeLobbyHref({
 									sort: activeCatalogSort,

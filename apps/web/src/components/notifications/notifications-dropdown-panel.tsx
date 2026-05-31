@@ -7,7 +7,9 @@ import type { LucideIcon } from "lucide-react";
 import {
 	Award,
 	Bell,
+	Download,
 	Flame,
+	Heart,
 	MessageCircle,
 	Trophy,
 	Tv,
@@ -19,6 +21,7 @@ import {
 	ACHIEVEMENT_HEPTAGON_CLASS,
 	HEPTAGON_CLIP,
 } from "@/components/gamification/milestone-badge-glyph";
+import { NotificationTasteChallengeRow } from "@/components/notifications/notification-taste-challenge-row";
 import { NotificationsInboxFilterChips } from "@/components/notifications/notifications-inbox-filter-chips";
 import { BADGE_ARTWORK_IMAGE_CLASS } from "@/lib/badge-artwork";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
@@ -41,9 +44,14 @@ export type NotificationPreviewRow = {
 function iconForKind(kind: string): LucideIcon {
 	if (kind.startsWith("follow.")) return UserPlus;
 	if (kind.startsWith("chat.")) return MessageCircle;
+	if (kind.startsWith("comment.")) return MessageCircle;
 	if (kind.startsWith("badge.")) return Award;
 	if (kind.startsWith("achievement.")) return Trophy;
 	if (kind === "tv.new_episode") return Tv;
+	if (kind === "taste.challenge") return Trophy;
+	if (kind === "challenge.completed") return Trophy;
+	if (kind === "review.liked") return Heart;
+	if (kind === "import.completed") return Download;
 	return Bell;
 }
 
@@ -191,12 +199,16 @@ function NotificationPreviewSkeleton() {
 function NotificationScrollList({
 	rows,
 	onRowActivate,
+	onTasteChallengeAccept,
+	onTasteChallengeDecline,
 	loading,
 	emptyTitle,
 	emptyBody,
 }: {
 	rows: NotificationPreviewRow[];
 	onRowActivate: (row: NotificationPreviewRow) => void;
+	onTasteChallengeAccept?: (row: NotificationPreviewRow) => void;
+	onTasteChallengeDecline?: (row: NotificationPreviewRow) => void;
 	loading: boolean;
 	emptyTitle: string;
 	emptyBody: string;
@@ -240,13 +252,24 @@ function NotificationScrollList({
 				className="scrollbar-thin max-h-[min(56vh,26rem)] min-h-0 overflow-y-auto overscroll-y-contain px-1 py-0.5 [-webkit-overflow-scrolling:touch]"
 			>
 				<div className="space-y-1.5 py-1.5">
-					{rows.map((row) => (
-						<NotificationRowButton
-							key={row.id}
-							row={row}
-							onActivate={onRowActivate}
-						/>
-					))}
+					{rows.map((row) =>
+						row.kind === "taste.challenge" &&
+						onTasteChallengeAccept &&
+						onTasteChallengeDecline ? (
+							<NotificationTasteChallengeRow
+								key={row.id}
+								row={row}
+								onAccept={onTasteChallengeAccept}
+								onDecline={onTasteChallengeDecline}
+							/>
+						) : (
+							<NotificationRowButton
+								key={row.id}
+								row={row}
+								onActivate={onRowActivate}
+							/>
+						),
+					)}
 				</div>
 			</div>
 		</div>
@@ -265,6 +288,8 @@ export function NotificationsDropdownPanel({
 	hasUnread,
 	onMarkAllRead,
 	onRowActivate,
+	onTasteChallengeAccept,
+	onTasteChallengeDecline,
 	onSignIn,
 }: {
 	authenticated: boolean;
@@ -275,6 +300,8 @@ export function NotificationsDropdownPanel({
 	hasUnread: boolean;
 	onMarkAllRead: () => void;
 	onRowActivate: (row: NotificationPreviewRow) => void;
+	onTasteChallengeAccept?: (row: NotificationPreviewRow) => void;
+	onTasteChallengeDecline?: (row: NotificationPreviewRow) => void;
 	onSignIn: () => void;
 }) {
 	const sorted = useMemo(
@@ -337,6 +364,8 @@ export function NotificationsDropdownPanel({
 			<NotificationScrollList
 				rows={filtered}
 				onRowActivate={onRowActivate}
+				onTasteChallengeAccept={onTasteChallengeAccept}
+				onTasteChallengeDecline={onTasteChallengeDecline}
 				loading={loading}
 				emptyTitle={emptyCopy.title}
 				emptyBody={emptyCopy.body}

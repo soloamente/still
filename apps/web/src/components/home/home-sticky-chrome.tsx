@@ -21,28 +21,26 @@ import { cn } from "@still/ui/lib/utils";
 import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { NavUserAvatar } from "@/components/app/app-nav";
 import {
 	AppUserAccountMenuBody,
 	accountMenuContentClassName,
 } from "@/components/app/app-user-account-menu";
+import { useHomeBrowseSurfaceOptional } from "@/components/home/home-browse-surface-context";
 import { HomeNotificationsMenu } from "@/components/home/home-notifications-menu";
 import { HomeStickySearch } from "@/components/home/home-sticky-search";
 import {
 	type HomeBrowseSurface,
 	parseHomeBrowseSurface,
 } from "@/lib/home-browse-surface";
-import { DEFAULT_HOME_COMMUNITY_FEED } from "@/lib/home-community-feed";
-import { DEFAULT_HOME_LEADERBOARD_PERIOD } from "@/lib/home-leaderboard-period";
+import { buildBrowseSurfaceNavigateHref } from "@/lib/home-browse-surface-nav";
 import {
-	buildHomeHrefFromPersisted,
 	emptyHomeLobbyPersisted,
 	mergePersistFromHomeUrl,
 	readHomeLobbyPersisted,
 } from "@/lib/home-lobby-persist";
-import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 
 /** Header shortcut + menu icons — `size-5` (20px); Button `size="icon"` otherwise forces `size-4`. */
 const HOME_STICKY_HEADER_ICON_CLASS = "size-5 shrink-0";
@@ -73,7 +71,13 @@ export function HomeStickyChrome({
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-	const browseSurface = parseHomeBrowseSurface(searchParams.get("browse"));
+	const browseSurfaceCtx = useHomeBrowseSurfaceOptional();
+	const prefetchBrowseSurface = browseSurfaceCtx?.prefetchBrowseSurface;
+	const urlBrowse =
+		browseSurfaceCtx?.urlBrowse ??
+		parseHomeBrowseSurface(searchParams.get("browse"));
+	/** Optimistic on `/home`; elsewhere URL-only (no provider). */
+	const activeBrowse = browseSurfaceCtx?.activeBrowse ?? urlBrowse;
 	/** Diary shortcut uses a filled ticket while the patron is on `/diary` (matches lobby iconography). */
 	const isDiaryRoute = pathname === "/diary" || pathname.startsWith("/diary/");
 	/** Watchlist shortcut — keeps **clock** iconography; chip + `href` match diary (`layoutId`). */
@@ -122,51 +126,37 @@ export function HomeStickyChrome({
 		return () => window.removeEventListener("scroll", onScroll);
 	}, []);
 
-	/** Updates `?browse=`; from diary/watchlist seeds from {@link readHomeLobbyPersisted}. */
-	const pushBrowseSurface = (next: HomeBrowseSurface) => {
-		const base = "/home";
-		const persisted = readHomeLobbyPersisted() ?? emptyHomeLobbyPersisted();
+	/** Legacy push when chrome renders outside `HomeLobbyNavigationRoot` (diary, lists, watchlist). */
+	const pushBrowseSurfaceLegacy = useCallback(
+		(next: HomeBrowseSurface) => {
+			const href = buildBrowseSurfaceNavigateHref(next, {
+				isHomeLobby,
+				currentParams: new URLSearchParams(searchParams.toString()),
+				persisted: readHomeLobbyPersisted() ?? emptyHomeLobbyPersisted(),
+			});
+			router.push(href);
+		},
+		[isHomeLobby, router, searchParams],
+	);
 
-		if (!isHomeLobby) {
-			router.push(buildHomeHrefFromPersisted(persisted, next));
-			return;
-		}
-
-		if (next === "community") {
-			const feed = persisted.community?.feed ?? DEFAULT_HOME_COMMUNITY_FEED;
-			router.push(
-				buildHomeLobbyHref({
-					browse: "community",
-					sort: feed,
-					period:
-						persisted.community?.period ?? DEFAULT_HOME_LEADERBOARD_PERIOD,
-				}),
-			);
-			return;
-		}
-
-		if (browseSurface === "community") {
-			router.push(buildHomeHrefFromPersisted(persisted, next));
-			return;
-		}
-
-		const params = new URLSearchParams(searchParams.toString());
-		if (next === "movies") {
-			params.delete("browse");
-		} else {
-			params.set("browse", next);
-		}
-		const qs = params.toString();
-		router.push(qs ? `${base}?${qs}` : base);
-	};
+	const onBrowseSurfaceSelect = useCallback(
+		(next: HomeBrowseSurface) => {
+			if (browseSurfaceCtx) {
+				browseSurfaceCtx.selectBrowseSurface(next);
+				return;
+			}
+			pushBrowseSurfaceLegacy(next);
+		},
+		[browseSurfaceCtx, pushBrowseSurfaceLegacy],
+	);
 
 	useEffect(() => {
 		if (!isHomeLobby) return;
 		mergePersistFromHomeUrl(
-			browseSurface,
+			urlBrowse,
 			new URLSearchParams(searchParams.toString()),
 		);
-	}, [isHomeLobby, browseSurface, searchParams]);
+	}, [isHomeLobby, urlBrowse, searchParams]);
 
 	return (
 		<LayoutGroup id="home-sticky-chrome-browse-pill">
@@ -198,13 +188,13 @@ export function HomeStickyChrome({
 					>
 						<button
 							type="button"
-							aria-pressed={isHomeLobby && browseSurface === "movies"}
+							aria-pressed={isHomeLobby && activeBrowse === "movies"}
 							aria-label="Movies — TMDb film catalogue"
 							title="Catalogue from TMDb — films"
-							onClick={() => pushBrowseSurface("movies")}
-							className={browseChip(isHomeLobby && browseSurface === "movies")}
+							onClick={() => onBrowseSurfaceSelect("movies")}
+							className={browseChip(isHomeLobby && activeBrowse === "movies")}
 						>
-							{isHomeLobby && browseSurface === "movies" ? (
+							{isHomeLobby && activeBrowse === "movies" ? (
 								<motion.span
 									layoutId="home-sticky-browse-pill"
 									className="absolute inset-0 z-0 rounded-full bg-card"
@@ -215,13 +205,13 @@ export function HomeStickyChrome({
 						</button>
 						<button
 							type="button"
-							aria-pressed={isHomeLobby && browseSurface === "tv"}
+							aria-pressed={isHomeLobby && activeBrowse === "tv"}
 							aria-label="TV shows — TMDb series catalogue"
 							title="Catalogue from TMDb — series"
-							onClick={() => pushBrowseSurface("tv")}
-							className={browseChip(isHomeLobby && browseSurface === "tv")}
+							onClick={() => onBrowseSurfaceSelect("tv")}
+							className={browseChip(isHomeLobby && activeBrowse === "tv")}
 						>
-							{isHomeLobby && browseSurface === "tv" ? (
+							{isHomeLobby && activeBrowse === "tv" ? (
 								<motion.span
 									layoutId="home-sticky-browse-pill"
 									className="absolute inset-0 z-0 rounded-full bg-card"
@@ -232,15 +222,17 @@ export function HomeStickyChrome({
 						</button>
 						<button
 							type="button"
-							aria-pressed={isHomeLobby && browseSurface === "community"}
+							aria-pressed={isHomeLobby && activeBrowse === "community"}
 							aria-label="Community — lists, reviews, and more from other people"
 							title="Things other people made — lists, reviews, and more (in development)"
-							onClick={() => pushBrowseSurface("community")}
+							onClick={() => onBrowseSurfaceSelect("community")}
+							onPointerEnter={() => prefetchBrowseSurface?.("community")}
+							onFocus={() => prefetchBrowseSurface?.("community")}
 							className={browseChip(
-								isHomeLobby && browseSurface === "community",
+								isHomeLobby && activeBrowse === "community",
 							)}
 						>
-							{isHomeLobby && browseSurface === "community" ? (
+							{isHomeLobby && activeBrowse === "community" ? (
 								<motion.span
 									layoutId="home-sticky-browse-pill"
 									className="absolute inset-0 z-0 rounded-full bg-card"

@@ -11,11 +11,12 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
-
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { ReviewPinToProfileButton } from "@/components/review/review-pin-to-profile-button";
 import { CommentsThread } from "@/components/social/comments-thread";
 import { ReactionsBar } from "@/components/social/reactions-bar";
 import { api } from "@/lib/api";
+import { APP_MEMBER_LABEL } from "@/lib/app-brand";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatLogRatingDisplay } from "@/lib/log-rating";
 import { SHEET_PRIMARY_PILL_CLASS } from "@/lib/sheet-chrome";
@@ -99,7 +100,7 @@ function authorLine(profile: ReviewDetailPayload["authorProfile"]): string {
 	if (handle) return `@${handle}`;
 	const display = profile?.displayName?.trim();
 	if (display) return display;
-	return "Still member";
+	return APP_MEMBER_LABEL;
 }
 
 /**
@@ -322,7 +323,9 @@ export function ReviewDetailRoot() {
 									) : null}
 
 									<p className="mb-6 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
-										{detail ? authorLine(detail.authorProfile) : "Still member"}
+										{detail
+											? authorLine(detail.authorProfile)
+											: APP_MEMBER_LABEL}
 										{" · "}
 										{formatDistanceToNowStrict(new Date(displayPublishedAt))}{" "}
 										ago
@@ -429,6 +432,12 @@ export function ReviewDetailRoot() {
 						</div>
 
 						<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-end gap-3 md:inset-x-4 md:bottom-4">
+							{review ? (
+								<ReviewPinToProfileButton
+									reviewId={review.id}
+									reviewUserId={review.userId}
+								/>
+							) : null}
 							<DetailMotionButtonWrap>
 								<Button
 									type="button"

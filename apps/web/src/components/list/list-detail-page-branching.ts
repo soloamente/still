@@ -4,16 +4,15 @@ import type { RankedListReorderRow } from "@/components/list/ranked-list-reorder
 export function canReorderRankedList({
 	isRanked,
 	viewerId,
-	ownerId,
-	isCollaborative,
+	viewerCanEdit,
 }: {
 	isRanked: boolean;
 	viewerId: string | null | undefined;
-	ownerId: string;
-	isCollaborative: boolean;
+	/** From `GET /api/lists/:id` — owner or invited collaborator. */
+	viewerCanEdit: boolean;
 }): boolean {
 	if (!isRanked || !viewerId) return false;
-	return viewerId === ownerId || isCollaborative;
+	return viewerCanEdit;
 }
 
 export function toRankedReorderRows(

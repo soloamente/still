@@ -5,6 +5,7 @@ import IconPatronScoreLeafRight from "@still/ui/icons/patron-score-leaf-right";
 import { cn } from "@still/ui/lib/utils";
 
 import { StillAnimateRatingNumber } from "@/components/ui/still-animate-rating-number";
+import { APP_COMMUNITY_AVERAGE_LABEL, APP_NAME } from "@/lib/app-brand";
 import { formatLogRatingDisplay, logRatingToDisplay } from "@/lib/log-rating";
 
 /** Headline + supporting copy for the patron-score hero (Airbnb “guest favorite” pattern). */
@@ -15,21 +16,19 @@ function patronScoreHeadline(
 	if (reviewCount >= 8 && average >= 8.5) {
 		return {
 			title: "Patron favorite",
-			description:
-				"One of the most loved titles on Still based on member ratings, published reviews, and list presence.",
+			description: `One of the most loved titles on ${APP_NAME} based on member ratings, published reviews, and list presence.`,
 		};
 	}
 	if (reviewCount >= 3 && average >= 7.5) {
 		return {
-			title: "Well rated on Still",
+			title: `Well rated on ${APP_NAME}`,
 			description:
 				"Members consistently score this title highly in published reviews and diary ratings.",
 		};
 	}
 	return {
-		title: "Still average",
-		description:
-			"Community score from published member reviews on Still’s 0–10 patron scale.",
+		title: APP_COMMUNITY_AVERAGE_LABEL,
+		description: `Community score from published member reviews on ${APP_NAME}’s 0–10 patron scale.`,
 	};
 }
 
@@ -59,8 +58,7 @@ export function MovieDetailCommunityRatingHero({
 			? patronScoreHeadline(displayAverage, communityReviewsCount)
 			: {
 					title: "No patron score yet",
-					description:
-						"Publish a review with a rating to seed the Still average for this title.",
+					description: `Publish a review with a rating to seed the ${APP_COMMUNITY_AVERAGE_LABEL} for this title.`,
 				};
 
 	return (
@@ -69,7 +67,7 @@ export function MovieDetailCommunityRatingHero({
 				"mx-auto flex w-full max-w-md flex-col items-center px-4 py-10 text-center sm:max-w-lg sm:py-12",
 				className,
 			)}
-			aria-label="Still community rating"
+			aria-label={`${APP_NAME} community rating`}
 		>
 			{/* Score row — laurels frame the primary metric like Airbnb guest-favorite. */}
 			<div className="flex items-center justify-center gap-2 sm:gap-4">
@@ -82,7 +80,8 @@ export function MovieDetailCommunityRatingHero({
 				{hasAverage && displayAverage != null ? (
 					<div className="font-sans font-semibold text-5xl text-foreground tabular-nums tracking-tight sm:text-6xl">
 						<span className="sr-only">
-							Still average {formatLogRatingDisplay(displayAverage)} out of 10
+							{APP_COMMUNITY_AVERAGE_LABEL}{" "}
+							{formatLogRatingDisplay(displayAverage)} out of 10
 						</span>
 						<StillAnimateRatingNumber
 							value={communityAverage}

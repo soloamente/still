@@ -4,14 +4,13 @@ import { buttonVariants } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 import { useMemo } from "react";
-import { DiaryCatalogOrderChips } from "@/components/diary/diary-catalog-order-chips";
 import type { DiaryLogRow } from "@/components/diary/diary-entry";
 import { DiaryLobbyCatalogue } from "@/components/diary/diary-lobby-catalogue";
+import { DiaryLobbyChrome } from "@/components/diary/diary-lobby-chrome";
 import {
 	DiaryLobbyParamsProvider,
 	useDiaryLobbyParams,
 } from "@/components/diary/diary-lobby-params-context";
-import { DiaryVenueChips } from "@/components/diary/diary-venue-chips";
 import {
 	LobbyNavigationProvider,
 	useLobbyNavigation,
@@ -20,6 +19,7 @@ import { buildDiaryLobbyGridItems } from "@/lib/diary-lobby-grouping";
 import {
 	buildDiaryLobbyHref,
 	diaryLogMatchesDiaryLobbyVenue,
+	filterDiaryLogsForLedgerTab,
 	isDiaryLogWithListing,
 	sortDiaryLobbyRowsForOrder,
 } from "@/lib/diary-lobby-order";
@@ -31,38 +31,69 @@ export interface DiaryPatronLobbyShellProps {
 	signedIn: boolean;
 }
 
+function countDiaryLedgerRows(rows: DiaryLogRow[]) {
+	const withListing = rows.filter(isDiaryLogWithListing);
+	return {
+		movies: withListing.filter((row) => row.movie != null).length,
+		tv: withListing.filter((row) => row.tv != null).length,
+	};
+}
+
 function DiaryPatronLobbyBody({
 	rawRows,
 	monochromePeersOnHover,
 	signedIn,
 }: DiaryPatronLobbyShellProps) {
-	const { order, venue } = useDiaryLobbyParams();
+	const { order, venue, ledgerTab } = useDiaryLobbyParams();
 	const { navigate } = useLobbyNavigation();
 
 	const withListing = useMemo(
 		() => rawRows.filter(isDiaryLogWithListing),
 		[rawRows],
 	);
-	const hasAnyDiaryLogs = withListing.length > 0;
+	const ledgerRows = useMemo(
+		() => filterDiaryLogsForLedgerTab(withListing, ledgerTab),
+		[withListing, ledgerTab],
+	);
+	const hasAnyDiaryLogs = ledgerRows.length > 0;
+	const hasMovies = useMemo(
+		() => withListing.some((row) => row.movie != null),
+		[withListing],
+	);
+	const hasTv = useMemo(
+		() => withListing.some((row) => row.tv != null),
+		[withListing],
+	);
+	const otherTab = ledgerTab === "movies" ? "tv" : "movies";
+	const otherTabHasRows = otherTab === "movies" ? hasMovies : hasTv;
 
 	const gridItems = useMemo(() => {
-		const forVenue = withListing.filter((row) =>
+		const forVenue = ledgerRows.filter((row) =>
 			diaryLogMatchesDiaryLobbyVenue(row, venue),
 		);
 		const lobbyRows = sortDiaryLobbyRowsForOrder(forVenue, order);
 		return buildDiaryLobbyGridItems(lobbyRows, order);
-	}, [withListing, venue, order]);
+	}, [ledgerRows, venue, order]);
 
 	const catalogueWaveKeyOverride = useMemo(
-		() => `${order}::${gridItems.map((item) => item.key).join("|")}`,
-		[order, gridItems],
+		() =>
+			`${ledgerTab}::${order}::${gridItems.map((item) => item.key).join("|")}`,
+		[ledgerTab, order, gridItems],
 	);
 
 	const hasRows = gridItems.length > 0;
 	const switchVenueHref = buildDiaryLobbyHref({
 		order,
 		venue: venue === "theaters" ? "streaming" : "theaters",
+		tab: ledgerTab,
 	});
+	const switchTabHref = buildDiaryLobbyHref({
+		order,
+		venue,
+		tab: otherTab,
+	});
+
+	const ledgerLabel = ledgerTab === "movies" ? "films" : "TV shows";
 
 	return (
 		<section
@@ -71,10 +102,7 @@ function DiaryPatronLobbyBody({
 				"overflow-visible",
 			)}
 		>
-			<div className="flex shrink-0 items-center justify-between gap-3">
-				<DiaryCatalogOrderChips />
-				<DiaryVenueChips />
-			</div>
+			<DiaryLobbyChrome />
 
 			{!hasRows ? (
 				<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-6 sm:px-4 sm:py-10">
@@ -86,7 +114,7 @@ function DiaryPatronLobbyBody({
 							<>
 								<div className="space-y-2">
 									<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
-										No logs for{" "}
+										No {ledgerLabel} for{" "}
 										{venue === "theaters" ? "in cinemas" : "at home"}
 									</p>
 									<p className="text-muted-foreground text-sm leading-relaxed">
@@ -103,6 +131,28 @@ function DiaryPatronLobbyBody({
 									onClick={() => navigate(switchVenueHref)}
 								>
 									Show {venue === "theaters" ? "at home" : "in cinemas"} instead
+								</button>
+							</>
+						) : otherTabHasRows ? (
+							<>
+								<div className="space-y-2">
+									<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
+										No {ledgerLabel} logged yet
+									</p>
+									<p className="text-muted-foreground text-sm leading-relaxed">
+										Your {otherTab === "movies" ? "films" : "TV shows"} are on
+										the other diary tab.
+									</p>
+								</div>
+								<button
+									type="button"
+									className={buttonVariants({
+										variant: "outline",
+										size: "pill",
+									})}
+									onClick={() => navigate(switchTabHref)}
+								>
+									Show {otherTab === "movies" ? "Movies" : "TV Shows"}
 								</button>
 							</>
 						) : (
@@ -145,9 +195,14 @@ function DiaryPatronLobbyBody({
  * Client `/diary` lobby — filters patron logs locally so venue/order chips feel instant.
  */
 export function DiaryPatronLobbyShell(props: DiaryPatronLobbyShellProps) {
+	const { movies, tv } = useMemo(
+		() => countDiaryLedgerRows(props.rawRows),
+		[props.rawRows],
+	);
+
 	return (
 		<LobbyNavigationProvider>
-			<DiaryLobbyParamsProvider>
+			<DiaryLobbyParamsProvider movieCount={movies} tvCount={tv}>
 				<DiaryPatronLobbyBody {...props} />
 			</DiaryLobbyParamsProvider>
 		</LobbyNavigationProvider>

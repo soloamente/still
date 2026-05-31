@@ -26,6 +26,8 @@ export type ProfileEarnedBadge = {
 		description: string | null;
 		iconUrl: string | null;
 		tier: string;
+		category: string | null;
+		points: number;
 	};
 	userBadge: { awardedAt: string | Date };
 };

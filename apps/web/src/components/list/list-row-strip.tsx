@@ -5,18 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import type { ListBoardRow } from "@/lib/list-board-row";
-import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
+import {
+	listBoardRowPosterUrl,
+	listPosterDisplayUrl,
+} from "@/lib/list-cover-image";
 
 /** One list row from `GET /api/lists/*` after `coverPosterPaths` hydration (B.5.6). */
 export type { ListBoardRow } from "@/lib/list-board-row";
-
-/** Resolve a TMDb still URL from a DB path fragment (same contract as `MoviePoster`). */
-function tmdbPosterSrc(path: string | null): string | null {
-	if (!path?.length) return null;
-	if (path.startsWith("http")) return path;
-	const fragment = path.startsWith("/") ? path : `/${path}`;
-	return `https://image.tmdb.org/t/p/w185${fragment}`;
-}
 
 const STRIP_MAX = 7;
 
@@ -27,13 +22,9 @@ const STRIP_MAX = 7;
 export function ListRowStrip({ list }: { list: ListBoardRow }) {
 	const paths = list.coverPosterPaths ?? list.coverMovieIds.map(() => null);
 	const strip = paths.slice(0, STRIP_MAX);
-	const customCover = resolveListCoverImageSrc(
-		list.id,
-		list.coverImageUrl,
-		list.updatedAt,
-	);
-	if (customCover) {
-		strip[0] = customCover;
+	const heroCover = listBoardRowPosterUrl(list, "w185");
+	if (heroCover) {
+		strip[0] = heroCover;
 	}
 
 	return (
@@ -76,7 +67,12 @@ export function ListRowStrip({ list }: { list: ListBoardRow }) {
 					</div>
 				) : (
 					strip.map((path, idx) => {
-						const src = tmdbPosterSrc(path);
+						const src = listPosterDisplayUrl(
+							list.id,
+							path,
+							list.updatedAt,
+							"w185",
+						);
 						const z = strip.length - idx;
 						const movieId = list.coverMovieIds[idx];
 						return (

@@ -72,7 +72,7 @@ export type QuickLogArgs = {
 	tvId?: number;
 	movieTitle?: string;
 	posterUrl?: string | null;
-	/** TMDb or Still community average on 0–10 for the ghost bar under the slider. */
+	/** TMDb or Sense community average on 0–10 for the ghost bar under the slider. */
 	averageRating?: number | null;
 	/**
 	 * When set, the sheet PATCHes this row instead of POSTing a new log (same form as create).

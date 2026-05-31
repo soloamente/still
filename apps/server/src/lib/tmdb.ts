@@ -144,6 +144,12 @@ export type TmdbTvDetail = TmdbTvSummary & {
 		backdrops: TmdbImageAsset[];
 		posters: TmdbImageAsset[];
 	};
+	/** Appended via `append_to_response=external_ids` — may include MAL when TMDb has it. */
+	external_ids?: {
+		imdb_id?: string | null;
+		tvdb_id?: number | null;
+		mal_id?: number | null;
+	};
 };
 
 export type TmdbCredit = {
@@ -350,7 +356,7 @@ export const tmdbApi = {
 			`/tv/${id}`,
 			{
 				append_to_response:
-					"credits,similar,recommendations,videos,watch/providers,keywords,images",
+					"credits,similar,recommendations,videos,watch/providers,keywords,images,external_ids",
 			},
 			fetchOpts,
 		);
@@ -432,6 +438,8 @@ export const tmdbApi = {
 			withWatchMonetizationTypes?: string;
 			/** TMDb `language` — regional poster/title for the patron’s catalogue locale. */
 			language?: string;
+			/** TMDb `with_text_query` — AND with other discover filters. */
+			withTextQuery?: string;
 		} = {},
 	) {
 		const sortBy = opts.sortBy ?? "popularity.desc";
@@ -494,6 +502,10 @@ export const tmdbApi = {
 		if (sortBy === "vote_average.desc" || sortBy === "vote_average.asc") {
 			params["vote_count.gte"] = 200;
 		}
+		const textQ = opts.withTextQuery?.trim();
+		if (textQ) {
+			params.with_text_query = textQ;
+		}
 		return tmdb<TmdbPaged<TmdbMovieSummary>>("/discover/movie", params, {
 			language: opts.language,
 		});
@@ -546,6 +558,8 @@ export const tmdbApi = {
 			language?: string;
 			/** TMDb `with_status` — e.g. `3` ended, `0` returning. */
 			withStatus?: number | number[];
+			/** TMDb `with_text_query` — AND with other discover filters. */
+			withTextQuery?: string;
 		} = {},
 	) {
 		const sortBy = opts.sortBy ?? "popularity.desc";
@@ -608,6 +622,10 @@ export const tmdbApi = {
 		}
 		if (sortBy === "vote_average.desc" || sortBy === "vote_average.asc") {
 			params["vote_count.gte"] = 200;
+		}
+		const textQ = opts.withTextQuery?.trim();
+		if (textQ) {
+			params.with_text_query = textQ;
 		}
 		return tmdb<TmdbPaged<TmdbTvSummary>>("/discover/tv", params, {
 			language: opts.language,

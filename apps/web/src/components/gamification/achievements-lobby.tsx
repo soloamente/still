@@ -10,6 +10,11 @@ import {
 	type EarnedBadgeRow,
 } from "@/components/gamification/achievements-badges-panel";
 import {
+	AchievementsChallengesPanel,
+	type ChallengeListItem,
+} from "@/components/gamification/achievements-challenges-panel";
+import { AchievementsCreatorAnalyticsCard } from "@/components/gamification/achievements-creator-analytics-card";
+import {
 	type AchievementCatalogRow,
 	type AchievementLobbyRow,
 	AchievementsGoalsPanel,
@@ -17,6 +22,7 @@ import {
 } from "@/components/gamification/achievements-goals-panel";
 import { AchievementsTabToolbar } from "@/components/gamification/achievements-tab-toolbar";
 import { AchievementsTopBar } from "@/components/gamification/achievements-top-bar";
+import { AchievementsWatchStreakCard } from "@/components/gamification/achievements-watch-streak-card";
 import type { AchievementsLobbyTabId } from "@/lib/achievements-lobby-tab";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 
@@ -32,6 +38,7 @@ export type AchievementsLobbyProps = {
 		progress: number;
 		unlockedAt: string | Date | null;
 	}[];
+	challenges: ChallengeListItem[];
 };
 
 function mergeAchievementRows(
@@ -62,6 +69,7 @@ export function AchievementsLobby({
 	earnedBadges,
 	achievementCatalog,
 	userAchievements,
+	challenges,
 }: AchievementsLobbyProps) {
 	const goalRows = mergeAchievementRows(achievementCatalog, userAchievements);
 
@@ -87,6 +95,11 @@ export function AchievementsLobby({
 					</p>
 				</header>
 
+				<div className="mx-auto flex w-full max-w-md flex-col items-stretch gap-3">
+					<AchievementsWatchStreakCard />
+					<AchievementsCreatorAnalyticsCard />
+				</div>
+
 				<div className="flex justify-center">
 					<Suspense fallback={<LobbyCenterTabFallback />}>
 						<AchievementsTabToolbar activeTab={activeTab} />
@@ -99,6 +112,8 @@ export function AchievementsLobby({
 							catalog={badgeCatalog}
 							earned={earnedBadges}
 						/>
+					) : activeTab === "challenges" ? (
+						<AchievementsChallengesPanel initialChallenges={challenges} />
 					) : (
 						<AchievementsGoalsPanel rows={goalRows} />
 					)}

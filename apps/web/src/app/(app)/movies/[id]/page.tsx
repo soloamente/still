@@ -8,6 +8,7 @@ import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media
 import { MovieDetailPrimaryActions } from "@/components/movie/movie-detail-primary-actions";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
+import { APP_NAME } from "@/lib/app-brand";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { formatRuntime } from "@/lib/format";
 import { formatLogRatingDisplay } from "@/lib/log-rating";
@@ -277,7 +278,7 @@ export default async function MoviePage({
 						<span className="text-base text-muted-foreground">/10</span>
 					</span>
 					<span className="text-muted-foreground text-xs">
-						· {communityReviewsCount} reviews on Still
+						· {communityReviewsCount} reviews on {APP_NAME}
 					</span>
 				</div>
 			) : null}

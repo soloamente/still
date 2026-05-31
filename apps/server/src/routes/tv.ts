@@ -3,6 +3,10 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
+import {
+	getTvMalEnrichment,
+	syncTvMalIdFromDetail,
+} from "../lib/mal-anime-enrichment";
 import { type TmdbTvSummary, tmdbApi, tmdbImg } from "../lib/tmdb";
 import { parseCommaIntList } from "../lib/tmdb-discover-params";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
@@ -244,6 +248,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			const language = await getTmdbLanguageForUser(user?.id);
 			const withGenres = parseCommaIntList(query.genre?.trim());
 			const withKeywords = parseCommaIntList(query.keywords?.trim());
+			const textQuery = (query.q ?? "").trim() || undefined;
 			const companyRaw = query.company?.trim();
 			const withCompanies =
 				companyRaw && Number.isFinite(Number(companyRaw))
@@ -314,6 +319,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				withWatchMonetizationTypes,
 				withStatus,
 				language,
+				withTextQuery: textQuery,
 			});
 			let rows = data.results;
 			if (sortBy === "first_air_date.desc" && !firstAirDateGte) {
@@ -345,6 +351,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 								? "ALL"
 								: (watchRegion ?? null)
 							: null,
+					text_query: textQuery ?? null,
 				},
 			};
 		},
@@ -352,6 +359,8 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			query: t.Object({
 				page: t.Optional(t.String()),
 				genre: t.Optional(t.String()),
+				/** TMDb discover `with_text_query` — strict AND with genre/keyword/company filters. */
+				q: t.Optional(t.String()),
 				keywords: t.Optional(t.String()),
 				company: t.Optional(t.String()),
 				sort: t.Optional(t.String()),
@@ -414,6 +423,12 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			const language = await getTmdbLanguageForUser(user?.id);
 			try {
 				const detail = await tmdbApi.tvDetail(id, { language });
+				await ensureTvCached(id).catch(() => false);
+				await syncTvMalIdFromDetail(
+					id,
+					detail as unknown as Record<string, unknown>,
+				).catch(() => {});
+				const malEnrichment = await getTvMalEnrichment(id).catch(() => null);
 				const y = detail.first_air_date?.trim().slice(0, 4);
 				const yearNum =
 					y && y.length === 4 && /^\d{4}$/.test(y) ? Number(y) : null;
@@ -446,6 +461,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					paletteMuted: null,
 					paletteForeground: null,
 					community: { averageRating: null, reviewsCount: 0 },
+					malEnrichment,
 					tmdbJson: detail as unknown as Record<string, unknown>,
 				};
 			} catch (err) {

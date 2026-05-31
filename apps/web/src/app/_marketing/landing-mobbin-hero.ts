@@ -1,4 +1,4 @@
-/** Mobbin marketing rhythm on Still’s dark canvas — geometry only, not light specimen colors. */
+/** Mobbin marketing rhythm on Sense’s dark canvas — geometry only, not light specimen colors. */
 
 export const LANDING_HERO_SECTION_CLASS =
 	"relative flex min-h-[min(100dvh,960px)] w-full flex-col bg-background text-foreground";

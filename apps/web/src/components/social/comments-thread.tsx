@@ -3,7 +3,7 @@
 import { Button } from "@still/ui/components/button";
 import { Textarea } from "@still/ui/components/textarea";
 import { cn } from "@still/ui/lib/utils";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -49,8 +49,22 @@ export function CommentsThread({
 }) {
 	const [comments, setComments] = useState(initialComments);
 	const [body, setBody] = useState("");
+	const [replyToId, setReplyToId] = useState<string | null>(null);
 	const [busy, setBusy] = useState(false);
 	const isSheet = appearance === "sheet";
+
+	const replyTarget = replyToId
+		? comments.find((row) => row.comment.id === replyToId)
+		: null;
+	const replyHandle = replyTarget?.profile?.handle;
+
+	function startReply(commentId: string) {
+		setReplyToId(commentId);
+	}
+
+	function clearReply() {
+		setReplyToId(null);
+	}
 
 	async function submit(e: React.FormEvent) {
 		e.preventDefault();
@@ -61,6 +75,7 @@ export function CommentsThread({
 				parentType: targetKind,
 				parentId: targetId,
 				body: body.trim(),
+				...(replyToId ? { replyToId } : {}),
 			});
 			const row = res.data as CommentRow["comment"] | null;
 			if (row) {
@@ -74,6 +89,7 @@ export function CommentsThread({
 				]);
 			}
 			setBody("");
+			setReplyToId(null);
 		} catch (err) {
 			console.error(err);
 			toast.error("Couldn't post comment");
@@ -90,10 +106,34 @@ export function CommentsThread({
 	return (
 		<div className="space-y-6">
 			<form onSubmit={submit} className="space-y-3">
+				{replyToId ? (
+					<div className="flex items-center justify-between gap-3 rounded-2xl bg-background px-4 py-2 text-sm">
+						<p className="text-muted-foreground">
+							Replying to{" "}
+							<span className="font-medium text-foreground">
+								{replyTarget?.profile?.displayName ??
+									replyTarget?.user?.name ??
+									"comment"}
+							</span>
+						</p>
+						<Button
+							type="button"
+							variant="ghost"
+							size="icon-sm"
+							className="shrink-0"
+							aria-label="Cancel reply"
+							onClick={clearReply}
+						>
+							<X className="size-4" aria-hidden />
+						</Button>
+					</div>
+				) : null}
 				<Textarea
 					rows={isSheet ? 4 : 3}
 					maxLength={2000}
-					placeholder="Share a thought…"
+					placeholder={
+						replyHandle ? `Reply to @${replyHandle}…` : "Share a thought…"
+					}
 					value={body}
 					onChange={(e) => setBody(e.target.value)}
 					spellCheck
@@ -154,6 +194,17 @@ export function CommentsThread({
 						<p className="mt-1 whitespace-pre-wrap text-foreground/90">
 							{comment.body}
 						</p>
+						<div className="mt-2">
+							<Button
+								type="button"
+								variant="ghost"
+								size="sm"
+								className="h-8 px-2 text-muted-foreground text-xs hover:text-foreground"
+								onClick={() => startReply(comment.id)}
+							>
+								Reply
+							</Button>
+						</div>
 					</li>
 				))}
 				{comments.length === 0 ? (

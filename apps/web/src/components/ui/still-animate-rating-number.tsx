@@ -29,7 +29,7 @@ function toPatronDisplayScore(storedOrAverage: number): number {
 }
 
 /**
- * Still 0–10 patron score with a smooth numeric tween (community average, hero metrics).
+ * Sense 0–10 patron score with a smooth numeric tween (community average, hero metrics).
  */
 export function StillAnimateRatingNumber({
 	value,

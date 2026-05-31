@@ -9,6 +9,10 @@ import {
 import { cn } from "@still/ui/lib/utils";
 
 import { MilestoneBadgeGlyph } from "@/components/gamification/milestone-badge-glyph";
+import {
+	compareBadgeCategoriesForLobby,
+	isQuantityMilestoneBadge,
+} from "@/lib/badge-prestige";
 import { formatDate } from "@/lib/format";
 
 export type BadgeCatalogRow = {
@@ -28,7 +32,8 @@ export type EarnedBadgeRow = {
 };
 
 const CATEGORY_LABEL: Record<string, string> = {
-	watch_milestone: "Screenings",
+	prestige: "Prestige",
+	watch_milestone: "Volume milestones",
 	social: "Community",
 	curator: "Lists",
 	reviewer: "Reviews",
@@ -78,8 +83,8 @@ export function AchievementsBadgesPanel({
 		byCategory.set(key, list);
 	}
 
-	const categories = [...byCategory.keys()].sort((a, b) =>
-		categoryLabel(a).localeCompare(categoryLabel(b)),
+	const categories = [...byCategory.keys()].sort(
+		compareBadgeCategoriesForLobby,
 	);
 
 	if (catalog.length === 0) {
@@ -123,10 +128,14 @@ export function AchievementsBadgesPanel({
 									const award = earnedById.get(badge.id);
 									const isEarned = Boolean(award);
 									const body = badge.description?.trim();
+									const isVolume = isQuantityMilestoneBadge(badge.id);
 									return (
 										<li
 											key={badge.id}
-											className="flex w-22 shrink-0 flex-col items-center gap-1 overflow-visible text-center"
+											className={cn(
+												"flex w-22 shrink-0 flex-col items-center gap-1 overflow-visible text-center",
+												isVolume && isEarned && "opacity-75",
+											)}
 										>
 											<Tooltip>
 												<TooltipTrigger

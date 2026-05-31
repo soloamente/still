@@ -9,6 +9,12 @@ import localFont from "next/font/local";
 import "../index.css";
 import { ThemeFlashGuardScript } from "@/components/app/theme-flash-guard-script";
 import Providers from "@/components/providers";
+import {
+	APP_METADATA_DEFAULT_TITLE,
+	APP_METADATA_DESCRIPTION,
+	APP_METADATA_TITLE_TEMPLATE,
+	APP_NAME,
+} from "@/lib/app-brand";
 
 /**
  * UI sans: **SF Pro Rounded** from `public/fonts/SF_Pro_Rounded` (next/font `localFont`),
@@ -92,12 +98,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
 	title: {
-		default: "Still — your cinematic memory",
-		template: "%s · Still",
+		default: APP_METADATA_DEFAULT_TITLE,
+		template: APP_METADATA_TITLE_TEMPLATE,
 	},
-	description:
-		"Log every film you watch, rate it, share it. A modern social home for cinephiles — diaries, reviews, lists, chat, and badges.",
-	applicationName: "Still",
+	description: APP_METADATA_DESCRIPTION,
+	applicationName: APP_NAME,
 };
 
 export const viewport: Viewport = {

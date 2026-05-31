@@ -11,22 +11,29 @@ import { api } from "@/lib/api";
 import {
 	APP_THEME_LIST,
 	type AppThemeClass,
+	appThemeTier,
 	resolveAppTheme,
 } from "@/lib/app-themes";
 import { PROFILE_PREF_APP_THEME } from "@/lib/profile-preferences";
-
-/** Compact chip labels in the account menu rail. */
-const MENU_THEME_LABEL: Record<AppThemeClass, string> = {
-	"theme-theater": "Theater",
-	"theme-lobby-light": "Light",
-	"theme-noir": "Noir",
-};
 
 /**
  * Home-style filter chips for palette switching inside the account menu's
  * `bg-background` inset group. Persists to profile on pick (no Settings Save).
  */
-export function AccountMenuThemePicker({ className }: { className?: string }) {
+export function AccountMenuThemePicker({
+	className,
+	isPro = false,
+}: {
+	className?: string;
+	isPro?: boolean;
+}) {
+	const menuThemes = useMemo(
+		() =>
+			APP_THEME_LIST.filter(
+				(def) => def.tier === "free" || (def.tier === "pro" && isPro),
+			),
+		[isPro],
+	);
 	const { theme, resolvedTheme } = useTheme();
 	const { applyThemeSelection } = useAppThemeShell();
 	const reduceMotion = useReducedMotion();
@@ -43,10 +50,12 @@ export function AccountMenuThemePicker({ className }: { className?: string }) {
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
+	const denseMenu = menuThemes.length > 3;
+
 	const chipButton = (isActive: boolean) =>
 		cn(
-			"relative inline-flex min-h-10 flex-1 items-center justify-center rounded-full text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
-			"px-2 py-2.5 sm:px-3",
+			"relative inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full text-center font-medium transition-colors duration-200 ease-out motion-reduce:transition-none",
+			denseMenu ? "px-1.5 text-xs" : "px-2 py-2.5 text-sm sm:px-3",
 			isActive
 				? "text-foreground"
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
@@ -55,6 +64,7 @@ export function AccountMenuThemePicker({ className }: { className?: string }) {
 	const handlePick = useCallback(
 		async (next: AppThemeClass) => {
 			if (next === activeTheme) return;
+			if (appThemeTier(next) === "pro" && !isPro) return;
 			applyThemeSelection(next);
 			try {
 				await api.api.profiles.me.patch({
@@ -67,7 +77,7 @@ export function AccountMenuThemePicker({ className }: { className?: string }) {
 				toast.error("Couldn't save theme");
 			}
 		},
-		[activeTheme, applyThemeSelection],
+		[activeTheme, applyThemeSelection, isPro],
 	);
 
 	return (
@@ -79,11 +89,17 @@ export function AccountMenuThemePicker({ className }: { className?: string }) {
 				Theme
 			</p> */}
 			<div
-				className="flex w-full gap-1 rounded-full bg-card p-1"
+				className={cn(
+					"grid w-full gap-1 bg-card p-1",
+					/* Three columns — five Pro moods wrap to 3+2 inside the narrow menu. */
+					denseMenu
+						? "grid-cols-3 rounded-[1.5rem]"
+						: "grid-cols-3 rounded-full",
+				)}
 				role="toolbar"
 				aria-labelledby="account-menu-theme-label"
 			>
-				{APP_THEME_LIST.map((def) => {
+				{menuThemes.map((def) => {
 					const isActive = activeTheme === def.className;
 					return (
 						<button
@@ -101,9 +117,7 @@ export function AccountMenuThemePicker({ className }: { className?: string }) {
 									aria-hidden
 								/>
 							) : null}
-							<span className="relative z-10 whitespace-nowrap">
-								{MENU_THEME_LABEL[def.className]}
-							</span>
+							<span className="relative z-10 truncate px-0.5">{def.label}</span>
 						</button>
 					);
 				})}

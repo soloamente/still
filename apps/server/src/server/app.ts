@@ -6,10 +6,12 @@ import { sql } from "drizzle-orm";
 import { Elysia } from "elysia";
 
 import { achievementsRoute, badgesRoute } from "../routes/badges";
+import { challengesRoute } from "../routes/challenges";
 import { chatRoute } from "../routes/chat";
 import { commentsRoute } from "../routes/comments";
 import { feedRoute } from "../routes/feed";
 import { followsRoute } from "../routes/follows";
+import { importRoute } from "../routes/import";
 import { leaderboardRoute } from "../routes/leaderboard";
 import { listsRoute } from "../routes/lists";
 import { logsRoute } from "../routes/logs";
@@ -18,8 +20,11 @@ import { newsRoute } from "../routes/news";
 import { notificationsRoute } from "../routes/notifications";
 import { peopleRoute } from "../routes/people";
 import { postsRoute } from "../routes/posts";
+import { productEventsRoute } from "../routes/product-events";
 import { profilesRoute } from "../routes/profiles";
 import { reviewsRoute } from "../routes/reviews";
+import { streaksRoute } from "../routes/streaks";
+import { tasteRoute } from "../routes/taste";
 import { tvRoute } from "../routes/tv";
 import { tvWatchRoute } from "../routes/tv-watch";
 import { watchlistRoute } from "../routes/watchlist";
@@ -86,6 +91,11 @@ export const app = new Elysia()
 	.use(watchlistRoute)
 	.use(listsRoute)
 	.use(profilesRoute)
+	.use(productEventsRoute)
+	.use(tasteRoute)
+	.use(challengesRoute)
+	.use(streaksRoute)
+	.use(importRoute)
 	.use(followsRoute)
 	.use(feedRoute)
 	.use(leaderboardRoute)

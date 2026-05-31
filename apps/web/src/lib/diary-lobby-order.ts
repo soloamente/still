@@ -99,6 +99,42 @@ export function coerceDiaryLogRows(rows: DiaryLogRow[]): DiaryLogRow[] {
  */
 export type DiaryLobbyOrder = "latest_seen" | "earliest_seen" | "title_az";
 
+/** Movies vs TV ledger — mirrors profile `?tab=movies|tv`. */
+export type DiaryLedgerTabId = "movies" | "tv";
+
+const DIARY_LEDGER_TABS = new Set<string>(["movies", "tv"]);
+
+/** Resolves `?tab=` on `/diary` — defaults to Movies when both exist. */
+export function resolveDiaryLedgerTab(
+	raw: string | null | undefined,
+	movieCount: number,
+	tvCount: number,
+): DiaryLedgerTabId {
+	const v = raw?.trim().toLowerCase() ?? "";
+	if (DIARY_LEDGER_TABS.has(v)) return v as DiaryLedgerTabId;
+	if (movieCount > 0) return "movies";
+	if (tvCount > 0) return "tv";
+	return "movies";
+}
+
+export function parseDiaryLedgerTab(
+	raw: string | null | undefined,
+): DiaryLedgerTabId | null {
+	const v = raw?.trim().toLowerCase() ?? "";
+	if (DIARY_LEDGER_TABS.has(v)) return v as DiaryLedgerTabId;
+	return null;
+}
+
+/** Keeps only film or TV rows for the active ledger tab. */
+export function filterDiaryLogsForLedgerTab(
+	rows: DiaryLogWithListing[],
+	tab: DiaryLedgerTabId,
+): DiaryLogWithListing[] {
+	return tab === "movies"
+		? rows.filter((row) => row.movie != null)
+		: rows.filter((row) => row.tv != null);
+}
+
 /** Rows the lobby can render — need either a joined `movie` or `tv` for the poster grid. */
 export type DiaryLogWithListing =
 	| (DiaryLogRow & { movie: NonNullable<DiaryLogRow["movie"]> })
@@ -222,8 +258,10 @@ export function parseDiaryLobbyOrder(
 export function buildDiaryLobbyHref(input: {
 	order: DiaryLobbyOrder;
 	venue: HomeVenue;
+	tab: DiaryLedgerTabId;
 }): string {
 	const params = new URLSearchParams();
+	params.set("tab", input.tab);
 	if (input.order !== "latest_seen") {
 		params.set("order", orderToParam(input.order));
 	}
@@ -231,6 +269,5 @@ export function buildDiaryLobbyHref(input: {
 	if (input.venue !== defaultVenue) {
 		params.set("venue", input.venue);
 	}
-	const qs = params.toString();
-	return qs.length > 0 ? `/diary?${qs}` : "/diary";
+	return `/diary?${params.toString()}`;
 }

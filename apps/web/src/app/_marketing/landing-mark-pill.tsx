@@ -1,6 +1,8 @@
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
+import { APP_NAME } from "@/lib/app-brand";
+
 import { LANDING_GLASS_PILL } from "./landing-glass";
 
 /** La Nube logo disc — three-dot mark as soft circles, not a single accent lamp. */
@@ -14,7 +16,7 @@ export function LandingMarkPill({
 	return (
 		<Link
 			href={href}
-			aria-label="Still — home"
+			aria-label={`${APP_NAME} — home`}
 			className={cn(
 				LANDING_GLASS_PILL,
 				"flex size-11 shrink-0 items-center justify-center gap-[3px] transition-colors duration-200 [@media(hover:hover)]:bg-white/[0.14]",

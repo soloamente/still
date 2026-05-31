@@ -1,0 +1,34 @@
+{
+	"version": 1,
+	"source": "anilist",
+	"entries": [
+		{
+			"media": {
+				"anilistId": 1535,
+				"idMal": 1535,
+				"title": { "english": "Death Note", "romaji": "DEATH NOTE" },
+				"startDate": { "year": 2006 }
+			},
+			"status": "COMPLETED",
+			"score": 92,
+			"completedAt": "2024-03-01T00:00:00.000Z"
+		},
+		{
+			"media": {
+				"anilistId": 21,
+				"title": { "english": "One Piece", "romaji": "ONE PIECE" },
+				"startDate": { "year": 1999 }
+			},
+			"status": "CURRENT",
+			"progress": 12
+		},
+		{
+			"media": {
+				"anilistId": 999,
+				"title": { "english": "Future Season", "romaji": "Future" },
+				"startDate": { "year": 2026 }
+			},
+			"status": "PLANNING"
+		}
+	]
+}

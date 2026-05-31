@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 
 import { tmdbApi } from "./tmdb";
 
-/** Ensures a `movie` row exists before diary / watchlist FKs attach. */
+/** Ensures a TMDb film row exists locally before diary FK insert. */
 export async function ensureMovieCached(tmdbId: number) {
 	const [exists] = await db
 		.select({ id: movie.tmdbId })
@@ -13,6 +13,7 @@ export async function ensureMovieCached(tmdbId: number) {
 	if (exists) return;
 	try {
 		const detail = await tmdbApi.movieDetail(tmdbId);
+		const releaseDate = detail.release_date ?? null;
 		await db
 			.insert(movie)
 			.values({
@@ -21,16 +22,22 @@ export async function ensureMovieCached(tmdbId: number) {
 				overview: detail.overview,
 				posterPath: detail.poster_path,
 				backdropPath: detail.backdrop_path,
-				releaseDate: detail.release_date ? new Date(detail.release_date) : null,
-				year: detail.release_date
-					? Number(detail.release_date.slice(0, 4))
-					: null,
+				releaseDate: releaseDate ? new Date(releaseDate) : null,
+				year: releaseDate ? Number(releaseDate.slice(0, 4)) : null,
 				runtime: detail.runtime ?? null,
+				genreIds: (detail.genres ?? []).map((g) => g.id),
+				spokenLanguages: (detail.spoken_languages ?? []).map(
+					(l) => l.iso_639_1,
+				),
+				originalLanguage: detail.original_language ?? null,
+				popularity: detail.popularity ?? null,
+				voteAverage: detail.vote_average ?? null,
+				voteCount: detail.vote_count ?? null,
 				tmdbJson: detail as unknown as Record<string, unknown>,
 				lastSyncedAt: new Date(),
 			})
 			.onConflictDoNothing();
-	} catch {
-		// TMDb miss — caller may still fail on FK; avoids crashing the request path.
+	} catch (err) {
+		console.error("[ensureMovieCached] TMDb detail failed", err);
 	}
 }

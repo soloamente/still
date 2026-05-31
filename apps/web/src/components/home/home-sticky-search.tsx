@@ -1,7 +1,14 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { Clapperboard, Search, Tv, Users } from "lucide-react";
+import {
+	Clapperboard,
+	Compass,
+	Search,
+	Sparkles,
+	Tv,
+	Users,
+} from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -17,6 +24,8 @@ import {
 import { flushSync } from "react-dom";
 
 import { SearchDialogListResults } from "@/components/home/search-dialog-list-results";
+import { SearchDialogPeopleResults } from "@/components/home/search-dialog-people-results";
+import { SearchDialogPeopleSuggestions } from "@/components/home/search-dialog-people-suggestions";
 import {
 	SearchDialogBrowsePreviewSkeleton,
 	SearchDialogListSkeleton,
@@ -31,6 +40,7 @@ import {
 	computeCatalogSearchAnchoredPanelStyle,
 	useCatalogSearchDialog,
 } from "@/lib/catalog-search-dialog-store";
+import { useGoToDialog } from "@/lib/go-to-dialog-store";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
 import {
 	type RecentSearchEntryV2,
@@ -38,6 +48,7 @@ import {
 	recordHomeSearchRecent,
 	restoreFromHomeSearchRecent,
 } from "@/lib/home-search-recent-storage";
+import { normalizeProfileSearchQuery } from "@/lib/profile-search-query";
 import { findSearchDialogStudio } from "@/lib/search-dialog-studios";
 import {
 	deriveSearchState,
@@ -50,6 +61,7 @@ import {
 } from "@/lib/use-catalog-text-search";
 import { useCatalogTmdbLanguage } from "@/lib/use-catalog-tmdb-language";
 import { useCatalogueTagSearch } from "@/lib/use-catalogue-tag-search";
+import { useProfileSearch } from "@/lib/use-profile-search";
 import {
 	type SearchDialogBrowseCategory,
 	type SearchDialogBrowsePreviewItem,
@@ -105,7 +117,16 @@ function searchListingKindToggleClass(active: boolean) {
  * Global catalog search sheet — mounted once in `AppShell`. Opens from the sticky pill,
  * bottom-nav search, or ⌘K / Ctrl+K with the same anchored grow animation.
  */
-export function CatalogSearchDialogRoot() {
+export type CatalogSearchViewer = {
+	id: string;
+	handle: string;
+};
+
+export function CatalogSearchDialogRoot({
+	viewer = null,
+}: {
+	viewer?: CatalogSearchViewer | null;
+}) {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -122,6 +143,9 @@ export function CatalogSearchDialogRoot() {
 	const titleId = useId();
 	const registerImperativelyOpen = useCatalogSearchDialog(
 		(s) => s.registerImperativelyOpen,
+	);
+	const registerImperativelyClose = useCatalogSearchDialog(
+		(s) => s.registerImperativelyClose,
 	);
 
 	/** Committed filter pills + the active typed token (free text after pills). */
@@ -238,6 +262,11 @@ export function CatalogSearchDialogRoot() {
 		return () => registerImperativelyOpen(null);
 	}, [openDialogFromRect, registerImperativelyOpen]);
 
+	useEffect(() => {
+		registerImperativelyClose(beginClose);
+		return () => registerImperativelyClose(null);
+	}, [beginClose, registerImperativelyClose]);
+
 	// Fallback if `requestOpen` runs before the root mounts (e.g. very early keydown).
 	useEffect(() => {
 		if (openRequestId === 0 || !pendingAnchor) return;
@@ -281,9 +310,27 @@ export function CatalogSearchDialogRoot() {
 		[beginClose],
 	);
 
+	const handleProfileSelect = useCallback(
+		(handle: string) => {
+			pendingNavigationRef.current = `/profile/${encodeURIComponent(handle)}`;
+			beginClose();
+		},
+		[beginClose],
+	);
+
+	const openGoToDialog = useGoToDialog((s) => s.open);
+
+	const handleOpenGoToDialog = useCallback(() => {
+		beginClose();
+		openGoToDialog();
+	}, [beginClose, openGoToDialog]);
+
 	/** Browse chrome only when there are no pills and no active text token. */
 	const isEmptyDraft = searchTags.length === 0 && trimmedDraft === "";
 	const hasStudioTag = searchTags.some((t) => t.kind === "studio");
+	const hasAnimeCuratedTag = searchTags.some(
+		(t) => t.kind === "curated" && t.slug === "anime",
+	);
 
 	// Empty sheet: Movies / TV browse picks imply the same catalogue for the next typed query.
 	useEffect(() => {
@@ -384,10 +431,37 @@ export function CatalogSearchDialogRoot() {
 		[browseStudios],
 	);
 
+	const handleAnimeQuickTagToggle = useCallback(() => {
+		setSearchListingKind("tv");
+		setSearchTags((prev) => {
+			const hasAnime = prev.some(
+				(tag) => tag.kind === "curated" && tag.slug === "anime",
+			);
+			if (hasAnime) {
+				return prev.filter(
+					(tag) => !(tag.kind === "curated" && tag.slug === "anime"),
+				);
+			}
+			return upsertTag(prev, {
+				kind: "curated",
+				slug: "anime",
+				label: "Anime",
+			});
+		});
+	}, []);
+
+	const handleAnimeQuickStart = useCallback(() => {
+		setSearchListingKind("tv");
+		setSearchTags((prev) =>
+			upsertTag(prev, { kind: "curated", slug: "anime", label: "Anime" }),
+		);
+	}, []);
+
 	const structuredSearch = useCatalogueTagSearch(
 		searchTags,
 		freeText,
 		showSheet && searchTags.length > 0,
+		effectiveListingKind,
 	);
 	const {
 		results: plainSearchResults,
@@ -410,6 +484,11 @@ export function CatalogSearchDialogRoot() {
 			: plainSearchResults
 	).slice(0, SEARCH_DIALOG_MAX_RESULTS);
 
+	const profileSearchQuery = normalizeProfileSearchQuery(trimmedDraft);
+	const peopleSearchEnabled =
+		Boolean(viewer) && profileSearchQuery.length >= 1 && showSheet;
+	const { hits: profileSearchHits, loading: profileSearchLoading } =
+		useProfileSearch(trimmedDraft, peopleSearchEnabled);
 	/** Screen reader status for active search (result count or empty state). */
 	const searchResultsStatusMessage = useMemo(() => {
 		if (isEmptyDraft) return "";
@@ -615,7 +694,7 @@ export function CatalogSearchDialogRoot() {
 						}
 					>
 						<h2 id={titleId} className="sr-only">
-							Search films and TV
+							Search films, TV, and people
 						</h2>
 						<form
 							onSubmit={handleFormSubmit}
@@ -682,11 +761,67 @@ export function CatalogSearchDialogRoot() {
 										<Tv className="size-4 shrink-0 opacity-80" aria-hidden />
 										TV shows
 									</button>
+									<button
+										type="button"
+										aria-pressed={hasAnimeCuratedTag}
+										className={searchListingKindToggleClass(hasAnimeCuratedTag)}
+										onClick={handleAnimeQuickTagToggle}
+									>
+										<Sparkles
+											className="size-4 shrink-0 opacity-80"
+											aria-hidden
+										/>
+										Anime
+									</button>
 								</div>
 							</fieldset>
 						) : null}
 
 						<div className="scrollbar-none min-h-0 min-w-0 overflow-y-auto overflow-x-hidden overscroll-y-contain">
+							{isEmptyDraft ? (
+								<div className="shrink-0 px-4 pt-1 pb-2">
+									<button
+										type="button"
+										onClick={handleOpenGoToDialog}
+										className="flex min-h-10 w-full items-center gap-2.5 rounded-2xl bg-background px-3 py-2.5 text-left text-foreground text-sm transition-colors duration-200 ease-out focus-visible:outline-none motion-reduce:transition-none [@media(hover:hover)]:hover:bg-muted/45"
+									>
+										<Compass
+											className="size-4 shrink-0 text-muted-foreground"
+											aria-hidden
+										/>
+										<span className="min-w-0 flex-1 font-medium">Go to…</span>
+										<kbd className="shrink-0 rounded border border-border bg-card px-1.5 py-0.5 font-medium text-[10px] text-muted-foreground tracking-wide">
+											⌘⇧K
+										</kbd>
+									</button>
+									<div className="mt-2 flex flex-wrap gap-2">
+										<FilterChipButton
+											type="button"
+											aria-label="Browse anime results"
+											onClick={handleAnimeQuickStart}
+										>
+											<Sparkles className="size-3.5 shrink-0" aria-hidden />
+											Anime
+										</FilterChipButton>
+									</div>
+								</div>
+							) : null}
+
+							{isEmptyDraft && viewer ? (
+								<SearchDialogPeopleSuggestions
+									enabled={showSheet}
+									onSelect={handleProfileSelect}
+								/>
+							) : null}
+
+							{!isEmptyDraft && viewer ? (
+								<SearchDialogPeopleResults
+									hits={profileSearchHits}
+									loading={profileSearchLoading}
+									onSelect={handleProfileSelect}
+								/>
+							) : null}
+
 							{isEmptyDraft && recentQueries.length > 0 ? (
 								<div className="shrink-0 px-4 pt-1 pb-3">
 									<h3 id={`${titleId}-recent-heading`} className="sr-only">
@@ -992,7 +1127,7 @@ export function HomeStickySearch() {
 		>
 			<Search className="size-4 shrink-0 text-muted-foreground" aria-hidden />
 			<span className="min-w-0 flex-1 truncate text-base text-muted-foreground md:text-sm">
-				Films, TV, people…
+				Films, TV, @people, lists…
 			</span>
 		</motion.button>
 	);

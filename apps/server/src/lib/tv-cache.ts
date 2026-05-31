@@ -6,14 +6,16 @@ import { tmdbApi } from "./tmdb";
 /**
  * Ensures a `tv` row exists before we attach diary / watchlist FKs — mirrors
  * `ensureMovieCached` on the film path so TMDb stays the source of truth.
+ *
+ * Returns whether a row is present after the call (false when TMDb/cache failed).
  */
-export async function ensureTvCached(tmdbId: number) {
+export async function ensureTvCached(tmdbId: number): Promise<boolean> {
 	const [exists] = await db
 		.select({ id: tv.tmdbId })
 		.from(tv)
 		.where(eq(tv.tmdbId, tmdbId))
 		.limit(1);
-	if (exists) return;
+	if (exists) return true;
 	try {
 		const detail = await tmdbApi.tvDetail(tmdbId);
 		const firstAir = detail.first_air_date ?? null;
@@ -41,4 +43,11 @@ export async function ensureTvCached(tmdbId: number) {
 	} catch (err) {
 		console.error("[tv-cache] failed to cache series from TMDb", err);
 	}
+
+	const [cached] = await db
+		.select({ id: tv.tmdbId })
+		.from(tv)
+		.where(eq(tv.tmdbId, tmdbId))
+		.limit(1);
+	return cached != null;
 }

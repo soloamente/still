@@ -1,4 +1,10 @@
 import { type AppThemeId, appThemeTier, isAppThemeId } from "./app-themes";
+import {
+	isProfileAccentId,
+	isProfileBannerFrameId,
+	PROFILE_PREF_BANNER_FRAME,
+	PROFILE_PREF_PROFILE_ACCENT,
+} from "./profile-appearance";
 
 export const PROFILE_PREF_APP_THEME = "appTheme";
 
@@ -32,6 +38,24 @@ export function sanitizeAppearancePreferences(
 		const tier = appThemeTier(raw as AppThemeId);
 		if (tier === "pro" && !isPro) {
 			return { ok: false, error: "Theme requires Pro", status: 403 };
+		}
+	}
+
+	if (PROFILE_PREF_PROFILE_ACCENT in next) {
+		if (!isProfileAccentId(next[PROFILE_PREF_PROFILE_ACCENT])) {
+			return { ok: false, error: "Invalid profile accent", status: 400 };
+		}
+		if (!isPro) {
+			return { ok: false, error: "Profile accent requires Pro", status: 403 };
+		}
+	}
+
+	if (PROFILE_PREF_BANNER_FRAME in next) {
+		if (!isProfileBannerFrameId(next[PROFILE_PREF_BANNER_FRAME])) {
+			return { ok: false, error: "Invalid banner frame", status: 400 };
+		}
+		if (!isPro) {
+			return { ok: false, error: "Banner frame requires Pro", status: 403 };
 		}
 	}
 

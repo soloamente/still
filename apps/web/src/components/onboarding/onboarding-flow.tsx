@@ -13,15 +13,20 @@ import { toast } from "sonner";
 import { BrandMark } from "@/components/brand-mark";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { api } from "@/lib/api";
+import { logRatingToStored } from "@/lib/log-rating";
+import { ONBOARDING_QUICK_RATE_TMDB_IDS } from "@/lib/onboarding-quick-rate-pool";
 import { fetchMoviesSearch } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
 /**
- * Three-step onboarding modeled after Letterboxd's: bio, favorite films
- * (4 to start), then a "you're all set" success step. The form lives in
- * local state and writes the final shape to /api/profiles/me at the end.
+ * Sense onboarding v2: taste seeding → bio → favorites → done.
+ * Quick-rates seed the diary and taste signature before the empty feed.
  */
-type Step = "bio" | "favorites" | "done";
+type Step = "taste" | "bio" | "favorites" | "done";
+
+const TASTE_QUICK_SCORES = [6, 7, 8, 9, 10] as const;
+const TASTE_POOL_IDS = ONBOARDING_QUICK_RATE_TMDB_IDS.slice(0, 12);
 
 type Movie = { id: number; title: string; poster_url: string | null };
 
@@ -41,13 +46,45 @@ export function OnboardingFlow({
 	const stepTransition = reduceMotion
 		? { duration: 0 }
 		: { duration: 0.2, ease: [0.165, 0.84, 0.44, 1] as const };
-	const [step, setStep] = useState<Step>("bio");
+	const [step, setStep] = useState<Step>("taste");
 	const [bio, setBio] = useState(initialProfile.bio);
 	const [favorites, setFavorites] = useState<Movie[]>([]);
+	const [tastePool, setTastePool] = useState<Movie[]>([]);
+	const [tasteRatings, setTasteRatings] = useState<Record<number, number>>({});
+	const [tastePreview, setTastePreview] = useState<string | null>(null);
 	const [search, setSearch] = useState("");
 	const [results, setResults] = useState<Movie[]>([]);
 	const [isSaving, setIsSaving] = useState(false);
 	const [tmdbHint, setTmdbHint] = useState<string | null>(null);
+
+	useEffect(() => {
+		let cancelled = false;
+		(async () => {
+			const loaded: Movie[] = [];
+			for (const id of TASTE_POOL_IDS) {
+				try {
+					const res = await api.api.movies({ id: String(id) }).get();
+					const row = res.data as {
+						tmdbId?: number;
+						title?: string;
+						posterPath?: string | null;
+					} | null;
+					if (!row?.title) continue;
+					loaded.push({
+						id: row.tmdbId ?? id,
+						title: row.title,
+						poster_url: tmdbPosterUrlFromPath(row.posterPath ?? null, "w342"),
+					});
+				} catch {
+					/* skip missing titles */
+				}
+			}
+			if (!cancelled) setTastePool(loaded);
+		})();
+		return () => {
+			cancelled = true;
+		};
+	}, []);
 
 	useEffect(() => {
 		const trimmed = search.trim();
@@ -82,8 +119,19 @@ export function OnboardingFlow({
 		};
 	}, [search]);
 
+	const tasteRatedCount = Object.keys(tasteRatings).length;
+	const canAdvanceFromTaste = tasteRatedCount >= 8;
 	const canAdvanceFromBio = useMemo(() => bio.trim().length <= 600, [bio]);
 	const canFinish = favorites.length >= 1;
+
+	function setTasteScore(movieId: number, displayScore: number) {
+		const stored = logRatingToStored(displayScore);
+		if (stored == null) return;
+		setTasteRatings((prev) => ({
+			...prev,
+			[movieId]: stored,
+		}));
+	}
 
 	function toggleFavorite(m: Movie) {
 		setFavorites((current) => {
@@ -97,6 +145,14 @@ export function OnboardingFlow({
 	async function finish() {
 		setIsSaving(true);
 		try {
+			for (const [movieIdStr, rating] of Object.entries(tasteRatings)) {
+				const movieId = Number(movieIdStr);
+				await api.api.logs.post({
+					movieId,
+					rating,
+					watchedAt: new Date().toISOString(),
+				});
+			}
 			await api.api.profiles.me.patch({
 				bio: bio.trim() || undefined,
 				favoriteMovieIds: favorites.map((m) => m.id),
@@ -106,6 +162,10 @@ export function OnboardingFlow({
 				displayName: initialProfile.displayName,
 				markOnboarded: true,
 			});
+			const tasteRes =
+				await api.api.profiles.me["recompute-taste-signature"].post();
+			const tasteData = tasteRes.data as { headline?: string } | null;
+			if (tasteData?.headline) setTastePreview(tasteData.headline);
 			setStep("done");
 			toast.success("Profile saved");
 			setTimeout(() => {
@@ -127,6 +187,70 @@ export function OnboardingFlow({
 				<StepDots step={step} />
 			</div>
 			<AnimatePresence mode="wait">
+				{step === "taste" ? (
+					<motion.section
+						key="taste"
+						initial={{ opacity: 0, y: 8 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -8 }}
+						transition={stepTransition}
+						className="space-y-6"
+					>
+						<h1 className="font-display font-medium text-3xl tracking-[-0.02em] md:text-4xl">
+							What have you loved lately?
+						</h1>
+						<p className="text-muted-foreground">
+							Rate at least eight — Sense uses this to sketch your taste before
+							you follow anyone.
+						</p>
+						<p className="text-muted-foreground text-sm tabular-nums">
+							{tasteRatedCount} / 8 rated
+						</p>
+						<div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+							{tastePool.map((m) => (
+								<div key={m.id} className="space-y-2">
+									<MoviePoster
+										movieId={m.id}
+										title={m.title}
+										posterUrl={m.poster_url}
+										size="sm"
+									/>
+									<p className="line-clamp-2 text-foreground text-xs">
+										{m.title}
+									</p>
+									<div className="flex flex-wrap gap-1">
+										{TASTE_QUICK_SCORES.map((score) => (
+											<button
+												key={score}
+												type="button"
+												onClick={() => setTasteScore(m.id, score)}
+												className={
+													tasteRatings[m.id] ===
+													(logRatingToStored(score) ?? -1)
+														? "rounded-full bg-foreground px-2 py-0.5 font-medium text-background text-xs"
+														: "rounded-full bg-background px-2 py-0.5 text-muted-foreground text-xs [@media(hover:hover)]:hover:text-foreground"
+												}
+											>
+												{score}
+											</button>
+										))}
+									</div>
+								</div>
+							))}
+						</div>
+						<div className="flex justify-end">
+							<Button
+								variant="accent"
+								size="pill"
+								disabled={!canAdvanceFromTaste || tastePool.length < 8}
+								onClick={() => setStep("bio")}
+							>
+								Continue
+							</Button>
+						</div>
+					</motion.section>
+				) : null}
+
 				{step === "bio" ? (
 					<motion.section
 						key="bio"
@@ -155,7 +279,14 @@ export function OnboardingFlow({
 								{600 - bio.length} characters left
 							</p>
 						</div>
-						<div className="flex justify-end">
+						<div className="flex justify-between">
+							<Button
+								variant="ghost-light"
+								size="pill"
+								onClick={() => setStep("taste")}
+							>
+								Back
+							</Button>
 							<Button
 								variant="accent"
 								size="pill"
@@ -289,6 +420,11 @@ export function OnboardingFlow({
 						<h1 className="font-display text-4xl tracking-[-0.02em]">
 							All set.
 						</h1>
+						{tastePreview ? (
+							<p className="mx-auto max-w-md text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
+								{tastePreview}
+							</p>
+						) : null}
 						<p className="text-muted-foreground">Taking you home…</p>
 					</motion.section>
 				) : null}
@@ -298,10 +434,11 @@ export function OnboardingFlow({
 }
 
 function StepDots({ step }: { step: Step }) {
-	const idx = step === "bio" ? 0 : step === "favorites" ? 1 : 2;
+	const idx =
+		step === "taste" ? 0 : step === "bio" ? 1 : step === "favorites" ? 2 : 3;
 	return (
 		<div className="flex items-center gap-1.5">
-			{[0, 1, 2].map((i) => (
+			{[0, 1, 2, 3].map((i) => (
 				<span
 					key={i}
 					className={

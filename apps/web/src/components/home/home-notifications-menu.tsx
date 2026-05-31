@@ -12,6 +12,7 @@ import IconBellFilled from "@still/ui/icons/bell-filled";
 import { cn } from "@still/ui/lib/utils";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 
 import { accountMenuContentClassName } from "@/components/app/app-user-account-menu";
 import {
@@ -19,6 +20,7 @@ import {
 	NotificationsDropdownPanel,
 } from "@/components/notifications/notifications-dropdown-panel";
 import { api } from "@/lib/api";
+import { notificationPayloadHref } from "@/lib/notification-href";
 import type { NotificationsInboxFilter } from "@/lib/notifications-inbox-filter";
 import { postNotificationRead } from "@/lib/still-api-fetch";
 
@@ -130,7 +132,26 @@ export function HomeNotificationsMenu({
 	}
 
 	function handleRowActivate(row: NotificationPreviewRow) {
+		if (row.kind === "taste.challenge") return;
 		void markOneRead(row);
+		const href = notificationPayloadHref(row.payload);
+		if (href) {
+			menuActionsRef.current?.close();
+			router.push(href);
+		}
+	}
+
+	function handleTasteChallengeAccept(row: NotificationPreviewRow) {
+		void markOneRead(row);
+		const href = notificationPayloadHref(row.payload);
+		menuActionsRef.current?.close();
+		if (href) router.push(href);
+	}
+
+	function handleTasteChallengeDecline(row: NotificationPreviewRow) {
+		void markOneRead(row);
+		menuActionsRef.current?.close();
+		toast.message("Challenge dismissed");
 	}
 
 	return (
@@ -200,6 +221,8 @@ export function HomeNotificationsMenu({
 					hasUnread={hasUnread}
 					onMarkAllRead={() => void markAllRead()}
 					onRowActivate={handleRowActivate}
+					onTasteChallengeAccept={handleTasteChallengeAccept}
+					onTasteChallengeDecline={handleTasteChallengeDecline}
 					onSignIn={() => {
 						menuActionsRef.current?.close();
 						router.push("/sign-in");

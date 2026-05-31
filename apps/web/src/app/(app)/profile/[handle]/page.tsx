@@ -9,7 +9,9 @@ import type {
 import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { authServer } from "@/lib/auth-server";
+import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
 import { toListBoardRow } from "@/lib/list-board-row";
+import { readProfileBannerFramePref } from "@/lib/profile-appearance";
 import {
 	filmographyFromRecentlyWatched,
 	splitProfileFilmographyLedger,
@@ -20,6 +22,7 @@ import {
 	parseProfileLobbyVenue,
 } from "@/lib/profile-lobby-order";
 import { readCatalogMonochromePeersOnHoverPref } from "@/lib/profile-preferences";
+import { parseTasteSignatureJson } from "@/lib/sense-taste-signature";
 import { serverApi } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
@@ -45,14 +48,18 @@ type ProfileData = {
 		website: string | null;
 		bannerUrl: string | null;
 		accentColor: string | null;
+		preferences?: Record<string, unknown> | null;
 		favoriteMovieIds: number[];
 		sectionOrder: string[] | null;
 		isPrivate: boolean;
+		tasteSignature?: unknown;
 	};
 	stats: { followers: number; following: number };
+	creator?: { isCurator: boolean; headline: string | null };
 	isFollowing: boolean;
 	recentlyWatched: ProfileFilmographyRow[];
 	recentReviews: ProfileReviewRow[];
+	pinnedReviews: ProfileReviewRow[];
 	lists: {
 		id: string;
 		title: string;
@@ -83,6 +90,8 @@ export default async function ProfilePage({
 		order?: string;
 		favorites?: string;
 		venue?: string;
+		/** Opens taste overlap sheet — used by taste challenge notifications. */
+		tasteCompare?: string;
 	}>;
 }) {
 	const { handle } = await params;
@@ -107,9 +116,12 @@ export default async function ProfilePage({
 	]);
 	const rawEarnedBadges =
 		(badgesRes.data as unknown as ProfileEarnedBadge[]) ?? [];
-	const earnedBadges = rawEarnedBadges
-		.filter((row): row is ProfileEarnedBadge => row.badge != null)
-		.slice(0, 8);
+	const earnedBadges = pickProfileShowcaseBadges(
+		rawEarnedBadges.filter(
+			(row): row is ProfileEarnedBadge => row.badge != null,
+		),
+		8,
+	);
 	const rawUnlockedAchievements =
 		(achievementsRes.data as unknown as ProfileUnlockedAchievement[]) ?? [];
 	const unlockedAchievements = rawUnlockedAchievements
@@ -146,7 +158,10 @@ export default async function ProfilePage({
 
 	const socialTabs = PROFILE_TOOLBAR_SOCIAL_ORDER.filter((sec) => {
 		if (sec === "favorites") return likedFilmographyCount > 0;
-		if (sec === "reviews") return data.recentReviews.length > 0;
+		if (sec === "reviews")
+			return (
+				data.recentReviews.length > 0 || (data.pinnedReviews?.length ?? 0) > 0
+			);
 		if (sec === "lists") return data.lists.length > 0;
 		return false;
 	});
@@ -160,6 +175,11 @@ export default async function ProfilePage({
 	}
 	const monochromePeersOnHover =
 		readCatalogMonochromePeersOnHoverPref(viewerPrefs);
+	const tasteSignature = parseTasteSignatureJson(profile.tasteSignature);
+	const canCompareTaste = Boolean(session?.user.id && !isMe);
+	const initialTasteCompareOpen =
+		canCompareTaste && (sp.tasteCompare === "1" || sp.tasteCompare === "true");
+	const bannerFrame = readProfileBannerFramePref(profile.preferences ?? null);
 
 	return (
 		<ProfilePatronLobbyShell
@@ -174,14 +194,21 @@ export default async function ProfilePage({
 			isMe={isMe}
 			targetUserId={user.id}
 			bannerUrl={profile.bannerUrl}
+			bannerFrame={bannerFrame}
 			accentColor={profile.accentColor}
 			recentlyWatched={data.recentlyWatched}
 			recentReviews={data.recentReviews}
+			pinnedReviews={data.pinnedReviews ?? []}
 			lists={data.lists.map((l) => toListBoardRow(l))}
 			socialTabs={socialTabs}
 			earnedBadges={earnedBadges}
 			unlockedAchievements={unlockedAchievements}
 			monochromePeersOnHover={monochromePeersOnHover}
+			tasteSignature={tasteSignature}
+			canCompareTaste={canCompareTaste}
+			initialTasteCompareOpen={initialTasteCompareOpen}
+			isCurator={data.creator?.isCurator ?? false}
+			curatorHeadline={data.creator?.headline ?? null}
 		/>
 	);
 }

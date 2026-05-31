@@ -28,6 +28,7 @@ import {
 import { createPortal } from "react-dom";
 import { toast } from "sonner";
 
+import { ListDescriptionQualityHint } from "@/components/list/list-description-quality-hint";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import {
 	type AddToListMedia,
@@ -317,6 +318,10 @@ export function CreateListDialog({
 												fieldClass,
 												"min-h-[10rem] resize-y py-3 leading-relaxed",
 											)}
+										/>
+										<ListDescriptionQualityHint
+											description={description}
+											isPublic={isPublic}
 										/>
 									</div>
 

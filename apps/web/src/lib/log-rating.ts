@@ -45,3 +45,14 @@ export function formatStoredLogRatingDisplay(
 export function isValidStoredLogRating(stored: number): boolean {
 	return Number.isInteger(stored) && stored >= 0 && stored <= TENTHS_MAX;
 }
+
+/** `POST /api/reviews` expects a whole 1–10 integer — map diary storage to that scale. */
+export function diaryStoredToReviewApiRating(
+	stored: number | null | undefined,
+): number | undefined {
+	const display = logRatingToDisplay(stored);
+	if (display == null) return undefined;
+	const rounded = Math.round(clampLogRatingDisplay(display));
+	if (rounded < 1) return undefined;
+	return Math.min(10, rounded);
+}

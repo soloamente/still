@@ -4,6 +4,7 @@ import { Elysia } from "elysia";
 type TestList = {
 	id: string;
 	userId: string;
+	isPublic: boolean;
 	isCollaborative: boolean;
 	systemKind: string | null;
 };
@@ -19,9 +20,14 @@ type TestListItem = {
 
 const LIST_SYSTEM_KIND_FAVORITES = "favorites";
 
-const state: { list: TestList | null; items: TestListItem[] } = {
+const state: {
+	list: TestList | null;
+	items: TestListItem[];
+	collaborators: Array<{ listId: string; userId: string }>;
+} = {
 	list: null,
 	items: [],
+	collaborators: [],
 };
 
 const listTable = { __table: "list" };
@@ -30,6 +36,7 @@ const movieTable = { __table: "movie" };
 const tvTable = { __table: "tv" };
 const reactionTable = { __table: "reaction" };
 const eventLogTable = { __table: "eventLog" };
+const profileTable = { __table: "profile" };
 const exportedListTable = {
 	...listTable,
 	id: "id",
@@ -170,6 +177,7 @@ mock.module("@still/db", () => ({
 	tv: exportedTvTable,
 	reaction: reactionTable,
 	eventLog: eventLogTable,
+	profile: profileTable,
 	LIST_SYSTEM_KIND_FAVORITES,
 }));
 
@@ -216,15 +224,53 @@ mock.module("../lib/favorites-list-sync", () => ({
 	refreshListAggregates: async () => undefined,
 }));
 
+mock.module("../lib/list-collaborator-access", () => ({
+	canEditList: async (
+		userId: string | undefined,
+		listRow: { id: string; userId: string } | null | undefined,
+	) => {
+		if (!userId || !listRow) return false;
+		if (listRow.userId === userId) return true;
+		return state.collaborators.some(
+			(c) => c.listId === listRow.id && c.userId === userId,
+		);
+	},
+	isListCollaborator: async (listId: string, userId: string) =>
+		state.collaborators.some((c) => c.listId === listId && c.userId === userId),
+}));
+
+mock.module("../lib/list-collaborators", () => ({
+	fetchCollaboratedListsForPatron: async () => [],
+	fetchListCollaborators: async () => [],
+	inviteListCollaboratorByHandle: async () => ({
+		ok: true as const,
+		collaboratorUserId: "editor-2",
+	}),
+	removeListCollaborator: async () => ({ ok: true as const }),
+}));
+
+// lists.ts imports this module for owner diary scores — avoid pulling `log` from the db mock.
+mock.module("../lib/list-owner-log-scores", () => ({
+	fetchOwnerLogScoresForListItems: async () => new Map(),
+}));
+
 const { listsRoute } = await import("./lists");
+
+function testListFixture(): TestList {
+	if (!state.list) setBaseFixture();
+	if (!state.list) throw new Error("list fixture missing");
+	return state.list;
+}
 
 function setBaseFixture(): void {
 	state.list = {
 		id: "lst-1",
 		userId: "owner-1",
+		isPublic: true,
 		isCollaborative: false,
 		systemKind: null,
 	};
+	state.collaborators = [];
 	state.items = [
 		{
 			id: "lit-1",
@@ -282,6 +328,49 @@ beforeEach(() => {
 	setBaseFixture();
 });
 
+async function getList(input: {
+	listId?: string;
+	userId?: string;
+}): Promise<Response> {
+	const app = makeApp();
+	return app.handle(
+		new Request(`http://localhost/api/lists/${input.listId ?? "lst-1"}`, {
+			method: "GET",
+			headers: {
+				...(input.userId ? { "x-user-id": input.userId } : {}),
+			},
+		}),
+	);
+}
+
+describe("GET /api/lists/:id", () => {
+	test("returns public list to anonymous viewers", async () => {
+		state.list = { ...testListFixture(), isPublic: true };
+		const response = await getList({});
+		expect(response.status).toBe(200);
+		const payload = (await response.json()) as { id: string };
+		expect(payload.id).toBe("lst-1");
+	});
+
+	test("returns 404 for private list when anonymous", async () => {
+		state.list = { ...testListFixture(), isPublic: false };
+		const response = await getList({});
+		expect(response.status).toBe(404);
+	});
+
+	test("returns 404 for private list when viewer is not owner", async () => {
+		state.list = { ...testListFixture(), isPublic: false };
+		const response = await getList({ userId: "stranger-1" });
+		expect(response.status).toBe(404);
+	});
+
+	test("returns private list to owner", async () => {
+		state.list = { ...testListFixture(), isPublic: false };
+		const response = await getList({ userId: "owner-1" });
+		expect(response.status).toBe(200);
+	});
+});
+
 describe("POST /api/lists/:id/reorder", () => {
 	test("allows owner reorder and normalizes positions deterministically", async () => {
 		const response = await postReorder({
@@ -303,7 +392,7 @@ describe("POST /api/lists/:id/reorder", () => {
 	});
 
 	test("allows collaborative editor reorder", async () => {
-		if (state.list) state.list.isCollaborative = true;
+		state.collaborators.push({ listId: "lst-1", userId: "editor-2" });
 		const response = await postReorder({
 			userId: "editor-2",
 			itemIds: ["lit-2", "lit-3", "lit-1"],
@@ -322,6 +411,15 @@ describe("POST /api/lists/:id/reorder", () => {
 	test("rejects unauthorized users", async () => {
 		const response = await postReorder({
 			userId: "other-user",
+			itemIds: ["lit-1", "lit-2", "lit-3"],
+		});
+		expect(response.status).toBe(403);
+	});
+
+	test("rejects strangers even when list is flagged collaborative", async () => {
+		if (state.list) state.list.isCollaborative = true;
+		const response = await postReorder({
+			userId: "stranger-1",
 			itemIds: ["lit-1", "lit-2", "lit-3"],
 		});
 		expect(response.status).toBe(403);

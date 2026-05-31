@@ -11,6 +11,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "sonner";
 
+import { ListDescriptionQualityHint } from "@/components/list/list-description-quality-hint";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import { api } from "@/lib/api";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
@@ -25,6 +26,7 @@ export function ListLobbyEditDialog({
 	listId,
 	initialTitle,
 	initialDescription = "",
+	isPublic = true,
 	onSaved,
 }: {
 	open: boolean;
@@ -32,6 +34,7 @@ export function ListLobbyEditDialog({
 	listId: string;
 	initialTitle: string;
 	initialDescription?: string | null;
+	isPublic?: boolean;
 	onSaved?: (payload: { title: string; description: string }) => void;
 }) {
 	const reduceMotion = useReducedMotion();
@@ -225,6 +228,10 @@ export function ListLobbyEditDialog({
 												fieldClass,
 												"min-h-[10rem] resize-y py-3 leading-relaxed",
 											)}
+										/>
+										<ListDescriptionQualityHint
+											description={description}
+											isPublic={isPublic}
 										/>
 									</div>
 								</form>

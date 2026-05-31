@@ -25,6 +25,7 @@ import {
 	useMeAccountSession,
 	writeStoredSettingsDraft,
 } from "@/components/profile/me-account-session-context";
+import { MeAnilistImport } from "@/components/profile/me-anilist-import";
 import { MeAppearanceSettings } from "@/components/profile/me-appearance-settings";
 import { MeCatalogLanguageSelect } from "@/components/profile/me-catalog-language-select";
 import { MeCatalogWatchRegionSelect } from "@/components/profile/me-catalog-watch-region-select";
@@ -32,6 +33,7 @@ import {
 	MeFormField,
 	meFieldControlClass,
 } from "@/components/profile/me-form-field";
+import { MeLetterboxdImport } from "@/components/profile/me-letterboxd-import";
 import { MePreferenceToggle } from "@/components/profile/me-preference-toggle";
 import { MeProfileVisibilityToggle } from "@/components/profile/me-profile-visibility-toggle";
 import {
@@ -39,7 +41,22 @@ import {
 	MeSettingsSection,
 } from "@/components/profile/me-settings-layout";
 import { api } from "@/lib/api";
-import type { AppThemeClass } from "@/lib/app-themes";
+import { type AppThemeClass, resolveAppThemeForPatron } from "@/lib/app-themes";
+import {
+	buildNotificationPrefsPatch,
+	NOTIFICATION_KIND_SETTINGS,
+	type NotificationKind,
+	readNotificationPrefsFromProfile,
+} from "@/lib/notification-preferences";
+import {
+	inferProfileAccentFromHex,
+	PROFILE_PREF_BANNER_FRAME,
+	PROFILE_PREF_PROFILE_ACCENT,
+	type ProfileAccentId,
+	type ProfileBannerFrameId,
+	readProfileAccentPref,
+	readProfileBannerFramePref,
+} from "@/lib/profile-appearance";
 import {
 	PROFILE_PREF_APP_THEME,
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
@@ -63,10 +80,20 @@ type MeProfile = {
 	location: string | null;
 	website: string | null;
 	isPrivate: boolean;
+	isPro?: boolean;
+	accentColor?: string | null;
 	preferences?: Record<string, unknown> | null;
 };
 
+function initialProfileAccent(profile: MeProfile): ProfileAccentId | null {
+	return (
+		readProfileAccentPref(profile.preferences ?? null) ??
+		inferProfileAccentFromHex(profile.accentColor)
+	);
+}
+
 export function SettingsForm({ profile }: { profile: MeProfile }) {
+	const isPro = Boolean(profile.isPro);
 	const { setTheaterAudioEnabled } = useCinematicAudio();
 	const {
 		syncSettingsDirty,
@@ -98,7 +125,19 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		() => readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
 	);
 	const [appTheme, setAppTheme] = useState<AppThemeClass>(() =>
-		readAppThemePref(profile.preferences ?? null),
+		resolveAppThemeForPatron(
+			readAppThemePref(profile.preferences ?? null),
+			isPro,
+		),
+	);
+	const [profileAccent, setProfileAccent] = useState<ProfileAccentId | null>(
+		() => initialProfileAccent(profile),
+	);
+	const [bannerFrame, setBannerFrame] = useState<ProfileBannerFrameId>(() =>
+		readProfileBannerFramePref(profile.preferences ?? null),
+	);
+	const [notificationPrefs, setNotificationPrefs] = useState(() =>
+		readNotificationPrefsFromProfile(profile.preferences ?? null),
 	);
 	const [saving, setSaving] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
@@ -164,7 +203,20 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 					: regionFromProfile;
 		const languageFromProfile =
 			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "";
-		const themeFromProfile = readAppThemePref(profile.preferences ?? null);
+		const themeFromProfile = resolveAppThemeForPatron(
+			readAppThemePref(profile.preferences ?? null),
+			isPro,
+		);
+		const accentFromProfile = initialProfileAccent(profile);
+		const frameFromProfile = readProfileBannerFramePref(
+			profile.preferences ?? null,
+		);
+		const notificationsFromProfile = readNotificationPrefsFromProfile(
+			profile.preferences ?? null,
+		);
+		const notificationsDirty = NOTIFICATION_KIND_SETTINGS.some(
+			(k) => notificationPrefs[k.id] !== notificationsFromProfile[k.id],
+		);
 		return (
 			displayName.trim() !== (profile.displayName ?? "").trim() ||
 			bio.trim() !== (profile.bio ?? "").trim() ||
@@ -177,10 +229,14 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null) ||
 			catalogTmdbWatchRegion.trim() !== regionStr ||
 			catalogTmdbLanguage.trim() !== languageFromProfile ||
-			appTheme !== themeFromProfile
+			appTheme !== themeFromProfile ||
+			profileAccent !== accentFromProfile ||
+			bannerFrame !== frameFromProfile ||
+			notificationsDirty
 		);
 	}, [
 		profile,
+		notificationPrefs,
 		displayName,
 		bio,
 		pronouns,
@@ -192,6 +248,9 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
 		appTheme,
+		profileAccent,
+		bannerFrame,
+		isPro,
 	]);
 
 	const resetToProfile = useCallback(() => {
@@ -212,8 +271,22 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		setCatalogTmdbLanguage(
 			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
 		);
-		setAppTheme(readAppThemePref(profile.preferences ?? null));
+		setAppTheme(
+			resolveAppThemeForPatron(
+				readAppThemePref(profile.preferences ?? null),
+				isPro,
+			),
+		);
+		setProfileAccent(initialProfileAccent(profile));
+		setBannerFrame(readProfileBannerFramePref(profile.preferences ?? null));
+		setNotificationPrefs(
+			readNotificationPrefsFromProfile(profile.preferences ?? null),
+		);
 	}, [profile, syncSettingsDirty]);
+
+	function setNotificationPref(kind: NotificationKind, enabled: boolean) {
+		setNotificationPrefs((prev) => ({ ...prev, [kind]: enabled }));
+	}
 
 	// Drive `/me` leave guards + `beforeunload` from the latest dirty snapshot (survives unmount).
 	useEffect(() => {
@@ -309,6 +382,25 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				delete prefs[PROFILE_PREF_CATALOG_TMDB_LANGUAGE];
 			}
 			prefs[PROFILE_PREF_APP_THEME] = appTheme;
+			if (isPro) {
+				// Banner frame saves independently — accent is optional but we mirror a preset
+				// when a frame is chosen so PATCH can update public `accentColor`.
+				prefs[PROFILE_PREF_BANNER_FRAME] = bannerFrame;
+				const accentToSave =
+					profileAccent ??
+					(bannerFrame !== "none"
+						? (inferProfileAccentFromHex(profile.accentColor) ?? "desert")
+						: null);
+				if (accentToSave) {
+					prefs[PROFILE_PREF_PROFILE_ACCENT] = accentToSave;
+				} else {
+					delete prefs[PROFILE_PREF_PROFILE_ACCENT];
+				}
+			} else {
+				delete prefs[PROFILE_PREF_PROFILE_ACCENT];
+				delete prefs[PROFILE_PREF_BANNER_FRAME];
+			}
+			prefs.notifications = buildNotificationPrefsPatch(notificationPrefs);
 			delete prefs.cinemaPreset;
 			delete prefs.cinemaPresetUserOverride;
 
@@ -431,6 +523,26 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 						</MeSettingsSection>
 
 						<MeSettingsSection
+							title="Notifications"
+							description="High-signal inbox only — tune what reaches your bell."
+						>
+							<MeSettingsPanel className="space-y-6">
+								{NOTIFICATION_KIND_SETTINGS.map((entry) => (
+									<MePreferenceToggle
+										key={entry.id}
+										id={`notification-${entry.id}`}
+										checked={notificationPrefs[entry.id]}
+										onChange={(checked) =>
+											setNotificationPref(entry.id, checked)
+										}
+										title={entry.label}
+										description={entry.description}
+									/>
+								))}
+							</MeSettingsPanel>
+						</MeSettingsSection>
+
+						<MeSettingsSection
 							title="Catalogue"
 							description="Defaults for home, discover, and streaming."
 						>
@@ -469,15 +581,33 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 
 						<MeSettingsSection
 							title="Appearance"
-							description="Shell palette for the whole app."
+							description="App palette plus Pro profile expression on your public page."
 						>
 							<MeSettingsPanel>
 								<MeAppearanceSettings
+									isPro={isPro}
 									appTheme={appTheme}
 									onAppThemeChange={setAppTheme}
+									profileAccent={profileAccent}
+									bannerFrame={bannerFrame}
+									onProfileAccentChange={setProfileAccent}
+									onBannerFrameChange={(next) => {
+										setBannerFrame(next);
+										// Picking a frame without an accent used to block save entirely.
+										if (isPro && next !== "none" && profileAccent == null) {
+											setProfileAccent(
+												inferProfileAccentFromHex(profile.accentColor) ??
+													"desert",
+											);
+										}
+									}}
 								/>
 							</MeSettingsPanel>
 						</MeSettingsSection>
+
+						<MeLetterboxdImport />
+
+						<MeAnilistImport />
 
 						<MeSettingsSection title="Experience">
 							<MeSettingsPanel featured>

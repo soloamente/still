@@ -64,10 +64,14 @@ export type ListLobbySeed = {
 	poster_url: string | null;
 	isPublic: boolean;
 	itemsCount: number;
+	likesCount: number;
 	/** Last edit — community period chips filter on this (lists lobby sort uses it too). */
 	updatedAt: string;
 	/** `favorites` lists are system-managed — hide destructive context actions. */
 	systemKind?: string | null;
+	/** Invited editor — show **Shared** chip and trim owner-only lobby actions. */
+	listRole?: "owner" | "collaborator";
+	ownerHandle?: string;
 };
 
 export function listBoardRowToLobbySeed(row: ListBoardRow): ListLobbySeed {
@@ -84,8 +88,11 @@ export function listBoardRowToLobbySeed(row: ListBoardRow): ListLobbySeed {
 			poster_url: customCover,
 			isPublic: row.isPublic,
 			itemsCount: row.itemsCount,
+			likesCount: row.likesCount,
 			updatedAt: row.updatedAt,
 			systemKind: row.systemKind ?? null,
+			listRole: row.listRole,
+			ownerHandle: row.ownerHandle,
 		};
 	}
 	const path = row.coverPosterPaths?.[0] ?? null;
@@ -105,7 +112,10 @@ export function listBoardRowToLobbySeed(row: ListBoardRow): ListLobbySeed {
 		poster_url,
 		isPublic: row.isPublic,
 		itemsCount: row.itemsCount,
+		likesCount: row.likesCount,
 		updatedAt: row.updatedAt,
 		systemKind: row.systemKind ?? null,
+		listRole: row.listRole,
+		ownerHandle: row.ownerHandle,
 	};
 }

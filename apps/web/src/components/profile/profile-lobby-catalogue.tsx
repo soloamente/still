@@ -19,6 +19,7 @@ function personRowToSeed(row: PersonFilmographyRow): PopularMovieSeed {
 		title: row.title,
 		poster_url: row.posterUrl,
 		listingKind: row.mediaKind === "tv" ? "tv" : "movie",
+		scopeLabel: row.posterCaption ?? null,
 	};
 }
 

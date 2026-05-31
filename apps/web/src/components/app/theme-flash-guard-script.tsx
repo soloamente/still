@@ -2,7 +2,7 @@ import Script from "next/script";
 
 import { buildThemeFlashGuardScript } from "@/lib/theme-flash-guard";
 
-/** Runs before React so Lobby Light does not flash Theater `:root` tokens. */
+/** Runs before React so Lucid (`theme-lobby-light`) does not flash Calm `:root` tokens. */
 export function ThemeFlashGuardScript() {
 	return (
 		<Script

@@ -1,3 +1,4 @@
+import { parseHomeAnimeSeason } from "@/lib/home-anime-season";
 import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
 import {
 	type HomeCatalogRun,
@@ -32,6 +33,7 @@ export interface HomeLobbyPersisted {
 		sort: HomeCatalogSort;
 		venue: HomeVenue;
 		run: HomeCatalogRun | null;
+		animeSeason?: boolean;
 	} | null;
 	community: {
 		feed: HomeCommunityFeed;
@@ -92,10 +94,12 @@ export function mergePersistFromHomeUrl(
 	const sort = parseHomeCatalogSort(params.get("sort"), surface);
 	const venue = parseHomeVenue(params.get("venue"), sort);
 	if (surface === "tv") {
+		const animeSeason = parseHomeAnimeSeason(params.get("animeSeason"));
 		prev.tv = {
 			sort,
 			venue,
 			run: parseHomeCatalogRun(params.get("run"), "tv"),
+			animeSeason: animeSeason || undefined,
 		};
 	} else {
 		prev.movies = { sort, venue };
@@ -122,11 +126,13 @@ export function homeLobbyHrefFromSearchParams(
 	const venue = parseHomeVenue(params.get("venue"), sort);
 	if (surface === "tv") {
 		const defVenue = defaultHomeVenueForSort(sort);
+		const animeSeason = parseHomeAnimeSeason(params.get("animeSeason"));
 		return buildHomeLobbyHref({
 			browse: "tv",
 			sort,
 			venue: venue !== defVenue ? venue : undefined,
 			run: parseHomeCatalogRun(params.get("run"), "tv"),
+			animeSeason,
 		});
 	}
 	const defVenue = defaultHomeVenueForSort(sort);
@@ -159,6 +165,7 @@ export function buildHomeHrefFromPersisted(
 			sort: slot.sort,
 			venue: slot.venue !== defVenue ? slot.venue : undefined,
 			run: slot.run,
+			animeSeason: slot.animeSeason,
 		});
 	}
 	const slot = persisted.movies;

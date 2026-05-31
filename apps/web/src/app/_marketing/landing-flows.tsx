@@ -1,3 +1,4 @@
+import { APP_NAME } from "@/lib/app-brand";
 import {
 	LandingFeatureCommunityVisual,
 	LandingFeatureSearchVisual,
@@ -35,7 +36,7 @@ export function LandingFlows({ posters = [] }: { posters?: LandingPoster[] }) {
 			<div className={LANDING_SECTION_INNER_CLASS}>
 				<LandingScrollReveal>
 					<h2 className={LANDING_FEATURES_SECTION_TITLE_CLASS}>
-						Explore how watching flows through Still
+						Explore how watching flows through {APP_NAME}
 					</h2>
 				</LandingScrollReveal>
 

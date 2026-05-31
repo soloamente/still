@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { APP_NAME } from "@/lib/app-brand";
+
 import {
 	LANDING_FEATURES_SECTION_TITLE_CLASS,
 	LANDING_HERO_CTA_PRIMARY_CLASS,
@@ -54,7 +56,7 @@ export function LandingFooter() {
 				<div className="mx-auto flex w-full max-w-mobbin-page flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
 					<div>
 						<p className="font-sans font-semibold text-foreground text-sm">
-							Still
+							{APP_NAME}
 						</p>
 						<p className="mt-2 max-w-xs font-sans text-muted-foreground text-xs leading-relaxed">
 							Your cinematic memory — diary, lists, and community for people who
@@ -114,7 +116,7 @@ export function LandingFooter() {
 				</div>
 
 				<p className="mx-auto mt-10 w-full max-w-mobbin-page font-sans text-muted-foreground text-xs">
-					© {year} Still. All rights reserved.
+					© {year} {APP_NAME}. All rights reserved.
 				</p>
 			</div>
 		</footer>

@@ -36,7 +36,7 @@ export function useMovieDetailUserState(
 	title: string,
 	options?: {
 		posterUrl?: string | null;
-		/** TMDb or Still community average on 0–10 for the log slider ghost bar. */
+		/** TMDb or Sense community average on 0–10 for the log slider ghost bar. */
 		averageRating?: number | null;
 	},
 ) {

@@ -17,34 +17,29 @@ import {
 	filterListSeedsByCommunityPeriod,
 	filterReviewsByCommunityPeriod,
 } from "@/lib/community-period-filter";
-import type { HomeCommunityActivityItem } from "@/lib/home-community-activity";
+import type { CuratorSpotlightPatron } from "@/lib/creator-recognition";
+import {
+	fetchHomeLeaderboardsByPeriodClient,
+	homeLeaderboardMapsAreEmpty,
+} from "@/lib/fetch-home-leaderboards-client";
+import {
+	type HomeCommunityActivityItem,
+	parseFeedApiActivityItems,
+} from "@/lib/home-community-activity";
+import type { HomeCommunityReviewRow } from "@/lib/home-community-core-fetch";
 import {
 	type HomeCommunityFeed,
 	parseHomeCommunityFeed,
 } from "@/lib/home-community-feed";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
-import { parseHomeCommunityPeriod } from "@/lib/home-leaderboard-period";
+import {
+	parseHomeCommunityPeriod,
+	readViewerTimeZone,
+} from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import type { ListLobbySeed } from "@/lib/lists-lobby-order";
-
-type CommunityReviewRow = {
-	id: string;
-	userId: string;
-	movieId: number;
-	title: string | null;
-	body: string;
-	rating: number | null;
-	likesCount: number;
-	commentsCount: number;
-	publishedAt: string;
-	listing?: {
-		title: string;
-		posterUrl: string | null;
-		href: string;
-		listingKind: "movie";
-	};
-};
+import { fetchCommunityActivity } from "@/lib/still-api-fetch";
 
 interface HomeCommunityLobbySnapshot {
 	feed: HomeCommunityFeed;
@@ -54,9 +49,13 @@ interface HomeCommunityLobbySnapshot {
 interface HomeCommunityLobbyParamsContextValue
 	extends HomeCommunityLobbySnapshot {
 	listSeeds: ListLobbySeed[];
-	reviews: CommunityReviewRow[];
+	reviews: HomeCommunityReviewRow[];
 	activityItems: HomeCommunityActivityItem[];
+	curatorSpotlights: CuratorSpotlightPatron[];
 	leaderboard: LeaderboardPayload | null;
+	leaderboardsLoading: boolean;
+	leaderboardsFailed: boolean;
+	retryLeaderboards: () => void;
 	selectFeed: (feed: HomeCommunityFeed) => void;
 	selectPeriod: (period: HomeLeaderboardPeriod) => void;
 }
@@ -66,8 +65,9 @@ const HomeCommunityLobbyParamsContext =
 
 export interface HomeCommunityBundledData {
 	listSeedsAll: ListLobbySeed[];
-	reviewsAll: CommunityReviewRow[];
+	reviewsAll: HomeCommunityReviewRow[];
 	activityItemsAll: HomeCommunityActivityItem[];
+	curatorSpotlights: CuratorSpotlightPatron[];
 	filmLeaderboardsByPeriod: Partial<
 		Record<HomeLeaderboardPeriod, LeaderboardPayload | null>
 	>;
@@ -87,9 +87,12 @@ function snapshotFromSearchParams(
 
 export function HomeCommunityLobbyParamsProvider({
 	bundled,
+	signedIn,
 	children,
 }: {
 	bundled: HomeCommunityBundledData;
+	/** Refetch `/api/feed` with the active period + viewer tz (divergence row). */
+	signedIn: boolean;
 	children: ReactNode;
 }) {
 	const searchParams = useSearchParams();
@@ -105,6 +108,88 @@ export function HomeCommunityLobbyParamsProvider({
 		null,
 	);
 
+	const deferLeaderboards = useMemo(
+		() =>
+			homeLeaderboardMapsAreEmpty(
+				bundled.filmLeaderboardsByPeriod,
+				bundled.tvLeaderboardsByPeriod,
+			),
+		[bundled.filmLeaderboardsByPeriod, bundled.tvLeaderboardsByPeriod],
+	);
+
+	const [filmLeaderboardsByPeriod, setFilmLeaderboardsByPeriod] = useState(
+		bundled.filmLeaderboardsByPeriod,
+	);
+	const [tvLeaderboardsByPeriod, setTvLeaderboardsByPeriod] = useState(
+		bundled.tvLeaderboardsByPeriod,
+	);
+	const [leaderboardsLoading, setLeaderboardsLoading] =
+		useState(deferLeaderboards);
+	const [leaderboardsFailed, setLeaderboardsFailed] = useState(false);
+	const [leaderboardFetchGeneration, setLeaderboardFetchGeneration] =
+		useState(0);
+	const [activityItemsAll, setActivityItemsAll] = useState(
+		bundled.activityItemsAll,
+	);
+
+	useEffect(() => {
+		setActivityItemsAll(bundled.activityItemsAll);
+	}, [bundled.activityItemsAll]);
+
+	// Server Community RSC always ships empty leaderboard maps (client fill). Do not
+	// re-sync those props on in-lobby tab changes — each RSC pass creates new `{}`
+	// references and would wipe hydrated maps + set loading without re-running fetch.
+
+	const retryLeaderboards = useCallback(() => {
+		if (!deferLeaderboards) return;
+		setLeaderboardsFailed(false);
+		setLeaderboardsLoading(true);
+		setLeaderboardFetchGeneration((n) => n + 1);
+	}, [deferLeaderboards]);
+
+	useEffect(() => {
+		if (!deferLeaderboards) return;
+
+		// Background fetch may have finished while patron was on Lists/Activity.
+		if (
+			!homeLeaderboardMapsAreEmpty(
+				filmLeaderboardsByPeriod,
+				tvLeaderboardsByPeriod,
+			)
+		) {
+			setLeaderboardsLoading(false);
+			return;
+		}
+
+		const controller = new AbortController();
+		void (async () => {
+			try {
+				const [film, tv] = await Promise.all([
+					fetchHomeLeaderboardsByPeriodClient("films", controller.signal),
+					fetchHomeLeaderboardsByPeriodClient("tv", controller.signal),
+				]);
+				if (controller.signal.aborted) return;
+				setFilmLeaderboardsByPeriod(film);
+				setTvLeaderboardsByPeriod(tv);
+				setLeaderboardsFailed(false);
+			} catch {
+				if (controller.signal.aborted) return;
+				setLeaderboardsFailed(true);
+			} finally {
+				if (!controller.signal.aborted) {
+					setLeaderboardsLoading(false);
+				}
+			}
+		})();
+
+		return () => controller.abort();
+	}, [
+		deferLeaderboards,
+		leaderboardFetchGeneration,
+		filmLeaderboardsByPeriod,
+		tvLeaderboardsByPeriod,
+	]);
+
 	useEffect(() => {
 		if (pending == null) return;
 		if (pending.feed === urlState.feed && pending.period === urlState.period) {
@@ -113,6 +198,29 @@ export function HomeCommunityLobbyParamsProvider({
 	}, [pending, urlState]);
 
 	const active = pending ?? urlState;
+
+	// Signed-in Activity uses patron tz + period — RSC only prefetches `period=all`.
+	useEffect(() => {
+		if (!signedIn) return;
+
+		const controller = new AbortController();
+		const tz = readViewerTimeZone();
+
+		void (async () => {
+			try {
+				const payload = await fetchCommunityActivity(active.period, tz, true, {
+					signal: controller.signal,
+				});
+				if (controller.signal.aborted || !payload) return;
+				setActivityItemsAll(parseFeedApiActivityItems(payload));
+			} catch {
+				// Strict Mode / period chip changes abort in-flight fetches — ignore.
+				if (controller.signal.aborted) return;
+			}
+		})();
+
+		return () => controller.abort();
+	}, [signedIn, active.period]);
 
 	const listSeeds = useMemo(
 		() => filterListSeedsByCommunityPeriod(bundled.listSeedsAll, active.period),
@@ -123,23 +231,22 @@ export function HomeCommunityLobbyParamsProvider({
 		[bundled.reviewsAll, active.period],
 	);
 	const activityItems = useMemo(
-		() =>
-			filterActivityByCommunityPeriod(bundled.activityItemsAll, active.period),
-		[bundled.activityItemsAll, active.period],
+		() => filterActivityByCommunityPeriod(activityItemsAll, active.period),
+		[activityItemsAll, active.period],
 	);
 	const leaderboard = useMemo(() => {
 		if (active.feed === "film-ranks") {
-			return bundled.filmLeaderboardsByPeriod[active.period] ?? null;
+			return filmLeaderboardsByPeriod[active.period] ?? null;
 		}
 		if (active.feed === "tv-ranks") {
-			return bundled.tvLeaderboardsByPeriod[active.period] ?? null;
+			return tvLeaderboardsByPeriod[active.period] ?? null;
 		}
 		return null;
 	}, [
 		active.feed,
 		active.period,
-		bundled.filmLeaderboardsByPeriod,
-		bundled.tvLeaderboardsByPeriod,
+		filmLeaderboardsByPeriod,
+		tvLeaderboardsByPeriod,
 	]);
 
 	const navigateLobby = useCallback(
@@ -177,7 +284,11 @@ export function HomeCommunityLobbyParamsProvider({
 			listSeeds,
 			reviews,
 			activityItems,
+			curatorSpotlights: bundled.curatorSpotlights,
 			leaderboard,
+			leaderboardsLoading,
+			leaderboardsFailed,
+			retryLeaderboards,
 			selectFeed,
 			selectPeriod,
 		}),
@@ -187,7 +298,11 @@ export function HomeCommunityLobbyParamsProvider({
 			listSeeds,
 			reviews,
 			activityItems,
+			bundled.curatorSpotlights,
 			leaderboard,
+			leaderboardsLoading,
+			leaderboardsFailed,
+			retryLeaderboards,
 			selectFeed,
 			selectPeriod,
 		],

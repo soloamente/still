@@ -26,7 +26,12 @@ import {
 } from "@/components/movie/detail-motion-pressable";
 import { api } from "@/lib/api";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
-import { clampLogRatingDisplay } from "@/lib/log-rating";
+import {
+	clampLogRatingDisplay,
+	diaryStoredToReviewApiRating,
+	formatStoredLogRatingDisplay,
+	logRatingToDisplay,
+} from "@/lib/log-rating";
 
 const BODY_MAX = 20_000;
 const TITLE_MAX = 200;
@@ -40,9 +45,12 @@ type ComposerArgs = {
 	movieId: number;
 	movieTitle: string;
 	posterUrl?: string | null;
-	/** TMDb or Still community average on 0–10 for the slider ghost fill. */
+	/** TMDb or Sense community average on 0–10 for the slider ghost fill. */
 	averageRating?: number | null;
 	reviewId?: string;
+	/** Latest diary log — when rated, review inherits score (no second slider). */
+	diaryLogId?: string;
+	diaryRatingStored?: number | null;
 };
 
 type Store = {
@@ -111,7 +119,16 @@ export function ReviewComposerRoot() {
 		if (!isOpen || !args) return;
 		setPosterUrl(posterSrcFromPath(args.posterUrl) ?? null);
 		setAverageRating(args.averageRating ?? null);
+		const fromDiary = logRatingToDisplay(args.diaryRatingStored);
+		setRatingDisplay(fromDiary ?? DEFAULT_RATING);
 	}, [isOpen, args]);
+
+	const diaryScoreLabel = useMemo(() => {
+		if (!args) return null;
+		return formatStoredLogRatingDisplay(args.diaryRatingStored);
+	}, [args]);
+
+	const usesDiaryRating = diaryScoreLabel != null;
 
 	/** Hide the bottom scrim once the user has scrolled to the end of the compose form. */
 	const syncFooterFade = useCallback(() => {
@@ -188,11 +205,15 @@ export function ReviewComposerRoot() {
 		if (!canPublish || !args || step !== "spoilers") return;
 		setSaving(true);
 		try {
+			const rating = usesDiaryRating
+				? diaryStoredToReviewApiRating(args.diaryRatingStored)
+				: reviewRatingFromDisplay(ratingDisplay);
 			await api.api.reviews.post({
 				movieId: args.movieId,
+				logId: args.diaryLogId,
 				title: title.trim() || undefined,
 				body: body.trim(),
-				rating: reviewRatingFromDisplay(ratingDisplay),
+				rating,
 				containsSpoilers,
 			});
 			toast.success("Review published");
@@ -289,12 +310,23 @@ export function ReviewComposerRoot() {
 												{args.movieTitle}
 											</p>
 
-											<LogRatingSlider
-												value={clampLogRatingDisplay(ratingDisplay)}
-												onChange={setRatingDisplay}
-												averageRating={averageRating}
-												className="mb-6"
-											/>
+											{usesDiaryRating ? (
+												<p className="mb-6 text-balance text-center text-muted-foreground text-sm leading-relaxed">
+													Your score{" "}
+													<span className="font-medium text-foreground tabular-nums">
+														{diaryScoreLabel}
+													</span>{" "}
+													from your log carries into this review — no second
+													rating step.
+												</p>
+											) : (
+												<LogRatingSlider
+													value={clampLogRatingDisplay(ratingDisplay)}
+													onChange={setRatingDisplay}
+													averageRating={averageRating}
+													className="mb-6"
+												/>
+											)}
 
 											<div className="mb-5 space-y-2">
 												<Label

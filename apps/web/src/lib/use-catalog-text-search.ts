@@ -18,7 +18,7 @@ export type CatalogTextSearchHit = {
 };
 
 /**
- * Debounced TMDb title search against Still’s proxies — either movies or TV only,
+ * Debounced TMDb title search against Sense’s proxies — either movies or TV only,
  * so the home search dialog can respect a Films vs TV filter.
  */
 export function useCatalogTextSearch(

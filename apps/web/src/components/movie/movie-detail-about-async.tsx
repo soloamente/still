@@ -6,6 +6,7 @@ import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
+import { APP_NAME } from "@/lib/app-brand";
 import type { ArcCreditCard } from "@/lib/movie-cast-crew-arc";
 import {
 	MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME,
@@ -189,7 +190,7 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 					directors.length
 						? `Directed by ${directors.map((d) => d.name).join(" & ")}`
 						: "Director TBD",
-					`Still showpage #${tmdbId}`,
+					`${APP_NAME} showpage #${tmdbId}`,
 				]}
 			/>
 		</div>

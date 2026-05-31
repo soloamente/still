@@ -6,7 +6,9 @@ import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
+import { TvDetailMalMeta } from "@/components/tv/tv-detail-mal-meta";
 import { TvDetailProgressPanel } from "@/components/tv/tv-detail-progress-panel";
+import { APP_NAME } from "@/lib/app-brand";
 import type { ArcCreditCard } from "@/lib/movie-cast-crew-arc";
 import {
 	MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME,
@@ -18,6 +20,7 @@ import type {
 	TmdbMovieSummary,
 } from "@/lib/movie-detail-tmdb";
 import type { FestivalRecognitionEntry } from "@/lib/movie-festival-recognition";
+import type { TvMalEnrichment } from "@/lib/tv-mal-enrichment";
 
 /** TV About tab body — no extra API round-trip (explore tabs are TMDb-only for now). */
 export function TvDetailAboutPanel({
@@ -34,6 +37,7 @@ export function TvDetailAboutPanel({
 	recognitionEntries,
 	recognitionPresent,
 	moreLikeThis,
+	malEnrichment,
 }: {
 	tvId: number;
 	title: string;
@@ -53,9 +57,12 @@ export function TvDetailAboutPanel({
 	recognitionEntries: FestivalRecognitionEntry[];
 	recognitionPresent: boolean;
 	moreLikeThis: TmdbMovieSummary[];
+	malEnrichment?: TvMalEnrichment | null;
 }) {
 	return (
 		<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
+			<TvDetailMalMeta malEnrichment={malEnrichment} />
+
 			{numberOfSeasons != null && numberOfSeasons > 0 ? (
 				<TvDetailProgressPanel tvId={tvId} />
 			) : null}
@@ -121,7 +128,7 @@ export function TvDetailAboutPanel({
 					numberOfEpisodes
 						? `${numberOfEpisodes} episodes`
 						: "Episode count TBD",
-					`Still TV showpage #${tvId}`,
+					`${APP_NAME} TV showpage #${tvId}`,
 				]}
 			/>
 		</div>

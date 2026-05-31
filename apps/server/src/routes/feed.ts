@@ -18,11 +18,13 @@ import {
 	resolveCommunityPeriodQuery,
 	withinCommunityPeriod,
 } from "../lib/community-period";
+import { reviewEngagementOrderSql } from "../lib/creator-recognition";
 import {
 	enrichFeedListRows,
 	feedAtMs,
 	serializeFeedAt,
 } from "../lib/feed-items";
+import { findFeedRatingDivergence } from "../lib/feed-rating-divergence";
 
 /**
  * Personalized activity feed: logs + reviews + new lists from people the
@@ -92,7 +94,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 
 			const listsEnriched = await enrichFeedListRows(lists);
 
-			const items = [
+			const merged = [
 				...logs.map((row) => ({
 					kind: "log" as const,
 					at: row.log.watchedAt,
@@ -110,14 +112,31 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					at: row.list.updatedAt,
 					payload: row,
 				})),
-			]
-				.sort((a, b) => feedAtMs(b.at) - feedAtMs(a.at))
-				.slice(0, limit)
-				.map((row) => ({
-					kind: row.kind,
-					at: serializeFeedAt(row.at),
-					payload: row.payload,
-				}));
+			].sort((a, b) => feedAtMs(b.at) - feedAtMs(a.at));
+
+			const followingOnly = following.map((f) => f.id);
+			const divergence =
+				followingOnly.length >= 2
+					? await findFeedRatingDivergence({
+							followingUserIds: followingOnly,
+							periodStart: start,
+							periodEnd: end,
+						})
+					: null;
+
+			if (divergence) {
+				merged.splice(Math.min(3, merged.length), 0, {
+					kind: "divergence" as const,
+					at: divergence.at,
+					payload: divergence.payload,
+				});
+			}
+
+			const items = merged.slice(0, limit).map((row) => ({
+				kind: row.kind,
+				at: serializeFeedAt(row.at),
+				payload: row.payload,
+			}));
 
 			return { items };
 		},
@@ -147,7 +166,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 							withinCommunityPeriod(review.publishedAt, start, end),
 						),
 					)
-					.orderBy(desc(review.likesCount), desc(review.publishedAt))
+					.orderBy(desc(reviewEngagementOrderSql()), desc(review.publishedAt))
 					.limit(20),
 				db
 					.select({ list, user, profile })
@@ -160,7 +179,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 							withinCommunityPeriod(list.updatedAt, start, end),
 						),
 					)
-					.orderBy(desc(list.likesCount))
+					.orderBy(desc(list.likesCount), desc(list.updatedAt))
 					.limit(12),
 			]);
 			const topListsEnriched = await enrichFeedListRows(topLists);

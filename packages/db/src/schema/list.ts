@@ -109,10 +109,49 @@ export const listItem = pgTable(
 	],
 );
 
+/** Patrons invited to edit a list (SN.15) — owner is `list.userId`, not stored here. */
+export const listCollaborator = pgTable(
+	"list_collaborator",
+	{
+		listId: text("list_id")
+			.notNull()
+			.references(() => list.id, { onDelete: "cascade" }),
+		userId: text("user_id")
+			.notNull()
+			.references(() => user.id, { onDelete: "cascade" }),
+		invitedById: text("invited_by_id").references(() => user.id, {
+			onDelete: "set null",
+		}),
+		createdAt: timestamp("created_at").defaultNow().notNull(),
+	},
+	(table) => [
+		index("list_collaborator_user_idx").on(table.userId),
+		uniqueIndex("list_collaborator_list_user_uk").on(
+			table.listId,
+			table.userId,
+		),
+	],
+);
+
 export const listRelations = relations(list, ({ one, many }) => ({
 	user: one(user, { fields: [list.userId], references: [user.id] }),
 	items: many(listItem),
+	collaborators: many(listCollaborator),
 }));
+
+export const listCollaboratorRelations = relations(
+	listCollaborator,
+	({ one }) => ({
+		list: one(list, {
+			fields: [listCollaborator.listId],
+			references: [list.id],
+		}),
+		user: one(user, {
+			fields: [listCollaborator.userId],
+			references: [user.id],
+		}),
+	}),
+);
 
 export const listItemRelations = relations(listItem, ({ one }) => ({
 	list: one(list, { fields: [listItem.listId], references: [list.id] }),

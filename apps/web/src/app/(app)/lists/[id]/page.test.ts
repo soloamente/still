@@ -29,24 +29,22 @@ function buildRow(
 }
 
 describe("canReorderRankedList", () => {
-	test("returns true for ranked owner list", () => {
+	test("returns true for ranked list when viewer can edit", () => {
 		expect(
 			canReorderRankedList({
 				isRanked: true,
 				viewerId: "user_1",
-				ownerId: "user_1",
-				isCollaborative: false,
+				viewerCanEdit: true,
 			}),
 		).toBe(true);
 	});
 
-	test("returns true for ranked collaborative list with signed-in non-owner", () => {
+	test("returns true for invited collaborator when API grants edit", () => {
 		expect(
 			canReorderRankedList({
 				isRanked: true,
 				viewerId: "user_2",
-				ownerId: "user_1",
-				isCollaborative: true,
+				viewerCanEdit: true,
 			}),
 		).toBe(true);
 	});
@@ -56,24 +54,21 @@ describe("canReorderRankedList", () => {
 			canReorderRankedList({
 				isRanked: false,
 				viewerId: "user_1",
-				ownerId: "user_1",
-				isCollaborative: true,
+				viewerCanEdit: true,
 			}),
 		).toBe(false);
 		expect(
 			canReorderRankedList({
 				isRanked: true,
 				viewerId: "viewer",
-				ownerId: "owner",
-				isCollaborative: false,
+				viewerCanEdit: false,
 			}),
 		).toBe(false);
 		expect(
 			canReorderRankedList({
 				isRanked: true,
 				viewerId: null,
-				ownerId: "owner",
-				isCollaborative: true,
+				viewerCanEdit: true,
 			}),
 		).toBe(false);
 	});

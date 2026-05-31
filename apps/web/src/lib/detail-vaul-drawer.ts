@@ -2,7 +2,7 @@
  * Vaul bottom-sheet chrome — `handleOnly` drag on the rail; body scrolls in a full-width flex child.
  */
 
-/** Marks Still filmography sheets — used to neutralize Vaul’s injected handle chrome in CSS. */
+/** Marks Sense filmography sheets — used to neutralize Vaul’s injected handle chrome in CSS. */
 export const MOVIE_DETAIL_DRAWER_SURFACE_ATTR = "data-still-detail-drawer";
 
 export const MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME =
@@ -22,7 +22,7 @@ export const MOVIE_DETAIL_NESTED_DRAWER_SCROLL_CLASSNAME =
 export const MOVIE_DETAIL_DRAWER_BODY_CLASSNAME =
 	"flex min-h-0 w-full flex-1 flex-col";
 
-/** Full-width drag rail — Still grip is the child span; Vaul default pill overridden in CSS. */
+/** Full-width drag rail — Sense grip is the child span; Vaul default pill overridden in CSS. */
 export const MOVIE_DETAIL_DRAWER_HANDLE_CLASSNAME =
 	"mx-auto mt-2 flex min-h-11 w-full shrink-0 cursor-grab touch-none items-center justify-center active:cursor-grabbing";
 

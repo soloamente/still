@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { AuthPageShell } from "@/components/auth/auth-page-shell";
+import { APP_NAME } from "@/lib/app-brand";
 
 const AUTH_ROUTES = {
 	"/sign-in": {
@@ -11,7 +12,7 @@ const AUTH_ROUTES = {
 		description: "Pick up your diary where you left off.",
 		footer: (
 			<>
-				New to Still?{" "}
+				New to {APP_NAME}?{" "}
 				<Link
 					className="font-medium text-foreground underline-offset-4 hover:underline"
 					href="/sign-up"

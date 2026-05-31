@@ -4,6 +4,8 @@ import { buttonVariants } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
+import { ListItemNoteControl } from "@/components/list/list-item-note-control";
+import { ListItemNoteDisplay } from "@/components/list/list-item-note-display";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import {
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
@@ -11,6 +13,10 @@ import {
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 	LIST_DETAIL_FILMS_GRID_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
+import {
+	patronLogPosterCaption,
+	rankedListPosterLabels,
+} from "@/lib/patron-log-poster-caption";
 import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
 
 export type ListDetailFilmRow = {
@@ -23,17 +29,22 @@ export type ListDetailFilmRow = {
 	};
 	movie: { tmdbId: number; title: string; posterPath: string | null } | null;
 	tv?: { tmdbId: number; title: string; posterPath: string | null } | null;
+	ownerLog?: { rating: number | null; liked: boolean } | null;
 };
 
 /**
- * List films grid — same chrome as movie detail {@link RelatedMoviesPosterGrid}.
+ * List films grid — poster wall with optional ranked index and per-title notes (SN.10).
  */
 export function ListDetailFilmsGrid({
 	items,
 	isRanked,
+	listId,
+	canEditNotes = false,
 }: {
 	items: ListDetailFilmRow[];
 	isRanked: boolean;
+	listId?: string;
+	canEditNotes?: boolean;
 }) {
 	if (items.length === 0) {
 		return (
@@ -69,6 +80,17 @@ export function ListDetailFilmsGrid({
 			{items.map((row, index) => {
 				const listing = row.movie ?? row.tv;
 				if (!listing) return null;
+				const note = row.item.note?.trim() ?? "";
+				const detailHref = row.movie
+					? `/movies/${listing.tmdbId}`
+					: `/tv/${listing.tmdbId}`;
+				const scoreCaption = patronLogPosterCaption({
+					rating: row.ownerLog?.rating,
+					liked: row.ownerLog?.liked,
+				});
+				const posterLabels = isRanked
+					? rankedListPosterLabels(index, row.ownerLog)
+					: { posterCaption: scoreCaption, posterCaptionSubline: undefined };
 				return (
 					<div
 						key={
@@ -85,17 +107,34 @@ export function ListDetailFilmsGrid({
 							listingKind={row.movie ? "movie" : "tv"}
 							priority={index < 6}
 							showTitle={false}
+							posterCaption={posterLabels.posterCaption}
+							posterCaptionSubline={posterLabels.posterCaptionSubline}
 							hoverEffect="elevation"
 							className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
 							frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
 						/>
-						{isRanked ? (
-							<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center bg-linear-to-t from-card/95 via-card/50 to-transparent px-2 pt-8 pb-2.5">
-								<span className="font-medium text-foreground text-sm tabular-nums tracking-tight">
-									{index + 1}
-								</span>
-							</div>
-						) : null}
+						<div className="mt-2 px-0.5">
+							<Link
+								href={detailHref}
+								className="line-clamp-2 text-center font-medium text-foreground text-sm leading-snug hover:text-desert-orange"
+							>
+								{listing.title}
+							</Link>
+							{canEditNotes && listId ? (
+								<ListItemNoteControl
+									listId={listId}
+									itemId={row.item.id}
+									initialNote={row.item.note}
+									titleLabel={listing.title}
+								/>
+							) : note ? (
+								<ListItemNoteDisplay
+									note={note}
+									className="mt-1"
+									lineClamp={4}
+								/>
+							) : null}
+						</div>
 					</div>
 				);
 			})}

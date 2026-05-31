@@ -3,6 +3,7 @@ import { ListMusic } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { DiaryLogRatingLabel } from "@/components/diary/diary-log-rating-label";
+import { ActivityDivergenceRow } from "@/components/feed/activity-divergence-row";
 import {
 	FeedActivityFavoriteChip,
 	FeedActivityVerb,
@@ -12,11 +13,13 @@ import {
 	FeedListPlaceholderFrame,
 } from "@/components/feed/feed-listing-thumb";
 import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
+import { isFeedRatingDivergencePayload } from "@/lib/feed-rating-divergence";
 import { formatTimeAgoLabel } from "@/lib/format";
+import type { HomeCommunityActivityKind } from "@/lib/home-community-activity";
+import { listBoardRowPosterUrl } from "@/lib/list-cover-image";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
-type ActivityKind = "log" | "review" | "list";
-type Item = { kind: ActivityKind; at: string; payload: unknown };
+type Item = { kind: HomeCommunityActivityKind; at: string; payload: unknown };
 
 /** Flat community tile — same `bg-background` surface as review cards on `bg-card`. */
 export const ACTIVITY_ROW_CLASS =
@@ -34,6 +37,10 @@ export function ActivityItem({ item }: { item: Item }) {
 			return <ReviewActivity payload={item.payload as ReviewPayload} />;
 		case "list":
 			return <ListActivity payload={item.payload as ListPayload} />;
+		case "divergence":
+			return isFeedRatingDivergencePayload(item.payload) ? (
+				<ActivityDivergenceRow payload={item.payload} />
+			) : null;
 		default:
 			return null;
 	}
@@ -78,6 +85,7 @@ type ListPayload = Person & {
 		itemsCount: number;
 		coverMovieIds: number[];
 		coverPosterPaths?: (string | null)[];
+		coverImageUrl?: string | null;
 		updatedAt: string;
 	};
 };
@@ -132,7 +140,7 @@ function ActivityByline({
 	timestamp,
 }: {
 	person: Person;
-	kind: ActivityKind;
+	kind: HomeCommunityActivityKind;
 	rewatch?: boolean;
 	timestamp: string;
 }) {
@@ -295,16 +303,16 @@ function ReviewActivity({ payload }: { payload: ReviewPayload }) {
 
 function ListActivity({ payload }: { payload: ListPayload }) {
 	const { list } = payload;
-	const coverPath = list.coverPosterPaths?.[0] ?? null;
+	const posterUrl = listBoardRowPosterUrl(list, "w185");
 	const listHref = `/lists/${list.id}`;
 
 	return (
 		<article className={ACTIVITY_ROW_CLASS}>
-			{coverPath ? (
+			{posterUrl ? (
 				<FeedListingThumb
 					layout="activity"
 					title={list.title}
-					posterUrl={tmdbPosterUrlFromPath(coverPath, "w185")}
+					posterUrl={posterUrl}
 					href={listHref}
 					linkable
 				/>

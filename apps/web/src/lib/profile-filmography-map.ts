@@ -1,4 +1,5 @@
 import type { ProfileFilmographyRow } from "@/components/profile/profile-filmography-panel";
+import { patronLogPosterCaption } from "@/lib/patron-log-poster-caption";
 import type { PersonFilmographyRow } from "@/lib/person-filmography";
 
 /** TMDb still path → absolute URL for profile tiles and catalogue grids. */
@@ -9,10 +10,10 @@ export function profilePosterUrlFromPath(path: string | null): string | null {
 }
 
 function patronScoreLabel(row: ProfileFilmographyRow): string | null {
-	const r = row.log.rating;
-	if (r != null && r > 0) return `${String(r)} / 10`;
-	if (row.log.liked) return "Liked";
-	return null;
+	return patronLogPosterCaption({
+		rating: row.log.rating,
+		liked: row.log.liked,
+	});
 }
 
 function patronWatchedAtIso(watchedAt: unknown): string | null {
@@ -35,9 +36,8 @@ export function profileWatchedRowToPersonFilmography(
 	if (!listing) return null;
 
 	const mediaKind = row.tv != null ? "tv" : "movie";
-	const roles: string[] = [];
-	const score = patronScoreLabel(row);
-	if (score) roles.push(score);
+	const posterCaption = patronScoreLabel(row);
+	const roles: string[] = posterCaption ? [posterCaption] : [];
 
 	return {
 		tmdbId: listing.tmdbId,
@@ -46,6 +46,7 @@ export function profileWatchedRowToPersonFilmography(
 		posterUrl: profilePosterUrlFromPath(listing.posterPath),
 		releaseDate: patronWatchedAtIso(row.log.watchedAt),
 		roles,
+		posterCaption,
 	};
 }
 

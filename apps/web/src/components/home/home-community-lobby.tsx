@@ -1,14 +1,22 @@
 "use client";
 
+import { Button } from "@still/ui/components/button";
+
 import { ActivityItem } from "@/components/feed/activity-item";
+import { CommunityRanksSkeleton } from "@/components/home/community-ranks-skeleton";
 import { HomeCommunityEmpty } from "@/components/home/home-community-empty";
 import { HomeCommunityLeaderboard } from "@/components/home/home-community-leaderboard";
+import { useHomeCommunityLobbyParams } from "@/components/home/home-community-lobby-params-context";
+import { HomeCuratorSpotlights } from "@/components/home/home-curator-spotlights";
+import { HomeEditorialHighlights } from "@/components/home/home-editorial-highlights";
 import { HomeFriendActivityRail } from "@/components/home/home-friend-activity-rail";
 import { ListsLobbyCatalogue } from "@/components/list/lists-lobby-catalogue";
 import {
 	ReviewCard,
 	type ReviewCardListing,
 } from "@/components/review/review-card";
+import { APP_NAME } from "@/lib/app-brand";
+import type { CuratorSpotlightPatron } from "@/lib/creator-recognition";
 import {
 	type HomeCommunityActivityItem,
 	homeCommunityActivityRowKey,
@@ -25,6 +33,59 @@ import {
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import type { ListLobbySeed } from "@/lib/lists-lobby-order";
+
+function HomeCommunityLobbyRanksFallback({
+	periodLabel,
+	signedIn,
+}: {
+	periodLabel: string;
+	signedIn: boolean;
+}) {
+	const {
+		leaderboardsLoading,
+		leaderboardsFailed,
+		retryLeaderboards,
+		leaderboard,
+	} = useHomeCommunityLobbyParams();
+
+	// Only skeleton while this period's board is still missing — not after hydration.
+	if (leaderboardsLoading && leaderboard == null) {
+		return <CommunityRanksSkeleton />;
+	}
+
+	return (
+		<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-12">
+			<HomeCommunityEmpty
+				title={
+					leaderboardsFailed
+						? "Couldn't load rankings"
+						: "No rankings this period"
+				}
+				description={
+					leaderboardsFailed
+						? "Check your connection and try again."
+						: `No film or TV logs ${periodLabel === "all time" ? "yet" : `this ${periodLabel}`}.`
+				}
+				primaryHref={
+					leaderboardsFailed ? undefined : "/home?browse=community&sort=lists"
+				}
+				primaryLabel={leaderboardsFailed ? undefined : "Browse lists"}
+				secondaryHref={signedIn ? "/diary" : "/sign-in"}
+				secondaryLabel={signedIn ? "Your diary" : "Sign in"}
+			/>
+			{leaderboardsFailed ? (
+				<Button
+					type="button"
+					variant="secondary"
+					className="mt-4"
+					onClick={retryLeaderboards}
+				>
+					Try again
+				</Button>
+			) : null}
+		</div>
+	);
+}
 
 type CommunityReviewCard = {
 	id: string;
@@ -48,6 +109,7 @@ export function HomeCommunityLobby({
 	reviews,
 	activityItems,
 	friendRailEntries,
+	curatorSpotlights,
 	monochromePeersOnHover,
 	signedIn,
 	leaderboard,
@@ -59,6 +121,7 @@ export function HomeCommunityLobby({
 	reviews: CommunityReviewCard[];
 	activityItems: HomeCommunityActivityItem[];
 	friendRailEntries: HomeFriendRailEntry[];
+	curatorSpotlights: CuratorSpotlightPatron[];
 	monochromePeersOnHover: boolean;
 	signedIn: boolean;
 	leaderboard: LeaderboardPayload | null;
@@ -71,11 +134,9 @@ export function HomeCommunityLobby({
 	if (isHomeLeaderboardFeed(feed)) {
 		if (!leaderboard) {
 			return (
-				<HomeCommunityEmpty
-					title="Rankings unavailable"
-					description="We could not load the leaderboard. Try again in a moment."
-					primaryHref="/home?browse=community&sort=lists"
-					primaryLabel="Browse lists"
+				<HomeCommunityLobbyRanksFallback
+					periodLabel={periodLabel}
+					signedIn={signedIn}
 				/>
 			);
 		}
@@ -97,7 +158,7 @@ export function HomeCommunityLobby({
 					title={`No public lists ${period === "all" ? "yet" : `this ${periodLabel}`}`}
 					description="When members publish lists in this window, they show up here — curated lanes, top tens, and shared canons."
 					primaryHref={signedIn ? "/lists/new" : "/sign-up"}
-					primaryLabel={signedIn ? "Create a list" : "Join Still"}
+					primaryLabel={signedIn ? "Create a list" : `Join ${APP_NAME}`}
 					secondaryHref={buildHomeLobbyHref({
 						browse: "movies",
 						sort: "popular",
@@ -108,6 +169,7 @@ export function HomeCommunityLobby({
 		}
 		return (
 			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+				<HomeCuratorSpotlights patrons={curatorSpotlights} />
 				<ListsLobbyCatalogue
 					seeds={listSeeds}
 					catalogueWaveKeyOverride={catalogueWaveKey}
@@ -135,6 +197,9 @@ export function HomeCommunityLobby({
 		}
 		return (
 			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+				<p className="mx-auto mb-4 max-w-2xl text-center text-muted-foreground text-xs leading-relaxed">
+					Ranked by likes and replies in this period — not review length.
+				</p>
 				<ul className="mx-auto flex w-full max-w-2xl flex-col gap-3">
 					{reviews.map((review) => (
 						<li key={review.id}>
@@ -149,27 +214,30 @@ export function HomeCommunityLobby({
 	// Activity — following feed when signed in, otherwise platform discover highlights.
 	if (activityItems.length === 0) {
 		return (
-			<HomeCommunityEmpty
-				title={
-					signedIn
-						? period === "all"
-							? "Nothing from your circle yet"
-							: `Nothing from your circle this ${periodLabel}`
-						: "Sign in to see friend activity"
-				}
-				description={
-					signedIn
-						? "Follow people whose logs and lists you want here — the feed lights up when they post in this window."
-						: "Your following feed shows logs, reviews, and lists from people you follow. Browse public highlights after you join."
-				}
-				primaryHref={signedIn ? "/home" : "/sign-in"}
-				primaryLabel={signedIn ? "Discover members" : "Sign in"}
-				secondaryHref={buildHomeLobbyHref({
-					browse: "movies",
-					sort: "popular",
-				})}
-				secondaryLabel="Browse movies"
-			/>
+			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+				<HomeEditorialHighlights />
+				<HomeCommunityEmpty
+					title={
+						signedIn
+							? period === "all"
+								? "Nothing from your circle yet"
+								: `Nothing from your circle this ${periodLabel}`
+							: "Sign in to see friend activity"
+					}
+					description={
+						signedIn
+							? "Follow people whose logs and lists you want here — the feed lights up when they post in this window."
+							: "Your following feed shows logs, reviews, and lists from people you follow. Browse public highlights after you join."
+					}
+					primaryHref={signedIn ? "/home" : "/sign-in"}
+					primaryLabel={signedIn ? "Discover members" : "Sign in"}
+					secondaryHref={buildHomeLobbyHref({
+						browse: "movies",
+						sort: "popular",
+					})}
+					secondaryLabel="Browse movies"
+				/>
+			</div>
 		);
 	}
 

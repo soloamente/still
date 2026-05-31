@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { MoviePoster } from "@/components/movie/movie-poster";
+import { APP_MEMBER_LABEL } from "@/lib/app-brand";
 
 type DoubleFeaturePick = {
 	id: number;
@@ -51,7 +52,7 @@ export function DoubleFeatureSuggestion({
 					</Link>
 				</h3>
 				<p className="mt-2 text-muted-foreground text-sm">
-					Still member rooms love a good twin bill — follow up{" "}
+					{APP_MEMBER_LABEL} rooms love a good twin bill — follow up{" "}
 					<span className="text-foreground/90">{currentTitle}</span> with
 					something that rhymes tonally.
 				</p>

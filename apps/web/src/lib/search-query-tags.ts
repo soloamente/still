@@ -88,11 +88,15 @@ export type CatalogueFilterBundle = ReturnType<typeof deriveSearchState> & {
 /** Merge explicit genre pills + curated rules into TMDb discover AND params. */
 export function deriveCatalogueFilterBundle(
 	tags: SearchTag[],
+	listingKindOverride?: "movie" | "tv",
 ): CatalogueFilterBundle {
 	const base = deriveSearchState(tags);
+	const hasMediaTag = tags.some((t) => t.kind === "media");
+	const listingKind = hasMediaTag
+		? base.listingKind
+		: (listingKindOverride ?? base.listingKind);
 	const genreIds: number[] = [];
 	const keywordIds: number[] = [];
-	const listingKind = base.listingKind;
 
 	for (const tag of tags) {
 		if (tag.kind === "genre") {
@@ -111,7 +115,7 @@ export function deriveCatalogueFilterBundle(
 		}
 	}
 
-	return { ...base, genreIds, keywordIds };
+	return { ...base, listingKind, genreIds, keywordIds };
 }
 
 /** Rank autocomplete rows for the active input token (prefix match). */

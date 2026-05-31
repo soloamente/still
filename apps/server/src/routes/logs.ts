@@ -9,54 +9,20 @@ import {
 	user,
 	validateTvLogScope,
 } from "@still/db";
-import { and, desc, eq, isNotNull } from "drizzle-orm";
+import { and, count, desc, eq, isNotNull } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { syncCompletionistChallengesForUser } from "../lib/completionist-challenge-sync";
 import { makeId } from "../lib/cuid";
+import { ensureMovieCached } from "../lib/ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
 import { hit } from "../lib/rate-limit";
+import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
+import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
-import { tmdbApi } from "../lib/tmdb";
 import { ensureTvCached } from "../lib/tv-cache";
-
-async function ensureMovieCached(tmdbId: number) {
-	const [exists] = await db
-		.select({ id: movie.tmdbId })
-		.from(movie)
-		.where(eq(movie.tmdbId, tmdbId))
-		.limit(1);
-	if (exists) return;
-	try {
-		const detail = await tmdbApi.movieDetail(tmdbId);
-		const releaseDate = detail.release_date ?? null;
-		await db
-			.insert(movie)
-			.values({
-				tmdbId: detail.id,
-				title: detail.title,
-				overview: detail.overview,
-				posterPath: detail.poster_path,
-				backdropPath: detail.backdrop_path,
-				releaseDate: releaseDate ? new Date(releaseDate) : null,
-				year: releaseDate ? Number(releaseDate.slice(0, 4)) : null,
-				runtime: detail.runtime ?? null,
-				genreIds: (detail.genres ?? []).map((g) => g.id),
-				spokenLanguages: (detail.spoken_languages ?? []).map(
-					(l) => l.iso_639_1,
-				),
-				originalLanguage: detail.original_language ?? null,
-				popularity: detail.popularity ?? null,
-				voteAverage: detail.vote_average ?? null,
-				voteCount: detail.vote_count ?? null,
-				tmdbJson: detail as unknown as Record<string, unknown>,
-				lastSyncedAt: new Date(),
-			})
-			.onConflictDoNothing();
-	} catch (err) {
-		console.error("[logs] failed to cache movie from TMDb", err);
-	}
-}
+import { syncWatchStreakForUser } from "../lib/watch-streak-sync";
 
 const logCreateFields = {
 	/** Film path — mutually exclusive with `tvId`. */
@@ -156,6 +122,11 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					? body.watchVenue
 					: "streaming";
 
+			const [{ priorLogCount }] = await db
+				.select({ priorLogCount: count() })
+				.from(log)
+				.where(eq(log.userId, user.id));
+
 			const [row] = await db
 				.insert(log)
 				.values({
@@ -195,6 +166,29 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					movieId: row.movieId,
 					tvId: row.tvId,
 					liked: true,
+				});
+			}
+
+			void recomputeUserTasteSignature(user.id).catch((err) => {
+				console.error("[logs] taste recompute failed", err);
+			});
+
+			if (row?.watchedAt) {
+				void syncWatchStreakForUser(user.id, row.watchedAt).catch((err) => {
+					console.error("[logs] watch streak sync failed", err);
+				});
+			}
+
+			if (movieId != null) {
+				void syncCompletionistChallengesForUser(user.id).catch((err) => {
+					console.error("[logs] completionist challenge sync failed", err);
+				});
+			}
+
+			if (priorLogCount === 0) {
+				void recordProductEvent(user.id, "log.first_created", {
+					movieId: movieId ?? undefined,
+					tvId: tvId ?? undefined,
 				});
 			}
 
@@ -372,7 +366,8 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 		"/me",
 		async ({ user, status, query }) => {
 			if (!user) return status(401, "Sign in");
-			const limit = Math.min(Number(query.limit ?? 60), 200);
+			// Match profile filmography cap so `/diary` can list full watch history after bulk imports.
+			const limit = Math.min(Number(query.limit ?? 500), 500);
 			const rows = await db
 				.select({ log, movie, tv })
 				.from(log)

@@ -1,9 +1,10 @@
-import { db, eventLog, follow, notification, profile, user } from "@still/db";
+import { db, eventLog, follow, profile, user } from "@still/db";
 import { and, desc, eq, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
+import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
 
 export const followsRoute = new Elysia({
@@ -70,8 +71,7 @@ export const followsRoute = new Elysia({
 					);
 			}
 
-			await db.insert(notification).values({
-				id: makeId("ntf"),
+			await deliverNotification({
 				userId: params.userId,
 				kind: "follow.created",
 				title: `${viewer.name ?? "Someone"} started following you`,
@@ -81,6 +81,7 @@ export const followsRoute = new Elysia({
 						? { href: `/profile/${viewerProfile.handle}` }
 						: {}),
 				},
+				context: { actorUserId: viewer.id },
 			});
 			await db.insert(eventLog).values({
 				id: makeId("evt"),

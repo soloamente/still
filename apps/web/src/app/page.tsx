@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { APP_METADATA_DEFAULT_TITLE } from "@/lib/app-brand";
 import { serverApi } from "@/lib/server-api";
 import { LandingFeatures } from "./_marketing/landing-features";
 import { LandingFlows } from "./_marketing/landing-flows";
@@ -13,7 +14,7 @@ import { LandingPreview } from "./_marketing/landing-preview";
 import { LandingScrollScenes } from "./_marketing/landing-scroll-scenes";
 
 export const metadata: Metadata = {
-	title: "Still — your cinematic memory",
+	title: APP_METADATA_DEFAULT_TITLE,
 	description:
 		"Log every film you watch, rate it, share it. A modern social home for cinephiles — diaries, reviews, lists, and community.",
 };

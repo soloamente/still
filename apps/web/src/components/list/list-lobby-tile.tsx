@@ -9,7 +9,10 @@ import Link from "next/link";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import type { ListBoardRow } from "@/lib/list-board-row";
-import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
+import {
+	isListCoverProxySrc,
+	listPosterDisplayUrl,
+} from "@/lib/list-cover-image";
 
 const STRIP_MAX = 4;
 
@@ -37,7 +40,12 @@ function ListCoverRail({ list }: { list: ListBoardRow }) {
 		<div className={LIST_COVER_RAIL_CLASS} aria-hidden>
 			<div className="flex h-full items-stretch justify-start pl-1">
 				{strip.map((path, idx) => {
-					const src = profilePosterUrlFromPath(path);
+					const src = listPosterDisplayUrl(
+						list.id,
+						path,
+						list.updatedAt,
+						"w185",
+					);
 					const movieId = list.coverMovieIds[idx];
 					const z = strip.length - idx;
 					return (
@@ -57,6 +65,7 @@ function ListCoverRail({ list }: { list: ListBoardRow }) {
 									fill
 									sizes="96px"
 									className="object-cover"
+									unoptimized={isListCoverProxySrc(src)}
 								/>
 							) : (
 								<div className="grid size-full place-items-center bg-background">
@@ -76,6 +85,8 @@ function ListCoverRail({ list }: { list: ListBoardRow }) {
  * hover (`DETAIL_CANVAS_ON_CARD_HOVER_CLASS`), not bordered list strips.
  */
 export function ListLobbyTile({ list }: { list: ListBoardRow }) {
+	const isSharedList = list.listRole === "collaborator";
+
 	return (
 		<Link
 			href={`/lists/${list.id}`}
@@ -94,7 +105,12 @@ export function ListLobbyTile({ list }: { list: ListBoardRow }) {
 					<h3 className="min-w-0 font-medium text-base text-foreground leading-snug tracking-tight">
 						{list.title}
 					</h3>
-					{!list.isPublic ? (
+					{isSharedList ? (
+						<span className="inline-flex shrink-0 items-center rounded-full bg-card px-2.5 py-1 font-medium text-[10px] text-muted-foreground uppercase tracking-wide shadow-sm">
+							Shared
+						</span>
+					) : null}
+					{!list.isPublic && !isSharedList ? (
 						<span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-card px-2.5 py-1 font-medium text-[10px] text-muted-foreground uppercase tracking-wide shadow-sm">
 							<Lock className="size-3" aria-hidden />
 							Private
@@ -102,6 +118,12 @@ export function ListLobbyTile({ list }: { list: ListBoardRow }) {
 					) : null}
 				</div>
 				<p className="text-muted-foreground text-xs tabular-nums">
+					{isSharedList && list.ownerHandle ? (
+						<>
+							<span>@{list.ownerHandle}</span>
+							<span aria-hidden> · </span>
+						</>
+					) : null}
 					<span>{list.itemsCount}</span>{" "}
 					{list.itemsCount === 1 ? "title" : "titles"}
 					<span aria-hidden> · </span>

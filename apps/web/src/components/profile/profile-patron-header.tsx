@@ -1,9 +1,21 @@
+import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
-
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { ProfileActivitySignature } from "@/components/profile/profile-activity-signature";
+import { ProfileCuratorBadge } from "@/components/profile/profile-curator-badge";
 import { ProfilePatronActions } from "@/components/profile/profile-patron-actions";
+import { ProfilePatronByline } from "@/components/profile/profile-patron-byline";
+import { ProfilePinnedReviewsStrip } from "@/components/profile/profile-pinned-reviews-strip";
+import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
+import { ProfileTasteSignature } from "@/components/profile/profile-taste-signature";
+import { ProfileWatchStreak } from "@/components/profile/profile-watch-streak";
+import {
+	type ProfileBannerFrameId,
+	profileBannerFrameClass,
+} from "@/lib/profile-appearance";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
+import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
 
 /** Horizontal gutters for lobby body content on `bg-card` (matches profile page `p-6 sm:p-8`). */
 export const PROFILE_LOBBY_BODY_GUTTER_CLASSNAME = "px-6 sm:px-8";
@@ -21,9 +33,16 @@ type ProfilePatronHeaderProps = {
 	isMe: boolean;
 	targetUserId: string;
 	bannerUrl: string | null;
+	bannerFrame?: ProfileBannerFrameId;
 	accentColor: string | null;
 	/** Shown under the bio — e.g. filmography count for the active ledger tab. */
 	titleCountLine?: string | null;
+	tasteSignature?: TasteSignatureJson | null;
+	pinnedReviews?: ProfileReviewRow[];
+	canCompareTaste?: boolean;
+	initialTasteCompareOpen?: boolean;
+	isCurator?: boolean;
+	curatorHeadline?: string | null;
 };
 
 /**
@@ -42,8 +61,15 @@ export function ProfilePatronHeader({
 	isMe,
 	targetUserId,
 	bannerUrl,
+	bannerFrame = "none",
 	accentColor,
 	titleCountLine,
+	tasteSignature,
+	pinnedReviews = [],
+	canCompareTaste,
+	initialTasteCompareOpen,
+	isCurator = false,
+	curatorHeadline = null,
 }: ProfilePatronHeaderProps) {
 	const accent = accentColor?.trim() || "#c45c26";
 	const hasBanner = Boolean(bannerUrl?.trim());
@@ -52,7 +78,12 @@ export function ProfilePatronHeader({
 
 	return (
 		<header className="relative mb-8 shrink-0">
-			<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25">
+			<div
+				className={cn(
+					"relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25",
+					profileBannerFrameClass(bannerFrame),
+				)}
+			>
 				{bannerSrc ? (
 					<Image
 						src={bannerSrc}
@@ -105,52 +136,35 @@ export function ProfilePatronHeader({
 					{displayName}
 				</h1>
 				<p className="mt-1 text-muted-foreground text-sm">@{handle}</p>
-				{pronouns ? (
-					<p className="mt-1 text-muted-foreground text-xs">{pronouns}</p>
-				) : null}
+				{isCurator ? <ProfileCuratorBadge headline={curatorHeadline} /> : null}
+				<ProfileTasteSignature
+					tasteSignature={tasteSignature ?? null}
+					className="mt-3"
+				/>
+				<ProfileActivitySignature handle={handle} />
+				<ProfilePinnedReviewsStrip rows={pinnedReviews} />
 				{bio ? (
-					<p className="mt-3 text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
+					<p className="mt-3 max-w-md text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
 						{bio}
 					</p>
 				) : null}
-				{titleCountLine ? (
-					<p className="mt-3 text-muted-foreground text-sm tabular-nums">
-						{titleCountLine}
-					</p>
-				) : null}
+				{isMe ? <ProfileWatchStreak /> : null}
+				<ProfilePatronByline
+					className={bio || isMe ? "mt-3" : "mt-4"}
+					pronouns={pronouns}
+					titleCountLine={titleCountLine}
+					stats={stats}
+					location={location}
+					website={website}
+				/>
 
-				<p className="mt-3 text-muted-foreground text-sm tabular-nums">
-					<span className="font-medium text-foreground">{stats.followers}</span>{" "}
-					followers
-					<span aria-hidden className="mx-2">
-						·
-					</span>
-					<span className="font-medium text-foreground">{stats.following}</span>{" "}
-					following
-				</p>
-
-				{location || website ? (
-					<p className="mt-2 text-muted-foreground text-xs">
-						{location ? <span>{location}</span> : null}
-						{location && website ? (
-							<span aria-hidden className="mx-2">
-								·
-							</span>
-						) : null}
-						{website ? (
-							<a
-								href={website}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline"
-							>
-								{website.replace(/^https?:\/\//, "")}
-							</a>
-						) : null}
-					</p>
-				) : null}
-
-				<ProfilePatronActions isMe={isMe} targetUserId={targetUserId} />
+				<ProfilePatronActions
+					isMe={isMe}
+					targetUserId={targetUserId}
+					handle={handle}
+					canCompareTaste={canCompareTaste}
+					initialTasteCompareOpen={initialTasteCompareOpen}
+				/>
 			</div>
 		</header>
 	);

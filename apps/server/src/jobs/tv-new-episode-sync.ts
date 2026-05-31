@@ -1,7 +1,7 @@
 import { db, notification, tv, tvWatch, tvWatchEpisode } from "@still/db";
 import { and, eq, inArray, sql } from "drizzle-orm";
 
-import { makeId } from "../lib/cuid";
+import { deliverNotification } from "../lib/notification-delivery";
 import {
 	getTvSeasonDetailCached,
 	getTvSeasonsCached,
@@ -134,8 +134,7 @@ async function notifyNewEpisodesForWatch(
 
 			const code = episodeCode(seasonNumber, episodeNumber);
 			const epName = ep.name?.trim();
-			await db.insert(notification).values({
-				id: makeId("ntf"),
+			await deliverNotification({
 				userId: watch.userId,
 				kind: "tv.new_episode",
 				title: `New episode · ${showTitle}`,

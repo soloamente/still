@@ -1,5 +1,7 @@
 import { env } from "@still/env/web";
 
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
+
 /** Stable cache-bust param for cover proxy URLs (API may return `Date` or ISO string). */
 function listCoverCacheParam(cacheKey?: string | number): string | undefined {
 	if (cacheKey == null) return undefined;
@@ -55,4 +57,41 @@ export function resolveListCoverImageSrc(
 		return listCoverImageProxyUrl(listId, cacheKey);
 	}
 	return coverImageUrl;
+}
+
+/** One cover path slot — TMDb fragment, absolute URL, or proxied Vercel Blob. */
+export function listPosterDisplayUrl(
+	listId: string,
+	path: string | null | undefined,
+	cacheKey?: string | number,
+	size: "w185" | "w342" | "w780" = "w185",
+): string | null {
+	if (!path?.trim()) return null;
+	const trimmed = path.trim();
+	if (trimmed.includes("blob.vercel-storage.com")) {
+		return resolveListCoverImageSrc(listId, trimmed, cacheKey);
+	}
+	return tmdbPosterUrlFromPath(trimmed, size);
+}
+
+/** Poster for list board / activity rows — `coverImageUrl` wins over `coverPosterPaths[0]`. */
+export function listBoardRowPosterUrl(
+	row: {
+		id: string;
+		coverImageUrl?: string | null;
+		coverPosterPaths?: (string | null)[];
+		updatedAt: string | Date;
+	},
+	size: "w185" | "w342" | "w780" = "w185",
+): string | null {
+	const cacheKey =
+		row.updatedAt instanceof Date ? row.updatedAt.toISOString() : row.updatedAt;
+	const custom = resolveListCoverImageSrc(row.id, row.coverImageUrl, cacheKey);
+	if (custom) return custom;
+	return listPosterDisplayUrl(
+		row.id,
+		row.coverPosterPaths?.[0],
+		cacheKey,
+		size,
+	);
 }

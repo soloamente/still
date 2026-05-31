@@ -16,6 +16,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 		handle?: string;
 		displayName?: string;
 		preferences?: Record<string, unknown>;
+		isPro?: boolean;
 	} | null = null;
 	let profileFetchFailed = false;
 	try {
@@ -38,7 +39,10 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	if (!profileFetchFailed && !profile?.handle) redirect("/onboarding");
 
 	return (
-		<AppThemeShell initialAppearance={profile?.preferences ?? null}>
+		<AppThemeShell
+			initialAppearance={profile?.preferences ?? null}
+			isPro={Boolean(profile?.isPro)}
+		>
 			<AppShell
 				user={{
 					id: session.user.id,
@@ -46,6 +50,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 					image: session.user.image ?? null,
 					handle: profile?.handle ?? session.user.id,
 					email: session.user.email ?? null,
+					isPro: Boolean(profile?.isPro),
 				}}
 			>
 				{children}

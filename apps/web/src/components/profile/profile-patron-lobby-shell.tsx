@@ -23,6 +23,7 @@ import { ProfileTopBar } from "@/components/profile/profile-top-bar";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
+import type { ProfileBannerFrameId } from "@/lib/profile-appearance";
 import {
 	filmographyFromRecentlyWatched,
 	prepareProfileFilmography,
@@ -34,6 +35,7 @@ import {
 	buildProfileLobbyHref,
 	profileLogMatchesProfileLobbyVenue,
 } from "@/lib/profile-lobby-order";
+import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
 
 export interface ProfilePatronLobbyShellProps {
 	handle: string;
@@ -47,6 +49,7 @@ export interface ProfilePatronLobbyShellProps {
 	isMe: boolean;
 	targetUserId: string;
 	bannerUrl: string | null;
+	bannerFrame?: ProfileBannerFrameId;
 	accentColor: string | null;
 	recentlyWatched: ProfileFilmographyRow[];
 	recentReviews: ProfileReviewRow[];
@@ -55,6 +58,12 @@ export interface ProfilePatronLobbyShellProps {
 	earnedBadges: ProfileEarnedBadge[];
 	unlockedAchievements: ProfileUnlockedAchievement[];
 	monochromePeersOnHover: boolean;
+	tasteSignature?: TasteSignatureJson | null;
+	pinnedReviews?: ProfileReviewRow[];
+	canCompareTaste?: boolean;
+	initialTasteCompareOpen?: boolean;
+	isCurator?: boolean;
+	curatorHeadline?: string | null;
 }
 
 function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
@@ -70,6 +79,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		isMe,
 		targetUserId,
 		bannerUrl,
+		bannerFrame = "none",
 		accentColor,
 		recentlyWatched,
 		recentReviews,
@@ -78,6 +88,12 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		earnedBadges,
 		unlockedAchievements,
 		monochromePeersOnHover,
+		tasteSignature,
+		pinnedReviews = [],
+		canCompareTaste,
+		initialTasteCompareOpen,
+		isCurator,
+		curatorHeadline,
 	} = props;
 
 	const {
@@ -193,8 +209,15 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 					isMe={isMe}
 					targetUserId={targetUserId}
 					bannerUrl={bannerUrl}
+					bannerFrame={bannerFrame}
 					accentColor={accentColor}
 					titleCountLine={titleCountLine}
+					tasteSignature={tasteSignature}
+					pinnedReviews={pinnedReviews}
+					canCompareTaste={canCompareTaste}
+					initialTasteCompareOpen={initialTasteCompareOpen}
+					isCurator={isCurator}
+					curatorHeadline={curatorHeadline}
 				/>
 
 				<ProfilePatronMilestones

@@ -31,9 +31,9 @@ import {
 	AppUserAccountMenuBody,
 	accountMenuContentClassName,
 } from "@/components/app/app-user-account-menu";
-import { useCommandPalette } from "@/components/app/command-palette";
 import { BrandMark } from "@/components/brand-mark";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { APP_NAME } from "@/lib/app-brand";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 
 /** Core routes in the floating bar (icon-first, compact). */
@@ -62,7 +62,6 @@ type NavUser = {
 export function AppNav({ user }: { user: NavUser }) {
 	const pathname = usePathname();
 	const router = useRouter();
-	const openCommand = useCommandPalette((s) => s.open);
 	const requestCatalogSearch = useCatalogSearchDialog((s) => s.requestOpen);
 	const setNavSearchTriggerEl = useCatalogSearchDialog(
 		(s) => s.setNavSearchTriggerEl,
@@ -76,22 +75,6 @@ export function AppNav({ user }: { user: NavUser }) {
 		setNavSearchTriggerEl(navSearchRef.current);
 		return () => setNavSearchTriggerEl(null);
 	}, [setNavSearchTriggerEl]);
-
-	// ⌘⇧K / Ctrl+Shift+K — launcher palette (catalog search uses ⌘K in `CatalogSearchDialogRoot`).
-	useEffect(() => {
-		const handler = (e: KeyboardEvent) => {
-			if (
-				(e.metaKey || e.ctrlKey) &&
-				e.shiftKey &&
-				e.key.toLowerCase() === "k"
-			) {
-				e.preventDefault();
-				openCommand();
-			}
-		};
-		window.addEventListener("keydown", handler);
-		return () => window.removeEventListener("keydown", handler);
-	}, [openCommand]);
 
 	return (
 		<motion.nav
@@ -125,7 +108,7 @@ export function AppNav({ user }: { user: NavUser }) {
 						size="sm"
 						href="/home"
 						className="hidden shrink-0 pl-1 sm:flex sm:items-center"
-						aria-label="Still — home"
+						aria-label={`${APP_NAME} — home`}
 					/>
 
 					<div className="flex flex-1 items-center justify-evenly sm:justify-center sm:gap-1">

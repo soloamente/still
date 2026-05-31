@@ -8,7 +8,6 @@ import {
 	HomeCommunityLobbyParamsProvider,
 	useHomeCommunityLobbyParams,
 } from "@/components/home/home-community-lobby-params-context";
-import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-provider";
 import type { HomeFriendRailEntry } from "@/lib/home-friend-rail";
 import { deriveFriendRailEntries } from "@/lib/home-friend-rail";
 
@@ -24,8 +23,15 @@ export function HomeCommunityPatronBody({
 	signedIn,
 	viewerUserId,
 }: Omit<HomeCommunityPatronShellProps, keyof HomeCommunityBundledData>) {
-	const { feed, period, listSeeds, reviews, activityItems, leaderboard } =
-		useHomeCommunityLobbyParams();
+	const {
+		feed,
+		period,
+		listSeeds,
+		reviews,
+		activityItems,
+		leaderboard,
+		curatorSpotlights,
+	} = useHomeCommunityLobbyParams();
 
 	const friendRailEntries: HomeFriendRailEntry[] = useMemo(
 		() => deriveFriendRailEntries(activityItems),
@@ -40,6 +46,7 @@ export function HomeCommunityPatronBody({
 			reviews={reviews}
 			activityItems={activityItems}
 			friendRailEntries={friendRailEntries}
+			curatorSpotlights={curatorSpotlights}
 			monochromePeersOnHover={monochromePeersOnHover}
 			signedIn={signedIn}
 			leaderboard={leaderboard}
@@ -51,16 +58,16 @@ export function HomeCommunityPatronBody({
 /** Provider stack for community chrome + lobby (toolbar must render inside). */
 export function HomeCommunityPatronProviders({
 	bundled,
+	signedIn,
 	children,
 }: {
 	bundled: HomeCommunityBundledData;
+	signedIn: boolean;
 	children: ReactNode;
 }) {
 	return (
-		<LobbyNavigationProvider>
-			<HomeCommunityLobbyParamsProvider bundled={bundled}>
-				{children}
-			</HomeCommunityLobbyParamsProvider>
-		</LobbyNavigationProvider>
+		<HomeCommunityLobbyParamsProvider bundled={bundled} signedIn={signedIn}>
+			{children}
+		</HomeCommunityLobbyParamsProvider>
 	);
 }

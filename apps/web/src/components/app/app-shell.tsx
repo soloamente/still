@@ -1,7 +1,7 @@
 import { type CSSProperties, type ReactNode, Suspense } from "react";
 import { AppScrollToTop } from "@/components/app/app-scroll-to-top";
-import { CommandPaletteRoot } from "@/components/app/command-palette";
 import { DetailReturnCapture } from "@/components/app/detail-return-capture";
+import { GoToDialogRoot } from "@/components/app/go-to-dialog-root";
 import { BadgeWatcher } from "@/components/gamification/badge-watcher";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
 import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledger-drawer";
@@ -14,7 +14,7 @@ import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
  * Track B — authenticated app chrome (single shell for `(app)` routes).
  *
  * **Navigation contract (MVP):** floating **bottom** bar (`AppNav`) — icon + short
- * label, `min-h-11` tap targets; wordmark from `sm`; search opens ⌘K catalog sheet;
+ * label, `min-h-11` tap targets; wordmark from `sm`; **⌘K** catalog search, **⌘⇧K** go-to launcher;
  * overflow menu for Lists / Achievements; **notifications bell** in the bar on **all** breakpoints (Track B nav parity, 2026-05-14). There is **no** left rail → drawer
  * breakpoint: the bar stays bottom-anchored at all widths.
  *
@@ -47,7 +47,7 @@ export const appShellMainContentMinHeightStyle: CSSProperties = {
 };
 
 export function AppShell({
-	user: _user,
+	user,
 	children,
 }: {
 	user: AppShellUser;
@@ -70,8 +70,8 @@ export function AppShell({
 				{children}
 			</main>
 			<AppScrollToTop />
-			<CatalogSearchDialogRoot />
-			<CommandPaletteRoot />
+			<CatalogSearchDialogRoot viewer={{ id: user.id, handle: user.handle }} />
+			<GoToDialogRoot />
 			<QuickLogRoot />
 			<ReviewComposerRoot />
 			<ReviewDetailRoot />

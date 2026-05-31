@@ -22,6 +22,11 @@ export interface ListBoardRow {
 	containsTitle?: boolean;
 	/** @deprecated Use `containsTitle`. */
 	containsMovie?: boolean;
+	/** `owner` = your list; `collaborator` = shared with you (SN.15). */
+	listRole?: "owner" | "collaborator";
+	/** Set when `listRole` is `collaborator` — who owns the list. */
+	ownerHandle?: string;
+	ownerDisplayName?: string;
 }
 
 /** Coerce an API / JSON blob into a `ListBoardRow` (safe for mixed Eden payloads). */
@@ -78,6 +83,24 @@ export function toListBoardRow(raw: unknown): ListBoardRow {
 				? Boolean(r.containsMovie)
 				: "containsTitle" in r
 					? Boolean(r.containsTitle)
+					: undefined,
+		listRole:
+			r.listRole === "collaborator" || r.listRole === "owner"
+				? r.listRole
+				: r.list_role === "collaborator" || r.list_role === "owner"
+					? r.list_role
+					: undefined,
+		ownerHandle:
+			typeof r.ownerHandle === "string"
+				? r.ownerHandle
+				: typeof r.owner_handle === "string"
+					? r.owner_handle
+					: undefined,
+		ownerDisplayName:
+			typeof r.ownerDisplayName === "string"
+				? r.ownerDisplayName
+				: typeof r.owner_display_name === "string"
+					? r.owner_display_name
 					: undefined,
 	};
 }

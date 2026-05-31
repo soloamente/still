@@ -1494,6 +1494,8 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 - **Phase 8.3 (Lighthouse mobile):** prep + default relative pass gates under **`### Phase 8.3 prep — Lighthouse mobile perf`** — log scores against the **same** build mode as the last tagged baseline.
 - **Phase 8.4 (per-film contrast):** prep under **`### Phase 8.4 prep — Per-film palette contrast`** — sample **three** **`/movies/[id]`** extremes before ticking **8.4**.
 - **Catalogue billboard Lobby link:** **`popular` / `upcoming` / `discover`** header **`← Lobby`** uses **`aria-label="Back to home lobby"`** plus **`[@media(hover:hover)]:hover:text-foreground`** so touch avoids stuck-hover tint and screen readers get a clear target name.
+- **`lists.test.ts` + new imports:** when `lists.ts` pulls modules that import extra `@still/db` symbols (`profile`, `log`), extend the test **`mock.module("@still/db")`** or mock the lib (e.g. **`list-owner-log-scores`**) before **`await import("./lists")`**.
+- **Hand-written SQL migrations** must be registered in **`packages/db/src/migrations/meta/_journal.json`** or **`bun run db:migrate`** skips them — SN.15 **`0015_list_collaborator`** caused list detail **404** (API query failed → RSC **`notFound()`**).
 
 ### 2026-05-27 — TV on lists (Planner)
 
@@ -1557,6 +1559,10 @@ Symptom **B** (frozen full page) on chip taps — root cause is `<Link>` + `forc
 
 **Brainstorm approved:** `docs/superpowers/specs/2026-05-29-unified-search-people-design.md` — merge cmdk into catalog dialog; `GET /api/profiles/search` (public profiles, following/mutual-first); follow suggestions on empty query; retire ⌘⇧K palette. Plan: `docs/superpowers/plans/2026-05-29-unified-search-people.md`. Friends product deferred (mutual follow boost only).
 
+**Executor 2026-05-29 (US.1):** Shipped unified ⌘K — `GET /api/profiles/search`, People + Suggested for you; deleted `command-palette.tsx`; build ok.
+
+**Executor 2026-05-29 (Go to split):** Removed full **Go to** grid from catalog search (was making ⌘K dialog too tall). Added compact **`GoToDialogRoot`** (**⌘⇧K** / **Ctrl+Shift+K**), `go-to-dialog-store.ts`, single **Go to…** row in empty ⌘K; `catalog-search-dialog-store.requestClose` dismisses catalog when opening go-to; deleted `search-dialog-go-to-group.tsx`; build ok. **Human QA:** **`ok`** (2026-05-29).
+
 ### 2026-05-29 — Home browse instant navigation (Planner)
 
 **Brainstorm:** Human confirmed pill freeze on all browse tabs (**A**), Community slowest; prefetch **D** (implementor choice → hover + idle prefetch, not mount bundle).
@@ -1618,3 +1624,314 @@ Symptom **B** (frozen full page) on chip taps — root cause is `<Link>` + `forc
 **Shipped (approach 2):** Replaced La Nube full-bleed poster hero with Mobbin **IA** on Still tokens — centered mark + display headline + subline + dual pill CTAs (`/sign-up`, `/sign-in`) + raised **three-window product stage** (Home grid / Diary rows / Lists duo) using TMDb posters. New modules: `landing-mobbin-hero.ts`, `landing-hero-preview-stage.tsx`; `landing-hero.tsx` is now a server component (no glass pager / old marquee build).
 
 **Human / Planner:** Log out or incognito → **`/`** — confirm first section reads Mobbin-like (copy stack + product shelf) while sections below stay unchanged. Reply **`ok`** or note tweaks (copy, CTA labels, stage overlap).
+
+### 2026-05-29 — Sense product roadmap + Phase 1 launch blockers (Planner → Executor)
+
+**Brainstorm approved:** `docs/superpowers/specs/2026-05-29-sense-product-roadmap-design.md` — Approach **Launch Tier 0** on existing movies + TV + Community; patron-facing **Sense** rebrand (phased C); strategy source `sense-media-platform-strategy.md`.
+
+**Project Status Board:**
+- [x] SN.1 Roadmap spec + human alignment (catalogue scope, rebrand phased C, pre-launch)
+- [x] SN.2 Phase 1a implementation — taste signature, Letterboxd import, onboarding v2 quick-rate, editorial cold-start, OG taste card, `app-brand` / BrandMark
+- [x] SN.3 Human QA on Phase 1 — **`done`** (2026-05-29)
+
+**Executor's Feedback or Assistance Requests:** Phase 1 launch blockers **signed off** by human. **Next (Tier 1, not started):** rare badge pass, rivalry/taste overlap, completionist challenges, streaks + protection, optional anime wedge. Run `bun run db:migrate` on any fresh env before testing import/taste columns. Internal `@still/*` rename remains post-launch month 1 per spec.
+
+### 2026-05-29 — Sense Tier 1: rare badge pass (Executor)
+
+**Shipped:** `badge-prestige.ts` (server + web) — volume milestones (`watch_10`+) hidden from profile tray; prestige-first sort; no toast/notification for volume unlocks; 7 new **prestige** catalog badges + **Diaries Merged** on Letterboxd import; Achievements lobby relabels **Volume milestones** (muted); pin API rejects volume badges.
+
+**Project Status Board:**
+- [x] SN.4 Tier 1 rare badge pass — implementation + tests
+- [x] SN.4.1 Human QA — **`ok`** (2026-05-29)
+
+### 2026-05-29 — Sense Tier 1: rivalry / taste overlap (Executor)
+
+**Shipped:** `sense-taste-overlap.ts` + tests — shared watches, compatibility %, divergences, positive framing. API: `GET /api/taste/overlap/:handle` (signed-in), `GET /api/taste/compare?a=&b=` (OG/share), `POST /api/taste/challenge/:handle` (notification + `?tasteCompare=1` deep link). UI: **Compare taste** on other profiles, `TasteOverlapDialog`, shareable `/og/compare/[viewer]/[target]`.
+
+**Project Status Board:**
+- [x] SN.5 Tier 1 rivalry / taste overlap — implementation + tests + build
+- [x] SN.5.1 Human QA — **`ok`** (2026-05-29): notification deep link, **Compare tastes** / **Not now** inbox actions, compact pill sizing
+- [x] SN.5.2 OG taste + compare cards — Satori `display: flex` fix; **`ok`** from human
+
+### 2026-05-29 — Sense Tier 1: completionist challenges (Executor)
+
+**Shipped:** Four curated sets (Nolan, Horror canon, Ghibli, A24) in `completionist-challenges.ts`; `user_completionist_challenge` migration `0011`; `GET/POST /api/challenges`; progress from diary logs; prestige badge + notification on complete; **Achievements → Challenges** tab with join, progress bar, film list.
+
+**Project Status Board:**
+- [x] SN.6 Tier 1 completionist challenges — implementation + tests + build
+- [x] SN.6.1 Human QA — **`ok`** (2026-05-29): challenges visible; join UX clarified
+
+**Executor's Feedback or Assistance Requests:** `/achievements?tab=challenges` → **Join challenge** → log missing films from **View films** → badge + notification when done. Restart API after migrate/seed. Reply **`ok`** when QA passes.
+
+**2026-05-29 fix — empty Challenges tab:** Achievements RSC used Eden `challenges.get()` with `.catch()` that hid failures; switched to `GET /api/challenges/catalog` via `fetchAchievementsChallengesCatalog` (cookie-forwarded). Server enrollment lookup is try/catch so missing `0011` table still returns the static catalog. Client panel refetches catalog when SSR sent an empty list.
+
+**Next Tier 1:** **SN.7** streaks + protection
+
+### 2026-05-29 — Sense Tier 1: streaks + protection (Executor, in progress)
+
+**Goal:** Diary logging streak with shields + one-time grace — never a punitive cliff (strategy §7 W4).
+
+**Project Status Board:**
+- [x] SN.7.1 DB `user_streak` + pure streak math + tests
+- [x] SN.7.2 API `GET /api/streaks/me`, `POST /api/streaks/freeze` + log hook
+- [x] SN.7.3 Profile streak chip (own profile) + at-risk + shield CTA
+- [x] SN.7.3b Profile header meta consolidation — `ProfilePatronByline` (single middot row); compact inline streak pill (shields inline when calm)
+- [x] SN.7.5 Achievements streak card — `useWatchStreak` + `AchievementsWatchStreakCard` (best run, shield CTA, **Go to diary** nudge) on all tabs
+- [x] SN.7.4 Human QA — **`ok`** (2026-05-29): profile byline streak + `/achievements` card; shield / at-risk
+
+**Shipped:** `watch-streak.ts`, migration `0012_user_streak.sql`, `watch-streak-sync.ts`, `routes/streaks.ts`, `ProfileWatchStreak`, `profile-patron-byline.tsx`, `use-watch-streak.ts`, `achievements-watch-streak-card.tsx`.
+
+**Executor's Feedback or Assistance Requests:** Run **`bun run db:migrate`** (0012). **Profile** — compact streak + one meta byline. **`/achievements`** — streak card above tabs (current + best run). At-risk → shield + diary link. Reply **`ok`** when SN.7.4 passes.
+
+### 2026-05-29 — Sense Tier 1: optional anime wedge (Executor, in progress)
+
+**Goal:** Expose anime as a first-class discovery shortcut **inside existing TV/search surfaces** (no separate `/anime` product surface).
+
+**Project Status Board:**
+- [x] SN.8.1 Search dialog quick-entry wedge — add **Anime** quick chip in the “Show” row; toggles curated `anime` tag and sets listing mode to TV
+- [x] SN.8.2 Human QA — `ok` (2026-05-29)
+- [x] SN.8.3 Empty-state anime entrypoint — add **Anime** quick action in empty `⌘K` state (no typing required)
+- [x] SN.8.4 Human QA — `ok` (2026-05-29)
+
+**Shipped:** `home-sticky-search.tsx` now includes (1) an explicit **Anime** quick chip beside **Films** / **TV shows** in active query mode and (2) an empty-state **Anime** quick action under **Go to…**, both wired to curated tag rules (`slug: "anime"`), preserving the strategy rule that anime stays under TV/catalog search rather than a separate product rail.
+
+**Executor proactive pre-QA pass (2026-05-29):** SN.7 streak flow sanity pass completed before manual QA. Verified route wiring (`streaksRoute` mounted in `server/app.ts`), post-log streak sync hook in `routes/logs.ts`, and profile header integration (`ProfileWatchStreak` gated by `isMe`). Automated checks passed: `apps/server/src/lib/watch-streak.test.ts` (**6 pass**) and `apps/web/src/lib/watch-streak-display.test.ts` (**3 pass**). No blockers found; SN.7.4 remains manual QA gate.
+
+### 2026-05-29 — Sense Tier 1: notification quality (Planner — SN.9 brainstorm complete)
+
+**Goal:** Fewer, higher-signal inbox rows; central delivery policy; Settings toggles; comment + import notifications; mutual-gated review likes (opt-in).
+
+**Brainstorm lock-in:** Scope **C**; achievements **B** (badges only, drop `achievement.unlocked` inbox); comments **B** (review owner + reply target); mentions **defer**; import **dedicated** `import.completed` (no duplicate badge ping on import run); likes **mutual** when enabled (default off).
+
+**Spec:** `docs/superpowers/specs/2026-05-29-sense-notification-quality-design.md` — **approved + implemented** 2026-05-29.
+
+**Shipped (Executor):** `notification-delivery.ts` + tests; all producers migrated; `achievement.unlocked` inbox removed; `comment.on_review` / `comment.replied` + Reply UI; `import.completed` + `suppressInbox` on import badge; `review.liked` mutual-gated; Settings **Notifications** section; inbox/dropdown icons + href hints.
+
+**Project Status Board:**
+- [x] SN.9.0 Planner brainstorm + design doc
+- [x] SN.9.1 Implementation (policy + settings + comment/import/like)
+- [x] SN.9.2 Human QA — **`ok`** (2026-05-29): notification policy + review deep links (`/movies/:id?review=`) verified
+- [x] SN.9.2b Review notification deep link — movie detail + review sheet; legacy `/reviews/:id` redirect; restored `profileTasteCompareFromSearch`
+
+### 2026-05-29 — Sense Tier 1: list quality (Executor — SN.10)
+
+**Shipped:** `list-quality` helpers; Community list ordering prefers described public lists; `PATCH /api/lists/:id/items/item/:itemId` for per-title notes; list detail shows/edits annotations (`ListItemNoteControl`); public-list description hints in create/edit + owner discoverability nudge; list OG metadata uses description.
+
+**Project Status Board:**
+- [x] SN.10.1 Implementation
+- [x] SN.10.2 Human QA — public list description hint; add note on list detail; Community lists favor described lists
+- [x] SN.10 note UI — editorial display + canvas pill editor (`list-item-note-display`, redesigned `list-item-note-control`)
+
+### 2026-05-29 — Sense Tier 1: creator recognition v1 (Executor — SN.11)
+
+**Shipped:** `creator-recognition` lib + tests; Community `/reviews/recent` + discover feed rank by engagement (likes·2 + comments·3); `GET /api/profiles/curators/spotlight`; profile `creator` field + **Curator** pill; **Curators on Sense** row on Community → Lists; reviews tab hint copy.
+
+**Project Status Board:**
+- [x] SN.11.1 Implementation
+- [x] SN.11.2 Human QA — **`ok`** (2026-05-29): centered curator row; list poster likes; Community Lists/Reviews
+- **Local sparse DB:** `NODE_ENV=development` uses relaxed SN.11 thresholds (1 described public list qualifies); set `CREATOR_RECOGNITION_STRICT=true` to rehearse production gates. No demo seed — use real lists you create.
+
+**Executor 2026-05-29 (Agentation — Community Lists):** Centered **Curators on Sense** row when few patrons (`w-max` inner list + outer `justify-center`); **list poster wall** shows title count + heart + like count on bottom scrim for all tiles (cover and no-cover). Files: `home-curator-spotlights.tsx`, `list-lobby-poster.tsx`, `lists-lobby-order.ts` (`likesCount` on `ListLobbySeed`).
+
+**Human / Planner:** SN.11.2 signed off **`ok`** (2026-05-29).
+
+**Tier 3 status:** SN.13–SN.17 **code-complete** (2026-05-29); SN.17.1b OAuth **deferred**. **Post–Tier 3:** launch readiness (**LR.1–LR.2**) + open human QA gates.
+
+---
+
+## Sense Tier 2 — Months 3–6 (Planner 2026-05-29)
+
+**Spec:** `docs/superpowers/specs/2026-05-29-sense-tier-2-design.md`  
+**Strategy loops:** Loop 3 (SEO lists), Loop 4 (feed divergence), Tier 4 identity (activity signature, pinned reviews).
+
+**Build order (Executor: one board row at a time; human `ok` per wave):**
+
+| Wave | Track | Focus |
+|------|-------|--------|
+| **A** | **ST.1** | Public SEO list pages — **done** (`ok` 2026-05-29) |
+| **B** | **ST.2** | Profile activity signature (diary heatmap, 52 weeks) |
+| **C** | **ST.3** | Pinned signature reviews (max 3) |
+| **D** | **ST.4** | Taste-matched discovery v1 (rule-based rail) |
+| **E** | **ST.5** | Feed divergence rows |
+| — | defer | Director deep-dives (**ST.6**); curator analytics → Tier 3 |
+
+### Project Status Board — Tier 2
+
+- [x] **ST.1.1** API — `canViewList` + `GET /api/lists/:id` + `GET /:id/cover-image` return 404 for private lists unless owner (`list-view-access.ts`, route tests)
+- [x] **ST.1.2** Web — `/l/[id]` public list (no auth shell); read-only detail; sign-in CTAs; share copies `/l/`; signed-in → `/lists/[id]` redirect
+- [x] **ST.1.3** SEO — `app/sitemap.ts`, `app/robots.ts`, `GET /api/lists/sitemap` (public + described + non-system lists)
+- [x] **ST.1.4** Human QA — **`ok`** (2026-05-29): `/l/…`, sitemap, robots, private 404
+- [x] **ST.2.1** Activity signature — `buildActivitySignature`, `GET /api/profiles/:handle/activity-signature`, `ProfileActivitySignature` on profile header
+- [x] **ST.2.2** Human QA — **`ok`** (2026-05-29): heatmap shows active days; weekday labels pinned left; auto-scroll to recent weeks
+- [x] **ST.3.1** Pinned reviews — migration `0013`, `pinned_review_ids`, `PATCH /api/profiles/me/pins`, `pinnedReviews` on `GET /:handle`, hero strip + review sheet pin
+- [x] **ST.3.2** Human QA — **`ok`** (2026-05-29): pin/unpin, max 3, profile strip, visitor view
+- [x] **ST.4.1** Taste-matched discovery v1 — `buildTasteMatchedDiscovery`, `GET /api/taste/for-you`, `HomeTasteMatchedRail` on `/home` when `browse=movies` + signed in
+- [x] **ST.4.2** Human QA — **`ok`** (2026-05-29): RSC prefetch + shimmer skeleton + `CataloguePosterTile` radial on rail
+- [x] **ST.5.1** Feed divergence rows — `pickFeedRatingDivergence` / `findFeedRatingDivergence`, inject `kind: divergence` on `GET /api/feed`, `ActivityDivergenceRow` + **Weigh in** (Quick Log)
+- [ ] **ST.5.2** Human QA — **paused** (2026-05-29): hard to seed 3-account follow + Δ≥4 setup; code shipped + feed refetch/period fixes; resume when needed
+
+**ST.1 signed off** **`ok`** (2026-05-29) — API privacy, `/l/[id]` public pages, sitemap + robots.
+
+**ST.2 signed off** **`ok`** (2026-05-29) — client fetch, pinned weekday labels, auto-scroll to recent weeks, contrast fix.
+
+**ST.3 signed off** **`ok`** (2026-05-29) — pinned signature reviews (max 3), profile strip, review sheet pin control.
+
+**Executor (ST.3.1 — 2026-05-29):** `0013_profile_pinned_review_ids.sql`; `PATCH /api/profiles/me/pins`; `pinnedReviews` on profile GET; `ProfilePinnedReviewsStrip`; **Pin to profile** in review reader.
+
+**Executor (ST.4.1 — 2026-05-29):** `apps/server/src/lib/taste-matched-discovery.ts` (≥10 **movie** logs, ≥6 unseen matches, genre/decade/language scoring vs popular cached pool); `GET /api/taste/for-you` (auth + rate limit); `HomeTasteMatchedRail` on Movies lobby (title **Because you gravitate toward …**); cold-start returns null (no rail). Tests: threshold + rail title helpers.
+
+**ST.4 signed off** **`ok`** (2026-05-29) — polish: `/home` RSC parallel `for-you` + `initial` prop; `HomeTasteMatchedRailSkeleton` (`ShimmerBone`); `CataloguePosterTile` `surface="home"` for radial. Fix: `HomeCatalogSortChips` `catalogBrowse` prop (community chips outside provider).
+
+**Executor (ST.5.1 — 2026-05-29):** `feed-rating-divergence.ts` (Δ ≥ 4.0 among ≥2 followed patrons on same title); one row spliced into signed-in `GET /api/feed` at index 3; `ActivityDivergenceRow` on Community **Activity** tab; **Weigh in** opens Quick Log. Tests: `feed-rating-divergence.test.ts`. **Awaiting ST.5.2 human QA.**
+
+**ST.5.2 manual QA checklist (2026-05-29):**
+1. **Setup:** Signed in; follow **≥2** patrons; each has a **rated** log on the **same** film/TV with spread **≥ 4.0** on the 0–10 scale (e.g. 3.0 vs 8.0). Use **All time** period first (`/home?browse=community&feed=activity&period=all`).
+2. **Row appears:** Community → **Activity** — look for **“Your circle split on this one”** near the top (~4th slot after splice). Poster right, flat `bg-background` row (no border).
+3. **Copy:** Two **@handle** links, scores like **3.0** / **8.0** (not tenths), **(Δ 5.0)** or similar; title links to movie/TV detail.
+4. **Weigh in:** Opens Quick Log for that title (film or TV id correct).
+5. **Open title:** Navigates to `/movies/[id]` or `/tv/[id]`.
+6. **Negative:** &lt;2 follows → no divergence row. Spread &lt;4 on every shared title → no row. Signed out → discover feed only (no divergence).
+7. **Period:** Switch **Week** — row only if both patrons’ latest logs on that title fall in the week window (`item.at` filter).
+
+**Automated pre-check:** `bun test apps/server/src/lib/feed-rating-divergence.test.ts` — 5 pass.
+
+**Executor (2026-05-29 — profile/list scores + Activity feed fixes):** `patron-log-poster-caption.ts`, list `ownerLog`, ranked list scrim labels; Community Activity client `/api/feed` refetch + divergence exempt from period filter; fixed `coerceActivityTimestamp` import + AbortError on feed abort.
+
+**Executor (2026-05-29 — list cover 404):** `listPosterDisplayUrl` / `listBoardRowPosterUrl`; blob paths no longer prefixed with `image.tmdb.org`; Activity `ListActivity` + `FeedListingThumb` proxy `unoptimized`; profile list tile + search dialog aligned. Tests: `list-cover-image.test.ts` (3 pass). **Human `ok`** (2026-05-29).
+
+### 2026-05-29 — Strategy plan closure + Phase 0 metrics (Planner + Executor)
+
+**Strategy map (`sense-media-platform-strategy.md` §9):**
+
+| Tier | Status | Notes |
+|------|--------|-------|
+| **0** Launch | **Code-complete** | Taste signature, import, onboarding v2, editorial, OG taste card, instant home nav |
+| **1** 90 days | **Code-complete** | SN.4–SN.11 shipped; human QA mostly `ok` |
+| **2** Months 3–6 | **Code-complete** | ST.1–ST.5.1 shipped; **ST.5.2** QA paused (seed difficulty) |
+| **3** Months 6–12 | **Planned** | [2026-05-29-sense-tier-3-design.md](../docs/superpowers/specs/2026-05-29-sense-tier-3-design.md) — SN.13–SN.17 |
+
+**Phase 0 exit gap closed:** retention funnel instrumentation — migration `0014_product_event`, `recordProductEvent`, `POST /api/product-events`, SQL guide [2026-05-29-sense-product-metrics.md](../docs/superpowers/specs/2026-05-29-sense-product-metrics.md).
+
+- [x] **SN.12.1** `product_event` schema + migration 0014
+- [x] **SN.12.2** Server hooks: import complete, first log, onboarding `markOnboarded`
+- [x] **SN.12.3** Client: taste card share → `trackSenseProductEvent`
+- [x] **SN.12.4** Tests: `product-event-kinds.test.ts` (3 pass)
+- [ ] **SN.12.5** Human: run `bun run db:migrate`; verify rows in `product_event` after import / first log / share
+
+**Tier 2 formal status:** Implementation arc **complete**; **ST.5.2** remains optional manual QA (divergence row). **ST.6** director deep-dives deferred per tier-2 design.
+
+### 2026-05-29 — SN.13 Creator analytics v1 (Executor)
+
+- [x] **SN.13.1** `fetchCreatorAnalyticsForUser` + `GET /api/profiles/me/creator-analytics`
+- [x] **SN.13.2** `AchievementsCreatorAnalyticsCard` + `useCreatorAnalytics` (curators only; hidden otherwise)
+- [x] **SN.13.3** Eligibility covered by `creator-recognition.test.ts` (`qualifiesAsCurator`)
+- [x] **SN.13.4** Human QA — **`ok`** (2026-05-29): **Curator reach** on `/achievements`; non-curator hidden
+
+**Executor (2026-05-29 — Letterboxd import UX):** Step-by-step export guide, file checklist, drag/drop, diary.csv gate, last-import summary. **Human `ok`** (continue).
+
+**SN.13 signed off** **`ok`** (2026-05-29) — Tier 3 wave A complete.
+
+### 2026-05-29 — SN.14 Profile themes (Pro) (Executor)
+
+- [x] **SN.14.1** Pro palettes **Ember** + **Midnight** (`theme-ember`, `theme-midnight`) in web/server registries + `globals.css`
+- [x] **SN.14.2** `profileAccent` + `bannerFrame` prefs; `sanitizeAppearancePreferences` Pro gate; PATCH mirrors accent → `accentColor`
+- [x] **SN.14.3** Settings **Appearance**: theme swatches (Pro badge), accent + banner frame pickers; account menu hides Pro themes when `!isPro`
+- [x] **SN.14.4** `resolveAppThemeForPatron`; `AppThemeShell` + layout pass `isPro`; public profile reads `bannerFrame` from `profile.preferences`
+- [x] **SN.14.5** Tests: `profile-appearance.test.ts`, `app-themes.test.ts` (`resolveAppThemeForPatron`)
+- [ ] **SN.14.6** Human QA: set `profile.is_pro = true` in DB (or billing hook when wired); save Ember + accent + Cinema frame; visit `/@handle` as another user
+
+### 2026-05-29 — Sense theme display names Set A (Executor)
+
+- [x] Labels: **Calm · Lucid · Pensive · Cozy · Dreamy** (`app-themes.ts`); account menu uses `def.label`; Settings copy updated
+- [x] Spec: [2026-05-29-sense-theme-display-names-design.md](../docs/superpowers/specs/2026-05-29-sense-theme-display-names-design.md)
+- [x] Tests: `app-themes.test.ts` label assertions (5 pass)
+
+### 2026-05-29 — SN.15 Collaborative lists (Executor, complete)
+
+- [x] **SN.15.1** Migration `0015_list_collaborator` + `list_collaborator` schema
+- [x] **SN.15.2** `canEditList` — only owner or invited patrons (fixes open `is_collaborative` hole)
+- [x] **SN.15.3** `POST/DELETE /api/lists/:id/collaborators` invite by @handle
+- [x] **SN.15.4** List detail + `/l/[id]` byline; owner **Collaborators** invite UI; `viewerCanEdit` for reorder/notes
+- [x] **SN.15.4b** `lists.test.ts` mocks: `profile` on `@still/db`, `list-owner-log-scores`; regression test — `is_collaborative` alone does not grant reorder
+- [x] **SN.15.5** Human QA — collaborative lists + shared lists lobby verified
+
+### 2026-05-29 — SN.16 Advanced taste matching (Executor, code complete)
+
+- [x] **SN.16.1** `GET /api/taste/suggested-patrons` — overlap rank, shared genre phrase, excludes following
+- [x] **SN.16.2** ⌘K empty People rail — **Taste matches** + **From your network** sections
+- [~] **SN.16.3** Human QA **skipped** — sparse local user graph; re-test when staging has overlapping diaries
+
+**Next (pick one for Executor `go`):** **LR.1 QA** · **LR.2** launch QA · **HB.4.1** · **RL.7** · **TR.8** · **ST.5.2**
+
+### SN.17 — Anime depth (Wave E) — spec approved
+
+**Spec:** `docs/superpowers/specs/2026-05-29-sense-tier-3-anilist-design.md`  
+**Plan (Phase A):** `docs/superpowers/plans/2026-05-29-sense-anilist-import.md`
+
+- [x] **SN.17.1** Anilist JSON import — diary + `tv_watch` + watchlist — **code shipped** (2026-05-29)
+- [x] **SN.17.1 QA** — human **`ok`** (2026-05-29): diary Movies/TV pills, 500-log fetch, re-import backfill verified
+- [x] **SN.17.2** Seasonal anime browse — **code shipped** (2026-05-29): `/home?browse=tv&animeSeason=1`, **This season** chip on left rail (Latest · Popular · This season)
+- [x] **SN.17.2 QA** — human **`ok`** (2026-05-29): chip placement left rail, seasonal grid verified
+- [x] **SN.17.3** MAL enrichment on TV detail — **code shipped** (2026-05-29): Jikan `/anime/{id}` with 7d `_stillMal` cache on `tv.tmdbJson`; `malEnrichment` on `GET /api/tv/:id`; About line via `TvDetailMalMeta` (hidden when no MAL id / fetch fail)
+- [x] **SN.17.3 QA** — human **`ok`** (2026-05-29): MAL line on imported anime About tab verified
+- [ ] **SN.17.1b** Anilist OAuth — **deferred** (2026-05-29, user): JSON upload sufficient for now; revisit when import volume / support burden justifies OAuth
+
+### Post–Tier 3 — Launch readiness & strategy continuation (Planner 2026-05-29)
+
+**Tier 3 implementation arc (SN.13–SN.17) is code-complete.** Anilist OAuth (**SN.17.1b**) is explicitly **out of scope until demand**.
+
+**Strategy source:** [sense-media-platform-strategy.md](../sense-media-platform-strategy.md) §15 closing directive + [2026-05-29-sense-product-roadmap-design.md](../docs/superpowers/specs/2026-05-29-sense-product-roadmap-design.md) rollout waves **1b → Launch**.
+
+**Recommended build order (Executor: one row at a time; human `ok` per wave):**
+
+| Wave | ID | Focus | Why now |
+|------|-----|--------|---------|
+| **A** | **LR.1** | **Sense patron rebrand sweep** | Launch gate #6 — residual “Still” in patron UI (nav aria, toasts, community copy, credits footer, share stubs) |
+| **B** | **LR.2** | **Launch gate QA pass** | Roadmap checklist: onboarding → import → editorial → taste card → log &lt;30s → home instant nav |
+| **C** | — | **Human QA backlog** | **HB.4.1** Community ranks · **RL.7** ranked lists · **TR.8** TV rewatch · **ST.5.2** divergence (optional) |
+| **D** | **SN.12.5** | **Product metrics verification** | `0014_product_event` — import / first log / taste share events in DB |
+| **E** | **SN.14.6** | **Pro themes QA** | Ember/Midnight + accent + banner frame on public profile |
+| **Defer** | **ST.6** | Director / creator deep-dives | Tier 2 carry; after launch or taste discovery v2 |
+| **Defer** | **Monetization** | Billing + list cap + streak shields (Pro) | Strategy §12 — after launch gate |
+| **Defer** | **Internal rename** | `@still/*` → `@sense/*` | Roadmap phased C month 1 post-launch |
+
+### Project Status Board — Launch readiness (LR)
+
+- [x] **LR.1** Patron-facing **Sense** rebrand sweep — **code shipped** (2026-05-29): `APP_NAME` / `APP_MEMBER_LABEL` / `APP_COMMUNITY_AVERAGE_LABEL` in `app-brand.ts`; ~30 patron surfaces updated (nav, auth, marketing, detail, community copy). **Email domain** `hello@still.app` unchanged until domain cutover.
+- [ ] **LR.1 QA** — human: no “Still” in signed-in UI, auth, marketing, movie/TV detail, account menu
+- [ ] **LR.2** Launch gate QA — roadmap §Testing “Launch blockers QA” (7 scenarios)
+- [ ] **SN.12.5** Human: `bun run db:migrate`; verify `product_event` rows
+- [ ] **SN.14.6** Human: Pro themes on profile (needs `is_pro` in DB)
+
+**Next (pick one for Executor `go`):** **LR.1** rebrand sweep (recommended first) · **LR.2** launch QA doc · **HB.4.1** · **RL.7** · **TR.8**
+
+### ⌘K tag search fix (Track B) — plan ready
+
+**Spec:** `docs/superpowers/specs/2026-05-29-cmdk-tag-search-design.md`  
+**Plan:** `docs/superpowers/plans/2026-05-29-cmdk-tag-search.md`
+
+- [x] **B.cmdk.1** Server: `with_text_query` on movie/TV discover — `tmdb.ts`, `movies.ts`/`tv.ts` `?q=`
+- [x] **B.cmdk.2** Client: hook strict AND + `effectiveListingKind` — `catalogue-tag-search-plan.ts`, `use-catalogue-tag-search.ts`, `home-sticky-search.tsx`, `still-api-fetch.ts`, `deriveCatalogueFilterBundle(..., override)`
+- [x] **B.cmdk.3** Tests + manual ⌘K Anime/Films/TV QA → human **`ok`** (2026-05-29)
+
+**Executor (2026-05-29):** SN.17.1 implemented — `POST /api/import/anilist`, parsers/adapters, TMDb TV match, apply watchlist/tv_watch/logs, Settings **Import from Anilist** panel. Tests: 16 pass (server). Manual QA: upload `anilist-sample.json` or AniPort export; verify diary + Watching + watchlist.
+
+**Executor (2026-05-29, match fix):** All-unmatched imports — parser ignored `title.userPreferred`, string titles, and flat `mediaId` rows; resolver only tried one English query. Fixed tiered search (userPreferred → english → romaji → native), anime-aware TMDb pick, cached `_stillAnilist` reuse. **Re-import** same JSON.
+
+**Executor (2026-05-29, visibility):** Profile/diary only read `log` rows — in-progress Anilist statuses lived in `tv_watch` only. **`ensureImportedShowLog`** backfills show-scope diary logs when missing (re-import safe). Import counters: `watchesUpdated` vs duplicate JSON rows.
+
+**Executor (2026-05-29, diary UX):** **`GET /api/logs/me`** cap raised **200 → 500** (matches profile filmography) — bulk Anilist import had pushed older **movie** logs off the default diary fetch. **`/diary`** center pills **Movies · TV Shows** (`?tab=movies|tv`) — same 3-column chrome as profile (order | media tab | venue). Files: `diary-lobby-chrome.tsx`, `diary-media-tab-toolbar.tsx`, `diary-lobby-order.ts`, `fetch-my-logs-me-server.ts`, `logs.ts`.
+
+**SN.17.1 QA checklist (human):**
+1. Settings → re-import Anilist JSON → **Diary logs** count rises for shows missing before.
+2. **`/diary?tab=movies`** — older films visible again (not buried by TV import).
+3. **`/diary?tab=tv`** — imported anime; **At home** venue chip.
+4. Profile **TV** tab mirrors TV diary rows.
+
+Reply **`ok`** when signed off, or report counts / missing titles.
+
+**Executor (2026-05-29, SN.17.2):** TV **This season** chip on `/home?browse=tv` — `?animeSeason=1` drives TMDb discover (genre **16**, **returning**, `first_air_date.gte` rolling **90d**). Helpers in `home-anime-season.ts`; lobby persist + infinite scroll wired. Tests: `home-anime-season.test.ts`, `home-lobby-url.test.ts`. **QA:** Home → **TV** → tap **This season** → animation grid loads; toggle **Popular/Latest** reorders; other run chips clear seasonal slice.
+
+**Executor (2026-05-29, SN.17.3):** MAL enrichment — `mal-anime-enrichment.ts` + `tv-mal-id.ts`; Jikan fetch with 7d `_stillMal` cache on `tv.tmdbJson`; `malEnrichment` field on `GET /api/tv/:id`; `TvDetailMalMeta` one-line About copy (not hero). MAL id sources: Anilist import `_stillAnilist.idMal`, `_stillMal.malId`, TMDb `external_ids.mal_id`. Tests: 7 server + 2 web pass. **QA:** open an imported anime on `/tv/[id]` → About tab → line like `MAL · 8.32 · #400 ranked · Finished Airing`; non-anime / no MAL id → no line.
+
+**Executor (2026-05-29, LR.1):** Patron **Sense** rebrand — extended `app-brand.ts` with `APP_MEMBER_LABEL` + `APP_COMMUNITY_AVERAGE_LABEL`; updated nav, auth, marketing, detail community copy, credits footers, marquee, share stub. Grep `apps/web`: zero `\bStill\b` remaining. Support email stays `hello@still.app` until domain cutover. **QA:** spot-check sign-in/up, `/home` error states, movie detail “Sense average”, marketing footer.

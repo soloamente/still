@@ -12,6 +12,7 @@ import {
 } from "react";
 
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
+import { parseHomeAnimeSeason } from "@/lib/home-anime-season";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
 import {
 	type HomeCatalogRun,
@@ -31,6 +32,7 @@ interface HomeTmdbLobbySnapshot {
 	sort: HomeCatalogSort;
 	venue: HomeVenue;
 	run: HomeCatalogRun | null;
+	animeSeason: boolean;
 }
 
 interface HomeTmdbLobbyParamsContextValue extends HomeTmdbLobbySnapshot {
@@ -38,6 +40,8 @@ interface HomeTmdbLobbyParamsContextValue extends HomeTmdbLobbySnapshot {
 	selectVenue: (venue: HomeVenue) => void;
 	/** TV lifecycle chips — toggles off when the same run is tapped again. */
 	selectRun: (run: HomeCatalogRun) => void;
+	/** TV seasonal anime slice — mutually exclusive with `run` chips. */
+	selectAnimeSeason: () => void;
 	prefetchLobby: (href: string) => void;
 }
 
@@ -68,8 +72,17 @@ function snapshotFromSearchParams(
 		browseTmdb === "tv"
 			? parseTvLobbyVenue(searchParams.get("venue"), sort, catalogRun)
 			: parseHomeVenue(searchParams.get("venue"), sort);
+	const animeSeason =
+		browseTmdb === "tv" &&
+		parseHomeAnimeSeason(searchParams.get("animeSeason"));
 
-	return { browse: browseTmdb, sort, venue, run: catalogRun };
+	return {
+		browse: browseTmdb,
+		sort,
+		venue,
+		run: animeSeason ? null : catalogRun,
+		animeSeason,
+	};
 }
 
 function lobbyHref(snapshot: HomeTmdbLobbySnapshot): string {
@@ -77,7 +90,8 @@ function lobbyHref(snapshot: HomeTmdbLobbySnapshot): string {
 		browse: snapshot.browse,
 		sort: snapshot.sort,
 		venue: snapshot.venue,
-		run: snapshot.run,
+		run: snapshot.animeSeason ? null : snapshot.run,
+		animeSeason: snapshot.animeSeason,
 	});
 }
 
@@ -104,7 +118,8 @@ export function HomeTmdbLobbyParamsProvider({
 			pending.browse === urlState.browse &&
 			pending.sort === urlState.sort &&
 			pending.venue === urlState.venue &&
-			pending.run === urlState.run
+			pending.run === urlState.run &&
+			pending.animeSeason === urlState.animeSeason
 		) {
 			setPending(null);
 		}
@@ -138,10 +153,17 @@ export function HomeTmdbLobbyParamsProvider({
 	const selectRun = useCallback(
 		(run: HomeCatalogRun) => {
 			const nextRun = active.run === run ? null : run;
-			navigateLobby({ run: nextRun });
+			navigateLobby({ run: nextRun, animeSeason: false });
 		},
 		[active, navigateLobby],
 	);
+
+	const selectAnimeSeason = useCallback(() => {
+		navigateLobby({
+			animeSeason: !active.animeSeason,
+			run: null,
+		});
+	}, [active.animeSeason, navigateLobby]);
 
 	const prefetchLobby = useCallback(
 		(href: string) => {
@@ -156,9 +178,17 @@ export function HomeTmdbLobbyParamsProvider({
 			selectSort,
 			selectVenue,
 			selectRun,
+			selectAnimeSeason,
 			prefetchLobby,
 		}),
-		[active, selectSort, selectVenue, selectRun, prefetchLobby],
+		[
+			active,
+			selectSort,
+			selectVenue,
+			selectRun,
+			selectAnimeSeason,
+			prefetchLobby,
+		],
 	);
 
 	return (

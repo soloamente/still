@@ -2,12 +2,26 @@
 
 import { Button } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
-import { Award, Bell, MessageCircle, Trophy, Tv, UserPlus } from "lucide-react";
+import {
+	Award,
+	Bell,
+	Download,
+	Heart,
+	MessageCircle,
+	Trophy,
+	Tv,
+	UserPlus,
+} from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo, useRef, useState } from "react";
+import { toast } from "sonner";
 
+import { NotificationTasteChallengeRow } from "@/components/notifications/notification-taste-challenge-row";
+import type { NotificationPreviewRow } from "@/components/notifications/notifications-dropdown-panel";
 import { api } from "@/lib/api";
 import { formatDistanceToNowStrict } from "@/lib/format";
+import { notificationPayloadHref } from "@/lib/notification-href";
 import { postNotificationRead } from "@/lib/still-api-fetch";
 
 /** One row from `GET /api/notifications` (after server enrichment of `payload.href`). */
@@ -55,13 +69,18 @@ function formatGroupHeading(dayKeyStr: string): string {
 function iconForKind(kind: string) {
 	if (kind.startsWith("follow.")) return UserPlus;
 	if (kind.startsWith("chat.")) return MessageCircle;
+	if (kind.startsWith("comment.")) return MessageCircle;
 	if (kind.startsWith("badge.")) return Award;
 	if (kind.startsWith("achievement.")) return Trophy;
 	if (kind === "tv.new_episode") return Tv;
+	if (kind === "taste.challenge") return Trophy;
+	if (kind === "review.liked") return Heart;
+	if (kind === "import.completed") return Download;
 	return Bell;
 }
 
 export function NotificationsList({ items }: { items: Row[] }) {
+	const router = useRouter();
 	const [rows, setRows] = useState(items);
 	/** Prevents duplicate POST /read while a row is in flight (e.g. rapid clicks). */
 	const inFlight = useRef(new Set<string>());
@@ -108,6 +127,24 @@ export function NotificationsList({ items }: { items: Row[] }) {
 		inFlight.current.delete(row.id);
 	}
 
+	async function activateRow(row: Row) {
+		if (row.kind === "taste.challenge") return;
+		await markOneRead(row);
+		const href = notificationPayloadHref(row.payload);
+		if (href) router.push(href);
+	}
+
+	function handleTasteChallengeAccept(row: Row) {
+		void markOneRead(row);
+		const href = notificationPayloadHref(row.payload);
+		if (href) router.push(href);
+	}
+
+	function handleTasteChallengeDecline(row: Row) {
+		void markOneRead(row);
+		toast.message("Challenge dismissed");
+	}
+
 	async function markAllRead() {
 		try {
 			await api.api.notifications["read-all"].post();
@@ -150,11 +187,26 @@ export function NotificationsList({ items }: { items: Row[] }) {
 					</h2>
 					<ul className="space-y-2">
 						{section.items.map((row) => {
+							if (row.kind === "taste.challenge") {
+								return (
+									<li
+										key={row.id}
+										className={cn(
+											"rounded-[1.75rem]",
+											row.readAt ? "bg-card/40" : "bg-card/70",
+										)}
+									>
+										<NotificationTasteChallengeRow
+											row={row as NotificationPreviewRow}
+											onAccept={(r) => handleTasteChallengeAccept(r as Row)}
+											onDecline={(r) => handleTasteChallengeDecline(r as Row)}
+										/>
+									</li>
+								);
+							}
+
 							const Icon = iconForKind(row.kind);
-							const href =
-								typeof row.payload.href === "string"
-									? row.payload.href
-									: undefined;
+							const href = notificationPayloadHref(row.payload);
 							return (
 								<li
 									key={row.id}
@@ -173,7 +225,7 @@ export function NotificationsList({ items }: { items: Row[] }) {
 										<button
 											type="button"
 											className="min-w-0 flex-1 rounded-sm text-left outline-none focus-visible:ring-2 focus-visible:ring-desert-orange/40"
-											onClick={() => void markOneRead(row)}
+											onClick={() => void activateRow(row)}
 										>
 											<p className="font-medium leading-snug">{row.title}</p>
 											{row.body ? (

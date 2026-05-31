@@ -1,7 +1,16 @@
-import { db, eventLog, list, listItem, movie, reaction, tv } from "@still/db";
+import {
+	db,
+	eventLog,
+	list,
+	listItem,
+	movie,
+	profile,
+	reaction,
+	tv,
+} from "@still/db";
 import { env } from "@still/env/server";
 import { get } from "@vercel/blob";
-import { and, asc, desc, eq, ilike, sql } from "drizzle-orm";
+import { and, asc, desc, eq, ilike, inArray, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
@@ -15,9 +24,23 @@ import {
 	isFavoritesSystemList,
 	refreshListAggregates,
 } from "../lib/favorites-list-sync";
+import { canEditList } from "../lib/list-collaborator-access";
+import {
+	fetchCollaboratedListsForPatron,
+	fetchListCollaborators,
+	inviteListCollaboratorByHandle,
+	removeListCollaborator,
+} from "../lib/list-collaborators";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
+import { fetchOwnerLogScoresForListItems } from "../lib/list-owner-log-scores";
+import {
+	LIST_DESCRIPTION_DISCOVERABILITY_MIN_CHARS,
+	LIST_ITEM_NOTE_MAX_CHARS,
+} from "../lib/list-quality";
+import { canViewList } from "../lib/list-view-access";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
+import { logMediaKey } from "../lib/sense-taste-overlap";
 import { ensureTvCached } from "../lib/tv-cache";
 import { vercelBlobImagePut } from "../lib/vercel-blob-image-put";
 
@@ -51,6 +74,15 @@ type ReorderListItemsBody = {
 	itemIds: string[];
 };
 
+type PatchListItemNoteBody = {
+	note?: string | null;
+};
+
+/** Community lists: surface described lists before empty-blurb rows at equal engagement. */
+const listDiscoverabilityOrder = desc(
+	sql`CASE WHEN length(trim(coalesce(${list.description}, ''))) >= 40 THEN 1 ELSE 0 END`,
+);
+
 /** System favorites lists stay metadata-synced; patrons may still set cover art. */
 function patchTouchesNonCoverFields(body: PatchListBody): boolean {
 	return (
@@ -78,7 +110,11 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 						withinCommunityPeriod(list.updatedAt, start, end),
 					),
 				)
-				.orderBy(desc(list.likesCount), desc(list.updatedAt))
+				.orderBy(
+					listDiscoverabilityOrder,
+					desc(list.likesCount),
+					desc(list.updatedAt),
+				)
 				.limit(limit);
 			return withCoverPosterPaths(rows);
 		},
@@ -97,9 +133,45 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.select()
 				.from(list)
 				.where(eq(list.isPublic, true))
-				.orderBy(desc(list.likesCount), desc(list.updatedAt))
+				.orderBy(
+					listDiscoverabilityOrder,
+					desc(list.likesCount),
+					desc(list.updatedAt),
+				)
 				.limit(limit);
 			return withCoverPosterPaths(rows);
+		},
+		{ query: t.Object({ limit: t.Optional(t.String()) }) },
+	)
+	/** Indexable public lists for Next.js sitemap (ST.1 SEO). */
+	.get(
+		"/sitemap",
+		async ({ query }) => {
+			const limit = Math.min(Number(query.limit ?? 500), 2000);
+			const rows = await db
+				.select({
+					id: list.id,
+					updatedAt: list.updatedAt,
+				})
+				.from(list)
+				.where(
+					and(
+						eq(list.isPublic, true),
+						sql`length(trim(coalesce(${list.description}, ''))) >= ${LIST_DESCRIPTION_DISCOVERABILITY_MIN_CHARS}`,
+						sql`${list.systemKind} is null`,
+					),
+				)
+				.orderBy(desc(list.updatedAt))
+				.limit(limit);
+			return {
+				entries: rows.map((row) => ({
+					id: row.id,
+					updatedAt:
+						row.updatedAt instanceof Date
+							? row.updatedAt.toISOString()
+							: String(row.updatedAt),
+				})),
+			};
 		},
 		{ query: t.Object({ limit: t.Optional(t.String()) }) },
 	)
@@ -133,12 +205,22 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 		"/me",
 		async ({ user, status, query }) => {
 			if (!user) return status(401, "Sign in");
-			const rows = await db
-				.select()
-				.from(list)
-				.where(eq(list.userId, user.id))
-				.orderBy(desc(list.updatedAt));
-			const enriched = await withCoverPosterPaths(rows);
+			const [ownedRows, sharedRows] = await Promise.all([
+				db
+					.select()
+					.from(list)
+					.where(eq(list.userId, user.id))
+					.orderBy(desc(list.updatedAt)),
+				fetchCollaboratedListsForPatron(user.id),
+			]);
+			const libraryRows = [
+				...ownedRows.map((row) => ({ ...row, listRole: "owner" as const })),
+				...sharedRows,
+			].sort(
+				(a, b) =>
+					new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+			);
+			const enriched = await withCoverPosterPaths(libraryRows);
 
 			const movieIdRaw = query.movieId?.trim();
 			const tvIdRaw = query.tvId?.trim();
@@ -161,11 +243,13 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 						: null;
 			if (titleInList == null) return enriched;
 
+			const listIds = enriched.map((row) => row.id);
+			if (listIds.length === 0) return enriched;
+
 			const memberships = await db
 				.select({ listId: listItem.listId })
 				.from(listItem)
-				.innerJoin(list, eq(listItem.listId, list.id))
-				.where(and(eq(list.userId, user.id), titleInList));
+				.where(and(inArray(listItem.listId, listIds), titleInList));
 			const contains = new Set(memberships.map((m) => m.listId));
 
 			return enriched.map((row) => {
@@ -219,13 +303,20 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	)
 	.get(
 		"/:id/cover-image",
-		async ({ params, status }) => {
+		async ({ params, status, user }) => {
 			const [row] = await db
-				.select({ coverImageUrl: list.coverImageUrl, isPublic: list.isPublic })
+				.select({
+					id: list.id,
+					coverImageUrl: list.coverImageUrl,
+					isPublic: list.isPublic,
+					userId: list.userId,
+				})
 				.from(list)
 				.where(eq(list.id, params.id))
 				.limit(1);
-			const coverImageUrl = row?.coverImageUrl?.trim();
+			if (!row || !(await canViewList(row, user?.id)))
+				return status(404, "Not found");
+			const coverImageUrl = row.coverImageUrl?.trim();
 			if (!coverImageUrl) return status(404, "No cover");
 
 			if (!coverImageUrl.includes("blob.vercel-storage.com")) {
@@ -274,13 +365,30 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	)
 	.get(
 		"/:id",
-		async ({ params, status }) => {
+		async ({ params, status, user }) => {
 			const [meta] = await db
 				.select()
 				.from(list)
 				.where(eq(list.id, params.id))
 				.limit(1);
 			if (!meta) return status(404, "Not found");
+			if (!(await canViewList(meta, user?.id))) return status(404, "Not found");
+			let liked = false;
+			if (user) {
+				const [reactionRow] = await db
+					.select({ parentId: reaction.parentId })
+					.from(reaction)
+					.where(
+						and(
+							eq(reaction.userId, user.id),
+							eq(reaction.parentType, "list"),
+							eq(reaction.parentId, params.id),
+							eq(reaction.kind, "like"),
+						),
+					)
+					.limit(1);
+				liked = Boolean(reactionRow);
+			}
 			const favoritesList = isFavoritesSystemList(meta);
 			const items = await db
 				.select({ item: listItem, movie, tv })
@@ -293,9 +401,80 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 						? [desc(listItem.addedAt)]
 						: [asc(listItem.position), asc(listItem.addedAt)]),
 				);
-			return { ...meta, items };
+
+			const ownerScores = await fetchOwnerLogScoresForListItems(
+				meta.userId,
+				items.map((row) => ({
+					movieId: row.item.movieId,
+					tvId: row.item.tvId,
+				})),
+			);
+			const itemsWithOwnerLog = items.map((row) => {
+				const key = logMediaKey(row.item.movieId, row.item.tvId);
+				const ownerLog = key ? (ownerScores.get(key) ?? null) : null;
+				return { ...row, ownerLog };
+			});
+
+			const collaborators = await fetchListCollaborators(params.id);
+			const viewerCanEdit = await canEditList(user?.id, meta);
+			const [ownerProfile] = await db
+				.select({
+					handle: profile.handle,
+					displayName: profile.displayName,
+				})
+				.from(profile)
+				.where(eq(profile.userId, meta.userId))
+				.limit(1);
+
+			return {
+				...meta,
+				items: itemsWithOwnerLog,
+				liked,
+				collaborators,
+				viewerCanEdit,
+				owner: ownerProfile ?? null,
+			};
 		},
 		{ params: t.Object({ id: t.String() }) },
+	)
+	.post(
+		"/:id/collaborators",
+		async ({ params, body: rawBody, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			const body = routeBody<{ handle: string }>(rawBody);
+			const result = await inviteListCollaboratorByHandle({
+				listId: params.id,
+				ownerUserId: user.id,
+				handle: body.handle,
+			});
+			if (!result.ok) return status(result.status, result.error);
+			const collaborators = await fetchListCollaborators(params.id);
+			return { ok: true, collaborators };
+		},
+		{
+			params: t.Object({ id: t.String() }),
+			body: t.Object({ handle: t.String({ minLength: 1, maxLength: 64 }) }),
+		},
+	)
+	.delete(
+		"/:id/collaborators/:collaboratorUserId",
+		async ({ params, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			const result = await removeListCollaborator({
+				listId: params.id,
+				ownerUserId: user.id,
+				collaboratorUserId: params.collaboratorUserId,
+			});
+			if (!result.ok) return status(404, result.error);
+			const collaborators = await fetchListCollaborators(params.id);
+			return { ok: true, collaborators };
+		},
+		{
+			params: t.Object({
+				id: t.String(),
+				collaboratorUserId: t.String(),
+			}),
+		},
 	)
 	.patch(
 		"/:id",
@@ -475,7 +654,8 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.from(list)
 				.where(eq(list.id, params.id))
 				.limit(1);
-			if (!parent || (parent.userId !== user.id && !parent.isCollaborative))
+			if (!parent) return status(404, "Not found");
+			if (!(await canEditList(user.id, parent)))
 				return status(403, "Cannot edit this list");
 			if (isFavoritesSystemList(parent))
 				return status(403, "This list is synced from your favorites");
@@ -555,7 +735,8 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.from(list)
 				.where(eq(list.id, params.id))
 				.limit(1);
-			if (!parent || (parent.userId !== user.id && !parent.isCollaborative))
+			if (!parent) return status(404, "Not found");
+			if (!(await canEditList(user.id, parent)))
 				return status(403, "Cannot edit this list");
 			if (isFavoritesSystemList(parent))
 				return status(403, "This list is synced from your favorites");
@@ -588,6 +769,54 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			}),
 		},
 	)
+	.patch(
+		"/:id/items/item/:itemId",
+		async ({ params, body: rawBody, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			const body = routeBody<PatchListItemNoteBody>(rawBody);
+			const [parent] = await db
+				.select()
+				.from(list)
+				.where(eq(list.id, params.id))
+				.limit(1);
+			if (!parent) return status(404, "Not found");
+			if (!(await canEditList(user.id, parent)))
+				return status(403, "Cannot edit this list");
+			if (isFavoritesSystemList(parent))
+				return status(403, "This list is synced from your favorites");
+			const [existing] = await db
+				.select()
+				.from(listItem)
+				.where(
+					and(eq(listItem.listId, params.id), eq(listItem.id, params.itemId)),
+				)
+				.limit(1);
+			if (!existing) return status(404, "List item not found");
+			const note =
+				body.note === undefined
+					? existing.note
+					: body.note === null || body.note.trim() === ""
+						? null
+						: body.note.trim();
+			const [row] = await db
+				.update(listItem)
+				.set({ note })
+				.where(eq(listItem.id, params.itemId))
+				.returning();
+			return row;
+		},
+		{
+			params: t.Object({ id: t.String(), itemId: t.String() }),
+			body: t.Object({
+				note: t.Optional(
+					t.Union([
+						t.String({ maxLength: LIST_ITEM_NOTE_MAX_CHARS }),
+						t.Null(),
+					]),
+				),
+			}),
+		},
+	)
 	.delete(
 		"/:id/items/:movieId",
 		async ({ params, user, status }) => {
@@ -597,7 +826,8 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.from(list)
 				.where(eq(list.id, params.id))
 				.limit(1);
-			if (!parent || (parent.userId !== user.id && !parent.isCollaborative))
+			if (!parent) return status(404, "Not found");
+			if (!(await canEditList(user.id, parent)))
 				return status(403, "Cannot edit this list");
 			if (isFavoritesSystemList(parent))
 				return status(403, "This list is synced from your favorites");
@@ -627,7 +857,8 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.from(list)
 				.where(eq(list.id, params.id))
 				.limit(1);
-			if (!parent || (parent.userId !== user.id && !parent.isCollaborative))
+			if (!parent) return status(404, "Not found");
+			if (!(await canEditList(user.id, parent)))
 				return status(403, "Cannot edit this list");
 			if (isFavoritesSystemList(parent))
 				return status(403, "This list is synced from your favorites");
@@ -648,6 +879,13 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 		"/:id/like",
 		async ({ params, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			const [listRow] = await db
+				.select({ id: list.id, isPublic: list.isPublic })
+				.from(list)
+				.where(eq(list.id, params.id))
+				.limit(1);
+			if (!listRow) return status(404, "Not found");
+			if (!listRow.isPublic) return status(403, "Private list");
 			const [existing] = await db
 				.select()
 				.from(reaction)

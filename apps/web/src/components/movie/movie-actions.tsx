@@ -117,7 +117,14 @@ export function MovieActions({
 			<Button
 				variant="ghost-light"
 				size="pill"
-				onClick={() => openReviewComposer({ movieId, movieTitle: title })}
+				onClick={() =>
+					openReviewComposer({
+						movieId,
+						movieTitle: title,
+						diaryLogId: latestLog?.id,
+						diaryRatingStored: latestLog?.rating ?? null,
+					})
+				}
 			>
 				Review
 			</Button>

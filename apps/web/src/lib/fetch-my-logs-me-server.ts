@@ -6,6 +6,9 @@ import { serverApi } from "@/lib/server-api";
 
 type ServerApiClient = Awaited<ReturnType<typeof serverApi>>;
 
+/** Same cap as profile filmography — bulk imports must not push older logs off `/diary`. */
+export const DIARY_ME_LOGS_LIMIT = 500;
+
 /**
  * RSC helper for **`GET /api/logs/me`** — forwards the visitor’s cookies via Eden and
  * normalises **`watch_venue` / `watchVenue`** so the diary lobby filter always sees a
@@ -20,7 +23,9 @@ export async function fetchMyLogsMeServer(
 	const client = api ?? (await serverApi());
 	try {
 		// Eden Treaty usually resolves even on 4xx/5xx — check **`error`**; only network/parser issues throw.
-		const logRes = await client.api.logs.me.get();
+		const logRes = await client.api.logs.me.get({
+			query: { limit: String(DIARY_ME_LOGS_LIMIT) },
+		});
 		if (logRes.error != null) {
 			console.error(
 				"[fetchMyLogsMeServer] GET /api/logs/me failed:",

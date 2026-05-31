@@ -4,6 +4,7 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
+import { notifyOnReviewComment } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
 
@@ -62,6 +63,45 @@ export const commentsRoute = new Elysia({
 					parentId: body.parentId,
 				},
 			});
+
+			if (body.parentType === "review") {
+				const [reviewRow] = await db
+					.select({
+						userId: review.userId,
+						movieId: review.movieId,
+						title: review.title,
+					})
+					.from(review)
+					.where(eq(review.id, body.parentId))
+					.limit(1);
+				let replyToUserId: string | null = null;
+				if (body.replyToId) {
+					const [parentComment] = await db
+						.select({ userId: comment.userId })
+						.from(comment)
+						.where(eq(comment.id, body.replyToId))
+						.limit(1);
+					replyToUserId = parentComment?.userId ?? null;
+				}
+				const [commenterProfile] = await db
+					.select({ displayName: profile.displayName })
+					.from(profile)
+					.where(eq(profile.userId, viewer.id))
+					.limit(1);
+				if (reviewRow?.movieId != null) {
+					await notifyOnReviewComment({
+						reviewId: body.parentId,
+						movieId: reviewRow.movieId,
+						reviewAuthorId: reviewRow.userId,
+						commenterId: viewer.id,
+						commenterDisplayName:
+							commenterProfile?.displayName ?? viewer.name ?? "Someone",
+						replyToUserId,
+						reviewTitle: reviewRow.title,
+					});
+				}
+			}
+
 			return row;
 		},
 		{

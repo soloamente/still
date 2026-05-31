@@ -7,14 +7,14 @@ import {
 	follow,
 	list,
 	log,
-	notification,
 	review,
 	userAchievement,
 	userBadge,
 } from "@still/db";
 import { and, count, desc, eq, inArray, isNull, sql } from "drizzle-orm";
 
-import { makeId } from "../lib/cuid";
+import { shouldNotifyBadgeAward } from "../lib/badge-prestige";
+import { deliverNotification } from "../lib/notification-delivery";
 
 type Criteria = Record<string, unknown> & { kind: string };
 
@@ -132,33 +132,53 @@ function meetsCriteria(c: Criteria, s: Snapshot): boolean {
 	}
 }
 
-async function awardBadge(
+export interface AwardBadgeOptions {
+	/** Still persist the badge but skip inbox (e.g. import uses `import.completed`). */
+	suppressInbox?: boolean;
+}
+
+/** Awards a badge once; optional high-signal notification (prestige only). */
+export async function awardBadgeToUser(
 	userId: string,
 	badgeRow: typeof badge.$inferSelect,
 	ctx: Record<string, unknown>,
+	options?: AwardBadgeOptions,
 ) {
-	await db
+	const [inserted] = await db
 		.insert(userBadge)
 		.values({
 			userId,
 			badgeId: badgeRow.id,
 			earnedContext: ctx,
 		})
-		.onConflictDoNothing();
-	await db.insert(notification).values({
-		id: makeId("ntf"),
-		userId,
-		kind: "badge.awarded",
-		title: `Badge unlocked: ${badgeRow.name}`,
-		body: badgeRow.description,
-		payload: {
-			badgeId: badgeRow.id,
+		.onConflictDoNothing()
+		.returning({ badgeId: userBadge.badgeId });
+
+	if (!inserted) return;
+
+	if (
+		!options?.suppressInbox &&
+		shouldNotifyBadgeAward({
+			id: badgeRow.id,
+			category: badgeRow.category,
 			tier: badgeRow.tier,
 			points: badgeRow.points,
-			iconUrl: badgeRow.iconUrl,
-			href: "/achievements",
-		},
-	});
+		})
+	) {
+		await deliverNotification({
+			userId,
+			kind: "badge.awarded",
+			title: `Badge unlocked: ${badgeRow.name}`,
+			body: badgeRow.description,
+			payload: {
+				badgeId: badgeRow.id,
+				tier: badgeRow.tier,
+				points: badgeRow.points,
+				iconUrl: badgeRow.iconUrl,
+				href: "/achievements",
+			},
+		});
+	}
 }
 
 async function progressAchievement(
@@ -192,16 +212,7 @@ async function progressAchievement(
 				updatedAt: new Date(),
 			},
 		});
-	if (met) {
-		await db.insert(notification).values({
-			id: makeId("ntf"),
-			userId,
-			kind: "achievement.unlocked",
-			title: `Achievement unlocked: ${a.name}`,
-			body: a.description,
-			payload: { achievementId: a.id, points: a.points, href: "/achievements" },
-		});
-	}
+	// SN.9: achievements stay in /achievements — no inbox row (badges only).
 }
 
 /**
@@ -233,7 +244,9 @@ export async function runEvaluator() {
 					.where(and(eq(userBadge.userId, userId), eq(userBadge.badgeId, b.id)))
 					.limit(1);
 				if (!existing)
-					await awardBadge(userId, b, { snapshot: { logs: s.logsCount } });
+					await awardBadgeToUser(userId, b, {
+						snapshot: { logs: s.logsCount },
+					});
 			}
 		}
 

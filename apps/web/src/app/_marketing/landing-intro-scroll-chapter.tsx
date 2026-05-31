@@ -3,11 +3,12 @@
 import { useReducedMotion, useScroll } from "motion/react";
 import { useRef } from "react";
 
+import { APP_NAME } from "@/lib/app-brand";
+
 import { LANDING_SECTION_INNER_CLASS } from "./landing-mobbin-hero";
 import { LandingIntroRevealCopy } from "./landing-text-box-reveal";
 
-const INTRO_MANIFESTO_COPY =
-	"Still is a cinematic diary for how you actually watch — cinema nights, living-room marathons, and the taste you build over time.";
+const INTRO_MANIFESTO_COPY = `${APP_NAME} is a cinematic diary for how you actually watch — cinema nights, living-room marathons, and the taste you build over time.`;
 
 /**
  * La Nube-style intro — tall scroll track with sticky manifesto copy that
@@ -25,7 +26,7 @@ export function LandingIntroScrollChapter() {
 		<section
 			ref={sectionRef}
 			className="relative h-[200lvh] bg-background"
-			aria-label="About Still"
+			aria-label={`About ${APP_NAME}`}
 		>
 			<div className="sticky top-0 flex min-h-dvh items-center">
 				<div className={`${LANDING_SECTION_INNER_CLASS} w-full px-4 sm:px-6`}>

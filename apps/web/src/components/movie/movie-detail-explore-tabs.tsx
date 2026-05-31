@@ -15,6 +15,7 @@ import { MoviePoster } from "@/components/movie/movie-poster";
 import { ReviewCard } from "@/components/review/review-card";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
 import { Section } from "@/components/ui/section";
+import { APP_MEMBER_LABEL, APP_NAME } from "@/lib/app-brand";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -64,8 +65,8 @@ function MovieDetailListsEmpty({
 				</span>
 				<p className="mt-4 font-sans text-lg">No public lists yet</p>
 				<p className="mx-auto mt-2 max-w-sm text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
-					No community lists on Still include this title — start a list from
-					your profile and add it for others to find here.
+					No community lists on {APP_NAME} include this title — start a list
+					from your profile and add it for others to find here.
 				</p>
 				<DetailMotionButton
 					type="button"
@@ -275,7 +276,9 @@ export function MovieDetailExploreTabs({
 										{r.body}
 									</p>
 									<div className="mt-3 flex flex-wrap items-center gap-x-2 text-muted-foreground text-xs">
-										<span>Still member · {r.likesCount} likes</span>
+										<span>
+											{APP_MEMBER_LABEL} · {r.likesCount} likes
+										</span>
 										{r.rating != null ? (
 											<span className="font-medium text-foreground tabular-nums">
 												{formatStoredLogRatingDisplay(r.rating)}
@@ -385,7 +388,7 @@ export function MovieDetailExploreTabs({
 				<MovieDetailBodySection
 					id={MOVIE_DETAIL_SECTION.reviews}
 					title="Community"
-					subtitle="Still member scores, published reviews, and public lists for this title."
+					subtitle={`${APP_MEMBER_LABEL} scores, published reviews, and public lists for this title.`}
 					className="pt-2 pb-2"
 				>
 					{communityPanel}

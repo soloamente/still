@@ -1,11 +1,13 @@
 import { cn } from "@still/ui/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ListDetailCollaboratorsByline } from "@/components/list/list-detail-collaborators-byline";
 import {
 	type ListDetailFilmRow,
 	ListDetailFilmsGrid,
 } from "@/components/list/list-detail-films-grid";
 import { ListDetailHeroMedia } from "@/components/list/list-detail-hero-media";
+import { ListDetailLikeSection } from "@/components/list/list-detail-like-section";
 import { ListDetailOwnerControls } from "@/components/list/list-detail-owner-controls";
 import {
 	canReorderRankedList,
@@ -16,9 +18,14 @@ import { RankedListReorderGrid } from "@/components/list/ranked-list-reorder-gri
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailSectionNav } from "@/components/movie/movie-detail-section-nav";
 import { authServer } from "@/lib/auth-server";
+import {
+	fetchListDetailById,
+	type ListDetailRecord,
+	listDetailToFilmRows,
+} from "@/lib/fetch-list-detail";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
-import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
+import { listHeroPosterUrls } from "@/lib/list-detail-hero-posters";
 import {
 	buildListDetailSectionNavItems,
 	LIST_DETAIL_SECTION,
@@ -27,38 +34,14 @@ import {
 	MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
 	MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
 } from "@/lib/movie-detail-sections";
-import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
 import { serverApi } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
 
-type ListDetail = {
-	id: string;
-	userId: string;
-	title: string;
-	description: string | null;
-	systemKind?: string | null;
-	itemsCount: number;
-	coverMovieIds: number[];
-	coverMovieId: number | null;
-	coverTvId?: number | null;
-	coverImageUrl: string | null;
-	isPublic: boolean;
-	isRanked: boolean;
-	isCollaborative?: boolean;
-	updatedAt: string;
-	items: {
-		item: {
-			id: string;
-			position: number;
-			note: string | null;
-			movieId: number | null;
-			tvId?: number | null;
-		};
-		movie: { tmdbId: number; title: string; posterPath: string | null } | null;
-		tv?: { tmdbId: number; title: string; posterPath: string | null } | null;
-	}[];
-};
+/** SEO canonical for public lists — guests and crawlers use `/l/[id]`. */
+function listSharePath(list: ListDetailRecord): string {
+	return list.isPublic ? `/l/${list.id}` : `/lists/${list.id}`;
+}
 
 export async function generateMetadata({
 	params,
@@ -66,68 +49,15 @@ export async function generateMetadata({
 	params: Promise<{ id: string }>;
 }): Promise<Metadata> {
 	const { id } = await params;
-	const api = await serverApi();
-	const res = await api.api
-		.lists({ id })
-		.get()
-		.catch(() => ({ data: null }));
-	const data = res.data as { title?: string } | null;
-	return { title: data?.title ?? "List" };
-}
-
-function listHeroPosterUrls(
-	listId: string,
-	rows: ListDetailFilmRow[],
-	coverMovieId: number | null,
-	coverTvId: number | null,
-	coverImageUrl: string | null,
-	updatedAt: string,
-): {
-	posterUrl: string | null;
-	backdropUrl: string | null;
-} {
-	const customCover = resolveListCoverImageSrc(
-		listId,
-		coverImageUrl,
-		updatedAt,
-	);
-	if (customCover) {
-		const urls: string[] = [customCover];
-		for (const row of rows) {
-			const posterPath = row.movie?.posterPath ?? row.tv?.posterPath ?? null;
-			const src = profilePosterUrlFromPath(posterPath);
-			if (src && !urls.includes(src)) urls.push(src);
-			if (urls.length >= 2) break;
-		}
-		return {
-			posterUrl: customCover,
-			backdropUrl: urls[1] ?? null,
-		};
-	}
-
-	const ordered =
-		coverMovieId != null
-			? [
-					...rows.filter((r) => r.movie?.tmdbId === coverMovieId),
-					...rows.filter((r) => r.movie?.tmdbId !== coverMovieId),
-				]
-			: coverTvId != null
-				? [
-						...rows.filter((r) => r.tv?.tmdbId === coverTvId),
-						...rows.filter((r) => r.tv?.tmdbId !== coverTvId),
-					]
-				: rows;
-
-	const urls: string[] = [];
-	for (const row of ordered) {
-		const posterPath = row.movie?.posterPath ?? row.tv?.posterPath ?? null;
-		const src = profilePosterUrlFromPath(posterPath);
-		if (src && !urls.includes(src)) urls.push(src);
-		if (urls.length >= 2) break;
-	}
+	const data = await fetchListDetailById(id);
+	const title = data?.title ?? "List";
+	const description = data?.description?.trim();
 	return {
-		posterUrl: urls[0] ?? null,
-		backdropUrl: urls[1] ?? null,
+		title,
+		description: description || undefined,
+		openGraph: description
+			? { title, description: description.slice(0, 200) }
+			: { title },
 	};
 }
 
@@ -139,17 +69,10 @@ export default async function ListDetailPage({
 	const { id } = await params;
 	const [session, api] = await Promise.all([authServer(), serverApi()]);
 	const listRes = await api.api.lists({ id }).get();
-	const data = listRes.data as ListDetail | null;
+	const data = listRes.data as ListDetailRecord | null;
 	if (!data) notFound();
 
-	const filmRows: ListDetailFilmRow[] = [];
-	for (const row of data.items) {
-		if (row.movie) {
-			filmRows.push({ item: row.item, movie: row.movie, tv: null });
-		} else if (row.tv) {
-			filmRows.push({ item: row.item, movie: null, tv: row.tv });
-		}
-	}
+	const filmRows: ListDetailFilmRow[] = listDetailToFilmRows(data);
 	const isSystemFavorites = data.systemKind === "favorites";
 
 	const coverMovieId =
@@ -166,21 +89,28 @@ export default async function ListDetailPage({
 		data.updatedAt,
 	);
 	const isOwner = session?.user?.id === data.userId;
+	const viewerCanEdit = Boolean(
+		data.viewerCanEdit ?? (isOwner && !isSystemFavorites),
+	);
 	const canReorder = canReorderRankedList({
 		isRanked: data.isRanked,
 		viewerId: session?.user?.id,
-		ownerId: data.userId,
-		isCollaborative: Boolean(data.isCollaborative),
+		viewerCanEdit,
 	});
+	const collaborators = data.collaborators ?? [];
+	const ownerProfile = data.owner ?? null;
+	const canEditListNotes =
+		viewerCanEdit && !isSystemFavorites && Boolean(session?.user);
 	const rankedRows = canReorder ? toRankedReorderRows(filmRows) : null;
 	const hasFilms = filmRows.length > 0;
 	const sectionNavItems = buildListDetailSectionNavItems({ hasFilms });
 	const showSectionNav = sectionNavItems.length >= 2;
 
 	const heroMetaBits: string[] = [];
+	if (!isOwner && viewerCanEdit) heroMetaBits.push("Shared with you");
 	if (isSystemFavorites) heroMetaBits.push("Synced from diary");
 	if (data.isRanked) heroMetaBits.push("Ranked");
-	if (!data.isPublic) heroMetaBits.push("Private");
+	if (!data.isPublic && isOwner) heroMetaBits.push("Private");
 	heroMetaBits.push(
 		`${data.itemsCount} ${data.itemsCount === 1 ? "title" : "titles"}`,
 	);
@@ -197,10 +127,14 @@ export default async function ListDetailPage({
 		: data.isRanked
 			? "Position order as you arranged this list — lowest number is the top pick."
 			: "Every title in this collection — open a poster to visit its page.";
+	const filmsSectionSubtitleOwner =
+		isOwner && !isSystemFavorites
+			? `${filmsSectionSubtitle} Add a short note on each title to share why it belongs here.`
+			: filmsSectionSubtitle;
 
 	return (
 		<div className="flex flex-1 flex-col overflow-visible bg-background">
-			<ListDetailTopBar title={data.title} sharePath={`/lists/${data.id}`} />
+			<ListDetailTopBar title={data.title} sharePath={listSharePath(data)} />
 			{showSectionNav ? (
 				<MovieDetailSectionNav sections={sectionNavItems} />
 			) : null}
@@ -234,19 +168,6 @@ export default async function ListDetailPage({
 							posterUrl={posterUrl}
 							backdropUrl={backdropUrl}
 						/>
-						{isOwner ? (
-							<ListDetailOwnerControls
-								listId={data.id}
-								films={filmRows}
-								coverMovieId={coverMovieId}
-								coverTvId={coverTvId}
-								coverImageUrl={coverImageUrl}
-								updatedAt={data.updatedAt}
-								initialTitle={data.title}
-								initialDescription={data.description}
-								allowEditDetails={!isSystemFavorites}
-							/>
-						) : null}
 						<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
 							{data.title}
 						</h1>
@@ -255,13 +176,48 @@ export default async function ListDetailPage({
 								{heroBlurb}
 							</p>
 						) : null}
+						<ListDetailCollaboratorsByline
+							owner={ownerProfile}
+							collaborators={collaborators}
+						/>
+						{data.isPublic ? (
+							<ListDetailLikeSection
+								listId={data.id}
+								likesCount={Number(data.likesCount ?? 0)}
+								initialLiked={Boolean(data.liked)}
+								canInteract={Boolean(session?.user) && !isOwner}
+								showSignInHint={!session?.user}
+							/>
+						) : null}
+						{isOwner ? (
+							<div className="mt-8 flex w-full justify-center">
+								<ListDetailOwnerControls
+									listId={data.id}
+									films={filmRows}
+									coverMovieId={coverMovieId}
+									coverTvId={coverTvId}
+									coverImageUrl={coverImageUrl}
+									updatedAt={data.updatedAt}
+									initialTitle={data.title}
+									initialDescription={data.description}
+									allowEditDetails={!isSystemFavorites}
+									isPublic={data.isPublic}
+									showDiscoverabilityNudge={!heroBlurb}
+									collaborators={collaborators}
+								/>
+							</div>
+						) : null}
 					</div>
 
 					<div className="mx-auto max-w-7xl space-y-12 px-2.5 pt-8 pb-10 sm:px-4 sm:pt-10 md:px-5 md:pt-12">
 						<MovieDetailBodySection
 							id={LIST_DETAIL_SECTION.films}
 							title={filmsSectionTitle}
-							subtitle={filmsSectionSubtitle}
+							subtitle={
+								isOwner && !isSystemFavorites
+									? filmsSectionSubtitleOwner
+									: filmsSectionSubtitle
+							}
 							className="pt-2 pb-2"
 						>
 							{canReorder && rankedRows ? (
@@ -269,11 +225,14 @@ export default async function ListDetailPage({
 									listId={data.id}
 									items={rankedRows}
 									allItemIds={data.items.map((entry) => entry.item.id)}
+									canEditNotes={canEditListNotes}
 								/>
 							) : (
 								<ListDetailFilmsGrid
 									items={filmRows}
 									isRanked={data.isRanked}
+									listId={data.id}
+									canEditNotes={canEditListNotes}
 								/>
 							)}
 						</MovieDetailBodySection>

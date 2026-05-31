@@ -30,7 +30,7 @@ export function MovieDetailPrimaryActions({
 	movieId: number;
 	title: string;
 	posterUrl?: string | null;
-	/** TMDb or Still community average on 0–10 for the log sheet slider. */
+	/** TMDb or Sense community average on 0–10 for the log sheet slider. */
 	averageRating?: number | null;
 }) {
 	const openReviewComposer = useReviewComposer((s) => s.open);
@@ -77,6 +77,8 @@ export function MovieDetailPrimaryActions({
 			movieTitle: title,
 			posterUrl: posterUrl ?? null,
 			averageRating: averageRating ?? null,
+			diaryLogId: latestLog?.id,
+			diaryRatingStored: latestLog?.rating ?? null,
 		});
 	}
 

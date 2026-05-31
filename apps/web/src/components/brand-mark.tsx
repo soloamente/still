@@ -1,8 +1,10 @@
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
+import { APP_NAME, APP_TAGLINE } from "@/lib/app-brand";
+
 /**
- * "Still" wordmark with a thin dot standing in for the projector lens.
+ * Sense wordmark with a thin dot standing in for the lens accent.
  * Default `display` applies Fraunces for cinematic headings; auth chrome passes `sans`
  * so SF Pro Rounded (`font-sans` / `--font-proxima-nova`) can carry UI while Fraunces
  * stays reserved for editorial pull quotes beside the split layout.
@@ -16,7 +18,7 @@ export function BrandMark({
 	withTagline = false,
 	href = "/",
 	className,
-	"aria-label": ariaLabel = "Still — go to home",
+	"aria-label": ariaLabel = `${APP_NAME} — go to home`,
 }: {
 	size?: "sm" | "md" | "lg";
 	/** `display`: Fraunces. `sans`: SF Pro Rounded stack — use beside quote-only Fraunces. */
@@ -49,16 +51,14 @@ export function BrandMark({
 					"font-medium text-pure-white tracking-[-0.02em]",
 				)}
 			>
-				Still
+				{APP_NAME}
 			</span>
 			<span
 				aria-hidden
 				className="size-1.5 rounded-full bg-desert-orange transition-transform duration-[var(--aker-duration)] group-hover:scale-125"
 			/>
 			{withTagline ? (
-				<span className="ml-2 text-slate-border text-xs">
-					your cinematic memory
-				</span>
+				<span className="ml-2 text-slate-border text-xs">{APP_TAGLINE}</span>
 			) : null}
 		</Link>
 	);

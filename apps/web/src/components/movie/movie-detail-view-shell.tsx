@@ -8,6 +8,7 @@ import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-pro
 import { MovieDetailSectionNav } from "@/components/movie/movie-detail-section-nav";
 import { MovieDetailStreaming } from "@/components/movie/movie-detail-streaming";
 import { MovieDetailTopBar } from "@/components/movie/movie-detail-top-bar";
+import { MovieReviewDeepLinkOpener } from "@/components/review/movie-review-deep-link-opener";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { MovieDetailSectionNavItem } from "@/lib/movie-detail-sections";
 import { MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS } from "@/lib/movie-detail-sections";
@@ -87,6 +88,7 @@ function MovieDetailViewShellBody({
 
 	return (
 		<div className="flex flex-1 flex-col bg-background">
+			<MovieReviewDeepLinkOpener />
 			<MovieDetailTopBar
 				movieId={movieId}
 				title={title}

@@ -27,7 +27,7 @@ export function AchievementsTabToolbar({
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	const tabs: AchievementsLobbyTabId[] = ["badges", "goals"];
+	const tabs: AchievementsLobbyTabId[] = ["badges", "goals", "challenges"];
 
 	const chipLink = (active: boolean) =>
 		cn(

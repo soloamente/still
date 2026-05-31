@@ -141,6 +141,35 @@ describe("deriveCatalogueFilterBundle", () => {
 		expect(bundle.genreIds).toContain(16);
 		expect(bundle.keywordIds).toContain(210024);
 	});
+
+	test("listingKindOverride applies curated rules when no media tag", () => {
+		const tvBundle = deriveCatalogueFilterBundle(
+			[{ kind: "curated", slug: "anime", label: "Anime" }],
+			"tv",
+		);
+		expect(tvBundle.listingKind).toBe("tv");
+		expect(tvBundle.genreIds).toContain(16);
+		expect(tvBundle.keywordIds).toContain(210024);
+
+		const movieBundle = deriveCatalogueFilterBundle(
+			[{ kind: "curated", slug: "anime", label: "Anime" }],
+			"movie",
+		);
+		expect(movieBundle.listingKind).toBe("movie");
+		expect(movieBundle.genreIds).toContain(16);
+		expect(movieBundle.keywordIds).toContain(210024);
+	});
+
+	test("media tag wins over listingKindOverride", () => {
+		const bundle = deriveCatalogueFilterBundle(
+			[
+				{ kind: "media", listingKind: "tv" },
+				{ kind: "curated", slug: "anime", label: "Anime" },
+			],
+			"movie",
+		);
+		expect(bundle.listingKind).toBe("tv");
+	});
 });
 
 describe("deriveSearchState", () => {

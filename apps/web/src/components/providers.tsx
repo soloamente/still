@@ -6,7 +6,9 @@ import { RootHtmlFontClassProvider } from "@/components/app/root-html-font-class
 import { CinemaSoundProvider } from "@/components/cinema/sound-provider";
 import { LenisProvider } from "@/components/lenis-provider";
 import {
+	APP_THEME_CLASS_EMBER,
 	APP_THEME_CLASS_LOBBY_LIGHT,
+	APP_THEME_CLASS_MIDNIGHT,
 	APP_THEME_CLASS_NOIR,
 	APP_THEME_CLASS_THEATER,
 	STILL_APP_THEME_STORAGE_KEY,
@@ -15,8 +17,8 @@ import {
 import { ThemeProvider } from "./theme-provider";
 
 /**
- * Named palettes default to **Theater** (Aker dark). System maps OS light → Lobby
- * Light and OS dark → Theater. `disableTransitionOnChange` avoids token flash.
+ * Named palettes default to **Calm** (`theme-theater`). System maps OS light →
+ * **Lucid** and OS dark → **Calm**. `disableTransitionOnChange` avoids token flash.
  */
 export default function Providers({
 	children,
@@ -36,6 +38,8 @@ export default function Providers({
 					APP_THEME_CLASS_THEATER,
 					APP_THEME_CLASS_LOBBY_LIGHT,
 					APP_THEME_CLASS_NOIR,
+					APP_THEME_CLASS_EMBER,
+					APP_THEME_CLASS_MIDNIGHT,
 					"system",
 				]}
 				value={{
@@ -45,6 +49,8 @@ export default function Providers({
 					[APP_THEME_CLASS_THEATER]: APP_THEME_CLASS_THEATER,
 					[APP_THEME_CLASS_LOBBY_LIGHT]: APP_THEME_CLASS_LOBBY_LIGHT,
 					[APP_THEME_CLASS_NOIR]: APP_THEME_CLASS_NOIR,
+					[APP_THEME_CLASS_EMBER]: APP_THEME_CLASS_EMBER,
+					[APP_THEME_CLASS_MIDNIGHT]: APP_THEME_CLASS_MIDNIGHT,
 				}}
 				enableSystem
 				disableTransitionOnChange

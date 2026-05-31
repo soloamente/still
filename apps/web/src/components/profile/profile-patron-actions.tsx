@@ -7,11 +7,14 @@ import {
 	DetailMotionButton,
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
+import { TasteOverlapDialog } from "@/components/profile/taste-overlap-dialog";
 import { api } from "@/lib/api";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 } from "@/lib/detail-action-motion";
+import { profileTasteCompareFromSearch } from "@/lib/notification-href";
+import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 
 /** Secondary pill on `bg-card` — matches movie detail watchlist / circle controls. */
 const secondaryPill = cn(
@@ -34,13 +37,37 @@ const primaryPill = cn(
 export function ProfilePatronActions({
 	isMe,
 	targetUserId,
+	handle,
+	canCompareTaste,
+	initialTasteCompareOpen = false,
 }: {
 	isMe: boolean;
 	targetUserId: string;
+	handle: string;
+	/** Signed-in viewer viewing someone else's profile. */
+	canCompareTaste?: boolean;
+	/** Deep link from taste challenge notification (`?tasteCompare=1`). */
+	initialTasteCompareOpen?: boolean;
 }) {
 	if (isMe) {
 		return (
 			<div className="mt-6 flex flex-wrap justify-center gap-2">
+				<DetailMotionButton
+					type="button"
+					className={secondaryPill}
+					onClick={async () => {
+						const url = `${window.location.origin}/og/taste/${encodeURIComponent(handle)}`;
+						try {
+							await navigator.clipboard.writeText(url);
+							trackSenseProductEvent("taste_card.shared", { handle });
+							toast.success("Taste card link copied");
+						} catch {
+							toast.error("Could not copy link");
+						}
+					}}
+				>
+					Share taste card
+				</DetailMotionButton>
 				<DetailMotionLink href="/me/customization" className={secondaryPill}>
 					Customize
 				</DetailMotionLink>
@@ -52,9 +79,70 @@ export function ProfilePatronActions({
 	}
 
 	return (
-		<div className="mt-6 flex flex-wrap justify-center gap-2">
-			<ProfileFollowAction targetUserId={targetUserId} />
-		</div>
+		<ProfileOtherPatronActions
+			targetUserId={targetUserId}
+			handle={handle}
+			canCompareTaste={canCompareTaste}
+			initialTasteCompareOpen={initialTasteCompareOpen}
+		/>
+	);
+}
+
+function ProfileOtherPatronActions({
+	targetUserId,
+	handle,
+	canCompareTaste,
+	initialTasteCompareOpen,
+}: {
+	targetUserId: string;
+	handle: string;
+	canCompareTaste?: boolean;
+	initialTasteCompareOpen?: boolean;
+}) {
+	const [compareOpen, setCompareOpen] = useState(
+		Boolean(initialTasteCompareOpen),
+	);
+
+	useEffect(() => {
+		if (!canCompareTaste) return;
+		if (initialTasteCompareOpen) {
+			setCompareOpen(true);
+			return;
+		}
+		// Client navigation (e.g. notification bell) may not remount the server page.
+		if (profileTasteCompareFromSearch(window.location.search)) {
+			setCompareOpen(true);
+			const url = new URL(window.location.href);
+			url.searchParams.delete("tasteCompare");
+			const next =
+				url.pathname +
+				(url.searchParams.toString() ? `?${url.searchParams}` : "");
+			window.history.replaceState({}, "", next);
+		}
+	}, [canCompareTaste, initialTasteCompareOpen]);
+
+	return (
+		<>
+			<div className="mt-6 flex flex-wrap justify-center gap-2">
+				<ProfileFollowAction targetUserId={targetUserId} />
+				{canCompareTaste ? (
+					<DetailMotionButton
+						type="button"
+						className={secondaryPill}
+						onClick={() => setCompareOpen(true)}
+					>
+						Compare taste
+					</DetailMotionButton>
+				) : null}
+			</div>
+			{canCompareTaste ? (
+				<TasteOverlapDialog
+					open={compareOpen}
+					onOpenChange={setCompareOpen}
+					targetHandle={handle}
+				/>
+			) : null}
+		</>
 	);
 }
 

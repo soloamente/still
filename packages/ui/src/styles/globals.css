@@ -420,6 +420,76 @@ html.theme-noir {
 	--cinema-vignette-alpha: 0.68;
 }
 
+html.theme-ember {
+	color-scheme: dark;
+	--palette-canvas: oklch(0.22 0.04 35);
+	--surface-theater: var(--palette-canvas);
+	--palette-raised: oklch(0.17 0.035 35);
+	--color-deep-graphite: var(--palette-raised);
+	--color-medium-gray: var(--palette-raised);
+	--color-desert-orange: #e07a3a;
+	--background: var(--surface-canvas);
+	--foreground: var(--color-pure-white);
+	--card: var(--surface-raised);
+	--card-foreground: var(--color-pure-white);
+	--popover: var(--surface-overlay);
+	--popover-foreground: var(--color-pure-white);
+	--primary: var(--color-soft-stone);
+	--primary-foreground: var(--color-pure-white);
+	--secondary: var(--color-medium-gray);
+	--secondary-foreground: var(--color-pure-white);
+	--muted: var(--color-medium-gray);
+	--muted-foreground: var(--color-slate-border);
+	--accent: var(--color-desert-orange);
+	--accent-foreground: var(--color-pure-white);
+	--border: rgba(255, 255, 255, 0.06);
+	--input: rgba(255, 255, 255, 0.09);
+	--ring: var(--color-desert-orange);
+	--sidebar: var(--color-deep-graphite);
+	--sidebar-foreground: var(--color-pure-white);
+	--sidebar-primary: var(--color-desert-orange);
+	--sidebar-primary-foreground: var(--color-pure-white);
+	--sidebar-accent: var(--color-medium-gray);
+	--sidebar-accent-foreground: var(--color-pure-white);
+	--sidebar-border: rgba(255, 255, 255, 0.06);
+	--sidebar-ring: var(--color-desert-orange);
+}
+
+html.theme-midnight {
+	color-scheme: dark;
+	--palette-canvas: oklch(0.16 0.03 280);
+	--surface-theater: var(--palette-canvas);
+	--palette-raised: oklch(0.12 0.028 280);
+	--color-deep-graphite: var(--palette-raised);
+	--color-medium-gray: var(--palette-raised);
+	--color-desert-orange: #7b8cff;
+	--background: var(--surface-canvas);
+	--foreground: var(--color-pure-white);
+	--card: var(--surface-raised);
+	--card-foreground: var(--color-pure-white);
+	--popover: var(--surface-overlay);
+	--popover-foreground: var(--color-pure-white);
+	--primary: var(--color-soft-stone);
+	--primary-foreground: var(--color-pure-white);
+	--secondary: var(--color-medium-gray);
+	--secondary-foreground: var(--color-pure-white);
+	--muted: var(--color-medium-gray);
+	--muted-foreground: var(--color-slate-border);
+	--accent: var(--color-desert-orange);
+	--accent-foreground: var(--color-pure-white);
+	--border: rgba(255, 255, 255, 0.05);
+	--input: rgba(255, 255, 255, 0.08);
+	--ring: var(--color-desert-orange);
+	--sidebar: var(--color-deep-graphite);
+	--sidebar-foreground: var(--color-pure-white);
+	--sidebar-primary: var(--color-desert-orange);
+	--sidebar-primary-foreground: var(--color-pure-white);
+	--sidebar-accent: var(--color-medium-gray);
+	--sidebar-accent-foreground: var(--color-pure-white);
+	--sidebar-border: rgba(255, 255, 255, 0.05);
+	--sidebar-ring: var(--color-desert-orange);
+}
+
 @theme inline {
 	/* Neutral ramp + brand accents as Tailwind color utilities (e.g. bg-desert-orange). */
 	--color-palette-canvas: var(--palette-canvas);

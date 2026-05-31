@@ -7,6 +7,7 @@ import {
 } from "@still/ui/components/radial-toolkit";
 import IconCloneImageDashedFill from "@still/ui/icons/clone-image-dashed-fill";
 import IconGlobePointerFill from "@still/ui/icons/globe-pointer-fill";
+import IconHeartFilled from "@still/ui/icons/heart-filled";
 import IconLinkFill from "@still/ui/icons/link-fill";
 import IconListPlay from "@still/ui/icons/list-play";
 import IconLockFill from "@still/ui/icons/lock-fill";
@@ -79,6 +80,7 @@ export function ListLobbyPoster({
 
 	const listHref = `/lists/${list.id}`;
 	const isFavoritesList = list.systemKind === "favorites";
+	const isSharedList = list.listRole === "collaborator";
 
 	const shellClassName = cn(
 		"group block w-full min-w-0",
@@ -96,6 +98,7 @@ export function ListLobbyPoster({
 	);
 
 	const metaLine = `${list.itemsCount} ${list.itemsCount === 1 ? "title" : "titles"}`;
+	const likesLine = `${list.likesCount} ${list.likesCount === 1 ? "like" : "likes"}`;
 
 	const handleCopyLink = useCallback(async () => {
 		const href =
@@ -224,16 +227,18 @@ export function ListLobbyPoster({
 			},
 		];
 
-		items.push({
-			id: "cover",
-			label: "Change cover",
-			shortcut: "V",
-			disabled: uploadingCover,
-			icon: <IconCloneImageDashedFill className="opacity-90" aria-hidden />,
-			onSelect: openCoverFilePicker,
-		});
+		if (!isSharedList) {
+			items.push({
+				id: "cover",
+				label: "Change cover",
+				shortcut: "V",
+				disabled: uploadingCover,
+				icon: <IconCloneImageDashedFill className="opacity-90" aria-hidden />,
+				onSelect: openCoverFilePicker,
+			});
+		}
 
-		if (!isFavoritesList) {
+		if (!isFavoritesList && !isSharedList) {
 			items.push(
 				{
 					id: "edit",
@@ -278,6 +283,7 @@ export function ListLobbyPoster({
 		handleCopyLink,
 		handleTogglePrivacy,
 		isFavoritesList,
+		isSharedList,
 		isPublic,
 		listHref,
 		onOpenChange,
@@ -292,7 +298,7 @@ export function ListLobbyPoster({
 			<Link
 				href={listHref}
 				className={shellClassName}
-				aria-label={`${displayTitle} — ${metaLine}`}
+				aria-label={`${displayTitle} — ${metaLine}, ${likesLine}`}
 				onContextMenu={onContextMenu}
 				onPointerDown={onPointerDown}
 			>
@@ -308,31 +314,47 @@ export function ListLobbyPoster({
 							unoptimized={isListCoverProxySrc(displayPosterUrl)}
 						/>
 					) : (
-						<div className="grid size-full place-items-center gap-2 p-3">
+						<div className="grid size-full place-items-center p-3">
 							<span className="grid size-10 shrink-0 place-items-center rounded-full bg-background text-desert-orange shadow-sm">
 								<IconListPlay className="block size-4 shrink-0" aria-hidden />
 							</span>
-							<p className="line-clamp-4 max-w-full text-pretty text-center font-medium text-foreground text-xs leading-snug sm:text-sm">
-								{displayTitle}
-							</p>
 						</div>
 					)}
-					{displayPosterUrl ? (
-						<div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center bg-linear-to-t from-card/95 via-card/55 to-transparent px-3 pt-12 pb-3.5 text-center sm:px-4 sm:pb-4">
-							<p className="line-clamp-2 max-w-[92%] font-medium text-foreground text-xs leading-snug sm:text-sm">
-								{displayTitle}
-							</p>
-							<p className="mt-1 flex max-w-full flex-wrap items-center justify-center gap-1.5 text-[10px] text-muted-foreground tabular-nums">
-								<span>{metaLine}</span>
-								{!isPublic ? (
-									<span className="inline-flex items-center gap-0.5 rounded-full bg-background/80 px-1.5 py-0.5 font-medium uppercase tracking-wide">
-										<IconLockFill className="size-2.5" aria-hidden />
-										Private
-									</span>
-								) : null}
-							</p>
-						</div>
-					) : null}
+					<div
+						className={cn(
+							"pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center bg-linear-to-t from-card/95 via-card/55 to-transparent px-3 pb-3.5 text-center sm:px-4 sm:pb-4",
+							displayPosterUrl ? "pt-12" : "pt-8",
+						)}
+					>
+						<p className="line-clamp-2 max-w-[92%] font-medium text-foreground text-xs leading-snug sm:text-sm">
+							{displayTitle}
+						</p>
+						<p className="mt-1 flex max-w-full flex-wrap items-center justify-center gap-1.5 text-[10px] text-muted-foreground tabular-nums">
+							<span>{metaLine}</span>
+							<span aria-hidden>·</span>
+							<span className="inline-flex items-center gap-0.5">
+								<IconHeartFilled
+									className="size-2.5 shrink-0 opacity-80"
+									aria-hidden
+								/>
+								{likesLine}
+							</span>
+							{isSharedList ? (
+								<span className="inline-flex items-center gap-0.5 rounded-full bg-background/80 px-1.5 py-0.5 font-medium uppercase tracking-wide">
+									Shared
+								</span>
+							) : null}
+							{!isPublic && !isSharedList ? (
+								<span className="inline-flex items-center gap-0.5 rounded-full bg-background/80 px-1.5 py-0.5 font-medium uppercase tracking-wide">
+									<IconLockFill className="size-2.5" aria-hidden />
+									Private
+								</span>
+							) : null}
+							{isSharedList && list.ownerHandle ? (
+								<span className="truncate">@{list.ownerHandle}</span>
+							) : null}
+						</p>
+					</div>
 				</div>
 			</Link>
 

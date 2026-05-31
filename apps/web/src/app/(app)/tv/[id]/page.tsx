@@ -8,6 +8,7 @@ import { StarRating } from "@/components/rating/star-rating";
 import { TvDetailAboutPanel } from "@/components/tv/tv-detail-about-panel";
 import { TvDetailClientRoot } from "@/components/tv/tv-detail-client-root";
 import { TvDetailPrimaryActions } from "@/components/tv/tv-detail-primary-actions";
+import { APP_NAME } from "@/lib/app-brand";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { formatRuntime } from "@/lib/format";
 import {
@@ -121,6 +122,13 @@ type TvDetail = {
 	paletteMuted: string | null;
 	paletteForeground: string | null;
 	community: CommunityShape;
+	malEnrichment?: {
+		malId: number;
+		score: number | null;
+		rank: number | null;
+		popularity: number | null;
+		status: string | null;
+	} | null;
 	tmdbJson: TmdbJsonShape;
 };
 
@@ -289,7 +297,7 @@ export default async function TvShowPage({
 						variant="marquee"
 					/>
 					<span className="text-muted-foreground text-xs">
-						{data.community.reviewsCount} reviews on Still
+						{data.community.reviewsCount} reviews on {APP_NAME}
 					</span>
 				</div>
 			) : null}
@@ -335,6 +343,7 @@ export default async function TvShowPage({
 							recognitionEntries={recognitionEntries}
 							recognitionPresent={recognitionPresent}
 							moreLikeThis={moreLikeThis}
+							malEnrichment={data.malEnrichment ?? null}
 						/>
 					}
 				/>

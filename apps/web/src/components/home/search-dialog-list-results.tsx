@@ -6,25 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { ListBoardRow } from "@/lib/list-board-row";
-import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
-
-function tmdbPosterSrc(path: string | null): string | null {
-	if (!path?.length) return null;
-	if (path.startsWith("http")) return path;
-	const fragment = path.startsWith("/") ? path : `/${path}`;
-	return `https://image.tmdb.org/t/p/w185${fragment}`;
-}
-
-function listThumbSrc(list: ListBoardRow): string | null {
-	const custom = resolveListCoverImageSrc(
-		list.id,
-		list.coverImageUrl,
-		list.updatedAt,
-	);
-	if (custom) return custom;
-	const path = list.coverPosterPaths?.[0] ?? null;
-	return tmdbPosterSrc(path);
-}
+import { listBoardRowPosterUrl } from "@/lib/list-cover-image";
 
 /**
  * List rows for the search dialog when the `lists` tag is active.
@@ -39,7 +21,7 @@ export function SearchDialogListResults({
 	return (
 		<ul className="mt-2 space-y-1 pb-1">
 			{lists.map((row) => {
-				const thumb = listThumbSrc(row);
+				const thumb = listBoardRowPosterUrl(row, "w185");
 				const href = `/lists/${row.id}`;
 				return (
 					<li key={row.id}>

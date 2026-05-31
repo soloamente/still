@@ -8,6 +8,10 @@ export const APP_THEME_IDS = [
 	"theme-lobby-light",
 
 	"theme-noir",
+
+	"theme-ember",
+
+	"theme-midnight",
 ] as const;
 
 export type AppThemeId = (typeof APP_THEME_IDS)[number];
@@ -20,6 +24,10 @@ const THEME_TIERS: Record<AppThemeId, AppThemeTier> = {
 	"theme-lobby-light": "free",
 
 	"theme-noir": "free",
+
+	"theme-ember": "pro",
+
+	"theme-midnight": "pro",
 };
 
 export function isAppThemeId(value: unknown): value is AppThemeId {

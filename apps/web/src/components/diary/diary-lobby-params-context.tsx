@@ -6,65 +6,137 @@ import {
 	type ReactNode,
 	useCallback,
 	useContext,
+	useEffect,
 	useMemo,
+	useState,
 } from "react";
 
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 import {
 	buildDiaryLobbyHref,
+	type DiaryLedgerTabId,
 	type DiaryLobbyOrder,
 	parseDiaryLobbyOrder,
 	parseDiaryLobbyVenue,
+	resolveDiaryLedgerTab,
 } from "@/lib/diary-lobby-order";
 import type { HomeVenue } from "@/lib/home-venue";
-import { useOptimisticLobbyParam } from "@/lib/use-optimistic-lobby-param";
 
-interface DiaryLobbyParamsContextValue {
+interface DiaryLobbySnapshot {
 	order: DiaryLobbyOrder;
 	venue: HomeVenue;
+	ledgerTab: DiaryLedgerTabId;
+}
+
+interface DiaryLobbyParamsContextValue extends DiaryLobbySnapshot {
 	selectOrder: (order: DiaryLobbyOrder) => void;
 	selectVenue: (venue: HomeVenue) => void;
+	selectTab: (tab: DiaryLedgerTabId) => void;
 }
 
 const DiaryLobbyParamsContext =
 	createContext<DiaryLobbyParamsContextValue | null>(null);
 
+function snapshotFromSearchParams(
+	searchParams: URLSearchParams,
+	movieCount: number,
+	tvCount: number,
+): DiaryLobbySnapshot {
+	return {
+		order: parseDiaryLobbyOrder(searchParams.get("order")),
+		venue: parseDiaryLobbyVenue(searchParams.get("venue")),
+		ledgerTab: resolveDiaryLedgerTab(
+			searchParams.get("tab"),
+			movieCount,
+			tvCount,
+		),
+	};
+}
+
 export function DiaryLobbyParamsProvider({
+	movieCount,
+	tvCount,
 	children,
 }: {
+	/** Listed diary rows with a movie join — drives default `?tab=`. */
+	movieCount: number;
+	/** Listed diary rows with a TV join — drives default `?tab=`. */
+	tvCount: number;
 	children: ReactNode;
 }) {
 	const searchParams = useSearchParams();
 	const { navigate } = useLobbyNavigation();
-	const urlOrder = parseDiaryLobbyOrder(searchParams.get("order"));
-	const urlVenue = parseDiaryLobbyVenue(searchParams.get("venue"));
-	const orderState = useOptimisticLobbyParam(urlOrder);
-	const venueState = useOptimisticLobbyParam(urlVenue);
+
+	const urlState = useMemo(
+		() =>
+			snapshotFromSearchParams(
+				new URLSearchParams(searchParams.toString()),
+				movieCount,
+				tvCount,
+			),
+		[searchParams, movieCount, tvCount],
+	);
+
+	const [pending, setPending] = useState<DiaryLobbySnapshot | null>(null);
+
+	useEffect(() => {
+		if (pending == null) return;
+		if (
+			pending.order === urlState.order &&
+			pending.venue === urlState.venue &&
+			pending.ledgerTab === urlState.ledgerTab
+		) {
+			setPending(null);
+		}
+	}, [pending, urlState]);
+
+	const active = pending ?? urlState;
+
+	const applySnapshot = useCallback(
+		(next: DiaryLobbySnapshot) => {
+			setPending(next);
+			navigate(
+				buildDiaryLobbyHref({
+					order: next.order,
+					venue: next.venue,
+					tab: next.ledgerTab,
+				}),
+			);
+		},
+		[navigate],
+	);
 
 	const selectOrder = useCallback(
 		(order: DiaryLobbyOrder) => {
-			orderState.setOptimistic(order);
-			navigate(buildDiaryLobbyHref({ order, venue: venueState.value }));
+			applySnapshot({ ...active, order });
 		},
-		[navigate, orderState.setOptimistic, venueState.value],
+		[active, applySnapshot],
 	);
 
 	const selectVenue = useCallback(
 		(venue: HomeVenue) => {
-			venueState.setOptimistic(venue);
-			navigate(buildDiaryLobbyHref({ order: orderState.value, venue }));
+			applySnapshot({ ...active, venue });
 		},
-		[navigate, orderState.value, venueState.setOptimistic],
+		[active, applySnapshot],
+	);
+
+	const selectTab = useCallback(
+		(tab: DiaryLedgerTabId) => {
+			applySnapshot({ ...active, ledgerTab: tab });
+		},
+		[active, applySnapshot],
 	);
 
 	const value = useMemo(
-		() => ({
-			order: orderState.value,
-			venue: venueState.value,
+		(): DiaryLobbyParamsContextValue => ({
+			order: active.order,
+			venue: active.venue,
+			ledgerTab: active.ledgerTab,
 			selectOrder,
 			selectVenue,
+			selectTab,
 		}),
-		[orderState.value, venueState.value, selectOrder, selectVenue],
+		[active, selectOrder, selectVenue, selectTab],
 	);
 
 	return (

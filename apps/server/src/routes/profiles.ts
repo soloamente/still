@@ -12,11 +12,35 @@ import {
 } from "@still/db";
 import { env } from "@still/env/server";
 import { get, put } from "@vercel/blob";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, gte, ilike, ne, or, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
+import {
+	ACTIVITY_SIGNATURE_DAYS,
+	buildActivitySignature,
+} from "../lib/activity-signature";
+import { fetchCreatorAnalyticsForUser } from "../lib/creator-analytics";
+import {
+	fetchCuratorSpotlightPatrons,
+	resolveCuratorRecognition,
+} from "../lib/creator-recognition";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
+import {
+	isProfileAccentId,
+	PROFILE_PREF_PROFILE_ACCENT,
+	profileAccentHex,
+} from "../lib/profile-appearance";
+import {
+	hydratePinnedReviews,
+	validatePinnedReviewIdsForUser,
+} from "../lib/profile-pinned-reviews";
+import {
+	normalizeProfileSearchQuery,
+	rankProfileSearchHits,
+} from "../lib/profile-search";
 import { hit } from "../lib/rate-limit";
+import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
+import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
 import { sanitizeAppearancePreferences } from "../lib/sanitize-appearance-preferences";
 
@@ -122,12 +146,30 @@ export const profilesRoute = new Elysia({
 			for (const [k, v] of Object.entries(updates))
 				if (v !== undefined) set[k] = v;
 
+			// Pro profile accent preset mirrors into public `accentColor` for visitors.
+			if (preferencesForUpdate !== undefined) {
+				const accentPref = preferencesForUpdate[PROFILE_PREF_PROFILE_ACCENT];
+				if (isProfileAccentId(accentPref)) {
+					set.accentColor = profileAccentHex(accentPref);
+				}
+			}
+
 			if (existing) {
 				const [row] = await db
 					.update(profile)
 					.set(set)
 					.where(eq(profile.userId, user.id))
 					.returning();
+				if (body.markOnboarded) {
+					void recomputeUserTasteSignature(user.id).catch((err) => {
+						console.error("[profiles/me] taste recompute failed", err);
+					});
+					if (!existing.onboardedAt) {
+						void recordProductEvent(user.id, "onboarding.completed", {
+							source: "profiles.me.patch",
+						});
+					}
+				}
 				return row;
 			}
 			if (!body.handle || !body.displayName) {
@@ -145,6 +187,14 @@ export const profilesRoute = new Elysia({
 					...set,
 				} as typeof profile.$inferInsert)
 				.returning();
+			if (body.markOnboarded) {
+				void recomputeUserTasteSignature(user.id).catch((err) => {
+					console.error("[profiles/me] taste recompute failed", err);
+				});
+				void recordProductEvent(user.id, "onboarding.completed", {
+					source: "profiles.me.insert",
+				});
+			}
 			return row;
 		},
 		{
@@ -175,6 +225,53 @@ export const profilesRoute = new Elysia({
 			.limit(1);
 		return row ?? null;
 	})
+	.get("/me/creator-analytics", async ({ user, status }) => {
+		if (!user) return status(401, "Sign in");
+		const analytics = await fetchCreatorAnalyticsForUser(user.id);
+		if (!analytics) return { eligible: false as const };
+		return { eligible: true as const, analytics };
+	})
+	.post("/me/recompute-taste-signature", async ({ user, status }) => {
+		if (!user) return status(401, "Sign in");
+		if (
+			!hit(`profile:taste:${user.id}`, { limit: 12, windowMs: 60 * 60_000 }).ok
+		) {
+			return status(429, "Slow down");
+		}
+		const payload = await recomputeUserTasteSignature(user.id);
+		return payload;
+	})
+	/** Pin up to 3 signature reviews on profile hero (ST.3). */
+	.patch(
+		"/me/pins",
+		async ({ body: rawBody, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			if (!hit(`profile:pins:${user.id}`, { limit: 30, windowMs: 60_000 }).ok) {
+				return status(429, "Slow down");
+			}
+			const body = routeBody<{ reviewIds: string[] }>(rawBody);
+			const validated = await validatePinnedReviewIdsForUser(
+				user.id,
+				body.reviewIds,
+			);
+			if (!validated.ok) {
+				return status(validated.status, validated.error);
+			}
+			const [row] = await db
+				.update(profile)
+				.set({ pinnedReviewIds: validated.reviewIds })
+				.where(eq(profile.userId, user.id))
+				.returning({ pinnedReviewIds: profile.pinnedReviewIds });
+			return {
+				pinnedReviewIds: row?.pinnedReviewIds ?? [],
+			};
+		},
+		{
+			body: t.Object({
+				reviewIds: t.Array(t.String(), { maxItems: 3 }),
+			}),
+		},
+	)
 	/**
 	 * Banner upload: multipart form with field `file`. Uses Vercel Blob with
 	 * `BLOB_READ_WRITE_TOKEN` from **server** env (apps/server/.env), not Next.js.
@@ -443,6 +540,77 @@ export const profilesRoute = new Elysia({
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)
+	/** Public profile typeahead — following/mutual boosted when viewer is signed in. */
+	.get(
+		"/search",
+		async ({ query, user: viewer, status }) => {
+			const q = normalizeProfileSearchQuery(query.q ?? "");
+			if (!q) return status(400, "Query required");
+			const limit = Math.min(
+				Math.max(Number.parseInt(query.limit ?? "8", 10) || 8, 1),
+				20,
+			);
+			const pattern = `%${q}%`;
+			const handlePrefix = `${q}%`;
+			const rows = await db
+				.select({
+					userId: user.id,
+					handle: profile.handle,
+					displayName: profile.displayName,
+					image: user.image,
+					isMutual: follow.isMutual,
+					followerId: follow.followerId,
+				})
+				.from(profile)
+				.innerJoin(user, eq(profile.userId, user.id))
+				.leftJoin(
+					follow,
+					viewer
+						? and(
+								eq(follow.followerId, viewer.id),
+								eq(follow.followingId, profile.userId),
+							)
+						: sql`false`,
+				)
+				.where(
+					and(
+						eq(profile.isPrivate, false),
+						or(
+							ilike(profile.handle, handlePrefix),
+							ilike(profile.displayName, pattern),
+						),
+						...(viewer ? [ne(profile.userId, viewer.id)] : []),
+					),
+				)
+				.limit(50);
+			return rankProfileSearchHits(
+				rows.map((row) => ({
+					userId: row.userId,
+					handle: row.handle,
+					displayName: row.displayName,
+					image: row.image,
+					isFollowing: row.followerId != null,
+					isMutual: row.isMutual ?? false,
+				})),
+				q,
+			).slice(0, limit);
+		},
+		{
+			query: t.Object({
+				q: t.String(),
+				limit: t.Optional(t.String()),
+			}),
+		},
+	)
+	.get(
+		"/curators/spotlight",
+		async ({ query }) => {
+			const limit = Math.min(Number(query.limit ?? 6), 12);
+			const patrons = await fetchCuratorSpotlightPatrons(limit);
+			return { patrons };
+		},
+		{ query: t.Object({ limit: t.Optional(t.String()) }) },
+	)
 	// Lightweight availability check for the signup form.
 	.get(
 		"/check-handle/:handle",
@@ -459,6 +627,38 @@ export const profilesRoute = new Elysia({
 				available: !taken,
 				reason: taken ? ("taken" as const) : ("ok" as const),
 			};
+		},
+		{ params: t.Object({ handle: t.String() }) },
+	)
+	/** Diary heatmap for profile — ST.2 activity signature. */
+	.get(
+		"/:handle/activity-signature",
+		async ({ params, user: viewer, status }) => {
+			const handle = params.handle.toLowerCase();
+			const [row] = await db
+				.select({ userId: profile.userId, isPrivate: profile.isPrivate })
+				.from(profile)
+				.where(eq(profile.handle, handle))
+				.limit(1);
+			if (!row) return status(404, "Not found");
+
+			const isOwner = viewer?.id === row.userId;
+			if (row.isPrivate && !isOwner) return status(404, "Not found");
+
+			const windowStart = new Date();
+			windowStart.setUTCDate(
+				windowStart.getUTCDate() - (ACTIVITY_SIGNATURE_DAYS - 1),
+			);
+			windowStart.setUTCHours(0, 0, 0, 0);
+
+			const rows = await db
+				.select({ watchedAt: log.watchedAt })
+				.from(log)
+				.where(
+					and(eq(log.userId, row.userId), gte(log.watchedAt, windowStart)),
+				);
+
+			return buildActivitySignature(rows.map((r) => r.watchedAt));
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)
@@ -524,6 +724,11 @@ export const profilesRoute = new Elysia({
 				.orderBy(desc(review.publishedAt))
 				.limit(3);
 
+			const pinnedReviews = await hydratePinnedReviews(
+				row.user.id,
+				row.profile.pinnedReviewIds,
+			);
+
 			// Popular lists (public only) — poster paths hydrated for profile list rows.
 			const listRows = await db
 				.select()
@@ -542,6 +747,8 @@ export const profilesRoute = new Elysia({
 				)
 				.limit(8);
 
+			const curator = await resolveCuratorRecognition(row.user.id);
+
 			return {
 				user: { id: row.user.id, name: row.user.name, image: row.user.image },
 				profile: row.profile,
@@ -549,9 +756,11 @@ export const profilesRoute = new Elysia({
 					followers: Number(followCount?.followers ?? 0),
 					following: Number(followingCount?.following ?? 0),
 				},
+				creator: curator,
 				isFollowing,
 				recentlyWatched: recent,
 				recentReviews,
+				pinnedReviews,
 				lists,
 				pinnedBadges: pinned,
 			};

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { isListCoverProxySrc } from "@/lib/list-cover-image";
+
 /** Compact tile for review cards; `activity` = uniform portrait on community feed rows. */
 export type FeedListingThumbLayout = "compact" | "activity";
 
@@ -53,6 +55,7 @@ export function FeedListingThumb({
 			fill
 			sizes={isActivity ? "88px" : "56px"}
 			className="object-cover"
+			unoptimized={isListCoverProxySrc(posterUrl)}
 		/>
 	) : (
 		<div

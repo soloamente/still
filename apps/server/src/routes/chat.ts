@@ -3,7 +3,6 @@ import {
 	chatMessage,
 	chatThread,
 	db,
-	notification,
 	profile,
 	user,
 } from "@still/db";
@@ -12,6 +11,7 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
+import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
 import { broadcast } from "../ws/hub";
@@ -229,13 +229,13 @@ export const chatRoute = new Elysia({ prefix: "/api/chat", tags: ["chat"] })
 				.where(eq(chatMember.threadId, params.id));
 			for (const m of members) {
 				if (m.userId === viewer.id) continue;
-				await db.insert(notification).values({
-					id: makeId("ntf"),
+				await deliverNotification({
 					userId: m.userId,
 					kind: "chat.message",
 					title: `${viewer.name ?? "Someone"} sent a message`,
 					body: preview,
 					payload: { threadId: params.id, messageId: id, href: "/chat" },
+					context: { actorUserId: viewer.id },
 				});
 			}
 

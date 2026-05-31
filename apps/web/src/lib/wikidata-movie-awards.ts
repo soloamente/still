@@ -13,7 +13,7 @@ export interface WikidataMovieAward {
 }
 
 const WIKIDATA_SPARQL = "https://query.wikidata.org/sparql";
-const USER_AGENT = "Still/1.0 (movie detail; +https://github.com)";
+const USER_AGENT = "Sense/1.0 (movie detail; +https://github.com)";
 
 function parseAwardYear(raw: string | undefined): number | null {
 	if (!raw) return null;

@@ -14,7 +14,7 @@ import {
 	LANDING_HERO_SUBLINE_CLASS,
 } from "./landing-mobbin-hero";
 /**
- * Mobbin-pattern hero on Still’s dark canvas — centered copy, dual pill CTAs,
+ * Mobbin-pattern hero on Sense’s dark canvas — centered copy, dual pill CTAs,
  * product preview well with image placeholder card inside.
  */
 export function LandingHero() {

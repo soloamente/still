@@ -82,10 +82,15 @@ type CatalogSearchDialogStore = {
 	/** Set by `CatalogSearchDialogRoot` so opens are synchronous (no `useEffect` frame delay). */
 	imperativelyOpen: ((anchor: DOMRect) => void) | null;
 	registerImperativelyOpen: (fn: ((anchor: DOMRect) => void) | null) => void;
+	/** Set by `CatalogSearchDialogRoot` so ⌘⇧K go-to can dismiss the catalog sheet first. */
+	imperativelyClose: (() => void) | null;
+	registerImperativelyClose: (fn: (() => void) | null) => void;
 	openRequestId: number;
 	pendingAnchor: DOMRect | null;
 	/** Open the catalog search sheet; anchor prefers the sticky pill, then nav search, then shortcut fallback. */
 	requestOpen: (anchorRect?: DOMRect | null) => void;
+	/** Close the catalog sheet when another launcher (e.g. go-to) takes focus. */
+	requestClose: () => void;
 };
 
 function resolveOpenAnchor(
@@ -115,6 +120,11 @@ export const useCatalogSearchDialog = create<CatalogSearchDialogStore>(
 		setShellUi: (shellUi) => set({ shellUi }),
 		imperativelyOpen: null,
 		registerImperativelyOpen: (fn) => set({ imperativelyOpen: fn }),
+		imperativelyClose: null,
+		registerImperativelyClose: (fn) => set({ imperativelyClose: fn }),
+		requestClose: () => {
+			get().imperativelyClose?.();
+		},
 		openRequestId: 0,
 		pendingAnchor: null,
 		requestOpen: (anchorRect) => {

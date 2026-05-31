@@ -80,6 +80,72 @@ export async function fetchMoviesSearch(
 	};
 }
 
+/** Public profile typeahead — `GET /api/profiles/search`. */
+export async function fetchProfileSearch(
+	qRaw: string,
+	init?: Pick<RequestInit, "signal"> & { limit?: number },
+) {
+	const url = new URL("/api/profiles/search", stillApiOrigin());
+	const q = qRaw.trim().replace(/^@+/, "").trim();
+	url.searchParams.set("q", q);
+	const limit = init?.limit;
+	if (limit !== undefined && Number.isFinite(limit) && limit > 0) {
+		url.searchParams.set("limit", String(Math.floor(limit)));
+	}
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+export type FollowSuggestionRow = {
+	user_id: string;
+	name: string;
+	image: string | null;
+	handle: string | null;
+	shared_follows: number;
+};
+
+/** Taste-overlap patron picks — `GET /api/taste/suggested-patrons` (SN.16). */
+export async function fetchTasteSuggestedPatrons(
+	init?: Pick<RequestInit, "signal">,
+) {
+	const url = new URL("/api/taste/suggested-patrons", stillApiOrigin());
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+/** People followed by people you follow — empty-query search rail. */
+export async function fetchFollowSuggestions(
+	init?: Pick<RequestInit, "signal">,
+) {
+	const url = new URL("/api/follows/suggestions", stillApiOrigin());
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
 /** Signed-in patron list search — `GET /api/lists/search`. */
 export async function fetchListsSearch(
 	qRaw: string,
@@ -214,6 +280,8 @@ export async function fetchMoviesDiscover(
 		region?: string;
 		/** Optional YYYY-MM-DD — server maps to TMDb `primary_release_date.gte`. */
 		releaseGte?: string;
+		/** TMDb discover `with_text_query` — server `?q=`. */
+		q?: string;
 	},
 ) {
 	const url = new URL("/api/movies/discover", stillApiOrigin());
@@ -269,6 +337,10 @@ export async function fetchMoviesDiscover(
 	const rg = init?.releaseGte?.trim();
 	if (rg && /^\d{4}-\d{2}-\d{2}$/.test(rg)) {
 		url.searchParams.set("release_gte", rg);
+	}
+	const textQ = init?.q?.trim();
+	if (textQ) {
+		url.searchParams.set("q", textQ);
 	}
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
@@ -340,6 +412,8 @@ export async function fetchTvDiscover(
 		watchRegion?: string;
 		/** `ended` / `completed` for finished series; `returning` / `ongoing` for returning. */
 		status?: string;
+		/** TMDb discover `with_text_query` — server `?q=`. */
+		q?: string;
 	},
 ) {
 	const url = new URL("/api/tv/discover", stillApiOrigin());
@@ -396,6 +470,10 @@ export async function fetchTvDiscover(
 	const st = init?.status?.trim().toLowerCase();
 	if (st) {
 		url.searchParams.set("status", st);
+	}
+	const textQ = init?.q?.trim();
+	if (textQ) {
+		url.searchParams.set("q", textQ);
 	}
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
@@ -486,6 +564,26 @@ export async function fetchBadgesRecent(sinceIso: string) {
 	return {
 		data: response.ok ? data : null,
 		error: response.ok ? null : { status: response.status },
+		response,
+	};
+}
+
+/** Completionist challenge catalog — `GET /api/challenges/catalog`. */
+export async function fetchAchievementsChallengesCatalog(
+	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
+) {
+	const url = new URL("/api/challenges/catalog", stillApiOrigin());
+	const { cookieHeader, signal, cache } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		signal,
+		cache: cache ?? "no-store",
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	const data = (await response.json()) as { challenges?: unknown[] } | null;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
 		response,
 	};
 }
@@ -790,6 +888,37 @@ export async function postWatchlistAdd(
  * Ranked list reorder mutation — body must include the **full** ordered set of
  * list item ids so the server can validate and persist canonical positions.
  */
+/** PATCH per-title curator note on a list (`SN.10` annotations). */
+export async function patchListItemNote(
+	listId: string,
+	itemId: string,
+	note: string,
+) {
+	const trimmed = note.trim();
+	const response = await fetch(
+		new URL(
+			`/api/lists/${encodeURIComponent(listId)}/items/item/${encodeURIComponent(itemId)}`,
+			stillApiOrigin(),
+		),
+		{
+			method: "PATCH",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify({ note: trimmed.length > 0 ? trimmed : null }),
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
 export async function postListReorder(listId: string, itemIds: string[]) {
 	const response = await fetch(
 		new URL(

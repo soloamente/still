@@ -12,7 +12,7 @@ import {
 } from "react";
 
 import { useRootHtmlFontClass } from "@/components/app/root-html-font-class-context";
-import { type AppThemeClass, resolveAppTheme } from "@/lib/app-themes";
+import { type AppThemeClass, resolveAppThemeForPatron } from "@/lib/app-themes";
 import { readAppThemePref } from "@/lib/profile-preferences";
 import { applyAppearanceToDocument } from "@/lib/root-html-appearance";
 
@@ -38,9 +38,11 @@ export function useAppThemeShell() {
 export function AppThemeShell({
 	children,
 	initialAppearance,
+	isPro = false,
 }: {
 	children: ReactNode;
 	initialAppearance?: InitialAppearancePrefs;
+	isPro?: boolean;
 }) {
 	const fontClass = useRootHtmlFontClass();
 	const { theme, resolvedTheme, setTheme } = useTheme();
@@ -48,8 +50,12 @@ export function AppThemeShell({
 	const hydratedClientRef = useRef(false);
 
 	const profileTheme = useMemo(
-		() => readAppThemePref(initialAppearance ?? null),
-		[initialAppearance],
+		() =>
+			resolveAppThemeForPatron(
+				readAppThemePref(initialAppearance ?? null),
+				isPro,
+			),
+		[initialAppearance, isPro],
 	);
 
 	const syncDocument = useCallback(
@@ -81,10 +87,10 @@ export function AppThemeShell({
 	useEffect(() => {
 		if (hydratedClientRef.current || theme === undefined || !fontClass) return;
 		hydratedClientRef.current = true;
-		const active = resolveAppTheme(resolvedTheme ?? theme);
+		const active = resolveAppThemeForPatron(resolvedTheme ?? theme, isPro);
 		syncDocument(active);
 		setTheme(active);
-	}, [fontClass, resolvedTheme, setTheme, syncDocument, theme]);
+	}, [fontClass, isPro, resolvedTheme, setTheme, syncDocument, theme]);
 
 	const value = useMemo(
 		() => ({

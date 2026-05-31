@@ -25,4 +25,14 @@ describe("buildHomeLobbyHref", () => {
 			}),
 		).toBe("/home?browse=community&sort=activity&period=week");
 	});
+
+	test("TV seasonal anime serializes animeSeason=1", () => {
+		expect(
+			buildHomeLobbyHref({
+				browse: "tv",
+				sort: "popular",
+				animeSeason: true,
+			}),
+		).toBe("/home?browse=tv&sort=popular&animeSeason=1");
+	});
 });

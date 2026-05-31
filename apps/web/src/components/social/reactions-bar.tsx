@@ -69,7 +69,15 @@ export function ReactionsBar({
 						liked && "bg-foreground text-background",
 					)}
 					aria-pressed={liked}
-					aria-label={liked ? "Unlike review" : "Like review"}
+					aria-label={
+						targetKind === "list"
+							? liked
+								? "Unlike list"
+								: "Like list"
+							: liked
+								? "Unlike review"
+								: "Like review"
+					}
 					onClick={() => void toggle()}
 				>
 					{liked ? (

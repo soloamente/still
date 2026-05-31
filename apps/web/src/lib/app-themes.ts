@@ -9,10 +9,16 @@ export const APP_THEME_CLASS_LOBBY_LIGHT = "theme-lobby-light" as const;
 
 export const APP_THEME_CLASS_NOIR = "theme-noir" as const;
 
+export const APP_THEME_CLASS_EMBER = "theme-ember" as const;
+
+export const APP_THEME_CLASS_MIDNIGHT = "theme-midnight" as const;
+
 export type AppThemeClass =
 	| typeof APP_THEME_CLASS_THEATER
 	| typeof APP_THEME_CLASS_LOBBY_LIGHT
-	| typeof APP_THEME_CLASS_NOIR;
+	| typeof APP_THEME_CLASS_NOIR
+	| typeof APP_THEME_CLASS_EMBER
+	| typeof APP_THEME_CLASS_MIDNIGHT;
 
 export type AppThemeTier = "free" | "pro";
 
@@ -34,7 +40,7 @@ export const APP_THEMES = {
 	[APP_THEME_CLASS_THEATER]: {
 		className: APP_THEME_CLASS_THEATER,
 
-		label: "Theater",
+		label: "Calm",
 
 		tier: "free",
 
@@ -50,7 +56,7 @@ export const APP_THEMES = {
 	[APP_THEME_CLASS_LOBBY_LIGHT]: {
 		className: APP_THEME_CLASS_LOBBY_LIGHT,
 
-		label: "Lobby Light",
+		label: "Lucid",
 
 		tier: "free",
 
@@ -66,7 +72,7 @@ export const APP_THEMES = {
 	[APP_THEME_CLASS_NOIR]: {
 		className: APP_THEME_CLASS_NOIR,
 
-		label: "Noir",
+		label: "Pensive",
 
 		tier: "free",
 
@@ -76,6 +82,38 @@ export const APP_THEMES = {
 			raised: "oklch(0.14 0.02 250)",
 
 			accent: "#9a4f2a",
+		},
+	},
+
+	[APP_THEME_CLASS_EMBER]: {
+		className: APP_THEME_CLASS_EMBER,
+
+		label: "Cozy",
+
+		tier: "pro",
+
+		preview: {
+			canvas: "oklch(0.22 0.04 35)",
+
+			raised: "oklch(0.17 0.035 35)",
+
+			accent: "#e07a3a",
+		},
+	},
+
+	[APP_THEME_CLASS_MIDNIGHT]: {
+		className: APP_THEME_CLASS_MIDNIGHT,
+
+		label: "Dreamy",
+
+		tier: "pro",
+
+		preview: {
+			canvas: "oklch(0.16 0.03 280)",
+
+			raised: "oklch(0.12 0.028 280)",
+
+			accent: "#7b8cff",
 		},
 	},
 } as const satisfies Record<AppThemeClass, AppThemeDefinition>;
@@ -118,6 +156,18 @@ export function resolveAppTheme(raw: unknown): AppThemeClass {
 	if (alias) return alias;
 
 	return DEFAULT_APP_THEME_CLASS;
+}
+
+/** Non-Pro patrons cannot keep Pro palette classes — fall back to Calm (`theme-theater`). */
+export function resolveAppThemeForPatron(
+	raw: unknown,
+	isPro: boolean,
+): AppThemeClass {
+	const theme = resolveAppTheme(raw);
+	if (appThemeTier(theme) === "pro" && !isPro) {
+		return DEFAULT_APP_THEME_CLASS;
+	}
+	return theme;
 }
 
 export function isAppThemeLight(theme: AppThemeClass): boolean {

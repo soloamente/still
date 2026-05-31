@@ -12,8 +12,8 @@ import {
 	AuthMotionInput,
 } from "@/components/auth/auth-motion-field";
 import { AuthSubmitButton } from "@/components/auth/auth-submit-button";
-
 import { api } from "@/lib/api";
+import { APP_NAME } from "@/lib/app-brand";
 import { authClient } from "@/lib/auth-client";
 import { fetchProfileHandleAvailable } from "@/lib/still-api-fetch";
 
@@ -97,7 +97,7 @@ export function SignUpForm() {
 						} catch (err) {
 							console.error("[sign-up] profile bootstrap failed", err);
 						}
-						toast.success("Welcome to Still");
+						toast.success(`Welcome to ${APP_NAME}`);
 						router.replace("/onboarding");
 						router.refresh();
 					},

@@ -8,7 +8,7 @@ import {
 	review,
 	user,
 } from "@still/db";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, isNotNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
@@ -16,9 +16,24 @@ import {
 	resolveCommunityPeriodQuery,
 	withinCommunityPeriod,
 } from "../lib/community-period";
+import { reviewEngagementOrderSql } from "../lib/creator-recognition";
 import { makeId } from "../lib/cuid";
+import {
+	areUsersMutualFollows,
+	deliverNotification,
+} from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
+import { movieReviewNotificationHref } from "../lib/review-notification-href";
 import { routeBody } from "../lib/route-body";
+import { storedRatingToDisplayTen } from "../lib/sense-taste-overlap";
+
+function diaryStoredToReviewApiRating(stored: number | null): number | null {
+	if (stored == null) return null;
+	const display = storedRatingToDisplayTen(stored);
+	const rounded = Math.round(display);
+	if (rounded < 1) return null;
+	return Math.min(10, rounded);
+}
 
 type CreateReviewBody = {
 	movieId: number;
@@ -50,6 +65,37 @@ export const reviewsRoute = new Elysia({
 			if (!hit(`reviews:create:${user.id}`, { limit: 12, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
 			const body = routeBody<CreateReviewBody>(rawBody);
+			let logId = body.logId ?? null;
+			let rating = body.rating ?? null;
+
+			if (rating == null) {
+				if (logId) {
+					const [linkedLog] = await db
+						.select({ rating: log.rating })
+						.from(log)
+						.where(and(eq(log.id, logId), eq(log.userId, user.id)))
+						.limit(1);
+					rating = diaryStoredToReviewApiRating(linkedLog?.rating ?? null);
+				} else {
+					const [latestLog] = await db
+						.select({ id: log.id, rating: log.rating })
+						.from(log)
+						.where(
+							and(
+								eq(log.userId, user.id),
+								eq(log.movieId, body.movieId),
+								isNotNull(log.rating),
+							),
+						)
+						.orderBy(desc(log.watchedAt))
+						.limit(1);
+					if (latestLog) {
+						logId = latestLog.id;
+						rating = diaryStoredToReviewApiRating(latestLog.rating);
+					}
+				}
+			}
+
 			const id = makeId("rev");
 			const [row] = await db
 				.insert(review)
@@ -57,12 +103,12 @@ export const reviewsRoute = new Elysia({
 					id,
 					userId: user.id,
 					movieId: body.movieId,
-					logId: body.logId ?? null,
+					logId,
 					title: body.title ?? null,
 					body: body.body,
 					containsSpoilers: body.containsSpoilers ?? false,
 					isPublic: body.isPublic ?? true,
-					rating: body.rating ?? null,
+					rating,
 				})
 				.returning();
 			await db.insert(eventLog).values({
@@ -207,7 +253,7 @@ export const reviewsRoute = new Elysia({
 						withinCommunityPeriod(review.publishedAt, start, end),
 					),
 				)
-				.orderBy(desc(review.publishedAt))
+				.orderBy(desc(reviewEngagementOrderSql()), desc(review.publishedAt))
 				.limit(limit);
 			return rows;
 		},
@@ -292,6 +338,43 @@ export const reviewsRoute = new Elysia({
 				kind: "review.liked",
 				payload: { reviewId: params.id },
 			});
+
+			const [reviewRow] = await db
+				.select({
+					userId: review.userId,
+					movieId: review.movieId,
+					title: review.title,
+				})
+				.from(review)
+				.where(eq(review.id, params.id))
+				.limit(1);
+			if (
+				reviewRow &&
+				reviewRow.userId !== user.id &&
+				reviewRow.movieId != null
+			) {
+				const isMutual = await areUsersMutualFollows(user.id, reviewRow.userId);
+				const [likerProfile] = await db
+					.select({ displayName: profile.displayName })
+					.from(profile)
+					.where(eq(profile.userId, user.id))
+					.limit(1);
+				const from =
+					likerProfile?.displayName?.trim() || user.name?.trim() || "Someone";
+				await deliverNotification({
+					userId: reviewRow.userId,
+					kind: "review.liked",
+					title: `${from} liked your review`,
+					payload: {
+						fromUserId: user.id,
+						reviewId: params.id,
+						movieId: reviewRow.movieId,
+						href: movieReviewNotificationHref(reviewRow.movieId, params.id),
+					},
+					context: { actorUserId: user.id, isMutual },
+				});
+			}
+
 			return { liked: true };
 		},
 		{ params: t.Object({ id: t.String() }) },

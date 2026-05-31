@@ -21,6 +21,8 @@ import { cn } from "@still/ui/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import type { ListDetailFilmRow } from "@/components/list/list-detail-films-grid";
+import { ListItemNoteControl } from "@/components/list/list-item-note-control";
+import { ListItemNoteDisplay } from "@/components/list/list-item-note-display";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import {
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
@@ -28,6 +30,7 @@ import {
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 	LIST_DETAIL_FILMS_GRID_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
+import { rankedListPosterLabels } from "@/lib/patron-log-poster-caption";
 import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
 import { postListReorder } from "@/lib/still-api-fetch";
 
@@ -196,10 +199,12 @@ export function RankedListReorderGrid({
 	listId,
 	items,
 	allItemIds,
+	canEditNotes = false,
 }: {
 	listId: string;
 	items: RankedListReorderRow[];
 	allItemIds?: string[];
+	canEditNotes?: boolean;
 }) {
 	const canonicalAllItemIds = allItemIds ?? itemIdsFromRows(items);
 	const [rows, setRows] = useState<RankedListReorderRow[]>(items);
@@ -344,6 +349,7 @@ export function RankedListReorderGrid({
 				{rows.map((row, index) => {
 					const listing = row.movie ?? row.tv;
 					if (!listing) return null;
+					const posterLabels = rankedListPosterLabels(index, row.ownerLog);
 					return (
 						<div key={row.item.id} className="relative min-w-0 touch-none">
 							<MoviePoster
@@ -353,15 +359,12 @@ export function RankedListReorderGrid({
 								listingKind={row.movie ? "movie" : "tv"}
 								priority={index < 6}
 								showTitle={false}
+								posterCaption={posterLabels.posterCaption}
+								posterCaptionSubline={posterLabels.posterCaptionSubline}
 								hoverEffect="elevation"
 								className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
 								frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
 							/>
-							<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center bg-linear-to-t from-card/95 via-card/50 to-transparent px-2 pt-8 pb-2.5">
-								<span className="font-medium text-foreground text-sm tabular-nums tracking-tight">
-									{index + 1}
-								</span>
-							</div>
 						</div>
 					);
 				})}
@@ -393,6 +396,8 @@ export function RankedListReorderGrid({
 							index={index}
 							isSaving={isSaving}
 							isActive={activeDragId === row.item.id}
+							listId={listId}
+							canEditNotes={canEditNotes}
 							onSuppressClick={() => {
 								if (!wasDraggedRef.current) return false;
 								wasDraggedRef.current = false;
@@ -419,12 +424,16 @@ function RankedSortableTile({
 	index,
 	isSaving,
 	isActive,
+	listId,
+	canEditNotes,
 	onSuppressClick,
 }: {
 	row: RankedListReorderRow;
 	index: number;
 	isSaving: boolean;
 	isActive: boolean;
+	listId: string;
+	canEditNotes: boolean;
 	onSuppressClick: () => boolean;
 }) {
 	const {
@@ -437,11 +446,13 @@ function RankedSortableTile({
 	} = useSortable({ id: row.item.id, disabled: isSaving });
 	const listing = row.movie ?? row.tv;
 	if (!listing) return null;
+	const posterLabels = rankedListPosterLabels(index, row.ownerLog);
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		transition,
 	};
 	const reorderLabel = `${listing.title}, rank ${index + 1}. Drag to reorder.`;
+	const note = row.item.note?.trim() ?? "";
 	// Pull keys we override so TypeScript does not flag duplicate JSX props vs {...attributes}.
 	const {
 		tabIndex: sortableTabIndex,
@@ -451,48 +462,58 @@ function RankedSortableTile({
 	} = attributes;
 
 	return (
-		// biome-ignore lint/a11y/useSemanticElements: dnd-kit sortable cell; poster may render a link when not dragging.
-		<div
-			ref={setNodeRef}
-			style={style}
-			className={cn(
-				"relative min-w-0 cursor-grab touch-none",
-				(isDragging || isActive) && "z-50 cursor-grabbing",
-				isSaving && "pointer-events-none opacity-80",
-			)}
-			onDragStart={(event) => {
-				// Always block native image/link drag in favor of dnd-kit sensors.
-				event.preventDefault();
-			}}
-			onClickCapture={(event) => {
-				if (!onSuppressClick()) return;
-				event.preventDefault();
-				event.stopPropagation();
-			}}
-			{...sortableAttributes}
-			{...listeners}
-			role="button"
-			aria-label={reorderLabel}
-			aria-disabled={isSaving || undefined}
-			tabIndex={isSaving ? -1 : (sortableTabIndex ?? 0)}
-		>
-			<MoviePoster
-				movieId={listing.tmdbId}
-				title={listing.title}
-				posterUrl={profilePosterUrlFromPath(listing.posterPath)}
-				listingKind={row.movie ? "movie" : "tv"}
-				priority={index < 6}
-				showTitle={false}
-				hoverEffect="elevation"
-				className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
-				frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
-				linkable={!(isDragging || isActive)}
-			/>
-			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center bg-linear-to-t from-card/95 via-card/50 to-transparent px-2 pt-8 pb-2.5">
-				<span className="font-medium text-foreground text-sm tabular-nums tracking-tight">
-					{index + 1}
-				</span>
+		<div className="min-w-0">
+			{/* biome-ignore lint/a11y/useSemanticElements: dnd-kit sortable cell; poster may render a link when not dragging. */}
+			<div
+				ref={setNodeRef}
+				style={style}
+				className={cn(
+					"relative min-w-0 cursor-grab touch-none",
+					(isDragging || isActive) && "z-50 cursor-grabbing",
+					isSaving && "pointer-events-none opacity-80",
+				)}
+				onDragStart={(event) => {
+					// Always block native image/link drag in favor of dnd-kit sensors.
+					event.preventDefault();
+				}}
+				onClickCapture={(event) => {
+					if (!onSuppressClick()) return;
+					event.preventDefault();
+					event.stopPropagation();
+				}}
+				{...sortableAttributes}
+				{...listeners}
+				role="button"
+				aria-label={reorderLabel}
+				aria-disabled={isSaving || undefined}
+				tabIndex={isSaving ? -1 : (sortableTabIndex ?? 0)}
+			>
+				<MoviePoster
+					movieId={listing.tmdbId}
+					title={listing.title}
+					posterUrl={profilePosterUrlFromPath(listing.posterPath)}
+					listingKind={row.movie ? "movie" : "tv"}
+					priority={index < 6}
+					showTitle={false}
+					posterCaption={posterLabels.posterCaption}
+					posterCaptionSubline={posterLabels.posterCaptionSubline}
+					hoverEffect="elevation"
+					className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
+					frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
+					linkable={!(isDragging || isActive)}
+				/>
 			</div>
+			{canEditNotes ? (
+				<ListItemNoteControl
+					listId={listId}
+					itemId={row.item.id}
+					initialNote={row.item.note}
+					titleLabel={listing.title}
+					displayLineClamp={3}
+				/>
+			) : note ? (
+				<ListItemNoteDisplay note={note} className="mt-1" lineClamp={3} />
+			) : null}
 		</div>
 	);
 }
@@ -506,6 +527,7 @@ function RankedOverlayTile({
 }) {
 	const listing = row.movie ?? row.tv;
 	if (!listing) return null;
+	const posterLabels = rankedListPosterLabels(index, row.ownerLog);
 	return (
 		<div className="relative min-w-0 cursor-grabbing">
 			<MoviePoster
@@ -515,16 +537,13 @@ function RankedOverlayTile({
 				listingKind={row.movie ? "movie" : "tv"}
 				priority={false}
 				showTitle={false}
+				posterCaption={posterLabels.posterCaption}
+				posterCaptionSubline={posterLabels.posterCaptionSubline}
 				hoverEffect="elevation"
 				className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
 				frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
 				linkable={false}
 			/>
-			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center bg-linear-to-t from-card/95 via-card/50 to-transparent px-2 pt-8 pb-2.5">
-				<span className="font-medium text-foreground text-sm tabular-nums tracking-tight">
-					{index + 1}
-				</span>
-			</div>
 		</div>
 	);
 }

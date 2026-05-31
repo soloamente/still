@@ -132,7 +132,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 			</div>
 
 			<div className={cn(accountMenuBackgroundGroupClassName, "mt-1")}>
-				<AccountMenuThemePicker className="pb-1" />
+				<AccountMenuThemePicker className="pb-1" isPro={Boolean(user.isPro)} />
 				<DropdownMenuGroup className="p-0">
 					<DropdownMenuItem
 						className={accountMenuPrimaryOnBackgroundClassName}
@@ -191,7 +191,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 					className="rounded-none px-4 py-3.5 text-base"
 					onClick={() =>
 						openExternal(
-							"mailto:hello@still.app?subject=Still%20support&body=How%20can%20we%20help%3F",
+							"mailto:hello@still.app?subject=Sense%20support&body=How%20can%20we%20help%3F",
 						)
 					}
 				>
@@ -246,7 +246,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 							·
 						</span>
 						<span className="tabular-nums">
-							© {new Date().getFullYear()} Still
+							© {new Date().getFullYear()} Sense
 						</span>
 					</div>
 					<Link
@@ -260,7 +260,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 							className="size-4"
 							fill="currentColor"
 							role="img"
-							aria-label="Still on X (opens in new tab)"
+							aria-label="Sense on X (opens in new tab)"
 						>
 							<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
 						</svg>
