@@ -40,6 +40,10 @@ import {
 	MeSettingsPanel,
 	MeSettingsSection,
 } from "@/components/profile/me-settings-layout";
+import {
+	type ContentVisibility,
+	VisibilitySelect,
+} from "@/components/review/visibility-select";
 import { api } from "@/lib/api";
 import { type AppThemeClass, resolveAppThemeForPatron } from "@/lib/app-themes";
 import {
@@ -83,6 +87,7 @@ type MeProfile = {
 	isPro?: boolean;
 	accentColor?: string | null;
 	preferences?: Record<string, unknown> | null;
+	defaultVisibility?: ContentVisibility | null;
 };
 
 function initialProfileAccent(profile: MeProfile): ProfileAccentId | null {
@@ -109,6 +114,9 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 	const [location, setLocation] = useState(profile.location ?? "");
 	const [website, setWebsite] = useState(profile.website ?? "");
 	const [isPrivate, setIsPrivate] = useState(Boolean(profile.isPrivate));
+	const [defaultVisibility, setDefaultVisibility] = useState<ContentVisibility>(
+		(profile.defaultVisibility as ContentVisibility) ?? "public",
+	);
 	const [theaterAudio, setTheaterAudio] = useState(
 		Boolean(profile.preferences?.theaterAudio === true),
 	);
@@ -224,6 +232,8 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 			location.trim() !== (profile.location ?? "").trim() ||
 			website.trim() !== (profile.website ?? "").trim() ||
 			isPrivate !== Boolean(profile.isPrivate) ||
+			defaultVisibility !==
+				((profile.defaultVisibility as ContentVisibility) ?? "public") ||
 			theaterAudio !== Boolean(profile.preferences?.theaterAudio === true) ||
 			catalogMonochromePeersOnHover !==
 				readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null) ||
@@ -243,6 +253,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		location,
 		website,
 		isPrivate,
+		defaultVisibility,
 		theaterAudio,
 		catalogMonochromePeersOnHover,
 		catalogTmdbWatchRegion,
@@ -262,6 +273,9 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 		setLocation(profile.location ?? "");
 		setWebsite(profile.website ?? "");
 		setIsPrivate(Boolean(profile.isPrivate));
+		setDefaultVisibility(
+			(profile.defaultVisibility as ContentVisibility) ?? "public",
+		);
 		setTheaterAudio(Boolean(profile.preferences?.theaterAudio === true));
 		setCatalogMonochromePeersOnHover(
 			readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null),
@@ -411,6 +425,7 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 				location: location.trim() || undefined,
 				website: website.trim() || undefined,
 				isPrivate,
+				defaultVisibility,
 				preferences: prefs,
 			});
 			setTheaterAudioEnabled(theaterAudio);
@@ -513,11 +528,25 @@ export function SettingsForm({ profile }: { profile: MeProfile }) {
 										/>
 									</MeFormField>
 								</div>
-								<div className="flex justify-end pt-5">
-									<MeProfileVisibilityToggle
-										checked={isPrivate}
-										onChange={setIsPrivate}
-									/>
+								<div className="space-y-5 pt-5">
+									<MeFormField
+										id="defaultVisibility"
+										label="Default visibility for new posts"
+										hint="Applied to new diary logs and reviews when you don't choose a specific audience."
+									>
+										<VisibilitySelect
+											id="defaultVisibility"
+											value={defaultVisibility}
+											onChange={setDefaultVisibility}
+											popoverSide="bottom"
+										/>
+									</MeFormField>
+									<div className="flex justify-end">
+										<MeProfileVisibilityToggle
+											checked={isPrivate}
+											onChange={setIsPrivate}
+										/>
+									</div>
 								</div>
 							</MeSettingsPanel>
 						</MeSettingsSection>

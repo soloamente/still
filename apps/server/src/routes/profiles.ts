@@ -1,3 +1,4 @@
+import type { ContentVisibility } from "@still/db";
 import {
 	achievement,
 	badge,
@@ -22,7 +23,10 @@ import {
 	ACTIVITY_SIGNATURE_DAYS,
 	buildActivitySignature,
 } from "../lib/activity-signature";
-import { contentVisibilityWhere } from "../lib/content-visibility";
+import {
+	contentVisibilityWhere,
+	visibilitySchema,
+} from "../lib/content-visibility";
 import { fetchCreatorAnalyticsForUser } from "../lib/creator-analytics";
 import {
 	fetchCuratorSpotlightPatrons,
@@ -62,6 +66,7 @@ type ProfileMePatchBody = {
 	preferences?: Record<string, unknown>;
 	isPrivate?: boolean;
 	markOnboarded?: boolean;
+	defaultVisibility?: ContentVisibility;
 };
 
 /** Lowercase letterboxd-style handle: letters, digits, underscore, dot, dash, 2–24 chars. */
@@ -143,6 +148,9 @@ export const profilesRoute = new Elysia({
 				preferences: preferencesForUpdate ?? undefined,
 				isPrivate: body.isPrivate,
 				onboardedAt: body.markOnboarded ? new Date() : undefined,
+				...(body.defaultVisibility
+					? { defaultVisibility: body.defaultVisibility }
+					: {}),
 			};
 
 			// Strip undefineds — drizzle's set() won't ignore them otherwise.
@@ -216,6 +224,7 @@ export const profilesRoute = new Elysia({
 				preferences: t.Optional(t.Record(t.String(), t.Unknown())),
 				isPrivate: t.Optional(t.Boolean()),
 				markOnboarded: t.Optional(t.Boolean()),
+				defaultVisibility: t.Optional(visibilitySchema),
 			}),
 		},
 	)
