@@ -14,7 +14,10 @@ import { and, count, desc, eq, isNotNull } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { syncCompletionistChallengesForUser } from "../lib/completionist-challenge-sync";
-import { visibilitySchema } from "../lib/content-visibility";
+import {
+	contentVisibilityWhere,
+	visibilitySchema,
+} from "../lib/content-visibility";
 import { makeId } from "../lib/cuid";
 import { ensureMovieCached } from "../lib/ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
@@ -367,7 +370,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 	// Public diary discover — recent logs from patrons with public profiles (community lobby).
 	.get(
 		"/recent",
-		async ({ query }) => {
+		async ({ query, user: viewer }) => {
 			const limit = Math.min(Number(query.limit ?? 30), 60);
 			const rows = await db
 				.select({ log, movie, tv, user, profile })
@@ -376,7 +379,16 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.leftJoin(user, eq(log.userId, user.id))
 				.leftJoin(movie, eq(log.movieId, movie.tmdbId))
 				.leftJoin(tv, eq(log.tvId, tv.tmdbId))
-				.where(eq(profile.isPrivate, false))
+				.where(
+					and(
+						eq(profile.isPrivate, false),
+						contentVisibilityWhere(
+							viewer?.id ?? null,
+							log.userId,
+							log.visibility,
+						),
+					),
+				)
 				.orderBy(desc(log.watchedAt))
 				.limit(limit);
 			return rows;
@@ -405,7 +417,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 	// Diary endpoint: a user's chronologically-ordered logs.
 	.get(
 		"/by-user/:userId",
-		async ({ params, query }) => {
+		async ({ params, query, user }) => {
 			const limit = Math.min(Number(query.limit ?? 30), 100);
 			const rows = await db
 				.select({
@@ -416,7 +428,16 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.from(log)
 				.leftJoin(movie, eq(log.movieId, movie.tmdbId))
 				.leftJoin(tv, eq(log.tvId, tv.tmdbId))
-				.where(eq(log.userId, params.userId))
+				.where(
+					and(
+						eq(log.userId, params.userId),
+						contentVisibilityWhere(
+							user?.id ?? null,
+							log.userId,
+							log.visibility,
+						),
+					),
+				)
 				.orderBy(desc(log.watchedAt))
 				.limit(limit);
 			return rows;
