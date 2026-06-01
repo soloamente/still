@@ -11,6 +11,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 import { user } from "./auth";
+import { contentVisibility } from "./visibility";
 
 /** Cached rule-based taste copy (Sense identity core). */
 export type TasteSignatureConfidence = "low" | "medium" | "high";
@@ -83,6 +84,9 @@ export const profile = pgTable(
 			}>()
 			.default({})
 			.notNull(),
+		defaultVisibility: contentVisibility("default_visibility")
+			.notNull()
+			.default("public"),
 		isPrivate: boolean("is_private").default(false).notNull(),
 		isPro: boolean("is_pro").default(false).notNull(),
 		/** Ordered review ids (max 3) shown on profile hero — ST.3 signature reviews. */

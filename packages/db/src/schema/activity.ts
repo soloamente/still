@@ -14,6 +14,7 @@ import {
 import { user } from "./auth";
 import { movie } from "./movie";
 import { tv } from "./tv";
+import { contentVisibility } from "./visibility";
 
 /** Where the patron watched the film — aligns with `/home` + `/diary` venue chips (`?venue=`). */
 export type LogWatchVenue = "theaters" | "streaming";
@@ -48,6 +49,7 @@ export const log = pgTable(
 		// Optional short note attached to the diary entry itself (separate from a full review).
 		note: text("note"),
 		containsSpoilers: boolean("contains_spoilers").default(false).notNull(),
+		visibility: contentVisibility("visibility").notNull().default("public"),
 		/** In-cinema vs at-home — drives `/diary?venue=` filtering; default **streaming**. */
 		watchVenue: text("watch_venue")
 			.$type<LogWatchVenue>()
@@ -97,7 +99,7 @@ export const review = pgTable(
 		title: text("title"),
 		body: text("body").notNull(), // markdown
 		containsSpoilers: boolean("contains_spoilers").default(false).notNull(),
-		isPublic: boolean("is_public").default(true).notNull(),
+		visibility: contentVisibility("visibility").notNull().default("public"),
 		// Denormalized counters to avoid count(*) on every render. Updated by triggers.
 		likesCount: integer("likes_count").default(0).notNull(),
 		commentsCount: integer("comments_count").default(0).notNull(),
