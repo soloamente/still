@@ -25,6 +25,7 @@ export interface MyMovieLog {
 	containsSpoilers?: boolean;
 	/** In-cinema vs at-home — from `GET /api/logs/me/by-movie/:id`. */
 	watchVenue?: string | null;
+	visibility?: "public" | "followers" | "friends" | "private";
 }
 
 /**
@@ -116,6 +117,7 @@ export function useMovieDetailUserState(
 			liked: log.liked,
 			rewatch: log.rewatch,
 			watchVenue,
+			...(log.visibility ? { visibility: log.visibility } : {}),
 			onSuccess: () => {
 				void play("reel-clack").catch(() => undefined);
 				void refreshUserState();

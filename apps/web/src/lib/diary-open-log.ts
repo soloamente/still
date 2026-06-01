@@ -23,6 +23,7 @@ export function diaryLogToQuickLogOpenPayload(
 		liked: row.log.liked,
 		rewatch: row.log.rewatch,
 		watchVenue: normalizeDiaryLogWatchVenue(row.log.watchVenue),
+		...(row.log.visibility ? { visibility: row.log.visibility } : {}),
 		...(isTv
 			? {
 					logScope: row.log.logScope ?? "show",

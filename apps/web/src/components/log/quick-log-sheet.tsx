@@ -484,7 +484,7 @@ export function QuickLogRoot() {
 					watchVenue,
 					liked: options.skipDetails ? false : liked,
 					rewatch: options.skipDetails ? false : rewatch,
-					visibility,
+					...(visibilityTouched ? { visibility } : {}),
 					...(tvId != null
 						? tvLogScopePayload(logScope, seasonNumber, episodeNumber)
 						: {}),

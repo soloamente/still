@@ -31,6 +31,7 @@ export type DiaryLogRow = {
 		logScope?: TvLogScope;
 		seasonNumber?: number | null;
 		episodeNumber?: number | null;
+		visibility?: "public" | "followers" | "friends" | "private";
 	};
 	movie: DiaryListingSnapshot | null;
 	/** Present when this diary row is for a TV series (`log.tv_id` on the server). */

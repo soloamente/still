@@ -124,6 +124,7 @@ export function useTvDetailUserState(
 			logScope: log.logScope ?? "show",
 			seasonNumber: log.seasonNumber ?? undefined,
 			episodeNumber: log.episodeNumber ?? undefined,
+			...(log.visibility ? { visibility: log.visibility } : {}),
 			onSuccess: () => {
 				void play("reel-clack").catch(() => undefined);
 				void refreshUserState();

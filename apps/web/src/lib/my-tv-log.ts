@@ -13,4 +13,5 @@ export interface MyTvLog {
 	logScope?: TvLogScope | null;
 	seasonNumber?: number | null;
 	episodeNumber?: number | null;
+	visibility?: "public" | "followers" | "friends" | "private";
 }
