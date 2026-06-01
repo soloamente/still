@@ -9,6 +9,7 @@ import {
 	type ReviewPreview,
 	useReviewDetail,
 } from "@/components/review/review-detail-sheet";
+import { VisibilityChip } from "@/components/review/visibility-chip";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
@@ -18,6 +19,7 @@ export type ProfileReviewRow = {
 	review: ReviewPreview & {
 		userId: string;
 		movieId: number;
+		visibility?: "public" | "followers" | "friends" | "private";
 	};
 	movie: { tmdbId: number; title: string; posterPath: string | null } | null;
 };
@@ -61,7 +63,13 @@ function ProfileReviewPoster({
 	);
 }
 
-function ProfileReviewTile({ row }: { row: ProfileReviewRow }) {
+function ProfileReviewTile({
+	row,
+	isMe,
+}: {
+	row: ProfileReviewRow;
+	isMe: boolean;
+}) {
 	const openReviewDetail = useReviewDetail((s) => s.open);
 	const { review, movie } = row;
 
@@ -138,6 +146,9 @@ function ProfileReviewTile({ row }: { row: ProfileReviewRow }) {
 						<MessageCircle className="size-3.5 opacity-70" aria-hidden />
 						{review.commentsCount}
 					</span>
+					{isMe && review.visibility && review.visibility !== "public" ? (
+						<VisibilityChip visibility={review.visibility} />
+					) : null}
 				</span>
 			</span>
 		</button>
@@ -147,7 +158,13 @@ function ProfileReviewTile({ row }: { row: ProfileReviewRow }) {
 /**
  * Patron reviews tab — two-up grid on `bg-card`, poster + meta, opens review reader sheet.
  */
-export function ProfileReviewsPanel({ rows }: { rows: ProfileReviewRow[] }) {
+export function ProfileReviewsPanel({
+	rows,
+	isMe = false,
+}: {
+	rows: ProfileReviewRow[];
+	isMe?: boolean;
+}) {
 	if (!rows.length) {
 		return (
 			<ProfileSocialEmpty
@@ -162,7 +179,7 @@ export function ProfileReviewsPanel({ rows }: { rows: ProfileReviewRow[] }) {
 		<ul className="grid w-full gap-4 md:grid-cols-2">
 			{rows.map((row) => (
 				<li key={row.review.id} className="min-w-0">
-					<ProfileReviewTile row={row} />
+					<ProfileReviewTile row={row} isMe={isMe} />
 				</li>
 			))}
 		</ul>

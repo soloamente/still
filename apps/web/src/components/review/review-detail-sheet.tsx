@@ -13,10 +13,12 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import { ReviewPinToProfileButton } from "@/components/review/review-pin-to-profile-button";
+import { VisibilityChip } from "@/components/review/visibility-chip";
 import { CommentsThread } from "@/components/social/comments-thread";
 import { ReactionsBar } from "@/components/social/reactions-bar";
 import { api } from "@/lib/api";
 import { APP_MEMBER_LABEL } from "@/lib/app-brand";
+import { authClient } from "@/lib/auth-client";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatLogRatingDisplay } from "@/lib/log-rating";
 import { SHEET_PRIMARY_PILL_CLASS } from "@/lib/sheet-chrome";
@@ -63,6 +65,7 @@ type ReviewDetailPayload = {
 		commentsCount: number;
 		containsSpoilers: boolean;
 		publishedAt: string;
+		visibility?: "public" | "followers" | "friends" | "private";
 	};
 	movie: {
 		tmdbId: number;
@@ -111,6 +114,7 @@ export function ReviewDetailRoot() {
 	const pathname = usePathname();
 	const reduceMotion = useReducedMotion();
 	const { isOpen, args, close } = useReviewDetail();
+	const { data: session } = authClient.useSession();
 	const [detail, setDetail] = useState<ReviewDetailPayload | null>(null);
 	const [comments, setComments] = useState<CommentRow[]>([]);
 	const [loading, setLoading] = useState(false);
@@ -204,6 +208,9 @@ export function ReviewDetailRoot() {
 
 	const preview = args?.preview;
 	const review = detail?.review ?? null;
+	const isReviewOwner = Boolean(
+		session?.user?.id && review?.userId && session.user.id === review.userId,
+	);
 	const displayTitle = review?.title ?? preview?.title ?? null;
 	const displayBody = review?.body ?? preview?.body ?? "";
 	const displayRating = review?.rating ?? preview?.rating ?? null;
@@ -322,7 +329,15 @@ export function ReviewDetailRoot() {
 										</p>
 									) : null}
 
-									<p className="mb-6 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+									<p
+										className={
+											isReviewOwner &&
+											review?.visibility &&
+											review.visibility !== "public"
+												? "mb-2 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base"
+												: "mb-6 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base"
+										}
+									>
 										{detail
 											? authorLine(detail.authorProfile)
 											: APP_MEMBER_LABEL}
@@ -330,6 +345,13 @@ export function ReviewDetailRoot() {
 										{formatDistanceToNowStrict(new Date(displayPublishedAt))}{" "}
 										ago
 									</p>
+									{isReviewOwner &&
+									review?.visibility &&
+									review.visibility !== "public" ? (
+										<div className="mb-6 flex justify-center">
+											<VisibilityChip visibility={review.visibility} />
+										</div>
+									) : null}
 
 									{displayRating != null ? (
 										<p className="mb-6 text-center font-medium text-2xl text-foreground tabular-nums">

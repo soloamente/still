@@ -250,6 +250,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 						lists={lists}
 						catalogueWaveKey={catalogueWaveKey}
 						monochromePeersOnHover={monochromePeersOnHover}
+						isMe={isMe}
 					/>
 				</div>
 			</section>

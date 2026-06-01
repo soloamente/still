@@ -5,6 +5,7 @@ import { TicketStub } from "@/components/cinema/ticket-stub";
 import { DiaryLogEditButton } from "@/components/diary/diary-log-edit-button";
 import { TvLogScopeChip } from "@/components/diary/tv-log-scope-chip";
 import { StarRating } from "@/components/rating/star-rating";
+import { VisibilityChip } from "@/components/review/visibility-chip";
 import { formatDate } from "@/lib/format";
 import type { HomeVenue } from "@/lib/home-venue";
 import type { TvLogScope } from "@/lib/tv-watch-types";
@@ -40,8 +41,15 @@ export type DiaryLogRow = {
 
 /**
  * Diary row as admission ticket — `TicketStub` handles geometry; this layer binds log metadata.
+ * Pass `isOwner` to show a visibility chip on non-public logs (e.g. on `/diary`).
  */
-export function DiaryEntry({ row }: { row: DiaryLogRow }) {
+export function DiaryEntry({
+	row,
+	isOwner = false,
+}: {
+	row: DiaryLogRow;
+	isOwner?: boolean;
+}) {
 	const listing = row.movie ?? row.tv;
 	if (!listing) return null;
 
@@ -126,6 +134,12 @@ export function DiaryEntry({ row }: { row: DiaryLogRow }) {
 				<p className="mt-2 line-clamp-3 text-center text-[11px] text-white/70 leading-snug">
 					{row.log.note}
 				</p>
+			) : null}
+
+			{isOwner && row.log.visibility && row.log.visibility !== "public" ? (
+				<div className="mt-2 flex justify-center">
+					<VisibilityChip visibility={row.log.visibility} />
+				</div>
 			) : null}
 
 			<DiaryLogEditButton row={row} />

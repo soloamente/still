@@ -26,6 +26,7 @@ export function ProfileTabPanels({
 	lists,
 	catalogueWaveKey,
 	monochromePeersOnHover,
+	isMe = false,
 }: {
 	activeTab: ProfileTabId;
 	movieRows: ProfileFilmographyRow[];
@@ -42,6 +43,7 @@ export function ProfileTabPanels({
 	lists: ListBoardRow[];
 	catalogueWaveKey: string;
 	monochromePeersOnHover: boolean;
+	isMe?: boolean;
 }) {
 	if (activeTab === "movies") {
 		return (
@@ -82,7 +84,7 @@ export function ProfileTabPanels({
 	}
 
 	if (activeTab === "reviews") {
-		return <ProfileReviewsPanel rows={reviews} />;
+		return <ProfileReviewsPanel rows={reviews} isMe={isMe} />;
 	}
 
 	if (activeTab === "lists") {
