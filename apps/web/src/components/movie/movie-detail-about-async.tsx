@@ -5,6 +5,7 @@ import { CreditsFooter } from "@/components/cinema/credits-footer";
 import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
+import type { FriendsRatingsData } from "@/components/movie/movie-detail-friends-ratings";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
 import { APP_NAME } from "@/lib/app-brand";
 import type { ArcCreditCard } from "@/lib/movie-cast-crew-arc";
@@ -41,6 +42,7 @@ type MovieListRow = {
 	itemsCount: number;
 	updatedAt: string;
 	likesCount: number;
+	owner: { handle: string; displayName: string } | null;
 };
 
 export interface MovieDetailAboutAsyncProps {
@@ -92,20 +94,30 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 
 	const api = await serverApi();
 
-	const [reviewsRes, listsRes, wikidataAwards] = await Promise.all([
-		api.api
-			.movies({ id })
-			.reviews.get()
-			.catch(() => ({ data: [] })),
-		api.api
-			.movies({ id })
-			.lists.get()
-			.catch(() => ({ data: [] })),
-		fetchWikidataMovieAwards({ tmdbId, imdbId }),
-	]);
+	const [reviewsRes, listsRes, friendsRatingsRes, wikidataAwards] =
+		await Promise.all([
+			api.api
+				.movies({ id })
+				.reviews.get()
+				.catch(() => ({ data: [] })),
+			api.api
+				.movies({ id })
+				.lists.get()
+				.catch(() => ({ data: [] })),
+			api.api
+				.movies({ id })
+				["friends-ratings"].get()
+				.catch(() => ({ data: { rows: [], total: 0 } })),
+			fetchWikidataMovieAwards({ tmdbId, imdbId }),
+		]);
 
 	const reviews = (reviewsRes.data as unknown as ReviewRow[]) ?? [];
 	const movieLists = (listsRes.data as unknown as MovieListRow[]) ?? [];
+	const friendsRatings =
+		(friendsRatingsRes.data as unknown as FriendsRatingsData) ?? {
+			rows: [],
+			total: 0,
+		};
 
 	const recognitionEntries = buildMovieRecognitionEntries(
 		festivalKeywords,
@@ -158,6 +170,7 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 				communityAverage={communityAverage}
 				communityReviewsCount={communityReviewsCount}
 				lists={movieLists}
+				friendsRatings={friendsRatings}
 				featuredReviews={featuredReviews}
 				reviewsAfterFeatured={reviewsAfterFeatured}
 				reviews={reviews}

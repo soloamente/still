@@ -5,12 +5,15 @@ import {
 	movie,
 	movieCredit,
 	person,
+	profile,
 	review,
+	user,
 } from "@still/db";
 import { env } from "@still/env/server";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
+import { fetchFriendsRatings } from "../lib/friends-ratings";
 import {
 	buildHeroArtworkSlides,
 	normalizeTmdbImagesBundle,
@@ -794,13 +797,39 @@ export const moviesRoute = new Elysia({
 			const movieId = Number(params.id);
 			if (!Number.isFinite(movieId)) return [];
 			const rows = await db
-				.select({ list })
+				.select({
+					list,
+					ownerHandle: profile.handle,
+					ownerDisplayName: profile.displayName,
+					ownerName: user.name,
+				})
 				.from(listItem)
 				.innerJoin(list, eq(listItem.listId, list.id))
+				.leftJoin(user, eq(list.userId, user.id))
+				.leftJoin(profile, eq(profile.userId, list.userId))
 				.where(and(eq(listItem.movieId, movieId), eq(list.isPublic, true)))
 				.orderBy(desc(list.likesCount), desc(list.updatedAt))
 				.limit(24);
-			return rows.map((r) => r.list);
+			return rows.map((r) => ({
+				...r.list,
+				owner: r.ownerHandle
+					? {
+							handle: r.ownerHandle,
+							displayName: r.ownerDisplayName ?? r.ownerName ?? r.ownerHandle,
+						}
+					: null,
+			}));
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	/** Ratings from the viewer's mutual-follow friends for this film. */
+	.get(
+		"/:id/friends-ratings",
+		async ({ params, user: viewer }) => {
+			if (!viewer) return { rows: [], total: 0 };
+			const movieId = Number(params.id);
+			if (!Number.isFinite(movieId)) return { rows: [], total: 0 };
+			return fetchFriendsRatings({ viewerId: viewer.id, movieId });
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

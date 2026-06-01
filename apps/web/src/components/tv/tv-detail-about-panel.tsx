@@ -5,6 +5,7 @@ import { CreditsFooter } from "@/components/cinema/credits-footer";
 import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
+import type { FriendsRatingsData } from "@/components/movie/movie-detail-friends-ratings";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
 import { TvDetailMalMeta } from "@/components/tv/tv-detail-mal-meta";
 import { TvDetailProgressPanel } from "@/components/tv/tv-detail-progress-panel";
@@ -20,10 +21,11 @@ import type {
 	TmdbMovieSummary,
 } from "@/lib/movie-detail-tmdb";
 import type { FestivalRecognitionEntry } from "@/lib/movie-festival-recognition";
+import { serverApi } from "@/lib/server-api";
 import type { TvMalEnrichment } from "@/lib/tv-mal-enrichment";
 
-/** TV About tab body — no extra API round-trip (explore tabs are TMDb-only for now). */
-export function TvDetailAboutPanel({
+/** TV About tab body — fetches friends' ratings for the community section. */
+export async function TvDetailAboutPanel({
 	tvId,
 	title,
 	year,
@@ -59,6 +61,17 @@ export function TvDetailAboutPanel({
 	moreLikeThis: TmdbMovieSummary[];
 	malEnrichment?: TvMalEnrichment | null;
 }) {
+	const api = await serverApi();
+	const friendsRatingsRes = await api.api
+		.tv({ id: String(tvId) })
+		["friends-ratings"].get()
+		.catch(() => ({ data: { rows: [], total: 0 } }));
+	const friendsRatings =
+		(friendsRatingsRes.data as unknown as FriendsRatingsData) ?? {
+			rows: [],
+			total: 0,
+		};
+
 	return (
 		<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
 			<TvDetailMalMeta malEnrichment={malEnrichment} />
@@ -97,6 +110,7 @@ export function TvDetailAboutPanel({
 			<MovieDetailExploreTabs
 				layout="stacked"
 				lists={[]}
+				friendsRatings={friendsRatings}
 				featuredReviews={[]}
 				reviewsAfterFeatured={[]}
 				reviews={[]}

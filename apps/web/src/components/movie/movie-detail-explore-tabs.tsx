@@ -11,6 +11,10 @@ import { CreateListDialog } from "@/components/list/create-list-dialog";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
+import {
+	type FriendsRatingsData,
+	MovieDetailFriendsRatings,
+} from "@/components/movie/movie-detail-friends-ratings";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { ReviewCard } from "@/components/review/review-card";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
@@ -134,6 +138,7 @@ export type MovieListForPageTab = {
 	itemsCount: number;
 	updatedAt: string;
 	likesCount: number;
+	owner: { handle: string; displayName: string } | null;
 };
 
 export type MoviePageReview = {
@@ -155,6 +160,7 @@ export type MoviePageReview = {
  */
 export function MovieDetailExploreTabs({
 	lists,
+	friendsRatings,
 	featuredReviews,
 	reviewsAfterFeatured,
 	reviews,
@@ -168,6 +174,7 @@ export function MovieDetailExploreTabs({
 	movieTitle,
 }: {
 	lists: MovieListForPageTab[];
+	friendsRatings?: FriendsRatingsData;
 	featuredReviews: MoviePageReview[];
 	reviewsAfterFeatured: MoviePageReview[];
 	reviews: MoviePageReview[];
@@ -331,6 +338,11 @@ export function MovieDetailExploreTabs({
 							<span className="block font-serif text-foreground text-lg leading-snug">
 								{list.title}
 							</span>
+							{list.owner ? (
+								<span className="mt-0.5 block text-muted-foreground text-xs">
+									by @{list.owner.handle}
+								</span>
+							) : null}
 							<span className="mt-1 block text-muted-foreground text-xs tabular-nums">
 								{list.itemsCount} films · {list.likesCount} likes · updated{" "}
 								{formatDistanceToNowStrict(new Date(list.updatedAt))} ago
@@ -352,6 +364,12 @@ export function MovieDetailExploreTabs({
 	const communityPanel = (
 		<div className="space-y-14">
 			{communityStatsPanel}
+			{friendsRatings && friendsRatings.rows.length > 0 ? (
+				<MovieDetailFriendsRatings
+					rows={friendsRatings.rows}
+					total={friendsRatings.total}
+				/>
+			) : null}
 			<div>
 				<MovieDetailSubsectionLabel>Reviews</MovieDetailSubsectionLabel>
 				{reviewsPanel}
