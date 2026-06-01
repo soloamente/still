@@ -1,3 +1,4 @@
+import type { ContentVisibility } from "@still/db";
 import {
 	db,
 	eventLog,
@@ -10,12 +11,17 @@ import {
 } from "@still/db";
 import { and, desc, eq, isNotNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
-
 import { context } from "../context";
 import {
 	resolveCommunityPeriodQuery,
 	withinCommunityPeriod,
 } from "../lib/community-period";
+import {
+	canViewContent,
+	contentVisibilityWhere,
+	resolveViewerFollow,
+	visibilitySchema,
+} from "../lib/content-visibility";
 import { reviewEngagementOrderSql } from "../lib/creator-recognition";
 import { makeId } from "../lib/cuid";
 import {
@@ -42,7 +48,7 @@ type CreateReviewBody = {
 	body: string;
 	rating?: number;
 	containsSpoilers?: boolean;
-	isPublic?: boolean;
+	visibility?: ContentVisibility;
 };
 
 type PatchReviewBody = {
@@ -50,7 +56,7 @@ type PatchReviewBody = {
 	body?: string;
 	rating?: number;
 	containsSpoilers?: boolean;
-	isPublic?: boolean;
+	visibility?: ContentVisibility;
 };
 
 export const reviewsRoute = new Elysia({
@@ -96,6 +102,16 @@ export const reviewsRoute = new Elysia({
 				}
 			}
 
+			let visibility = body.visibility ?? null;
+			if (!visibility) {
+				const [own] = await db
+					.select({ d: profile.defaultVisibility })
+					.from(profile)
+					.where(eq(profile.userId, user.id))
+					.limit(1);
+				visibility = own?.d ?? "public";
+			}
+
 			const id = makeId("rev");
 			const [row] = await db
 				.insert(review)
@@ -107,7 +123,7 @@ export const reviewsRoute = new Elysia({
 					title: body.title ?? null,
 					body: body.body,
 					containsSpoilers: body.containsSpoilers ?? false,
-					isPublic: body.isPublic ?? true,
+					visibility,
 					rating,
 				})
 				.returning();
@@ -127,7 +143,7 @@ export const reviewsRoute = new Elysia({
 				body: t.String({ minLength: 1, maxLength: 20_000 }),
 				rating: t.Optional(t.Integer({ minimum: 1, maximum: 10 })),
 				containsSpoilers: t.Optional(t.Boolean()),
-				isPublic: t.Optional(t.Boolean()),
+				visibility: t.Optional(visibilitySchema),
 			}),
 		},
 	)
@@ -149,7 +165,7 @@ export const reviewsRoute = new Elysia({
 					title: body.title ?? existing.title,
 					body: body.body ?? existing.body,
 					containsSpoilers: body.containsSpoilers ?? existing.containsSpoilers,
-					isPublic: body.isPublic ?? existing.isPublic,
+					visibility: body.visibility ?? existing.visibility,
 					rating: body.rating ?? existing.rating,
 				})
 				.where(eq(review.id, params.id))
@@ -163,7 +179,7 @@ export const reviewsRoute = new Elysia({
 				body: t.Optional(t.String({ maxLength: 20_000 })),
 				rating: t.Optional(t.Integer({ minimum: 1, maximum: 10 })),
 				containsSpoilers: t.Optional(t.Boolean()),
-				isPublic: t.Optional(t.Boolean()),
+				visibility: t.Optional(visibilitySchema),
 			}),
 		},
 	)
@@ -195,6 +211,18 @@ export const reviewsRoute = new Elysia({
 				.where(eq(review.id, params.id))
 				.limit(1);
 			if (!row) return status(404, "Not found");
+			const author = row.review.userId;
+			const follows = await resolveViewerFollow(user?.id ?? null, author);
+			if (
+				!canViewContent({
+					viewerId: user?.id ?? null,
+					authorId: author,
+					visibility: row.review.visibility,
+					...follows,
+				})
+			) {
+				return status(404, "Not found");
+			}
 			// Is the current user liking this?
 			let liked = false;
 			if (user) {
@@ -238,7 +266,7 @@ export const reviewsRoute = new Elysia({
 	)
 	.get(
 		"/recent",
-		async ({ query }) => {
+		async ({ query, user: currentUser }) => {
 			const limit = Math.min(Number(query.limit ?? 20), 50);
 			const { start, end } = resolveCommunityPeriodQuery(query);
 			const rows = await db
@@ -249,7 +277,11 @@ export const reviewsRoute = new Elysia({
 				.leftJoin(profile, eq(review.userId, profile.userId))
 				.where(
 					and(
-						eq(review.isPublic, true),
+						contentVisibilityWhere(
+							currentUser?.id ?? null,
+							review.userId,
+							review.visibility,
+						),
 						withinCommunityPeriod(review.publishedAt, start, end),
 					),
 				)
@@ -274,13 +306,19 @@ export const reviewsRoute = new Elysia({
 	)
 	.get(
 		"/popular",
-		async ({ query }) => {
+		async ({ query, user: currentUser }) => {
 			const limit = Math.min(Number(query.limit ?? 20), 50);
 			const rows = await db
 				.select({ review, movie })
 				.from(review)
 				.leftJoin(movie, eq(review.movieId, movie.tmdbId))
-				.where(eq(review.isPublic, true))
+				.where(
+					contentVisibilityWhere(
+						currentUser?.id ?? null,
+						review.userId,
+						review.visibility,
+					),
+				)
 				.orderBy(desc(review.likesCount), desc(review.publishedAt))
 				.limit(limit);
 			return rows;
