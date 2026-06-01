@@ -67,6 +67,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					.where(
 						and(
 							inArray(log.userId, ids),
+							contentVisibilityWhere(viewer.id, log.userId, log.visibility),
 							withinCommunityPeriod(log.watchedAt, start, end),
 						),
 					)

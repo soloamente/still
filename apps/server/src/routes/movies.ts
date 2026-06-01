@@ -745,22 +745,14 @@ export const moviesRoute = new Elysia({
 			}
 
 			// Aggregate community stats — average rating, review count.
+			// Public-only: this is a single shared number, not personalized.
 			const stats = await db
 				.select({
 					avgRating: sql<number>`avg(${review.rating})`.as("avgRating"),
 					reviewsCount: sql<number>`count(${review.id})`.as("reviewsCount"),
 				})
 				.from(review)
-				.where(
-					and(
-						eq(review.movieId, id),
-						contentVisibilityWhere(
-							user?.id ?? null,
-							review.userId,
-							review.visibility,
-						),
-					),
-				);
+				.where(and(eq(review.movieId, id), eq(review.visibility, "public")));
 
 			return {
 				...row,

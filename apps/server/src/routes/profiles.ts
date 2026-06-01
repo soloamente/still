@@ -15,18 +15,7 @@ import {
 } from "@still/db";
 import { env } from "@still/env/server";
 import { get, put } from "@vercel/blob";
-import {
-	and,
-	desc,
-	eq,
-	gte,
-	ilike,
-	inArray,
-	isNotNull,
-	ne,
-	or,
-	sql,
-} from "drizzle-orm";
+import { and, desc, eq, gte, ilike, isNotNull, ne, or, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
@@ -45,7 +34,10 @@ import {
 	PROFILE_PREF_PROFILE_ACCENT,
 	profileAccentHex,
 } from "../lib/profile-appearance";
-import { hydratePinnedReviews } from "../lib/profile-pinned-reviews";
+import {
+	hydratePinnedReviews,
+	validatePinnedReviewIdsForUser,
+} from "../lib/profile-pinned-reviews";
 import {
 	normalizeProfileSearchQuery,
 	rankProfileSearchHits,
@@ -262,26 +254,16 @@ export const profilesRoute = new Elysia({
 				return status(429, "Slow down");
 			}
 			const body = routeBody<{ reviewIds: string[] }>(rawBody);
-			const requestedPinIds: string[] = Array.isArray(body.reviewIds)
-				? body.reviewIds.slice(0, 3)
-				: [];
-			const pinnable = requestedPinIds.length
-				? await db
-						.select({ id: review.id })
-						.from(review)
-						.where(
-							and(
-								eq(review.userId, user.id),
-								eq(review.visibility, "public"),
-								inArray(review.id, requestedPinIds),
-							),
-						)
-				: [];
-			const pinnableIds = new Set(pinnable.map((r) => r.id));
-			const cleanedPins = requestedPinIds.filter((id) => pinnableIds.has(id));
+			const validated = await validatePinnedReviewIdsForUser(
+				user.id,
+				body.reviewIds,
+			);
+			if (!validated.ok) {
+				return status(validated.status, validated.error);
+			}
 			const [row] = await db
 				.update(profile)
-				.set({ pinnedReviewIds: cleanedPins })
+				.set({ pinnedReviewIds: validated.reviewIds })
 				.where(eq(profile.userId, user.id))
 				.returning({ pinnedReviewIds: profile.pinnedReviewIds });
 			return {
