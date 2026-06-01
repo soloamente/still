@@ -803,6 +803,8 @@ export async function postLog(payload: {
 	logScope?: "show" | "season" | "episode";
 	seasonNumber?: number;
 	episodeNumber?: number;
+	/** Omit to apply the account default. */
+	visibility?: "public" | "followers" | "friends" | "private";
 }) {
 	const response = await fetch(new URL("/api/logs", stillApiOrigin()), {
 		method: "POST",
@@ -839,6 +841,7 @@ export async function patchLog(
 		logScope?: "show" | "season" | "episode";
 		seasonNumber?: number | null;
 		episodeNumber?: number | null;
+		visibility?: "public" | "followers" | "friends" | "private";
 	}>,
 ) {
 	const response = await fetch(

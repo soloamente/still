@@ -29,7 +29,12 @@ import {
 	DetailMotionButton,
 	DetailMotionButtonWrap,
 } from "@/components/movie/detail-motion-pressable";
+import {
+	type ContentVisibility,
+	VisibilitySelect,
+} from "@/components/review/visibility-select";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
+import { APP_MODAL_POPOVER_POSITIONER_CLASS } from "@/lib/app-modal-layer";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	useDetailActionMotion,
@@ -97,6 +102,8 @@ export type QuickLogArgs = {
 	logScope?: "show" | "season" | "episode";
 	seasonNumber?: number;
 	episodeNumber?: number;
+	/** Prefills the visibility picker when editing an existing log. */
+	visibility?: "public" | "followers" | "friends" | "private";
 	onSuccess?: () => void;
 };
 
@@ -187,6 +194,10 @@ export function QuickLogRoot() {
 	const [saving, setSaving] = useState(false);
 	const [removeConfirmOpen, setRemoveConfirmOpen] = useState(false);
 	const [removing, setRemoving] = useState(false);
+	const [visibility, setVisibility] = useState<ContentVisibility>(
+		args?.visibility ?? "public",
+	);
+	const [visibilityTouched, setVisibilityTouched] = useState(false);
 
 	const [searchQuery, setSearchQuery] = useState("");
 	const [searchResults, setSearchResults] = useState<MovieHit[]>([]);
@@ -273,6 +284,8 @@ export function QuickLogRoot() {
 			setSearchResults([]);
 			setSearching(false);
 			setSearchHint(null);
+			setVisibility("public");
+			setVisibilityTouched(false);
 			tvScopeEffectReady.current = false;
 		}
 	}, [isOpen]);
@@ -310,6 +323,8 @@ export function QuickLogRoot() {
 			setLogScope(args.logScope ?? "show");
 			setSeasonNumber(args.seasonNumber ?? null);
 			setEpisodeNumber(args.episodeNumber ?? null);
+			setVisibility(args.visibility ?? "public");
+			setVisibilityTouched(false);
 			return;
 		}
 		if (typeof args.movieId === "number" && args.movieTitle) {
@@ -469,6 +484,7 @@ export function QuickLogRoot() {
 					watchVenue,
 					liked: options.skipDetails ? false : liked,
 					rewatch: options.skipDetails ? false : rewatch,
+					visibility,
 					...(tvId != null
 						? tvLogScopePayload(logScope, seasonNumber, episodeNumber)
 						: {}),
@@ -499,6 +515,7 @@ export function QuickLogRoot() {
 				watchVenue,
 				liked: options.skipDetails ? undefined : liked || undefined,
 				rewatch: options.skipDetails ? undefined : rewatch || undefined,
+				...(visibilityTouched ? { visibility } : {}),
 				...(tvId != null
 					? tvLogScopePayload(logScope, seasonNumber, episodeNumber)
 					: {}),
@@ -802,6 +819,26 @@ export function QuickLogRoot() {
 												onChange={setWatchedDate}
 											/>
 										</div>
+
+										<label
+											className="mx-auto flex w-full max-w-sm flex-col gap-1.5 text-sm"
+											htmlFor="log-visibility"
+										>
+											<span className="text-center text-muted-foreground text-xs">
+												Who can see this
+											</span>
+											<VisibilitySelect
+												id="log-visibility"
+												value={visibility}
+												onChange={(next) => {
+													setVisibility(next);
+													setVisibilityTouched(true);
+												}}
+												popoverPositionerClassName={
+													APP_MODAL_POPOVER_POSITIONER_CLASS
+												}
+											/>
+										</label>
 									</div>
 								</div>
 								{/* Compose-only scrim — sibling of scroll, not measured for layout (review composer). */}
