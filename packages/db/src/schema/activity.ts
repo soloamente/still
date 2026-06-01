@@ -49,7 +49,7 @@ export const log = pgTable(
 		// Optional short note attached to the diary entry itself (separate from a full review).
 		note: text("note"),
 		containsSpoilers: boolean("contains_spoilers").default(false).notNull(),
-		visibility: contentVisibility("visibility").notNull().default("public"),
+		visibility: contentVisibility("visibility").default("public").notNull(),
 		/** In-cinema vs at-home — drives `/diary?venue=` filtering; default **streaming**. */
 		watchVenue: text("watch_venue")
 			.$type<LogWatchVenue>()
@@ -99,7 +99,7 @@ export const review = pgTable(
 		title: text("title"),
 		body: text("body").notNull(), // markdown
 		containsSpoilers: boolean("contains_spoilers").default(false).notNull(),
-		visibility: contentVisibility("visibility").notNull().default("public"),
+		visibility: contentVisibility("visibility").default("public").notNull(),
 		// Denormalized counters to avoid count(*) on every render. Updated by triggers.
 		likesCount: integer("likes_count").default(0).notNull(),
 		commentsCount: integer("comments_count").default(0).notNull(),

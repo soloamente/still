@@ -85,8 +85,8 @@ export const profile = pgTable(
 			.default({})
 			.notNull(),
 		defaultVisibility: contentVisibility("default_visibility")
-			.notNull()
-			.default("public"),
+			.default("public")
+			.notNull(),
 		isPrivate: boolean("is_private").default(false).notNull(),
 		isPro: boolean("is_pro").default(false).notNull(),
 		/** Ordered review ids (max 3) shown on profile hero — ST.3 signature reviews. */

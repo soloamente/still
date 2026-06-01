@@ -13,5 +13,5 @@ ALTER TABLE "log" ADD COLUMN "visibility" "content_visibility" NOT NULL DEFAULT 
 ALTER TABLE "profile" ADD COLUMN "default_visibility" "content_visibility" NOT NULL DEFAULT 'public';
 
 -- Indexes to keep filtered reads fast.
-CREATE INDEX "review_visibility_idx" ON "review" ("visibility");
-CREATE INDEX "log_visibility_idx" ON "log" ("visibility");
+CREATE INDEX "review_visibility_idx" ON "review" USING btree ("visibility");
+CREATE INDEX "log_visibility_idx" ON "log" USING btree ("visibility");
