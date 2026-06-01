@@ -57,7 +57,7 @@ export const leaderboardRoute = new Elysia({
 	)
 	.get(
 		"/films/:userId/logs",
-		async ({ params, query, status }) => {
+		async ({ params, query, status, user }) => {
 			const period = parseLeaderboardPeriod(query.period);
 			const tz = normalizeLeaderboardTimeZone(query.tz);
 			const payload = await fetchLeaderboardLogs({
@@ -65,6 +65,7 @@ export const leaderboardRoute = new Elysia({
 				userId: params.userId,
 				period,
 				tz,
+				viewerId: user?.id ?? null,
 			});
 			if (!payload) return status(404, "Profile not found");
 			return payload;
@@ -76,7 +77,7 @@ export const leaderboardRoute = new Elysia({
 	)
 	.get(
 		"/tv/:userId/logs",
-		async ({ params, query, status }) => {
+		async ({ params, query, status, user }) => {
 			const period = parseLeaderboardPeriod(query.period);
 			const tz = normalizeLeaderboardTimeZone(query.tz);
 			const payload = await fetchLeaderboardLogs({
@@ -84,6 +85,7 @@ export const leaderboardRoute = new Elysia({
 				userId: params.userId,
 				period,
 				tz,
+				viewerId: user?.id ?? null,
 			});
 			if (!payload) return status(404, "Profile not found");
 			return payload;

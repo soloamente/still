@@ -44,7 +44,7 @@ export async function validatePinnedReviewIdsForUser(
 		.where(
 			and(
 				eq(review.userId, userId),
-				eq(review.isPublic, true),
+				eq(review.visibility, "public"),
 				inArray(review.id, reviewIds),
 			),
 		);
@@ -75,7 +75,7 @@ export async function hydratePinnedReviews(
 		.where(
 			and(
 				eq(review.userId, userId),
-				eq(review.isPublic, true),
+				eq(review.visibility, "public"),
 				inArray(review.id, reviewIds),
 			),
 		);

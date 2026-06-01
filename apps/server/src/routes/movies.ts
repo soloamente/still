@@ -12,6 +12,7 @@ import { env } from "@still/env/server";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
+import { contentVisibilityWhere } from "../lib/content-visibility";
 import {
 	buildHeroArtworkSlides,
 	normalizeTmdbImagesBundle,
@@ -750,7 +751,16 @@ export const moviesRoute = new Elysia({
 					reviewsCount: sql<number>`count(${review.id})`.as("reviewsCount"),
 				})
 				.from(review)
-				.where(and(eq(review.movieId, id), eq(review.isPublic, true)));
+				.where(
+					and(
+						eq(review.movieId, id),
+						contentVisibilityWhere(
+							user?.id ?? null,
+							review.userId,
+							review.visibility,
+						),
+					),
+				);
 
 			return {
 				...row,
@@ -777,12 +787,21 @@ export const moviesRoute = new Elysia({
 	)
 	.get(
 		"/:id/reviews",
-		async ({ params }) => {
+		async ({ params, user }) => {
 			const id = Number(params.id);
 			const rows = await db
 				.select()
 				.from(review)
-				.where(and(eq(review.movieId, id), eq(review.isPublic, true)))
+				.where(
+					and(
+						eq(review.movieId, id),
+						contentVisibilityWhere(
+							user?.id ?? null,
+							review.userId,
+							review.visibility,
+						),
+					),
+				)
 				.orderBy(desc(review.likesCount), desc(review.publishedAt))
 				.limit(20);
 			return rows;

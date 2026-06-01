@@ -1,7 +1,7 @@
 import { db, log, movie, profile, tv, user } from "@still/db";
 import { and, desc, eq, inArray, isNotNull } from "drizzle-orm";
-
 import { withinCommunityPeriod } from "./community-period";
+import { contentVisibilityWhere } from "./content-visibility";
 import { logMediaKey, storedRatingToDisplayTen } from "./sense-taste-overlap";
 
 /** Minimum 0–10 spread between two followed patrons on the same title (ST.5). */
@@ -146,6 +146,7 @@ export function pickFeedRatingDivergence(
  * Loads rated diary rows from followed patrons and returns the strongest disagreement (ST.5).
  */
 export async function findFeedRatingDivergence(args: {
+	viewerId: string;
 	followingUserIds: string[];
 	periodStart: Date;
 	periodEnd: Date;
@@ -164,6 +165,7 @@ export async function findFeedRatingDivergence(args: {
 				inArray(log.userId, args.followingUserIds),
 				isNotNull(log.rating),
 				withinCommunityPeriod(log.watchedAt, args.periodStart, args.periodEnd),
+				contentVisibilityWhere(args.viewerId, log.userId, log.visibility),
 			),
 		)
 		.orderBy(desc(log.watchedAt))

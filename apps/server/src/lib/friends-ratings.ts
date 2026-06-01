@@ -1,5 +1,6 @@
 import { db, follow, log, profile, user } from "@still/db";
 import { and, desc, eq, isNotNull, or } from "drizzle-orm";
+import { contentVisibilityWhere } from "./content-visibility";
 
 /** Max friend chips returned; UI renders a `+N more` past this. */
 export const FRIENDS_RATINGS_LIMIT = 12;
@@ -109,6 +110,7 @@ export async function fetchFriendsRatings(opts: {
 				eq(follow.isMutual, true),
 				titleMatch,
 				or(isNotNull(log.rating), eq(log.liked, true)),
+				contentVisibilityWhere(opts.viewerId, log.userId, log.visibility),
 			),
 		)
 		.orderBy(desc(log.watchedAt));

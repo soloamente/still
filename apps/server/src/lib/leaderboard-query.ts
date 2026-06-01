@@ -13,6 +13,7 @@ import {
 	sql,
 } from "drizzle-orm";
 
+import { contentVisibilityWhere } from "./content-visibility";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
 
@@ -222,6 +223,7 @@ export async function fetchLeaderboardLogs(opts: {
 	period: LeaderboardPeriod;
 	tz: string | undefined;
 	now?: Date;
+	viewerId?: string | null;
 }): Promise<{
 	user: { handle: string; displayName: string; image: string | null };
 	period: LeaderboardPeriod;
@@ -266,6 +268,11 @@ export async function fetchLeaderboardLogs(opts: {
 					isNotNull(log.movieId),
 					gte(log.watchedAt, start),
 					lt(log.watchedAt, end),
+					contentVisibilityWhere(
+						opts.viewerId ?? null,
+						log.userId,
+						log.visibility,
+					),
 				),
 			)
 			.orderBy(desc(log.watchedAt));
@@ -307,6 +314,11 @@ export async function fetchLeaderboardLogs(opts: {
 				isNotNull(log.tvId),
 				gte(log.watchedAt, start),
 				lt(log.watchedAt, end),
+				contentVisibilityWhere(
+					opts.viewerId ?? null,
+					log.userId,
+					log.visibility,
+				),
 			),
 		)
 		.orderBy(desc(log.watchedAt));

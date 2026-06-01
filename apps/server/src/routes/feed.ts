@@ -11,13 +11,13 @@ import {
 } from "@still/db";
 import { and, desc, eq, inArray } from "drizzle-orm";
 import { Elysia, t } from "elysia";
-
 import { context } from "../context";
 import {
 	communityPeriodQuery,
 	resolveCommunityPeriodQuery,
 	withinCommunityPeriod,
 } from "../lib/community-period";
+import { contentVisibilityWhere } from "../lib/content-visibility";
 import { reviewEngagementOrderSql } from "../lib/creator-recognition";
 import {
 	enrichFeedListRows,
@@ -80,7 +80,11 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					.leftJoin(profile, eq(profile.userId, user.id))
 					.where(
 						and(
-							eq(review.isPublic, true),
+							contentVisibilityWhere(
+								viewer.id,
+								review.userId,
+								review.visibility,
+							),
 							inArray(review.userId, ids),
 							withinCommunityPeriod(review.publishedAt, start, end),
 						),
@@ -128,6 +132,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 			const divergence =
 				followingOnly.length >= 2
 					? await findFeedRatingDivergence({
+							viewerId: viewer.id,
 							followingUserIds: followingOnly,
 							periodStart: start,
 							periodEnd: end,
@@ -173,7 +178,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					.leftJoin(profile, eq(profile.userId, user.id))
 					.where(
 						and(
-							eq(review.isPublic, true),
+							contentVisibilityWhere(null, review.userId, review.visibility),
 							withinCommunityPeriod(review.publishedAt, start, end),
 						),
 					)

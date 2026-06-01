@@ -1,5 +1,6 @@
 import { db, follow, log, profile, user } from "@still/db";
 import { and, desc, eq, inArray, isNotNull, or } from "drizzle-orm";
+import { contentVisibilityWhere } from "./content-visibility";
 
 /** One followed patron's latest diary signal for a film (rating and/or favorite). */
 export type MovieFollowingRatingEntry = {
@@ -89,6 +90,7 @@ async function fetchFollowingRatingsForTitle(
 				titleFilter,
 				inArray(log.userId, followingIds),
 				or(isNotNull(log.rating), eq(log.liked, true)),
+				contentVisibilityWhere(viewerId, log.userId, log.visibility),
 			),
 		)
 		.orderBy(desc(log.watchedAt))

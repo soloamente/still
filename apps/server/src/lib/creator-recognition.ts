@@ -106,7 +106,7 @@ export async function fetchCuratorStatsForUser(
 			totalReviewLikes: sql<number>`coalesce(sum(${review.likesCount}), 0)::int`,
 		})
 		.from(review)
-		.where(and(eq(review.userId, userId), eq(review.isPublic, true)));
+		.where(and(eq(review.userId, userId), eq(review.visibility, "public")));
 
 	return {
 		publicListsCount: Number(listRow?.publicListsCount ?? 0),
@@ -157,7 +157,7 @@ export async function fetchCuratorSpotlightPatrons(
 			totalReviewLikes: sql<number>`coalesce(sum(${review.likesCount}), 0)::int`,
 		})
 		.from(review)
-		.where(eq(review.isPublic, true))
+		.where(eq(review.visibility, "public"))
 		.groupBy(review.userId);
 
 	const statsByUser = new Map<string, CuratorContributionStats>();
