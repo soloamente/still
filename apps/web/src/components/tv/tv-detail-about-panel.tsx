@@ -1,10 +1,10 @@
 import { cn } from "@still/ui/lib/utils";
+import type { ReactNode } from "react";
 
 import { CreditsCrawl } from "@/components/cinema/credits-crawl";
 import { CreditsFooter } from "@/components/cinema/credits-footer";
 import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
-import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
 import { TvDetailMalMeta } from "@/components/tv/tv-detail-mal-meta";
 import { TvDetailProgressPanel } from "@/components/tv/tv-detail-progress-panel";
@@ -17,12 +17,11 @@ import {
 import type {
 	buildCrewRows,
 	CreditsCrawlLineSeed,
-	TmdbMovieSummary,
 } from "@/lib/movie-detail-tmdb";
 import type { FestivalRecognitionEntry } from "@/lib/movie-festival-recognition";
 import type { TvMalEnrichment } from "@/lib/tv-mal-enrichment";
 
-/** TV About tab body — no extra API round-trip (explore tabs are TMDb-only for now). */
+/** TV About tab body — cast/progress/credits; community streams via `TvDetailCommunityAsync`. */
 export function TvDetailAboutPanel({
 	tvId,
 	title,
@@ -36,7 +35,7 @@ export function TvDetailAboutPanel({
 	crewCrawlLines,
 	recognitionEntries,
 	recognitionPresent,
-	moreLikeThis,
+	community,
 	malEnrichment,
 }: {
 	tvId: number;
@@ -56,7 +55,8 @@ export function TvDetailAboutPanel({
 	crewCrawlLines: CreditsCrawlLineSeed[];
 	recognitionEntries: FestivalRecognitionEntry[];
 	recognitionPresent: boolean;
-	moreLikeThis: TmdbMovieSummary[];
+	/** Community lists + followed ratings (Suspense boundary from the TV page). */
+	community: ReactNode;
 	malEnrichment?: TvMalEnrichment | null;
 }) {
 	return (
@@ -94,15 +94,7 @@ export function TvDetailAboutPanel({
 				</div>
 			) : null}
 
-			<MovieDetailExploreTabs
-				layout="stacked"
-				lists={[]}
-				featuredReviews={[]}
-				reviewsAfterFeatured={[]}
-				reviews={[]}
-				moreLikeThis={moreLikeThis}
-				relatedListingKind="tv"
-			/>
+			{community}
 
 			{crewCrawlLines.length ? (
 				<MovieDetailBodySection

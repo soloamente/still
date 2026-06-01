@@ -1,15 +1,19 @@
 "use client";
 
-import { cn } from "@still/ui/lib/utils";
 import { useEffect, useState } from "react";
 
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { HomeTasteMatchedRailSkeleton } from "@/components/home/home-taste-matched-rail-skeleton";
 import { api } from "@/lib/api";
 import {
+	HOME_TASTE_MATCHED_RAIL_CELL_CLASSNAME,
+	HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME,
+} from "@/lib/home-taste-matched-rail-layout";
+import {
 	type TasteMatchedDiscoveryPayload,
 	tasteMatchedRailTitle,
 } from "@/lib/taste-matched-discovery";
+import { useTasteRailVisibleCount } from "@/lib/use-taste-rail-visible-count";
 
 const RAIL_POSTER_FRAME_CLASSNAME = "rounded-2xl border-0 bg-background";
 
@@ -41,6 +45,7 @@ export function HomeTasteMatchedRail({
 		initial ?? null,
 	);
 	const [loading, setLoading] = useState(initial === undefined);
+	const { trackRef, visibleCount } = useTasteRailVisibleCount();
 
 	useEffect(() => {
 		if (initial === undefined) return;
@@ -82,25 +87,21 @@ export function HomeTasteMatchedRail({
 	}
 
 	const rail = payload as TasteMatchedDiscoveryPayload;
+	const visibleMovies = rail.movies.slice(0, visibleCount);
 
 	return (
 		<section
 			aria-label="Films matched to your taste"
-			className="shrink-0 space-y-2.5"
+			className="w-full min-w-0 space-y-2.5"
 		>
 			<h2 className="text-balance font-medium text-muted-foreground text-xs tracking-wide">
 				{tasteMatchedRailTitle(rail.genrePhrase)}
 			</h2>
-			<div
-				className={cn(
-					"scrollbar-none flex gap-2 overflow-x-auto overscroll-x-contain pb-0.5",
-					"[-webkit-overflow-scrolling:touch]",
-				)}
-			>
-				{rail.movies.map((film, index) => (
+			<div ref={trackRef} className={HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME}>
+				{visibleMovies.map((film, index) => (
 					<div
 						key={film.tmdbId}
-						className="flex w-27 shrink-0 flex-col sm:w-30"
+						className={HOME_TASTE_MATCHED_RAIL_CELL_CLASSNAME}
 					>
 						<CataloguePosterTile
 							className="w-full min-w-0"

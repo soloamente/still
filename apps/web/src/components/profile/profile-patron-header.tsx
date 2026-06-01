@@ -151,6 +151,7 @@ export function ProfilePatronHeader({
 				{isMe ? <ProfileWatchStreak /> : null}
 				<ProfilePatronByline
 					className={bio || isMe ? "mt-3" : "mt-4"}
+					targetUserId={targetUserId}
 					pronouns={pronouns}
 					titleCountLine={titleCountLine}
 					stats={stats}

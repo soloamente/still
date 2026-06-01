@@ -5,6 +5,7 @@ import {
 	movie,
 	movieCredit,
 	person,
+	profile,
 	review,
 } from "@still/db";
 import { env } from "@still/env/server";
@@ -15,6 +16,7 @@ import {
 	buildHeroArtworkSlides,
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
+import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
 import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
 import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
@@ -794,13 +796,28 @@ export const moviesRoute = new Elysia({
 			const movieId = Number(params.id);
 			if (!Number.isFinite(movieId)) return [];
 			const rows = await db
-				.select({ list })
+				.select({ list, ownerHandle: profile.handle })
 				.from(listItem)
 				.innerJoin(list, eq(listItem.listId, list.id))
+				.innerJoin(profile, eq(list.userId, profile.userId))
 				.where(and(eq(listItem.movieId, movieId), eq(list.isPublic, true)))
 				.orderBy(desc(list.likesCount), desc(list.updatedAt))
 				.limit(24);
-			return rows.map((r) => r.list);
+			return rows.map((r) => ({
+				...r.list,
+				ownerHandle: r.ownerHandle,
+			}));
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	/** Latest rated/favorited diary rows from patrons the viewer follows (film detail community). */
+	.get(
+		"/:id/following-ratings",
+		async ({ params, user }) => {
+			const movieId = Number(params.id);
+			if (!Number.isFinite(movieId)) return { entries: [], moreCount: 0 };
+			if (!user) return { entries: [], moreCount: 0 };
+			return fetchFollowingRatingsForMovie(user.id, movieId);
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

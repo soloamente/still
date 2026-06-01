@@ -1,0 +1,56 @@
+<h2>Remove a watched item</h2>
+<p class="subtitle">You already edit a log via the <b>Quick Log sheet</b> (the "Edit log" button). The remove action lives there, in edit mode. Question: which safety pattern when removing?</p>
+
+<div style="max-width:440px;margin:0 auto">
+  <div class="mockup">
+    <div class="mockup-header">Quick Log sheet — edit mode (bottom)</div>
+    <div class="mockup-body" style="text-align:left">
+      <div style="opacity:.5;font-size:13px">★ rating · ♥ favorite · date · note …</div>
+      <div style="height:1px;background:rgba(255,255,255,.1);margin:14px 0"></div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="mock-button" style="flex:1">Save changes</button>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <span style="color:#e1736b;font-size:13px;font-weight:600;cursor:pointer">Remove from watched</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="split" style="margin-top:20px">
+  <div class="mockup">
+    <div class="mockup-header">A · Undo toast</div>
+    <div class="mockup-body" style="text-align:left">
+      <p style="font-size:13px;opacity:.7;margin-bottom:12px">Tap "Remove" → sheet closes, entry disappears instantly, a toast lets you undo for ~6s.</p>
+      <div style="display:flex;align-items:center;gap:12px;background:#1c1c1e;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px">
+        <span style="font-size:13px;flex:1">Removed "Past Lives" from watched</span>
+        <span style="font-weight:700;color:#c98b5e;font-size:13px">Undo</span>
+      </div>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">B · Confirm dialog</div>
+    <div class="mockup-body" style="text-align:left">
+      <p style="font-size:13px;opacity:.7;margin-bottom:12px">Tap "Remove" → a confirm dialog appears before anything is deleted.</p>
+      <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px;text-align:center">
+        <div style="font-weight:700;margin-bottom:4px">Remove this watch?</div>
+        <div style="font-size:12px;opacity:.6;margin-bottom:14px">This deletes the log, rating and note for "Past Lives".</div>
+        <div style="display:flex;gap:10px">
+          <button class="mock-button" style="flex:1;background:transparent;border:1px solid rgba(255,255,255,.3)">Cancel</button>
+          <button class="mock-button" style="flex:1;background:#e1736b;border:none">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="options" style="margin-top:22px">
+  <div class="option" data-choice="undo" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content"><h3>Undo toast</h3><p>Fast, low-friction, reversible. Best when removals are common. Needs a brief "soft delete" window before the DELETE fires (or delete + restore).</p></div>
+  </div>
+  <div class="option" data-choice="confirm" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content"><h3>Confirm dialog</h3><p>Explicit, no accidental loss. One extra tap every time. Simplest to implement against the existing DELETE.</p></div>
+  </div>
+</div>

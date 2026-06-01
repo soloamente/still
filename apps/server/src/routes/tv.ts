@@ -1,4 +1,6 @@
+import { db, list, listItem, profile } from "@still/db";
 import { env } from "@still/env/server";
+import { and, desc, eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
@@ -7,6 +9,7 @@ import {
 	getTvMalEnrichment,
 	syncTvMalIdFromDetail,
 } from "../lib/mal-anime-enrichment";
+import { fetchFollowingRatingsForTv } from "../lib/movie-following-ratings";
 import { type TmdbTvSummary, tmdbApi, tmdbImg } from "../lib/tmdb";
 import { parseCommaIntList } from "../lib/tmdb-discover-params";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
@@ -406,6 +409,38 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				seasonNumber: t.String(),
 			}),
 		},
+	)
+	/** Public lists that include this series — TV detail community lists. */
+	.get(
+		"/:id/lists",
+		async ({ params }) => {
+			const tvId = Number(params.id);
+			if (!Number.isFinite(tvId)) return [];
+			const rows = await db
+				.select({ list, ownerHandle: profile.handle })
+				.from(listItem)
+				.innerJoin(list, eq(listItem.listId, list.id))
+				.innerJoin(profile, eq(list.userId, profile.userId))
+				.where(and(eq(listItem.tvId, tvId), eq(list.isPublic, true)))
+				.orderBy(desc(list.likesCount), desc(list.updatedAt))
+				.limit(24);
+			return rows.map((r) => ({
+				...r.list,
+				ownerHandle: r.ownerHandle,
+			}));
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	/** Latest rated/favorited diary rows from patrons the viewer follows (TV detail community). */
+	.get(
+		"/:id/following-ratings",
+		async ({ params, user }) => {
+			const tvId = Number(params.id);
+			if (!Number.isFinite(tvId)) return { entries: [], moreCount: 0 };
+			if (!user) return { entries: [], moreCount: 0 };
+			return fetchFollowingRatingsForTv(user.id, tvId);
+		},
+		{ params: t.Object({ id: t.String() }) },
 	)
 	// TV series detail — TMDb passthrough (no local `tv` table yet; mirrors `/api/movies/:id` shape for the web).
 	.get(

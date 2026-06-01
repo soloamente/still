@@ -41,6 +41,20 @@ type MovieListRow = {
 	itemsCount: number;
 	updatedAt: string;
 	likesCount: number;
+	ownerHandle?: string;
+};
+
+type FollowingRatingsPayload = {
+	entries: {
+		userId: string;
+		handle: string;
+		displayName: string;
+		image: string | null;
+		rating: number | null;
+		liked: boolean;
+		watchedAt: string;
+	}[];
+	moreCount: number;
 };
 
 export interface MovieDetailAboutAsyncProps {
@@ -92,20 +106,30 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 
 	const api = await serverApi();
 
-	const [reviewsRes, listsRes, wikidataAwards] = await Promise.all([
-		api.api
-			.movies({ id })
-			.reviews.get()
-			.catch(() => ({ data: [] })),
-		api.api
-			.movies({ id })
-			.lists.get()
-			.catch(() => ({ data: [] })),
-		fetchWikidataMovieAwards({ tmdbId, imdbId }),
-	]);
+	const [reviewsRes, listsRes, followingRatingsRes, wikidataAwards] =
+		await Promise.all([
+			api.api
+				.movies({ id })
+				.reviews.get()
+				.catch(() => ({ data: [] })),
+			api.api
+				.movies({ id })
+				.lists.get()
+				.catch(() => ({ data: [] })),
+			api.api
+				.movies({ id })
+				["following-ratings"].get()
+				.catch(() => ({ data: { entries: [], moreCount: 0 } })),
+			fetchWikidataMovieAwards({ tmdbId, imdbId }),
+		]);
 
 	const reviews = (reviewsRes.data as unknown as ReviewRow[]) ?? [];
 	const movieLists = (listsRes.data as unknown as MovieListRow[]) ?? [];
+	const followingRatingsPayload =
+		(followingRatingsRes.data as unknown as FollowingRatingsPayload) ?? {
+			entries: [],
+			moreCount: 0,
+		};
 
 	const recognitionEntries = buildMovieRecognitionEntries(
 		festivalKeywords,
@@ -157,6 +181,8 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 				layout="stacked"
 				communityAverage={communityAverage}
 				communityReviewsCount={communityReviewsCount}
+				followingRatings={followingRatingsPayload.entries}
+				followingRatingsMoreCount={followingRatingsPayload.moreCount}
 				lists={movieLists}
 				featuredReviews={featuredReviews}
 				reviewsAfterFeatured={reviewsAfterFeatured}

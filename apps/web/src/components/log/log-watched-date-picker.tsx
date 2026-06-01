@@ -7,16 +7,20 @@ import {
 } from "@still/ui/components/popover";
 import { cn } from "@still/ui/lib/utils";
 import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	buildWatchedDateMonthGrid,
-	formatMonthYearLabel,
+	formatMonthLabel,
+	formatMonthShortLabel,
 	formatTodayYmd,
 	formatWatchedDateLabel,
 	getWeekdayLabels,
 	isValidYmd,
+	isWatchedDateMonthSelectable,
+	listWatchedDatePickerYears,
+	WATCHED_DATE_MONTH_INDICES,
 	ymdToLocalDate,
 } from "@/lib/log-watched-date";
 
@@ -25,6 +29,17 @@ const triggerClass =
 
 const dayButtonClass =
 	"inline-flex size-9 items-center justify-center rounded-full text-sm font-medium tabular-nums transition-colors duration-200 ease-out motion-reduce:transition-none";
+
+const headerIconButtonClass =
+	"inline-flex size-9 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-200 ease-out motion-reduce:transition-none";
+
+const headerChipClass =
+	"inline-flex min-h-9 max-w-[7.5rem] min-w-0 items-center justify-center rounded-full px-2.5 font-medium text-foreground text-sm tabular-nums transition-colors duration-200 ease-out motion-reduce:transition-none";
+
+const panelPickButtonClass =
+	"inline-flex min-h-9 items-center justify-center rounded-full px-2 font-medium text-sm tabular-nums transition-colors duration-200 ease-out motion-reduce:transition-none";
+
+type CalendarPanelView = "days" | "months" | "years";
 
 interface LogWatchedDatePickerProps {
 	id: string;
@@ -41,20 +56,31 @@ export function LogWatchedDatePicker({
 	onChange,
 }: LogWatchedDatePickerProps) {
 	const monthGridId = useId();
+	const selectedYearRef = useRef<HTMLButtonElement | null>(null);
 	const [open, setOpen] = useState(false);
+	const [panelView, setPanelView] = useState<CalendarPanelView>("days");
 	const maxYmd = formatTodayYmd();
 	const selected = isValidYmd(value) ? value : maxYmd;
 	const selectedDate = ymdToLocalDate(selected);
+	const maxDate = ymdToLocalDate(maxYmd);
 
 	const [viewYear, setViewYear] = useState(selectedDate.getFullYear());
 	const [viewMonth, setViewMonth] = useState(selectedDate.getMonth());
 
 	useEffect(() => {
-		if (!open) return;
+		if (!open) {
+			setPanelView("days");
+			return;
+		}
 		const d = ymdToLocalDate(selected);
 		setViewYear(d.getFullYear());
 		setViewMonth(d.getMonth());
 	}, [open, selected]);
+
+	useEffect(() => {
+		if (!open || panelView !== "years") return;
+		selectedYearRef.current?.scrollIntoView({ block: "center" });
+	}, [open, panelView, viewYear]);
 
 	const cells = useMemo(
 		() => buildWatchedDateMonthGrid(viewYear, viewMonth, selected, maxYmd),
@@ -62,7 +88,10 @@ export function LogWatchedDatePicker({
 	);
 
 	const weekdayLabels = getWeekdayLabels();
-	const monthLabel = formatMonthYearLabel(viewYear, viewMonth);
+	const pickerYears = useMemo(
+		() => listWatchedDatePickerYears(maxYmd),
+		[maxYmd],
+	);
 
 	function shiftMonth(delta: number) {
 		const d = new Date(viewYear, viewMonth + delta, 1, 12, 0, 0);
@@ -80,10 +109,24 @@ export function LogWatchedDatePicker({
 		setOpen(false);
 	}
 
+	function selectMonth(month: number) {
+		setViewMonth(month);
+		setPanelView("days");
+	}
+
+	function selectYear(year: number) {
+		setViewYear(year);
+		if (year === maxDate.getFullYear() && viewMonth > maxDate.getMonth()) {
+			setViewMonth(maxDate.getMonth());
+		}
+		setPanelView("months");
+	}
+
 	const canGoNext =
-		viewYear < ymdToLocalDate(maxYmd).getFullYear() ||
-		(viewYear === ymdToLocalDate(maxYmd).getFullYear() &&
-			viewMonth < ymdToLocalDate(maxYmd).getMonth());
+		viewYear < maxDate.getFullYear() ||
+		(viewYear === maxDate.getFullYear() && viewMonth < maxDate.getMonth());
+
+	const showMonthNav = panelView === "days";
 
 	return (
 		<Popover open={open} onOpenChange={setOpen} modal={false}>
@@ -109,96 +152,226 @@ export function LogWatchedDatePicker({
 				initialFocus={false}
 				className="w-[min(100vw-2rem,20rem)] rounded-[1.75rem] p-4 shadow-mobbin-xl"
 			>
-				<div className="mb-3 flex items-center justify-between gap-2">
-					<button
-						type="button"
-						className={cn(
-							"inline-flex size-9 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-200 ease-out motion-reduce:transition-none",
-							DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-						)}
-						aria-label="Previous month"
-						onClick={() => shiftMonth(-1)}
-					>
-						<ChevronLeft className="size-4" aria-hidden />
-					</button>
-					<p
-						id={monthGridId}
-						className="min-w-0 flex-1 text-center font-medium text-foreground text-sm tabular-nums"
-					>
-						{monthLabel}
-					</p>
-					<button
-						type="button"
-						disabled={!canGoNext}
-						className={cn(
-							"inline-flex size-9 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-200 ease-out disabled:pointer-events-none disabled:opacity-40 motion-reduce:transition-none",
-							canGoNext && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-						)}
-						aria-label="Next month"
-						onClick={() => shiftMonth(1)}
-					>
-						<ChevronRight className="size-4" aria-hidden />
-					</button>
-				</div>
-
-				<div className="mb-1 grid grid-cols-7 gap-0.5">
-					{weekdayLabels.map((label) => (
-						<span
-							key={label}
-							className="inline-flex size-9 items-center justify-center font-medium text-muted-foreground/80 text-xs"
-							aria-hidden
-						>
-							{label}
-						</span>
-					))}
-				</div>
-
-				<section
-					className="grid grid-cols-7 gap-0.5"
-					aria-labelledby={monthGridId}
-				>
-					{cells.map((cell) => (
+				<div className="mb-3 flex items-center justify-between gap-1">
+					{showMonthNav ? (
 						<button
-							key={cell.ymd}
 							type="button"
-							disabled={cell.isDisabled}
-							aria-label={formatWatchedDateLabel(cell.ymd)}
-							aria-pressed={cell.isSelected}
-							aria-current={cell.isToday ? "date" : undefined}
 							className={cn(
-								dayButtonClass,
-								!cell.inCurrentMonth && "text-muted-foreground/45",
-								cell.inCurrentMonth &&
-									!cell.isSelected &&
-									!cell.isDisabled &&
-									"text-foreground",
-								cell.isToday && !cell.isSelected && "ring-1 ring-foreground/20",
-								cell.isSelected && "bg-foreground text-background",
-								!cell.isSelected &&
-									!cell.isDisabled &&
-									DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-								cell.isDisabled &&
-									"cursor-not-allowed text-muted-foreground/30",
+								headerIconButtonClass,
+								DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 							)}
-							onClick={() => selectDay(cell.ymd)}
+							aria-label="Previous month"
+							onClick={() => shiftMonth(-1)}
 						>
-							{cell.day}
+							<ChevronLeft className="size-4" aria-hidden />
 						</button>
-					))}
-				</section>
+					) : (
+						<button
+							type="button"
+							className={cn(
+								headerIconButtonClass,
+								DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+							)}
+							aria-label={
+								panelView === "years" ? "Back to months" : "Back to days"
+							}
+							onClick={() =>
+								setPanelView(panelView === "years" ? "months" : "days")
+							}
+						>
+							<ChevronLeft className="size-4" aria-hidden />
+						</button>
+					)}
 
-				<div className="mt-3 flex justify-center">
-					<button
-						type="button"
-						className={cn(
-							"inline-flex min-h-9 items-center justify-center rounded-full px-4 font-medium text-muted-foreground text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
-							DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+					<div className="flex min-w-0 flex-1 items-center justify-center gap-1">
+						{panelView === "years" ? (
+							<p className="font-medium text-foreground text-sm">Pick year</p>
+						) : (
+							<>
+								<button
+									type="button"
+									className={cn(
+										headerChipClass,
+										DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+									)}
+									aria-label={`Choose month, ${formatMonthLabel(viewMonth)}`}
+									onClick={() => setPanelView("months")}
+								>
+									<span className="truncate">
+										{panelView === "months"
+											? formatMonthLabel(viewMonth)
+											: formatMonthShortLabel(viewMonth)}
+									</span>
+								</button>
+								<button
+									type="button"
+									className={cn(
+										headerChipClass,
+										DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+									)}
+									aria-label={`Choose year, ${viewYear}`}
+									onClick={() => setPanelView("years")}
+								>
+									{viewYear}
+								</button>
+							</>
 						)}
-						onClick={selectToday}
-					>
-						Today
-					</button>
+					</div>
+
+					{showMonthNav ? (
+						<button
+							type="button"
+							disabled={!canGoNext}
+							className={cn(
+								headerIconButtonClass,
+								"disabled:pointer-events-none disabled:opacity-40",
+								canGoNext && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+							)}
+							aria-label="Next month"
+							onClick={() => shiftMonth(1)}
+						>
+							<ChevronRight className="size-4" aria-hidden />
+						</button>
+					) : (
+						<span className="size-9 shrink-0" aria-hidden />
+					)}
 				</div>
+
+				{panelView === "days" ? (
+					<>
+						<div className="mb-1 grid grid-cols-7 gap-0.5">
+							{weekdayLabels.map((day) => (
+								<span
+									key={day.id}
+									className="inline-flex size-9 items-center justify-center font-medium text-muted-foreground/80 text-xs"
+									aria-hidden
+								>
+									{day.label}
+								</span>
+							))}
+						</div>
+
+						<section
+							className="grid grid-cols-7 gap-0.5"
+							aria-labelledby={monthGridId}
+						>
+							<p id={monthGridId} className="sr-only">
+								{formatMonthLabel(viewMonth)} {viewYear}
+							</p>
+							{cells.map((cell) => (
+								<button
+									key={cell.ymd}
+									type="button"
+									disabled={cell.isDisabled}
+									aria-label={formatWatchedDateLabel(cell.ymd)}
+									aria-pressed={cell.isSelected}
+									aria-current={cell.isToday ? "date" : undefined}
+									className={cn(
+										dayButtonClass,
+										!cell.inCurrentMonth && "text-muted-foreground/45",
+										cell.inCurrentMonth &&
+											!cell.isSelected &&
+											!cell.isDisabled &&
+											"text-foreground",
+										cell.isToday &&
+											!cell.isSelected &&
+											"ring-1 ring-foreground/20",
+										cell.isSelected && "bg-foreground text-background",
+										!cell.isSelected &&
+											!cell.isDisabled &&
+											DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+										cell.isDisabled &&
+											"cursor-not-allowed text-muted-foreground/30",
+									)}
+									onClick={() => selectDay(cell.ymd)}
+								>
+									{cell.day}
+								</button>
+							))}
+						</section>
+
+						<div className="mt-3 flex justify-center">
+							<button
+								type="button"
+								className={cn(
+									"inline-flex min-h-9 items-center justify-center rounded-full px-4 font-medium text-muted-foreground text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
+									DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+								)}
+								onClick={selectToday}
+							>
+								Today
+							</button>
+						</div>
+					</>
+				) : null}
+
+				{panelView === "months" ? (
+					<div
+						className="grid grid-cols-3 gap-1"
+						role="listbox"
+						aria-label="Choose month"
+					>
+						{WATCHED_DATE_MONTH_INDICES.map((month) => {
+							const selectable = isWatchedDateMonthSelectable(
+								viewYear,
+								month,
+								maxYmd,
+							);
+							const active = month === viewMonth;
+							return (
+								<button
+									key={`watched-month-${month}`}
+									type="button"
+									role="option"
+									disabled={!selectable}
+									aria-selected={active}
+									className={cn(
+										panelPickButtonClass,
+										"px-1",
+										active && "bg-foreground text-background",
+										!active && selectable && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+										!selectable &&
+											"cursor-not-allowed text-muted-foreground/30",
+									)}
+									onClick={() => selectMonth(month)}
+								>
+									{formatMonthShortLabel(month)}
+								</button>
+							);
+						})}
+					</div>
+				) : null}
+
+				{panelView === "years" ? (
+					<div
+						className="scrollbar-none max-h-52 overflow-y-auto overscroll-y-contain"
+						role="listbox"
+						aria-label="Choose year"
+					>
+						<div className="grid grid-cols-3 gap-1 px-0.5 pb-1">
+							{pickerYears.map((year) => {
+								const active = year === viewYear;
+								return (
+									<button
+										key={year}
+										ref={active ? selectedYearRef : undefined}
+										type="button"
+										role="option"
+										aria-selected={active}
+										className={cn(
+											panelPickButtonClass,
+											active && "bg-foreground text-background",
+											!active && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+										)}
+										onClick={() => selectYear(year)}
+									>
+										{year}
+									</button>
+								);
+							})}
+						</div>
+					</div>
+				) : null}
 			</PopoverContent>
 		</Popover>
 	);

@@ -1,7 +1,10 @@
 import { cn } from "@still/ui/lib/utils";
 import { Fragment, type ReactNode } from "react";
 
+import { ProfileFollowsTrigger } from "@/components/profile/profile-follows-drawer";
+
 type ProfilePatronBylineProps = {
+	targetUserId: string;
 	pronouns: string | null;
 	/** Filmography count for the active ledger tab, e.g. "28 films logged". */
 	titleCountLine?: string | null;
@@ -19,6 +22,7 @@ function formatWebsiteLabel(website: string) {
  * Single wrapped meta row under the profile identity block — avoids a vertical "log" of lines.
  */
 export function ProfilePatronByline({
+	targetUserId,
 	pronouns,
 	titleCountLine,
 	stats,
@@ -42,15 +46,11 @@ export function ProfilePatronByline({
 	segments.push({
 		key: "social",
 		node: (
-			<span className="tabular-nums">
-				<span className="font-medium text-foreground">{stats.followers}</span>{" "}
-				followers
-				<span aria-hidden className="mx-1.5 text-muted-foreground/45">
-					·
-				</span>
-				<span className="font-medium text-foreground">{stats.following}</span>{" "}
-				following
-			</span>
+			<ProfileFollowsTrigger
+				targetUserId={targetUserId}
+				followers={stats.followers}
+				following={stats.following}
+			/>
 		),
 	});
 	if (location?.trim()) {

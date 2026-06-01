@@ -8,12 +8,7 @@ import IconHeart from "@still/ui/icons/heart";
 import IconHeartFilled from "@still/ui/icons/heart-filled";
 import { cn } from "@still/ui/lib/utils";
 import { Loader2, X } from "lucide-react";
-import {
-	AnimatePresence,
-	LayoutGroup,
-	motion,
-	useReducedMotion,
-} from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -28,11 +23,13 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { LogWatchedDatePicker } from "@/components/log/log-watched-date-picker";
+import { QuickLogRemoveConfirmDialog } from "@/components/log/quick-log-remove-confirm-dialog";
 import { TvLogScopePicker } from "@/components/log/tv-log-scope-picker";
 import {
 	DetailMotionButton,
 	DetailMotionButtonWrap,
 } from "@/components/movie/detail-motion-pressable";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	useDetailActionMotion,
@@ -49,7 +46,12 @@ import {
 	quickLogSheetHeading,
 	quickLogSubmitLabel,
 } from "@/lib/quick-log-copy";
-import { fetchMoviesSearch, patchLog, postLog } from "@/lib/still-api-fetch";
+import {
+	deleteLog,
+	fetchMoviesSearch,
+	patchLog,
+	postLog,
+} from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
@@ -183,6 +185,8 @@ export function QuickLogRoot() {
 	const [seasonNumber, setSeasonNumber] = useState<number | null>(null);
 	const [episodeNumber, setEpisodeNumber] = useState<number | null>(null);
 	const [saving, setSaving] = useState(false);
+	const [removeConfirmOpen, setRemoveConfirmOpen] = useState(false);
+	const [removing, setRemoving] = useState(false);
 
 	const [searchQuery, setSearchQuery] = useState("");
 	const [searchResults, setSearchResults] = useState<MovieHit[]>([]);
@@ -197,13 +201,6 @@ export function QuickLogRoot() {
 	const isEditMode = Boolean(args?.logId);
 	const reduceMotion = useReducedMotion();
 	const detailMotion = useDetailActionMotion();
-	const venuePillTransition = reduceMotion
-		? { duration: 0 }
-		: {
-				type: "tween" as const,
-				duration: 0.22,
-				ease: [0.165, 0.84, 0.44, 1] as const,
-			};
 	const metaRowLayoutTransition = reduceMotion
 		? { duration: 0 }
 		: { type: "spring" as const, stiffness: 420, damping: 32 };
@@ -441,6 +438,7 @@ export function QuickLogRoot() {
 	]);
 
 	const handleClose = useCallback(() => {
+		setRemoveConfirmOpen(false);
 		close();
 	}, [close]);
 
@@ -534,7 +532,42 @@ export function QuickLogRoot() {
 		}
 	}
 
+	async function confirmRemoveFromWatched() {
+		const logId = args?.logId;
+		if (!logId) return;
+		setRemoving(true);
+		try {
+			const result = await deleteLog(logId);
+			if (!result.ok) {
+				console.error("[quick-log] delete failed", result.error);
+				toast.error("Couldn't remove from watched");
+				return;
+			}
+			const label = movieTitle.trim() || "This title";
+			stillToast.updated(`Removed “${label}” from watched`);
+			setRemoveConfirmOpen(false);
+			args.onSuccess?.();
+			if (
+				pathname.startsWith("/home") ||
+				pathname.startsWith("/diary") ||
+				pathname.startsWith("/profile") ||
+				pathname.startsWith("/movies/") ||
+				pathname.startsWith("/tv/")
+			) {
+				router.refresh();
+			}
+			handleClose();
+		} catch (err) {
+			console.error("[quick-log] delete failed", err);
+			toast.error("Couldn't remove from watched");
+		} finally {
+			setRemoving(false);
+		}
+	}
+
 	if (!args) return null;
+
+	const showSheet = isOpen && args != null;
 
 	const isSeriesLog = tvId != null;
 	const heading = isEditMode
@@ -553,374 +586,303 @@ export function QuickLogRoot() {
 				logScope,
 			});
 
-	// Match `HomeCatalogViewModeToolbar` venue chips (track + sliding pill).
-	const venueChip = (active: boolean) =>
-		cn(
-			"relative inline-flex min-h-10 shrink-0 cursor-pointer items-center justify-center rounded-full px-5 py-2.5 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
-			active
-				? "text-foreground"
-				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
-		);
-
 	return (
-		<AnimatePresence>
-			{isOpen ? (
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ duration: 0.18 }}
-					className="fixed inset-0 z-50 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center"
-					onClick={handleClose}
-				>
+		<>
+			<AnimatePresence mode="wait">
+				{showSheet ? (
 					<motion.div
-						role="dialog"
-						aria-modal="true"
-						aria-labelledby="quick-log-title"
-						layoutRoot
-						initial={{ y: 32, opacity: 0, scale: 0.98 }}
-						animate={{ y: 0, opacity: 1, scale: 1 }}
-						exit={{ y: 16, opacity: 0, scale: 0.98 }}
-						transition={{ duration: 0.18, ease: [0.165, 0.84, 0.44, 1] }}
-						onClick={(e) => e.stopPropagation()}
-						className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
-						style={
-							{
-								"--log-rating-accent": "oklch(0.72 0.14 250)",
-							} as CSSProperties
-						}
+						key="quick-log-sheet"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.18 }}
+						className="fixed inset-0 z-50 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center"
+						onClick={handleClose}
 					>
-						<div className="mb-4 flex justify-end">
-							<Button
-								variant="ghost"
-								size="icon-pill"
-								onClick={handleClose}
-								aria-label="Close"
-								className="text-muted-foreground"
-							>
-								<X className="size-4" />
-							</Button>
-						</div>
-
-						<div className="relative">
-							<div
-								ref={scrollRef}
-								className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-							>
-								{needsCatalogPick ? (
-									<div className="mb-6 space-y-2">
-										<Label htmlFor="quick-log-search">Pick a film</Label>
-										<Input
-											id="quick-log-search"
-											type="search"
-											autoComplete="off"
-											spellCheck={false}
-											value={searchQuery}
-											onChange={(e) => setSearchQuery(e.target.value)}
-											placeholder="Search by title…"
-											className="min-h-11 text-base"
-										/>
-										{searchHint ? (
-											<p className="text-amber-600 text-xs">{searchHint}</p>
-										) : null}
-										{searching ? (
-											<p className="text-muted-foreground text-xs">
-												Searching…
-											</p>
-										) : searchQuery.trim() && searchResults.length === 0 ? (
-											<p className="text-muted-foreground text-xs">
-												No matches — try another title.
-											</p>
-										) : null}
-										<ul className="max-h-48 space-y-1 overflow-y-auto rounded-2xl bg-muted/25 p-1">
-											{searchResults.map((m) => (
-												<li key={m.id}>
-													<button
-														type="button"
-														className="flex w-full items-center gap-2 rounded-xl px-2 py-2 text-left text-sm [@media(hover:hover)]:hover:bg-muted/60"
-														onClick={() => {
-															setMovieId(m.id);
-															setTvId(null);
-															setMovieTitle(
-																m.title + (m.year ? ` (${m.year})` : ""),
-															);
-															setPosterUrl(m.poster_url);
-															setSearchQuery("");
-															setSearchResults([]);
-														}}
-													>
-														<span className="line-clamp-2 font-medium">
-															{m.title}
-														</span>
-														{m.year ? (
-															<span className="shrink-0 text-muted-foreground text-xs tabular-nums">
-																{m.year}
-															</span>
-														) : null}
-													</button>
-												</li>
-											))}
-										</ul>
-									</div>
-								) : null}
-
-								{posterUrl ? (
-									<div className="mx-auto mb-5 flex justify-center">
-										<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
-											<Image
-												src={posterUrl}
-												alt=""
-												fill
-												sizes="120px"
-												className="object-cover"
-												unoptimized
-											/>
-										</div>
-									</div>
-								) : null}
-
-								<h2
-									id="quick-log-title"
-									className="mb-6 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+						<motion.div
+							key="quick-log-panel"
+							role="dialog"
+							aria-modal="true"
+							aria-labelledby="quick-log-title"
+							layout
+							layoutRoot
+							initial={{ y: 32, opacity: 0, scale: 0.98 }}
+							animate={{ y: 0, opacity: 1, scale: 1 }}
+							exit={{ y: 16, opacity: 0, scale: 0.98 }}
+							transition={{ duration: 0.18, ease: [0.165, 0.84, 0.44, 1] }}
+							onClick={(e) => e.stopPropagation()}
+							className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
+							style={
+								{
+									"--log-rating-accent": "oklch(0.72 0.14 250)",
+								} as CSSProperties
+							}
+						>
+							<div className="mb-4 flex justify-end">
+								<Button
+									variant="ghost"
+									size="icon-pill"
+									onClick={handleClose}
+									aria-label="Close"
+									className="text-muted-foreground"
 								>
-									{heading}
-								</h2>
+									<X className="size-4" />
+								</Button>
+							</div>
 
-								{tvId != null ? (
-									<TvLogScopePicker
-										tvId={tvId}
-										logScope={logScope}
-										seasonNumber={seasonNumber}
-										episodeNumber={episodeNumber}
-										onScopeChange={setLogScope}
-										onSeasonChange={setSeasonNumber}
-										onEpisodeChange={setEpisodeNumber}
-									/>
-								) : null}
+							<div className="relative">
+								<div
+									ref={scrollRef}
+									className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+								>
+									{needsCatalogPick ? (
+										<div className="mb-6 space-y-2">
+											<Label htmlFor="quick-log-search">Pick a film</Label>
+											<Input
+												id="quick-log-search"
+												type="search"
+												autoComplete="off"
+												spellCheck={false}
+												value={searchQuery}
+												onChange={(e) => setSearchQuery(e.target.value)}
+												placeholder="Search by title…"
+												className="min-h-11 text-base"
+											/>
+											{searchHint ? (
+												<p className="text-amber-600 text-xs">{searchHint}</p>
+											) : null}
+											{searching ? (
+												<p className="text-muted-foreground text-xs">
+													Searching…
+												</p>
+											) : searchQuery.trim() && searchResults.length === 0 ? (
+												<p className="text-muted-foreground text-xs">
+													No matches — try another title.
+												</p>
+											) : null}
+											<ul className="max-h-48 space-y-1 overflow-y-auto rounded-2xl bg-muted/25 p-1">
+												{searchResults.map((m) => (
+													<li key={m.id}>
+														<button
+															type="button"
+															className="flex w-full items-center gap-2 rounded-xl px-2 py-2 text-left text-sm [@media(hover:hover)]:hover:bg-muted/60"
+															onClick={() => {
+																setMovieId(m.id);
+																setTvId(null);
+																setMovieTitle(
+																	m.title + (m.year ? ` (${m.year})` : ""),
+																);
+																setPosterUrl(m.poster_url);
+																setSearchQuery("");
+																setSearchResults([]);
+															}}
+														>
+															<span className="line-clamp-2 font-medium">
+																{m.title}
+															</span>
+															{m.year ? (
+																<span className="shrink-0 text-muted-foreground text-xs tabular-nums">
+																	{m.year}
+																</span>
+															) : null}
+														</button>
+													</li>
+												))}
+											</ul>
+										</div>
+									) : null}
 
-								<fieldset className="mx-auto mb-5 w-fit border-0 p-0">
-									<legend className="sr-only">Where did you watch?</legend>
-									<LayoutGroup id="quick-log-venue">
-										<div className="flex w-fit items-center rounded-full bg-background p-1">
-											<div className="flex min-w-0">
-												<label className={venueChip(watchVenue === "theaters")}>
-													<input
-														type="radio"
-														name="quick-log-venue"
-														value="theaters"
-														className="sr-only"
-														checked={watchVenue === "theaters"}
-														onChange={() => setWatchVenue("theaters")}
-													/>
-													{watchVenue === "theaters" ? (
-														sheetLayoutActive ? (
-															<motion.span
-																className="absolute inset-0 z-0 rounded-full bg-card"
-																layoutId="quick-log-venue-pill"
-																transition={venuePillTransition}
-															/>
-														) : (
-															<span className="absolute inset-0 z-0 rounded-full bg-card" />
-														)
-													) : null}
-													<span className="relative z-10">In cinemas</span>
-												</label>
-												<label
-													className={venueChip(watchVenue === "streaming")}
-												>
-													<input
-														type="radio"
-														name="quick-log-venue"
-														value="streaming"
-														className="sr-only"
-														checked={watchVenue === "streaming"}
-														onChange={() => setWatchVenue("streaming")}
-													/>
-													{watchVenue === "streaming" ? (
-														sheetLayoutActive ? (
-															<motion.span
-																className="absolute inset-0 z-0 rounded-full bg-card"
-																layoutId="quick-log-venue-pill"
-																transition={venuePillTransition}
-															/>
-														) : (
-															<span className="absolute inset-0 z-0 rounded-full bg-card" />
-														)
-													) : null}
-													<span className="relative z-10">At home</span>
-												</label>
+									{posterUrl ? (
+										<div className="mx-auto mb-5 flex justify-center">
+											<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
+												<Image
+													src={posterUrl}
+													alt=""
+													fill
+													sizes="120px"
+													className="object-cover"
+													unoptimized
+												/>
 											</div>
 										</div>
-									</LayoutGroup>
-								</fieldset>
+									) : null}
 
-								<LogRatingSlider
-									value={clampLogRatingDisplay(ratingDisplay)}
-									onChange={(next) => {
-										setRatingDisplay(next);
-										setIncludeRating(true);
-									}}
-									averageRating={averageRating}
-									className="mb-5"
-								/>
+									<h2
+										id="quick-log-title"
+										className="mb-6 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+									>
+										{heading}
+									</h2>
 
-								<div className="mb-6 space-y-5">
-									<div className="flex flex-wrap items-end justify-center gap-2">
-										<fieldset className="w-fit border-0 p-0">
-											<LayoutGroup id="quick-log-screening">
-												<div className="flex w-fit items-center rounded-full bg-background p-1">
-													<div className="flex min-w-0">
-														<label className={venueChip(!rewatch)}>
-															<input
-																type="radio"
-																name="quick-log-screening"
-																value="first"
-																className="sr-only"
-																checked={!rewatch}
-																onChange={() => setRewatch(false)}
-															/>
-															{!rewatch ? (
-																sheetLayoutActive ? (
-																	<motion.span
-																		className="absolute inset-0 z-0 rounded-full bg-card"
-																		layoutId="quick-log-screening-pill"
-																		transition={venuePillTransition}
-																	/>
-																) : (
-																	<span className="absolute inset-0 z-0 rounded-full bg-card" />
-																)
-															) : null}
-															<span className="relative z-10">First watch</span>
-														</label>
-														<label className={venueChip(rewatch)}>
-															<input
-																type="radio"
-																name="quick-log-screening"
-																value="rewatch"
-																className="sr-only"
-																checked={rewatch}
-																onChange={() => setRewatch(true)}
-															/>
-															{rewatch ? (
-																sheetLayoutActive ? (
-																	<motion.span
-																		className="absolute inset-0 z-0 rounded-full bg-card"
-																		layoutId="quick-log-screening-pill"
-																		transition={venuePillTransition}
-																	/>
-																) : (
-																	<span className="absolute inset-0 z-0 rounded-full bg-card" />
-																)
-															) : null}
-															<span className="relative z-10">Rewatch</span>
-														</label>
-													</div>
-												</div>
-											</LayoutGroup>
-										</fieldset>
-										<DetailMotionButton
-											layout={sheetLayoutActive ? "position" : false}
-											className={cn(
-												"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
-												!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-												liked && "bg-foreground text-background",
-											)}
-											aria-pressed={liked}
-											aria-label={
-												liked ? "Remove favorite" : "Mark as favorite"
-											}
-											transition={{
-												...detailMotion.buttonTransition,
-												layout: metaRowLayoutTransition,
-											}}
-											onClick={() => setLiked((v) => !v)}
-										>
-											{liked ? (
-												<IconHeartFilled className="size-5" aria-hidden />
-											) : (
-												<IconHeart className="size-5" aria-hidden />
-											)}
-										</DetailMotionButton>
-									</div>
+									{tvId != null ? (
+										<TvLogScopePicker
+											tvId={tvId}
+											logScope={logScope}
+											seasonNumber={seasonNumber}
+											episodeNumber={episodeNumber}
+											onScopeChange={setLogScope}
+											onSeasonChange={setSeasonNumber}
+											onEpisodeChange={setEpisodeNumber}
+										/>
+									) : null}
 
-									<div className="mx-auto w-full max-w-sm space-y-2">
-										{/* <Label
+									<fieldset className="mx-auto mb-5 w-fit border-0 p-0">
+										<legend className="sr-only">Where did you watch?</legend>
+										<div className="flex justify-center">
+											<SegmentedPillToolbar
+												layoutId="quick-log-venue-pill"
+												aria-label="Watch venue"
+												value={watchVenue}
+												onChange={setWatchVenue}
+												options={[
+													{ id: "theaters", label: "In cinemas" },
+													{ id: "streaming", label: "At home" },
+												]}
+											/>
+										</div>
+									</fieldset>
+
+									<LogRatingSlider
+										value={clampLogRatingDisplay(ratingDisplay)}
+										onChange={(next) => {
+											setRatingDisplay(next);
+											setIncludeRating(true);
+										}}
+										averageRating={averageRating}
+										className="mb-5"
+									/>
+
+									<div className="mb-6 space-y-5">
+										<div className="flex flex-wrap items-end justify-center gap-2">
+											<SegmentedPillToolbar
+												layoutId="quick-log-screening-pill"
+												aria-label="First watch or rewatch"
+												value={rewatch ? "rewatch" : "first"}
+												onChange={(next) => setRewatch(next === "rewatch")}
+												options={[
+													{ id: "first", label: "First watch" },
+													{ id: "rewatch", label: "Rewatch" },
+												]}
+											/>
+											<DetailMotionButton
+												layout={sheetLayoutActive ? "position" : false}
+												className={cn(
+													"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
+													!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+													liked && "bg-foreground text-background",
+												)}
+												aria-pressed={liked}
+												aria-label={
+													liked ? "Remove favorite" : "Mark as favorite"
+												}
+												transition={{
+													...detailMotion.buttonTransition,
+													layout: metaRowLayoutTransition,
+												}}
+												onClick={() => setLiked((v) => !v)}
+											>
+												{liked ? (
+													<IconHeartFilled className="size-5" aria-hidden />
+												) : (
+													<IconHeart className="size-5" aria-hidden />
+												)}
+											</DetailMotionButton>
+										</div>
+
+										<div className="mx-auto w-full max-w-sm space-y-2">
+											{/* <Label
 										htmlFor="quick-log-date"
 										className="w-full justify-center text-center text-muted-foreground text-xs"
 									>
 										Watched on
 									</Label> */}
-										<LogWatchedDatePicker
-											id="quick-log-date"
-											value={watchedDate}
-											onChange={setWatchedDate}
-										/>
+											<LogWatchedDatePicker
+												id="quick-log-date"
+												value={watchedDate}
+												onChange={setWatchedDate}
+											/>
+										</div>
 									</div>
 								</div>
+								{/* Compose-only scrim — sibling of scroll, not measured for layout (review composer). */}
+								<div
+									aria-hidden
+									className={cn(
+										"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+										showFooterFade ? "opacity-100" : "opacity-0",
+									)}
+								/>
 							</div>
-							{/* Compose-only scrim — sibling of scroll, not measured for layout (review composer). */}
-							<div
-								aria-hidden
-								className={cn(
-									"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-									showFooterFade ? "opacity-100" : "opacity-0",
-								)}
-							/>
-						</div>
 
-						<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
-							{!isEditMode ? (
+							<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
+								{!isEditMode ? (
+									<DetailMotionButtonWrap>
+										<Button
+											type="button"
+											variant="ghost"
+											size="pill"
+											className={cn(
+												"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-muted-foreground",
+												DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+											)}
+											disabled={!canSubmit || saving}
+											onClick={() => void persist({ skipDetails: true })}
+										>
+											Skip
+										</Button>
+									</DetailMotionButtonWrap>
+								) : (
+									<DetailMotionButtonWrap>
+										<Button
+											type="button"
+											variant="ghost"
+											size="pill"
+											className={cn(
+												"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 font-medium text-destructive",
+												DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+											)}
+											disabled={saving || removing}
+											onClick={() => setRemoveConfirmOpen(true)}
+										>
+											{removing ? (
+												<Loader2
+													className="size-3.5 animate-spin"
+													aria-hidden
+												/>
+											) : null}
+											Remove
+										</Button>
+									</DetailMotionButtonWrap>
+								)}
 								<DetailMotionButtonWrap>
 									<Button
 										type="button"
-										variant="ghost"
+										variant="default"
 										size="pill"
-										className={cn(
-											"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-muted-foreground",
-											DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-										)}
-										disabled={!canSubmit || saving}
-										onClick={() => void persist({ skipDetails: true })}
+										className="hover:!bg-foreground hover:!text-background h-auto min-h-10 min-w-[8.5rem] bg-foreground px-5 py-2.5 text-background text-base [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background"
+										disabled={!canSubmit || saving || removing}
+										onClick={() => void persist({ skipDetails: false })}
 									>
-										Skip
+										{saving ? (
+											<Loader2 className="size-3.5 animate-spin" aria-hidden />
+										) : null}
+										{primaryLabel}
 									</Button>
 								</DetailMotionButtonWrap>
-							) : (
-								<DetailMotionButtonWrap>
-									<Button
-										type="button"
-										variant="ghost"
-										size="pill"
-										className={cn(
-											"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-muted-foreground",
-											DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-										)}
-										disabled={saving}
-										onClick={handleClose}
-									>
-										Cancel
-									</Button>
-								</DetailMotionButtonWrap>
-							)}
-							<DetailMotionButtonWrap>
-								<Button
-									type="button"
-									variant="default"
-									size="pill"
-									className="hover:!bg-foreground hover:!text-background h-auto min-h-10 min-w-[8.5rem] bg-foreground px-5 py-2.5 text-background text-base [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background"
-									disabled={!canSubmit || saving}
-									onClick={() => void persist({ skipDetails: false })}
-								>
-									{saving ? (
-										<Loader2 className="size-3.5 animate-spin" aria-hidden />
-									) : null}
-									{primaryLabel}
-								</Button>
-							</DetailMotionButtonWrap>
-						</footer>
+							</footer>
+						</motion.div>
 					</motion.div>
-				</motion.div>
+				) : null}
+			</AnimatePresence>
+			{removeConfirmOpen ? (
+				<QuickLogRemoveConfirmDialog
+					open
+					titleLabel={movieTitle.trim() || "this title"}
+					removing={removing}
+					onCancel={() => setRemoveConfirmOpen(false)}
+					onConfirm={() => void confirmRemoveFromWatched()}
+				/>
 			) : null}
-		</AnimatePresence>
+		</>
 	);
 }

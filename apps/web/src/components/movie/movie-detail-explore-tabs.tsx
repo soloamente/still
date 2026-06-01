@@ -11,6 +11,10 @@ import { CreateListDialog } from "@/components/list/create-list-dialog";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
+import {
+	type MovieDetailFollowingRating,
+	MovieDetailFollowingRatings,
+} from "@/components/movie/movie-detail-following-ratings";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { ReviewCard } from "@/components/review/review-card";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
@@ -134,6 +138,7 @@ export type MovieListForPageTab = {
 	itemsCount: number;
 	updatedAt: string;
 	likesCount: number;
+	ownerHandle?: string;
 };
 
 export type MoviePageReview = {
@@ -161,11 +166,14 @@ export function MovieDetailExploreTabs({
 	moreLikeThis,
 	communityAverage = null,
 	communityReviewsCount = 0,
+	followingRatings = [],
+	followingRatingsMoreCount = 0,
 	layout = "tabs",
 	/** Related grid links to `/tv/[id]` when surfacing TMDb TV adjacencies. */
 	relatedListingKind = "movie",
 	movieId,
 	movieTitle,
+	listCountLabel = "films",
 }: {
 	lists: MovieListForPageTab[];
 	featuredReviews: MoviePageReview[];
@@ -174,12 +182,17 @@ export function MovieDetailExploreTabs({
 	moreLikeThis: TmdbMovieSummary[];
 	communityAverage?: number | null;
 	communityReviewsCount?: number;
+	/** Latest diary scores from patrons the viewer follows (signed-in only). */
+	followingRatings?: MovieDetailFollowingRating[];
+	followingRatingsMoreCount?: number;
 	/** Stacked sections power the fixed right-rail scroll legend on film detail. */
 	layout?: "tabs" | "stacked";
 	relatedListingKind?: "movie" | "tv";
 	/** Pre-fill create-list sheet and add this title after save. */
 	movieId?: number;
 	movieTitle?: string;
+	/** Meta line after list owner — `films` on movie detail, `titles` on TV. */
+	listCountLabel?: string;
 }) {
 	const baseId = useId();
 	const [tab, setTab] = useState<TabId>("reviews");
@@ -319,29 +332,42 @@ export function MovieDetailExploreTabs({
 	const listsPanel = lists.length ? (
 		<ul className="grid gap-4 sm:grid-cols-2">
 			{lists.map((list) => (
-				<li key={list.id}>
-					<Link
-						href={`/lists/${list.id}`}
-						className={cn(COMMUNITY_CARD, "flex items-start gap-3 p-4")}
-					>
+				<li key={list.id} className={cn(COMMUNITY_CARD, "p-4")}>
+					<div className="flex items-start gap-3">
 						<span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-muted/30 text-desert-orange">
 							<ListMusic className="size-5" aria-hidden />
 						</span>
-						<span className="min-w-0">
-							<span className="block font-serif text-foreground text-lg leading-snug">
+						<div className="min-w-0 flex-1">
+							<Link
+								href={`/lists/${list.id}`}
+								className="block font-serif text-foreground text-lg leading-snug [@media(hover:hover)]:hover:text-desert-orange"
+							>
 								{list.title}
-							</span>
-							<span className="mt-1 block text-muted-foreground text-xs tabular-nums">
-								{list.itemsCount} films · {list.likesCount} likes · updated{" "}
-								{formatDistanceToNowStrict(new Date(list.updatedAt))} ago
-							</span>
+							</Link>
+							<p className="mt-1 text-muted-foreground text-xs tabular-nums">
+								{list.ownerHandle ? (
+									<>
+										by{" "}
+										<Link
+											href={`/profile/${list.ownerHandle}`}
+											className="text-foreground/85 [@media(hover:hover)]:hover:text-foreground"
+										>
+											@{list.ownerHandle}
+										</Link>
+										{" · "}
+									</>
+								) : null}
+								{list.itemsCount} {listCountLabel} · {list.likesCount} likes ·
+								updated {formatDistanceToNowStrict(new Date(list.updatedAt))}{" "}
+								ago
+							</p>
 							{list.description ? (
-								<span className="mt-2 line-clamp-2 block font-editorial text-foreground/80 text-sm leading-relaxed">
+								<p className="mt-2 line-clamp-2 font-editorial text-foreground/80 text-sm leading-relaxed">
 									{list.description}
-								</span>
+								</p>
 							) : null}
-						</span>
-					</Link>
+						</div>
+					</div>
 				</li>
 			))}
 		</ul>
@@ -349,9 +375,18 @@ export function MovieDetailExploreTabs({
 		<MovieDetailListsEmpty movieId={movieId} movieTitle={movieTitle} />
 	);
 
+	const followingRatingsPanel =
+		followingRatings.length > 0 ? (
+			<MovieDetailFollowingRatings
+				entries={followingRatings}
+				moreCount={followingRatingsMoreCount}
+			/>
+		) : null;
+
 	const communityPanel = (
 		<div className="space-y-14">
 			{communityStatsPanel}
+			{followingRatingsPanel}
 			<div>
 				<MovieDetailSubsectionLabel>Reviews</MovieDetailSubsectionLabel>
 				{reviewsPanel}
@@ -456,6 +491,7 @@ export function MovieDetailExploreTabs({
 				className={tab === "reviews" ? "space-y-10" : "hidden"}
 			>
 				{communityStatsPanel}
+				{followingRatingsPanel}
 				{reviewsPanel}
 			</div>
 

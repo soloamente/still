@@ -9,7 +9,8 @@ export const TASTE_MATCH_MIN_LOGS = 10;
 /** Success criteria: at least this many unseen titles in the rail. */
 export const TASTE_MATCH_MIN_RESULTS = 6;
 
-export const TASTE_MATCH_TARGET_RESULTS = 12;
+/** Enough titles for wide taste rails (`auto-fill` grid on `/home` Movies). */
+export const TASTE_MATCH_TARGET_RESULTS = 24;
 
 const CANDIDATE_POOL_LIMIT = 500;
 

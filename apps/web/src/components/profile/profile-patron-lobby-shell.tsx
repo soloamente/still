@@ -5,6 +5,7 @@ import { useMemo } from "react";
 
 import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-provider";
 import type { ProfileFilmographyRow } from "@/components/profile/profile-filmography-panel";
+import { ProfileFollowsDrawerRoot } from "@/components/profile/profile-follows-drawer";
 import { ProfileLobbyChrome } from "@/components/profile/profile-lobby-chrome";
 import {
 	ProfileLobbyParamsProvider,
@@ -48,6 +49,8 @@ export interface ProfilePatronLobbyShellProps {
 	website: string | null;
 	isMe: boolean;
 	targetUserId: string;
+	/** Signed-in viewer — powers Follow buttons inside the follows drawer. */
+	viewerId: string | null;
 	bannerUrl: string | null;
 	bannerFrame?: ProfileBannerFrameId;
 	accentColor: string | null;
@@ -78,6 +81,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		website,
 		isMe,
 		targetUserId,
+		viewerId,
 		bannerUrl,
 		bannerFrame = "none",
 		accentColor,
@@ -189,6 +193,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 
 	return (
 		<>
+			<ProfileFollowsDrawerRoot viewerId={viewerId} />
 			<ProfileTopBar displayName={displayName} sharePath={sharePath} />
 			<section
 				className={cn(

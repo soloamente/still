@@ -22,6 +22,7 @@ import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signatu
 import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
 import { ensureTvCached } from "../lib/tv-cache";
+import { clearTvWatchIfNoDiaryLogsForShow } from "../lib/tv-watch-log-sync";
 import { syncWatchStreakForUser } from "../lib/watch-streak-sync";
 
 const logCreateFields = {
@@ -338,6 +339,9 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				});
 			}
 			await db.delete(log).where(eq(log.id, params.id));
+			if (existing.tvId != null) {
+				await clearTvWatchIfNoDiaryLogsForShow(user.id, existing.tvId);
+			}
 			return { ok: true };
 		},
 		{ params: t.Object({ id: t.String() }) },

@@ -1,5 +1,6 @@
 import { cn } from "@still/ui/lib/utils";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
@@ -7,6 +8,8 @@ import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { StarRating } from "@/components/rating/star-rating";
 import { TvDetailAboutPanel } from "@/components/tv/tv-detail-about-panel";
 import { TvDetailClientRoot } from "@/components/tv/tv-detail-client-root";
+import { TvDetailCommunityAsync } from "@/components/tv/tv-detail-community-async";
+import { TvDetailCommunityFallback } from "@/components/tv/tv-detail-community-fallback";
 import { TvDetailPrimaryActions } from "@/components/tv/tv-detail-primary-actions";
 import { APP_NAME } from "@/lib/app-brand";
 import { accentFromGenres } from "@/lib/cinema-accents";
@@ -342,8 +345,15 @@ export default async function TvShowPage({
 							crewCrawlLines={crewCrawlLines}
 							recognitionEntries={recognitionEntries}
 							recognitionPresent={recognitionPresent}
-							moreLikeThis={moreLikeThis}
 							malEnrichment={data.malEnrichment ?? null}
+							community={
+								<Suspense fallback={<TvDetailCommunityFallback />}>
+									<TvDetailCommunityAsync
+										tvId={id}
+										moreLikeThis={moreLikeThis}
+									/>
+								</Suspense>
+							}
 						/>
 					}
 				/>

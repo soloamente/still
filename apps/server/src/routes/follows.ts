@@ -4,6 +4,10 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
+import {
+	annotateViewerFollows,
+	fetchViewerFollowingIds,
+} from "../lib/follow-list";
 import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
 
@@ -121,7 +125,7 @@ export const followsRoute = new Elysia({
 	)
 	.get(
 		"/of/:userId/followers",
-		async ({ params }) => {
+		async ({ params, user: viewer }) => {
 			const rows = await db
 				.select({
 					userId: follow.followerId,
@@ -135,13 +139,19 @@ export const followsRoute = new Elysia({
 				.where(eq(follow.followingId, params.userId))
 				.orderBy(desc(follow.createdAt))
 				.limit(100);
-			return rows;
+			const followingIds = viewer
+				? await fetchViewerFollowingIds(
+						viewer.id,
+						rows.map((row) => row.userId),
+					)
+				: new Set<string>();
+			return annotateViewerFollows(rows, followingIds);
 		},
 		{ params: t.Object({ userId: t.String() }) },
 	)
 	.get(
 		"/of/:userId/following",
-		async ({ params }) => {
+		async ({ params, user: viewer }) => {
 			const rows = await db
 				.select({
 					userId: follow.followingId,
@@ -155,7 +165,13 @@ export const followsRoute = new Elysia({
 				.where(eq(follow.followerId, params.userId))
 				.orderBy(desc(follow.createdAt))
 				.limit(100);
-			return rows;
+			const followingIds = viewer
+				? await fetchViewerFollowingIds(
+						viewer.id,
+						rows.map((row) => row.userId),
+					)
+				: new Set<string>();
+			return annotateViewerFollows(rows, followingIds);
 		},
 		{ params: t.Object({ userId: t.String() }) },
 	)
