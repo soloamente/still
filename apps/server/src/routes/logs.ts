@@ -1,3 +1,4 @@
+import type { ContentVisibility } from "@still/db";
 import {
 	db,
 	eventLog,
@@ -11,9 +12,9 @@ import {
 } from "@still/db";
 import { and, count, desc, eq, isNotNull } from "drizzle-orm";
 import { Elysia, t } from "elysia";
-
 import { context } from "../context";
 import { syncCompletionistChallengesForUser } from "../lib/completionist-challenge-sync";
+import { visibilitySchema } from "../lib/content-visibility";
 import { makeId } from "../lib/cuid";
 import { ensureMovieCached } from "../lib/ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
@@ -46,6 +47,8 @@ const logCreateFields = {
 	),
 	seasonNumber: t.Optional(t.Integer({ minimum: 1 })),
 	episodeNumber: t.Optional(t.Integer({ minimum: 1 })),
+	/** Who can see this diary entry. Defaults to the account default. */
+	visibility: t.Optional(visibilitySchema),
 };
 
 type LogCreateBody = {
@@ -61,6 +64,7 @@ type LogCreateBody = {
 	logScope?: "show" | "season" | "episode";
 	seasonNumber?: number;
 	episodeNumber?: number;
+	visibility?: ContentVisibility;
 };
 
 type LogPatchBody = {
@@ -74,6 +78,7 @@ type LogPatchBody = {
 	logScope?: "show" | "season" | "episode";
 	seasonNumber?: number | null;
 	episodeNumber?: number | null;
+	visibility?: ContentVisibility;
 };
 
 export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
@@ -128,6 +133,16 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.from(log)
 				.where(eq(log.userId, user.id));
 
+			let visibility = body.visibility ?? null;
+			if (!visibility) {
+				const [own] = await db
+					.select({ d: profile.defaultVisibility })
+					.from(profile)
+					.where(eq(profile.userId, user.id))
+					.limit(1);
+				visibility = own?.d ?? "public";
+			}
+
 			const [row] = await db
 				.insert(log)
 				.values({
@@ -145,6 +160,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					logScope: scopeFields.logScope,
 					seasonNumber: scopeFields.seasonNumber,
 					episodeNumber: scopeFields.episodeNumber,
+					visibility,
 				})
 				.returning();
 
@@ -274,6 +290,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					logScope: scopeFields.logScope,
 					seasonNumber: scopeFields.seasonNumber,
 					episodeNumber: scopeFields.episodeNumber,
+					...(body.visibility ? { visibility: body.visibility } : {}),
 				})
 				.where(eq(log.id, params.id))
 				.returning();
@@ -316,6 +333,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				episodeNumber: t.Optional(
 					t.Union([t.Integer({ minimum: 1 }), t.Null()]),
 				),
+				visibility: t.Optional(visibilitySchema),
 			}),
 		},
 	)
