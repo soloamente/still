@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
@@ -147,6 +148,7 @@ function ProfileOtherPatronActions({
 }
 
 function ProfileFollowAction({ targetUserId }: { targetUserId: string }) {
+	const router = useRouter();
 	const [following, setFollowing] = useState<boolean | null>(null);
 	const [busy, setBusy] = useState(false);
 
@@ -180,6 +182,9 @@ function ProfileFollowAction({ targetUserId }: { targetUserId: string }) {
 				setFollowing(true);
 				toast.success("Following");
 			}
+			// Reconcile the SSR'd follower count (and any other server-derived
+			// stats) so the number reflects the toggle instead of going stale.
+			router.refresh();
 		} catch (err) {
 			console.error(err);
 			toast.error("Couldn't update");

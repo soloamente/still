@@ -29,6 +29,9 @@ const INBOX_FETCH_LIMIT = 80;
 /** Matches {@link HOME_STICKY_HEADER_ICON_CLASS} in `home-sticky-chrome.tsx`. */
 const HEADER_ICON_CLASS = "size-5 shrink-0";
 
+/** How often the bell refetches while the tab is foregrounded. */
+const NOTIFICATIONS_POLL_INTERVAL_MS = 30_000;
+
 /**
  * Sticky-header notifications — scrollable inbox on elevated `bg-popover` surface.
  */
@@ -62,17 +65,48 @@ export function HomeNotificationsMenu({
 		}
 
 		let cancelled = false;
-		void (async () => {
+		const load = async () => {
 			try {
 				const data = await fetchNotifications();
 				if (!cancelled) setRows(data);
 			} catch {
-				if (!cancelled) setRows([]);
+				// Keep the last good inbox on a transient failure.
 			}
-		})();
+		};
+
+		void load();
+
+		// Near-realtime inbox: poll while the tab is visible. We can't hold a
+		// socket open on serverless, so a light interval keeps the bell current
+		// without waiting for the user to reopen the menu. Refetch immediately
+		// on tab refocus so a backgrounded tab catches up at once.
+		let timer: ReturnType<typeof setInterval> | null = null;
+		const start = () => {
+			if (timer != null) return;
+			timer = setInterval(() => {
+				if (document.visibilityState === "visible") void load();
+			}, NOTIFICATIONS_POLL_INTERVAL_MS);
+		};
+		const stop = () => {
+			if (timer == null) return;
+			clearInterval(timer);
+			timer = null;
+		};
+		const onVisibility = () => {
+			if (document.visibilityState === "visible") {
+				void load();
+				start();
+			} else {
+				stop();
+			}
+		};
+		start();
+		document.addEventListener("visibilitychange", onVisibility);
 
 		return () => {
 			cancelled = true;
+			stop();
+			document.removeEventListener("visibilitychange", onVisibility);
 		};
 	}, [authenticated, fetchNotifications]);
 

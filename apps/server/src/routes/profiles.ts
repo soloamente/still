@@ -1,4 +1,6 @@
 import {
+	achievement,
+	badge,
 	db,
 	follow,
 	list,
@@ -8,11 +10,12 @@ import {
 	review,
 	tv,
 	user,
+	userAchievement,
 	userBadge,
 } from "@still/db";
 import { env } from "@still/env/server";
 import { get, put } from "@vercel/blob";
-import { and, desc, eq, gte, ilike, ne, or, sql } from "drizzle-orm";
+import { and, desc, eq, gte, ilike, isNotNull, ne, or, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
@@ -675,79 +678,117 @@ export const profilesRoute = new Elysia({
 				.limit(1);
 			if (!row?.user) return status(404, "Not found");
 
-			const [followCount] = await db
-				.select({
-					followers: sql<number>`count(distinct ${follow.followerId})`,
-				})
-				.from(follow)
-				.where(eq(follow.followingId, row.user.id));
-			const [followingCount] = await db
-				.select({
-					following: sql<number>`count(distinct ${follow.followingId})`,
-				})
-				.from(follow)
-				.where(eq(follow.followerId, row.user.id));
-
-			// Is the viewer following this profile?
-			let isFollowing = false;
-			if (viewer) {
-				const [f] = await db
-					.select()
-					.from(follow)
-					.where(
-						and(
-							eq(follow.followerId, viewer.id),
-							eq(follow.followingId, row.user.id),
-						),
-					)
-					.limit(1);
-				isFollowing = Boolean(f);
-			}
-
+			// neon-http does one HTTP round trip per query, so every independent
+			// read below is dispatched concurrently — otherwise the handler stacks
+			// ~10 sequential round trips and the profile page stalls on load.
+			const targetUserId = row.user.id;
+			const viewerId = viewer?.id ?? null;
 			// Full watch ledger for profile Movies / TV grids (deduped per title on the web app).
 			const PROFILE_WATCH_LEDGER_LIMIT = 500;
-			const recent = await db
-				.select({ log, movie, tv })
-				.from(log)
-				.leftJoin(movie, eq(log.movieId, movie.tmdbId))
-				.leftJoin(tv, eq(log.tvId, tv.tmdbId))
-				.where(eq(log.userId, row.user.id))
-				.orderBy(desc(log.watchedAt))
-				.limit(PROFILE_WATCH_LEDGER_LIMIT);
 
-			// Recent reviews (3).
-			const recentReviews = await db
-				.select({ review, movie })
-				.from(review)
-				.leftJoin(movie, eq(review.movieId, movie.tmdbId))
-				.where(and(eq(review.userId, row.user.id), eq(review.isPublic, true)))
-				.orderBy(desc(review.publishedAt))
-				.limit(3);
-
-			const pinnedReviews = await hydratePinnedReviews(
-				row.user.id,
-				row.profile.pinnedReviewIds,
-			);
-
-			// Popular lists (public only) — poster paths hydrated for profile list rows.
-			const listRows = await db
-				.select()
-				.from(list)
-				.where(and(eq(list.userId, row.user.id), eq(list.isPublic, true)))
-				.orderBy(desc(list.likesCount), desc(list.updatedAt))
-				.limit(6);
-			const lists = await withCoverPosterPaths(listRows);
-
-			// Pinned badges.
-			const pinned = await db
-				.select()
-				.from(userBadge)
-				.where(
-					and(eq(userBadge.userId, row.user.id), eq(userBadge.isPinned, true)),
-				)
-				.limit(8);
-
-			const curator = await resolveCuratorRecognition(row.user.id);
+			const [
+				followCount,
+				followingCount,
+				isFollowing,
+				recent,
+				recentReviews,
+				pinnedReviews,
+				lists,
+				pinned,
+				curator,
+				earnedBadges,
+				unlockedAchievements,
+			] = await Promise.all([
+				db
+					.select({
+						followers: sql<number>`count(distinct ${follow.followerId})`,
+					})
+					.from(follow)
+					.where(eq(follow.followingId, targetUserId))
+					.then((r) => r[0]),
+				db
+					.select({
+						following: sql<number>`count(distinct ${follow.followingId})`,
+					})
+					.from(follow)
+					.where(eq(follow.followerId, targetUserId))
+					.then((r) => r[0]),
+				// Is the viewer following this profile?
+				viewerId
+					? db
+							.select()
+							.from(follow)
+							.where(
+								and(
+									eq(follow.followerId, viewerId),
+									eq(follow.followingId, targetUserId),
+								),
+							)
+							.limit(1)
+							.then((r) => Boolean(r[0]))
+					: Promise.resolve(false),
+				db
+					.select({ log, movie, tv })
+					.from(log)
+					.leftJoin(movie, eq(log.movieId, movie.tmdbId))
+					.leftJoin(tv, eq(log.tvId, tv.tmdbId))
+					.where(eq(log.userId, targetUserId))
+					.orderBy(desc(log.watchedAt))
+					.limit(PROFILE_WATCH_LEDGER_LIMIT),
+				// Recent reviews (3).
+				db
+					.select({ review, movie })
+					.from(review)
+					.leftJoin(movie, eq(review.movieId, movie.tmdbId))
+					.where(
+						and(eq(review.userId, targetUserId), eq(review.isPublic, true)),
+					)
+					.orderBy(desc(review.publishedAt))
+					.limit(3),
+				hydratePinnedReviews(targetUserId, row.profile.pinnedReviewIds),
+				// Popular lists (public only) — poster paths hydrated for profile list rows.
+				db
+					.select()
+					.from(list)
+					.where(and(eq(list.userId, targetUserId), eq(list.isPublic, true)))
+					.orderBy(desc(list.likesCount), desc(list.updatedAt))
+					.limit(6)
+					.then((listRows) => withCoverPosterPaths(listRows)),
+				// Pinned badges.
+				db
+					.select()
+					.from(userBadge)
+					.where(
+						and(
+							eq(userBadge.userId, targetUserId),
+							eq(userBadge.isPinned, true),
+						),
+					)
+					.limit(8),
+				resolveCuratorRecognition(targetUserId),
+				// Folded in so the profile page renders from one round trip instead of
+				// firing separate /badges/of and /achievements/of calls afterward.
+				db
+					.select({ userBadge, badge })
+					.from(userBadge)
+					.leftJoin(badge, eq(userBadge.badgeId, badge.id))
+					.where(eq(userBadge.userId, targetUserId))
+					.orderBy(desc(userBadge.awardedAt)),
+				db
+					.select({ userAchievement, achievement })
+					.from(userAchievement)
+					.leftJoin(
+						achievement,
+						eq(userAchievement.achievementId, achievement.id),
+					)
+					.where(
+						and(
+							eq(userAchievement.userId, targetUserId),
+							isNotNull(userAchievement.unlockedAt),
+						),
+					)
+					.orderBy(desc(userAchievement.unlockedAt)),
+			]);
 
 			return {
 				user: { id: row.user.id, name: row.user.name, image: row.user.image },
@@ -763,6 +804,8 @@ export const profilesRoute = new Elysia({
 				pinnedReviews,
 				lists,
 				pinnedBadges: pinned,
+				earnedBadges,
+				unlockedAchievements,
 			};
 		},
 		{ params: t.Object({ handle: t.String() }) },

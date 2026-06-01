@@ -72,6 +72,8 @@ type ProfileData = {
 		description: string | null;
 	}[];
 	pinnedBadges: { badgeId: string; awardedAt: string }[];
+	earnedBadges: ProfileEarnedBadge[];
+	unlockedAchievements: ProfileUnlockedAchievement[];
 };
 
 const PROFILE_TOOLBAR_SOCIAL_ORDER: ProfileSocialTabId[] = [
@@ -104,27 +106,15 @@ export default async function ProfilePage({
 	const { profile, user, stats } = data;
 	const isMe = session?.user.id === user.id;
 
-	const [badgesRes, achievementsRes] = await Promise.all([
-		api.api.badges
-			.of({ userId: user.id })
-			.get()
-			.catch(() => ({ data: [] })),
-		api.api.achievements
-			.of({ userId: user.id })
-			.get()
-			.catch(() => ({ data: [] })),
-	]);
-	const rawEarnedBadges =
-		(badgesRes.data as unknown as ProfileEarnedBadge[]) ?? [];
+	// Badges + achievements are folded into the profile payload above, so the
+	// page renders from a single server round trip instead of chaining calls.
 	const earnedBadges = pickProfileShowcaseBadges(
-		rawEarnedBadges.filter(
+		(data.earnedBadges ?? []).filter(
 			(row): row is ProfileEarnedBadge => row.badge != null,
 		),
 		8,
 	);
-	const rawUnlockedAchievements =
-		(achievementsRes.data as unknown as ProfileUnlockedAchievement[]) ?? [];
-	const unlockedAchievements = rawUnlockedAchievements
+	const unlockedAchievements = (data.unlockedAchievements ?? [])
 		.filter((row): row is ProfileUnlockedAchievement => row.achievement != null)
 		.slice(0, 8);
 
@@ -166,13 +156,11 @@ export default async function ProfilePage({
 		return false;
 	});
 
-	let viewerPrefs: Record<string, unknown> | null = null;
-	if (isMe) {
-		const meRes = await api.api.profiles.me.get().catch(() => ({ data: null }));
-		viewerPrefs =
-			(meRes.data as { preferences?: Record<string, unknown> | null } | null)
-				?.preferences ?? null;
-	}
+	// When viewing your own profile the payload already carries your prefs, so
+	// skip the extra /profiles/me round trip that previously ran here.
+	const viewerPrefs: Record<string, unknown> | null = isMe
+		? (profile.preferences ?? null)
+		: null;
 	const monochromePeersOnHover =
 		readCatalogMonochromePeersOnHoverPref(viewerPrefs);
 	const tasteSignature = parseTasteSignatureJson(profile.tasteSignature);
