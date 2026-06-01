@@ -24,7 +24,12 @@ import {
 	DetailMotionButton,
 	DetailMotionButtonWrap,
 } from "@/components/movie/detail-motion-pressable";
+import {
+	type ContentVisibility,
+	VisibilitySelect,
+} from "@/components/review/visibility-select";
 import { api } from "@/lib/api";
+import { APP_MODAL_POPOVER_POSITIONER_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	clampLogRatingDisplay,
@@ -92,6 +97,8 @@ export function ReviewComposerRoot() {
 	const [body, setBody] = useState("");
 	const [ratingDisplay, setRatingDisplay] = useState(DEFAULT_RATING);
 	const [containsSpoilers, setContainsSpoilers] = useState(false);
+	const [visibility, setVisibility] = useState<ContentVisibility>("public");
+	const [visibilityTouched, setVisibilityTouched] = useState(false);
 	const [step, setStep] = useState<ComposerStep>("compose");
 	const [saving, setSaving] = useState(false);
 	const [posterUrl, setPosterUrl] = useState<string | null>(null);
@@ -109,6 +116,8 @@ export function ReviewComposerRoot() {
 			setBody("");
 			setRatingDisplay(DEFAULT_RATING);
 			setContainsSpoilers(false);
+			setVisibility("public");
+			setVisibilityTouched(false);
 			setStep("compose");
 			setPosterUrl(null);
 			setAverageRating(null);
@@ -215,6 +224,7 @@ export function ReviewComposerRoot() {
 				body: body.trim(),
 				rating,
 				containsSpoilers,
+				...(visibilityTouched ? { visibility } : {}),
 			});
 			toast.success("Review published");
 			handleClose();
@@ -372,6 +382,27 @@ export function ReviewComposerRoot() {
 													{BODY_MAX.toLocaleString()}
 												</p>
 											</div>
+
+											<label
+												className="mb-5 flex flex-col gap-1.5 text-sm"
+												htmlFor="review-visibility"
+											>
+												<span className="w-full text-center text-muted-foreground text-xs">
+													Who can see this
+												</span>
+												<VisibilitySelect
+													id="review-visibility"
+													value={visibility}
+													onChange={(next) => {
+														setVisibility(next);
+														setVisibilityTouched(true);
+													}}
+													popoverPositionerClassName={
+														APP_MODAL_POPOVER_POSITIONER_CLASS
+													}
+													popoverSide="top"
+												/>
+											</label>
 										</motion.div>
 									) : (
 										<motion.div
