@@ -181,7 +181,6 @@ export default async function ProfilePage({
 			website={profile.website}
 			isMe={isMe}
 			targetUserId={user.id}
-			viewerId={session?.user.id ?? null}
 			bannerUrl={profile.bannerUrl}
 			bannerFrame={bannerFrame}
 			accentColor={profile.accentColor}

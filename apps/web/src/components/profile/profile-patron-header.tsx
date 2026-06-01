@@ -154,7 +154,6 @@ export function ProfilePatronHeader({
 					pronouns={pronouns}
 					titleCountLine={titleCountLine}
 					stats={stats}
-					targetUserId={targetUserId}
 					location={location}
 					website={website}
 				/>

@@ -2,7 +2,6 @@ import { env } from "@still/env/server";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
-import { fetchFriendsRatings } from "../lib/friends-ratings";
 import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
 import {
 	getTvMalEnrichment,
@@ -407,17 +406,6 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				seasonNumber: t.String(),
 			}),
 		},
-	)
-	/** Ratings from the viewer's mutual-follow friends for this show. */
-	.get(
-		"/:id/friends-ratings",
-		async ({ params, user: viewer }) => {
-			if (!viewer) return { rows: [], total: 0 };
-			const tvId = Number(params.id);
-			if (!Number.isFinite(tvId)) return { rows: [], total: 0 };
-			return fetchFriendsRatings({ viewerId: viewer.id, tvId });
-		},
-		{ params: t.Object({ id: t.String() }) },
 	)
 	// TV series detail — TMDb passthrough (no local `tv` table yet; mirrors `/api/movies/:id` shape for the web).
 	.get(

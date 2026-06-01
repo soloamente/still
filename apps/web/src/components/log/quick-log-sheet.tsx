@@ -7,7 +7,7 @@ import { stillToast } from "@still/ui/components/still-toast";
 import IconHeart from "@still/ui/icons/heart";
 import IconHeartFilled from "@still/ui/icons/heart-filled";
 import { cn } from "@still/ui/lib/utils";
-import { Loader2, Trash2, X } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import {
 	AnimatePresence,
 	LayoutGroup,
@@ -49,12 +49,7 @@ import {
 	quickLogSheetHeading,
 	quickLogSubmitLabel,
 } from "@/lib/quick-log-copy";
-import {
-	deleteLog,
-	fetchMoviesSearch,
-	patchLog,
-	postLog,
-} from "@/lib/still-api-fetch";
+import { fetchMoviesSearch, patchLog, postLog } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
@@ -539,66 +534,6 @@ export function QuickLogRoot() {
 		}
 	}
 
-	async function handleRemove() {
-		if (!args?.logId) return;
-		const logId = args.logId;
-		// Snapshot the original log so Undo can re-create an equivalent entry.
-		const snapshot = {
-			movieId: args.movieId,
-			tvId: args.tvId,
-			watchedAt: args.watchedAt,
-			rating: typeof args.rating === "number" ? args.rating : undefined,
-			note: args.note?.trim() ? args.note.trim() : undefined,
-			liked: args.liked || undefined,
-			rewatch: args.rewatch || undefined,
-			watchVenue: args.watchVenue,
-			...(args.tvId != null
-				? tvLogScopePayload(
-						args.logScope,
-						args.seasonNumber,
-						args.episodeNumber,
-					)
-				: {}),
-		};
-		const onSuccess = args.onSuccess;
-		setSaving(true);
-		const result = await deleteLog(logId);
-		setSaving(false);
-		if (!result.ok) {
-			console.error("[quick-log] delete failed", result.error);
-			toast.error("Couldn't remove this log");
-			return;
-		}
-		onSuccess?.();
-		if (pathname.startsWith("/diary") || pathname.startsWith("/profile")) {
-			router.refresh();
-		}
-		handleClose();
-		const titleText = movieTitle.trim() ? `“${movieTitle}”` : "this title";
-		toast(`Removed ${titleText} from watched`, {
-			duration: 6000,
-			action: {
-				label: "Undo",
-				onClick: () => {
-					void (async () => {
-						const restore =
-							snapshot.tvId != null
-								? await postLog({ ...snapshot, tvId: snapshot.tvId })
-								: snapshot.movieId != null
-									? await postLog({ ...snapshot, movieId: snapshot.movieId })
-									: null;
-						if (restore?.ok) {
-							onSuccess?.();
-							router.refresh();
-						} else {
-							toast.error("Couldn't restore the log");
-						}
-					})();
-				},
-			},
-		});
-	}
-
 	if (!args) return null;
 
 	const isSeriesLog = tvId != null;
@@ -956,12 +891,14 @@ export function QuickLogRoot() {
 										type="button"
 										variant="ghost"
 										size="pill"
-										className="hover:!text-destructive h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-destructive [@media(hover:hover)]:hover:bg-destructive/10"
+										className={cn(
+											"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-muted-foreground",
+											DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+										)}
 										disabled={saving}
-										onClick={() => void handleRemove()}
+										onClick={handleClose}
 									>
-										<Trash2 className="size-3.5" aria-hidden />
-										Remove
+										Cancel
 									</Button>
 								</DetailMotionButtonWrap>
 							)}

@@ -1,42 +1,11 @@
 import { db, eventLog, follow, profile, user } from "@still/db";
-import { and, desc, eq, inArray, sql } from "drizzle-orm";
+import { and, desc, eq, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
-import { annotateViewerFollows } from "../lib/follow-list";
 import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
-
-type FollowListRow = {
-	userId: string;
-	user: typeof user.$inferSelect | null;
-	profile: typeof profile.$inferSelect | null;
-	createdAt: Date;
-};
-
-/**
- * Annotates each listed user with whether the **viewer** already follows them,
- * in one extra query, so the drawer's per-row follow buttons render correct
- * state without N relationship checks.
- */
-async function withViewerFollows(
-	rows: FollowListRow[],
-	viewerId: string | null,
-): Promise<(FollowListRow & { viewerFollows: boolean })[]> {
-	const ids = rows.map((r) => r.userId);
-	let following = new Set<string>();
-	if (viewerId && ids.length > 0) {
-		const hits = await db
-			.select({ id: follow.followingId })
-			.from(follow)
-			.where(
-				and(eq(follow.followerId, viewerId), inArray(follow.followingId, ids)),
-			);
-		following = new Set(hits.map((h) => h.id));
-	}
-	return annotateViewerFollows(rows, following);
-}
 
 export const followsRoute = new Elysia({
 	prefix: "/api/follows",
@@ -152,7 +121,7 @@ export const followsRoute = new Elysia({
 	)
 	.get(
 		"/of/:userId/followers",
-		async ({ params, user: viewer }) => {
+		async ({ params }) => {
 			const rows = await db
 				.select({
 					userId: follow.followerId,
@@ -166,13 +135,13 @@ export const followsRoute = new Elysia({
 				.where(eq(follow.followingId, params.userId))
 				.orderBy(desc(follow.createdAt))
 				.limit(100);
-			return withViewerFollows(rows, viewer?.id ?? null);
+			return rows;
 		},
 		{ params: t.Object({ userId: t.String() }) },
 	)
 	.get(
 		"/of/:userId/following",
-		async ({ params, user: viewer }) => {
+		async ({ params }) => {
 			const rows = await db
 				.select({
 					userId: follow.followingId,
@@ -186,7 +155,7 @@ export const followsRoute = new Elysia({
 				.where(eq(follow.followerId, params.userId))
 				.orderBy(desc(follow.createdAt))
 				.limit(100);
-			return withViewerFollows(rows, viewer?.id ?? null);
+			return rows;
 		},
 		{ params: t.Object({ userId: t.String() }) },
 	)

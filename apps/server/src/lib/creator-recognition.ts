@@ -130,63 +130,35 @@ export async function resolveCuratorRecognition(userId: string): Promise<{
 }
 
 /**
- * Curator spotlights are global (not viewer-specific) and computed from full
- * public-list/review scans, so we memo the result per limit for a short window
- * to keep the community rail off the aggregate path on every load.
- */
-const CURATOR_SPOTLIGHT_TTL_MS = 60_000;
-const curatorSpotlightCache = new Map<
-	number,
-	{ at: number; value: CuratorSpotlightPatron[] }
->();
-
-function cacheCuratorSpotlight(
-	key: number,
-	value: CuratorSpotlightPatron[],
-): CuratorSpotlightPatron[] {
-	curatorSpotlightCache.set(key, { at: Date.now(), value });
-	return value;
-}
-
-/**
  * Top patrons by list + review contribution — powers Community curator spotlights.
  */
 export async function fetchCuratorSpotlightPatrons(
 	limit = 6,
 ): Promise<CuratorSpotlightPatron[]> {
 	const capped = Math.min(Math.max(limit, 1), 12);
-
-	const cached = curatorSpotlightCache.get(capped);
-	if (cached && Date.now() - cached.at < CURATOR_SPOTLIGHT_TTL_MS) {
-		return cached.value;
-	}
-
 	const { minPublicListsForSpotlightAgg } = creatorRecognitionThresholds();
 
-	// The two aggregates are independent global scans — run them concurrently
-	// (neon-http is one round trip per query) so the community rail isn't serial.
-	const [listAgg, reviewAgg] = await Promise.all([
-		db
-			.select({
-				userId: list.userId,
-				publicListsCount: sql<number>`count(*)::int`,
-				describedPublicListsCount: sql<number>`coalesce(sum(${listDescribedSql}), 0)::int`,
-				totalListLikes: sql<number>`coalesce(sum(${list.likesCount}), 0)::int`,
-			})
-			.from(list)
-			.where(eq(list.isPublic, true))
-			.groupBy(list.userId)
-			.having(sql`count(*) >= ${minPublicListsForSpotlightAgg}`),
-		db
-			.select({
-				userId: review.userId,
-				publicReviewsCount: sql<number>`count(*)::int`,
-				totalReviewLikes: sql<number>`coalesce(sum(${review.likesCount}), 0)::int`,
-			})
-			.from(review)
-			.where(eq(review.isPublic, true))
-			.groupBy(review.userId),
-	]);
+	const listAgg = await db
+		.select({
+			userId: list.userId,
+			publicListsCount: sql<number>`count(*)::int`,
+			describedPublicListsCount: sql<number>`coalesce(sum(${listDescribedSql}), 0)::int`,
+			totalListLikes: sql<number>`coalesce(sum(${list.likesCount}), 0)::int`,
+		})
+		.from(list)
+		.where(eq(list.isPublic, true))
+		.groupBy(list.userId)
+		.having(sql`count(*) >= ${minPublicListsForSpotlightAgg}`);
+
+	const reviewAgg = await db
+		.select({
+			userId: review.userId,
+			publicReviewsCount: sql<number>`count(*)::int`,
+			totalReviewLikes: sql<number>`coalesce(sum(${review.likesCount}), 0)::int`,
+		})
+		.from(review)
+		.where(eq(review.isPublic, true))
+		.groupBy(review.userId);
 
 	const statsByUser = new Map<string, CuratorContributionStats>();
 
@@ -223,7 +195,7 @@ export async function fetchCuratorSpotlightPatrons(
 		.sort((a, b) => b.score - a.score)
 		.slice(0, capped);
 
-	if (ranked.length === 0) return cacheCuratorSpotlight(capped, []);
+	if (ranked.length === 0) return [];
 
 	const userIds = ranked.map((row) => row.userId);
 	const profiles = await db
@@ -239,7 +211,7 @@ export async function fetchCuratorSpotlightPatrons(
 
 	const profileByUser = new Map(profiles.map((row) => [row.userId, row]));
 
-	const result = ranked
+	return ranked
 		.map((row) => {
 			const patron = profileByUser.get(row.userId);
 			if (!patron) return null;
@@ -253,6 +225,4 @@ export async function fetchCuratorSpotlightPatrons(
 			} satisfies CuratorSpotlightPatron;
 		})
 		.filter((row): row is CuratorSpotlightPatron => row != null);
-
-	return cacheCuratorSpotlight(capped, result);
 }
