@@ -16,7 +16,19 @@ import {
 } from "@still/db";
 import { env } from "@still/env/server";
 import { get, put } from "@vercel/blob";
-import { and, desc, eq, gte, ilike, isNotNull, ne, or, sql } from "drizzle-orm";
+import {
+	and,
+	asc,
+	count,
+	desc,
+	eq,
+	gte,
+	ilike,
+	isNotNull,
+	ne,
+	or,
+	sql,
+} from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
@@ -38,6 +50,16 @@ import {
 	PROFILE_PREF_PROFILE_ACCENT,
 	profileAccentHex,
 } from "../lib/profile-appearance";
+import {
+	filmographyOffset,
+	filmographyTotalPages,
+	parseFilmographyFavorites,
+	parseFilmographyLimit,
+	parseFilmographyMedia,
+	parseFilmographyOrder,
+	parseFilmographyPage,
+	parseFilmographyVenue,
+} from "../lib/profile-filmography-query";
 import {
 	hydratePinnedReviews,
 	validatePinnedReviewIdsForUser,
@@ -674,6 +696,143 @@ export const profilesRoute = new Elysia({
 			return buildActivitySignature(rows.map((r) => r.watchedAt));
 		},
 		{ params: t.Object({ handle: t.String() }) },
+	)
+	/**
+	 * Paginated filmography for the Movies / TV profile grids. Dedups to the newest
+	 * log per title, then filters venue/favorites, orders, and paginates — matching
+	 * the web app's prior client-side derivation.
+	 */
+	.get(
+		"/:handle/filmography",
+		async ({ params, query, user: viewer, status }) => {
+			const handle = params.handle.toLowerCase();
+			const [row] = await db
+				.select({ userId: profile.userId, isPrivate: profile.isPrivate })
+				.from(profile)
+				.where(eq(profile.handle, handle))
+				.limit(1);
+			if (!row) return status(404, "Not found");
+			const viewerId = viewer?.id ?? null;
+			const isOwner = viewerId === row.userId;
+			if (row.isPrivate && !isOwner) return status(404, "Not found");
+
+			const media = parseFilmographyMedia(query.media);
+			const order = parseFilmographyOrder(query.order);
+			const venue = parseFilmographyVenue(query.venue);
+			const favorites = parseFilmographyFavorites(query.favorites);
+			const page = parseFilmographyPage(query.page);
+			const limit = parseFilmographyLimit(query.limit);
+			const offset = filmographyOffset(page, limit);
+
+			const isTv = media === "tv";
+			const idCol = isTv ? log.tvId : log.movieId;
+			const listing = isTv ? tv : movie;
+
+			// Newest log per title (DISTINCT ON the media id, ordered by watchedAt desc).
+			const deduped = db
+				.selectDistinctOn([idCol], {
+					logId: log.id,
+					watchedAt: log.watchedAt,
+					rating: log.rating,
+					liked: log.liked,
+					watchVenue: log.watchVenue,
+					movieId: log.movieId,
+					tvId: log.tvId,
+					tmdbId: listing.tmdbId,
+					title: listing.title,
+					posterPath: listing.posterPath,
+				})
+				.from(log)
+				.innerJoin(listing, eq(idCol, listing.tmdbId))
+				.where(
+					and(
+						eq(log.userId, row.userId),
+						isNotNull(idCol),
+						contentVisibilityWhere(viewerId, log.userId, log.visibility),
+					),
+				)
+				.orderBy(idCol, desc(log.watchedAt))
+				.as("dedup");
+
+			// Venue filter on the kept row: legacy/unset venue matches all venues.
+			const venueWhere = venue
+				? or(
+						eq(deduped.watchVenue, venue),
+						sql`${deduped.watchVenue} not in ('theaters','streaming')`,
+					)
+				: undefined;
+			const favWhere = favorites ? eq(deduped.liked, true) : undefined;
+			const outerWhere = and(venueWhere, favWhere);
+
+			const orderBy =
+				order === "earliest"
+					? [asc(deduped.watchedAt), asc(deduped.tmdbId)]
+					: order === "title"
+						? [asc(deduped.title), asc(deduped.tmdbId)]
+						: [desc(deduped.watchedAt), asc(deduped.tmdbId)];
+
+			const [rows, totalRow, venueCountRow] = await Promise.all([
+				db
+					.select({
+						logId: deduped.logId,
+						watchedAt: deduped.watchedAt,
+						rating: deduped.rating,
+						liked: deduped.liked,
+						watchVenue: deduped.watchVenue,
+						movieId: deduped.movieId,
+						tvId: deduped.tvId,
+						tmdbId: deduped.tmdbId,
+						title: deduped.title,
+						posterPath: deduped.posterPath,
+					})
+					.from(deduped)
+					.where(outerWhere)
+					.orderBy(...orderBy)
+					.limit(limit)
+					.offset(offset),
+				db.select({ total: count() }).from(deduped).where(outerWhere),
+				db.select({ total: count() }).from(deduped).where(venueWhere),
+			]);
+
+			const total = Number(totalRow[0]?.total ?? 0);
+			const results = rows.map((r) => ({
+				log: {
+					id: r.logId,
+					watchedAt: r.watchedAt,
+					rating: r.rating,
+					liked: r.liked,
+					watchVenue: r.watchVenue,
+				},
+				movie: isTv
+					? null
+					: { tmdbId: r.tmdbId, title: r.title, posterPath: r.posterPath },
+				tv: isTv
+					? { tmdbId: r.tmdbId, title: r.title, posterPath: r.posterPath }
+					: null,
+			}));
+
+			const venueCountForMedia = Number(venueCountRow[0]?.total ?? 0);
+			return {
+				results,
+				total_pages: filmographyTotalPages(total, limit),
+				total_results: total,
+				venueCounts: {
+					movies: isTv ? 0 : venueCountForMedia,
+					tv: isTv ? venueCountForMedia : 0,
+				},
+			};
+		},
+		{
+			params: t.Object({ handle: t.String() }),
+			query: t.Object({
+				media: t.Optional(t.String()),
+				order: t.Optional(t.String()),
+				venue: t.Optional(t.String()),
+				favorites: t.Optional(t.String()),
+				page: t.Optional(t.String()),
+				limit: t.Optional(t.String()),
+			}),
+		},
 	)
 	// Public profile by handle (case-insensitive) — must stay last (catch-all).
 	.get(
