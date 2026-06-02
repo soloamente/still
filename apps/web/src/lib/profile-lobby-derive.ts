@@ -89,6 +89,25 @@ export function resolveProfileTab(
 	return socialTabs[0] ?? "movies";
 }
 
+/** Counts-based default-tab resolution — mirrors `resolveProfileTab` without rows. */
+export function resolveProfileTabFromCounts(
+	raw: string | undefined | null,
+	socialTabs: readonly ProfileSocialTabId[],
+	counts: { movies: number; tv: number },
+): ProfileTabId {
+	let v = raw?.toLowerCase();
+	if (v === "filmography") {
+		v = counts.movies > 0 ? "movies" : counts.tv > 0 ? "tv" : "movies";
+	}
+	const available: ProfileTabId[] = ["movies", "tv", ...socialTabs];
+	if (v && (available as readonly string[]).includes(v)) {
+		return v as ProfileTabId;
+	}
+	if (counts.movies > 0) return "movies";
+	if (counts.tv > 0) return "tv";
+	return socialTabs[0] ?? "movies";
+}
+
 export function titleCountLineForProfileTab(
 	tab: ProfileTabId,
 	movieCount: number,
