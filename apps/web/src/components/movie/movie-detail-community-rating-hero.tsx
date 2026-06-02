@@ -84,7 +84,7 @@ export function MovieDetailCommunityRatingHero({
 							{formatLogRatingDisplay(displayAverage)} out of 10
 						</span>
 						<StillAnimateRatingNumber
-							value={communityAverage}
+							value={displayAverage}
 							className="text-5xl sm:text-6xl"
 						/>
 					</div>

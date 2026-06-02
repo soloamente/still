@@ -17,6 +17,7 @@ import {
 	buildHeroArtworkSlides,
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
+import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
 import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
@@ -814,10 +815,11 @@ export const moviesRoute = new Elysia({
 				.where(and(eq(listItem.movieId, movieId), eq(list.isPublic, true)))
 				.orderBy(desc(list.likesCount), desc(list.updatedAt))
 				.limit(24);
-			return rows.map((r) => ({
+			const mapped = rows.map((r) => ({
 				...r.list,
 				ownerHandle: r.ownerHandle,
 			}));
+			return withCoverPosterPaths(mapped);
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

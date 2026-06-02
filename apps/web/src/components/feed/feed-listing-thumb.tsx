@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { isListCoverProxySrc } from "@/lib/list-cover-image";
 
 /** Compact tile for review cards; `activity` = uniform portrait on community feed rows. */
-export type FeedListingThumbLayout = "compact" | "activity";
+export type FeedListingThumbLayout = "compact" | "activity" | "card";
 
 /** Subtle depth on poster art (light/dark outline per make-interfaces-feel-better). */
 const POSTER_OUTLINE_CLASS =
@@ -47,13 +47,14 @@ export function FeedListingThumb({
 	className?: string;
 }) {
 	const isActivity = layout === "activity";
+	const isCard = layout === "card";
 
 	const inner = posterUrl ? (
 		<Image
 			src={posterUrl}
 			alt={title}
 			fill
-			sizes={isActivity ? "88px" : "56px"}
+			sizes={isActivity || isCard ? "104px" : "56px"}
 			className="object-cover"
 			unoptimized={isListCoverProxySrc(posterUrl)}
 		/>
@@ -69,6 +70,27 @@ export function FeedListingThumb({
 			)}
 		</div>
 	);
+
+	if (isCard) {
+		const frameClassName = cn(
+			"relative size-full min-h-[9.5rem] overflow-hidden rounded-2xl bg-card",
+			POSTER_OUTLINE_CLASS,
+			className,
+		);
+		const shellClassName = cn(
+			"relative w-[5.25rem] shrink-0 self-stretch sm:w-[6.5rem]",
+			linkable && href && ACTIVITY_PRESS_CLASS,
+		);
+		const frame = <div className={frameClassName}>{inner}</div>;
+		if (linkable && href) {
+			return (
+				<Link href={href} className={shellClassName} aria-label={title}>
+					{frame}
+				</Link>
+			);
+		}
+		return <div className={shellClassName}>{frame}</div>;
+	}
 
 	if (isActivity) {
 		const frameClassName = cn(ACTIVITY_POSTER_FRAME_CLASS, className);

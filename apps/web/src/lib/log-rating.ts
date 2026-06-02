@@ -30,7 +30,20 @@ export function clampLogRatingDisplay(value: number): number {
 }
 
 export function formatLogRatingDisplay(value: number): string {
-	return clampLogRatingDisplay(value).toFixed(1);
+	// Accept API tenths (e.g. `100`) or legacy whole scores before clamping for display.
+	const display = logRatingToDisplay(value);
+	if (display == null) return "0.0";
+	const clamped = clampLogRatingDisplay(display);
+	// Patron scale tops out at 10 — show a clean integer at the ceiling (not 10.0).
+	if (Math.round(clamped * 10) >= 100) return "10";
+	return clamped.toFixed(1);
+}
+
+/** Animated hero / ticker — same rules as {@link formatLogRatingDisplay} on 0–10 display scale. */
+export function formatPatronScoreTickerLabel(display: number): string {
+	const clamped = clampLogRatingDisplay(display);
+	if (Math.round(clamped * 10) >= 100) return "10";
+	return clamped.toFixed(1);
 }
 
 /** Format API/DB `log.rating` / `review.rating` (tenths or legacy 1–10) for UI copy. */

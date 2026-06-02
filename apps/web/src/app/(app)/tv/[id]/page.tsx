@@ -350,6 +350,8 @@ export default async function TvShowPage({
 								<Suspense fallback={<TvDetailCommunityFallback />}>
 									<TvDetailCommunityAsync
 										tvId={id}
+										tvTitle={data.title}
+										tvPosterUrl={data.poster_url}
 										moreLikeThis={moreLikeThis}
 									/>
 								</Suspense>

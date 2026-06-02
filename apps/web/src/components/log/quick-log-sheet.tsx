@@ -34,7 +34,6 @@ import {
 	VisibilitySelect,
 } from "@/components/review/visibility-select";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
-import { APP_MODAL_POPOVER_POSITIONER_CLASS } from "@/lib/app-modal-layer";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	useDetailActionMotion,
@@ -60,6 +59,7 @@ import {
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
+import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 /** Max note length — keep in sync with `apps/server` log create validation. */
 const NOTE_MAX = 500;
@@ -220,7 +220,6 @@ export function QuickLogRoot() {
 	 * otherwise projects venue pill + meta row controls from the wrong origin on open.
 	 */
 	const [sheetLayoutActive, setSheetLayoutActive] = useState(false);
-	const [showFooterFade, setShowFooterFade] = useState(true);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	/** Skip first TV scope effect pass so `args.rewatch` is not cleared on open. */
 	const tvScopeEffectReady = useRef(false);
@@ -232,14 +231,11 @@ export function QuickLogRoot() {
 		episodeNumber,
 		searchResults.length,
 	].join("|");
-
-	/** Hide the bottom scrim once the patron scrolls to the end — mirrors `ReviewComposerRoot`. */
-	const syncFooterFade = useCallback(() => {
-		const el = scrollRef.current;
-		if (!el) return;
-		const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
-		setShowFooterFade(distanceFromBottom > 8);
-	}, []);
+	const { showFooterFade } = useSheetScrollFades(
+		scrollRef,
+		isOpen,
+		scrollContentKey,
+	);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -249,19 +245,6 @@ export function QuickLogRoot() {
 		const timer = window.setTimeout(() => setSheetLayoutActive(true), 190);
 		return () => clearTimeout(timer);
 	}, [isOpen]);
-
-	useEffect(() => {
-		void scrollContentKey;
-		if (!isOpen) {
-			setShowFooterFade(true);
-			return;
-		}
-		const el = scrollRef.current;
-		if (!el) return;
-		syncFooterFade();
-		el.addEventListener("scroll", syncFooterFade, { passive: true });
-		return () => el.removeEventListener("scroll", syncFooterFade);
-	}, [isOpen, syncFooterFade, scrollContentKey]);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -820,25 +803,20 @@ export function QuickLogRoot() {
 											/>
 										</div>
 
-										<label
-											className="mx-auto flex w-full max-w-sm flex-col gap-1.5 text-sm"
-											htmlFor="log-visibility"
-										>
-											<span className="text-center text-muted-foreground text-xs">
+										<fieldset className="mx-auto mb-0 flex flex-col items-center space-y-2 border-0 p-0 text-sm">
+											<legend className="text-center text-muted-foreground text-xs">
 												Who can see this
-											</span>
+											</legend>
 											<VisibilitySelect
 												id="log-visibility"
+												variant="pills"
 												value={visibility}
 												onChange={(next) => {
 													setVisibility(next);
 													setVisibilityTouched(true);
 												}}
-												popoverPositionerClassName={
-													APP_MODAL_POPOVER_POSITIONER_CLASS
-												}
 											/>
-										</label>
+										</fieldset>
 									</div>
 								</div>
 								{/* Compose-only scrim — sibling of scroll, not measured for layout (review composer). */}

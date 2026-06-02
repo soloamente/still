@@ -29,7 +29,6 @@ import {
 	VisibilitySelect,
 } from "@/components/review/visibility-select";
 import { api } from "@/lib/api";
-import { APP_MODAL_POPOVER_POSITIONER_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	clampLogRatingDisplay,
@@ -37,6 +36,7 @@ import {
 	formatStoredLogRatingDisplay,
 	logRatingToDisplay,
 } from "@/lib/log-rating";
+import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 const BODY_MAX = 20_000;
 const TITLE_MAX = 200;
@@ -103,7 +103,6 @@ export function ReviewComposerRoot() {
 	const [saving, setSaving] = useState(false);
 	const [posterUrl, setPosterUrl] = useState<string | null>(null);
 	const [averageRating, setAverageRating] = useState<number | null>(null);
-	const [showFooterFade, setShowFooterFade] = useState(true);
 	const scrollRef = useRef<HTMLDivElement>(null);
 
 	const handleClose = useCallback(() => {
@@ -139,27 +138,12 @@ export function ReviewComposerRoot() {
 
 	const usesDiaryRating = diaryScoreLabel != null;
 
-	/** Hide the bottom scrim once the user has scrolled to the end of the compose form. */
-	const syncFooterFade = useCallback(() => {
-		if (step !== "compose") return;
-		const el = scrollRef.current;
-		if (!el) return;
-		const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
-		setShowFooterFade(distanceFromBottom > 8);
-	}, [step]);
-
-	useEffect(() => {
-		if (!isOpen) return;
-		if (step !== "compose") {
-			setShowFooterFade(false);
-			return;
-		}
-		const el = scrollRef.current;
-		if (!el) return;
-		syncFooterFade();
-		el.addEventListener("scroll", syncFooterFade, { passive: true });
-		return () => el.removeEventListener("scroll", syncFooterFade);
-	}, [isOpen, step, syncFooterFade]);
+	const composeScrollKey = `${usesDiaryRating}-${posterUrl ?? ""}-${body.length}`;
+	const { showFooterFade } = useSheetScrollFades(
+		scrollRef,
+		isOpen && step === "compose",
+		composeScrollKey,
+	);
 
 	useEffect(() => {
 		if (!isOpen) return;
@@ -316,18 +300,18 @@ export function ReviewComposerRoot() {
 											>
 												Share your review
 											</h2>
-											<p className="mb-6 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+											<p
+												className={cn(
+													"text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base",
+													usesDiaryRating ? "mb-2" : "mb-6",
+												)}
+											>
 												{args.movieTitle}
 											</p>
 
 											{usesDiaryRating ? (
-												<p className="mb-6 text-balance text-center text-muted-foreground text-sm leading-relaxed">
-													Your score{" "}
-													<span className="font-medium text-foreground tabular-nums">
-														{diaryScoreLabel}
-													</span>{" "}
-													from your log carries into this review — no second
-													rating step.
+												<p className="mb-6 text-center font-semibold text-2xl text-foreground tabular-nums tracking-tight">
+													{diaryScoreLabel}
 												</p>
 											) : (
 												<LogRatingSlider
@@ -337,6 +321,21 @@ export function ReviewComposerRoot() {
 													className="mb-6"
 												/>
 											)}
+
+											<fieldset className="mb-6 flex flex-col items-center space-y-2 border-0 p-0 text-sm">
+												<legend className="w-full text-center text-muted-foreground text-xs">
+													Who can see this
+												</legend>
+												<VisibilitySelect
+													id="review-visibility"
+													variant="pills"
+													value={visibility}
+													onChange={(next) => {
+														setVisibility(next);
+														setVisibilityTouched(true);
+													}}
+												/>
+											</fieldset>
 
 											<div className="mb-5 space-y-2">
 												<Label
@@ -382,27 +381,6 @@ export function ReviewComposerRoot() {
 													{BODY_MAX.toLocaleString()}
 												</p>
 											</div>
-
-											<label
-												className="mb-5 flex flex-col gap-1.5 text-sm"
-												htmlFor="review-visibility"
-											>
-												<span className="w-full text-center text-muted-foreground text-xs">
-													Who can see this
-												</span>
-												<VisibilitySelect
-													id="review-visibility"
-													value={visibility}
-													onChange={(next) => {
-														setVisibility(next);
-														setVisibilityTouched(true);
-													}}
-													popoverPositionerClassName={
-														APP_MODAL_POPOVER_POSITIONER_CLASS
-													}
-													popoverSide="top"
-												/>
-											</label>
 										</motion.div>
 									) : (
 										<motion.div

@@ -42,6 +42,10 @@ type MovieListRow = {
 	updatedAt: string;
 	likesCount: number;
 	ownerHandle?: string;
+	coverMovieIds?: number[];
+	coverPosterPaths?: (string | null)[];
+	coverImageUrl?: string | null;
+	coverMovieId?: number | null;
 };
 
 type FollowingRatingsPayload = {
@@ -75,6 +79,7 @@ export interface MovieDetailAboutAsyncProps {
 	creditsCrewRows: ReturnType<typeof buildCrewRows>;
 	crewCrawlLines: CreditsCrawlLineSeed[];
 	moreLikeThis: TmdbMovieSummary[];
+	moviePosterUrl: string | null;
 	communityAverage: number | null;
 	communityReviewsCount: number;
 	imdbId: string | null;
@@ -97,6 +102,7 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 		creditsCrewRows,
 		crewCrawlLines,
 		moreLikeThis,
+		moviePosterUrl,
 		communityAverage,
 		communityReviewsCount,
 		imdbId,
@@ -190,6 +196,8 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 				moreLikeThis={moreLikeThis}
 				movieId={numericId}
 				movieTitle={title}
+				moviePosterUrl={moviePosterUrl}
+				listingTmdbId={tmdbId}
 			/>
 
 			{crewCrawlLines.length ? (

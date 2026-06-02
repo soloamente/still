@@ -28,9 +28,13 @@ type FollowingRatingsPayload = {
 /** Streams community lists + followed-patron ratings for TV detail (reviews are movie-only today). */
 export async function TvDetailCommunityAsync({
 	tvId,
+	tvTitle,
+	tvPosterUrl,
 	moreLikeThis,
 }: {
 	tvId: string;
+	tvTitle: string;
+	tvPosterUrl: string | null;
 	moreLikeThis: TmdbMovieSummary[];
 }) {
 	const api = await serverApi();
@@ -65,6 +69,9 @@ export async function TvDetailCommunityAsync({
 			moreLikeThis={moreLikeThis}
 			relatedListingKind="tv"
 			listCountLabel="titles"
+			movieTitle={tvTitle}
+			moviePosterUrl={tvPosterUrl}
+			listingTmdbId={Number(tvId)}
 		/>
 	);
 }

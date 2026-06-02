@@ -12,7 +12,7 @@ import { useEffect } from "react";
 
 import {
 	clampLogRatingDisplay,
-	formatLogRatingDisplay,
+	formatPatronScoreTickerLabel,
 	logRatingToDisplay,
 } from "@/lib/log-rating";
 
@@ -44,7 +44,7 @@ export function StillAnimateRatingNumber({
 	const displayScore = toPatronDisplayScore(value);
 	const motionScore = useMotionValue(displayScore);
 	const label = useTransform(motionScore, (current) =>
-		formatLogRatingDisplay(clampLogRatingDisplay(current)),
+		formatPatronScoreTickerLabel(clampLogRatingDisplay(current)),
 	);
 
 	useEffect(() => {
@@ -58,7 +58,7 @@ export function StillAnimateRatingNumber({
 	if (reducedMotion) {
 		return (
 			<span className={className} aria-hidden={ariaHidden}>
-				{formatLogRatingDisplay(displayScore)}
+				{formatPatronScoreTickerLabel(displayScore)}
 			</span>
 		);
 	}

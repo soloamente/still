@@ -5,6 +5,7 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
+import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import {
 	getTvMalEnrichment,
 	syncTvMalIdFromDetail,
@@ -424,10 +425,11 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				.where(and(eq(listItem.tvId, tvId), eq(list.isPublic, true)))
 				.orderBy(desc(list.likesCount), desc(list.updatedAt))
 				.limit(24);
-			return rows.map((r) => ({
+			const mapped = rows.map((r) => ({
 				...r.list,
 				ownerHandle: r.ownerHandle,
 			}));
+			return withCoverPosterPaths(mapped);
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

@@ -18,6 +18,7 @@ import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
 import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
 import { uploadListCover } from "@/lib/upload-list-cover";
+import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 /**
  * Owner control — pick a list poster or upload a custom image for hero + lobby tile.
@@ -53,7 +54,11 @@ export function ListDetailCoverPicker({
 	const [open, setOpen] = useState(false);
 	const [mounted, setMounted] = useState(false);
 	const [saving, setSaving] = useState<CoverSaving>(null);
-	const [showFooterFade, setShowFooterFade] = useState(true);
+	const { showFooterFade } = useSheetScrollFades(
+		scrollRef,
+		open,
+		`${films.length}-${coverMovieId ?? ""}-${coverTvId ?? ""}`,
+	);
 
 	/** Refresh after the dialog unmounts so Next/Image is not torn down mid-commit. */
 	const refreshAfterClose = useCallback(() => {
@@ -71,22 +76,6 @@ export function ListDetailCoverPicker({
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
 	}, [open]);
-
-	const syncFooterFade = useCallback(() => {
-		const el = scrollRef.current;
-		if (!el) return;
-		const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
-		setShowFooterFade(distanceFromBottom > 8);
-	}, []);
-
-	useEffect(() => {
-		if (!open) return;
-		const el = scrollRef.current;
-		if (!el) return;
-		syncFooterFade();
-		el.addEventListener("scroll", syncFooterFade, { passive: true });
-		return () => el.removeEventListener("scroll", syncFooterFade);
-	}, [open, syncFooterFade]);
 
 	const handlePickMovie = useCallback(
 		async (nextId: number) => {

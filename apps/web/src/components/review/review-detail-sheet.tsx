@@ -22,6 +22,7 @@ import { authClient } from "@/lib/auth-client";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatLogRatingDisplay } from "@/lib/log-rating";
 import { SHEET_PRIMARY_PILL_CLASS } from "@/lib/sheet-chrome";
+import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 /** Card / list preview fields — shown instantly while the sheet loads full detail. */
 export type ReviewPreview = {
@@ -119,19 +120,17 @@ export function ReviewDetailRoot() {
 	const [comments, setComments] = useState<CommentRow[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [loadError, setLoadError] = useState<string | null>(null);
-	const [showFooterFade, setShowFooterFade] = useState(true);
 	const scrollRef = useRef<HTMLDivElement>(null);
+	const reviewScrollKey = `${detail?.review.id ?? ""}-${comments.length}-${loading}-${loadError ?? ""}`;
+	const { showFooterFade } = useSheetScrollFades(
+		scrollRef,
+		isOpen,
+		reviewScrollKey,
+	);
 
 	const handleClose = useCallback(() => {
 		close();
 	}, [close]);
-
-	const syncFooterFade = useCallback(() => {
-		const el = scrollRef.current;
-		if (!el) return;
-		const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
-		setShowFooterFade(distanceFromBottom > 8);
-	}, []);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -139,7 +138,6 @@ export function ReviewDetailRoot() {
 			setComments([]);
 			setLoading(false);
 			setLoadError(null);
-			setShowFooterFade(true);
 		}
 	}, [isOpen]);
 
@@ -183,19 +181,6 @@ export function ReviewDetailRoot() {
 			cancelled = true;
 		};
 	}, [isOpen, args]);
-
-	useEffect(() => {
-		if (!isOpen) return;
-		const el = scrollRef.current;
-		if (!el) return;
-		// Re-measure footer scrim when review body or comments finish loading.
-		void detail;
-		void comments;
-		void loadError;
-		syncFooterFade();
-		el.addEventListener("scroll", syncFooterFade, { passive: true });
-		return () => el.removeEventListener("scroll", syncFooterFade);
-	}, [isOpen, detail, comments, loadError, syncFooterFade]);
 
 	useEffect(() => {
 		if (!isOpen) return;

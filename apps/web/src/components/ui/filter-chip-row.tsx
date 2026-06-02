@@ -28,10 +28,10 @@ export function FilterChipRow({
 }
 
 // Pills read as soft tokens on the canvas: no hairline border, background carries the shape.
-const chipBase =
+export const filterChipBaseClass =
 	"inline-flex items-center justify-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-[var(--aker-duration)] ease-[var(--aker-ease)]";
 
-const chipIdle =
+export const filterChipIdleClass =
 	"bg-background text-muted-foreground hover:bg-muted/45 hover:text-foreground";
 
 const chipSelected = "bg-accent/15 text-foreground";
@@ -45,7 +45,11 @@ export function FilterChipLink({
 }: ComponentProps<typeof Link> & { selected?: boolean }) {
 	return (
 		<Link
-			className={cn(chipBase, selected ? chipSelected : chipIdle, className)}
+			className={cn(
+				filterChipBaseClass,
+				selected ? chipSelected : filterChipIdleClass,
+				className,
+			)}
 			aria-current={selected ? "page" : undefined}
 			{...rest}
 		>
@@ -63,7 +67,12 @@ export function FilterChipButton({
 	return (
 		<button
 			type="button"
-			className={cn(chipBase, chipIdle, "cursor-pointer", className)}
+			className={cn(
+				filterChipBaseClass,
+				filterChipIdleClass,
+				"cursor-pointer",
+				className,
+			)}
 			{...rest}
 		>
 			{children}

@@ -21,7 +21,7 @@ export function SegmentedPillToolbar<T extends string>({
 	"aria-label": string;
 	value: T;
 	onChange: (next: T) => void;
-	options: readonly { id: T; label: string }[];
+	options: readonly { id: T; label: string; title?: string }[];
 	className?: string;
 	/** Tighter chips when many segments (e.g. five watching statuses). */
 	compact?: boolean;
@@ -64,6 +64,7 @@ export function SegmentedPillToolbar<T extends string>({
 							type="button"
 							disabled={disabled}
 							aria-pressed={active}
+							title={opt.title}
 							className={chipClass(active)}
 							onClick={() => onChange(opt.id)}
 						>

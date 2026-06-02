@@ -16,6 +16,7 @@ import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressab
 import { api } from "@/lib/api";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 const SHEET_EASE = [0.165, 0.84, 0.44, 1] as const;
 const FORM_ID = "edit-list-form";
@@ -43,7 +44,11 @@ export function ListLobbyEditDialog({
 	const [title, setTitle] = useState(initialTitle);
 	const [description, setDescription] = useState(initialDescription ?? "");
 	const [saving, setSaving] = useState(false);
-	const [showFooterFade, setShowFooterFade] = useState(true);
+	const { showFooterFade } = useSheetScrollFades(
+		scrollRef,
+		open,
+		`${title}|${description}`,
+	);
 
 	const handleClose = useCallback(() => {
 		onOpenChange(false);
@@ -57,7 +62,6 @@ export function ListLobbyEditDialog({
 		if (!open) return;
 		setTitle(initialTitle);
 		setDescription(initialDescription ?? "");
-		setShowFooterFade(true);
 	}, [open, initialTitle, initialDescription]);
 
 	useEffect(() => {
@@ -68,22 +72,6 @@ export function ListLobbyEditDialog({
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
 	}, [open, handleClose]);
-
-	const syncFooterFade = useCallback(() => {
-		const el = scrollRef.current;
-		if (!el) return;
-		const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
-		setShowFooterFade(distanceFromBottom > 8);
-	}, []);
-
-	useEffect(() => {
-		if (!open) return;
-		const el = scrollRef.current;
-		if (!el) return;
-		syncFooterFade();
-		el.addEventListener("scroll", syncFooterFade, { passive: true });
-		return () => el.removeEventListener("scroll", syncFooterFade);
-	}, [open, syncFooterFade]);
 
 	async function handleSave(event: React.FormEvent) {
 		event.preventDefault();

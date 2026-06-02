@@ -2,7 +2,8 @@
 
 import IconListPlay from "@still/ui/icons/list-play";
 import { cn } from "@still/ui/lib/utils";
-import { ListMusic, Quote, Sparkles } from "lucide-react";
+import { LayoutGrid, Quote, Sparkles } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useId, useState } from "react";
@@ -16,10 +17,13 @@ import {
 	MovieDetailFollowingRatings,
 } from "@/components/movie/movie-detail-following-ratings";
 import { MoviePoster } from "@/components/movie/movie-poster";
-import { ReviewCard } from "@/components/review/review-card";
+import {
+	ReviewCard,
+	type ReviewCardListing,
+} from "@/components/review/review-card";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
 import { Section } from "@/components/ui/section";
-import { APP_MEMBER_LABEL, APP_NAME } from "@/lib/app-brand";
+import { APP_NAME } from "@/lib/app-brand";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -27,6 +31,10 @@ import {
 	HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
+import {
+	isListCoverProxySrc,
+	listBoardRowPosterUrl,
+} from "@/lib/list-cover-image";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
 import type { TmdbMovieSummary } from "@/lib/movie-detail-tmdb";
@@ -139,6 +147,10 @@ export type MovieListForPageTab = {
 	updatedAt: string;
 	likesCount: number;
 	ownerHandle?: string;
+	coverMovieIds?: number[];
+	coverPosterPaths?: (string | null)[];
+	coverImageUrl?: string | null;
+	coverMovieId?: number | null;
 };
 
 export type MoviePageReview = {
@@ -173,6 +185,8 @@ export function MovieDetailExploreTabs({
 	relatedListingKind = "movie",
 	movieId,
 	movieTitle,
+	moviePosterUrl = null,
+	listingTmdbId,
 	listCountLabel = "films",
 }: {
 	lists: MovieListForPageTab[];
@@ -191,12 +205,25 @@ export function MovieDetailExploreTabs({
 	/** Pre-fill create-list sheet and add this title after save. */
 	movieId?: number;
 	movieTitle?: string;
+	moviePosterUrl?: string | null;
+	listingTmdbId: number;
 	/** Meta line after list owner — `films` on movie detail, `titles` on TV. */
 	listCountLabel?: string;
 }) {
 	const baseId = useId();
 	const [tab, setTab] = useState<TabId>("reviews");
 	const openReviewDetail = useReviewDetail((s) => s.open);
+	const reviewListing: ReviewCardListing | undefined = movieTitle
+		? {
+				title: movieTitle,
+				posterUrl: moviePosterUrl,
+				href:
+					relatedListingKind === "tv"
+						? `/tv/${listingTmdbId}`
+						: `/movies/${listingTmdbId}`,
+				listingKind: relatedListingKind,
+			}
+		: undefined;
 
 	const tabIds = {
 		reviews: `${baseId}-reviews`,
@@ -290,7 +317,7 @@ export function MovieDetailExploreTabs({
 									</p>
 									<div className="mt-3 flex flex-wrap items-center gap-x-2 text-muted-foreground text-xs">
 										<span>
-											{APP_MEMBER_LABEL} · {r.likesCount} likes
+											{r.likesCount} {r.likesCount === 1 ? "like" : "likes"}
 										</span>
 										{r.rating != null ? (
 											<span className="font-medium text-foreground tabular-nums">
@@ -309,12 +336,14 @@ export function MovieDetailExploreTabs({
 			{reviewsAfterFeatured.length ? (
 				<div>
 					<h3 className="mb-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-						All member reviews
+						All reviews
 					</h3>
 					<ul className="grid gap-4 md:grid-cols-2">
 						{reviewsAfterFeatured.slice(0, 12).map((r) => (
 							<li key={r.id}>
-								<ReviewCard review={r} />
+								<ReviewCard
+									review={reviewListing ? { ...r, listing: reviewListing } : r}
+								/>
 							</li>
 						))}
 					</ul>
@@ -331,45 +360,71 @@ export function MovieDetailExploreTabs({
 
 	const listsPanel = lists.length ? (
 		<ul className="grid gap-4 sm:grid-cols-2">
-			{lists.map((list) => (
-				<li key={list.id} className={cn(COMMUNITY_CARD, "p-4")}>
-					<div className="flex items-start gap-3">
-						<span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-muted/30 text-desert-orange">
-							<ListMusic className="size-5" aria-hidden />
-						</span>
-						<div className="min-w-0 flex-1">
-							<Link
-								href={`/lists/${list.id}`}
-								className="block font-serif text-foreground text-lg leading-snug [@media(hover:hover)]:hover:text-desert-orange"
+			{lists.map((list) => {
+				const coverSrc = listBoardRowPosterUrl(
+					{
+						id: list.id,
+						coverImageUrl: list.coverImageUrl,
+						coverPosterPaths: list.coverPosterPaths ?? [],
+						updatedAt: list.updatedAt,
+					},
+					"w342",
+				);
+				return (
+					<li key={list.id} className={cn(COMMUNITY_CARD, "overflow-hidden")}>
+						<Link
+							href={`/lists/${list.id}`}
+							className="flex items-stretch gap-4 p-4 text-left transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100"
+						>
+							<aside
+								className="relative w-[5.25rem] shrink-0 self-stretch sm:w-[6.5rem]"
+								aria-hidden
 							>
-								{list.title}
-							</Link>
-							<p className="mt-1 text-muted-foreground text-xs tabular-nums">
-								{list.ownerHandle ? (
-									<>
-										by{" "}
-										<Link
-											href={`/profile/${list.ownerHandle}`}
-											className="text-foreground/85 [@media(hover:hover)]:hover:text-foreground"
-										>
-											@{list.ownerHandle}
-										</Link>
-										{" · "}
-									</>
-								) : null}
-								{list.itemsCount} {listCountLabel} · {list.likesCount} likes ·
-								updated {formatDistanceToNowStrict(new Date(list.updatedAt))}{" "}
-								ago
-							</p>
-							{list.description ? (
-								<p className="mt-2 line-clamp-2 font-editorial text-foreground/80 text-sm leading-relaxed">
-									{list.description}
+								<div className="relative size-full min-h-[9.5rem] overflow-hidden rounded-2xl bg-muted/30">
+									{coverSrc ? (
+										<Image
+											src={coverSrc}
+											alt=""
+											fill
+											sizes="(max-width: 640px) 88px, 104px"
+											className="object-cover"
+											unoptimized={isListCoverProxySrc(coverSrc)}
+										/>
+									) : (
+										<div className="grid size-full place-items-center text-desert-orange">
+											<LayoutGrid className="size-6" aria-hidden />
+										</div>
+									)}
+								</div>
+							</aside>
+							<div className="min-w-0 flex-1">
+								<p className="font-serif text-foreground text-lg leading-snug [@media(hover:hover)]:hover:text-desert-orange">
+									{list.title}
 								</p>
-							) : null}
-						</div>
-					</div>
-				</li>
-			))}
+								<p className="mt-1 text-muted-foreground text-xs tabular-nums">
+									{list.ownerHandle ? (
+										<>
+											by{" "}
+											<span className="text-foreground/85">
+												@{list.ownerHandle}
+											</span>
+											{" · "}
+										</>
+									) : null}
+									{list.itemsCount} {listCountLabel} · {list.likesCount}{" "}
+									{list.likesCount === 1 ? "like" : "likes"} · updated{" "}
+									{formatDistanceToNowStrict(new Date(list.updatedAt))} ago
+								</p>
+								{list.description ? (
+									<p className="mt-2 line-clamp-2 font-editorial text-foreground/80 text-sm leading-relaxed">
+										{list.description}
+									</p>
+								) : null}
+							</div>
+						</Link>
+					</li>
+				);
+			})}
 		</ul>
 	) : (
 		<MovieDetailListsEmpty movieId={movieId} movieTitle={movieTitle} />
@@ -423,7 +478,7 @@ export function MovieDetailExploreTabs({
 				<MovieDetailBodySection
 					id={MOVIE_DETAIL_SECTION.reviews}
 					title="Community"
-					subtitle={`${APP_MEMBER_LABEL} scores, published reviews, and public lists for this title.`}
+					subtitle="Reviews, lists, and patron scores for this title."
 					className="pt-2 pb-2"
 				>
 					{communityPanel}
@@ -445,7 +500,7 @@ export function MovieDetailExploreTabs({
 		<Section
 			kicker="Programme"
 			title="From the community & repertory desk"
-			subtitle="Member writing, public lists that include this title, and TMDb-powered adjacencies."
+			subtitle="Reviews, public lists that include this title, and TMDb-powered adjacencies."
 		>
 			<div className="mb-6">
 				<div

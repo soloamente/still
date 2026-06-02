@@ -42,7 +42,7 @@ export function ReviewCard({ review }: { review: Review }) {
 			className={cn(
 				REVIEW_CARD_CLASS,
 				"group flex cursor-pointer gap-4 transition-transform duration-150 ease-out active:scale-[0.96] motion-reduce:active:scale-100",
-				listing ? "items-start" : "flex-col",
+				listing ? "items-stretch" : "flex-col",
 			)}
 			aria-haspopup="dialog"
 			aria-label={review.title ? `Read review: ${review.title}` : "Read review"}
@@ -67,6 +67,7 @@ export function ReviewCard({ review }: { review: Review }) {
 					posterUrl={listing.posterUrl}
 					href={listing.href}
 					listingKind={listing.listingKind ?? "movie"}
+					layout="card"
 					linkable={false}
 				/>
 			) : null}

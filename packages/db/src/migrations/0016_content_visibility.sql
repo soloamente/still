@@ -3,7 +3,11 @@ CREATE TYPE "content_visibility" AS ENUM ('public', 'followers', 'friends', 'pri
 
 -- review: replace boolean is_public with the visibility enum (backfill before drop).
 ALTER TABLE "review" ADD COLUMN "visibility" "content_visibility" NOT NULL DEFAULT 'public';
-UPDATE "review" SET "visibility" = CASE WHEN "is_public" THEN 'public' ELSE 'private' END;
+-- Cast text literals to the enum (plain strings are typed as text in CASE).
+UPDATE "review" SET "visibility" = CASE
+  WHEN "is_public" THEN 'public'::"content_visibility"
+  ELSE 'private'::"content_visibility"
+END;
 ALTER TABLE "review" DROP COLUMN "is_public";
 
 -- log: new column; every existing row is effectively public today.
