@@ -852,14 +852,54 @@ export const profilesRoute = new Elysia({
 			// ~10 sequential round trips and the profile page stalls on load.
 			const targetUserId = row.user.id;
 			const viewerId = viewer?.id ?? null;
-			// Full watch ledger for profile Movies / TV grids (deduped per title on the web app).
-			const PROFILE_WATCH_LEDGER_LIMIT = 500;
+
+			// Distinct-title counts for tab availability + count lines (replaces the
+			// old 500-row ledger). Newest-log-per-title dedup, viewer visibility applied.
+			const dedupMovies = db
+				.selectDistinctOn([log.movieId], { liked: log.liked })
+				.from(log)
+				.where(
+					and(
+						eq(log.userId, targetUserId),
+						isNotNull(log.movieId),
+						contentVisibilityWhere(viewerId, log.userId, log.visibility),
+					),
+				)
+				.orderBy(log.movieId, desc(log.watchedAt))
+				.as("dedup_movies");
+			const dedupTv = db
+				.selectDistinctOn([log.tvId], { liked: log.liked })
+				.from(log)
+				.where(
+					and(
+						eq(log.userId, targetUserId),
+						isNotNull(log.tvId),
+						contentVisibilityWhere(viewerId, log.userId, log.visibility),
+					),
+				)
+				.orderBy(log.tvId, desc(log.watchedAt))
+				.as("dedup_tv");
+
+			const filmographyCountsPromise = Promise.all([
+				db.select({ c: count() }).from(dedupMovies),
+				db.select({ c: count() }).from(dedupTv),
+				db
+					.select({ c: count() })
+					.from(dedupMovies)
+					.where(eq(dedupMovies.liked, true)),
+				db.select({ c: count() }).from(dedupTv).where(eq(dedupTv.liked, true)),
+			]).then(([m, tvc, lm, ltv]) => ({
+				movies: Number(m[0]?.c ?? 0),
+				tv: Number(tvc[0]?.c ?? 0),
+				likedMovies: Number(lm[0]?.c ?? 0),
+				likedTv: Number(ltv[0]?.c ?? 0),
+			}));
 
 			const [
 				followCount,
 				followingCount,
 				isFollowing,
-				recent,
+				filmographyCounts,
 				recentReviews,
 				pinnedReviews,
 				lists,
@@ -896,19 +936,7 @@ export const profilesRoute = new Elysia({
 							.limit(1)
 							.then((r) => Boolean(r[0]))
 					: Promise.resolve(false),
-				db
-					.select({ log, movie, tv })
-					.from(log)
-					.leftJoin(movie, eq(log.movieId, movie.tmdbId))
-					.leftJoin(tv, eq(log.tvId, tv.tmdbId))
-					.where(
-						and(
-							eq(log.userId, targetUserId),
-							contentVisibilityWhere(viewerId, log.userId, log.visibility),
-						),
-					)
-					.orderBy(desc(log.watchedAt))
-					.limit(PROFILE_WATCH_LEDGER_LIMIT),
+				filmographyCountsPromise,
 				// Recent reviews (3).
 				db
 					.select({ review, movie })
@@ -980,7 +1008,7 @@ export const profilesRoute = new Elysia({
 				},
 				creator: curator,
 				isFollowing,
-				recentlyWatched: recent,
+				filmographyCounts,
 				recentReviews,
 				pinnedReviews,
 				lists,
