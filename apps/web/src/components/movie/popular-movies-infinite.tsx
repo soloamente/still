@@ -128,6 +128,20 @@ interface PopularMoviesInfiniteProps {
 	/** When set with `signedIn`, lobby cells use `CataloguePosterTile` radial menus. */
 	catalogueRadialSurface?: CatalogueRadialSurface;
 	signedIn?: boolean;
+	/**
+	 * Personal-list pager. When provided, `loadMore` calls this instead of the TMDb
+	 * fetch switch — used by `/watchlist` to page its own server endpoint.
+	 */
+	loadPage?: (
+		page: number,
+	) => Promise<
+		{ results: PopularMovieSeed[]; total_pages: number } | { error: true }
+	>;
+	/**
+	 * Stable cross-page dedupe key. Defaults to `String(m.id)`; mixed movie+tv grids
+	 * (watchlist) must disambiguate a film and show sharing a TMDb id.
+	 */
+	getDedupeKey?: (m: PopularMovieSeed) => string;
 }
 
 /** How far below the fold we start pulling the next sheet (pixels). Mirrors “feels infinite” pacing. */
@@ -165,6 +179,8 @@ export function PopularMoviesInfinite({
 	getPosterCellKey,
 	catalogueRadialSurface,
 	signedIn: _signedIn = false,
+	loadPage,
+	getDedupeKey,
 }: PopularMoviesInfiniteProps) {
 	/** Single primitive for effect deps — mirrors `motion` remount keys below. */
 	const catalogueWaveKey = `${catalogMedia}:${catalogKind}:${discoverSortBy}:${discoverGenreId ?? ""}:${discoverCompanyId ?? ""}:${discoverVenue ?? ""}:${discoverMonetization ?? ""}:${discoverWatchRegion ?? ""}:${discoverReleaseRegion ?? ""}:${discoverReleaseGte ?? ""}:${discoverAirDateGte ?? ""}:${discoverTvStatus ?? ""}:${upcomingReleaseRegion ?? ""}`;
@@ -237,58 +253,72 @@ export function PopularMoviesInfinite({
 		setFooterState("loading");
 
 		try {
-			const isTv = catalogMedia === "tv";
-			const { data, error } =
-				catalogKind === "upcoming"
-					? await fetchMoviesUpcoming(next, {
-							region: upcomingReleaseRegion ?? undefined,
-						})
-					: catalogKind === "now_playing"
-						? await fetchMoviesNowPlaying(next)
-						: catalogKind === "on_the_air"
-							? await fetchTvOnTheAir(next, {
-									sortBy: discoverSortBy,
-								})
-							: catalogKind === "discover"
-								? isTv
-									? await fetchTvDiscover(next, {
-											genreId: discoverGenreId ?? undefined,
-											sortBy: discoverSortBy,
-											airDateGte: discoverAirDateGte ?? undefined,
-											monetization: discoverMonetization ?? undefined,
-											watchRegion: discoverWatchRegion ?? undefined,
-											status: discoverTvStatus ?? undefined,
-										})
-									: await fetchMoviesDiscover(next, {
-											genreId: discoverGenreId ?? undefined,
-											companyId: discoverCompanyId ?? undefined,
-											sortBy: discoverSortBy,
-											venue:
-												catalogMedia === "movie" &&
-												(discoverVenue === "theaters" ||
-													discoverVenue === "streaming")
-													? discoverVenue
-													: undefined,
-											monetization: discoverMonetization ?? undefined,
-											watchRegion: discoverWatchRegion ?? undefined,
-											region: discoverReleaseRegion ?? undefined,
-											releaseGte: discoverReleaseGte ?? undefined,
-										})
-								: isTv
-									? await fetchTvPopular(next)
-									: await fetchMoviesPopular(next);
-
-			loadingRef.current = false;
-
-			if (error || !data || typeof data !== "object") {
-				setFooterState("error");
-				return;
-			}
-
-			const pageData = data as {
+			let pageData: {
 				results?: PopularMovieSeed[];
 				total_pages?: number;
-			};
+			} | null = null;
+
+			if (loadPage) {
+				const res = await loadPage(next);
+				loadingRef.current = false;
+				if ("error" in res) {
+					setFooterState("error");
+					return;
+				}
+				pageData = res;
+			} else {
+				const isTv = catalogMedia === "tv";
+				const { data, error } =
+					catalogKind === "upcoming"
+						? await fetchMoviesUpcoming(next, {
+								region: upcomingReleaseRegion ?? undefined,
+							})
+						: catalogKind === "now_playing"
+							? await fetchMoviesNowPlaying(next)
+							: catalogKind === "on_the_air"
+								? await fetchTvOnTheAir(next, {
+										sortBy: discoverSortBy,
+									})
+								: catalogKind === "discover"
+									? isTv
+										? await fetchTvDiscover(next, {
+												genreId: discoverGenreId ?? undefined,
+												sortBy: discoverSortBy,
+												airDateGte: discoverAirDateGte ?? undefined,
+												monetization: discoverMonetization ?? undefined,
+												watchRegion: discoverWatchRegion ?? undefined,
+												status: discoverTvStatus ?? undefined,
+											})
+										: await fetchMoviesDiscover(next, {
+												genreId: discoverGenreId ?? undefined,
+												companyId: discoverCompanyId ?? undefined,
+												sortBy: discoverSortBy,
+												venue:
+													catalogMedia === "movie" &&
+													(discoverVenue === "theaters" ||
+														discoverVenue === "streaming")
+														? discoverVenue
+														: undefined,
+												monetization: discoverMonetization ?? undefined,
+												watchRegion: discoverWatchRegion ?? undefined,
+												region: discoverReleaseRegion ?? undefined,
+												releaseGte: discoverReleaseGte ?? undefined,
+											})
+									: isTv
+										? await fetchTvPopular(next)
+										: await fetchMoviesPopular(next);
+
+				loadingRef.current = false;
+
+				if (error || !data || typeof data !== "object") {
+					setFooterState("error");
+					return;
+				}
+				pageData = data as {
+					results?: PopularMovieSeed[];
+					total_pages?: number;
+				};
+			}
 
 			const batch = Array.isArray(pageData.results) ? pageData.results : [];
 
@@ -300,12 +330,14 @@ export function PopularMoviesInfinite({
 			}
 
 			/** Merge without duplicate keys across overlapping windows (defensive only). */
+			const keyOf = getDedupeKey ?? ((m: PopularMovieSeed) => String(m.id));
 			setItems((prev) => {
-				const seen = new Set(prev.map((m) => m.id));
+				const seen = new Set(prev.map(keyOf));
 				const out = [...prev];
 				for (const row of batch) {
-					if (!seen.has(row.id)) {
-						seen.add(row.id);
+					const k = keyOf(row);
+					if (!seen.has(k)) {
+						seen.add(k);
 						out.push(row);
 					}
 				}
@@ -345,6 +377,8 @@ export function PopularMoviesInfinite({
 		upcomingReleaseRegion,
 		peekIfRoomForMore,
 		staticCatalogue,
+		loadPage,
+		getDedupeKey,
 	]);
 
 	/**
