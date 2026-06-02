@@ -1,3 +1,4 @@
+import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import type { HomeVenue } from "@/lib/home-venue";
@@ -9,6 +10,11 @@ import type {
 	TvWatchBundle,
 	TvWatchStatus,
 } from "@/lib/tv-watch-types";
+import {
+	isWatchlistRowWithListing,
+	type WatchlistLobbyRow,
+	watchlistRowToPopularSeed,
+} from "@/lib/watchlist-lobby-order";
 
 /**
  * Hand-rolled GET helpers for URLs that Eden Treaty mishandles today:
@@ -884,6 +890,39 @@ export async function postWatchlistAdd(
 		status: response.status,
 		data: response.ok ? data : null,
 		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+/**
+ * Client load-more for the watchlist lobby — pages the personal list and maps
+ * rows to poster seeds for `PopularMoviesInfinite`'s injected `loadPage`.
+ */
+export async function fetchMyWatchlist(
+	page: number,
+	opts: { order: string; signal?: AbortSignal },
+): Promise<
+	{ results: PopularMovieSeed[]; total_pages: number } | { error: true }
+> {
+	const url = new URL("/api/watchlist", stillApiOrigin());
+	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
+	url.searchParams.set("order", opts.order);
+	const response = await fetch(url, {
+		credentials: "include",
+		cache: "no-store",
+		signal: opts.signal,
+	});
+	if (!response.ok) return { error: true };
+	const raw = (await response.json().catch(() => null)) as {
+		results?: WatchlistLobbyRow[];
+		total_pages?: number;
+	} | null;
+	if (!raw || !Array.isArray(raw.results)) return { error: true };
+	const results = raw.results
+		.filter(isWatchlistRowWithListing)
+		.map(watchlistRowToPopularSeed);
+	return {
+		results,
+		total_pages: typeof raw.total_pages === "number" ? raw.total_pages : page,
 	};
 }
 
