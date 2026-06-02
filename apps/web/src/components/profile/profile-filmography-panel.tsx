@@ -4,8 +4,9 @@ import Link from "next/link";
 
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 
+import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import { ProfileLobbyCatalogue } from "@/components/profile/profile-lobby-catalogue";
-import { profileWatchedRowsToPersonFilmography } from "@/lib/profile-filmography-map";
+import type { FilmographyQueryOpts } from "@/lib/profile-filmography-fetch";
 
 export type ProfileFilmographyRow = {
 	log: {
@@ -20,14 +21,15 @@ export type ProfileFilmographyRow = {
 };
 
 type ProfileFilmographyPanelProps = {
-	rows: ProfileFilmographyRow[];
-	/** Which ledger slice — drives empty-state copy. */
+	handle: string;
+	seeds: PopularMovieSeed[];
+	totalPages: number;
+	totalResults: number;
+	query: Omit<FilmographyQueryOpts, "signal">;
 	kind: "movies" | "tv";
 	catalogueWaveKey: string;
 	monochromePeersOnHover?: boolean;
-	/** When the venue slice is empty but other venues have logs for this kind. */
 	hasLogsOtherVenue?: boolean;
-	/** Favorites filter on but this venue still has non-favorited logs. */
 	hasRowsWhenFavoritesOff?: boolean;
 	favoritesOnly?: boolean;
 	showAllLedgerHref?: string;
@@ -37,7 +39,11 @@ type ProfileFilmographyPanelProps = {
 
 /** Patron ledger — `/home` lobby poster grid for films or TV only. */
 export function ProfileFilmographyPanel({
-	rows,
+	handle,
+	seeds,
+	totalPages,
+	totalResults,
+	query,
 	kind,
 	catalogueWaveKey,
 	monochromePeersOnHover = true,
@@ -49,10 +55,8 @@ export function ProfileFilmographyPanel({
 	lobbyVenue = "streaming",
 }: ProfileFilmographyPanelProps) {
 	const { navigate } = useLobbyNavigation();
-	const gridRows = profileWatchedRowsToPersonFilmography(rows);
-	const posterCellKeys = rows.map((r) => r.log.id);
 
-	if (!gridRows.length) {
+	if (seeds.length === 0) {
 		const label = kind === "tv" ? "TV shows" : "films";
 		const venueLabel = lobbyVenue === "theaters" ? "in cinemas" : "at home";
 		return (
@@ -130,8 +134,11 @@ export function ProfileFilmographyPanel({
 
 	return (
 		<ProfileLobbyCatalogue
-			rows={gridRows}
-			posterCellKeys={posterCellKeys}
+			handle={handle}
+			seeds={seeds}
+			totalPages={totalPages}
+			totalResults={totalResults}
+			query={query}
 			catalogueWaveKeyOverride={catalogueWaveKey}
 			monochromePeersOnHover={monochromePeersOnHover}
 		/>

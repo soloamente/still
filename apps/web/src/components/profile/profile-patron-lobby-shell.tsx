@@ -4,7 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { useMemo } from "react";
 
 import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-provider";
-import type { ProfileFilmographyRow } from "@/components/profile/profile-filmography-panel";
+import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import { ProfileFollowsDrawerRoot } from "@/components/profile/profile-follows-drawer";
 import { ProfileLobbyChrome } from "@/components/profile/profile-lobby-chrome";
 import {
@@ -26,16 +26,10 @@ import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
 import type { ProfileBannerFrameId } from "@/lib/profile-appearance";
 import {
-	filmographyFromRecentlyWatched,
-	prepareProfileFilmography,
 	profileInitials,
-	splitProfileFilmographyLedger,
 	titleCountLineForProfileTab,
 } from "@/lib/profile-lobby-derive";
-import {
-	buildProfileLobbyHref,
-	profileLogMatchesProfileLobbyVenue,
-} from "@/lib/profile-lobby-order";
+import { buildProfileLobbyHref } from "@/lib/profile-lobby-order";
 import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
 
 export interface ProfilePatronLobbyShellProps {
@@ -54,7 +48,16 @@ export interface ProfilePatronLobbyShellProps {
 	bannerUrl: string | null;
 	bannerFrame?: ProfileBannerFrameId;
 	accentColor: string | null;
-	recentlyWatched: ProfileFilmographyRow[];
+	seeds: PopularMovieSeed[];
+	totalPages: number;
+	totalResults: number;
+	venueCounts: { movies: number; tv: number };
+	filmographyCounts: {
+		movies: number;
+		tv: number;
+		likedMovies: number;
+		likedTv: number;
+	};
 	recentReviews: ProfileReviewRow[];
 	lists: ListBoardRow[];
 	socialTabs: readonly ProfileSocialTabId[];
@@ -85,7 +88,11 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		bannerUrl,
 		bannerFrame = "none",
 		accentColor,
-		recentlyWatched,
+		seeds,
+		totalPages,
+		totalResults,
+		venueCounts,
+		filmographyCounts,
 		recentReviews,
 		lists,
 		socialTabs,
@@ -109,55 +116,32 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		ledgerTab,
 	} = useProfileLobbyParams();
 
-	const allFilmographyRows = useMemo(
-		() => prepareProfileFilmography(recentlyWatched, order),
-		[recentlyWatched, order],
-	);
-	const { movieRows: moviesAll, tvRows: tvAll } = useMemo(
-		() => splitProfileFilmographyLedger(allFilmographyRows),
-		[allFilmographyRows],
-	);
-
-	const venueFilteredRows = useMemo(
-		() =>
-			allFilmographyRows.filter((row) =>
-				profileLogMatchesProfileLobbyVenue(row, venue),
-			),
-		[allFilmographyRows, venue],
+	const media: "movie" | "tv" = ledgerTab === "tv" ? "tv" : "movie";
+	const orderToken: "latest" | "earliest" | "title" =
+		order === "earliest_seen"
+			? "earliest"
+			: order === "title_az"
+				? "title"
+				: "latest";
+	const query = useMemo(
+		() => ({ media, order: orderToken, venue, favorites: favoritesOnly }),
+		[media, orderToken, venue, favoritesOnly],
 	);
 
-	const filmographyRows = useMemo(
-		() =>
-			favoritesOnly
-				? venueFilteredRows.filter((row) => row.log.liked)
-				: venueFilteredRows,
-		[favoritesOnly, venueFilteredRows],
-	);
+	const moviesAllCount = filmographyCounts.movies;
+	const tvAllCount = filmographyCounts.tv;
+	const venueCountForMedia =
+		media === "tv" ? venueCounts.tv : venueCounts.movies;
 
-	const { movieRows, tvRows } = useMemo(
-		() => splitProfileFilmographyLedger(filmographyRows),
-		[filmographyRows],
-	);
-	const { movieRows: moviesVenueAll, tvRows: tvVenueAll } = useMemo(
-		() => splitProfileFilmographyLedger(venueFilteredRows),
-		[venueFilteredRows],
-	);
-
-	const ledgerPosterKeys =
-		contentTab === "movies"
-			? movieRows.map((r) => r.log.id)
-			: contentTab === "tv"
-				? tvRows.map((r) => r.log.id)
-				: [];
 	const catalogueWaveKey =
 		contentTab === "lists"
 			? `lists:${lists.map((l) => l.id).join("|")}`
-			: `${contentTab}:${order}:${ledgerPosterKeys.join("|")}`;
+			: `${contentTab}:${order}:${venue}:${favoritesOnly ? "fav" : "all"}`;
 
 	const titleCountLine = titleCountLineForProfileTab(
 		toolbarActiveTab,
-		movieRows.length,
-		tvRows.length,
+		media === "movie" ? totalResults : 0,
+		media === "tv" ? totalResults : 0,
 		favoritesOnly,
 		recentReviews.length,
 		lists.length,
@@ -236,12 +220,14 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 				<div className="min-h-0 flex-1">
 					<ProfileTabPanels
 						activeTab={contentTab}
-						movieRows={movieRows}
-						tvRows={tvRows}
-						moviesAllCount={moviesAll.length}
-						tvAllCount={tvAll.length}
-						moviesVenueCount={moviesVenueAll.length}
-						tvVenueCount={tvVenueAll.length}
+						handle={handle}
+						seeds={seeds}
+						totalPages={totalPages}
+						totalResults={totalResults}
+						query={query}
+						moviesAllCount={moviesAllCount}
+						tvAllCount={tvAllCount}
+						venueCountForMedia={venueCountForMedia}
 						favoritesOnly={favoritesOnly}
 						showAllLedgerHref={showAllLedgerHref}
 						lobbyVenue={venue}
@@ -262,20 +248,14 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
  * Client profile lobby — ledger filters run locally for instant chips.
  */
 export function ProfilePatronLobbyShell(props: ProfilePatronLobbyShellProps) {
-	const { handle, recentlyWatched, socialTabs } = props;
-	const { movieRows: moviesAll, tvRows: tvAll } = useMemo(() => {
-		const rows = filmographyFromRecentlyWatched(recentlyWatched);
-		return splitProfileFilmographyLedger(rows);
-	}, [recentlyWatched]);
-
+	const { handle, socialTabs, filmographyCounts } = props;
 	return (
 		<div className="flex flex-1 flex-col overflow-visible bg-background">
 			<LobbyNavigationProvider>
 				<ProfileLobbyParamsProvider
 					handle={handle}
 					socialTabs={socialTabs}
-					moviesAll={moviesAll}
-					tvAll={tvAll}
+					counts={filmographyCounts}
 				>
 					<ProfilePatronLobbyBody {...props} />
 				</ProfileLobbyParamsProvider>

@@ -1,7 +1,5 @@
-import {
-	ProfileFilmographyPanel,
-	type ProfileFilmographyRow,
-} from "@/components/profile/profile-filmography-panel";
+import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
+import { ProfileFilmographyPanel } from "@/components/profile/profile-filmography-panel";
 import { ProfileListsPanel } from "@/components/profile/profile-lists-panel";
 import {
 	type ProfileReviewRow,
@@ -10,14 +8,18 @@ import {
 import type { ProfileTabId } from "@/components/profile/profile-tab-toolbar";
 import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
+import type { FilmographyQueryOpts } from "@/lib/profile-filmography-fetch";
+
 export function ProfileTabPanels({
 	activeTab,
-	movieRows,
-	tvRows,
+	handle,
+	seeds,
+	totalPages,
+	totalResults,
+	query,
 	moviesAllCount,
 	tvAllCount,
-	moviesVenueCount,
-	tvVenueCount,
+	venueCountForMedia,
 	favoritesOnly,
 	showAllLedgerHref,
 	lobbyVenue,
@@ -29,12 +31,14 @@ export function ProfileTabPanels({
 	isMe = false,
 }: {
 	activeTab: ProfileTabId;
-	movieRows: ProfileFilmographyRow[];
-	tvRows: ProfileFilmographyRow[];
+	handle: string;
+	seeds: PopularMovieSeed[];
+	totalPages: number;
+	totalResults: number;
+	query: Omit<FilmographyQueryOpts, "signal">;
 	moviesAllCount: number;
 	tvAllCount: number;
-	moviesVenueCount: number;
-	tvVenueCount: number;
+	venueCountForMedia: number;
 	favoritesOnly: boolean;
 	showAllLedgerHref: string;
 	lobbyVenue: HomeVenue;
@@ -45,16 +49,22 @@ export function ProfileTabPanels({
 	monochromePeersOnHover: boolean;
 	isMe?: boolean;
 }) {
-	if (activeTab === "movies") {
+	if (activeTab === "movies" || activeTab === "tv") {
+		const kind = activeTab;
+		const allCount = kind === "tv" ? tvAllCount : moviesAllCount;
 		return (
 			<ProfileFilmographyPanel
-				rows={movieRows}
-				kind="movies"
+				handle={handle}
+				seeds={seeds}
+				totalPages={totalPages}
+				totalResults={totalResults}
+				query={query}
+				kind={kind}
 				catalogueWaveKey={catalogueWaveKey}
 				monochromePeersOnHover={monochromePeersOnHover}
-				hasLogsOtherVenue={moviesAllCount > 0 && movieRows.length === 0}
+				hasLogsOtherVenue={allCount > 0 && totalResults === 0}
 				hasRowsWhenFavoritesOff={
-					favoritesOnly && moviesVenueCount > 0 && movieRows.length === 0
+					favoritesOnly && venueCountForMedia > 0 && totalResults === 0
 				}
 				favoritesOnly={favoritesOnly}
 				showAllLedgerHref={showAllLedgerHref}
@@ -63,30 +73,9 @@ export function ProfileTabPanels({
 			/>
 		);
 	}
-
-	if (activeTab === "tv") {
-		return (
-			<ProfileFilmographyPanel
-				rows={tvRows}
-				kind="tv"
-				catalogueWaveKey={catalogueWaveKey}
-				monochromePeersOnHover={monochromePeersOnHover}
-				hasLogsOtherVenue={tvAllCount > 0 && tvRows.length === 0}
-				hasRowsWhenFavoritesOff={
-					favoritesOnly && tvVenueCount > 0 && tvRows.length === 0
-				}
-				favoritesOnly={favoritesOnly}
-				showAllLedgerHref={showAllLedgerHref}
-				switchVenueHref={switchVenueHref}
-				lobbyVenue={lobbyVenue}
-			/>
-		);
-	}
-
 	if (activeTab === "reviews") {
 		return <ProfileReviewsPanel rows={reviews} isMe={isMe} />;
 	}
-
 	if (activeTab === "lists") {
 		return (
 			<ProfileListsPanel
@@ -96,6 +85,5 @@ export function ProfileTabPanels({
 			/>
 		);
 	}
-
 	return null;
 }

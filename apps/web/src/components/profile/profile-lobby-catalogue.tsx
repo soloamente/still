@@ -11,49 +11,50 @@ import {
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
-import type { PersonFilmographyRow } from "@/lib/person-filmography";
-
-function personRowToSeed(row: PersonFilmographyRow): PopularMovieSeed {
-	return {
-		id: row.tmdbId,
-		title: row.title,
-		poster_url: row.posterUrl,
-		listingKind: row.mediaKind === "tv" ? "tv" : "movie",
-		scopeLabel: row.posterCaption ?? null,
-	};
-}
+import {
+	type FilmographyQueryOpts,
+	fetchProfileFilmography,
+} from "@/lib/profile-filmography-fetch";
 
 /**
- * Patron filmography / favorites grid — `/home` lobby posters with stagger entrance
- * (`PopularMoviesInfinite`, same as `/diary`).
+ * Patron filmography grid — seeds page 1 (server-rendered) and pages the personal
+ * ledger on scroll via `fetchProfileFilmography` (see `loadPage`).
  */
 export function ProfileLobbyCatalogue({
-	rows,
-	posterCellKeys,
+	handle,
+	seeds,
+	totalPages,
+	totalResults,
+	query,
 	catalogueWaveKeyOverride,
 	monochromePeersOnHover = true,
 }: {
-	rows: PersonFilmographyRow[];
-	posterCellKeys: string[];
+	handle: string;
+	seeds: PopularMovieSeed[];
+	totalPages: number;
+	totalResults: number;
+	query: Omit<FilmographyQueryOpts, "signal">;
 	catalogueWaveKeyOverride: string;
 	monochromePeersOnHover?: boolean;
 }) {
-	const seeds = rows.map(personRowToSeed);
-
-	const getPosterCellKey = useCallback(
-		(_movie: PopularMovieSeed, index: number) =>
-			posterCellKeys[index] ?? `profile-${index}`,
-		[posterCellKeys],
+	const cellKey = useCallback(
+		(m: PopularMovieSeed) => `${m.listingKind ?? "movie"}:${m.id}`,
+		[],
+	);
+	const loadPage = useCallback(
+		(page: number) => fetchProfileFilmography(handle, page, query),
+		[handle, query],
 	);
 
 	return (
 		<PopularMoviesInfinite
 			blockedReason={null}
-			catalogKind="popular"
-			catalogLabel="profile"
 			catalogMedia="movie"
+			catalogLabel="profile"
 			catalogueWaveKeyOverride={catalogueWaveKeyOverride}
-			getPosterCellKey={getPosterCellKey}
+			getPosterCellKey={cellKey}
+			getDedupeKey={cellKey}
+			loadPage={loadPage}
 			gridClassName={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}
 			monochromePeersOnHover={monochromePeersOnHover}
 			posterFrameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
@@ -63,9 +64,8 @@ export function ProfileLobbyCatalogue({
 			seedPage={1}
 			showTitle={false}
 			staggerPosterEntrance
-			staticCatalogue
-			totalPages={1}
-			totalResults={seeds.length}
+			totalPages={totalPages}
+			totalResults={totalResults}
 		/>
 	);
 }
