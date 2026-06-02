@@ -2,12 +2,17 @@
  * URL + sort helpers for `/watchlist` lobby — mirrors `diary-lobby-order` so the page can reuse
  * `HomeStickyChrome`, `HomeCatalogViewModeToolbar`, and the same poster grid stack as `/home`.
  */
+import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
+
 export type WatchlistLobbyOrder =
 	| "latest_added"
 	| "earliest_added"
 	| "title_az";
 
 const DEFAULT_ORDER: WatchlistLobbyOrder = "latest_added";
+
+/** First-page size; mirrors the server `WATCHLIST_DEFAULT_LIMIT`. */
+export const WATCHLIST_PAGE_SIZE = 24;
 
 /** Row shape from `GET /api/watchlist` — joined `movie` or `tv` for poster + title. */
 export type WatchlistLobbyRow = {
@@ -58,46 +63,23 @@ export function isWatchlistRowWithListing(
 /** @deprecated Use `isWatchlistRowWithListing`. */
 export const isWatchlistRowWithMovie = isWatchlistRowWithListing;
 
-function listingTitle(row: WatchlistLobbyRowWithListing): string {
-	if (row.movie) return row.movie.title;
-	if (row.tv) return row.tv.title;
-	return "";
-}
-
-function compareWatchlistLobbyRows(
-	a: WatchlistLobbyRowWithListing,
-	b: WatchlistLobbyRowWithListing,
-	order: WatchlistLobbyOrder,
-): number {
-	switch (order) {
-		case "latest_added":
-			return (
-				new Date(b.item.addedAt).getTime() - new Date(a.item.addedAt).getTime()
-			);
-		case "earliest_added":
-			return (
-				new Date(a.item.addedAt).getTime() - new Date(b.item.addedAt).getTime()
-			);
-		case "title_az": {
-			const t = listingTitle(a).localeCompare(listingTitle(b), undefined, {
-				sensitivity: "base",
-			});
-			if (t !== 0) return t;
-			return (
-				new Date(b.item.addedAt).getTime() - new Date(a.item.addedAt).getTime()
-			);
-		}
-		default: {
-			const _exhaustive: never = order;
-			return _exhaustive;
-		}
+/** Map a joined watchlist row to the poster seed shape the lobby grid renders. */
+export function watchlistRowToPopularSeed(
+	row: WatchlistLobbyRowWithListing,
+): PopularMovieSeed {
+	const listing = row.movie ?? row.tv;
+	if (!listing) {
+		throw new Error("watchlistRowToPopularSeed: row missing movie and tv");
 	}
-}
-
-/** Stable sort for the watchlist lobby — mutates a copy only. */
-export function sortWatchlistLobbyRowsForOrder(
-	rows: WatchlistLobbyRowWithListing[],
-	order: WatchlistLobbyOrder,
-): WatchlistLobbyRowWithListing[] {
-	return rows.slice().sort((a, b) => compareWatchlistLobbyRows(a, b, order));
+	let poster_url: string | null = listing.posterPath;
+	if (poster_url?.length && !poster_url.startsWith("http")) {
+		const fragment = poster_url.startsWith("/") ? poster_url : `/${poster_url}`;
+		poster_url = `https://image.tmdb.org/t/p/w780${fragment}`;
+	}
+	return {
+		id: listing.tmdbId,
+		title: listing.title,
+		poster_url,
+		listingKind: row.tv != null ? "tv" : "movie",
+	};
 }
