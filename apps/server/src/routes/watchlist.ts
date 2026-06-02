@@ -1,10 +1,27 @@
-import { db, movie, tv, watchlistItem } from "@still/db";
-import { and, desc, eq, isNotNull } from "drizzle-orm";
+import { db, log, movie, tv, watchlistItem } from "@still/db";
+import {
+	and,
+	asc,
+	count,
+	desc,
+	eq,
+	isNotNull,
+	notExists,
+	or,
+	sql,
+} from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
+import {
+	parseWatchlistLimit,
+	parseWatchlistOrder,
+	parseWatchlistPage,
+	watchlistOffset,
+	watchlistTotalPages,
+} from "../lib/watchlist-query-args";
 
 type WatchlistUpsertBody = {
 	movieId?: number;
@@ -27,18 +44,73 @@ export const watchlistRoute = new Elysia({
 		"/",
 		async ({ user, status, query }) => {
 			if (!user) return status(401, "Sign in");
-			const limit = Math.min(Number(query.limit ?? 60), 200);
-			const rows = await db
-				.select({ item: watchlistItem, movie, tv })
-				.from(watchlistItem)
-				.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
-				.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
-				.where(eq(watchlistItem.userId, user.id))
-				.orderBy(desc(watchlistItem.addedAt))
-				.limit(limit);
-			return rows;
+			const page = parseWatchlistPage(query.page);
+			const limit = parseWatchlistLimit(query.limit);
+			const order = parseWatchlistOrder(query.order);
+			const offset = watchlistOffset(page, limit);
+
+			// Hide-watched (Letterbox-shaped): drop any saved title with a diary log.
+			// As a SQL clause so LIMIT/OFFSET apply *after* filtering.
+			const notWatched = notExists(
+				db
+					.select({ one: sql`1` })
+					.from(log)
+					.where(
+						and(
+							eq(log.userId, user.id),
+							or(
+								and(
+									isNotNull(watchlistItem.movieId),
+									eq(log.movieId, watchlistItem.movieId),
+								),
+								and(
+									isNotNull(watchlistItem.tvId),
+									eq(log.tvId, watchlistItem.tvId),
+								),
+							),
+						),
+					),
+			);
+
+			const whereClause = and(eq(watchlistItem.userId, user.id), notWatched);
+
+			// Deterministic tiebreaker so pages never overlap or skip.
+			const tiebreak = sql`coalesce(${watchlistItem.movieId}, ${watchlistItem.tvId})`;
+			const titleExpr = sql`coalesce(${movie.title}, ${tv.title})`;
+			const orderBy =
+				order === "earliest_added"
+					? [asc(watchlistItem.addedAt), tiebreak]
+					: order === "title_az"
+						? [asc(titleExpr), desc(watchlistItem.addedAt), tiebreak]
+						: [desc(watchlistItem.addedAt), tiebreak];
+
+			const [rows, totals] = await Promise.all([
+				db
+					.select({ item: watchlistItem, movie, tv })
+					.from(watchlistItem)
+					.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
+					.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
+					.where(whereClause)
+					.orderBy(...orderBy)
+					.limit(limit)
+					.offset(offset),
+				db.select({ total: count() }).from(watchlistItem).where(whereClause),
+			]);
+
+			const total = Number(totals[0]?.total ?? 0);
+			return {
+				results: rows,
+				total_pages: watchlistTotalPages(total, limit),
+				total_results: total,
+			};
 		},
-		{ query: t.Object({ limit: t.Optional(t.String()) }) },
+		{
+			query: t.Object({
+				page: t.Optional(t.String()),
+				limit: t.Optional(t.String()),
+				order: t.Optional(t.String()),
+			}),
+		},
 	)
 	.post(
 		"/",
