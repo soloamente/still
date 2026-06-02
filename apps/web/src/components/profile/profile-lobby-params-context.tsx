@@ -11,7 +11,6 @@ import {
 	useState,
 } from "react";
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
-import type { ProfileFilmographyRow } from "@/components/profile/profile-filmography-panel";
 import type {
 	ProfileSocialTabId,
 	ProfileTabId,
@@ -19,8 +18,7 @@ import type {
 import type { HomeVenue } from "@/lib/home-venue";
 import {
 	profileLedgerTabFromContent,
-	resolveProfileTab,
-	splitProfileFilmographyLedger,
+	resolveProfileTabFromCounts,
 } from "@/lib/profile-lobby-derive";
 import {
 	buildProfileTabHref,
@@ -53,8 +51,7 @@ const ProfileLobbyParamsContext =
 function snapshotFromSearchParams(
 	searchParams: URLSearchParams,
 	socialTabs: readonly ProfileSocialTabId[],
-	moviesAll: ProfileFilmographyRow[],
-	tvAll: ProfileFilmographyRow[],
+	counts: { movies: number; tv: number; likedMovies: number; likedTv: number },
 ): ProfileLobbySnapshot & {
 	contentTab: ProfileTabId;
 	ledgerTab: ProfileLedgerTabId;
@@ -64,11 +61,10 @@ function snapshotFromSearchParams(
 	const favoritesOnly = parseProfileLobbyFavorites(
 		searchParams.get("favorites"),
 	);
-	const contentTab = resolveProfileTab(
+	const contentTab = resolveProfileTabFromCounts(
 		searchParams.get("tab"),
 		socialTabs,
-		moviesAll,
-		tvAll,
+		counts,
 	);
 	const toolbarActiveTab: ProfileTabId =
 		favoritesOnly && socialTabs.includes("favorites")
@@ -88,14 +84,12 @@ function snapshotFromSearchParams(
 export function ProfileLobbyParamsProvider({
 	handle,
 	socialTabs,
-	moviesAll,
-	tvAll,
+	counts,
 	children,
 }: {
 	handle: string;
 	socialTabs: readonly ProfileSocialTabId[];
-	moviesAll: ProfileFilmographyRow[];
-	tvAll: ProfileFilmographyRow[];
+	counts: { movies: number; tv: number; likedMovies: number; likedTv: number };
 	children: ReactNode;
 }) {
 	const searchParams = useSearchParams();
@@ -106,10 +100,9 @@ export function ProfileLobbyParamsProvider({
 			snapshotFromSearchParams(
 				new URLSearchParams(searchParams.toString()),
 				socialTabs,
-				moviesAll,
-				tvAll,
+				counts,
 			),
-		[searchParams, socialTabs, moviesAll, tvAll],
+		[searchParams, socialTabs, counts],
 	);
 
 	const [pending, setPending] = useState<ProfileLobbySnapshot | null>(null);
@@ -136,10 +129,7 @@ export function ProfileLobbyParamsProvider({
 			return active.toolbarActiveTab;
 		}
 		if (active.toolbarActiveTab === "favorites") {
-			const { movieRows } = splitProfileFilmographyLedger(moviesAll);
-			return movieRows.some((row) => row.log.liked) || tvAll.length === 0
-				? "movies"
-				: "tv";
+			return counts.likedMovies > 0 || counts.tv === 0 ? "movies" : "tv";
 		}
 		if (
 			active.toolbarActiveTab === "movies" ||
@@ -147,13 +137,12 @@ export function ProfileLobbyParamsProvider({
 		) {
 			return active.toolbarActiveTab;
 		}
-		return resolveProfileTab(
+		return resolveProfileTabFromCounts(
 			searchParams.get("tab"),
 			socialTabs,
-			moviesAll,
-			tvAll,
+			counts,
 		);
-	}, [active.toolbarActiveTab, moviesAll, tvAll, socialTabs, searchParams]);
+	}, [active.toolbarActiveTab, counts, socialTabs, searchParams]);
 
 	const ledgerTab = profileLedgerTabFromContent(
 		contentTab === "lists" || contentTab === "reviews"
