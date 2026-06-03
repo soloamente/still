@@ -27,7 +27,10 @@ import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
 import { ensureTvCached } from "../lib/tv-cache";
 import { clearTvWatchIfNoDiaryLogsForShow } from "../lib/tv-watch-log-sync";
-import { syncWatchStreakForUser } from "../lib/watch-streak-sync";
+import {
+	backfillWatchStreakFromLogs,
+	syncWatchStreakForUser,
+} from "../lib/watch-streak-sync";
 
 const logCreateFields = {
 	/** Film path — mutually exclusive with `tvId`. */
@@ -307,6 +310,12 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				});
 			}
 
+			if (updated && body.watchedAt !== undefined) {
+				void backfillWatchStreakFromLogs(user.id).catch((err) => {
+					console.error("[logs] watch streak backfill (patch) failed", err);
+				});
+			}
+
 			return updated;
 		},
 		{
@@ -363,6 +372,9 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 			if (existing.tvId != null) {
 				await clearTvWatchIfNoDiaryLogsForShow(user.id, existing.tvId);
 			}
+			void backfillWatchStreakFromLogs(user.id).catch((err) => {
+				console.error("[logs] watch streak backfill (delete) failed", err);
+			});
 			return { ok: true };
 		},
 		{ params: t.Object({ id: t.String() }) },
