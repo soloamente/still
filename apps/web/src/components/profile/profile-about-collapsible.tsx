@@ -33,13 +33,6 @@ export function ProfileAboutCollapsible({
 	const hasContent =
 		bio?.trim() || pronouns?.trim() || location?.trim() || website?.trim();
 
-	// Heatmap is always shown when the panel is open (it has its own empty state).
-	// But if there's truly nothing to show, hide the trigger entirely.
-	if (!hasContent) {
-		// Still render heatmap-only collapsible so the graph is accessible.
-		// Comment: intentionally always renders — heatmap has its own "no data" state.
-	}
-
 	const previewParts: string[] = [];
 	if (location?.trim()) previewParts.push(location.trim());
 	if (website?.trim()) previewParts.push(formatWebsiteLabel(website.trim()));
