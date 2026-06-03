@@ -200,7 +200,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 					bannerUrl={bannerUrl}
 					bannerFrame={bannerFrame}
 					accentColor={accentColor}
-					titleCountLine={titleCountLine}
+					filmCount={moviesAllCount + tvAllCount}
 					tasteSignature={tasteSignature}
 					pinnedReviews={pinnedReviews}
 					canCompareTaste={canCompareTaste}

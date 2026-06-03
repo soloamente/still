@@ -2,14 +2,14 @@ import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
-import { ProfileActivitySignature } from "@/components/profile/profile-activity-signature";
+import { ProfileAboutCollapsible } from "@/components/profile/profile-about-collapsible";
 import { ProfileCuratorBadge } from "@/components/profile/profile-curator-badge";
+import { ProfileFollowsTrigger } from "@/components/profile/profile-follows-drawer";
 import { ProfilePatronActions } from "@/components/profile/profile-patron-actions";
-import { ProfilePatronByline } from "@/components/profile/profile-patron-byline";
 import { ProfilePinnedReviewsStrip } from "@/components/profile/profile-pinned-reviews-strip";
 import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
+import { ProfileStreakStatCell } from "@/components/profile/profile-streak-stat-cell";
 import { ProfileTasteSignature } from "@/components/profile/profile-taste-signature";
-import { ProfileWatchStreak } from "@/components/profile/profile-watch-streak";
 import {
 	type ProfileBannerFrameId,
 	profileBannerFrameClass,
@@ -35,8 +35,8 @@ type ProfilePatronHeaderProps = {
 	bannerUrl: string | null;
 	bannerFrame?: ProfileBannerFrameId;
 	accentColor: string | null;
-	/** Shown under the bio — e.g. filmography count for the active ledger tab. */
-	titleCountLine?: string | null;
+	/** Total logged films count across both tabs — for the stats grid. */
+	filmCount: number;
 	tasteSignature?: TasteSignatureJson | null;
 	pinnedReviews?: ProfileReviewRow[];
 	canCompareTaste?: boolean;
@@ -63,7 +63,7 @@ export function ProfilePatronHeader({
 	bannerUrl,
 	bannerFrame = "none",
 	accentColor,
-	titleCountLine,
+	filmCount,
 	tasteSignature,
 	pinnedReviews = [],
 	canCompareTaste,
@@ -110,6 +110,7 @@ export function ProfilePatronHeader({
 			</div>
 
 			<div className="relative mx-auto -mt-14 max-w-md px-2 text-center sm:-mt-16 sm:px-4">
+				{/* Portrait */}
 				<div className="mx-auto mb-4 flex justify-center">
 					<div className="relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg ring-4 ring-card sm:w-24">
 						{hasPortrait ? (
@@ -132,33 +133,56 @@ export function ProfilePatronHeader({
 					</div>
 				</div>
 
+				{/* Name */}
 				<h1 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
 					{displayName}
 				</h1>
-				<p className="mt-1 text-muted-foreground text-sm">@{handle}</p>
-				{isCurator ? <ProfileCuratorBadge headline={curatorHeadline} /> : null}
+
+				{/* Handle + curator chip inline */}
+				<div className="mt-1 flex items-center justify-center gap-2">
+					<p className="text-muted-foreground text-sm">@{handle}</p>
+					{isCurator ? (
+						<ProfileCuratorBadge headline={curatorHeadline} />
+					) : null}
+				</div>
+
+				{/* Taste signature */}
 				<ProfileTasteSignature
 					tasteSignature={tasteSignature ?? null}
 					className="mt-3"
 				/>
-				<ProfileActivitySignature handle={handle} />
-				<ProfilePinnedReviewsStrip rows={pinnedReviews} />
-				{bio ? (
-					<p className="mt-3 max-w-md text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
-						{bio}
-					</p>
-				) : null}
-				{isMe ? <ProfileWatchStreak /> : null}
-				<ProfilePatronByline
-					className={bio || isMe ? "mt-3" : "mt-4"}
-					targetUserId={targetUserId}
-					pronouns={pronouns}
-					titleCountLine={titleCountLine}
-					stats={stats}
-					location={location}
-					website={website}
-				/>
 
+				{/* Stats grid */}
+				<div
+					className={cn(
+						"mt-4 grid gap-2",
+						isMe ? "grid-cols-3" : "grid-cols-2",
+					)}
+				>
+					<div className="flex flex-col items-center gap-0.5 rounded-xl bg-muted/20 py-2.5">
+						<span className="font-semibold text-foreground text-sm tabular-nums">
+							{filmCount}
+						</span>
+						<span className="text-[10px] text-muted-foreground">films</span>
+					</div>
+
+					{/* Merged followers+following cell */}
+					<div className="flex flex-col items-center gap-0.5 rounded-xl bg-muted/20 py-2.5">
+						<ProfileFollowsTrigger
+							targetUserId={targetUserId}
+							followers={stats.followers}
+							following={stats.following}
+						/>
+					</div>
+
+					{isMe ? (
+						<div className="flex flex-col items-center justify-center rounded-xl bg-muted/20 py-2.5">
+							<ProfileStreakStatCell />
+						</div>
+					) : null}
+				</div>
+
+				{/* Actions */}
 				<ProfilePatronActions
 					isMe={isMe}
 					targetUserId={targetUserId}
@@ -166,6 +190,18 @@ export function ProfilePatronHeader({
 					canCompareTaste={canCompareTaste}
 					initialTasteCompareOpen={initialTasteCompareOpen}
 				/>
+
+				{/* Collapsible: bio, pronouns, location, website, heatmap */}
+				<ProfileAboutCollapsible
+					handle={handle}
+					bio={bio}
+					pronouns={pronouns}
+					location={location}
+					website={website}
+				/>
+
+				{/* Pinned reviews */}
+				<ProfilePinnedReviewsStrip rows={pinnedReviews} />
 			</div>
 		</header>
 	);
