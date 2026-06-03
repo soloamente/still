@@ -57,9 +57,14 @@ export function DiaryLobbyInfinite({
 	const loadingRef = useRef(false);
 	const sentinelRef = useRef<HTMLDivElement>(null);
 	const loadMoreRef = useRef<() => Promise<void>>(async () => {});
+	const seedGenRef = useRef(0);
+	const abortRef = useRef<AbortController | null>(null);
 
 	// Re-seed when the server sends a new first page (chip nav changes query).
 	useEffect(() => {
+		seedGenRef.current += 1;
+		abortRef.current?.abort();
+		abortRef.current = null;
 		setItems([...seeds]);
 		nextPageRef.current = 2;
 		loadingRef.current = false;
@@ -112,7 +117,25 @@ export function DiaryLobbyInfinite({
 		if (loadingRef.current) return;
 		loadingRef.current = true;
 		setFooterState("loading");
-		const res = await fetchMyDiary(next, query);
+
+		const gen = seedGenRef.current;
+		const controller = new AbortController();
+		abortRef.current = controller;
+
+		let res: Awaited<ReturnType<typeof fetchMyDiary>> | { error: true };
+		try {
+			res = await fetchMyDiary(next, { ...query, signal: controller.signal });
+		} catch {
+			// Aborted by a re-seed, or a network throw — drop if superseded.
+			if (gen !== seedGenRef.current) return;
+			loadingRef.current = false;
+			setFooterState("error");
+			return;
+		}
+
+		// A chip change re-seeded while we were fetching — discard stale results.
+		if (gen !== seedGenRef.current) return;
+
 		loadingRef.current = false;
 		if ("error" in res) {
 			setFooterState("error");
@@ -142,7 +165,10 @@ export function DiaryLobbyInfinite({
 		loadMoreRef.current = loadMore;
 	}, [loadMore]);
 
+	const showSentinel = footerState !== "exhausted";
+
 	useEffect(() => {
+		if (!showSentinel) return;
 		const el = sentinelRef.current;
 		if (!el) return;
 		const observer = new IntersectionObserver(
@@ -153,7 +179,7 @@ export function DiaryLobbyInfinite({
 		);
 		observer.observe(el);
 		return () => observer.disconnect();
-	}, []);
+	}, [showSentinel]);
 
 	useEffect(() => {
 		queueMicrotask(() => peekIfRoomForMore());
@@ -233,7 +259,7 @@ export function DiaryLobbyInfinite({
 				{cells}
 			</div>
 
-			{footerState !== "exhausted" ? (
+			{showSentinel ? (
 				<div
 					ref={sentinelRef}
 					className="pointer-events-none h-px w-full shrink-0"

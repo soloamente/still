@@ -100,6 +100,7 @@ export function DiaryTvGroupCell({
 	const reduceMotion = useReducedMotion();
 	const [logs, setLogs] = useState<DiaryLogRow[] | null>(null);
 	const [loadingLogs, setLoadingLogs] = useState(false);
+	const [fetchFailed, setFetchFailed] = useState(false);
 
 	const entryCountLine = logCount > 1 ? `${logCount} diary entries` : null;
 
@@ -107,7 +108,7 @@ export function DiaryTvGroupCell({
 
 	// Fetch the full entry list the first time the card flips open.
 	useEffect(() => {
-		if (!expanded || logs != null || loadingLogs) return;
+		if (!expanded || logs != null || loadingLogs || fetchFailed) return;
 		let cancelled = false;
 		setLoadingLogs(true);
 		void fetchMyLogsForTv(tmdbId)
@@ -115,13 +116,16 @@ export function DiaryTvGroupCell({
 				if (cancelled) return;
 				setLogs(tvLogsToDiaryRows(data, tmdbId, title, posterPath));
 			})
+			.catch(() => {
+				if (!cancelled) setFetchFailed(true);
+			})
 			.finally(() => {
 				if (!cancelled) setLoadingLogs(false);
 			});
 		return () => {
 			cancelled = true;
 		};
-	}, [expanded, logs, loadingLogs, tmdbId, title, posterPath]);
+	}, [expanded, logs, loadingLogs, fetchFailed, tmdbId, title, posterPath]);
 
 	/** Flip to poster when patron taps non-interactive back-face space (header, list gutters). */
 	const handleBackFaceClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -233,7 +237,7 @@ export function DiaryTvGroupCell({
 						>
 							{logs == null ? (
 								<li className="py-6 text-center text-[11px] text-muted-foreground">
-									Loading entries…
+									{fetchFailed ? "Couldn't load entries." : "Loading entries…"}
 								</li>
 							) : (
 								logs.map((row) => (
