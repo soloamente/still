@@ -5,19 +5,21 @@ import { ChevronDown } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import type { DiaryLogRow } from "@/components/diary/diary-entry";
 import { DiaryLogRatingLabel } from "@/components/diary/diary-log-rating-label";
 import { TvLogScopeChip } from "@/components/diary/tv-log-scope-chip";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
 import { MoviePoster } from "@/components/movie/movie-poster";
-import { pickPrimaryTvScopeLabel } from "@/lib/diary-lobby-grouping";
 import { diaryLogToQuickLogOpenPayload } from "@/lib/diary-open-log";
 import { formatDate } from "@/lib/format";
 import {
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
+import type { MyTvLog } from "@/lib/my-tv-log";
+import { fetchMyLogsForTv } from "@/lib/still-api-fetch";
 
 /** Horizontal inset so list/footer clear `rounded-[3rem]` poster corners. */
 const DIARY_TV_FLIP_INSET_X = "px-4 sm:px-5";
@@ -41,6 +43,33 @@ function tmdbPosterUrl(posterPath: string | null): string | null {
 	return `https://image.tmdb.org/t/p/w780${fragment}`;
 }
 
+/** `GET /api/logs/me/by-tv/:id` rows → diary rows for the flip-card list. */
+function tvLogsToDiaryRows(
+	data: unknown,
+	tmdbId: number,
+	title: string,
+	posterPath: string | null,
+): DiaryLogRow[] {
+	if (!Array.isArray(data)) return [];
+	const listing = { tmdbId, title, posterPath, year: null };
+	return (data as MyTvLog[]).map((l) => ({
+		log: {
+			id: l.id,
+			watchedAt: l.watchedAt ?? new Date(0).toISOString(),
+			createdAt: undefined,
+			rating: l.rating ?? null,
+			liked: l.liked,
+			rewatch: l.rewatch ?? false,
+			note: l.note ?? null,
+			logScope: l.logScope ?? "show",
+			seasonNumber: l.seasonNumber ?? null,
+			episodeNumber: l.episodeNumber ?? null,
+		},
+		movie: null,
+		tv: listing,
+	}));
+}
+
 /**
  * One diary grid cell for a TV series — tap flips a two-face card (poster front, log list back).
  */
@@ -48,7 +77,8 @@ export function DiaryTvGroupCell({
 	tmdbId,
 	title,
 	posterPath,
-	logs,
+	logCount,
+	primaryLabel,
 	expanded,
 	onToggleExpand,
 	priority = false,
@@ -56,7 +86,10 @@ export function DiaryTvGroupCell({
 	tmdbId: number;
 	title: string;
 	posterPath: string | null;
-	logs: DiaryLogRow[];
+	/** Total diary entries for this show (from the endpoint). */
+	logCount: number;
+	/** Front-face scope caption (server-computed most-specific scope). */
+	primaryLabel: string;
 	/** `true` when the card is flipped to the log-list face. */
 	expanded: boolean;
 	onToggleExpand: () => void;
@@ -65,11 +98,30 @@ export function DiaryTvGroupCell({
 	const router = useRouter();
 	const openQuickLog = useQuickLog((s) => s.open);
 	const reduceMotion = useReducedMotion();
-	const primaryLabel = pickPrimaryTvScopeLabel(logs);
-	const entryCountLine =
-		logs.length > 1 ? `${logs.length} diary entries` : null;
+	const [logs, setLogs] = useState<DiaryLogRow[] | null>(null);
+	const [loadingLogs, setLoadingLogs] = useState(false);
+
+	const entryCountLine = logCount > 1 ? `${logCount} diary entries` : null;
 
 	const refresh = () => router.refresh();
+
+	// Fetch the full entry list the first time the card flips open.
+	useEffect(() => {
+		if (!expanded || logs != null || loadingLogs) return;
+		let cancelled = false;
+		setLoadingLogs(true);
+		void fetchMyLogsForTv(tmdbId)
+			.then(({ data }) => {
+				if (cancelled) return;
+				setLogs(tvLogsToDiaryRows(data, tmdbId, title, posterPath));
+			})
+			.finally(() => {
+				if (!cancelled) setLoadingLogs(false);
+			});
+		return () => {
+			cancelled = true;
+		};
+	}, [expanded, logs, loadingLogs, tmdbId, title, posterPath]);
 
 	/** Flip to poster when patron taps non-interactive back-face space (header, list gutters). */
 	const handleBackFaceClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -99,7 +151,7 @@ export function DiaryTvGroupCell({
 					{/* Front — poster + scope scrim; tap to flip; RMB opens radial on the shell. */}
 					<CataloguePosterTile
 						className="backface-hidden absolute inset-0 size-full"
-						diaryTvLogs={logs}
+						diaryTvLogs={logs ?? []}
 						hoverEffect="elevation"
 						listingKind="tv"
 						posterCaption={primaryLabel}
@@ -179,48 +231,54 @@ export function DiaryTvGroupCell({
 								DIARY_TV_FLIP_INSET_X,
 							)}
 						>
-							{logs.map((row) => (
-								<li key={row.log.id}>
-									<button
-										type="button"
-										className={cn(
-											"group flex w-full items-start justify-between gap-3 py-3 text-left transition-colors",
-											"active:bg-muted/45 [@media(hover:hover)]:hover:bg-muted/30",
-											"active:scale-[0.99] motion-reduce:active:scale-100",
-										)}
-										onClick={() => {
-											const payload = diaryLogToQuickLogOpenPayload(
-												row,
-												refresh,
-											);
-											if (payload) openQuickLog(payload);
-										}}
-									>
-										<div className="min-w-0 flex-1 space-y-1">
-											<TvLogScopeChip
-												logScope={row.log.logScope}
-												seasonNumber={row.log.seasonNumber}
-												episodeNumber={row.log.episodeNumber}
-												className="inline-flex rounded-full bg-muted/50 px-2.5 py-0.5 font-medium text-[10px] text-foreground tracking-wide"
-											/>
-											<p className="text-[11px] text-muted-foreground tabular-nums leading-none">
-												{formatDate(new Date(row.log.watchedAt), {
-													month: "short",
-													day: "numeric",
-													year: "numeric",
-												})}
-											</p>
-										</div>
-										{row.log.rating != null ? (
-											<DiaryLogRatingLabel stored={row.log.rating} />
-										) : (
-											<span className="shrink-0 pt-0.5 text-[11px] text-muted-foreground/60 tabular-nums">
-												—
-											</span>
-										)}
-									</button>
+							{logs == null ? (
+								<li className="py-6 text-center text-[11px] text-muted-foreground">
+									Loading entries…
 								</li>
-							))}
+							) : (
+								logs.map((row) => (
+									<li key={row.log.id}>
+										<button
+											type="button"
+											className={cn(
+												"group flex w-full items-start justify-between gap-3 py-3 text-left transition-colors",
+												"active:bg-muted/45 [@media(hover:hover)]:hover:bg-muted/30",
+												"active:scale-[0.99] motion-reduce:active:scale-100",
+											)}
+											onClick={() => {
+												const payload = diaryLogToQuickLogOpenPayload(
+													row,
+													refresh,
+												);
+												if (payload) openQuickLog(payload);
+											}}
+										>
+											<div className="min-w-0 flex-1 space-y-1">
+												<TvLogScopeChip
+													logScope={row.log.logScope}
+													seasonNumber={row.log.seasonNumber}
+													episodeNumber={row.log.episodeNumber}
+													className="inline-flex rounded-full bg-muted/50 px-2.5 py-0.5 font-medium text-[10px] text-foreground tracking-wide"
+												/>
+												<p className="text-[11px] text-muted-foreground tabular-nums leading-none">
+													{formatDate(new Date(row.log.watchedAt), {
+														month: "short",
+														day: "numeric",
+														year: "numeric",
+													})}
+												</p>
+											</div>
+											{row.log.rating != null ? (
+												<DiaryLogRatingLabel stored={row.log.rating} />
+											) : (
+												<span className="shrink-0 pt-0.5 text-[11px] text-muted-foreground/60 tabular-nums">
+													—
+												</span>
+											)}
+										</button>
+									</li>
+								))
+							)}
 						</ul>
 
 						<div
