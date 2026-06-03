@@ -43,6 +43,8 @@ import {
 	tvDiscoverSortByForLobbySort,
 } from "@/lib/home-catalog-run";
 import { parseHomeCatalogSort } from "@/lib/home-catalog-sort";
+import { parseHomeCommunityFeed } from "@/lib/home-community-feed";
+import { parseHomeCommunityPeriod } from "@/lib/home-leaderboard-period";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
@@ -142,6 +144,8 @@ export default async function HomePage({
 		parseHomeAnimeSeason(sp.animeSeason) &&
 		catalogRun == null;
 	const sort = parseHomeCatalogSort(sp.sort, browse);
+	const communityFeed = parseHomeCommunityFeed(sp.sort);
+	const communityPeriod = parseHomeCommunityPeriod(sp.period);
 	const movieVenue =
 		browse === "movies" ? parseHomeVenue(sp.venue, sort) : null;
 	const tvVenue =
@@ -513,7 +517,10 @@ export default async function HomePage({
 					<HomeLobbyBodyGate urlBrowse={browse}>
 						{browse === "community" ? (
 							<Suspense fallback={<CommunityLobbySkeleton />}>
-								<HomeCommunityRscPayload>
+								<HomeCommunityRscPayload
+									feed={communityFeed}
+									period={communityPeriod}
+								>
 									<div className="flex shrink-0 items-center justify-between gap-3">
 										<Suspense fallback={<LobbyCatalogChipFallback />}>
 											<div className="min-w-0 shrink">
