@@ -926,6 +926,81 @@ export async function fetchMyWatchlist(
 	};
 }
 
+/** One row from `GET /api/logs/me/diary`. */
+export type DiaryMovieResultRow = {
+	kind: "movie";
+	log: {
+		id: string;
+		watchedAt: string;
+		createdAt: string;
+		rating: number | null;
+		liked: boolean;
+		rewatch: boolean;
+		watchVenue: "theaters" | "streaming" | null;
+	};
+	movie: { tmdbId: number; title: string; posterPath: string | null };
+};
+
+export type DiaryTvGroupResultRow = {
+	kind: "tvGroup";
+	tv: { tmdbId: number; title: string; posterPath: string | null };
+	logCount: number;
+	primaryScope: {
+		logScope: "show" | "season" | "episode";
+		seasonNumber: number | null;
+		episodeNumber: number | null;
+	};
+	newestWatchedAt: string;
+};
+
+export type DiaryResultRow = DiaryMovieResultRow | DiaryTvGroupResultRow;
+
+export type DiaryTabCounts = { movies: number; tv: number };
+
+export type FetchMyDiaryOpts = {
+	media: "movie" | "tv";
+	order: "latest" | "earliest" | "title";
+	/** Omit / null = all venues. */
+	venue?: "theaters" | "streaming" | null;
+	signal?: AbortSignal;
+};
+
+/** Client load-more for the diary grid (DiaryLobbyInfinite `loadPage`). */
+export async function fetchMyDiary(
+	page: number,
+	opts: FetchMyDiaryOpts,
+): Promise<
+	| {
+			results: DiaryResultRow[];
+			total_pages: number;
+			tabCounts: DiaryTabCounts;
+	  }
+	| { error: true }
+> {
+	const url = new URL("/api/logs/me/diary", stillApiOrigin());
+	url.searchParams.set("media", opts.media);
+	url.searchParams.set("order", opts.order);
+	if (opts.venue) url.searchParams.set("venue", opts.venue);
+	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
+	const response = await fetch(url, {
+		credentials: "include",
+		cache: "no-store",
+		signal: opts.signal,
+	});
+	if (!response.ok) return { error: true };
+	const raw = (await response.json().catch(() => null)) as {
+		results?: DiaryResultRow[];
+		total_pages?: number;
+		tabCounts?: DiaryTabCounts;
+	} | null;
+	if (!raw || !Array.isArray(raw.results)) return { error: true };
+	return {
+		results: raw.results,
+		total_pages: typeof raw.total_pages === "number" ? raw.total_pages : page,
+		tabCounts: raw.tabCounts ?? { movies: 0, tv: 0 },
+	};
+}
+
 /**
  * Ranked list reorder mutation — body must include the **full** ordered set of
  * list item ids so the server can validate and persist canonical positions.
