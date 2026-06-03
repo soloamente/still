@@ -30,9 +30,6 @@ export function ProfileAboutCollapsible({
 }: ProfileAboutCollapsibleProps) {
 	const [open, setOpen] = useState(false);
 
-	const hasContent =
-		bio?.trim() || pronouns?.trim() || location?.trim() || website?.trim();
-
 	const previewParts: string[] = [];
 	if (location?.trim()) previewParts.push(location.trim());
 	if (website?.trim()) previewParts.push(formatWebsiteLabel(website.trim()));
