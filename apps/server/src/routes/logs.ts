@@ -10,7 +10,17 @@ import {
 	user,
 	validateTvLogScope,
 } from "@still/db";
-import { and, count, desc, eq, isNotNull } from "drizzle-orm";
+import {
+	and,
+	asc,
+	count,
+	desc,
+	eq,
+	inArray,
+	isNotNull,
+	or,
+	sql,
+} from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { syncCompletionistChallengesForUser } from "../lib/completionist-challenge-sync";
@@ -19,6 +29,15 @@ import {
 	visibilitySchema,
 } from "../lib/content-visibility";
 import { makeId } from "../lib/cuid";
+import {
+	diaryOffset,
+	diaryTotalPages,
+	parseDiaryLimit,
+	parseDiaryMedia,
+	parseDiaryOrder,
+	parseDiaryPage,
+	parseDiaryVenue,
+} from "../lib/diary-log-query";
 import { ensureMovieCached } from "../lib/ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
 import { hit } from "../lib/rate-limit";
@@ -32,6 +51,11 @@ import {
 	backfillWatchStreakFromLogs,
 	syncWatchStreakForUser,
 } from "../lib/watch-streak-sync";
+
+/** `inArray` wrapper that no-ops to a false predicate on an empty list. */
+function inArrayTvIds(col: typeof log.tvId, ids: number[]) {
+	return ids.length ? inArray(col, ids) : sql`false`;
+}
 
 const logCreateFields = {
 	/** Film path — mutually exclusive with `tvId`. */
@@ -406,30 +430,258 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 						),
 					),
 				)
-				.orderBy(desc(log.watchedAt))
+				.orderBy(desc(log.watchedAt), desc(log.createdAt), desc(log.id))
 				.limit(limit);
 			return rows;
 		},
 		{ query: t.Object({ limit: t.Optional(t.String()) }) },
 	)
-	// My diary — convenience endpoint for the signed-in user.
+	// My diary — paginated, grid-shaped feed for `/diary`. Movies are one row per
+	// log (rewatches stay separate); TV is deduped to the newest log per show with
+	// a logCount + primaryScope for the flip-card caption.
 	.get(
-		"/me",
+		"/me/diary",
 		async ({ user, status, query }) => {
 			if (!user) return status(401, "Sign in");
-			// Match profile filmography cap so `/diary` can list full watch history after bulk imports.
-			const limit = Math.min(Number(query.limit ?? 500), 500);
-			const rows = await db
-				.select({ log, movie, tv })
+
+			const media = parseDiaryMedia(query.media);
+			const order = parseDiaryOrder(query.order);
+			const venue = parseDiaryVenue(query.venue);
+			const page = parseDiaryPage(query.page);
+			const limit = parseDiaryLimit(query.limit);
+			const offset = diaryOffset(page, limit);
+
+			// Venue filter: legacy/unset venue matches both slices (mirrors the web
+			// `diaryLogMatchesDiaryLobbyVenue` rule).
+			const venueWhere = venue
+				? or(
+						eq(log.watchVenue, venue),
+						sql`${log.watchVenue} not in ('theaters','streaming')`,
+					)
+				: undefined;
+
+			// Tab counts are venue-independent so tab defaults + empty states are stable.
+			const [movieCountRow, tvCountRow] = await Promise.all([
+				db
+					.select({ total: count() })
+					.from(log)
+					.where(and(eq(log.userId, user.id), isNotNull(log.movieId))),
+				db
+					.select({ total: sql<number>`count(distinct ${log.tvId})` })
+					.from(log)
+					.where(and(eq(log.userId, user.id), isNotNull(log.tvId))),
+			]);
+			const tabCounts = {
+				movies: Number(movieCountRow[0]?.total ?? 0),
+				tv: Number(tvCountRow[0]?.total ?? 0),
+			};
+
+			if (media === "movie") {
+				const where = and(
+					eq(log.userId, user.id),
+					isNotNull(log.movieId),
+					venueWhere,
+				);
+				const orderBy =
+					order === "earliest"
+						? [asc(log.watchedAt), asc(log.createdAt), asc(log.id)]
+						: order === "title"
+							? [asc(movie.title), desc(log.watchedAt), desc(log.id)]
+							: [desc(log.watchedAt), desc(log.createdAt), desc(log.id)];
+
+				const [rows, totalRow] = await Promise.all([
+					db
+						.select({
+							id: log.id,
+							watchedAt: log.watchedAt,
+							createdAt: log.createdAt,
+							rating: log.rating,
+							liked: log.liked,
+							rewatch: log.rewatch,
+							watchVenue: log.watchVenue,
+							tmdbId: movie.tmdbId,
+							title: movie.title,
+							posterPath: movie.posterPath,
+						})
+						.from(log)
+						.innerJoin(movie, eq(log.movieId, movie.tmdbId))
+						.where(where)
+						.orderBy(...orderBy)
+						.limit(limit)
+						.offset(offset),
+					db.select({ total: count() }).from(log).where(where),
+				]);
+
+				const total = Number(totalRow[0]?.total ?? 0);
+				return {
+					results: rows.map((r) => ({
+						kind: "movie" as const,
+						log: {
+							id: r.id,
+							watchedAt: r.watchedAt,
+							createdAt: r.createdAt,
+							rating: r.rating,
+							liked: r.liked,
+							rewatch: r.rewatch,
+							watchVenue: r.watchVenue,
+						},
+						movie: {
+							tmdbId: r.tmdbId,
+							title: r.title,
+							posterPath: r.posterPath,
+						},
+					})),
+					total_pages: diaryTotalPages(total, limit),
+					total_results: total,
+					tabCounts,
+				};
+			}
+
+			// TV: dedupe to newest log per show, then order/paginate the deduped set.
+			const deduped = db
+				.selectDistinctOn([log.tvId], {
+					tvId: log.tvId,
+					watchedAt: log.watchedAt,
+					createdAt: log.createdAt,
+					watchVenue: log.watchVenue,
+					tmdbId: tv.tmdbId,
+					title: tv.title,
+					posterPath: tv.posterPath,
+				})
 				.from(log)
-				.leftJoin(movie, eq(log.movieId, movie.tmdbId))
-				.leftJoin(tv, eq(log.tvId, tv.tmdbId))
-				.where(eq(log.userId, user.id))
-				.orderBy(desc(log.watchedAt))
-				.limit(limit);
-			return rows;
+				.innerJoin(tv, eq(log.tvId, tv.tmdbId))
+				.where(and(eq(log.userId, user.id), isNotNull(log.tvId)))
+				.orderBy(
+					log.tvId,
+					desc(log.watchedAt),
+					desc(log.createdAt),
+					desc(log.id),
+				)
+				.as("dedup");
+
+			const outerVenueWhere = venue
+				? or(
+						eq(deduped.watchVenue, venue),
+						sql`${deduped.watchVenue} not in ('theaters','streaming')`,
+					)
+				: undefined;
+			const orderBy =
+				order === "earliest"
+					? [asc(deduped.watchedAt), asc(deduped.tmdbId)]
+					: order === "title"
+						? [asc(deduped.title), asc(deduped.tmdbId)]
+						: [desc(deduped.watchedAt), desc(deduped.tmdbId)];
+
+			const [rows, totalRow] = await Promise.all([
+				db
+					.select({
+						tmdbId: deduped.tmdbId,
+						title: deduped.title,
+						posterPath: deduped.posterPath,
+						watchedAt: deduped.watchedAt,
+					})
+					.from(deduped)
+					.where(outerVenueWhere)
+					.orderBy(...orderBy)
+					.limit(limit)
+					.offset(offset),
+				db.select({ total: count() }).from(deduped).where(outerVenueWhere),
+			]);
+
+			// Per-show log count + most-specific scope, scoped to the page's shows.
+			const pageTvIds = rows
+				.map((r) => r.tmdbId)
+				.filter((id): id is number => id != null);
+			const [countsByShow, scopeByShow] = await Promise.all([
+				pageTvIds.length
+					? db
+							.select({ tvId: log.tvId, total: count() })
+							.from(log)
+							.where(
+								and(
+									eq(log.userId, user.id),
+									isNotNull(log.tvId),
+									inArrayTvIds(log.tvId, pageTvIds),
+								),
+							)
+							.groupBy(log.tvId)
+					: Promise.resolve([] as { tvId: number | null; total: number }[]),
+				pageTvIds.length
+					? db
+							// Representative most-specific log per show: episode > season > show,
+							// newest within the chosen tier — drives the front-face caption.
+							.selectDistinctOn([log.tvId], {
+								tvId: log.tvId,
+								logScope: log.logScope,
+								seasonNumber: log.seasonNumber,
+								episodeNumber: log.episodeNumber,
+							})
+							.from(log)
+							.where(
+								and(
+									eq(log.userId, user.id),
+									isNotNull(log.tvId),
+									inArrayTvIds(log.tvId, pageTvIds),
+								),
+							)
+							.orderBy(
+								log.tvId,
+								sql`case ${log.logScope} when 'episode' then 3 when 'season' then 2 else 1 end desc`,
+								desc(log.watchedAt),
+								desc(log.id),
+							)
+					: Promise.resolve(
+							[] as {
+								tvId: number | null;
+								logScope: string;
+								seasonNumber: number | null;
+								episodeNumber: number | null;
+							}[],
+						),
+			]);
+
+			const countMap = new Map(
+				countsByShow.map((r) => [r.tvId, Number(r.total)]),
+			);
+			const scopeMap = new Map(scopeByShow.map((r) => [r.tvId, r]));
+
+			const total = Number(totalRow[0]?.total ?? 0);
+			return {
+				results: rows.map((r) => {
+					const scope = scopeMap.get(r.tmdbId);
+					return {
+						kind: "tvGroup" as const,
+						tv: {
+							tmdbId: r.tmdbId,
+							title: r.title,
+							posterPath: r.posterPath,
+						},
+						logCount: countMap.get(r.tmdbId) ?? 1,
+						primaryScope: {
+							logScope: (scope?.logScope ?? "show") as
+								| "show"
+								| "season"
+								| "episode",
+							seasonNumber: scope?.seasonNumber ?? null,
+							episodeNumber: scope?.episodeNumber ?? null,
+						},
+						newestWatchedAt: r.watchedAt,
+					};
+				}),
+				total_pages: diaryTotalPages(total, limit),
+				total_results: total,
+				tabCounts,
+			};
 		},
-		{ query: t.Object({ limit: t.Optional(t.String()) }) },
+		{
+			query: t.Object({
+				media: t.Optional(t.String()),
+				order: t.Optional(t.String()),
+				venue: t.Optional(t.String()),
+				page: t.Optional(t.String()),
+				limit: t.Optional(t.String()),
+			}),
+		},
 	)
 	// Diary endpoint: a user's chronologically-ordered logs.
 	.get(
@@ -455,7 +707,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 						),
 					),
 				)
-				.orderBy(desc(log.watchedAt))
+				.orderBy(desc(log.watchedAt), desc(log.createdAt), desc(log.id))
 				.limit(limit);
 			return rows;
 		},
