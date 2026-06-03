@@ -1335,20 +1335,27 @@ function communityPeriodSearchParams({
 	return params;
 }
 
+export const COMMUNITY_LISTS_LIMIT = 24;
+export const COMMUNITY_REVIEWS_LIMIT = 20;
+export const COMMUNITY_ACTIVITY_LIMIT = 40;
+
 /** Public lists lobby — respects community period window. */
 export async function fetchCommunityLists(
 	period: HomeLeaderboardPeriod,
 	tz: string,
-	init?: Pick<RequestInit, "signal">,
+	opts?: { page?: number; signal?: AbortSignal },
 ): Promise<unknown[] | null> {
 	const url = new URL("/api/lists", stillApiOrigin());
-	url.searchParams.set("limit", "24");
+	url.searchParams.set("limit", String(COMMUNITY_LISTS_LIMIT));
+	if (opts?.page && opts.page > 1)
+		url.searchParams.set("page", String(opts.page));
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
 	}
 	const response = await fetch(url, {
 		credentials: "include",
-		signal: init?.signal,
+		cache: "no-store",
+		signal: opts?.signal,
 	});
 	if (!response.ok) return null;
 	return (await response.json()) as unknown[];
@@ -1358,16 +1365,19 @@ export async function fetchCommunityLists(
 export async function fetchCommunityReviewsRecent(
 	period: HomeLeaderboardPeriod,
 	tz: string,
-	init?: Pick<RequestInit, "signal">,
+	opts?: { page?: number; signal?: AbortSignal },
 ): Promise<unknown[] | null> {
 	const url = new URL("/api/reviews/recent", stillApiOrigin());
-	url.searchParams.set("limit", "20");
+	url.searchParams.set("limit", String(COMMUNITY_REVIEWS_LIMIT));
+	if (opts?.page && opts.page > 1)
+		url.searchParams.set("page", String(opts.page));
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
 	}
 	const response = await fetch(url, {
 		credentials: "include",
-		signal: init?.signal,
+		cache: "no-store",
+		signal: opts?.signal,
 	});
 	if (!response.ok) return null;
 	return (await response.json()) as unknown[];
@@ -1378,19 +1388,21 @@ export async function fetchCommunityActivity(
 	period: HomeLeaderboardPeriod,
 	tz: string,
 	signedIn: boolean,
-	init?: Pick<RequestInit, "signal">,
+	opts?: { before?: string | null; signal?: AbortSignal },
 ): Promise<{
 	items: { kind: string; at: string | Date; payload: unknown }[];
 } | null> {
 	const path = signedIn ? "/api/feed" : "/api/feed/discover";
 	const url = new URL(path, stillApiOrigin());
-	if (signedIn) url.searchParams.set("limit", "40");
+	if (signedIn) url.searchParams.set("limit", String(COMMUNITY_ACTIVITY_LIMIT));
+	if (signedIn && opts?.before) url.searchParams.set("before", opts.before);
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
 	}
 	const response = await fetch(url, {
 		credentials: "include",
-		signal: init?.signal,
+		cache: "no-store",
+		signal: opts?.signal,
 	});
 	if (!response.ok) return null;
 	return (await response.json()) as {

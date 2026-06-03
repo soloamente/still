@@ -30,6 +30,48 @@ export type HomeCommunityReviewRow = {
 	};
 };
 
+/** One `/api/reviews/recent` raw row → community review card row (shared RSC + client). */
+export function mapCommunityReviewRow(
+	raw: unknown,
+): HomeCommunityReviewRow | null {
+	const row = raw as {
+		review: {
+			id: string;
+			userId: string;
+			movieId: number;
+			title: string | null;
+			body: string;
+			rating: number | null;
+			likesCount: number;
+			commentsCount: number;
+			publishedAt: string | Date;
+		};
+		movie: { tmdbId: number; title: string; posterPath: string | null } | null;
+	};
+	const r = row.review;
+	if (!r?.id) return null;
+	const movie = row.movie;
+	return {
+		id: r.id,
+		userId: r.userId,
+		movieId: r.movieId,
+		title: r.title,
+		body: r.body,
+		rating: r.rating,
+		likesCount: r.likesCount ?? 0,
+		commentsCount: r.commentsCount ?? 0,
+		publishedAt: coerceActivityTimestamp(r.publishedAt),
+		listing: movie
+			? {
+					title: movie.title,
+					posterUrl: tmdbPosterUrlFromPath(movie.posterPath, "w185"),
+					href: `/movies/${movie.tmdbId}`,
+					listingKind: "movie" as const,
+				}
+			: undefined,
+	};
+}
+
 export interface HomeCommunityCoreData {
 	listSeedsAll: ListLobbySeed[];
 	reviewsAll: HomeCommunityReviewRow[];
@@ -87,51 +129,9 @@ export async function fetchHomeCommunityCore(input: {
 	const listRows = ((listsRes.data as unknown[]) ?? []).map(toListBoardRow);
 	const listSeedsAll = listRows.map(listBoardRowToLobbySeed);
 
-	const reviewRows = (reviewsRes.data as unknown[]) ?? [];
-	const reviewsAll = reviewRows
-		.map((raw) => {
-			const row = raw as {
-				review: {
-					id: string;
-					userId: string;
-					movieId: number;
-					title: string | null;
-					body: string;
-					rating: number | null;
-					likesCount: number;
-					commentsCount: number;
-					publishedAt: string | Date;
-				};
-				movie: {
-					tmdbId: number;
-					title: string;
-					posterPath: string | null;
-				} | null;
-			};
-			const r = row.review;
-			if (!r?.id) return null;
-			const movie = row.movie;
-			return {
-				id: r.id,
-				userId: r.userId,
-				movieId: r.movieId,
-				title: r.title,
-				body: r.body,
-				rating: r.rating,
-				likesCount: r.likesCount ?? 0,
-				commentsCount: r.commentsCount ?? 0,
-				publishedAt: coerceActivityTimestamp(r.publishedAt),
-				listing: movie
-					? {
-							title: movie.title,
-							posterUrl: tmdbPosterUrlFromPath(movie.posterPath, "w185"),
-							href: `/movies/${movie.tmdbId}`,
-							listingKind: "movie" as const,
-						}
-					: undefined,
-			};
-		})
-		.filter((r) => r != null) as HomeCommunityReviewRow[];
+	const reviewsAll = ((reviewsRes.data as unknown[]) ?? [])
+		.map(mapCommunityReviewRow)
+		.filter((r): r is HomeCommunityReviewRow => r != null);
 
 	const activityItemsAll = parseFeedApiActivityItems(
 		activityRes.data as {
