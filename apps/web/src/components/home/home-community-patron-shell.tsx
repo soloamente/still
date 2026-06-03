@@ -20,11 +20,12 @@ export function HomeCommunityPatronBody({
 	signedIn: boolean;
 	viewerUserId: string | null;
 }) {
-	const { feed, period, seed, leaderboard } = useHomeCommunityLobbyParams();
+	const { committedFeed, committedPeriod, seed, leaderboard } =
+		useHomeCommunityLobbyParams();
 	return (
 		<HomeCommunityLobby
-			feed={feed}
-			period={period}
+			feed={committedFeed}
+			period={committedPeriod}
 			seed={seed}
 			leaderboard={leaderboard}
 			monochromePeersOnHover={monochromePeersOnHover}

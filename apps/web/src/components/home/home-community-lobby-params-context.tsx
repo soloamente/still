@@ -28,6 +28,8 @@ interface HomeCommunityLobbySnapshot {
 
 interface HomeCommunityLobbyParamsContextValue
 	extends HomeCommunityLobbySnapshot {
+	committedFeed: HomeCommunityFeed;
+	committedPeriod: HomeLeaderboardPeriod;
 	seed: CommunityFeedSeed;
 	leaderboard: LeaderboardPayload | null;
 	leaderboardsLoading: boolean;
@@ -185,6 +187,8 @@ export function HomeCommunityLobbyParamsProvider({
 		(): HomeCommunityLobbyParamsContextValue => ({
 			feed: active.feed,
 			period: active.period,
+			committedFeed: feed,
+			committedPeriod: period,
 			seed,
 			leaderboard,
 			leaderboardsLoading,
@@ -196,6 +200,8 @@ export function HomeCommunityLobbyParamsProvider({
 		[
 			active.feed,
 			active.period,
+			feed,
+			period,
 			seed,
 			leaderboard,
 			leaderboardsLoading,

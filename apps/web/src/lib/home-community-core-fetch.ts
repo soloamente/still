@@ -152,13 +152,15 @@ export async function fetchHomeCommunityFeedSeed(input: {
 				query: { limit: String(COMMUNITY_REVIEWS_LIMIT), ...periodQuery },
 			})
 			.catch(() => ({ data: [] }));
-		const reviews = ((reviewsRes.data as unknown[]) ?? [])
+		const rawReviews = (reviewsRes.data as unknown[]) ?? [];
+		const reviews = rawReviews
 			.map(mapCommunityReviewRow)
 			.filter((r): r is HomeCommunityReviewRow => r != null);
 		return {
 			...EMPTY_COMMUNITY_SEED,
 			reviews,
-			initialReviewCursor: reviews.length >= COMMUNITY_REVIEWS_LIMIT ? 2 : null,
+			initialReviewCursor:
+				rawReviews.length >= COMMUNITY_REVIEWS_LIMIT ? 2 : null,
 		};
 	}
 
