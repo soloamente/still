@@ -1,0 +1,70 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_hero_preview_stage_tsx",
+			"label": "landing-hero-preview-stage.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-hero-preview-stage.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "marketing_landing_hero_preview_stage_landingheropreviewstage",
+			"label": "LandingHeroPreviewStage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-hero-preview-stage.tsx",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_hero_preview_stage_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_mobbin_hero_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-hero-preview-stage.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_hero_preview_stage_tsx",
+			"target": "marketing_landing_mobbin_hero_landing_hero_preview_card_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-hero-preview-stage.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_hero_preview_stage_tsx",
+			"target": "marketing_landing_mobbin_hero_landing_hero_preview_well_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-hero-preview-stage.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_hero_preview_stage_tsx",
+			"target": "marketing_landing_mobbin_hero_landing_hero_preview_well_inner_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-hero-preview-stage.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_hero_preview_stage_tsx",
+			"target": "marketing_landing_hero_preview_stage_landingheropreviewstage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-hero-preview-stage.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

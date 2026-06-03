@@ -1,0 +1,200 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"label": "fetch-diary-lobby-server.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"label": "fetchDiaryLobbyServer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L17"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_lobby_grouping_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "lib_diary_lobby_grouping_diarylobbygriditem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "lib_diary_lobby_order_diaryledgertabid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "lib_diary_lobby_order_diarylobbyorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "lib_diary_lobby_order_diarylobbyordertoapiparam",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "lib_diary_lobby_order_diary_lobby_page_size",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "lib_home_venue_homevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_server_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "lib_server_api_serverapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_diary_lobby_server_ts",
+			"target": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"callee": "serverApi",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"callee": "diaryLobbyOrderToApiParam",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_fetch_diary_lobby_server_fetchdiarylobbyserver",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-diary-lobby-server.ts",
+			"source_location": "L65"
+		}
+	]
+}

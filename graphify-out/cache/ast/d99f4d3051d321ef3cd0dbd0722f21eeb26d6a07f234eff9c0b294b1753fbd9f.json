@@ -1,0 +1,61 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_list_quality_ts",
+			"label": "list-quality.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-quality.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_list_quality_listhasdiscoverabilitydescription",
+			"label": "listHasDiscoverabilityDescription()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-quality.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_list_quality_countlistitemannotations",
+			"label": "countListItemAnnotations()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-quality.ts",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_quality_ts",
+			"target": "lib_list_quality_listhasdiscoverabilitydescription",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-quality.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_quality_ts",
+			"target": "lib_list_quality_countlistitemannotations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-quality.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_list_quality_listhasdiscoverabilitydescription",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-quality.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_list_quality_countlistitemannotations",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-quality.ts",
+			"source_location": "L20"
+		}
+	]
+}

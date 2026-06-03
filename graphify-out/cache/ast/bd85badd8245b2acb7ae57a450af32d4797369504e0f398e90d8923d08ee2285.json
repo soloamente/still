@@ -1,0 +1,831 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_sense_product_roadmap_design_md",
+			"label": "2026-05-29-sense-product-roadmap-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"label": "Sense \u2014 Product Roadmap & Launch Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_strategic_frame_from_strategy_doc",
+			"label": "Strategic frame (from strategy doc)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_retention_stack_build_toward_tier_4_from_day_one",
+			"label": "Retention stack \u2014 build toward Tier 4 from day one",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_habit_loop_section_1",
+			"label": "Habit loop (Section 1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_deliberate_divergences_from_strategy_doc",
+			"label": "Deliberate divergences from strategy doc",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_north_star_launch_definition",
+			"label": "North star & launch definition",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_north_star",
+			"label": "North star",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_launch_gate_tier_0_complete",
+			"label": "Launch gate (Tier 0 complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_not_required_for_launch_defer_per_strategy_section_8_9",
+			"label": "Not required for launch (defer per strategy Section 8\u20139)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_what_we_keep_vs_add",
+			"label": "What we keep vs add",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_keep_existing_product",
+			"label": "Keep (existing product)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_add_for_launch_tier_0_gaps",
+			"label": "Add for launch (Tier 0 gaps)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_phased_roadmap",
+			"label": "Phased roadmap",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_phase_0_foundation_now_2_3_weeks",
+			"label": "Phase 0 \u2014 Foundation (now \u2192 ~2\u20133 weeks)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"label": "Phase 1 \u2014 Launch blockers (Tier 0)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L116"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_codeblock_1",
+			"label": "code:block1 (Phase 0)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_1_1_sense_rebrand_phased_c",
+			"label": "1.1 Sense rebrand (phased C)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_1_2_bulk_import",
+			"label": "1.2 Bulk import",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L138"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_1_3_taste_signature_v1",
+			"label": "1.3 Taste signature v1",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_1_4_onboarding_v2_section_14",
+			"label": "1.4 Onboarding v2 (Section 14)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_codeblock_2",
+			"label": "code:block2 (quick-rate (15\u201320 editorial titles))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L156"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_1_5_editorial_cold_start_section_6_15",
+			"label": "1.5 Editorial cold-start (Section 6, 15)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L166"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_1_6_shareable_taste_cards_section_2_loop_1",
+			"label": "1.6 Shareable taste cards (Section 2 Loop 1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_1_7_profile_identity_hierarchy_sections_4_8_11",
+			"label": "1.7 Profile identity hierarchy (Sections 4, 8, 11)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_1_8_notification_quality_filter_section_8",
+			"label": "1.8 Notification quality filter (Section 8)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L188"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_phase_2_first_90_days_tier_1_strategy_section_9",
+			"label": "Phase 2 \u2014 First 90 days (Tier 1, strategy Section 9)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L194"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_phase_3_months_3_6_tier_2",
+			"label": "Phase 3 \u2014 Months 3\u20136 (Tier 2)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L214"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_phase_4_months_6_12_tier_3",
+			"label": "Phase 4 \u2014 Months 6\u201312 (Tier 3)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L226"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_architecture_slices_phase_1",
+			"label": "Architecture slices (Phase 1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L235"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_taste_signature",
+			"label": "Taste signature",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L237"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_codeblock_3",
+			"label": "code:block3 (logs/ratings (DB) \u2192 computeTasteSignature() \u2192 profile.taste_)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L239"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_import_pipeline",
+			"label": "Import pipeline",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L247"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_codeblock_4",
+			"label": "code:block4 (Upload CSV \u2192 import job \u2192 TMDB match \u2192 upsert log/watchlist/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L249"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_editorial_feed",
+			"label": "Editorial feed",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L255"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_codeblock_5",
+			"label": "code:block5 (editorial config \u2192 merge with friend feed when follows empty)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L257"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_taste_card",
+			"label": "Taste card",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L262"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_codeblock_6",
+			"label": "code:block6 (profile + badges + taste JSON \u2192 OG image route \u2192 share UX)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L264"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_growth_loops_strategy_section_2_when_they_land",
+			"label": "Growth loops (strategy Section 2) \u2014 when they land",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L268"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_onboarding_architecture_section_14",
+			"label": "Onboarding architecture (Section 14)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L277"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_metrics_section_1_instrument_phase_0",
+			"label": "Metrics (Section 1 \u2014 instrument Phase 0)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L287"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_identity_profile_prestige_sections_4_11",
+			"label": "Identity & profile prestige (Sections 4, 11)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L300"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_power_users_section_5",
+			"label": "Power users (Section 5)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L313"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_psychological_triggers_section_10_product_guardrails",
+			"label": "Psychological triggers (Section 10) \u2014 product guardrails",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L321"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_explicit_no_list_section_8_strategy_weaknesses",
+			"label": "Explicit \u201cno\u201d list (Section 8 + strategy weaknesses)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L330"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_risks_mitigations_section_7_15",
+			"label": "Risks & mitigations (Section 7, 15)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L342"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L354"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_launch_blockers_qa",
+			"label": "Launch blockers QA",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L356"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_automated",
+			"label": "Automated",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L366"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_relationship_to_other_specs",
+			"label": "Relationship to other specs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L372"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_roadmap_design_rollout_waves",
+			"label": "Rollout waves",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L380"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_sense_product_roadmap_design_md",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_strategic_frame_from_strategy_doc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_strategic_frame_from_strategy_doc",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_retention_stack_build_toward_tier_4_from_day_one",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_strategic_frame_from_strategy_doc",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_habit_loop_section_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_strategic_frame_from_strategy_doc",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_deliberate_divergences_from_strategy_doc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_north_star_launch_definition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_north_star_launch_definition",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_north_star",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_north_star_launch_definition",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_launch_gate_tier_0_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_north_star_launch_definition",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_not_required_for_launch_defer_per_strategy_section_8_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_what_we_keep_vs_add",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_what_we_keep_vs_add",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_keep_existing_product",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_what_we_keep_vs_add",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_add_for_launch_tier_0_gaps",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_phased_roadmap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phased_roadmap",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_phase_0_foundation_now_2_3_weeks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phased_roadmap",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_1_1_sense_rebrand_phased_c",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_1_2_bulk_import",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_1_3_taste_signature_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_1_4_onboarding_v2_section_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_1_4_onboarding_v2_section_14",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_1_5_editorial_cold_start_section_6_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_1_6_shareable_taste_cards_section_2_loop_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_1_7_profile_identity_hierarchy_sections_4_8_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phase_1_launch_blockers_tier_0",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_1_8_notification_quality_filter_section_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L188",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phased_roadmap",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_phase_2_first_90_days_tier_1_strategy_section_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phased_roadmap",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_phase_3_months_3_6_tier_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L214",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_phased_roadmap",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_phase_4_months_6_12_tier_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L226",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_architecture_slices_phase_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_architecture_slices_phase_1",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_taste_signature",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L237",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_taste_signature",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L239",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_architecture_slices_phase_1",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_import_pipeline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_import_pipeline",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L249",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_architecture_slices_phase_1",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_editorial_feed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L255",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_editorial_feed",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L257",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_architecture_slices_phase_1",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_taste_card",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L262",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_taste_card",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L264",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_growth_loops_strategy_section_2_when_they_land",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L268",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_onboarding_architecture_section_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L277",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_metrics_section_1_instrument_phase_0",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L287",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_identity_profile_prestige_sections_4_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_power_users_section_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L313",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_psychological_triggers_section_10_product_guardrails",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L321",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_explicit_no_list_section_8_strategy_weaknesses",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L330",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_risks_mitigations_section_7_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L342",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L354",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_testing",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_launch_blockers_qa",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L356",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_testing",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_automated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L366",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_relationship_to_other_specs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L372",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_roadmap_design_sense_product_roadmap_launch_design",
+			"target": "specs_2026_05_29_sense_product_roadmap_design_rollout_waves",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-roadmap-design.md",
+			"source_location": "L380",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

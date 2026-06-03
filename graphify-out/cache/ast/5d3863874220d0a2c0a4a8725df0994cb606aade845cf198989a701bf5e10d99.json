@@ -1,0 +1,159 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_list_board_row_ts",
+			"label": "list-board-row.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_list_board_row_listboardrow",
+			"label": "ListBoardRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_list_board_row_tolistboardrow",
+			"label": "toListBoardRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L33"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_board_row_ts",
+			"target": "lib_list_board_row_listboardrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_list_board_row_ts",
+			"target": "lib_list_board_row_tolistboardrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "(() => {\r\n\t\t\tconst itemsCount = Number(r.itemsCount ?? 0);\r\n\t\t\tconst rawMovie = r.movieItemsCount ?? r.movie_items_count;\r\n\t\t\tconst rawTv = r.tvItemsCount ?? r.tv_items_count;\r\n\t\t\tif (rawMovie != null || rawTv != null) {\r\n\t\t\t\treturn Number(rawMovie ?? 0);\r\n\t\t\t}\r\n\t\t\treturn itemsCount;\r\n\t\t})",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "(() => {\r\n\t\t\tconst rawTv = r.tvItemsCount ?? r.tv_items_count;\r\n\t\t\tif (rawTv != null) return Number(rawTv);\r\n\t\t\tconst rawMovie = r.movieItemsCount ?? r.movie_items_count;\r\n\t\t\tif (rawMovie != null) return 0;\r\n\t\t\treturn 0;\r\n\t\t})",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_list_board_row_tolistboardrow",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-board-row.ts",
+			"source_location": "L85"
+		}
+	]
+}

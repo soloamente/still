@@ -1,0 +1,275 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"label": "landing-feature-visuals.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "marketing_landing_feature_visuals_landingfeaturequicklogvisual",
+			"label": "LandingFeatureQuickLogVisual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "marketing_landing_feature_visuals_landingfeatureaddtolistvisual",
+			"label": "LandingFeatureAddToListVisual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L40"
+		},
+		{
+			"id": "marketing_landing_feature_visuals_landingfeaturereviewvisual",
+			"label": "LandingFeatureReviewVisual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L121"
+		},
+		{
+			"id": "marketing_landing_feature_visuals_landingfeaturecommunityvisual",
+			"label": "LandingFeatureCommunityVisual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L143"
+		},
+		{
+			"id": "marketing_landing_feature_visuals_landingfeaturesearchvisual",
+			"label": "LandingFeatureSearchVisual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L180"
+		},
+		{
+			"id": "marketing_landing_feature_visuals_landingfeaturetvwatchvisual",
+			"label": "LandingFeatureTvWatchVisual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L222"
+		},
+		{
+			"id": "marketing_landing_feature_visuals_landingfeatureranksvisual",
+			"label": "LandingFeatureRanksVisual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L269"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_poster_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "marketing_landing_poster_landingposter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "marketing_landing_feature_visuals_landingfeaturequicklogvisual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "marketing_landing_feature_visuals_landingfeatureaddtolistvisual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "marketing_landing_feature_visuals_landingfeaturereviewvisual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "marketing_landing_feature_visuals_landingfeaturecommunityvisual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "marketing_landing_feature_visuals_landingfeaturesearchvisual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "marketing_landing_feature_visuals_landingfeaturetvwatchvisual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L222",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_marketing_landing_feature_visuals_tsx",
+			"target": "marketing_landing_feature_visuals_landingfeatureranksvisual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L269",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeatureaddtolistvisual",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeatureaddtolistvisual",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeatureaddtolistvisual",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturereviewvisual",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturecommunityvisual",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L151"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturecommunityvisual",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturesearchvisual",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturesearchvisual",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturesearchvisual",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L188"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturesearchvisual",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L203"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturetvwatchvisual",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L227"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeaturetvwatchvisual",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L230"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeatureranksvisual",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L277"
+		},
+		{
+			"caller_nid": "marketing_landing_feature_visuals_landingfeatureranksvisual",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\_marketing\\landing-feature-visuals.tsx",
+			"source_location": "L282"
+		}
+	]
+}

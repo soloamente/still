@@ -1,0 +1,303 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_sense_tier_3_design_md",
+			"label": "2026-05-29-sense-tier-3-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"label": "Sense \u2014 Tier 3 (Months 6\u201312) Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_prerequisites",
+			"label": "Prerequisites",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_recommended_build_order",
+			"label": "Recommended build order",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L16"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_sn_13_creator_analytics_v1",
+			"label": "SN.13 \u2014 Creator analytics v1",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_scope",
+			"label": "Scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_sn_14_profile_themes_pro",
+			"label": "SN.14 \u2014 Profile themes (Pro)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_scope_41",
+			"label": "Scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_success_criteria_46",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_sn_15_collaborative_lists",
+			"label": "SN.15 \u2014 Collaborative lists",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_scope_52",
+			"label": "Scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_success_criteria_57",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_sn_16_advanced_taste_matching",
+			"label": "SN.16 \u2014 Advanced taste matching",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_scope_63",
+			"label": "Scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_success_criteria_68",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_monetization_guardrails_section_12",
+			"label": "Monetization guardrails (Section 12)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_design_out_of_scope_tier_3",
+			"label": "Out of scope (Tier 3)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L77"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_sense_tier_3_design_md",
+			"target": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_prerequisites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_recommended_build_order",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_sn_13_creator_analytics_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sn_13_creator_analytics_v1",
+			"target": "specs_2026_05_29_sense_tier_3_design_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sn_13_creator_analytics_v1",
+			"target": "specs_2026_05_29_sense_tier_3_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_sn_14_profile_themes_pro",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sn_14_profile_themes_pro",
+			"target": "specs_2026_05_29_sense_tier_3_design_scope_41",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sn_14_profile_themes_pro",
+			"target": "specs_2026_05_29_sense_tier_3_design_success_criteria_46",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_sn_15_collaborative_lists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sn_15_collaborative_lists",
+			"target": "specs_2026_05_29_sense_tier_3_design_scope_52",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sn_15_collaborative_lists",
+			"target": "specs_2026_05_29_sense_tier_3_design_success_criteria_57",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_sn_16_advanced_taste_matching",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sn_16_advanced_taste_matching",
+			"target": "specs_2026_05_29_sense_tier_3_design_scope_63",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sn_16_advanced_taste_matching",
+			"target": "specs_2026_05_29_sense_tier_3_design_success_criteria_68",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_monetization_guardrails_section_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_design_sense_tier_3_months_6_12_design",
+			"target": "specs_2026_05_29_sense_tier_3_design_out_of_scope_tier_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-design.md",
+			"source_location": "L77",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

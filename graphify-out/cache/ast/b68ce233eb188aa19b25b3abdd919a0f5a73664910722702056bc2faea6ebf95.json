@@ -1,0 +1,225 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"label": "achievements-creator-analytics-card.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "gamification_achievements_creator_analytics_card_actionpillclassname",
+			"label": "actionPillClassName",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L15"
+		},
+		{
+			"id": "gamification_achievements_creator_analytics_card_formatupdatedat",
+			"label": "formatUpdatedAt()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "gamification_achievements_creator_analytics_card_achievementscreatoranalyticscard",
+			"label": "AchievementsCreatorAnalyticsCard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L34"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_heart_filled_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_list_play_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionlink",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "lib_detail_action_motion_detail_canvas_on_card_hover_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "lib_detail_action_motion_detail_motion_pressable_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_creator_analytics_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "lib_use_creator_analytics_usecreatoranalytics",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "gamification_achievements_creator_analytics_card_actionpillclassname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "gamification_achievements_creator_analytics_card_formatupdatedat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_achievements_creator_analytics_card_tsx",
+			"target": "gamification_achievements_creator_analytics_card_achievementscreatoranalyticscard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "gamification_achievements_creator_analytics_card_formatupdatedat",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "gamification_achievements_creator_analytics_card_formatupdatedat",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "gamification_achievements_creator_analytics_card_formatupdatedat",
+			"callee": "toLocaleDateString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "gamification_achievements_creator_analytics_card_achievementscreatoranalyticscard",
+			"callee": "useCreatorAnalytics",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "gamification_achievements_creator_analytics_card_achievementscreatoranalyticscard",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "gamification_achievements_creator_analytics_card_achievementscreatoranalyticscard",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievements-creator-analytics-card.tsx",
+			"source_location": "L89"
+		}
+	]
+}

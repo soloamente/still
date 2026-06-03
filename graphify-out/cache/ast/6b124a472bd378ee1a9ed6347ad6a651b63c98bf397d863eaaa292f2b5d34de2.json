@@ -1,0 +1,540 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"label": "watch-streak.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_watch_streak_streakstatus",
+			"label": "StreakStatus",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_watch_streak_userstreakstate",
+			"label": "UserStreakState",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_watch_streak_streaksnapshot",
+			"label": "StreakSnapshot",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_watch_streak_toutcdaykey",
+			"label": "toUtcDayKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_watch_streak_utcdaydiff",
+			"label": "utcDayDiff()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "lib_watch_streak_addutcdays",
+			"label": "addUtcDays()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L34"
+		},
+		{
+			"id": "lib_watch_streak_derivestreakstatus",
+			"label": "deriveStreakStatus()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L40"
+		},
+		{
+			"id": "lib_watch_streak_tostreaksnapshot",
+			"label": "toStreakSnapshot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L54"
+		},
+		{
+			"id": "lib_watch_streak_applyqualifyingday",
+			"label": "applyQualifyingDay()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L69"
+		},
+		{
+			"id": "lib_watch_streak_applystreakshield",
+			"label": "applyStreakShield()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L139"
+		},
+		{
+			"id": "lib_watch_streak_collectqualifyingdaykeys",
+			"label": "collectQualifyingDayKeys()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L172"
+		},
+		{
+			"id": "lib_watch_streak_longeststreakfromdaykeys",
+			"label": "longestStreakFromDayKeys()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L181"
+		},
+		{
+			"id": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"label": "computeLivingStreakFromDayKeys()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L203"
+		},
+		{
+			"id": "lib_watch_streak_computestreakfromdaykeys",
+			"label": "computeStreakFromDayKeys()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L250"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_streakstatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_userstreakstate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_streaksnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_toutcdaykey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_utcdaydiff",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_addutcdays",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_derivestreakstatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_tostreaksnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_applyqualifyingday",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_applystreakshield",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_collectqualifyingdaykeys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L172",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_longeststreakfromdaykeys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L203",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watch_streak_ts",
+			"target": "lib_watch_streak_computestreakfromdaykeys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L250",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_addutcdays",
+			"target": "lib_watch_streak_toutcdaykey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_derivestreakstatus",
+			"target": "lib_watch_streak_toutcdaykey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_derivestreakstatus",
+			"target": "lib_watch_streak_utcdaydiff",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_tostreaksnapshot",
+			"target": "lib_watch_streak_derivestreakstatus",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_tostreaksnapshot",
+			"target": "lib_watch_streak_toutcdaykey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_applyqualifyingday",
+			"target": "lib_watch_streak_toutcdaykey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_applyqualifyingday",
+			"target": "lib_watch_streak_utcdaydiff",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_applystreakshield",
+			"target": "lib_watch_streak_toutcdaykey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_applystreakshield",
+			"target": "lib_watch_streak_derivestreakstatus",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_collectqualifyingdaykeys",
+			"target": "lib_watch_streak_toutcdaykey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_longeststreakfromdaykeys",
+			"target": "lib_watch_streak_utcdaydiff",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"target": "lib_watch_streak_addutcdays",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"target": "lib_watch_streak_longeststreakfromdaykeys",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_watch_streak_computestreakfromdaykeys",
+			"target": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L254",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_watch_streak_toutcdaykey",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_watch_streak_toutcdaykey",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_watch_streak_utcdaydiff",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_watch_streak_utcdaydiff",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_watch_streak_utcdaydiff",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_watch_streak_addutcdays",
+			"callee": "setUTCDate",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_watch_streak_addutcdays",
+			"callee": "getUTCDate",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_watch_streak_applyqualifyingday",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_watch_streak_applyqualifyingday",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_watch_streak_applyqualifyingday",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L118"
+		},
+		{
+			"caller_nid": "lib_watch_streak_applyqualifyingday",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_watch_streak_collectqualifyingdaykeys",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "lib_watch_streak_collectqualifyingdaykeys",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "lib_watch_streak_collectqualifyingdaykeys",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "lib_watch_streak_collectqualifyingdaykeys",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "lib_watch_streak_longeststreakfromdaykeys",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L182"
+		},
+		{
+			"caller_nid": "lib_watch_streak_longeststreakfromdaykeys",
+			"callee": "at",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "lib_watch_streak_longeststreakfromdaykeys",
+			"callee": "at",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L188"
+		},
+		{
+			"caller_nid": "lib_watch_streak_longeststreakfromdaykeys",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L195"
+		},
+		{
+			"caller_nid": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"callee": "at",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L220"
+		},
+		{
+			"caller_nid": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L234"
+		},
+		{
+			"caller_nid": "lib_watch_streak_computelivingstreakfromdaykeys",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts",
+			"source_location": "L241"
+		}
+	]
+}

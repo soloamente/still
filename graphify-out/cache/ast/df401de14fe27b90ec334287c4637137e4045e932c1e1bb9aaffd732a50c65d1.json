@@ -1,0 +1,1327 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_01_review_log_visibility_md",
+			"label": "2026-06-01-review-log-visibility.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"label": "Review & Diary Log Visibility Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_conventions_in_this_repo_read_before_starting",
+			"label": "Conventions in this repo (read before starting)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_file_structure",
+			"label": "File Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L24"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"label": "Task 1: Visibility enum + schema columns + migration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_1",
+			"label": "code:ts (import { pgEnum } from \"drizzle-orm/pg-core\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_2",
+			"label": "code:ts (export * from \"./visibility\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_3",
+			"label": "code:ts (import { contentVisibility } from \"./visibility\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_4",
+			"label": "code:ts (isPublic: boolean(\"is_public\").default(true).notNull(),)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_5",
+			"label": "code:ts (visibility: contentVisibility(\"visibility\").notNull().defaul)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_6",
+			"label": "code:ts (visibility: contentVisibility(\"visibility\").notNull().defaul)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_7",
+			"label": "code:ts (import { contentVisibility } from \"./visibility\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_8",
+			"label": "code:ts (defaultVisibility: contentVisibility(\"default_visibility\"))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_9",
+			"label": "code:sql (-- Per-item visibility for reviews and diary logs, plus an a)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L125"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_10",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_11",
+			"label": "code:bash (git add packages/db/src/schema/visibility.ts packages/db/src)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L166"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_2_shared_visibility_predicate_pure_helper_sql_fragment",
+			"label": "Task 2: Shared visibility predicate (pure helper + SQL fragment)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L173"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_12",
+			"label": "code:ts (import { describe, expect, it } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_13",
+			"label": "code:ts (import { db, follow } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L276"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_14",
+			"label": "code:bash (git add apps/server/src/lib/content-visibility.ts apps/serve)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L396"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"label": "Task 3: Reviews route \u2014 visibility field + enforce reads",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L403"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_15",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L412"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_16",
+			"label": "code:ts (let visibility = body.visibility ?? null;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L430"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_17",
+			"label": "code:ts (visibility,)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L444"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_18",
+			"label": "code:ts (visibility: t.Optional(visibilitySchema),)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L450"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_19",
+			"label": "code:ts (visibility: body.visibility ?? existing.visibility,)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L458"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_20",
+			"label": "code:ts (const author = row.review.userId;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L468"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_21",
+			"label": "code:ts (contentVisibilityWhere(user?.id ?? null, review.userId, revi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L489"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_22",
+			"label": "code:ts (.where()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L495"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_23",
+			"label": "code:bash (git add apps/server/src/routes/reviews.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L508"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_4_movies_route_review_list_count",
+			"label": "Task 4: Movies route \u2014 review list + count",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L515"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_24",
+			"label": "code:ts (import { contentVisibilityWhere } from \"../lib/content-visib)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L524"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_25",
+			"label": "code:ts (eq(review.isPublic, true))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L534"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_26",
+			"label": "code:ts (contentVisibilityWhere(user?.id ?? null, review.userId, revi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L540"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_27",
+			"label": "code:bash (git add apps/server/src/routes/movies.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L553"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_5_profiles_route_reviews_filmography_log_scores",
+			"label": "Task 5: Profiles route \u2014 reviews + filmography log scores",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L560"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_28",
+			"label": "code:ts (import { contentVisibilityWhere } from \"../lib/content-visib)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L569"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_29",
+			"label": "code:ts (and(eq(review.userId, targetUserId), eq(review.isPublic, tru)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L578"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_30",
+			"label": "code:ts (and()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L584"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_31",
+			"label": "code:ts (.where()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L595"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_32",
+			"label": "code:bash (git add apps/server/src/routes/profiles.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L613"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_6_feed_route_review_rows_rating_divergence",
+			"label": "Task 6: Feed route \u2014 review rows + rating divergence",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L620"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_33",
+			"label": "code:ts (import { contentVisibilityWhere } from \"../lib/content-visib)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L630"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_34",
+			"label": "code:ts (contentVisibilityWhere(user.id, review.userId, review.visibi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L638"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_35",
+			"label": "code:ts (contentVisibilityWhere(viewerId, log.userId, log.visibility))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L646"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_36",
+			"label": "code:bash (git add apps/server/src/routes/feed.ts apps/server/src/lib/f)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L660"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_7_following_ratings_friends_ratings_ledger_drawer",
+			"label": "Task 7: Following-ratings / friends-ratings + ledger drawer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L667"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_37",
+			"label": "code:ts (import { contentVisibilityWhere } from \"./content-visibility)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L677"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_38",
+			"label": "code:ts (contentVisibilityWhere(viewerId, log.userId, log.visibility))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L685"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_39",
+			"label": "code:bash (git add apps/server/src/lib/movie-following-ratings.ts apps/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L703"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_8_creator_recognition_pinned_reviews_stay_public_only",
+			"label": "Task 8: Creator-recognition & pinned reviews stay public-only",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L710"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_40",
+			"label": "code:ts (eq(review.visibility, \"public\"))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L721"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_41",
+			"label": "code:ts (eq(review.visibility, \"public\"))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L731"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_42",
+			"label": "code:ts (const pinnable = await db)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L739"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_43",
+			"label": "code:bash (git add apps/server/src/lib/creator-recognition.ts apps/serv)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L763"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_9_logs_route_visibility_field_account_default",
+			"label": "Task 9: Logs route \u2014 visibility field + account default",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L770"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_44",
+			"label": "code:ts (import { visibilitySchema } from \"../lib/content-visibility\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L779"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_45",
+			"label": "code:ts (/** Who can see this diary entry. Defaults to the account de)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L789"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_46",
+			"label": "code:ts (let visibility = body.visibility ?? null;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L800"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_47",
+			"label": "code:ts (visibility,)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L814"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_48",
+			"label": "code:ts (...(body.visibility ? { visibility: body.visibility } : {}),)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L822"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_49",
+			"label": "code:bash (git add apps/server/src/routes/logs.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L835"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_10_web_reusable_visibility_picker_review_composer",
+			"label": "Task 10: Web \u2014 reusable visibility picker + review composer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L842"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_50",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L852"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_51",
+			"label": "code:tsx (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L906"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_52",
+			"label": "code:tsx (const [visibility, setVisibility] = useState<ContentVisibili)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L915"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_53",
+			"label": "code:tsx (<label className=\"flex flex-col gap-1.5 text-sm\" htmlFor=\"re)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L923"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_54",
+			"label": "code:bash (git add apps/web/src/components/review/visibility-select.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L944"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_11_web_quick_log_visibility_picker",
+			"label": "Task 11: Web \u2014 Quick Log visibility picker",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L951"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_55",
+			"label": "code:tsx (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L960"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_56",
+			"label": "code:tsx (const [visibility, setVisibility] = useState<ContentVisibili)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L967"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_57",
+			"label": "code:tsx (<label className=\"flex flex-col gap-1.5 text-sm\" htmlFor=\"lo)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L979"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_58",
+			"label": "code:bash (git add apps/web/src/components/<quick-log-composer-path>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1002"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_12_web_account_default_visibility_setting",
+			"label": "Task 12: Web \u2014 account default-visibility setting",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1009"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_59",
+			"label": "code:ts (...(body.defaultVisibility)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1019"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_60",
+			"label": "code:tsx (<SettingRow label=\"Default visibility for new posts\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1035"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_61",
+			"label": "code:bash (git add apps/server/src/routes/profiles.ts apps/web/src/app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1058"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_13_web_author_reader_affordance_chip",
+			"label": "Task 13: Web \u2014 author reader affordance chip",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1065"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_62",
+			"label": "code:tsx ({isOwner && visibility !== \"public\" ? ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1074"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_63",
+			"label": "code:bash (git add apps/web/src/components/review/review-card.tsx apps/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1096"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_task_14_migrate_the_database_manual_verification",
+			"label": "Task 14: Migrate the database & manual verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1103"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_codeblock_64",
+			"label": "code:bash (git add -A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1131"
+		},
+		{
+			"id": "plans_2026_06_01_review_log_visibility_self_review_completed_by_plan_author",
+			"label": "Self-Review (completed by plan author)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1138"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_01_review_log_visibility_md",
+			"target": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_conventions_in_this_repo_read_before_starting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_1_visibility_enum_schema_columns_migration",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_2_shared_visibility_predicate_pure_helper_sql_fragment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L173",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_2_shared_visibility_predicate_pure_helper_sql_fragment",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_2_shared_visibility_predicate_pure_helper_sql_fragment",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L276",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_2_shared_visibility_predicate_pure_helper_sql_fragment",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L396",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L403",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L412",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L430",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L444",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L450",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L458",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L468",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L489",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L495",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_3_reviews_route_visibility_field_enforce_reads",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L508",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_4_movies_route_review_list_count",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L515",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_4_movies_route_review_list_count",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L524",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_4_movies_route_review_list_count",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L534",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_4_movies_route_review_list_count",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L540",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_4_movies_route_review_list_count",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L553",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_5_profiles_route_reviews_filmography_log_scores",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L560",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_5_profiles_route_reviews_filmography_log_scores",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L569",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_5_profiles_route_reviews_filmography_log_scores",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L578",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_5_profiles_route_reviews_filmography_log_scores",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L584",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_5_profiles_route_reviews_filmography_log_scores",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L595",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_5_profiles_route_reviews_filmography_log_scores",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L613",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_6_feed_route_review_rows_rating_divergence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L620",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_6_feed_route_review_rows_rating_divergence",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L630",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_6_feed_route_review_rows_rating_divergence",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L638",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_6_feed_route_review_rows_rating_divergence",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_35",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L646",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_6_feed_route_review_rows_rating_divergence",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_36",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L660",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_7_following_ratings_friends_ratings_ledger_drawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L667",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_7_following_ratings_friends_ratings_ledger_drawer",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_37",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L677",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_7_following_ratings_friends_ratings_ledger_drawer",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_38",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L685",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_7_following_ratings_friends_ratings_ledger_drawer",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_39",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L703",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_8_creator_recognition_pinned_reviews_stay_public_only",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L710",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_8_creator_recognition_pinned_reviews_stay_public_only",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_40",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L721",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_8_creator_recognition_pinned_reviews_stay_public_only",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_41",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L731",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_8_creator_recognition_pinned_reviews_stay_public_only",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_42",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L739",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_8_creator_recognition_pinned_reviews_stay_public_only",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_43",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L763",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_9_logs_route_visibility_field_account_default",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L770",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_9_logs_route_visibility_field_account_default",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_44",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L779",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_9_logs_route_visibility_field_account_default",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_45",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L789",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_9_logs_route_visibility_field_account_default",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_46",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L800",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_9_logs_route_visibility_field_account_default",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_47",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L814",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_9_logs_route_visibility_field_account_default",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_48",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L822",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_9_logs_route_visibility_field_account_default",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_49",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L835",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_10_web_reusable_visibility_picker_review_composer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L842",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_10_web_reusable_visibility_picker_review_composer",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_50",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L852",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_10_web_reusable_visibility_picker_review_composer",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_51",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L906",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_10_web_reusable_visibility_picker_review_composer",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_52",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L915",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_10_web_reusable_visibility_picker_review_composer",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_53",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L923",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_10_web_reusable_visibility_picker_review_composer",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_54",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L944",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_11_web_quick_log_visibility_picker",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L951",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_11_web_quick_log_visibility_picker",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_55",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L960",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_11_web_quick_log_visibility_picker",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_56",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L967",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_11_web_quick_log_visibility_picker",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_57",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L979",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_11_web_quick_log_visibility_picker",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_58",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1002",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_12_web_account_default_visibility_setting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1009",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_12_web_account_default_visibility_setting",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_59",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1019",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_12_web_account_default_visibility_setting",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_60",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1035",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_12_web_account_default_visibility_setting",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_61",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1058",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_13_web_author_reader_affordance_chip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1065",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_13_web_author_reader_affordance_chip",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_62",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1074",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_13_web_author_reader_affordance_chip",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_63",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1096",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_task_14_migrate_the_database_manual_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1103",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_task_14_migrate_the_database_manual_verification",
+			"target": "plans_2026_06_01_review_log_visibility_codeblock_64",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1131",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_01_review_log_visibility_review_diary_log_visibility_implementation_plan",
+			"target": "plans_2026_06_01_review_log_visibility_self_review_completed_by_plan_author",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-01-review-log-visibility.md",
+			"source_location": "L1138",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

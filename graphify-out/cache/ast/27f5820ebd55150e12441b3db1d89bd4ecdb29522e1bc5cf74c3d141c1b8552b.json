@@ -1,0 +1,110 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_tv_mal_id_ts",
+			"label": "tv-mal-id.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_mal_id_stillanilistjson",
+			"label": "StillAnilistJson",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_tv_mal_id_stillmaljson",
+			"label": "StillMalJson",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_tv_mal_id_readmalidfromtmdbjson",
+			"label": "readMalIdFromTmdbJson()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_tv_mal_id_readmalidfromtmdbdetail",
+			"label": "readMalIdFromTmdbDetail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L49"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_mal_id_ts",
+			"target": "lib_tv_mal_id_stillanilistjson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_mal_id_ts",
+			"target": "lib_tv_mal_id_stillmaljson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_mal_id_ts",
+			"target": "lib_tv_mal_id_readmalidfromtmdbjson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tv_mal_id_ts",
+			"target": "lib_tv_mal_id_readmalidfromtmdbdetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tv_mal_id_readmalidfromtmdbdetail",
+			"target": "lib_tv_mal_id_readmalidfromtmdbjson",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tv_mal_id_readmalidfromtmdbjson",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_tv_mal_id_readmalidfromtmdbjson",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_tv_mal_id_readmalidfromtmdbjson",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts",
+			"source_location": "L42"
+		}
+	]
+}

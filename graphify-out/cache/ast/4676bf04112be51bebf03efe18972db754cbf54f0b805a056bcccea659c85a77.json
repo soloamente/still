@@ -1,0 +1,367 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_01_social_perf_feature_batch_design_md",
+			"label": "2026-06-01-social-perf-feature-batch-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"label": "Social + perf feature batch \u2014 design spec",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_goals",
+			"label": "Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_non_goals",
+			"label": "Non-goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_feature_1_friends_ratings_on_movie_detail",
+			"label": "Feature 1 \u2014 Friends' ratings on movie detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_server",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_codeblock_1",
+			"label": "code:block1 (GET /api/movies/:id/friends-ratings   -> FriendRatingRow[])",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_web",
+			"label": "Web",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_feature_2_followers_following_drawer",
+			"label": "Feature 2 \u2014 Followers / following drawer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_ui",
+			"label": "UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_server_73",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_button_states",
+			"label": "Button states",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_feature_3_speed_up_profile_home_community_rail",
+			"label": "Feature 3 \u2014 Speed up profile + home community rail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_feature_4_remove_watched_items",
+			"label": "Feature 4 \u2014 Remove watched items",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_client_api",
+			"label": "Client API",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_ux",
+			"label": "UX",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_notes",
+			"label": "Notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_feature_5_list_author_byline_in_movie_community_section",
+			"label": "Feature 5 \u2014 List author byline in movie community section",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_server_119",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_web_123",
+			"label": "Web",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "specs_2026_06_01_social_perf_feature_batch_design_open_questions_resolved",
+			"label": "Open questions (resolved)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L135"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_01_social_perf_feature_batch_design_md",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_non_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_feature_1_friends_ratings_on_movie_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_1_friends_ratings_on_movie_detail",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_server",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_1_friends_ratings_on_movie_detail",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_feature_2_followers_following_drawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_2_followers_following_drawer",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_2_followers_following_drawer",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_server_73",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_2_followers_following_drawer",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_button_states",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_feature_3_speed_up_profile_home_community_rail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_feature_4_remove_watched_items",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_4_remove_watched_items",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_client_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_4_remove_watched_items",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_ux",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_4_remove_watched_items",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_feature_5_list_author_byline_in_movie_community_section",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_5_list_author_byline_in_movie_community_section",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_server_119",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_feature_5_list_author_byline_in_movie_community_section",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_web_123",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_social_perf_feature_batch_design_social_perf_feature_batch_design_spec",
+			"target": "specs_2026_06_01_social_perf_feature_batch_design_open_questions_resolved",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-social-perf-feature-batch-design.md",
+			"source_location": "L135",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

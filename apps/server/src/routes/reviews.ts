@@ -1,5 +1,6 @@
 import type { ContentVisibility } from "@still/db";
 import {
+	comment,
 	db,
 	eventLog,
 	log,
@@ -28,18 +29,15 @@ import {
 	areUsersMutualFollows,
 	deliverNotification,
 } from "../lib/notification-delivery";
+import { removePinnedReviewId } from "../lib/profile-pinned-reviews";
 import { hit } from "../lib/rate-limit";
 import { movieReviewNotificationHref } from "../lib/review-notification-href";
+import { isValidReviewRatingStored } from "../lib/review-rating";
 import { routeBody } from "../lib/route-body";
-import { storedRatingToDisplayTen } from "../lib/sense-taste-overlap";
 
-function diaryStoredToReviewApiRating(stored: number | null): number | null {
-	if (stored == null) return null;
-	const display = storedRatingToDisplayTen(stored);
-	const rounded = Math.round(display);
-	if (rounded < 1) return null;
-	return Math.min(10, rounded);
-}
+const reviewRatingSchema = t.Optional(
+	t.Union([t.Integer({ minimum: 0, maximum: 100 }), t.Null()]),
+);
 
 type CreateReviewBody = {
 	movieId: number;
@@ -81,7 +79,7 @@ export const reviewsRoute = new Elysia({
 						.from(log)
 						.where(and(eq(log.id, logId), eq(log.userId, user.id)))
 						.limit(1);
-					rating = diaryStoredToReviewApiRating(linkedLog?.rating ?? null);
+					rating = linkedLog?.rating ?? null;
 				} else {
 					const [latestLog] = await db
 						.select({ id: log.id, rating: log.rating })
@@ -97,9 +95,13 @@ export const reviewsRoute = new Elysia({
 						.limit(1);
 					if (latestLog) {
 						logId = latestLog.id;
-						rating = diaryStoredToReviewApiRating(latestLog.rating);
+						rating = latestLog.rating;
 					}
 				}
+			}
+
+			if (rating != null && !isValidReviewRatingStored(rating)) {
+				return status(400, "Invalid rating");
 			}
 
 			let visibility = body.visibility ?? null;
@@ -141,7 +143,7 @@ export const reviewsRoute = new Elysia({
 				logId: t.Optional(t.String()),
 				title: t.Optional(t.String({ maxLength: 200 })),
 				body: t.String({ minLength: 1, maxLength: 20_000 }),
-				rating: t.Optional(t.Integer({ minimum: 1, maximum: 10 })),
+				rating: reviewRatingSchema,
 				containsSpoilers: t.Optional(t.Boolean()),
 				visibility: t.Optional(visibilitySchema),
 			}),
@@ -159,6 +161,15 @@ export const reviewsRoute = new Elysia({
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Not found");
+			const nextRating =
+				existing.logId != null
+					? existing.rating
+					: body.rating !== undefined
+						? body.rating
+						: existing.rating;
+			if (nextRating != null && !isValidReviewRatingStored(nextRating)) {
+				return status(400, "Invalid rating");
+			}
 			const [updated] = await db
 				.update(review)
 				.set({
@@ -166,7 +177,7 @@ export const reviewsRoute = new Elysia({
 					body: body.body ?? existing.body,
 					containsSpoilers: body.containsSpoilers ?? existing.containsSpoilers,
 					visibility: body.visibility ?? existing.visibility,
-					rating: body.rating ?? existing.rating,
+					rating: nextRating,
 				})
 				.where(eq(review.id, params.id))
 				.returning();
@@ -177,7 +188,7 @@ export const reviewsRoute = new Elysia({
 			body: t.Object({
 				title: t.Optional(t.String({ maxLength: 200 })),
 				body: t.Optional(t.String({ maxLength: 20_000 })),
-				rating: t.Optional(t.Integer({ minimum: 1, maximum: 10 })),
+				rating: reviewRatingSchema,
 				containsSpoilers: t.Optional(t.Boolean()),
 				visibility: t.Optional(visibilitySchema),
 			}),
@@ -194,6 +205,37 @@ export const reviewsRoute = new Elysia({
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Not found");
+
+			const [prof] = await db
+				.select({ pinnedReviewIds: profile.pinnedReviewIds })
+				.from(profile)
+				.where(eq(profile.userId, user.id))
+				.limit(1);
+			if (prof) {
+				const next = removePinnedReviewId(prof.pinnedReviewIds, params.id);
+				await db
+					.update(profile)
+					.set({ pinnedReviewIds: next })
+					.where(eq(profile.userId, user.id));
+			}
+
+			await db
+				.delete(reaction)
+				.where(
+					and(
+						eq(reaction.parentType, "review"),
+						eq(reaction.parentId, params.id),
+					),
+				);
+			await db
+				.delete(comment)
+				.where(
+					and(
+						eq(comment.parentType, "review"),
+						eq(comment.parentId, params.id),
+					),
+				);
+
 			await db.delete(review).where(eq(review.id, params.id));
 			return { ok: true };
 		},

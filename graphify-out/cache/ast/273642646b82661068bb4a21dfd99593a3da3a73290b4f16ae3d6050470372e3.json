@@ -1,0 +1,91 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_patron_log_poster_caption_ts",
+			"label": "patron-log-poster-caption.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_patron_log_poster_caption_patronlogpostercaption",
+			"label": "patronLogPosterCaption()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_patron_log_poster_caption_rankedlistposterlabels",
+			"label": "rankedListPosterLabels()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_log_poster_caption_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_log_poster_caption_ts",
+			"target": "lib_log_rating_formatstoredlogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_log_poster_caption_ts",
+			"target": "lib_patron_log_poster_caption_patronlogpostercaption",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_log_poster_caption_ts",
+			"target": "lib_patron_log_poster_caption_rankedlistposterlabels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_log_poster_caption_rankedlistposterlabels",
+			"target": "lib_patron_log_poster_caption_patronlogpostercaption",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_patron_log_poster_caption_patronlogpostercaption",
+			"callee": "formatStoredLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_patron_log_poster_caption_rankedlistposterlabels",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-log-poster-caption.ts",
+			"source_location": "L19"
+		}
+	]
+}

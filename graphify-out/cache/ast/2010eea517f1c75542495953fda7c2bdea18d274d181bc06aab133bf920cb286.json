@@ -1,0 +1,62 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_feed_rating_divergence_ts",
+			"label": "feed-rating-divergence.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feed-rating-divergence.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_feed_rating_divergence_feeddivergencepatron",
+			"label": "FeedDivergencePatron",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feed-rating-divergence.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_feed_rating_divergence_feedratingdivergencepayload",
+			"label": "FeedRatingDivergencePayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feed-rating-divergence.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_feed_rating_divergence_isfeedratingdivergencepayload",
+			"label": "isFeedRatingDivergencePayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feed-rating-divergence.ts",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_feed_rating_divergence_ts",
+			"target": "lib_feed_rating_divergence_feeddivergencepatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feed-rating-divergence.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_feed_rating_divergence_ts",
+			"target": "lib_feed_rating_divergence_feedratingdivergencepayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feed-rating-divergence.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_feed_rating_divergence_ts",
+			"target": "lib_feed_rating_divergence_isfeedratingdivergencepayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feed-rating-divergence.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

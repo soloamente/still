@@ -1,0 +1,155 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"label": "fetch-list-detail.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_fetch_list_detail_listdetailrecord",
+			"label": "ListDetailRecord",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_fetch_list_detail_listdetailtofilmrows",
+			"label": "listDetailToFilmRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L44"
+		},
+		{
+			"id": "lib_fetch_list_detail_fetchlistdetailbyid",
+			"label": "fetchListDetailById()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L69"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_films_grid_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"target": "list_list_detail_films_grid_listdetailfilmrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_server_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"target": "lib_server_api_serverapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"target": "lib_fetch_list_detail_listdetailrecord",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"target": "lib_fetch_list_detail_listdetailtofilmrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"target": "lib_fetch_list_detail_fetchlistdetailbyid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L69",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_fetch_list_detail_listdetailtofilmrows",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_fetch_list_detail_listdetailtofilmrows",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_fetch_list_detail_fetchlistdetailbyid",
+			"callee": "serverApi",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_fetch_list_detail_fetchlistdetailbyid",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_fetch_list_detail_fetchlistdetailbyid",
+			"callee": "lists",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_fetch_list_detail_fetchlistdetailbyid",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-list-detail.ts",
+			"source_location": "L83"
+		}
+	]
+}

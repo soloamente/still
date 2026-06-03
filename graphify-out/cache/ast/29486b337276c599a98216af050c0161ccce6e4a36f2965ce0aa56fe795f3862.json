@@ -1,0 +1,838 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"label": "anilist-import-json.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_anilist_import_json_anilistimportstatus",
+			"label": "AnilistImportStatus",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_anilist_import_json_anilistimportmedia",
+			"label": "AnilistImportMedia",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_anilist_import_json_anilistimportentry",
+			"label": "AnilistImportEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "lib_anilist_import_json_valid_statuses",
+			"label": "VALID_STATUSES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "lib_anilist_import_json_anilistentrydisplaytitle",
+			"label": "anilistEntryDisplayTitle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L46"
+		},
+		{
+			"id": "lib_anilist_import_json_anilistmediasearchqueries",
+			"label": "anilistMediaSearchQueries()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L58"
+		},
+		{
+			"id": "lib_anilist_import_json_normalizeanilisttitleobject",
+			"label": "normalizeAnilistTitleObject()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L72"
+		},
+		{
+			"id": "lib_anilist_import_json_anilistscoretostoredtenths",
+			"label": "anilistScoreToStoredTenths()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L100"
+		},
+		{
+			"id": "lib_anilist_import_json_anilistimportdedupekey",
+			"label": "anilistImportDedupeKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L106"
+		},
+		{
+			"id": "lib_anilist_import_json_parsestatus",
+			"label": "parseStatus()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L111"
+		},
+		{
+			"id": "lib_anilist_import_json_normalizemedia",
+			"label": "normalizeMedia()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L117"
+		},
+		{
+			"id": "lib_anilist_import_json_normalizeanilistlistentry",
+			"label": "normalizeAnilistListEntry()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L154"
+		},
+		{
+			"id": "lib_anilist_import_json_collectgraphqlentries",
+			"label": "collectGraphqlEntries()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L235"
+		},
+		{
+			"id": "lib_anilist_import_json_normalizeaniportbackup",
+			"label": "normalizeAniPortBackup()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L252"
+		},
+		{
+			"id": "lib_anilist_import_json_parseanilistimportjson",
+			"label": "parseAnilistImportJson()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L267"
+		},
+		{
+			"id": "lib_anilist_import_json_dedupeanilistentries",
+			"label": "dedupeAnilistEntries()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L310"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_anilistimportstatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_anilistimportmedia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_anilistimportentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_valid_statuses",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_anilistentrydisplaytitle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_anilistmediasearchqueries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_normalizeanilisttitleobject",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_anilistscoretostoredtenths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_anilistimportdedupekey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_parsestatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_normalizemedia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_normalizeanilistlistentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_collectgraphqlentries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_normalizeaniportbackup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L252",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_parseanilistimportjson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L267",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_json_ts",
+			"target": "lib_anilist_import_json_dedupeanilistentries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L310",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_anilist_import_json_normalizemedia",
+			"target": "lib_anilist_import_json_normalizeanilisttitleobject",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L126",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_anilist_import_json_normalizeanilistlistentry",
+			"target": "lib_anilist_import_json_normalizemedia",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_anilist_import_json_normalizeanilistlistentry",
+			"target": "lib_anilist_import_json_normalizeanilisttitleobject",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L173",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_anilist_import_json_normalizeanilistlistentry",
+			"target": "lib_anilist_import_json_parsestatus",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_anilist_import_json_parseanilistimportjson",
+			"target": "lib_anilist_import_json_collectgraphqlentries",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L292",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_anilist_import_json_parseanilistimportjson",
+			"target": "lib_anilist_import_json_normalizeaniportbackup",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L296",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_anilist_import_json_parseanilistimportjson",
+			"target": "lib_anilist_import_json_dedupeanilistentries",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L297",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_anilist_import_json_anilistentrydisplaytitle",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistentrydisplaytitle",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistentrydisplaytitle",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistentrydisplaytitle",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistmediasearchqueries",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistmediasearchqueries",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistmediasearchqueries",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilisttitleobject",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistscoretostoredtenths",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistscoretostoredtenths",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistscoretostoredtenths",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistscoretostoredtenths",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistimportdedupekey",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_anilistimportdedupekey",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parsestatus",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parsestatus",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parsestatus",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L121"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L141"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizemedia",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L150"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L164"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L180"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L182"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L198"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L203"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L203"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L203"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L207"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L207"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L224"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeanilistlistentry",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L230"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_collectgraphqlentries",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L241"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_collectgraphqlentries",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L246"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_collectgraphqlentries",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L246"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeaniportbackup",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L256"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeaniportbackup",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L257"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_normalizeaniportbackup",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L257"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parseanilistimportjson",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L268"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parseanilistimportjson",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L268"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parseanilistimportjson",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L273"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parseanilistimportjson",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L286"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parseanilistimportjson",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L289"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parseanilistimportjson",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L298"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parseanilistimportjson",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_parseanilistimportjson",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_dedupeanilistentries",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L315"
+		},
+		{
+			"caller_nid": "lib_anilist_import_json_dedupeanilistentries",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-json.ts",
+			"source_location": "L317"
+		}
+	]
+}

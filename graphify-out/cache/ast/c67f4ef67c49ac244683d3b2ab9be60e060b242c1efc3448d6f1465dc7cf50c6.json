@@ -1,0 +1,68 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_mal_meta_tsx",
+			"label": "tv-detail-mal-meta.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-mal-meta.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "tv_tv_detail_mal_meta_tvdetailmalmeta",
+			"label": "TvDetailMalMeta()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-mal-meta.tsx",
+			"source_location": "L7"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_mal_meta_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_mal_enrichment_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-mal-meta.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_mal_meta_tsx",
+			"target": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-mal-meta.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_mal_meta_tsx",
+			"target": "lib_tv_mal_enrichment_tvmalenrichment",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-mal-meta.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_tv_tv_detail_mal_meta_tsx",
+			"target": "tv_tv_detail_mal_meta_tvdetailmalmeta",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-mal-meta.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "tv_tv_detail_mal_meta_tvdetailmalmeta",
+			"callee": "formatTvMalEnrichmentLine",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-mal-meta.tsx",
+			"source_location": "L12"
+		}
+	]
+}

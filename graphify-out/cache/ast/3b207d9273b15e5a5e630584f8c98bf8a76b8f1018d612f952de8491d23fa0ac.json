@@ -1,0 +1,543 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_sense_tier_3_anilist_design_md",
+			"label": "2026-05-29-sense-tier-3-anilist-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"label": "Sense \u2014 Tier 3 Wave E (SN.17): Anime Depth & Anilist Import",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L22"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_prerequisites",
+			"label": "Prerequisites",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"label": "SN.17.1 \u2014 Phase A: Anilist JSON import",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_supported_input_formats",
+			"label": "Supported input formats",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_canonical_entry_shape_v1",
+			"label": "Canonical entry shape (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_codeblock_1",
+			"label": "code:ts (interface AnilistImportFile {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_status_sense_mapping",
+			"label": "Status \u2192 Sense mapping",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_tmdb_resolution_tiered",
+			"label": "TMDb resolution (tiered)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_api",
+			"label": "API",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_codeblock_2",
+			"label": "code:ts ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_web_ui",
+			"label": "Web UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L147"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_out_of_scope_phase_a",
+			"label": "Out of scope (Phase A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L153"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_tests",
+			"label": "Tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L169"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_2_phase_b_seasonal_anime_browse",
+			"label": "SN.17.2 \u2014 Phase B: Seasonal anime browse",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L177"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_goal_179",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L179"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_scope",
+			"label": "Scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_success_criteria_189",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L189"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_defer",
+			"label": "Defer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L194"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_3_phase_c_mal_enrichment_on_tv_detail",
+			"label": "SN.17.3 \u2014 Phase C: MAL enrichment on TV detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L201"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_goal_203",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L203"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_scope_207",
+			"label": "Scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L207"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_success_criteria_214",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L214"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L219"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1b_optional_anilist_oauth_deferred",
+			"label": "SN.17.1b \u2014 Optional: Anilist OAuth (deferred)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L226"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_architecture_diagram",
+			"label": "Architecture diagram",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L234"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_codeblock_3",
+			"label": "code:block3 (\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510     \u250c\u2500\u2500\u2500\u2500\u2500\u2500)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L236"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_monetization_product_guardrails",
+			"label": "Monetization & product guardrails",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L253"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_human_qa_checklist_phase_a",
+			"label": "Human QA checklist (Phase A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L261"
+		},
+		{
+			"id": "specs_2026_05_29_sense_tier_3_anilist_design_references",
+			"label": "References",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L271"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_sense_tier_3_anilist_design_md",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_prerequisites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_supported_input_formats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_canonical_entry_shape_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_canonical_entry_shape_v1",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_status_sense_mapping",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_tmdb_resolution_tiered",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_api",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_web_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_out_of_scope_phase_a",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1_phase_a_anilist_json_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_2_phase_b_seasonal_anime_browse",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L177",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_2_phase_b_seasonal_anime_browse",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_goal_179",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L179",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_2_phase_b_seasonal_anime_browse",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_2_phase_b_seasonal_anime_browse",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_success_criteria_189",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L189",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_2_phase_b_seasonal_anime_browse",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_defer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_3_phase_c_mal_enrichment_on_tv_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L201",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_3_phase_c_mal_enrichment_on_tv_detail",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_goal_203",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L203",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_3_phase_c_mal_enrichment_on_tv_detail",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_scope_207",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L207",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_3_phase_c_mal_enrichment_on_tv_detail",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_success_criteria_214",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L214",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_3_phase_c_mal_enrichment_on_tv_detail",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L219",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_sn_17_1b_optional_anilist_oauth_deferred",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L226",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_architecture_diagram",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L234",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_architecture_diagram",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_monetization_product_guardrails",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L253",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_human_qa_checklist_phase_a",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L261",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_tier_3_anilist_design_sense_tier_3_wave_e_sn_17_anime_depth_anilist_import",
+			"target": "specs_2026_05_29_sense_tier_3_anilist_design_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-tier-3-anilist-design.md",
+			"source_location": "L271",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

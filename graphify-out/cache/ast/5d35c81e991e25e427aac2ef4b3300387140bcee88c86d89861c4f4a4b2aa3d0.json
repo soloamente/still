@@ -1,0 +1,945 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"label": "search-query-tags.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_search_query_tags_searchdialoggenre",
+			"label": "SearchDialogGenre",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_search_query_tags_searchtag",
+			"label": "SearchTag",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_search_query_tags_tagsuggestion",
+			"label": "TagSuggestion",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_search_query_tags_media_movie",
+			"label": "MEDIA_MOVIE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_search_query_tags_media_tv",
+			"label": "MEDIA_TV",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L43"
+		},
+		{
+			"id": "lib_search_query_tags_lists",
+			"label": "LISTS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L44"
+		},
+		{
+			"id": "lib_search_query_tags_genrenamematchestoken",
+			"label": "genreNameMatchesToken()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "lib_search_query_tags_searchtagkey",
+			"label": "searchTagKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L59"
+		},
+		{
+			"id": "lib_search_query_tags_derivesearchstate",
+			"label": "deriveSearchState()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L68"
+		},
+		{
+			"id": "lib_search_query_tags_cataloguefilterbundle",
+			"label": "CatalogueFilterBundle",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L83"
+		},
+		{
+			"id": "lib_search_query_tags_derivecataloguefilterbundle",
+			"label": "deriveCatalogueFilterBundle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L89"
+		},
+		{
+			"id": "lib_search_query_tags_ranktagsuggestions",
+			"label": "rankTagSuggestions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L122"
+		},
+		{
+			"id": "lib_search_query_tags_suggestiontotag",
+			"label": "suggestionToTag()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L192"
+		},
+		{
+			"id": "lib_search_query_tags_upserttag",
+			"label": "upsertTag()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L219"
+		},
+		{
+			"id": "lib_search_query_tags_tagsegmentlabel",
+			"label": "tagSegmentLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L258"
+		},
+		{
+			"id": "lib_search_query_tags_serializestructuredquery",
+			"label": "serializeStructuredQuery()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L269"
+		},
+		{
+			"id": "lib_search_query_tags_parsedrecentstructuredquery",
+			"label": "ParsedRecentStructuredQuery",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L282"
+		},
+		{
+			"id": "lib_search_query_tags_parserecentoptions",
+			"label": "ParseRecentOptions",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L287"
+		},
+		{
+			"id": "lib_search_query_tags_findgenrebyname",
+			"label": "findGenreByName()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L292"
+		},
+		{
+			"id": "lib_search_query_tags_parserecentstructuredquery",
+			"label": "parseRecentStructuredQuery()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L315"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_curated_tags_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_curated_tags_curatedtagbyslug",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_curated_tags_findcuratedsuggestions",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_curated_tags_search_curated_tags",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_dialog_studios_searchdialogstudio",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_dialog_studios_studionamematchestoken",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_dialog_studios_studiosearchtokens",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_searchdialoggenre",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_searchtag",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_tagsuggestion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_media_movie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_media_tv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_lists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_genrenamematchestoken",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_searchtagkey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_derivesearchstate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_cataloguefilterbundle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_derivecataloguefilterbundle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_ranktagsuggestions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_suggestiontotag",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_upserttag",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L219",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_tagsegmentlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L258",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_serializestructuredquery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L269",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_parsedrecentstructuredquery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L282",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_parserecentoptions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L287",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_findgenrebyname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L292",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"target": "lib_search_query_tags_parserecentstructuredquery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L315",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_search_query_tags_derivecataloguefilterbundle",
+			"target": "lib_search_query_tags_derivesearchstate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_search_query_tags_ranktagsuggestions",
+			"target": "lib_search_query_tags_genrenamematchestoken",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_search_query_tags_serializestructuredquery",
+			"target": "lib_search_query_tags_tagsegmentlabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L275",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_search_query_tags_parserecentstructuredquery",
+			"target": "lib_search_query_tags_findgenrebyname",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L398",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_search_query_tags_genrenamematchestoken",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_genrenamematchestoken",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_genrenamematchestoken",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_genrenamematchestoken",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_genrenamematchestoken",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_genrenamematchestoken",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_genrenamematchestoken",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivesearchstate",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivesearchstate",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivesearchstate",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivecataloguefilterbundle",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivecataloguefilterbundle",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivecataloguefilterbundle",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivecataloguefilterbundle",
+			"callee": "curatedTagBySlug",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivecataloguefilterbundle",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivecataloguefilterbundle",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivecataloguefilterbundle",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_derivecataloguefilterbundle",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L133"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L134"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "studioNameMatchesToken",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L141"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L142"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L158"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "findCuratedSuggestions",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L169"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L180"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L186"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_ranktagsuggestions",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L189"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_upserttag",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L222"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_upserttag",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_upserttag",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L228"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_upserttag",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L232"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_upserttag",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L245"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_serializestructuredquery",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L275"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_serializestructuredquery",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L277"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_serializestructuredquery",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L278"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_serializestructuredquery",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L279"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_findgenrebyname",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L297"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_findgenrebyname",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L299"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_findgenrebyname",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L304"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L322"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L325"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L339"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L341"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L342"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L348"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L358"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L365"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L374"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L380"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L383"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L387"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L392"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L394"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L400"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L407"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L412"
+		},
+		{
+			"caller_nid": "lib_search_query_tags_parserecentstructuredquery",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts",
+			"source_location": "L412"
+		}
+	]
+}

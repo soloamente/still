@@ -1,0 +1,189 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"label": "profile-appearance.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_appearance_profile_pref_profile_accent",
+			"label": "PROFILE_PREF_PROFILE_ACCENT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_profile_appearance_profile_pref_banner_frame",
+			"label": "PROFILE_PREF_BANNER_FRAME",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_profile_appearance_profile_accent_ids",
+			"label": "PROFILE_ACCENT_IDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_profile_appearance_profileaccentid",
+			"label": "ProfileAccentId",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_profile_appearance_profile_banner_frame_ids",
+			"label": "PROFILE_BANNER_FRAME_IDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_profile_appearance_profilebannerframeid",
+			"label": "ProfileBannerFrameId",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_profile_appearance_profile_accent_hex",
+			"label": "PROFILE_ACCENT_HEX",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_profile_appearance_isprofileaccentid",
+			"label": "isProfileAccentId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "lib_profile_appearance_isprofilebannerframeid",
+			"label": "isProfileBannerFrameId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L35"
+		},
+		{
+			"id": "lib_profile_appearance_profileaccenthex",
+			"label": "profileAccentHex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L44"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_pref_profile_accent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_pref_banner_frame",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_accent_ids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profileaccentid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_banner_frame_ids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profilebannerframeid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_accent_hex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_isprofileaccentid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_isprofilebannerframeid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profileaccenthex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_appearance_isprofileaccentid",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_profile_appearance_isprofilebannerframeid",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.ts",
+			"source_location": "L40"
+		}
+	]
+}

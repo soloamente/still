@@ -1,0 +1,52 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_taste_matched_rail_layout_ts",
+			"label": "home-taste-matched-rail-layout.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-taste-matched-rail-layout.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_taste_matched_rail_layout_tasterailvisiblecount",
+			"label": "tasteRailVisibleCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-taste-matched-rail-layout.ts",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_taste_matched_rail_layout_ts",
+			"target": "lib_home_taste_matched_rail_layout_tasterailvisiblecount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-taste-matched-rail-layout.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_taste_matched_rail_layout_tasterailvisiblecount",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-taste-matched-rail-layout.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_home_taste_matched_rail_layout_tasterailvisiblecount",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-taste-matched-rail-layout.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_home_taste_matched_rail_layout_tasterailvisiblecount",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-taste-matched-rail-layout.ts",
+			"source_location": "L20"
+		}
+	]
+}

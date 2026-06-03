@@ -1,0 +1,118 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_achievements_lobby_tab_ts",
+			"label": "achievements-lobby-tab.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_achievements_lobby_tab_achievementslobbytabid",
+			"label": "AchievementsLobbyTabId",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_achievements_lobby_tab_tab_ids",
+			"label": "TAB_IDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_achievements_lobby_tab_parseachievementslobbytab",
+			"label": "parseAchievementsLobbyTab()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_achievements_lobby_tab_buildachievementslobbyhref",
+			"label": "buildAchievementsLobbyHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_achievements_lobby_tab_achievements_lobby_tab_label",
+			"label": "ACHIEVEMENTS_LOBBY_TAB_LABEL",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_achievements_lobby_tab_isachievementslobbytabid",
+			"label": "isAchievementsLobbyTabId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L30"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_achievements_lobby_tab_ts",
+			"target": "lib_achievements_lobby_tab_achievementslobbytabid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_achievements_lobby_tab_ts",
+			"target": "lib_achievements_lobby_tab_tab_ids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_achievements_lobby_tab_ts",
+			"target": "lib_achievements_lobby_tab_parseachievementslobbytab",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_achievements_lobby_tab_ts",
+			"target": "lib_achievements_lobby_tab_buildachievementslobbyhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_achievements_lobby_tab_ts",
+			"target": "lib_achievements_lobby_tab_achievements_lobby_tab_label",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_achievements_lobby_tab_ts",
+			"target": "lib_achievements_lobby_tab_isachievementslobbytabid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_achievements_lobby_tab_isachievementslobbytabid",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.ts",
+			"source_location": "L33"
+		}
+	]
+}

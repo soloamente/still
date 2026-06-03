@@ -1,0 +1,644 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"label": "community-period-filter.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_community_period_filter_leaderboardperiod",
+			"label": "LeaderboardPeriod",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_community_period_filter_normalizeleaderboardtimezone",
+			"label": "normalizeLeaderboardTimeZone()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_community_period_filter_zonedparts",
+			"label": "ZonedParts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_community_period_filter_getzonedparts",
+			"label": "getZonedParts()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "lib_community_period_filter_gettimezoneoffsetms",
+			"label": "getTimeZoneOffsetMs()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L52"
+		},
+		{
+			"id": "lib_community_period_filter_walltimetoutc",
+			"label": "wallTimeToUtc()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L66"
+		},
+		{
+			"id": "lib_community_period_filter_isoweekday",
+			"label": "isoWeekday()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L85"
+		},
+		{
+			"id": "lib_community_period_filter_addmonths",
+			"label": "addMonths()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L91"
+		},
+		{
+			"id": "lib_community_period_filter_startofperiodinzone",
+			"label": "startOfPeriodInZone()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L109"
+		},
+		{
+			"id": "lib_community_period_filter_endofperiodinzone",
+			"label": "endOfPeriodInZone()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L127"
+		},
+		{
+			"id": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"label": "resolveCommunityPeriodWindow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L149"
+		},
+		{
+			"id": "lib_community_period_filter_istimestampincommunityperiod",
+			"label": "isTimestampInCommunityPeriod()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L186"
+		},
+		{
+			"id": "lib_community_period_filter_filterlistseedsbycommunityperiod",
+			"label": "filterListSeedsByCommunityPeriod()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L198"
+		},
+		{
+			"id": "lib_community_period_filter_filterreviewsbycommunityperiod",
+			"label": "filterReviewsByCommunityPeriod()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L207"
+		},
+		{
+			"id": "lib_community_period_filter_filteractivitybycommunityperiod",
+			"label": "filterActivityByCommunityPeriod()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L215"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_community_activity_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_home_community_activity_homecommunityactivityitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_home_leaderboard_period_homeleaderboardperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_home_leaderboard_period_readviewertimezone",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_lists_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_lists_lobby_order_listlobbyseed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_leaderboardperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_normalizeleaderboardtimezone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_zonedparts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_getzonedparts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_gettimezoneoffsetms",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_walltimetoutc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_isoweekday",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_addmonths",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_startofperiodinzone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_endofperiodinzone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_istimestampincommunityperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L186",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_filterlistseedsbycommunityperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_filterreviewsbycommunityperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L207",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_period_filter_ts",
+			"target": "lib_community_period_filter_filteractivitybycommunityperiod",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_gettimezoneoffsetms",
+			"target": "lib_community_period_filter_getzonedparts",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_walltimetoutc",
+			"target": "lib_community_period_filter_gettimezoneoffsetms",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_startofperiodinzone",
+			"target": "lib_community_period_filter_isoweekday",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_startofperiodinzone",
+			"target": "lib_community_period_filter_addmonths",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_endofperiodinzone",
+			"target": "lib_community_period_filter_addmonths",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_endofperiodinzone",
+			"target": "lib_community_period_filter_isoweekday",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"target": "lib_community_period_filter_normalizeleaderboardtimezone",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"target": "lib_community_period_filter_getzonedparts",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"target": "lib_community_period_filter_startofperiodinzone",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"target": "lib_community_period_filter_endofperiodinzone",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"target": "lib_community_period_filter_walltimetoutc",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_community_period_filter_istimestampincommunityperiod",
+			"target": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L194",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_community_period_filter_normalizeleaderboardtimezone",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_normalizeleaderboardtimezone",
+			"callee": "DateTimeFormat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "fromEntries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "formatToParts",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_getzonedparts",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_gettimezoneoffsetms",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_gettimezoneoffsetms",
+			"callee": "UTC",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_walltimetoutc",
+			"callee": "UTC",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_walltimetoutc",
+			"callee": "UTC",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_isoweekday",
+			"callee": "UTC",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_isoweekday",
+			"callee": "getUTCDay",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L87"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_startofperiodinzone",
+			"callee": "getDate",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_endofperiodinzone",
+			"callee": "getDate",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_resolvecommunityperiodwindow",
+			"callee": "readViewerTimeZone",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L154"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_istimestampincommunityperiod",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_istimestampincommunityperiod",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L193"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_istimestampincommunityperiod",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L195"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_istimestampincommunityperiod",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L195"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_filterlistseedsbycommunityperiod",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_filterreviewsbycommunityperiod",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "lib_community_period_filter_filteractivitybycommunityperiod",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-period-filter.ts",
+			"source_location": "L220"
+		}
+	]
+}

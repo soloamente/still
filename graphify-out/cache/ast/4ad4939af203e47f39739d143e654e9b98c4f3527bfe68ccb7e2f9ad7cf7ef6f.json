@@ -1,0 +1,84 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_search_query_ts",
+			"label": "profile-search-query.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_search_query_profilesearchrelationship",
+			"label": "ProfileSearchRelationship",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_profile_search_query_profilesearchhit",
+			"label": "ProfileSearchHit",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_profile_search_query_normalizeprofilesearchquery",
+			"label": "normalizeProfileSearchQuery()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_search_query_ts",
+			"target": "lib_profile_search_query_profilesearchrelationship",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_search_query_ts",
+			"target": "lib_profile_search_query_profilesearchhit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_search_query_ts",
+			"target": "lib_profile_search_query_normalizeprofilesearchquery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_search_query_normalizeprofilesearchquery",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_profile_search_query_normalizeprofilesearchquery",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_profile_search_query_normalizeprofilesearchquery",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts",
+			"source_location": "L14"
+		}
+	]
+}

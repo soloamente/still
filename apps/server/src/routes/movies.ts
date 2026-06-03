@@ -19,6 +19,7 @@ import {
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
+import { reviewRatingDisplayAvgSql } from "../lib/review-rating";
 import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
 import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
@@ -749,7 +750,10 @@ export const moviesRoute = new Elysia({
 			// Public-only: this is a single shared number, not personalized.
 			const stats = await db
 				.select({
-					avgRating: sql<number>`avg(${review.rating})`.as("avgRating"),
+					avgRating:
+						sql<number>`${sql.raw(reviewRatingDisplayAvgSql("review.rating"))}`.as(
+							"avgRating",
+						),
 					reviewsCount: sql<number>`count(${review.id})`.as("reviewsCount"),
 				})
 				.from(review)

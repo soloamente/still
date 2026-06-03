@@ -1,0 +1,30 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_onboarding_quick_rate_pool_ts",
+			"label": "onboarding-quick-rate-pool.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-quick-rate-pool.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_onboarding_quick_rate_pool_onboarding_quick_rate_tmdb_ids",
+			"label": "ONBOARDING_QUICK_RATE_TMDB_IDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-quick-rate-pool.ts",
+			"source_location": "L5"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_quick_rate_pool_ts",
+			"target": "lib_onboarding_quick_rate_pool_onboarding_quick_rate_tmdb_ids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-quick-rate-pool.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

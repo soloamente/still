@@ -1,0 +1,271 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"label": "profile-appearance.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_appearance_profile_pref_profile_accent",
+			"label": "PROFILE_PREF_PROFILE_ACCENT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_appearance_profile_pref_banner_frame",
+			"label": "PROFILE_PREF_BANNER_FRAME",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_profile_appearance_profile_accent_presets",
+			"label": "PROFILE_ACCENT_PRESETS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_profile_appearance_profileaccentid",
+			"label": "ProfileAccentId",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_profile_appearance_profile_banner_frames",
+			"label": "PROFILE_BANNER_FRAMES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_profile_appearance_profilebannerframeid",
+			"label": "ProfileBannerFrameId",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_profile_appearance_isprofileaccentid",
+			"label": "isProfileAccentId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_profile_appearance_isprofilebannerframeid",
+			"label": "isProfileBannerFrameId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "lib_profile_appearance_readprofileaccentpref",
+			"label": "readProfileAccentPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L34"
+		},
+		{
+			"id": "lib_profile_appearance_readprofilebannerframepref",
+			"label": "readProfileBannerFramePref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_profile_appearance_profileaccenthex",
+			"label": "profileAccentHex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L50"
+		},
+		{
+			"id": "lib_profile_appearance_inferprofileaccentfromhex",
+			"label": "inferProfileAccentFromHex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L55"
+		},
+		{
+			"id": "lib_profile_appearance_profilebannerframeclass",
+			"label": "profileBannerFrameClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L70"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_pref_profile_accent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_pref_banner_frame",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_accent_presets",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profileaccentid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profile_banner_frames",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profilebannerframeid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_isprofileaccentid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_isprofilebannerframeid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_readprofileaccentpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_readprofilebannerframepref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profileaccenthex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_inferprofileaccentfromhex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"target": "lib_profile_appearance_profilebannerframeclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_appearance_readprofileaccentpref",
+			"target": "lib_profile_appearance_isprofileaccentid",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_appearance_readprofilebannerframepref",
+			"target": "lib_profile_appearance_isprofilebannerframeid",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_appearance_inferprofileaccentfromhex",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_profile_appearance_inferprofileaccentfromhex",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_profile_appearance_inferprofileaccentfromhex",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_profile_appearance_inferprofileaccentfromhex",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-appearance.ts",
+			"source_location": "L64"
+		}
+	]
+}

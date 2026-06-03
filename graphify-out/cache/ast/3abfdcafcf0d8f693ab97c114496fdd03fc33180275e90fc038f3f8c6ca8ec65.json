@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_29_unified_search_people_md",
+			"label": "2026-05-29-unified-search-people.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_unified_k_search_people_discovery_implementation_plan",
+			"label": "Unified \u2318K Search + People Discovery Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_task_1_profile_search_query_helper",
+			"label": "Task 1: Profile search query helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_task_2_server_get_api_profiles_search",
+			"label": "Task 2: Server `GET /api/profiles/search`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_task_3_client_fetch_hook",
+			"label": "Task 3: Client fetch + hook",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_task_4_go_to_shortcuts_module",
+			"label": "Task 4: Go-to shortcuts module",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_task_5_people_results_ui",
+			"label": "Task 5: People results UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L82"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_task_6_wire_into_catalogsearchdialogroot",
+			"label": "Task 6: Wire into `CatalogSearchDialogRoot`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_task_7_retire_command_palette",
+			"label": "Task 7: Retire command palette",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_task_8_qa_docs",
+			"label": "Task 8: QA + docs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_human_verification_gate",
+			"label": "Human verification gate",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "plans_2026_05_29_unified_search_people_optional_v1_1_do_not_block_v1",
+			"label": "Optional v1.1 (do not block v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L142"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_29_unified_search_people_md",
+			"target": "plans_2026_05_29_unified_search_people_unified_k_search_people_discovery_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_unified_k_search_people_discovery_implementation_plan",
+			"target": "plans_2026_05_29_unified_search_people_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_file_map",
+			"target": "plans_2026_05_29_unified_search_people_task_1_profile_search_query_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_file_map",
+			"target": "plans_2026_05_29_unified_search_people_task_2_server_get_api_profiles_search",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_file_map",
+			"target": "plans_2026_05_29_unified_search_people_task_3_client_fetch_hook",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_file_map",
+			"target": "plans_2026_05_29_unified_search_people_task_4_go_to_shortcuts_module",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_file_map",
+			"target": "plans_2026_05_29_unified_search_people_task_5_people_results_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_file_map",
+			"target": "plans_2026_05_29_unified_search_people_task_6_wire_into_catalogsearchdialogroot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_file_map",
+			"target": "plans_2026_05_29_unified_search_people_task_7_retire_command_palette",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_file_map",
+			"target": "plans_2026_05_29_unified_search_people_task_8_qa_docs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_unified_k_search_people_discovery_implementation_plan",
+			"target": "plans_2026_05_29_unified_search_people_human_verification_gate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_unified_search_people_unified_k_search_people_discovery_implementation_plan",
+			"target": "plans_2026_05_29_unified_search_people_optional_v1_1_do_not_block_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-unified-search-people.md",
+			"source_location": "L142",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

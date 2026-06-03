@@ -1,0 +1,96 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_cinema_double_feature_suggestion_tsx",
+			"label": "double-feature-suggestion.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "cinema_double_feature_suggestion_doublefeaturepick",
+			"label": "DoubleFeaturePick",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "cinema_double_feature_suggestion_doublefeaturesuggestion",
+			"label": "DoubleFeatureSuggestion()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_double_feature_suggestion_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_double_feature_suggestion_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_double_feature_suggestion_tsx",
+			"target": "movie_movie_poster_movieposter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_double_feature_suggestion_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_brand_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_double_feature_suggestion_tsx",
+			"target": "lib_app_brand_app_member_label",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_double_feature_suggestion_tsx",
+			"target": "cinema_double_feature_suggestion_doublefeaturepick",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_cinema_double_feature_suggestion_tsx",
+			"target": "cinema_double_feature_suggestion_doublefeaturesuggestion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\cinema\\double-feature-suggestion.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

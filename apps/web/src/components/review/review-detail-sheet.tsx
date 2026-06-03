@@ -7,11 +7,13 @@ import { Loader2, MessageCircle, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { useReviewComposer } from "@/components/review/review-composer";
+import { ReviewDeleteConfirmDialog } from "@/components/review/review-delete-confirm-dialog";
 import { ReviewPinToProfileButton } from "@/components/review/review-pin-to-profile-button";
 import { VisibilityChip } from "@/components/review/visibility-chip";
 import { CommentsThread } from "@/components/social/comments-thread";
@@ -20,7 +22,7 @@ import { api } from "@/lib/api";
 import { APP_MEMBER_LABEL } from "@/lib/app-brand";
 import { authClient } from "@/lib/auth-client";
 import { formatDistanceToNowStrict } from "@/lib/format";
-import { formatLogRatingDisplay } from "@/lib/log-rating";
+import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { SHEET_PRIMARY_PILL_CLASS } from "@/lib/sheet-chrome";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
@@ -59,6 +61,7 @@ type ReviewDetailPayload = {
 		id: string;
 		userId: string;
 		movieId: number;
+		logId: string | null;
 		title: string | null;
 		body: string;
 		rating: number | null;
@@ -113,13 +116,17 @@ function authorLine(profile: ReviewDetailPayload["authorProfile"]): string {
  */
 export function ReviewDetailRoot() {
 	const pathname = usePathname();
+	const router = useRouter();
 	const reduceMotion = useReducedMotion();
 	const { isOpen, args, close } = useReviewDetail();
+	const openComposer = useReviewComposer((s) => s.open);
 	const { data: session } = authClient.useSession();
 	const [detail, setDetail] = useState<ReviewDetailPayload | null>(null);
 	const [comments, setComments] = useState<CommentRow[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [loadError, setLoadError] = useState<string | null>(null);
+	const [deleteOpen, setDeleteOpen] = useState(false);
+	const [deleting, setDeleting] = useState(false);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const reviewScrollKey = `${detail?.review.id ?? ""}-${comments.length}-${loading}-${loadError ?? ""}`;
 	const { showFooterFade } = useSheetScrollFades(
@@ -131,6 +138,40 @@ export function ReviewDetailRoot() {
 	const handleClose = useCallback(() => {
 		close();
 	}, [close]);
+
+	const handleEdit = useCallback(() => {
+		if (!detail?.review || !detail.movie) return;
+		openComposer({
+			reviewId: detail.review.id,
+			movieId: detail.review.movieId,
+			movieTitle: detail.movie.title,
+			posterUrl: detail.movie.posterPath,
+			diaryLogId: detail.review.logId ?? undefined,
+			diaryRatingStored: detail.review.rating,
+			initialTitle: detail.review.title,
+			initialBody: detail.review.body,
+			initialContainsSpoilers: detail.review.containsSpoilers,
+			initialVisibility: detail.review.visibility,
+		});
+		handleClose();
+	}, [detail, openComposer, handleClose]);
+
+	const handleConfirmDelete = useCallback(async () => {
+		if (!detail?.review) return;
+		setDeleting(true);
+		try {
+			await api.api.reviews({ id: detail.review.id }).delete();
+			toast.success("Review deleted");
+			setDeleteOpen(false);
+			handleClose();
+			router.refresh();
+		} catch (err) {
+			console.error(err);
+			toast.error("Couldn't delete — try again");
+		} finally {
+			setDeleting(false);
+		}
+	}, [detail, handleClose, router]);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -338,9 +379,10 @@ export function ReviewDetailRoot() {
 										</div>
 									) : null}
 
-									{displayRating != null ? (
+									{displayRating != null &&
+									formatStoredLogRatingDisplay(displayRating) != null ? (
 										<p className="mb-6 text-center font-medium text-2xl text-foreground tabular-nums">
-											{formatLogRatingDisplay(displayRating)}
+											{formatStoredLogRatingDisplay(displayRating)}
 											<span className="text-base text-muted-foreground">
 												/10
 											</span>
@@ -438,25 +480,59 @@ export function ReviewDetailRoot() {
 							/>
 						</div>
 
-						<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-end gap-3 md:inset-x-4 md:bottom-4">
-							{review ? (
-								<ReviewPinToProfileButton
-									reviewId={review.id}
-									reviewUserId={review.userId}
-								/>
-							) : null}
-							<DetailMotionButtonWrap>
+						<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
+							{isReviewOwner && review ? (
 								<Button
 									type="button"
-									variant="default"
+									variant="ghost"
 									size="pill"
-									className={SHEET_PRIMARY_PILL_CLASS}
-									onClick={handleClose}
+									className="h-auto min-h-10 px-3 font-medium text-destructive"
+									onClick={() => setDeleteOpen(true)}
 								>
-									Done
+									Delete
 								</Button>
-							</DetailMotionButtonWrap>
+							) : (
+								<span aria-hidden className="min-w-0 shrink" />
+							)}
+							<div className="flex items-center gap-3">
+								{review ? (
+									<ReviewPinToProfileButton
+										reviewId={review.id}
+										reviewUserId={review.userId}
+									/>
+								) : null}
+								{isReviewOwner && review ? (
+									<DetailMotionButtonWrap>
+										<Button
+											type="button"
+											variant="secondary"
+											size="pill"
+											className="h-auto min-h-10 bg-background px-5 py-2.5"
+											onClick={handleEdit}
+										>
+											Edit
+										</Button>
+									</DetailMotionButtonWrap>
+								) : null}
+								<DetailMotionButtonWrap>
+									<Button
+										type="button"
+										variant="default"
+										size="pill"
+										className={SHEET_PRIMARY_PILL_CLASS}
+										onClick={handleClose}
+									>
+										Done
+									</Button>
+								</DetailMotionButtonWrap>
+							</div>
 						</footer>
+						<ReviewDeleteConfirmDialog
+							open={deleteOpen}
+							deleting={deleting}
+							onCancel={() => setDeleteOpen(false)}
+							onConfirm={() => void handleConfirmDelete()}
+						/>
 					</motion.div>
 				</motion.div>
 			) : null}

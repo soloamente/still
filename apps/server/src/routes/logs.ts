@@ -25,6 +25,7 @@ import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
+import { syncLinkedReviewRatingFromLog } from "../lib/sync-linked-review-rating";
 import { ensureTvCached } from "../lib/tv-cache";
 import { clearTvWatchIfNoDiaryLogsForShow } from "../lib/tv-watch-log-sync";
 import {
@@ -314,6 +315,10 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				void backfillWatchStreakFromLogs(user.id).catch((err) => {
 					console.error("[logs] watch streak backfill (patch) failed", err);
 				});
+			}
+
+			if (updated && body.rating !== undefined) {
+				await syncLinkedReviewRatingFromLog(updated.id, updated.rating ?? null);
 			}
 
 			return updated;

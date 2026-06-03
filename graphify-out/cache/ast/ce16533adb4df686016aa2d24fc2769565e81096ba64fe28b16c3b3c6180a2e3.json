@@ -1,0 +1,215 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"label": "home-anime-season.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_anime_season_parsehomeanimeseason",
+			"label": "parseHomeAnimeSeason()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "lib_home_anime_season_animeseasonrollingairdatefloorutc",
+			"label": "animeSeasonRollingAirDateFloorUtc()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_home_anime_season_ishomeanimeseasonlobby",
+			"label": "isHomeAnimeSeasonLobby()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_home_anime_season_animeseasontvdiscoverparams",
+			"label": "animeSeasonTvDiscoverParams()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L39"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "lib_home_browse_surface_homebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "lib_home_catalog_run_tv_ongoing_discover_status",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "lib_home_catalog_run_tvdiscoversortbyforlobbysort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_curated_tags_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "lib_search_curated_tags_curatedtagbyslug",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "lib_home_anime_season_parsehomeanimeseason",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "lib_home_anime_season_animeseasonrollingairdatefloorutc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "lib_home_anime_season_ishomeanimeseasonlobby",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"target": "lib_home_anime_season_animeseasontvdiscoverparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_anime_season_animeseasontvdiscoverparams",
+			"target": "lib_home_anime_season_animeseasonrollingairdatefloorutc",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_anime_season_parsehomeanimeseason",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_home_anime_season_parsehomeanimeseason",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_home_anime_season_parsehomeanimeseason",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_home_anime_season_animeseasonrollingairdatefloorutc",
+			"callee": "setUTCDate",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_home_anime_season_animeseasonrollingairdatefloorutc",
+			"callee": "getUTCDate",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_home_anime_season_animeseasonrollingairdatefloorutc",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_home_anime_season_animeseasonrollingairdatefloorutc",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_home_anime_season_animeseasontvdiscoverparams",
+			"callee": "tvDiscoverSortByForLobbySort",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-anime-season.ts",
+			"source_location": "L42"
+		}
+	]
+}

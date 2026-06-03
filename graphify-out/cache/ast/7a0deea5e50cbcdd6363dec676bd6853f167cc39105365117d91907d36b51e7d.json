@@ -1,0 +1,70 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_catalogue_tag_search_plan_ts",
+			"label": "catalogue-tag-search-plan.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-tag-search-plan.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_catalogue_tag_search_plan_cataloguetagdiscoveropts",
+			"label": "CatalogueTagDiscoverOpts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-tag-search-plan.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_catalogue_tag_search_plan_cataloguetagsearchplan",
+			"label": "CatalogueTagSearchPlan",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-tag-search-plan.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_catalogue_tag_search_plan_plancataloguetagsearch",
+			"label": "planCatalogueTagSearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-tag-search-plan.ts",
+			"source_location": "L28"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalogue_tag_search_plan_ts",
+			"target": "lib_catalogue_tag_search_plan_cataloguetagdiscoveropts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-tag-search-plan.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalogue_tag_search_plan_ts",
+			"target": "lib_catalogue_tag_search_plan_cataloguetagsearchplan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-tag-search-plan.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_catalogue_tag_search_plan_ts",
+			"target": "lib_catalogue_tag_search_plan_plancataloguetagsearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-tag-search-plan.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_catalogue_tag_search_plan_plancataloguetagsearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-tag-search-plan.ts",
+			"source_location": "L35"
+		}
+	]
+}

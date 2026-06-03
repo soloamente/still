@@ -1,0 +1,268 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"label": "profile-filmography-query.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_filmography_query_filmographymedia",
+			"label": "FilmographyMedia",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_profile_filmography_query_filmographyorder",
+			"label": "FilmographyOrder",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_profile_filmography_query_filmographyvenue",
+			"label": "FilmographyVenue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_profile_filmography_query_parsefilmographymedia",
+			"label": "parseFilmographyMedia()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_profile_filmography_query_parsefilmographyorder",
+			"label": "parseFilmographyOrder()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_profile_filmography_query_parsefilmographyvenue",
+			"label": "parseFilmographyVenue()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "lib_profile_filmography_query_parsefilmographyfavorites",
+			"label": "parseFilmographyFavorites()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "lib_profile_filmography_query_parsefilmographypage",
+			"label": "parseFilmographyPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L39"
+		},
+		{
+			"id": "lib_profile_filmography_query_parsefilmographylimit",
+			"label": "parseFilmographyLimit()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L45"
+		},
+		{
+			"id": "lib_profile_filmography_query_filmographyoffset",
+			"label": "filmographyOffset()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L51"
+		},
+		{
+			"id": "lib_profile_filmography_query_filmographytotalpages",
+			"label": "filmographyTotalPages()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L55"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_filmographymedia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_filmographyorder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_filmographyvenue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_parsefilmographymedia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_parsefilmographyorder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_parsefilmographyvenue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_parsefilmographyfavorites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_parsefilmographypage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_parsefilmographylimit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_filmographyoffset",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"target": "lib_profile_filmography_query_filmographytotalpages",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographyfavorites",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographyfavorites",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographypage",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographypage",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographypage",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographylimit",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographylimit",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographylimit",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_parsefilmographylimit",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_filmographyoffset",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_profile_filmography_query_filmographytotalpages",
+			"callee": "ceil",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts",
+			"source_location": "L57"
+		}
+	]
+}

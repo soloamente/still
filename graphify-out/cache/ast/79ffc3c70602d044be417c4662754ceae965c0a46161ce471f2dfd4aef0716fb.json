@@ -1,0 +1,303 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_03_profile_filmography_pagination_design_md",
+			"label": "2026-06-03-profile-filmography-pagination-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"label": "Profile filmography \u2014 server pagination + infinite scroll",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_goals",
+			"label": "Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L20"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_non_goals",
+			"label": "Non-goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_background_current_behaviour",
+			"label": "Background / current behaviour",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"label": "Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_1_new_endpoint_get_api_profiles_handle_filmography",
+			"label": "1. New endpoint \u2014 `GET /api/profiles/:handle/filmography`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_codeblock_1",
+			"label": "code:sql (SELECT * FROM ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_codeblock_2",
+			"label": "code:jsonc ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_2_profile_payload_swap_get_api_profiles_handle",
+			"label": "2. Profile payload swap \u2014 `GET /api/profiles/:handle`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L116"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_codeblock_3",
+			"label": "code:jsonc (\"filmographyCounts\": { \"movies\": 0, \"tv\": 0, \"likedMovies\": )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_3_profile_page_page_tsx",
+			"label": "3. Profile page (`page.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_4_shell_panels_rewire",
+			"label": "4. Shell + panels rewire",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_5_client_server_fetchers",
+			"label": "5. Client + server fetchers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_6_pure_helpers_tests",
+			"label": "6. Pure helpers + tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L173"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_7_verification",
+			"label": "7. Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_files_touched_anticipated",
+			"label": "Files touched (anticipated)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "specs_2026_06_03_profile_filmography_pagination_design_risks_trade_offs",
+			"label": "Risks / trade-offs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L213"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_03_profile_filmography_pagination_design_md",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_non_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_background_current_behaviour",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_1_new_endpoint_get_api_profiles_handle_filmography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_1_new_endpoint_get_api_profiles_handle_filmography",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_1_new_endpoint_get_api_profiles_handle_filmography",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_2_profile_payload_swap_get_api_profiles_handle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_2_profile_payload_swap_get_api_profiles_handle",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_3_profile_page_page_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_4_shell_panels_rewire",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_5_client_server_fetchers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_6_pure_helpers_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L173",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_design",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_7_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_files_touched_anticipated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_profile_filmography_pagination_design_profile_filmography_server_pagination_infinite_scroll",
+			"target": "specs_2026_06_03_profile_filmography_pagination_design_risks_trade_offs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-profile-filmography-pagination-design.md",
+			"source_location": "L213",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,64 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_collaborators_byline_tsx",
+			"label": "list-detail-collaborators-byline.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-collaborators-byline.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "list_list_detail_collaborators_byline_listcollaboratorsummary",
+			"label": "ListCollaboratorSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-collaborators-byline.tsx",
+			"source_location": "L3"
+		},
+		{
+			"id": "list_list_detail_collaborators_byline_listdetailcollaboratorsbyline",
+			"label": "ListDetailCollaboratorsByline()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-collaborators-byline.tsx",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_collaborators_byline_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-collaborators-byline.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_collaborators_byline_tsx",
+			"target": "list_list_detail_collaborators_byline_listcollaboratorsummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-collaborators-byline.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_list_list_detail_collaborators_byline_tsx",
+			"target": "list_list_detail_collaborators_byline_listdetailcollaboratorsbyline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-collaborators-byline.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "list_list_detail_collaborators_byline_listdetailcollaboratorsbyline",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-collaborators-byline.tsx",
+			"source_location": "L43"
+		}
+	]
+}

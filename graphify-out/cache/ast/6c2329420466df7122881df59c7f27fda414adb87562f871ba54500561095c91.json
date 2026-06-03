@@ -1,0 +1,38 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_review_notification_href_ts",
+			"label": "review-notification-href.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-notification-href.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_review_notification_href_moviereviewnotificationhref",
+			"label": "movieReviewNotificationHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-notification-href.ts",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_notification_href_ts",
+			"target": "lib_review_notification_href_moviereviewnotificationhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-notification-href.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_review_notification_href_moviereviewnotificationhref",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-notification-href.ts",
+			"source_location": "L6"
+		}
+	]
+}

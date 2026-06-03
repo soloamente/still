@@ -1,0 +1,527 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_29_home_browse_instant_navigation_md",
+			"label": "2026-05-29-home-browse-instant-navigation.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_home_browse_instant_navigation_implementation_plan",
+			"label": "Home Browse Instant Navigation \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_wave_a_browse_pill_body_gate",
+			"label": "Wave A \u2014 Browse pill + body gate",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_1_homebrowsesurfaceprovider",
+			"label": "Task 1: `HomeBrowseSurfaceProvider`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_1",
+			"label": "code:ts (// home-browse-surface-nav.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_2",
+			"label": "code:ts (// home-browse-surface-nav.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L96"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_3",
+			"label": "code:tsx (// home-browse-surface-context.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_2_homelobbynavigationroot",
+			"label": "Task 2: `HomeLobbyNavigationRoot`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L217"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_4",
+			"label": "code:tsx (// home-lobby-navigation-root.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L225"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_5",
+			"label": "code:tsx (// page.tsx (inside return))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L243"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_3_homelobbybodygate_communitylobbyskeleton",
+			"label": "Task 3: `HomeLobbyBodyGate` + `CommunityLobbySkeleton`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L271"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_6",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L281"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_7",
+			"label": "code:tsx (<HomeLobbyBodyGate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L330"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_4_migrate_homestickychrome_browse_tabs",
+			"label": "Task 4: Migrate `HomeStickyChrome` browse tabs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L344"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_8",
+			"label": "code:tsx (// In selectBrowseSurface when !isHomeLobby:)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L355"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_5_community_prefetch_on_hover_idle",
+			"label": "Task 5: Community prefetch on hover + idle",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L367"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_9",
+			"label": "code:tsx (const router = useRouter();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L375"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_10",
+			"label": "code:tsx (useEffect(() => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L394"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_6_wave_a_qa_gate",
+			"label": "Task 6: Wave A QA gate",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L406"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_wave_b_community_core_deferred_leaderboards",
+			"label": "Wave B \u2014 Community core + deferred leaderboards",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L414"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_7_fetchhomecommunitycore_server",
+			"label": "Task 7: `fetchHomeCommunityCore` (server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L416"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_11",
+			"label": "code:ts (export async function fetchHomeCommunityCore(input: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L424"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_8_homecommunityrscpayload_suspense",
+			"label": "Task 8: `HomeCommunityRscPayload` + Suspense",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L443"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_12",
+			"label": "code:tsx (// home-community-rsc-payload.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L451"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_13",
+			"label": "code:tsx (<Suspense fallback={<CommunityLobbySkeleton />}>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L475"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_9_client_leaderboard_background_fill",
+			"label": "Task 9: Client leaderboard background fill",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L491"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_14",
+			"label": "code:ts (const PERIODS = [\"week\", \"month\", \"year\", \"all\"] as const;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L499"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_codeblock_15",
+			"label": "code:tsx (useEffect(() => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L520"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_10_error_surfaces_router_refresh",
+			"label": "Task 10: Error surfaces + `router.refresh`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L542"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_task_11_wave_b_qa_closure",
+			"label": "Task 11: Wave B QA + closure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L556"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_spec_coverage_self_review",
+			"label": "Spec coverage (self-review)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L566"
+		},
+		{
+			"id": "plans_2026_05_29_home_browse_instant_navigation_human_verification_full",
+			"label": "Human verification (full)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L585"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_29_home_browse_instant_navigation_md",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_home_browse_instant_navigation_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_home_browse_instant_navigation_implementation_plan",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_home_browse_instant_navigation_implementation_plan",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_wave_a_browse_pill_body_gate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_a_browse_pill_body_gate",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_1_homebrowsesurfaceprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_1_homebrowsesurfaceprovider",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_1_homebrowsesurfaceprovider",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_1_homebrowsesurfaceprovider",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_a_browse_pill_body_gate",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_2_homelobbynavigationroot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_2_homelobbynavigationroot",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L225",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_2_homelobbynavigationroot",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_a_browse_pill_body_gate",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_3_homelobbybodygate_communitylobbyskeleton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L271",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_3_homelobbybodygate_communitylobbyskeleton",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L281",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_3_homelobbybodygate_communitylobbyskeleton",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L330",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_a_browse_pill_body_gate",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_4_migrate_homestickychrome_browse_tabs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L344",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_4_migrate_homestickychrome_browse_tabs",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L355",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_a_browse_pill_body_gate",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_5_community_prefetch_on_hover_idle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L367",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_5_community_prefetch_on_hover_idle",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L375",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_5_community_prefetch_on_hover_idle",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L394",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_a_browse_pill_body_gate",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_6_wave_a_qa_gate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L406",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_home_browse_instant_navigation_implementation_plan",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_wave_b_community_core_deferred_leaderboards",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L414",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_b_community_core_deferred_leaderboards",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_7_fetchhomecommunitycore_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L416",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_7_fetchhomecommunitycore_server",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L424",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_b_community_core_deferred_leaderboards",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_8_homecommunityrscpayload_suspense",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L443",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_8_homecommunityrscpayload_suspense",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L451",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_8_homecommunityrscpayload_suspense",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L475",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_b_community_core_deferred_leaderboards",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_9_client_leaderboard_background_fill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L491",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_9_client_leaderboard_background_fill",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L499",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_task_9_client_leaderboard_background_fill",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L520",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_b_community_core_deferred_leaderboards",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_10_error_surfaces_router_refresh",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L542",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_wave_b_community_core_deferred_leaderboards",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_task_11_wave_b_qa_closure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L556",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_home_browse_instant_navigation_implementation_plan",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_spec_coverage_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L566",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_home_browse_instant_navigation_home_browse_instant_navigation_implementation_plan",
+			"target": "plans_2026_05_29_home_browse_instant_navigation_human_verification_full",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-home-browse-instant-navigation.md",
+			"source_location": "L585",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

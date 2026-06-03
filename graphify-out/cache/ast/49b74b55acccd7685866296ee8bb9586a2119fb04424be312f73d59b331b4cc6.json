@@ -1,0 +1,351 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_unified_search_people_design_md",
+			"label": "2026-05-29-unified-search-people-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"label": "Unified \u2318K Search + People Discovery",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_confirmed_decisions_human",
+			"label": "Confirmed decisions (human)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_goals",
+			"label": "Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_non_goals_v1",
+			"label": "Non-goals (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_component_tree_target",
+			"label": "Component tree (target)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_codeblock_1",
+			"label": "code:block1 (AppShell)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_api_get_api_profiles_search",
+			"label": "API: `GET /api/profiles/search`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_codeblock_2",
+			"label": "code:ts ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_web_fetch_layer",
+			"label": "Web fetch layer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_people_ui",
+			"label": "People UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L124"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_dialog_orchestration_home_sticky_search_tsx",
+			"label": "Dialog orchestration (`home-sticky-search.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L144"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_keyboard",
+			"label": "Keyboard",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_search_redirect",
+			"label": "`/search` redirect",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_friends_future_note",
+			"label": "Friends (future note)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L168"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_risks_mitigations",
+			"label": "Risks & mitigations",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L172"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_files_expected_touch",
+			"label": "Files (expected touch)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "specs_2026_05_29_unified_search_people_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L200"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_unified_search_people_design_md",
+			"target": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_confirmed_decisions_human",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_non_goals_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_architecture",
+			"target": "specs_2026_05_29_unified_search_people_design_component_tree_target",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_component_tree_target",
+			"target": "specs_2026_05_29_unified_search_people_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_architecture",
+			"target": "specs_2026_05_29_unified_search_people_design_api_get_api_profiles_search",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_api_get_api_profiles_search",
+			"target": "specs_2026_05_29_unified_search_people_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_architecture",
+			"target": "specs_2026_05_29_unified_search_people_design_web_fetch_layer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_architecture",
+			"target": "specs_2026_05_29_unified_search_people_design_people_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_architecture",
+			"target": "specs_2026_05_29_unified_search_people_design_dialog_orchestration_home_sticky_search_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L144",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_architecture",
+			"target": "specs_2026_05_29_unified_search_people_design_keyboard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_architecture",
+			"target": "specs_2026_05_29_unified_search_people_design_search_redirect",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_friends_future_note",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_risks_mitigations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L172",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_files_expected_touch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_unified_search_people_design_unified_k_search_people_discovery",
+			"target": "specs_2026_05_29_unified_search_people_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-unified-search-people-design.md",
+			"source_location": "L200",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

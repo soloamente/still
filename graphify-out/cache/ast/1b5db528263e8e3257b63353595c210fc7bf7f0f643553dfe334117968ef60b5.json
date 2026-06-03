@@ -1,0 +1,117 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_tv_mal_enrichment_ts",
+			"label": "tv-mal-enrichment.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tv_mal_enrichment_tvmalenrichment",
+			"label": "TvMalEnrichment",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"label": "formatTvMalEnrichmentLine()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_mal_enrichment_ts",
+			"target": "lib_tv_mal_enrichment_tvmalenrichment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tv_mal_enrichment_ts",
+			"target": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "toFixed",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_tv_mal_enrichment_formattvmalenrichmentline",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-mal-enrichment.ts",
+			"source_location": "L32"
+		}
+	]
+}

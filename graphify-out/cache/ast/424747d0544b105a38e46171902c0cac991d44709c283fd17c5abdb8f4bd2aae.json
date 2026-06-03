@@ -1,0 +1,431 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_03_streak_pro_profile_fixes_design_md",
+			"label": "2026-06-03-streak-pro-profile-fixes-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_streak_bug_pro_theme_picker_bug_and_profile_about_section_redesign",
+			"label": "Streak bug, Pro theme picker bug, and Profile about section redesign",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_1_watch_streak_stale_on_log_edit_delete",
+			"label": "Fix 1 \u2014 Watch streak stale on log edit / delete",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L16"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_root_cause",
+			"label": "Root cause",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_fix",
+			"label": "Fix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_codeblock_1",
+			"label": "code:block1 (// After the db.update().returning() succeeds:)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_codeblock_2",
+			"label": "code:block2 (void backfillWatchStreakFromLogs(user.id).catch(...))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_files_changed",
+			"label": "Files changed",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_2_pro_theme_picker_intermittent_failure",
+			"label": "Fix 2 \u2014 Pro theme picker intermittent failure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L69"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_root_cause_71",
+			"label": "Root cause",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_83",
+			"label": "Fix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_codeblock_3",
+			"label": "code:ts (import { cache } from \"react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_files_changed_116",
+			"label": "Files changed",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L116"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_testing_122",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_3_profile_about_section_redesign",
+			"label": "Fix 3 \u2014 Profile about section redesign",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_current_layout_problem",
+			"label": "Current layout (problem)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_new_layout",
+			"label": "New layout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L144"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_codeblock_4",
+			"label": "code:block4 (display name)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_4_cell_stats_grid",
+			"label": "4-cell stats grid",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L158"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_collapsible_more_panel",
+			"label": "Collapsible \"more\" panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L176"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_pinned_reviews",
+			"label": "Pinned reviews",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L192"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_component_changes",
+			"label": "Component changes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L196"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_files_changed_215",
+			"label": "Files changed",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L215"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_testing_223",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L223"
+		},
+		{
+			"id": "specs_2026_06_03_streak_pro_profile_fixes_design_build_order",
+			"label": "Build order",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L235"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_03_streak_pro_profile_fixes_design_md",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_streak_bug_pro_theme_picker_bug_and_profile_about_section_redesign",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_streak_bug_pro_theme_picker_bug_and_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_streak_bug_pro_theme_picker_bug_and_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_1_watch_streak_stale_on_log_edit_delete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_1_watch_streak_stale_on_log_edit_delete",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_root_cause",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_1_watch_streak_stale_on_log_edit_delete",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_1_watch_streak_stale_on_log_edit_delete",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_files_changed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_1_watch_streak_stale_on_log_edit_delete",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_streak_bug_pro_theme_picker_bug_and_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_2_pro_theme_picker_intermittent_failure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_2_pro_theme_picker_intermittent_failure",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_root_cause_71",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_2_pro_theme_picker_intermittent_failure",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_83",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_83",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_2_pro_theme_picker_intermittent_failure",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_files_changed_116",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_2_pro_theme_picker_intermittent_failure",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_testing_122",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_streak_bug_pro_theme_picker_bug_and_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_3_profile_about_section_redesign",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_3_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_current_layout_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_3_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_new_layout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L144",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_new_layout",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_new_layout",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_4_cell_stats_grid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_new_layout",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_collapsible_more_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L176",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_new_layout",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_pinned_reviews",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_3_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_component_changes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L196",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_3_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_files_changed_215",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_fix_3_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_testing_223",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L223",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_streak_pro_profile_fixes_design_streak_bug_pro_theme_picker_bug_and_profile_about_section_redesign",
+			"target": "specs_2026_06_03_streak_pro_profile_fixes_design_build_order",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-streak-pro-profile-fixes-design.md",
+			"source_location": "L235",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,255 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_01_review_log_visibility_design_md",
+			"label": "2026-06-01-review-log-visibility-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"label": "Review & Diary Log Visibility",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_visibility_levels",
+			"label": "Visibility levels",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_data_model",
+			"label": "Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_log_review_link",
+			"label": "Log \u2194 review link",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_account_default",
+			"label": "Account default",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_access_predicate_single_source_of_truth",
+			"label": "Access predicate (single source of truth)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_codeblock_1",
+			"label": "code:block1 (vis = 'public')",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L70"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_the_attributed_aggregate_rule",
+			"label": "The attributed/aggregate rule",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L84"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_special_cases_decided",
+			"label": "Special cases (decided)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_ui",
+			"label": "UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_api_changes",
+			"label": "API changes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_migration_rollout",
+			"label": "Migration & rollout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L165"
+		},
+		{
+			"id": "specs_2026_06_01_review_log_visibility_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L175"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_01_review_log_visibility_design_md",
+			"target": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_visibility_levels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_data_model",
+			"target": "specs_2026_06_01_review_log_visibility_design_log_review_link",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_data_model",
+			"target": "specs_2026_06_01_review_log_visibility_design_account_default",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_access_predicate_single_source_of_truth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_access_predicate_single_source_of_truth",
+			"target": "specs_2026_06_01_review_log_visibility_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_the_attributed_aggregate_rule",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_the_attributed_aggregate_rule",
+			"target": "specs_2026_06_01_review_log_visibility_design_special_cases_decided",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_api_changes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_migration_rollout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L165",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_01_review_log_visibility_design_review_diary_log_visibility",
+			"target": "specs_2026_06_01_review_log_visibility_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-01-review-log-visibility-design.md",
+			"source_location": "L175",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

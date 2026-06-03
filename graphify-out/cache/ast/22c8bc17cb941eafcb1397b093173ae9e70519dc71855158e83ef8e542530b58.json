@@ -1,0 +1,124 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_search_go_to_shortcuts_ts",
+			"label": "search-go-to-shortcuts.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_search_go_to_shortcuts_searchgotoshortcut",
+			"label": "SearchGoToShortcut",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_search_go_to_shortcuts_search_go_to_shortcuts",
+			"label": "SEARCH_GO_TO_SHORTCUTS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_search_go_to_shortcuts_filtergotoshortcuts",
+			"label": "filterGoToShortcuts()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L56"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_go_to_shortcuts_ts",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_go_to_shortcuts_ts",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_go_to_shortcuts_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_go_to_shortcuts_ts",
+			"target": "lib_home_lobby_url_buildhomelobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_go_to_shortcuts_ts",
+			"target": "lib_search_go_to_shortcuts_searchgotoshortcut",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_go_to_shortcuts_ts",
+			"target": "lib_search_go_to_shortcuts_search_go_to_shortcuts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_go_to_shortcuts_ts",
+			"target": "lib_search_go_to_shortcuts_filtergotoshortcuts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L56",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_search_go_to_shortcuts_filtergotoshortcuts",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_search_go_to_shortcuts_filtergotoshortcuts",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_search_go_to_shortcuts_filtergotoshortcuts",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-go-to-shortcuts.ts",
+			"source_location": "L59"
+		}
+	]
+}

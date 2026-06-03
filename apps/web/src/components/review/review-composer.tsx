@@ -32,9 +32,9 @@ import { api } from "@/lib/api";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	clampLogRatingDisplay,
-	diaryStoredToReviewApiRating,
 	formatStoredLogRatingDisplay,
 	logRatingToDisplay,
+	logRatingToStored,
 } from "@/lib/log-rating";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
@@ -53,9 +53,13 @@ type ComposerArgs = {
 	/** TMDb or Sense community average on 0–10 for the slider ghost fill. */
 	averageRating?: number | null;
 	reviewId?: string;
-	/** Latest diary log — when rated, review inherits score (no second slider). */
+	/** Latest diary log — when set, review score follows log (no slider). */
 	diaryLogId?: string;
 	diaryRatingStored?: number | null;
+	initialTitle?: string | null;
+	initialBody?: string;
+	initialContainsSpoilers?: boolean;
+	initialVisibility?: ContentVisibility;
 };
 
 type Store = {
@@ -77,13 +81,6 @@ function posterSrcFromPath(path: string | null | undefined): string | null {
 	if (path.startsWith("http")) return path;
 	const fragment = path.startsWith("/") ? path : `/${path}`;
 	return `https://image.tmdb.org/t/p/w342${fragment}`;
-}
-
-/** Integer 1–10 for the reviews API from the log-style 0–10 slider. */
-function reviewRatingFromDisplay(display: number): number | undefined {
-	const rounded = Math.round(clampLogRatingDisplay(display));
-	if (rounded < 1) return undefined;
-	return Math.min(10, rounded);
 }
 
 /**
@@ -129,6 +126,13 @@ export function ReviewComposerRoot() {
 		setAverageRating(args.averageRating ?? null);
 		const fromDiary = logRatingToDisplay(args.diaryRatingStored);
 		setRatingDisplay(fromDiary ?? DEFAULT_RATING);
+		if (args.reviewId) {
+			setTitle(args.initialTitle ?? "");
+			setBody(args.initialBody ?? "");
+			setContainsSpoilers(args.initialContainsSpoilers ?? false);
+			setVisibility(args.initialVisibility ?? "public");
+			setVisibilityTouched(true);
+		}
 	}, [isOpen, args]);
 
 	const diaryScoreLabel = useMemo(() => {
@@ -136,7 +140,8 @@ export function ReviewComposerRoot() {
 		return formatStoredLogRatingDisplay(args.diaryRatingStored);
 	}, [args]);
 
-	const usesDiaryRating = diaryScoreLabel != null;
+	const usesDiaryRating = Boolean(args?.diaryLogId);
+	const isEdit = Boolean(args?.reviewId);
 
 	const composeScrollKey = `${usesDiaryRating}-${posterUrl ?? ""}-${body.length}`;
 	const { showFooterFade } = useSheetScrollFades(
@@ -198,23 +203,39 @@ export function ReviewComposerRoot() {
 		if (!canPublish || !args || step !== "spoilers") return;
 		setSaving(true);
 		try {
-			const rating = usesDiaryRating
-				? diaryStoredToReviewApiRating(args.diaryRatingStored)
-				: reviewRatingFromDisplay(ratingDisplay);
-			await api.api.reviews.post({
-				movieId: args.movieId,
-				logId: args.diaryLogId,
+			const patchBody = {
 				title: title.trim() || undefined,
 				body: body.trim(),
-				rating,
 				containsSpoilers,
 				...(visibilityTouched ? { visibility } : {}),
-			});
-			toast.success("Review published");
+				...(!usesDiaryRating
+					? { rating: logRatingToStored(ratingDisplay) ?? undefined }
+					: {}),
+			};
+			if (isEdit && args.reviewId) {
+				await api.api.reviews({ id: args.reviewId }).patch(patchBody);
+				toast.success("Review updated");
+			} else {
+				const rating = usesDiaryRating
+					? (args.diaryRatingStored ?? undefined)
+					: (logRatingToStored(ratingDisplay) ?? undefined);
+				await api.api.reviews.post({
+					movieId: args.movieId,
+					logId: args.diaryLogId,
+					title: title.trim() || undefined,
+					body: body.trim(),
+					rating,
+					containsSpoilers,
+					...(visibilityTouched ? { visibility } : {}),
+				});
+				toast.success("Review published");
+			}
 			handleClose();
 		} catch (err) {
 			console.error(err);
-			toast.error("Couldn't publish — try again");
+			toast.error(
+				isEdit ? "Couldn't save — try again" : "Couldn't publish — try again",
+			);
 		} finally {
 			setSaving(false);
 		}
@@ -298,7 +319,7 @@ export function ReviewComposerRoot() {
 												id="review-composer-title"
 												className="mb-2 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
 											>
-												Share your review
+												{isEdit ? "Edit your review" : "Share your review"}
 											</h2>
 											<p
 												className={cn(
@@ -309,11 +330,11 @@ export function ReviewComposerRoot() {
 												{args.movieTitle}
 											</p>
 
-											{usesDiaryRating ? (
+											{usesDiaryRating && diaryScoreLabel ? (
 												<p className="mb-6 text-center font-semibold text-2xl text-foreground tabular-nums tracking-tight">
 													{diaryScoreLabel}
 												</p>
-											) : (
+											) : usesDiaryRating ? null : (
 												<LogRatingSlider
 													value={clampLogRatingDisplay(ratingDisplay)}
 													onChange={setRatingDisplay}
@@ -480,7 +501,13 @@ export function ReviewComposerRoot() {
 									{saving ? (
 										<Loader2 className="size-3.5 animate-spin" aria-hidden />
 									) : null}
-									{step === "spoilers" ? "Publish now" : "Publish"}
+									{step === "spoilers"
+										? isEdit
+											? "Save changes"
+											: "Publish now"
+										: isEdit
+											? "Continue"
+											: "Publish"}
 								</Button>
 							</DetailMotionButtonWrap>
 						</footer>

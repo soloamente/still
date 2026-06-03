@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_cmdk_tag_search_design_md",
+			"label": "2026-05-29-cmdk-tag-search-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"label": "\u2318K structured tag search \u2014 strict AND + Films/TV fix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_locked_behavior",
+			"label": "Locked behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_tag_text_strict_and",
+			"label": "Tag + text (strict AND)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_listing_kind_films_vs_tv",
+			"label": "Listing kind (Films vs TV)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_codeblock_1",
+			"label": "code:block1 (effectiveListingKind =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_anime_chip",
+			"label": "Anime chip",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_plain_search_no_tags",
+			"label": "Plain search (no tags)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L69"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_codeblock_2",
+			"label": "code:block2 (HomeStickySearch)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_server",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_client",
+			"label": "Client",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_curated_anime_rules_unchanged_ids",
+			"label": "Curated Anime rules (unchanged ids)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_error_handling_empty_states",
+			"label": "Error handling & empty states",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "specs_2026_05_29_cmdk_tag_search_design_implementation_note",
+			"label": "Implementation note",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L155"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_cmdk_tag_search_design_md",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_locked_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_locked_behavior",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_tag_text_strict_and",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_locked_behavior",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_listing_kind_films_vs_tv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_listing_kind_films_vs_tv",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_locked_behavior",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_anime_chip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_locked_behavior",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_plain_search_no_tags",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_architecture",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_architecture",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_architecture",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_client",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_curated_anime_rules_unchanged_ids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_error_handling_empty_states",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_cmdk_tag_search_design_k_structured_tag_search_strict_and_films_tv_fix",
+			"target": "specs_2026_05_29_cmdk_tag_search_design_implementation_note",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-cmdk-tag-search-design.md",
+			"source_location": "L155",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

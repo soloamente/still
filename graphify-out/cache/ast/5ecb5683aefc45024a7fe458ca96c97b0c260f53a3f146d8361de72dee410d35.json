@@ -1,0 +1,1183 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_sense_media_platform_strategy_md",
+			"label": "sense-media-platform-strategy.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"label": "Media Platform \u2014 Product Strategy Document",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_a_retention_first_architecture_for_a_social_media_tracking_platform",
+			"label": "A retention-first architecture for a social media tracking platform",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L2"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_preface_the_real_problem_you_re_solving",
+			"label": "Preface: The Real Problem You're Solving",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_1_retention_first_product_strategy",
+			"label": "Section 1: Retention-First Product Strategy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_retention_stack_from_weakest_to_strongest",
+			"label": "The Retention Stack (from weakest to strongest)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L16"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_habit_loop_architecture",
+			"label": "The Habit Loop Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_retention_metrics_you_must_instrument_from_day_one",
+			"label": "Retention Metrics You Must Instrument From Day One",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_2_viral_and_social_growth_loops",
+			"label": "Section 2: Viral and Social Growth Loops",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_loop_1_the_taste_share_loop_primary_viral_mechanism",
+			"label": "Loop 1 \u2014 The Taste Share Loop (primary viral mechanism)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_loop_2_the_rivalry_loop_retention_referral",
+			"label": "Loop 2 \u2014 The Rivalry Loop (retention + referral)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_loop_3_the_list_discovery_loop_content_led_growth",
+			"label": "Loop 3 \u2014 The List Discovery Loop (content-led growth)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_loop_4_the_activity_feed_pull_loop",
+			"label": "Loop 4 \u2014 The Activity Feed Pull Loop",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_3_depth_engagement_without_shallow_dopamine",
+			"label": "Section 3: Depth Engagement Without Shallow Dopamine",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_dopamine_trap_taxonomy",
+			"label": "The Dopamine Trap Taxonomy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L91"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_concrete_design_principles_for_depth",
+			"label": "Concrete Design Principles for Depth",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_4_identity_and_emotional_attachment_systems",
+			"label": "Section 4: Identity and Emotional Attachment Systems",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_identity_stack",
+			"label": "The Identity Stack",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L124"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_emotional_attachment_triggers",
+			"label": "Emotional Attachment Triggers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_profile_prestige_architecture",
+			"label": "Profile Prestige Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_5_network_effects_and_community_mechanics",
+			"label": "Section 5: Network Effects and Community Mechanics",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L162"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_network_effect_types",
+			"label": "Network Effect Types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_designing_for_power_users_first",
+			"label": "Designing for Power Users First",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L172"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_community_mechanics",
+			"label": "Community Mechanics",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L185"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_6_what_would_realistically_make_users_leave_existing_platforms",
+			"label": "Section 6: What Would Realistically Make Users Leave Existing Platforms",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L197"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_letterboxd_s_real_weaknesses_not_the_obvious_ones",
+			"label": "Letterboxd's Real Weaknesses (not the obvious ones)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L199"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_migration_triggers",
+			"label": "Migration Triggers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L211"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_7_the_most_dangerous_weaknesses_in_your_current_thinking",
+			"label": "Section 7: The Most Dangerous Weaknesses in Your Current Thinking",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L223"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_weakness_1_achievements_without_meaning",
+			"label": "Weakness 1 \u2014 Achievements without meaning",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L225"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_weakness_2_better_ux_is_not_a_moat",
+			"label": "Weakness 2 \u2014 \"Better UX\" is not a moat",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L231"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_weakness_3_trying_to_do_movies_tv_and_anime_simultaneously_at_launch",
+			"label": "Weakness 3 \u2014 Trying to do movies, TV, and anime simultaneously at launch",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L235"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_weakness_4_streaks_without_safeguards",
+			"label": "Weakness 4 \u2014 Streaks without safeguards",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L241"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_weakness_5_the_cold_start_problem_for_social_features",
+			"label": "Weakness 5 \u2014 The cold start problem for social features",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L247"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_weakness_6_ignoring_the_creator_economy_inside_your_platform",
+			"label": "Weakness 6 \u2014 Ignoring the creator economy inside your platform",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L253"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_8_features_to_remove_or_defer",
+			"label": "Section 8: Features to Remove (or Defer)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L261"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_remove_quantity_based_public_stats_as_primary_profile_metrics",
+			"label": "Remove: Quantity-based public stats as primary profile metrics",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L263"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_remove_generic_activity_notifications",
+			"label": "Remove: Generic activity notifications",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L269"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_defer_community_forums_general_discussion_boards",
+			"label": "Defer: Community forums / general discussion boards",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L275"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_defer_in_app_streaming_links_affiliate_integrations",
+			"label": "Defer: In-app streaming links / affiliate integrations",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L279"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_remove_stars_only_rating_without_decimal_or_half_step_options",
+			"label": "Remove: Stars-only rating without decimal or half-step options",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L283"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_9_high_impact_feature_roadmap",
+			"label": "Section 9: High-Impact Feature Roadmap",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L289"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_tier_0_launch_critical_must_exist_at_launch",
+			"label": "Tier 0 \u2014 Launch-Critical (must exist at launch)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L293"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_tier_1_first_90_days",
+			"label": "Tier 1 \u2014 First 90 Days",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L303"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_tier_2_months_3_6",
+			"label": "Tier 2 \u2014 Months 3\u20136",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L314"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_tier_3_months_6_12",
+			"label": "Tier 3 \u2014 Months 6\u201312",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L324"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_10_psychological_triggers_in_successful_social_tracking_apps",
+			"label": "Section 10: Psychological Triggers in Successful Social/Tracking Apps",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L336"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_variable_reward_intermittent_reinforcement",
+			"label": "Variable Reward (intermittent reinforcement)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L338"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_loss_aversion",
+			"label": "Loss Aversion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L341"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_social_comparison_upward_and_lateral",
+			"label": "Social Comparison (upward and lateral)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L344"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_endowment_effect",
+			"label": "The Endowment Effect",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L347"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_zeigarnik_effect",
+			"label": "The Zeigarnik Effect",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L350"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_social_proof_at_the_individual_level",
+			"label": "Social Proof at the Individual Level",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L353"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_11_making_profiles_feel_prestigious_and_expressive",
+			"label": "Section 11: Making Profiles Feel Prestigious and Expressive",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L358"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_design_hierarchy_of_profile_prestige",
+			"label": "The Design Hierarchy of Profile Prestige",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L360"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_technical_design_principles",
+			"label": "Technical Design Principles",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L370"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_what_letterboxd_gets_wrong_here",
+			"label": "What Letterboxd Gets Wrong Here",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L377"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_12_monetization_that_doesn_t_ruin_the_platform",
+			"label": "Section 12: Monetization That Doesn't Ruin the Platform",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L383"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_core_principle",
+			"label": "Core Principle",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L385"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_tier_1_pro_plus_subscription_primary_revenue",
+			"label": "Tier 1 \u2014 Pro/Plus Subscription (primary revenue)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L388"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_tier_2_creator_monetization_future_post_scale",
+			"label": "Tier 2 \u2014 Creator Monetization (future, post-scale)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L400"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_what_to_avoid",
+			"label": "What to Avoid",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L404"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_13_systems_for_high_quality_reviews_and_lists",
+			"label": "Section 13: Systems for High-Quality Reviews and Lists",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L413"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_review_quality_signals_not_just_length",
+			"label": "Review Quality Signals (not just length)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L415"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_discouraging_low_effort_behavior_without_being_heavy_handed",
+			"label": "Discouraging Low-Effort Behavior Without Being Heavy-Handed",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L425"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_list_quality_architecture",
+			"label": "List Quality Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L431"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_14_onboarding_that_immediately_hooks_new_users",
+			"label": "Section 14: Onboarding That Immediately Hooks New Users",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L440"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_first_10_minutes_are_decisive",
+			"label": "The First 10 Minutes Are Decisive",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L442"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_onboarding_architecture",
+			"label": "Onboarding Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L446"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_onboarding_anti_patterns_to_avoid",
+			"label": "Onboarding Anti-Patterns to Avoid",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L465"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_section_15_why_most_social_discovery_apps_fail_after_launch",
+			"label": "Section 15: Why Most Social/Discovery Apps Fail After Launch",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L474"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_the_standard_failure_arc",
+			"label": "The Standard Failure Arc",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L476"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_root_causes",
+			"label": "Root Causes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L484"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_what_prevents_this_arc",
+			"label": "What Prevents This Arc",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L498"
+		},
+		{
+			"id": "still_sense_media_platform_strategy_closing_the_one_thing",
+			"label": "Closing: The One Thing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L508"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_sense_media_platform_strategy_md",
+			"target": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_a_retention_first_architecture_for_a_social_media_tracking_platform",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_preface_the_real_problem_you_re_solving",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_1_retention_first_product_strategy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_1_retention_first_product_strategy",
+			"target": "still_sense_media_platform_strategy_the_retention_stack_from_weakest_to_strongest",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_1_retention_first_product_strategy",
+			"target": "still_sense_media_platform_strategy_the_habit_loop_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_1_retention_first_product_strategy",
+			"target": "still_sense_media_platform_strategy_retention_metrics_you_must_instrument_from_day_one",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_2_viral_and_social_growth_loops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_2_viral_and_social_growth_loops",
+			"target": "still_sense_media_platform_strategy_loop_1_the_taste_share_loop_primary_viral_mechanism",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_2_viral_and_social_growth_loops",
+			"target": "still_sense_media_platform_strategy_loop_2_the_rivalry_loop_retention_referral",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_2_viral_and_social_growth_loops",
+			"target": "still_sense_media_platform_strategy_loop_3_the_list_discovery_loop_content_led_growth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_2_viral_and_social_growth_loops",
+			"target": "still_sense_media_platform_strategy_loop_4_the_activity_feed_pull_loop",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_3_depth_engagement_without_shallow_dopamine",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_3_depth_engagement_without_shallow_dopamine",
+			"target": "still_sense_media_platform_strategy_the_dopamine_trap_taxonomy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_3_depth_engagement_without_shallow_dopamine",
+			"target": "still_sense_media_platform_strategy_concrete_design_principles_for_depth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_4_identity_and_emotional_attachment_systems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_4_identity_and_emotional_attachment_systems",
+			"target": "still_sense_media_platform_strategy_the_identity_stack",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_4_identity_and_emotional_attachment_systems",
+			"target": "still_sense_media_platform_strategy_emotional_attachment_triggers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_4_identity_and_emotional_attachment_systems",
+			"target": "still_sense_media_platform_strategy_profile_prestige_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_5_network_effects_and_community_mechanics",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_5_network_effects_and_community_mechanics",
+			"target": "still_sense_media_platform_strategy_network_effect_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_5_network_effects_and_community_mechanics",
+			"target": "still_sense_media_platform_strategy_designing_for_power_users_first",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L172",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_5_network_effects_and_community_mechanics",
+			"target": "still_sense_media_platform_strategy_community_mechanics",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L185",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_6_what_would_realistically_make_users_leave_existing_platforms",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L197",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_6_what_would_realistically_make_users_leave_existing_platforms",
+			"target": "still_sense_media_platform_strategy_letterboxd_s_real_weaknesses_not_the_obvious_ones",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L199",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_6_what_would_realistically_make_users_leave_existing_platforms",
+			"target": "still_sense_media_platform_strategy_migration_triggers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L211",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_7_the_most_dangerous_weaknesses_in_your_current_thinking",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L223",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_7_the_most_dangerous_weaknesses_in_your_current_thinking",
+			"target": "still_sense_media_platform_strategy_weakness_1_achievements_without_meaning",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L225",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_7_the_most_dangerous_weaknesses_in_your_current_thinking",
+			"target": "still_sense_media_platform_strategy_weakness_2_better_ux_is_not_a_moat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L231",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_7_the_most_dangerous_weaknesses_in_your_current_thinking",
+			"target": "still_sense_media_platform_strategy_weakness_3_trying_to_do_movies_tv_and_anime_simultaneously_at_launch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_7_the_most_dangerous_weaknesses_in_your_current_thinking",
+			"target": "still_sense_media_platform_strategy_weakness_4_streaks_without_safeguards",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_7_the_most_dangerous_weaknesses_in_your_current_thinking",
+			"target": "still_sense_media_platform_strategy_weakness_5_the_cold_start_problem_for_social_features",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_7_the_most_dangerous_weaknesses_in_your_current_thinking",
+			"target": "still_sense_media_platform_strategy_weakness_6_ignoring_the_creator_economy_inside_your_platform",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L253",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_8_features_to_remove_or_defer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L261",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_8_features_to_remove_or_defer",
+			"target": "still_sense_media_platform_strategy_remove_quantity_based_public_stats_as_primary_profile_metrics",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L263",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_8_features_to_remove_or_defer",
+			"target": "still_sense_media_platform_strategy_remove_generic_activity_notifications",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L269",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_8_features_to_remove_or_defer",
+			"target": "still_sense_media_platform_strategy_defer_community_forums_general_discussion_boards",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L275",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_8_features_to_remove_or_defer",
+			"target": "still_sense_media_platform_strategy_defer_in_app_streaming_links_affiliate_integrations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L279",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_8_features_to_remove_or_defer",
+			"target": "still_sense_media_platform_strategy_remove_stars_only_rating_without_decimal_or_half_step_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L283",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_9_high_impact_feature_roadmap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L289",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_9_high_impact_feature_roadmap",
+			"target": "still_sense_media_platform_strategy_tier_0_launch_critical_must_exist_at_launch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L293",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_9_high_impact_feature_roadmap",
+			"target": "still_sense_media_platform_strategy_tier_1_first_90_days",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L303",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_9_high_impact_feature_roadmap",
+			"target": "still_sense_media_platform_strategy_tier_2_months_3_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L314",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_9_high_impact_feature_roadmap",
+			"target": "still_sense_media_platform_strategy_tier_3_months_6_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L324",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_10_psychological_triggers_in_successful_social_tracking_apps",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L336",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_10_psychological_triggers_in_successful_social_tracking_apps",
+			"target": "still_sense_media_platform_strategy_variable_reward_intermittent_reinforcement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L338",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_10_psychological_triggers_in_successful_social_tracking_apps",
+			"target": "still_sense_media_platform_strategy_loss_aversion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L341",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_10_psychological_triggers_in_successful_social_tracking_apps",
+			"target": "still_sense_media_platform_strategy_social_comparison_upward_and_lateral",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L344",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_10_psychological_triggers_in_successful_social_tracking_apps",
+			"target": "still_sense_media_platform_strategy_the_endowment_effect",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L347",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_10_psychological_triggers_in_successful_social_tracking_apps",
+			"target": "still_sense_media_platform_strategy_the_zeigarnik_effect",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L350",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_10_psychological_triggers_in_successful_social_tracking_apps",
+			"target": "still_sense_media_platform_strategy_social_proof_at_the_individual_level",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L353",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_11_making_profiles_feel_prestigious_and_expressive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L358",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_11_making_profiles_feel_prestigious_and_expressive",
+			"target": "still_sense_media_platform_strategy_the_design_hierarchy_of_profile_prestige",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L360",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_11_making_profiles_feel_prestigious_and_expressive",
+			"target": "still_sense_media_platform_strategy_technical_design_principles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L370",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_11_making_profiles_feel_prestigious_and_expressive",
+			"target": "still_sense_media_platform_strategy_what_letterboxd_gets_wrong_here",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L377",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_12_monetization_that_doesn_t_ruin_the_platform",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L383",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_12_monetization_that_doesn_t_ruin_the_platform",
+			"target": "still_sense_media_platform_strategy_core_principle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L385",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_12_monetization_that_doesn_t_ruin_the_platform",
+			"target": "still_sense_media_platform_strategy_tier_1_pro_plus_subscription_primary_revenue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L388",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_12_monetization_that_doesn_t_ruin_the_platform",
+			"target": "still_sense_media_platform_strategy_tier_2_creator_monetization_future_post_scale",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L400",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_12_monetization_that_doesn_t_ruin_the_platform",
+			"target": "still_sense_media_platform_strategy_what_to_avoid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L404",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_13_systems_for_high_quality_reviews_and_lists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L413",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_13_systems_for_high_quality_reviews_and_lists",
+			"target": "still_sense_media_platform_strategy_review_quality_signals_not_just_length",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L415",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_13_systems_for_high_quality_reviews_and_lists",
+			"target": "still_sense_media_platform_strategy_discouraging_low_effort_behavior_without_being_heavy_handed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L425",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_13_systems_for_high_quality_reviews_and_lists",
+			"target": "still_sense_media_platform_strategy_list_quality_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L431",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_14_onboarding_that_immediately_hooks_new_users",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L440",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_14_onboarding_that_immediately_hooks_new_users",
+			"target": "still_sense_media_platform_strategy_the_first_10_minutes_are_decisive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L442",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_14_onboarding_that_immediately_hooks_new_users",
+			"target": "still_sense_media_platform_strategy_onboarding_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L446",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_14_onboarding_that_immediately_hooks_new_users",
+			"target": "still_sense_media_platform_strategy_onboarding_anti_patterns_to_avoid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L465",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_section_15_why_most_social_discovery_apps_fail_after_launch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L474",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_15_why_most_social_discovery_apps_fail_after_launch",
+			"target": "still_sense_media_platform_strategy_the_standard_failure_arc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L476",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_15_why_most_social_discovery_apps_fail_after_launch",
+			"target": "still_sense_media_platform_strategy_root_causes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L484",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_section_15_why_most_social_discovery_apps_fail_after_launch",
+			"target": "still_sense_media_platform_strategy_what_prevents_this_arc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L498",
+			"weight": 1.0
+		},
+		{
+			"source": "still_sense_media_platform_strategy_media_platform_product_strategy_document",
+			"target": "still_sense_media_platform_strategy_closing_the_one_thing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\sense-media-platform-strategy.md",
+			"source_location": "L508",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

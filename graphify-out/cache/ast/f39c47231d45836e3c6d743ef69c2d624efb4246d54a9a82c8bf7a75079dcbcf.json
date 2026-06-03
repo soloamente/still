@@ -1,0 +1,226 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"label": "home-friend-rail.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_friend_rail_homefriendrailentry",
+			"label": "HomeFriendRailEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_home_friend_rail_personrow",
+			"label": "PersonRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_home_friend_rail_friendrailactivityitem",
+			"label": "FriendRailActivityItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_home_friend_rail_isfriendrailactivityitem",
+			"label": "isFriendRailActivityItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "lib_home_friend_rail_personfrompayload",
+			"label": "personFromPayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "lib_home_friend_rail_snippetforitem",
+			"label": "snippetForItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L40"
+		},
+		{
+			"id": "lib_home_friend_rail_derivefriendrailentries",
+			"label": "deriveFriendRailEntries()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L55"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_community_activity_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "lib_home_community_activity_homecommunityactivityitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "lib_home_friend_rail_homefriendrailentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "lib_home_friend_rail_personrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "lib_home_friend_rail_friendrailactivityitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "lib_home_friend_rail_isfriendrailactivityitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "lib_home_friend_rail_personfrompayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "lib_home_friend_rail_snippetforitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_friend_rail_ts",
+			"target": "lib_home_friend_rail_derivefriendrailentries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_friend_rail_derivefriendrailentries",
+			"target": "lib_home_friend_rail_isfriendrailactivityitem",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_friend_rail_derivefriendrailentries",
+			"target": "lib_home_friend_rail_personfrompayload",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_friend_rail_derivefriendrailentries",
+			"target": "lib_home_friend_rail_snippetforitem",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L80",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_friend_rail_derivefriendrailentries",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_home_friend_rail_derivefriendrailentries",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "lib_home_friend_rail_derivefriendrailentries",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_home_friend_rail_derivefriendrailentries",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_home_friend_rail_derivefriendrailentries",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_home_friend_rail_derivefriendrailentries",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_home_friend_rail_derivefriendrailentries",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts",
+			"source_location": "L85"
+		}
+	]
+}

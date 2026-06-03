@@ -1,0 +1,200 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_recompute_user_taste_signature_ts",
+			"label": "recompute-user-taste-signature.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"label": "recomputeUserTasteSignature()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L14"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_recompute_user_taste_signature_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_recompute_user_taste_signature_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_recompute_user_taste_signature_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_sense_taste_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_recompute_user_taste_signature_ts",
+			"target": "lib_sense_taste_signature_computetastesignaturefromlogs",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_recompute_user_taste_signature_ts",
+			"target": "lib_sense_taste_signature_tastesignaturepayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_recompute_user_taste_signature_ts",
+			"target": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "computeTasteSignatureFromLogs",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts",
+			"source_location": "L45"
+		}
+	]
+}

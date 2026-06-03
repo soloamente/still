@@ -1,0 +1,174 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_watchlist_query_args_ts",
+			"label": "watchlist-query-args.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_watchlist_query_args_watchlistorder",
+			"label": "WatchlistOrder",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_watchlist_query_args_parsewatchlistpage",
+			"label": "parseWatchlistPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_watchlist_query_args_parsewatchlistlimit",
+			"label": "parseWatchlistLimit()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "lib_watchlist_query_args_parsewatchlistorder",
+			"label": "parseWatchlistOrder()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_watchlist_query_args_watchlistoffset",
+			"label": "watchlistOffset()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "lib_watchlist_query_args_watchlisttotalpages",
+			"label": "watchlistTotalPages()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L37"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watchlist_query_args_ts",
+			"target": "lib_watchlist_query_args_watchlistorder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watchlist_query_args_ts",
+			"target": "lib_watchlist_query_args_parsewatchlistpage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watchlist_query_args_ts",
+			"target": "lib_watchlist_query_args_parsewatchlistlimit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watchlist_query_args_ts",
+			"target": "lib_watchlist_query_args_parsewatchlistorder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watchlist_query_args_ts",
+			"target": "lib_watchlist_query_args_watchlistoffset",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_watchlist_query_args_ts",
+			"target": "lib_watchlist_query_args_watchlisttotalpages",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_watchlist_query_args_parsewatchlistpage",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_watchlist_query_args_parsewatchlistpage",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_watchlist_query_args_parsewatchlistpage",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "lib_watchlist_query_args_parsewatchlistlimit",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_watchlist_query_args_parsewatchlistlimit",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_watchlist_query_args_parsewatchlistlimit",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_watchlist_query_args_parsewatchlistlimit",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_watchlist_query_args_watchlistoffset",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_watchlist_query_args_watchlisttotalpages",
+			"callee": "ceil",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.ts",
+			"source_location": "L39"
+		}
+	]
+}

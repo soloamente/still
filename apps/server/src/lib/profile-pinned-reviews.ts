@@ -85,3 +85,11 @@ export async function hydratePinnedReviews(
 		.map((id) => byId.get(id))
 		.filter((row): row is PinnedReviewRow => row != null);
 }
+
+/** Drop a deleted review id from the patron's pinned list. */
+export function removePinnedReviewId(
+	rawIds: unknown,
+	reviewId: string,
+): string[] {
+	return normalizePinnedReviewIds(rawIds).filter((id) => id !== reviewId);
+}

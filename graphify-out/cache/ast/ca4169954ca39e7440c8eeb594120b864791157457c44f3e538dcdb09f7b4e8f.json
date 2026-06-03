@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_sense_product_metrics_md",
+			"label": "2026-05-29-sense-product-metrics.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_sense_product_metrics_phase_0_instrumentation",
+			"label": "Sense \u2014 Product metrics (Phase 0 instrumentation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_event_pipeline",
+			"label": "Event pipeline",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_roadmap_metrics_sql_sketches",
+			"label": "Roadmap metrics \u2014 SQL sketches",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_import_completed_in_session",
+			"label": "% import completed in session",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_codeblock_1",
+			"label": "code:sql (SELECT)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_log_within_48h_of_signup",
+			"label": "% log within 48h of signup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_codeblock_2",
+			"label": "code:sql (SELECT)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_d7_retainers_with_taste_signature_10_titles",
+			"label": "D7 retainers with taste signature + \u226510 titles",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_codeblock_3",
+			"label": "code:sql (SELECT COUNT(DISTINCT u.id))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_streak_distribution_when_live",
+			"label": "Streak distribution (when live)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L70"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_codeblock_4",
+			"label": "code:sql (SELECT)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_05_29_sense_product_metrics_next_steps_not_in_v1",
+			"label": "Next steps (not in v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L81"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_05_29_sense_product_metrics_md",
+			"target": "specs_2026_05_29_sense_product_metrics_sense_product_metrics_phase_0_instrumentation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_sense_product_metrics_phase_0_instrumentation",
+			"target": "specs_2026_05_29_sense_product_metrics_event_pipeline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_sense_product_metrics_phase_0_instrumentation",
+			"target": "specs_2026_05_29_sense_product_metrics_roadmap_metrics_sql_sketches",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_roadmap_metrics_sql_sketches",
+			"target": "specs_2026_05_29_sense_product_metrics_import_completed_in_session",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_import_completed_in_session",
+			"target": "specs_2026_05_29_sense_product_metrics_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_roadmap_metrics_sql_sketches",
+			"target": "specs_2026_05_29_sense_product_metrics_log_within_48h_of_signup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_log_within_48h_of_signup",
+			"target": "specs_2026_05_29_sense_product_metrics_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_roadmap_metrics_sql_sketches",
+			"target": "specs_2026_05_29_sense_product_metrics_d7_retainers_with_taste_signature_10_titles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_d7_retainers_with_taste_signature_10_titles",
+			"target": "specs_2026_05_29_sense_product_metrics_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_roadmap_metrics_sql_sketches",
+			"target": "specs_2026_05_29_sense_product_metrics_streak_distribution_when_live",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_streak_distribution_when_live",
+			"target": "specs_2026_05_29_sense_product_metrics_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_05_29_sense_product_metrics_sense_product_metrics_phase_0_instrumentation",
+			"target": "specs_2026_05_29_sense_product_metrics_next_steps_not_in_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-05-29-sense-product-metrics.md",
+			"source_location": "L81",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

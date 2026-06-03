@@ -1,0 +1,84 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_review_deep_link_ts",
+			"label": "review-deep-link.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_review_deep_link_movie_review_search_param",
+			"label": "MOVIE_REVIEW_SEARCH_PARAM",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_review_deep_link_buildmoviereviewhref",
+			"label": "buildMovieReviewHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_review_deep_link_parselegacyreviewpagepath",
+			"label": "parseLegacyReviewPagePath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_review_deep_link_ts",
+			"target": "lib_review_deep_link_movie_review_search_param",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_review_deep_link_ts",
+			"target": "lib_review_deep_link_buildmoviereviewhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_review_deep_link_ts",
+			"target": "lib_review_deep_link_parselegacyreviewpagepath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_review_deep_link_buildmoviereviewhref",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_review_deep_link_parselegacyreviewpagepath",
+			"callee": "exec",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_review_deep_link_parselegacyreviewpagepath",
+			"callee": "decodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.ts",
+			"source_location": "L17"
+		}
+	]
+}

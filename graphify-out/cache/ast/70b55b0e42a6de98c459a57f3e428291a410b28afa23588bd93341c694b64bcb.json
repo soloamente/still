@@ -1,0 +1,626 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"label": "mal-anime-enrichment.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_mal_anime_enrichment_tvmalenrichment",
+			"label": "TvMalEnrichment",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_mal_anime_enrichment_readstillmalcache",
+			"label": "readStillMalCache()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_mal_anime_enrichment_isstillmalcachefresh",
+			"label": "isStillMalCacheFresh()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"label": "mapJikanAnimeToEnrichment()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L52"
+		},
+		{
+			"id": "lib_mal_anime_enrichment_fetchjikanmalenrichment",
+			"label": "fetchJikanMalEnrichment()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L79"
+		},
+		{
+			"id": "lib_mal_anime_enrichment_persiststillmalblock",
+			"label": "persistStillMalBlock()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L104"
+		},
+		{
+			"id": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"label": "syncTvMalIdFromDetail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L123"
+		},
+		{
+			"id": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"label": "getTvMalEnrichment()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L167"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tv_cache_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_tv_cache_ensuretvcached",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tv_mal_id_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_tv_mal_id_readmalidfromtmdbdetail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_tv_mal_id_readmalidfromtmdbjson",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_tv_mal_id_still_mal_json_key",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_tv_mal_id_stillmaljson",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_mal_anime_enrichment_tvmalenrichment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_mal_anime_enrichment_readstillmalcache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_mal_anime_enrichment_isstillmalcachefresh",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_mal_anime_enrichment_fetchjikanmalenrichment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_mal_anime_enrichment_persiststillmalblock",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_enrichment_ts",
+			"target": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_mal_anime_enrichment_fetchjikanmalenrichment",
+			"target": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"target": "lib_mal_anime_enrichment_readstillmalcache",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"target": "lib_mal_anime_enrichment_isstillmalcachefresh",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L184",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"target": "lib_mal_anime_enrichment_fetchjikanmalenrichment",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L188",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"target": "lib_mal_anime_enrichment_persiststillmalblock",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L191",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_mal_anime_enrichment_readstillmalcache",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_readstillmalcache",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_readstillmalcache",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_isstillmalcachefresh",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_isstillmalcachefresh",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_mapjikananimetoenrichment",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_fetchjikanmalenrichment",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_fetchjikanmalenrichment",
+			"callee": "timeout",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_fetchjikanmalenrichment",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_fetchjikanmalenrichment",
+			"callee": "warn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_persiststillmalblock",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "readMalIdFromTmdbDetail",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L133"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "readMalIdFromTmdbJson",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_synctvmalidfromdetail",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"callee": "ensureTvCached",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"callee": "readMalIdFromTmdbJson",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "lib_mal_anime_enrichment_gettvmalenrichment",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-enrichment.ts",
+			"source_location": "L193"
+		}
+	]
+}

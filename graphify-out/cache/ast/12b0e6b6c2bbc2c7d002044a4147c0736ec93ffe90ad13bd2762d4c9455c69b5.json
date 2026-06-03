@@ -1,0 +1,46 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_editorial_feed_ts",
+			"label": "editorial-feed.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\editorial-feed.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_editorial_feed_editorialhighlight",
+			"label": "EditorialHighlight",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\editorial-feed.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_editorial_feed_editorial_community_highlights",
+			"label": "EDITORIAL_COMMUNITY_HIGHLIGHTS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\editorial-feed.ts",
+			"source_location": "L14"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_editorial_feed_ts",
+			"target": "lib_editorial_feed_editorialhighlight",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\editorial-feed.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_editorial_feed_ts",
+			"target": "lib_editorial_feed_editorial_community_highlights",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\editorial-feed.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

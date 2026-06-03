@@ -1,0 +1,87 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_titles_ts",
+			"label": "mal-anime-titles.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"label": "fetchMalAnimeSearchTitles()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mal_anime_titles_ts",
+			"target": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"callee": "timeout",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"callee": "push",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"callee": "push",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"callee": "push",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"callee": "push",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_mal_anime_titles_fetchmalanimesearchtitles",
+			"callee": "warn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mal-anime-titles.ts",
+			"source_location": "L50"
+		}
+	]
+}

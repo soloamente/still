@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_29_sense_anilist_import_md",
+			"label": "2026-05-29-sense-anilist-import.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"label": "SN.17.1 \u2014 Anilist JSON Import Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_phase_1_parse_normalize_tdd",
+			"label": "Phase 1 \u2014 Parse & normalize (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_task_1_canonical_types_graphql_adapter",
+			"label": "Task 1: Canonical types + GraphQL adapter",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_codeblock_1",
+			"label": "code:powershell (cd apps/server; bun test src/lib/anilist-import-json.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_task_2_aniport_adapter_optional_thin_layer",
+			"label": "Task 2: AniPort adapter (optional thin layer)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_phase_2_tmdb_resolution",
+			"label": "Phase 2 \u2014 TMDb resolution",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_task_3_resolve_anilist_media_tmdb_tv_id",
+			"label": "Task 3: Resolve Anilist media \u2192 TMDb TV id",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_phase_3_apply_import_rows",
+			"label": "Phase 3 \u2014 Apply import rows",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_task_4_status_mapping_orchestrator",
+			"label": "Task 4: Status mapping orchestrator",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_phase_4_http_route",
+			"label": "Phase 4 \u2014 HTTP route",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_task_5_post_api_import_anilist",
+			"label": "Task 5: `POST /api/import/anilist`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_codeblock_2",
+			"label": "code:powershell (Invoke-WebRequest -Method POST -Uri \"http://localhost:3000/a)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_phase_5_web_ui",
+			"label": "Phase 5 \u2014 Web UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_task_6_settings_import_panel",
+			"label": "Task 6: Settings import panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_phase_6_docs_board",
+			"label": "Phase 6 \u2014 Docs & board",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_task_7_close_planning_loop",
+			"label": "Task 7: Close planning loop",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_verification_gate_human",
+			"label": "Verification gate (human)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L172"
+		},
+		{
+			"id": "plans_2026_05_29_sense_anilist_import_follow_on_plans_separate",
+			"label": "Follow-on plans (separate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L180"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_05_29_sense_anilist_import_md",
+			"target": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_phase_1_parse_normalize_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_phase_1_parse_normalize_tdd",
+			"target": "plans_2026_05_29_sense_anilist_import_task_1_canonical_types_graphql_adapter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_task_1_canonical_types_graphql_adapter",
+			"target": "plans_2026_05_29_sense_anilist_import_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_phase_1_parse_normalize_tdd",
+			"target": "plans_2026_05_29_sense_anilist_import_task_2_aniport_adapter_optional_thin_layer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_phase_2_tmdb_resolution",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_phase_2_tmdb_resolution",
+			"target": "plans_2026_05_29_sense_anilist_import_task_3_resolve_anilist_media_tmdb_tv_id",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_phase_3_apply_import_rows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_phase_3_apply_import_rows",
+			"target": "plans_2026_05_29_sense_anilist_import_task_4_status_mapping_orchestrator",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_phase_4_http_route",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_phase_4_http_route",
+			"target": "plans_2026_05_29_sense_anilist_import_task_5_post_api_import_anilist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_task_5_post_api_import_anilist",
+			"target": "plans_2026_05_29_sense_anilist_import_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_phase_5_web_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_phase_5_web_ui",
+			"target": "plans_2026_05_29_sense_anilist_import_task_6_settings_import_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_phase_6_docs_board",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_phase_6_docs_board",
+			"target": "plans_2026_05_29_sense_anilist_import_task_7_close_planning_loop",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_verification_gate_human",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L172",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_05_29_sense_anilist_import_sn_17_1_anilist_json_import_implementation_plan",
+			"target": "plans_2026_05_29_sense_anilist_import_follow_on_plans_separate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-05-29-sense-anilist-import.md",
+			"source_location": "L180",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

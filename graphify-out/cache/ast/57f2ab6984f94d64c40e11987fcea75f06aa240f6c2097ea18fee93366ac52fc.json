@@ -1,0 +1,128 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_episodes_ts",
+			"label": "anilist-import-episodes.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_anilist_import_episodes_episodeslot",
+			"label": "EpisodeSlot",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_anilist_import_episodes_flattenseasonepisodes",
+			"label": "flattenSeasonEpisodes()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_anilist_import_episodes_episodeslotsforprogresscount",
+			"label": "episodeSlotsForProgressCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L34"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_episodes_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_episodes_ts",
+			"target": "lib_tmdb_tmdbepisodesummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_episodes_ts",
+			"target": "lib_anilist_import_episodes_episodeslot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_episodes_ts",
+			"target": "lib_anilist_import_episodes_flattenseasonepisodes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_anilist_import_episodes_ts",
+			"target": "lib_anilist_import_episodes_episodeslotsforprogresscount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_anilist_import_episodes_episodeslotsforprogresscount",
+			"target": "lib_anilist_import_episodes_flattenseasonepisodes",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_anilist_import_episodes_flattenseasonepisodes",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_anilist_import_episodes_flattenseasonepisodes",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_anilist_import_episodes_flattenseasonepisodes",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_anilist_import_episodes_flattenseasonepisodes",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_anilist_import_episodes_episodeslotsforprogresscount",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\anilist-import-episodes.ts",
+			"source_location": "L40"
+		}
+	]
+}

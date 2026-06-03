@@ -1,0 +1,125 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_product_event_kinds_ts",
+			"label": "product-event-kinds.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_product_event_kinds_product_event_kinds",
+			"label": "PRODUCT_EVENT_KINDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_product_event_kinds_producteventkind",
+			"label": "ProductEventKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_product_event_kinds_client_product_event_kinds",
+			"label": "CLIENT_PRODUCT_EVENT_KINDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_product_event_kinds_clientproducteventkind",
+			"label": "ClientProductEventKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_product_event_kinds_isproducteventkind",
+			"label": "isProductEventKind()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_product_event_kinds_isclientproducteventkind",
+			"label": "isClientProductEventKind()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L25"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_product_event_kinds_ts",
+			"target": "lib_product_event_kinds_product_event_kinds",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_product_event_kinds_ts",
+			"target": "lib_product_event_kinds_producteventkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_product_event_kinds_ts",
+			"target": "lib_product_event_kinds_client_product_event_kinds",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_product_event_kinds_ts",
+			"target": "lib_product_event_kinds_clientproducteventkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_product_event_kinds_ts",
+			"target": "lib_product_event_kinds_isproducteventkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_product_event_kinds_ts",
+			"target": "lib_product_event_kinds_isclientproducteventkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_product_event_kinds_isproducteventkind",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "lib_product_event_kinds_isclientproducteventkind",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts",
+			"source_location": "L28"
+		}
+	]
+}

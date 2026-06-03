@@ -1,0 +1,404 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"label": "me-letterboxd-import.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_me_letterboxd_import_letterboxd_pick_files",
+			"label": "LETTERBOXD_PICK_FILES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L17"
+		},
+		{
+			"id": "profile_me_letterboxd_import_importresult",
+			"label": "ImportResult",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L32"
+		},
+		{
+			"id": "profile_me_letterboxd_import_filekey",
+			"label": "fileKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L39"
+		},
+		{
+			"id": "profile_me_letterboxd_import_mergepickedfiles",
+			"label": "mergePickedFiles()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L43"
+		},
+		{
+			"id": "profile_me_letterboxd_import_hasdiarycsv",
+			"label": "hasDiaryCsv()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L53"
+		},
+		{
+			"id": "profile_me_letterboxd_import_meletterboxdimport",
+			"label": "MeLetterboxdImport()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L61"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "web",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "components_button_button",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_settings_layout_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "profile_me_settings_layout_mesettingspanel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "profile_me_settings_layout_mesettingssection",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "lib_detail_action_motion_detail_canvas_on_card_hover_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "profile_me_letterboxd_import_letterboxd_pick_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "profile_me_letterboxd_import_importresult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "profile_me_letterboxd_import_filekey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "profile_me_letterboxd_import_mergepickedfiles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "profile_me_letterboxd_import_hasdiarycsv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"target": "profile_me_letterboxd_import_meletterboxdimport",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "profile_me_letterboxd_import_mergepickedfiles",
+			"target": "profile_me_letterboxd_import_filekey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "profile_me_letterboxd_import_meletterboxdimport",
+			"target": "profile_me_letterboxd_import_hasdiarycsv",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L71",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_me_letterboxd_import_mergepickedfiles",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_mergepickedfiles",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_mergepickedfiles",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_mergepickedfiles",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_mergepickedfiles",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_hasdiarycsv",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L134"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L278"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "profile_me_letterboxd_import_meletterboxdimport",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx",
+			"source_location": "L389"
+		}
+	]
+}

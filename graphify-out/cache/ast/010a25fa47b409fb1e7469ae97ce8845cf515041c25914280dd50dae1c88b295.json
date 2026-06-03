@@ -1,0 +1,62 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_creator_analytics_types_ts",
+			"label": "creator-analytics-types.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-analytics-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_creator_analytics_types_creatorcontributionstats",
+			"label": "CreatorContributionStats",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-analytics-types.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_creator_analytics_types_creatorlisthighlight",
+			"label": "CreatorListHighlight",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-analytics-types.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_creator_analytics_types_creatoranalyticspayload",
+			"label": "CreatorAnalyticsPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-analytics-types.ts",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_analytics_types_ts",
+			"target": "lib_creator_analytics_types_creatorcontributionstats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-analytics-types.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_analytics_types_ts",
+			"target": "lib_creator_analytics_types_creatorlisthighlight",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-analytics-types.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_analytics_types_ts",
+			"target": "lib_creator_analytics_types_creatoranalyticspayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-analytics-types.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

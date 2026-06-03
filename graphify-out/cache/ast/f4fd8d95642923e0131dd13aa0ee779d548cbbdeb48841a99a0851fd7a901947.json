@@ -1,0 +1,318 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"label": "activity-divergence-row.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_activity_divergence_row_patronhandle",
+			"label": "patronHandle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "feed_activity_divergence_row_patronname",
+			"label": "patronName()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "feed_activity_divergence_row_patronscorelink",
+			"label": "PatronScoreLink()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L28"
+		},
+		{
+			"id": "feed_activity_divergence_row_activitydivergencerow",
+			"label": "ActivityDivergenceRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L47"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "components_button_button",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_feed_activity_item_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "feed_activity_item_activity_row_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_feed_feed_listing_thumb_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "feed_feed_listing_thumb_feedlistingthumb",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_sheet_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "log_quick_log_sheet_usequicklog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_feed_rating_divergence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "lib_feed_rating_divergence_feedratingdivergencepayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "lib_log_rating_formatlogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tmdb_poster_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "lib_tmdb_poster_url_tmdbposterurlfrompath",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "feed_activity_divergence_row_patronhandle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "feed_activity_divergence_row_patronname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "feed_activity_divergence_row_patronscorelink",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feed_activity_divergence_row_tsx",
+			"target": "feed_activity_divergence_row_activitydivergencerow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "feed_activity_divergence_row_patronscorelink",
+			"target": "feed_activity_divergence_row_patronhandle",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "feed_activity_divergence_row_patronscorelink",
+			"target": "feed_activity_divergence_row_patronname",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L39",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "feed_activity_divergence_row_activitydivergencerow",
+			"callee": "useQuickLog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "feed_activity_divergence_row_activitydivergencerow",
+			"callee": "tmdbPosterUrlFromPath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "feed_activity_divergence_row_activitydivergencerow",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L87"
+		},
+		{
+			"caller_nid": "feed_activity_divergence_row_activitydivergencerow",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L115"
+		},
+		{
+			"caller_nid": "feed_activity_divergence_row_activitydivergencerow",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L121"
+		},
+		{
+			"caller_nid": "feed_activity_divergence_row_activitydivergencerow",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L125"
+		},
+		{
+			"caller_nid": "feed_activity_divergence_row_activitydivergencerow",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx",
+			"source_location": "L132"
+		}
+	]
+}

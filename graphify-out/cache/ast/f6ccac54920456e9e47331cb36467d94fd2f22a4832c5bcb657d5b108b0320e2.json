@@ -1,0 +1,92 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_taste_rail_visible_count_ts",
+			"label": "use-taste-rail-visible-count.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_taste_rail_visible_count_usetasterailvisiblecount",
+			"label": "useTasteRailVisibleCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_taste_rail_visible_count_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_taste_rail_visible_count_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_taste_matched_rail_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_taste_rail_visible_count_ts",
+			"target": "lib_home_taste_matched_rail_layout_taste_rail_min_visible",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_taste_rail_visible_count_ts",
+			"target": "lib_home_taste_matched_rail_layout_tasterailvisiblecount",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_taste_rail_visible_count_ts",
+			"target": "lib_use_taste_rail_visible_count_usetasterailvisiblecount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_taste_rail_visible_count_usetasterailvisiblecount",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_use_taste_rail_visible_count_usetasterailvisiblecount",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "lib_use_taste_rail_visible_count_usetasterailvisiblecount",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-taste-rail-visible-count.ts",
+			"source_location": "L15"
+		}
+	]
+}

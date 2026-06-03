@@ -1,0 +1,62 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"label": "creator-recognition.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_creator_recognition_curatorspotlightpatron",
+			"label": "CuratorSpotlightPatron",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L9"
+		},
+		{
+			"id": "lib_creator_recognition_profilecreatorrecognition",
+			"label": "ProfileCreatorRecognition",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_creator_recognition_reviewengagementscore",
+			"label": "reviewEngagementScore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_curatorspotlightpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_profilecreatorrecognition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_reviewengagementscore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}
