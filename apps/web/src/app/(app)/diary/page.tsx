@@ -6,7 +6,12 @@ import { DiaryPatronLobbyShell } from "@/components/diary/diary-patron-lobby-she
 import { CatalogWatchRegionPrompt } from "@/components/home/catalog-watch-region-prompt";
 import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
 import { authServer } from "@/lib/auth-server";
-import { fetchMyLogsMeServer } from "@/lib/fetch-my-logs-me-server";
+import {
+	parseDiaryLedgerTab,
+	parseDiaryLobbyOrder,
+	parseDiaryLobbyVenue,
+} from "@/lib/diary-lobby-order";
+import { fetchMyDiaryServer } from "@/lib/fetch-my-diary-server";
 import {
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbWatchRegionPref,
@@ -16,12 +21,26 @@ import { serverApi } from "@/lib/server-api";
 export const metadata: Metadata = { title: "Diary" };
 export const dynamic = "force-dynamic";
 
-export default async function DiaryPage() {
+function toEndpointOrder(
+	o: ReturnType<typeof parseDiaryLobbyOrder>,
+): "latest" | "earliest" | "title" {
+	return o === "earliest_seen"
+		? "earliest"
+		: o === "title_az"
+			? "title"
+			: "latest";
+}
+
+export default async function DiaryPage({
+	searchParams,
+}: {
+	searchParams: Promise<{ tab?: string; order?: string; venue?: string }>;
+}) {
+	const sp = await searchParams;
 	const [session, api] = await Promise.all([authServer(), serverApi()]);
-	const [raw, profileRes] = await Promise.all([
-		fetchMyLogsMeServer(api),
-		api.api.profiles.me.get().catch(() => ({ data: null })),
-	]);
+	const profileRes = await api.api.profiles.me
+		.get()
+		.catch(() => ({ data: null }));
 	const profileData = profileRes.data as {
 		handle: string;
 		displayName: string;
@@ -45,6 +64,24 @@ export default async function DiaryPage() {
 				}
 			: null;
 
+	const order = parseDiaryLobbyOrder(sp?.order ?? null);
+	const venue = parseDiaryLobbyVenue(sp?.venue ?? null);
+	const endpointOrder = toEndpointOrder(order);
+
+	const explicitTab = parseDiaryLedgerTab(sp?.tab ?? null);
+	const firstMedia: "movie" | "tv" = explicitTab === "tv" ? "tv" : "movie";
+	let seed = await fetchMyDiaryServer({
+		media: firstMedia,
+		order: endpointOrder,
+		venue,
+	});
+	// No explicit tab + movies empty but TV has rows → default to TV (matches resolveDiaryLedgerTab).
+	let media: "movie" | "tv" = firstMedia;
+	if (!explicitTab && seed.tabCounts.movies === 0 && seed.tabCounts.tv > 0) {
+		media = "tv";
+		seed = await fetchMyDiaryServer({ media, order: endpointOrder, venue });
+	}
+
 	return (
 		<div className="flex flex-1 flex-col overflow-visible bg-background">
 			<Suspense fallback={<LobbyStickyChromeFallback />}>
@@ -52,9 +89,11 @@ export default async function DiaryPage() {
 			</Suspense>
 
 			<DiaryPatronLobbyShell
-				rawRows={raw}
+				seed={seed}
+				media={media}
+				endpointOrder={endpointOrder}
+				venue={venue}
 				monochromePeersOnHover={monochromePeersOnHover}
-				signedIn={Boolean(session)}
 			/>
 
 			{session ? (
