@@ -245,7 +245,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 }
 
 /**
- * Client profile lobby — ledger filters run locally for instant chips.
+ * Client profile lobby — filmography grid is server-paginated; tab/order/venue/favorites are URL-driven.
  */
 export function ProfilePatronLobbyShell(props: ProfilePatronLobbyShellProps) {
 	const { handle, socialTabs, filmographyCounts } = props;

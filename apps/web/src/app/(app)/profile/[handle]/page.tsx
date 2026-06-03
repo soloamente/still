@@ -1,6 +1,5 @@
 import { notFound, redirect } from "next/navigation";
 
-import type { ProfileFilmographyRow } from "@/components/profile/profile-filmography-panel";
 import { ProfilePatronLobbyShell } from "@/components/profile/profile-patron-lobby-shell";
 import type {
 	ProfileEarnedBadge,
@@ -10,14 +9,12 @@ import type { ProfileReviewRow } from "@/components/profile/profile-reviews-pane
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { authServer } from "@/lib/auth-server";
 import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
+import { fetchProfileFilmographyServer } from "@/lib/fetch-profile-filmography-server";
 import { toListBoardRow } from "@/lib/list-board-row";
 import { readProfileBannerFramePref } from "@/lib/profile-appearance";
 import {
-	filmographyFromRecentlyWatched,
-	splitProfileFilmographyLedger,
-} from "@/lib/profile-lobby-derive";
-import {
 	buildProfileLobbyHref,
+	parseProfileLobbyFavorites,
 	parseProfileLobbyOrder,
 	parseProfileLobbyVenue,
 } from "@/lib/profile-lobby-order";
@@ -57,7 +54,12 @@ type ProfileData = {
 	stats: { followers: number; following: number };
 	creator?: { isCurator: boolean; headline: string | null };
 	isFollowing: boolean;
-	recentlyWatched: ProfileFilmographyRow[];
+	filmographyCounts: {
+		movies: number;
+		tv: number;
+		likedMovies: number;
+		likedTv: number;
+	};
 	recentReviews: ProfileReviewRow[];
 	pinnedReviews: ProfileReviewRow[];
 	lists: {
@@ -120,17 +122,12 @@ export default async function ProfilePage({
 
 	const lobbyOrder = parseProfileLobbyOrder(sp.order);
 	const lobbyVenue = parseProfileLobbyVenue(sp.venue);
-	const allFilmographyRows = filmographyFromRecentlyWatched(
-		data.recentlyWatched,
-	);
-	const { movieRows: moviesAll, tvRows: tvAll } =
-		splitProfileFilmographyLedger(allFilmographyRows);
+	const counts = data.filmographyCounts;
 
+	// favorites tab → ledger redirect (now off counts).
 	if (sp.tab?.toLowerCase() === "favorites") {
 		const ledgerTab =
-			moviesAll.some((row) => row.log.liked) || tvAll.length === 0
-				? "movies"
-				: "tv";
+			counts.likedMovies > 0 || counts.tv === 0 ? "movies" : "tv";
 		redirect(
 			buildProfileLobbyHref({
 				handle: profile.handle,
@@ -142,12 +139,33 @@ export default async function ProfilePage({
 		);
 	}
 
-	const likedFilmographyCount = allFilmographyRows.filter(
-		(row) => row.log.liked,
-	).length;
+	const favoritesOnly = parseProfileLobbyFavorites(sp.favorites);
+	const activeMedia: "movie" | "tv" =
+		sp.tab?.toLowerCase() === "tv"
+			? "tv"
+			: sp.tab?.toLowerCase() === "movies"
+				? "movie"
+				: counts.movies > 0
+					? "movie"
+					: counts.tv > 0
+						? "tv"
+						: "movie";
+	const orderToken: "latest" | "earliest" | "title" =
+		lobbyOrder === "earliest_seen"
+			? "earliest"
+			: lobbyOrder === "title_az"
+				? "title"
+				: "latest";
+
+	const filmographyPage1 = await fetchProfileFilmographyServer(profile.handle, {
+		media: activeMedia,
+		order: orderToken,
+		venue: lobbyVenue,
+		favorites: favoritesOnly,
+	});
 
 	const socialTabs = PROFILE_TOOLBAR_SOCIAL_ORDER.filter((sec) => {
-		if (sec === "favorites") return likedFilmographyCount > 0;
+		if (sec === "favorites") return counts.likedMovies + counts.likedTv > 0;
 		if (sec === "reviews")
 			return (
 				data.recentReviews.length > 0 || (data.pinnedReviews?.length ?? 0) > 0
@@ -185,7 +203,11 @@ export default async function ProfilePage({
 			bannerUrl={profile.bannerUrl}
 			bannerFrame={bannerFrame}
 			accentColor={profile.accentColor}
-			recentlyWatched={data.recentlyWatched}
+			seeds={filmographyPage1.seeds}
+			totalPages={filmographyPage1.totalPages}
+			totalResults={filmographyPage1.totalResults}
+			venueCounts={filmographyPage1.venueCounts}
+			filmographyCounts={counts}
 			recentReviews={data.recentReviews}
 			pinnedReviews={data.pinnedReviews ?? []}
 			lists={data.lists.map((l) => toListBoardRow(l))}
