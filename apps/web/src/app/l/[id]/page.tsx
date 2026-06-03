@@ -116,7 +116,9 @@ export default async function PublicListDetailPage({
 
 	const filmsSectionTitle = data.isRanked ? "Ranked" : "Titles";
 	const filmsSectionSubtitle = isSystemFavorites
-		? "Every title favorited from the curator's diary — most recent first."
+		? data.isRanked
+			? "Ranked favorites from this patron's diary — #1 is their top pick."
+			: "Every title favorited from this patron's diary."
 		: data.isRanked
 			? "Position order — lowest number is the top pick."
 			: "Every title in this collection.";

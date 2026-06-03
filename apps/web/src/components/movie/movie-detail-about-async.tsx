@@ -6,7 +6,6 @@ import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
-import { APP_NAME } from "@/lib/app-brand";
 import type { ArcCreditCard } from "@/lib/movie-cast-crew-arc";
 import {
 	MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME,
@@ -80,8 +79,6 @@ export interface MovieDetailAboutAsyncProps {
 	crewCrawlLines: CreditsCrawlLineSeed[];
 	moreLikeThis: TmdbMovieSummary[];
 	moviePosterUrl: string | null;
-	communityAverage: number | null;
-	communityReviewsCount: number;
 	imdbId: string | null;
 	festivalKeywords: string[];
 	premiereRows: PremiereRow[];
@@ -103,8 +100,6 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 		crewCrawlLines,
 		moreLikeThis,
 		moviePosterUrl,
-		communityAverage,
-		communityReviewsCount,
 		imdbId,
 		festivalKeywords,
 		premiereRows,
@@ -185,8 +180,6 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 
 			<MovieDetailExploreTabs
 				layout="stacked"
-				communityAverage={communityAverage}
-				communityReviewsCount={communityReviewsCount}
 				followingRatings={followingRatingsPayload.entries}
 				followingRatingsMoreCount={followingRatingsPayload.moreCount}
 				lists={movieLists}
@@ -224,7 +217,7 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 					directors.length
 						? `Directed by ${directors.map((d) => d.name).join(" & ")}`
 						: "Director TBD",
-					`${APP_NAME} showpage #${tmdbId}`,
+					`Title page #${tmdbId}`,
 				]}
 			/>
 		</div>

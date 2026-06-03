@@ -78,10 +78,13 @@ function PodiumTile({
 					height={64}
 				/>
 			</Link>
+			<p className="mt-2 max-w-full truncate font-semibold text-foreground text-sm">
+				{entry.displayName?.trim() || entry.handle}
+			</p>
 			<Link
 				href={`/profile/${entry.handle}`}
 				className={leaderboardHandleLinkClassName(
-					"mt-2 max-w-full truncate text-sm",
+					"mt-0.5 max-w-full truncate text-xs",
 				)}
 				title={`Open @${entry.handle}'s profile`}
 			>

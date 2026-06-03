@@ -1,9 +1,8 @@
 "use client";
 
 import { MoviePoster } from "@/components/movie/movie-poster";
-import { formatDate } from "@/lib/format";
 import type { LeaderboardLogItem } from "@/lib/home-leaderboard-types";
-import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
+import { patronWatchLedgerPosterLabels } from "@/lib/patron-watch-ledger-poster-labels";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
 /** Same rounded poster tiles as {@link PersonFilmographyGrid}. */
@@ -36,17 +35,8 @@ export function PatronWatchLedgerGrid({
 				const tmdbId = item.movieId ?? item.tvId;
 				if (tmdbId == null) return null;
 
-				const watched = new Date(item.watchedAt);
-				const watchedLabel = Number.isNaN(watched.getTime())
-					? null
-					: formatDate(watched);
-				const ratingLabel =
-					item.rating != null
-						? formatStoredLogRatingDisplay(item.rating)
-						: null;
-				const metaLine = [watchedLabel, ratingLabel]
-					.filter(Boolean)
-					.join(" · ");
+				const { posterCaption, posterCaptionSubline, metaLine } =
+					patronWatchLedgerPosterLabels(item);
 
 				return (
 					<div key={item.logId} className="min-w-0 text-center">
@@ -59,9 +49,11 @@ export function PatronWatchLedgerGrid({
 							hoverEffect="elevation"
 							hoverStacking="sheet"
 							frameClassName={LEDGER_POSTER_FRAME_CLASSNAME}
+							posterCaption={posterCaption}
+							posterCaptionSubline={posterCaptionSubline}
 						/>
 						{metaLine ? (
-							<p className="mt-1 line-clamp-2 text-center text-[10px] text-muted-foreground leading-snug">
+							<p className="mt-1 line-clamp-3 text-center text-[10px] text-muted-foreground leading-snug">
 								{metaLine}
 							</p>
 						) : null}

@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import { BorderBeam } from "border-beam";
 import {
 	Clapperboard,
 	Compass,
@@ -12,6 +13,7 @@ import {
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTheme } from "next-themes";
 import type { FormEvent } from "react";
 import {
 	useCallback,
@@ -35,6 +37,10 @@ import { SearchDialogStudioRail } from "@/components/home/search-dialog-studio-r
 import { SearchTokenField } from "@/components/home/search-token-field";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { FilterChipButton } from "@/components/ui/filter-chip-row";
+import {
+	appThemeSearchBorderBeamColor,
+	resolveAppTheme,
+} from "@/lib/app-themes";
 import {
 	clampCatalogSearchPanelLeftFromCenter,
 	computeCatalogSearchAnchoredPanelStyle,
@@ -1077,9 +1083,14 @@ export function CatalogSearchDialogRoot({
 export function HomeStickySearch() {
 	const triggerRef = useRef<HTMLButtonElement>(null);
 	const reduceMotion = useReducedMotion();
+	const { theme, resolvedTheme } = useTheme();
 	const requestOpen = useCatalogSearchDialog((s) => s.requestOpen);
 	const setHomeTriggerEl = useCatalogSearchDialog((s) => s.setHomeTriggerEl);
 	const { dialogOpen, showSheet } = useCatalogSearchDialog((s) => s.shellUi);
+
+	const borderBeamColorVariant = appThemeSearchBorderBeamColor(
+		resolveAppTheme(resolvedTheme ?? theme),
+	);
 
 	useEffect(() => {
 		setHomeTriggerEl(triggerRef.current);
@@ -1093,42 +1104,52 @@ export function HomeStickySearch() {
 	}, [requestOpen]);
 
 	return (
-		<motion.button
-			ref={triggerRef}
-			type="button"
-			onClick={handleOpen}
-			layout={false}
-			className={cn(
-				/* Width follows the center grid track (`minmax(0,36rem)`); full size until the header runs out of room. */
-				"flex w-[min(100%,48rem)] min-w-0 max-w-full cursor-pointer items-center gap-2 rounded-full bg-card px-5 py-3 text-left sm:w-full sm:max-w-xl",
-				"origin-center outline-none focus-visible:outline-none",
-			)}
-			aria-haspopup="dialog"
-			aria-expanded={dialogOpen}
-			aria-controls={CATALOG_SEARCH_DIALOG_ID}
-			animate={
-				reduceMotion
-					? { scale: 1 }
-					: {
-							scale: showSheet ? 1.05 : dialogOpen ? 0.98 : 1,
-						}
-			}
-			transition={
-				reduceMotion
-					? { duration: 0 }
-					: {
-							type: "spring",
-							stiffness: 420,
-							damping: 26,
-							mass: 0.55,
-						}
-			}
-			whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+		/* Animated border trace on the catalog search pill (border-beam). */
+		<BorderBeam
+			size="line"
+			theme="auto"
+			colorVariant={borderBeamColorVariant}
+			borderRadius={9999}
+			active={!reduceMotion}
+			strength={2.4}
+			className="w-full min-w-0 max-w-full"
 		>
-			<Search className="size-4 shrink-0 text-muted-foreground" aria-hidden />
-			<span className="min-w-0 flex-1 truncate text-base text-muted-foreground md:text-sm">
-				Films, TV, @people, lists…
-			</span>
-		</motion.button>
+			<motion.button
+				ref={triggerRef}
+				type="button"
+				onClick={handleOpen}
+				layout={false}
+				className={cn(
+					"flex w-full min-w-0 cursor-pointer items-center gap-2 rounded-full bg-card px-5 py-3 text-left",
+					"origin-center outline-none focus-visible:outline-none",
+				)}
+				aria-haspopup="dialog"
+				aria-expanded={dialogOpen}
+				aria-controls={CATALOG_SEARCH_DIALOG_ID}
+				animate={
+					reduceMotion
+						? { scale: 1 }
+						: {
+								scale: showSheet ? 1.05 : dialogOpen ? 0.98 : 1,
+							}
+				}
+				transition={
+					reduceMotion
+						? { duration: 0 }
+						: {
+								type: "spring",
+								stiffness: 420,
+								damping: 26,
+								mass: 0.55,
+							}
+				}
+				whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+			>
+				<Search className="size-4 shrink-0 text-muted-foreground" aria-hidden />
+				<span className="min-w-0 flex-1 truncate text-base text-muted-foreground md:text-sm">
+					Films, TV, @people, lists…
+				</span>
+			</motion.button>
+		</BorderBeam>
 	);
 }

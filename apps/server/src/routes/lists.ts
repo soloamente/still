@@ -27,6 +27,7 @@ import { makeId } from "../lib/cuid";
 import {
 	isFavoritesSystemList,
 	refreshListAggregates,
+	repairFavoritesListPositions,
 } from "../lib/favorites-list-sync";
 import { canEditList } from "../lib/list-collaborator-access";
 import {
@@ -383,6 +384,15 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.limit(1);
 			if (!meta) return status(404, "Not found");
 			if (!(await canViewList(meta, user?.id))) return status(404, "Not found");
+			// Upgrade legacy favorites lists to ranked + normalized positions on read.
+			if (isFavoritesSystemList(meta) && !meta.isRanked) {
+				await db
+					.update(list)
+					.set({ isRanked: true, updatedAt: new Date() })
+					.where(eq(list.id, params.id));
+				await repairFavoritesListPositions(params.id);
+				meta.isRanked = true;
+			}
 			let liked = false;
 			if (user) {
 				const [reactionRow] = await db
@@ -399,18 +409,13 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 					.limit(1);
 				liked = Boolean(reactionRow);
 			}
-			const favoritesList = isFavoritesSystemList(meta);
 			const items = await db
 				.select({ item: listItem, movie, tv })
 				.from(listItem)
 				.leftJoin(movie, eq(listItem.movieId, movie.tmdbId))
 				.leftJoin(tv, eq(listItem.tvId, tv.tmdbId))
 				.where(eq(listItem.listId, params.id))
-				.orderBy(
-					...(favoritesList
-						? [desc(listItem.addedAt)]
-						: [asc(listItem.position), asc(listItem.addedAt)]),
-				);
+				.orderBy(asc(listItem.position), asc(listItem.addedAt));
 
 			const ownerScores = await fetchOwnerLogScoresForListItems(
 				meta.userId,
@@ -667,8 +672,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			if (!parent) return status(404, "Not found");
 			if (!(await canEditList(user.id, parent)))
 				return status(403, "Cannot edit this list");
-			if (isFavoritesSystemList(parent))
-				return status(403, "This list is synced from your favorites");
+			// Favorites list: membership stays diary-synced; patrons may still rank items.
 
 			const currentItems = await db
 				.select({ id: listItem.id })

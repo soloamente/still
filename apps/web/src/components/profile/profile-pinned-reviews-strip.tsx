@@ -2,8 +2,8 @@
 
 import { cn } from "@still/ui/lib/utils";
 
+import { ProfilePinnedReviewCard } from "@/components/profile/profile-pinned-review-card";
 import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
-import { ReviewCard } from "@/components/review/review-card";
 import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
 
 function normalizePublishedAt(value: unknown): string {
@@ -14,12 +14,10 @@ function normalizePublishedAt(value: unknown): string {
 	return new Date().toISOString();
 }
 
-function toReviewCardProps(row: ProfileReviewRow) {
+function toPinnedReviewProps(row: ProfileReviewRow) {
 	const { review, movie } = row;
 	return {
 		id: review.id,
-		userId: review.userId,
-		movieId: review.movieId,
 		title: review.title,
 		body: review.body,
 		rating: review.rating,
@@ -51,24 +49,24 @@ export function ProfilePinnedReviewsStrip({
 
 	return (
 		<section
-			className={cn("mx-auto mt-4 w-full max-w-md text-left", className)}
+			className={cn("mx-auto mt-5 w-full max-w-md text-left", className)}
 			aria-label="Signature reviews"
 		>
-			<p className="mb-2 font-medium text-foreground text-xs tracking-wide">
+			<p className="mb-2 text-center font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
 				Signature reviews
 			</p>
 			<div
 				className={cn(
-					"flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1",
+					"flex snap-x snap-mandatory gap-2 overflow-x-auto pb-0.5",
 					"scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
 				)}
 			>
 				{rows.map((row) => (
 					<div
 						key={row.review.id}
-						className="w-[min(100%,18rem)] shrink-0 snap-start"
+						className="w-[min(100%,18rem)] shrink-0 snap-start sm:w-72"
 					>
-						<ReviewCard review={toReviewCardProps(row)} />
+						<ProfilePinnedReviewCard review={toPinnedReviewProps(row)} />
 					</div>
 				))}
 			</div>

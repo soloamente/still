@@ -13,13 +13,13 @@ import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { contentVisibilityWhere } from "../lib/content-visibility";
+import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
 import {
 	buildHeroArtworkSlides,
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
-import { reviewRatingDisplayAvgSql } from "../lib/review-rating";
 import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
 import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
@@ -746,18 +746,8 @@ export const moviesRoute = new Elysia({
 				}
 			}
 
-			// Aggregate community stats — average rating, review count.
-			// Public-only: this is a single shared number, not personalized.
-			const stats = await db
-				.select({
-					avgRating:
-						sql<number>`${sql.raw(reviewRatingDisplayAvgSql("review.rating"))}`.as(
-							"avgRating",
-						),
-					reviewsCount: sql<number>`count(${review.id})`.as("reviewsCount"),
-				})
-				.from(review)
-				.where(and(eq(review.movieId, id), eq(review.visibility, "public")));
+			// Patron community score — public diary ratings (one per patron), not reviews.
+			const community = await fetchPublicDiaryCommunityStats({ movieId: id });
 
 			return {
 				...row,
@@ -772,12 +762,7 @@ export const moviesRoute = new Elysia({
 					backdropPath: backdropPathForUrl,
 					images: normalizeTmdbImagesBundle(imagesSource),
 				}),
-				community: {
-					// Postgres `avg()` may arrive as a string through the driver — coerce for JSON.
-					averageRating:
-						stats[0]?.avgRating != null ? Number(stats[0].avgRating) : null,
-					reviewsCount: Number(stats[0]?.reviewsCount ?? 0) || 0,
-				},
+				community,
 			};
 		},
 		{ params: t.Object({ id: t.String() }) },

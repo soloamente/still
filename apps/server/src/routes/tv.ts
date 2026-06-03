@@ -4,6 +4,7 @@ import { and, desc, eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
 import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import {
@@ -497,7 +498,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					paletteAccent: null,
 					paletteMuted: null,
 					paletteForeground: null,
-					community: { averageRating: null, reviewsCount: 0 },
+					community: await fetchPublicDiaryCommunityStats({ tvId: id }),
 					malEnrichment,
 					tmdbJson: detail as unknown as Record<string, unknown>,
 				};

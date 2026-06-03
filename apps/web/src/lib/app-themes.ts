@@ -22,6 +22,13 @@ export type AppThemeClass =
 
 export type AppThemeTier = "free" | "pro";
 
+/** `border-beam` `colorVariant` for the sticky catalog search pill. */
+export type AppThemeSearchBorderBeamColor =
+	| "colorful"
+	| "mono"
+	| "ocean"
+	| "sunset";
+
 export type AppThemeDefinition = {
 	/** `next-themes` class on `<html>`. */
 
@@ -34,6 +41,9 @@ export type AppThemeDefinition = {
 	/** Settings swatch preview (hex). */
 
 	preview: { canvas: string; raised: string; accent: string };
+
+	/** Sticky search `BorderBeam` palette — tuned to each shell’s accent hue. */
+	searchBorderBeamColor: AppThemeSearchBorderBeamColor;
 };
 
 export const APP_THEMES = {
@@ -51,6 +61,8 @@ export const APP_THEMES = {
 
 			accent: "#b75928",
 		},
+
+		searchBorderBeamColor: "mono",
 	},
 
 	[APP_THEME_CLASS_LOBBY_LIGHT]: {
@@ -67,6 +79,8 @@ export const APP_THEMES = {
 
 			accent: "#b75928",
 		},
+
+		searchBorderBeamColor: "mono",
 	},
 
 	[APP_THEME_CLASS_NOIR]: {
@@ -83,6 +97,8 @@ export const APP_THEMES = {
 
 			accent: "#9a4f2a",
 		},
+
+		searchBorderBeamColor: "ocean",
 	},
 
 	[APP_THEME_CLASS_EMBER]: {
@@ -99,6 +115,8 @@ export const APP_THEMES = {
 
 			accent: "#e07a3a",
 		},
+
+		searchBorderBeamColor: "sunset",
 	},
 
 	[APP_THEME_CLASS_MIDNIGHT]: {
@@ -115,6 +133,8 @@ export const APP_THEMES = {
 
 			accent: "#7b8cff",
 		},
+
+		searchBorderBeamColor: "colorful",
 	},
 } as const satisfies Record<AppThemeClass, AppThemeDefinition>;
 
@@ -176,4 +196,11 @@ export function isAppThemeLight(theme: AppThemeClass): boolean {
 
 export function appThemeTier(theme: AppThemeClass): AppThemeTier {
 	return APP_THEMES[theme].tier;
+}
+
+/** `BorderBeam` `colorVariant` for `HomeStickySearch` — one preset per shell palette. */
+export function appThemeSearchBorderBeamColor(
+	theme: AppThemeClass,
+): AppThemeSearchBorderBeamColor {
+	return APP_THEMES[theme].searchBorderBeamColor;
 }

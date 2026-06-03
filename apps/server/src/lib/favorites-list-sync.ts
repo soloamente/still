@@ -1,7 +1,13 @@
 import { db, LIST_SYSTEM_KIND_FAVORITES, list, listItem } from "@still/db";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, asc, desc, eq, sql } from "drizzle-orm";
 
 import { makeId } from "./cuid";
+
+/** Ranked favorites use `position`; cover snapshots follow the same order. */
+const FAVORITES_ITEM_ORDER = [
+	asc(listItem.position),
+	asc(listItem.addedAt),
+] as const;
 
 /** True when the list row is the auto-managed favorites collection. */
 export function isFavoritesSystemList(row: {
@@ -10,10 +16,41 @@ export function isFavoritesSystemList(row: {
 	return row.systemKind === LIST_SYSTEM_KIND_FAVORITES;
 }
 
-/** Create or fetch the patron's system favorites list. */
+/**
+ * Normalize positions 0..n-1 for legacy rows that all used position 0.
+ * Preserves prior "newest first" display by sorting on `addedAt` descending.
+ */
+export async function repairFavoritesListPositions(
+	listId: string,
+): Promise<void> {
+	const items = await db
+		.select({ id: listItem.id, position: listItem.position })
+		.from(listItem)
+		.where(eq(listItem.listId, listId))
+		.orderBy(desc(listItem.addedAt), asc(listItem.id));
+
+	for (const [position, item] of items.entries()) {
+		if (item.position !== position) {
+			await db
+				.update(listItem)
+				.set({ position })
+				.where(eq(listItem.id, item.id));
+		}
+	}
+}
+
+async function countListItems(listId: string): Promise<number> {
+	const [row] = await db
+		.select({ count: sql<number>`count(*)::int` })
+		.from(listItem)
+		.where(eq(listItem.listId, listId));
+	return row?.count ?? 0;
+}
+
+/** Create or fetch the patron's system favorites list (always ranked). */
 export async function ensureFavoritesList(userId: string): Promise<string> {
 	const [existing] = await db
-		.select({ id: list.id })
+		.select({ id: list.id, isRanked: list.isRanked })
 		.from(list)
 		.where(
 			and(
@@ -22,7 +59,16 @@ export async function ensureFavoritesList(userId: string): Promise<string> {
 			),
 		)
 		.limit(1);
-	if (existing) return existing.id;
+	if (existing) {
+		if (!existing.isRanked) {
+			await db
+				.update(list)
+				.set({ isRanked: true, updatedAt: new Date() })
+				.where(eq(list.id, existing.id));
+			await repairFavoritesListPositions(existing.id);
+		}
+		return existing.id;
+	}
 
 	const id = makeId("lst");
 	await db.insert(list).values({
@@ -31,7 +77,7 @@ export async function ensureFavoritesList(userId: string): Promise<string> {
 		title: "Favorites",
 		slug: "favorites",
 		description: "Titles you've favorited from your diary.",
-		isRanked: false,
+		isRanked: true,
 		isPublic: true,
 		isCollaborative: false,
 		systemKind: LIST_SYSTEM_KIND_FAVORITES,
@@ -48,7 +94,7 @@ export async function refreshListAggregates(listId: string): Promise<void> {
 		})
 		.from(listItem)
 		.where(eq(listItem.listId, listId))
-		.orderBy(desc(listItem.addedAt))
+		.orderBy(...FAVORITES_ITEM_ORDER)
 		.limit(4);
 
 	const coverMovieIds = recentItems
@@ -137,18 +183,14 @@ export async function syncFavoritesListForUserTitle(input: {
 			.from(listItem)
 			.where(and(eq(listItem.listId, listId), eq(listItem.movieId, movieId)))
 			.limit(1);
-		if (existing) {
-			await db
-				.update(listItem)
-				.set({ addedAt: now })
-				.where(eq(listItem.id, existing.id));
-		} else {
+		if (!existing) {
+			const position = await countListItems(listId);
 			await db.insert(listItem).values({
 				id: makeId("lit"),
 				listId,
 				movieId,
 				tvId: null,
-				position: 0,
+				position,
 				addedById: userId,
 				addedAt: now,
 			});
@@ -159,18 +201,14 @@ export async function syncFavoritesListForUserTitle(input: {
 			.from(listItem)
 			.where(and(eq(listItem.listId, listId), eq(listItem.tvId, tvId)))
 			.limit(1);
-		if (existing) {
-			await db
-				.update(listItem)
-				.set({ addedAt: now })
-				.where(eq(listItem.id, existing.id));
-		} else {
+		if (!existing) {
+			const position = await countListItems(listId);
 			await db.insert(listItem).values({
 				id: makeId("lit"),
 				listId,
 				movieId: null,
 				tvId,
-				position: 0,
+				position,
 				addedById: userId,
 				addedAt: now,
 			});

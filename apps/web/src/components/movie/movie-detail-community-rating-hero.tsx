@@ -5,123 +5,131 @@ import IconPatronScoreLeafRight from "@still/ui/icons/patron-score-leaf-right";
 import { cn } from "@still/ui/lib/utils";
 
 import { StillAnimateRatingNumber } from "@/components/ui/still-animate-rating-number";
-import { APP_COMMUNITY_AVERAGE_LABEL, APP_NAME } from "@/lib/app-brand";
+import { APP_COMMUNITY_AVERAGE_LABEL } from "@/lib/app-brand";
 import { formatLogRatingDisplay, logRatingToDisplay } from "@/lib/log-rating";
 
-/** Headline + supporting copy for the patron-score hero (Airbnb “guest favorite” pattern). */
-function patronScoreHeadline(
-	average: number,
-	reviewCount: number,
-): { title: string; description: string } {
-	if (reviewCount >= 8 && average >= 8.5) {
-		return {
-			title: "Patron favorite",
-			description: `One of the most loved titles on ${APP_NAME} based on member ratings, published reviews, and list presence.`,
-		};
-	}
-	if (reviewCount >= 3 && average >= 7.5) {
-		return {
-			title: `Well rated on ${APP_NAME}`,
-			description:
-				"Members consistently score this title highly in published reviews and diary ratings.",
-		};
-	}
-	return {
-		title: APP_COMMUNITY_AVERAGE_LABEL,
-		description: `Community score from published member reviews on ${APP_NAME}’s 0–10 patron scale.`,
-	};
+/** Tier headline above the score — supporting line is only the ratings count. */
+function patronScoreTitle(average: number, ratingsCount: number): string {
+	if (ratingsCount >= 8 && average >= 8.5) return "Patron favorite";
+	if (ratingsCount >= 3 && average >= 7.5) return "Well rated";
+	return APP_COMMUNITY_AVERAGE_LABEL;
+}
+
+function formatPatronRatingsCountLine(count: number): string {
+	return `${count} public ${count === 1 ? "rating" : "ratings"}`;
 }
 
 /**
- * Centered patron-score block for film detail — large tabular score flanked by laurels,
- * bold headline, and balanced supporting copy (Mobbin / Airbnb guest-favorite pattern).
+ * Patron community score — `compact` under hero synopsis; `featured` for large standalone blocks.
  */
 export function MovieDetailCommunityRatingHero({
 	communityAverage,
-	communityReviewsCount,
+	communityRatingsCount,
+	variant = "featured",
 	className,
 }: {
 	communityAverage: number | null;
-	communityReviewsCount: number;
+	communityRatingsCount: number;
+	variant?: "featured" | "compact";
 	className?: string;
 }) {
 	const hasAverage =
 		communityAverage != null &&
-		communityReviewsCount > 0 &&
+		communityRatingsCount > 0 &&
 		Number.isFinite(communityAverage);
 
 	const displayAverage =
 		communityAverage != null ? logRatingToDisplay(communityAverage) : null;
 
-	const { title, description } =
+	const title =
 		hasAverage && displayAverage != null
-			? patronScoreHeadline(displayAverage, communityReviewsCount)
-			: {
-					title: "No patron score yet",
-					description: `Publish a review with a rating to seed the ${APP_COMMUNITY_AVERAGE_LABEL} for this title.`,
-				};
+			? patronScoreTitle(displayAverage, communityRatingsCount)
+			: "No patron score yet";
+	const emptyDescription = "Log this title with a score.";
+	const isCompact = variant === "compact";
+
+	if (isCompact && !hasAverage) return null;
+
+	const leafClass = isCompact
+		? "h-10 w-auto shrink-0 text-foreground/55 sm:h-11"
+		: "h-20 w-auto shrink-0 text-foreground/55 sm:h-24";
 
 	return (
 		<section
 			className={cn(
-				"mx-auto flex w-full max-w-md flex-col items-center px-4 py-10 text-center sm:max-w-lg sm:py-12",
+				isCompact
+					? "mt-4 flex w-full flex-col items-center gap-1.5 text-center"
+					: "mx-auto flex w-full max-w-md flex-col items-center px-4 py-10 text-center sm:max-w-lg sm:py-12",
 				className,
 			)}
-			aria-label={`${APP_NAME} community rating`}
+			aria-label="Community rating"
 		>
 			{/* Score row — laurels frame the primary metric like Airbnb guest-favorite. */}
-			<div className="flex items-center justify-center gap-2 sm:gap-4">
+			<div
+				className={cn(
+					"flex items-center justify-center",
+					isCompact ? "gap-2 sm:gap-2.5" : "gap-2 sm:gap-4",
+				)}
+			>
 				<IconPatronScoreLeafLeft
-					className={cn(
-						"h-20 w-auto shrink-0 text-foreground/55 sm:h-24",
-						!hasAverage && "opacity-40",
-					)}
+					className={cn(leafClass, !hasAverage && "opacity-40")}
 				/>
 				{hasAverage && displayAverage != null ? (
-					<div className="font-sans font-semibold text-5xl text-foreground tabular-nums tracking-tight sm:text-6xl">
+					<div
+						className={cn(
+							"font-sans font-semibold text-foreground tabular-nums tracking-tight",
+							isCompact ? "text-xl sm:text-2xl" : "text-5xl sm:text-6xl",
+						)}
+					>
 						<span className="sr-only">
 							{APP_COMMUNITY_AVERAGE_LABEL}{" "}
 							{formatLogRatingDisplay(displayAverage)} out of 10
 						</span>
-						<StillAnimateRatingNumber
-							value={displayAverage}
-							className="text-5xl sm:text-6xl"
-						/>
+						{isCompact ? (
+							formatLogRatingDisplay(displayAverage)
+						) : (
+							<StillAnimateRatingNumber
+								value={displayAverage}
+								className="text-5xl sm:text-6xl"
+							/>
+						)}
 					</div>
 				) : (
 					<div
-						className="font-sans font-semibold text-4xl text-muted-foreground/80 tabular-nums tracking-tight sm:text-5xl"
+						className={cn(
+							"font-sans font-semibold text-muted-foreground/80 tabular-nums tracking-tight",
+							isCompact ? "text-xl sm:text-2xl" : "text-4xl sm:text-5xl",
+						)}
 						aria-hidden
 					>
 						—
 					</div>
 				)}
 				<IconPatronScoreLeafRight
-					className={cn(
-						"h-20 w-auto shrink-0 text-foreground/55 sm:h-24",
-						!hasAverage && "opacity-40",
-					)}
+					className={cn(leafClass, !hasAverage && "opacity-40")}
 				/>
 			</div>
 
-			<h3 className="mt-5 font-sans font-semibold text-foreground text-lg tracking-tight sm:text-xl">
-				{title}
-			</h3>
-
-			<p className="mt-2 max-w-md text-balance font-sans text-muted-foreground text-sm leading-relaxed sm:text-[15px]">
-				{hasAverage ? (
-					<>
-						{description}{" "}
-						<span className="text-foreground/80 tabular-nums">
-							{communityReviewsCount}{" "}
-							{communityReviewsCount === 1 ? "review" : "reviews"}
-						</span>
-						.
-					</>
-				) : (
-					description
-				)}
-			</p>
+			{isCompact ? (
+				<p className="text-balance font-sans text-muted-foreground text-sm tabular-nums">
+					{formatPatronRatingsCountLine(communityRatingsCount)}
+				</p>
+			) : (
+				<>
+					<h3 className="mt-5 font-sans font-semibold text-foreground text-lg tracking-tight sm:text-xl">
+						{title}
+					</h3>
+					<p className="mt-2 max-w-md text-balance font-sans text-muted-foreground text-sm leading-relaxed sm:text-[15px]">
+						{hasAverage ? (
+							<span className="text-foreground/80 tabular-nums">
+								{formatPatronRatingsCountLine(communityRatingsCount)}
+							</span>
+						) : (
+							emptyDescription
+						)}
+					</p>
+				</>
+			)}
 		</section>
 	);
 }

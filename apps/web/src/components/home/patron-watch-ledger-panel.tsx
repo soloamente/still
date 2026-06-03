@@ -2,9 +2,10 @@
 
 import { env } from "@still/env/web";
 import { Loader2 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { PatronWatchLedgerSeed } from "@/components/home/patron-watch-ledger-drawer";
 import { PatronWatchLedgerGrid } from "@/components/home/patron-watch-ledger-grid";
+import { PatronWatchLedgerOrderChips } from "@/components/home/patron-watch-ledger-order-chips";
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
@@ -13,6 +14,10 @@ import {
 	readViewerTimeZone,
 } from "@/lib/home-leaderboard-period";
 import type { LeaderboardLogsPayload } from "@/lib/home-leaderboard-types";
+import {
+	type PatronWatchLedgerOrder,
+	sortPatronWatchLedgerItems,
+} from "@/lib/patron-watch-ledger-order";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 async function fetchPatronWatchLedger(
@@ -51,6 +56,7 @@ export function PatronWatchLedgerPanel({
 	const [payload, setPayload] = useState<LeaderboardLogsPayload | null>(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [order, setOrder] = useState<PatronWatchLedgerOrder>("latest_seen");
 
 	useEffect(() => {
 		if (!active) return;
@@ -59,6 +65,7 @@ export function PatronWatchLedgerPanel({
 		setLoading(true);
 		setError(null);
 		setPayload(null);
+		setOrder("latest_seen");
 
 		void fetchPatronWatchLedger(seed)
 			.then((data) => {
@@ -85,6 +92,10 @@ export function PatronWatchLedgerPanel({
 	const displayName = payload?.user.displayName ?? seed.displayName;
 	const handle = payload?.user.handle ?? seed.handle;
 	const items = payload?.items ?? [];
+	const sortedItems = useMemo(
+		() => sortPatronWatchLedgerItems(items, order),
+		[items, order],
+	);
 	const titleCount = items.length;
 	const periodLabel = leaderboardPeriodLabel(seed.period);
 	const kindLabel = seed.kind === "tv" ? "TV" : "Films";
@@ -142,8 +153,15 @@ export function PatronWatchLedgerPanel({
 						</p>
 					) : null}
 
+					{!loading && !error && sortedItems.length > 0 ? (
+						<PatronWatchLedgerOrderChips
+							order={order}
+							onOrderChange={setOrder}
+						/>
+					) : null}
+
 					{!loading && !error ? (
-						<PatronWatchLedgerGrid items={items} kind={seed.kind} />
+						<PatronWatchLedgerGrid items={sortedItems} kind={seed.kind} />
 					) : null}
 				</div>
 			</DetailDrawerScrollBody>

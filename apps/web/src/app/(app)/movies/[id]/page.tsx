@@ -4,13 +4,13 @@ import { Suspense } from "react";
 
 import { MovieDetailAboutAsync } from "@/components/movie/movie-detail-about-async";
 import { MovieDetailAboutFallback } from "@/components/movie/movie-detail-about-fallback";
+import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailPrimaryActions } from "@/components/movie/movie-detail-primary-actions";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { formatRuntime } from "@/lib/format";
-import { formatLogRatingDisplay } from "@/lib/log-rating";
 import {
 	mapCastToArcCards,
 	mapCrewToArcCards,
@@ -57,7 +57,7 @@ export async function generateMetadata({
 
 type CommunityShape = {
 	averageRating: number | null;
-	reviewsCount: number;
+	ratingsCount: number;
 };
 
 /** SQL aggregates may deserialize as strings — normalize before `.toFixed` / `Math.round`. */
@@ -202,9 +202,9 @@ export default async function MoviePage({
 	const { accent: movieAccent } = accentFromGenres(j?.genres);
 	const tmdbAvg = toFiniteNumber(data.voteAverage);
 	const communityAverage = toFiniteNumber(data.community?.averageRating);
-	const communityReviewsCount = Math.max(
+	const communityRatingsCount = Math.max(
 		0,
-		Math.floor(toFiniteNumber(data.community?.reviewsCount) ?? 0),
+		Math.floor(toFiniteNumber(data.community?.ratingsCount) ?? 0),
 	);
 
 	const primaryGenre = j?.genres?.[0]?.name ?? null;
@@ -270,18 +270,11 @@ export default async function MoviePage({
 					{heroBlurb}
 				</p>
 			) : null}
-			{communityAverage != null ? (
-				<div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-					<span className="font-serif text-2xl tabular-nums">
-						{formatLogRatingDisplay(communityAverage)}
-						<span className="text-base text-muted-foreground">/10</span>
-					</span>
-					<span className="text-muted-foreground text-xs">
-						· {communityReviewsCount}{" "}
-						{communityReviewsCount === 1 ? "review" : "reviews"}
-					</span>
-				</div>
-			) : null}
+			<MovieDetailCommunityRatingHero
+				variant="compact"
+				communityAverage={communityAverage}
+				communityRatingsCount={communityRatingsCount}
+			/>
 			<div className="mt-8 flex w-full justify-center">
 				<MovieDetailPrimaryActions
 					movieId={data.tmdbId}
@@ -329,8 +322,6 @@ export default async function MoviePage({
 							crewCrawlLines={crewCrawlLines}
 							moreLikeThis={moreLikeThis}
 							moviePosterUrl={data.poster_url}
-							communityAverage={communityAverage}
-							communityReviewsCount={communityReviewsCount}
 							imdbId={data.imdbId}
 							festivalKeywords={festivalKeywords}
 							premiereRows={premiereRows}

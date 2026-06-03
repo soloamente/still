@@ -92,10 +92,13 @@ export default async function ListDetailPage({
 	const viewerCanEdit = Boolean(
 		data.viewerCanEdit ?? (isOwner && !isSystemFavorites),
 	);
+	// System favorites: diary-synced membership, but owners may drag-rank when `isRanked`.
+	const viewerCanReorder =
+		isSystemFavorites && isOwner ? Boolean(data.isRanked) : viewerCanEdit;
 	const canReorder = canReorderRankedList({
 		isRanked: data.isRanked,
 		viewerId: session?.user?.id,
-		viewerCanEdit,
+		viewerCanEdit: viewerCanReorder,
 	});
 	const collaborators = data.collaborators ?? [];
 	const ownerProfile = data.owner ?? null;
@@ -123,7 +126,9 @@ export default async function ListDetailPage({
 
 	const filmsSectionTitle = data.isRanked ? "Ranked" : "Titles";
 	const filmsSectionSubtitle = isSystemFavorites
-		? "Every title you have favorited from your diary — most recent first."
+		? data.isRanked
+			? "Titles synced from your diary favorites — drag to set your order (#1 is the top pick)."
+			: "Every title you have favorited from your diary."
 		: data.isRanked
 			? "Position order as you arranged this list — lowest number is the top pick."
 			: "Every title in this collection — open a poster to visit its page.";

@@ -221,6 +221,7 @@ mock.module("../lib/vercel-blob-image-put", () => ({
 mock.module("../lib/favorites-list-sync", () => ({
 	isFavoritesSystemList: (row: { systemKind: string | null }) =>
 		row.systemKind === LIST_SYSTEM_KIND_FAVORITES,
+	repairFavoritesListPositions: async () => undefined,
 	refreshListAggregates: async () => undefined,
 }));
 
@@ -425,13 +426,25 @@ describe("POST /api/lists/:id/reorder", () => {
 		expect(response.status).toBe(403);
 	});
 
-	test("rejects favorites system list", async () => {
-		if (state.list) state.list.systemKind = LIST_SYSTEM_KIND_FAVORITES;
+	test("allows owner reorder on favorites system list", async () => {
+		if (state.list) {
+			state.list.systemKind = LIST_SYSTEM_KIND_FAVORITES;
+			state.list.isRanked = true;
+		}
 		const response = await postReorder({
 			userId: "owner-1",
-			itemIds: ["lit-1", "lit-2", "lit-3"],
+			itemIds: ["lit-3", "lit-1", "lit-2"],
 		});
-		expect(response.status).toBe(403);
+		expect(response.status).toBe(200);
+		const payload = (await response.json()) as {
+			items: Array<{ item: { id: string; position: number } }>;
+		};
+		expect(payload.items.map((row) => row.item.position)).toEqual([0, 1, 2]);
+		expect(payload.items.map((row) => row.item.id)).toEqual([
+			"lit-3",
+			"lit-1",
+			"lit-2",
+		]);
 	});
 
 	test("rejects duplicate ids", async () => {

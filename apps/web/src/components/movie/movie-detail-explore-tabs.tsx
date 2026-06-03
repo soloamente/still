@@ -11,7 +11,6 @@ import { useCallback, useId, useState } from "react";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
-import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import {
 	type MovieDetailFollowingRating,
 	MovieDetailFollowingRatings,
@@ -23,7 +22,6 @@ import {
 } from "@/components/review/review-card";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
 import { Section } from "@/components/ui/section";
-import { APP_NAME } from "@/lib/app-brand";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -77,8 +75,8 @@ function MovieDetailListsEmpty({
 				</span>
 				<p className="mt-4 font-sans text-lg">No public lists yet</p>
 				<p className="mx-auto mt-2 max-w-sm text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
-					No community lists on {APP_NAME} include this title — start a list
-					from your profile and add it for others to find here.
+					No public lists include this title yet — start a list from your
+					profile and add it for others to find here.
 				</p>
 				<DetailMotionButton
 					type="button"
@@ -176,8 +174,6 @@ export function MovieDetailExploreTabs({
 	reviewsAfterFeatured,
 	reviews,
 	moreLikeThis,
-	communityAverage = null,
-	communityReviewsCount = 0,
 	followingRatings = [],
 	followingRatingsMoreCount = 0,
 	layout = "tabs",
@@ -194,8 +190,6 @@ export function MovieDetailExploreTabs({
 	reviewsAfterFeatured: MoviePageReview[];
 	reviews: MoviePageReview[];
 	moreLikeThis: TmdbMovieSummary[];
-	communityAverage?: number | null;
-	communityReviewsCount?: number;
 	/** Latest diary scores from patrons the viewer follows (signed-in only). */
 	followingRatings?: MovieDetailFollowingRating[];
 	followingRatingsMoreCount?: number;
@@ -264,13 +258,6 @@ export function MovieDetailExploreTabs({
 	];
 
 	const hasRelatedBody = moreLikeThis.length > 0;
-
-	const communityStatsPanel = (
-		<MovieDetailCommunityRatingHero
-			communityAverage={communityAverage}
-			communityReviewsCount={communityReviewsCount}
-		/>
-	);
 
 	const reviewsPanel = (
 		<>
@@ -440,7 +427,6 @@ export function MovieDetailExploreTabs({
 
 	const communityPanel = (
 		<div className="space-y-14">
-			{communityStatsPanel}
 			{followingRatingsPanel}
 			<div>
 				<MovieDetailSubsectionLabel>Reviews</MovieDetailSubsectionLabel>
@@ -545,7 +531,6 @@ export function MovieDetailExploreTabs({
 				hidden={tab !== "reviews"}
 				className={tab === "reviews" ? "space-y-10" : "hidden"}
 			>
-				{communityStatsPanel}
 				{followingRatingsPanel}
 				{reviewsPanel}
 			</div>

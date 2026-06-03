@@ -45,7 +45,64 @@ export type LeaderboardLogItem = {
 	title: string;
 	posterPath: string | null;
 	rating: number | null;
+	rewatch: boolean;
+	/** 1-based index for this title within the period (chronological by `watchedAt`). */
+	watchIndexInPeriod: number;
+	/** How many logs this patron filed for the same title in the period. */
+	watchCountInPeriod: number;
 };
+
+type LeaderboardLogItemRow = {
+	logId: string;
+	watchedAt: string;
+	movieId: number | null;
+	tvId: number | null;
+	title: string;
+	posterPath: string | null;
+	rating: number | null;
+	rewatch: boolean;
+};
+
+/** Groups period logs by title so the drawer can show rewatch ordinals and repeat counts. */
+export function annotateLeaderboardLogItems(
+	raw: LeaderboardLogItemRow[],
+): LeaderboardLogItem[] {
+	const groups = new Map<string, LeaderboardLogItemRow[]>();
+
+	for (const item of raw) {
+		const key =
+			item.movieId != null
+				? `movie:${item.movieId}`
+				: item.tvId != null
+					? `tv:${item.tvId}`
+					: item.logId;
+		const bucket = groups.get(key);
+		if (bucket) bucket.push(item);
+		else groups.set(key, [item]);
+	}
+
+	const annotated: LeaderboardLogItem[] = [];
+
+	for (const bucket of groups.values()) {
+		const sorted = bucket.slice().sort((a, b) => {
+			const at = new Date(a.watchedAt).getTime();
+			const bt = new Date(b.watchedAt).getTime();
+			if (at !== bt) return at - bt;
+			return a.logId.localeCompare(b.logId);
+		});
+		const count = sorted.length;
+		sorted.forEach((item, index) => {
+			annotated.push({
+				...item,
+				rewatch: item.rewatch,
+				watchIndexInPeriod: index + 1,
+				watchCountInPeriod: count,
+			});
+		});
+	}
+
+	return annotated;
+}
 
 /** Patron ids the viewer must not see on the board. */
 async function blockedUserIdsForViewer(viewerId: string): Promise<string[]> {
@@ -257,6 +314,7 @@ export async function fetchLeaderboardLogs(opts: {
 				watchedAt: log.watchedAt,
 				movieId: log.movieId,
 				rating: log.rating,
+				rewatch: log.rewatch,
 				title: movie.title,
 				posterPath: movie.posterPath,
 			})
@@ -285,15 +343,18 @@ export async function fetchLeaderboardLogs(opts: {
 			},
 			period: opts.period,
 			window: { start: start.toISOString(), end: end.toISOString() },
-			items: logs.map((l) => ({
-				logId: l.logId,
-				watchedAt: l.watchedAt.toISOString(),
-				movieId: l.movieId,
-				tvId: null,
-				title: l.title,
-				posterPath: l.posterPath,
-				rating: l.rating,
-			})),
+			items: annotateLeaderboardLogItems(
+				logs.map((l) => ({
+					logId: l.logId,
+					watchedAt: l.watchedAt.toISOString(),
+					movieId: l.movieId,
+					tvId: null,
+					title: l.title,
+					posterPath: l.posterPath,
+					rating: l.rating,
+					rewatch: l.rewatch,
+				})),
+			),
 		};
 	}
 
@@ -303,6 +364,7 @@ export async function fetchLeaderboardLogs(opts: {
 			watchedAt: log.watchedAt,
 			tvId: log.tvId,
 			rating: log.rating,
+			rewatch: log.rewatch,
 			title: tv.title,
 			posterPath: tv.posterPath,
 		})
@@ -331,14 +393,17 @@ export async function fetchLeaderboardLogs(opts: {
 		},
 		period: opts.period,
 		window: { start: start.toISOString(), end: end.toISOString() },
-		items: logs.map((l) => ({
-			logId: l.logId,
-			watchedAt: l.watchedAt.toISOString(),
-			movieId: null,
-			tvId: l.tvId,
-			title: l.title,
-			posterPath: l.posterPath,
-			rating: l.rating,
-		})),
+		items: annotateLeaderboardLogItems(
+			logs.map((l) => ({
+				logId: l.logId,
+				watchedAt: l.watchedAt.toISOString(),
+				movieId: null,
+				tvId: l.tvId,
+				title: l.title,
+				posterPath: l.posterPath,
+				rating: l.rating,
+				rewatch: l.rewatch,
+			})),
+		),
 	};
 }

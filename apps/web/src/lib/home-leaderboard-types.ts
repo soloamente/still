@@ -27,6 +27,9 @@ export type LeaderboardLogItem = {
 	title: string;
 	posterPath: string | null;
 	rating: number | null;
+	rewatch: boolean;
+	watchIndexInPeriod: number;
+	watchCountInPeriod: number;
 };
 
 export type LeaderboardLogsPayload = {

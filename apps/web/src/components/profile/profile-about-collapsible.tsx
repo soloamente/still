@@ -1,7 +1,4 @@
-"use client";
-
 import { cn } from "@still/ui/lib/utils";
-import { useState } from "react";
 
 import { ProfileActivitySignature } from "@/components/profile/profile-activity-signature";
 
@@ -11,6 +8,7 @@ type ProfileAboutCollapsibleProps = {
 	pronouns: string | null;
 	location: string | null;
 	website: string | null;
+	className?: string;
 };
 
 function formatWebsiteLabel(website: string) {
@@ -18,8 +16,8 @@ function formatWebsiteLabel(website: string) {
 }
 
 /**
- * Collapsible panel shown below profile actions — bio, pronouns, location,
- * website, and the activity heatmap. Hidden entirely when all fields are empty.
+ * Patron about block — bio, meta, and diary heatmap below the identity row.
+ * Open editorial layout without avatar chrome or accordion.
  */
 export function ProfileAboutCollapsible({
 	handle,
@@ -27,71 +25,72 @@ export function ProfileAboutCollapsible({
 	pronouns,
 	location,
 	website,
+	className,
 }: ProfileAboutCollapsibleProps) {
-	const [open, setOpen] = useState(false);
+	const trimmedBio = bio?.trim() ?? "";
+	const trimmedPronouns = pronouns?.trim() ?? "";
+	const trimmedLocation = location?.trim() ?? "";
+	const trimmedWebsite = website?.trim() ?? "";
 
-	const previewParts: string[] = [];
-	if (location?.trim()) previewParts.push(location.trim());
-	if (website?.trim()) previewParts.push(formatWebsiteLabel(website.trim()));
-	if (bio?.trim()) previewParts.push("bio");
-	const preview = previewParts.slice(0, 2).join(" · ");
+	const hasMeta =
+		Boolean(trimmedPronouns) ||
+		Boolean(trimmedLocation) ||
+		Boolean(trimmedWebsite);
+
+	const hasCopy = Boolean(trimmedBio) || hasMeta;
 
 	return (
-		<div className="mt-3 w-full overflow-hidden rounded-xl bg-muted/20">
-			<button
-				type="button"
-				onClick={() => setOpen((v) => !v)}
-				className={cn(
-					"flex w-full items-center justify-between px-4 py-2.5 text-left",
-					"text-muted-foreground text-xs transition-colors",
-					"[@media(hover:hover)]:hover:text-foreground",
-				)}
-				aria-expanded={open}
-			>
-				<span className="truncate">
-					{open ? null : preview || "Activity & more"}
-				</span>
-				<span className="ml-2 shrink-0">{open ? "less ‹" : "more ›"}</span>
-			</button>
-
-			{open ? (
-				<div className="flex flex-col gap-3 px-4 pb-4">
-					{bio?.trim() ? (
-						<p className="text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
-							{bio.trim()}
-						</p>
+		<section
+			className={cn("mt-4 w-full text-left", className)}
+			aria-label="About"
+		>
+			{hasCopy ? (
+				<div className="space-y-2.5 text-center">
+					{trimmedBio ? (
+						<blockquote className="mx-auto max-w-prose text-balance">
+							<p className="font-editorial text-foreground/90 text-sm leading-relaxed">
+								{trimmedBio}
+							</p>
+						</blockquote>
 					) : null}
 
-					{pronouns?.trim() || location?.trim() || website?.trim() ? (
-						<p className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-muted-foreground text-xs">
-							{pronouns?.trim() ? <span>{pronouns.trim()}</span> : null}
-							{pronouns?.trim() && (location?.trim() || website?.trim()) ? (
+					{hasMeta ? (
+						<p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-muted-foreground text-xs leading-snug">
+							{trimmedPronouns ? <span>{trimmedPronouns}</span> : null}
+							{trimmedPronouns && (trimmedLocation || trimmedWebsite) ? (
 								<span aria-hidden className="text-muted-foreground/40">
 									·
 								</span>
 							) : null}
-							{location?.trim() ? <span>{location.trim()}</span> : null}
-							{location?.trim() && website?.trim() ? (
+							{trimmedLocation ? <span>{trimmedLocation}</span> : null}
+							{trimmedLocation && trimmedWebsite ? (
 								<span aria-hidden className="text-muted-foreground/40">
 									·
 								</span>
 							) : null}
-							{website?.trim() ? (
+							{trimmedWebsite ? (
 								<a
-									href={website.trim()}
+									href={trimmedWebsite}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline"
 								>
-									{formatWebsiteLabel(website.trim())}
+									{formatWebsiteLabel(trimmedWebsite)}
 								</a>
 							) : null}
 						</p>
 					) : null}
-
-					<ProfileActivitySignature handle={handle} />
 				</div>
 			) : null}
-		</div>
+
+			<div
+				className={cn("rounded-xl bg-background p-3", hasCopy ? "mt-4" : null)}
+			>
+				<p className="mb-2 text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
+					Diary rhythm
+				</p>
+				<ProfileActivitySignature handle={handle} />
+			</div>
+		</section>
 	);
 }

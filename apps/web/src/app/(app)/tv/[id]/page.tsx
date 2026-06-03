@@ -2,16 +2,15 @@ import { cn } from "@still/ui/lib/utils";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
+import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
-import { StarRating } from "@/components/rating/star-rating";
 import { TvDetailAboutPanel } from "@/components/tv/tv-detail-about-panel";
 import { TvDetailClientRoot } from "@/components/tv/tv-detail-client-root";
 import { TvDetailCommunityAsync } from "@/components/tv/tv-detail-community-async";
 import { TvDetailCommunityFallback } from "@/components/tv/tv-detail-community-fallback";
 import { TvDetailPrimaryActions } from "@/components/tv/tv-detail-primary-actions";
-import { APP_NAME } from "@/lib/app-brand";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { formatRuntime } from "@/lib/format";
 import {
@@ -41,6 +40,13 @@ import { TV_DETAIL_SECTION } from "@/lib/tv-detail-sections";
 export const dynamic = "force-dynamic";
 
 type Params = { id: string };
+
+/** SQL aggregates may deserialize as strings — normalize before display. */
+function toFiniteNumber(value: unknown): number | null {
+	if (value == null) return null;
+	const n = typeof value === "number" ? value : Number(value);
+	return Number.isFinite(n) ? n : null;
+}
 
 type TmdbJsonShape = {
 	genres?: { id: number; name: string }[];
@@ -99,7 +105,7 @@ type TmdbJsonShape = {
 
 type CommunityShape = {
 	averageRating: number | null;
-	reviewsCount: number;
+	ratingsCount: number;
 };
 
 type TvDetail = {
@@ -254,6 +260,11 @@ export default async function TvShowPage({
 		});
 	}
 	const detailBasePath = `/tv/${data.tmdbId}`;
+	const communityAverage = toFiniteNumber(data.community?.averageRating);
+	const communityRatingsCount = Math.max(
+		0,
+		Math.floor(toFiniteNumber(data.community?.ratingsCount) ?? 0),
+	);
 
 	const hero = (
 		<div
@@ -292,18 +303,11 @@ export default async function TvShowPage({
 					{heroBlurb}
 				</p>
 			) : null}
-			{data.community?.averageRating ? (
-				<div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-					<StarRating
-						value={Math.round(data.community.averageRating)}
-						readOnly
-						variant="marquee"
-					/>
-					<span className="text-muted-foreground text-xs">
-						{data.community.reviewsCount} reviews on {APP_NAME}
-					</span>
-				</div>
-			) : null}
+			<MovieDetailCommunityRatingHero
+				variant="compact"
+				communityAverage={communityAverage}
+				communityRatingsCount={communityRatingsCount}
+			/>
 			<div className="mt-8 flex w-full justify-center">
 				<TvDetailPrimaryActions />
 			</div>
