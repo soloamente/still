@@ -79,81 +79,11 @@ export function mapCommunityReviewRow(
 	};
 }
 
-export interface HomeCommunityCoreData {
-	listSeedsAll: ListLobbySeed[];
-	reviewsAll: HomeCommunityReviewRow[];
-	activityItemsAll: HomeCommunityActivityItem[];
-	curatorSpotlights: CuratorSpotlightPatron[];
-}
-
-const communityPeriodAllQuery = {
-	period: "all" as const,
-	tz: "UTC" as const,
-};
-
 type HomeApi = Awaited<ReturnType<typeof serverApi>>;
 
 type HomeSession = {
 	user?: { id: string } | null;
 } | null;
-
-/**
- * Community lobby critical path — lists, reviews, and activity only (no leaderboards).
- */
-export async function fetchHomeCommunityCore(input: {
-	api: HomeApi;
-	session: HomeSession;
-}): Promise<HomeCommunityCoreData> {
-	const [listsRes, reviewsRes, activityRes, curatorsRes] = await Promise.all([
-		input.api.api.lists
-			.get({
-				query: { limit: "24", ...communityPeriodAllQuery },
-			})
-			.catch(() => ({ data: [] })),
-		input.api.api.reviews.recent
-			.get({
-				query: { limit: "20", ...communityPeriodAllQuery },
-			})
-			.catch(() => ({ data: [] })),
-		input.session
-			? input.api.api.feed
-					.get({
-						query: { limit: "40", ...communityPeriodAllQuery },
-					})
-					.catch(() => ({
-						data: { items: [] },
-					}))
-			: input.api.api.feed.discover
-					.get({ query: communityPeriodAllQuery })
-					.catch(() => ({
-						data: { items: [] },
-					})),
-		input.api.api.profiles.curators.spotlight
-			.get({ query: { limit: "6" } })
-			.catch(() => ({ data: { patrons: [] } })),
-	]);
-
-	const listRows = ((listsRes.data as unknown[]) ?? []).map(toListBoardRow);
-	const listSeedsAll = listRows.map(listBoardRowToLobbySeed);
-
-	const reviewsAll = ((reviewsRes.data as unknown[]) ?? [])
-		.map(mapCommunityReviewRow)
-		.filter((r): r is HomeCommunityReviewRow => r != null);
-
-	const activityItemsAll = parseFeedApiActivityItems(
-		activityRes.data as {
-			items?: { kind: string; at: string | Date; payload: unknown }[];
-		},
-	);
-
-	const curatorPayload = curatorsRes.data as
-		| { patrons?: CuratorSpotlightPatron[] }
-		| null
-		| undefined;
-	const curatorSpotlights = curatorPayload?.patrons ?? [];
-
-	return { listSeedsAll, reviewsAll, activityItemsAll, curatorSpotlights };
-}
 
 export type CommunityFeedSeed = {
 	listSeeds: ListLobbySeed[];
