@@ -28,6 +28,7 @@ import {
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
 import { APP_NAME } from "@/lib/app-brand";
 import { authServer } from "@/lib/auth-server";
+import { fetchMeProfile } from "@/lib/fetch-me-profile";
 import { fetchTvWatchMeServer } from "@/lib/fetch-tv-watch-me-server";
 import {
 	animeSeasonTvDiscoverParams,
@@ -177,8 +178,8 @@ export default async function HomePage({
 
 	const api = await serverApi();
 	const session = await authServer();
-	const [profileRes, continueWatching, tasteMatchedRail] = await Promise.all([
-		api.api.profiles.me.get().catch(() => ({ data: null })),
+	const [profileData, continueWatching, tasteMatchedRail] = await Promise.all([
+		fetchMeProfile(),
 		// Personal TV progress rail — only on the TV browse surface (not Movies / Community).
 		session && browse === "tv"
 			? fetchTvWatchMeServer(api, {
@@ -197,13 +198,6 @@ export default async function HomePage({
 					.catch(() => null)
 			: Promise.resolve(null),
 	]);
-
-	const profileData = profileRes.data as {
-		handle: string;
-		displayName: string;
-		isPro?: boolean;
-		preferences?: Record<string, unknown> | null;
-	} | null;
 
 	const mePrefs = profileData?.preferences ?? null;
 
