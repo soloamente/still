@@ -15,13 +15,18 @@ export type MeProfile = {
  * React-cached GET /api/profiles/me — executes at most once per RSC render pass
  * regardless of how many server components call it.
  */
-export const fetchMeProfile = cache(async (): Promise<MeProfile> => {
-	try {
-		const api = await serverApi();
-		const res = await api.api.profiles.me.get();
-		if (res.error || !res.data) return null;
-		return res.data as MeProfile;
-	} catch {
-		return null;
-	}
-});
+/** Sentinel returned when the API call fails (network error, 5xx, etc.). */
+export const PROFILE_FETCH_FAILED = Symbol("PROFILE_FETCH_FAILED");
+
+export const fetchMeProfile = cache(
+	async (): Promise<MeProfile | typeof PROFILE_FETCH_FAILED> => {
+		try {
+			const api = await serverApi();
+			const res = await api.api.profiles.me.get();
+			if (res.error || !res.data) return null;
+			return res.data as MeProfile;
+		} catch {
+			return PROFILE_FETCH_FAILED;
+		}
+	},
+);

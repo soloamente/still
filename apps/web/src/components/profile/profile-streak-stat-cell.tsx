@@ -20,7 +20,20 @@ export function ProfileStreakStatCell() {
 		);
 	}
 
-	if (!streak) return null;
+	if (!streak) {
+		return (
+			<div className="flex flex-col items-center gap-0.5">
+				<span className="flex items-center gap-1 font-semibold text-foreground text-sm tabular-nums">
+					<Flame
+						className="size-3 shrink-0 text-muted-foreground"
+						aria-hidden
+					/>
+					0
+				</span>
+				<span className="text-[10px] text-muted-foreground">streak</span>
+			</div>
+		);
+	}
 
 	return (
 		<div className="flex flex-col items-center gap-0.5">

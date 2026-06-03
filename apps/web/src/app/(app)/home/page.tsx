@@ -28,7 +28,7 @@ import {
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
 import { APP_NAME } from "@/lib/app-brand";
 import { authServer } from "@/lib/auth-server";
-import { fetchMeProfile } from "@/lib/fetch-me-profile";
+import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import { fetchTvWatchMeServer } from "@/lib/fetch-tv-watch-me-server";
 import {
 	animeSeasonTvDiscoverParams,
@@ -178,27 +178,31 @@ export default async function HomePage({
 
 	const api = await serverApi();
 	const session = await authServer();
-	const [profileData, continueWatching, tasteMatchedRail] = await Promise.all([
-		fetchMeProfile(),
-		// Personal TV progress rail — only on the TV browse surface (not Movies / Community).
-		session && browse === "tv"
-			? fetchTvWatchMeServer(api, {
-					status: "watching,rewatching",
-					limit: 12,
-				})
-			: Promise.resolve([]),
-		// Taste rail — same request as the client used to defer; fetch in parallel with profile so Movies lobby paints together.
-		session && browse === "movies"
-			? api.api.taste["for-you"]
-					.get()
-					.then((res) => {
-						if (res.error || !res.data) return null;
-						return res.data as TasteMatchedDiscoveryPayload;
+	const [profileResult, continueWatching, tasteMatchedRail] = await Promise.all(
+		[
+			fetchMeProfile(),
+			// Personal TV progress rail — only on the TV browse surface (not Movies / Community).
+			session && browse === "tv"
+				? fetchTvWatchMeServer(api, {
+						status: "watching,rewatching",
+						limit: 12,
 					})
-					.catch(() => null)
-			: Promise.resolve(null),
-	]);
+				: Promise.resolve([]),
+			// Taste rail — same request as the client used to defer; fetch in parallel with profile so Movies lobby paints together.
+			session && browse === "movies"
+				? api.api.taste["for-you"]
+						.get()
+						.then((res) => {
+							if (res.error || !res.data) return null;
+							return res.data as TasteMatchedDiscoveryPayload;
+						})
+						.catch(() => null)
+				: Promise.resolve(null),
+		],
+	);
 
+	const profileData =
+		profileResult === PROFILE_FETCH_FAILED ? null : profileResult;
 	const mePrefs = profileData?.preferences ?? null;
 
 	const catalogWatchPref = readCatalogTmdbWatchRegionPref(mePrefs);

@@ -3,7 +3,11 @@ import type { ReactNode } from "react";
 import { AppShell } from "@/components/app/app-shell";
 import { AppThemeShell } from "@/components/app/app-theme-shell";
 import { authServer } from "@/lib/auth-server";
-import { fetchMeProfile } from "@/lib/fetch-me-profile";
+import {
+	fetchMeProfile,
+	type MeProfile,
+	PROFILE_FETCH_FAILED,
+} from "@/lib/fetch-me-profile";
 
 export const dynamic = "force-dynamic";
 
@@ -11,8 +15,10 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	const session = await authServer();
 	if (!session) redirect("/sign-in");
 
-	const profile = await fetchMeProfile();
-	if (!profile?.handle) redirect("/onboarding");
+	const profileResult = await fetchMeProfile();
+	const profileFetchFailed = profileResult === PROFILE_FETCH_FAILED;
+	const profile: MeProfile = profileFetchFailed ? null : profileResult;
+	if (!profileFetchFailed && !profile?.handle) redirect("/onboarding");
 
 	return (
 		<AppThemeShell
