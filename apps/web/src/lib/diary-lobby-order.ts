@@ -171,6 +171,17 @@ export function diaryLogMatchesDiaryLobbyVenue(
 	return v === lobbyVenue;
 }
 
+/** Deterministic tiebreak for equal watchedAt — newest-created first, then id. */
+function compareLogRecency(a: DiaryLogRow, b: DiaryLogRow): number {
+	const aw = new Date(a.log.watchedAt).getTime();
+	const bw = new Date(b.log.watchedAt).getTime();
+	if (aw !== bw) return bw - aw;
+	const ac = a.log.createdAt ? new Date(a.log.createdAt).getTime() : 0;
+	const bc = b.log.createdAt ? new Date(b.log.createdAt).getTime() : 0;
+	if (ac !== bc) return bc - ac;
+	return b.log.id.localeCompare(a.log.id);
+}
+
 function compareDiaryLobbyRows(
 	a: DiaryLogWithListing,
 	b: DiaryLogWithListing,
@@ -178,28 +189,17 @@ function compareDiaryLobbyRows(
 ): number {
 	switch (order) {
 		case "latest_seen":
-			return (
-				new Date(b.log.watchedAt).getTime() -
-				new Date(a.log.watchedAt).getTime()
-			);
+			return compareLogRecency(a, b);
 		case "earliest_seen":
-			return (
-				new Date(a.log.watchedAt).getTime() -
-				new Date(b.log.watchedAt).getTime()
-			);
+			return -compareLogRecency(a, b);
 		case "title_az": {
 			const t = diaryListingTitle(a).localeCompare(
 				diaryListingTitle(b),
 				undefined,
-				{
-					sensitivity: "base",
-				},
+				{ sensitivity: "base" },
 			);
 			if (t !== 0) return t;
-			return (
-				new Date(b.log.watchedAt).getTime() -
-				new Date(a.log.watchedAt).getTime()
-			);
+			return compareLogRecency(a, b);
 		}
 		default: {
 			const _exhaustive: never = order;

@@ -23,6 +23,8 @@ export type DiaryLogRow = {
 	log: {
 		id: string;
 		watchedAt: string;
+		/** Row insertion time — deterministic tiebreaker when watchedAt ties. */
+		createdAt?: string;
 		rating: number | null;
 		liked: boolean;
 		rewatch: boolean;

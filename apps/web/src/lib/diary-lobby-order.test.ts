@@ -1,9 +1,10 @@
 import { describe, expect, test } from "bun:test";
-
+import type { DiaryLogRow } from "@/components/diary/diary-entry";
 import {
 	buildDiaryLobbyHref,
 	filterDiaryLogsForLedgerTab,
 	resolveDiaryLedgerTab,
+	sortDiaryLobbyRowsForOrder,
 } from "./diary-lobby-order";
 
 describe("resolveDiaryLedgerTab", () => {
@@ -51,5 +52,48 @@ describe("filterDiaryLogsForLedgerTab", () => {
 
 		expect(filterDiaryLogsForLedgerTab(rows, "movies")).toHaveLength(1);
 		expect(filterDiaryLogsForLedgerTab(rows, "tv")).toHaveLength(1);
+	});
+});
+
+function movieRow(
+	id: string,
+	watchedAt: string,
+	createdAt: string,
+): DiaryLogRow {
+	return {
+		log: {
+			id,
+			watchedAt,
+			createdAt,
+			rating: null,
+			liked: false,
+			rewatch: false,
+			note: null,
+		},
+		movie: {
+			tmdbId: Number(id),
+			title: `M${id}`,
+			posterPath: null,
+			year: null,
+		},
+		tv: null,
+	} as DiaryLogRow;
+}
+
+describe("sortDiaryLobbyRowsForOrder tiebreak", () => {
+	const sameDay = "2026-05-01T00:00:00.000Z";
+	const rows = [
+		movieRow("1", sameDay, "2026-05-01T09:00:00.000Z"), // logged first
+		movieRow("2", sameDay, "2026-05-01T18:00:00.000Z"), // logged later
+	];
+
+	test("latest_seen puts the later-created row first on watchedAt ties", () => {
+		const out = sortDiaryLobbyRowsForOrder(rows, "latest_seen");
+		expect(out.map((r) => r.log.id)).toEqual(["2", "1"]);
+	});
+
+	test("earliest_seen puts the earlier-created row first on watchedAt ties", () => {
+		const out = sortDiaryLobbyRowsForOrder(rows, "earliest_seen");
+		expect(out.map((r) => r.log.id)).toEqual(["1", "2"]);
 	});
 });

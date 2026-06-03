@@ -35,8 +35,26 @@ function oldestWatchedAtMs(logs: DiaryLogRow[]): number {
 	return oldest ? watchedAtMs(oldest) : 0;
 }
 
+function logRecencyValue(row: DiaryLogRow): {
+	watched: number;
+	created: number;
+	id: string;
+} {
+	return {
+		watched: new Date(row.log.watchedAt).getTime(),
+		created: row.log.createdAt ? new Date(row.log.createdAt).getTime() : 0,
+		id: row.log.id,
+	};
+}
+
 function sortLogsNewestFirst(logs: DiaryLogRow[]): DiaryLogRow[] {
-	return logs.slice().sort((a, b) => watchedAtMs(b) - watchedAtMs(a));
+	return logs.slice().sort((a, b) => {
+		const x = logRecencyValue(a);
+		const y = logRecencyValue(b);
+		if (x.watched !== y.watched) return y.watched - x.watched;
+		if (x.created !== y.created) return y.created - x.created;
+		return y.id.localeCompare(x.id);
+	});
 }
 
 function listingTitle(row: DiaryLogRow): string {
@@ -78,14 +96,16 @@ function compareGridItems(
 				a.kind === "movie" ? watchedAtMs(a.row) : newestWatchedAtMs(a.logs);
 			const bMs =
 				b.kind === "movie" ? watchedAtMs(b.row) : newestWatchedAtMs(b.logs);
-			return bMs - aMs;
+			if (aMs !== bMs) return bMs - aMs;
+			return b.key.localeCompare(a.key);
 		}
 		case "earliest_seen": {
 			const aMs =
 				a.kind === "movie" ? watchedAtMs(a.row) : oldestWatchedAtMs(a.logs);
 			const bMs =
 				b.kind === "movie" ? watchedAtMs(b.row) : oldestWatchedAtMs(b.logs);
-			return aMs - bMs;
+			if (aMs !== bMs) return aMs - bMs;
+			return a.key.localeCompare(b.key);
 		}
 		case "title_az": {
 			const titleFor = (item: DiaryLobbyGridItem) =>
