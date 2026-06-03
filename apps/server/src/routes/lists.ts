@@ -15,6 +15,10 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import {
+	communityOffset,
+	parseCommunityPage,
+} from "../lib/community-page-args";
+import {
 	communityPeriodQuery,
 	resolveCommunityPeriodQuery,
 	withinCommunityPeriod,
@@ -100,6 +104,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 		"/",
 		async ({ query }) => {
 			const limit = Math.min(Number(query.limit ?? 24), 60);
+			const page = parseCommunityPage(query.page);
 			const { start, end } = resolveCommunityPeriodQuery(query);
 			const rows = await db
 				.select()
@@ -114,13 +119,18 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 					listDiscoverabilityOrder,
 					desc(list.likesCount),
 					desc(list.updatedAt),
+					desc(list.id),
 				)
-				.limit(limit);
+				.limit(limit)
+				.offset(communityOffset(page, limit));
 			return withCoverPosterPaths(rows);
 		},
 		{
 			query: t.Composite([
-				t.Object({ limit: t.Optional(t.String()) }),
+				t.Object({
+					limit: t.Optional(t.String()),
+					page: t.Optional(t.String()),
+				}),
 				communityPeriodQuery,
 			]),
 		},

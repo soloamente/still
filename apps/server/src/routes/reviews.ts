@@ -14,6 +14,10 @@ import { and, desc, eq, isNotNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
+	communityOffset,
+	parseCommunityPage,
+} from "../lib/community-page-args";
+import {
 	resolveCommunityPeriodQuery,
 	withinCommunityPeriod,
 } from "../lib/community-period";
@@ -310,6 +314,7 @@ export const reviewsRoute = new Elysia({
 		"/recent",
 		async ({ query, user: currentUser }) => {
 			const limit = Math.min(Number(query.limit ?? 20), 50);
+			const page = parseCommunityPage(query.page);
 			const { start, end } = resolveCommunityPeriodQuery(query);
 			const rows = await db
 				.select({ review, movie, user, profile })
@@ -327,13 +332,19 @@ export const reviewsRoute = new Elysia({
 						withinCommunityPeriod(review.publishedAt, start, end),
 					),
 				)
-				.orderBy(desc(reviewEngagementOrderSql()), desc(review.publishedAt))
-				.limit(limit);
+				.orderBy(
+					desc(reviewEngagementOrderSql()),
+					desc(review.publishedAt),
+					desc(review.id),
+				)
+				.limit(limit)
+				.offset(communityOffset(page, limit));
 			return rows;
 		},
 		{
 			query: t.Object({
 				limit: t.Optional(t.String()),
+				page: t.Optional(t.String()),
 				period: t.Optional(
 					t.Union([
 						t.Literal("week"),
