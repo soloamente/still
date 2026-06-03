@@ -9,7 +9,7 @@ import {
 	tv,
 	user,
 } from "@still/db";
-import { and, desc, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray, lt } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
@@ -50,6 +50,25 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 			const limit = Math.min(Number(query.limit ?? 40), 80);
 			const { start, end } = resolveCommunityPeriodQuery(query);
 
+			const beforeDate =
+				typeof query.before === "string" && query.before.length > 0
+					? new Date(query.before)
+					: null;
+			const beforeValid =
+				beforeDate != null && !Number.isNaN(beforeDate.getTime());
+			const logBefore =
+				beforeDate != null && !Number.isNaN(beforeDate.getTime())
+					? lt(log.watchedAt, beforeDate)
+					: undefined;
+			const reviewBefore =
+				beforeDate != null && !Number.isNaN(beforeDate.getTime())
+					? lt(review.publishedAt, beforeDate)
+					: undefined;
+			const listBefore =
+				beforeDate != null && !Number.isNaN(beforeDate.getTime())
+					? lt(list.updatedAt, beforeDate)
+					: undefined;
+
 			const following = await db
 				.select({ id: follow.followingId })
 				.from(follow)
@@ -69,6 +88,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 							inArray(log.userId, ids),
 							contentVisibilityWhere(viewer.id, log.userId, log.visibility),
 							withinCommunityPeriod(log.watchedAt, start, end),
+							logBefore,
 						),
 					)
 					.orderBy(desc(log.watchedAt))
@@ -88,6 +108,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 							),
 							inArray(review.userId, ids),
 							withinCommunityPeriod(review.publishedAt, start, end),
+							reviewBefore,
 						),
 					)
 					.orderBy(desc(review.publishedAt))
@@ -101,6 +122,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 						and(
 							inArray(list.userId, ids),
 							withinCommunityPeriod(list.updatedAt, start, end),
+							listBefore,
 						),
 					)
 					.orderBy(desc(list.updatedAt))
@@ -131,7 +153,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 
 			const followingOnly = following.map((f) => f.id);
 			const divergence =
-				followingOnly.length >= 2
+				!beforeValid && followingOnly.length >= 2
 					? await findFeedRatingDivergence({
 							viewerId: viewer.id,
 							followingUserIds: followingOnly,
@@ -159,7 +181,10 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 		},
 		{
 			query: t.Composite([
-				t.Object({ limit: t.Optional(t.String()) }),
+				t.Object({
+					limit: t.Optional(t.String()),
+					before: t.Optional(t.String()),
+				}),
 				communityPeriodQuery,
 			]),
 		},
