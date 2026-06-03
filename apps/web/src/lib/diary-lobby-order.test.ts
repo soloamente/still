@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
-import type { DiaryLogRow } from "@/components/diary/diary-entry";
 import {
 	buildDiaryLobbyHref,
+	type DiaryLogWithListing,
 	filterDiaryLogsForLedgerTab,
 	resolveDiaryLedgerTab,
 	sortDiaryLobbyRowsForOrder,
@@ -59,7 +59,7 @@ function movieRow(
 	id: string,
 	watchedAt: string,
 	createdAt: string,
-): DiaryLogRow {
+): DiaryLogWithListing {
 	return {
 		log: {
 			id,
@@ -77,7 +77,7 @@ function movieRow(
 			year: null,
 		},
 		tv: null,
-	} as DiaryLogRow;
+	} as DiaryLogWithListing;
 }
 
 describe("sortDiaryLobbyRowsForOrder tiebreak", () => {
