@@ -30,10 +30,10 @@ export default function ProfileLoading() {
 						<Skeleton className="h-10 w-28 rounded-full" />
 					</div>
 				</div>
-				<div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2">
+				<div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
 					<Skeleton className="h-10 w-52 max-w-full justify-self-start rounded-full" />
-					<Skeleton className="h-10 w-48 justify-self-center rounded-full" />
-					<Skeleton className="h-10 w-44 max-w-full justify-self-end rounded-full" />
+					<Skeleton className="h-10 w-48 max-w-full justify-self-start rounded-full sm:justify-self-center" />
+					<Skeleton className="h-10 w-44 max-w-full justify-self-start rounded-full sm:justify-self-end" />
 				</div>
 				<div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
 					{(

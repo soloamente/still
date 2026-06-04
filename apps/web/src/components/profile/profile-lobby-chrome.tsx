@@ -26,7 +26,7 @@ export function ProfileLobbyChrome({
 	const chipFallback = <LobbyOrderChipFallback />;
 
 	return (
-		<div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
+		<div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-3">
 			<div className="flex min-w-0 justify-start">
 				{showLedgerRails ? (
 					<ProfileCatalogOrderChips ledgerTab={ledgerTab} />
@@ -35,11 +35,11 @@ export function ProfileLobbyChrome({
 				)}
 			</div>
 
-			<div className="flex min-w-0 justify-center">
+			<div className="flex min-w-0 justify-start sm:justify-center">
 				<ProfileTabToolbar socialTabs={socialTabs} />
 			</div>
 
-			<div className="flex min-w-0 justify-end">
+			<div className="flex min-w-0 justify-start sm:justify-end">
 				{showLedgerRails ? (
 					<ProfileCatalogVenueChips ledgerTab={ledgerTab} />
 				) : null}

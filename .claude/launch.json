@@ -6,6 +6,12 @@
 			"runtimeExecutable": "bun",
 			"runtimeArgs": ["run", "dev"],
 			"port": 3001
+		},
+		{
+			"name": "still-web",
+			"runtimeExecutable": "bun",
+			"runtimeArgs": ["dev:web"],
+			"port": 3001
 		}
 	]
 }
