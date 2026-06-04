@@ -242,4 +242,20 @@ describe("structured recent queries", () => {
 		expect(parsed.tags).toEqual([]);
 		expect(parsed.freeText).toBe("marty");
 	});
+
+	test("single studio token restores as tag without middle dot", () => {
+		const parsed = parseRecentStructuredQuery("A24", [...studios]);
+		expect(parsed.tags).toEqual([
+			{ kind: "studio", id: 41077, name: "A24", logoUrl: null },
+		]);
+		expect(parsed.freeText).toBe("");
+	});
+
+	test("single genre token restores as tag without middle dot", () => {
+		const parsed = parseRecentStructuredQuery("Horror", [], { movieGenres });
+		expect(parsed.tags).toEqual([
+			{ kind: "genre", id: 27, name: "Horror", listingKind: "movie" },
+		]);
+		expect(parsed.freeText).toBe("");
+	});
 });

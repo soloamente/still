@@ -65,6 +65,33 @@ export function defaultCatalogSearchShortcutAnchorRect(): DOMRect {
 	return new DOMRect(left, top, width, height);
 }
 
+/** True when the trigger rect has size and intersects the current viewport (sticky pill lane). */
+export function isCatalogSearchAnchorVisibleInViewport(rect: DOMRect): boolean {
+	if (rect.width <= 0 || rect.height <= 0) return false;
+	if (typeof window === "undefined") return true;
+	const vh = window.innerHeight;
+	const vw = window.innerWidth;
+	const bottom = rect.top + rect.height;
+	const right = rect.left + rect.width;
+	return (
+		bottom > CATALOG_SEARCH_VIEWPORT_GUTTER_PX &&
+		rect.top < vh - CATALOG_SEARCH_VIEWPORT_GUTTER_PX &&
+		right > CATALOG_SEARCH_VIEWPORT_GUTTER_PX &&
+		rect.left < vw - CATALOG_SEARCH_VIEWPORT_GUTTER_PX
+	);
+}
+
+/**
+ * When the stored trigger has scrolled off-screen (e.g. ⌘K far down the page),
+ * fall back to the viewport-top shortcut lane so the sheet stays in view.
+ */
+export function normalizeCatalogSearchAnchorRect(rect: DOMRect): DOMRect {
+	if (isCatalogSearchAnchorVisibleInViewport(rect)) {
+		return rect;
+	}
+	return defaultCatalogSearchShortcutAnchorRect();
+}
+
 type CatalogSearchShellUi = {
 	/** Native `<dialog>` is open (includes exit animation). */
 	dialogOpen: boolean;
@@ -73,9 +100,9 @@ type CatalogSearchShellUi = {
 };
 
 type CatalogSearchDialogStore = {
-	homeTriggerEl: HTMLButtonElement | null;
+	homeTriggerEl: HTMLElement | null;
 	navSearchTriggerEl: HTMLButtonElement | null;
-	setHomeTriggerEl: (el: HTMLButtonElement | null) => void;
+	setHomeTriggerEl: (el: HTMLElement | null) => void;
 	setNavSearchTriggerEl: (el: HTMLButtonElement | null) => void;
 	shellUi: CatalogSearchShellUi;
 	setShellUi: (ui: CatalogSearchShellUi) => void;
@@ -95,16 +122,28 @@ type CatalogSearchDialogStore = {
 
 function resolveOpenAnchor(
 	explicit: DOMRect | null | undefined,
-	homeTriggerEl: HTMLButtonElement | null,
+	homeTriggerEl: HTMLElement | null,
 	navSearchTriggerEl: HTMLButtonElement | null,
 ): DOMRect {
-	if (explicit) return explicit;
+	if (explicit) {
+		return normalizeCatalogSearchAnchorRect(explicit);
+	}
 	const homeRect = homeTriggerEl?.getBoundingClientRect();
-	if (homeRect && homeRect.width > 0 && homeRect.height > 0) {
+	if (
+		homeRect &&
+		homeRect.width > 0 &&
+		homeRect.height > 0 &&
+		isCatalogSearchAnchorVisibleInViewport(homeRect)
+	) {
 		return homeRect;
 	}
 	const navRect = navSearchTriggerEl?.getBoundingClientRect();
-	if (navRect && navRect.width > 0 && navRect.height > 0) {
+	if (
+		navRect &&
+		navRect.width > 0 &&
+		navRect.height > 0 &&
+		isCatalogSearchAnchorVisibleInViewport(navRect)
+	) {
 		return navRect;
 	}
 	return defaultCatalogSearchShortcutAnchorRect();

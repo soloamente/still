@@ -9,12 +9,13 @@ import {
 	Sparkles,
 	Tv,
 	Users,
+	X,
 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTheme } from "next-themes";
-import type { FormEvent } from "react";
+import type { FormEvent, MouseEvent } from "react";
 import {
 	useCallback,
 	useEffect,
@@ -23,7 +24,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { flushSync } from "react-dom";
+import { createPortal, flushSync } from "react-dom";
 
 import { SearchDialogListResults } from "@/components/home/search-dialog-list-results";
 import { SearchDialogPeopleResults } from "@/components/home/search-dialog-people-results";
@@ -34,20 +35,34 @@ import {
 	SearchDialogPosterSkeletonGrid,
 } from "@/components/home/search-dialog-result-skeletons";
 import { SearchDialogStudioRail } from "@/components/home/search-dialog-studio-rail";
+import { SearchTagPill } from "@/components/home/search-tag-pill";
 import { SearchTokenField } from "@/components/home/search-token-field";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { FilterChipButton } from "@/components/ui/filter-chip-row";
 import {
 	appThemeSearchBorderBeamColor,
+	DEFAULT_APP_THEME_CLASS,
 	resolveAppTheme,
 } from "@/lib/app-themes";
 import {
 	clampCatalogSearchPanelLeftFromCenter,
 	computeCatalogSearchAnchoredPanelStyle,
+	normalizeCatalogSearchAnchorRect,
 	useCatalogSearchDialog,
 } from "@/lib/catalog-search-dialog-store";
 import { useGoToDialog } from "@/lib/go-to-dialog-store";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
+import { committedCatalogueSearchNeedsTagMetadata } from "@/lib/home-catalogue-search-load-page";
+import {
+	buildHomeCatalogueSearchClearHref,
+	buildHomeCatalogueSearchCommitHref,
+	canCommitCatalogueSearch,
+	formatCommittedSearchSummary,
+	isHomeCatalogueSearchActive,
+	parseHomeCatalogueSearchParam,
+	resolveCommitBrowseFromDraft,
+} from "@/lib/home-catalogue-search-param";
+import { readHomeLobbyPersisted } from "@/lib/home-lobby-persist";
 import {
 	type RecentSearchEntryV2,
 	readHomeSearchRecents,
@@ -146,6 +161,8 @@ export function CatalogSearchDialogRoot({
 	const setShellUi = useCatalogSearchDialog((s) => s.setShellUi);
 	/** When set before `beginClose`, `finalizeDialogClose` runs `router.push` after the exit animation. */
 	const pendingNavigationRef = useRef<string | null>(null);
+	/** One-shot: hydrate dialog draft from `?search=` when opening on `/home` Movies/TV. */
+	const hydrateFromUrlOnOpenRef = useRef(false);
 	const titleId = useId();
 	const registerImperativelyOpen = useCatalogSearchDialog(
 		(s) => s.registerImperativelyOpen,
@@ -177,9 +194,14 @@ export function CatalogSearchDialogRoot({
 		anchorWidth: number;
 		anchorHeight: number;
 	} | null>(null);
+	const [portalReady, setPortalReady] = useState(false);
 
 	const reduceMotion = useReducedMotion();
 	const browseSurface = parseHomeBrowseSurface(searchParams.get("browse"));
+
+	useEffect(() => {
+		setPortalReady(true);
+	}, []);
 
 	// `showModal()` does not always stop wheel / trackpad scroll from reaching `#main-content`
 	// (especially over the transparent dialog chrome). Lock document scroll for the modal lifetime.
@@ -212,6 +234,7 @@ export function CatalogSearchDialogRoot({
 		setDialogOpen(false);
 		setSearchTags([]);
 		setFreeText("");
+		hydrateFromUrlOnOpenRef.current = false;
 		// Return focus to the sticky pill when present so Escape / close does not strand focus.
 		requestAnimationFrame(() => homeTriggerEl?.focus());
 		if (pending) {
@@ -235,20 +258,34 @@ export function CatalogSearchDialogRoot({
 		(r: DOMRect) => {
 			const dialog = dialogRef.current;
 			if (!dialog) return;
-			const layout = computeCatalogSearchAnchoredPanelStyle(r);
+			const anchor = normalizeCatalogSearchAnchorRect(r);
+			const layout = computeCatalogSearchAnchoredPanelStyle(anchor);
 			pendingNavigationRef.current = null;
+			const committedSearchRaw = searchParams.get("search")?.trim() ?? "";
+			const catalogueBrowse =
+				browseSurface === "tv"
+					? "tv"
+					: browseSurface === "community"
+						? "community"
+						: "movies";
+			const hydrateFromUrl =
+				Boolean(committedSearchRaw) &&
+				isHomeCatalogueSearchActive(searchParams, catalogueBrowse);
+			hydrateFromUrlOnOpenRef.current = hydrateFromUrl;
 			// Paint the anchored panel before `showModal()` so the first frame is not empty.
 			flushSync(() => {
 				setBrowseCategory(browseCategoryFromSurface(browseSurface));
-				setSearchTags([]);
-				setFreeText("");
+				if (!hydrateFromUrl) {
+					setSearchTags([]);
+					setFreeText("");
+				}
 				setSearchListingKind(browseSurface === "tv" ? "tv" : "movie");
 				setPanelLayout({
 					...layout,
-					anchorCenterX: r.left + r.width / 2,
-					anchorTop: r.top,
-					anchorWidth: r.width,
-					anchorHeight: r.height,
+					anchorCenterX: anchor.left + anchor.width / 2,
+					anchorTop: anchor.top,
+					anchorWidth: anchor.width,
+					anchorHeight: anchor.height,
 				});
 				setDialogOpen(true);
 				setPanelVisible(true);
@@ -260,7 +297,7 @@ export function CatalogSearchDialogRoot({
 				});
 			}
 		},
-		[browseSurface, reduceMotion],
+		[browseSurface, reduceMotion, searchParams],
 	);
 
 	useEffect(() => {
@@ -338,15 +375,47 @@ export function CatalogSearchDialogRoot({
 		(t) => t.kind === "curated" && t.slug === "anime",
 	);
 
+	/** Dim + panel mount together so Framer can fade the scrim with the sheet (native `::backdrop` only clears in `close()`). */
+	const showSheet = Boolean(panelLayout && panelVisible);
+	const sheetLayoutReady = Boolean(panelLayout);
+	const browsePreviewEnabled = sheetLayoutReady && isEmptyDraft;
+	const committedLobbySearchRaw = searchParams.get("search")?.trim() ?? "";
+	const committedLobbyBrowse = browseSurface === "tv" ? "tv" : "movies";
+	const committedLobbySearchActive =
+		Boolean(committedLobbySearchRaw) &&
+		browseSurface !== "community" &&
+		isHomeCatalogueSearchActive(searchParams, committedLobbyBrowse);
+	const { items: browsePreviewItems, loading: browsePreviewLoading } =
+		useSearchDialogBrowsePreview(browseCategory, null, browsePreviewEnabled);
+	const {
+		studios: browseStudios,
+		loading: browseStudiosLoading,
+		loaded: browseStudiosLoaded,
+	} = useSearchDialogStudios(
+		dialogOpen &&
+			(committedLobbySearchActive ||
+				(sheetLayoutReady &&
+					((browsePreviewEnabled && browseCategory === "movies") ||
+						!isEmptyDraft))),
+	);
+	const catalogTmdbLanguage = useCatalogTmdbLanguage(
+		sheetLayoutReady || dialogOpen,
+	);
+	const {
+		movieGenres,
+		tvGenres,
+		loading: genresLoading,
+	} = useSearchDialogGenres(
+		sheetLayoutReady || dialogOpen,
+		catalogTmdbLanguage,
+	);
+
 	// Empty sheet: Movies / TV browse picks imply the same catalogue for the next typed query.
 	useEffect(() => {
 		if (!isEmptyDraft) return;
 		if (browseCategory === "community") return;
 		setSearchListingKind(browseCategory === "tv" ? "tv" : "movie");
 	}, [browseCategory, isEmptyDraft]);
-
-	/** Dim + panel mount together so Framer can fade the scrim with the sheet (native `::backdrop` only clears in `close()`). */
-	const showSheet = Boolean(panelLayout && panelVisible);
 
 	// Keep the anchored sheet aligned with the sticky pill (and clamped to the viewport) on resize / header reflow.
 	useEffect(() => {
@@ -355,7 +424,9 @@ export function CatalogSearchDialogRoot({
 		if (!trigger) return;
 
 		const syncPanelLayoutFromTrigger = () => {
-			const rect = trigger.getBoundingClientRect();
+			const rect = normalizeCatalogSearchAnchorRect(
+				trigger.getBoundingClientRect(),
+			);
 			if (rect.width <= 0 || rect.height <= 0) return;
 			const layout = computeCatalogSearchAnchoredPanelStyle(rect);
 			setPanelLayout((prev) =>
@@ -388,24 +459,7 @@ export function CatalogSearchDialogRoot({
 	useEffect(() => {
 		setShellUi({ dialogOpen, showSheet });
 	}, [dialogOpen, showSheet, setShellUi]);
-	/** Start browse fetches as soon as layout is known so data can land during the open animation. */
-	const sheetLayoutReady = Boolean(panelLayout);
-	const browsePreviewEnabled = sheetLayoutReady && isEmptyDraft;
-	const { items: browsePreviewItems, loading: browsePreviewLoading } =
-		useSearchDialogBrowsePreview(browseCategory, null, browsePreviewEnabled);
-	const { studios: browseStudios, loading: browseStudiosLoading } =
-		useSearchDialogStudios(
-			sheetLayoutReady &&
-				((browsePreviewEnabled && browseCategory === "movies") ||
-					!isEmptyDraft),
-		);
-	const catalogTmdbLanguage = useCatalogTmdbLanguage(
-		sheetLayoutReady || dialogOpen,
-	);
-	const { movieGenres, tvGenres } = useSearchDialogGenres(
-		sheetLayoutReady || dialogOpen,
-		catalogTmdbLanguage,
-	);
+
 	const suggestionGenres = mergeSearchDialogGenres(
 		effectiveListingKind,
 		movieGenres,
@@ -543,6 +597,64 @@ export function CatalogSearchDialogRoot({
 		setRecentQueries(readHomeSearchRecents(browseStudios, recentGenreOptions));
 	}, [pathname, browseStudios, recentGenreOptions]);
 
+	// Reopen ⌘K on `/home` with committed `?search=` — restore pills + free text from URL.
+	useEffect(() => {
+		if (!dialogOpen || !hydrateFromUrlOnOpenRef.current) return;
+		const raw = searchParams.get("search")?.trim();
+		if (!raw) {
+			hydrateFromUrlOnOpenRef.current = false;
+			return;
+		}
+		const catalogueBrowse = browseSurface === "tv" ? "tv" : "movies";
+		if (
+			browseSurface === "community" ||
+			!isHomeCatalogueSearchActive(searchParams, catalogueBrowse)
+		) {
+			hydrateFromUrlOnOpenRef.current = false;
+			return;
+		}
+		if (browseStudiosLoading || genresLoading) return;
+		if (
+			committedCatalogueSearchNeedsTagMetadata(raw) &&
+			committedLobbySearchActive &&
+			!browseStudiosLoaded
+		) {
+			return;
+		}
+
+		const { tags, freeText: restoredText } = parseHomeCatalogueSearchParam(
+			raw,
+			browseStudios,
+			{ movieGenres, tvGenres },
+		);
+		setSearchTags(tags);
+		setFreeText(restoredText);
+		const media = tags.find(
+			(t): t is Extract<SearchTag, { kind: "media" }> => t.kind === "media",
+		);
+		if (media) {
+			setSearchListingKind(media.listingKind);
+			setBrowseCategory(media.listingKind === "tv" ? "tv" : "movies");
+		} else if (tags.some((t) => t.kind === "curated" && t.slug === "anime")) {
+			setSearchListingKind("tv");
+			setBrowseCategory("tv");
+		} else {
+			setSearchListingKind(browseSurface === "tv" ? "tv" : "movie");
+		}
+		hydrateFromUrlOnOpenRef.current = false;
+	}, [
+		browseSurface,
+		browseStudios,
+		browseStudiosLoaded,
+		browseStudiosLoading,
+		committedLobbySearchActive,
+		dialogOpen,
+		genresLoading,
+		movieGenres,
+		searchParams,
+		tvGenres,
+	]);
+
 	const submitQuery = useCallback(() => {
 		setRecentQueries(
 			recordHomeSearchRecent(
@@ -554,9 +666,56 @@ export function CatalogSearchDialogRoot({
 		);
 	}, [searchTags, trimmedDraft, browseStudios, recentGenreOptions]);
 
+	/** Enter on catalogue drafts — commit to `/home?search=` or record recents only. */
+	const commitOrSubmitDraft = useCallback(() => {
+		if (canCommitCatalogueSearch(searchTags, trimmedDraft)) {
+			submitQuery();
+			const targetBrowse = resolveCommitBrowseFromDraft(
+				searchTags,
+				effectiveListingKind,
+			);
+			const href = buildHomeCatalogueSearchCommitHref({
+				browse: targetBrowse,
+				tags: searchTags,
+				freeText: trimmedDraft,
+				currentParams: new URLSearchParams(searchParams.toString()),
+			});
+			const onHome = pathname === "/home" || pathname.endsWith("/home");
+			const currentTmdbBrowse =
+				browseSurface === "tv"
+					? "tv"
+					: browseSurface === "movies"
+						? "movies"
+						: null;
+			const needsBrowseFix =
+				onHome &&
+				(browseSurface === "community" ||
+					(currentTmdbBrowse != null && targetBrowse !== currentTmdbBrowse));
+
+			if (!onHome || needsBrowseFix) {
+				router.push(href);
+			} else {
+				router.replace(href, { scroll: false });
+			}
+			beginClose();
+			return;
+		}
+		submitQuery();
+	}, [
+		beginClose,
+		browseSurface,
+		effectiveListingKind,
+		pathname,
+		router,
+		searchParams,
+		searchTags,
+		submitQuery,
+		trimmedDraft,
+	]);
+
 	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		submitQuery();
+		commitOrSubmitDraft();
 	};
 
 	const handleRecentPick = (entry: RecentSearchEntryV2) => {
@@ -596,7 +755,7 @@ export function CatalogSearchDialogRoot({
 		beginClose();
 	};
 
-	return (
+	const catalogSearchDialog = (
 		<dialog
 			ref={dialogRef}
 			id={CATALOG_SEARCH_DIALOG_ID}
@@ -620,6 +779,7 @@ export function CatalogSearchDialogRoot({
 				setPanelVisible(false);
 				setSearchTags([]);
 				setFreeText("");
+				hydrateFromUrlOnOpenRef.current = false;
 				pendingNavigationRef.current = null;
 			}}
 		>
@@ -652,7 +812,8 @@ export function CatalogSearchDialogRoot({
 						key="home-sticky-search-panel"
 						className={cn(
 							// Clip horizontal overflow while width animates; body scrolls vertically inside.
-							"fixed z-10 flex min-w-0 origin-top flex-col overflow-hidden rounded-4xl bg-card text-foreground shadow-xl",
+							// Panel is absolute inside a viewport-fixed dialog (portaled to body).
+							"absolute z-10 flex min-w-0 origin-top flex-col overflow-hidden rounded-4xl bg-card text-foreground shadow-xl",
 						)}
 						style={{ maxHeight: panelLayout.maxHeight }}
 						initial={
@@ -725,7 +886,7 @@ export function CatalogSearchDialogRoot({
 								studios={browseStudios}
 								genres={suggestionGenres}
 								listingKind={effectiveListingKind}
-								onSubmit={submitQuery}
+								onSubmit={commitOrSubmitDraft}
 							/>
 						</form>
 
@@ -1075,21 +1236,85 @@ export function CatalogSearchDialogRoot({
 			</AnimatePresence>
 		</dialog>
 	);
+
+	// Portal keeps `position: fixed` relative to the viewport (not a scrolled app ancestor).
+	if (!portalReady) return null;
+	return createPortal(catalogSearchDialog, document.body);
 }
 
 /**
  * `/home` (and lobby) sticky pill — registers with the global dialog for anchored motion.
  */
 export function HomeStickySearch() {
-	const triggerRef = useRef<HTMLButtonElement>(null);
+	const router = useRouter();
+	const pathname = usePathname() ?? "";
+	const searchParams = useSearchParams();
+	const triggerRef = useRef<HTMLDivElement>(null);
 	const reduceMotion = useReducedMotion();
 	const { theme, resolvedTheme } = useTheme();
+	const [themeReady, setThemeReady] = useState(false);
 	const requestOpen = useCatalogSearchDialog((s) => s.requestOpen);
 	const setHomeTriggerEl = useCatalogSearchDialog((s) => s.setHomeTriggerEl);
 	const { dialogOpen, showSheet } = useCatalogSearchDialog((s) => s.shellUi);
 
+	const onHome = pathname === "/home" || pathname.endsWith("/home");
+	const browse = parseHomeBrowseSurface(searchParams.get("browse"));
+	const catalogueBrowse = browse === "tv" ? "tv" : "movies";
+	const searchRaw = searchParams.get("search")?.trim() ?? "";
+	const committedSearchActive =
+		onHome &&
+		isHomeCatalogueSearchActive(
+			searchParams,
+			browse === "tv" ? "tv" : browse === "community" ? "community" : "movies",
+		);
+
+	const needsSummaryMetadata = committedSearchActive;
+
+	const { studios, loading: studiosLoading } =
+		useSearchDialogStudios(needsSummaryMetadata);
+	const catalogTmdbLanguage = useCatalogTmdbLanguage(needsSummaryMetadata);
+	const {
+		movieGenres,
+		tvGenres,
+		loading: genresLoading,
+	} = useSearchDialogGenres(needsSummaryMetadata, catalogTmdbLanguage);
+
+	const committedSearchDisplay = useMemo(() => {
+		if (!committedSearchActive || !searchRaw) return null;
+		if (studiosLoading || genresLoading) {
+			return {
+				tags: [] as SearchTag[],
+				freeText: formatCommittedSearchSummary([], searchRaw) || searchRaw,
+				loading: true,
+			};
+		}
+		return {
+			...parseHomeCatalogueSearchParam(searchRaw, studios, {
+				movieGenres,
+				tvGenres,
+			}),
+			loading: false,
+		};
+	}, [
+		committedSearchActive,
+		genresLoading,
+		movieGenres,
+		searchRaw,
+		studios,
+		studiosLoading,
+		tvGenres,
+	]);
+
+	// `next-themes` resolves from localStorage after hydration — keep BorderBeam colors
+	// on the SSR default until then so inline `<style>` tags match server markup.
+	useEffect(() => {
+		setThemeReady(true);
+	}, []);
+
 	const borderBeamColorVariant = appThemeSearchBorderBeamColor(
-		resolveAppTheme(resolvedTheme ?? theme),
+		themeReady && theme !== undefined
+			? resolveAppTheme(resolvedTheme ?? theme)
+			: DEFAULT_APP_THEME_CLASS,
 	);
 
 	useEffect(() => {
@@ -1103,6 +1328,18 @@ export function HomeStickySearch() {
 		requestOpen(trigger.getBoundingClientRect());
 	}, [requestOpen]);
 
+	const handleClearSearch = useCallback(
+		(event: MouseEvent<HTMLButtonElement>) => {
+			event.preventDefault();
+			event.stopPropagation();
+			const persisted = readHomeLobbyPersisted();
+			router.replace(
+				buildHomeCatalogueSearchClearHref(catalogueBrowse, persisted),
+			);
+		},
+		[router, catalogueBrowse],
+	);
+
 	return (
 		/* Animated border trace on the catalog search pill (border-beam). */
 		<BorderBeam
@@ -1114,18 +1351,14 @@ export function HomeStickySearch() {
 			strength={2.4}
 			className="w-full min-w-0 max-w-full"
 		>
-			<motion.button
+			<motion.div
 				ref={triggerRef}
-				type="button"
-				onClick={handleOpen}
 				layout={false}
 				className={cn(
-					"flex w-full min-w-0 cursor-pointer items-center gap-2 rounded-full bg-card px-5 py-3 text-left",
-					"origin-center outline-none focus-visible:outline-none",
+					// Keep the original single-row shell (`px-5 py-3`) — nested buttons must not add min-height.
+					"flex w-full min-w-0 items-center rounded-full bg-card py-3 pl-5",
+					committedSearchActive ? "gap-1 pr-3" : "gap-2 pr-5",
 				)}
-				aria-haspopup="dialog"
-				aria-expanded={dialogOpen}
-				aria-controls={CATALOG_SEARCH_DIALOG_ID}
 				animate={
 					reduceMotion
 						? { scale: 1 }
@@ -1143,13 +1376,78 @@ export function HomeStickySearch() {
 								mass: 0.55,
 							}
 				}
-				whileTap={reduceMotion ? undefined : { scale: 0.98 }}
 			>
-				<Search className="size-4 shrink-0 text-muted-foreground" aria-hidden />
-				<span className="min-w-0 flex-1 truncate text-base text-muted-foreground md:text-sm">
-					Films, TV, @people, lists…
-				</span>
-			</motion.button>
+				<button
+					type="button"
+					onClick={handleOpen}
+					className={cn(
+						"flex min-h-0 min-w-0 flex-1 cursor-pointer items-center gap-2 border-0 bg-transparent p-0 text-left",
+						"origin-center outline-none focus-visible:outline-none",
+					)}
+					aria-haspopup="dialog"
+					aria-expanded={dialogOpen}
+					aria-controls={CATALOG_SEARCH_DIALOG_ID}
+				>
+					<Search
+						className="size-4 shrink-0 text-muted-foreground"
+						aria-hidden
+					/>
+					{committedSearchDisplay ? (
+						<span className="flex min-h-0 min-w-0 flex-1 flex-nowrap items-center gap-1 overflow-hidden">
+							{committedSearchDisplay.tags.map((tag) => (
+								<SearchTagPill
+									key={
+										tag.kind === "studio"
+											? `studio-${tag.id}`
+											: tag.kind === "genre"
+												? `genre-${tag.listingKind}-${tag.id}`
+												: tag.kind === "curated"
+													? `curated-${tag.slug}`
+													: tag.kind === "media"
+														? `media-${tag.listingKind}`
+														: "lists"
+									}
+									tag={tag}
+									variant="display"
+									density="compact"
+								/>
+							))}
+							{committedSearchDisplay.freeText ? (
+								<span
+									className={cn(
+										"min-w-0 truncate text-base leading-none md:text-sm",
+										committedSearchDisplay.loading ||
+											committedSearchDisplay.tags.length === 0
+											? "font-medium text-foreground"
+											: "text-foreground/90",
+									)}
+								>
+									{committedSearchDisplay.freeText}
+								</span>
+							) : null}
+						</span>
+					) : (
+						<span className="min-w-0 flex-1 truncate text-base text-muted-foreground md:text-sm">
+							Films, TV, @people, lists…
+						</span>
+					)}
+				</button>
+				{committedSearchActive ? (
+					<button
+						type="button"
+						aria-label="Clear search"
+						className={cn(
+							// Compact icon control — avoid `size-9` which stretched the pill taller than `py-3`.
+							"relative inline-flex shrink-0 rounded-full p-1 text-muted-foreground",
+							"[@media(hover:hover)]:hover:bg-background [@media(hover:hover)]:hover:text-foreground",
+						)}
+						onMouseDown={(event) => event.stopPropagation()}
+						onClick={handleClearSearch}
+					>
+						<X className="size-4" aria-hidden />
+					</button>
+				) : null}
+			</motion.div>
 		</BorderBeam>
 	);
 }

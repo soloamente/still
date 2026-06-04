@@ -1,5 +1,6 @@
 import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
+import { HOME_CATALOGUE_SEARCH_PARAM } from "@/lib/home-catalogue-search-param";
 import { DEFAULT_HOME_COMMUNITY_FEED } from "@/lib/home-community-feed";
 import { DEFAULT_HOME_LEADERBOARD_PERIOD } from "@/lib/home-leaderboard-period";
 import {
@@ -9,6 +10,11 @@ import {
 	readHomeLobbyPersisted,
 } from "@/lib/home-lobby-persist";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+
+/** True when `/home` carries a committed catalogue `?search=` payload. */
+function hasCommittedCatalogueSearch(params: URLSearchParams): boolean {
+	return Boolean(params.get(HOME_CATALOGUE_SEARCH_PARAM)?.trim());
+}
 
 /**
  * Builds the navigation target when the patron picks a browse rail (Movies / TV / Community).
@@ -41,7 +47,11 @@ export function buildBrowseSurfaceNavigateHref(
 	const currentBrowse = parseHomeBrowseSurface(
 		input.currentParams.get("browse"),
 	);
-	if (currentBrowse === "community") {
+	if (
+		currentBrowse === "community" ||
+		hasCommittedCatalogueSearch(input.currentParams)
+	) {
+		// Exit search mode — restore the target Movies/TV slot from persist, not `?search=`.
 		return buildHomeHrefFromPersisted(persisted, next);
 	}
 

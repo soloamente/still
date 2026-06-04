@@ -2,9 +2,16 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
+import { useSearchParams } from "next/navigation";
 import { useHomeCommunityLobbyParams } from "@/components/home/home-community-lobby-params-context";
 import { useHomeTmdbLobbyParams } from "@/components/home/home-tmdb-lobby-params-context";
+import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
+import {
+	buildHomeCatalogueSearchSortHref,
+	isHomeCatalogueSearchActive,
+	parseHomeCatalogueSearchLobbySort,
+} from "@/lib/home-catalogue-search-param";
 import { HOME_COMMUNITY_FEEDS } from "@/lib/home-community-feed";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 
@@ -92,6 +99,16 @@ function HomeTmdbSortChips({
 		selectAnimeSeason,
 		prefetchLobby,
 	} = useHomeTmdbLobbyParams();
+	const searchParams = useSearchParams();
+	const { navigate } = useLobbyNavigation();
+	const catalogueBrowse = browse === "tv" ? "tv" : "movies";
+	const searchActive = isHomeCatalogueSearchActive(
+		searchParams,
+		catalogueBrowse,
+	);
+	const searchLobbySort = searchActive
+		? parseHomeCatalogueSearchLobbySort(searchParams, catalogueBrowse)
+		: null;
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -111,7 +128,8 @@ function HomeTmdbSortChips({
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
 		);
 
-	const chipFor = (sort: "upcoming" | "latest" | "popular") => {
+	const chipForUpcoming = () => {
+		const sort = "upcoming" as const;
 		const href = buildHomeLobbyHref({
 			sort,
 			browse,
@@ -120,25 +138,66 @@ function HomeTmdbSortChips({
 			animeSeason,
 		});
 		const active = catalogSort === sort;
+		return (
+			<button
+				key={sort}
+				type="button"
+				aria-current={active ? "page" : undefined}
+				className={chipButton(active, true)}
+				title="Theatrical or streaming titles with primary release dates from today onward"
+				aria-label="Upcoming — releases ahead on TMDb"
+				onClick={() => selectSort(sort)}
+				onPointerEnter={() => prefetchLobby(href)}
+			>
+				{active ? (
+					<motion.span
+						layoutId="home-catalog-sort-pill"
+						className="absolute inset-0 z-0 rounded-full bg-card"
+						transition={pillTransition}
+					/>
+				) : null}
+				<span className="relative z-10">Upcoming</span>
+			</button>
+		);
+	};
+
+	const chipFor = (sort: "latest" | "popular") => {
+		const href = searchActive
+			? buildHomeCatalogueSearchSortHref({
+					browse: catalogueBrowse,
+					sort,
+					currentParams: new URLSearchParams(searchParams.toString()),
+				})
+			: buildHomeLobbyHref({
+					sort,
+					browse,
+					venue,
+					run: catalogRun,
+					animeSeason,
+				});
+		const active = searchActive
+			? searchLobbySort === sort
+			: catalogSort === sort;
 		const labels =
-			sort === "upcoming"
+			sort === "latest"
 				? {
-						label: "Upcoming",
-						title:
-							"Theatrical or streaming titles with primary release dates from today onward",
-						ariaLabel: "Upcoming — releases ahead on TMDb",
+						label: "Latest",
+						title: searchActive
+							? "Newest matching releases first"
+							: "Newest releases first in this TMDb catalogue",
+						ariaLabel: searchActive
+							? "Latest — newest matching releases first"
+							: "Latest — newest releases in this TMDb catalogue",
 					}
-				: sort === "latest"
-					? {
-							label: "Latest",
-							title: "Newest releases first in this TMDb catalogue",
-							ariaLabel: "Latest — newest releases in this TMDb catalogue",
-						}
-					: {
-							label: "Popular",
-							title: "Trending and most popular on TMDb right now",
-							ariaLabel: "Popular — trending titles on TMDb",
-						};
+				: {
+						label: "Popular",
+						title: searchActive
+							? "Most popular matches first"
+							: "Trending and most popular on TMDb right now",
+						ariaLabel: searchActive
+							? "Popular — most popular matches first"
+							: "Popular — trending titles on TMDb",
+					};
 
 		return (
 			<button
@@ -148,7 +207,14 @@ function HomeTmdbSortChips({
 				className={chipButton(active, true)}
 				title={labels.title}
 				aria-label={labels.ariaLabel}
-				onClick={() => selectSort(sort)}
+				onClick={() => {
+					if (searchActive) {
+						if (searchLobbySort === sort) return;
+						navigate(href);
+						return;
+					}
+					selectSort(sort);
+				}}
 				onPointerEnter={() => prefetchLobby(href)}
 			>
 				{active ? (
@@ -182,10 +248,10 @@ function HomeTmdbSortChips({
 				aria-label="Catalogue sort"
 				aria-describedby={sortToolbarDescId}
 			>
-				{browse !== "tv" ? chipFor("upcoming") : null}
+				{browse !== "tv" && !searchActive ? chipForUpcoming() : null}
 				{chipFor("latest")}
 				{chipFor("popular")}
-				{browse === "tv" ? (
+				{browse === "tv" && !searchActive ? (
 					<button
 						type="button"
 						aria-current={animeSeason ? "page" : undefined}
@@ -220,13 +286,19 @@ export function HomeCatalogSortChips({
 }: {
 	catalogBrowse: HomeBrowseSurface;
 }) {
+	const searchParams = useSearchParams();
+
 	const sortToolbarDescId = "home-catalog-sort-desc";
 	const sortToolbarDescription =
 		catalogBrowse === "community"
 			? "Choose what kind of member-made content to browse — public lists, reviews, or activity from people you follow."
 			: catalogBrowse === "tv"
-				? "Latest and Popular choose TMDb ordering. This season narrows to airing animation from the last 90 days. Ongoing, Completed, and Upcoming on the right pick a different catalogue slice — only one right-rail slice at a time."
-				: "Upcoming, Latest, and Popular choose the TMDb list or discover sort. On Movies, the right rail picks theatrical versus at-home digital releases — same knobs carry into Filters on discover.";
+				? searchParams.get("search")?.trim()
+					? "Latest and Popular reorder committed search results. Clear search from the chip on the right."
+					: "Latest and Popular choose TMDb ordering. This season narrows to airing animation from the last 90 days. Ongoing, Completed, and Upcoming on the right pick a different catalogue slice — only one right-rail slice at a time."
+				: searchParams.get("search")?.trim()
+					? "Latest and Popular reorder committed search results. Clear search from the chip on the right."
+					: "Upcoming, Latest, and Popular choose the TMDb list or discover sort. On Movies, the right rail picks theatrical versus at-home digital releases — same knobs carry into Filters on discover.";
 
 	if (catalogBrowse === "community") {
 		return (

@@ -34,6 +34,18 @@ export type StillApiPagedGetResult = {
 	response: Response;
 };
 
+/** True when `fetch` rejected because the caller aborted the in-flight request. */
+export function isFetchAbortError(
+	error: unknown,
+	signal?: AbortSignal,
+): boolean {
+	if (signal?.aborted) return true;
+	return (
+		(error instanceof DOMException && error.name === "AbortError") ||
+		(error instanceof Error && error.name === "AbortError")
+	);
+}
+
 /** Avoid throwing when the API returns a plain-text 500 (e.g. Drizzle `Failed query: …`). */
 async function readStillApiJsonBody(
 	response: Response,
@@ -66,7 +78,11 @@ async function finishStillApiPagedGet(
 
 export async function fetchMoviesSearch(
 	qRaw: string,
-	init?: Pick<RequestInit, "signal"> & { companyId?: number },
+	init?: Pick<RequestInit, "signal"> & {
+		companyId?: number;
+		page?: number;
+		cookieHeader?: string;
+	},
 ) {
 	const url = new URL("/api/movies/search", stillApiOrigin());
 	url.searchParams.set("q", qRaw.trim());
@@ -74,9 +90,16 @@ export async function fetchMoviesSearch(
 	if (cid !== undefined && Number.isFinite(cid) && cid > 0) {
 		url.searchParams.set("company", String(Math.floor(cid)));
 	}
+	// Server defaults to page 1; explicit page enables infinite scroll on committed search.
+	const page = init?.page;
+	if (page !== undefined && Number.isFinite(page) && page >= 1) {
+		url.searchParams.set("page", String(Math.floor(page)));
+	}
+	const { cookieHeader, signal } = init ?? {};
 	const response = await fetch(url, {
 		credentials: "include",
-		signal: init?.signal,
+		signal,
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
 	});
 	const data = (await response.json()) as unknown;
 	return {
@@ -181,6 +204,8 @@ export async function fetchTvSearch(
 	qRaw: string,
 	init?: Pick<RequestInit, "signal"> & {
 		companyId?: number;
+		page?: number;
+		cookieHeader?: string;
 	},
 ) {
 	const url = new URL("/api/tv/search", stillApiOrigin());
@@ -189,9 +214,15 @@ export async function fetchTvSearch(
 	if (cid !== undefined && Number.isFinite(cid) && cid > 0) {
 		url.searchParams.set("company", String(Math.floor(cid)));
 	}
+	const page = init?.page;
+	if (page !== undefined && Number.isFinite(page) && page >= 1) {
+		url.searchParams.set("page", String(Math.floor(page)));
+	}
+	const { cookieHeader, signal } = init ?? {};
 	const response = await fetch(url, {
 		credentials: "include",
-		signal: init?.signal,
+		signal,
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
 	});
 	const data = (await response.json()) as unknown;
 	return {

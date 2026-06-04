@@ -20,18 +20,28 @@ function pillLabel(tag: SearchTag): string {
 export function SearchTagPill({
 	tag,
 	onRemove,
+	variant = "editable",
+	density = "default",
 }: {
 	tag: SearchTag;
-	onRemove: () => void;
+	onRemove?: () => void;
+	/** Display-only chips omit the remove control (sticky pill summary). */
+	variant?: "editable" | "display";
+	/** Compact density fits the sticky search pill without growing its height. */
+	density?: "default" | "compact";
 }) {
 	const label = pillLabel(tag);
 	const hasLogo = tag.kind === "studio" && Boolean(tag.logoUrl);
+	const editable = variant === "editable" && onRemove != null;
+	const compact = density === "compact";
 
 	return (
 		<span
 			className={cn(
-				"inline-flex h-8 max-w-[9.5rem] shrink-0 items-center gap-2 rounded-full bg-background py-1 pr-1",
-				hasLogo ? "pl-2.5" : "pl-4",
+				"inline-flex shrink-0 items-center rounded-full bg-background",
+				compact ? "h-6 max-w-28 gap-1" : "h-8 max-w-[9.5rem] gap-2 py-1",
+				hasLogo ? (compact ? "pl-1.5" : "pl-2.5") : compact ? "pl-2.5" : "pl-4",
+				editable ? "pr-1" : compact ? "pr-2.5" : "pr-4",
 			)}
 		>
 			{hasLogo && tag.kind === "studio" && tag.logoUrl ? (
@@ -40,21 +50,31 @@ export function SearchTagPill({
 					alt=""
 					width={20}
 					height={20}
-					className="size-5 shrink-0 object-contain"
+					className={cn(
+						"shrink-0 object-contain",
+						compact ? "size-4" : "size-5",
+					)}
 					unoptimized
 				/>
 			) : null}
-			<span className="truncate font-medium text-foreground text-xs">
+			<span
+				className={cn(
+					"truncate font-medium text-foreground",
+					compact ? "text-[11px] leading-none" : "text-xs",
+				)}
+			>
 				{label}
 			</span>
-			<button
-				type="button"
-				aria-label={`Remove ${label} filter`}
-				className="inline-flex size-6 shrink-0 items-center justify-center rounded-full text-muted-foreground [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground"
-				onClick={onRemove}
-			>
-				<X className="size-3.5" aria-hidden />
-			</button>
+			{editable ? (
+				<button
+					type="button"
+					aria-label={`Remove ${label} filter`}
+					className="inline-flex size-6 shrink-0 items-center justify-center rounded-full text-muted-foreground [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground"
+					onClick={onRemove}
+				>
+					<X className="size-3.5" aria-hidden />
+				</button>
+			) : null}
 		</span>
 	);
 }

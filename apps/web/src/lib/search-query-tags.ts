@@ -308,28 +308,14 @@ function findGenreByName(
 	return null;
 }
 
-/**
- * Restore tags + free text from a recent chip. Legacy rows without the separator
- * are treated as plain text only.
- */
-export function parseRecentStructuredQuery(
-	raw: string,
+/** Parses middle-dot segments into tags + trailing free text. */
+function parseStructuredQuerySegments(
+	segments: string[],
 	studios: SearchDialogStudio[],
-	options: ParseRecentOptions = {},
+	options: ParseRecentOptions,
 ): ParsedRecentStructuredQuery {
 	const movieGenres = options.movieGenres ?? [];
 	const tvGenres = options.tvGenres ?? [];
-	const trimmed = raw.trim();
-	if (!trimmed) return { tags: [], freeText: "" };
-
-	if (!trimmed.includes(STRUCTURED_QUERY_SEP)) {
-		return { tags: [], freeText: trimmed };
-	}
-
-	const segments = trimmed
-		.split(STRUCTURED_QUERY_SEP)
-		.map((s) => s.trim())
-		.filter(Boolean);
 	const tags: SearchTag[] = [];
 	let freeText = "";
 
@@ -414,4 +400,30 @@ export function parseRecentStructuredQuery(
 	}
 
 	return { tags, freeText };
+}
+
+/**
+ * Restore tags + free text from a recent chip. Legacy rows without the separator
+ * still try a single studio/genre/curated token before falling back to plain text.
+ */
+export function parseRecentStructuredQuery(
+	raw: string,
+	studios: SearchDialogStudio[],
+	options: ParseRecentOptions = {},
+): ParsedRecentStructuredQuery {
+	const trimmed = raw.trim();
+	if (!trimmed) return { tags: [], freeText: "" };
+
+	const segments = trimmed.includes(STRUCTURED_QUERY_SEP)
+		? trimmed
+				.split(STRUCTURED_QUERY_SEP)
+				.map((s) => s.trim())
+				.filter(Boolean)
+		: [trimmed];
+
+	const parsed = parseStructuredQuerySegments(segments, studios, options);
+	if (!trimmed.includes(STRUCTURED_QUERY_SEP) && parsed.tags.length === 0) {
+		return { tags: [], freeText: trimmed };
+	}
+	return parsed;
 }

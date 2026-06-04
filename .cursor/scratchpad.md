@@ -638,6 +638,74 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-06-04 — Home catalogue search commit _(Executor — Task 1/8)_
+
+**Shipped:** `apps/web/src/lib/home-catalogue-search-param.ts` + tests — `canCommitCatalogueSearch`, serialize/parse, summary label, commit/clear href builders, `resolveCommitBrowseFromDraft`, `isHomeCatalogueSearchActive`, `readHomeCatalogueSearchFromParams`.
+
+**Checks run:** `bun test apps/web/src/lib/home-catalogue-search-param.test.ts` (13 pass).
+
+**Human / Planner:** Review helpers only — no UI yet. Reply **`ok`** to proceed to **Task 2** (fetch pagination).
+
+### 2026-06-04 — Home catalogue search commit _(Executor — Task 2/8)_
+
+**Shipped:** Optional `page` on `fetchMoviesSearch` / `fetchTvSearch` in `still-api-fetch.ts` (forwards `?page=` to `/api/movies/search` and `/api/tv/search`).
+
+**Checks run:** Existing callers unchanged (page omitted → server default page 1).
+
+**Human / Planner:** Reply **`ok`** to proceed to **Task 3** (paginated search loader).
+
+### 2026-06-04 — Home catalogue search commit _(Executor — Task 3/8)_
+
+**Shipped:** `apps/web/src/lib/home-catalogue-search-load-page.ts` + tests — `loadCatalogueSearchPage`, `parseCatalogueSearchPagePayload`, `resolveCatalogueSearchFetchTarget`, row → `PopularMovieSeed` mapper.
+
+**Checks run:** `bun test apps/web/src/lib/home-catalogue-search-load-page.test.ts` (7 pass).
+
+**Human / Planner:** Reply **`ok`** to proceed to **Task 4** (search results grid component).
+
+### 2026-06-04 — Home catalogue search commit _(Executor — Task 4/8)_
+
+**Delivered:** `apps/web/src/components/home/home-catalogue-search-infinite.tsx` — reads `?search=` via `useSearchParams`, parses tags with studio/genre hooks, builds plan via `buildCatalogueSearchPlanFromCommit`, client-fetches page 1, renders `PopularMoviesInfinite` with `loadPage` + lobby grid classes; skeleton / empty / error + “Clear search” row. Added `buildCatalogueSearchPlanFromCommit` to `home-catalogue-search-load-page.ts` (+ 2 tests).
+
+**Verify (Executor):** `cd apps/web && bun test src/lib/home-catalogue-search-load-page.test.ts` → **9 pass**.
+
+**Human / Planner:** Reply **`ok`** to proceed to **Task 5** (wire grid on `/home` + hide browse chips when search active).
+
+### 2026-06-04 — Home catalogue search commit _(Executor — Task 5/8)_
+
+**Delivered:** `/home` TMDB lobby branches on `isHomeCatalogueSearchActive` (raw `?search=` from URL, not cookie restore). When active: hides sort + venue chip row, continue-watching + taste-matched rails; renders `HomeCatalogueSearchInfinite` in `Suspense` with `HomeCatalogueSearchGridSkeleton` fallback. `HomeCatalogSortChips` + `HomeCatalogViewModeToolbar` return `null` on `/home` Movies/TV when `?search=` is set (defense in depth). Exported `HomeCatalogueSearchGridSkeleton` for page fallback.
+
+**Human / Planner:** Reply **`ok`** to proceed to **Task 6** (⌘K Enter → commit URL + close + hydrate dialog from URL).
+
+### 2026-06-04 — Home catalogue search commit _(Executor — Task 6/8)_
+
+**Delivered:** `home-sticky-search.tsx` — `commitOrSubmitDraft` on form + token field Enter: when `canCommitCatalogueSearch`, records recent, `buildHomeCatalogueSearchCommitHref`, `router.push` (off `/home` or browse/community fix) or `router.replace(..., { scroll: false })`, then `beginClose()`. Dialog open hydrates from `?search=` via one-shot `hydrateFromUrlOnOpenRef` + effect (waits for studio metadata when structured). `canCommitCatalogueSearch` now rejects `@`-only people drafts.
+
+**Verify (Executor):** `bun test src/lib/home-catalogue-search-param.test.ts` → **14 pass**.
+
+**Human / Planner:** Reply **`ok`** to proceed to **Task 7** (pill summary + × clear).
+
+### 2026-06-04 — Home catalogue search commit _(Executor — Task 7/8)_
+
+**Delivered:** `HomeStickySearch` reads committed `?search=` on `/home`, shows `formatCommittedSearchSummary` in foreground semibold text; trailing **×** clears via `buildHomeCatalogueSearchClearHref` (`stopPropagation` on mousedown/click). Pill body still opens ⌘K (hydrates from URL). `homeTriggerEl` store type widened to `HTMLElement` for pill wrapper ref.
+
+**Human / Planner:** Reply **`ok`** to proceed to **Task 8** (browse rail clears search).
+
+### 2026-06-04 — Search Enter vs Tab _(Executor fix)_
+
+**Fixed:** `SearchTokenField` — **Enter** always submits catalogue search; **Tab** alone inserts ghost suggestion pills (no longer obstructed by auto-tag on Enter).
+
+### 2026-06-04 — Home catalogue search commit _(Executor — Task 8/8)_
+
+**Delivered:** `buildBrowseSurfaceNavigateHref` strips `?search=` when leaving search mode via Movies / TV / Community rail — restores target surface from `home-lobby-persist`. `HomeBrowseSurfaceProvider` allows re-tapping the active rail when `search` is set (clears search on Movies re-tap). Tests in `home-browse-surface-nav.test.ts` (+3).
+
+**Verify (Executor):** `bun test src/lib/home-browse-surface-nav.test.ts` → **8 pass**.
+
+**Human / Planner:** Commit a search on `/home`, then tap **TV**, **Movies**, or **Community** — grid/chips should return (no `?search=`). Reply **`ok`** for checkpoint (full test suite + build).
+
+### 2026-06-04 — AbortError on committed search grid _(Executor fix)_
+
+**Fixed:** `HomeCatalogueSearchInfinite` page-1 fetch now catches aborted `fetch` rejections; added `isFetchAbortError` + fetch generation guard.
+
 ### 2026-06-03 — Review rating tenths + detail sheet edit/delete _(Executor)_
 
 **Shipped (inline — subagent quota blocked):** Spec `docs/superpowers/specs/2026-06-03-review-rating-edit-delete-design.md`, plan `docs/superpowers/plans/2026-06-03-review-rating-edit-delete.md`. Migration **`0017_review_rating_tenths_backfill`**. Server: tenths on `POST/PATCH /api/reviews`, copy log rating verbatim, sync on log PATCH, display-scale community avg, DELETE clears pins/reactions/comments. Web: publish sends tenths (`87` not `9`), `formatStoredLogRatingDisplay` in reader, composer edit mode (PATCH), detail sheet **Delete** / **Edit** for owners.

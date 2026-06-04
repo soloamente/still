@@ -11,14 +11,18 @@ import type { SearchDialogStudio } from "@/lib/search-dialog-studios";
 export function useSearchDialogStudios(enabled: boolean) {
 	const [studios, setStudios] = useState<SearchDialogStudio[]>([]);
 	const [loading, setLoading] = useState(false);
+	/** True after the latest enabled fetch settles — avoids hydrating tags before studios arrive. */
+	const [loaded, setLoaded] = useState(false);
 
 	useEffect(() => {
 		if (!enabled) {
 			setStudios([]);
 			setLoading(false);
+			setLoaded(false);
 			return;
 		}
 		setLoading(true);
+		setLoaded(false);
 		const ctrl = new AbortController();
 		const url = new URL("/api/movies/studios", env.NEXT_PUBLIC_SERVER_URL);
 		void fetch(url, { credentials: "include", signal: ctrl.signal })
@@ -40,10 +44,13 @@ export function useSearchDialogStudios(enabled: boolean) {
 				if (!ctrl.signal.aborted) setStudios([]);
 			})
 			.finally(() => {
-				if (!ctrl.signal.aborted) setLoading(false);
+				if (!ctrl.signal.aborted) {
+					setLoading(false);
+					setLoaded(true);
+				}
 			});
 		return () => ctrl.abort();
 	}, [enabled]);
 
-	return { studios, loading };
+	return { studios, loading, loaded };
 }

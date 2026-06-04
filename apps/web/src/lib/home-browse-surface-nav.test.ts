@@ -61,4 +61,40 @@ describe("buildBrowseSurfaceNavigateHref", () => {
 		});
 		expect(href).toBe("/home?browse=community&sort=activity&period=year");
 	});
+
+	test("movies to tv strips committed search and restores tv persist", () => {
+		const href = buildBrowseSurfaceNavigateHref("tv", {
+			isHomeLobby: true,
+			currentParams: new URLSearchParams("sort=latest&search=noir"),
+			persisted: {
+				...emptyHomeLobbyPersisted(),
+				tv: { sort: "popular", venue: "home" },
+			},
+		});
+		expect(href).not.toContain("search=");
+		expect(href).toBe("/home?browse=tv&sort=popular&venue=home");
+	});
+
+	test("re-tapping movies while search is active clears search", () => {
+		const href = buildBrowseSurfaceNavigateHref("movies", {
+			isHomeLobby: true,
+			currentParams: new URLSearchParams("search=studio%3Apixar"),
+			persisted: {
+				...emptyHomeLobbyPersisted(),
+				movies: { sort: "popular", venue: "home" },
+			},
+		});
+		expect(href).not.toContain("search=");
+		expect(href).toBe("/home?sort=popular&venue=home");
+	});
+
+	test("community from search drops search param", () => {
+		const href = buildBrowseSurfaceNavigateHref("community", {
+			isHomeLobby: true,
+			currentParams: new URLSearchParams("browse=tv&search=anime"),
+			persisted: emptyHomeLobbyPersisted(),
+		});
+		expect(href).not.toContain("search=");
+		expect(href).toBe("/home?browse=community");
+	});
 });

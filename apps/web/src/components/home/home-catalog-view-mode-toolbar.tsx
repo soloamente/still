@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { useHomeTmdbLobbyParamsOptional } from "@/components/home/home-tmdb-lobby-params-context";
+import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 
 import {
 	buildDiaryLobbyHref,
@@ -27,6 +28,11 @@ import {
 	tvDiscoverSortByForLobbySort,
 } from "@/lib/home-catalog-run";
 import { parseHomeCatalogSort } from "@/lib/home-catalog-sort";
+import {
+	buildHomeCatalogueSearchClearHref,
+	isHomeCatalogueSearchActive,
+} from "@/lib/home-catalogue-search-param";
+import { readHomeLobbyPersisted } from "@/lib/home-lobby-persist";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import {
 	parseExplicitHomeVenue,
@@ -34,6 +40,45 @@ import {
 	parseTvLobbyVenue,
 } from "@/lib/home-venue";
 import { tvDiscoverCatalogUrl } from "@/lib/tv-discover-catalog-url";
+
+/** Right-rail chip during committed `/home?search=` — exits search mode. */
+function HomeCatalogueSearchClearChipToolbar({
+	browse,
+}: {
+	browse: "movies" | "tv";
+}) {
+	const { navigate } = useLobbyNavigation();
+
+	const chipLink = cn(
+		"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-center font-medium text-muted-foreground text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
+		"[@media(hover:hover)]:hover:text-foreground/90",
+	);
+
+	const handleClearSearch = () => {
+		const persisted = readHomeLobbyPersisted();
+		navigate(buildHomeCatalogueSearchClearHref(browse, persisted));
+	};
+
+	return (
+		<div className="flex shrink-0 flex-col items-end gap-1">
+			<div
+				className="flex w-fit items-center rounded-full bg-background p-1"
+				role="toolbar"
+				aria-label="Search"
+			>
+				<button
+					type="button"
+					className={chipLink}
+					onClick={handleClearSearch}
+					title="Clear search and return to the browse catalogue"
+					aria-label="Clear search"
+				>
+					<span className="relative z-10">Clear search</span>
+				</button>
+			</div>
+		</div>
+	);
+}
 
 /**
  * `/home` **right** toolbar: **In cinemas** vs **At home** when the active sort needs a
@@ -60,6 +105,17 @@ export function HomeCatalogViewModeToolbar() {
 		(tmdbLobby?.animeSeason ??
 			parseHomeAnimeSeason(searchParams.get("animeSeason")));
 	const reduceMotion = useReducedMotion();
+
+	const isHomeLobby = pathname === "/home" || pathname.endsWith("/home");
+	const catalogueBrowse = browse === "tv" ? "tv" : "movies";
+	const catalogueSearchActive =
+		isHomeLobby &&
+		browse !== "community" &&
+		isHomeCatalogueSearchActive(searchParams, catalogueBrowse);
+
+	if (catalogueSearchActive) {
+		return <HomeCatalogueSearchClearChipToolbar browse={catalogueBrowse} />;
+	}
 
 	/** `/diary` reuses this toolbar — venue + filters must stay on diary URLs, not `/home`. */
 	const isDiaryLobby = pathname === "/diary" || pathname.endsWith("/diary");

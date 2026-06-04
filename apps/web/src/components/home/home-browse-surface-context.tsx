@@ -17,6 +17,7 @@ import {
 	parseHomeBrowseSurface,
 } from "@/lib/home-browse-surface";
 import { buildBrowseSurfaceNavigateHref } from "@/lib/home-browse-surface-nav";
+import { HOME_CATALOGUE_SEARCH_PARAM } from "@/lib/home-catalogue-search-param";
 
 interface HomeBrowseSurfaceContextValue {
 	/** Optimistic or settled browse rail — drives the sliding pill. */
@@ -66,7 +67,11 @@ export function HomeBrowseSurfaceProvider({
 				return;
 			}
 
-			if (next === activeBrowse && pendingBrowse == null) {
+			if (
+				next === activeBrowse &&
+				pendingBrowse == null &&
+				!searchParams.get(HOME_CATALOGUE_SEARCH_PARAM)?.trim()
+			) {
 				return;
 			}
 

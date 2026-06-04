@@ -168,11 +168,9 @@ export function SearchTokenField({
 		}
 
 		if (event.key === "Enter") {
-			if (showPanel && topSuggestion) {
-				event.preventDefault();
-				commitSuggestion(topSuggestion);
-				return;
-			}
+			// Enter commits the catalogue query — Tab alone inserts suggestion pills.
+			event.preventDefault();
+			setPanelOpen(false);
 			onSubmit?.();
 			return;
 		}
@@ -192,7 +190,8 @@ export function SearchTokenField({
 	return (
 		<div className="catalog-search-query relative min-w-0 flex-1">
 			<p id={tabHintId} className="sr-only">
-				Type to filter. Press Tab to accept the highlighted suggestion.
+				Type to filter. Press Tab to accept the highlighted suggestion. Press
+				Enter to search.
 			</p>
 			<div className="flex min-h-10 min-w-0 flex-1 flex-wrap items-center gap-1.5">
 				<AnimatePresence initial={false}>
