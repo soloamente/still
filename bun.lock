@@ -44,6 +44,7 @@
         "@gorhom/bottom-sheet": "^5.2.10",
         "@react-navigation/drawer": "^7.9.4",
         "@react-navigation/elements": "^2.9.14",
+        "@still/api-client": "workspace:*",
         "@still/env": "workspace:*",
         "@tanstack/react-form": "catalog:",
         "@tanstack/react-query": "^5.62.7",
