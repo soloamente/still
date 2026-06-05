@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { create } from "zustand";
 
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
+import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { api } from "@/lib/api";
 
@@ -14,6 +15,16 @@ const PROFILE_FOLLOWS_TAB_OPTIONS = [
 	{ id: "followers" as const, label: "Followers" },
 	{ id: "following" as const, label: "Following" },
 ];
+
+/** Stable keys for the follows drawer loading placeholders. */
+const FOLLOWS_ROW_SKELETON_IDS = [
+	"follows-skeleton-a",
+	"follows-skeleton-b",
+	"follows-skeleton-c",
+	"follows-skeleton-d",
+	"follows-skeleton-e",
+	"follows-skeleton-f",
+] as const;
 
 type FollowsTab = "followers" | "following";
 
@@ -129,32 +140,48 @@ function ProfileFollowsPanel({
 	const [followers, setFollowers] = useState<FollowsListRow[] | null>(null);
 	const [following, setFollowing] = useState<FollowsListRow[] | null>(null);
 
+	// Drop stale rows when switching profiles so we never flash the previous patron's list.
+	useEffect(() => {
+		setFollowers(null);
+		setFollowing(null);
+	}, [targetUserId]);
+
 	useEffect(() => {
 		if (!active) return;
 		let cancelled = false;
+
+		async function loadFollowsList(
+			kind: FollowsTab,
+		): Promise<FollowsListRow[]> {
+			const res =
+				kind === "followers"
+					? await api.api.follows.of({ userId: targetUserId }).followers.get()
+					: await api.api.follows.of({ userId: targetUserId }).following.get();
+			return (res.data as unknown as FollowsListRow[]) ?? [];
+		}
+
 		void (async () => {
 			try {
-				const res =
-					tab === "followers"
-						? await api.api.follows.of({ userId: targetUserId }).followers.get()
-						: await api.api.follows
-								.of({ userId: targetUserId })
-								.following.get();
+				// Prefetch both tabs on open so switching pills does not show a second spinner.
+				const [followersRows, followingRows] = await Promise.all([
+					loadFollowsList("followers"),
+					loadFollowsList("following"),
+				]);
 				if (cancelled) return;
-				const rows = (res.data as unknown as FollowsListRow[]) ?? [];
-				if (tab === "followers") setFollowers(rows);
-				else setFollowing(rows);
+				setFollowers(followersRows);
+				setFollowing(followingRows);
 			} catch {
 				if (!cancelled) {
-					if (tab === "followers") setFollowers([]);
-					else setFollowing([]);
+					setFollowers([]);
+					setFollowing([]);
 				}
 			}
 		})();
+
 		return () => {
 			cancelled = true;
 		};
-	}, [active, tab, targetUserId]);
+	}, [active, targetUserId]);
 
 	const rows = tab === "followers" ? followers : following;
 
@@ -171,9 +198,20 @@ function ProfileFollowsPanel({
 			</div>
 			<div className="min-h-0 flex-1 overflow-y-auto px-2 py-1">
 				{rows == null ? (
-					<p className="px-3 py-8 text-center text-muted-foreground text-sm">
-						Loading…
-					</p>
+					<ul aria-busy="true" aria-label="Loading follows">
+						{FOLLOWS_ROW_SKELETON_IDS.map((skeletonId) => (
+							<li
+								key={skeletonId}
+								className="flex items-center gap-3 px-2 py-2.5"
+							>
+								<span className="size-10 shrink-0 animate-pulse rounded-full bg-muted/40" />
+								<div className="min-w-0 flex-1 space-y-1.5">
+									<span className="block h-3.5 w-28 animate-pulse rounded bg-muted/40" />
+									<span className="block h-3 w-20 animate-pulse rounded bg-muted/30" />
+								</div>
+							</li>
+						))}
+					</ul>
 				) : rows.length === 0 ? (
 					<p className="px-3 py-8 text-center text-muted-foreground text-sm">
 						{tab === "followers"
@@ -235,12 +273,14 @@ function FollowRow({
 
 	return (
 		<li className="flex items-center gap-3 border-white/5 border-t px-2 py-2.5 first:border-t-0">
-			{row.user?.image ? (
-				// biome-ignore lint/performance/noImgElement: small avatars from mixed remote hosts.
-				<img
-					src={row.user.image}
-					alt=""
-					className="size-10 shrink-0 rounded-full object-cover"
+			{handle ? (
+				<PatronPortraitAvatar
+					handle={handle}
+					avatarUrl={row.user?.image}
+					name={name}
+					width={40}
+					height={40}
+					className="size-10 shrink-0 rounded-full"
 				/>
 			) : (
 				<span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted/40 font-medium text-foreground/80 text-sm">

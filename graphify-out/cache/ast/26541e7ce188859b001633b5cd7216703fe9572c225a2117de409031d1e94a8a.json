@@ -1,0 +1,166 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_whats_new_seen_ts",
+			"label": "whats-new-seen.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_whats_new_seen_storagekey",
+			"label": "storageKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_whats_new_seen_hasstorage",
+			"label": "hasStorage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_whats_new_seen_readwhatsnewseenreleaseid",
+			"label": "readWhatsNewSeenReleaseId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_whats_new_seen_markwhatsnewseen",
+			"label": "markWhatsNewSeen()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_whats_new_seen_shouldshowwhatsnewrelease",
+			"label": "shouldShowWhatsNewRelease()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L33"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_seen_ts",
+			"target": "lib_whats_new_seen_storagekey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_seen_ts",
+			"target": "lib_whats_new_seen_hasstorage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_seen_ts",
+			"target": "lib_whats_new_seen_readwhatsnewseenreleaseid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_seen_ts",
+			"target": "lib_whats_new_seen_markwhatsnewseen",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_seen_ts",
+			"target": "lib_whats_new_seen_shouldshowwhatsnewrelease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_whats_new_seen_readwhatsnewseenreleaseid",
+			"target": "lib_whats_new_seen_hasstorage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_whats_new_seen_readwhatsnewseenreleaseid",
+			"target": "lib_whats_new_seen_storagekey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_whats_new_seen_markwhatsnewseen",
+			"target": "lib_whats_new_seen_hasstorage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_whats_new_seen_markwhatsnewseen",
+			"target": "lib_whats_new_seen_storagekey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_whats_new_seen_shouldshowwhatsnewrelease",
+			"target": "lib_whats_new_seen_readwhatsnewseenreleaseid",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_whats_new_seen_readwhatsnewseenreleaseid",
+			"callee": "getItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_whats_new_seen_readwhatsnewseenreleaseid",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_whats_new_seen_markwhatsnewseen",
+			"callee": "setItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.ts",
+			"source_location": "L27"
+		}
+	]
+}

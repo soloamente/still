@@ -1,0 +1,252 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"label": "sense-taste-signature.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_sense_taste_signature_tastesignatureconfidence",
+			"label": "TasteSignatureConfidence",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_sense_taste_signature_tastearchetype",
+			"label": "TasteArchetype",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_sense_taste_signature_tasteperspective",
+			"label": "TastePerspective",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_sense_taste_signature_tastesignaturejson",
+			"label": "TasteSignatureJson",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"label": "legacyVisitorHeadlineFromSelf()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "lib_sense_taste_signature_parsetastesignaturejson",
+			"label": "parseTasteSignatureJson()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "lib_sense_taste_signature_resolvetasteheadline",
+			"label": "resolveTasteHeadline()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L89"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"target": "lib_sense_taste_signature_tastesignatureconfidence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"target": "lib_sense_taste_signature_tastearchetype",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"target": "lib_sense_taste_signature_tasteperspective",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"target": "lib_sense_taste_signature_tastesignaturejson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"target": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"target": "lib_sense_taste_signature_parsetastesignaturejson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"target": "lib_sense_taste_signature_resolvetasteheadline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_sense_taste_signature_parsetastesignaturejson",
+			"target": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_sense_taste_signature_resolvetasteheadline",
+			"target": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L97",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_parsetastesignaturejson",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_parsetastesignaturejson",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_parsetastesignaturejson",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_parsetastesignaturejson",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_parsetastesignaturejson",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_parsetastesignaturejson",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_resolvetasteheadline",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_resolvetasteheadline",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_sense_taste_signature_resolvetasteheadline",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.ts",
+			"source_location": "L100"
+		}
+	]
+}

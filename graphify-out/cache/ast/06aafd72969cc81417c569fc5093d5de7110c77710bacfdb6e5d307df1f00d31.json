@@ -1,0 +1,162 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"label": "route.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "handle_route_flexcol",
+			"label": "flexCol",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "handle_route_get",
+			"label": "GET()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L21"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "og",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_brand_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "lib_app_brand_app_name",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "lib_sense_taste_signature_parsetastesignaturejson",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "lib_sense_taste_signature_resolvetasteheadline",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_server_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "lib_server_api_serverapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "handle_route_flexcol",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_taste_handle_route_tsx",
+			"target": "handle_route_get",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "handle_route_get",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "handle_route_get",
+			"callee": "serverApi",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "handle_route_get",
+			"callee": "profiles",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "handle_route_get",
+			"callee": "parseTasteSignatureJson",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "handle_route_get",
+			"callee": "resolveTasteHeadline",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\taste\\[handle]\\route.tsx",
+			"source_location": "L43"
+		}
+	]
+}

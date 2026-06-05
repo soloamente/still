@@ -144,7 +144,8 @@ export function ProfilePatronHeader({
 				{/* Taste signature */}
 				<ProfileTasteSignature
 					tasteSignature={tasteSignature ?? null}
-					className="mt-3"
+					perspective={isMe ? "self" : "visitor"}
+					className="mt-4"
 				/>
 
 				{/* Stats row — equal metric cells (films · shows · followers · following · streak) */}

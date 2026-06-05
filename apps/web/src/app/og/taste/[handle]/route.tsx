@@ -1,7 +1,10 @@
 import { ImageResponse } from "next/og";
 
 import { APP_NAME } from "@/lib/app-brand";
-import { parseTasteSignatureJson } from "@/lib/sense-taste-signature";
+import {
+	parseTasteSignatureJson,
+	resolveTasteHeadline,
+} from "@/lib/sense-taste-signature";
 import { serverApi } from "@/lib/server-api";
 
 export const runtime = "edge";
@@ -23,8 +26,7 @@ export async function GET(
 	const normalized = handle.toLowerCase();
 
 	let displayName = `@${normalized}`;
-	let headline =
-		"Your taste map is waiting — log a few films on Sense to begin.";
+	let headline = "Taste map still forming — log a few films on Sense to begin.";
 
 	try {
 		const api = await serverApi();
@@ -37,7 +39,8 @@ export async function GET(
 		displayName =
 			data?.profile?.displayName ?? data?.user?.name ?? `@${normalized}`;
 		const taste = parseTasteSignatureJson(data?.profile?.tasteSignature);
-		if (taste?.headline) headline = taste.headline;
+		const resolved = resolveTasteHeadline(taste, "visitor");
+		if (resolved) headline = resolved;
 	} catch {
 		// Also render a branded fallback card when the API is unreachable.
 	}

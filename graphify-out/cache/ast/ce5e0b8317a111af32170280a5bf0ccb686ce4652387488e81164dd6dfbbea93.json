@@ -1,0 +1,58 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_api_profiles_me_avatar_route_ts",
+			"label": "route.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\profiles\\me\\avatar\\route.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "avatar_route_post",
+			"label": "POST()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\profiles\\me\\avatar\\route.ts",
+			"source_location": "L6"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_profiles_me_avatar_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_proxy_multipart_upstream_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\profiles\\me\\avatar\\route.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_profiles_me_avatar_route_ts",
+			"target": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\profiles\\me\\avatar\\route.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_profiles_me_avatar_route_ts",
+			"target": "avatar_route_post",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\profiles\\me\\avatar\\route.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "avatar_route_post",
+			"callee": "proxyMultipartUpstream",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\profiles\\me\\avatar\\route.ts",
+			"source_location": "L7"
+		}
+	]
+}

@@ -1,8 +1,11 @@
-import { env } from "@still/env/web";
+import { stillApiOrigin } from "@/lib/still-api-origin";
 
 /**
  * Uploads a profile banner or avatar through the authenticated API (multipart).
  * Shared by `/me/settings` (flush staged media) and `/me/customization`.
+ *
+ * Calls the web origin so session cookies are sent; dedicated Next route handlers
+ * forward FormData to Elysia (rewrites drop multipart bodies in production).
  */
 export async function uploadProfileMeAsset(
 	path: "/api/profiles/me/banner" | "/api/profiles/me/avatar",
@@ -10,7 +13,7 @@ export async function uploadProfileMeAsset(
 ): Promise<string> {
 	const form = new FormData();
 	form.append("file", file);
-	const res = await fetch(new URL(path, env.NEXT_PUBLIC_SERVER_URL), {
+	const res = await fetch(new URL(path, stillApiOrigin()), {
 		method: "POST",
 		body: form,
 		credentials: "include",

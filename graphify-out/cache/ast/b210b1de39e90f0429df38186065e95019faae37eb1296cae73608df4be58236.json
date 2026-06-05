@@ -1,0 +1,367 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_05_profile_taste_signature_voice_design_md",
+			"label": "2026-06-05-profile-taste-signature-voice-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"label": "Profile Taste Signature \u2014 Voice & Archetypes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L20"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_archetypes",
+			"label": "Archetypes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"label": "Template examples",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_forming",
+			"label": "forming",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_genre_purist",
+			"label": "genre-purist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_dual_affinity",
+			"label": "dual-affinity",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_contrarian",
+			"label": "contrarian",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_generous",
+			"label": "generous",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_selective",
+			"label": "selective",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_eclectic",
+			"label": "eclectic",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_curator",
+			"label": "curator",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L114"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_data_model",
+			"label": "Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_codeblock_1",
+			"label": "code:ts (export type TasteArchetype =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_codeblock_2",
+			"label": "code:block2 (log rows (recompute))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_codeblock_3",
+			"label": "code:block3 (profile.taste_signature)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_error_handling_edge_cases",
+			"label": "Error handling & edge cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L180"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "specs_2026_06_05_profile_taste_signature_voice_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L202"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_05_profile_taste_signature_voice_design_md",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_archetypes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_forming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_genre_purist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_dual_affinity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_contrarian",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_generous",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_selective",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_eclectic",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_template_examples",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_curator",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_data_model",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_architecture",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_architecture",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_error_handling_edge_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_taste_signature_voice_design_profile_taste_signature_voice_archetypes",
+			"target": "specs_2026_06_05_profile_taste_signature_voice_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-taste-signature-voice-design.md",
+			"source_location": "L202",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

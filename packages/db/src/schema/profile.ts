@@ -16,7 +16,22 @@ import { contentVisibility } from "./visibility";
 /** Cached rule-based taste copy (Sense identity core). */
 export type TasteSignatureConfidence = "low" | "medium" | "high";
 
+export type TasteArchetype =
+	| "forming"
+	| "contrarian"
+	| "genre-purist"
+	| "dual-affinity"
+	| "generous"
+	| "selective"
+	| "genre-led"
+	| "eclectic"
+	| "curator";
+
 export interface TasteSignatureJson {
+	archetype?: TasteArchetype;
+	headlineSelf?: string;
+	headlineVisitor?: string;
+	/** Backward compat — mirrors headlineSelf when dual fields exist */
 	headline: string;
 	confidence: TasteSignatureConfidence;
 }

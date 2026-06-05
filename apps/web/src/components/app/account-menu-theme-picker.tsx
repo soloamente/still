@@ -81,7 +81,7 @@ export function AccountMenuThemePicker({
 	);
 
 	return (
-		<div className={cn("space-y-2 px-1 pt-1", className)}>
+		<div className={className}>
 			{/* <p
 				id="account-menu-theme-label"
 				className="px-2 font-medium text-foreground text-sm"

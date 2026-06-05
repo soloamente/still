@@ -73,6 +73,7 @@ import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signatu
 import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
 import { sanitizeAppearancePreferences } from "../lib/sanitize-appearance-preferences";
+import { ensureFreshTasteSignature } from "../lib/taste-signature-cache";
 
 type ProfileMePatchBody = {
 	handle?: string;
@@ -999,9 +1000,20 @@ export const profilesRoute = new Elysia({
 					.orderBy(desc(userAchievement.unlockedAt)),
 			]);
 
+			// Legacy taste rows only stored second-person headline — refresh before paint.
+			const freshTasteSignature = await ensureFreshTasteSignature(
+				targetUserId,
+				row.profile.tasteSignature,
+			);
+
 			return {
 				user: { id: row.user.id, name: row.user.name, image: row.user.image },
-				profile: row.profile,
+				profile: {
+					...row.profile,
+					...(freshTasteSignature
+						? { tasteSignature: freshTasteSignature }
+						: {}),
+				},
 				stats: {
 					followers: Number(followCount?.followers ?? 0),
 					following: Number(followingCount?.following ?? 0),

@@ -22,9 +22,14 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-05-experience-polish",
+	id: "2026-06-05-profile-media-upload",
 	fullReleaseHref: "/news",
 	slides: [
+		{
+			title: "Profile photos work again",
+			description:
+				"Uploading your profile picture or banner failed in production — that's fixed. Pick a new image in Settings or Customize profile and save; your portrait and banner should update right away.",
+		},
 		{
 			title: "What's new in Sense",
 			description:

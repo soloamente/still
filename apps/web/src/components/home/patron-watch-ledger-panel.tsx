@@ -2,6 +2,7 @@
 
 import { env } from "@still/env/web";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { PatronWatchLedgerSeed } from "@/components/home/patron-watch-ledger-drawer";
 import { PatronWatchLedgerGrid } from "@/components/home/patron-watch-ledger-grid";
@@ -9,6 +10,7 @@ import { PatronWatchLedgerOrderChips } from "@/components/home/patron-watch-ledg
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { leaderboardHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import {
 	leaderboardPeriodLabel,
 	readViewerTimeZone,
@@ -117,11 +119,21 @@ export function PatronWatchLedgerPanel({
 								/>
 							</div>
 						</div>
-						<h2 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
-							{displayName}
-						</h2>
+						<div className="flex flex-col items-center">
+							<h2 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
+								{displayName}
+							</h2>
+							<Link
+								href={`/profile/${handle}`}
+								className={leaderboardHandleLinkClassName(
+									"mt-0.5 max-w-full truncate text-xs",
+								)}
+								title={`Open @${handle}'s profile`}
+							>
+								@{handle}
+							</Link>
+						</div>
 						<div className="mt-2 flex flex-col gap-1">
-							<p className="text-muted-foreground text-xs">@{handle}</p>
 							<p className="text-balance font-editorial text-muted-foreground text-sm leading-snug">
 								{periodLabel}
 							</p>

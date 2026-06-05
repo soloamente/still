@@ -1,0 +1,50 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_about_fallback_tsx",
+			"label": "movie-detail-about-fallback.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-fallback.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "movie_movie_detail_about_fallback_moviedetailaboutfallback",
+			"label": "MovieDetailAboutFallback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-fallback.tsx",
+			"source_location": "L4"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_about_fallback_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_view_loading_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-fallback.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_about_fallback_tsx",
+			"target": "movie_movie_detail_view_loading_moviedetailaboutbodyfallback",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-fallback.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_about_fallback_tsx",
+			"target": "movie_movie_detail_about_fallback_moviedetailaboutfallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-fallback.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

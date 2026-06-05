@@ -1,0 +1,148 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_proxy_multipart_upstream_ts",
+			"label": "proxy-multipart-upstream.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"label": "proxyMultipartUpstream()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_proxy_multipart_upstream_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_proxy_multipart_upstream_ts",
+			"target": "headers",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_proxy_multipart_upstream_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_upstream_origin_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_proxy_multipart_upstream_ts",
+			"target": "lib_api_upstream_origin_apiupstreamorigin",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_proxy_multipart_upstream_ts",
+			"target": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "cookies",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "getAll",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "formData",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "apiUpstreamOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "text",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_proxy_multipart_upstream_proxymultipartupstream",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\proxy-multipart-upstream.ts",
+			"source_location": "L45"
+		}
+	]
+}

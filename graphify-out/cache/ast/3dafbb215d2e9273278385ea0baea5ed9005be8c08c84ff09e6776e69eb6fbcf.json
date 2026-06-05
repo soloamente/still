@@ -1,0 +1,566 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"label": "profiles.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "routes_profiles_profilemepatchbody",
+			"label": "ProfileMePatchBody",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L78"
+		},
+		{
+			"id": "routes_profiles_profilesroute",
+			"label": "profilesRoute",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L102"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "blob",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "elysia",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_context_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "src_context_context",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_activity_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_activity_signature_activity_signature_days",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_activity_signature_buildactivitysignature",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_content_visibility_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_content_visibility_contentvisibilitywhere",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_content_visibility_visibilityschema",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_creator_recognition_resolvecuratorrecognition",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_list_cover_posters_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_list_cover_posters_withcoverposterpaths",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_appearance_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_appearance_isprofileaccentid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_appearance_profile_pref_profile_accent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_appearance_profileaccenthex",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_filmography_query_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_filmography_query_filmographyoffset",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_filmography_query_filmographytotalpages",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_filmography_query_parsefilmographyfavorites",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_filmography_query_parsefilmographylimit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_filmography_query_parsefilmographymedia",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_filmography_query_parsefilmographyorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_filmography_query_parsefilmographypage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_filmography_query_parsefilmographyvenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_pinned_reviews_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_pinned_reviews_hydratepinnedreviews",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_pinned_reviews_validatepinnedreviewidsforuser",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_search_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_search_normalizeprofilesearchquery",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_profile_search_rankprofilesearchhits",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_rate_limit_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_rate_limit_hit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_recompute_user_taste_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_recompute_user_taste_signature_recomputeusertastesignature",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_taste_signature_cache_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_taste_signature_cache_ensurefreshtastesignature",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_record_product_event_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_record_product_event_recordproductevent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_route_body_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_route_body_routebody",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_sanitize_appearance_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "lib_sanitize_appearance_preferences_sanitizeappearancepreferences",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "routes_profiles_profilemepatchbody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_profiles_ts",
+			"target": "routes_profiles_profilesroute",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts",
+			"source_location": "L102",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}
