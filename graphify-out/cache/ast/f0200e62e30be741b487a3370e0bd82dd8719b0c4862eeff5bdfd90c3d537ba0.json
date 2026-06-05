@@ -1,0 +1,52 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_banner_ts",
+			"label": "profile-banner.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-banner.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_banner_profilebannerimageurl",
+			"label": "profileBannerImageUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-banner.ts",
+			"source_location": "L6"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_banner_ts",
+			"target": "lib_profile_banner_profilebannerimageurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-banner.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_banner_profilebannerimageurl",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-banner.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_profile_banner_profilebannerimageurl",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-banner.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "lib_profile_banner_profilebannerimageurl",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-banner.ts",
+			"source_location": "L13"
+		}
+	]
+}

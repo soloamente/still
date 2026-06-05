@@ -1,19 +1,25 @@
-import { env } from "@still/env/web";
+/** Same-origin profile portrait paths — never use `NEXT_PUBLIC_SERVER_URL` (API host). */
+function profileAvatarPath(
+	pathname: string,
+	cacheKey?: string | number,
+): string {
+	if (cacheKey == null) return pathname;
+	return `${pathname}?v=${encodeURIComponent(String(cacheKey))}`;
+}
 
 /**
  * Authenticated stream for the signed-in user's portrait (`GET /api/profiles/me/avatar`).
  * Use with `fetch(..., { credentials: "include" })` — not with Next `<Image>` (no cookies).
+ *
+ * Prefer `profilePatronAvatarImageUrl(handle)` when the handle is known — that route is
+ * public and avoids cookie / cross-origin issues on split web + API deploys.
  */
 export function profileMeAvatarImageUrl(cacheKey?: string | number): string {
-	const url = new URL("/api/profiles/me/avatar", env.NEXT_PUBLIC_SERVER_URL);
-	if (cacheKey != null) {
-		url.searchParams.set("v", String(cacheKey));
-	}
-	return url.href;
+	return profileAvatarPath("/api/profiles/me/avatar", cacheKey);
 }
 
 /**
- * Absolute URL for another patron's profile portrait (`GET /api/profiles/avatar/:handle`).
+ * Same-origin URL for another patron's profile portrait (`GET /api/profiles/avatar/:handle`).
  * Proxies **private** Vercel Blob URLs (same problem as banners) and streams OAuth/CDN URLs
  * so Next `<Image>` always receives a fetchable `src`.
  */
@@ -22,14 +28,10 @@ export function profilePatronAvatarImageUrl(
 	/** Bust cache after the subject uploads a new portrait. */
 	cacheKey?: string | number,
 ): string {
-	const url = new URL(
+	return profileAvatarPath(
 		`/api/profiles/avatar/${encodeURIComponent(handle)}`,
-		env.NEXT_PUBLIC_SERVER_URL,
+		cacheKey,
 	);
-	if (cacheKey != null) {
-		url.searchParams.set("v", String(cacheKey));
-	}
-	return url.href;
 }
 
 /**

@@ -1,0 +1,302 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"label": "mobile-you-sheet.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_mobile_you_sheet_youuser",
+			"label": "YouUser",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L23"
+		},
+		{
+			"id": "app_mobile_you_sheet_destination_icon",
+			"label": "DESTINATION_ICON",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L33"
+		},
+		{
+			"id": "app_mobile_you_sheet_rowclass",
+			"label": "rowClass",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L41"
+		},
+		{
+			"id": "app_mobile_you_sheet_mobileyousheet",
+			"label": "MobileYouSheet()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L47"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_award_fill_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_gear_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_account_menu_theme_picker_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "app_account_menu_theme_picker_accountmenuthemepicker",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_mobile_nav_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "app_mobile_nav_mobile_you_destinations",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_nav_user_avatar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "app_nav_user_avatar_navuseravatar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_auth_client_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "lib_auth_client_authclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "app_mobile_you_sheet_youuser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "app_mobile_you_sheet_destination_icon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "app_mobile_you_sheet_rowclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"target": "app_mobile_you_sheet_mobileyousheet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "app_mobile_you_sheet_mobileyousheet",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx",
+			"source_location": "L191"
+		}
+	]
+}

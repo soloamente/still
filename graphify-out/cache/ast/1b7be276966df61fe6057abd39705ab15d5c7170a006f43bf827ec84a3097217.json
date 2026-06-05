@@ -1,0 +1,112 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"label": "sense-taste-signature.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_sense_taste_signature_test_result",
+			"label": "result",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_sense_taste_signature_test_description",
+			"label": "description",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_sense_taste_signature_test_headline",
+			"label": "headline",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L27"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"target": "lib_sense_taste_signature_legacyvisitorheadlinefromself",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"target": "lib_sense_taste_signature_resolvetasteheadline",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"target": "lib_sense_taste_signature_tastearchetypedescription",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"target": "lib_sense_taste_signature_test_result",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"target": "lib_sense_taste_signature_test_description",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_taste_signature_test_ts",
+			"target": "lib_sense_taste_signature_test_headline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-taste-signature.test.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -14,7 +14,7 @@ import {
 } from "@/components/profile/me-account-content-reveal";
 import { useMeAccountSession } from "@/components/profile/me-account-session-context";
 import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
-import { profileMeAvatarImageUrl } from "@/lib/profile-avatar";
+import { profilePatronAvatarImageUrl } from "@/lib/profile-avatar";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
 import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
 
@@ -25,17 +25,6 @@ type MeProfile = {
 	bannerUrl: string | null;
 	handle: string;
 };
-
-/** Load portrait via authenticated API (private Blob + cross-origin safe preview). */
-async function fetchAvatarObjectUrl(revision: number): Promise<string | null> {
-	const res = await fetch(profileMeAvatarImageUrl(revision), {
-		credentials: "include",
-		cache: "no-store",
-	});
-	if (!res.ok) return null;
-	const blob = await res.blob();
-	return URL.createObjectURL(blob);
-}
 
 /**
  * Customize page — profile-style preview; picks are staged until **Save** in the header.
@@ -60,12 +49,10 @@ export function CustomizationForm({
 	const [bannerUrl, setBannerUrl] = useState(profile.bannerUrl ?? "");
 	const [bannerRevision, setBannerRevision] = useState(0);
 	const [avatarRevision, setAvatarRevision] = useState(0);
-	const [avatarObjectUrl, setAvatarObjectUrl] = useState<string | null>(null);
 	const [hasAvatar, setHasAvatar] = useState(initialHasAvatar);
 	const [saving, setSaving] = useState(false);
 	const bannerFileRef = useRef<HTMLInputElement>(null);
 	const avatarFileRef = useRef<HTMLInputElement>(null);
-	const avatarObjectUrlRef = useRef<string | null>(null);
 
 	const hasBanner = Boolean(bannerUrl?.trim());
 	const bannerSrc =
@@ -135,44 +122,12 @@ export function CustomizationForm({
 	);
 
 	// Stream committed portrait when not editing a pending pick.
-	useEffect(() => {
-		if (pendingAvatar) return;
+	const committedPortraitSrc =
+		hasAvatar && profile.handle
+			? profilePatronAvatarImageUrl(profile.handle, avatarRevision)
+			: null;
 
-		if (!hasAvatar) {
-			if (avatarObjectUrlRef.current) {
-				URL.revokeObjectURL(avatarObjectUrlRef.current);
-				avatarObjectUrlRef.current = null;
-			}
-			setAvatarObjectUrl(null);
-			return;
-		}
-
-		let cancelled = false;
-		void (async () => {
-			const next = await fetchAvatarObjectUrl(avatarRevision);
-			if (cancelled) {
-				if (next) URL.revokeObjectURL(next);
-				return;
-			}
-			if (avatarObjectUrlRef.current) {
-				URL.revokeObjectURL(avatarObjectUrlRef.current);
-			}
-			avatarObjectUrlRef.current = next;
-			setAvatarObjectUrl(next);
-		})();
-
-		return () => {
-			cancelled = true;
-		};
-	}, [hasAvatar, avatarRevision, pendingAvatar]);
-
-	useEffect(() => {
-		return () => {
-			if (avatarObjectUrlRef.current) {
-				URL.revokeObjectURL(avatarObjectUrlRef.current);
-			}
-		};
-	}, []);
+	const portraitSrc = pendingAvatar?.previewUrl ?? committedPortraitSrc;
 
 	function onPickBannerFile(file: File) {
 		const previewUrl = URL.createObjectURL(file);
@@ -183,8 +138,6 @@ export function CustomizationForm({
 		const previewUrl = URL.createObjectURL(file);
 		setPendingAvatar({ file, previewUrl });
 	}
-
-	const portraitSrc = pendingAvatar?.previewUrl ?? avatarObjectUrl;
 
 	return (
 		<div>

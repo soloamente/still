@@ -1,0 +1,78 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_whats_new_releases_ts",
+			"label": "whats-new-releases.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_whats_new_releases_whatsnewslide",
+			"label": "WhatsNewSlide",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_whats_new_releases_whatsnewrelease",
+			"label": "WhatsNewRelease",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_whats_new_releases_current_whats_new_release",
+			"label": "CURRENT_WHATS_NEW_RELEASE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_whats_new_releases_getactivewhatsnewrelease",
+			"label": "getActiveWhatsNewRelease()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L52"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_releases_ts",
+			"target": "lib_whats_new_releases_whatsnewslide",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_releases_ts",
+			"target": "lib_whats_new_releases_whatsnewrelease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_releases_ts",
+			"target": "lib_whats_new_releases_current_whats_new_release",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_releases_ts",
+			"target": "lib_whats_new_releases_getactivewhatsnewrelease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}
