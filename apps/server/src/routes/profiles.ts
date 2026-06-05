@@ -328,7 +328,7 @@ export const profilesRoute = new Elysia({
 		const file = formData.get("file");
 		if (!(file instanceof File)) return status(400, "Missing file");
 		if (!file.type.startsWith("image/")) return status(400, "Image only");
-		if (file.size > 5_000_000) return status(413, "File too large (max 5MB)");
+		if (file.size > 4_000_000) return status(413, "File too large (max 4MB)");
 
 		const key = `banners/${user.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
 		let blob: { url: string };
@@ -366,12 +366,17 @@ export const profilesRoute = new Elysia({
 			.where(eq(profile.userId, user.id))
 			.limit(1);
 		if (!existing) return status(400, "Profile not found");
-		await db
+		const [updated] = await db
 			.update(profile)
 			.set({ bannerUrl: blob.url })
-			.where(eq(profile.userId, user.id));
+			.where(eq(profile.userId, user.id))
+			.returning({ bannerUrl: profile.bannerUrl });
+		if (!updated?.bannerUrl) {
+			console.error("[profiles/me/banner] profile row not updated", user.id);
+			return status(500, { error: "Failed to save banner to profile" });
+		}
 
-		return { url: blob.url };
+		return { url: updated.bannerUrl };
 	})
 	/**
 	 * Avatar upload: multipart form with field `file`. Persists to Vercel Blob
@@ -395,7 +400,7 @@ export const profilesRoute = new Elysia({
 		const file = formData.get("file");
 		if (!(file instanceof File)) return status(400, "Missing file");
 		if (!file.type.startsWith("image/")) return status(400, "Image only");
-		if (file.size > 5_000_000) return status(413, "File too large (max 5MB)");
+		if (file.size > 4_000_000) return status(413, "File too large (max 4MB)");
 
 		const key = `avatars/${authUser.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
 		let blob: { url: string };
@@ -426,12 +431,17 @@ export const profilesRoute = new Elysia({
 			return status(502, { error: "Blob upload failed" });
 		}
 
-		await db
+		const [updated] = await db
 			.update(user)
 			.set({ image: blob.url })
-			.where(eq(user.id, authUser.id));
+			.where(eq(user.id, authUser.id))
+			.returning({ image: user.image });
+		if (!updated?.image) {
+			console.error("[profiles/me/avatar] user row not updated", authUser.id);
+			return status(500, { error: "Failed to save portrait" });
+		}
 
-		return { url: blob.url };
+		return { url: updated.image };
 	})
 	/**
 	 * Streams the signed-in user's portrait. Required when Blob objects are private

@@ -15,6 +15,7 @@ import {
 	profileBannerFrameClass,
 } from "@/lib/profile-appearance";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
+import { profileMediaCacheKey } from "@/lib/profile-media-cache-key";
 import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
 
 /** Horizontal gutters for lobby body content on `bg-card` (matches profile page `p-6 sm:p-8`). */
@@ -71,7 +72,9 @@ export function ProfilePatronHeader({
 }: ProfilePatronHeaderProps) {
 	const accent = accentColor?.trim() || "#c45c26";
 	const hasBanner = Boolean(bannerUrl?.trim());
-	const bannerSrc = hasBanner ? profileBannerImageUrl(handle) : null;
+	const bannerSrc = hasBanner
+		? profileBannerImageUrl(handle, profileMediaCacheKey(bannerUrl))
+		: null;
 	const hasPortrait = Boolean(avatarUrl?.trim());
 
 	return (

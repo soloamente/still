@@ -1,11 +1,10 @@
-import { stillApiOrigin } from "@/lib/still-api-origin";
-
 /**
  * Uploads a profile banner or avatar through the authenticated API (multipart).
  * Shared by `/me/settings` (flush staged media) and `/me/customization`.
  *
- * Calls the web origin so session cookies are sent; dedicated Next route handlers
- * forward FormData to Elysia (rewrites drop multipart bodies in production).
+ * Uses same-origin relative paths so session cookies stay on the web host.
+ * Dedicated Next route handlers forward FormData to Elysia (rewrites drop
+ * multipart bodies in production).
  */
 export async function uploadProfileMeAsset(
 	path: "/api/profiles/me/banner" | "/api/profiles/me/avatar",
@@ -13,10 +12,11 @@ export async function uploadProfileMeAsset(
 ): Promise<string> {
 	const form = new FormData();
 	form.append("file", file);
-	const res = await fetch(new URL(path, stillApiOrigin()), {
+	const res = await fetch(path, {
 		method: "POST",
 		body: form,
 		credentials: "include",
+		cache: "no-store",
 	});
 	if (!res.ok) {
 		let msg = `Upload failed (${res.status})`;
@@ -38,6 +38,10 @@ export async function uploadProfileMeAsset(
 		}
 		throw new Error(msg);
 	}
-	const { url } = (await res.json()) as { url: string };
+	const data = (await res.json()) as { url?: string; error?: string };
+	const url = data.url?.trim();
+	if (!url) {
+		throw new Error(data.error ?? "Upload succeeded but no URL returned");
+	}
 	return url;
 }

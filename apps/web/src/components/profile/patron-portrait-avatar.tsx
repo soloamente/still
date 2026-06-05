@@ -2,6 +2,7 @@ import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 
 import { profilePatronAvatarImageUrl } from "@/lib/profile-avatar";
+import { profileMediaCacheKey } from "@/lib/profile-media-cache-key";
 
 export type PatronPortraitAvatarProps = {
 	handle: string;
@@ -33,7 +34,7 @@ export function PatronPortraitAvatar({
 		.join("");
 
 	const portraitSrc = avatarUrl?.trim()
-		? profilePatronAvatarImageUrl(handle)
+		? profilePatronAvatarImageUrl(handle, profileMediaCacheKey(avatarUrl))
 		: null;
 
 	if (portraitSrc) {

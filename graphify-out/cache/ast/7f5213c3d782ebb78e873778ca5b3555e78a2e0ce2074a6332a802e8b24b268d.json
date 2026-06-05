@@ -1,0 +1,154 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_avatar_ts",
+			"label": "profile-avatar.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_avatar_profileavatarpath",
+			"label": "profileAvatarPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_profile_avatar_profilemeavatarimageurl",
+			"label": "profileMeAvatarImageUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_profile_avatar_profilepatronavatarimageurl",
+			"label": "profilePatronAvatarImageUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "lib_profile_avatar_resolvepatronportraitsrc",
+			"label": "resolvePatronPortraitSrc()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L40"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_avatar_ts",
+			"target": "lib_profile_avatar_profileavatarpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_avatar_ts",
+			"target": "lib_profile_avatar_profilemeavatarimageurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_avatar_ts",
+			"target": "lib_profile_avatar_profilepatronavatarimageurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_avatar_ts",
+			"target": "lib_profile_avatar_resolvepatronportraitsrc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_avatar_profilemeavatarimageurl",
+			"target": "lib_profile_avatar_profileavatarpath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_avatar_profilepatronavatarimageurl",
+			"target": "lib_profile_avatar_profileavatarpath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_avatar_resolvepatronportraitsrc",
+			"target": "lib_profile_avatar_profilepatronavatarimageurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_avatar_resolvepatronportraitsrc",
+			"target": "lib_profile_avatar_profilemeavatarimageurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_avatar_profileavatarpath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_profile_avatar_profileavatarpath",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_profile_avatar_profilepatronavatarimageurl",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_profile_avatar_resolvepatronportraitsrc",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_profile_avatar_resolvepatronportraitsrc",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts",
+			"source_location": "L46"
+		}
+	]
+}

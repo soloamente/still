@@ -3,6 +3,7 @@
 import { cn } from "@still/ui/lib/utils";
 import { Upload } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -14,8 +15,13 @@ import {
 } from "@/components/profile/me-account-content-reveal";
 import { useMeAccountSession } from "@/components/profile/me-account-session-context";
 import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
+import { authClient } from "@/lib/auth-client";
 import { profilePatronAvatarImageUrl } from "@/lib/profile-avatar";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
+import {
+	assertProfileMediaUploadSize,
+	profileMediaCacheKey,
+} from "@/lib/profile-media-cache-key";
 import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
 
 /** Placeholder banner wash when no image — matches `ProfilePatronHeader` default. */
@@ -38,6 +44,7 @@ export function CustomizationForm({
 	hasAvatar: boolean;
 	displayName: string;
 }) {
+	const router = useRouter();
 	const {
 		pendingBanner,
 		pendingAvatar,
@@ -57,10 +64,19 @@ export function CustomizationForm({
 	const hasBanner = Boolean(bannerUrl?.trim());
 	const bannerSrc =
 		profile.handle && hasBanner
-			? profileBannerImageUrl(profile.handle, bannerRevision)
+			? profileBannerImageUrl(
+					profile.handle,
+					profileMediaCacheKey(bannerUrl) ?? bannerRevision,
+				)
 			: null;
 
 	const dirty = Boolean(pendingBanner || pendingAvatar);
+
+	// Re-sync when RSC refetches after save (router.refresh).
+	useEffect(() => {
+		setBannerUrl(profile.bannerUrl ?? "");
+		setHasAvatar(initialHasAvatar);
+	}, [profile.bannerUrl, initialHasAvatar]);
 
 	useEffect(() => {
 		syncCustomizationDirty(dirty);
@@ -99,15 +115,23 @@ export function CustomizationForm({
 				setPendingAvatar(null);
 				setHasAvatar(true);
 				setAvatarRevision(Date.now());
+				void authClient.getSession();
 			}
 			toast.success("Saved");
+			router.refresh();
 		} catch (err) {
 			console.error(err);
 			toast.error(err instanceof Error ? err.message : "Couldn't save");
 		} finally {
 			setSaving(false);
 		}
-	}, [pendingBanner, pendingAvatar, setPendingAvatar, setPendingBanner]);
+	}, [
+		pendingBanner,
+		pendingAvatar,
+		router,
+		setPendingAvatar,
+		setPendingBanner,
+	]);
 
 	useRegisterMeAccountBarActions(
 		useMemo(
@@ -130,11 +154,23 @@ export function CustomizationForm({
 	const portraitSrc = pendingAvatar?.previewUrl ?? committedPortraitSrc;
 
 	function onPickBannerFile(file: File) {
+		try {
+			assertProfileMediaUploadSize(file);
+		} catch (err) {
+			toast.error(err instanceof Error ? err.message : "File too large");
+			return;
+		}
 		const previewUrl = URL.createObjectURL(file);
 		setPendingBanner({ file, previewUrl });
 	}
 
 	function onPickAvatarFile(file: File) {
+		try {
+			assertProfileMediaUploadSize(file);
+		} catch (err) {
+			toast.error(err instanceof Error ? err.message : "File too large");
+			return;
+		}
 		const previewUrl = URL.createObjectURL(file);
 		setPendingAvatar({ file, previewUrl });
 	}

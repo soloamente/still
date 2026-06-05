@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import {
 	createContext,
 	type FormEvent,
@@ -27,6 +28,7 @@ import {
 import type { ContentVisibility } from "@/components/review/visibility-select";
 import { api } from "@/lib/api";
 import { type AppThemeClass, resolveAppThemeForPatron } from "@/lib/app-themes";
+import { authClient } from "@/lib/auth-client";
 import {
 	buildNotificationPrefsPatch,
 	NOTIFICATION_KIND_SETTINGS,
@@ -131,6 +133,7 @@ export function SettingsFormProvider({
 	profile: SettingsProfile;
 	children: ReactNode;
 }) {
+	const router = useRouter();
 	const isPro = Boolean(profile.isPro);
 	const { setTheaterAudioEnabled } = useCinematicAudio();
 	const { setSmoothScrollEnabled } = useSmoothScrollPreference();
@@ -469,9 +472,11 @@ export function SettingsFormProvider({
 						pendingAvatar.file,
 					);
 					setPendingAvatar(null);
+					void authClient.getSession();
 				}
 				if (hadPendingMedia) {
 					syncCustomizationDirty(false);
+					router.refresh();
 				}
 				toast.success("Saved");
 				invalidateCatalogTmdbLanguageCache();
@@ -510,6 +515,7 @@ export function SettingsFormProvider({
 			setPendingBanner,
 			setPendingAvatar,
 			syncCustomizationDirty,
+			router,
 			syncSettingsDirty,
 		],
 	);

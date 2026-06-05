@@ -485,9 +485,9 @@
 		"hash": "8b39b947df2217abd78c3429286931c028246904c32c55b4b3871fd2a635d89d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts": {
-		"size": 31199,
-		"mtime_ns": 1780662897000380700,
-		"hash": "5ab8adead03830df51ce6da85310c8a3585d5741b973919727977441d17b7463"
+		"size": 31684,
+		"mtime_ns": 1780672326137713600,
+		"hash": "e25b357baf0e1f986076f166437664fe8fc0666c19781514d604197e0841d89d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\reviews.ts": {
 		"size": 12144,
@@ -1515,9 +1515,9 @@
 		"hash": "0e18c9ce336dd1cd8e7117dd3538123a2d2f9d3cabda36b86e8dda66ad99b5d6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\customization-form.tsx": {
-		"size": 9323,
-		"mtime_ns": 1780670912202611700,
-		"hash": "2bbe08e4db57b90023b950257723362a93a52b036d9ba555d3016d3868a94a1d"
+		"size": 9883,
+		"mtime_ns": 1780672324646326000,
+		"hash": "2ba7b9ba6831d8a0624385142a4ffc253f7b709e97d0c59e9400dcfc5f495aac"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\follow-button.tsx": {
 		"size": 1991,
@@ -1615,9 +1615,9 @@
 		"hash": "7cc1edf6cdf601e36f81999ef86ba79eab841dac9c0a64f04f9cd9a77f000988"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx": {
-		"size": 1342,
-		"mtime_ns": 1779295389649537700,
-		"hash": "ad3c608ad0f6a37ae1083c87426e1de76f3f0cf08aab94df70004aeb21370729"
+		"size": 1445,
+		"mtime_ns": 1780672245319485200,
+		"hash": "eb70d632862e1b38e7e663bcbf18fbc16221098aa35082e267933aaf182c6195"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx": {
 		"size": 2994,
@@ -1655,9 +1655,9 @@
 		"hash": "287d4f7d7d5ee5e60d2fb7dce02d0fe4471653b266b52aac18d0bfbd47d59b64"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-header.tsx": {
-		"size": 5843,
-		"mtime_ns": 1780661293872453500,
-		"hash": "e85cfa26cdcc966e69aedae153d0657b5900ef066baeb091daec247191456b4d"
+		"size": 5950,
+		"mtime_ns": 1780672245868764500,
+		"hash": "7bc16127a0f4634d31425b57e761377f6d663c84f0e78a80046dd0dddbd8d82d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-milestones.tsx": {
 		"size": 7586,
@@ -2125,9 +2125,9 @@
 		"hash": "ffede5409eb5da4bff52bb531ab55e9b1d16c7ee308c2fab7cb1f349208a5414"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-avatar.ts": {
-		"size": 1739,
-		"mtime_ns": 1780670926468528400,
-		"hash": "368b64e901a0ac8117ac99e9024d90b9d4f1c4529fe0ccfb640abe7dac9a8d67"
+		"size": 1744,
+		"mtime_ns": 1780671001408515700,
+		"hash": "7f5213c3d782ebb78e873778ca5b3555e78a2e0ce2074a6332a802e8b24b268d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-banner.ts": {
 		"size": 576,
@@ -2230,9 +2230,9 @@
 		"hash": "d9566ab1591479b9c26304db5c8325b15e943023937c964366de25de8279e5a8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts": {
-		"size": 1296,
-		"mtime_ns": 1780662734481007800,
-		"hash": "4f7654eb812aefdbc22a100f07e02e5a868f5e2c5f6aec12d0f728f98bb912ab"
+		"size": 1392,
+		"mtime_ns": 1780672308565548600,
+		"hash": "b41c087808e0e3315b24a919701e27f305f151c0b912c5a49e58d29a021fe0a1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-text-search.ts": {
 		"size": 2146,
@@ -5890,9 +5890,9 @@
 		"hash": "ac0f3248ebe0a20ddf37c9c0778ec03f8baa119677227d9014c64ba78622bacf"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form-context.tsx": {
-		"size": 17026,
-		"mtime_ns": 1780650825485488300,
-		"hash": "1bc35f5ac3a52acf110965e1517819bec2a2cbd6245b6bdccd0615b9a82481ee"
+		"size": 17217,
+		"mtime_ns": 1780672383072100900,
+		"hash": "49ce0498a38cf8774d0a76ad3734f55ea59f358fe3a6f5a7d22f90ae5a227f14"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form-shell.tsx": {
 		"size": 716,
@@ -5988,5 +5988,10 @@
 		"size": 1328,
 		"mtime_ns": 1780662896955368500,
 		"hash": "861bf3c5e16f13b07842c029f5897903301b20525ed1a57ac5fea96e16eac15e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media-cache-key.ts": {
+		"size": 859,
+		"mtime_ns": 1780672243778197700,
+		"hash": "a58afa6691bcf86b35a26197920703496db06e46ce16f9f415ec7844c551ac63"
 	}
 }
