@@ -6,6 +6,17 @@ export function isActive(pathname: string, href: string): boolean {
 	);
 }
 
+/**
+ * Leaf detail pages (movie / TV) render their own fixed bottom action bar
+ * (Add to Watched / Log / …) pinned to the viewport bottom, which would collide
+ * with the global tab bar. Hide the tab bar on those detail roots — they have a
+ * back button and their own actions. Sub-pages like `/movies/:id/credits` keep
+ * the bar (no action bar there).
+ */
+export function shouldHideMobileTabBar(pathname: string): boolean {
+	return /^\/(movies|tv)\/[^/]+$/.test(pathname);
+}
+
 export type MobileYouDestination = { href: string; label: string };
 
 /** Long-tail destinations surfaced in the "You" hub sheet (everything not in the bar). */

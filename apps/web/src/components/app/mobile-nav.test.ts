@@ -1,5 +1,26 @@
 import { describe, expect, test } from "bun:test";
-import { isActive, MOBILE_YOU_DESTINATIONS } from "./mobile-nav";
+import {
+	isActive,
+	MOBILE_YOU_DESTINATIONS,
+	shouldHideMobileTabBar,
+} from "./mobile-nav";
+
+describe("shouldHideMobileTabBar", () => {
+	test("hides on movie and tv detail roots", () => {
+		expect(shouldHideMobileTabBar("/movies/453405")).toBe(true);
+		expect(shouldHideMobileTabBar("/tv/1399")).toBe(true);
+	});
+	test("shows on detail sub-pages (e.g. credits)", () => {
+		expect(shouldHideMobileTabBar("/movies/453405/credits")).toBe(false);
+		expect(shouldHideMobileTabBar("/tv/1399/credits")).toBe(false);
+	});
+	test("shows on lobby and other routes", () => {
+		expect(shouldHideMobileTabBar("/home")).toBe(false);
+		expect(shouldHideMobileTabBar("/diary")).toBe(false);
+		expect(shouldHideMobileTabBar("/people/2888")).toBe(false);
+		expect(shouldHideMobileTabBar("/lists/lst_abc")).toBe(false);
+	});
+});
 
 describe("isActive", () => {
 	test("exact match is active", () => {

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import { isActive } from "@/components/app/mobile-nav";
+import { isActive, shouldHideMobileTabBar } from "@/components/app/mobile-nav";
 import { MobileYouSheet } from "@/components/app/mobile-you-sheet";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
@@ -34,6 +34,9 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 
 	const homeActive = isActive(pathname, "/home");
 	const inboxActive = isActive(pathname, "/notifications");
+
+	// Leaf detail pages own their bottom action bar — don't stack the tab bar.
+	if (shouldHideMobileTabBar(pathname)) return null;
 
 	const pip = (
 		<motion.span
