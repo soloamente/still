@@ -3,11 +3,11 @@ import Image from "next/image";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import { ProfileAboutCollapsible } from "@/components/profile/profile-about-collapsible";
-import { ProfileCuratorBadge } from "@/components/profile/profile-curator-badge";
-import { ProfileFollowsTrigger } from "@/components/profile/profile-follows-drawer";
+import { openProfileFollows } from "@/components/profile/profile-follows-drawer";
 import { ProfilePatronActions } from "@/components/profile/profile-patron-actions";
 import { ProfilePinnedReviewsStrip } from "@/components/profile/profile-pinned-reviews-strip";
 import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
+import { ProfileStatCell } from "@/components/profile/profile-stat-cell";
 import { ProfileStreakStatCell } from "@/components/profile/profile-streak-stat-cell";
 import { ProfileTasteSignature } from "@/components/profile/profile-taste-signature";
 import {
@@ -35,14 +35,13 @@ type ProfilePatronHeaderProps = {
 	bannerUrl: string | null;
 	bannerFrame?: ProfileBannerFrameId;
 	accentColor: string | null;
-	/** Total logged films count across both tabs — for the stats grid. */
-	filmCount: number;
+	/** Diary title counts for the stats grid (distinct films vs TV shows). */
+	moviesCount: number;
+	tvCount: number;
 	tasteSignature?: TasteSignatureJson | null;
 	pinnedReviews?: ProfileReviewRow[];
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
-	isCurator?: boolean;
-	curatorHeadline?: string | null;
 };
 
 /**
@@ -63,13 +62,12 @@ export function ProfilePatronHeader({
 	bannerUrl,
 	bannerFrame = "none",
 	accentColor,
-	filmCount,
+	moviesCount,
+	tvCount,
 	tasteSignature,
 	pinnedReviews = [],
 	canCompareTaste,
 	initialTasteCompareOpen,
-	isCurator = false,
-	curatorHeadline = null,
 }: ProfilePatronHeaderProps) {
 	const accent = accentColor?.trim() || "#c45c26";
 	const hasBanner = Boolean(bannerUrl?.trim());
@@ -109,7 +107,7 @@ export function ProfilePatronHeader({
 				/>
 			</div>
 
-			<div className="relative mx-auto -mt-14 max-w-md px-2 text-center sm:-mt-16 sm:px-4">
+			<div className="relative mx-auto -mt-14 max-w-lg px-2 text-center sm:-mt-16 sm:px-4">
 				{/* Portrait */}
 				<div className="mx-auto mb-4 flex justify-center">
 					<div className="relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg ring-4 ring-card sm:w-24">
@@ -138,13 +136,10 @@ export function ProfilePatronHeader({
 					{displayName}
 				</h1>
 
-				{/* Handle + curator chip inline */}
-				<div className="mt-1 flex items-center justify-center gap-2">
-					<p className="text-muted-foreground text-sm">@{handle}</p>
-					{isCurator ? (
-						<ProfileCuratorBadge headline={curatorHeadline} />
-					) : null}
-				</div>
+				{/* Handle */}
+				<p className="mt-1 text-pretty text-muted-foreground text-sm">
+					@{handle}
+				</p>
 
 				{/* Taste signature */}
 				<ProfileTasteSignature
@@ -152,34 +147,25 @@ export function ProfilePatronHeader({
 					className="mt-3"
 				/>
 
-				{/* Stats grid */}
-				<div
-					className={cn(
-						"mt-4 grid gap-2",
-						isMe ? "grid-cols-3" : "grid-cols-2",
-					)}
-				>
-					<div className="flex flex-col items-center gap-0.5 rounded-xl bg-muted/20 py-2.5">
-						<span className="font-semibold text-foreground text-sm tabular-nums">
-							{filmCount}
-						</span>
-						<span className="text-[10px] text-muted-foreground">films</span>
-					</div>
-
-					{/* Merged followers+following cell */}
-					<div className="flex flex-col items-center gap-0.5 rounded-xl bg-muted/20 py-2.5">
-						<ProfileFollowsTrigger
-							targetUserId={targetUserId}
-							followers={stats.followers}
-							following={stats.following}
-						/>
-					</div>
-
-					{isMe ? (
-						<div className="flex flex-col items-center justify-center rounded-xl bg-muted/20 py-2.5">
-							<ProfileStreakStatCell />
-						</div>
-					) : null}
+				{/* Stats row — equal metric cells (films · shows · followers · following · streak) */}
+				<div className="mt-4 flex flex-wrap items-stretch justify-center gap-2">
+					<ProfileStatCell value={moviesCount} label="Films" />
+					<ProfileStatCell value={tvCount} label="Shows" />
+					<ProfileStatCell
+						value={stats.followers}
+						label="Followers"
+						onClick={() =>
+							openProfileFollows({ targetUserId, tab: "followers" })
+						}
+					/>
+					<ProfileStatCell
+						value={stats.following}
+						label="Following"
+						onClick={() =>
+							openProfileFollows({ targetUserId, tab: "following" })
+						}
+					/>
+					{isMe ? <ProfileStreakStatCell /> : null}
 				</div>
 
 				{/* Actions */}

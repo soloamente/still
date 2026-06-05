@@ -32,6 +32,9 @@ export const PROFILE_PREF_CATALOG_TMDB_WATCH_REGION =
 /** Named shell palette class on `<html>` (see `app-themes.ts`). */
 export const PROFILE_PREF_APP_THEME = "appTheme" as const;
 
+/** Lenis wheel smoothing — opt-in from Settings → Experience (default off). */
+export const PROFILE_PREF_SMOOTH_SCROLL = "smoothScroll" as const;
+
 /** `null` = patron has not chosen yet (home shows one-time region prompt when signed in). */
 export type CatalogTmdbWatchRegionPref = "ALL" | string | null;
 
@@ -66,8 +69,8 @@ export function catalogWatchRegionToApiQuery(
 
 /**
  * Home lobby: when `true`, non-hovered poster tiles use sibling `grayscale` (CSS `:has()`).
- * Default `true` so existing users keep current behavior until they turn it off in Settings.
- * Persisted `false` disables the effect.
+ * Default `false` — patrons opt in from Settings.
+ * Persisted `true` enables the effect.
  */
 /** Explicit catalogue language, or `null` to derive from watch region. */
 export function readCatalogTmdbLanguagePref(
@@ -99,10 +102,17 @@ export function resolveCatalogTmdbLanguage(
 export function readCatalogMonochromePeersOnHoverPref(
 	preferences: Record<string, unknown> | null | undefined,
 ): boolean {
-	if (preferences == null) return true;
+	if (preferences == null) return false;
 	const raw = preferences[PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER];
-	if (raw === false) return false;
-	return true;
+	return raw === true;
+}
+
+/** Smooth Lenis wheel scroll — default off so low-end devices stay native. */
+export function readSmoothScrollPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	if (preferences == null) return false;
+	return preferences[PROFILE_PREF_SMOOTH_SCROLL] === true;
 }
 
 /** True when the patron saved a palette in Settings / account menu (key present in JSON). */

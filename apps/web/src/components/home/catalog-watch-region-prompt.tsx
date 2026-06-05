@@ -135,7 +135,7 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 								country or region. Pick where you subscribe, or choose all
 								regions for a global slice. You can change this anytime in{" "}
 								<Link
-									href="/me/settings"
+									href="/me/settings/catalogue"
 									className="font-medium text-foreground underline-offset-4 hover:underline"
 								>
 									Settings

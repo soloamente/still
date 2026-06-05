@@ -3,6 +3,7 @@ import { AppScrollToTop } from "@/components/app/app-scroll-to-top";
 import { DetailReturnCapture } from "@/components/app/detail-return-capture";
 import { GoToDialogRoot } from "@/components/app/go-to-dialog-root";
 import { MobileTabBar } from "@/components/app/mobile-tab-bar";
+import { WhatsNewDialogRoot } from "@/components/app/whats-new-dialog-root";
 import { BadgeWatcher } from "@/components/gamification/badge-watcher";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
 import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledger-drawer";
@@ -80,6 +81,7 @@ export function AppShell({
 			<PersonFilmographyDrawerRoot />
 			<PatronWatchLedgerDrawerRoot />
 			<BadgeWatcher />
+			<WhatsNewDialogRoot userId={user.id} />
 			<MobileTabBar
 				user={{
 					id: user.id,

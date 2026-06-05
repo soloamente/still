@@ -72,6 +72,8 @@ type ProfilePatronMilestonesProps = {
 	handle: string;
 	earnedBadges: ProfileEarnedBadge[];
 	unlockedAchievements: ProfileUnlockedAchievement[];
+	/** Curator reach line for list badges — e.g. `12 public lists · 48 list likes`. */
+	curatorHeadline?: string | null;
 };
 
 /**
@@ -82,6 +84,7 @@ export function ProfilePatronMilestones({
 	handle,
 	earnedBadges,
 	unlockedAchievements,
+	curatorHeadline = null,
 }: ProfilePatronMilestonesProps) {
 	if (earnedBadges.length === 0 && unlockedAchievements.length === 0) {
 		return null;
@@ -96,6 +99,10 @@ export function ProfilePatronMilestones({
 				>
 					{earnedBadges.map(({ badge, userBadge }) => {
 						const body = badge.description?.trim();
+						const curatorReach =
+							badge.category === "curator" && curatorHeadline?.trim()
+								? curatorHeadline.trim()
+								: null;
 						return (
 							<li
 								key={`b:${badge.id}`}
@@ -130,6 +137,11 @@ export function ProfilePatronMilestones({
 											{body ? (
 												<span className="text-[11px] text-background/85 leading-tight">
 													{body}
+												</span>
+											) : null}
+											{curatorReach ? (
+												<span className="text-[11px] text-background/85 tabular-nums leading-tight">
+													{curatorReach}
 												</span>
 											) : null}
 											<span className="text-[10px] text-background/70 tabular-nums leading-tight">

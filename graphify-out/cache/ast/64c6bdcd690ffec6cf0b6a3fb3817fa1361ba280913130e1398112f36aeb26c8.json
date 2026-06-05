@@ -1,0 +1,50 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_nav_user_avatar_tsx",
+			"label": "nav-user-avatar.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\nav-user-avatar.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_nav_user_avatar_navuseravatar",
+			"label": "NavUserAvatar()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\nav-user-avatar.tsx",
+			"source_location": "L4"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_nav_user_avatar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\nav-user-avatar.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_nav_user_avatar_tsx",
+			"target": "profile_patron_portrait_avatar_patronportraitavatar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\nav-user-avatar.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_nav_user_avatar_tsx",
+			"target": "app_nav_user_avatar_navuseravatar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\nav-user-avatar.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

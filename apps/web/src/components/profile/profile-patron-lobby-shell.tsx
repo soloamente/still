@@ -68,7 +68,6 @@ export interface ProfilePatronLobbyShellProps {
 	pinnedReviews?: ProfileReviewRow[];
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
-	isCurator?: boolean;
 	curatorHeadline?: string | null;
 }
 
@@ -103,7 +102,6 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		pinnedReviews = [],
 		canCompareTaste,
 		initialTasteCompareOpen,
-		isCurator,
 		curatorHeadline,
 	} = props;
 
@@ -200,19 +198,19 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 					bannerUrl={bannerUrl}
 					bannerFrame={bannerFrame}
 					accentColor={accentColor}
-					filmCount={moviesAllCount + tvAllCount}
+					moviesCount={moviesAllCount}
+					tvCount={tvAllCount}
 					tasteSignature={tasteSignature}
 					pinnedReviews={pinnedReviews}
 					canCompareTaste={canCompareTaste}
 					initialTasteCompareOpen={initialTasteCompareOpen}
-					isCurator={isCurator}
-					curatorHeadline={curatorHeadline}
 				/>
 
 				<ProfilePatronMilestones
 					handle={handle}
 					earnedBadges={earnedBadges}
 					unlockedAchievements={unlockedAchievements}
+					curatorHeadline={curatorHeadline}
 				/>
 
 				<ProfileLobbyChrome socialTabs={socialTabs} />

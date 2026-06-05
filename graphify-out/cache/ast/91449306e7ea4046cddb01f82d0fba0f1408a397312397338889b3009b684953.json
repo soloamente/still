@@ -1,0 +1,310 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"label": "home-browse-surface-context.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_browse_surface_context_homebrowsesurfacecontextvalue",
+			"label": "HomeBrowseSurfaceContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L22"
+		},
+		{
+			"id": "home_home_browse_surface_context_homebrowsesurfacecontext",
+			"label": "HomeBrowseSurfaceContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L31"
+		},
+		{
+			"id": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"label": "HomeBrowseSurfaceProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L34"
+		},
+		{
+			"id": "home_home_browse_surface_context_usehomebrowsesurface",
+			"label": "useHomeBrowseSurface()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L138"
+		},
+		{
+			"id": "home_home_browse_surface_context_usehomebrowsesurfaceoptional",
+			"label": "useHomeBrowseSurfaceOptional()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L149"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_lobby_lobby_navigation_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "lobby_lobby_navigation_provider_uselobbynavigation",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "lib_home_browse_surface_homebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "lib_home_browse_surface_parsehomebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "lib_home_catalogue_search_param_home_catalogue_search_param",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "home_home_browse_surface_context_homebrowsesurfacecontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "home_home_browse_surface_context_homebrowsesurfacecontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "home_home_browse_surface_context_usehomebrowsesurface",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_browse_surface_context_tsx",
+			"target": "home_home_browse_surface_context_usehomebrowsesurfaceoptional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L149",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useLobbyNavigation",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "parseHomeBrowseSurface",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L84"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_homebrowsesurfaceprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L121"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_usehomebrowsesurface",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "home_home_browse_surface_context_usehomebrowsesurfaceoptional",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-browse-surface-context.tsx",
+			"source_location": "L150"
+		}
+	]
+}

@@ -1,0 +1,527 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_04_home_search_commit_design_md",
+			"label": "2026-06-04-home-search-commit-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"label": "Home catalogue search commit (Enter \u2192 grid)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_locked_decisions_brainstorm",
+			"label": "Locked decisions (brainstorm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_user_flow",
+			"label": "User flow",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_commit_enter",
+			"label": "Commit (Enter)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_re_open_edit",
+			"label": "Re-open / edit",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_clear",
+			"label": "Clear",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_enter_no_op_cases",
+			"label": "Enter no-op cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_enter_eligibility_cancommitcataloguesearch",
+			"label": "Enter eligibility (`canCommitCatalogueSearch`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_codeblock_1",
+			"label": "code:ts (// Pseudocode \u2014 implement beside deriveCatalogueFilterBundle)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_url_contract",
+			"label": "URL contract",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_params",
+			"label": "Params",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_while_search_is_present_and_browse_is_movies_or_tv",
+			"label": "While `search` is present (and `browse` is `movies` or `tv`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_examples",
+			"label": "Examples",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_codeblock_2",
+			"label": "code:block2 (/home?browse=movies&search=Pixar+%C2%B7+Horror+%C2%B7+neon)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_codeblock_3",
+			"label": "code:block3 (/home?browse=movies&sort=popular&venue=theaters)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_parsing",
+			"label": "Parsing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_headbar_pill_summary_label",
+			"label": "Headbar pill (summary label)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_catalogue_grid_search_mode",
+			"label": "Catalogue grid (search mode)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_behavior",
+			"label": "Behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L156"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_codeblock_4",
+			"label": "code:block4 (planCatalogueTagSearch({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L163"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_strict_and",
+			"label": "Strict AND",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L179"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_architecture_recommended_url_thin_helpers",
+			"label": "Architecture (recommended: URL + thin helpers)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L185"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_codeblock_5",
+			"label": "code:block5 (URL (?browse & ?search))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_component_file_touch_list",
+			"label": "Component / file touch list",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L204"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L220"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L231"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_unit",
+			"label": "Unit",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L233"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_manual",
+			"label": "Manual",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L239"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L253"
+		},
+		{
+			"id": "specs_2026_06_04_home_search_commit_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L262"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_04_home_search_commit_design_md",
+			"target": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_locked_decisions_brainstorm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_user_flow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_user_flow",
+			"target": "specs_2026_06_04_home_search_commit_design_commit_enter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_user_flow",
+			"target": "specs_2026_06_04_home_search_commit_design_re_open_edit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_user_flow",
+			"target": "specs_2026_06_04_home_search_commit_design_clear",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_user_flow",
+			"target": "specs_2026_06_04_home_search_commit_design_enter_no_op_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_enter_eligibility_cancommitcataloguesearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_enter_eligibility_cancommitcataloguesearch",
+			"target": "specs_2026_06_04_home_search_commit_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_url_contract",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_url_contract",
+			"target": "specs_2026_06_04_home_search_commit_design_params",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_url_contract",
+			"target": "specs_2026_06_04_home_search_commit_design_while_search_is_present_and_browse_is_movies_or_tv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_url_contract",
+			"target": "specs_2026_06_04_home_search_commit_design_examples",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_examples",
+			"target": "specs_2026_06_04_home_search_commit_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_examples",
+			"target": "specs_2026_06_04_home_search_commit_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_url_contract",
+			"target": "specs_2026_06_04_home_search_commit_design_parsing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_headbar_pill_summary_label",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_catalogue_grid_search_mode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_catalogue_grid_search_mode",
+			"target": "specs_2026_06_04_home_search_commit_design_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_behavior",
+			"target": "specs_2026_06_04_home_search_commit_design_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_catalogue_grid_search_mode",
+			"target": "specs_2026_06_04_home_search_commit_design_strict_and",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L179",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_architecture_recommended_url_thin_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L185",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_architecture_recommended_url_thin_helpers",
+			"target": "specs_2026_06_04_home_search_commit_design_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_component_file_touch_list",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L204",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L220",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L231",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_testing",
+			"target": "specs_2026_06_04_home_search_commit_design_unit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L233",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_testing",
+			"target": "specs_2026_06_04_home_search_commit_design_manual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L239",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L253",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_home_search_commit_design_home_catalogue_search_commit_enter_grid",
+			"target": "specs_2026_06_04_home_search_commit_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-home-search-commit-design.md",
+			"source_location": "L262",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

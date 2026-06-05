@@ -1,0 +1,152 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"label": "activity-review-card.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "cards_activity_review_card_activityreviewcard",
+			"label": "ActivityReviewCard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_components_ui_avatar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "ui_avatar_avatar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_components_ui_poster_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "ui_poster_poster",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "feed_activity_feed_types_patronname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "feed_activity_feed_types_reviewpayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_format_time_ago_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "feed_format_time_ago_formattimeago",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_review_card_tsx",
+			"target": "cards_activity_review_card_activityreviewcard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "cards_activity_review_card_activityreviewcard",
+			"callee": "patronName",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "cards_activity_review_card_activityreviewcard",
+			"callee": "patronName",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "cards_activity_review_card_activityreviewcard",
+			"callee": "formatTimeAgo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-review-card.tsx",
+			"source_location": "L26"
+		}
+	]
+}

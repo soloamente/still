@@ -1,0 +1,311 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"label": "mobile-tab-bar.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_mobile_tab_bar_tabuser",
+			"label": "TabUser",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "app_mobile_tab_bar_mobiletabbar",
+			"label": "MobileTabBar()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L28"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_mobile_nav_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "app_mobile_nav_isactive",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "app_mobile_nav_shouldhidemobiletabbar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_mobile_you_sheet_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "app_mobile_you_sheet_mobileyousheet",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_nav_user_avatar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "app_nav_user_avatar_navuseravatar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_sheet_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "log_quick_log_sheet_usequicklog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_catalog_search_dialog_store_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "lib_catalog_search_dialog_store_usecatalogsearchdialog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "app_mobile_tab_bar_tabuser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_mobile_tab_bar_tsx",
+			"target": "app_mobile_tab_bar_mobiletabbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "useQuickLog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "isActive",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "isActive",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "shouldHideMobileTabBar",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "app_mobile_tab_bar_mobiletabbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx",
+			"source_location": "L112"
+		}
+	]
+}

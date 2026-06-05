@@ -1,0 +1,40 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_app_tabs_inbox_tsx",
+			"label": "inbox.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\inbox.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "tabs_inbox_inboxscreen",
+			"label": "InboxScreen()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\inbox.tsx",
+			"source_location": "L3"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_tabs_inbox_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\inbox.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_tabs_inbox_tsx",
+			"target": "tabs_inbox_inboxscreen",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\inbox.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

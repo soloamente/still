@@ -2,7 +2,7 @@
 
 import IconShareIn from "@still/ui/icons/share-in";
 import { cn } from "@still/ui/lib/utils";
-import { type MouseEvent, useCallback } from "react";
+import { type MouseEvent, useCallback, useEffect, useState } from "react";
 
 import { DetailMotionLink } from "@/components/movie/detail-motion-pressable";
 import { useMeAccountBarActions } from "@/components/profile/me-account-bar-actions-context";
@@ -14,7 +14,19 @@ import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
 export function MeAccountTopBar({ handle }: { handle: string }) {
 	const { actions } = useMeAccountBarActions();
 	const { requestLeaveTo, anyUnsaved } = useMeAccountSession();
+	const [isScrolled, setIsScrolled] = useState(false);
 	const profileHref = `/profile/${encodeURIComponent(handle)}`;
+
+	useEffect(() => {
+		// Same scroll scrim as `/home` sticky chrome and `ProfileTopBar`.
+		const onScroll = () => {
+			setIsScrolled(window.scrollY > 2);
+		};
+
+		onScroll();
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
 
 	const handleProfileNavClick = useCallback(
 		(e: MouseEvent<HTMLAnchorElement>) => {
@@ -32,7 +44,13 @@ export function MeAccountTopBar({ handle }: { handle: string }) {
 	);
 
 	return (
-		<header className="sticky top-0 z-30 w-full overflow-visible bg-background">
+		<header
+			className={cn(
+				"sticky top-0 z-30 w-full overflow-visible bg-background",
+				"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-300 after:ease-out after:content-[''] motion-reduce:after:transition-none",
+				isScrolled && "after:opacity-100",
+			)}
+		>
 			<div className="flex w-full items-center justify-between gap-3 px-2.5 py-2 sm:px-3">
 				<div className="flex min-w-0 justify-start">
 					<DetailMotionLink

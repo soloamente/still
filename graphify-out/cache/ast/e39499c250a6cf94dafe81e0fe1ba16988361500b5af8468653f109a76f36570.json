@@ -1,0 +1,52 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_whats_new_href_ts",
+			"label": "whats-new-href.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-href.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_whats_new_href_resolvewhatsnewhref",
+			"label": "resolveWhatsNewHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-href.ts",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_whats_new_href_ts",
+			"target": "lib_whats_new_href_resolvewhatsnewhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-href.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_whats_new_href_resolvewhatsnewhref",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-href.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_whats_new_href_resolvewhatsnewhref",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-href.ts",
+			"source_location": "L5"
+		},
+		{
+			"caller_nid": "lib_whats_new_href_resolvewhatsnewhref",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-href.ts",
+			"source_location": "L5"
+		}
+	]
+}

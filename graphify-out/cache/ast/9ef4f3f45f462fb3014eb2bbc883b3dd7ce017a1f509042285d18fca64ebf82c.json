@@ -1,0 +1,136 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_me_account_nav_ts",
+			"label": "me-account-nav.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_me_account_nav_me_account_nav_items",
+			"label": "ME_ACCOUNT_NAV_ITEMS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_me_account_nav_meaccountnavhref",
+			"label": "MeAccountNavHref",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_me_account_nav_resolvemeaccountnavpath",
+			"label": "resolveMeAccountNavPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_me_account_nav_meaccountnavindex",
+			"label": "meAccountNavIndex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "lib_me_account_nav_ismeaccountnavactive",
+			"label": "isMeAccountNavActive()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L39"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_me_account_nav_ts",
+			"target": "lib_me_account_nav_me_account_nav_items",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_me_account_nav_ts",
+			"target": "lib_me_account_nav_meaccountnavhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_me_account_nav_ts",
+			"target": "lib_me_account_nav_resolvemeaccountnavpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_me_account_nav_ts",
+			"target": "lib_me_account_nav_meaccountnavindex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_me_account_nav_ts",
+			"target": "lib_me_account_nav_ismeaccountnavactive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_me_account_nav_meaccountnavindex",
+			"target": "lib_me_account_nav_resolvemeaccountnavpath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_me_account_nav_ismeaccountnavactive",
+			"target": "lib_me_account_nav_resolvemeaccountnavpath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_me_account_nav_resolvemeaccountnavpath",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "lib_me_account_nav_resolvemeaccountnavpath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_me_account_nav_meaccountnavindex",
+			"callee": "findIndex",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts",
+			"source_location": "L35"
+		}
+	]
+}

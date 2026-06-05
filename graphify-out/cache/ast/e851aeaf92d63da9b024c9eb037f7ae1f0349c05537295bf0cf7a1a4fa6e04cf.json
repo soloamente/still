@@ -1,0 +1,287 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_04_home_search_commit_md",
+			"label": "2026-06-04-home-search-commit.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"label": "Home Catalogue Search Commit \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_task_1_url_commit_helpers_tdd",
+			"label": "Task 1: URL + commit helpers (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_codeblock_1",
+			"label": "code:bash (cd apps/web && bun test src/lib/home-catalogue-search-param.)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_codeblock_2",
+			"label": "code:ts (export const HOME_CATALOGUE_SEARCH_PARAM = \"search\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_task_2_search_api_pagination_fetch_layer",
+			"label": "Task 2: Search API pagination (fetch layer)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_task_3_paginated_search_loader_tdd",
+			"label": "Task 3: Paginated search loader (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_task_4_search_results_grid_component",
+			"label": "Task 4: Search results grid component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_task_5_home_page_branch_hide_browse_chips",
+			"label": "Task 5: Home page branch + hide browse chips",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_codeblock_3",
+			"label": "code:tsx ({catalogueSearchActive ? ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L180"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_task_6_dialog_enter_commit_url_close",
+			"label": "Task 6: Dialog Enter \u2192 commit URL + close",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L196"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_task_7_pill_summary_clear_control",
+			"label": "Task 7: Pill summary + clear control",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L222"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_task_8_browse_rail_clears_search",
+			"label": "Task 8: Browse rail clears search",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L241"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_checkpoint_integration_after_tasks_1_8",
+			"label": "Checkpoint: Integration (after Tasks 1\u20138)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L259"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_risks_and_mitigations",
+			"label": "Risks and mitigations",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L278"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_out_of_scope_do_not_implement",
+			"label": "Out of scope (do not implement)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L290"
+		},
+		{
+			"id": "plans_2026_06_04_home_search_commit_success_criteria_from_spec",
+			"label": "Success criteria (from spec)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L299"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_04_home_search_commit_md",
+			"target": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_task_1_url_commit_helpers_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_task_1_url_commit_helpers_tdd",
+			"target": "plans_2026_06_04_home_search_commit_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_task_1_url_commit_helpers_tdd",
+			"target": "plans_2026_06_04_home_search_commit_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_task_2_search_api_pagination_fetch_layer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_task_3_paginated_search_loader_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_task_4_search_results_grid_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_task_5_home_page_branch_hide_browse_chips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_task_5_home_page_branch_hide_browse_chips",
+			"target": "plans_2026_06_04_home_search_commit_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_task_6_dialog_enter_commit_url_close",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L196",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_task_7_pill_summary_clear_control",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L222",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_task_8_browse_rail_clears_search",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_checkpoint_integration_after_tasks_1_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_risks_and_mitigations",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L278",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_out_of_scope_do_not_implement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L290",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_home_search_commit_home_catalogue_search_commit_implementation_plan",
+			"target": "plans_2026_06_04_home_search_commit_success_criteria_from_spec",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-home-search-commit.md",
+			"source_location": "L299",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,325 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"label": "home-browse-surface-nav.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_browse_surface_nav_hascommittedcataloguesearch",
+			"label": "hasCommittedCatalogueSearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"label": "buildBrowseSurfaceNavigateHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_browse_surface_homebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_browse_surface_parsehomebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_catalogue_search_param_home_catalogue_search_param",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_community_feed_default_home_community_feed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_leaderboard_period_default_home_leaderboard_period",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_persist_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_lobby_persist_buildhomehreffrompersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_lobby_persist_emptyhomelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_lobby_persist_homelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_lobby_persist_readhomelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_lobby_url_buildhomelobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_browse_surface_nav_hascommittedcataloguesearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_nav_ts",
+			"target": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"target": "lib_home_browse_surface_nav_hascommittedcataloguesearch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_browse_surface_nav_hascommittedcataloguesearch",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_hascommittedcataloguesearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_hascommittedcataloguesearch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "readHomeLobbyPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "emptyHomeLobbyPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "buildHomeHrefFromPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "buildHomeLobbyHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "parseHomeBrowseSurface",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "buildHomeHrefFromPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_home_browse_surface_nav_buildbrowsesurfacenavigatehref",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface-nav.ts",
+			"source_location": "L64"
+		}
+	]
+}

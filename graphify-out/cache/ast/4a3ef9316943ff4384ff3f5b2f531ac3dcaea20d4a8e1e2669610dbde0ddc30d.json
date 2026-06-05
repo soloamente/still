@@ -1,0 +1,101 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_test_ts",
+			"label": "use-infinite-pager.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_infinite_pager_test_key",
+			"label": "key()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_use_infinite_pager_test_prev",
+			"label": "prev",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_use_infinite_pager_test_next",
+			"label": "next",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L9"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_test_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_test_ts",
+			"target": "lib_use_infinite_pager_mergededupe",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_test_ts",
+			"target": "lib_use_infinite_pager_test_key",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_test_ts",
+			"target": "lib_use_infinite_pager_test_prev",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_test_ts",
+			"target": "lib_use_infinite_pager_test_next",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_infinite_pager_test_ts",
+			"target": "lib_use_infinite_pager_test_prev",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-infinite-pager.test.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

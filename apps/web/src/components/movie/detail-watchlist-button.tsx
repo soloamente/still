@@ -1,5 +1,11 @@
 "use client";
 
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@still/ui/components/tooltip";
 import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import { cn } from "@still/ui/lib/utils";
 import { Check } from "lucide-react";
@@ -19,6 +25,9 @@ const ICON_SPRING = {
 	duration: 0.3,
 	bounce: 0,
 };
+
+/** Compact label — matches sticky header shortcut tooltips. */
+const DETAIL_ICON_TOOLTIP_CLASS = "px-2 py-2 text-xs leading-none";
 
 /**
  * Hero watchlist control — inverted fill when saved; clock/check stay mounted and
@@ -42,55 +51,67 @@ export function DetailWatchlistButton({
 	const iconTransition = reduceMotion ? { duration: 0 } : ICON_SPRING;
 
 	return (
-		<motion.button
-			type="button"
-			className={cn(
-				"inline-flex size-12 shrink-0 items-center justify-center rounded-full",
-				"transition-[background-color,color,box-shadow] duration-200 ease-out motion-reduce:transition-none",
-				"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-				"disabled:pointer-events-none disabled:opacity-40",
-				inWatchlist
-					? "bg-foreground text-background shadow-[0_6px_28px_-10px_rgba(0,0,0,0.55)]"
-					: "bg-background text-foreground",
-				DETAIL_MOTION_PRESSABLE_CLASS,
-			)}
-			style={motionProps.style}
-			data-primary-action
-			data-watchlist={inWatchlist || undefined}
-			whileHover={motionProps.hover}
-			whileTap={motionProps.tap}
-			transition={motionProps.buttonTransition}
-			onClick={onToggle}
-			disabled={isBusy}
-			aria-pressed={inWatchlist}
-			aria-busy={isBusy || undefined}
-			aria-label={
-				inWatchlist ? "On your watchlist — remove" : "Add to watchlist"
-			}
-		>
-			<span className="relative flex size-[22px] items-center justify-center">
-				<motion.span
-					className="pointer-events-none absolute inset-0 flex items-center justify-center"
-					initial={false}
-					animate={inWatchlist ? ICON_VISIBLE : ICON_HIDDEN}
-					transition={iconTransition}
-					aria-hidden={!inWatchlist}
-				>
-					<Check className="size-5 stroke-[2.5]" />
-				</motion.span>
-				<motion.span
-					className="pointer-events-none absolute inset-0 flex items-center justify-center"
-					initial={false}
-					animate={inWatchlist ? ICON_HIDDEN : ICON_VISIBLE}
-					transition={iconTransition}
-					aria-hidden={inWatchlist}
-				>
-					<IconClockRotateClockwise
-						size="22px"
-						className="shrink-0 opacity-90"
-					/>
-				</motion.span>
-			</span>
-		</motion.button>
+		<TooltipProvider delay={0} closeDelay={80}>
+			<Tooltip>
+				<TooltipTrigger
+					delay={0}
+					render={
+						<motion.button
+							type="button"
+							className={cn(
+								"inline-flex size-12 shrink-0 items-center justify-center rounded-full",
+								"transition-[background-color,color,box-shadow] duration-200 ease-out motion-reduce:transition-none",
+								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+								"disabled:pointer-events-none disabled:opacity-40",
+								inWatchlist
+									? "bg-foreground text-background shadow-[0_6px_28px_-10px_rgba(0,0,0,0.55)]"
+									: "bg-background text-foreground",
+								DETAIL_MOTION_PRESSABLE_CLASS,
+							)}
+							style={motionProps.style}
+							data-primary-action
+							data-watchlist={inWatchlist || undefined}
+							whileHover={motionProps.hover}
+							whileTap={motionProps.tap}
+							transition={motionProps.buttonTransition}
+							onClick={onToggle}
+							disabled={isBusy}
+							aria-pressed={inWatchlist}
+							aria-busy={isBusy || undefined}
+							aria-label={
+								inWatchlist ? "On your watchlist — remove" : "Add to watchlist"
+							}
+						>
+							<span className="relative flex size-[22px] items-center justify-center">
+								<motion.span
+									className="pointer-events-none absolute inset-0 flex items-center justify-center"
+									initial={false}
+									animate={inWatchlist ? ICON_VISIBLE : ICON_HIDDEN}
+									transition={iconTransition}
+									aria-hidden={!inWatchlist}
+								>
+									<Check className="size-5 stroke-[2.5]" />
+								</motion.span>
+								<motion.span
+									className="pointer-events-none absolute inset-0 flex items-center justify-center"
+									initial={false}
+									animate={inWatchlist ? ICON_HIDDEN : ICON_VISIBLE}
+									transition={iconTransition}
+									aria-hidden={inWatchlist}
+								>
+									<IconClockRotateClockwise
+										size="22px"
+										className="shrink-0 opacity-90"
+									/>
+								</motion.span>
+							</span>
+						</motion.button>
+					}
+				/>
+				<TooltipContent sideOffset={8} className={DETAIL_ICON_TOOLTIP_CLASS}>
+					Watchlist
+				</TooltipContent>
+			</Tooltip>
+		</TooltipProvider>
 	);
 }

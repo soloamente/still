@@ -27,7 +27,7 @@ export function ProfileLobbyCatalogue({
 	totalResults,
 	query,
 	catalogueWaveKeyOverride,
-	monochromePeersOnHover = true,
+	monochromePeersOnHover = false,
 }: {
 	handle: string;
 	seeds: PopularMovieSeed[];

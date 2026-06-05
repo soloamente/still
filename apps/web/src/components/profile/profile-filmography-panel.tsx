@@ -46,7 +46,7 @@ export function ProfileFilmographyPanel({
 	query,
 	kind,
 	catalogueWaveKey,
-	monochromePeersOnHover = true,
+	monochromePeersOnHover = false,
 	hasLogsOtherVenue = false,
 	hasRowsWhenFavoritesOff = false,
 	favoritesOnly = false,

@@ -1,0 +1,81 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_features_feed_feed_pagination_ts",
+			"label": "feed-pagination.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_feed_pagination_nextbeforecursor",
+			"label": "nextBeforeCursor()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "feed_feed_pagination_getdevicetimezone",
+			"label": "getDeviceTimeZone()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_feed_pagination_ts",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_feed_pagination_ts",
+			"target": "feed_activity_feed_types_activityitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_feed_pagination_ts",
+			"target": "feed_feed_pagination_nextbeforecursor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_feed_pagination_ts",
+			"target": "feed_feed_pagination_getdevicetimezone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "feed_feed_pagination_getdevicetimezone",
+			"callee": "resolvedOptions",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "feed_feed_pagination_getdevicetimezone",
+			"callee": "DateTimeFormat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\feed-pagination.ts",
+			"source_location": "L17"
+		}
+	]
+}

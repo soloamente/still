@@ -33,6 +33,7 @@ const loadWatchlistChromeContext = cache(async () => {
 	const profileData = profileRes.data as {
 		handle: string;
 		displayName: string;
+		isPro?: boolean;
 		preferences?: Record<string, unknown> | null;
 	} | null;
 
@@ -45,6 +46,7 @@ const loadWatchlistChromeContext = cache(async () => {
 					image: session.user.image ?? null,
 					handle: profileData.handle,
 					email: session.user.email ?? null,
+					isPro: Boolean(profileData.isPro),
 				}
 			: null;
 

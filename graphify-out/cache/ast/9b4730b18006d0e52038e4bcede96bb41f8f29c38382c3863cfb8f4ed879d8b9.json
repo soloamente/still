@@ -1,0 +1,591 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"label": "settings-section-panels.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_settings_section_panels_settingssectionpage",
+			"label": "SettingsSectionPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L32"
+		},
+		{
+			"id": "profile_settings_section_panels_settingsprofilesection",
+			"label": "SettingsProfileSection()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L42"
+		},
+		{
+			"id": "profile_settings_section_panels_settingsnotificationssection",
+			"label": "SettingsNotificationsSection()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L149"
+		},
+		{
+			"id": "profile_settings_section_panels_settingscataloguesection",
+			"label": "SettingsCatalogueSection()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L175"
+		},
+		{
+			"id": "profile_settings_section_panels_settingsappearancesection",
+			"label": "SettingsAppearanceSection()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L228"
+		},
+		{
+			"id": "profile_settings_section_panels_settingsimportssection",
+			"label": "SettingsImportsSection()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L269"
+		},
+		{
+			"id": "profile_settings_section_panels_settingsexperiencesection",
+			"label": "SettingsExperienceSection()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L278"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_input_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "components_input_input",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_textarea_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "components_textarea_textarea",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_content_reveal_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_account_content_reveal_meaccountcontentreveal",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_account_content_reveal_meaccountrevealitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_anilist_import_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_anilist_import_meanilistimport",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_appearance_settings_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_appearance_settings_meappearancesettings",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_language_select_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_catalog_language_select_mecataloglanguageselect",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_catalog_watch_region_select_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_catalog_watch_region_select_mecatalogwatchregionselect",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_form_field_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_form_field_meformfield",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_form_field_mefieldcontrolclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_letterboxd_import_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_letterboxd_import_meletterboxdimport",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_preference_toggle_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_preference_toggle_mepreferencetoggle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_profile_visibility_toggle_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_profile_visibility_toggle_meprofilevisibilitytoggle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_settings_layout_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_settings_layout_mesettingspanel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_me_settings_layout_mesettingssection",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_settings_form_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_settings_form_context_usesettingsform",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_review_visibility_select_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "review_visibility_select_visibilityselect",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_notification_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "lib_notification_preferences_notification_kind_settings",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_appearance_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "lib_profile_appearance_inferprofileaccentfromhex",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "lib_profile_preferences_resolvecatalogtmdblanguage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_settings_section_panels_settingssectionpage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_settings_section_panels_settingsprofilesection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_settings_section_panels_settingsnotificationssection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_settings_section_panels_settingscataloguesection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_settings_section_panels_settingsappearancesection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L228",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_settings_section_panels_settingsimportssection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L269",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"target": "profile_settings_section_panels_settingsexperiencesection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L278",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_settings_section_panels_settingsprofilesection",
+			"callee": "useSettingsForm",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsprofilesection",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsprofilesection",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsprofilesection",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsprofilesection",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsprofilesection",
+			"callee": "meFieldControlClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L117"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsnotificationssection",
+			"callee": "useSettingsForm",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L150"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsnotificationssection",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L159"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingscataloguesection",
+			"callee": "useSettingsForm",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L184"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingscataloguesection",
+			"callee": "resolveCatalogTmdbLanguage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L207"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsappearancesection",
+			"callee": "useSettingsForm",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L238"
+		},
+		{
+			"caller_nid": "profile_settings_section_panels_settingsexperiencesection",
+			"callee": "useSettingsForm",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx",
+			"source_location": "L279"
+		}
+	]
+}

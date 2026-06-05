@@ -218,7 +218,6 @@ export default async function ProfilePage({
 			tasteSignature={tasteSignature}
 			canCompareTaste={canCompareTaste}
 			initialTasteCompareOpen={initialTasteCompareOpen}
-			isCurator={data.creator?.isCurator ?? false}
 			curatorHeadline={data.creator?.headline ?? null}
 		/>
 	);

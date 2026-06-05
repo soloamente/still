@@ -81,6 +81,19 @@ function snapshotFromSearchParams(
 	};
 }
 
+function isCatalogueSynced(
+	pending: ProfileLobbySnapshot | null,
+	urlState: ProfileLobbySnapshot,
+): boolean {
+	if (pending == null) return true;
+	return (
+		pending.order === urlState.order &&
+		pending.venue === urlState.venue &&
+		pending.favoritesOnly === urlState.favoritesOnly &&
+		pending.toolbarActiveTab === urlState.toolbarActiveTab
+	);
+}
+
 export function ProfileLobbyParamsProvider({
 	handle,
 	socialTabs,
@@ -120,33 +133,38 @@ export function ProfileLobbyParamsProvider({
 	}, [pending, urlState]);
 
 	const active = pending ?? urlState;
+	// Toolbar pills update immediately; catalogue waits for URL + RSC seeds to match.
+	const toolbarSnapshot = active;
+	const catalogueSnapshot = isCatalogueSynced(pending, urlState)
+		? active
+		: urlState;
 
 	const contentTab = useMemo(() => {
 		if (
-			active.toolbarActiveTab === "lists" ||
-			active.toolbarActiveTab === "reviews"
+			catalogueSnapshot.toolbarActiveTab === "lists" ||
+			catalogueSnapshot.toolbarActiveTab === "reviews"
 		) {
-			return active.toolbarActiveTab;
+			return catalogueSnapshot.toolbarActiveTab;
 		}
-		if (active.toolbarActiveTab === "favorites") {
+		if (catalogueSnapshot.toolbarActiveTab === "favorites") {
 			return counts.likedMovies > 0 || counts.tv === 0 ? "movies" : "tv";
 		}
 		if (
-			active.toolbarActiveTab === "movies" ||
-			active.toolbarActiveTab === "tv"
+			catalogueSnapshot.toolbarActiveTab === "movies" ||
+			catalogueSnapshot.toolbarActiveTab === "tv"
 		) {
-			return active.toolbarActiveTab;
+			return catalogueSnapshot.toolbarActiveTab;
 		}
 		return resolveProfileTabFromCounts(
 			searchParams.get("tab"),
 			socialTabs,
 			counts,
 		);
-	}, [active.toolbarActiveTab, counts, socialTabs, searchParams]);
+	}, [catalogueSnapshot.toolbarActiveTab, counts, socialTabs, searchParams]);
 
 	const ledgerTab = profileLedgerTabFromContent(
 		contentTab === "lists" || contentTab === "reviews"
-			? active.toolbarActiveTab === "tv"
+			? catalogueSnapshot.toolbarActiveTab === "tv"
 				? "tv"
 				: "movies"
 			: contentTab,
@@ -200,10 +218,10 @@ export function ProfileLobbyParamsProvider({
 	const value = useMemo(
 		(): ProfileLobbyParamsContextValue => ({
 			handle,
-			order: active.order,
-			venue: active.venue,
-			favoritesOnly: active.favoritesOnly,
-			toolbarActiveTab: active.toolbarActiveTab,
+			order: catalogueSnapshot.order,
+			venue: catalogueSnapshot.venue,
+			favoritesOnly: catalogueSnapshot.favoritesOnly,
+			toolbarActiveTab: toolbarSnapshot.toolbarActiveTab,
 			contentTab,
 			ledgerTab,
 			selectOrder,
@@ -212,7 +230,8 @@ export function ProfileLobbyParamsProvider({
 		}),
 		[
 			handle,
-			active,
+			catalogueSnapshot,
+			toolbarSnapshot.toolbarActiveTab,
 			contentTab,
 			ledgerTab,
 			selectOrder,

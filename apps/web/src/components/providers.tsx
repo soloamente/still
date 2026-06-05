@@ -55,7 +55,7 @@ export default function Providers({
 				enableSystem
 				disableTransitionOnChange
 			>
-				{/* Lenis: smooth wheel / touch scroll on `window` — `root` avoids an extra scroll wrapper. */}
+				{/* Lenis: opt-in smooth wheel via Settings; native scroll by default. */}
 				<LenisProvider>
 					{/* Theater audio persists via profile JSON but still hydrates lazily behind gestures. */}
 					<RootHtmlClassSync />

@@ -44,6 +44,7 @@ export default async function DiaryPage({
 	const profileData = profileRes.data as {
 		handle: string;
 		displayName: string;
+		isPro?: boolean;
 		preferences?: Record<string, unknown> | null;
 	} | null;
 	const mePrefs = profileData?.preferences ?? null;
@@ -61,6 +62,7 @@ export default async function DiaryPage({
 					image: session.user.image ?? null,
 					handle: profileData.handle,
 					email: session.user.email ?? null,
+					isPro: Boolean(profileData.isPro),
 				}
 			: null;
 

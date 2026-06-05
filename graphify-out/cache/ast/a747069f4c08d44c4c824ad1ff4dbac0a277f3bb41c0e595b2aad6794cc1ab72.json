@@ -1,0 +1,50 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_app_me_settings_appearance_page_tsx",
+			"label": "page.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\appearance\\page.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "appearance_page_settingsappearancepage",
+			"label": "SettingsAppearancePage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\appearance\\page.tsx",
+			"source_location": "L3"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_me_settings_appearance_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_settings_section_panels_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\appearance\\page.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_me_settings_appearance_page_tsx",
+			"target": "profile_settings_section_panels_settingsappearancesection",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\appearance\\page.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_app_me_settings_appearance_page_tsx",
+			"target": "appearance_page_settingsappearancepage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\appearance\\page.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

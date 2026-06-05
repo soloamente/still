@@ -1,0 +1,189 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"label": "home-community-rsc-payload.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_community_rsc_payload_homecommunityrscpayload",
+			"label": "HomeCommunityRscPayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_home_community_patron_shell_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "home_home_community_patron_shell_homecommunitypatronproviders",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "lib_auth_server_authserver",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_community_core_fetch_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "lib_home_community_core_fetch_fetchhomecommunityfeedseed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "lib_home_community_feed_homecommunityfeed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "lib_home_leaderboard_period_homeleaderboardperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_server_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "lib_server_api_serverapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_community_rsc_payload_tsx",
+			"target": "home_home_community_rsc_payload_homecommunityrscpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_community_rsc_payload_homecommunityrscpayload",
+			"callee": "serverApi",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "home_home_community_rsc_payload_homecommunityrscpayload",
+			"callee": "authServer",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "home_home_community_rsc_payload_homecommunityrscpayload",
+			"callee": "fetchHomeCommunityFeedSeed",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "home_home_community_rsc_payload_homecommunityrscpayload",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-rsc-payload.tsx",
+			"source_location": "L31"
+		}
+	]
+}

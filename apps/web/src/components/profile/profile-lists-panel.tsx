@@ -17,7 +17,7 @@ import {
 export function ProfileListsPanel({
 	lists,
 	catalogueWaveKey,
-	monochromePeersOnHover = true,
+	monochromePeersOnHover = false,
 }: {
 	lists: ListBoardRow[];
 	catalogueWaveKey: string;

@@ -1,0 +1,1071 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_04_mobile_foundation_activity_feed_md",
+			"label": "2026-06-04-mobile-foundation-activity-feed.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"label": "Mobile Foundation + Activity Feed Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_background_for_the_implementer",
+			"label": "Background for the implementer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L22"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_1",
+			"label": "code:block1 (apps/native/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L24"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_1_add_dependencies",
+			"label": "Task 1: Add dependencies",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_2",
+			"label": "code:jsonc (\"@tanstack/react-query\": \"^5.62.7\",)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_3",
+			"label": "code:bash (cd apps/native && bun install && bunx expo install expo-imag)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L82"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_4",
+			"label": "code:bash (git add apps/native/package.json ../../bun.lock)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_2_pure_helper_tmdb_poster_url_tdd",
+			"label": "Task 2: Pure helper \u2014 TMDB poster URL (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L96"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_5",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_6",
+			"label": "code:ts (/** TMDb still path \u2192 absolute poster URL. Ported from apps/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_7",
+			"label": "code:bash (git add apps/native/features/feed/tmdb-poster-url.ts apps/na)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L168"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_3_pure_helper_time_ago_label_tdd",
+			"label": "Task 3: Pure helper \u2014 time-ago label (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_8",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L185"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_9",
+			"label": "code:ts (/** Compact relative time (\"5m\", \"3h\", \"2d\", \"2w\") for feed )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L223"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_10",
+			"label": "code:bash (git add apps/native/features/feed/format-time-ago.ts apps/na)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L249"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_4_feed_types_parsing_tdd",
+			"label": "Task 4: Feed types + parsing (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L256"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_11",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L266"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_12",
+			"label": "code:ts (export type ActivityKind = \"log\" | \"review\" | \"list\" | \"dive)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L327"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_13",
+			"label": "code:bash (git add apps/native/features/feed/activity-feed-types.ts app)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L446"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_5_pagination_cursor_timezone_helpers_tdd",
+			"label": "Task 5: Pagination cursor + timezone helpers (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L453"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_14",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L463"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_15",
+			"label": "code:ts (import type { ActivityItem } from \"./activity-feed-types\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L505"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_16",
+			"label": "code:bash (git add apps/native/features/feed/feed-pagination.ts apps/na)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L536"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_6_eden_api_client_with_auth_cookie",
+			"label": "Task 6: Eden API client with auth cookie",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L543"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_17",
+			"label": "code:ts (import { createClient } from \"@still/api-client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L552"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_18",
+			"label": "code:bash (git add apps/native/lib/api.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L582"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_7_tanstack_query_client_provider",
+			"label": "Task 7: TanStack Query client + provider",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L589"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_19",
+			"label": "code:ts (import { QueryClient, QueryClientProvider } from \"@tanstack/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L599"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_20",
+			"label": "code:tsx (import \"@/global.css\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L623"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_21",
+			"label": "code:bash (git add apps/native/lib/query-client.ts apps/native/app/_lay)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L665"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"label": "Task 8: Replace drawer with 5-tab shell + stub screens",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L672"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_22",
+			"label": "code:bash (git rm -r \"apps/native/app/(drawer)\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L683"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_23",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L692"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_24",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L706"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_25",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L720"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_26",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L734"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_27",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L750"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_28",
+			"label": "code:tsx (import { Ionicons } from \"@expo/vector-icons\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L766"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_29",
+			"label": "code:bash (git add \"apps/native/app/(tabs)\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L839"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_9_design_system_primitive_avatar",
+			"label": "Task 9: Design-system primitive \u2014 Avatar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L846"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_30",
+			"label": "code:tsx (import { Image } from \"expo-image\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L855"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_31",
+			"label": "code:bash (git add apps/native/components/ui/avatar.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L894"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_10_design_system_primitives_poster_stars",
+			"label": "Task 10: Design-system primitives \u2014 Poster + Stars",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L901"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_32",
+			"label": "code:tsx (import { Image } from \"expo-image\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L911"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_33",
+			"label": "code:tsx (import { Ionicons } from \"@expo/vector-icons\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L949"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_34",
+			"label": "code:bash (git add apps/native/components/ui/poster.tsx apps/native/com)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L975"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_11_design_system_primitive_feed_skeleton",
+			"label": "Task 11: Design-system primitive \u2014 feed skeleton",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L982"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_35",
+			"label": "code:tsx (import { View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L991"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_36",
+			"label": "code:bash (git add apps/native/components/ui/feed-skeleton.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1025"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_12_rich_card_components",
+			"label": "Task 12: Rich card components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1032"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_37",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1045"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_38",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1091"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_39",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1133"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_40",
+			"label": "code:tsx (import { Text, View } from \"react-native\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1174"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_41",
+			"label": "code:tsx (import type {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1223"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_42",
+			"label": "code:bash (git add apps/native/features/feed/cards)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1254"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_13_useactivityfeed_hook_feed_screen_wire_home",
+			"label": "Task 13: useActivityFeed hook + feed screen + wire Home",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1261"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_43",
+			"label": "code:ts (import { useInfiniteQuery } from \"@tanstack/react-query\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1272"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_44",
+			"label": "code:tsx (import { useCallback } from \"react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1322"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_45",
+			"label": "code:tsx (import { SafeAreaView } from \"react-native-safe-area-context)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1414"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_46",
+			"label": "code:bash (git add apps/native/features/feed/use-activity-feed.ts apps/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1435"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_task_14_full_test_run_manual_smoke_pass",
+			"label": "Task 14: Full test run + manual smoke pass",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1442"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_47",
+			"label": "code:markdown (# Activity feed \u2014 manual smoke checklist (Phase 1))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1456"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_48",
+			"label": "code:bash (git add apps/native/features/feed/SMOKE.md)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1491"
+		},
+		{
+			"id": "plans_2026_06_04_mobile_foundation_activity_feed_done_phase_1_complete",
+			"label": "Done \u2014 Phase 1 complete",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1498"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_04_mobile_foundation_activity_feed_md",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_background_for_the_implementer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_file_structure",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_1_add_dependencies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_1_add_dependencies",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_1_add_dependencies",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_1_add_dependencies",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_2_pure_helper_tmdb_poster_url_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_2_pure_helper_tmdb_poster_url_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_2_pure_helper_tmdb_poster_url_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_2_pure_helper_tmdb_poster_url_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_3_pure_helper_time_ago_label_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_3_pure_helper_time_ago_label_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L185",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_3_pure_helper_time_ago_label_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L223",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_3_pure_helper_time_ago_label_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L249",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_4_feed_types_parsing_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_4_feed_types_parsing_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L266",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_4_feed_types_parsing_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L327",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_4_feed_types_parsing_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L446",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_5_pagination_cursor_timezone_helpers_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L453",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_5_pagination_cursor_timezone_helpers_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L463",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_5_pagination_cursor_timezone_helpers_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L505",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_5_pagination_cursor_timezone_helpers_tdd",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L536",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_6_eden_api_client_with_auth_cookie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L543",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_6_eden_api_client_with_auth_cookie",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L552",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_6_eden_api_client_with_auth_cookie",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L582",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_7_tanstack_query_client_provider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L589",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_7_tanstack_query_client_provider",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L599",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_7_tanstack_query_client_provider",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L623",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_7_tanstack_query_client_provider",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L665",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L672",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L683",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L692",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L706",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L720",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L734",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L750",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L766",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_8_replace_drawer_with_5_tab_shell_stub_screens",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L839",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_9_design_system_primitive_avatar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L846",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_9_design_system_primitive_avatar",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L855",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_9_design_system_primitive_avatar",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L894",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_10_design_system_primitives_poster_stars",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L901",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_10_design_system_primitives_poster_stars",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L911",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_10_design_system_primitives_poster_stars",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L949",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_10_design_system_primitives_poster_stars",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L975",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_11_design_system_primitive_feed_skeleton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L982",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_11_design_system_primitive_feed_skeleton",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_35",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L991",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_11_design_system_primitive_feed_skeleton",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_36",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1025",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_12_rich_card_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1032",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_12_rich_card_components",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_37",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1045",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_12_rich_card_components",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_38",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1091",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_12_rich_card_components",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_39",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1133",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_12_rich_card_components",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_40",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1174",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_12_rich_card_components",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_41",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1223",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_12_rich_card_components",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_42",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1254",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_13_useactivityfeed_hook_feed_screen_wire_home",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1261",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_13_useactivityfeed_hook_feed_screen_wire_home",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_43",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1272",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_13_useactivityfeed_hook_feed_screen_wire_home",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_44",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1322",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_13_useactivityfeed_hook_feed_screen_wire_home",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_45",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1414",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_13_useactivityfeed_hook_feed_screen_wire_home",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_46",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1435",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_task_14_full_test_run_manual_smoke_pass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1442",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_14_full_test_run_manual_smoke_pass",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_47",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1456",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_task_14_full_test_run_manual_smoke_pass",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_codeblock_48",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1491",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_04_mobile_foundation_activity_feed_mobile_foundation_activity_feed_implementation_plan",
+			"target": "plans_2026_06_04_mobile_foundation_activity_feed_done_phase_1_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-04-mobile-foundation-activity-feed.md",
+			"source_location": "L1498",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

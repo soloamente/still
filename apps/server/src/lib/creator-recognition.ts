@@ -69,11 +69,8 @@ export function buildCuratorHeadline(stats: CuratorContributionStats): string {
 	if (stats.publicListsCount > 0 && stats.totalListLikes > 0) {
 		return `${stats.publicListsCount} public lists · ${stats.totalListLikes} list likes`;
 	}
-	if (stats.publicListsCount > 0 && stats.describedPublicListsCount >= 2) {
-		return `${stats.publicListsCount} public lists · ${stats.describedPublicListsCount} with descriptions`;
-	}
 	if (stats.publicListsCount > 0) {
-		return `${stats.publicListsCount} public lists`;
+		return `${stats.publicListsCount} public list${stats.publicListsCount === 1 ? "" : "s"}`;
 	}
 	if (stats.publicReviewsCount > 0) {
 		return `${stats.publicReviewsCount} reviews · ${stats.totalReviewLikes} likes`;

@@ -1,13 +1,7 @@
-import { SettingsForm } from "@/components/profile/settings-form";
-import { serverApi } from "@/lib/server-api";
+import { redirect } from "next/navigation";
 
-export default async function SettingsPage() {
-	const api = await serverApi();
-	const me = await api.api.profiles.me.get().catch(() => ({ data: null }));
+import { ME_ACCOUNT_SETTINGS_HOME_HREF } from "@/lib/me-account-nav";
 
-	if (!me.data) {
-		return null;
-	}
-
-	return <SettingsForm profile={me.data} />;
+export default function SettingsIndexPage() {
+	redirect(ME_ACCOUNT_SETTINGS_HOME_HREF);
 }

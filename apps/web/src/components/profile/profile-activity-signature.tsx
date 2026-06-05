@@ -70,9 +70,12 @@ const cellStyle = {
 export function ProfileActivitySignature({
 	handle,
 	className,
+	variant = "standalone",
 }: {
 	handle: string;
 	className?: string;
+	/** In profile About — no extra chrome; parent supplies the section title. */
+	variant?: "standalone" | "embedded";
 }) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const { signature, loading } = useProfileActivitySignature(handle);
@@ -88,7 +91,8 @@ export function ProfileActivitySignature({
 		return (
 			<div
 				className={cn(
-					"mx-auto mt-4 h-24 w-full max-w-md animate-pulse rounded-xl bg-muted/30",
+					"mx-auto h-24 w-full animate-pulse rounded-xl bg-muted/30",
+					variant === "embedded" ? "max-w-full" : "mt-4 max-w-md",
 					className,
 				)}
 				role="status"
@@ -104,23 +108,39 @@ export function ProfileActivitySignature({
 
 	return (
 		<section
-			className={cn("mx-auto mt-4 w-full max-w-md", className)}
+			className={cn(
+				"mx-auto w-full",
+				variant === "embedded" ? "max-w-full" : "mt-4 max-w-md",
+				className,
+			)}
 			aria-label="Diary activity over the last 52 weeks"
 		>
-			<div className="flex items-end justify-between gap-3">
-				<p className="font-medium text-foreground text-xs tracking-wide">
-					Activity
-				</p>
-				<p className="text-[10px] text-muted-foreground tabular-nums">
+			{variant === "standalone" ? (
+				<div className="flex items-end justify-between gap-3">
+					<p className="font-medium text-foreground text-xs tracking-wide">
+						Activity
+					</p>
+					<p className="text-[10px] text-muted-foreground tabular-nums">
+						{signature.totalDaysActive} active day
+						{signature.totalDaysActive === 1 ? "" : "s"}
+					</p>
+				</div>
+			) : (
+				<p className="sr-only">
 					{signature.totalDaysActive} active day
-					{signature.totalDaysActive === 1 ? "" : "s"}
+					{signature.totalDaysActive === 1 ? "" : "s"} in the last 52 weeks
 				</p>
-			</div>
+			)}
 
 			{/* Labels pinned left; week columns scroll independently */}
-			<div className="mt-2 flex min-w-0 items-start">
+			<div
+				className={cn(
+					"flex min-w-0 items-start",
+					variant === "standalone" ? "mt-2" : "mt-0",
+				)}
+			>
 				<div
-					className="z-10 shrink-0 bg-card pr-1"
+					className="z-10 shrink-0 bg-transparent pr-1"
 					style={{ width: LABEL_COL_PX }}
 					aria-hidden
 				>

@@ -49,27 +49,20 @@ export function ProfilePinnedReviewsStrip({
 
 	return (
 		<section
-			className={cn("mx-auto mt-5 w-full max-w-md text-left", className)}
+			className={cn("mx-auto mt-5 w-full max-w-lg text-left", className)}
 			aria-label="Signature reviews"
 		>
 			<p className="mb-2 text-center font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
 				Signature reviews
 			</p>
-			<div
-				className={cn(
-					"flex snap-x snap-mandatory gap-2 overflow-x-auto pb-0.5",
-					"scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
-				)}
-			>
+			{/* Stack full-width cards — max three rows, no horizontal clip */}
+			<ul className="flex flex-col gap-2">
 				{rows.map((row) => (
-					<div
-						key={row.review.id}
-						className="w-[min(100%,18rem)] shrink-0 snap-start sm:w-72"
-					>
+					<li key={row.review.id}>
 						<ProfilePinnedReviewCard review={toPinnedReviewProps(row)} />
-					</div>
+					</li>
 				))}
-			</div>
+			</ul>
 		</section>
 	);
 }

@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_04_mobile_bottom_navbar_design_md",
+			"label": "2026-06-04-mobile-bottom-navbar-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"label": "Mobile Bottom Navbar \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_context",
+			"label": "Context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_decisions",
+			"label": "Decisions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_scope",
+			"label": "Scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_codeblock_1",
+			"label": "code:block1 (apps/web/src/components/app/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_mobiletabbar_detail",
+			"label": "MobileTabBar \u2014 detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_mobileyousheet_detail",
+			"label": "MobileYouSheet \u2014 detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_homestickychrome_trim_mobile_only",
+			"label": "HomeStickyChrome trim (mobile only)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_spacing_overlap",
+			"label": "Spacing / overlap",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_error_edge_handling",
+			"label": "Error / edge handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "specs_2026_06_04_mobile_bottom_navbar_design_open_considerations_non_blocking",
+			"label": "Open considerations (non-blocking)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L132"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_04_mobile_bottom_navbar_design_md",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_decisions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_architecture",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_mobiletabbar_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_mobileyousheet_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_homestickychrome_trim_mobile_only",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_spacing_overlap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_error_edge_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_04_mobile_bottom_navbar_design_mobile_bottom_navbar_design",
+			"target": "specs_2026_06_04_mobile_bottom_navbar_design_open_considerations_non_blocking",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-04-mobile-bottom-navbar-design.md",
+			"source_location": "L132",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

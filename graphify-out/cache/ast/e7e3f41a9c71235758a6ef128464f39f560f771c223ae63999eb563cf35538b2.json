@@ -1,0 +1,455 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"label": "whats-new-dialog.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_whats_new_dialog_panel_ease",
+			"label": "PANEL_EASE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L23"
+		},
+		{
+			"id": "app_whats_new_dialog_primaryctaclass",
+			"label": "primaryCtaClass",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L25"
+		},
+		{
+			"id": "app_whats_new_dialog_secondaryctaclass",
+			"label": "secondaryCtaClass",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L31"
+		},
+		{
+			"id": "app_whats_new_dialog_whatsnewslidepanel",
+			"label": "WhatsNewSlidePanel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L38"
+		},
+		{
+			"id": "app_whats_new_dialog_whatsnewdialog",
+			"label": "WhatsNewDialog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L114"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "components_button_button",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "react_dom",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbuttonwrap",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionlink",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_modal_layer_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "lib_app_modal_layer_app_modal_overlay_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "lib_detail_action_motion_detail_canvas_on_card_hover_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "lib_detail_action_motion_detail_motion_pressable_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_whats_new_href_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "lib_whats_new_href_resolvewhatsnewhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_whats_new_releases_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "lib_whats_new_releases_whatsnewrelease",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "lib_whats_new_releases_whatsnewslide",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "app_whats_new_dialog_panel_ease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "app_whats_new_dialog_primaryctaclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "app_whats_new_dialog_secondaryctaclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "app_whats_new_dialog_whatsnewslidepanel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_whats_new_dialog_tsx",
+			"target": "app_whats_new_dialog_whatsnewdialog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L114",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewslidepanel",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewslidepanel",
+			"callee": "resolveWhatsNewHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L125"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L148"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "createPortal",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L195"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L266"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L316"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L323"
+		},
+		{
+			"caller_nid": "app_whats_new_dialog_whatsnewdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\whats-new-dialog.tsx",
+			"source_location": "L336"
+		}
+	]
+}

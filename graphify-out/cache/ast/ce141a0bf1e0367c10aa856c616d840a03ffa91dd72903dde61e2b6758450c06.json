@@ -1,0 +1,95 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_features_feed_smoke_md",
+			"label": "SMOKE.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_smoke_activity_feed_manual_smoke_checklist_phase_1",
+			"label": "Activity feed \u2014 manual smoke checklist (Phase 1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_smoke_signed_out",
+			"label": "Signed-out",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "feed_smoke_signed_in",
+			"label": "Signed-in",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "feed_smoke_states",
+			"label": "States",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "feed_smoke_navigation",
+			"label": "Navigation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L24"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_smoke_md",
+			"target": "feed_smoke_activity_feed_manual_smoke_checklist_phase_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "feed_smoke_activity_feed_manual_smoke_checklist_phase_1",
+			"target": "feed_smoke_signed_out",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "feed_smoke_activity_feed_manual_smoke_checklist_phase_1",
+			"target": "feed_smoke_signed_in",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "feed_smoke_activity_feed_manual_smoke_checklist_phase_1",
+			"target": "feed_smoke_states",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "feed_smoke_activity_feed_manual_smoke_checklist_phase_1",
+			"target": "feed_smoke_navigation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\SMOKE.md",
+			"source_location": "L24",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

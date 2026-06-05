@@ -6,6 +6,12 @@ import {
 	PopoverTrigger,
 } from "@still/ui/components/popover";
 import { stillToast } from "@still/ui/components/still-toast";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@still/ui/components/tooltip";
 import IconListPlay from "@still/ui/icons/list-play";
 import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
@@ -33,6 +39,9 @@ type AddToListControlProps = {
 	/** Optional layout wrapper for hero `LayoutGroup` siblings. */
 	layout?: boolean;
 };
+
+/** Compact label — matches sticky header shortcut tooltips. */
+const DETAIL_ICON_TOOLTIP_CLASS = "px-2 py-2 text-xs leading-none";
 
 /**
  * Hero “Add to list” control — opens a create sheet when the patron has no lists,
@@ -185,15 +194,27 @@ export function AddToListControl({
 		</motion.button>
 	);
 
+	const listTooltip = (
+		<TooltipContent sideOffset={8} className={DETAIL_ICON_TOOLTIP_CLASS}>
+			Add to list
+		</TooltipContent>
+	);
+
 	return (
-		<>
+		<TooltipProvider delay={0} closeDelay={80}>
 			{hasLists ? (
 				<Popover
 					open={pickerOpen}
 					onOpenChange={handlePickerOpenChange}
 					modal={false}
 				>
-					<PopoverTrigger render={triggerButton} />
+					<Tooltip>
+						<TooltipTrigger
+							delay={0}
+							render={<PopoverTrigger render={triggerButton} />}
+						/>
+						{listTooltip}
+					</Tooltip>
 					<PopoverContent
 						side="top"
 						align="center"
@@ -217,7 +238,10 @@ export function AddToListControl({
 					</PopoverContent>
 				</Popover>
 			) : (
-				triggerButton
+				<Tooltip>
+					<TooltipTrigger delay={0} render={triggerButton} />
+					{listTooltip}
+				</Tooltip>
 			)}
 
 			<CreateListDialog
@@ -226,6 +250,6 @@ export function AddToListControl({
 				media={media}
 				onCreated={handleListCreated}
 			/>
-		</>
+		</TooltipProvider>
 	);
 }

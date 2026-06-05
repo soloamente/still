@@ -1,0 +1,172 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"label": "activity-log-card.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "cards_activity_log_card_activitylogcard",
+			"label": "ActivityLogCard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_components_ui_avatar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "ui_avatar_avatar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_components_ui_poster_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "ui_poster_poster",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_components_ui_stars_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "ui_stars_stars",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "feed_activity_feed_types_logpayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "feed_activity_feed_types_patronname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_format_time_ago_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "feed_format_time_ago_formattimeago",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_log_card_tsx",
+			"target": "cards_activity_log_card_activitylogcard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "cards_activity_log_card_activitylogcard",
+			"callee": "patronName",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "cards_activity_log_card_activitylogcard",
+			"callee": "patronName",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "cards_activity_log_card_activitylogcard",
+			"callee": "formatTimeAgo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-log-card.tsx",
+			"source_location": "L28"
+		}
+	]
+}

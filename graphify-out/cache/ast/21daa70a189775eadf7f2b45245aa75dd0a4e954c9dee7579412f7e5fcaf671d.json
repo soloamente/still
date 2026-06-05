@@ -1,0 +1,671 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_03_diary_lazy_loading_md",
+			"label": "2026-06-03-diary-lazy-loading.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"label": "Diary Lazy-Loading + Latest-Seen Ordering Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_file_structure",
+			"label": "File Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_task_1_server_diary_query_arg_helper_pure_tdd",
+			"label": "Task 1: Server diary query-arg helper (pure, TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_1",
+			"label": "code:ts (// apps/server/src/lib/diary-log-query.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_2",
+			"label": "code:ts (// apps/server/src/lib/diary-log-query.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_3",
+			"label": "code:bash (git add apps/server/src/lib/diary-log-query.ts apps/server/s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L179"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"label": "Task 2: Client comparator tiebreak (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L186"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_4",
+			"label": "code:ts (import { sortDiaryLobbyRowsForOrder } from \"./diary-lobby-or)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_5",
+			"label": "code:ts (watchedAt: string;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L252"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_6",
+			"label": "code:ts (/** Deterministic tiebreak for equal watchedAt \u2014 newest-crea)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L262"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_7",
+			"label": "code:ts (function compareDiaryLobbyRows()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L277"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_8",
+			"label": "code:ts (function logRecencyValue(row: DiaryLogRow): {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L309"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_9",
+			"label": "code:ts (case \"latest_seen\": {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L335"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_10",
+			"label": "code:bash (git add apps/web/src/components/diary/diary-entry.tsx apps/w)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L361"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"label": "Task 3: Server diary endpoint `GET /api/logs/me/diary`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L368"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_11",
+			"label": "code:ts (import { and, asc, count, desc, eq, isNotNull, or, sql } fro)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L379"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_12",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L385"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_13",
+			"label": "code:ts (.orderBy(desc(log.watchedAt)))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L401"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_14",
+			"label": "code:ts (.orderBy(desc(log.watchedAt), desc(log.createdAt), desc(log.)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L405"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_15",
+			"label": "code:ts (// My diary \u2014 paginated, grid-shaped feed for `/diary`. Movi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L415"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_16",
+			"label": "code:ts (import { inArray } from \"drizzle-orm\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L660"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_17",
+			"label": "code:bash (git add apps/server/src/routes/logs.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L685"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_task_4_client_fetch_fetchmydiary_endpoint_row_types",
+			"label": "Task 4: Client fetch `fetchMyDiary` + endpoint row types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L692"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_18",
+			"label": "code:ts (/** One row from `GET /api/logs/me/diary`. */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L701"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_19",
+			"label": "code:bash (git add apps/web/src/lib/still-api-fetch.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L781"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_task_5_tv_group_cell_lazy_load_entries_on_flip",
+			"label": "Task 5: TV group cell \u2014 lazy-load entries on flip",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L788"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_20",
+			"label": "code:tsx (export function DiaryTvGroupCell({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L799"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_21",
+			"label": "code:tsx (import { useEffect, useState } from \"react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L853"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_22",
+			"label": "code:tsx (/** `GET /api/logs/me/by-tv/:id` rows \u2192 diary rows for the f)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L865"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_23",
+			"label": "code:tsx (<ul)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L899"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_24",
+			"label": "code:bash (git add apps/web/src/components/diary/diary-tv-group-cell.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L927"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_task_6_diarylobbyinfinite_component",
+			"label": "Task 6: `DiaryLobbyInfinite` component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L934"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_25",
+			"label": "code:tsx (// apps/web/src/components/diary/diary-lobby-infinite.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L943"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_26",
+			"label": "code:bash (git add apps/web/src/components/diary/diary-lobby-infinite.t)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1235"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_task_7_wire_the_page_shell_to_paged_data_remove_the_old_full_fetch_path",
+			"label": "Task 7: Wire the page + shell to paged data; remove the old full-fetch path",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1242"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_27",
+			"label": "code:ts (// apps/web/src/lib/fetch-my-diary-server.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1252"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_28",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1314"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_29",
+			"label": "code:tsx (import type { Metadata } from \"next\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1336"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_30",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1449"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_codeblock_31",
+			"label": "code:bash (git add apps/web/src/app/(app)/diary/page.tsx apps/web/src/c)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1650"
+		},
+		{
+			"id": "plans_2026_06_03_diary_lazy_loading_self_review_notes",
+			"label": "Self-Review Notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1658"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_03_diary_lazy_loading_md",
+			"target": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_task_1_server_diary_query_arg_helper_pure_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_1_server_diary_query_arg_helper_pure_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_1_server_diary_query_arg_helper_pure_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_1_server_diary_query_arg_helper_pure_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L179",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L186",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L252",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L262",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L277",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L309",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L335",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_2_client_comparator_tiebreak_tdd",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L361",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L368",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L379",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L385",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L401",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L405",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L415",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L660",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_3_server_diary_endpoint_get_api_logs_me_diary",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L685",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_task_4_client_fetch_fetchmydiary_endpoint_row_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L692",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_4_client_fetch_fetchmydiary_endpoint_row_types",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L701",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_4_client_fetch_fetchmydiary_endpoint_row_types",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L781",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_task_5_tv_group_cell_lazy_load_entries_on_flip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L788",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_5_tv_group_cell_lazy_load_entries_on_flip",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L799",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_5_tv_group_cell_lazy_load_entries_on_flip",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L853",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_5_tv_group_cell_lazy_load_entries_on_flip",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L865",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_5_tv_group_cell_lazy_load_entries_on_flip",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L899",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_5_tv_group_cell_lazy_load_entries_on_flip",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L927",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_task_6_diarylobbyinfinite_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L934",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_6_diarylobbyinfinite_component",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L943",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_6_diarylobbyinfinite_component",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1235",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_task_7_wire_the_page_shell_to_paged_data_remove_the_old_full_fetch_path",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1242",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_7_wire_the_page_shell_to_paged_data_remove_the_old_full_fetch_path",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1252",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_7_wire_the_page_shell_to_paged_data_remove_the_old_full_fetch_path",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1314",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_7_wire_the_page_shell_to_paged_data_remove_the_old_full_fetch_path",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1336",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_7_wire_the_page_shell_to_paged_data_remove_the_old_full_fetch_path",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1449",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_task_7_wire_the_page_shell_to_paged_data_remove_the_old_full_fetch_path",
+			"target": "plans_2026_06_03_diary_lazy_loading_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1650",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_diary_lazy_loading_diary_lazy_loading_latest_seen_ordering_implementation_plan",
+			"target": "plans_2026_06_03_diary_lazy_loading_self_review_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-diary-lazy-loading.md",
+			"source_location": "L1658",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

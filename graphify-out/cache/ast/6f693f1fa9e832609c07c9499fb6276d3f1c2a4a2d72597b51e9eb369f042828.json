@@ -1,0 +1,90 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_chrome_tsx",
+			"label": "diary-lobby-chrome.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "diary_diary_lobby_chrome_diarylobbychrome",
+			"label": "DiaryLobbyChrome()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_chrome_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_diary_diary_catalog_order_chips_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_chrome_tsx",
+			"target": "diary_diary_catalog_order_chips_diarycatalogorderchips",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_chrome_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_diary_diary_media_tab_toolbar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_chrome_tsx",
+			"target": "diary_diary_media_tab_toolbar_diarymediatabtoolbar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_chrome_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_diary_diary_venue_chips_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_chrome_tsx",
+			"target": "diary_diary_venue_chips_diaryvenuechips",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_diary_diary_lobby_chrome_tsx",
+			"target": "diary_diary_lobby_chrome_diarylobbychrome",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

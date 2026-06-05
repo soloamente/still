@@ -647,7 +647,8 @@ html.theme-midnight {
 		/* Prevent iOS Safari from upscaling text in landscape */
 		-webkit-text-size-adjust: 100%;
 		font-family: var(--font-sans);
-		scroll-behavior: smooth;
+		/* Native anchor scroll — opt-in via Settings (`html.smooth-scroll-enabled`). */
+		scroll-behavior: auto;
 		/* Page scroll stays usable; visual bar hidden (see `.scrollbar-none` + rules below). */
 		overflow-y: auto;
 		-ms-overflow-style: none;
@@ -655,6 +656,9 @@ html.theme-midnight {
 	}
 	html::-webkit-scrollbar {
 		display: none;
+	}
+	html.smooth-scroll-enabled {
+		scroll-behavior: smooth;
 	}
 	body {
 		@apply bg-background text-foreground;
@@ -1497,5 +1501,122 @@ html.theme-lobby-light .cinema-vignette {
 		right: auto !important;
 		transform: translateX(-50%) !important;
 		width: min(420px, calc(100vw - 32px)) !important;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * transitions.dev — page side-by-side (`MeAccountRouteTransition` on `/me/*`).
+ * --------------------------------------------------------------------------- */
+:root {
+	--page-slide-dur: 200ms;
+	--page-fade-dur: 200ms;
+	--page-slide-distance: 8px;
+	--page-blur: 3px;
+	--page-stagger: 0ms;
+	--page-exit-enabled: 1;
+	--page-slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--page-fade-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.t-page-slide {
+	position: relative;
+}
+
+.t-page-slide .t-page {
+	width: 100%;
+	min-width: 0;
+}
+
+.t-page-slide.is-animating .t-page {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	transition:
+		opacity var(--page-fade-dur) var(--page-fade-ease),
+		transform var(--page-slide-dur) var(--page-slide-ease),
+		filter var(--page-slide-dur) var(--page-slide-ease);
+	will-change: opacity, transform, filter;
+}
+
+.t-page-slide.is-animating[data-direction="forward"] .t-page.is-enter {
+	--t-page-from-x: var(--page-slide-distance);
+	--t-page-exit-x: calc(var(--page-slide-distance) * -1);
+}
+
+.t-page-slide.is-animating[data-direction="back"] .t-page.is-enter {
+	--t-page-from-x: calc(var(--page-slide-distance) * -1);
+	--t-page-exit-x: var(--page-slide-distance);
+}
+
+.t-page-slide.is-animating .t-page.is-exit {
+	opacity: 1;
+	transform: translateX(0);
+	filter: blur(0);
+}
+
+.t-page-slide.is-animating .t-page.is-enter {
+	opacity: 0;
+	transform: translateX(var(--t-page-from-x, 0px));
+	filter: blur(var(--page-blur));
+}
+
+.t-page-slide.is-animating.is-active .t-page.is-exit {
+	opacity: 0;
+	transform: translateX(
+		calc(var(--t-page-exit-x, 0px) * var(--page-exit-enabled))
+	);
+	filter: blur(calc(var(--page-blur) * var(--page-exit-enabled)));
+}
+
+.t-page-slide.is-animating.is-active .t-page.is-enter {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateX(0);
+	filter: blur(0);
+	transition-delay: var(--page-stagger);
+}
+
+.t-page-slide:not(.is-animating) .t-page.is-enter {
+	position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.t-page-slide.is-animating .t-page {
+		transition: none !important;
+		filter: none !important;
+		transform: none !important;
+	}
+
+	.t-page-slide.is-animating .t-page.is-enter,
+	.t-page-slide.is-animating.is-active .t-page.is-enter {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.t-page-slide.is-animating .t-page.is-exit,
+	.t-page-slide.is-animating.is-active .t-page.is-exit {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * transitions.dev — modal open / close (`WhatsNewDialog`, future centered dialogs).
+ * --------------------------------------------------------------------------- */
+:root {
+	--modal-open-dur: 250ms;
+	--modal-close-dur: 150ms;
+	--modal-scale: 0.96;
+	--modal-scale-close: 0.96;
+	--modal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.t-modal {
+	transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.t-modal {
+		transition: none !important;
 	}
 }

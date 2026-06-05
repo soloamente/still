@@ -1,0 +1,60 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_features_feed_format_time_ago_test_ts",
+			"label": "format-time-ago.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\format-time-ago.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_format_time_ago_test_now",
+			"label": "NOW",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\format-time-ago.test.ts",
+			"source_location": "L4"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_format_time_ago_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\format-time-ago.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_format_time_ago_test_ts",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_format_time_ago_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\format-time-ago.test.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_format_time_ago_test_ts",
+			"target": "feed_format_time_ago_formattimeago",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\format-time-ago.test.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_format_time_ago_test_ts",
+			"target": "feed_format_time_ago_test_now",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\format-time-ago.test.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

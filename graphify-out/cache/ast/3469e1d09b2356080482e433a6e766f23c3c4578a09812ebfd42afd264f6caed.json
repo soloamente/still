@@ -1,0 +1,47 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_03_community_rating_from_diary_logs_md",
+			"label": "2026-06-03-community-rating-from-diary-logs.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-community-rating-from-diary-logs.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_03_community_rating_from_diary_logs_community_patron_score_from_diary_logs_implementation_plan",
+			"label": "Community Patron Score From Diary Logs \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-community-rating-from-diary-logs.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_03_community_rating_from_diary_logs_status",
+			"label": "Status",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-community-rating-from-diary-logs.md",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_03_community_rating_from_diary_logs_md",
+			"target": "plans_2026_06_03_community_rating_from_diary_logs_community_patron_score_from_diary_logs_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-community-rating-from-diary-logs.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_03_community_rating_from_diary_logs_community_patron_score_from_diary_logs_implementation_plan",
+			"target": "plans_2026_06_03_community_rating_from_diary_logs_status",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-03-community-rating-from-diary-logs.md",
+			"source_location": "L13",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

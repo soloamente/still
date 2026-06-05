@@ -172,7 +172,7 @@ export function PopularMoviesInfinite({
 	showTitle = true,
 	catalogLabel: catalogLabelProp,
 	posterHoverEffect = "lift",
-	monochromePeersOnHover = true,
+	monochromePeersOnHover = false,
 	staggerPosterEntrance = false,
 	staticCatalogue = false,
 	catalogueWaveKeyOverride,

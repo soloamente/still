@@ -1,0 +1,29 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_app_json",
+			"label": "app.json",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\app.json",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_app_expo",
+			"label": "expo",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\app.json",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_app_json",
+			"target": "still_app_expo",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\app.json",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	]
+}

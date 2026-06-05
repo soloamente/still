@@ -1,0 +1,179 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"label": "activity-feed-screen.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "feed_activity_feed_screen_activityfeedscreen",
+			"label": "ActivityFeedScreen()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L17"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "heroui_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "c_users_utente_documents_still_apps_native_components_ui_feed_skeleton_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "ui_feed_skeleton_feedskeleton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "feed_activity_feed_types_activityitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "feed_activity_feed_types_activityrowkey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_card_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "cards_activity_card_activitycard",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_use_activity_feed_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "feed_use_activity_feed_useactivityfeed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"target": "feed_activity_feed_screen_activityfeedscreen",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "feed_activity_feed_screen_activityfeedscreen",
+			"callee": "useThemeColor",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "feed_activity_feed_screen_activityfeedscreen",
+			"callee": "useActivityFeed",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "feed_activity_feed_screen_activityfeedscreen",
+			"callee": "flat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "feed_activity_feed_screen_activityfeedscreen",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\activity-feed-screen.tsx",
+			"source_location": "L32"
+		}
+	]
+}

@@ -1,0 +1,197 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_profile_about_collapsible_tsx",
+			"label": "profile-about-collapsible.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_profile_about_collapsible_profileaboutcollapsibleprops",
+			"label": "ProfileAboutCollapsibleProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L5"
+		},
+		{
+			"id": "profile_profile_about_collapsible_formatwebsitelabel",
+			"label": "formatWebsiteLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"label": "ProfileAboutCollapsible()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L22"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_about_collapsible_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_about_collapsible_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_about_collapsible_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_about_collapsible_tsx",
+			"target": "profile_profile_activity_signature_profileactivitysignature",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_about_collapsible_tsx",
+			"target": "profile_profile_about_collapsible_profileaboutcollapsibleprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_about_collapsible_tsx",
+			"target": "profile_profile_about_collapsible_formatwebsitelabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_about_collapsible_tsx",
+			"target": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"target": "profile_profile_about_collapsible_formatwebsitelabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L78",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_profile_about_collapsible_formatwebsitelabel",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_formatwebsitelabel",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "profile_profile_about_collapsible_profileaboutcollapsible",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx",
+			"source_location": "L86"
+		}
+	]
+}

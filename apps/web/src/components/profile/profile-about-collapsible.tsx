@@ -83,13 +83,11 @@ export function ProfileAboutCollapsible({
 				</div>
 			) : null}
 
-			<div
-				className={cn("rounded-xl bg-background p-3", hasCopy ? "mt-4" : null)}
-			>
-				<p className="mb-2 text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
+			<div className={cn(hasCopy ? "mt-4" : "mt-0")}>
+				<p className="mb-2 text-center text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
 					Diary rhythm
 				</p>
-				<ProfileActivitySignature handle={handle} />
+				<ProfileActivitySignature handle={handle} variant="embedded" />
 			</div>
 		</section>
 	);

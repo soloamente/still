@@ -64,6 +64,18 @@ describe("creator-recognition", () => {
 		).toBe("5 public lists · 42 list likes");
 	});
 
+	test("headline omits description counts when there are no list likes", () => {
+		expect(
+			buildCuratorHeadline({
+				publicListsCount: 3,
+				describedPublicListsCount: 2,
+				totalListLikes: 0,
+				publicReviewsCount: 0,
+				totalReviewLikes: 0,
+			}),
+		).toBe("3 public lists");
+	});
+
 	test("curator qualification via list likes", () => {
 		expect(
 			qualifiesAsCurator({

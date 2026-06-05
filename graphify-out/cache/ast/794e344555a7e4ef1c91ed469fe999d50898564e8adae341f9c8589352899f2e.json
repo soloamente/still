@@ -1,0 +1,383 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"label": "home-catalogue-search-infinite.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_catalogue_search_infinite_search_grid_poster_skeleton_keys",
+			"label": "SEARCH_GRID_POSTER_SKELETON_KEYS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L29"
+		},
+		{
+			"id": "home_home_catalogue_search_infinite_homecataloguesearchgridskeleton",
+			"label": "HomeCatalogueSearchGridSkeleton()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L45"
+		},
+		{
+			"id": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"label": "HomeCatalogueSearchInfinite()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L66"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "components_skeleton_shimmer_shimmerbone",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_popular_movies_infinite_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "movie_popular_movies_infinite_popularmovieseed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "movie_popular_movies_infinite_popularmoviesinfinite",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_load_page_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_catalogue_search_load_page_buildcataloguesearchplanfromcommit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_catalogue_search_load_page_committedcataloguesearchneedstagmetadata",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_catalogue_search_load_page_loadcataloguesearchpage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_catalogue_search_param_homecataloguesearchlobbysort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_catalogue_search_param_parsehomecataloguesearchparam",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_catalogue_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_grid_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_frame_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_poster_link_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_use_catalog_tmdb_language_usecatalogtmdblanguage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_search_dialog_genres_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_use_search_dialog_genres_usesearchdialoggenres",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_search_dialog_studios_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "lib_use_search_dialog_studios_usesearchdialogstudios",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "home_home_catalogue_search_infinite_search_grid_poster_skeleton_keys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "home_home_catalogue_search_infinite_homecataloguesearchgridskeleton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalogue_search_infinite_tsx",
+			"target": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L66",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchgridskeleton",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "committedCatalogueSearchNeedsTagMetadata",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "useCatalogTmdbLanguage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "useSearchDialogStudios",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "useSearchDialogGenres",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "formatCommittedSearchSummary",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "home_home_catalogue_search_infinite_homecataloguesearchinfinite",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx",
+			"source_location": "L127"
+		}
+	]
+}

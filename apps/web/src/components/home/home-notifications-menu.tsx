@@ -7,6 +7,11 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@still/ui/components/dropdown-menu";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@still/ui/components/tooltip";
 import IconBell from "@still/ui/icons/bell";
 import IconBellFilled from "@still/ui/icons/bell-filled";
 import { cn } from "@still/ui/lib/utils";
@@ -28,6 +33,8 @@ const INBOX_FETCH_LIMIT = 80;
 
 /** Matches {@link HOME_STICKY_HEADER_ICON_CLASS} in `home-sticky-chrome.tsx`. */
 const HEADER_ICON_CLASS = "size-5 shrink-0";
+/** Matches {@link HOME_STICKY_SHORTCUT_TOOLTIP_CLASS} in `home-sticky-chrome.tsx`. */
+const HEADER_SHORTCUT_TOOLTIP_CLASS = "px-2 py-2 text-xs leading-none";
 
 /** How often the bell refetches while the tab is foregrounded. */
 const NOTIFICATIONS_POLL_INTERVAL_MS = 30_000;
@@ -193,51 +200,54 @@ export function HomeNotificationsMenu({
 			actionsRef={menuActionsRef}
 			onOpenChange={handleMenuOpenChange}
 		>
-			<DropdownMenuTrigger
-				render={
-					<Button
-						type="button"
-						variant="ghost"
-						size="icon"
-						aria-label={hasUnread ? "Notifications, unread" : "Notifications"}
-						aria-expanded={menuOpen}
-						className={cn(
-							"group size-11 shrink-0 rounded-full [@media(hover:hover)]:hover:bg-muted/35",
-							/* Base UI keeps `data-popup-open` through the exit animation — not React `open`. */
-							"data-popup-open:bg-card",
-						)}
-					>
-						<span className="relative z-10 text-foreground">
-							{hasUnread ? (
-								<IconBellFilled aria-hidden className={HEADER_ICON_CLASS} />
-							) : (
-								<>
-									<IconBell
-										aria-hidden
-										className={cn(
-											HEADER_ICON_CLASS,
-											"group-data-popup-open:hidden",
+			{/* Same instant tooltip shell as watchlist / lists / diary in `HomeStickyChrome`. */}
+			<Tooltip>
+				<TooltipTrigger
+					render={
+						<DropdownMenuTrigger
+							render={
+								<Button
+									type="button"
+									variant="ghost"
+									size="icon"
+									aria-label={
+										hasUnread ? "Notifications, unread" : "Notifications"
+									}
+									aria-expanded={menuOpen}
+									className={cn(
+										"group size-11 shrink-0 rounded-full [@media(hover:hover)]:hover:bg-muted/35",
+										/* Base UI keeps `data-popup-open` through the exit animation — not React `open`. */
+										"data-popup-open:bg-card",
+									)}
+								>
+									<span className="relative z-10 text-foreground">
+										{hasUnread ? (
+											<IconBellFilled
+												aria-hidden
+												className={HEADER_ICON_CLASS}
+											/>
+										) : (
+											<IconBell aria-hidden className={HEADER_ICON_CLASS} />
 										)}
-									/>
-									<IconBellFilled
-										aria-hidden
-										className={cn(
-											HEADER_ICON_CLASS,
-											"hidden group-data-popup-open:block",
-										)}
-									/>
-								</>
-							)}
-							{hasUnread ? (
-								<span
-									className="absolute top-0 right-0 size-2 rounded-full bg-desert-orange ring-2 ring-background"
-									aria-hidden
-								/>
-							) : null}
-						</span>
-					</Button>
-				}
-			/>
+										{hasUnread ? (
+											<span
+												className="absolute top-0 right-0 size-2 rounded-full bg-desert-orange ring-2 ring-background"
+												aria-hidden
+											/>
+										) : null}
+									</span>
+								</Button>
+							}
+						/>
+					}
+				/>
+				<TooltipContent
+					sideOffset={2}
+					className={HEADER_SHORTCUT_TOOLTIP_CLASS}
+				>
+					Notifications
+				</TooltipContent>
+			</Tooltip>
 			<DropdownMenuContent
 				align="end"
 				sideOffset={8}

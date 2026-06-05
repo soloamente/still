@@ -1,0 +1,75 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_community_page_args_ts",
+			"label": "community-page-args.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_community_page_args_parsecommunitypage",
+			"label": "parseCommunityPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_community_page_args_communityoffset",
+			"label": "communityOffset()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_page_args_ts",
+			"target": "lib_community_page_args_parsecommunitypage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_community_page_args_ts",
+			"target": "lib_community_page_args_communityoffset",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_community_page_args_parsecommunitypage",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L6"
+		},
+		{
+			"caller_nid": "lib_community_page_args_parsecommunitypage",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_community_page_args_parsecommunitypage",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_community_page_args_communityoffset",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\community-page-args.ts",
+			"source_location": "L12"
+		}
+	]
+}

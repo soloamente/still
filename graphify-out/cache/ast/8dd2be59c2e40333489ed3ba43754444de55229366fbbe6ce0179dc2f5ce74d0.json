@@ -1,0 +1,239 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_03_community_lazy_loading_design_md",
+			"label": "2026-06-03-community-lazy-loading-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_community_lazy_loading_active_feed_only_infinite_scroll",
+			"label": "Community lazy-loading (active-feed-only + infinite scroll)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_approach",
+			"label": "Approach",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_design",
+			"label": "Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_1_shared_client_hook_useinfinitepager",
+			"label": "1. Shared client hook \u2014 `useInfinitePager`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_codeblock_1",
+			"label": "code:ts (export type LoadMoreResult<T, C> =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_2_server_additive_pagination",
+			"label": "2. Server \u2014 additive pagination",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_3_rsc_active_feed_only_seed",
+			"label": "3. RSC \u2014 active-feed-only seed",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_4_client_per_feed_infinite_components",
+			"label": "4. Client \u2014 per-feed infinite components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_5_params_context_simplification",
+			"label": "5. Params-context simplification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_6_testing",
+			"label": "6. Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L153"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_decomposition_for_the_plan",
+			"label": "Decomposition (for the plan)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L162"
+		},
+		{
+			"id": "specs_2026_06_03_community_lazy_loading_design_files_touched_anticipated",
+			"label": "Files touched (anticipated)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L172"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_03_community_lazy_loading_design_md",
+			"target": "specs_2026_06_03_community_lazy_loading_design_community_lazy_loading_active_feed_only_infinite_scroll",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_community_lazy_loading_active_feed_only_infinite_scroll",
+			"target": "specs_2026_06_03_community_lazy_loading_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_community_lazy_loading_active_feed_only_infinite_scroll",
+			"target": "specs_2026_06_03_community_lazy_loading_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_community_lazy_loading_active_feed_only_infinite_scroll",
+			"target": "specs_2026_06_03_community_lazy_loading_design_approach",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_community_lazy_loading_active_feed_only_infinite_scroll",
+			"target": "specs_2026_06_03_community_lazy_loading_design_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_design",
+			"target": "specs_2026_06_03_community_lazy_loading_design_1_shared_client_hook_useinfinitepager",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_1_shared_client_hook_useinfinitepager",
+			"target": "specs_2026_06_03_community_lazy_loading_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_design",
+			"target": "specs_2026_06_03_community_lazy_loading_design_2_server_additive_pagination",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_design",
+			"target": "specs_2026_06_03_community_lazy_loading_design_3_rsc_active_feed_only_seed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_design",
+			"target": "specs_2026_06_03_community_lazy_loading_design_4_client_per_feed_infinite_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_design",
+			"target": "specs_2026_06_03_community_lazy_loading_design_5_params_context_simplification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_design",
+			"target": "specs_2026_06_03_community_lazy_loading_design_6_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_community_lazy_loading_active_feed_only_infinite_scroll",
+			"target": "specs_2026_06_03_community_lazy_loading_design_decomposition_for_the_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_03_community_lazy_loading_design_community_lazy_loading_active_feed_only_infinite_scroll",
+			"target": "specs_2026_06_03_community_lazy_loading_design_files_touched_anticipated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-03-community-lazy-loading-design.md",
+			"source_location": "L172",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,60 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_app_tabs_index_tsx",
+			"label": "index.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\index.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "tabs_index_homescreen",
+			"label": "HomeScreen()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\index.tsx",
+			"source_location": "L5"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_tabs_index_tsx",
+			"target": "react_native_safe_area_context",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\index.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_tabs_index_tsx",
+			"target": "c_users_utente_documents_still_apps_native_features_feed_activity_feed_screen_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\index.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_tabs_index_tsx",
+			"target": "feed_activity_feed_screen_activityfeedscreen",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\index.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_app_tabs_index_tsx",
+			"target": "tabs_index_homescreen",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\app\\(tabs)\\index.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

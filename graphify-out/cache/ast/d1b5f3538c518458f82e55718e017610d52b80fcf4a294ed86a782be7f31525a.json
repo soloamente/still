@@ -1,0 +1,82 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_divergence_card_tsx",
+			"label": "activity-divergence-card.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "cards_activity_divergence_card_divergencepayload",
+			"label": "DivergencePayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L3"
+		},
+		{
+			"id": "cards_activity_divergence_card_isdivergence",
+			"label": "isDivergence()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L12"
+		},
+		{
+			"id": "cards_activity_divergence_card_activitydivergencecard",
+			"label": "ActivityDivergenceCard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L20"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_divergence_card_tsx",
+			"target": "react_native",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_divergence_card_tsx",
+			"target": "cards_activity_divergence_card_divergencepayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_divergence_card_tsx",
+			"target": "cards_activity_divergence_card_isdivergence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_native_features_feed_cards_activity_divergence_card_tsx",
+			"target": "cards_activity_divergence_card_activitydivergencecard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "cards_activity_divergence_card_activitydivergencecard",
+			"target": "cards_activity_divergence_card_isdivergence",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\native\\features\\feed\\cards\\activity-divergence-card.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,180 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"label": "me-account-route-transition.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_me_account_route_transition_slidelayer",
+			"label": "SlideLayer",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L17"
+		},
+		{
+			"id": "profile_me_account_route_transition_meaccountroutetransition",
+			"label": "MeAccountRouteTransition()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L24"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_me_account_nav_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "lib_me_account_nav_meaccountnavindex",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "lib_me_account_nav_resolvemeaccountnavpath",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "profile_me_account_route_transition_slidelayer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_route_transition_tsx",
+			"target": "profile_me_account_route_transition_meaccountroutetransition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "resolveMeAccountNavPath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "profile_me_account_route_transition_meaccountroutetransition",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-route-transition.tsx",
+			"source_location": "L97"
+		}
+	]
+}

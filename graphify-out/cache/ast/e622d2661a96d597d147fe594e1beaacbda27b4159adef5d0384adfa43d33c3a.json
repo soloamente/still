@@ -1,0 +1,346 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"label": "profile-preferences.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_preferences_profile_pref_catalog_monochrome_peers_on_hover",
+			"label": "PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_profile_preferences_profile_pref_catalog_tmdb_language",
+			"label": "PROFILE_PREF_CATALOG_TMDB_LANGUAGE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_profile_preferences_profile_pref_catalog_tmdb_watch_region",
+			"label": "PROFILE_PREF_CATALOG_TMDB_WATCH_REGION",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L29"
+		},
+		{
+			"id": "lib_profile_preferences_profile_pref_app_theme",
+			"label": "PROFILE_PREF_APP_THEME",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "lib_profile_preferences_catalogtmdbwatchregionpref",
+			"label": "CatalogTmdbWatchRegionPref",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "lib_profile_preferences_readcatalogtmdbwatchregionpref",
+			"label": "readCatalogTmdbWatchRegionPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_profile_preferences_catalogwatchregiontoapiquery",
+			"label": "catalogWatchRegionToApiQuery()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L59"
+		},
+		{
+			"id": "lib_profile_preferences_readcatalogtmdblanguagepref",
+			"label": "readCatalogTmdbLanguagePref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L73"
+		},
+		{
+			"id": "lib_profile_preferences_resolvecatalogtmdblanguage",
+			"label": "resolveCatalogTmdbLanguage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L87"
+		},
+		{
+			"id": "lib_profile_preferences_readcatalogmonochromepeersonhoverpref",
+			"label": "readCatalogMonochromePeersOnHoverPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L99"
+		},
+		{
+			"id": "lib_profile_preferences_hasexplicitappthemepref",
+			"label": "hasExplicitAppThemePref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L108"
+		},
+		{
+			"id": "lib_profile_preferences_readappthemepref",
+			"label": "readAppThemePref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L115"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_app_themes_appthemeclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_app_themes_default_app_theme_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_app_themes_resolveapptheme",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_catalog_tmdb_language_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_catalog_tmdb_language_catalogwatchregionisototmdblanguage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_catalog_tmdb_language_iscatalogtmdblanguagecode",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_profile_pref_catalog_monochrome_peers_on_hover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_profile_pref_catalog_tmdb_language",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_profile_pref_catalog_tmdb_watch_region",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_profile_pref_app_theme",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_catalogtmdbwatchregionpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_readcatalogtmdbwatchregionpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_catalogwatchregiontoapiquery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_readcatalogtmdblanguagepref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_resolvecatalogtmdblanguage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_readcatalogmonochromepeersonhoverpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_hasexplicitappthemepref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"target": "lib_profile_preferences_readappthemepref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_preferences_resolvecatalogtmdblanguage",
+			"target": "lib_profile_preferences_readcatalogtmdblanguagepref",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_preferences_resolvecatalogtmdblanguage",
+			"target": "lib_profile_preferences_readcatalogtmdbwatchregionpref",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L92",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_preferences_readcatalogtmdbwatchregionpref",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_profile_preferences_readcatalogtmdbwatchregionpref",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_profile_preferences_readcatalogtmdbwatchregionpref",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_profile_preferences_readcatalogtmdblanguagepref",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L80"
+		},
+		{
+			"caller_nid": "lib_profile_preferences_readcatalogtmdblanguagepref",
+			"callee": "isCatalogTmdbLanguageCode",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "lib_profile_preferences_resolvecatalogtmdblanguage",
+			"callee": "catalogWatchRegionIsoToTmdbLanguage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "lib_profile_preferences_readappthemepref",
+			"callee": "resolveAppTheme",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts",
+			"source_location": "L119"
+		}
+	]
+}

@@ -706,6 +706,24 @@ existing cinematic identity rather than replacing it.
 
 **Fixed:** `HomeCatalogueSearchInfinite` page-1 fetch now catches aborted `fetch` rejections; added `isFetchAbortError` + fetch generation guard.
 
+### 2026-06-05 — `/lists` tooltip hover delay + bell _(Executor)_
+
+**Fixed:** `HomeStickyChrome` header icon tooltips now open instantly by setting `TooltipProvider` `delay={0}` (was `delay={220}`), so icon-only buttons don't feel “laggy” on hover.
+
+**Added:** Notification bell uses the same `Tooltip` / `TooltipTrigger` / `TooltipContent` shell as the other header shortcuts (inside `HomeNotificationsMenu`, under `TooltipProvider delay={0}` in `HomeStickyChrome`).
+
+**Checks run:** `apps/web` `bun run build` (compiled successfully; TypeScript run).
+
+**Human / Planner:** On desktop, open `/lists`, hover the header icons (Watchlist / Lists / Diary) and the notification bell: tooltip should appear immediately on hover.
+
+### 2026-06-05 — Pro status missing on lobby chrome _(Executor)_
+
+**Fixed:** `/watchlist`, `/lists`, and `/diary` now pass `isPro: Boolean(profileData.isPro)` into `HomeStickyChrome` `stickyUser`, matching `/home`. Without it, the account dropdown hid Pro themes and the Pro badge on those routes.
+
+**Checks run:** ReadLints clean on the three page files; `graphify update .`.
+
+**Human / Planner:** As a Pro user, open account menu on `/home` then `/watchlist`, `/lists`, `/diary` — Pro badge + Pro theme chips should match on every route. Reply **`ok`** when signed off.
+
 ### 2026-06-03 — Review rating tenths + detail sheet edit/delete _(Executor)_
 
 **Shipped (inline — subagent quota blocked):** Spec `docs/superpowers/specs/2026-06-03-review-rating-edit-delete-design.md`, plan `docs/superpowers/plans/2026-06-03-review-rating-edit-delete.md`. Migration **`0017_review_rating_tenths_backfill`**. Server: tenths on `POST/PATCH /api/reviews`, copy log rating verbatim, sync on log PATCH, display-scale community avg, DELETE clears pins/reactions/comments. Web: publish sends tenths (`87` not `9`), `formatStoredLogRatingDisplay` in reader, composer edit mode (PATCH), detail sheet **Delete** / **Edit** for owners.
@@ -2112,3 +2130,5 @@ Reply **`ok`** when signed off, or report counts / missing titles.
 **Executor (2026-06-01, remove watched):** Quick Log **edit mode** — **Remove from watched** (destructive link) → confirm dialog → `DELETE /api/logs/:id`; refreshes diary, profile, movie/TV detail. **QA:** Edit log from diary radial or movie detail pencil → Remove → confirm.
 
 **Executor (2026-06-01, detail community):** Movie + TV detail **Community** — `GET /api/movies|tv/:id/following-ratings` (followed patrons’ latest diary score/favorite); `lists` responses include `ownerHandle`; compact **From people you follow** avatar row (option A); list cards show **by @handle** (title → list, handle → profile). TV streams via `TvDetailCommunityAsync` + Suspense. Tests: `movie-following-ratings.test.ts` pass. **QA:** signed-in movie/TV detail with followed patrons who logged the title; list bylines link correctly.
+
+**Executor (2026-06-05, profile tab chip):** Fixed tab pill re-animating after catalogue RSC load (Movies -> TV / Lists / Favorites / Reviews). Root cause: inline `function Chip` inside `ProfileTabToolbar` remounted on every parent re-render, replaying `layoutId` motion. Fix: module-level `ProfileTabChip` + `LayoutGroup` wrapper. **QA:** `/profile/[handle]` — tap **TV Shows**, **Lists**, etc.; pill should slide once on tap, not snap/reposition when grid loads.

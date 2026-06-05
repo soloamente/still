@@ -1,0 +1,201 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"label": "patron-watch-ledger-poster-labels.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_patron_watch_ledger_poster_labels_ordinalwatchlabel",
+			"label": "ordinalWatchLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"label": "patronWatchLedgerPosterLabels()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"target": "lib_format_formatdate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"target": "lib_home_leaderboard_types_leaderboardlogitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"target": "lib_log_rating_formatstoredlogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"target": "lib_patron_watch_ledger_poster_labels_ordinalwatchlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_watch_ledger_poster_labels_ts",
+			"target": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"target": "lib_patron_watch_ledger_poster_labels_ordinalwatchlabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "formatStoredLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "formatDate",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_patron_watch_ledger_poster_labels_patronwatchledgerposterlabels",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-poster-labels.ts",
+			"source_location": "L56"
+		}
+	]
+}

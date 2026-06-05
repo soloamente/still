@@ -43,6 +43,7 @@ export default async function ListsPage({
 	const profileData = profileRes.data as {
 		handle: string;
 		displayName: string;
+		isPro?: boolean;
 		preferences?: Record<string, unknown> | null;
 	} | null;
 
@@ -57,6 +58,7 @@ export default async function ListsPage({
 					image: session.user.image ?? null,
 					handle: profileData.handle,
 					email: session.user.email ?? null,
+					isPro: Boolean(profileData.isPro),
 				}
 			: null;
 
