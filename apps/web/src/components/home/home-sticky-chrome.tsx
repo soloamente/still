@@ -22,12 +22,11 @@ import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-
-import { NavUserAvatar } from "@/components/app/app-nav";
 import {
 	AppUserAccountMenuBody,
 	accountMenuContentClassName,
 } from "@/components/app/app-user-account-menu";
+import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useHomeBrowseSurfaceOptional } from "@/components/home/home-browse-surface-context";
 import { HomeNotificationsMenu } from "@/components/home/home-notifications-menu";
 import { HomeStickySearch } from "@/components/home/home-sticky-search";
