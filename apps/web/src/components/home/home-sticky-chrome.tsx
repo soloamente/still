@@ -249,7 +249,7 @@ export function HomeStickyChrome({
 				</div>
 
 				{/* Right — shortcuts (watchlist, lists, diary share the browse-rail `layoutId` pill). */}
-				<div className="flex min-w-0 shrink-0 justify-center sm:justify-end">
+				<div className="hidden min-w-0 shrink-0 justify-center sm:justify-end md:flex">
 					<TooltipProvider delay={220} closeDelay={80}>
 						<div className="flex shrink-0 gap-1">
 							<Tooltip>
