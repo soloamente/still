@@ -680,6 +680,13 @@ html.theme-midnight {
 	#main-content {
 		padding-bottom: 10px;
 	}
+	/* Mobile bottom bar (MobileTabBar) is fixed; reserve space so it never
+	   overlaps content / empty states. Desktop (>= md, 768px) keeps 10px. */
+	@media (max-width: 767.98px) {
+		#main-content {
+			padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+		}
+	}
 	/* Display headings: reduce lone-word wraps on large titles (editorial polish). */
 	h1,
 	h2,
