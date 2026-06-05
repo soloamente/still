@@ -2,6 +2,7 @@ import { type CSSProperties, type ReactNode, Suspense } from "react";
 import { AppScrollToTop } from "@/components/app/app-scroll-to-top";
 import { DetailReturnCapture } from "@/components/app/detail-return-capture";
 import { GoToDialogRoot } from "@/components/app/go-to-dialog-root";
+import { MobileTabBar } from "@/components/app/mobile-tab-bar";
 import { BadgeWatcher } from "@/components/gamification/badge-watcher";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
 import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledger-drawer";
@@ -13,18 +14,19 @@ import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
 /**
  * Track B — authenticated app chrome (single shell for `(app)` routes).
  *
- * **Navigation contract (MVP):** floating **bottom** bar (`AppNav`) — icon + short
- * label, `min-h-11` tap targets; wordmark from `sm`; **⌘K** catalog search, **⌘⇧K** go-to launcher;
- * overflow menu for Lists / Achievements; **notifications bell** in the bar on **all** breakpoints (Track B nav parity, 2026-05-14). There is **no** left rail → drawer
- * breakpoint: the bar stays bottom-anchored at all widths.
+ * **Navigation:** top chrome is page-owned (`HomeStickyChrome` on lobby pages,
+ * per-page top bars elsewhere). On phones (`< md`) a global `MobileTabBar`
+ * (Home · Search · ＋Log · Inbox · You) is fixed to the bottom; it is hidden at
+ * `md+` where the top chrome is the full navigation. The center ＋Log opens the
+ * quick-log sheet; Search opens the catalog dialog; You opens a hub sheet.
  *
- * **Landmarks:** this tree exposes one `navigation` (inside `AppNav`) and one
- * `main` for primary content. Grain / projector boot are `aria-hidden` where
- * applicable.
+ * **Landmarks:** `MobileTabBar` exposes a `navigation`; each route's content
+ * owns one `main`. Grain / projector boot are `aria-hidden` where applicable.
  *
  * **Gutters:** horizontal page padding lives only on the inner wrapper below
  * `CinemaSceneCut`; routes that need full-bleed heroes manage their own edge
- * breakout inside `children`.
+ * breakout inside `children`. Mobile bottom inset for the bar lives in
+ * `packages/ui/src/styles/globals.css` (`#main-content`).
  */
 export type AppShellUser = {
 	id: string;
@@ -78,6 +80,16 @@ export function AppShell({
 			<PersonFilmographyDrawerRoot />
 			<PatronWatchLedgerDrawerRoot />
 			<BadgeWatcher />
+			<MobileTabBar
+				user={{
+					id: user.id,
+					name: user.name,
+					image: user.image,
+					handle: user.handle,
+					email: user.email,
+					isPro: user.isPro,
+				}}
+			/>
 		</div>
 	);
 }

@@ -22,12 +22,11 @@ import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-
-import { NavUserAvatar } from "@/components/app/app-nav";
 import {
 	AppUserAccountMenuBody,
 	accountMenuContentClassName,
 } from "@/components/app/app-user-account-menu";
+import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useHomeBrowseSurfaceOptional } from "@/components/home/home-browse-surface-context";
 import { HomeNotificationsMenu } from "@/components/home/home-notifications-menu";
 import { HomeStickySearch } from "@/components/home/home-sticky-search";
@@ -250,7 +249,7 @@ export function HomeStickyChrome({
 				</div>
 
 				{/* Right — shortcuts (watchlist, lists, diary share the browse-rail `layoutId` pill). */}
-				<div className="flex min-w-0 shrink-0 justify-center sm:justify-end">
+				<div className="hidden min-w-0 shrink-0 justify-center sm:justify-end md:flex">
 					<TooltipProvider delay={220} closeDelay={80}>
 						<div className="flex shrink-0 gap-1">
 							<Tooltip>
