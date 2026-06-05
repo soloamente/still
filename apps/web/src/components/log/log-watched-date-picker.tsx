@@ -12,6 +12,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	buildWatchedDateMonthGrid,
+	defaultBirthDatePickerAnchorYmd,
 	formatMonthLabel,
 	formatMonthShortLabel,
 	formatTodayYmd,
@@ -45,6 +46,14 @@ interface LogWatchedDatePickerProps {
 	id: string;
 	value: string;
 	onChange: (ymd: string) => void;
+	/** When true, an empty value shows {@link emptyPlaceholder} instead of defaulting to today. */
+	allowEmpty?: boolean;
+	emptyPlaceholder?: string;
+	/** Hide the quick “Today” shortcut (birth-date flows). */
+	hideTodayShortcut?: boolean;
+	popoverSide?: "top" | "bottom" | "left" | "right";
+	/** Raise calendar popover above portaled modals (`APP_MODAL_POPOVER_POSITIONER_CLASS`). */
+	popoverPositionerClassName?: string;
 }
 
 /**
@@ -54,13 +63,20 @@ export function LogWatchedDatePicker({
 	id,
 	value,
 	onChange,
+	allowEmpty = false,
+	emptyPlaceholder = "Pick a date",
+	hideTodayShortcut = false,
+	popoverSide = "top",
+	popoverPositionerClassName,
 }: LogWatchedDatePickerProps) {
 	const monthGridId = useId();
 	const selectedYearRef = useRef<HTMLButtonElement | null>(null);
 	const [open, setOpen] = useState(false);
 	const [panelView, setPanelView] = useState<CalendarPanelView>("days");
 	const maxYmd = formatTodayYmd();
-	const selected = isValidYmd(value) ? value : maxYmd;
+	const hasValue = isValidYmd(value);
+	const selected = hasValue ? value : maxYmd;
+	const gridSelectedYmd = hasValue ? value : "";
 	const selectedDate = ymdToLocalDate(selected);
 	const maxDate = ymdToLocalDate(maxYmd);
 
@@ -72,19 +88,26 @@ export function LogWatchedDatePicker({
 			setPanelView("days");
 			return;
 		}
+		if (allowEmpty && !hasValue) {
+			const anchor = ymdToLocalDate(defaultBirthDatePickerAnchorYmd(maxYmd));
+			setViewYear(anchor.getFullYear());
+			setViewMonth(anchor.getMonth());
+			return;
+		}
 		const d = ymdToLocalDate(selected);
 		setViewYear(d.getFullYear());
 		setViewMonth(d.getMonth());
-	}, [open, selected]);
+	}, [allowEmpty, hasValue, open, selected, maxYmd]);
 
 	useEffect(() => {
 		if (!open || panelView !== "years") return;
 		selectedYearRef.current?.scrollIntoView({ block: "center" });
-	}, [open, panelView, viewYear]);
+	}, [open, panelView]);
 
 	const cells = useMemo(
-		() => buildWatchedDateMonthGrid(viewYear, viewMonth, selected, maxYmd),
-		[viewYear, viewMonth, selected, maxYmd],
+		() =>
+			buildWatchedDateMonthGrid(viewYear, viewMonth, gridSelectedYmd, maxYmd),
+		[viewYear, viewMonth, gridSelectedYmd, maxYmd],
 	);
 
 	const weekdayLabels = getWeekdayLabels();
@@ -137,8 +160,13 @@ export function LogWatchedDatePicker({
 				aria-haspopup="dialog"
 				aria-expanded={open}
 			>
-				<span className="truncate tabular-nums">
-					{formatWatchedDateLabel(selected)}
+				<span
+					className={cn(
+						"truncate tabular-nums",
+						allowEmpty && !hasValue && "text-muted-foreground",
+					)}
+				>
+					{hasValue ? formatWatchedDateLabel(value) : emptyPlaceholder}
 				</span>
 				<Calendar
 					className="size-4 shrink-0 text-muted-foreground"
@@ -146,9 +174,11 @@ export function LogWatchedDatePicker({
 				/>
 			</PopoverTrigger>
 			<PopoverContent
-				side="top"
+				side={popoverSide}
 				align="center"
 				sideOffset={10}
+				positionMethod="fixed"
+				positionerClassName={popoverPositionerClassName}
 				initialFocus={false}
 				className="w-[min(100vw-2rem,20rem)] rounded-[1.75rem] p-4 shadow-mobbin-xl"
 			>
@@ -290,18 +320,20 @@ export function LogWatchedDatePicker({
 							))}
 						</section>
 
-						<div className="mt-3 flex justify-center">
-							<button
-								type="button"
-								className={cn(
-									"inline-flex min-h-9 items-center justify-center rounded-full px-4 font-medium text-muted-foreground text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
-									DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-								)}
-								onClick={selectToday}
-							>
-								Today
-							</button>
-						</div>
+						{hideTodayShortcut ? null : (
+							<div className="mt-3 flex justify-center">
+								<button
+									type="button"
+									className={cn(
+										"inline-flex min-h-9 items-center justify-center rounded-full px-4 font-medium text-muted-foreground text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
+										DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+									)}
+									onClick={selectToday}
+								>
+									Today
+								</button>
+							</div>
+						)}
 					</>
 				) : null}
 

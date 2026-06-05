@@ -26,6 +26,7 @@ import {
 	writeStoredSettingsDraft,
 } from "@/components/profile/me-account-session-context";
 import type { ContentVisibility } from "@/components/review/visibility-select";
+import { patronMeetsAdultAgeGate } from "@/lib/adult-content-age-gate";
 import { api } from "@/lib/api";
 import { type AppThemeClass, resolveAppThemeForPatron } from "@/lib/app-themes";
 import { authClient } from "@/lib/auth-client";
@@ -49,11 +50,15 @@ import {
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
 	PROFILE_PREF_CATALOG_TMDB_LANGUAGE,
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
+	PROFILE_PREF_SHOW_ADULT_CONTENT,
+	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
 	PROFILE_PREF_SMOOTH_SCROLL,
 	readAppThemePref,
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbLanguagePref,
 	readCatalogTmdbWatchRegionPref,
+	readShowAdultContentPref,
+	readShowBirthDateOnProfilePref,
 	readSmoothScrollPref,
 } from "@/lib/profile-preferences";
 import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
@@ -67,6 +72,9 @@ export type SettingsProfile = {
 	pronouns: string | null;
 	location: string | null;
 	website: string | null;
+	birthDate?: string | null;
+	bannerUrl?: string | null;
+	hasAvatar?: boolean;
 	isPrivate: boolean;
 	isPro?: boolean;
 	accentColor?: string | null;
@@ -97,6 +105,10 @@ type SettingsFormContextValue = {
 	setLocation: (value: string) => void;
 	website: string;
 	setWebsite: (value: string) => void;
+	birthDate: string;
+	setBirthDate: (value: string) => void;
+	showBirthDateOnProfile: boolean;
+	setShowBirthDateOnProfile: (value: boolean) => void;
 	isPrivate: boolean;
 	setIsPrivate: (value: boolean) => void;
 	theaterAudio: boolean;
@@ -109,6 +121,10 @@ type SettingsFormContextValue = {
 	setCatalogTmdbWatchRegion: (value: string) => void;
 	catalogTmdbLanguage: string;
 	setCatalogTmdbLanguage: (value: string) => void;
+	showAdultContent: boolean;
+	setShowAdultContent: (value: boolean) => void;
+	enableAdultContentWithBirthDate: (birthDateIso: string) => Promise<void>;
+	persistShowAdultContent: (enabled: boolean) => Promise<void>;
 	appTheme: AppThemeClass;
 	setAppTheme: (value: AppThemeClass) => void;
 	profileAccent: ProfileAccentId | null;
@@ -144,12 +160,17 @@ export function SettingsFormProvider({
 		pendingAvatar,
 		setPendingBanner,
 		setPendingAvatar,
+		revokeAllCustomizationPending,
 	} = useMeAccountSession();
 	const [displayName, setDisplayName] = useState(profile.displayName ?? "");
 	const [bio, setBio] = useState(profile.bio ?? "");
 	const [pronouns, setPronouns] = useState(profile.pronouns ?? "");
 	const [location, setLocation] = useState(profile.location ?? "");
 	const [website, setWebsite] = useState(profile.website ?? "");
+	const [birthDate, setBirthDate] = useState(profile.birthDate ?? "");
+	const [showBirthDateOnProfile, setShowBirthDateOnProfile] = useState(() =>
+		readShowBirthDateOnProfilePref(profile.preferences ?? null),
+	);
 	const [isPrivate, setIsPrivate] = useState(Boolean(profile.isPrivate));
 	const [theaterAudio, setTheaterAudio] = useState(
 		Boolean(profile.preferences?.theaterAudio === true),
@@ -168,6 +189,9 @@ export function SettingsFormProvider({
 	});
 	const [catalogTmdbLanguage, setCatalogTmdbLanguage] = useState(
 		() => readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
+	);
+	const [showAdultContent, setShowAdultContent] = useState(() =>
+		readShowAdultContentPref(profile.preferences ?? null),
 	);
 	const [appTheme, setAppTheme] = useState<AppThemeClass>(() =>
 		resolveAppThemeForPatron(
@@ -198,6 +222,12 @@ export function SettingsFormProvider({
 		setPronouns(stored.pronouns ?? profile.pronouns ?? "");
 		setLocation(stored.location ?? profile.location ?? "");
 		setWebsite(stored.website ?? profile.website ?? "");
+		setBirthDate(stored.birthDate ?? profile.birthDate ?? "");
+		setShowBirthDateOnProfile(
+			typeof stored.showBirthDateOnProfile === "boolean"
+				? stored.showBirthDateOnProfile
+				: readShowBirthDateOnProfilePref(profile.preferences ?? null),
+		);
 		setIsPrivate(
 			typeof stored.isPrivate === "boolean"
 				? stored.isPrivate
@@ -234,6 +264,9 @@ export function SettingsFormProvider({
 				? stored.catalogTmdbLanguage
 				: (readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? ""),
 		);
+		if (typeof stored.showAdultContent === "boolean") {
+			setShowAdultContent(stored.showAdultContent);
+		}
 		if (stored.appTheme) {
 			setAppTheme(readAppThemePref({ appTheme: stored.appTheme }));
 		}
@@ -271,17 +304,23 @@ export function SettingsFormProvider({
 			pronouns.trim() !== (profile.pronouns ?? "").trim() ||
 			location.trim() !== (profile.location ?? "").trim() ||
 			website.trim() !== (profile.website ?? "").trim() ||
+			birthDate !== (profile.birthDate ?? "") ||
+			showBirthDateOnProfile !==
+				readShowBirthDateOnProfilePref(profile.preferences ?? null) ||
 			isPrivate !== Boolean(profile.isPrivate) ||
 			theaterAudio !== Boolean(profile.preferences?.theaterAudio === true) ||
 			smoothScroll !== readSmoothScrollPref(profile.preferences ?? null) ||
 			catalogMonochromePeersOnHover !==
 				readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null) ||
+			showAdultContent !==
+				readShowAdultContentPref(profile.preferences ?? null) ||
 			catalogTmdbWatchRegion.trim() !== regionStr ||
 			catalogTmdbLanguage.trim() !== languageFromProfile ||
 			appTheme !== themeFromProfile ||
 			profileAccent !== accentFromProfile ||
 			bannerFrame !== frameFromProfile ||
-			notificationsDirty
+			notificationsDirty ||
+			Boolean(pendingBanner || pendingAvatar)
 		);
 	}, [
 		profile,
@@ -291,26 +330,37 @@ export function SettingsFormProvider({
 		pronouns,
 		location,
 		website,
+		birthDate,
+		showBirthDateOnProfile,
 		isPrivate,
 		theaterAudio,
 		smoothScroll,
 		catalogMonochromePeersOnHover,
+		showAdultContent,
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
 		appTheme,
 		profileAccent,
 		bannerFrame,
 		isPro,
+		pendingBanner,
+		pendingAvatar,
 	]);
 
 	const resetToProfile = useCallback(() => {
 		clearStoredSettingsDraft();
+		revokeAllCustomizationPending();
+		syncCustomizationDirty(false);
 		syncSettingsDirty(false);
 		setDisplayName(profile.displayName ?? "");
 		setBio(profile.bio ?? "");
 		setPronouns(profile.pronouns ?? "");
 		setLocation(profile.location ?? "");
 		setWebsite(profile.website ?? "");
+		setBirthDate(profile.birthDate ?? "");
+		setShowBirthDateOnProfile(
+			readShowBirthDateOnProfilePref(profile.preferences ?? null),
+		);
 		setIsPrivate(Boolean(profile.isPrivate));
 		setTheaterAudio(Boolean(profile.preferences?.theaterAudio === true));
 		setSmoothScroll(readSmoothScrollPref(profile.preferences ?? null));
@@ -322,6 +372,7 @@ export function SettingsFormProvider({
 		setCatalogTmdbLanguage(
 			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
 		);
+		setShowAdultContent(readShowAdultContentPref(profile.preferences ?? null));
 		setAppTheme(
 			resolveAppThemeForPatron(
 				readAppThemePref(profile.preferences ?? null),
@@ -333,7 +384,13 @@ export function SettingsFormProvider({
 		setNotificationPrefs(
 			readNotificationPrefsFromProfile(profile.preferences ?? null),
 		);
-	}, [profile, syncSettingsDirty, isPro]);
+	}, [
+		profile,
+		syncSettingsDirty,
+		syncCustomizationDirty,
+		isPro,
+		revokeAllCustomizationPending,
+	]);
 
 	const setNotificationPref = useCallback(
 		(kind: NotificationKind, enabled: boolean) => {
@@ -358,12 +415,15 @@ export function SettingsFormProvider({
 				pronouns,
 				location,
 				website,
+				birthDate,
+				showBirthDateOnProfile,
 				isPrivate,
 				theaterAudio,
 				smoothScroll,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
+				showAdultContent,
 				appTheme,
 			});
 		}, 280);
@@ -375,12 +435,15 @@ export function SettingsFormProvider({
 				pronouns,
 				location,
 				website,
+				birthDate,
+				showBirthDateOnProfile,
 				isPrivate,
 				theaterAudio,
 				smoothScroll,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
+				showAdultContent,
 				appTheme,
 			});
 		};
@@ -391,18 +454,81 @@ export function SettingsFormProvider({
 		pronouns,
 		location,
 		website,
+		birthDate,
+		showBirthDateOnProfile,
 		isPrivate,
 		theaterAudio,
 		smoothScroll,
 		catalogMonochromePeersOnHover,
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
+		showAdultContent,
 		appTheme,
 	]);
+
+	const persistShowAdultContent = useCallback(
+		async (enabled: boolean) => {
+			setSaving(true);
+			try {
+				await api.api.profiles.me.patch({
+					preferences: {
+						...(profile.preferences ?? {}),
+						[PROFILE_PREF_SHOW_ADULT_CONTENT]: enabled,
+					},
+				});
+				setShowAdultContent(enabled);
+				toast.success(
+					enabled ? "Adult content enabled" : "Adult content hidden",
+				);
+				router.refresh();
+			} catch (err) {
+				console.error(err);
+				toast.error("Couldn't update adult content setting");
+			} finally {
+				setSaving(false);
+			}
+		},
+		[profile.preferences, router],
+	);
+
+	const enableAdultContentWithBirthDate = useCallback(
+		async (birthDateIso: string) => {
+			if (!patronMeetsAdultAgeGate(birthDateIso)) {
+				toast.error("You must be at least 18 years old");
+				return;
+			}
+			setSaving(true);
+			try {
+				await api.api.profiles.me.patch({
+					birthDate: birthDateIso,
+					preferences: {
+						...(profile.preferences ?? {}),
+						[PROFILE_PREF_SHOW_ADULT_CONTENT]: true,
+					},
+				});
+				setBirthDate(birthDateIso);
+				setShowAdultContent(true);
+				toast.success("Adult content enabled");
+				router.refresh();
+			} catch (err) {
+				console.error(err);
+				toast.error("Couldn't enable adult content");
+			} finally {
+				setSaving(false);
+			}
+		},
+		[profile.preferences, router],
+	);
 
 	const onSubmit = useCallback(
 		async (e: FormEvent) => {
 			e.preventDefault();
+			if (birthDate && !patronMeetsAdultAgeGate(birthDate)) {
+				toast.error(
+					"You must be at least 18 years old to save that date of birth",
+				);
+				return;
+			}
 			setSaving(true);
 			try {
 				const prefs: Record<string, unknown> = {
@@ -411,6 +537,8 @@ export function SettingsFormProvider({
 					[PROFILE_PREF_SMOOTH_SCROLL]: smoothScroll,
 					[PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER]:
 						catalogMonochromePeersOnHover,
+					[PROFILE_PREF_SHOW_ADULT_CONTENT]: showAdultContent,
+					[PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE]: showBirthDateOnProfile,
 					...(catalogTmdbWatchRegion.trim() !== ""
 						? {
 								[PROFILE_PREF_CATALOG_TMDB_WATCH_REGION]:
@@ -451,6 +579,7 @@ export function SettingsFormProvider({
 					pronouns: pronouns.trim() || undefined,
 					location: location.trim() || undefined,
 					website: website.trim() || undefined,
+					birthDate: birthDate.trim() === "" ? null : birthDate.trim(),
 					isPrivate,
 					defaultVisibility:
 						(profile.defaultVisibility as ContentVisibility) ?? "public",
@@ -495,6 +624,9 @@ export function SettingsFormProvider({
 			theaterAudio,
 			smoothScroll,
 			catalogMonochromePeersOnHover,
+			showAdultContent,
+			birthDate,
+			showBirthDateOnProfile,
 			catalogTmdbWatchRegion,
 			catalogTmdbLanguage,
 			appTheme,
@@ -549,6 +681,10 @@ export function SettingsFormProvider({
 			setLocation,
 			website,
 			setWebsite,
+			birthDate,
+			setBirthDate,
+			showBirthDateOnProfile,
+			setShowBirthDateOnProfile,
 			isPrivate,
 			setIsPrivate,
 			theaterAudio,
@@ -561,6 +697,10 @@ export function SettingsFormProvider({
 			setCatalogTmdbWatchRegion,
 			catalogTmdbLanguage,
 			setCatalogTmdbLanguage,
+			showAdultContent,
+			setShowAdultContent,
+			enableAdultContentWithBirthDate,
+			persistShowAdultContent,
 			appTheme,
 			setAppTheme,
 			profileAccent,
@@ -581,10 +721,15 @@ export function SettingsFormProvider({
 			pronouns,
 			location,
 			website,
+			birthDate,
+			showBirthDateOnProfile,
 			isPrivate,
 			theaterAudio,
 			smoothScroll,
 			catalogMonochromePeersOnHover,
+			showAdultContent,
+			enableAdultContentWithBirthDate,
+			persistShowAdultContent,
 			catalogTmdbWatchRegion,
 			catalogTmdbLanguage,
 			appTheme,

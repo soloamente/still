@@ -5,13 +5,14 @@ import { Bell, Home, Plus, Search } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { isActive, shouldHideMobileTabBar } from "@/components/app/mobile-nav";
 import { MobileYouSheet } from "@/components/app/mobile-you-sheet";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
+import { useDismissSheetOnRouteChange } from "@/lib/use-dismiss-sheet-on-route-change";
 
 type TabUser = {
 	id: string;
@@ -31,6 +32,9 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 	const requestCatalogSearch = useCatalogSearchDialog((s) => s.requestOpen);
 	const openQuickLog = useQuickLog((s) => s.open);
 	const [youOpen, setYouOpen] = useState(false);
+	const closeYouSheet = useCallback(() => setYouOpen(false), []);
+	// Hub links navigate underneath — close the You sheet when the route changes.
+	useDismissSheetOnRouteChange(youOpen, closeYouSheet);
 
 	const homeActive = isActive(pathname, "/home");
 	const inboxActive = isActive(pathname, "/notifications");

@@ -1,7 +1,7 @@
 import { cn } from "@still/ui/lib/utils";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-
+import { AdultContentBlockedState } from "@/components/detail/adult-content-blocked-state";
 import { MovieDetailAboutAsync } from "@/components/movie/movie-detail-about-async";
 import { MovieDetailAboutFallback } from "@/components/movie/movie-detail-about-fallback";
 import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
@@ -170,8 +170,25 @@ export default async function MoviePage({
 
 	const api = await serverApi();
 	const res = await api.api.movies({ id }).get();
-	const data = (res.data as Detail | null) ?? null;
+	const data =
+		(res.data as (Detail & { adultBlocked?: boolean }) | null) ?? null;
 	if (!data) notFound();
+
+	if (data.adultBlocked) {
+		const { accent: blockedAccent } = accentFromGenres(null);
+		return (
+			<MovieThemeProvider
+				genreAccent={blockedAccent}
+				paletteAccent={null}
+				paletteMuted={null}
+				paletteForeground={null}
+			>
+				<div className="bg-card">
+					<AdultContentBlockedState />
+				</div>
+			</MovieThemeProvider>
+		);
+	}
 
 	const j = data.tmdbJson;
 	const directors =

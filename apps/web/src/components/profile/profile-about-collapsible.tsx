@@ -8,6 +8,7 @@ type ProfileAboutCollapsibleProps = {
 	pronouns: string | null;
 	location: string | null;
 	website: string | null;
+	birthdayDisplay?: string | null;
 	className?: string;
 };
 
@@ -25,17 +26,20 @@ export function ProfileAboutCollapsible({
 	pronouns,
 	location,
 	website,
+	birthdayDisplay,
 	className,
 }: ProfileAboutCollapsibleProps) {
 	const trimmedBio = bio?.trim() ?? "";
 	const trimmedPronouns = pronouns?.trim() ?? "";
 	const trimmedLocation = location?.trim() ?? "";
 	const trimmedWebsite = website?.trim() ?? "";
+	const trimmedBirthday = birthdayDisplay?.trim() ?? "";
 
 	const hasMeta =
 		Boolean(trimmedPronouns) ||
 		Boolean(trimmedLocation) ||
-		Boolean(trimmedWebsite);
+		Boolean(trimmedWebsite) ||
+		Boolean(trimmedBirthday);
 
 	const hasCopy = Boolean(trimmedBio) || hasMeta;
 
@@ -57,13 +61,14 @@ export function ProfileAboutCollapsible({
 					{hasMeta ? (
 						<p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-muted-foreground text-xs leading-snug">
 							{trimmedPronouns ? <span>{trimmedPronouns}</span> : null}
-							{trimmedPronouns && (trimmedLocation || trimmedWebsite) ? (
+							{trimmedPronouns &&
+							(trimmedLocation || trimmedWebsite || trimmedBirthday) ? (
 								<span aria-hidden className="text-muted-foreground/40">
 									·
 								</span>
 							) : null}
 							{trimmedLocation ? <span>{trimmedLocation}</span> : null}
-							{trimmedLocation && trimmedWebsite ? (
+							{trimmedLocation && (trimmedWebsite || trimmedBirthday) ? (
 								<span aria-hidden className="text-muted-foreground/40">
 									·
 								</span>
@@ -78,6 +83,12 @@ export function ProfileAboutCollapsible({
 									{formatWebsiteLabel(trimmedWebsite)}
 								</a>
 							) : null}
+							{trimmedWebsite && trimmedBirthday ? (
+								<span aria-hidden className="text-muted-foreground/40">
+									·
+								</span>
+							) : null}
+							{trimmedBirthday ? <span>{trimmedBirthday}</span> : null}
 						</p>
 					) : null}
 				</div>

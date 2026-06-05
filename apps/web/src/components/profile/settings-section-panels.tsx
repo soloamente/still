@@ -3,7 +3,10 @@
 import { Input } from "@still/ui/components/input";
 import { Textarea } from "@still/ui/components/textarea";
 import type { ReactNode } from "react";
+import { useState } from "react";
 
+import { AdultContentEnableDialog } from "@/components/profile/adult-content-enable-dialog";
+import { BirthDatePicker } from "@/components/profile/birth-date-picker";
 import {
 	MeAccountContentReveal,
 	MeAccountRevealItem,
@@ -23,7 +26,9 @@ import {
 	MeSettingsPanel,
 	MeSettingsSection,
 } from "@/components/profile/me-settings-layout";
+import { ProfileMediaCustomizer } from "@/components/profile/profile-media-customizer";
 import { useSettingsForm } from "@/components/profile/settings-form-context";
+import { patronMeetsAdultAgeGate } from "@/lib/adult-content-age-gate";
 import { NOTIFICATION_KIND_SETTINGS } from "@/lib/notification-preferences";
 import { inferProfileAccentFromHex } from "@/lib/profile-appearance";
 import { resolveCatalogTmdbLanguage } from "@/lib/profile-preferences";
@@ -40,6 +45,7 @@ function SettingsSectionPage({ children }: { children: ReactNode }) {
 
 export function SettingsProfileSection() {
 	const {
+		profile,
 		displayName,
 		setDisplayName,
 		pronouns,
@@ -50,16 +56,28 @@ export function SettingsProfileSection() {
 		setWebsite,
 		bio,
 		setBio,
+		birthDate,
+		setBirthDate,
+		showBirthDateOnProfile,
+		setShowBirthDateOnProfile,
 		isPrivate,
 		setIsPrivate,
+		saving,
 	} = useSettingsForm();
 
 	return (
 		<SettingsSectionPage>
 			<MeSettingsSection
 				title="Profile"
-				description="Public identity and links on your page."
+				description="Photo, public identity, and links on your page."
 			>
+				<ProfileMediaCustomizer
+					handle={profile.handle}
+					displayName={displayName.trim() || profile.displayName}
+					bannerUrl={profile.bannerUrl ?? null}
+					hasAvatar={Boolean(profile.hasAvatar)}
+					disabled={saving}
+				/>
 				<MeSettingsPanel className="flex flex-col">
 					<div className="grid min-w-0 flex-1 gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)] xl:items-start xl:gap-8">
 						<div className="space-y-4">
@@ -103,6 +121,37 @@ export function SettingsProfileSection() {
 									className={meFieldControlClass()}
 								/>
 							</MeFormField>
+							<MeFormField
+								id="birthDate"
+								label="Date of birth"
+								hint="Used for age verification. Year is never shown on your profile."
+							>
+								<BirthDatePicker
+									id="birthDate"
+									value={birthDate}
+									onChange={setBirthDate}
+								/>
+							</MeFormField>
+							<div
+								className={
+									birthDate ? undefined : "pointer-events-none opacity-50"
+								}
+							>
+								<MePreferenceToggle
+									id="show-birthday-on-profile"
+									checked={Boolean(birthDate) && showBirthDateOnProfile}
+									onChange={(next) => {
+										if (!birthDate) return;
+										setShowBirthDateOnProfile(next);
+									}}
+									title="Show birthday on profile"
+									description={
+										birthDate
+											? "Visitors see month and day only — never your birth year."
+											: "Add your date of birth above to show it on your profile."
+									}
+								/>
+							</div>
 						</div>
 						<MeFormField id="bio" label="Bio" className="xl:pt-0">
 							<Textarea
@@ -164,10 +213,24 @@ export function SettingsCatalogueSection() {
 		setCatalogTmdbLanguage,
 		catalogMonochromePeersOnHover,
 		setCatalogMonochromePeersOnHover,
+		showAdultContent,
+		birthDate,
+		enableAdultContentWithBirthDate,
+		persistShowAdultContent,
 	} = useSettingsForm();
+	const [adultEnableOpen, setAdultEnableOpen] = useState(false);
+	const hasEligibleBirthDate =
+		Boolean(birthDate) && patronMeetsAdultAgeGate(birthDate);
 
 	return (
 		<SettingsSectionPage>
+			<AdultContentEnableDialog
+				open={adultEnableOpen}
+				onOpenChange={setAdultEnableOpen}
+				onConfirm={(nextBirthDate) =>
+					void enableAdultContentWithBirthDate(nextBirthDate)
+				}
+			/>
 			<MeSettingsSection
 				title="Catalogue"
 				description="Defaults for home, discover, and streaming."
@@ -201,6 +264,30 @@ export function SettingsCatalogueSection() {
 						onChange={setCatalogMonochromePeersOnHover}
 						title="Monochrome neighbors on hover"
 						description="On the home catalogue, posters you are not pointing at turn grayscale while one title is hovered. Turn off to keep every tile in full color."
+					/>
+					<MePreferenceToggle
+						id="show-adult-content"
+						checked={showAdultContent}
+						onChange={(next) => {
+							if (!next) {
+								void persistShowAdultContent(false);
+								return;
+							}
+							if (birthDate && !patronMeetsAdultAgeGate(birthDate)) {
+								return;
+							}
+							if (hasEligibleBirthDate) {
+								void persistShowAdultContent(true);
+								return;
+							}
+							setAdultEnableOpen(true);
+						}}
+						title="Show adult content"
+						description={
+							birthDate && !patronMeetsAdultAgeGate(birthDate)
+								? "Add a valid date of birth in Profile settings — you must be 18 or older."
+								: "Include 18+ films and anime in search, catalogues, and your diary. Off by default."
+						}
 					/>
 				</MeSettingsPanel>
 			</MeSettingsSection>

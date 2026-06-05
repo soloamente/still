@@ -1,6 +1,7 @@
 import { relations } from "drizzle-orm";
 import {
 	boolean,
+	date,
 	index,
 	jsonb,
 	pgTable,
@@ -57,6 +58,8 @@ export const profile = pgTable(
 		pronouns: text("pronouns"),
 		location: text("location"),
 		website: text("website"),
+		/** Calendar date for age verification; optional public month/day via preferences. */
+		birthDate: date("birth_date"),
 		// Banner image stored in Vercel Blob (or any S3-compatible) — full URL.
 		bannerUrl: text("banner_url"),
 		// Hex override for the cinematic accent color; null = use Desert Orange.

@@ -1,7 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 import { create } from "zustand";
 import { PatronWatchLedgerPanel } from "@/components/home/patron-watch-ledger-panel";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
@@ -38,14 +36,6 @@ export function openPatronWatchLedger(seed: PatronWatchLedgerSeed) {
 /** Global watch ledger sheet — opened from Community rank counts. */
 export function PatronWatchLedgerDrawerRoot() {
 	const { isOpen, seed, close } = usePatronWatchLedger();
-	const pathname = usePathname();
-
-	// Poster taps and profile links navigate via Next `<Link>` — dismiss the sheet on route change.
-	useEffect(() => {
-		if (usePatronWatchLedger.getState().isOpen) {
-			close();
-		}
-	}, [pathname, close]);
 
 	const filmographyStyleTitle = seed
 		? `${seed.displayName} — ${seed.kind === "tv" ? "TV watch log" : "watch log"}`

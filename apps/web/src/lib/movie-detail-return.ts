@@ -121,7 +121,7 @@ export function resolveMovieDetailReturnFromPath(
 		pathname === "/me/customization" ||
 		pathname.startsWith("/me/customization")
 	) {
-		return { href: "/me/customization", label: "Customize" };
+		return { href: "/me/settings/profile", label: "Profile" };
 	}
 	const movieCredits = pathname.match(/^\/movies\/(\d+)\/credits$/);
 	if (movieCredits) {

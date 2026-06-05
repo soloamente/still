@@ -14,7 +14,7 @@ import {
 
 import { MeAccountLeaveConfirmDialog } from "@/components/profile/me-account-leave-confirm-dialog";
 
-/** Persisted settings draft — survives `/me/settings` ↔ `/me/customization` and soft refresh. */
+/** Persisted settings draft — survives soft refresh while editing `/me/settings/*`. */
 export const ME_ACCOUNT_SETTINGS_DRAFT_STORAGE_KEY =
 	"still:me:settings-draft:v1";
 
@@ -30,6 +30,9 @@ export type MeAccountSettingsDraftPayload = {
 	catalogMonochromePeersOnHover: boolean;
 	catalogTmdbWatchRegion: string;
 	catalogTmdbLanguage: string;
+	showAdultContent?: boolean;
+	birthDate?: string;
+	showBirthDateOnProfile?: boolean;
 	appTheme?: string;
 };
 
@@ -91,7 +94,7 @@ type MeAccountSessionContextValue = {
 	anyUnsaved: () => boolean;
 	/**
 	 * Clears cross-route settings text draft + staged media after the user confirms they want
-	 * to discard — used when leaving `/me/*` for profile (not for Settings ↔ Customize).
+	 * to discard — used when leaving `/me/*` for another route.
 	 */
 	discardAllUnsaved: () => void;
 	/**

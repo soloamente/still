@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useCallback } from "react";
 import { Drawer } from "vaul";
 
 import {
@@ -10,6 +11,7 @@ import {
 	MOVIE_DETAIL_DRAWER_HANDLE_GRIP_CLASSNAME,
 	MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME,
 } from "@/lib/detail-vaul-drawer";
+import { useDismissSheetOnRouteChange } from "@/lib/use-dismiss-sheet-on-route-change";
 import { useLockDrawerScroll } from "@/lib/use-lock-drawer-scroll";
 
 const OVERLAY_CLASSNAME =
@@ -42,6 +44,12 @@ export function DetailVaulSheet({
 	children: ReactNode;
 }) {
 	useLockDrawerScroll(scrollLock ?? open);
+
+	const dismissOnNavigate = useCallback(() => {
+		onOpenChange(false);
+	}, [onOpenChange]);
+	// Poster / profile taps inside the sheet navigate via Next `<Link>` — close on route change.
+	useDismissSheetOnRouteChange(open, dismissOnNavigate);
 
 	return (
 		<Drawer.Root
@@ -101,6 +109,12 @@ export function DetailVaulNestedSheet({
 	description?: string;
 	children: ReactNode;
 }) {
+	const dismissOnNavigate = useCallback(() => {
+		onOpenChange(false);
+	}, [onOpenChange]);
+	// Nested filmography links also navigate away — dismiss before the parent page swaps.
+	useDismissSheetOnRouteChange(open, dismissOnNavigate);
+
 	return (
 		<Drawer.NestedRoot
 			open={open}

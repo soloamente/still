@@ -1,0 +1,335 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_05_profile_birthdate_design_md",
+			"label": "2026-06-05-profile-birthdate-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"label": "Profile birth date \u2014 settings, age gate, optional public display",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_locked_decisions_brainstorm",
+			"label": "Locked decisions (brainstorm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_data_model",
+			"label": "Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_column",
+			"label": "Column",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_preference",
+			"label": "Preference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_shared_age_helper",
+			"label": "Shared age helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_api",
+			"label": "API",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_patch_api_profiles_me",
+			"label": "`PATCH /api/profiles/me`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_get_api_profiles_me",
+			"label": "`GET /api/profiles/me`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L82"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_get_api_profiles_handle_public",
+			"label": "`GET /api/profiles/:handle` (public)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_settings_ui",
+			"label": "Settings UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L95"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_profile_section_settingsprofilesection",
+			"label": "Profile section (`SettingsProfileSection`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_catalogue_section_settingscataloguesection",
+			"label": "Catalogue section (`SettingsCatalogueSection`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_public_profile_ui",
+			"label": "Public profile UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L124"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_edge_cases",
+			"label": "Edge cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L153"
+		},
+		{
+			"id": "specs_2026_06_05_profile_birthdate_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L160"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_05_profile_birthdate_design_md",
+			"target": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_locked_decisions_brainstorm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_data_model",
+			"target": "specs_2026_06_05_profile_birthdate_design_column",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_data_model",
+			"target": "specs_2026_06_05_profile_birthdate_design_preference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_data_model",
+			"target": "specs_2026_06_05_profile_birthdate_design_shared_age_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_api",
+			"target": "specs_2026_06_05_profile_birthdate_design_patch_api_profiles_me",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_api",
+			"target": "specs_2026_06_05_profile_birthdate_design_get_api_profiles_me",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_api",
+			"target": "specs_2026_06_05_profile_birthdate_design_get_api_profiles_handle_public",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_settings_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_settings_ui",
+			"target": "specs_2026_06_05_profile_birthdate_design_profile_section_settingsprofilesection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_settings_ui",
+			"target": "specs_2026_06_05_profile_birthdate_design_catalogue_section_settingscataloguesection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_public_profile_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_edge_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_05_profile_birthdate_design_profile_birth_date_settings_age_gate_optional_public_display",
+			"target": "specs_2026_06_05_profile_birthdate_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-05-profile-birthdate-design.md",
+			"source_location": "L160",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

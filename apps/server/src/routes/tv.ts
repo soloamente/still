@@ -1,9 +1,17 @@
-import { db, list, listItem, profile } from "@still/db";
+import { db, list, listItem, profile, tv } from "@still/db";
 import { env } from "@still/env/server";
 import { and, desc, eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { ensureTvAdultClassification } from "../lib/adult-anime-classification";
+import { filterTvCatalogueResults } from "../lib/adult-content-catalogue-filter";
+import {
+	buildAdultBlockedTvPayload,
+	isTvAdultFromRow,
+	shouldBlockAdultDetail,
+} from "../lib/adult-content-policy";
+import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
 import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
@@ -88,6 +96,7 @@ async function discoverCompanyTvMatchingTitle(
 	companyId: number,
 	titleNeedle: string,
 	language: string,
+	showAdultContent: boolean,
 ): Promise<TmdbTvSummary[]> {
 	const ql = titleNeedle.toLowerCase();
 	const out: TmdbTvSummary[] = [];
@@ -98,6 +107,7 @@ async function discoverCompanyTvMatchingTitle(
 			withCompanies: companyId,
 			sortBy: "popularity.desc",
 			language,
+			showAdultContent,
 		});
 		for (const show of disc.results) {
 			if (seen.has(show.id)) continue;
@@ -126,6 +136,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			if (!env.TMDB_API_KEY)
 				return tmdbUnconfiguredPaged(Number(query.page ?? 1) || 1);
 			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			const page = Number(query.page ?? 1) || 1;
 			const companyRaw = query.company?.trim();
 			const companyId =
@@ -133,7 +144,10 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					? Math.floor(Number(companyRaw))
 					: null;
 
-			const data = await tmdbApi.searchTv(q, page, { language });
+			const data = await tmdbApi.searchTv(q, page, {
+				language,
+				showAdultContent,
+			});
 			let rows = data.results;
 
 			if (companyId) {
@@ -146,6 +160,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					companyId,
 					q,
 					language,
+					showAdultContent,
 				);
 				const merged = new Map<number, TmdbTvSummary>();
 				for (const show of [...verified, ...fromDiscover]) {
@@ -153,6 +168,8 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				}
 				rows = [...merged.values()].slice(0, COMPANY_SEARCH_VERIFY_MAX);
 			}
+
+			rows = await filterTvCatalogueResults(rows, showAdultContent);
 
 			return {
 				...data,
@@ -180,10 +197,18 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
-			const data = await tmdbApi.popularTv(page, { language });
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
+			const data = await tmdbApi.popularTv(page, {
+				language,
+				showAdultContent,
+			});
+			const rows = await filterTvCatalogueResults(
+				data.results,
+				showAdultContent,
+			);
 			return {
 				...data,
-				results: data.results.map((show) => ({
+				results: rows.map((show) => ({
 					...show,
 					// Lobby grid + `MoviePoster` expect `title`; TMDb TV summaries use `name`.
 					title: show.name,
@@ -200,6 +225,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			const sortRaw = (query.sort ?? "").trim();
 			const sortBy = DISCOVER_TV_SORT_WHITELIST.has(sortRaw)
 				? sortRaw
@@ -209,10 +235,15 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				sortBy,
 				withStatus: 0,
 				language,
+				showAdultContent,
 			});
+			const rows = await filterTvCatalogueResults(
+				data.results,
+				showAdultContent,
+			);
 			return {
 				...data,
-				results: data.results.map((show) => ({
+				results: rows.map((show) => ({
 					...show,
 					title: show.name,
 					poster_url: tmdbImg.poster(show.poster_path),
@@ -251,6 +282,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			const withGenres = parseCommaIntList(query.genre?.trim());
 			const withKeywords = parseCommaIntList(query.keywords?.trim());
 			const textQuery = (query.q ?? "").trim() || undefined;
@@ -325,6 +357,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				withStatus,
 				language,
 				withTextQuery: textQuery,
+				showAdultContent,
 			});
 			let rows = data.results;
 			if (sortBy === "first_air_date.desc" && !firstAirDateGte) {
@@ -334,6 +367,9 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					return d <= todayUtc;
 				});
 			}
+			rows = await filterTvCatalogueResults(rows, showAdultContent, {
+				keywordIds: withKeywords,
+			});
 			return {
 				...data,
 				results: rows.map((show) => ({
@@ -445,7 +481,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)
-	// TV series detail — TMDb passthrough (no local `tv` table yet; mirrors `/api/movies/:id` shape for the web).
+	// TV series detail — cache row first, then block adult titles when patron pref is off.
 	.get(
 		"/:id",
 		async ({ params, status, user }) => {
@@ -459,9 +495,25 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				};
 			}
 			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
+
+			await ensureTvCached(id);
+			await ensureTvAdultClassification(id);
+
+			const [row] = await db
+				.select()
+				.from(tv)
+				.where(eq(tv.tmdbId, id))
+				.limit(1);
+			if (
+				row &&
+				shouldBlockAdultDetail(showAdultContent, isTvAdultFromRow(row))
+			) {
+				return buildAdultBlockedTvPayload(id, row.title);
+			}
+
 			try {
 				const detail = await tmdbApi.tvDetail(id, { language });
-				await ensureTvCached(id).catch(() => false);
 				await syncTvMalIdFromDetail(
 					id,
 					detail as unknown as Record<string, unknown>,

@@ -35,6 +35,10 @@ import {
 	ACTIVITY_SIGNATURE_DAYS,
 	buildActivitySignature,
 } from "../lib/activity-signature";
+import { patronMeetsAdultAgeGate } from "../lib/adult-content-age-gate";
+import { readShowAdultContentPref } from "../lib/adult-content-policy";
+import { movieNotAdultSql, tvNotAdultSql } from "../lib/adult-content-sql";
+import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import {
 	contentVisibilityWhere,
 	visibilitySchema,
@@ -50,6 +54,12 @@ import {
 	PROFILE_PREF_PROFILE_ACCENT,
 	profileAccentHex,
 } from "../lib/profile-appearance";
+import {
+	formatBirthdayDisplayPublic,
+	parseProfileBirthDate,
+	profileBirthDateToIso,
+	readShowBirthDateOnProfilePref,
+} from "../lib/profile-birth-date";
 import {
 	filmographyOffset,
 	filmographyTotalPages,
@@ -82,6 +92,7 @@ type ProfileMePatchBody = {
 	pronouns?: string;
 	location?: string;
 	website?: string;
+	birthDate?: string | null;
 	bannerUrl?: string;
 	accentColor?: string;
 	favoriteMovieIds?: number[];
@@ -157,6 +168,58 @@ export const profilesRoute = new Elysia({
 				preferencesForUpdate = appearance.preferences;
 			}
 
+			const existingPreferences =
+				(existing?.preferences as Record<string, unknown> | undefined) ?? {};
+			const effectivePreferences = preferencesForUpdate ?? existingPreferences;
+			const adultPrefOn = readShowAdultContentPref(effectivePreferences);
+
+			let birthDateForUpdate: string | null | undefined;
+			if (body.birthDate !== undefined) {
+				if (body.birthDate === null || body.birthDate === "") {
+					if (adultPrefOn) {
+						return status(
+							400,
+							"Disable adult content before clearing date of birth",
+						);
+					}
+					birthDateForUpdate = null;
+				} else {
+					const parsed = parseProfileBirthDate(body.birthDate);
+					if (!parsed) {
+						return status(400, "Invalid date of birth");
+					}
+					if (!patronMeetsAdultAgeGate(parsed)) {
+						return status(400, "You must be at least 18 years old");
+					}
+					birthDateForUpdate = parsed;
+				}
+			}
+
+			const existingBirthIso = profileBirthDateToIso(existing?.birthDate);
+			if (
+				adultPrefOn &&
+				birthDateForUpdate === undefined &&
+				existingBirthIso &&
+				!patronMeetsAdultAgeGate(existingBirthIso)
+			) {
+				preferencesForUpdate = {
+					...effectivePreferences,
+					showAdultContent: false,
+				};
+			}
+
+			if (
+				preferencesForUpdate !== undefined &&
+				birthDateForUpdate &&
+				!patronMeetsAdultAgeGate(birthDateForUpdate) &&
+				readShowAdultContentPref(preferencesForUpdate)
+			) {
+				preferencesForUpdate = {
+					...preferencesForUpdate,
+					showAdultContent: false,
+				};
+			}
+
 			const updates = {
 				handle: body.handle?.toLowerCase(),
 				displayName: body.displayName,
@@ -164,6 +227,12 @@ export const profilesRoute = new Elysia({
 				pronouns: body.pronouns,
 				location: body.location,
 				website: body.website,
+				birthDate:
+					birthDateForUpdate === undefined
+						? undefined
+						: birthDateForUpdate === null
+							? null
+							: birthDateForUpdate,
 				bannerUrl: body.bannerUrl,
 				accentColor: body.accentColor,
 				favoriteMovieIds: body.favoriteMovieIds,
@@ -205,7 +274,10 @@ export const profilesRoute = new Elysia({
 						});
 					}
 				}
-				return row;
+				return {
+					...row,
+					birthDate: profileBirthDateToIso(row.birthDate),
+				};
 			}
 			if (!body.handle || !body.displayName) {
 				return status(
@@ -230,7 +302,10 @@ export const profilesRoute = new Elysia({
 					source: "profiles.me.insert",
 				});
 			}
-			return row;
+			return {
+				...row,
+				birthDate: profileBirthDateToIso(row?.birthDate),
+			};
 		},
 		{
 			body: t.Object({
@@ -240,6 +315,7 @@ export const profilesRoute = new Elysia({
 				pronouns: t.Optional(t.String({ maxLength: 30 })),
 				location: t.Optional(t.String({ maxLength: 60 })),
 				website: t.Optional(t.String({ maxLength: 200 })),
+				birthDate: t.Optional(t.Union([t.String(), t.Null()])),
 				bannerUrl: t.Optional(t.String()),
 				accentColor: t.Optional(t.String({ maxLength: 9 })),
 				favoriteMovieIds: t.Optional(t.Array(t.Number(), { maxItems: 8 })),
@@ -259,7 +335,11 @@ export const profilesRoute = new Elysia({
 			.from(profile)
 			.where(eq(profile.userId, user.id))
 			.limit(1);
-		return row ?? null;
+		if (!row) return null;
+		return {
+			...row,
+			birthDate: profileBirthDateToIso(row.birthDate),
+		};
 	})
 	.get("/me/creator-analytics", async ({ user, status }) => {
 		if (!user) return status(401, "Sign in");
@@ -734,6 +814,7 @@ export const profilesRoute = new Elysia({
 			const page = parseFilmographyPage(query.page);
 			const limit = parseFilmographyLimit(query.limit);
 			const offset = filmographyOffset(page, limit);
+			const showAdultContent = await getShowAdultContentForUser(viewerId);
 
 			const isTv = media === "tv";
 			const idCol = isTv ? log.tvId : log.movieId;
@@ -760,6 +841,9 @@ export const profilesRoute = new Elysia({
 						eq(log.userId, row.userId),
 						isNotNull(idCol),
 						contentVisibilityWhere(viewerId, log.userId, log.visibility),
+						isTv
+							? tvNotAdultSql(showAdultContent)
+							: movieNotAdultSql(showAdultContent),
 					),
 				)
 				.orderBy(idCol, desc(log.watchedAt))
@@ -1016,13 +1100,24 @@ export const profilesRoute = new Elysia({
 				row.profile.tasteSignature,
 			);
 
+			const birthIso = profileBirthDateToIso(row.profile.birthDate);
+			const showBirthday = readShowBirthDateOnProfilePref(
+				row.profile.preferences as Record<string, unknown> | null,
+			);
+			const { birthDate: _privateBirthDate, ...publicProfile } = row.profile;
+			const birthdayDisplay =
+				showBirthday && birthIso
+					? formatBirthdayDisplayPublic(birthIso)
+					: undefined;
+
 			return {
 				user: { id: row.user.id, name: row.user.name, image: row.user.image },
 				profile: {
-					...row.profile,
+					...publicProfile,
 					...(freshTasteSignature
 						? { tasteSignature: freshTasteSignature }
 						: {}),
+					...(birthdayDisplay ? { birthdayDisplay } : {}),
 				},
 				stats: {
 					followers: Number(followCount?.followers ?? 0),

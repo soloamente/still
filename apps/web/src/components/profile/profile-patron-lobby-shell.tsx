@@ -25,10 +25,7 @@ import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-ca
 import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
 import type { ProfileBannerFrameId } from "@/lib/profile-appearance";
-import {
-	profileInitials,
-	titleCountLineForProfileTab,
-} from "@/lib/profile-lobby-derive";
+import { profileInitials } from "@/lib/profile-lobby-derive";
 import { buildProfileLobbyHref } from "@/lib/profile-lobby-order";
 import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
 
@@ -41,6 +38,7 @@ export interface ProfilePatronLobbyShellProps {
 	stats: { followers: number; following: number };
 	location: string | null;
 	website: string | null;
+	birthdayDisplay?: string | null;
 	isMe: boolean;
 	targetUserId: string;
 	/** Signed-in viewer — powers Follow buttons inside the follows drawer. */
@@ -81,6 +79,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		stats,
 		location,
 		website,
+		birthdayDisplay,
 		isMe,
 		targetUserId,
 		viewerId,
@@ -136,15 +135,6 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 			? `lists:${lists.map((l) => l.id).join("|")}`
 			: `${contentTab}:${order}:${venue}:${favoritesOnly ? "fav" : "all"}`;
 
-	const titleCountLine = titleCountLineForProfileTab(
-		toolbarActiveTab,
-		media === "movie" ? totalResults : 0,
-		media === "tv" ? totalResults : 0,
-		favoritesOnly,
-		recentReviews.length,
-		lists.length,
-	);
-
 	const sharePath =
 		contentTab === "movies" || contentTab === "tv"
 			? buildProfileLobbyHref({
@@ -193,6 +183,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 					stats={stats}
 					location={location}
 					website={website}
+					birthdayDisplay={birthdayDisplay}
 					isMe={isMe}
 					targetUserId={targetUserId}
 					bannerUrl={bannerUrl}

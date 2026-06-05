@@ -23,6 +23,8 @@ import {
 } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
+import { movieNotAdultSql, tvNotAdultSql } from "../lib/adult-content-sql";
+import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { syncCompletionistChallengesForUser } from "../lib/completionist-challenge-sync";
 import {
 	contentVisibilityWhere,
@@ -444,6 +446,8 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 		async ({ user, status, query }) => {
 			if (!user) return status(401, "Sign in");
 
+			const showAdultContent = await getShowAdultContentForUser(user.id);
+
 			const media = parseDiaryMedia(query.media);
 			const order = parseDiaryOrder(query.order);
 			const venue = parseDiaryVenue(query.venue);
@@ -481,6 +485,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					eq(log.userId, user.id),
 					isNotNull(log.movieId),
 					venueWhere,
+					movieNotAdultSql(showAdultContent),
 				);
 				const orderBy =
 					order === "earliest"
@@ -509,7 +514,11 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 						.orderBy(...orderBy)
 						.limit(limit)
 						.offset(offset),
-					db.select({ total: count() }).from(log).where(where),
+					db
+						.select({ total: count() })
+						.from(log)
+						.innerJoin(movie, eq(log.movieId, movie.tmdbId))
+						.where(where),
 				]);
 
 				const total = Number(totalRow[0]?.total ?? 0);
@@ -550,7 +559,13 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				})
 				.from(log)
 				.innerJoin(tv, eq(log.tvId, tv.tmdbId))
-				.where(and(eq(log.userId, user.id), isNotNull(log.tvId)))
+				.where(
+					and(
+						eq(log.userId, user.id),
+						isNotNull(log.tvId),
+						tvNotAdultSql(showAdultContent),
+					),
+				)
 				.orderBy(
 					log.tvId,
 					desc(log.watchedAt),

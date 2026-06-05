@@ -127,6 +127,20 @@
 			"when": 1779201300000,
 			"tag": "0017_review_rating_tenths_backfill",
 			"breakpoints": true
+		},
+		{
+			"idx": 18,
+			"version": "7",
+			"when": 1779201400000,
+			"tag": "0018_tv_adult",
+			"breakpoints": true
+		},
+		{
+			"idx": 19,
+			"version": "7",
+			"when": 1779201500000,
+			"tag": "0019_profile_birth_date",
+			"breakpoints": true
 		}
 	]
 }

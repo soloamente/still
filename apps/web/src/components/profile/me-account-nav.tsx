@@ -11,7 +11,7 @@ import {
 	type MeAccountNavHref,
 } from "@/lib/me-account-nav";
 
-/** Account sidebar — settings sections + Customize on `/me/*`. */
+/** Account sidebar — settings sections on `/me/*`. */
 export function MeAccountNav({ handle: _handle }: { handle: string }) {
 	const pathname = usePathname() ?? "";
 	const reduceMotion = useReducedMotion();

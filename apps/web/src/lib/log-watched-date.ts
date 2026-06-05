@@ -69,6 +69,13 @@ export function listWatchedDatePickerYears(maxYmd: string): number[] {
 	return years;
 }
 
+/** Default calendar month when a birth-date field opens with no value yet. */
+export function defaultBirthDatePickerAnchorYmd(maxYmd?: string): string {
+	const max = ymdToLocalDate(maxYmd ?? formatTodayYmd());
+	const anchor = new Date(max.getFullYear() - 25, max.getMonth(), 1, 12, 0, 0);
+	return dateToYmd(anchor);
+}
+
 export function isWatchedDateYearSelectable(
 	year: number,
 	maxYmd: string,

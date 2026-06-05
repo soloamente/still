@@ -1,5 +1,6 @@
 import { relations } from "drizzle-orm";
 import {
+	boolean,
 	doublePrecision,
 	index,
 	integer,
@@ -29,6 +30,7 @@ export const tv = pgTable(
 		popularity: doublePrecision("popularity"),
 		voteAverage: doublePrecision("vote_average"),
 		voteCount: integer("vote_count"),
+		adult: boolean("adult").default(false).notNull(),
 		status: text("status"),
 		tmdbJson: jsonb("tmdb_json").$type<Record<string, unknown>>(),
 		lastSyncedAt: timestamp("last_synced_at").defaultNow().notNull(),

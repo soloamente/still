@@ -13,6 +13,8 @@ import {
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
+import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
 import {
@@ -44,6 +46,7 @@ export const watchlistRoute = new Elysia({
 		"/",
 		async ({ user, status, query }) => {
 			if (!user) return status(401, "Sign in");
+			const showAdultContent = await getShowAdultContentForUser(user.id);
 			const page = parseWatchlistPage(query.page);
 			const limit = parseWatchlistLimit(query.limit);
 			const order = parseWatchlistOrder(query.order);
@@ -72,7 +75,14 @@ export const watchlistRoute = new Elysia({
 					),
 			);
 
-			const whereClause = and(eq(watchlistItem.userId, user.id), notWatched);
+			const whereClause = and(
+				eq(watchlistItem.userId, user.id),
+				notWatched,
+				joinedTitleItemNotAdultSql(showAdultContent, {
+					movieId: watchlistItem.movieId,
+					tvId: watchlistItem.tvId,
+				}),
+			);
 
 			// Deterministic tiebreaker so pages never overlap or skip.
 			const tiebreak = sql`coalesce(${watchlistItem.movieId}, ${watchlistItem.tvId})`;
@@ -94,7 +104,12 @@ export const watchlistRoute = new Elysia({
 					.orderBy(...orderBy)
 					.limit(limit)
 					.offset(offset),
-				db.select({ total: count() }).from(watchlistItem).where(whereClause),
+				db
+					.select({ total: count() })
+					.from(watchlistItem)
+					.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
+					.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
+					.where(whereClause),
 			]);
 
 			const total = Number(totals[0]?.total ?? 0);

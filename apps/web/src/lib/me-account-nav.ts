@@ -6,7 +6,6 @@ export const ME_ACCOUNT_NAV_ITEMS = [
 	{ href: "/me/settings/appearance", label: "Appearance" },
 	{ href: "/me/settings/imports", label: "Imports" },
 	{ href: "/me/settings/experience", label: "Experience" },
-	{ href: "/me/customization", label: "Customize" },
 ] as const;
 
 export type MeAccountNavHref = (typeof ME_ACCOUNT_NAV_ITEMS)[number]["href"];

@@ -1,0 +1,66 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_upload_profile_me_asset_ts",
+			"label": "upload-profile-me-asset.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"label": "uploadProfileMeAsset()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts",
+			"source_location": "L9"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_upload_profile_me_asset_ts",
+			"target": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"callee": "append",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts",
+			"source_location": "L42"
+		}
+	]
+}

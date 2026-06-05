@@ -1,0 +1,72 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_adult_jikan_classify_ts",
+			"label": "adult-jikan-classify.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-jikan-classify.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_adult_jikan_classify_classifyjikananimeadult",
+			"label": "classifyJikanAnimeAdult()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-jikan-classify.ts",
+			"source_location": "L6"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_jikan_classify_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-jikan-classify.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_jikan_classify_ts",
+			"target": "lib_adult_content_policy_stilladultjson",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-jikan-classify.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_jikan_classify_ts",
+			"target": "lib_adult_jikan_classify_classifyjikananimeadult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-jikan-classify.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_adult_jikan_classify_classifyjikananimeadult",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-jikan-classify.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_adult_jikan_classify_classifyjikananimeadult",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-jikan-classify.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_adult_jikan_classify_classifyjikananimeadult",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-jikan-classify.ts",
+			"source_location": "L15"
+		}
+	]
+}

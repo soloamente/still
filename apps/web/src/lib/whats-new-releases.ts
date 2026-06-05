@@ -26,14 +26,14 @@ export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
 	fullReleaseHref: "/news",
 	slides: [
 		{
-			title: "Profile photos work again",
-			description:
-				"Uploading your profile picture or banner failed in production — that's fixed. Pick a new image in Settings or Customize profile and save; your portrait and banner should update right away.",
-		},
-		{
 			title: "What's new in Sense",
 			description:
-				"Settings now live in a sidebar, profile stats are clearer, and you can opt into smooth scroll when your machine can handle it.",
+				"Bug fixes, settings now live in a sidebar, profile stats are clearer, and you can opt into smooth scroll when your machine can handle it.",
+		},
+		{
+			title: "Profile photos work again",
+			description:
+				"Uploading your profile picture or banner failed in production — that's fixed. Pick a new image in Settings → Profile and save; your portrait and banner should update right away.",
 		},
 		{
 			title: "Smooth scroll, your call",

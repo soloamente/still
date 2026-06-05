@@ -1,7 +1,7 @@
 import { cn } from "@still/ui/lib/utils";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-
+import { AdultContentBlockedState } from "@/components/detail/adult-content-blocked-state";
 import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
@@ -174,7 +174,8 @@ export default async function TvShowPage({
 
 	const api = await serverApi();
 	const res = await api.api.tv({ id }).get();
-	const data = (res.data as TvDetail | null) ?? null;
+	const data =
+		(res.data as (TvDetail & { adultBlocked?: boolean }) | null) ?? null;
 	if (!data) notFound();
 	if (
 		(data as { code?: string }).code === "TMDB_UNCONFIGURED" &&
@@ -185,6 +186,21 @@ export default async function TvShowPage({
 			<div className="mx-auto max-w-lg p-8 text-center text-muted-foreground text-sm leading-relaxed">
 				{hint}
 			</div>
+		);
+	}
+	if (data.adultBlocked) {
+		const { accent: blockedAccent } = accentFromGenres(null);
+		return (
+			<MovieThemeProvider
+				genreAccent={blockedAccent}
+				paletteAccent={null}
+				paletteMuted={null}
+				paletteForeground={null}
+			>
+				<div className="bg-card">
+					<AdultContentBlockedState />
+				</div>
+			</MovieThemeProvider>
 		);
 	}
 	if (!data.title?.trim()) notFound();

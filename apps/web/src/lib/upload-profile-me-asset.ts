@@ -1,6 +1,6 @@
 /**
  * Uploads a profile banner or avatar through the authenticated API (multipart).
- * Shared by `/me/settings` (flush staged media) and `/me/customization`.
+ * Shared by Settings → Profile save (flush staged banner/avatar).
  *
  * Uses same-origin relative paths so session cookies stay on the web host.
  * Dedicated Next route handlers forward FormData to Elysia (rewrites drop

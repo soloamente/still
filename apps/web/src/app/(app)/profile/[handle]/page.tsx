@@ -44,6 +44,7 @@ type ProfileData = {
 		location: string | null;
 		website: string | null;
 		bannerUrl: string | null;
+		birthdayDisplay?: string;
 		accentColor: string | null;
 		preferences?: Record<string, unknown> | null;
 		favoriteMovieIds: number[];
@@ -197,6 +198,7 @@ export default async function ProfilePage({
 			stats={stats}
 			location={profile.location}
 			website={profile.website}
+			birthdayDisplay={profile.birthdayDisplay ?? null}
 			isMe={isMe}
 			targetUserId={user.id}
 			viewerId={session?.user.id ?? null}

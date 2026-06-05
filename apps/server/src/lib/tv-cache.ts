@@ -35,6 +35,7 @@ export async function ensureTvCached(tmdbId: number): Promise<boolean> {
 				popularity: detail.popularity ?? null,
 				voteAverage: detail.vote_average ?? null,
 				voteCount: detail.vote_count ?? null,
+				adult: (detail as { adult?: boolean }).adult === true,
 				status: detail.status ?? null,
 				tmdbJson: detail as unknown as Record<string, unknown>,
 				lastSyncedAt: new Date(),

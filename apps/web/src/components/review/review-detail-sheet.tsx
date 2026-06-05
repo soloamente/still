@@ -24,6 +24,7 @@ import { authClient } from "@/lib/auth-client";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { SHEET_PRIMARY_PILL_CLASS } from "@/lib/sheet-chrome";
+import { useDismissSheetOnRouteChange } from "@/lib/use-dismiss-sheet-on-route-change";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 /** Card / list preview fields — shown instantly while the sheet loads full detail. */
@@ -138,6 +139,9 @@ export function ReviewDetailRoot() {
 	const handleClose = useCallback(() => {
 		close();
 	}, [close]);
+
+	// Movie / profile links in the reader navigate underneath — dismiss the sheet on route change.
+	useDismissSheetOnRouteChange(isOpen, handleClose);
 
 	const handleEdit = useCallback(() => {
 		if (!detail?.review || !detail.movie) return;

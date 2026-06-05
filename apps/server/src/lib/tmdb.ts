@@ -24,6 +24,7 @@ export type TmdbMovieSummary = {
 	vote_count?: number;
 	genre_ids?: number[];
 	original_language?: string;
+	adult?: boolean;
 };
 
 /** TMDb TV list rows — `name` is the human-facing title (we map to `title` in API responses for the web grid). */
@@ -40,6 +41,7 @@ export type TmdbTvSummary = {
 	vote_count?: number;
 	genre_ids?: number[];
 	original_language?: string;
+	adult?: boolean;
 };
 
 export type TmdbMovieDetail = TmdbMovieSummary & {
@@ -221,7 +223,13 @@ export type TmdbPersonDetail = {
 /** Optional TMDb v3 `language` — drives localized titles and regional poster picks. */
 export type TmdbFetchOptions = {
 	language?: string;
+	/** When true, TMDb may return adult titles in search/discover list endpoints. */
+	showAdultContent?: boolean;
 };
+
+function tmdbIncludeAdult(showAdult?: boolean): "true" | "false" {
+	return showAdult === true ? "true" : "false";
+}
 
 /** Gunzip when Bun’s fetch leaves `content-encoding: gzip` bytes on the wire. */
 function gunzipTmdbBody(bytes: Uint8Array): Uint8Array {
@@ -306,7 +314,7 @@ export const tmdbApi = {
 			{
 				query,
 				page,
-				include_adult: "false",
+				include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent),
 			},
 			fetchOpts,
 		);
@@ -318,7 +326,7 @@ export const tmdbApi = {
 			{
 				query,
 				page,
-				include_adult: "false",
+				include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent),
 			},
 			fetchOpts,
 		);
@@ -380,21 +388,21 @@ export const tmdbApi = {
 	popular(page = 1, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<TmdbPaged<TmdbMovieSummary>>(
 			"/movie/popular",
-			{ page },
+			{ page, include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent) },
 			fetchOpts,
 		);
 	},
 	upcoming(page = 1, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<TmdbPaged<TmdbMovieSummary>>(
 			"/movie/upcoming",
-			{ page },
+			{ page, include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent) },
 			fetchOpts,
 		);
 	},
 	nowPlaying(page = 1, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<TmdbPaged<TmdbMovieSummary>>(
 			"/movie/now_playing",
-			{ page },
+			{ page, include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent) },
 			fetchOpts,
 		);
 	},
@@ -407,6 +415,7 @@ export const tmdbApi = {
 			`/trending/movie/${window}`,
 			{
 				page,
+				include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent),
 			},
 			fetchOpts,
 		);
@@ -440,13 +449,14 @@ export const tmdbApi = {
 			language?: string;
 			/** TMDb `with_text_query` — AND with other discover filters. */
 			withTextQuery?: string;
+			showAdultContent?: boolean;
 		} = {},
 	) {
 		const sortBy = opts.sortBy ?? "popularity.desc";
 		const params: Record<string, string | number | undefined> = {
 			page,
 			sort_by: sortBy,
-			include_adult: "false",
+			include_adult: tmdbIncludeAdult(opts.showAdultContent),
 			include_video: "false",
 		};
 		if (Array.isArray(opts.withGenres) && opts.withGenres.length > 0) {
@@ -526,13 +536,17 @@ export const tmdbApi = {
 		);
 	},
 	popularTv(page = 1, fetchOpts: TmdbFetchOptions = {}) {
-		return tmdb<TmdbPaged<TmdbTvSummary>>("/tv/popular", { page }, fetchOpts);
+		return tmdb<TmdbPaged<TmdbTvSummary>>(
+			"/tv/popular",
+			{ page, include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent) },
+			fetchOpts,
+		);
 	},
 	/** TMDb `/tv/on_the_air` — series with episodes airing in the current window. */
 	onTheAirTv(page = 1, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<TmdbPaged<TmdbTvSummary>>(
 			"/tv/on_the_air",
-			{ page },
+			{ page, include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent) },
 			fetchOpts,
 		);
 	},
@@ -560,13 +574,14 @@ export const tmdbApi = {
 			withStatus?: number | number[];
 			/** TMDb `with_text_query` — AND with other discover filters. */
 			withTextQuery?: string;
+			showAdultContent?: boolean;
 		} = {},
 	) {
 		const sortBy = opts.sortBy ?? "popularity.desc";
 		const params: Record<string, string | number | undefined> = {
 			page,
 			sort_by: sortBy,
-			include_adult: "false",
+			include_adult: tmdbIncludeAdult(opts.showAdultContent),
 		};
 		if (Array.isArray(opts.withGenres) && opts.withGenres.length > 0) {
 			params.with_genres = opts.withGenres

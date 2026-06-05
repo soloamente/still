@@ -35,6 +35,13 @@ export const PROFILE_PREF_APP_THEME = "appTheme" as const;
 /** Lenis wheel smoothing — opt-in from Settings → Experience (default off). */
 export const PROFILE_PREF_SMOOTH_SCROLL = "smoothScroll" as const;
 
+/** 18+ films and anime in catalogue surfaces — opt-in from Settings → Catalogue (default off). */
+export const PROFILE_PREF_SHOW_ADULT_CONTENT = "showAdultContent" as const;
+
+/** Optional month/day birthday line on public profile — default off. */
+export const PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE =
+	"showBirthDateOnProfile" as const;
+
 /** `null` = patron has not chosen yet (home shows one-time region prompt when signed in). */
 export type CatalogTmdbWatchRegionPref = "ALL" | string | null;
 
@@ -113,6 +120,22 @@ export function readSmoothScrollPref(
 ): boolean {
 	if (preferences == null) return false;
 	return preferences[PROFILE_PREF_SMOOTH_SCROLL] === true;
+}
+
+/** Adult catalogue opt-in — default off when unset. */
+export function readShowAdultContentPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	if (preferences == null) return false;
+	return preferences[PROFILE_PREF_SHOW_ADULT_CONTENT] === true;
+}
+
+/** Public profile birthday line — default off when unset. */
+export function readShowBirthDateOnProfilePref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	if (preferences == null) return false;
+	return preferences[PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE] === true;
 }
 
 /** True when the patron saved a palette in Settings / account menu (key present in JSON). */

@@ -1,0 +1,671 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_05_adult_content_settings_md",
+			"label": "2026-06-05-adult-content-settings.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"label": "Adult Content Settings Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_conventions_in_this_repo_read_before_starting",
+			"label": "Conventions in this repo (read before starting)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_1_adult_content_policy_module",
+			"label": "Task 1: Adult content policy module",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_1",
+			"label": "code:ts (import { describe, expect, it } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L64"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_2",
+			"label": "code:ts (import { db, profile } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L136"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_3",
+			"label": "code:bash (git add apps/server/src/lib/adult-content-policy.ts apps/ser)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L242"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_2_web_profile_preference_helpers",
+			"label": "Task 2: Web profile preference helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L249"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_4",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L259"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_5",
+			"label": "code:ts (export const PROFILE_PREF_SHOW_ADULT_CONTENT = \"showAdultCon)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L282"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_3_db_migration_tv_adult",
+			"label": "Task 3: DB migration \u2014 `tv.adult`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L298"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_6",
+			"label": "code:ts (adult: boolean(\"adult\").default(false).notNull(),)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L309"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_7",
+			"label": "code:sql (ALTER TABLE \"tv\" ADD COLUMN \"adult\" boolean DEFAULT false NO)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L317"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_4_fix_movie_tv_cache_adult_persistence",
+			"label": "Task 4: Fix movie/TV cache adult persistence",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L327"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_8",
+			"label": "code:ts (adult: detail.adult === true,)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L338"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_9",
+			"label": "code:ts (adult: (detail as { adult?: boolean }).adult === true,)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L348"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_5_mal_jikan_adult_anime_classification",
+			"label": "Task 5: MAL/Jikan adult anime classification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L358"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_10",
+			"label": "code:ts (import { describe, expect, it } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L366"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_11",
+			"label": "code:ts (import { db, tv } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L401"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_6_tmdb_client_parametrize_include_adult",
+			"label": "Task 6: TMDb client \u2014 parametrize `include_adult`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L537"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_12",
+			"label": "code:ts (function includeAdultParam(showAdult: boolean): \"true\" | \"fa)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L548"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_7_movie_tv_detail_gate",
+			"label": "Task 7: Movie/TV detail gate",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L570"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_13",
+			"label": "code:ts (const showAdult = await getShowAdultContentForUser(user?.id))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L580"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_14",
+			"label": "code:ts (const showAdult = await getShowAdultContentForUser(user?.id))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L592"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_8_discover_search_filtering",
+			"label": "Task 8: Discover & search filtering",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L610"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_15",
+			"label": "code:ts (const showAdult = await getShowAdultContentForUser(user?.id))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L618"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_16",
+			"label": "code:ts (results: filterOutAdultRows(data.results, showAdult, (m) =>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L626"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_9_diary_watchlist_lists_community",
+			"label": "Task 9: Diary, watchlist, lists, community",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L646"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_17",
+			"label": "code:ts (export async function isLogEntryAdult(entry: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L658"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_18",
+			"label": "code:ts (if (!showAdult) {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L671"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_10_settings_ui_enable_dialog",
+			"label": "Task 10: Settings UI + enable dialog",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L686"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_19",
+			"label": "code:ts (export function patronMeetsAdultAgeGate()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L699"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_20",
+			"label": "code:ts (showAdultContent: boolean;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L718"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_11_blocked_detail_ui_web",
+			"label": "Task 11: Blocked detail UI (web)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L752"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_21",
+			"label": "code:tsx (export function AdultContentBlockedState() {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L761"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_22",
+			"label": "code:tsx (return ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L781"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_task_12_verification",
+			"label": "Task 12: Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L799"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_23",
+			"label": "code:bash (bun test apps/server/src/lib/adult-content-policy.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L803"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_24",
+			"label": "code:bash (cd apps/web && bun run check-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L812"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_codeblock_25",
+			"label": "code:bash (graphify update .)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L828"
+		},
+		{
+			"id": "plans_2026_06_05_adult_content_settings_spec_coverage_self_review",
+			"label": "Spec coverage self-review",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L834"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_05_adult_content_settings_md",
+			"target": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_conventions_in_this_repo_read_before_starting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_1_adult_content_policy_module",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_1_adult_content_policy_module",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_1_adult_content_policy_module",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L136",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_1_adult_content_policy_module",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L242",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_2_web_profile_preference_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L249",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_2_web_profile_preference_helpers",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_2_web_profile_preference_helpers",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L282",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_3_db_migration_tv_adult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L298",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_3_db_migration_tv_adult",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L309",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_3_db_migration_tv_adult",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L317",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_4_fix_movie_tv_cache_adult_persistence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L327",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_4_fix_movie_tv_cache_adult_persistence",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L338",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_4_fix_movie_tv_cache_adult_persistence",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L348",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_5_mal_jikan_adult_anime_classification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L358",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_5_mal_jikan_adult_anime_classification",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L366",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_5_mal_jikan_adult_anime_classification",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L401",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_6_tmdb_client_parametrize_include_adult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L537",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_6_tmdb_client_parametrize_include_adult",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L548",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_7_movie_tv_detail_gate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L570",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_7_movie_tv_detail_gate",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L580",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_7_movie_tv_detail_gate",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L592",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_8_discover_search_filtering",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L610",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_8_discover_search_filtering",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L618",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_8_discover_search_filtering",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L626",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_9_diary_watchlist_lists_community",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L646",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_9_diary_watchlist_lists_community",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L658",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_9_diary_watchlist_lists_community",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L671",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_10_settings_ui_enable_dialog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L686",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_10_settings_ui_enable_dialog",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L699",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_10_settings_ui_enable_dialog",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L718",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_11_blocked_detail_ui_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L752",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_11_blocked_detail_ui_web",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L761",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_11_blocked_detail_ui_web",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L781",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_task_12_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L799",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_12_verification",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L803",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_12_verification",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L812",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_task_12_verification",
+			"target": "plans_2026_06_05_adult_content_settings_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L828",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_05_adult_content_settings_adult_content_settings_implementation_plan",
+			"target": "plans_2026_06_05_adult_content_settings_spec_coverage_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-05-adult-content-settings.md",
+			"source_location": "L834",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

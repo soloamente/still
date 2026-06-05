@@ -14,6 +14,8 @@ import { and, asc, desc, eq, ilike, inArray, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
+import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import {
 	communityOffset,
 	parseCommunityPage,
@@ -377,6 +379,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	.get(
 		"/:id",
 		async ({ params, status, user }) => {
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			const [meta] = await db
 				.select()
 				.from(list)
@@ -414,7 +417,15 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.from(listItem)
 				.leftJoin(movie, eq(listItem.movieId, movie.tmdbId))
 				.leftJoin(tv, eq(listItem.tvId, tv.tmdbId))
-				.where(eq(listItem.listId, params.id))
+				.where(
+					and(
+						eq(listItem.listId, params.id),
+						joinedTitleItemNotAdultSql(showAdultContent, {
+							movieId: listItem.movieId,
+							tvId: listItem.tvId,
+						}),
+					),
+				)
 				.orderBy(asc(listItem.position), asc(listItem.addedAt));
 
 			const ownerScores = await fetchOwnerLogScoresForListItems(
@@ -717,12 +728,21 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				});
 			}
 
+			const showAdultContent = await getShowAdultContentForUser(user.id);
 			const items = await db
 				.select({ item: listItem, movie, tv })
 				.from(listItem)
 				.leftJoin(movie, eq(listItem.movieId, movie.tmdbId))
 				.leftJoin(tv, eq(listItem.tvId, tv.tmdbId))
-				.where(eq(listItem.listId, params.id))
+				.where(
+					and(
+						eq(listItem.listId, params.id),
+						joinedTitleItemNotAdultSql(showAdultContent, {
+							movieId: listItem.movieId,
+							tvId: listItem.tvId,
+						}),
+					),
+				)
 				.orderBy(asc(listItem.position), asc(listItem.addedAt));
 			return { ok: true, items };
 		},

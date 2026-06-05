@@ -31,6 +31,7 @@ type ProfilePatronHeaderProps = {
 	stats: { followers: number; following: number };
 	location: string | null;
 	website: string | null;
+	birthdayDisplay?: string | null;
 	isMe: boolean;
 	targetUserId: string;
 	bannerUrl: string | null;
@@ -58,6 +59,7 @@ export function ProfilePatronHeader({
 	stats,
 	location,
 	website,
+	birthdayDisplay,
 	isMe,
 	targetUserId,
 	bannerUrl,
@@ -188,6 +190,7 @@ export function ProfilePatronHeader({
 					pronouns={pronouns}
 					location={location}
 					website={website}
+					birthdayDisplay={birthdayDisplay}
 				/>
 
 				{/* Pinned reviews */}

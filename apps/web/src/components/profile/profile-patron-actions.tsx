@@ -69,7 +69,7 @@ export function ProfilePatronActions({
 				>
 					Share taste card
 				</DetailMotionButton>
-				<DetailMotionLink href="/me/settings" className={primaryPill}>
+				<DetailMotionLink href="/me/settings/profile" className={primaryPill}>
 					Edit profile
 				</DetailMotionLink>
 			</div>

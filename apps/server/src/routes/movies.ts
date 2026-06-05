@@ -9,9 +9,16 @@ import {
 	review,
 } from "@still/db";
 import { env } from "@still/env/server";
-import { and, desc, eq, inArray, sql } from "drizzle-orm";
+import { and, desc, eq, inArray } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
+import { filterMovieCatalogueResults } from "../lib/adult-content-catalogue-filter";
+import {
+	buildAdultBlockedMoviePayload,
+	isMovieAdult,
+	shouldBlockAdultDetail,
+} from "../lib/adult-content-policy";
+import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { contentVisibilityWhere } from "../lib/content-visibility";
 import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
 import {
@@ -81,6 +88,7 @@ async function discoverCompanyMoviesMatchingTitle(
 	companyId: number,
 	titleNeedle: string,
 	language: string,
+	showAdultContent: boolean,
 ): Promise<TmdbMovieSummary[]> {
 	const ql = titleNeedle.toLowerCase();
 	const out: TmdbMovieSummary[] = [];
@@ -91,6 +99,7 @@ async function discoverCompanyMoviesMatchingTitle(
 			withCompanies: companyId,
 			sortBy: "popularity.desc",
 			language,
+			showAdultContent,
 		});
 		for (const m of disc.results) {
 			if (seen.has(m.id)) continue;
@@ -195,7 +204,7 @@ async function cacheDetail(detail: TmdbMovieDetail) {
 			popularity: detail.popularity ?? null,
 			voteAverage: detail.vote_average ?? null,
 			voteCount: detail.vote_count ?? null,
-			adult: false,
+			adult: detail.adult === true,
 			tmdbJson: detail as unknown as Record<string, unknown>,
 			lastSyncedAt: new Date(),
 		})
@@ -206,6 +215,7 @@ async function cacheDetail(detail: TmdbMovieDetail) {
 				overview: detail.overview,
 				posterPath: detail.poster_path,
 				backdropPath: detail.backdrop_path,
+				adult: detail.adult === true,
 				tmdbJson: detail as unknown as Record<string, unknown>,
 				lastSyncedAt: new Date(),
 				popularity: detail.popularity ?? null,
@@ -291,6 +301,7 @@ export const moviesRoute = new Elysia({
 			if (!env.TMDB_API_KEY)
 				return tmdbUnconfiguredPaged(Number(query.page ?? 1) || 1);
 			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			const page = Number(query.page ?? 1) || 1;
 			const companyRaw = query.company?.trim();
 			const companyId =
@@ -298,7 +309,10 @@ export const moviesRoute = new Elysia({
 					? Math.floor(Number(companyRaw))
 					: null;
 
-			const data = await tmdbApi.searchMovies(q, page, { language });
+			const data = await tmdbApi.searchMovies(q, page, {
+				language,
+				showAdultContent,
+			});
 			let rows = data.results;
 
 			if (companyId) {
@@ -313,6 +327,7 @@ export const moviesRoute = new Elysia({
 					companyId,
 					q,
 					language,
+					showAdultContent,
 				);
 				const merged = new Map<number, TmdbMovieSummary>();
 				for (const m of [...verified, ...fromDiscover]) {
@@ -320,6 +335,8 @@ export const moviesRoute = new Elysia({
 				}
 				rows = [...merged.values()].slice(0, COMPANY_SEARCH_VERIFY_MAX);
 			}
+
+			rows = await filterMovieCatalogueResults(rows, showAdultContent);
 
 			return {
 				...data,
@@ -346,10 +363,15 @@ export const moviesRoute = new Elysia({
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
-			const data = await tmdbApi.popular(page, { language });
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
+			const data = await tmdbApi.popular(page, { language, showAdultContent });
+			const rows = await filterMovieCatalogueResults(
+				data.results,
+				showAdultContent,
+			);
 			return {
 				...data,
-				results: data.results.map((m) => ({
+				results: rows.map((m) => ({
 					...m,
 					poster_url: tmdbImg.poster(m.poster_path),
 					backdrop_url: tmdbImg.backdrop(m.backdrop_path),
@@ -364,6 +386,7 @@ export const moviesRoute = new Elysia({
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			// Theatrical “opening soon” via discover — not TMDb `/movie/upcoming` (curated, can drift).
 			// `Latest + in cinemas` uses `primary_release_date.lte=today`; use **gte = tomorrow** so
 			// same-day openings are not duplicated at the top of both grids (TMDb `gte`/`lte` are inclusive).
@@ -392,13 +415,18 @@ export const moviesRoute = new Elysia({
 				region: discoveryRegion,
 				primaryReleaseDateGte,
 				language,
+				showAdultContent,
 			});
 			const theatricalRows = data.results.filter((m) =>
 				tmdbDiscoverTheatricalRowHasCalendarDate(m.release_date),
 			);
+			const rows = await filterMovieCatalogueResults(
+				theatricalRows,
+				showAdultContent,
+			);
 			return {
 				...data,
-				results: theatricalRows.map((m) => ({
+				results: rows.map((m) => ({
 					...m,
 					poster_url: tmdbImg.poster(m.poster_path),
 					backdrop_url: tmdbImg.backdrop(m.backdrop_path),
@@ -420,10 +448,18 @@ export const moviesRoute = new Elysia({
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
-			const data = await tmdbApi.nowPlaying(page, { language });
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
+			const data = await tmdbApi.nowPlaying(page, {
+				language,
+				showAdultContent,
+			});
+			const rows = await filterMovieCatalogueResults(
+				data.results,
+				showAdultContent,
+			);
 			return {
 				...data,
-				results: data.results.map((m) => ({
+				results: rows.map((m) => ({
 					...m,
 					poster_url: tmdbImg.poster(m.poster_path),
 					backdrop_url: tmdbImg.backdrop(m.backdrop_path),
@@ -438,14 +474,19 @@ export const moviesRoute = new Elysia({
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			const data = await tmdbApi.trending(
 				(query.window as "day" | "week") ?? "day",
 				page,
-				{ language },
+				{ language, showAdultContent },
+			);
+			const rows = await filterMovieCatalogueResults(
+				data.results,
+				showAdultContent,
 			);
 			return {
 				...data,
-				results: data.results.map((m) => ({
+				results: rows.map((m) => ({
 					...m,
 					poster_url: tmdbImg.poster(m.poster_path),
 					backdrop_url: tmdbImg.backdrop(m.backdrop_path),
@@ -511,6 +552,7 @@ export const moviesRoute = new Elysia({
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			const withGenres = parseCommaIntList(query.genre?.trim());
 			const withKeywords = parseCommaIntList(query.keywords?.trim());
 			const textQuery = (query.q ?? "").trim() || undefined;
@@ -611,6 +653,7 @@ export const moviesRoute = new Elysia({
 				withWatchMonetizationTypes,
 				language,
 				withTextQuery: textQuery,
+				showAdultContent,
 			});
 			// Theatrical venue: hide undated rows so “Latest in cinemas” never shows ambiguous TBA tiles.
 			let discoverRows =
@@ -630,6 +673,10 @@ export const moviesRoute = new Elysia({
 					return d <= todayUtc;
 				});
 			}
+			discoverRows = await filterMovieCatalogueResults(
+				discoverRows,
+				showAdultContent,
+			);
 			return {
 				...data,
 				results: discoverRows.map((m) => ({
@@ -715,6 +762,11 @@ export const moviesRoute = new Elysia({
 				.where(eq(movie.tmdbId, id))
 				.limit(1);
 			if (!row) return status(404, "Movie not found");
+
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
+			if (shouldBlockAdultDetail(showAdultContent, isMovieAdult(row))) {
+				return buildAdultBlockedMoviePayload(id, row.title);
+			}
 
 			// Locale-specific artwork + copy (title, tagline, overview) from the patron’s catalogue language.
 			let posterPathForUrl = row.posterPath;
