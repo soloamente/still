@@ -223,6 +223,7 @@ export function CataloguePosterTile({
 			});
 		}
 	}, [
+		isHomeLikeSurface,
 		isMovie,
 		onActionComplete,
 		onOpenChange,
