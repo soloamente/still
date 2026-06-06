@@ -9,6 +9,8 @@ import { isListCoverProxySrc } from "@/lib/list-cover-image";
 export type MovieDetailHeroSlide = {
 	key: string;
 	src: string;
+	/** Full-resolution TMDb backdrop (`original`) when the API exposes download URLs. */
+	srcFull?: string | null;
 	label: string;
 };
 

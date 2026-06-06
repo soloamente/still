@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useLayoutEffect } from "react";
 
+import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 import { writeHomeLobbyHrefCookie } from "@/lib/home-lobby-cookie";
 import {
 	buildHomeHrefFromPersisted,
@@ -11,12 +12,13 @@ import {
 } from "@/lib/home-lobby-persist";
 
 /**
- * When the patron lands on a **bare** `/home` (no query), sync the address bar to their
- * last lobby chips without `router.replace` — that path triggers Next 307 redirects in dev.
- * The RSC page already reads the same prefs from the `still.home-lobby-href-v1` cookie.
+ * When the patron lands on a **bare** `/home` (no query), navigate to their last lobby
+ * chips so the RSC payload matches the restored URL. Cookie restore covers many cases on
+ * the server; this path handles localStorage-only prefs and keeps the address bar honest.
  */
 export function HomeLobbySessionRestore() {
 	const pathname = usePathname();
+	const { navigate } = useLobbyNavigation();
 
 	useLayoutEffect(() => {
 		if (pathname !== "/home") return;
@@ -30,10 +32,9 @@ export function HomeLobbySessionRestore() {
 		if (href === "/home") return;
 		const current = `${pathname}${search}`;
 		if (href === current) return;
-		// URL-only update — no RSC round-trip, no 307.
-		window.history.replaceState(null, "", href);
 		writeHomeLobbyHrefCookie(href);
-	}, [pathname]);
+		navigate(href);
+	}, [navigate, pathname]);
 
 	return null;
 }

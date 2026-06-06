@@ -5,6 +5,8 @@ import { CreditsCrawl } from "@/components/cinema/credits-crawl";
 import { CreditsFooter } from "@/components/cinema/credits-footer";
 import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
+import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
+import { MovieDetailStillsSection } from "@/components/movie/movie-detail-stills-carousel";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
 import { TvDetailMalMeta } from "@/components/tv/tv-detail-mal-meta";
 import { TvDetailProgressPanel } from "@/components/tv/tv-detail-progress-panel";
@@ -37,6 +39,7 @@ export function TvDetailAboutPanel({
 	recognitionPresent,
 	community,
 	malEnrichment,
+	screenshots = [],
 }: {
 	tvId: number;
 	title: string;
@@ -58,6 +61,7 @@ export function TvDetailAboutPanel({
 	/** Community lists + followed ratings (Suspense boundary from the TV page). */
 	community: ReactNode;
 	malEnrichment?: TvMalEnrichment | null;
+	screenshots?: MovieDetailHeroSlide[];
 }) {
 	return (
 		<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
@@ -93,6 +97,8 @@ export function TvDetailAboutPanel({
 					) : null}
 				</div>
 			) : null}
+
+			<MovieDetailStillsSection screenshots={screenshots} title={title} />
 
 			{community}
 

@@ -152,6 +152,7 @@ type Detail = {
 	paletteMuted: string | null;
 	paletteForeground: string | null;
 	community: CommunityShape;
+	screenshots?: { key: string; src: string; label: string }[];
 	tmdbJson: TmdbJsonShape;
 };
 
@@ -342,6 +343,7 @@ export default async function MoviePage({
 							imdbId={data.imdbId}
 							festivalKeywords={festivalKeywords}
 							premiereRows={premiereRows}
+							screenshots={data.screenshots ?? []}
 						/>
 					</Suspense>
 				}

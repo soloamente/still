@@ -5,6 +5,8 @@ import { CreditsFooter } from "@/components/cinema/credits-footer";
 import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
+import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
+import { MovieDetailStillsSection } from "@/components/movie/movie-detail-stills-carousel";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
 import type { ArcCreditCard } from "@/lib/movie-cast-crew-arc";
 import {
@@ -30,8 +32,31 @@ type ReviewRow = {
 	rating: number | null;
 	likesCount: number;
 	commentsCount: number;
-	publishedAt: string;
+	publishedAt: string | Date;
+	author?: {
+		handle: string;
+		displayName: string;
+		image: string | null;
+	} | null;
 };
+
+function normalizeReviewRow(raw: ReviewRow) {
+	return {
+		id: raw.id,
+		userId: raw.userId,
+		movieId: raw.movieId,
+		title: raw.title,
+		body: raw.body,
+		rating: raw.rating,
+		likesCount: raw.likesCount ?? 0,
+		commentsCount: raw.commentsCount ?? 0,
+		publishedAt:
+			raw.publishedAt instanceof Date
+				? raw.publishedAt.toISOString()
+				: raw.publishedAt,
+		author: raw.author ?? null,
+	};
+}
 
 type MovieListRow = {
 	id: string;
@@ -82,6 +107,7 @@ export interface MovieDetailAboutAsyncProps {
 	imdbId: string | null;
 	festivalKeywords: string[];
 	premiereRows: PremiereRow[];
+	screenshots?: MovieDetailHeroSlide[];
 }
 
 /** Streams reviews, lists, and Wikidata awards while hero + tabs stay interactive. */
@@ -99,10 +125,11 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 		creditsCrewRows,
 		crewCrawlLines,
 		moreLikeThis,
-		moviePosterUrl,
+		moviePosterUrl: _moviePosterUrl,
 		imdbId,
 		festivalKeywords,
 		premiereRows,
+		screenshots = [],
 	} = props;
 
 	const api = await serverApi();
@@ -124,7 +151,9 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 			fetchWikidataMovieAwards({ tmdbId, imdbId }),
 		]);
 
-	const reviews = (reviewsRes.data as unknown as ReviewRow[]) ?? [];
+	const reviews = ((reviewsRes.data as unknown as ReviewRow[]) ?? []).map(
+		normalizeReviewRow,
+	);
 	const movieLists = (listsRes.data as unknown as MovieListRow[]) ?? [];
 	const followingRatingsPayload =
 		(followingRatingsRes.data as unknown as FollowingRatingsPayload) ?? {
@@ -139,15 +168,6 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 		wikidataAwards,
 	);
 	const recognitionPresent = recognitionEntries.length > 0;
-
-	const featuredReviews = [...reviews]
-		.filter((r) => r.body.trim().length >= 100)
-		.sort(
-			(a, b) => b.likesCount - a.likesCount || b.body.length - a.body.length,
-		)
-		.slice(0, 2);
-	const featuredIds = new Set(featuredReviews.map((r) => r.id));
-	const reviewsAfterFeatured = reviews.filter((r) => !featuredIds.has(r.id));
 
 	return (
 		<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
@@ -178,18 +198,17 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 				</div>
 			) : null}
 
+			<MovieDetailStillsSection screenshots={screenshots} title={title} />
+
 			<MovieDetailExploreTabs
 				layout="stacked"
 				followingRatings={followingRatingsPayload.entries}
 				followingRatingsMoreCount={followingRatingsPayload.moreCount}
 				lists={movieLists}
-				featuredReviews={featuredReviews}
-				reviewsAfterFeatured={reviewsAfterFeatured}
 				reviews={reviews}
 				moreLikeThis={moreLikeThis}
 				movieId={numericId}
 				movieTitle={title}
-				moviePosterUrl={moviePosterUrl}
 				listingTmdbId={tmdbId}
 			/>
 

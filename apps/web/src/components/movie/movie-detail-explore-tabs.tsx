@@ -2,7 +2,7 @@
 
 import IconListPlay from "@still/ui/icons/list-play";
 import { cn } from "@still/ui/lib/utils";
-import { LayoutGrid, Quote, Sparkles } from "lucide-react";
+import { LayoutGrid, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { KeyboardEvent, ReactNode } from "react";
@@ -15,12 +15,8 @@ import {
 	type MovieDetailFollowingRating,
 	MovieDetailFollowingRatings,
 } from "@/components/movie/movie-detail-following-ratings";
+import { MovieDetailReviewsCarousel } from "@/components/movie/movie-detail-reviews-carousel";
 import { MoviePoster } from "@/components/movie/movie-poster";
-import {
-	ReviewCard,
-	type ReviewCardListing,
-} from "@/components/review/review-card";
-import { useReviewDetail } from "@/components/review/review-detail-sheet";
 import { Section } from "@/components/ui/section";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import {
@@ -33,7 +29,6 @@ import {
 	isListCoverProxySrc,
 	listBoardRowPosterUrl,
 } from "@/lib/list-cover-image";
-import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
 import type { TmdbMovieSummary } from "@/lib/movie-detail-tmdb";
 
@@ -47,6 +42,16 @@ function MovieDetailSubsectionLabel({ children }: { children: ReactNode }) {
 		<p className="mb-4 text-center font-medium text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
 			{children}
 		</p>
+	);
+}
+
+/** Subsection kicker — count + correct review/reviews (uppercase via label styles). */
+function formatReviewsSubsectionLabel(count: number) {
+	return (
+		<>
+			<span className="tabular-nums">{count}</span>{" "}
+			{count === 1 ? "review" : "reviews"}
+		</>
 	);
 }
 
@@ -151,6 +156,12 @@ export type MovieListForPageTab = {
 	coverMovieId?: number | null;
 };
 
+export type MoviePageReviewAuthor = {
+	handle: string;
+	displayName: string;
+	image: string | null;
+};
+
 export type MoviePageReview = {
 	id: string;
 	userId: string;
@@ -161,6 +172,7 @@ export type MoviePageReview = {
 	likesCount: number;
 	commentsCount: number;
 	publishedAt: string;
+	author?: MoviePageReviewAuthor | null;
 };
 
 /**
@@ -170,8 +182,6 @@ export type MoviePageReview = {
  */
 export function MovieDetailExploreTabs({
 	lists,
-	featuredReviews,
-	reviewsAfterFeatured,
 	reviews,
 	moreLikeThis,
 	followingRatings = [],
@@ -181,13 +191,10 @@ export function MovieDetailExploreTabs({
 	relatedListingKind = "movie",
 	movieId,
 	movieTitle,
-	moviePosterUrl = null,
 	listingTmdbId,
 	listCountLabel = "films",
 }: {
 	lists: MovieListForPageTab[];
-	featuredReviews: MoviePageReview[];
-	reviewsAfterFeatured: MoviePageReview[];
 	reviews: MoviePageReview[];
 	moreLikeThis: TmdbMovieSummary[];
 	/** Latest diary scores from patrons the viewer follows (signed-in only). */
@@ -199,25 +206,12 @@ export function MovieDetailExploreTabs({
 	/** Pre-fill create-list sheet and add this title after save. */
 	movieId?: number;
 	movieTitle?: string;
-	moviePosterUrl?: string | null;
 	listingTmdbId: number;
 	/** Meta line after list owner — `films` on movie detail, `titles` on TV. */
 	listCountLabel?: string;
 }) {
 	const baseId = useId();
 	const [tab, setTab] = useState<TabId>("reviews");
-	const openReviewDetail = useReviewDetail((s) => s.open);
-	const reviewListing: ReviewCardListing | undefined = movieTitle
-		? {
-				title: movieTitle,
-				posterUrl: moviePosterUrl,
-				href:
-					relatedListingKind === "tv"
-						? `/tv/${listingTmdbId}`
-						: `/movies/${listingTmdbId}`,
-				listingKind: relatedListingKind,
-			}
-		: undefined;
 
 	const tabIds = {
 		reviews: `${baseId}-reviews`,
@@ -259,91 +253,9 @@ export function MovieDetailExploreTabs({
 
 	const hasRelatedBody = moreLikeThis.length > 0;
 
-	const reviewsPanel = (
-		<>
-			{featuredReviews.length ? (
-				<div>
-					<h3 className="mb-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-						Spotlight reviews
-					</h3>
-					<ul className="mb-8 grid gap-4 md:grid-cols-2">
-						{featuredReviews.map((r) => (
-							<li
-								key={r.id}
-								className={cn(COMMUNITY_CARD, "relative p-5 pl-7")}
-							>
-								<Quote
-									className="absolute top-4 left-3 size-5 text-desert-orange/50"
-									aria-hidden
-								/>
-								<button
-									type="button"
-									className="group block w-full cursor-pointer text-left"
-									onClick={() =>
-										openReviewDetail({
-											reviewId: r.id,
-											preview: {
-												id: r.id,
-												title: r.title,
-												body: r.body,
-												rating: r.rating,
-												likesCount: r.likesCount,
-												commentsCount: r.commentsCount,
-												publishedAt: r.publishedAt,
-											},
-										})
-									}
-								>
-									{r.title ? (
-										<p className="font-serif text-lg group-hover:text-desert-orange">
-											{r.title}
-										</p>
-									) : null}
-									<p className="mt-2 line-clamp-5 font-editorial text-foreground/85 text-sm leading-relaxed">
-										{r.body}
-									</p>
-									<div className="mt-3 flex flex-wrap items-center gap-x-2 text-muted-foreground text-xs">
-										<span>
-											{r.likesCount} {r.likesCount === 1 ? "like" : "likes"}
-										</span>
-										{r.rating != null ? (
-											<span className="font-medium text-foreground tabular-nums">
-												{formatStoredLogRatingDisplay(r.rating)}
-												<span className="text-muted-foreground">/10</span>
-											</span>
-										) : null}
-									</div>
-								</button>
-							</li>
-						))}
-					</ul>
-				</div>
-			) : null}
+	const reviewsSubsectionLabel = formatReviewsSubsectionLabel(reviews.length);
 
-			{reviewsAfterFeatured.length ? (
-				<div>
-					<h3 className="mb-3 font-medium text-muted-foreground text-xs uppercase tracking-wider">
-						All reviews
-					</h3>
-					<ul className="grid gap-4 md:grid-cols-2">
-						{reviewsAfterFeatured.slice(0, 12).map((r) => (
-							<li key={r.id}>
-								<ReviewCard
-									review={reviewListing ? { ...r, listing: reviewListing } : r}
-								/>
-							</li>
-						))}
-					</ul>
-				</div>
-			) : null}
-
-			{!reviews.length ? (
-				<p className="text-center text-muted-foreground text-sm">
-					No reviews yet. Be the first to write one.
-				</p>
-			) : null}
-		</>
-	);
+	const reviewsPanel = <MovieDetailReviewsCarousel reviews={reviews} />;
 
 	const listsPanel = lists.length ? (
 		<ul className="grid gap-4 sm:grid-cols-2">
@@ -429,7 +341,9 @@ export function MovieDetailExploreTabs({
 		<div className="space-y-14">
 			{followingRatingsPanel}
 			<div>
-				<MovieDetailSubsectionLabel>Reviews</MovieDetailSubsectionLabel>
+				<MovieDetailSubsectionLabel>
+					{reviewsSubsectionLabel}
+				</MovieDetailSubsectionLabel>
 				{reviewsPanel}
 			</div>
 			<div id={MOVIE_DETAIL_SECTION.lists}>
@@ -514,6 +428,11 @@ export function MovieDetailExploreTabs({
 							onClick={() => setTab(t.id)}
 						>
 							{t.label}
+							{t.id === "reviews" && reviews.length > 0 ? (
+								<span className="ml-1.5 text-xs tabular-nums opacity-70">
+									({reviews.length})
+								</span>
+							) : null}
 							{t.id === "lists" && lists.length ? (
 								<span className="ml-1.5 text-xs tabular-nums opacity-70">
 									({lists.length})

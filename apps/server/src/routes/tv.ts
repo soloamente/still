@@ -13,7 +13,11 @@ import {
 } from "../lib/adult-content-policy";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
-import { buildHeroArtworkSlides } from "../lib/hero-artwork-slides";
+import {
+	buildHeroArtworkSlides,
+	buildScreenshotSlides,
+	normalizeTmdbImagesBundle,
+} from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import {
 	getTvMalEnrichment,
@@ -513,12 +517,18 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			}
 
 			try {
-				const detail = await tmdbApi.tvDetail(id, { language });
+				const [detail, imagesFromDedicated] = await Promise.all([
+					tmdbApi.tvDetail(id, { language }),
+					tmdbApi.tvImages(id).catch(() => null),
+				]);
 				await syncTvMalIdFromDetail(
 					id,
 					detail as unknown as Record<string, unknown>,
 				).catch(() => {});
 				const malEnrichment = await getTvMalEnrichment(id).catch(() => null);
+				const fullImagesBundle = normalizeTmdbImagesBundle(
+					imagesFromDedicated ?? detail.images,
+				);
 				const y = detail.first_air_date?.trim().slice(0, 4);
 				const yearNum =
 					y && y.length === 4 && /^\d{4}$/.test(y) ? Number(y) : null;
@@ -542,7 +552,12 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 						title: detail.name,
 						posterPath: detail.poster_path,
 						backdropPath: detail.backdrop_path,
-						images: detail.images ?? null,
+						images: fullImagesBundle,
+					}),
+					screenshots: buildScreenshotSlides({
+						title: detail.name,
+						backdropPath: detail.backdrop_path,
+						images: fullImagesBundle,
 					}),
 					genreIds: (detail.genres ?? []).map((g) => g.id),
 					voteAverage: detail.vote_average ?? null,

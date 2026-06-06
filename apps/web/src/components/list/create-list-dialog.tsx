@@ -18,13 +18,7 @@ import {
 	motion,
 	useReducedMotion,
 } from "motion/react";
-import {
-	type CSSProperties,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "sonner";
 
@@ -226,11 +220,6 @@ export function CreateListDialog({
 						}}
 						onClick={(e) => e.stopPropagation()}
 						className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
-						style={
-							{
-								"--log-rating-accent": "oklch(0.72 0.14 250)",
-							} as CSSProperties
-						}
 					>
 						<div className="mb-4 flex justify-end">
 							<Button

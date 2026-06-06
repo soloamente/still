@@ -1,6 +1,7 @@
 /**
  * What's New release manifest — bump `id` when shipping new dialog copy.
  * Empty `slides` disables the dialog for that deploy.
+ * Full history lives in `product-changelog.ts` (`/changelog`).
  */
 
 export type WhatsNewSlide = {
@@ -22,28 +23,33 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-05-profile-media-upload",
-	fullReleaseHref: "/news",
+	id: "2026-06-06-detail-editorial-community",
+	fullReleaseHref: "/changelog",
 	slides: [
 		{
 			title: "What's new in Sense",
 			description:
-				"Bug fixes, settings now live in a sidebar, profile stats are clearer, and you can opt into smooth scroll when your machine can handle it.",
+				"Editorial review and stills rails on film & TV detail, a sharper diary rating slider, and Community loads the first time you open it — no more endless skeleton.",
 		},
 		{
-			title: "Profile photos work again",
+			title: "Reviews, center stage",
 			description:
-				"Uploading your profile picture or banner failed in production — that's fixed. Pick a new image in Settings → Profile and save; your portrait and banner should update right away.",
+				"On film and TV About tabs, patron reviews scroll in a wide editorial carousel — quote, score, and byline centered. Hover to open the full review.",
 		},
 		{
-			title: "Smooth scroll, your call",
+			title: "Background stills",
 			description:
-				"Experience → Smooth scroll adds gentle wheel inertia. It's off by default so browsing stays snappy on slower devices.",
+				"TMDb backdrops get their own cinematic rail on detail pages. Download a still when you want a wallpaper or reference frame.",
 		},
 		{
-			title: "Profile polish",
+			title: "Community, first try",
 			description:
-				"Films and shows split in your header stats, tab chips stay put when catalogues load, and your own profile actions are simpler.",
+				"Landing on /home Community no longer hangs on the loading skeleton. Switching from Movies or TV first is no longer required.",
+		},
+		{
+			title: "Rating slider refresh",
+			description:
+				"Quick Log and review composer share a rebuilt 0–10 slider with clearer fill, chevron nudges, and a live score ticker.",
 		},
 	],
 };

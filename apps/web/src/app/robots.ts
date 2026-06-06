@@ -26,6 +26,7 @@ export default function robots(): MetadataRoute.Robots {
 				"/notifications",
 				"/chat",
 				"/news",
+				"/changelog",
 				"/people/",
 				"/me/",
 				"/onboarding",

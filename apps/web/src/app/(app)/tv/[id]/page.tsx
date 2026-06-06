@@ -131,6 +131,7 @@ type TvDetail = {
 	paletteMuted: string | null;
 	paletteForeground: string | null;
 	community: CommunityShape;
+	screenshots?: { key: string; src: string; label: string }[];
 	malEnrichment?: {
 		malId: number;
 		score: number | null;
@@ -366,6 +367,7 @@ export default async function TvShowPage({
 							recognitionEntries={recognitionEntries}
 							recognitionPresent={recognitionPresent}
 							malEnrichment={data.malEnrichment ?? null}
+							screenshots={data.screenshots ?? []}
 							community={
 								<Suspense fallback={<TvDetailCommunityFallback />}>
 									<TvDetailCommunityAsync

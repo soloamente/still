@@ -17,6 +17,7 @@ import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 } from "@/lib/detail-action-motion";
+import { whatsNewReleasePillLabel } from "@/lib/product-changelog";
 import type { WhatsNewRelease, WhatsNewSlide } from "@/lib/whats-new-releases";
 
 const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
@@ -33,12 +34,26 @@ const footerNavButtonClass = cn(
 	DETAIL_MOTION_PRESSABLE_CLASS,
 );
 
+/** Release date/version kicker — same track as home filter chips (`bg-background` on `bg-card`). */
+function WhatsNewReleasePill({ label }: { label: string }) {
+	return (
+		<span className="mb-3 inline-flex min-h-7 items-center rounded-full bg-background px-3.5 py-1 font-medium text-[11px] text-muted-foreground tabular-nums tracking-wide">
+			{label}
+		</span>
+	);
+}
+
 function WhatsNewSlidePanel({
 	slide,
+	releasePillLabel,
+	showReleasePill,
 	fullReleaseHref,
 	onCta,
 }: {
 	slide: WhatsNewSlide;
+	/** Shown above the intro slide title only — release version + date. */
+	releasePillLabel: string;
+	showReleasePill: boolean;
 	fullReleaseHref: string;
 	onCta: () => void;
 }) {
@@ -67,14 +82,19 @@ function WhatsNewSlidePanel({
 				</motion.div>
 			) : null}
 
-			<motion.h2
+			<motion.div
 				initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ ...itemTransition, delay: reduceMotion ? 0 : 0.06 }}
-				className="text-balance font-semibold text-foreground text-xl tracking-tight sm:text-2xl"
+				className="flex flex-col items-center"
 			>
-				{slide.title}
-			</motion.h2>
+				{showReleasePill ? (
+					<WhatsNewReleasePill label={releasePillLabel} />
+				) : null}
+				<h2 className="text-balance font-semibold text-foreground text-xl tracking-tight sm:text-2xl">
+					{slide.title}
+				</h2>
+			</motion.div>
 
 			<motion.p
 				initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
@@ -125,6 +145,7 @@ export function WhatsNewDialog({
 	const slideCount = release.slides.length;
 	const slide = release.slides[slideIndex];
 	const isLastSlide = slideIndex >= slideCount - 1;
+	const releasePillLabel = whatsNewReleasePillLabel(release.id);
 
 	const handleDismiss = useCallback(() => {
 		onDismiss();
@@ -249,6 +270,8 @@ export function WhatsNewDialog({
 										</span>
 										<WhatsNewSlidePanel
 											slide={slide}
+											releasePillLabel={releasePillLabel}
+											showReleasePill={slideIndex === 0}
 											fullReleaseHref={release.fullReleaseHref}
 											onCta={handleDismiss}
 										/>

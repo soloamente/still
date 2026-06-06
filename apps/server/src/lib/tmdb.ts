@@ -333,11 +333,13 @@ export const tmdbApi = {
 	},
 	movieDetail(id: number, fetchOpts: TmdbFetchOptions = {}) {
 		// `keywords` surfaces user-facing tags (often festivals, movements); keep append list in sync with movie UI.
+		// `include_image_language` keeps language-less backdrops (most stills) when patron locale filters images.
 		return tmdb<TmdbMovieDetail>(
 			`/movie/${id}`,
 			{
 				append_to_response:
 					"credits,similar,recommendations,videos,watch/providers,release_dates,keywords,images",
+				include_image_language: "null,en",
 			},
 			fetchOpts,
 		);
@@ -365,7 +367,23 @@ export const tmdbApi = {
 			{
 				append_to_response:
 					"credits,similar,recommendations,videos,watch/providers,keywords,images,external_ids",
+				include_image_language: "null,en",
 			},
+			fetchOpts,
+		);
+	},
+	/** Full TMDb image bundle — used when cached detail lacks backdrops (legacy rows). */
+	movieImages(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbMovieDetail["images"]>(
+			`/movie/${id}/images`,
+			{ include_image_language: "null,en" },
+			fetchOpts,
+		);
+	},
+	tvImages(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbTvDetail["images"]>(
+			`/tv/${id}/images`,
+			{ include_image_language: "null,en" },
 			fetchOpts,
 		);
 	},

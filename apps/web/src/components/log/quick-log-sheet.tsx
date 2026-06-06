@@ -4,6 +4,7 @@ import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
 import { Label } from "@still/ui/components/label";
 import { stillToast } from "@still/ui/components/still-toast";
+import { TooltipProvider } from "@still/ui/components/tooltip";
 import IconHeart from "@still/ui/icons/heart";
 import IconHeartFilled from "@still/ui/icons/heart-filled";
 import { cn } from "@still/ui/lib/utils";
@@ -11,20 +12,14 @@ import { Loader2, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import {
-	type CSSProperties,
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { LogWatchedDatePicker } from "@/components/log/log-watched-date-picker";
 import { QuickLogRemoveConfirmDialog } from "@/components/log/quick-log-remove-confirm-dialog";
 import { TvLogScopePicker } from "@/components/log/tv-log-scope-picker";
+import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import {
 	DetailMotionButton,
 	DetailMotionButtonWrap,
@@ -221,6 +216,7 @@ export function QuickLogRoot() {
 	 */
 	const [sheetLayoutActive, setSheetLayoutActive] = useState(false);
 	const scrollRef = useRef<HTMLDivElement>(null);
+	const metaRowRef = useRef<HTMLDivElement>(null);
 	/** Skip first TV scope effect pass so `args.rewatch` is not cleared on open. */
 	const tvScopeEffectReady = useRef(false);
 	const scrollContentKey = [
@@ -236,6 +232,72 @@ export function QuickLogRoot() {
 		isOpen,
 		scrollContentKey,
 	);
+
+	/** transitions.dev avatar-group-hover — screening pills + favorite comb lift. */
+	const setMetaAvatarShifts = useCallback(
+		(activeIdx: number | null, phase: "in" | "out") => {
+			const root = metaRowRef.current;
+			if (!root) return;
+
+			const styles = getComputedStyle(root);
+			const readNum = (name: string, fallback: number) => {
+				const parsed = Number.parseFloat(styles.getPropertyValue(name).trim());
+				return Number.isFinite(parsed) ? parsed : fallback;
+			};
+			const readEase = (name: string, fallback: string) =>
+				styles.getPropertyValue(name).trim() || fallback;
+
+			const lift = readNum("--avatar-lift", -3);
+			const falloff = readNum("--avatar-falloff", 0.5);
+			const scale = readNum("--avatar-scale", 1.03);
+			const timing =
+				phase === "out"
+					? readEase("--avatar-ease-out", "cubic-bezier(0.34, 3.85, 0.64, 1)")
+					: readEase("--avatar-ease-in", "cubic-bezier(0.22, 1, 0.36, 1)");
+
+			root.querySelectorAll<HTMLElement>(".t-avatar").forEach((el, index) => {
+				el.style.transitionTimingFunction = timing;
+				if (activeIdx == null) {
+					el.style.setProperty("--shift", "0px");
+					el.style.setProperty("--scale-active", "1");
+					return;
+				}
+				const distance = Math.abs(index - activeIdx);
+				el.style.setProperty(
+					"--shift",
+					`${(lift * falloff ** distance).toFixed(3)}px`,
+				);
+				el.style.setProperty(
+					"--scale-active",
+					index === activeIdx ? String(scale) : "1",
+				);
+			});
+		},
+		[],
+	);
+
+	useEffect(() => {
+		const root = metaRowRef.current;
+		if (!root) return;
+
+		const onOver = (event: MouseEvent) => {
+			const items = Array.from(root.querySelectorAll<HTMLElement>(".t-avatar"));
+			const activeIdx = items.findIndex((el) =>
+				el.contains(event.target as Node),
+			);
+			if (activeIdx >= 0) {
+				setMetaAvatarShifts(activeIdx, "in");
+			}
+		};
+		const onLeave = () => setMetaAvatarShifts(null, "out");
+
+		root.addEventListener("mouseover", onOver);
+		root.addEventListener("mouseleave", onLeave);
+		return () => {
+			root.removeEventListener("mouseover", onOver);
+			root.removeEventListener("mouseleave", onLeave);
+		};
+	}, [setMetaAvatarShifts]);
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -612,11 +674,6 @@ export function QuickLogRoot() {
 							transition={{ duration: 0.18, ease: [0.165, 0.84, 0.44, 1] }}
 							onClick={(e) => e.stopPropagation()}
 							className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
-							style={
-								{
-									"--log-rating-accent": "oklch(0.72 0.14 250)",
-								} as CSSProperties
-							}
 						>
 							<div className="mb-4 flex justify-end">
 								<Button
@@ -753,40 +810,66 @@ export function QuickLogRoot() {
 									/>
 
 									<div className="mb-6 space-y-5">
-										<div className="flex flex-wrap items-end justify-center gap-2">
-											<SegmentedPillToolbar
-												layoutId="quick-log-screening-pill"
-												aria-label="First watch or rewatch"
-												value={rewatch ? "rewatch" : "first"}
-												onChange={(next) => setRewatch(next === "rewatch")}
-												options={[
-													{ id: "first", label: "First watch" },
-													{ id: "rewatch", label: "Rewatch" },
-												]}
-											/>
-											<DetailMotionButton
-												layout={sheetLayoutActive ? "position" : false}
-												className={cn(
-													"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
-													!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-													liked && "bg-foreground text-background",
-												)}
-												aria-pressed={liked}
-												aria-label={
-													liked ? "Remove favorite" : "Mark as favorite"
-												}
-												transition={{
-													...detailMotion.buttonTransition,
-													layout: metaRowLayoutTransition,
-												}}
-												onClick={() => setLiked((v) => !v)}
-											>
-												{liked ? (
-													<IconHeartFilled className="size-5" aria-hidden />
-												) : (
-													<IconHeart className="size-5" aria-hidden />
-												)}
-											</DetailMotionButton>
+										<div
+											ref={metaRowRef}
+											className="quick-log-meta-row t-avatar-group flex flex-wrap items-end justify-center gap-2"
+										>
+											<div className="t-avatar">
+												<SegmentedPillToolbar
+													layoutId="quick-log-screening-pill"
+													aria-label="First watch or rewatch"
+													value={rewatch ? "rewatch" : "first"}
+													onChange={(next) => setRewatch(next === "rewatch")}
+													options={[
+														{ id: "first", label: "First watch" },
+														{ id: "rewatch", label: "Rewatch" },
+													]}
+												/>
+											</div>
+											<div className="t-avatar">
+												<TooltipProvider delay={0} closeDelay={80}>
+													<DetailIconTooltip
+														label={
+															liked ? "Remove favorite" : "Mark as favorite"
+														}
+													>
+														<DetailMotionButton
+															layout={sheetLayoutActive ? "position" : false}
+															className={cn(
+																"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
+																!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+																liked && "bg-foreground text-background",
+															)}
+															aria-pressed={liked}
+															aria-label={
+																liked ? "Remove favorite" : "Mark as favorite"
+															}
+															transition={{
+																...detailMotion.buttonTransition,
+																layout: metaRowLayoutTransition,
+															}}
+															onClick={() => setLiked((v) => !v)}
+														>
+															{/* transitions.dev icon-swap — outline ↔ filled favorite. */}
+															<span
+																className="t-icon-swap"
+																data-state={liked ? "b" : "a"}
+																aria-hidden
+															>
+																<span className="t-icon" data-icon="a">
+																	<IconHeart className="size-5" aria-hidden />
+																</span>
+																<span className="t-icon" data-icon="b">
+																	<IconHeartFilled
+																		className="size-5"
+																		aria-hidden
+																	/>
+																</span>
+															</span>
+														</DetailMotionButton>
+													</DetailIconTooltip>
+												</TooltipProvider>
+											</div>
 										</div>
 
 										<div className="mx-auto w-full max-w-sm space-y-2">

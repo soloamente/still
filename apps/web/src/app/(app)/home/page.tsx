@@ -572,7 +572,7 @@ export default async function HomePage({
 						`useSearchParams` — keep inside Suspense so the home RSC shell can still
 						stream; the bar is tiny so a short fallback is acceptable.
 					*/}
-					<HomeLobbyBodyGate urlBrowse={browse}>
+					<HomeLobbyBodyGate serverBrowse={browse}>
 						{browse === "community" ? (
 							<Suspense fallback={<CommunityLobbySkeleton />}>
 								<HomeCommunityRscPayload

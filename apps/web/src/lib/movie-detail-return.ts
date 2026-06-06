@@ -114,6 +114,9 @@ export function resolveMovieDetailReturnFromPath(
 	if (pathname === "/news" || pathname.startsWith("/news")) {
 		return { href: "/news", label: "News" };
 	}
+	if (pathname === "/changelog" || pathname.startsWith("/changelog")) {
+		return { href: "/changelog", label: "Changelog" };
+	}
 	if (pathname === "/me/settings" || pathname.startsWith("/me/settings")) {
 		return { href: "/me/settings", label: "Settings" };
 	}

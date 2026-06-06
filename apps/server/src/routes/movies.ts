@@ -7,6 +7,7 @@ import {
 	person,
 	profile,
 	review,
+	user,
 } from "@still/db";
 import { env } from "@still/env/server";
 import { and, desc, eq, inArray } from "drizzle-orm";
@@ -23,6 +24,7 @@ import { contentVisibilityWhere } from "../lib/content-visibility";
 import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
 import {
 	buildHeroArtworkSlides,
+	buildScreenshotSlides,
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
@@ -774,13 +776,16 @@ export const moviesRoute = new Elysia({
 			let title = row.title;
 			let tagline = row.tagline;
 			let overview = row.overview;
-			let imagesSource =
-				detail?.images ??
-				(
-					row.tmdbJson as {
-						images?: { posters?: unknown[]; backdrops?: unknown[] };
-					}
-				)?.images;
+			const cachedImages = (
+				row.tmdbJson as {
+					images?: { posters?: unknown[]; backdrops?: unknown[] };
+				}
+			)?.images;
+			// Dedicated `/images` returns the full backdrop set (append + locale can filter).
+			const imagesForRailPromise = tmdbApi.movieImages(id).catch(() => null);
+			let imagesSourceForHero = normalizeTmdbImagesBundle(
+				detail?.images ?? cachedImages,
+			);
 			if (language !== "en-US") {
 				try {
 					const localized = await tmdbApi.movieDetail(id, { language });
@@ -791,15 +796,25 @@ export const moviesRoute = new Elysia({
 					tagline = copy.tagline;
 					overview = copy.overview;
 					if (localized.images) {
-						imagesSource = localized.images;
+						imagesSourceForHero = normalizeTmdbImagesBundle({
+							posters: localized.images.posters,
+							backdrops:
+								normalizeTmdbImagesBundle(detail?.images ?? cachedImages)
+									?.backdrops ?? localized.images.backdrops,
+						});
 					}
 				} catch (err) {
 					console.warn("[movies] localized detail failed; using cache", err);
 				}
 			}
 
-			// Patron community score — public diary ratings (one per patron), not reviews.
-			const community = await fetchPublicDiaryCommunityStats({ movieId: id });
+			const [community, imagesFromDedicated] = await Promise.all([
+				fetchPublicDiaryCommunityStats({ movieId: id }),
+				imagesForRailPromise,
+			]);
+			const fullImagesBundle = normalizeTmdbImagesBundle(
+				imagesFromDedicated ?? detail?.images ?? cachedImages,
+			);
 
 			return {
 				...row,
@@ -812,7 +827,12 @@ export const moviesRoute = new Elysia({
 					title,
 					posterPath: posterPathForUrl,
 					backdropPath: backdropPathForUrl,
-					images: normalizeTmdbImagesBundle(imagesSource),
+					images: imagesSourceForHero,
+				}),
+				screenshots: buildScreenshotSlides({
+					title,
+					backdropPath: backdropPathForUrl,
+					images: fullImagesBundle,
 				}),
 				community,
 			};
@@ -821,16 +841,23 @@ export const moviesRoute = new Elysia({
 	)
 	.get(
 		"/:id/reviews",
-		async ({ params, user }) => {
+		async ({ params, user: currentUser }) => {
 			const id = Number(params.id);
 			const rows = await db
-				.select()
+				.select({
+					review,
+					handle: profile.handle,
+					displayName: profile.displayName,
+					image: user.image,
+				})
 				.from(review)
+				.leftJoin(profile, eq(review.userId, profile.userId))
+				.leftJoin(user, eq(review.userId, user.id))
 				.where(
 					and(
 						eq(review.movieId, id),
 						contentVisibilityWhere(
-							user?.id ?? null,
+							currentUser?.id ?? null,
 							review.userId,
 							review.visibility,
 						),
@@ -838,7 +865,17 @@ export const moviesRoute = new Elysia({
 				)
 				.orderBy(desc(review.likesCount), desc(review.publishedAt))
 				.limit(20);
-			return rows;
+			return rows.map(({ review: row, handle, displayName, image }) => ({
+				...row,
+				author:
+					handle && displayName
+						? {
+								handle,
+								displayName,
+								image: image ?? null,
+							}
+						: null,
+			}));
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

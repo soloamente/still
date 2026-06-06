@@ -29,7 +29,7 @@ type FollowingRatingsPayload = {
 export async function TvDetailCommunityAsync({
 	tvId,
 	tvTitle,
-	tvPosterUrl,
+	tvPosterUrl: _tvPosterUrl,
 	moreLikeThis,
 }: {
 	tvId: string;
@@ -63,14 +63,11 @@ export async function TvDetailCommunityAsync({
 			lists={tvLists}
 			followingRatings={followingRatingsPayload.entries}
 			followingRatingsMoreCount={followingRatingsPayload.moreCount}
-			featuredReviews={[]}
-			reviewsAfterFeatured={[]}
 			reviews={[]}
 			moreLikeThis={moreLikeThis}
 			relatedListingKind="tv"
 			listCountLabel="titles"
 			movieTitle={tvTitle}
-			moviePosterUrl={tvPosterUrl}
 			listingTmdbId={Number(tvId)}
 		/>
 	);

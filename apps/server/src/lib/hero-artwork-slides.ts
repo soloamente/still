@@ -3,6 +3,8 @@ import { tmdbImg } from "./tmdb";
 export type HeroArtworkSlide = {
 	key: string;
 	src: string;
+	/** TMDb `original` backdrop URL — patron download; carousel displays `src` (w1280). */
+	srcFull?: string | null;
 	label: string;
 };
 
@@ -37,6 +39,9 @@ export function normalizeTmdbImagesBundle(
 }
 
 const DEFAULT_MAX_SLIDES = 8;
+
+/** No default cap — TMDb titles can expose dozens of backdrops (e.g. TV dramas). */
+const SCREENSHOT_SLIDES_NO_CAP = undefined;
 
 function sortByVoteDesc(rows: TmdbImageRow[]): TmdbImageRow[] {
 	return [...rows].sort(
@@ -90,6 +95,61 @@ export function buildHeroArtworkSlides({
 			`${title} poster ${posterIndex}`,
 		);
 		posterIndex += 1;
+	}
+
+	return slides;
+}
+
+/**
+ * Build About-tab background slides from the primary backdrop plus all TMDb `images.backdrops`.
+ * Posters stay in the hero carousel; widescreen backdrops feed the editorial rail.
+ */
+export function buildScreenshotSlides({
+	title,
+	backdropPath,
+	images,
+	maxSlides = SCREENSHOT_SLIDES_NO_CAP,
+}: {
+	title: string;
+	backdropPath: string | null;
+	images?: {
+		posters?: TmdbImageRow[];
+		backdrops?: TmdbImageRow[];
+	} | null;
+	/** When set, caps slide count; default includes every deduped backdrop. */
+	maxSlides?: number;
+}): HeroArtworkSlide[] {
+	const seen = new Set<string>();
+	const slides: HeroArtworkSlide[] = [];
+
+	const pushBackdrop = (path: string, key: string, label: string) => {
+		if (seen.has(path)) return;
+		if (maxSlides !== undefined && slides.length >= maxSlides) return;
+		const src = tmdbImg.backdrop(path, "w1280");
+		if (!src) return;
+		seen.add(path);
+		slides.push({
+			key,
+			src,
+			srcFull: tmdbImg.backdrop(path, "original"),
+			label,
+		});
+	};
+
+	if (backdropPath) {
+		pushBackdrop(backdropPath, "backdrop-primary", `${title} background`);
+	}
+
+	let backdropIndex = 2;
+	for (const row of sortByVoteDesc(images?.backdrops ?? [])) {
+		if (maxSlides !== undefined && slides.length >= maxSlides) break;
+		if (!row.file_path || row.file_path === backdropPath) continue;
+		pushBackdrop(
+			row.file_path,
+			`backdrop-${backdropIndex}`,
+			`${title} background ${backdropIndex}`,
+		);
+		backdropIndex += 1;
 	}
 
 	return slides;
