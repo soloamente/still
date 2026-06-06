@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { HomeTasteMatchedRailSkeleton } from "@/components/home/home-taste-matched-rail-skeleton";
@@ -10,7 +12,9 @@ import {
 	HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME,
 } from "@/lib/home-taste-matched-rail-layout";
 import {
+	TASTE_MATCH_MIN_RESULTS,
 	type TasteMatchedDiscoveryPayload,
+	type TasteMatchMovie,
 	tasteMatchedRailTitle,
 } from "@/lib/taste-matched-discovery";
 import { useTasteRailVisibleCount } from "@/lib/use-taste-rail-visible-count";
@@ -24,11 +28,8 @@ function tmdbPosterUrl(posterPath: string | null): string | null {
 	return `https://image.tmdb.org/t/p/w780${fragment}`;
 }
 
-function tasteRailIsEmpty(
-	payload: TasteMatchedDiscoveryPayload | null,
-): boolean {
-	if (!payload) return true;
-	return payload.coldStart || payload.movies.length === 0;
+function tasteRailIsEmpty(movies: TasteMatchMovie[]): boolean {
+	return movies.length < TASTE_MATCH_MIN_RESULTS;
 }
 
 /**
@@ -41,8 +42,15 @@ export function HomeTasteMatchedRail({
 	/** From `GET /api/taste/for-you` on the home RSC; omit only for client-only fallback. */
 	initial?: TasteMatchedDiscoveryPayload | null;
 }) {
+	const reduceMotion = useReducedMotion();
 	const [payload, setPayload] = useState<TasteMatchedDiscoveryPayload | null>(
 		initial ?? null,
+	);
+	const [movies, setMovies] = useState<TasteMatchMovie[]>(() =>
+		initial && !initial.coldStart ? initial.movies : [],
+	);
+	const [genrePhrase, setGenrePhrase] = useState<string | null>(
+		initial && !initial.coldStart ? (initial.genrePhrase ?? null) : null,
 	);
 	const [loading, setLoading] = useState(initial === undefined);
 	const { trackRef, visibleCount } = useTasteRailVisibleCount();
@@ -50,6 +58,10 @@ export function HomeTasteMatchedRail({
 	useEffect(() => {
 		if (initial === undefined) return;
 		setPayload(initial);
+		setMovies(initial && !initial.coldStart ? initial.movies : []);
+		setGenrePhrase(
+			initial && !initial.coldStart ? (initial.genrePhrase ?? null) : null,
+		);
 		setLoading(false);
 	}, [initial]);
 
@@ -63,11 +75,18 @@ export function HomeTasteMatchedRail({
 				if (cancelled) return;
 				if (res.error || !res.data) {
 					setPayload(null);
+					setMovies([]);
 					return;
 				}
-				setPayload(res.data as TasteMatchedDiscoveryPayload);
+				const data = res.data as TasteMatchedDiscoveryPayload;
+				setPayload(data);
+				setMovies(data.coldStart ? [] : data.movies);
+				setGenrePhrase(data.coldStart ? null : (data.genrePhrase ?? null));
 			} catch {
-				if (!cancelled) setPayload(null);
+				if (!cancelled) {
+					setPayload(null);
+					setMovies([]);
+				}
 			} finally {
 				if (!cancelled) setLoading(false);
 			}
@@ -78,16 +97,51 @@ export function HomeTasteMatchedRail({
 		};
 	}, [initial]);
 
+	const handleNotInterested = useCallback(
+		async (tmdbId: number) => {
+			const snapshot = movies;
+			const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
+			if (index < 0) return;
+
+			setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
+
+			try {
+				const res = await api.api.taste.dismiss.post({
+					movieTmdbId: tmdbId,
+					excludeTmdbIds: snapshot.map((film) => film.tmdbId),
+				});
+				if (res.error || !res.data) {
+					throw new Error("dismiss failed");
+				}
+
+				const replacement = res.data.replacement as TasteMatchMovie | null;
+				if (!replacement) return;
+
+				setMovies((prev) => {
+					if (prev.some((film) => film.tmdbId === replacement.tmdbId)) {
+						return prev;
+					}
+					const next = [...prev];
+					next.splice(Math.min(index, next.length), 0, replacement);
+					return next;
+				});
+			} catch {
+				setMovies(snapshot);
+				toast.error("Couldn't update suggestions");
+			}
+		},
+		[movies],
+	);
+
 	if (loading) {
 		return <HomeTasteMatchedRailSkeleton />;
 	}
 
-	if (tasteRailIsEmpty(payload)) {
+	if (!payload || payload.coldStart || tasteRailIsEmpty(movies)) {
 		return null;
 	}
 
-	const rail = payload as TasteMatchedDiscoveryPayload;
-	const visibleMovies = rail.movies.slice(0, visibleCount);
+	const visibleMovies = movies.slice(0, visibleCount);
 
 	return (
 		<section
@@ -95,30 +149,42 @@ export function HomeTasteMatchedRail({
 			className="w-full min-w-0 space-y-2.5"
 		>
 			<h2 className="text-balance font-medium text-muted-foreground text-xs tracking-wide">
-				{tasteMatchedRailTitle(rail.genrePhrase)}
+				{tasteMatchedRailTitle(genrePhrase)}
 			</h2>
 			<div ref={trackRef} className={HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME}>
-				{visibleMovies.map((film, index) => (
-					<div
-						key={film.tmdbId}
-						className={HOME_TASTE_MATCHED_RAIL_CELL_CLASSNAME}
-					>
-						<CataloguePosterTile
-							className="w-full min-w-0"
-							frameClassName={RAIL_POSTER_FRAME_CLASSNAME}
-							hoverEffect="elevation"
-							listingKind="movie"
-							posterUrl={tmdbPosterUrl(film.posterPath)}
-							priority={index < 4}
-							surface="home"
-							title={film.title}
-							tmdbId={film.tmdbId}
-						/>
-						<p className="mt-1.5 line-clamp-2 w-full text-[11px] text-muted-foreground leading-snug">
-							{film.title}
-						</p>
-					</div>
-				))}
+				<AnimatePresence initial={false} mode="popLayout">
+					{visibleMovies.map((film, index) => (
+						<motion.div
+							key={film.tmdbId}
+							layout={!reduceMotion}
+							initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
+							transition={
+								reduceMotion
+									? { duration: 0 }
+									: { duration: 0.15, ease: "easeOut" }
+							}
+							className={HOME_TASTE_MATCHED_RAIL_CELL_CLASSNAME}
+						>
+							<CataloguePosterTile
+								className="w-full min-w-0"
+								frameClassName={RAIL_POSTER_FRAME_CLASSNAME}
+								hoverEffect="elevation"
+								listingKind="movie"
+								onNotInterested={handleNotInterested}
+								posterUrl={tmdbPosterUrl(film.posterPath)}
+								priority={index < 4}
+								surface="taste-rail"
+								title={film.title}
+								tmdbId={film.tmdbId}
+							/>
+							<p className="mt-1.5 line-clamp-2 w-full text-[11px] text-muted-foreground leading-snug">
+								{film.title}
+							</p>
+						</motion.div>
+					))}
+				</AnimatePresence>
 			</div>
 		</section>
 	);

@@ -2,6 +2,7 @@ import { db, log, movie } from "@still/db";
 import { and, desc, eq, isNotNull, notInArray } from "drizzle-orm";
 
 import type { TasteSignatureLogSlice } from "./sense-taste-signature";
+import { fetchDismissedMovieTmdbIds } from "./taste-dismissed-movie-store";
 
 /** Minimum diary rows before taste-matched rail replaces cold-start (ST.4). */
 export const TASTE_MATCH_MIN_LOGS = 10;
@@ -147,12 +148,21 @@ function scoreCandidate(
 	return score;
 }
 
+export type ScoredTasteMatchCandidate = {
+	row: TasteMatchMovie;
+	score: number;
+};
+
 /**
- * Rule-based taste-matched movie picks (ST.4) — genre, decade, language vs diary; excludes logged titles.
+ * Score unseen catalogue candidates for a patron — excludes logged and dismissed titles.
  */
-export async function buildTasteMatchedDiscovery(
+export async function scoreTasteMatchCandidatesForUser(
 	userId: string,
-): Promise<TasteMatchedDiscoveryPayload> {
+): Promise<{
+	coldStart: boolean;
+	genrePhrase: string | null;
+	scored: ScoredTasteMatchCandidate[];
+}> {
 	const rows = await db
 		.select({
 			log,
@@ -166,7 +176,7 @@ export async function buildTasteMatchedDiscovery(
 
 	const movieRows = rows.filter((row) => row.log.movieId != null);
 	if (movieRows.length < TASTE_MATCH_MIN_LOGS) {
-		return { coldStart: true, genrePhrase: null, movies: [] };
+		return { coldStart: true, genrePhrase: null, scored: [] };
 	}
 
 	const slices: TasteDiscoveryLogSlice[] = movieRows.map((row) => ({
@@ -182,10 +192,12 @@ export async function buildTasteMatchedDiscovery(
 	const tasteProfile = buildTasteProfile(slices);
 	const genrePhrase = genrePhraseFromWeights(tasteProfile.genreWeights);
 	const loggedIds = [...tasteProfile.loggedMovieIds];
+	const dismissedIds = await fetchDismissedMovieTmdbIds(userId);
+	const excludeIds = [...new Set([...loggedIds, ...dismissedIds])];
 
 	const candidateWhere =
-		loggedIds.length > 0
-			? and(isNotNull(movie.popularity), notInArray(movie.tmdbId, loggedIds))
+		excludeIds.length > 0
+			? and(isNotNull(movie.popularity), notInArray(movie.tmdbId, excludeIds))
 			: isNotNull(movie.popularity);
 
 	const candidates = await db
@@ -205,7 +217,12 @@ export async function buildTasteMatchedDiscovery(
 
 	const scored = candidates
 		.map((row) => ({
-			row,
+			row: {
+				tmdbId: row.tmdbId,
+				title: row.title,
+				posterPath: row.posterPath,
+				year: row.year,
+			},
 			score: scoreCandidate(
 				{
 					tmdbId: row.tmdbId,
@@ -220,14 +237,30 @@ export async function buildTasteMatchedDiscovery(
 		.filter((entry) => entry.score > 0)
 		.sort((a, b) => b.score - a.score);
 
-	const movies: TasteMatchMovie[] = scored
+	return {
+		coldStart: false,
+		genrePhrase,
+		scored,
+	};
+}
+
+/**
+ * Rule-based taste-matched movie picks (ST.4) — genre, decade, language vs diary;
+ * excludes logged and dismissed titles.
+ */
+export async function buildTasteMatchedDiscovery(
+	userId: string,
+): Promise<TasteMatchedDiscoveryPayload> {
+	const { coldStart, genrePhrase, scored } =
+		await scoreTasteMatchCandidatesForUser(userId);
+
+	if (coldStart) {
+		return { coldStart: true, genrePhrase: null, movies: [] };
+	}
+
+	const movies = scored
 		.slice(0, TASTE_MATCH_TARGET_RESULTS)
-		.map(({ row }) => ({
-			tmdbId: row.tmdbId,
-			title: row.title,
-			posterPath: row.posterPath,
-			year: row.year,
-		}));
+		.map(({ row }) => row);
 
 	if (movies.length < TASTE_MATCH_MIN_RESULTS) {
 		return { coldStart: true, genrePhrase: null, movies: [] };

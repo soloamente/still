@@ -1,5 +1,8 @@
 /** Mirrors `apps/server/src/lib/taste-matched-discovery.ts` for home rail UI. */
 
+/** Minimum visible taste-rail titles (ST.4) — hide section below this count. */
+export const TASTE_MATCH_MIN_RESULTS = 6;
+
 export type TasteMatchMovie = {
 	tmdbId: number;
 	title: string;

@@ -141,6 +141,13 @@
 			"when": 1779201500000,
 			"tag": "0019_profile_birth_date",
 			"breakpoints": true
+		},
+		{
+			"idx": 20,
+			"version": "7",
+			"when": 1779201600000,
+			"tag": "0020_taste_dismissed_movie",
+			"breakpoints": true
 		}
 	]
 }

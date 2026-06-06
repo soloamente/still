@@ -3,7 +3,11 @@
  * `CataloguePosterTile`; tests assert ids/labels/order without React.
  */
 
-export type CatalogueRadialSurface = "home" | "diary" | "watchlist";
+export type CatalogueRadialSurface =
+	| "home"
+	| "diary"
+	| "watchlist"
+	| "taste-rail";
 
 export type CatalogueRadialItemSpec = {
 	id: string;
@@ -32,6 +36,7 @@ const SLOT_ORDER: string[] = [
 	"edit-log",
 	"watchlist",
 	"add-to-list",
+	"not-interested",
 	"remove-watchlist",
 ];
 
@@ -58,6 +63,9 @@ export function buildCatalogueRadialItemSpecs(
 		inWatchlist,
 		hasPriorLog,
 	} = input;
+	const isTasteRail = surface === "taste-rail";
+	// Taste rails reuse home catalogue actions plus recommendation feedback.
+	const catalogueSurface = isTasteRail ? "home" : surface;
 	const isMovie = listingKind === "movie";
 
 	const specs: CatalogueRadialItemSpec[] = [
@@ -77,7 +85,7 @@ export function buildCatalogueRadialItemSpecs(
 		return sortSpecs(specs);
 	}
 
-	if (surface === "home" || surface === "watchlist") {
+	if (catalogueSurface === "home" || catalogueSurface === "watchlist") {
 		specs.push({
 			id: "quick-log",
 			label: hasPriorLog ? "Rewatch" : "Quick log",
@@ -85,7 +93,7 @@ export function buildCatalogueRadialItemSpecs(
 		});
 	}
 
-	if (surface === "diary" && canEditLog) {
+	if (catalogueSurface === "diary" && canEditLog) {
 		specs.push({
 			id: "edit-log",
 			label: "Edit log",
@@ -93,7 +101,7 @@ export function buildCatalogueRadialItemSpecs(
 		});
 	}
 
-	if (surface === "home") {
+	if (catalogueSurface === "home") {
 		specs.push({
 			id: "watchlist",
 			label: inWatchlist ? "Remove from watchlist" : "Add to watchlist",
@@ -102,7 +110,7 @@ export function buildCatalogueRadialItemSpecs(
 		});
 	}
 
-	if (surface !== "watchlist") {
+	if (catalogueSurface !== "watchlist") {
 		specs.push({
 			id: "add-to-list",
 			label: "Add to list",
@@ -111,7 +119,7 @@ export function buildCatalogueRadialItemSpecs(
 	}
 
 	// Watchlist lobby: add-to-list before destructive remove (sort order).
-	if (surface === "watchlist") {
+	if (catalogueSurface === "watchlist") {
 		specs.push({
 			id: "add-to-list",
 			label: "Add to list",
@@ -119,11 +127,20 @@ export function buildCatalogueRadialItemSpecs(
 		});
 	}
 
-	if (surface === "watchlist") {
+	if (catalogueSurface === "watchlist") {
 		specs.push({
 			id: "remove-watchlist",
 			label: "Remove from watchlist",
 			shortcut: "W",
+			variant: "destructive",
+		});
+	}
+
+	if (isTasteRail) {
+		specs.push({
+			id: "not-interested",
+			label: "Not interested",
+			shortcut: "N",
 			variant: "destructive",
 		});
 	}

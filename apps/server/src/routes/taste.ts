@@ -11,6 +11,7 @@ import {
 	computeTasteOverlap,
 } from "../lib/sense-taste-overlap";
 import { buildSuggestedPatrons } from "../lib/suggested-patron-discovery";
+import { dismissTasteMovie } from "../lib/taste-dismissed-movie";
 import { buildTasteMatchedDiscovery } from "../lib/taste-matched-discovery";
 
 async function resolveProfileByHandle(handle: string) {
@@ -80,6 +81,32 @@ export const tasteRoute = new Elysia({
 		}
 		return buildTasteMatchedDiscovery(user.id);
 	})
+	/** Forever-hide a taste-rail suggestion and return the next replacement pick. */
+	.post(
+		"/dismiss",
+		async ({ user, body, status }) => {
+			if (!user) return status(401, "Sign in");
+			if (
+				!hit(`taste:dismiss:${user.id}`, { limit: 30, windowMs: 60_000 }).ok
+			) {
+				return status(429, "Slow down");
+			}
+			if (!Number.isInteger(body.movieTmdbId) || body.movieTmdbId <= 0) {
+				return status(400, "Invalid movie id");
+			}
+			return dismissTasteMovie({
+				userId: user.id,
+				movieTmdbId: body.movieTmdbId,
+				excludeTmdbIds: body.excludeTmdbIds,
+			});
+		},
+		{
+			body: t.Object({
+				movieTmdbId: t.Number(),
+				excludeTmdbIds: t.Optional(t.Array(t.Number())),
+			}),
+		},
+	)
 	/** SN.16 — patrons with high diary overlap (excludes already-followed). */
 	.get("/suggested-patrons", async ({ user, status }) => {
 		if (!user) return status(401, "Sign in");

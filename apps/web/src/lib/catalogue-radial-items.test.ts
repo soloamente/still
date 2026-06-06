@@ -107,6 +107,37 @@ describe("buildCatalogueRadialItemSpecs", () => {
 		expect(remove?.variant).toBe("destructive");
 	});
 
+	test("taste-rail adds Not interested after add-to-list", () => {
+		const specs = buildCatalogueRadialItemSpecs({
+			surface: "taste-rail",
+			listingKind: "movie",
+			signedIn: true,
+		});
+		expect(ids(specs)).toEqual([
+			"open",
+			"copy",
+			"quick-log",
+			"watchlist",
+			"add-to-list",
+			"not-interested",
+		]);
+		expect(specs.find((s) => s.id === "not-interested")?.variant).toBe(
+			"destructive",
+		);
+	});
+
+	test("home surface does not include not-interested", () => {
+		expect(
+			ids(
+				buildCatalogueRadialItemSpecs({
+					surface: "home",
+					listingKind: "movie",
+					signedIn: true,
+				}),
+			),
+		).not.toContain("not-interested");
+	});
+
 	test("watchlist tv — add to list", () => {
 		expect(
 			ids(

@@ -78,6 +78,8 @@ export type CataloguePosterTileProps = {
 	/** Optional child instead of default `MoviePoster` (e.g. diary TV flip button face). */
 	children?: ReactNode;
 	onActionComplete?: () => void;
+	/** Taste rails — forever-hide this suggestion and swap in a replacement. */
+	onNotInterested?: (tmdbId: number) => void | Promise<void>;
 };
 
 function detailHref(listingKind: "movie" | "tv", tmdbId: number): string {
@@ -104,7 +106,9 @@ export function CataloguePosterTile({
 	diaryTvLogs,
 	children,
 	onActionComplete,
+	onNotInterested,
 }: CataloguePosterTileProps) {
+	const isHomeLikeSurface = surface === "home" || surface === "taste-rail";
 	const router = useRouter();
 	const { data: session } = authClient.useSession();
 	const signedIn = Boolean(session?.user);
@@ -139,7 +143,7 @@ export function CataloguePosterTile({
 	/** Home / watchlist — hydrate diary + (home only) watchlist when radial opens. */
 	useEffect(() => {
 		if (!open || !signedIn) return;
-		if (surface !== "home" && surface !== "watchlist") return;
+		if (!isHomeLikeSurface && surface !== "watchlist") return;
 		let cancelled = false;
 		(async () => {
 			const logRes = isMovie
@@ -156,7 +160,7 @@ export function CataloguePosterTile({
 				setPriorLogCount(countTvLogsInScope(tvLogs, { logScope: "show" }));
 			}
 
-			if (surface !== "home") return;
+			if (!isHomeLikeSurface) return;
 			const wlRes = isMovie
 				? await fetchWatchlistCheck(tmdbId)
 				: await fetchWatchlistCheckTv(tmdbId);
@@ -167,7 +171,7 @@ export function CataloguePosterTile({
 		return () => {
 			cancelled = true;
 		};
-	}, [open, surface, signedIn, isMovie, tmdbId]);
+	}, [open, isHomeLikeSurface, surface, signedIn, isMovie, tmdbId]);
 
 	const notifySignIn = useCallback(() => {
 		toast.error("Sign in to use this action");
@@ -191,14 +195,14 @@ export function CataloguePosterTile({
 	 */
 	const refreshAfterMutation = useCallback(() => {
 		onActionComplete?.();
-		if (surface === "home") return;
+		if (isHomeLikeSurface) return;
 		router.refresh();
-	}, [onActionComplete, router, surface]);
+	}, [isHomeLikeSurface, onActionComplete, router]);
 
 	const handleQuickLog = useCallback(() => {
 		onOpenChange(false);
 		const onSuccess =
-			surface === "home" || surface === "watchlist"
+			isHomeLikeSurface || surface === "watchlist"
 				? () => onActionComplete?.()
 				: () => refreshAfterMutation();
 		const logArgs = {
@@ -333,6 +337,11 @@ export function CataloguePosterTile({
 				void addToList.openPicker();
 			},
 			"remove-watchlist": () => void removeFromWatchlist(),
+			"not-interested": () => {
+				if (!onNotInterested) return;
+				onOpenChange(false);
+				void onNotInterested(tmdbId);
+			},
 		};
 
 		const hasPriorLog = priorLogCount > 0;
@@ -352,6 +361,9 @@ export function CataloguePosterTile({
 			),
 			"add-to-list": <IconListPlay className="opacity-90" aria-hidden />,
 			"remove-watchlist": (
+				<IconTrashXmarkFill className="opacity-90" aria-hidden />
+			),
+			"not-interested": (
 				<IconTrashXmarkFill className="opacity-90" aria-hidden />
 			),
 		};
@@ -384,11 +396,13 @@ export function CataloguePosterTile({
 		itemSpecs,
 		priorLogCount,
 		notifySignIn,
+		onNotInterested,
 		onOpenChange,
 		removeFromWatchlist,
 		router,
 		signedIn,
 		toggleWatchlist,
+		tmdbId,
 		watchlistBusy,
 	]);
 

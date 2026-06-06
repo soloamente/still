@@ -13,6 +13,7 @@ export * from "./product-event";
 export * from "./profile";
 export * from "./social";
 export * from "./streak";
+export * from "./taste-dismissed-movie";
 export * from "./tv";
 export * from "./tv-watch";
 export * from "./visibility";
