@@ -1,0 +1,367 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_06_list_detail_radial_design_md",
+			"label": "2026-06-06-list-detail-radial-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"label": "List Detail \u2014 Radial Toolkit on Title Tiles",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_user_stories",
+			"label": "User stories",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_action_matrix",
+			"label": "Action matrix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_everyone",
+			"label": "Everyone",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_signed_in",
+			"label": "Signed in",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_list_membership_custom_lists_only",
+			"label": "List membership (custom lists only)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_shortcut_letters",
+			"label": "Shortcut letters",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_component_design",
+			"label": "Component design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_list_radial_items_ts_apps_web_src_lib_list_radial_items_ts",
+			"label": "`list-radial-items.ts` (`apps/web/src/lib/list-radial-items.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_listdetailpostertile_apps_web_src_components_list_list_detail_poster_tile_tsx",
+			"label": "`ListDetailPosterTile` (`apps/web/src/components/list/list-detail-poster-tile.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_grid_integration",
+			"label": "Grid integration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_data_flow",
+			"label": "Data flow",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_codeblock_1",
+			"label": "code:block1 (Radial open)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L124"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L153"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_unit_list_radial_items_test_ts",
+			"label": "Unit (`list-radial-items.test.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L155"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_manual",
+			"label": "Manual",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_files_expected_touch_set",
+			"label": "Files (expected touch set)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L172"
+		},
+		{
+			"id": "specs_2026_06_06_list_detail_radial_design_relation_to_existing_specs",
+			"label": "Relation to existing specs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L185"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_06_list_detail_radial_design_md",
+			"target": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_user_stories",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_action_matrix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_action_matrix",
+			"target": "specs_2026_06_06_list_detail_radial_design_everyone",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_action_matrix",
+			"target": "specs_2026_06_06_list_detail_radial_design_signed_in",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_action_matrix",
+			"target": "specs_2026_06_06_list_detail_radial_design_list_membership_custom_lists_only",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_action_matrix",
+			"target": "specs_2026_06_06_list_detail_radial_design_shortcut_letters",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_component_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_component_design",
+			"target": "specs_2026_06_06_list_detail_radial_design_list_radial_items_ts_apps_web_src_lib_list_radial_items_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_component_design",
+			"target": "specs_2026_06_06_list_detail_radial_design_listdetailpostertile_apps_web_src_components_list_list_detail_poster_tile_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_component_design",
+			"target": "specs_2026_06_06_list_detail_radial_design_grid_integration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_data_flow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_data_flow",
+			"target": "specs_2026_06_06_list_detail_radial_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_testing",
+			"target": "specs_2026_06_06_list_detail_radial_design_unit_list_radial_items_test_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L155",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_testing",
+			"target": "specs_2026_06_06_list_detail_radial_design_manual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_files_expected_touch_set",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L172",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_list_detail_radial_design_list_detail_radial_toolkit_on_title_tiles",
+			"target": "specs_2026_06_06_list_detail_radial_design_relation_to_existing_specs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md",
+			"source_location": "L185",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

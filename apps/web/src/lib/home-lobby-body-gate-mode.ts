@@ -13,18 +13,17 @@ export function resolveLobbyBodyGateMode(input: {
 	activeBrowse: HomeBrowseSurface;
 	clientUrlBrowse: HomeBrowseSurface;
 	serverBrowse: HomeBrowseSurface;
-	isPending: boolean;
 }): LobbyBodyGateMode {
-	const { activeBrowse, clientUrlBrowse, serverBrowse, isPending } = input;
+	const { activeBrowse, clientUrlBrowse, serverBrowse } = input;
 
 	// Optimistic pill ahead of settled URL (browse tap in flight).
 	if (activeBrowse !== clientUrlBrowse) {
 		return activeBrowse === "community" ? "community-pending" : "tmdb-pending";
 	}
 
-	if (isPending) {
-		return activeBrowse === "community" ? "community-pending" : "tmdb-pending";
-	}
+	// Sort / venue / run / filter changes stay on the same browse branch — keep
+	// chips mounted and let HomeTmdbCatalogueGrid dim the poster grid while RSC
+	// catches up (isPending alone must not swap the whole lobby for a skeleton).
 
 	// Client URL settled but RSC still on the previous browse branch.
 	if (clientUrlBrowse !== serverBrowse) {

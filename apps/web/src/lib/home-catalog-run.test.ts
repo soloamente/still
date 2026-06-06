@@ -1,6 +1,8 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	DEFAULT_HOME_CATALOG_RUN,
+	effectiveHomeCatalogRun,
 	parseHomeCatalogRun,
 	tvDiscoverSortByForLobbySort,
 } from "./home-catalog-run";
@@ -24,5 +26,30 @@ describe("tvDiscoverSortByForLobbySort", () => {
 	test("maps left-rail sort to TMDb discover sort_by", () => {
 		expect(tvDiscoverSortByForLobbySort("popular")).toBe("popularity.desc");
 		expect(tvDiscoverSortByForLobbySort("latest")).toBe("first_air_date.desc");
+	});
+});
+
+describe("effectiveHomeCatalogRun", () => {
+	test("defaults TV to ongoing when run is absent", () => {
+		expect(
+			effectiveHomeCatalogRun({ run: null, browse: "tv", animeSeason: false }),
+		).toBe(DEFAULT_HOME_CATALOG_RUN);
+	});
+
+	test("preserves explicit run and defers to anime season", () => {
+		expect(
+			effectiveHomeCatalogRun({
+				run: "completed",
+				browse: "tv",
+				animeSeason: false,
+			}),
+		).toBe("completed");
+		expect(
+			effectiveHomeCatalogRun({
+				run: null,
+				browse: "tv",
+				animeSeason: true,
+			}),
+		).toBeNull();
 	});
 });

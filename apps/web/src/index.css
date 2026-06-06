@@ -1,1 +1,2 @@
-@import "@still/ui/globals.css";
+/* Workspace package CSS aliases are not expanded before Tailwind in Turbopack dev — use a relative path. */
+@import "../../../packages/ui/src/styles/globals.css";

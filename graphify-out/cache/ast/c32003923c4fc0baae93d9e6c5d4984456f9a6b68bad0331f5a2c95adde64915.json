@@ -1,0 +1,146 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"label": "round-animated-checkmark.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_round_animated_checkmark_mark_visible",
+			"label": "MARK_VISIBLE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L7"
+		},
+		{
+			"id": "profile_round_animated_checkmark_mark_hidden",
+			"label": "MARK_HIDDEN",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L8"
+		},
+		{
+			"id": "profile_round_animated_checkmark_mark_spring",
+			"label": "MARK_SPRING",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "profile_round_animated_checkmark_sensecheckstroke",
+			"label": "SenseCheckStroke()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "profile_round_animated_checkmark_roundanimatedcheckmark",
+			"label": "RoundAnimatedCheckmark()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L40"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"target": "profile_round_animated_checkmark_mark_visible",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"target": "profile_round_animated_checkmark_mark_hidden",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"target": "profile_round_animated_checkmark_mark_spring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"target": "profile_round_animated_checkmark_sensecheckstroke",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"target": "profile_round_animated_checkmark_roundanimatedcheckmark",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_round_animated_checkmark_sensecheckstroke",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "profile_round_animated_checkmark_roundanimatedcheckmark",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "profile_round_animated_checkmark_roundanimatedcheckmark",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\round-animated-checkmark.tsx",
+			"source_location": "L53"
+		}
+	]
+}

@@ -1,0 +1,509 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"label": "tmdb.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tmdb_tmdbmoviesummary",
+			"label": "TmdbMovieSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_tmdb_tmdbtvsummary",
+			"label": "TmdbTvSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_tmdb_tmdbmoviedetail",
+			"label": "TmdbMovieDetail",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "lib_tmdb_tmdbimageasset",
+			"label": "TmdbImageAsset",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L95"
+		},
+		{
+			"id": "lib_tmdb_tmdbseasonsummary",
+			"label": "TmdbSeasonSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L105"
+		},
+		{
+			"id": "lib_tmdb_tmdbepisodesummary",
+			"label": "TmdbEpisodeSummary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L115"
+		},
+		{
+			"id": "lib_tmdb_tmdbseasondetail",
+			"label": "TmdbSeasonDetail",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L126"
+		},
+		{
+			"id": "lib_tmdb_tmdbtvdetail",
+			"label": "TmdbTvDetail",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L130"
+		},
+		{
+			"id": "lib_tmdb_tmdbcredit",
+			"label": "TmdbCredit",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L157"
+		},
+		{
+			"id": "lib_tmdb_tmdbvideo",
+			"label": "TmdbVideo",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L170"
+		},
+		{
+			"id": "lib_tmdb_tmdbprovider",
+			"label": "TmdbProvider",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L178"
+		},
+		{
+			"id": "lib_tmdb_tmdbpaged",
+			"label": "TmdbPaged",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L184"
+		},
+		{
+			"id": "lib_tmdb_tmdbpersonmoviecredit",
+			"label": "TmdbPersonMovieCredit",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L192"
+		},
+		{
+			"id": "lib_tmdb_tmdbpersontvcredit",
+			"label": "TmdbPersonTvCredit",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L198"
+		},
+		{
+			"id": "lib_tmdb_tmdbpersondetail",
+			"label": "TmdbPersonDetail",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L203"
+		},
+		{
+			"id": "lib_tmdb_tmdbfetchoptions",
+			"label": "TmdbFetchOptions",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L224"
+		},
+		{
+			"id": "lib_tmdb_tmdbincludeadult",
+			"label": "tmdbIncludeAdult()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L230"
+		},
+		{
+			"id": "lib_tmdb_gunziptmdbbody",
+			"label": "gunzipTmdbBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L235"
+		},
+		{
+			"id": "lib_tmdb_parsetmdbresponsebody",
+			"label": "parseTmdbResponseBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L242"
+		},
+		{
+			"id": "lib_tmdb_tmdb",
+			"label": "tmdb()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L266"
+		},
+		{
+			"id": "lib_tmdb_tmdbapi",
+			"label": "tmdbApi",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L310"
+		},
+		{
+			"id": "lib_tmdb_tmdbimg",
+			"label": "tmdbImg",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L692"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbmoviesummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbtvsummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbmoviedetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbimageasset",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbseasonsummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbepisodesummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbseasondetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L126",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbtvdetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbcredit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbvideo",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L178",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbpaged",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L184",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbpersonmoviecredit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbpersontvcredit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbpersondetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L203",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbfetchoptions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L224",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbincludeadult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L230",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_gunziptmdbbody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_parsetmdbresponsebody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L242",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdb",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L266",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbapi",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L310",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"target": "lib_tmdb_tmdbimg",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L692",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tmdb_parsetmdbresponsebody",
+			"target": "lib_tmdb_gunziptmdbbody",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L248",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tmdb_tmdb",
+			"target": "lib_tmdb_parsetmdbresponsebody",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L307",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tmdb_gunziptmdbbody",
+			"callee": "gunzipSync",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L238"
+		},
+		{
+			"caller_nid": "lib_tmdb_parsetmdbresponsebody",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L246"
+		},
+		{
+			"caller_nid": "lib_tmdb_parsetmdbresponsebody",
+			"callee": "unshift",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L248"
+		},
+		{
+			"caller_nid": "lib_tmdb_parsetmdbresponsebody",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L255"
+		},
+		{
+			"caller_nid": "lib_tmdb_parsetmdbresponsebody",
+			"callee": "decode",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L255"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L281"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L282"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L282"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L285"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L286"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L289"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L291"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L294"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "timeout",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L301"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "text",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L304"
+		},
+		{
+			"caller_nid": "lib_tmdb_tmdb",
+			"callee": "arrayBuffer",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts",
+			"source_location": "L306"
+		}
+	]
+}

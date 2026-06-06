@@ -1,0 +1,393 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"label": "adult-content-enable-dialog.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_adult_content_enable_dialog_panel_ease",
+			"label": "PANEL_EASE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L17"
+		},
+		{
+			"id": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"label": "AdultContentEnableDialog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L21"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "components_button_button",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_label_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "components_label_label",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "react_dom",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbuttonwrap",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_birth_date_picker_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "profile_birth_date_picker_birthdatepicker",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_round_animated_checkmark_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "profile_round_animated_checkmark_roundanimatedcheckmark",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_adult_content_age_gate_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "lib_adult_content_age_gate_patronmeetsadultagegate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_modal_layer_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "lib_app_modal_layer_app_modal_overlay_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "lib_detail_action_motion_detail_canvas_on_card_hover_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "profile_adult_content_enable_dialog_panel_ease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_adult_content_enable_dialog_tsx",
+			"target": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "patronMeetsAdultAgeGate",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "profile_adult_content_enable_dialog_adultcontentenabledialog",
+			"callee": "createPortal",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\adult-content-enable-dialog.tsx",
+			"source_location": "L239"
+		}
+	]
+}

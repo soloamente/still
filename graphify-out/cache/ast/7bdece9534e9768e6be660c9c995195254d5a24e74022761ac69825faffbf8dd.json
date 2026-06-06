@@ -1,0 +1,79 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_06_home_community_first_load_md",
+			"label": "2026-06-06-home-community-first-load.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_06_home_community_first_load_home_community_first_load_fix_implementation_plan",
+			"label": "Home Community First-Load Fix \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_06_home_community_first_load_task_1_gate_resolver_tests",
+			"label": "Task 1: Gate resolver + tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_06_home_community_first_load_task_2_wire_gate_session_restore",
+			"label": "Task 2: Wire gate + session restore",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "plans_2026_06_06_home_community_first_load_task_3_manual_qa",
+			"label": "Task 3: Manual QA",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L27"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_06_home_community_first_load_md",
+			"target": "plans_2026_06_06_home_community_first_load_home_community_first_load_fix_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_community_first_load_home_community_first_load_fix_implementation_plan",
+			"target": "plans_2026_06_06_home_community_first_load_task_1_gate_resolver_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_community_first_load_home_community_first_load_fix_implementation_plan",
+			"target": "plans_2026_06_06_home_community_first_load_task_2_wire_gate_session_restore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_community_first_load_home_community_first_load_fix_implementation_plan",
+			"target": "plans_2026_06_06_home_community_first_load_task_3_manual_qa",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md",
+			"source_location": "L27",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

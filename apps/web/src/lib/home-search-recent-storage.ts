@@ -182,3 +182,20 @@ export function restoreFromHomeSearchRecent(
 		freeText: entry.freeText,
 	};
 }
+
+/** Drop one recent row by label (case-insensitive) and persist the rest. */
+export function removeHomeSearchRecent(
+	label: string,
+	studios: SearchDialogStudio[] = [],
+	options: ParseRecentOptions = {},
+): RecentSearchEntryV2[] {
+	const trimmed = label.trim();
+	if (!trimmed) return readHomeSearchRecents(studios, options);
+
+	const prev = readHomeSearchRecents(studios, options);
+	const next = prev.filter(
+		(q) => q.label.toLowerCase() !== trimmed.toLowerCase(),
+	);
+	persistHomeSearchRecents(next);
+	return next;
+}

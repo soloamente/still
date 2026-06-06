@@ -5,6 +5,7 @@ import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
 	Fragment,
+	type ReactNode,
 	useCallback,
 	useEffect,
 	useMemo,
@@ -41,6 +42,9 @@ export type PopularMovieSeed = {
 	listingKind?: "movie" | "tv";
 	/** Diary TV scope chip — e.g. `S02E04` on poster overlay. */
 	scopeLabel?: string | null;
+	/** Profile filmography — patron log id for radial edit/favorite on own profile. */
+	patronLogId?: string;
+	patronLogLiked?: boolean;
 };
 
 export type TmdbCatalogKind =
@@ -142,6 +146,8 @@ interface PopularMoviesInfiniteProps {
 	 * (watchlist) must disambiguate a film and show sharing a TMDb id.
 	 */
 	getDedupeKey?: (m: PopularMovieSeed) => string;
+	/** Custom poster cell — profile filmography radial tiles, etc. */
+	renderPoster?: (movie: PopularMovieSeed, index: number) => ReactNode;
 }
 
 /** How far below the fold we start pulling the next sheet (pixels). Mirrors “feels infinite” pacing. */
@@ -181,6 +187,7 @@ export function PopularMoviesInfinite({
 	signedIn: _signedIn = false,
 	loadPage,
 	getDedupeKey,
+	renderPoster,
 }: PopularMoviesInfiniteProps) {
 	/** Single primitive for effect deps — mirrors `motion` remount keys below. */
 	const catalogueWaveKey = `${catalogMedia}:${catalogKind}:${discoverSortBy}:${discoverGenreId ?? ""}:${discoverCompanyId ?? ""}:${discoverVenue ?? ""}:${discoverMonetization ?? ""}:${discoverWatchRegion ?? ""}:${discoverReleaseRegion ?? ""}:${discoverReleaseGte ?? ""}:${discoverAirDateGte ?? ""}:${discoverTvStatus ?? ""}:${upcomingReleaseRegion ?? ""}`;
@@ -461,6 +468,9 @@ export function PopularMoviesInfinite({
 	/** Shared poster subtree for lobby grids — duplicated map branches would drift otherwise. */
 	const renderLobbyMoviePoster = useCallback(
 		(m: PopularMovieSeed, index: number) => {
+			if (renderPoster) {
+				return renderPoster(m, index);
+			}
 			const listingKind =
 				m.listingKind ?? (catalogMedia === "tv" ? "tv" : "movie");
 			if (catalogueRadialSurface) {
@@ -495,6 +505,7 @@ export function PopularMoviesInfinite({
 			);
 		},
 		[
+			renderPoster,
 			catalogueRadialSurface,
 			posterLinkClassName,
 			posterFrameClassName,

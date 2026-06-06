@@ -6,11 +6,16 @@ import { useEffect, useState } from "react";
 import {
 	fetchMoviesDiscover,
 	fetchMoviesPopular,
+	fetchTvDiscover,
 	fetchTvPopular,
 } from "@/lib/still-api-fetch";
 
 /** Left-rail categories in the empty search dialog. */
-export type SearchDialogBrowseCategory = "movies" | "tv" | "community";
+export type SearchDialogBrowseCategory =
+	| "movies"
+	| "tv"
+	| "community"
+	| "people";
 
 /** One poster tile in the browse preview column. */
 export type SearchDialogBrowsePreviewItem = {
@@ -161,6 +166,20 @@ async function fetchBrowsePreview(
 			return mapTmdbSheetRows(payload?.results ?? [], "movie");
 		}
 		case "tv": {
+			if (studioCompanyId != null) {
+				const res = await fetchTvDiscover(1, {
+					signal,
+					companyId: studioCompanyId,
+					sortBy: "popularity.desc",
+				});
+				if (res.error || signal.aborted) return [];
+				const payload = res.data as { results?: TmdbSheetRow[] } | null;
+				return mapTmdbSheetRows(
+					payload?.results ?? [],
+					"tv",
+					STUDIO_PREVIEW_LIMIT,
+				);
+			}
 			const res = await fetchTvPopular(1, { signal });
 			if (res.error || signal.aborted) return [];
 			const payload = res.data as { results?: TmdbSheetRow[] } | null;
@@ -195,6 +214,8 @@ async function fetchBrowsePreview(
 			const listData = (await listsRes.json()) as unknown;
 			return parseListPopularRows(listData);
 		}
+		case "people":
+			return [];
 		default: {
 			const _exhaustive: never = category;
 			return _exhaustive;
@@ -221,7 +242,8 @@ export function useSearchDialogBrowsePreview(
 		}
 		setLoading(true);
 		const ctrl = new AbortController();
-		const companyId = category === "movies" ? studioCompanyId : null;
+		const companyId =
+			category === "movies" || category === "tv" ? studioCompanyId : null;
 		void fetchBrowsePreview(category, companyId, ctrl.signal)
 			.then((next) => {
 				if (!ctrl.signal.aborted) setItems(next);

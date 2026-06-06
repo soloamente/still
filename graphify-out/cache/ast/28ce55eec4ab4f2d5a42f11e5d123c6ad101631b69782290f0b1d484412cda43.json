@@ -1,0 +1,1149 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"label": "home-catalog-view-mode-toolbar.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_catalog_view_mode_toolbar_filterstriggerclass",
+			"label": "filtersTriggerClass",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L51"
+		},
+		{
+			"id": "home_home_catalog_view_mode_toolbar_cataloguefilterscontrol",
+			"label": "CatalogueFiltersControl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L57"
+		},
+		{
+			"id": "home_home_catalog_view_mode_toolbar_homecataloguesearchclearchiptoolbar",
+			"label": "HomeCatalogueSearchClearChipToolbar()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L124"
+		},
+		{
+			"id": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"label": "HomeCatalogViewModeToolbar()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L167"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_slider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "home_home_tmdb_lobby_params_context_usehometmdblobbyparamsoptional",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_lobby_lobby_navigation_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lobby_lobby_navigation_provider_uselobbynavigation",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_diary_lobby_order_builddiarylobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_diary_lobby_order_diarylobbyorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_diary_lobby_order_parsediaryledgertab",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_diary_lobby_order_parsediarylobbyorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_diary_lobby_order_parsediarylobbyvenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_discover_catalog_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_discover_catalog_url_discovercatalogurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_anime_season_parsehomeanimeseason",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_browse_surface_parsehomebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_run_parsehomecatalogrun",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_run_tv_completed_discover_status",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_run_tv_ongoing_discover_status",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_run_tv_upcoming_discover_sort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_run_tvdiscoversortbyforlobbysort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_run_effectivehomecatalogrun",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_run_default_home_catalog_run",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_run_homecatalogrun",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_sort_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_sort_parsehomecatalogsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_filters_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_filters_hasactivehomecatalogfilters",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalog_filters_parsehomecatalogfilters",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalogue_search_param_buildhomecataloguesearchclearhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_catalogue_search_param_ishomecataloguesearchactive",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_persist_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_lobby_persist_readhomelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_lobby_url_buildhomelobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_venue_parseexplicithomevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_venue_parsehomevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_home_venue_parsetvlobbyvenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_discover_catalog_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "lib_tv_discover_catalog_url_tvdiscovercatalogurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "home_home_catalog_view_mode_toolbar_filterstriggerclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "home_home_catalog_view_mode_toolbar_cataloguefilterscontrol",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "home_home_catalog_view_mode_toolbar_homecataloguesearchclearchiptoolbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_view_mode_toolbar_tsx",
+			"target": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L167",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_cataloguefilterscontrol",
+			"callee": "hasActiveHomeCatalogFilters",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecataloguesearchclearchiptoolbar",
+			"callee": "useLobbyNavigation",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecataloguesearchclearchiptoolbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L169"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "useLobbyNavigation",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "useHomeTmdbLobbyParamsOptional",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeBrowseSurface",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeCatalogSort",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L174"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L174"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeCatalogRun",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeAnimeSeason",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "effectiveHomeCatalogRun",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L188"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L193"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L195"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L196"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L198"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "isHomeCatalogueSearchActive",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L247"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L247"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L289"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L289"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseDiaryLobbyVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L296"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L296"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "buildHomeLobbyHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L298"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "discoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L306"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "buildHomeLobbyHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L316"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "tvDiscoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L325"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "tvDiscoverSortByForLobbySort",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L326"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "tvDiscoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "tvDiscoverSortByForLobbySort",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L334"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseTvLobbyVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L340"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L341"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "tvDiscoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L346"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "tvDiscoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L354"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "tvDiscoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L363"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "tvDiscoverSortByForLobbySort",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L364"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L369"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L369"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseExplicitHomeVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L370"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L370"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "buildHomeLobbyHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L372"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "discoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L380"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "buildHomeLobbyHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L387"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "discoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L395"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "discoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L402"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "discoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L409"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "discoverCatalogUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L417"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L427"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseTvLobbyVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L442"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L442"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeCatalogFilters",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L577"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "(() => {\r\n\t\t\tconst sortLabel = activeSort === \"popular\" ? \"Popular\" : \"Latest\";\r\n\t\t\tif (seasonActive) return `${sortLabel} \u00b7 This season`;\r\n\t\t\tif (activeRun === \"ongoing\") return `${sortLabel} \u00b7 Ongoing`;\r\n\t\t\tif (activeRun === \"completed\") return `${sortLabel} \u00b7 Completed`;\r\n\t\t\tif (activeRun === \"upcoming\") {\r\n\t\t\t\treturn `Upcoming \u00b7 ${effectiveVenue === \"theaters\" ? \"In cinemas\" : \"At home\"}`;\r\n\t\t\t}\r\n\t\t\treturn sortLabel;\r\n\t\t})",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L581"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "venueChip",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L605"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "venueChip",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L612"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "runChip",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L630"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "runChip",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L637"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "runChip",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L644"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L677"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L677"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseDiaryLobbyVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L706"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L706"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L709"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L709"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseDiaryLobbyOrder",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L716"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L716"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseDiaryLedgerTab",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L719"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L719"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "parseHomeCatalogFilters",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L726"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "(() => {\r\n\t\t\t\t\t\tconst theatersHref = isDiaryLobby\r\n\t\t\t\t\t\t\t? buildDiaryLobbyHref({\r\n\t\t\t\t\t\t\t\t\torder: diaryOrder,\r\n\t\t\t\t\t\t\t\t\tvenue: \"theaters\",\r\n\t\t\t\t\t\t\t\t\ttab: diaryTab,\r\n\t\t\t\t\t\t\t\t})\r\n\t\t\t\t\t\t\t: buildHomeLobbyHref({\r\n\t\t\t\t\t\t\t\t\tsort: activeCatalogSort,\r\n\t\t\t\t\t\t\t\t\tbrowse: venueBrowse,\r\n\t\t\t\t\t\t\t\t\tvenue: \"theaters\",\r\n\t\t\t\t\t\t\t\t});\r\n\t\t\t\t\t\tconst theatersTitle = isDiaryLobby\r\n\t\t\t\t\t\t\t? \"Emphasise in-cinema context for filters and browse\"\r\n\t\t\t\t\t\t\t: \"Now playing (Popular), newest already in cinemas (Latest), or opening soon (Upcoming)\";\r\n\t\t\t\t\t\tconst theatersAria = isDiaryLobby\r\n\t\t\t\t\t\t\t? \"In cinemas \u2014 stay on diary\"\r\n\t\t\t\t\t\t\t: \"In cinemas \u2014 TMDb theatrical lists\";\r\n\r\n\t\t\t\t\t\tif (tmdbLobby && !isDiaryLobby) {\r\n\t\t\t\t\t\t\treturn (\r\n\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\ttype=\"button\"\r\n\t\t\t\t\t\t\t\t\taria-current={theatersActive ? \"page\" : undefined}\r\n\t\t\t\t\t\t\t\t\tclassName={chipLink(theatersActive)}\r\n\t\t\t\t\t\t\t\t\ttitle={theatersTitle}\r\n\t\t\t\t\t\t\t\t\taria-label={theatersAria}\r\n\t\t\t\t\t\t\t\t\tonClick={() => tmdbLobby.selectVenue(\"theaters\")}\r\n\t\t\t\t\t\t\t\t\tonPointerEnter={() => tmdbLobby.prefetchLobby(theatersHref)}\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t{theatersActive ? (\r\n\t\t\t\t\t\t\t\t\t\t<motion.span\r\n\t\t\t\t\t\t\t\t\t\t\tclassName=\"absolute inset-0 z-0 rounded-full bg-card\"\r\n\t\t\t\t\t\t\t\t\t\t\tlayoutId=\"home-catalog-view-mode-pill\"\r\n\t\t\t\t\t\t\t\t\t\t\ttransition={pillTransition}\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t) : null}\r\n\t\t\t\t\t\t\t\t\t<span className=\"relative z-10\">In cinemas</span>\r\n\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t);\r\n\t\t\t\t\t\t}\r\n\r\n\t\t\t\t\t\treturn (\r\n\t\t\t\t\t\t\t<Link\r\n\t\t\t\t\t\t\t\thref={theatersHref}\r\n\t\t\t\t\t\t\t\taria-current={theatersActive ? \"page\" : undefined}\r\n\t\t\t\t\t\t\t\tclassName={chipLink(theatersActive)}\r\n\t\t\t\t\t\t\t\ttitle={theatersTitle}\r\n\t\t\t\t\t\t\t\taria-label={theatersAria}\r\n\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t{theatersActive ? (\r\n\t\t\t\t\t\t\t\t\t<motion.span\r\n\t\t\t\t\t\t\t\t\t\tclassName=\"absolute inset-0 z-0 rounded-full bg-card\"\r\n\t\t\t\t\t\t\t\t\t\tlayoutId=\"home-catalog-view-mode-pill\"\r\n\t\t\t\t\t\t\t\t\t\ttransition={pillTransition}\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t) : null}\r\n\t\t\t\t\t\t\t\t<span className=\"relative z-10\">In cinemas</span>\r\n\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t);\r\n\t\t\t\t\t})",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L750"
+		},
+		{
+			"caller_nid": "home_home_catalog_view_mode_toolbar_homecatalogviewmodetoolbar",
+			"callee": "(() => {\r\n\t\t\t\t\t\tconst streamingHref = isDiaryLobby\r\n\t\t\t\t\t\t\t? buildDiaryLobbyHref({\r\n\t\t\t\t\t\t\t\t\torder: diaryOrder,\r\n\t\t\t\t\t\t\t\t\tvenue: \"streaming\",\r\n\t\t\t\t\t\t\t\t\ttab: diaryTab,\r\n\t\t\t\t\t\t\t\t})\r\n\t\t\t\t\t\t\t: buildHomeLobbyHref({\r\n\t\t\t\t\t\t\t\t\tsort: activeCatalogSort,\r\n\t\t\t\t\t\t\t\t\tbrowse: venueBrowse,\r\n\t\t\t\t\t\t\t\t\tvenue: \"streaming\",\r\n\t\t\t\t\t\t\t\t});\r\n\t\t\t\t\t\tconst streamingTitle = isDiaryLobby\r\n\t\t\t\t\t\t\t? \"Emphasise at-home streaming context for filters and browse\"\r\n\t\t\t\t\t\t\t: \"Popular, newest, or upcoming subscription streaming at home\";\r\n\t\t\t\t\t\tconst streamingAria = isDiaryLobby\r\n\t\t\t\t\t\t\t? \"At home \u2014 stay on diary\"\r\n\t\t\t\t\t\t\t: \"At home \u2014 subscription streaming catalogue\";\r\n\r\n\t\t\t\t\t\tif (tmdbLobby && !isDiaryLobby) {\r\n\t\t\t\t\t\t\treturn (\r\n\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\ttype=\"button\"\r\n\t\t\t\t\t\t\t\t\taria-current={streamingActive ? \"page\" : undefined}\r\n\t\t\t\t\t\t\t\t\tclassName={chipLink(streamingActive)}\r\n\t\t\t\t\t\t\t\t\ttitle={streamingTitle}\r\n\t\t\t\t\t\t\t\t\taria-label={streamingAria}\r\n\t\t\t\t\t\t\t\t\tonClick={() => tmdbLobby.selectVenue(\"streaming\")}\r\n\t\t\t\t\t\t\t\t\tonPointerEnter={() => tmdbLobby.prefetchLobby(streamingHref)}\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t{streamingActive ? (\r\n\t\t\t\t\t\t\t\t\t\t<motion.span\r\n\t\t\t\t\t\t\t\t\t\t\tclassName=\"absolute inset-0 z-0 rounded-full bg-card\"\r\n\t\t\t\t\t\t\t\t\t\t\tlayoutId=\"home-catalog-view-mode-pill\"\r\n\t\t\t\t\t\t\t\t\t\t\ttransition={pillTransition}\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t) : null}\r\n\t\t\t\t\t\t\t\t\t<span className=\"relative z-10\">At home</span>\r\n\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t);\r\n\t\t\t\t\t\t}\r\n\r\n\t\t\t\t\t\treturn (\r\n\t\t\t\t\t\t\t<Link\r\n\t\t\t\t\t\t\t\thref={streamingHref}\r\n\t\t\t\t\t\t\t\taria-current={streamingActive ? \"page\" : undefined}\r\n\t\t\t\t\t\t\t\tclassName={chipLink(streamingActive)}\r\n\t\t\t\t\t\t\t\ttitle={streamingTitle}\r\n\t\t\t\t\t\t\t\taria-label={streamingAria}\r\n\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t{streamingActive ? (\r\n\t\t\t\t\t\t\t\t\t<motion.span\r\n\t\t\t\t\t\t\t\t\t\tclassName=\"absolute inset-0 z-0 rounded-full bg-card\"\r\n\t\t\t\t\t\t\t\t\t\tlayoutId=\"home-catalog-view-mode-pill\"\r\n\t\t\t\t\t\t\t\t\t\ttransition={pillTransition}\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t) : null}\r\n\t\t\t\t\t\t\t\t<span className=\"relative z-10\">At home</span>\r\n\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t);\r\n\t\t\t\t\t})",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx",
+			"source_location": "L811"
+		}
+	]
+}

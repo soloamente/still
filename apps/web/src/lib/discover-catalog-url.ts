@@ -81,7 +81,6 @@ export function discoverPartsToHomeHref(parts: {
 	region?: string | null;
 	releaseGte?: string | null;
 }): string {
-	void parts.genreId;
 	void parts.companyId;
 	void parts.watchRegion;
 	void parts.region;
@@ -98,6 +97,8 @@ export function discoverPartsToHomeHref(parts: {
 		browse: "movies",
 		sort: lobbySort,
 		venue,
+		genreId: parts.genreId,
+		monetization: parts.monetization,
 	});
 }
 

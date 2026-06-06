@@ -35,6 +35,7 @@ type ProfileFilmographyPanelProps = {
 	showAllLedgerHref?: string;
 	switchVenueHref?: string;
 	lobbyVenue?: "theaters" | "streaming";
+	isOwnProfile?: boolean;
 };
 
 /** Patron ledger — `/home` lobby poster grid for films or TV only. */
@@ -53,6 +54,7 @@ export function ProfileFilmographyPanel({
 	showAllLedgerHref,
 	switchVenueHref,
 	lobbyVenue = "streaming",
+	isOwnProfile = false,
 }: ProfileFilmographyPanelProps) {
 	const { navigate } = useLobbyNavigation();
 
@@ -141,6 +143,7 @@ export function ProfileFilmographyPanel({
 			query={query}
 			catalogueWaveKeyOverride={catalogueWaveKey}
 			monochromePeersOnHover={monochromePeersOnHover}
+			isOwnProfile={isOwnProfile}
 		/>
 	);
 }

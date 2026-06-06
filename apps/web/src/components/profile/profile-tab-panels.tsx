@@ -70,6 +70,7 @@ export function ProfileTabPanels({
 				showAllLedgerHref={showAllLedgerHref}
 				switchVenueHref={switchVenueHref}
 				lobbyVenue={lobbyVenue}
+				isOwnProfile={isMe}
 			/>
 		);
 	}

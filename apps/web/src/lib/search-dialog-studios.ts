@@ -5,6 +5,9 @@ export type SearchDialogStudio = {
 	logoUrl: string | null;
 };
 
+/** Per-theme studio logo tile (`.studio-logo-chip` in globals.css). */
+export const SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS = "studio-logo-chip";
+
 export function findSearchDialogStudio(
 	studios: SearchDialogStudio[],
 	companyId: number | null | undefined,

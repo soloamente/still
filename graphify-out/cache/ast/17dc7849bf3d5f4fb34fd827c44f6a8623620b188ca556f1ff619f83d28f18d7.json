@@ -1,0 +1,383 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_06_home_catalog_filters_popover_md",
+			"label": "2026-06-06-home-catalog-filters-popover.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"label": "Home Catalogue Filters Popover \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_task_1_filter_url_helpers_tdd",
+			"label": "Task 1: Filter URL helpers (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_1",
+			"label": "code:ts (// apps/web/src/lib/home-catalog-filters.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_2",
+			"label": "code:bash (cd apps/web && bun test src/lib/home-catalog-filters.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_3",
+			"label": "code:ts (export const HOME_CATALOG_FILTER_PARAMS = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_task_2_extend_buildhomelobbyhref",
+			"label": "Task 2: Extend `buildHomeLobbyHref`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L197"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_4",
+			"label": "code:ts (export function buildHomeLobbyHref(input: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L205"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_5",
+			"label": "code:ts (import { buildHomeLobbyHref } from \"./home-lobby-url\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_6",
+			"label": "code:bash (cd apps/web && bun test src/lib/home-catalog-filters.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L244"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_task_3_cookie_persist_restore",
+			"label": "Task 3: Cookie + persist restore",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L252"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_task_4_wire_filters_on_home_page_rsc_grid",
+			"label": "Task 4: Wire filters on `/home` page (RSC + grid)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L281"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_7",
+			"label": "code:ts (const catalogFilters = parseHomeCatalogFilters()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L292"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_8",
+			"label": "code:ts (const lobbyCatalogueResetKey = [)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L315"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_task_5_filter_popover_component",
+			"label": "Task 5: Filter popover component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L336"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_9",
+			"label": "code:ts (export type HomeCatalogFiltersPopoverProps = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L345"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_task_6_integrate_into_toolbar",
+			"label": "Task 6: Integrate into toolbar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L385"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_10",
+			"label": "code:tsx (<HomeCatalogFiltersPopover)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L394"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_task_7_manual_qa_typecheck",
+			"label": "Task 7: Manual QA + typecheck",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L427"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_11",
+			"label": "code:bash (cd apps/web && bun test src/lib/home-catalog-filters.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L431"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_codeblock_12",
+			"label": "code:bash (cd apps/web && bun run check-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L437"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L458"
+		},
+		{
+			"id": "plans_2026_06_06_home_catalog_filters_popover_out_of_scope_do_not_implement_in_this_plan",
+			"label": "Out of scope (do not implement in this plan)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L473"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_06_home_catalog_filters_popover_md",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_task_1_filter_url_helpers_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_1_filter_url_helpers_tdd",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_1_filter_url_helpers_tdd",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_1_filter_url_helpers_tdd",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_task_2_extend_buildhomelobbyhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L197",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_2_extend_buildhomelobbyhref",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L205",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_2_extend_buildhomelobbyhref",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_2_extend_buildhomelobbyhref",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L244",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_task_3_cookie_persist_restore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L252",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_task_4_wire_filters_on_home_page_rsc_grid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L281",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_4_wire_filters_on_home_page_rsc_grid",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L292",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_4_wire_filters_on_home_page_rsc_grid",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L315",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_task_5_filter_popover_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L336",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_5_filter_popover_component",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L345",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_task_6_integrate_into_toolbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L385",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_6_integrate_into_toolbar",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L394",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_task_7_manual_qa_typecheck",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L427",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_7_manual_qa_typecheck",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L431",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_task_7_manual_qa_typecheck",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L437",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L458",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_06_home_catalog_filters_popover_home_catalogue_filters_popover_implementation_plan",
+			"target": "plans_2026_06_06_home_catalog_filters_popover_out_of_scope_do_not_implement_in_this_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md",
+			"source_location": "L473",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

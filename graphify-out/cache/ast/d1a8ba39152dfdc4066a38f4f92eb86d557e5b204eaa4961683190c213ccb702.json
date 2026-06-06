@@ -1,0 +1,66 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_adult_content_age_gate_ts",
+			"label": "adult-content-age-gate.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-age-gate.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_adult_content_age_gate_patronmeetsadultagegate",
+			"label": "patronMeetsAdultAgeGate()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-age-gate.ts",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_age_gate_ts",
+			"target": "lib_adult_content_age_gate_patronmeetsadultagegate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-age-gate.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_adult_content_age_gate_patronmeetsadultagegate",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-age-gate.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_adult_content_age_gate_patronmeetsadultagegate",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-age-gate.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_adult_content_age_gate_patronmeetsadultagegate",
+			"callee": "setFullYear",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-age-gate.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "lib_adult_content_age_gate_patronmeetsadultagegate",
+			"callee": "getFullYear",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-age-gate.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "lib_adult_content_age_gate_patronmeetsadultagegate",
+			"callee": "setHours",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-age-gate.ts",
+			"source_location": "L10"
+		}
+	]
+}

@@ -33,7 +33,6 @@ export function HomeLobbyBodyGate({
 		activeBrowse,
 		clientUrlBrowse,
 		serverBrowse,
-		isPending,
 	});
 
 	// Session restore can move the client URL ahead of the server branch — pull RSC once.

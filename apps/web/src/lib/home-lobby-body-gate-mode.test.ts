@@ -9,7 +9,6 @@ describe("resolveLobbyBodyGateMode", () => {
 				activeBrowse: "community",
 				clientUrlBrowse: "community",
 				serverBrowse: "community",
-				isPending: false,
 			}),
 		).toBe("settled");
 	});
@@ -20,7 +19,6 @@ describe("resolveLobbyBodyGateMode", () => {
 				activeBrowse: "community",
 				clientUrlBrowse: "movies",
 				serverBrowse: "movies",
-				isPending: true,
 			}),
 		).toBe("community-pending");
 	});
@@ -31,7 +29,6 @@ describe("resolveLobbyBodyGateMode", () => {
 				activeBrowse: "movies",
 				clientUrlBrowse: "community",
 				serverBrowse: "community",
-				isPending: true,
 			}),
 		).toBe("tmdb-pending");
 	});
@@ -42,7 +39,6 @@ describe("resolveLobbyBodyGateMode", () => {
 				activeBrowse: "community",
 				clientUrlBrowse: "community",
 				serverBrowse: "movies",
-				isPending: false,
 			}),
 		).toBe("community-pending");
 	});
@@ -53,8 +49,24 @@ describe("resolveLobbyBodyGateMode", () => {
 				activeBrowse: "movies",
 				clientUrlBrowse: "movies",
 				serverBrowse: "community",
-				isPending: false,
 			}),
 		).toBe("tmdb-pending");
+	});
+
+	test("settled during sort or venue change on the same browse branch", () => {
+		expect(
+			resolveLobbyBodyGateMode({
+				activeBrowse: "movies",
+				clientUrlBrowse: "movies",
+				serverBrowse: "movies",
+			}),
+		).toBe("settled");
+		expect(
+			resolveLobbyBodyGateMode({
+				activeBrowse: "tv",
+				clientUrlBrowse: "tv",
+				serverBrowse: "tv",
+			}),
+		).toBe("settled");
 	});
 });

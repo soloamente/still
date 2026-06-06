@@ -1036,6 +1036,33 @@ export async function fetchMyDiary(
  * Ranked list reorder mutation — body must include the **full** ordered set of
  * list item ids so the server can validate and persist canonical positions.
  */
+/**
+ * Remove one title from a custom list — blocked for system Favorites (diary-synced).
+ */
+export async function deleteListItem(
+	listId: string,
+	media:
+		| { listingKind: "movie"; tmdbId: number }
+		| { listingKind: "tv"; tmdbId: number },
+) {
+	const path =
+		media.listingKind === "movie"
+			? `/api/lists/${encodeURIComponent(listId)}/items/${media.tmdbId}`
+			: `/api/lists/${encodeURIComponent(listId)}/items/tv/${media.tmdbId}`;
+	const response = await fetch(new URL(path, stillApiOrigin()), {
+		method: "DELETE",
+		credentials: "include",
+		headers: { Accept: "application/json" },
+	});
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
 /** PATCH per-title curator note on a list (`SN.10` annotations). */
 export async function patchListItemNote(
 	listId: string,

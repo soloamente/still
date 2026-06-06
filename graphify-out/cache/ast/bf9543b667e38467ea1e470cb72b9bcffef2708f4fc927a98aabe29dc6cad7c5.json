@@ -1,0 +1,224 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"label": "adult-content-policy.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_adult_content_policy_profile_pref_show_adult_content",
+			"label": "PROFILE_PREF_SHOW_ADULT_CONTENT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_adult_content_policy_stilladultjson",
+			"label": "StillAdultJson",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_adult_content_policy_still_adult_json_key",
+			"label": "STILL_ADULT_JSON_KEY",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_adult_content_policy_readshowadultcontentpref",
+			"label": "readShowAdultContentPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_adult_content_policy_readstilladultcache",
+			"label": "readStillAdultCache()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_adult_content_policy_ismovieadult",
+			"label": "isMovieAdult()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_adult_content_policy_istvadultfromrow",
+			"label": "isTvAdultFromRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_adult_content_policy_istmdbsummaryadult",
+			"label": "isTmdbSummaryAdult()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L39"
+		},
+		{
+			"id": "lib_adult_content_policy_shouldblockadultdetail",
+			"label": "shouldBlockAdultDetail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L45"
+		},
+		{
+			"id": "lib_adult_content_policy_filteroutadultrows",
+			"label": "filterOutAdultRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L52"
+		},
+		{
+			"id": "lib_adult_content_policy_buildadultblockedmoviepayload",
+			"label": "buildAdultBlockedMoviePayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L62"
+		},
+		{
+			"id": "lib_adult_content_policy_buildadultblockedtvpayload",
+			"label": "buildAdultBlockedTvPayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L74"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_profile_pref_show_adult_content",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_stilladultjson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_still_adult_json_key",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_readshowadultcontentpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_readstilladultcache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_ismovieadult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_istvadultfromrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_istmdbsummaryadult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_shouldblockadultdetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_filteroutadultrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_buildadultblockedmoviepayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_adult_content_policy_ts",
+			"target": "lib_adult_content_policy_buildadultblockedtvpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_adult_content_policy_istvadultfromrow",
+			"target": "lib_adult_content_policy_readstilladultcache",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_adult_content_policy_filteroutadultrows",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\adult-content-policy.ts",
+			"source_location": "L58"
+		}
+	]
+}

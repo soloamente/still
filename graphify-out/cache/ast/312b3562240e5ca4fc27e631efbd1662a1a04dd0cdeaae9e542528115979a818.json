@@ -1,0 +1,529 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"label": "log-rating-slider.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "log_log_rating_slider_ratingfromclientx",
+			"label": "ratingFromClientX()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L26"
+		},
+		{
+			"id": "log_log_rating_slider_splitratinglabeldigits",
+			"label": "splitRatingLabelDigits()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L32"
+		},
+		{
+			"id": "log_log_rating_slider_readdigitpopindurationms",
+			"label": "readDigitPopInDurationMs()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L45"
+		},
+		{
+			"id": "log_log_rating_slider_logratingscoredigits",
+			"label": "LogRatingScoreDigits()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L61"
+		},
+		{
+			"id": "log_log_rating_slider_logratingslider",
+			"label": "LogRatingSlider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L163"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "next_themes",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "lib_app_themes_default_app_theme_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "lib_app_themes_resolveapptheme",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "lib_log_rating_clamplogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "lib_log_rating_formatlogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "log_log_rating_slider_ratingfromclientx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "log_log_rating_slider_splitratinglabeldigits",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "log_log_rating_slider_readdigitpopindurationms",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "log_log_rating_slider_logratingscoredigits",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_log_rating_slider_tsx",
+			"target": "log_log_rating_slider_logratingslider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "log_log_rating_slider_logratingscoredigits",
+			"target": "log_log_rating_slider_splitratinglabeldigits",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L130",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "log_log_rating_slider_ratingfromclientx",
+			"callee": "clampLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_splitratinglabeldigits",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_splitratinglabeldigits",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_readdigitpopindurationms",
+			"callee": "closest",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_readdigitpopindurationms",
+			"callee": "getComputedStyle",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_readdigitpopindurationms",
+			"callee": "parseFloat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_readdigitpopindurationms",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_readdigitpopindurationms",
+			"callee": "getPropertyValue",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_readdigitpopindurationms",
+			"callee": "parseFloat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_readdigitpopindurationms",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_readdigitpopindurationms",
+			"callee": "getPropertyValue",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingscoredigits",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useTheme",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "resolveAppTheme",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L180"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L227"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "clampLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L228"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L231"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L273"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L283"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L293"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L325"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L326"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L350"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L359"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L367"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L375"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L412"
+		},
+		{
+			"caller_nid": "log_log_rating_slider_logratingslider",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\log-rating-slider.tsx",
+			"source_location": "L414"
+		}
+	]
+}

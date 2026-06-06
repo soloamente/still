@@ -10,40 +10,39 @@ import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 
 import { SearchDialogStudioRailSkeleton } from "@/components/home/search-dialog-result-skeletons";
-import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
+	SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
 	type SearchDialogStudio,
 	studioShortName,
 } from "@/lib/search-dialog-studios";
 
-/**
- * Canvas chip on the search dialog’s `bg-card` sheet — always `bg-background` so TMDb
- * logos read clearly; selected state is full opacity, never rings/borders/shadows.
- */
 function studioChipClass(selected: boolean) {
 	return cn(
-		"inline-flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-background transition-[opacity,color] duration-200 ease-out motion-reduce:transition-none",
-		selected
-			? "text-foreground opacity-100"
-			: cn("opacity-85", DETAIL_CANVAS_ON_CARD_HOVER_CLASS),
+		"inline-flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl transition-[opacity,background-color,color] duration-200 ease-out motion-reduce:transition-none",
+		SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
+		selected ? "opacity-100" : "opacity-90",
 	);
 }
 
 /**
- * Horizontal studio logos above the Popular preview column (Movies browse only).
+ * Horizontal studio logos above the Popular preview column (Movies + TV browse).
  */
 export function SearchDialogStudioRail({
 	studios,
 	selectedStudioId,
 	onSelectStudio,
 	loading,
+	listingKind = "movie",
 }: {
 	studios: SearchDialogStudio[];
 	selectedStudioId: number | null;
 	onSelectStudio: (id: number | null) => void;
 	loading?: boolean;
+	listingKind?: "movie" | "tv";
 }) {
 	if (!loading && studios.length === 0) return null;
+
+	const catalogueLabel = listingKind === "tv" ? "shows" : "films";
 
 	return (
 		<div className="mb-4 min-w-0 overflow-x-hidden">
@@ -66,9 +65,7 @@ export function SearchDialogStudioRail({
 									className={cn(
 										studioChipClass(selectedStudioId == null),
 										"font-medium text-[10px]",
-										selectedStudioId == null
-											? "text-foreground"
-											: "text-muted-foreground",
+										selectedStudioId != null && "opacity-70",
 									)}
 								>
 									All
@@ -88,7 +85,7 @@ export function SearchDialogStudioRail({
 										<button
 											type="button"
 											aria-pressed={selected}
-											aria-label={`${studio.name} films`}
+											aria-label={`${studio.name} ${catalogueLabel}`}
 											onClick={() =>
 												onSelectStudio(selected ? null : studio.id)
 											}
@@ -104,7 +101,7 @@ export function SearchDialogStudioRail({
 													unoptimized
 												/>
 											) : (
-												<span className="px-1 font-semibold text-[9px] text-foreground uppercase tracking-wide">
+												<span className="px-1 font-semibold text-[9px] uppercase tracking-wide">
 													{short.slice(0, 4)}
 												</span>
 											)}

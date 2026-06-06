@@ -1,0 +1,152 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_download_tmdb_image_ts",
+			"label": "download-tmdb-image.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_download_tmdb_image_tmdbimagedownloadfilename",
+			"label": "tmdbImageDownloadFilename()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_download_tmdb_image_downloadtmdbimage",
+			"label": "downloadTmdbImage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_download_tmdb_image_ts",
+			"target": "lib_download_tmdb_image_tmdbimagedownloadfilename",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_download_tmdb_image_ts",
+			"target": "lib_download_tmdb_image_downloadtmdbimage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_download_tmdb_image_tmdbimagedownloadfilename",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_tmdbimagedownloadfilename",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_tmdbimagedownloadfilename",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_tmdbimagedownloadfilename",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_tmdbimagedownloadfilename",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_tmdbimagedownloadfilename",
+			"callee": "normalize",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "blob",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "createObjectURL",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "createElement",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "appendChild",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "click",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "remove",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "revokeObjectURL",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_download_tmdb_image_downloadtmdbimage",
+			"callee": "open",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts",
+			"source_location": "L35"
+		}
+	]
+}

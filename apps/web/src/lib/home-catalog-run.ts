@@ -3,6 +3,9 @@ import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
 /** TV catalogue slice on `/home?browse=tv` — orthogonal to left-rail `sort` (Popular / Latest). */
 export type HomeCatalogRun = "ongoing" | "completed" | "upcoming";
 
+/** Default right-rail slice on TV when `?run=` is absent (mirrors left-rail sort always having a selection). */
+export const DEFAULT_HOME_CATALOG_RUN: HomeCatalogRun = "ongoing";
+
 /**
  * TMDb discover `?status=` for **Ongoing** — Returning Series (`with_status=0`).
  * Distinct from **Completed** (`ended` / `3`) so the two rails do not overlap.
@@ -34,6 +37,19 @@ export function parseHomeCatalogRun(
 		return "upcoming";
 	}
 	return null;
+}
+
+/**
+ * Resolves the active TV lifecycle slice — absent `?run=` means **Ongoing** unless
+ * **This season** (`animeSeason`) is active (that slice replaces run chips).
+ */
+export function effectiveHomeCatalogRun(input: {
+	run: HomeCatalogRun | null;
+	browse?: HomeBrowseSurface;
+	animeSeason?: boolean;
+}): HomeCatalogRun | null {
+	if (input.browse !== "tv" || input.animeSeason) return input.run;
+	return input.run ?? DEFAULT_HOME_CATALOG_RUN;
 }
 
 /** Maps left-rail sort to TMDb discover `sort_by` for TV discover slices (`completed`, `latest`). */

@@ -15,6 +15,12 @@ import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider
 import { parseHomeAnimeSeason } from "@/lib/home-anime-season";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
 import {
+	parseHomeCatalogFilters,
+	stripIncompatibleHomeCatalogFilters,
+} from "@/lib/home-catalog-filters";
+import {
+	DEFAULT_HOME_CATALOG_RUN,
+	effectiveHomeCatalogRun,
 	type HomeCatalogRun,
 	parseHomeCatalogRun,
 } from "@/lib/home-catalog-run";
@@ -31,6 +37,7 @@ interface HomeTmdbLobbySnapshot {
 	browse: "movies" | "tv";
 	sort: HomeCatalogSort;
 	venue: HomeVenue;
+	/** Raw `?run=` — null means default **Ongoing** on TV. */
 	run: HomeCatalogRun | null;
 	animeSeason: boolean;
 }
@@ -85,13 +92,23 @@ function snapshotFromSearchParams(
 	};
 }
 
-function lobbyHref(snapshot: HomeTmdbLobbySnapshot): string {
+function lobbyHref(
+	snapshot: HomeTmdbLobbySnapshot,
+	searchParams: URLSearchParams,
+): string {
+	const filterContext = { venue: snapshot.venue, sort: snapshot.sort };
+	const filters = stripIncompatibleHomeCatalogFilters(
+		parseHomeCatalogFilters(searchParams, filterContext),
+		filterContext,
+	);
 	return buildHomeLobbyHref({
 		browse: snapshot.browse,
 		sort: snapshot.sort,
 		venue: snapshot.venue,
 		run: snapshot.animeSeason ? null : snapshot.run,
 		animeSeason: snapshot.animeSeason,
+		genreId: filters.genreId,
+		monetization: filters.monetization,
 	});
 }
 
@@ -131,9 +148,9 @@ export function HomeTmdbLobbyParamsProvider({
 		(patch: Partial<HomeTmdbLobbySnapshot>) => {
 			const next: HomeTmdbLobbySnapshot = { ...active, ...patch };
 			setPending(next);
-			navigate(lobbyHref(next));
+			navigate(lobbyHref(next, new URLSearchParams(searchParams.toString())));
 		},
-		[active, navigate],
+		[active, navigate, searchParams],
 	);
 
 	const selectSort = useCallback(
@@ -152,7 +169,9 @@ export function HomeTmdbLobbyParamsProvider({
 
 	const selectRun = useCallback(
 		(run: HomeCatalogRun) => {
-			const nextRun = active.run === run ? null : run;
+			// Always keep one run chip selected — default **Ongoing** omits `?run=` from the URL.
+			const nextRun = run === DEFAULT_HOME_CATALOG_RUN ? null : run;
+			if (nextRun === active.run && !active.animeSeason) return;
 			navigateLobby({ run: nextRun, animeSeason: false });
 		},
 		[active, navigateLobby],
@@ -172,9 +191,19 @@ export function HomeTmdbLobbyParamsProvider({
 		[router],
 	);
 
+	const effectiveRun =
+		active.browse === "tv"
+			? effectiveHomeCatalogRun({
+					run: active.run,
+					browse: "tv",
+					animeSeason: active.animeSeason,
+				})
+			: null;
+
 	const value = useMemo(
 		(): HomeTmdbLobbyParamsContextValue => ({
 			...active,
+			run: effectiveRun,
 			selectSort,
 			selectVenue,
 			selectRun,
@@ -183,6 +212,7 @@ export function HomeTmdbLobbyParamsProvider({
 		}),
 		[
 			active,
+			effectiveRun,
 			selectSort,
 			selectVenue,
 			selectRun,

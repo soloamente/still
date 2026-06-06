@@ -1,0 +1,143 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_06_movie_detail_reviews_carousel_design_md",
+			"label": "2026-06-06-movie-detail-reviews-carousel-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"label": "Movie / TV detail \u2014 editorial reviews carousel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_06_movie_detail_reviews_carousel_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_06_06_movie_detail_reviews_carousel_design_behavior",
+			"label": "Behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "specs_2026_06_06_movie_detail_reviews_carousel_design_slide_content",
+			"label": "Slide content",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_06_06_movie_detail_reviews_carousel_design_data",
+			"label": "Data",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "specs_2026_06_06_movie_detail_reviews_carousel_design_components_files",
+			"label": "Components / files",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "specs_2026_06_06_movie_detail_reviews_carousel_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "specs_2026_06_06_movie_detail_reviews_carousel_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L63"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_06_movie_detail_reviews_carousel_design_md",
+			"target": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"target": "specs_2026_06_06_movie_detail_reviews_carousel_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"target": "specs_2026_06_06_movie_detail_reviews_carousel_design_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"target": "specs_2026_06_06_movie_detail_reviews_carousel_design_slide_content",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"target": "specs_2026_06_06_movie_detail_reviews_carousel_design_data",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"target": "specs_2026_06_06_movie_detail_reviews_carousel_design_components_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"target": "specs_2026_06_06_movie_detail_reviews_carousel_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_movie_detail_reviews_carousel_design_movie_tv_detail_editorial_reviews_carousel",
+			"target": "specs_2026_06_06_movie_detail_reviews_carousel_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-movie-detail-reviews-carousel-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

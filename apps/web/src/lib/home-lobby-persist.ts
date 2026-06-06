@@ -1,5 +1,6 @@
 import { parseHomeAnimeSeason } from "@/lib/home-anime-season";
 import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
+import { parseHomeCatalogFilters } from "@/lib/home-catalog-filters";
 import {
 	type HomeCatalogRun,
 	parseHomeCatalogRun,
@@ -124,6 +125,8 @@ export function homeLobbyHrefFromSearchParams(
 	}
 	const sort = parseHomeCatalogSort(params.get("sort"), surface);
 	const venue = parseHomeVenue(params.get("venue"), sort);
+	const filterContext = { venue, sort };
+	const filters = parseHomeCatalogFilters(params, filterContext);
 	if (surface === "tv") {
 		const defVenue = defaultHomeVenueForSort(sort);
 		const animeSeason = parseHomeAnimeSeason(params.get("animeSeason"));
@@ -133,6 +136,8 @@ export function homeLobbyHrefFromSearchParams(
 			venue: venue !== defVenue ? venue : undefined,
 			run: parseHomeCatalogRun(params.get("run"), "tv"),
 			animeSeason,
+			genreId: filters.genreId,
+			monetization: filters.monetization,
 		});
 	}
 	const defVenue = defaultHomeVenueForSort(sort);
@@ -140,6 +145,8 @@ export function homeLobbyHrefFromSearchParams(
 		browse: "movies",
 		sort,
 		venue: venue !== defVenue ? venue : undefined,
+		genreId: filters.genreId,
+		monetization: filters.monetization,
 	});
 }
 

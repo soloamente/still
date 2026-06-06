@@ -1,5 +1,10 @@
+import { normalizeDiscoverMonetization } from "@/lib/discover-catalog-url";
 import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
-import type { HomeCatalogRun } from "@/lib/home-catalog-run";
+import { HOME_CATALOG_FILTER_PARAMS } from "@/lib/home-catalog-filters";
+import {
+	DEFAULT_HOME_CATALOG_RUN,
+	type HomeCatalogRun,
+} from "@/lib/home-catalog-run";
 import type { HomeCatalogSort } from "@/lib/home-catalog-sort";
 import type { HomeCommunityFeed } from "@/lib/home-community-feed";
 import { DEFAULT_HOME_COMMUNITY_FEED } from "@/lib/home-community-feed";
@@ -43,6 +48,9 @@ export function buildHomeLobbyHref(input: {
 	animeSeason?: boolean;
 	/** Time window for Community tabs (`lists`, `activity`, ranks, …). */
 	period?: HomeLeaderboardPeriod;
+	/** Discover refinements — movies lobby filter popover. */
+	genreId?: number | null;
+	monetization?: string | null;
 }): string {
 	const params = new URLSearchParams();
 
@@ -75,7 +83,12 @@ export function buildHomeLobbyHref(input: {
 			} else if (catalogSort === "upcoming") {
 				params.set("sort", "upcoming");
 			}
-			if (input.browse === "tv" && input.run) {
+			// Omit default **Ongoing** — bare `/home?browse=tv` still resolves to returning series.
+			if (
+				input.browse === "tv" &&
+				input.run &&
+				input.run !== DEFAULT_HOME_CATALOG_RUN
+			) {
 				params.set("run", input.run);
 			}
 			const animeSeason = serializeHomeAnimeSeason(Boolean(input.animeSeason));
@@ -94,6 +107,31 @@ export function buildHomeLobbyHref(input: {
 		}
 	}
 
+	appendHomeCatalogFilterParams(params, input);
+
 	const qs = params.toString();
 	return qs ? `/home?${qs}` : "/home";
+}
+
+/** Serializes optional discover filter refinements onto lobby query strings. */
+function appendHomeCatalogFilterParams(
+	params: URLSearchParams,
+	input: {
+		browse: HomeBrowseSurface;
+		sort: HomeCatalogSort | HomeCommunityFeed;
+		genreId?: number | null;
+		monetization?: string | null;
+	},
+): void {
+	if (input.browse === "community") return;
+	const genreId = input.genreId;
+	if (typeof genreId === "number" && Number.isFinite(genreId) && genreId > 0) {
+		params.set(HOME_CATALOG_FILTER_PARAMS.genre, String(Math.floor(genreId)));
+	}
+	const monetization = normalizeDiscoverMonetization(
+		input.monetization ?? null,
+	);
+	if (monetization && monetization !== "flatrate") {
+		params.set(HOME_CATALOG_FILTER_PARAMS.monetization, monetization);
+	}
 }

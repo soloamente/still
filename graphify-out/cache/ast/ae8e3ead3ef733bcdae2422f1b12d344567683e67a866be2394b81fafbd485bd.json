@@ -1,0 +1,367 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"label": "search-dialog-studios.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_search_dialog_studios_searchdialogstudio",
+			"label": "SearchDialogStudio",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_search_dialog_studios_findsearchdialogstudio",
+			"label": "findSearchDialogStudio()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_search_dialog_studios_studioshortname",
+			"label": "studioShortName()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L20"
+		},
+		{
+			"id": "lib_search_dialog_studios_studiosearchtokens",
+			"label": "studioSearchTokens()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L30"
+		},
+		{
+			"id": "lib_search_dialog_studios_studionamematchestoken",
+			"label": "studioNameMatchesToken()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L51"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"target": "lib_search_dialog_studios_searchdialogstudio",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"target": "lib_search_dialog_studios_findsearchdialogstudio",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"target": "lib_search_dialog_studios_studioshortname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"target": "lib_search_dialog_studios_studiosearchtokens",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"target": "lib_search_dialog_studios_studionamematchestoken",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_search_dialog_studios_studiosearchtokens",
+			"target": "lib_search_dialog_studios_studioshortname",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_search_dialog_studios_studionamematchestoken",
+			"target": "lib_search_dialog_studios_studiosearchtokens",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L57",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_search_dialog_studios_findsearchdialogstudio",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_findsearchdialogstudio",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studioshortname",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studioshortname",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studioshortname",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studioshortname",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studioshortname",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studioshortname",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studioshortname",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studioshortname",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studiosearchtokens",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studionamematchestoken",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studionamematchestoken",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studionamematchestoken",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_search_dialog_studios_studionamematchestoken",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts",
+			"source_location": "L59"
+		}
+	]
+}

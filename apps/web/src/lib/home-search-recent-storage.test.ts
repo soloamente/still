@@ -5,6 +5,7 @@ import {
 	readHomeSearchRecents,
 	recordHomeSearchRecent,
 	refreshRecentSearchTagLabels,
+	removeHomeSearchRecent,
 	restoreFromHomeSearchRecent,
 } from "./home-search-recent-storage";
 import { STRUCTURED_QUERY_SEP } from "./search-query-tags";
@@ -61,6 +62,43 @@ describe("recordHomeSearchRecent", () => {
 			listingKind: "movie",
 		});
 		expect(restored.freeText).toBe("marty");
+	});
+});
+
+describe("removeHomeSearchRecent", () => {
+	test("drops matching label and persists the rest", () => {
+		const store = new Map<string, string>();
+		const prevStorage = globalThis.localStorage;
+		Object.defineProperty(globalThis, "localStorage", {
+			value: {
+				getItem: (k: string) => store.get(k) ?? null,
+				setItem: (k: string, v: string) => {
+					store.set(k, v);
+				},
+				removeItem: (k: string) => {
+					store.delete(k);
+				},
+			},
+			configurable: true,
+		});
+		try {
+			recordHomeSearchRecent([], "alpha", []);
+			recordHomeSearchRecent([], "beta", []);
+			const next = removeHomeSearchRecent("alpha", []);
+			expect(next.map((row) => row.label)).toEqual(["beta"]);
+			expect(readHomeSearchRecents([]).map((row) => row.label)).toEqual([
+				"beta",
+			]);
+		} finally {
+			if (prevStorage) {
+				Object.defineProperty(globalThis, "localStorage", {
+					value: prevStorage,
+					configurable: true,
+				});
+			} else {
+				Reflect.deleteProperty(globalThis, "localStorage");
+			}
+		}
 	});
 });
 

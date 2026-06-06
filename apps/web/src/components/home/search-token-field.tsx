@@ -14,7 +14,10 @@ import {
 } from "react";
 
 import { SearchTagPill } from "@/components/home/search-tag-pill";
-import type { SearchDialogStudio } from "@/lib/search-dialog-studios";
+import {
+	SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
+	type SearchDialogStudio,
+} from "@/lib/search-dialog-studios";
 import {
 	rankTagSuggestions,
 	type SearchDialogGenre,
@@ -335,7 +338,12 @@ export function SearchTokenField({
 											onMouseEnter={() => setHighlightIndex(index)}
 										>
 											{suggestion.kind === "studio" && suggestion.logoUrl ? (
-												<span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-background shadow-sm outline-1 outline-foreground/10">
+												<span
+													className={cn(
+														"studio-logo-chip-outline inline-flex size-9 shrink-0 items-center justify-center rounded-lg shadow-sm",
+														SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
+													)}
+												>
 													<Image
 														src={suggestion.logoUrl}
 														alt=""

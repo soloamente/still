@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useId, useState } from "react";
-
+import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
@@ -16,7 +16,6 @@ import {
 	MovieDetailFollowingRatings,
 } from "@/components/movie/movie-detail-following-ratings";
 import { MovieDetailReviewsCarousel } from "@/components/movie/movie-detail-reviews-carousel";
-import { MoviePoster } from "@/components/movie/movie-poster";
 import { Section } from "@/components/ui/section";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import {
@@ -105,7 +104,7 @@ function MovieDetailListsEmpty({
 	);
 }
 
-/** Related picks — same poster grid chrome as `/home` catalogue lobby. */
+/** Related picks — same poster grid + radial toolkit as `/home` catalogue lobby. */
 function RelatedMoviesPosterGrid({
 	movies,
 	listingKind = "movie",
@@ -121,21 +120,21 @@ function RelatedMoviesPosterGrid({
 			)}
 		>
 			{movies.map((m, index) => (
-				<MoviePoster
+				<CataloguePosterTile
 					key={m.id}
 					className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
 					frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
 					hoverEffect="elevation"
-					movieId={m.id}
-					title={m.title}
+					listingKind={listingKind}
 					posterUrl={
 						m.poster_path
 							? `https://image.tmdb.org/t/p/w342${m.poster_path}`
 							: null
 					}
 					priority={index < 6}
-					showTitle={false}
-					listingKind={listingKind}
+					surface="home"
+					title={m.title}
+					tmdbId={m.id}
 				/>
 			))}
 		</div>

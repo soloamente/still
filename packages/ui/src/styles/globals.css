@@ -35,158 +35,162 @@
  *   Web Audio both respect `prefers-reduced-motion: reduce`.
  * --------------------------------------------------------------------------- */
 :root {
-	/* -------------------------------------------------------------------------
+  /* -------------------------------------------------------------------------
 	 * Custom OKLCH neutrals (replaces legacy Aker gray hex ramp for shell chrome).
 	 * Canvas = app floor / page wash. Raised = darker inset layer for search,
 	 * nav pills, filter chips, cards, inputs — matches Mobbin-style hierarchy.
 	 * ------------------------------------------------------------------------- */
-	--palette-canvas: oklch(0.2645 0 0);
-	--palette-raised: oklch(0.2264 0 0);
+  --palette-canvas: oklch(0.2645 0 0);
+  --palette-raised: oklch(0.2264 0 0);
 
-	/* Absolute / utility colors (unchanged; used for true black/white UI moments). */
-	--color-absolute-black: #000000;
-	--color-pure-white: #ffffff;
-	/* Legacy neutral names — now alias the OKLCH ramp so existing utilities keep working. */
-	--color-deep-graphite: var(--palette-raised);
-	--color-medium-gray: var(--palette-raised);
-	--color-fog: #e5e4e4;
-	--color-slate-border: #8d8d8d;
-	--color-soft-stone: #494949;
-	/* Brand / chart accents (still from the original Still palette). */
-	--color-moss-green: #193f32;
-	--color-desert-orange: #b75928;
-	--color-deep-teal: #002934;
-	--color-copper-clay: #776157;
-	--color-crimson-blush: #df6a6b;
-	--color-deep-ocean: #044152;
+  /* Absolute / utility colors (unchanged; used for true black/white UI moments). */
+  --color-absolute-black: #000000;
+  --color-pure-white: #ffffff;
+  /* Legacy neutral names — now alias the OKLCH ramp so existing utilities keep working. */
+  --color-deep-graphite: var(--palette-raised);
+  --color-medium-gray: var(--palette-raised);
+  --color-fog: #e5e4e4;
+  --color-slate-border: #8d8d8d;
+  --color-soft-stone: #494949;
+  /* Brand / chart accents (still from the original Still palette). */
+  --color-moss-green: #193f32;
+  --color-desert-orange: #b75928;
+  --color-deep-teal: #002934;
+  --color-copper-clay: #776157;
+  --color-crimson-blush: #df6a6b;
+  --color-deep-ocean: #044152;
 
-	/* Surfaces — OKLCH canvas (floor) + raised (panels). Raised L is lower than
+  /* Surfaces — OKLCH canvas (floor) + raised (panels). Raised L is lower than
 	 * canvas so chips/cards read as slightly deeper ink on the wash. */
-	--surface-theater: var(--palette-canvas);
-	/* Canvas = page wash (aliases theater). Raised = cards / pills / ⌘K / inputs. */
-	--surface-canvas: var(--palette-canvas);
-	--surface-card-base: var(--palette-raised);
-	--surface-raised: var(--palette-raised);
-	/* Overlay: popovers / ⌘K — same ink as raised; edge comes from border + shadow. */
-	--surface-overlay: var(--palette-raised);
-	--surface-translucent-overlay: rgba(0, 0, 0, 0.5);
-	--surface-accent-card: #776157;
+  --surface-theater: var(--palette-canvas);
+  /* Canvas = page wash (aliases theater). Raised = cards / pills / ⌘K / inputs. */
+  --surface-canvas: var(--palette-canvas);
+  --surface-card-base: var(--palette-raised);
+  --surface-raised: var(--palette-raised);
+  /* Overlay: popovers / ⌘K — same ink as raised; edge comes from border + shadow. */
+  --surface-overlay: var(--palette-raised);
+  --surface-translucent-overlay: rgba(0, 0, 0, 0.5);
+  --surface-accent-card: #776157;
+  /* Search dialog studio logos — per-theme overrides on `html.theme-*` (Calm default below). */
+  --surface-studio-logo: oklch(0.54 0.024 58);
+  --surface-studio-logo-hover: oklch(0.58 0.028 58);
+  --surface-studio-logo-foreground: oklch(0.28 0.02 58);
 
-	/* UI sans: SF Pro Rounded (local next/font) → Outfit webfont → system stack. */
-	--font-proxima-nova:
-		var(--font-sf-pro-rounded, "SF Pro Rounded"), var(--font-inter, "Outfit"),
-		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		sans-serif;
-	/* Kept as an alias so existing `font-serif` utilities resolve to the same UI stack. */
-	--font-serif: var(--font-proxima-nova);
-	/* Display: Fraunces from next/font (`--font-fraunces`), cinematic editorial serif
+  /* UI sans: SF Pro Rounded (local next/font) → Outfit webfont → system stack. */
+  --font-proxima-nova:
+    var(--font-sf-pro-rounded, "SF Pro Rounded"), var(--font-inter, "Outfit"),
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  /* Kept as an alias so existing `font-serif` utilities resolve to the same UI stack. */
+  --font-serif: var(--font-proxima-nova);
+  /* Display: Fraunces from next/font (`--font-fraunces`), cinematic editorial serif
    * with an opsz axis. Used by `.font-display` and the `font-display` Tailwind
    * utility (auto-generated from the `@theme inline` `--font-display` token). */
-	--font-fraunces-stack:
-		var(--font-fraunces, "Fraunces"), "PP Editorial Old", "GT Sectra", ui-serif,
-		Georgia, "Times New Roman", serif;
-	--font-geist-mono-stack:
-		var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular, Menlo,
-		monospace;
+  --font-fraunces-stack:
+    var(--font-fraunces, "Fraunces"), "PP Editorial Old", "GT Sectra", ui-serif,
+    Georgia, "Times New Roman", serif;
+  --font-geist-mono-stack:
+    var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
 
-	/* Type scale */
-	--text-body: 15px;
-	--leading-body: 1.55;
-	--tracking-body: 0.011px;
-	--text-body-lg: 18px;
-	--leading-body-lg: 1.35;
-	--tracking-body-lg: 0.011px;
-	--text-subheading: 20px;
-	--leading-subheading: 1.3;
-	--text-heading: 30px;
-	--leading-heading: 1.25;
-	--text-heading-lg: 62px;
-	--leading-heading-lg: 1;
-	--tracking-heading-lg: -0.025px;
-	--text-display: 168px;
-	--leading-display: 0.8;
-	--tracking-display: -0.02px;
+  /* Type scale */
+  --text-body: 15px;
+  --leading-body: 1.55;
+  --tracking-body: 0.011px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.35;
+  --tracking-body-lg: 0.011px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.3;
+  --text-heading: 30px;
+  --leading-heading: 1.25;
+  --text-heading-lg: 62px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -0.025px;
+  --text-display: 168px;
+  --leading-display: 0.8;
+  --tracking-display: -0.02px;
 
-	--font-weight-light: 300;
-	--font-weight-regular: 400;
-	--font-weight-medium: 500;
-	--font-weight-semibold: 600;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
 
-	/* Skeleton shimmer — subtle white sweep on dark raised surfaces. */
-	--skeleton-shimmer-base: color-mix(
-		in oklab,
-		var(--color-pure-white) 6%,
-		transparent
-	);
-	--skeleton-shimmer-highlight: color-mix(
-		in oklab,
-		var(--color-pure-white) 12%,
-		transparent
-	);
+  /* Skeleton shimmer — subtle white sweep on dark raised surfaces. */
+  --skeleton-shimmer-base: color-mix(
+    in oklab,
+    var(--color-pure-white) 6%,
+    transparent
+  );
+  --skeleton-shimmer-highlight: color-mix(
+    in oklab,
+    var(--color-pure-white) 12%,
+    transparent
+  );
 
-	/* Spacing scale (in addition to tailwind defaults) */
-	--spacing-4: 4px;
-	--spacing-5: 5px;
-	--spacing-6: 6px;
-	--spacing-8: 8px;
-	--spacing-10: 10px;
-	--spacing-12: 12px;
-	--spacing-13: 13px;
-	--spacing-14: 14px;
-	--spacing-16: 16px;
-	--spacing-19: 19px;
-	--spacing-20: 20px;
-	--spacing-22: 22px;
-	--spacing-24: 24px;
-	--spacing-32: 32px;
-	--spacing-48: 48px;
-	--spacing-64: 64px;
+  /* Spacing scale (in addition to tailwind defaults) */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-19: 19px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
 
-	/* Layout */
-	--section-gap: 64px;
+  /* Layout */
+  --section-gap: 64px;
 
-	/* Pill radii */
-	--radius-pill: 80px;
-	--radius-pill-lg: 160px;
-	--radius-pill-xl: 800px;
-	--radius-badge: 1584px;
+  /* Pill radii */
+  --radius-pill: 80px;
+  --radius-pill-lg: 160px;
+  --radius-pill-xl: 800px;
+  --radius-badge: 1584px;
 
-	/* Dark-first; the "light" shadcn surface palette is only used when someone
+  /* Dark-first; the "light" shadcn surface palette is only used when someone
 	 * opts a localized section out of dark mode. */
-	--background: var(--surface-canvas);
-	--foreground: var(--color-pure-white);
-	--card: var(--surface-raised);
-	--card-foreground: var(--color-pure-white);
-	--popover: var(--surface-overlay);
-	--popover-foreground: var(--color-pure-white);
-	--primary: var(--color-soft-stone);
-	--primary-foreground: var(--color-pure-white);
-	--secondary: var(--color-medium-gray);
-	--secondary-foreground: var(--color-pure-white);
-	--muted: var(--color-medium-gray);
-	--muted-foreground: var(--color-slate-border);
-	--accent: var(--color-desert-orange);
-	--accent-foreground: var(--color-pure-white);
-	--destructive: var(--color-crimson-blush);
-	--destructive-foreground: var(--color-pure-white);
-	/* Hairline borders — lower contrast than legacy 8% white (Mobbin-like quiet chrome). */
-	--border: rgba(255, 255, 255, 0.055);
-	--input: rgba(255, 255, 255, 0.085);
-	--ring: var(--color-desert-orange);
-	--chart-1: var(--color-desert-orange);
-	--chart-2: var(--color-copper-clay);
-	--chart-3: var(--color-moss-green);
-	--chart-4: var(--color-deep-ocean);
-	--chart-5: var(--color-crimson-blush);
-	--radius: 8px;
-	--sidebar: var(--color-deep-graphite);
-	--sidebar-foreground: var(--color-pure-white);
-	--sidebar-primary: var(--color-desert-orange);
-	--sidebar-primary-foreground: var(--color-pure-white);
-	--sidebar-accent: var(--color-medium-gray);
-	--sidebar-accent-foreground: var(--color-pure-white);
-	--sidebar-border: rgba(255, 255, 255, 0.055);
-	--sidebar-ring: var(--color-desert-orange);
+  --background: var(--surface-canvas);
+  --foreground: var(--color-pure-white);
+  --card: var(--surface-raised);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --destructive: var(--color-crimson-blush);
+  --destructive-foreground: var(--color-pure-white);
+  /* Hairline borders — lower contrast than legacy 8% white (Mobbin-like quiet chrome). */
+  --border: rgba(255, 255, 255, 0.055);
+  --input: rgba(255, 255, 255, 0.085);
+  --ring: var(--color-desert-orange);
+  --chart-1: var(--color-desert-orange);
+  --chart-2: var(--color-copper-clay);
+  --chart-3: var(--color-moss-green);
+  --chart-4: var(--color-deep-ocean);
+  --chart-5: var(--color-crimson-blush);
+  --radius: 8px;
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.055);
+  --sidebar-ring: var(--color-desert-orange);
 }
 
 /* ---------------------------------------------------------------------------
@@ -197,91 +201,91 @@
  * `font-mobbin-saans`, `max-w-mobbin-page`, `rounded-mobbin-3xl`.
  * --------------------------------------------------------------------------- */
 :root {
-	--mobbin-midnight-ink: #141414;
-	--mobbin-pure-canvas: #ffffff;
-	--mobbin-graphite: #707070;
-	--mobbin-ash: #adadad;
-	--mobbin-fog: #ededed;
-	--mobbin-mist: #f2f2f2;
-	--mobbin-silver: #c2c2c2;
-	--mobbin-slate-shadow: #e0e0e0;
-	/* Saans substitute: same UI stack as global (`--font-sf-pro-rounded` / `--font-inter`). */
-	--mobbin-font-saans:
-		var(--font-sf-pro-rounded, "SF Pro Rounded"), var(--font-inter, "Outfit"),
-		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		Roboto, sans-serif;
-	--mobbin-text-caption: 12px;
-	--mobbin-text-body-sm: 14px;
-	--mobbin-text-body: 16px;
-	--mobbin-text-subheading: 20px;
-	--mobbin-text-heading: 32px;
-	--mobbin-text-heading-lg: 56px;
-	--mobbin-text-display: 80px;
-	--mobbin-tracking-caption: 0.2px;
-	--mobbin-tracking-body: 0.21px;
-	--mobbin-tracking-subheading: 0.28px;
-	--mobbin-tracking-heading-lg: -0.39px;
-	--mobbin-tracking-display: -0.88px;
-	--mobbin-font-weight-regular: 400;
-	--mobbin-font-weight-w440: 440;
-	--mobbin-font-weight-w456: 456;
-	--mobbin-font-weight-semibold: 600;
-	--mobbin-font-weight-w652: 652;
-	--mobbin-spacing-unit: 8px;
-	--mobbin-spacing-8: 8px;
-	--mobbin-spacing-16: 16px;
-	--mobbin-spacing-24: 24px;
-	--mobbin-spacing-32: 32px;
-	--mobbin-spacing-40: 40px;
-	--mobbin-spacing-64: 64px;
-	--mobbin-spacing-80: 80px;
-	--mobbin-spacing-104: 104px;
-	--mobbin-spacing-120: 120px;
-	--mobbin-page-max-width: 1280px;
-	--mobbin-section-gap: 80px;
-	--mobbin-radius-lg: 8px;
-	--mobbin-radius-2xl: 16px;
-	--mobbin-radius-2xl-2: 20px;
-	--mobbin-radius-3xl: 24px;
-	--mobbin-radius-full: 9999px;
-	--mobbin-shadow-subtle: rgba(64, 64, 64, 0.16) 0px 0px 0px 1px inset;
-	--mobbin-shadow-xl: rgba(0, 0, 0, 0.04) 0px 8px 40px 0px;
-	--mobbin-surface-page: #ffffff;
-	--mobbin-surface-card: #ffffff;
-	--mobbin-surface-input-chip: #f2f2f2;
-	--mobbin-surface-overlay-dropdown: #ffffff;
+  --mobbin-midnight-ink: #141414;
+  --mobbin-pure-canvas: #ffffff;
+  --mobbin-graphite: #707070;
+  --mobbin-ash: #adadad;
+  --mobbin-fog: #ededed;
+  --mobbin-mist: #f2f2f2;
+  --mobbin-silver: #c2c2c2;
+  --mobbin-slate-shadow: #e0e0e0;
+  /* Saans substitute: same UI stack as global (`--font-sf-pro-rounded` / `--font-inter`). */
+  --mobbin-font-saans:
+    var(--font-sf-pro-rounded, "SF Pro Rounded"), var(--font-inter, "Outfit"),
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --mobbin-text-caption: 12px;
+  --mobbin-text-body-sm: 14px;
+  --mobbin-text-body: 16px;
+  --mobbin-text-subheading: 20px;
+  --mobbin-text-heading: 32px;
+  --mobbin-text-heading-lg: 56px;
+  --mobbin-text-display: 80px;
+  --mobbin-tracking-caption: 0.2px;
+  --mobbin-tracking-body: 0.21px;
+  --mobbin-tracking-subheading: 0.28px;
+  --mobbin-tracking-heading-lg: -0.39px;
+  --mobbin-tracking-display: -0.88px;
+  --mobbin-font-weight-regular: 400;
+  --mobbin-font-weight-w440: 440;
+  --mobbin-font-weight-w456: 456;
+  --mobbin-font-weight-semibold: 600;
+  --mobbin-font-weight-w652: 652;
+  --mobbin-spacing-unit: 8px;
+  --mobbin-spacing-8: 8px;
+  --mobbin-spacing-16: 16px;
+  --mobbin-spacing-24: 24px;
+  --mobbin-spacing-32: 32px;
+  --mobbin-spacing-40: 40px;
+  --mobbin-spacing-64: 64px;
+  --mobbin-spacing-80: 80px;
+  --mobbin-spacing-104: 104px;
+  --mobbin-spacing-120: 120px;
+  --mobbin-page-max-width: 1280px;
+  --mobbin-section-gap: 80px;
+  --mobbin-radius-lg: 8px;
+  --mobbin-radius-2xl: 16px;
+  --mobbin-radius-2xl-2: 20px;
+  --mobbin-radius-3xl: 24px;
+  --mobbin-radius-full: 9999px;
+  --mobbin-shadow-subtle: rgba(64, 64, 64, 0.16) 0px 0px 0px 1px inset;
+  --mobbin-shadow-xl: rgba(0, 0, 0, 0.04) 0px 8px 40px 0px;
+  --mobbin-surface-page: #ffffff;
+  --mobbin-surface-card: #ffffff;
+  --mobbin-surface-input-chip: #f2f2f2;
+  --mobbin-surface-overlay-dropdown: #ffffff;
 }
 
 /* Mirror the dark variant for shadcn `dark:` utilities on dark palettes. */
 .dark {
-	--background: var(--surface-canvas);
-	--foreground: var(--color-pure-white);
-	--card: var(--surface-raised);
-	--card-foreground: var(--color-pure-white);
-	--popover: var(--surface-overlay);
-	--popover-foreground: var(--color-pure-white);
-	--primary: var(--color-soft-stone);
-	--primary-foreground: var(--color-pure-white);
-	--secondary: var(--color-medium-gray);
-	--secondary-foreground: var(--color-pure-white);
-	--muted: var(--color-medium-gray);
-	--muted-foreground: var(--color-slate-border);
-	--accent: var(--color-desert-orange);
-	--accent-foreground: var(--color-pure-white);
-	--destructive: var(--color-crimson-blush);
-	--destructive-foreground: var(--color-pure-white);
-	/* Hairline borders — lower contrast than legacy 8% white (Mobbin-like quiet chrome). */
-	--border: rgba(255, 255, 255, 0.055);
-	--input: rgba(255, 255, 255, 0.085);
-	--ring: var(--color-desert-orange);
-	--sidebar: var(--color-deep-graphite);
-	--sidebar-foreground: var(--color-pure-white);
-	--sidebar-primary: var(--color-desert-orange);
-	--sidebar-primary-foreground: var(--color-pure-white);
-	--sidebar-accent: var(--color-medium-gray);
-	--sidebar-accent-foreground: var(--color-pure-white);
-	--sidebar-border: rgba(255, 255, 255, 0.055);
-	--sidebar-ring: var(--color-desert-orange);
+  --background: var(--surface-canvas);
+  --foreground: var(--color-pure-white);
+  --card: var(--surface-raised);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --destructive: var(--color-crimson-blush);
+  --destructive-foreground: var(--color-pure-white);
+  /* Hairline borders — lower contrast than legacy 8% white (Mobbin-like quiet chrome). */
+  --border: rgba(255, 255, 255, 0.055);
+  --input: rgba(255, 255, 255, 0.085);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.055);
+  --sidebar-ring: var(--color-desert-orange);
 }
 
 /* ---------------------------------------------------------------------------
@@ -289,484 +293,499 @@
  * as the SSR default; `.theme-*` overrides when patrons pick another palette.
  * --------------------------------------------------------------------------- */
 html.theme-theater {
-	color-scheme: dark;
-	--palette-canvas: oklch(0.2645 0 0);
-	--surface-theater: var(--palette-canvas);
-	--palette-raised: oklch(0.2264 0 0);
-	--color-deep-graphite: var(--palette-raised);
-	--color-medium-gray: var(--palette-raised);
-	--background: var(--surface-canvas);
-	--foreground: var(--color-pure-white);
-	--card: var(--surface-raised);
-	--card-foreground: var(--color-pure-white);
-	--popover: var(--surface-overlay);
-	--popover-foreground: var(--color-pure-white);
-	--primary: var(--color-soft-stone);
-	--primary-foreground: var(--color-pure-white);
-	--secondary: var(--color-medium-gray);
-	--secondary-foreground: var(--color-pure-white);
-	--muted: var(--color-medium-gray);
-	--muted-foreground: var(--color-slate-border);
-	--accent: var(--color-desert-orange);
-	--accent-foreground: var(--color-pure-white);
-	--border: rgba(255, 255, 255, 0.055);
-	--input: rgba(255, 255, 255, 0.085);
-	--ring: var(--color-desert-orange);
-	--sidebar: var(--color-deep-graphite);
-	--sidebar-foreground: var(--color-pure-white);
-	--sidebar-primary: var(--color-desert-orange);
-	--sidebar-primary-foreground: var(--color-pure-white);
-	--sidebar-accent: var(--color-medium-gray);
-	--sidebar-accent-foreground: var(--color-pure-white);
-	--sidebar-border: rgba(255, 255, 255, 0.055);
-	--sidebar-ring: var(--color-desert-orange);
+  color-scheme: dark;
+  --palette-canvas: oklch(0.2645 0 0);
+  --surface-theater: var(--palette-canvas);
+  --palette-raised: oklch(0.2264 0 0);
+  --color-deep-graphite: var(--palette-raised);
+  --color-medium-gray: var(--palette-raised);
+  --background: var(--surface-canvas);
+  --foreground: var(--color-pure-white);
+  --card: var(--surface-raised);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --border: rgba(255, 255, 255, 0.055);
+  --input: rgba(255, 255, 255, 0.085);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.055);
+  --sidebar-ring: var(--color-desert-orange);
+  --surface-studio-logo: oklch(0.54 0.024 58);
+  --surface-studio-logo-hover: oklch(0.58 0.028 58);
+  --surface-studio-logo-foreground: oklch(0.28 0.02 58);
 }
 
 html.theme-lobby-light {
-	color-scheme: light;
-	--palette-canvas: #f2f2f2;
-	--palette-raised: #ffffff;
-	--color-deep-graphite: #e0e0e0;
-	--color-medium-gray: #ededed;
-	--color-slate-border: #707070;
-	--color-soft-stone: #494949;
-	--surface-theater: var(--palette-canvas);
-	--surface-canvas: var(--palette-canvas);
-	--surface-card-base: var(--palette-raised);
-	--surface-raised: var(--palette-raised);
-	--surface-overlay: var(--palette-raised);
-	--surface-translucent-overlay: rgba(0, 0, 0, 0.35);
-	--background: var(--surface-canvas);
-	--foreground: #141414;
-	--card: var(--surface-raised);
-	--card-foreground: #141414;
-	--popover: var(--surface-overlay);
-	--popover-foreground: #141414;
-	--primary: #141414;
-	--primary-foreground: #ffffff;
-	--secondary: var(--color-medium-gray);
-	--secondary-foreground: #141414;
-	--muted: var(--color-medium-gray);
-	--muted-foreground: var(--color-slate-border);
-	--accent: var(--color-desert-orange);
-	--accent-foreground: #ffffff;
-	--destructive: var(--color-crimson-blush);
-	--destructive-foreground: #ffffff;
-	--border: rgba(20, 20, 20, 0.08);
-	--input: rgba(20, 20, 20, 0.12);
-	--ring: var(--color-desert-orange);
-	--sidebar: var(--palette-raised);
-	--sidebar-foreground: #141414;
-	--sidebar-primary: var(--color-desert-orange);
-	--sidebar-primary-foreground: #ffffff;
-	--sidebar-accent: var(--color-medium-gray);
-	--sidebar-accent-foreground: #141414;
-	--sidebar-border: rgba(20, 20, 20, 0.08);
-	--sidebar-ring: var(--color-desert-orange);
-	--skeleton-shimmer-base: color-mix(in oklab, #141414 5%, transparent);
-	--skeleton-shimmer-highlight: color-mix(in oklab, #141414 9%, transparent);
-	/* Light palette — keep booth grain/vignette subtle on the bright canvas. */
-	--cinema-grain-opacity: 0.02;
-	--cinema-vignette-spread: 120px;
-	--cinema-vignette-alpha: 0.1;
+  color-scheme: light;
+  --palette-canvas: #f2f2f2;
+  --palette-raised: #ffffff;
+  --color-deep-graphite: #e0e0e0;
+  --color-medium-gray: #ededed;
+  --color-slate-border: #707070;
+  --color-soft-stone: #494949;
+  --surface-theater: var(--palette-canvas);
+  --surface-canvas: var(--palette-canvas);
+  --surface-card-base: var(--palette-raised);
+  --surface-raised: var(--palette-raised);
+  --surface-overlay: var(--palette-raised);
+  --surface-translucent-overlay: rgba(0, 0, 0, 0.35);
+  --background: var(--surface-canvas);
+  --foreground: #141414;
+  --card: var(--surface-raised);
+  --card-foreground: #141414;
+  --popover: var(--surface-overlay);
+  --popover-foreground: #141414;
+  --primary: #141414;
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: #141414;
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: #ffffff;
+  --destructive: var(--color-crimson-blush);
+  --destructive-foreground: #ffffff;
+  --border: rgba(20, 20, 20, 0.08);
+  --input: rgba(20, 20, 20, 0.12);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--palette-raised);
+  --sidebar-foreground: #141414;
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: #141414;
+  --sidebar-border: rgba(20, 20, 20, 0.08);
+  --sidebar-ring: var(--color-desert-orange);
+  --skeleton-shimmer-base: color-mix(in oklab, #141414 5%, transparent);
+  --skeleton-shimmer-highlight: color-mix(in oklab, #141414 9%, transparent);
+  /* Light palette — keep booth grain/vignette subtle on the bright canvas. */
+  --cinema-grain-opacity: 0.02;
+  --cinema-vignette-spread: 120px;
+  --cinema-vignette-alpha: 0.1;
+  --surface-studio-logo: oklch(0.92 0.012 78);
+  --surface-studio-logo-hover: oklch(0.89 0.015 78);
+  --surface-studio-logo-foreground: #141414;
 }
 
 html.theme-lobby-light ::selection {
-	background-color: color-mix(
-		in oklab,
-		var(--color-desert-orange) 22%,
-		transparent
-	);
-	color: #141414;
+  background-color: color-mix(
+    in oklab,
+    var(--color-desert-orange) 22%,
+    transparent
+  );
+  color: #141414;
 }
 
 html.theme-noir {
-	color-scheme: dark;
-	--palette-canvas: oklch(0.18 0.02 250);
-	--surface-theater: var(--palette-canvas);
-	--palette-raised: oklch(0.14 0.02 250);
-	--color-deep-graphite: var(--palette-raised);
-	--color-medium-gray: var(--palette-raised);
-	--color-desert-orange: #9a4f2a;
-	--surface-canvas: var(--palette-canvas);
-	--surface-card-base: var(--palette-raised);
-	--surface-raised: var(--palette-raised);
-	--surface-overlay: var(--palette-raised);
-	--background: var(--surface-canvas);
-	--foreground: var(--color-pure-white);
-	--card: var(--surface-raised);
-	--card-foreground: var(--color-pure-white);
-	--popover: var(--surface-overlay);
-	--popover-foreground: var(--color-pure-white);
-	--primary: var(--color-soft-stone);
-	--primary-foreground: var(--color-pure-white);
-	--secondary: var(--color-medium-gray);
-	--secondary-foreground: var(--color-pure-white);
-	--muted: var(--color-medium-gray);
-	--muted-foreground: var(--color-slate-border);
-	--accent: var(--color-desert-orange);
-	--accent-foreground: var(--color-pure-white);
-	--border: rgba(255, 255, 255, 0.045);
-	--input: rgba(255, 255, 255, 0.07);
-	--ring: var(--color-desert-orange);
-	--sidebar: var(--color-deep-graphite);
-	--sidebar-foreground: var(--color-pure-white);
-	--sidebar-primary: var(--color-desert-orange);
-	--sidebar-primary-foreground: var(--color-pure-white);
-	--sidebar-accent: var(--color-medium-gray);
-	--sidebar-accent-foreground: var(--color-pure-white);
-	--sidebar-border: rgba(255, 255, 255, 0.045);
-	--sidebar-ring: var(--color-desert-orange);
-	--cinema-vignette-alpha: 0.68;
+  color-scheme: dark;
+  --palette-canvas: oklch(0.18 0.02 250);
+  --surface-theater: var(--palette-canvas);
+  --palette-raised: oklch(0.14 0.02 250);
+  --color-deep-graphite: var(--palette-raised);
+  --color-medium-gray: var(--palette-raised);
+  --color-desert-orange: #9a4f2a;
+  --surface-canvas: var(--palette-canvas);
+  --surface-card-base: var(--palette-raised);
+  --surface-raised: var(--palette-raised);
+  --surface-overlay: var(--palette-raised);
+  --background: var(--surface-canvas);
+  --foreground: var(--color-pure-white);
+  --card: var(--surface-raised);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --border: rgba(255, 255, 255, 0.045);
+  --input: rgba(255, 255, 255, 0.07);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.045);
+  --sidebar-ring: var(--color-desert-orange);
+  --cinema-vignette-alpha: 0.68;
+  --surface-studio-logo: oklch(0.56 0.038 250);
+  --surface-studio-logo-hover: oklch(0.6 0.04 250);
+  --surface-studio-logo-foreground: oklch(0.22 0.035 250);
 }
 
 html.theme-ember {
-	color-scheme: dark;
-	--palette-canvas: oklch(0.22 0.04 35);
-	--surface-theater: var(--palette-canvas);
-	--palette-raised: oklch(0.17 0.035 35);
-	--color-deep-graphite: var(--palette-raised);
-	--color-medium-gray: var(--palette-raised);
-	--color-desert-orange: #e07a3a;
-	--background: var(--surface-canvas);
-	--foreground: var(--color-pure-white);
-	--card: var(--surface-raised);
-	--card-foreground: var(--color-pure-white);
-	--popover: var(--surface-overlay);
-	--popover-foreground: var(--color-pure-white);
-	--primary: var(--color-soft-stone);
-	--primary-foreground: var(--color-pure-white);
-	--secondary: var(--color-medium-gray);
-	--secondary-foreground: var(--color-pure-white);
-	--muted: var(--color-medium-gray);
-	--muted-foreground: var(--color-slate-border);
-	--accent: var(--color-desert-orange);
-	--accent-foreground: var(--color-pure-white);
-	--border: rgba(255, 255, 255, 0.06);
-	--input: rgba(255, 255, 255, 0.09);
-	--ring: var(--color-desert-orange);
-	--sidebar: var(--color-deep-graphite);
-	--sidebar-foreground: var(--color-pure-white);
-	--sidebar-primary: var(--color-desert-orange);
-	--sidebar-primary-foreground: var(--color-pure-white);
-	--sidebar-accent: var(--color-medium-gray);
-	--sidebar-accent-foreground: var(--color-pure-white);
-	--sidebar-border: rgba(255, 255, 255, 0.06);
-	--sidebar-ring: var(--color-desert-orange);
+  color-scheme: dark;
+  --palette-canvas: oklch(0.22 0.04 35);
+  --surface-theater: var(--palette-canvas);
+  --palette-raised: oklch(0.17 0.035 35);
+  --color-deep-graphite: var(--palette-raised);
+  --color-medium-gray: var(--palette-raised);
+  --color-desert-orange: #e07a3a;
+  --background: var(--surface-canvas);
+  --foreground: var(--color-pure-white);
+  --card: var(--surface-raised);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --border: rgba(255, 255, 255, 0.06);
+  --input: rgba(255, 255, 255, 0.09);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: var(--color-desert-orange);
+  --surface-studio-logo: oklch(0.52 0.095 38);
+  --surface-studio-logo-hover: oklch(0.56 0.1 38);
+  --surface-studio-logo-foreground: oklch(0.26 0.065 38);
 }
 
 html.theme-midnight {
-	color-scheme: dark;
-	--palette-canvas: oklch(0.16 0.03 280);
-	--surface-theater: var(--palette-canvas);
-	--palette-raised: oklch(0.12 0.028 280);
-	--color-deep-graphite: var(--palette-raised);
-	--color-medium-gray: var(--palette-raised);
-	--color-desert-orange: #7b8cff;
-	--background: var(--surface-canvas);
-	--foreground: var(--color-pure-white);
-	--card: var(--surface-raised);
-	--card-foreground: var(--color-pure-white);
-	--popover: var(--surface-overlay);
-	--popover-foreground: var(--color-pure-white);
-	--primary: var(--color-soft-stone);
-	--primary-foreground: var(--color-pure-white);
-	--secondary: var(--color-medium-gray);
-	--secondary-foreground: var(--color-pure-white);
-	--muted: var(--color-medium-gray);
-	--muted-foreground: var(--color-slate-border);
-	--accent: var(--color-desert-orange);
-	--accent-foreground: var(--color-pure-white);
-	--border: rgba(255, 255, 255, 0.05);
-	--input: rgba(255, 255, 255, 0.08);
-	--ring: var(--color-desert-orange);
-	--sidebar: var(--color-deep-graphite);
-	--sidebar-foreground: var(--color-pure-white);
-	--sidebar-primary: var(--color-desert-orange);
-	--sidebar-primary-foreground: var(--color-pure-white);
-	--sidebar-accent: var(--color-medium-gray);
-	--sidebar-accent-foreground: var(--color-pure-white);
-	--sidebar-border: rgba(255, 255, 255, 0.05);
-	--sidebar-ring: var(--color-desert-orange);
+  color-scheme: dark;
+  --palette-canvas: oklch(0.16 0.03 280);
+  --surface-theater: var(--palette-canvas);
+  --palette-raised: oklch(0.12 0.028 280);
+  --color-deep-graphite: var(--palette-raised);
+  --color-medium-gray: var(--palette-raised);
+  --color-desert-orange: #7b8cff;
+  --background: var(--surface-canvas);
+  --foreground: var(--color-pure-white);
+  --card: var(--surface-raised);
+  --card-foreground: var(--color-pure-white);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--color-pure-white);
+  --primary: var(--color-soft-stone);
+  --primary-foreground: var(--color-pure-white);
+  --secondary: var(--color-medium-gray);
+  --secondary-foreground: var(--color-pure-white);
+  --muted: var(--color-medium-gray);
+  --muted-foreground: var(--color-slate-border);
+  --accent: var(--color-desert-orange);
+  --accent-foreground: var(--color-pure-white);
+  --border: rgba(255, 255, 255, 0.05);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: var(--color-desert-orange);
+  --sidebar: var(--color-deep-graphite);
+  --sidebar-foreground: var(--color-pure-white);
+  --sidebar-primary: var(--color-desert-orange);
+  --sidebar-primary-foreground: var(--color-pure-white);
+  --sidebar-accent: var(--color-medium-gray);
+  --sidebar-accent-foreground: var(--color-pure-white);
+  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --sidebar-ring: var(--color-desert-orange);
+  --surface-studio-logo: oklch(0.54 0.048 280);
+  --surface-studio-logo-hover: oklch(0.58 0.05 280);
+  --surface-studio-logo-foreground: oklch(0.24 0.04 280);
 }
 
 @theme inline {
-	/* Neutral ramp + brand accents as Tailwind color utilities (e.g. bg-desert-orange). */
-	--color-palette-canvas: var(--palette-canvas);
-	--color-palette-raised: var(--palette-raised);
-	--color-absolute-black: var(--color-absolute-black);
-	--color-pure-white: var(--color-pure-white);
-	--color-deep-graphite: var(--color-deep-graphite);
-	--color-medium-gray: var(--color-medium-gray);
-	--color-fog: var(--color-fog);
-	--color-slate-border: var(--color-slate-border);
-	--color-soft-stone: var(--color-soft-stone);
-	--color-moss-green: var(--color-moss-green);
-	--color-desert-orange: var(--color-desert-orange);
-	--color-deep-teal: var(--color-deep-teal);
-	--color-copper-clay: var(--color-copper-clay);
-	--color-crimson-blush: var(--color-crimson-blush);
-	--color-deep-ocean: var(--color-deep-ocean);
-	/* Theater floor — same wash as canvas; use `bg-theater` where the shell must
+  /* Neutral ramp + brand accents as Tailwind color utilities (e.g. bg-desert-orange). */
+  --color-palette-canvas: var(--palette-canvas);
+  --color-palette-raised: var(--palette-raised);
+  --color-absolute-black: var(--color-absolute-black);
+  --color-pure-white: var(--color-pure-white);
+  --color-deep-graphite: var(--color-deep-graphite);
+  --color-medium-gray: var(--color-medium-gray);
+  --color-fog: var(--color-fog);
+  --color-slate-border: var(--color-slate-border);
+  --color-soft-stone: var(--color-soft-stone);
+  --color-moss-green: var(--color-moss-green);
+  --color-desert-orange: var(--color-desert-orange);
+  --color-deep-teal: var(--color-deep-teal);
+  --color-copper-clay: var(--color-copper-clay);
+  --color-crimson-blush: var(--color-crimson-blush);
+  --color-deep-ocean: var(--color-deep-ocean);
+  /* Theater floor — same wash as canvas; use `bg-theater` where the shell must
 	 * stay on the floor token without picking up semantic `background` overrides. */
-	--color-theater: var(--surface-theater);
-	/* Track B — explicit elevation utilities (`bg-surface-*`) alongside semantic `bg-card` / `bg-popover`. */
-	--color-surface-canvas: var(--surface-canvas);
-	--color-surface-raised: var(--surface-raised);
-	--color-surface-overlay: var(--surface-overlay);
+  --color-theater: var(--surface-theater);
+  /* Track B — explicit elevation utilities (`bg-surface-*`) alongside semantic `bg-card` / `bg-popover`. */
+  --color-surface-canvas: var(--surface-canvas);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-overlay: var(--surface-overlay);
 
-	/* Font utilities:
+  /* Font utilities:
 	 *   `font-sans` / `font-serif`     → Outfit (legacy stack name; editorial body).
    *   `font-display`                  → Fraunces (cinematic headlines).
    *   `font-mono`                     → Geist Mono.
    * The `--font-display` token below auto-generates the `font-display` Tailwind
    * utility under v4's `@theme inline` block. */
-	--font-sans: var(--font-proxima-nova);
-	--font-serif: var(--font-proxima-nova);
-	--font-display: var(--font-fraunces-stack);
-	--font-mono: var(--font-geist-mono-stack);
+  --font-sans: var(--font-proxima-nova);
+  --font-serif: var(--font-proxima-nova);
+  --font-display: var(--font-fraunces-stack);
+  --font-mono: var(--font-geist-mono-stack);
 
-	/* Map shadcn semantic vars */
-	--color-sidebar-ring: var(--sidebar-ring);
-	--color-sidebar-border: var(--sidebar-border);
-	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-	--color-sidebar-accent: var(--sidebar-accent);
-	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-	--color-sidebar-primary: var(--sidebar-primary);
-	--color-sidebar-foreground: var(--sidebar-foreground);
-	--color-sidebar: var(--sidebar);
-	--color-chart-5: var(--chart-5);
-	--color-chart-4: var(--chart-4);
-	--color-chart-3: var(--chart-3);
-	--color-chart-2: var(--chart-2);
-	--color-chart-1: var(--chart-1);
-	--color-ring: var(--ring);
-	--color-input: var(--input);
-	--color-border: var(--border);
-	--color-destructive: var(--destructive);
-	--color-destructive-foreground: var(--destructive-foreground);
-	--color-accent-foreground: var(--accent-foreground);
-	--color-accent: var(--accent);
-	--color-muted-foreground: var(--muted-foreground);
-	--color-muted: var(--muted);
-	--color-secondary-foreground: var(--secondary-foreground);
-	--color-secondary: var(--secondary);
-	--color-primary-foreground: var(--primary-foreground);
-	--color-primary: var(--primary);
-	--color-popover-foreground: var(--popover-foreground);
-	--color-popover: var(--popover);
-	--color-card-foreground: var(--card-foreground);
-	--color-card: var(--card);
-	--color-foreground: var(--foreground);
-	--color-background: var(--background);
+  /* Map shadcn semantic vars */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
 
-	/* Radius scale — Aker keeps it tight: 8px default, then pills. */
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) + 4px);
-	--radius-2xl: calc(var(--radius) + 8px);
-	--radius-3xl: calc(var(--radius) + 12px);
-	--radius-4xl: calc(var(--radius) + 16px);
-	--radius-pill: var(--radius-pill);
-	--radius-pill-lg: var(--radius-pill-lg);
-	--radius-pill-xl: var(--radius-pill-xl);
-	--radius-badge: var(--radius-badge);
+  /* Radius scale — Aker keeps it tight: 8px default, then pills. */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-pill: var(--radius-pill);
+  --radius-pill-lg: var(--radius-pill-lg);
+  --radius-pill-xl: var(--radius-pill-xl);
+  --radius-badge: var(--radius-badge);
 
-	/* Mobbin reference — achromatic utilities (see `/design.md`). */
-	--color-mobbin-midnight-ink: var(--mobbin-midnight-ink);
-	--color-mobbin-pure-canvas: var(--mobbin-pure-canvas);
-	--color-mobbin-graphite: var(--mobbin-graphite);
-	--color-mobbin-ash: var(--mobbin-ash);
-	--color-mobbin-fog: var(--mobbin-fog);
-	--color-mobbin-mist: var(--mobbin-mist);
-	--color-mobbin-silver: var(--mobbin-silver);
-	--color-mobbin-slate-shadow: var(--mobbin-slate-shadow);
-	--color-mobbin-surface-page: var(--mobbin-surface-page);
-	--color-mobbin-surface-card: var(--mobbin-surface-card);
-	--color-mobbin-surface-input-chip: var(--mobbin-surface-input-chip);
-	--color-mobbin-surface-overlay-dropdown: var(
-		--mobbin-surface-overlay-dropdown
-	);
-	--font-mobbin-saans: var(--mobbin-font-saans);
-	--shadow-mobbin-subtle: var(--mobbin-shadow-subtle);
-	--shadow-mobbin-xl: var(--mobbin-shadow-xl);
-	--radius-mobbin-lg: var(--mobbin-radius-lg);
-	--radius-mobbin-2xl: var(--mobbin-radius-2xl);
-	--radius-mobbin-2xl-2: var(--mobbin-radius-2xl-2);
-	--radius-mobbin-3xl: var(--mobbin-radius-3xl);
-	--radius-mobbin-full: var(--mobbin-radius-full);
-	--spacing-mobbin-8: var(--mobbin-spacing-8);
-	--spacing-mobbin-16: var(--mobbin-spacing-16);
-	--spacing-mobbin-24: var(--mobbin-spacing-24);
-	--spacing-mobbin-32: var(--mobbin-spacing-32);
-	--spacing-mobbin-40: var(--mobbin-spacing-40);
-	--spacing-mobbin-64: var(--mobbin-spacing-64);
-	--spacing-mobbin-80: var(--mobbin-spacing-80);
-	--spacing-mobbin-104: var(--mobbin-spacing-104);
-	--spacing-mobbin-120: var(--mobbin-spacing-120);
-	--max-width-mobbin-page: var(--mobbin-page-max-width);
+  /* Mobbin reference — achromatic utilities (see `/design.md`). */
+  --color-mobbin-midnight-ink: var(--mobbin-midnight-ink);
+  --color-mobbin-pure-canvas: var(--mobbin-pure-canvas);
+  --color-mobbin-graphite: var(--mobbin-graphite);
+  --color-mobbin-ash: var(--mobbin-ash);
+  --color-mobbin-fog: var(--mobbin-fog);
+  --color-mobbin-mist: var(--mobbin-mist);
+  --color-mobbin-silver: var(--mobbin-silver);
+  --color-mobbin-slate-shadow: var(--mobbin-slate-shadow);
+  --color-mobbin-surface-page: var(--mobbin-surface-page);
+  --color-mobbin-surface-card: var(--mobbin-surface-card);
+  --color-mobbin-surface-input-chip: var(--mobbin-surface-input-chip);
+  --color-mobbin-surface-overlay-dropdown: var(
+    --mobbin-surface-overlay-dropdown
+  );
+  --font-mobbin-saans: var(--mobbin-font-saans);
+  --shadow-mobbin-subtle: var(--mobbin-shadow-subtle);
+  --shadow-mobbin-xl: var(--mobbin-shadow-xl);
+  --radius-mobbin-lg: var(--mobbin-radius-lg);
+  --radius-mobbin-2xl: var(--mobbin-radius-2xl);
+  --radius-mobbin-2xl-2: var(--mobbin-radius-2xl-2);
+  --radius-mobbin-3xl: var(--mobbin-radius-3xl);
+  --radius-mobbin-full: var(--mobbin-radius-full);
+  --spacing-mobbin-8: var(--mobbin-spacing-8);
+  --spacing-mobbin-16: var(--mobbin-spacing-16);
+  --spacing-mobbin-24: var(--mobbin-spacing-24);
+  --spacing-mobbin-32: var(--mobbin-spacing-32);
+  --spacing-mobbin-40: var(--mobbin-spacing-40);
+  --spacing-mobbin-64: var(--mobbin-spacing-64);
+  --spacing-mobbin-80: var(--mobbin-spacing-80);
+  --spacing-mobbin-104: var(--mobbin-spacing-104);
+  --spacing-mobbin-120: var(--mobbin-spacing-120);
+  --max-width-mobbin-page: var(--mobbin-page-max-width);
 }
 
 @layer utilities {
-	/* Mobbin OT bundle — pair with `font-mobbin-saans` (see `design.md`). */
-	.font-mobbin-saans {
-		font-family: var(--mobbin-font-saans);
-		font-feature-settings:
-			"calt" 0,
-			"dlig",
-			"ss07";
-	}
+  /* Mobbin OT bundle — pair with `font-mobbin-saans` (see `design.md`). */
+  .font-mobbin-saans {
+    font-family: var(--mobbin-font-saans);
+    font-feature-settings:
+      "calt" 0,
+      "dlig",
+      "ss07";
+  }
 
-	/*
+  /*
 	 * Opt-in light achromatic column — does not change global Aker dark theme.
 	 * Use inside marketing slices or design previews; children pick up `mobbin` text colors.
 	 */
-	.mobbin-specimen-surface {
-		background-color: var(--mobbin-pure-canvas);
-		color: var(--mobbin-midnight-ink);
-		max-width: var(--mobbin-page-max-width);
-	}
+  .mobbin-specimen-surface {
+    background-color: var(--mobbin-pure-canvas);
+    color: var(--mobbin-midnight-ink);
+    max-width: var(--mobbin-page-max-width);
+  }
 }
 
 @layer base {
-	* {
-		@apply border-border outline-ring/50;
-		/* Subtly suppress text selection on chrome elements per the Aker
+  * {
+    @apply border-border outline-ring/50;
+    /* Subtly suppress text selection on chrome elements per the Aker
        "Interactive elements should disable user-select" guideline. */
-	}
-	::selection {
-		background-color: color-mix(
-			in oklab,
-			var(--color-desert-orange) 30%,
-			transparent
-		);
-		color: var(--color-pure-white);
-	}
-	html {
-		/* Prevent iOS Safari from upscaling text in landscape */
-		-webkit-text-size-adjust: 100%;
-		font-family: var(--font-sans);
-		/* Native anchor scroll — opt-in via Settings (`html.smooth-scroll-enabled`). */
-		scroll-behavior: auto;
-		/* Page scroll stays usable; visual bar hidden (see `.scrollbar-none` + rules below). */
-		overflow-y: auto;
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-	}
-	html::-webkit-scrollbar {
-		display: none;
-	}
-	html.smooth-scroll-enabled {
-		scroll-behavior: smooth;
-	}
-	body {
-		@apply bg-background text-foreground;
-		font-family: var(--font-sans);
-		font-size: var(--text-body);
-		line-height: var(--leading-body);
-		/* Document scroll lives on `html` — `body { overflow-y: auto }` breaks `position: sticky`. */
-		overflow-y: visible;
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-		/* Better legibility on dark surfaces (Aker guidance) */
-		-webkit-font-smoothing: antialiased;
-		text-rendering: optimizeLegibility;
-	}
-	body::-webkit-scrollbar {
-		display: none;
-	}
-	/*
+  }
+  ::selection {
+    background-color: color-mix(
+      in oklab,
+      var(--color-desert-orange) 30%,
+      transparent
+    );
+    color: var(--color-pure-white);
+  }
+  html {
+    /* Prevent iOS Safari from upscaling text in landscape */
+    -webkit-text-size-adjust: 100%;
+    font-family: var(--font-sans);
+    /* Native anchor scroll — opt-in via Settings (`html.smooth-scroll-enabled`). */
+    scroll-behavior: auto;
+    /* Page scroll stays usable; visual bar hidden (see `.scrollbar-none` + rules below). */
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
+  }
+  html.smooth-scroll-enabled {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    /* Document scroll lives on `html` — `body { overflow-y: auto }` breaks `position: sticky`. */
+    overflow-y: visible;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* Better legibility on dark surfaces (Aker guidance) */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  /*
 	 * Authenticated shell — small bottom gutter for main scroll area.
 	 * Keep this literal aligned with `APP_SHELL_BOTTOM_RESERVE_CSS` in
 	 * `apps/web/src/components/app/app-shell.tsx` (and `appShellMainContentMinHeightStyle`).
 	 */
-	#main-content {
-		padding-bottom: 10px;
-	}
-	/* Mobile bottom bar (MobileTabBar) is fixed; reserve space so it never
+  #main-content {
+    padding-bottom: 10px;
+  }
+  /* Mobile bottom bar (MobileTabBar) is fixed; reserve space so it never
 	   overlaps content / empty states. Desktop (>= md, 768px) keeps 10px. */
-	@media (max-width: 767.98px) {
-		#main-content {
-			padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
-		}
-	}
-	/* Display headings: reduce lone-word wraps on large titles (editorial polish). */
-	h1,
-	h2,
-	h3 {
-		text-wrap: balance;
-	}
-	/* Disable the default iOS tap highlight; we use focus rings instead. */
-	a,
-	button,
-	[role="button"] {
-		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	}
+  @media (max-width: 767.98px) {
+    #main-content {
+      padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    }
+  }
+  /* Display headings: reduce lone-word wraps on large titles (editorial polish). */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  /* Disable the default iOS tap highlight; we use focus rings instead. */
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 
-	/*
+  /*
    * Hand cursor on actionable controls — many UAs still show default arrow over
    * <button>; this matches “looks clickable” without affecting text inputs.
    * Single-choice <select> only: multi-select lists keep the browser cursor.
    */
-	a[href]:not([aria-disabled="true"]),
-	button:not(:disabled):not([aria-disabled="true"]),
-	[role="button"]:not([aria-disabled="true"]),
-	summary,
-	select:not(:disabled, [multiple]),
-	input:is(
-		[type="button"],
-		[type="submit"],
-		[type="reset"],
-		[type="file"],
-		[type="image"]
-	):not(:disabled) {
-		cursor: pointer;
-	}
+  a[href]:not([aria-disabled="true"]),
+  button:not(:disabled):not([aria-disabled="true"]),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  select:not(:disabled, [multiple]),
+  input:is(
+      [type="button"],
+      [type="submit"],
+      [type="reset"],
+      [type="file"],
+      [type="image"]
+    ):not(:disabled) {
+    cursor: pointer;
+  }
 
-	button:disabled,
-	[aria-disabled="true"]:is(button, [role="button"]),
-	select:disabled,
-	input:is(
-		[type="button"],
-		[type="submit"],
-		[type="reset"],
-		[type="file"],
-		[type="image"]
-	):disabled {
-		cursor: not-allowed;
-	}
-	/* Long-form copy: same UI sans stack, slightly opened tracking for readability. */
-	.font-editorial {
-		font-family: var(--font-sans);
-		letter-spacing: 0.011em;
-		line-height: var(--leading-body-lg);
-	}
-	/* Display headlines — Fraunces, cinematic tracking. The opsz axis is left to
+  button:disabled,
+  [aria-disabled="true"]:is(button, [role="button"]),
+  select:disabled,
+  input:is(
+      [type="button"],
+      [type="submit"],
+      [type="reset"],
+      [type="file"],
+      [type="image"]
+    ):disabled {
+    cursor: not-allowed;
+  }
+  /* Long-form copy: same UI sans stack, slightly opened tracking for readability. */
+  .font-editorial {
+    font-family: var(--font-sans);
+    letter-spacing: 0.011em;
+    line-height: var(--leading-body-lg);
+  }
+  /* Display headlines — Fraunces, cinematic tracking. The opsz axis is left to
    * the browser's `font-optical-sizing: auto` (default in modern engines), so a
    * single utility scales gracefully from a `text-lg` subhead (text cut, narrow
    * terminals, tight aperture) up to a `text-7xl` hero (display cut, looser
    * tracking, dramatic terminals) without us juggling sibling classes. */
-	.font-display {
-		font-family: var(--font-display);
-		letter-spacing: -0.02em;
-		font-optical-sizing: auto;
-		font-feature-settings:
-			"ss01" 1,
-			"ss02" 1;
-	}
-	/* Tabular figures for star ratings, timers, stats */
-	.tabular {
-		font-variant-numeric: tabular-nums;
-	}
-	/* Aker motion — Track B.6: interactive hovers/focus/transitions ≤200ms on these tokens.
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
+    font-feature-settings:
+      "ss01" 1,
+      "ss02" 1;
+  }
+  /* Tabular figures for star ratings, timers, stats */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Aker motion — Track B.6: interactive hovers/focus/transitions ≤200ms on these tokens.
    * Cinematic one-shots (iris, projector flicker, marquee) use explicit durations elsewhere. */
-	:root {
-		--aker-ease: cubic-bezier(0.165, 0.84, 0.44, 1);
-		--aker-duration-fast: 0.18s;
-		--aker-duration: 0.2s;
-		--aker-duration-slow: 0.2s;
-	}
+  :root {
+    --aker-ease: cubic-bezier(0.165, 0.84, 0.44, 1);
+    --aker-duration-fast: 0.18s;
+    --aker-duration: 0.2s;
+    --aker-duration-slow: 0.2s;
+  }
 }
 
 /*
@@ -774,13 +793,13 @@ html.theme-midnight {
  * Pair with `overflow-x-auto` or `overflow-y-auto` on the same element.
  */
 @layer utilities {
-	.scrollbar-none {
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-	}
-	.scrollbar-none::-webkit-scrollbar {
-		display: none;
-	}
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -799,126 +818,126 @@ html.theme-midnight {
  * --------------------------------------------------------------------------- */
 
 :root {
-	/* Minimal default: grain whispers (Mobbin-clean); bump via multiplex preset or per-surface classes. */
-	--cinema-grain-opacity: 0.055;
-	--cinema-grain-tile: 268px;
-	--cinema-marquee-duration: 58s;
-	--cinema-marquee-gap: 3.5rem;
-	--cinema-marquee-phrase-gap: 3rem;
-	/* Heavier vignette — deeper edge falloff reads “house lights down” on heroes */
-	--cinema-vignette-spread: 180px;
-	--cinema-vignette-alpha: 0.55;
-	--cinema-hero-accent-mix: 22%;
+  /* Minimal default: grain whispers (Mobbin-clean); bump via multiplex preset or per-surface classes. */
+  --cinema-grain-opacity: 0.055;
+  --cinema-grain-tile: 268px;
+  --cinema-marquee-duration: 58s;
+  --cinema-marquee-gap: 3.5rem;
+  --cinema-marquee-phrase-gap: 3rem;
+  /* Heavier vignette — deeper edge falloff reads “house lights down” on heroes */
+  --cinema-vignette-spread: 180px;
+  --cinema-vignette-alpha: 0.55;
+  --cinema-hero-accent-mix: 22%;
 }
 
 html.theme-lobby-light .cinema-theater-floor {
-	box-shadow: inset 0 0 min(120px, 18vw) rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 0 min(120px, 18vw) rgba(0, 0, 0, 0.06);
 }
 
 html.theme-lobby-light .cinema-vignette {
-	box-shadow: inset 0 0 var(--cinema-vignette-spread)
-		rgba(0, 0, 0, var(--cinema-vignette-alpha));
+  box-shadow: inset 0 0 var(--cinema-vignette-spread)
+    rgba(0, 0, 0, var(--cinema-vignette-alpha));
 }
 
 /* Subtle film grain + vignette: stacked noise SVG + radial falloff. */
 .cinema-grain {
-	pointer-events: none;
-	opacity: var(--cinema-grain-opacity);
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.48'/%3E%3C/svg%3E");
-	background-size: var(--cinema-grain-tile) var(--cinema-grain-tile);
-	mix-blend-mode: overlay;
+  pointer-events: none;
+  opacity: var(--cinema-grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.48'/%3E%3C/svg%3E");
+  background-size: var(--cinema-grain-tile) var(--cinema-grain-tile);
+  mix-blend-mode: overlay;
 }
 
 /* Inset box-shadow alone does not need pointer blocking. `pointer-events: none`
  * on this wrapper broke hero actions: hits fell through the whole section instead
  * of resolving to the overlapping title/action column (Chrome / ultrawide overlap). */
 .cinema-vignette {
-	box-shadow: inset 0 0 var(--cinema-vignette-spread)
-		rgba(0, 0, 0, var(--cinema-vignette-alpha));
+  box-shadow: inset 0 0 var(--cinema-vignette-spread)
+    rgba(0, 0, 0, var(--cinema-vignette-alpha));
 }
 
 /* Full-bleed theater wash — optional on marketing rails / lobby backgrounds;
  * pointer-events none implied via child overlays when needed. */
 .cinema-theater-floor {
-	background-color: var(--surface-theater);
-	box-shadow: inset 0 0 min(160px, 22vw) rgba(0, 0, 0, 0.42);
+  background-color: var(--surface-theater);
+  box-shadow: inset 0 0 min(160px, 22vw) rgba(0, 0, 0, 0.42);
 }
 
 /* Infinite horizontal ticker — duplicate inner content once for seamless loop. */
 @keyframes cinema-marquee-scroll {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(-50%);
-	}
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .cinema-marquee-track {
-	display: flex;
-	width: max-content;
-	gap: var(--cinema-marquee-gap);
-	animation: cinema-marquee-scroll var(--cinema-marquee-duration) linear
-		infinite;
+  display: flex;
+  width: max-content;
+  gap: var(--cinema-marquee-gap);
+  animation: cinema-marquee-scroll var(--cinema-marquee-duration) linear
+    infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.cinema-marquee-track {
-		animation: none;
-		transform: none;
-	}
+  .cinema-marquee-track {
+    animation: none;
+    transform: none;
+  }
 }
 
 /* Tailwind spinner — keep loaders visible without endless rotation under reduced motion. */
 @media (prefers-reduced-motion: reduce) {
-	.animate-spin {
-		animation: none !important;
-	}
+  .animate-spin {
+    animation: none !important;
+  }
 }
 
 /* TMDb lobby grid — smooth dim pulse while `useTransition` waits on RSC (no spinner). */
 @keyframes lobby-grid-dim-pulse {
-	0%,
-	100% {
-		opacity: 0.58;
-	}
-	50% {
-		opacity: 0.36;
-	}
+  0%,
+  100% {
+    opacity: 0.58;
+  }
+  50% {
+    opacity: 0.36;
+  }
 }
 
 .lobby-grid-dim-pulse {
-	animation: lobby-grid-dim-pulse 1.35s ease-in-out infinite;
-	pointer-events: none;
+  animation: lobby-grid-dim-pulse 1.35s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.lobby-grid-dim-pulse {
-		animation: none;
-		opacity: 0.52;
-	}
+  .lobby-grid-dim-pulse {
+    animation: none;
+    opacity: 0.52;
+  }
 }
 
 /* Section enter: short, proportional fade-up (Aker-scale durations). */
 @keyframes cinema-curtain-in {
-	from {
-		opacity: 0;
-		transform: translateY(10px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-cinema-curtain {
-	animation: cinema-curtain-in var(--aker-duration-slow) var(--aker-ease) both;
+  animation: cinema-curtain-in var(--aker-duration-slow) var(--aker-ease) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.animate-cinema-curtain {
-		animation: none;
-	}
+  .animate-cinema-curtain {
+    animation: none;
+  }
 }
 
 /* -----------------------------------------------------------------------------
@@ -927,129 +946,129 @@ html.theme-lobby-light .cinema-vignette {
  * curves match the scripted `CinemaSceneCut` duration (~180ms).
  * ----------------------------------------------------------------------------- */
 @keyframes cinema-vt-fade-out {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes cinema-vt-fade-in {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media not (prefers-reduced-motion: reduce) {
-	::view-transition-old(root),
-	::view-transition-new(root) {
-		animation-duration: 180ms;
-		animation-timing-function: var(--aker-ease);
-	}
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 180ms;
+    animation-timing-function: var(--aker-ease);
+  }
 
-	::view-transition-old(root) {
-		animation-name: cinema-vt-fade-out;
-	}
+  ::view-transition-old(root) {
+    animation-name: cinema-vt-fade-out;
+  }
 
-	::view-transition-new(root) {
-		animation-name: cinema-vt-fade-in;
-	}
+  ::view-transition-new(root) {
+    animation-name: cinema-vt-fade-in;
+  }
 }
 
 /* Iris reveal on movie heroes — centered slightly above midpoint (poster orbit). */
 @keyframes cinema-hero-iris-open {
-	from {
-		clip-path: circle(0% at 50% 38%);
-		filter: brightness(0.94);
-	}
-	to {
-		clip-path: circle(150% at 50% 38%);
-		filter: brightness(1);
-	}
+  from {
+    clip-path: circle(0% at 50% 38%);
+    filter: brightness(0.94);
+  }
+  to {
+    clip-path: circle(150% at 50% 38%);
+    filter: brightness(1);
+  }
 }
 
 @media not (prefers-reduced-motion: reduce) {
-	.cinema-hero-iris {
-		animation: cinema-hero-iris-open 0.42s var(--aker-ease) both;
-		/* Named VT surface when the UA + Router pair supports same-document snapshots. */
-		view-transition-name: hero-iris;
-	}
+  .cinema-hero-iris {
+    animation: cinema-hero-iris-open 0.42s var(--aker-ease) both;
+    /* Named VT surface when the UA + Router pair supports same-document snapshots. */
+    view-transition-name: hero-iris;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.cinema-hero-iris {
-		animation: none;
-	}
+  .cinema-hero-iris {
+    animation: none;
+  }
 }
 
 /* First-visit projector “strike” overlay (paired with `<ProjectorBoot />`). */
 @keyframes cinema-projector-boot {
-	0% {
-		opacity: 1;
-	}
-	12% {
-		opacity: 0.08;
-	}
-	28% {
-		opacity: 0.94;
-	}
-	42% {
-		opacity: 0.12;
-	}
-	55% {
-		opacity: 1;
-	}
-	72% {
-		opacity: 0.06;
-	}
-	100% {
-		opacity: 0;
-	}
+  0% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 0.08;
+  }
+  28% {
+    opacity: 0.94;
+  }
+  42% {
+    opacity: 0.12;
+  }
+  55% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 0.06;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @media not (prefers-reduced-motion: reduce) {
-	.cinema-projector-boot-overlay {
-		opacity: 0;
-		animation: cinema-projector-boot 0.38s linear forwards;
-		will-change: opacity;
-	}
+  .cinema-projector-boot-overlay {
+    opacity: 0;
+    animation: cinema-projector-boot 0.38s linear forwards;
+    will-change: opacity;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.cinema-projector-boot-overlay {
-		animation: none;
-		opacity: 0;
-		display: none;
-	}
+  .cinema-projector-boot-overlay {
+    animation: none;
+    opacity: 0;
+    display: none;
+  }
 }
 
 /* Left “perforated” rail suggesting film stock beside diary grids. */
 .cinema-film-strip-rail {
-	position: relative;
-	padding-left: 1.25rem;
+  position: relative;
+  padding-left: 1.25rem;
 }
 
 .cinema-film-strip-rail::before {
-	content: "";
-	pointer-events: none;
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	width: 10px;
-	border-radius: 4px;
-	background: repeating-linear-gradient(
-		to bottom,
-		var(--color-medium-gray) 0,
-		var(--color-medium-gray) 10px,
-		transparent 10px,
-		transparent 18px
-	);
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-medium-gray) 0,
+    var(--color-medium-gray) 10px,
+    transparent 10px,
+    transparent 18px
+  );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 /**
@@ -1058,113 +1077,113 @@ html.theme-lobby-light .cinema-vignette {
  * Optional `data-edge-layout`: `vertical` (default via styles below) vs `horizontal` tick ladder.
  */
 .cinema-film-strip-rail--coded {
-	padding-left: 2.125rem;
+  padding-left: 2.125rem;
 }
 
 .cinema-film-strip-rail--coded[data-edge-code]::after {
-	content: attr(data-edge-code);
-	pointer-events: none;
-	position: absolute;
-	left: 0.85rem;
-	top: 0.35rem;
-	bottom: 0.35rem;
-	width: 0.72rem;
-	overflow: hidden;
-	font-family: var(--font-geist-mono-stack);
-	font-size: 6px;
-	line-height: 1.05;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	opacity: 0.4;
-	color: rgba(229, 228, 228, 0.55);
-	writing-mode: vertical-rl;
-	text-orientation: mixed;
+  content: attr(data-edge-code);
+  pointer-events: none;
+  position: absolute;
+  left: 0.85rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 0.72rem;
+  overflow: hidden;
+  font-family: var(--font-geist-mono-stack);
+  font-size: 6px;
+  line-height: 1.05;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  color: rgba(229, 228, 228, 0.55);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 
 .cinema-film-strip-rail--coded[data-edge-code][data-edge-layout="horizontal"]::after {
-	writing-mode: horizontal-tb;
-	text-orientation: mixed;
-	top: auto;
-	bottom: 0.35rem;
-	left: 1.9rem;
-	right: 2rem;
-	width: auto;
-	height: auto;
-	letter-spacing: 0.32em;
-	font-size: 5.5px;
-	white-space: nowrap;
-	opacity: 0.32;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  top: auto;
+  bottom: 0.35rem;
+  left: 1.9rem;
+  right: 2rem;
+  width: auto;
+  height: auto;
+  letter-spacing: 0.32em;
+  font-size: 5.5px;
+  white-space: nowrap;
+  opacity: 0.32;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.cinema-film-strip-rail--coded[data-edge-code]::after {
-		opacity: 0.26;
-	}
+  .cinema-film-strip-rail--coded[data-edge-code]::after {
+    opacity: 0.26;
+  }
 }
 
 /* Brief lamp flicker on large hero imagery (paired with `.cinema-hero-flicker`). */
 @keyframes cinema-projector-flicker {
-	0% {
-		opacity: var(--cinema-hero-img-base-op, 0.4);
-		filter: brightness(1);
-	}
-	14% {
-		opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 1.06);
-		filter: brightness(1.05);
-	}
-	28% {
-		opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 0.92);
-		filter: brightness(0.97);
-	}
-	43% {
-		opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 1.03);
-		filter: brightness(1.02);
-	}
-	61% {
-		opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 0.94);
-		filter: brightness(0.99);
-	}
-	100% {
-		opacity: var(--cinema-hero-img-base-op, 0.4);
-		filter: brightness(1);
-	}
+  0% {
+    opacity: var(--cinema-hero-img-base-op, 0.4);
+    filter: brightness(1);
+  }
+  14% {
+    opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 1.06);
+    filter: brightness(1.05);
+  }
+  28% {
+    opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 0.92);
+    filter: brightness(0.97);
+  }
+  43% {
+    opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 1.03);
+    filter: brightness(1.02);
+  }
+  61% {
+    opacity: calc(var(--cinema-hero-img-base-op, 0.4) * 0.94);
+    filter: brightness(0.99);
+  }
+  100% {
+    opacity: var(--cinema-hero-img-base-op, 0.4);
+    filter: brightness(1);
+  }
 }
 
 @media not (prefers-reduced-motion: reduce) {
-	.cinema-hero-flicker {
-		animation: cinema-projector-flicker 0.48s var(--aker-ease) 1 forwards;
-		will-change: opacity, filter;
-	}
+  .cinema-hero-flicker {
+    animation: cinema-projector-flicker 0.48s var(--aker-ease) 1 forwards;
+    will-change: opacity, filter;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.cinema-hero-flicker {
-		animation: none;
-		animation-play-state: paused;
-	}
+  .cinema-hero-flicker {
+    animation: none;
+    animation-play-state: paused;
+  }
 }
 
 /* Hero wash from per-film accent (set via inline --movie-accent on a parent). */
 .movie-hero-glow {
-	position: relative;
+  position: relative;
 }
 
 .movie-hero-glow::after {
-	content: "";
-	pointer-events: none;
-	position: absolute;
-	inset: 0;
-	z-index: 0;
-	background: radial-gradient(
-		120% 70% at 50% 0%,
-		color-mix(
-			in oklab,
-			var(--movie-accent, var(--color-desert-orange))
-				var(--cinema-hero-accent-mix),
-			transparent
-		),
-		transparent 62%
-	);
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    120% 70% at 50% 0%,
+    color-mix(
+      in oklab,
+      var(--movie-accent, var(--color-desert-orange))
+        var(--cinema-hero-accent-mix),
+      transparent
+    ),
+    transparent 62%
+  );
 }
 
 /*
@@ -1174,75 +1193,75 @@ html.theme-lobby-light .cinema-vignette {
 /* Per-film accent mixes — scoped by `MovieThemeProvider`. Large UI panels keep
  * the global elevation ladder so contrast stays predictable on wild palettes. */
 .movie-themed {
-	--movie-accent-muted: color-mix(in oklab, var(--movie-accent) 48%, #000000);
-	--movie-accent-foreground: color-mix(
-		in oklab,
-		var(--movie-accent) 68%,
-		#ffffff
-	);
-	/* Film detail — score accent can follow poster dye when the slider sits inside `.movie-themed`. */
-	--log-rating-accent: var(--movie-accent-foreground, var(--movie-accent));
+  --movie-accent-muted: color-mix(in oklab, var(--movie-accent) 48%, #000000);
+  --movie-accent-foreground: color-mix(
+    in oklab,
+    var(--movie-accent) 68%,
+    #ffffff
+  );
+  /* Film detail — score accent can follow poster dye when the slider sits inside `.movie-themed`. */
+  --log-rating-accent: var(--movie-accent-foreground, var(--movie-accent));
 }
 
 .movie-themed ::selection {
-	background-color: color-mix(
-		in oklab,
-		var(--movie-accent-foreground, var(--movie-accent)) 34%,
-		transparent
-	);
-	color: var(--color-pure-white);
+  background-color: color-mix(
+    in oklab,
+    var(--movie-accent-foreground, var(--movie-accent)) 34%,
+    transparent
+  );
+  color: var(--color-pure-white);
 }
 
 /* Per-film focus rings (links + primary buttons) — tinted so saturated palettes keep a predictable trail without fighting layered shadcn `ring-*` utilities. */
 .movie-themed a:focus-visible,
 .movie-themed button:focus-visible {
-	outline: none;
-	box-shadow: 0 0 0 2px
-		color-mix(
-			in oklab,
-			var(--movie-accent-foreground, var(--movie-accent)) 75%,
-			transparent
-		);
+  outline: none;
+  box-shadow: 0 0 0 2px
+    color-mix(
+      in oklab,
+      var(--movie-accent-foreground, var(--movie-accent)) 75%,
+      transparent
+    );
 }
 
 /* Extra separation on neon / high-chroma keys — helps WCAG focus visibility when OS requests more contrast. */
 @media (prefers-contrast: more) {
-	.movie-themed a:focus-visible,
-	.movie-themed button:focus-visible {
-		box-shadow:
-			0 0 0 2px var(--color-pure-white),
-			0 0 0 4px rgba(0, 0, 0, 0.75);
-	}
+  .movie-themed a:focus-visible,
+  .movie-themed button:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--color-pure-white),
+      0 0 0 4px rgba(0, 0, 0, 0.75);
+  }
 }
 
 /* Cast / filmography Vaul sheets — keep drag handle, hide Vaul’s gray pill (opacity/bg/size on hover). */
 [data-still-detail-drawer] [data-vaul-handle] {
-	opacity: 1 !important;
-	background: transparent !important;
-	width: 100% !important;
-	height: auto !important;
-	border-radius: 0 !important;
+  opacity: 1 !important;
+  background: transparent !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0 !important;
 }
 
 [data-still-detail-drawer] [data-vaul-handle]:hover,
 [data-still-detail-drawer] [data-vaul-handle]:active {
-	opacity: 1 !important;
-	background: transparent !important;
+  opacity: 1 !important;
+  background: transparent !important;
 }
 
 [data-still-detail-drawer] [data-vaul-handle-hitarea] {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Marquee-style bulbs on stars: class applied from StarRating variant. */
 .star-marquee-bulb {
-	filter: drop-shadow(
-		0 0 5px color-mix(in oklab, var(--color-desert-orange) 55%, transparent)
-	);
+  filter: drop-shadow(
+    0 0 5px color-mix(in oklab, var(--color-desert-orange) 55%, transparent)
+  );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1250,30 +1269,30 @@ html.theme-lobby-light .cinema-vignette {
  * hover/focus. Duplicate track height is 100%, so translating -50% restarts cleanly.
  * --------------------------------------------------------------------------- */
 @keyframes cinema-credits-crawl-shift {
-	from {
-		transform: translate3d(0, 0, 0);
-	}
-	to {
-		transform: translate3d(0, -50%, 0);
-	}
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
 }
 
 .cinema-credits-crawl-surface:hover .cinema-credits-crawl-track,
 .cinema-credits-crawl-surface:focus-within .cinema-credits-crawl-track {
-	animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 .cinema-credits-crawl-surface .cinema-credits-crawl-track {
-	animation: cinema-credits-crawl-shift var(--credits-duration, 120s) linear
-		infinite;
+  animation: cinema-credits-crawl-shift var(--credits-duration, 120s) linear
+    infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.cinema-credits-crawl-surface:not([data-force-credits-motion])
-		.cinema-credits-crawl-track {
-		animation: none !important;
-		transform: none !important;
-	}
+  .cinema-credits-crawl-surface:not([data-force-credits-motion])
+    .cinema-credits-crawl-track {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1281,115 +1300,115 @@ html.theme-lobby-light .cinema-vignette {
  * `:has`, neighbors ease down/dim — no JS. Disabled under reduced motion.
  * --------------------------------------------------------------------------- */
 .watchlist-ticket-stack > li {
-	position: relative;
-	list-style: none;
-	transition:
-		transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-		opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  list-style: none;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .watchlist-ticket-stack > li:nth-child(odd) {
-	transform: rotate(-3.25deg);
+  transform: rotate(-3.25deg);
 }
 
 .watchlist-ticket-stack > li:nth-child(even) {
-	transform: rotate(3.25deg);
+  transform: rotate(3.25deg);
 }
 
 .watchlist-ticket-stack:has(> li:hover) > li:not(:hover) {
-	opacity: 0.52;
-	transform: translateY(8px) scale(0.94) rotate(0deg);
+  opacity: 0.52;
+  transform: translateY(8px) scale(0.94) rotate(0deg);
 }
 
 .watchlist-ticket-stack > li:hover {
-	z-index: 32;
-	opacity: 1;
-	transform: translateY(-14px) scale(1.055) rotate(0deg);
+  z-index: 32;
+  opacity: 1;
+  transform: translateY(-14px) scale(1.055) rotate(0deg);
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.watchlist-ticket-stack > li,
-	.watchlist-ticket-stack:has(> li:hover) > li:not(:hover),
-	.watchlist-ticket-stack > li:hover {
-		opacity: 1 !important;
-		transform: none !important;
-		transition-duration: 0.01ms;
-	}
+  .watchlist-ticket-stack > li,
+  .watchlist-ticket-stack:has(> li:hover) > li:not(:hover),
+  .watchlist-ticket-stack > li:hover {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-duration: 0.01ms;
+  }
 }
 
 /* `TicketStub` admission links lose hover lifts / easing once reduced-motion is asserted. */
 @media (prefers-reduced-motion: reduce) {
-	a.cinema-ticket-link {
-		transition-duration: 0.01ms !important;
-		transition-property: opacity, box-shadow !important;
-	}
+  a.cinema-ticket-link {
+    transition-duration: 0.01ms !important;
+    transition-property: opacity, box-shadow !important;
+  }
 
-	@media (hover: hover) {
-		a.cinema-ticket-link:hover,
-		a.cinema-ticket-link:focus-visible {
-			transform: none !important;
-		}
-	}
+  @media (hover: hover) {
+    a.cinema-ticket-link:hover,
+    a.cinema-ticket-link:focus-visible {
+      transform: none !important;
+    }
+  }
 
-	a.cinema-ticket-link img {
-		transition: none !important;
-		filter: none !important;
-	}
+  a.cinema-ticket-link img {
+    transition: none !important;
+    filter: none !important;
+  }
 }
 
 /* Scroll Fade Effect */
 @supports (animation-timeline: scroll()) {
-	@property --ft {
-		syntax: "<length>";
-		inherits: false;
-		initial-value: 0px;
-	}
+  @property --ft {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+  }
 
-	@property --fb {
-		syntax: "<length>";
-		inherits: false;
-		initial-value: 40px;
-	}
+  @property --fb {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 40px;
+  }
 
-	.scroll-fade-y,
-	[data-slot="scroll-area-viewport"] {
-		--ft: 0px;
-		--fb: 40px;
-		mask-image: linear-gradient(
-			to bottom,
-			transparent 0,
-			#000 var(--ft),
-			#000 calc(100% - var(--fb)),
-			transparent 100%
-		);
-		mask-size: 100% 100%;
-		mask-repeat: no-repeat;
-		animation:
-			fadeTop 1 linear both,
-			fadeBottom 1 linear both;
-		animation-timeline: scroll(self), scroll(self);
-		animation-range:
-			0% 12%,
-			88% 100%;
-	}
+  .scroll-fade-y,
+  [data-slot="scroll-area-viewport"] {
+    --ft: 0px;
+    --fb: 40px;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 var(--ft),
+      #000 calc(100% - var(--fb)),
+      transparent 100%
+    );
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    animation:
+      fadeTop 1 linear both,
+      fadeBottom 1 linear both;
+    animation-timeline: scroll(self), scroll(self);
+    animation-range:
+      0% 12%,
+      88% 100%;
+  }
 
-	@keyframes fadeTop {
-		from {
-			--ft: 0px;
-		}
-		to {
-			--ft: 40px;
-		}
-	}
+  @keyframes fadeTop {
+    from {
+      --ft: 0px;
+    }
+    to {
+      --ft: 40px;
+    }
+  }
 
-	@keyframes fadeBottom {
-		from {
-			--fb: 40px;
-		}
-		to {
-			--fb: 0px;
-		}
-	}
+  @keyframes fadeBottom {
+    from {
+      --fb: 40px;
+    }
+    to {
+      --fb: 0px;
+    }
+  }
 }
 
 /*
@@ -1397,27 +1416,27 @@ html.theme-lobby-light .cinema-vignette {
  * `skeleton-card` when Motion+ is installed; harmless when unused.
  */
 @property --wipe {
-	syntax: "<percentage>";
-	inherits: true;
-	initial-value: -100%;
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: -100%;
 }
 
 ::view-transition-group(skeleton-card) {
-	border-radius: 16px;
-	overflow: hidden;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 ::view-transition-image-pair(skeleton-card) {
-	mix-blend-mode: normal;
+  mix-blend-mode: normal;
 }
 
 ::view-transition-old(skeleton-card) {
-	z-index: 2;
-	mask-image: linear-gradient(
-		to right,
-		black var(--wipe),
-		transparent calc(var(--wipe) + 100%)
-	);
+  z-index: 2;
+  mask-image: linear-gradient(
+    to right,
+    black var(--wipe),
+    transparent calc(var(--wipe) + 100%)
+  );
 }
 
 /*
@@ -1425,35 +1444,59 @@ html.theme-lobby-light .cinema-vignette {
  * overrides the global `outline-ring/50` and desert-orange `::selection` on the bar only.
  */
 @layer components {
-	.catalog-search-query input:is([type="search"], [type="text"]) {
-		accent-color: var(--foreground);
-	}
-	.catalog-search-query input:is([type="search"], [type="text"]):focus,
-	.catalog-search-query input:is([type="search"], [type="text"]):focus-visible {
-		outline: none;
-		box-shadow: none;
-	}
-	.catalog-search-query ::selection {
-		background-color: color-mix(in oklab, var(--muted) 70%, transparent);
-		color: var(--foreground);
-	}
+  .catalog-search-query input:is([type="search"], [type="text"]) {
+    accent-color: var(--foreground);
+  }
+  .catalog-search-query input:is([type="search"], [type="text"]):focus,
+  .catalog-search-query input:is([type="search"], [type="text"]):focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+  .catalog-search-query ::selection {
+    background-color: color-mix(in oklab, var(--muted) 70%, transparent);
+    color: var(--foreground);
+  }
 
-	/*
+  /*
    * Auth inputs (`bg-input` on `bg-card`) — WebKit autofill paints a light/yellow fill;
    * inset shadow + long transition keeps the raised input surface on sign-in / sign-up.
    */
-	.auth-input:-webkit-autofill,
-	.auth-input:-webkit-autofill:hover,
-	.auth-input:-webkit-autofill:focus,
-	.auth-input:-webkit-autofill:active {
-		-webkit-text-fill-color: var(--foreground) !important;
-		caret-color: var(--foreground);
-		-webkit-box-shadow: 0 0 0 1000px
-			color-mix(in oklab, var(--card) 88%, white 12%) inset !important;
-		box-shadow: 0 0 0 1000px color-mix(in oklab, var(--card) 88%, white 12%)
-			inset !important;
-		transition: background-color 9999s ease-out 0s;
-	}
+  .auth-input:-webkit-autofill,
+  .auth-input:-webkit-autofill:hover,
+  .auth-input:-webkit-autofill:focus,
+  .auth-input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--foreground) !important;
+    caret-color: var(--foreground);
+    -webkit-box-shadow: 0 0 0 1000px
+      color-mix(in oklab, var(--card) 88%, white 12%) inset !important;
+    box-shadow: 0 0 0 1000px color-mix(in oklab, var(--card) 88%, white 12%)
+      inset !important;
+    transition: background-color 9999s ease-out 0s;
+  }
+
+  /* Search dialog studio logo tiles — per-theme via `--surface-studio-logo*` tokens. */
+  .studio-logo-chip {
+    background-color: var(--surface-studio-logo);
+    color: var(--surface-studio-logo-foreground);
+    transition:
+      background-color 200ms ease-out,
+      color 200ms ease-out,
+      opacity 200ms ease-out;
+  }
+  @media (hover: hover) {
+    .studio-logo-chip:hover {
+      background-color: var(--surface-studio-logo-hover);
+    }
+  }
+  .studio-logo-chip-outline {
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: color-mix(
+      in oklch,
+      var(--surface-studio-logo-foreground) 15%,
+      transparent
+    );
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1461,145 +1504,145 @@ html.theme-lobby-light .cinema-vignette {
  * Track B: depth comes from shadow tokens, not outline rings on the shell.
  * --------------------------------------------------------------------------- */
 [data-sonner-toaster][data-x-position="center"] {
-	/* Sonner toasts are absolutely positioned — the list needs a real width for translateX(-50%). */
-	width: min(420px, calc(100vw - 32px)) !important;
+  /* Sonner toasts are absolutely positioned — the list needs a real width for translateX(-50%). */
+  width: min(420px, calc(100vw - 32px)) !important;
 }
 
 [data-sonner-toaster] [data-sonner-toast] [data-icon] {
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center !important;
-	align-self: center !important;
-	width: 1.75rem !important;
-	height: 1.75rem !important;
-	margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  align-self: center !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  margin: 0 !important;
 }
 
 [data-sonner-toaster]
-	[data-sonner-toast].still-sonner-toast[data-styled="true"] {
-	width: max-content !important;
-	max-width: min(420px, calc(100vw - 32px)) !important;
-	/* Tighter leading inset than trailing: the 28px icon well supplies visual weight. */
-	padding: 5px 14px 5px 5px !important;
-	border: 1px solid rgba(0, 0, 0, 0.08) !important;
-	background: #fff !important;
-	color: #171717 !important;
-	box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.18) !important;
+  [data-sonner-toast].still-sonner-toast[data-styled="true"] {
+  width: max-content !important;
+  max-width: min(420px, calc(100vw - 32px)) !important;
+  /* Tighter leading inset than trailing: the 28px icon well supplies visual weight. */
+  padding: 5px 14px 5px 5px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background: #fff !important;
+  color: #171717 !important;
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.18) !important;
 }
 
 /* bottom-center: library only pins left/right for side positions — center each pill in the slot. */
 [data-sonner-toaster][data-x-position="center"]
-	[data-sonner-toast].still-sonner-toast[data-styled="true"] {
-	left: 0 !important;
-	right: 0 !important;
-	margin-left: auto !important;
-	margin-right: auto !important;
+  [data-sonner-toast].still-sonner-toast[data-styled="true"] {
+  left: 0 !important;
+  right: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 @media (max-width: 600px) {
-	/* Sonner's mobile sheet drops translateX(center) — restore viewport-centered anchoring. */
-	[data-sonner-toaster][data-x-position="center"] {
-		left: 50% !important;
-		right: auto !important;
-		transform: translateX(-50%) !important;
-		width: min(420px, calc(100vw - 32px)) !important;
-	}
+  /* Sonner's mobile sheet drops translateX(center) — restore viewport-centered anchoring. */
+  [data-sonner-toaster][data-x-position="center"] {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: min(420px, calc(100vw - 32px)) !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------
  * transitions.dev — page side-by-side (`MeAccountRouteTransition` on `/me/*`).
  * --------------------------------------------------------------------------- */
 :root {
-	--page-slide-dur: 200ms;
-	--page-fade-dur: 200ms;
-	--page-slide-distance: 8px;
-	--page-blur: 3px;
-	--page-stagger: 0ms;
-	--page-exit-enabled: 1;
-	--page-slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
-	--page-fade-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --page-slide-dur: 200ms;
+  --page-fade-dur: 200ms;
+  --page-slide-distance: 8px;
+  --page-blur: 3px;
+  --page-stagger: 0ms;
+  --page-exit-enabled: 1;
+  --page-slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --page-fade-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .t-page-slide {
-	position: relative;
+  position: relative;
 }
 
 .t-page-slide .t-page {
-	width: 100%;
-	min-width: 0;
+  width: 100%;
+  min-width: 0;
 }
 
 .t-page-slide.is-animating .t-page {
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-	transition:
-		opacity var(--page-fade-dur) var(--page-fade-ease),
-		transform var(--page-slide-dur) var(--page-slide-ease),
-		filter var(--page-slide-dur) var(--page-slide-ease);
-	will-change: opacity, transform, filter;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--page-fade-dur) var(--page-fade-ease),
+    transform var(--page-slide-dur) var(--page-slide-ease),
+    filter var(--page-slide-dur) var(--page-slide-ease);
+  will-change: opacity, transform, filter;
 }
 
 .t-page-slide.is-animating[data-direction="forward"] .t-page.is-enter {
-	--t-page-from-x: var(--page-slide-distance);
-	--t-page-exit-x: calc(var(--page-slide-distance) * -1);
+  --t-page-from-x: var(--page-slide-distance);
+  --t-page-exit-x: calc(var(--page-slide-distance) * -1);
 }
 
 .t-page-slide.is-animating[data-direction="back"] .t-page.is-enter {
-	--t-page-from-x: calc(var(--page-slide-distance) * -1);
-	--t-page-exit-x: var(--page-slide-distance);
+  --t-page-from-x: calc(var(--page-slide-distance) * -1);
+  --t-page-exit-x: var(--page-slide-distance);
 }
 
 .t-page-slide.is-animating .t-page.is-exit {
-	opacity: 1;
-	transform: translateX(0);
-	filter: blur(0);
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
 }
 
 .t-page-slide.is-animating .t-page.is-enter {
-	opacity: 0;
-	transform: translateX(var(--t-page-from-x, 0px));
-	filter: blur(var(--page-blur));
+  opacity: 0;
+  transform: translateX(var(--t-page-from-x, 0px));
+  filter: blur(var(--page-blur));
 }
 
 .t-page-slide.is-animating.is-active .t-page.is-exit {
-	opacity: 0;
-	transform: translateX(
-		calc(var(--t-page-exit-x, 0px) * var(--page-exit-enabled))
-	);
-	filter: blur(calc(var(--page-blur) * var(--page-exit-enabled)));
+  opacity: 0;
+  transform: translateX(
+    calc(var(--t-page-exit-x, 0px) * var(--page-exit-enabled))
+  );
+  filter: blur(calc(var(--page-blur) * var(--page-exit-enabled)));
 }
 
 .t-page-slide.is-animating.is-active .t-page.is-enter {
-	opacity: 1;
-	pointer-events: auto;
-	transform: translateX(0);
-	filter: blur(0);
-	transition-delay: var(--page-stagger);
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  filter: blur(0);
+  transition-delay: var(--page-stagger);
 }
 
 .t-page-slide:not(.is-animating) .t-page.is-enter {
-	position: relative;
+  position: relative;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.t-page-slide.is-animating .t-page {
-		transition: none !important;
-		filter: none !important;
-		transform: none !important;
-	}
+  .t-page-slide.is-animating .t-page {
+    transition: none !important;
+    filter: none !important;
+    transform: none !important;
+  }
 
-	.t-page-slide.is-animating .t-page.is-enter,
-	.t-page-slide.is-animating.is-active .t-page.is-enter {
-		opacity: 1;
-		pointer-events: auto;
-	}
+  .t-page-slide.is-animating .t-page.is-enter,
+  .t-page-slide.is-animating.is-active .t-page.is-enter {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-	.t-page-slide.is-animating .t-page.is-exit,
-	.t-page-slide.is-animating.is-active .t-page.is-exit {
-		opacity: 0;
-		pointer-events: none;
-	}
+  .t-page-slide.is-animating .t-page.is-exit,
+  .t-page-slide.is-animating.is-active .t-page.is-exit {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1607,244 +1650,244 @@ html.theme-lobby-light .cinema-vignette {
  * Body hover blurs the full post; CTA cross-fades with page + icon-swap tokens.
  * --------------------------------------------------------------------------- */
 .t-review-slide {
-	position: relative;
+  position: relative;
 }
 
 .t-review-slide__post {
-	display: flex;
-	width: fit-content;
-	max-width: 100%;
-	flex-direction: column;
-	align-items: center;
-	transition:
-		opacity var(--page-fade-dur) var(--page-fade-ease),
-		filter var(--page-slide-dur) var(--page-slide-ease);
-	will-change: opacity, filter;
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  transition:
+    opacity var(--page-fade-dur) var(--page-fade-ease),
+    filter var(--page-slide-dur) var(--page-slide-ease);
+  will-change: opacity, filter;
 }
 
 @media (hover: hover) {
-	.t-review-slide__post:has([data-review-body]:hover),
-	.t-review-slide__post:has([data-review-body]:focus-visible) {
-		opacity: 0.65;
-		filter: blur(var(--page-blur));
-	}
+  .t-review-slide__post:has([data-review-body]:hover),
+  .t-review-slide__post:has([data-review-body]:focus-visible) {
+    opacity: 0.65;
+    filter: blur(var(--page-blur));
+  }
 }
 
 .t-review-slide__cta {
-	pointer-events: none;
-	position: absolute;
-	inset: 0;
-	z-index: 10;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	opacity: 0;
-	transition: opacity var(--page-fade-dur) var(--page-fade-ease);
-	will-change: opacity;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--page-fade-dur) var(--page-fade-ease);
+  will-change: opacity;
 }
 
 @media (hover: hover) {
-	.t-review-slide:has([data-review-body]:hover) .t-review-slide__cta,
-	.t-review-slide:has([data-review-body]:focus-visible) .t-review-slide__cta {
-		opacity: 1;
-	}
+  .t-review-slide:has([data-review-body]:hover) .t-review-slide__cta,
+  .t-review-slide:has([data-review-body]:focus-visible) .t-review-slide__cta {
+    opacity: 1;
+  }
 }
 
 .t-review-slide__cta-label {
-	border-radius: 9999px;
-	background-color: var(--background);
-	padding: 0.625rem 1.25rem;
-	font-size: 0.875rem;
-	font-weight: 600;
-	line-height: 1.25rem;
-	letter-spacing: -0.025em;
-	color: var(--foreground);
-	transition:
-		opacity var(--page-fade-dur) var(--page-fade-ease),
-		filter var(--page-fade-dur) var(--page-fade-ease),
-		transform var(--page-fade-dur) var(--page-fade-ease);
-	will-change: opacity, filter, transform;
+  border-radius: 9999px;
+  background-color: var(--background);
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  transition:
+    opacity var(--page-fade-dur) var(--page-fade-ease),
+    filter var(--page-fade-dur) var(--page-fade-ease),
+    transform var(--page-fade-dur) var(--page-fade-ease);
+  will-change: opacity, filter, transform;
 }
 
 @media (hover: hover) {
-	.t-review-slide:not(:has([data-review-body]:hover)):not(
-			:has([data-review-body]:focus-visible)
-		)
-		.t-review-slide__cta-label {
-		opacity: 0;
-		filter: blur(2px);
-		transform: scale(0.25);
-	}
+  .t-review-slide:not(:has([data-review-body]:hover)):not(
+      :has([data-review-body]:focus-visible)
+    )
+    .t-review-slide__cta-label {
+    opacity: 0;
+    filter: blur(2px);
+    transform: scale(0.25);
+  }
 
-	.t-review-slide:has([data-review-body]:hover) .t-review-slide__cta-label,
-	.t-review-slide:has([data-review-body]:focus-visible)
-		.t-review-slide__cta-label {
-		opacity: 1;
-		filter: blur(0);
-		transform: scale(1);
-	}
+  .t-review-slide:has([data-review-body]:hover) .t-review-slide__cta-label,
+  .t-review-slide:has([data-review-body]:focus-visible)
+    .t-review-slide__cta-label {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.t-review-slide__post,
-	.t-review-slide__cta,
-	.t-review-slide__cta-label {
-		transition: none !important;
-	}
+  .t-review-slide__post,
+  .t-review-slide__cta,
+  .t-review-slide__cta-label {
+    transition: none !important;
+  }
 
-	.t-review-slide__post:has([data-review-body]:hover),
-	.t-review-slide__post:has([data-review-body]:focus-visible) {
-		filter: none;
-		opacity: 1;
-	}
+  .t-review-slide__post:has([data-review-body]:hover),
+  .t-review-slide__post:has([data-review-body]:focus-visible) {
+    filter: none;
+    opacity: 1;
+  }
 
-	.t-review-slide:has([data-review-body]:hover) .t-review-slide__cta,
-	.t-review-slide:has([data-review-body]:focus-visible) .t-review-slide__cta {
-		opacity: 1;
-	}
+  .t-review-slide:has([data-review-body]:hover) .t-review-slide__cta,
+  .t-review-slide:has([data-review-body]:focus-visible) .t-review-slide__cta {
+    opacity: 1;
+  }
 
-	.t-review-slide:has([data-review-body]:hover) .t-review-slide__cta-label,
-	.t-review-slide:has([data-review-body]:focus-visible)
-		.t-review-slide__cta-label {
-		filter: none;
-		transform: none;
-	}
+  .t-review-slide:has([data-review-body]:hover) .t-review-slide__cta-label,
+  .t-review-slide:has([data-review-body]:focus-visible)
+    .t-review-slide__cta-label {
+    filter: none;
+    transform: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
  * transitions.dev — modal open / close (`WhatsNewDialog`, future centered dialogs).
  * --------------------------------------------------------------------------- */
 :root {
-	--modal-open-dur: 250ms;
-	--modal-close-dur: 150ms;
-	--modal-scale: 0.96;
-	--modal-scale-close: 0.96;
-	--modal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --modal-open-dur: 250ms;
+  --modal-close-dur: 150ms;
+  --modal-scale: 0.96;
+  --modal-scale-close: 0.96;
+  --modal-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .t-modal {
-	transform-origin: center;
+  transform-origin: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.t-modal {
-		transition: none !important;
-	}
+  .t-modal {
+    transition: none !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------
  * transitions.dev — icon swap (favorite heart, share copied, etc.).
  * --------------------------------------------------------------------------- */
 :root {
-	--icon-swap-dur: 200ms;
-	--icon-swap-blur: 2px;
-	--icon-swap-start-scale: 0.25;
-	--icon-swap-ease: ease-in-out;
+  --icon-swap-dur: 200ms;
+  --icon-swap-blur: 2px;
+  --icon-swap-start-scale: 0.25;
+  --icon-swap-ease: ease-in-out;
 }
 
 .t-icon-swap {
-	position: relative;
-	display: inline-grid;
+  position: relative;
+  display: inline-grid;
 }
 .t-icon-swap .t-icon {
-	grid-area: 1 / 1;
-	transition:
-		opacity var(--icon-swap-dur) var(--icon-swap-ease),
-		filter var(--icon-swap-dur) var(--icon-swap-ease),
-		transform var(--icon-swap-dur) var(--icon-swap-ease);
-	will-change: opacity, filter, transform;
+  grid-area: 1 / 1;
+  transition:
+    opacity var(--icon-swap-dur) var(--icon-swap-ease),
+    filter var(--icon-swap-dur) var(--icon-swap-ease),
+    transform var(--icon-swap-dur) var(--icon-swap-ease);
+  will-change: opacity, filter, transform;
 }
 .t-icon-swap[data-state="a"] .t-icon[data-icon="a"],
 .t-icon-swap[data-state="b"] .t-icon[data-icon="b"] {
-	opacity: 1;
-	filter: blur(0);
-	transform: scale(1);
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
 }
 .t-icon-swap[data-state="a"] .t-icon[data-icon="b"],
 .t-icon-swap[data-state="b"] .t-icon[data-icon="a"] {
-	opacity: 0;
-	filter: blur(var(--icon-swap-blur));
-	transform: scale(var(--icon-swap-start-scale));
+  opacity: 0;
+  filter: blur(var(--icon-swap-blur));
+  transform: scale(var(--icon-swap-start-scale));
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.t-icon-swap .t-icon {
-		transition: none !important;
-	}
+  .t-icon-swap .t-icon {
+    transition: none !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------
  * transitions.dev — card resize (`LogRatingSlider` track fill layers).
  * --------------------------------------------------------------------------- */
 :root {
-	--resize-dur: 300ms;
-	--resize-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --resize-dur: 300ms;
+  --resize-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .log-rating-slider__fill-motion {
-	transition:
-		width var(--resize-dur) var(--resize-ease),
-		left var(--resize-dur) var(--resize-ease);
-	will-change: width, left;
+  transition:
+    width var(--resize-dur) var(--resize-ease),
+    left var(--resize-dur) var(--resize-ease);
+  will-change: width, left;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.log-rating-slider__fill-motion {
-		transition: none !important;
-	}
+  .log-rating-slider__fill-motion {
+    transition: none !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------
  * transitions.dev — number pop-in (`LogRatingSlider` score tail).
  * --------------------------------------------------------------------------- */
 :root {
-	--digit-dur: 500ms;
-	--digit-distance: 8px;
-	--digit-stagger: 70ms;
-	--digit-blur: 2px;
-	--digit-ease: cubic-bezier(0.34, 1.45, 0.64, 1);
-	--digit-dir-x: 0;
-	--digit-dir-y: 1;
+  --digit-dur: 500ms;
+  --digit-distance: 8px;
+  --digit-stagger: 70ms;
+  --digit-blur: 2px;
+  --digit-ease: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --digit-dir-x: 0;
+  --digit-dir-y: 1;
 }
 
 @keyframes t-digit-pop-in {
-	0% {
-		transform: translate(
-			calc(var(--digit-distance) * var(--digit-dir-x)),
-			calc(var(--digit-distance) * var(--digit-dir-y))
-		);
-		opacity: 0;
-		filter: blur(var(--digit-blur));
-	}
-	100% {
-		transform: translate(0, 0);
-		opacity: 1;
-		filter: blur(0);
-	}
+  0% {
+    transform: translate(
+      calc(var(--digit-distance) * var(--digit-dir-x)),
+      calc(var(--digit-distance) * var(--digit-dir-y))
+    );
+    opacity: 0;
+    filter: blur(var(--digit-blur));
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
 .t-digit-group {
-	display: inline-flex;
-	align-items: baseline;
+  display: inline-flex;
+  align-items: baseline;
 }
 .t-digit {
-	display: inline-block;
-	will-change: transform, opacity, filter;
+  display: inline-block;
+  will-change: transform, opacity, filter;
 }
 .t-digit-group.is-animating .t-digit {
-	animation: t-digit-pop-in var(--digit-dur) var(--digit-ease) both;
+  animation: t-digit-pop-in var(--digit-dur) var(--digit-ease) both;
 }
 .t-digit-group.is-animating .t-digit[data-stagger="1"] {
-	animation-delay: var(--digit-stagger);
+  animation-delay: var(--digit-stagger);
 }
 .t-digit-group.is-animating .t-digit[data-stagger="2"] {
-	animation-delay: calc(var(--digit-stagger) * 2);
+  animation-delay: calc(var(--digit-stagger) * 2);
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.t-digit-group .t-digit {
-		animation: none !important;
-	}
+  .t-digit-group .t-digit {
+    animation: none !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1855,127 +1898,125 @@ html.theme-lobby-light .cinema-vignette {
  * transitions.dev — avatar group hover (`LogRatingSlider` chevron | track row).
  * --------------------------------------------------------------------------- */
 :root {
-	--avatar-lift: -4px;
-	--avatar-dur: 320ms;
-	--avatar-scale: 1.05;
-	--avatar-falloff: 0.45;
-	--avatar-ease-in: cubic-bezier(0.22, 1, 0.36, 1);
-	--avatar-ease-out: cubic-bezier(0.34, 3.85, 0.64, 1);
+  --avatar-lift: -4px;
+  --avatar-dur: 320ms;
+  --avatar-scale: 1.05;
+  --avatar-falloff: 0.45;
+  --avatar-ease-in: cubic-bezier(0.22, 1, 0.36, 1);
+  --avatar-ease-out: cubic-bezier(0.34, 3.85, 0.64, 1);
 }
 
 .t-avatar {
-	transform-origin: center;
-	transform:
-		translateY(var(--shift, 0px))
-		scale(var(--scale-active, 1));
-	transition: transform var(--avatar-dur) var(--avatar-ease-in);
-	will-change: transform;
+  transform-origin: center;
+  transform: translateY(var(--shift, 0px)) scale(var(--scale-active, 1));
+  transition: transform var(--avatar-dur) var(--avatar-ease-in);
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.t-avatar {
-		transition: none !important;
-		transform: none !important;
-	}
+  .t-avatar {
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 .log-rating-slider {
-	/* Snappier digit pop-in than global defaults — tuned for the log sheet slider. */
-	--digit-dur: 320ms;
-	--digit-distance: 5px;
-	--digit-stagger: 45ms;
-	--digit-dir-y: -1;
-	/* Subtle comb lift on the chevron | track | chevron row. */
-	--avatar-lift: -3px;
-	--avatar-dur: 280ms;
-	--avatar-scale: 1.03;
-	--avatar-falloff: 0.5;
-	--log-rating-accent: var(--accent);
-	--log-rating-track-ring: rgba(255, 255, 255, 0.08);
-	--log-rating-track-ring-hover: rgba(255, 255, 255, 0.14);
-	--log-rating-track-shell: oklch(0.34 0 0);
-	--log-rating-track-fill: oklch(0.52 0 0);
-	--log-rating-track-tail: oklch(0.28 0 0);
-	--log-rating-avg-fill: oklch(0.42 0 0);
+  /* Snappier digit pop-in than global defaults — tuned for the log sheet slider. */
+  --digit-dur: 320ms;
+  --digit-distance: 5px;
+  --digit-stagger: 45ms;
+  --digit-dir-y: -1;
+  /* Subtle comb lift on the chevron | track | chevron row. */
+  --avatar-lift: -3px;
+  --avatar-dur: 280ms;
+  --avatar-scale: 1.03;
+  --avatar-falloff: 0.5;
+  --log-rating-accent: var(--accent);
+  --log-rating-track-ring: rgba(255, 255, 255, 0.08);
+  --log-rating-track-ring-hover: rgba(255, 255, 255, 0.14);
+  --log-rating-track-shell: oklch(0.34 0 0);
+  --log-rating-track-fill: oklch(0.52 0 0);
+  --log-rating-track-tail: oklch(0.28 0 0);
+  --log-rating-avg-fill: oklch(0.42 0 0);
 }
 
 .log-rating-slider[data-theme="theme-theater"] {
-	--log-rating-track-shell: oklch(0.34 0 0);
-	--log-rating-track-fill: oklch(0.52 0 0);
-	--log-rating-track-tail: oklch(0.28 0 0);
-	--log-rating-avg-fill: oklch(0.42 0 0);
+  --log-rating-track-shell: oklch(0.34 0 0);
+  --log-rating-track-fill: oklch(0.52 0 0);
+  --log-rating-track-tail: oklch(0.28 0 0);
+  --log-rating-avg-fill: oklch(0.42 0 0);
 }
 
 .log-rating-slider[data-theme="theme-lobby-light"] {
-	--log-rating-track-shell: #dcdcdc;
-	--log-rating-track-fill: #f0f0f0;
-	--log-rating-track-tail: #b5b5b5;
-	--log-rating-avg-fill: #e4e4e4;
-	--log-rating-track-ring: rgba(20, 20, 20, 0.12);
-	--log-rating-track-ring-hover: rgba(20, 20, 20, 0.18);
+  --log-rating-track-shell: #dcdcdc;
+  --log-rating-track-fill: #f0f0f0;
+  --log-rating-track-tail: #b5b5b5;
+  --log-rating-avg-fill: #e4e4e4;
+  --log-rating-track-ring: rgba(20, 20, 20, 0.12);
+  --log-rating-track-ring-hover: rgba(20, 20, 20, 0.18);
 }
 
 .log-rating-slider[data-theme="theme-noir"] {
-	--log-rating-track-shell: oklch(0.22 0.02 250);
-	--log-rating-track-fill: oklch(0.38 0.02 250);
-	--log-rating-track-tail: oklch(0.16 0.02 250);
-	--log-rating-avg-fill: oklch(0.3 0.02 250);
+  --log-rating-track-shell: oklch(0.22 0.02 250);
+  --log-rating-track-fill: oklch(0.38 0.02 250);
+  --log-rating-track-tail: oklch(0.16 0.02 250);
+  --log-rating-avg-fill: oklch(0.3 0.02 250);
 }
 
 .log-rating-slider[data-theme="theme-ember"] {
-	--log-rating-track-shell: oklch(0.24 0.035 35);
-	--log-rating-track-fill: oklch(0.4 0.04 35);
-	--log-rating-track-tail: oklch(0.18 0.03 35);
-	--log-rating-avg-fill: oklch(0.32 0.035 35);
+  --log-rating-track-shell: oklch(0.24 0.035 35);
+  --log-rating-track-fill: oklch(0.4 0.04 35);
+  --log-rating-track-tail: oklch(0.18 0.03 35);
+  --log-rating-avg-fill: oklch(0.32 0.035 35);
 }
 
 .log-rating-slider[data-theme="theme-midnight"] {
-	--log-rating-track-shell: oklch(0.2 0.028 280);
-	--log-rating-track-fill: oklch(0.36 0.03 280);
-	--log-rating-track-tail: oklch(0.14 0.028 280);
-	--log-rating-avg-fill: oklch(0.28 0.028 280);
+  --log-rating-track-shell: oklch(0.2 0.028 280);
+  --log-rating-track-fill: oklch(0.36 0.03 280);
+  --log-rating-track-tail: oklch(0.14 0.028 280);
+  --log-rating-avg-fill: oklch(0.28 0.028 280);
 }
 
 .movie-themed .log-rating-slider {
-	--log-rating-accent: var(--movie-accent-foreground, var(--movie-accent));
+  --log-rating-accent: var(--movie-accent-foreground, var(--movie-accent));
 }
 
 .log-rating-slider__step,
 .log-rating-slider__track {
-	background-color: var(--log-rating-track-shell);
-	box-shadow: 0 0 0 1px var(--log-rating-track-ring);
+  background-color: var(--log-rating-track-shell);
+  box-shadow: 0 0 0 1px var(--log-rating-track-ring);
 }
 
 @media (hover: hover) {
-	.log-rating-slider__step:hover {
-		box-shadow: 0 0 0 1px var(--log-rating-track-ring-hover);
-	}
+  .log-rating-slider__step:hover {
+    box-shadow: 0 0 0 1px var(--log-rating-track-ring-hover);
+  }
 }
 
 .log-rating-slider__avg {
-	background-color: var(--log-rating-avg-fill);
+  background-color: var(--log-rating-avg-fill);
 }
 
 .log-rating-slider__tail {
-	background-color: var(--log-rating-track-tail);
+  background-color: var(--log-rating-track-tail);
 }
 
 .log-rating-slider__fill {
-	background-color: var(--log-rating-track-fill);
+  background-color: var(--log-rating-track-fill);
 }
 
 .log-rating-slider__thumb {
-	background-color: var(--log-rating-accent);
+  background-color: var(--log-rating-accent);
 }
 
 .log-rating-slider__score {
-	color: var(--log-rating-accent);
+  color: var(--log-rating-accent);
 }
 
 /* Quick log meta row — subtle comb lift on screening pills + favorite. */
 .quick-log-meta-row {
-	--avatar-lift: -3px;
-	--avatar-dur: 280ms;
-	--avatar-scale: 1.03;
-	--avatar-falloff: 0.5;
+  --avatar-lift: -3px;
+  --avatar-dur: 280ms;
+  --avatar-scale: 1.03;
+  --avatar-falloff: 0.5;
 }

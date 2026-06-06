@@ -20,7 +20,6 @@ export function tvDiscoverPartsToHomeHref(parts: {
 	watchRegion?: string | null;
 	status?: string | null;
 }): string {
-	void parts.genreId;
 	void parts.watchRegion;
 
 	const status = parseTvDiscoverStatusParam(parts.status);
@@ -54,6 +53,8 @@ export function tvDiscoverPartsToHomeHref(parts: {
 		sort: run === "upcoming" ? "popular" : lobbySort,
 		run,
 		venue,
+		genreId: parts.genreId,
+		monetization: parts.monetization,
 	});
 }
 

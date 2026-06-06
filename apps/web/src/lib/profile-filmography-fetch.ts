@@ -26,6 +26,8 @@ export function profileFilmographyRowToSeed(
 		poster_url: person.posterUrl,
 		listingKind: person.mediaKind === "tv" ? "tv" : "movie",
 		scopeLabel: person.posterCaption ?? null,
+		patronLogId: row.log.id,
+		patronLogLiked: row.log.liked,
 	};
 }
 

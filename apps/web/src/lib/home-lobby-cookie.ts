@@ -14,6 +14,8 @@ export type HomeLobbySearchParams = {
 	animeSeason?: string;
 	/** Leaderboard window when community sort is `film-ranks` or `tv-ranks`. */
 	period?: string;
+	genre?: string;
+	monetization?: string;
 };
 
 /** Parses the saved href cookie into lobby query fields (server + client). */
@@ -31,7 +33,9 @@ export function parseHomeLobbyHrefCookie(
 			url.searchParams.has("venue") ||
 			url.searchParams.has("run") ||
 			url.searchParams.has("animeSeason") ||
-			url.searchParams.has("period");
+			url.searchParams.has("period") ||
+			url.searchParams.has("genre") ||
+			url.searchParams.has("monetization");
 		if (!hasAny) return null;
 		return {
 			browse: url.searchParams.get("browse") ?? undefined,
@@ -40,6 +44,8 @@ export function parseHomeLobbyHrefCookie(
 			run: url.searchParams.get("run") ?? undefined,
 			animeSeason: url.searchParams.get("animeSeason") ?? undefined,
 			period: url.searchParams.get("period") ?? undefined,
+			genre: url.searchParams.get("genre") ?? undefined,
+			monetization: url.searchParams.get("monetization") ?? undefined,
 		};
 	} catch {
 		return null;
@@ -67,6 +73,8 @@ export function isBareHomeLobbySearchParams(
 		!sp.venue &&
 		!sp.run &&
 		!sp.animeSeason &&
-		!sp.period
+		!sp.period &&
+		!sp.genre &&
+		!sp.monetization
 	);
 }

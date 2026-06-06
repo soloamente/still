@@ -1,0 +1,614 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"label": "home-tmdb-lobby-params-context.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_tmdb_lobby_params_context_hometmdblobbysnapshot",
+			"label": "HomeTmdbLobbySnapshot",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L34"
+		},
+		{
+			"id": "home_home_tmdb_lobby_params_context_hometmdblobbyparamscontextvalue",
+			"label": "HomeTmdbLobbyParamsContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L42"
+		},
+		{
+			"id": "home_home_tmdb_lobby_params_context_hometmdblobbyparamscontext",
+			"label": "HomeTmdbLobbyParamsContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L52"
+		},
+		{
+			"id": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"label": "snapshotFromSearchParams()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L55"
+		},
+		{
+			"id": "home_home_tmdb_lobby_params_context_lobbyhref",
+			"label": "lobbyHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L92"
+		},
+		{
+			"id": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"label": "HomeTmdbLobbyParamsProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L113"
+		},
+		{
+			"id": "home_home_tmdb_lobby_params_context_usehometmdblobbyparams",
+			"label": "useHomeTmdbLobbyParams()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L216"
+		},
+		{
+			"id": "home_home_tmdb_lobby_params_context_usehometmdblobbyparamsoptional",
+			"label": "useHomeTmdbLobbyParamsOptional()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L227"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_lobby_lobby_navigation_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lobby_lobby_navigation_provider_uselobbynavigation",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_anime_season_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_anime_season_parsehomeanimeseason",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_browse_surface_parsehomebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_catalog_run_homecatalogrun",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_catalog_run_parsehomecatalogrun",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_sort_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_catalog_sort_homecatalogsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_sort_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_catalog_sort_parsehomecatalogsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_filters_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_catalog_filters_parsehomecatalogfilters",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_catalog_filters_stripincompatiblehomecatalogfilters",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_lobby_url_buildhomelobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_venue_homevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_venue_parsehomevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "lib_home_venue_parsetvlobbyvenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "home_home_tmdb_lobby_params_context_hometmdblobbysnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "home_home_tmdb_lobby_params_context_hometmdblobbyparamscontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "home_home_tmdb_lobby_params_context_hometmdblobbyparamscontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "home_home_tmdb_lobby_params_context_lobbyhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L92",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "home_home_tmdb_lobby_params_context_usehometmdblobbyparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L216",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_tmdb_lobby_params_context_tsx",
+			"target": "home_home_tmdb_lobby_params_context_usehometmdblobbyparamsoptional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L227",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "parseHomeBrowseSurface",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "parseHomeCatalogRun",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "parseHomeCatalogSort",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "parseTvLobbyVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "parseHomeVenue",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "parseHomeAnimeSeason",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_snapshotfromsearchparams",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_lobbyhref",
+			"callee": "stripIncompatibleHomeCatalogFilters",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_lobbyhref",
+			"callee": "parseHomeCatalogFilters",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_lobbyhref",
+			"callee": "buildHomeLobbyHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L118"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useLobbyNavigation",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L154"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L161"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_hometmdblobbyparamsprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L190"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_usehometmdblobbyparams",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L217"
+		},
+		{
+			"caller_nid": "home_home_tmdb_lobby_params_context_usehometmdblobbyparamsoptional",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx",
+			"source_location": "L228"
+		}
+	]
+}

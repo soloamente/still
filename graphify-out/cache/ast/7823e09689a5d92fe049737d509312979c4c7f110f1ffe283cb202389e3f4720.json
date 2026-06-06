@@ -1,0 +1,414 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"label": "home-catalog-filters-popover.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_catalog_filters_popover_monetization_options",
+			"label": "MONETIZATION_OPTIONS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L23"
+		},
+		{
+			"id": "home_home_catalog_filters_popover_discover_sort_options",
+			"label": "DISCOVER_SORT_OPTIONS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L31"
+		},
+		{
+			"id": "home_home_catalog_filters_popover_sectionlabel",
+			"label": "sectionLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L37"
+		},
+		{
+			"id": "home_home_catalog_filters_popover_genrechipclass",
+			"label": "genreChipClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L45"
+		},
+		{
+			"id": "home_home_catalog_filters_popover_homecatalogfilterspopoverprops",
+			"label": "HomeCatalogFiltersPopoverProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L54"
+		},
+		{
+			"id": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"label": "HomeCatalogFiltersPopover()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L69"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_popover_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "components_popover_popover",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "components_popover_popovercontent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "components_popover_popovertrigger",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_segmented_pill_toolbar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "ui_segmented_pill_toolbar_segmentedpilltoolbar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_filters_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_home_catalog_filters_homecatalogfilters",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_home_catalog_filters_hasactivehomecatalogfilters",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_home_catalog_filters_home_catalog_discover_sort_refinements",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_home_catalog_filters_mergehomecatalogfiltersintohref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_sort_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_home_catalog_sort_homecatalogsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_home_venue_homevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_search_dialog_genres_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_use_search_dialog_genres_usesearchdialoggenres",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "lib_use_catalog_tmdb_language_usecatalogtmdblanguage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "home_home_catalog_filters_popover_monetization_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "home_home_catalog_filters_popover_discover_sort_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "home_home_catalog_filters_popover_sectionlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "home_home_catalog_filters_popover_genrechipclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "home_home_catalog_filters_popover_homecatalogfilterspopoverprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_catalog_filters_popover_tsx",
+			"target": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"target": "home_home_catalog_filters_popover_sectionlabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"target": "home_home_catalog_filters_popover_genrechipclass",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L123",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_catalog_filters_popover_genrechipclass",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L80"
+		},
+		{
+			"caller_nid": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"callee": "useCatalogTmdbLanguage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"callee": "useSearchDialogGenres",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L82"
+		},
+		{
+			"caller_nid": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L194"
+		},
+		{
+			"caller_nid": "home_home_catalog_filters_popover_homecatalogfilterspopover",
+			"callee": "hasActiveHomeCatalogFilters",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx",
+			"source_location": "L204"
+		}
+	]
+}

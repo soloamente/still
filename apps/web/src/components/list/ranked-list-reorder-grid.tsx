@@ -21,6 +21,7 @@ import { cn } from "@still/ui/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import type { ListDetailFilmRow } from "@/components/list/list-detail-films-grid";
+import { ListDetailPosterTile } from "@/components/list/list-detail-poster-tile";
 import { ListItemNoteControl } from "@/components/list/list-item-note-control";
 import { ListItemNoteDisplay } from "@/components/list/list-item-note-display";
 import { MoviePoster } from "@/components/movie/movie-poster";
@@ -199,11 +200,15 @@ export function RankedListReorderGrid({
 	listId,
 	items,
 	allItemIds,
+	systemKind = null,
+	viewerCanEdit = false,
 	canEditNotes = false,
 }: {
 	listId: string;
 	items: RankedListReorderRow[];
 	allItemIds?: string[];
+	systemKind?: string | null;
+	viewerCanEdit?: boolean;
 	canEditNotes?: boolean;
 }) {
 	const canonicalAllItemIds = allItemIds ?? itemIdsFromRows(items);
@@ -310,6 +315,13 @@ export function RankedListReorderGrid({
 		[isSaving],
 	);
 
+	const handleMembershipRemoved = useCallback((itemId: string) => {
+		setRows((prev) => prev.filter((row) => row.item.id !== itemId));
+		committedRowsRef.current = committedRowsRef.current.filter(
+			(row) => row.item.id !== itemId,
+		);
+	}, []);
+
 	const handleDragEnd = useCallback(
 		(event: DragEndEvent) => {
 			setActiveDragId(null);
@@ -352,18 +364,22 @@ export function RankedListReorderGrid({
 					const posterLabels = rankedListPosterLabels(index, row.ownerLog);
 					return (
 						<div key={row.item.id} className="relative min-w-0 touch-none">
-							<MoviePoster
-								movieId={listing.tmdbId}
-								title={listing.title}
-								posterUrl={profilePosterUrlFromPath(listing.posterPath)}
-								listingKind={row.movie ? "movie" : "tv"}
-								priority={index < 6}
-								showTitle={false}
-								posterCaption={posterLabels.posterCaption}
-								posterCaptionSubline={posterLabels.posterCaptionSubline}
-								hoverEffect="elevation"
+							<ListDetailPosterTile
 								className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
 								frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
+								hoverEffect="elevation"
+								itemId={row.item.id}
+								listId={listId}
+								listingKind={row.movie ? "movie" : "tv"}
+								onMembershipRemoved={handleMembershipRemoved}
+								posterCaption={posterLabels.posterCaption}
+								posterCaptionSubline={posterLabels.posterCaptionSubline}
+								posterUrl={profilePosterUrlFromPath(listing.posterPath)}
+								priority={index < 6}
+								systemKind={systemKind}
+								title={listing.title}
+								tmdbId={listing.tmdbId}
+								viewerCanEdit={viewerCanEdit}
 							/>
 						</div>
 					);
@@ -397,7 +413,10 @@ export function RankedListReorderGrid({
 							isSaving={isSaving}
 							isActive={activeDragId === row.item.id}
 							listId={listId}
+							systemKind={systemKind}
+							viewerCanEdit={viewerCanEdit}
 							canEditNotes={canEditNotes}
+							onMembershipRemoved={handleMembershipRemoved}
 							onSuppressClick={() => {
 								if (!wasDraggedRef.current) return false;
 								wasDraggedRef.current = false;
@@ -425,7 +444,10 @@ function RankedSortableTile({
 	isSaving,
 	isActive,
 	listId,
+	systemKind,
+	viewerCanEdit,
 	canEditNotes,
+	onMembershipRemoved,
 	onSuppressClick,
 }: {
 	row: RankedListReorderRow;
@@ -433,7 +455,10 @@ function RankedSortableTile({
 	isSaving: boolean;
 	isActive: boolean;
 	listId: string;
+	systemKind?: string | null;
+	viewerCanEdit: boolean;
 	canEditNotes: boolean;
+	onMembershipRemoved: (itemId: string) => void;
 	onSuppressClick: () => boolean;
 }) {
 	const {
@@ -488,19 +513,23 @@ function RankedSortableTile({
 				aria-disabled={isSaving || undefined}
 				tabIndex={isSaving ? -1 : (sortableTabIndex ?? 0)}
 			>
-				<MoviePoster
-					movieId={listing.tmdbId}
-					title={listing.title}
-					posterUrl={profilePosterUrlFromPath(listing.posterPath)}
-					listingKind={row.movie ? "movie" : "tv"}
-					priority={index < 6}
-					showTitle={false}
-					posterCaption={posterLabels.posterCaption}
-					posterCaptionSubline={posterLabels.posterCaptionSubline}
-					hoverEffect="elevation"
+				<ListDetailPosterTile
 					className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
 					frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
+					hoverEffect="elevation"
+					itemId={row.item.id}
 					linkable={!(isDragging || isActive)}
+					listId={listId}
+					listingKind={row.movie ? "movie" : "tv"}
+					onMembershipRemoved={onMembershipRemoved}
+					posterCaption={posterLabels.posterCaption}
+					posterCaptionSubline={posterLabels.posterCaptionSubline}
+					posterUrl={profilePosterUrlFromPath(listing.posterPath)}
+					priority={index < 6}
+					systemKind={systemKind}
+					title={listing.title}
+					tmdbId={listing.tmdbId}
+					viewerCanEdit={viewerCanEdit}
 				/>
 			</div>
 			{canEditNotes ? (

@@ -231,6 +231,8 @@ export default async function ListDetailPage({
 									items={rankedRows}
 									allItemIds={data.items.map((entry) => entry.item.id)}
 									canEditNotes={canEditListNotes}
+									systemKind={data.systemKind ?? null}
+									viewerCanEdit={viewerCanEdit}
 								/>
 							) : (
 								<ListDetailFilmsGrid
@@ -238,6 +240,8 @@ export default async function ListDetailPage({
 									isRanked={data.isRanked}
 									listId={data.id}
 									canEditNotes={canEditListNotes}
+									systemKind={data.systemKind ?? null}
+									viewerCanEdit={viewerCanEdit}
 								/>
 							)}
 						</MovieDetailBodySection>

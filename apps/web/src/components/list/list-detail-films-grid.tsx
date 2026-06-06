@@ -3,10 +3,9 @@
 import { buttonVariants } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
-
+import { ListDetailPosterTile } from "@/components/list/list-detail-poster-tile";
 import { ListItemNoteControl } from "@/components/list/list-item-note-control";
 import { ListItemNoteDisplay } from "@/components/list/list-item-note-display";
-import { MoviePoster } from "@/components/movie/movie-poster";
 import {
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME,
@@ -39,12 +38,18 @@ export function ListDetailFilmsGrid({
 	items,
 	isRanked,
 	listId,
+	systemKind = null,
+	viewerCanEdit = false,
 	canEditNotes = false,
+	onMembershipRemoved,
 }: {
 	items: ListDetailFilmRow[];
 	isRanked: boolean;
-	listId?: string;
+	listId: string;
+	systemKind?: string | null;
+	viewerCanEdit?: boolean;
 	canEditNotes?: boolean;
+	onMembershipRemoved?: (itemId: string) => void;
 }) {
 	if (items.length === 0) {
 		return (
@@ -100,18 +105,22 @@ export function ListDetailFilmsGrid({
 						}
 						className="relative min-w-0"
 					>
-						<MoviePoster
-							movieId={listing.tmdbId}
-							title={listing.title}
-							posterUrl={profilePosterUrlFromPath(listing.posterPath)}
-							listingKind={row.movie ? "movie" : "tv"}
-							priority={index < 6}
-							showTitle={false}
-							posterCaption={posterLabels.posterCaption}
-							posterCaptionSubline={posterLabels.posterCaptionSubline}
-							hoverEffect="elevation"
+						<ListDetailPosterTile
 							className={HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME}
 							frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
+							hoverEffect="elevation"
+							itemId={row.item.id}
+							listId={listId}
+							listingKind={row.movie ? "movie" : "tv"}
+							onMembershipRemoved={onMembershipRemoved}
+							posterCaption={posterLabels.posterCaption}
+							posterCaptionSubline={posterLabels.posterCaptionSubline}
+							posterUrl={profilePosterUrlFromPath(listing.posterPath)}
+							priority={index < 6}
+							systemKind={systemKind}
+							title={listing.title}
+							tmdbId={listing.tmdbId}
+							viewerCanEdit={viewerCanEdit}
 						/>
 						<div className="mt-2 px-0.5">
 							<Link

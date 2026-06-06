@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@still/ui/lib/utils";
 import { useEffect, useState } from "react";
 
 import { SearchDialogPeopleRow } from "@/components/home/search-dialog-people-row";
-import { SearchDialogListSkeleton } from "@/components/home/search-dialog-result-skeletons";
 import {
 	type FollowSuggestionRow,
 	fetchFollowSuggestions,
@@ -14,13 +14,18 @@ import {
 	tasteSuggestedPatronMetaLine,
 } from "@/lib/taste-suggested-patrons";
 
-/** Follow + taste-match rails when the search field is empty (signed-in only). */
+/** Follow + taste-match lists for the People browse column (signed-in only). */
 export function SearchDialogPeopleSuggestions({
 	enabled,
 	onSelect,
+	className,
+	showEmptyState = false,
 }: {
 	enabled: boolean;
 	onSelect: (handle: string) => void;
+	className?: string;
+	/** When true, show copy if suggestions load empty (browse column). */
+	showEmptyState?: boolean;
 }) {
 	const [tasteRows, setTasteRows] = useState<TasteSuggestedPatronRow[]>([]);
 	const [networkRows, setNetworkRows] = useState<FollowSuggestionRow[]>([]);
@@ -82,13 +87,20 @@ export function SearchDialogPeopleSuggestions({
 
 	const hasTaste = tasteRows.length > 0;
 	const hasNetwork = networkRows.length > 0;
-	if (!loading && !hasTaste && !hasNetwork) return null;
+	if (!loading && !hasTaste && !hasNetwork) {
+		if (!showEmptyState) return null;
+		return (
+			<p className="text-muted-foreground text-xs leading-relaxed">
+				No suggestions right now — try again in a moment.
+			</p>
+		);
+	}
+
+	// Skip skeleton while loading — the browse column stays quiet until rows arrive.
+	if (loading && !hasTaste && !hasNetwork) return null;
 
 	return (
-		<div className="space-y-3 px-4 pb-2">
-			{loading && !hasTaste && !hasNetwork ? (
-				<SearchDialogListSkeleton />
-			) : null}
+		<div className={cn("space-y-3", className)}>
 			{hasTaste ? (
 				<div>
 					<div className="mb-1 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider">

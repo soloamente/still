@@ -36,7 +36,9 @@ import {
 	parseHomeAnimeSeason,
 } from "@/lib/home-anime-season";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
+import { parseHomeCatalogFilters } from "@/lib/home-catalog-filters";
 import {
+	effectiveHomeCatalogRun,
 	parseHomeCatalogRun,
 	TV_COMPLETED_DISCOVER_STATUS,
 	TV_ONGOING_DISCOVER_STATUS,
@@ -111,6 +113,8 @@ export default async function HomePage({
 		animeSeason?: string;
 		period?: string;
 		search?: string;
+		genre?: string;
+		monetization?: string;
 	}>;
 }) {
 	const spRaw = await searchParams;
@@ -162,7 +166,7 @@ export default async function HomePage({
 	}
 	/** Legacy TV `?sort=ongoing|upcoming` → matching `?run=` + Popular. */
 	const sortRaw = sp.sort?.trim().toLowerCase() ?? "";
-	const catalogRun =
+	const catalogRunRaw =
 		parseHomeCatalogRun(sp.run, browse) ??
 		(browse === "tv" &&
 		(sortRaw === "ongoing" ||
@@ -178,7 +182,12 @@ export default async function HomePage({
 	const animeSeasonActive =
 		browse === "tv" &&
 		parseHomeAnimeSeason(sp.animeSeason) &&
-		catalogRun == null;
+		catalogRunRaw == null;
+	const catalogRun = effectiveHomeCatalogRun({
+		run: catalogRunRaw,
+		browse,
+		animeSeason: animeSeasonActive,
+	});
 	const sort = parseHomeCatalogSort(sp.sort, browse);
 	const communityFeed = parseHomeCommunityFeed(sp.sort);
 	const communityPeriod = parseHomeCommunityPeriod(sp.period);
@@ -186,6 +195,23 @@ export default async function HomePage({
 		browse === "movies" ? parseHomeVenue(sp.venue, sort) : null;
 	const tvVenue =
 		browse === "tv" ? parseTvLobbyVenue(sp.venue, sort, catalogRun) : null;
+	const catalogFilterParams = new URLSearchParams();
+	if (sp.genre) catalogFilterParams.set("genre", sp.genre);
+	if (sp.monetization) {
+		catalogFilterParams.set("monetization", sp.monetization);
+	}
+	const catalogFilters =
+		browse === "movies" && movieVenue
+			? parseHomeCatalogFilters(catalogFilterParams, {
+					venue: movieVenue,
+					sort,
+				})
+			: browse === "tv" && tvVenue
+				? parseHomeCatalogFilters(catalogFilterParams, {
+						venue: tvVenue,
+						sort,
+					})
+				: { genreId: null, monetization: null };
 	/** UTC `YYYY-MM-DD` — floors streaming-upcoming discover for movies (`release_gte`) and TV (`first_air_date.gte`). */
 	const catalogReleaseFloorUtc = new Date().toISOString().slice(0, 10);
 	/** Movies + at-home streaming for Latest/Popular (not Upcoming — that has its own discover window). */
@@ -201,6 +227,8 @@ export default async function HomePage({
 		browse === "movies" && sort === "upcoming" && movieVenue === "theaters";
 	const movieLobbyUsesNowPlaying =
 		browse === "movies" && sort === "popular" && movieVenue === "theaters";
+	const movieLobbyUsesNowPlayingWithGenre =
+		movieLobbyUsesNowPlaying && catalogFilters.genreId != null;
 	/** In cinemas + Latest — already released theatrically in region (not TMDb `/upcoming`, which is future-only). */
 	const movieLobbyTheatersLatestDiscover =
 		browse === "movies" && sort === "latest" && movieVenue === "theaters";
@@ -271,6 +299,18 @@ export default async function HomePage({
 	/** TV left-rail sort is only Popular or Latest (Upcoming lives on `?run=`). */
 	const tvLobbySort = sort === "popular" ? "popular" : "latest";
 
+	const movieFilterGenreId = catalogFilters.genreId ?? undefined;
+	const movieFilterMonetization = catalogFilters.monetization ?? "flatrate";
+	const tvFilterGenreId = catalogFilters.genreId ?? undefined;
+	const tvFilterMonetization = catalogFilters.monetization ?? "flatrate";
+	const tvPopularNeedsDiscover =
+		browse === "tv" &&
+		!animeSeasonActive &&
+		catalogRun === "ongoing" &&
+		sort === "popular" &&
+		(tvFilterGenreId != null ||
+			(tvVenue === "streaming" && tvFilterMonetization !== "flatrate"));
+
 	let lobbyResult: {
 		data: unknown;
 		error: { status: number; nonJson?: boolean } | null;
@@ -295,12 +335,14 @@ export default async function HomePage({
 										cookieHeader,
 										sortBy: tvDiscoverSortByForLobbySort(tvLobbySort),
 										status: TV_ONGOING_DISCOVER_STATUS,
+										genreId: tvFilterGenreId,
 									})
 								: catalogRun === "completed"
 									? await fetchTvDiscover(SEED_PAGE, {
 											cookieHeader,
 											sortBy: tvDiscoverSortByForLobbySort(tvLobbySort),
 											status: TV_COMPLETED_DISCOVER_STATUS,
+											genreId: tvFilterGenreId,
 										})
 									: catalogRun === "upcoming"
 										? tvLobbyStreamingUpcoming
@@ -308,33 +350,59 @@ export default async function HomePage({
 													cookieHeader,
 													sortBy: TV_UPCOMING_DISCOVER_SORT,
 													airDateGte: catalogReleaseFloorUtc,
-													monetization: "flatrate",
+													monetization: tvFilterMonetization,
 													watchRegion: streamingWatchRegionApi,
+													genreId: tvFilterGenreId,
 												})
 											: await fetchTvDiscover(SEED_PAGE, {
 													cookieHeader,
 													sortBy: TV_UPCOMING_DISCOVER_SORT,
 													airDateGte: catalogReleaseFloorUtc,
+													genreId: tvFilterGenreId,
 												})
-										: sort === "popular"
-											? await fetchTvPopular(SEED_PAGE, { cookieHeader })
-											: await fetchTvDiscover(SEED_PAGE, {
+										: tvPopularNeedsDiscover
+											? await fetchTvDiscover(SEED_PAGE, {
 													cookieHeader,
-													sortBy: LATEST_TV_DISCOVER_SORT,
+													sortBy: "popularity.desc",
+													genreId: tvFilterGenreId,
+													monetization:
+														tvVenue === "streaming"
+															? tvFilterMonetization
+															: undefined,
+													watchRegion:
+														tvVenue === "streaming"
+															? streamingWatchRegionApi
+															: undefined,
 												})
+											: sort === "popular"
+												? await fetchTvPopular(SEED_PAGE, { cookieHeader })
+												: await fetchTvDiscover(SEED_PAGE, {
+														cookieHeader,
+														sortBy: LATEST_TV_DISCOVER_SORT,
+														genreId: tvFilterGenreId,
+													})
 						: movieLobbyStreamingUpcoming
 							? await fetchMoviesDiscover(SEED_PAGE, {
 									cookieHeader,
 									sortBy: "primary_release_date.asc",
-									monetization: "flatrate",
+									monetization: movieFilterMonetization,
 									releaseGte: catalogReleaseFloorUtc,
 									watchRegion: streamingWatchRegionApi,
+									genreId: movieFilterGenreId,
 								})
 							: movieLobbyTheatersUpcoming
-								? await fetchMoviesUpcoming(SEED_PAGE, {
-										cookieHeader,
-										region: patronCatalogTheatricalRegion,
-									})
+								? movieFilterGenreId
+									? await fetchMoviesDiscover(SEED_PAGE, {
+											cookieHeader,
+											sortBy: "primary_release_date.asc",
+											venue: "theaters",
+											region: patronCatalogTheatricalRegion,
+											genreId: movieFilterGenreId,
+										})
+									: await fetchMoviesUpcoming(SEED_PAGE, {
+											cookieHeader,
+											region: patronCatalogTheatricalRegion,
+										})
 								: movieLobbyStreamingCatalog
 									? await fetchMoviesDiscover(SEED_PAGE, {
 											cookieHeader,
@@ -342,43 +410,55 @@ export default async function HomePage({
 												sort === "popular"
 													? "popularity.desc"
 													: LATEST_DISCOVER_SORT,
-											// Same “watch at home” contract as Popular: subscription services + optional patron `watch_region`.
-											monetization: "flatrate",
+											monetization: movieFilterMonetization,
 											watchRegion: streamingWatchRegionApi,
+											genreId: movieFilterGenreId,
 										})
-									: movieLobbyUsesNowPlaying
-										? await fetchMoviesNowPlaying(SEED_PAGE, { cookieHeader })
-										: movieLobbyTheatersLatestDiscover
-											? await fetchMoviesDiscover(SEED_PAGE, {
+									: movieLobbyUsesNowPlayingWithGenre
+										? await fetchMoviesDiscover(SEED_PAGE, {
+												cookieHeader,
+												sortBy: "popularity.desc",
+												venue: "theaters",
+												region: patronCatalogTheatricalRegion,
+												genreId: movieFilterGenreId,
+											})
+										: movieLobbyUsesNowPlaying
+											? await fetchMoviesNowPlaying(SEED_PAGE, {
 													cookieHeader,
-													sortBy: LATEST_DISCOVER_SORT,
-													venue: "theaters",
-													region: patronCatalogTheatricalRegion,
 												})
-											: sort === "latest"
+											: movieLobbyTheatersLatestDiscover
 												? await fetchMoviesDiscover(SEED_PAGE, {
 														cookieHeader,
 														sortBy: LATEST_DISCOVER_SORT,
-														venue:
-															movieVenue === "streaming"
-																? "streaming"
-																: "theaters",
-														monetization:
-															movieVenue === "streaming"
-																? "flatrate"
-																: undefined,
-														watchRegion:
-															movieVenue === "streaming"
-																? streamingWatchRegionApi
-																: undefined,
-														region:
-															movieVenue === "theaters"
-																? patronCatalogTheatricalRegion
-																: undefined,
+														venue: "theaters",
+														region: patronCatalogTheatricalRegion,
+														genreId: movieFilterGenreId,
 													})
-												: await fetchMoviesNowPlaying(SEED_PAGE, {
-														cookieHeader,
-													});
+												: sort === "latest"
+													? await fetchMoviesDiscover(SEED_PAGE, {
+															cookieHeader,
+															sortBy: LATEST_DISCOVER_SORT,
+															venue:
+																movieVenue === "streaming"
+																	? "streaming"
+																	: "theaters",
+															monetization:
+																movieVenue === "streaming"
+																	? movieFilterMonetization
+																	: undefined,
+															watchRegion:
+																movieVenue === "streaming"
+																	? streamingWatchRegionApi
+																	: undefined,
+															region:
+																movieVenue === "theaters"
+																	? patronCatalogTheatricalRegion
+																	: undefined,
+															genreId: movieFilterGenreId,
+														})
+													: await fetchMoviesNowPlaying(SEED_PAGE, {
+															cookieHeader,
+														});
 		} catch (err) {
 			console.error("[home] catalogue fetch failed", err);
 			lobbyResult = { data: null, error: { status: 0 } };
@@ -439,14 +519,15 @@ export default async function HomePage({
 				catalogRun === "ongoing" ||
 				catalogRun === "completed" ||
 				catalogRun === "upcoming" ||
-				sort !== "popular"
+				sort !== "popular" ||
+				tvPopularNeedsDiscover
 				? "discover"
 				: "popular"
 			: movieLobbyTheatersUpcoming
 				? "upcoming"
 				: movieLobbyStreamingCatalog || movieLobbyStreamingUpcoming
 					? "discover"
-					: movieLobbyUsesNowPlaying
+					: movieLobbyUsesNowPlaying && !movieLobbyUsesNowPlayingWithGenre
 						? "now_playing"
 						: "discover";
 
@@ -459,8 +540,15 @@ export default async function HomePage({
 		movieLobbyStreamingCatalog ||
 		movieLobbyStreamingUpcoming ||
 		tvLobbyStreamingUpcoming
-			? "flatrate"
-			: null;
+			? (catalogFilters.monetization ?? "flatrate")
+			: browse === "tv" &&
+					!animeSeasonActive &&
+					catalogRun === "ongoing" &&
+					sort === "popular" &&
+					tvVenue === "streaming" &&
+					tvPopularNeedsDiscover
+				? (catalogFilters.monetization ?? "flatrate")
+				: null;
 
 	const discoverReleaseGteForInfinite = movieLobbyStreamingUpcoming
 		? catalogReleaseFloorUtc
@@ -475,7 +563,7 @@ export default async function HomePage({
 
 	const discoverGenreIdForInfinite = animeSeasonActive
 		? animeSeasonTvDiscoverParams(tvLobbySort).genreId
-		: null;
+		: (catalogFilters.genreId ?? null);
 
 	const discoverTvStatusForInfinite =
 		browse === "tv" && animeSeasonActive
@@ -490,7 +578,8 @@ export default async function HomePage({
 	const discoverWatchRegionForInfinite =
 		movieLobbyStreamingCatalog ||
 		movieLobbyStreamingUpcoming ||
-		tvLobbyStreamingUpcoming
+		tvLobbyStreamingUpcoming ||
+		(browse === "tv" && tvPopularNeedsDiscover && tvVenue === "streaming")
 			? streamingWatchRegionApi
 			: undefined;
 
@@ -513,6 +602,8 @@ export default async function HomePage({
 		movieVenue ?? tvVenue ?? "",
 		discoverSortForLobby,
 		catalogKindForInfinite,
+		catalogFilters.genreId ?? "",
+		catalogFilters.monetization ?? "",
 	].join("|");
 
 	const catalogLabelForLobby =

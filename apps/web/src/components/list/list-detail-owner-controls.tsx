@@ -1,6 +1,7 @@
 "use client";
 
 import IconPen2Fill from "@still/ui/icons/pen-2-fill";
+import { cn } from "@still/ui/lib/utils";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ListCollaboratorInvite } from "@/components/list/list-collaborator-invite";
@@ -15,7 +16,7 @@ import { listHasDiscoverabilityDescription } from "@/lib/list-quality";
 
 /**
  * Owner-only controls displayed in list detail hero.
- * Keeps the edit dialog colocated with the cover picker.
+ * Quick actions (cover, edit) sit above the collaborator panel for clearer hierarchy.
  */
 export function ListDetailOwnerControls({
 	listId,
@@ -54,19 +55,21 @@ export function ListDetailOwnerControls({
 		!listHasDiscoverabilityDescription(initialDescription);
 
 	return (
-		<div className="flex w-full flex-col items-center gap-3">
+		<div className="flex w-full max-w-md flex-col items-stretch gap-4">
 			{needsDescription ? (
 				<ListDetailDiscoverabilityNudge
+					className="mt-0"
 					onEditDetails={() => setEditOpen(true)}
 				/>
 			) : null}
-			{allowEditDetails ? (
-				<ListCollaboratorInvite
-					listId={listId}
-					initialCollaborators={collaborators}
-				/>
-			) : null}
-			<div className="inline-flex flex-wrap items-center justify-center gap-2">
+
+			{/* Primary owner actions — canvas controls on the list hero card surface. */}
+			<div
+				className={cn(
+					"flex flex-wrap items-center justify-center gap-2",
+					allowEditDetails ? "pb-1" : undefined,
+				)}
+			>
 				<ListDetailCoverPicker
 					listId={listId}
 					films={films}
@@ -106,6 +109,13 @@ export function ListDetailOwnerControls({
 					</>
 				) : null}
 			</div>
+
+			{allowEditDetails ? (
+				<ListCollaboratorInvite
+					listId={listId}
+					initialCollaborators={collaborators}
+				/>
+			) : null}
 		</div>
 	);
 }

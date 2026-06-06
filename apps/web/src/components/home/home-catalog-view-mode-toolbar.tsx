@@ -4,8 +4,9 @@ import IconSlider from "@still/ui/icons/slider";
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { HomeCatalogFiltersPopover } from "@/components/home/home-catalog-filters-popover";
 import { useHomeTmdbLobbyParamsOptional } from "@/components/home/home-tmdb-lobby-params-context";
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 
@@ -20,6 +21,12 @@ import { discoverCatalogUrl } from "@/lib/discover-catalog-url";
 import { parseHomeAnimeSeason } from "@/lib/home-anime-season";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
 import {
+	hasActiveHomeCatalogFilters,
+	parseHomeCatalogFilters,
+} from "@/lib/home-catalog-filters";
+import {
+	DEFAULT_HOME_CATALOG_RUN,
+	effectiveHomeCatalogRun,
 	type HomeCatalogRun,
 	parseHomeCatalogRun,
 	TV_COMPLETED_DISCOVER_STATUS,
@@ -40,6 +47,87 @@ import {
 	parseTvLobbyVenue,
 } from "@/lib/home-venue";
 import { tvDiscoverCatalogUrl } from "@/lib/tv-discover-catalog-url";
+
+const filtersTriggerClass = cn(
+	"relative inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none",
+	"[@media(hover:hover)]:hover:bg-card/55 [@media(hover:hover)]:hover:text-foreground",
+	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+);
+
+function CatalogueFiltersControl({
+	usePopover,
+	browse,
+	filtersHref,
+	filtersAria,
+	venue,
+	filters,
+	summaryLabel,
+	currentHref,
+	onNavigate,
+	onPrefetch,
+	hideGenreFilter = false,
+}: {
+	usePopover: boolean;
+	browse: "movies" | "tv";
+	filtersHref: string;
+	filtersAria: string;
+	venue: "theaters" | "streaming";
+	filters: ReturnType<typeof parseHomeCatalogFilters>;
+	summaryLabel: string;
+	currentHref: string;
+	onNavigate: (href: string) => void;
+	onPrefetch?: (href: string) => void;
+	/** TV **This season** pins Animation genre — hide genre picks while active. */
+	hideGenreFilter?: boolean;
+}) {
+	const trigger = (
+		<button
+			type="button"
+			className={filtersTriggerClass}
+			aria-label={filtersAria}
+			title={filtersAria}
+		>
+			<IconSlider size="1.125rem" className="shrink-0 opacity-95" aria-hidden />
+			{hasActiveHomeCatalogFilters(filters) ? (
+				<span
+					aria-hidden
+					className="absolute top-1.5 right-1.5 size-1.5 rounded-full bg-accent"
+				/>
+			) : null}
+		</button>
+	);
+
+	if (!usePopover) {
+		return (
+			<Link
+				href={filtersHref}
+				className={filtersTriggerClass}
+				aria-label={filtersAria}
+				title={filtersAria}
+			>
+				<IconSlider
+					size="1.125rem"
+					className="shrink-0 opacity-95"
+					aria-hidden
+				/>
+			</Link>
+		);
+	}
+
+	return (
+		<HomeCatalogFiltersPopover
+			browse={browse}
+			venue={venue}
+			filters={filters}
+			summaryLabel={summaryLabel}
+			currentHref={currentHref}
+			onNavigate={onNavigate}
+			onPrefetch={onPrefetch}
+			trigger={trigger}
+			hideGenreFilter={hideGenreFilter}
+		/>
+	);
+}
 
 /** Right-rail chip during committed `/home?search=` — exits search mode. */
 function HomeCatalogueSearchClearChipToolbar({
@@ -88,12 +176,14 @@ function HomeCatalogueSearchClearChipToolbar({
 export function HomeCatalogViewModeToolbar() {
 	const pathname = usePathname() ?? "";
 	const searchParams = useSearchParams();
+	const router = useRouter();
+	const { navigate: lobbyNavigate } = useLobbyNavigation();
 	const tmdbLobby = useHomeTmdbLobbyParamsOptional();
 	const browse = parseHomeBrowseSurface(searchParams.get("browse"));
 	const catalogSort = parseHomeCatalogSort(searchParams.get("sort"), browse);
 	/** TV slice — `?run=`; legacy `?sort=ongoing|upcoming` maps here until bookmarks update. */
 	const sortParam = searchParams.get("sort")?.trim().toLowerCase() ?? "";
-	const catalogRun =
+	const catalogRunRaw =
 		parseHomeCatalogRun(searchParams.get("run"), browse) ??
 		(browse === "tv" && ["ongoing", "on-air", "on_the_air"].includes(sortParam)
 			? "ongoing"
@@ -104,9 +194,22 @@ export function HomeCatalogViewModeToolbar() {
 		browse === "tv" &&
 		(tmdbLobby?.animeSeason ??
 			parseHomeAnimeSeason(searchParams.get("animeSeason")));
+	const catalogRun = effectiveHomeCatalogRun({
+		run: catalogRunRaw,
+		browse,
+		animeSeason: animeSeasonActive,
+	});
 	const reduceMotion = useReducedMotion();
 
 	const isHomeLobby = pathname === "/home" || pathname.endsWith("/home");
+	const isDiaryLobby = pathname === "/diary" || pathname.endsWith("/diary");
+	const isWatchlistLobby =
+		pathname === "/watchlist" || pathname.endsWith("/watchlist/");
+	const showHomeFiltersPopover =
+		isHomeLobby &&
+		(browse === "movies" || browse === "tv") &&
+		!isDiaryLobby &&
+		!isWatchlistLobby;
 	const catalogueBrowse = browse === "tv" ? "tv" : "movies";
 	const catalogueSearchActive =
 		isHomeLobby &&
@@ -117,11 +220,18 @@ export function HomeCatalogViewModeToolbar() {
 		return <HomeCatalogueSearchClearChipToolbar browse={catalogueBrowse} />;
 	}
 
-	/** `/diary` reuses this toolbar — venue + filters must stay on diary URLs, not `/home`. */
-	const isDiaryLobby = pathname === "/diary" || pathname.endsWith("/diary");
-	/** `/watchlist` lobby — no theatrical vs streaming rail; keep filters only (same chrome shell as `/home`). */
-	const isWatchlistLobby =
-		pathname === "/watchlist" || pathname.endsWith("/watchlist/");
+	const handleFilterNavigate = (href: string) => {
+		if (tmdbLobby && !isDiaryLobby && !isWatchlistLobby) {
+			lobbyNavigate(href);
+			return;
+		}
+		router.push(href);
+	};
+
+	const filterPrefetch = (href: string) => {
+		tmdbLobby?.prefetchLobby(href);
+		void router.prefetch(href);
+	};
 
 	if (browse === "community" && !isDiaryLobby && !isWatchlistLobby) {
 		return null;
@@ -138,22 +248,21 @@ export function HomeCatalogViewModeToolbar() {
 					role="toolbar"
 					aria-label="Catalogue filters"
 				>
-					<Link
-						href={filtersHref}
-						className={cn(
-							"inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-colors duration-200 ease-out motion-reduce:transition-none",
-							"[@media(hover:hover)]:hover:bg-card/55 [@media(hover:hover)]:hover:text-foreground",
-							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-						)}
-						aria-label={filtersAria}
-						title={filtersAria}
-					>
-						<IconSlider
-							size="1.125rem"
-							className="shrink-0 opacity-95"
-							aria-hidden
-						/>
-					</Link>
+					<CatalogueFiltersControl
+						usePopover={false}
+						browse="movies"
+						filtersHref={filtersHref}
+						filtersAria={filtersAria}
+						venue={parseHomeVenue(searchParams.get("venue"), catalogSort)}
+						filters={{
+							genreId: null,
+							monetization: null,
+						}}
+						summaryLabel=""
+						currentHref={filtersHref}
+						onNavigate={handleFilterNavigate}
+						onPrefetch={filterPrefetch}
+					/>
 				</div>
 			</div>
 		);
@@ -323,6 +432,10 @@ export function HomeCatalogViewModeToolbar() {
 		}
 	}
 
+	const currentFilterHref = isHomeLobby
+		? `/home?${searchParams.toString()}`
+		: filtersHref;
+
 	const isTvCatalogueLobby =
 		browse === "tv" && !isDiaryLobby && !isWatchlistLobby;
 
@@ -351,7 +464,7 @@ export function HomeCatalogViewModeToolbar() {
 				browse: "tv",
 				sort: activeSort,
 				venue: showUpcomingVenue ? effectiveVenue : undefined,
-				run: activeRun === run ? null : run,
+				run: run === DEFAULT_HOME_CATALOG_RUN ? null : run,
 				animeSeason: false,
 			});
 
@@ -470,6 +583,21 @@ export function HomeCatalogViewModeToolbar() {
 			);
 		};
 
+		const tvCatalogFilters = parseHomeCatalogFilters(searchParams, {
+			venue: effectiveVenue,
+			sort: activeSort,
+		});
+		const tvFilterSummary = (() => {
+			const sortLabel = activeSort === "popular" ? "Popular" : "Latest";
+			if (seasonActive) return `${sortLabel} · This season`;
+			if (activeRun === "ongoing") return `${sortLabel} · Ongoing`;
+			if (activeRun === "completed") return `${sortLabel} · Completed`;
+			if (activeRun === "upcoming") {
+				return `Upcoming · ${effectiveVenue === "theaters" ? "In cinemas" : "At home"}`;
+			}
+			return sortLabel;
+		})();
+
 		return (
 			<div className="flex shrink-0 flex-col items-end gap-1">
 				<p id={tvToolbarDescId} className="sr-only">
@@ -536,28 +664,29 @@ export function HomeCatalogViewModeToolbar() {
 						className="mx-1 h-6 w-px shrink-0 self-center bg-border/55"
 					/>
 
-					<Link
-						href={filtersHref}
-						className={cn(
-							"inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-colors duration-200 ease-out motion-reduce:transition-none",
-							"[@media(hover:hover)]:hover:bg-card/55 [@media(hover:hover)]:hover:text-foreground",
-							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-						)}
-						aria-label={filtersAria}
-						title={filtersAria}
-					>
-						<IconSlider
-							size="1.125rem"
-							className="shrink-0 opacity-95"
-							aria-hidden
-						/>
-					</Link>
+					<CatalogueFiltersControl
+						usePopover={showHomeFiltersPopover}
+						browse="tv"
+						filtersHref={filtersHref}
+						filtersAria={filtersAria}
+						venue={effectiveVenue}
+						filters={tvCatalogFilters}
+						summaryLabel={tvFilterSummary}
+						currentHref={currentFilterHref}
+						onNavigate={handleFilterNavigate}
+						onPrefetch={filterPrefetch}
+						hideGenreFilter={seasonActive}
+					/>
 				</div>
 			</div>
 		);
 	}
 
 	if (!showVenueChips) {
+		const fallbackVenue = parseHomeVenue(
+			searchParams.get("venue"),
+			catalogSort,
+		);
 		return (
 			<div className="flex shrink-0 flex-col items-end gap-1">
 				<div
@@ -565,22 +694,21 @@ export function HomeCatalogViewModeToolbar() {
 					role="toolbar"
 					aria-label="Catalogue filters"
 				>
-					<Link
-						href={filtersHref}
-						className={cn(
-							"inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-colors duration-200 ease-out motion-reduce:transition-none",
-							"[@media(hover:hover)]:hover:bg-card/55 [@media(hover:hover)]:hover:text-foreground",
-							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-						)}
-						aria-label={filtersAria}
-						title={filtersAria}
-					>
-						<IconSlider
-							size="1.125rem"
-							className="shrink-0 opacity-95"
-							aria-hidden
-						/>
-					</Link>
+					<CatalogueFiltersControl
+						usePopover={false}
+						browse="movies"
+						filtersHref={filtersHref}
+						filtersAria={filtersAria}
+						venue={fallbackVenue}
+						filters={{
+							genreId: null,
+							monetization: null,
+						}}
+						summaryLabel=""
+						currentHref={currentFilterHref}
+						onNavigate={handleFilterNavigate}
+						onPrefetch={filterPrefetch}
+					/>
 				</div>
 			</div>
 		);
@@ -606,6 +734,18 @@ export function HomeCatalogViewModeToolbar() {
 	const srToolbarCopy = isDiaryLobby
 		? "On your diary, In cinemas vs At home sets which catalogue slice the filters button opens; your logged films list is ordered by the left chips."
 		: "In cinemas uses TMDb’s theatrical lists: now playing for Popular, newest already released in cinemas for Latest, and opening dates strictly after today for Upcoming so it does not repeat Latest’s same-day openings. At home uses subscription streaming availability in the catalogue region; Upcoming there shows primary releases from today onward, soonest first.";
+
+	const moviesCatalogFilters = parseHomeCatalogFilters(searchParams, {
+		venue: effectiveVenue,
+		sort: activeCatalogSort,
+	});
+	const moviesFilterSummary = `${
+		activeCatalogSort === "popular"
+			? "Popular"
+			: activeCatalogSort === "latest"
+				? "Latest"
+				: "Upcoming"
+	} · ${effectiveVenue === "theaters" ? "In cinemas" : "At home"}`;
 
 	return (
 		<div className="flex shrink-0 flex-col items-end gap-1">
@@ -748,22 +888,18 @@ export function HomeCatalogViewModeToolbar() {
 					className="mx-1 h-6 w-px shrink-0 self-center bg-border/55"
 				/>
 
-				<Link
-					href={filtersHref}
-					className={cn(
-						"inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-colors duration-200 ease-out motion-reduce:transition-none",
-						"[@media(hover:hover)]:hover:bg-card/55 [@media(hover:hover)]:hover:text-foreground",
-						"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-					)}
-					aria-label={filtersAria}
-					title={filtersAria}
-				>
-					<IconSlider
-						size="1.125rem"
-						className="shrink-0 opacity-95"
-						aria-hidden
-					/>
-				</Link>
+				<CatalogueFiltersControl
+					usePopover={showHomeFiltersPopover && !isDiaryLobby}
+					browse="movies"
+					filtersHref={filtersHref}
+					filtersAria={filtersAria}
+					venue={effectiveVenue}
+					filters={moviesCatalogFilters}
+					summaryLabel={moviesFilterSummary}
+					currentHref={currentFilterHref}
+					onNavigate={handleFilterNavigate}
+					onPrefetch={filterPrefetch}
+				/>
 			</div>
 		</div>
 	);

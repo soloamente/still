@@ -191,7 +191,10 @@ export default async function PublicListDetailPage({
 							<ListDetailFilmsGrid
 								items={filmRows}
 								isRanked={data.isRanked}
+								listId={data.id}
 								canEditNotes={false}
+								systemKind={data.systemKind ?? null}
+								viewerCanEdit={false}
 							/>
 						</MovieDetailBodySection>
 						<ListDetailPublicSignInCta listId={data.id} />

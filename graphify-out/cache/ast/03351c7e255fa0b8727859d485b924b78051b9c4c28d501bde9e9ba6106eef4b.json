@@ -1,0 +1,1804 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"label": "home-sticky-search.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_sticky_search_browse_preview_heading",
+			"label": "BROWSE_PREVIEW_HEADING",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L101"
+		},
+		{
+			"id": "home_home_sticky_search_browsecategoryfromsurface",
+			"label": "browseCategoryFromSurface()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L107"
+		},
+		{
+			"id": "home_home_sticky_search_catalogsearchviewer",
+			"label": "CatalogSearchViewer",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L127"
+		},
+		{
+			"id": "home_home_sticky_search_catalogsearchdialogroot",
+			"label": "CatalogSearchDialogRoot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L132"
+		},
+		{
+			"id": "home_home_sticky_search_homestickysearch",
+			"label": "HomeStickySearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1208"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "border_beam",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "next_themes",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "react_dom",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_list_results_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_dialog_list_results_searchdialoglistresults",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_people_results_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_dialog_people_results_searchdialogpeopleresults",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_people_suggestions_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_dialog_people_suggestions_searchdialogpeoplesuggestions",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_result_skeletons_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_dialog_result_skeletons_searchdialogbrowsepreviewskeleton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_dialog_result_skeletons_searchdialoglistskeleton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_dialog_result_skeletons_searchdialogposterskeletongrid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_studio_rail_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_dialog_studio_rail_searchdialogstudiorail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_tag_pill_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_tag_pill_searchtagpill",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_token_field_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_search_token_field_searchtokenfield",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "movie_movie_poster_movieposter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_filter_chip_row_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "ui_filter_chip_row_filterchipbutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_segmented_pill_toolbar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "ui_segmented_pill_toolbar_segmentedpilltoolbar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_app_themes_appthemesearchborderbeamcolor",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_app_themes_default_app_theme_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_app_themes_resolveapptheme",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_catalog_search_dialog_store_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_catalog_search_dialog_store_clampcatalogsearchpanelleftfromcenter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_catalog_search_dialog_store_computecatalogsearchanchoredpanelstyle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_catalog_search_dialog_store_normalizecatalogsearchanchorrect",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_catalog_search_dialog_store_usecatalogsearchdialog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_go_to_dialog_store_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_go_to_dialog_store_usegotodialog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_browse_surface_parsehomebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_load_page_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_catalogue_search_load_page_committedcataloguesearchneedstagmetadata",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_catalogue_search_param_buildhomecataloguesearchclearhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_catalogue_search_param_cancommitcataloguesearch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_catalogue_search_param_ishomecataloguesearchactive",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_catalogue_search_param_parsehomecataloguesearchparam",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_catalogue_search_param_resolvecommitbrowsefromdraft",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_persist_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_lobby_persist_readhomelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_search_recent_storage_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_search_recent_storage_recentsearchentryv2",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_search_recent_storage_readhomesearchrecents",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_search_recent_storage_recordhomesearchrecent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_home_search_recent_storage_restorefromhomesearchrecent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_search_query_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_profile_search_query_normalizeprofilesearchquery",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_search_dialog_studios_findsearchdialogstudio",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_search_query_tags_derivesearchstate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_search_query_tags_searchtag",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_search_query_tags_upserttag",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_text_search_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_catalog_text_search_catalogtextsearchlistingkind",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_catalog_text_search_usecatalogtextsearch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_tmdb_language_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_catalog_tmdb_language_usecatalogtmdblanguage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_catalogue_tag_search_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_catalogue_tag_search_usecataloguetagsearch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_profile_search_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_profile_search_useprofilesearch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_search_dialog_browse_preview_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_search_dialog_browse_preview_searchdialogbrowsecategory",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_search_dialog_browse_preview_searchdialogbrowsepreviewitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_search_dialog_browse_preview_usesearchdialogbrowsepreview",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_search_dialog_genres_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_search_dialog_genres_mergesearchdialoggenres",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_search_dialog_genres_usesearchdialoggenres",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_search_dialog_studios_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "lib_use_search_dialog_studios_usesearchdialogstudios",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_home_sticky_search_browse_preview_heading",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_home_sticky_search_browsecategoryfromsurface",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_home_sticky_search_catalogsearchviewer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_home_sticky_search_catalogsearchdialogroot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_sticky_search_tsx",
+			"target": "home_home_sticky_search_homestickysearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1208",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L138"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L141"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L142"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L147"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L151"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L161"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L162"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L165"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "parseHomeBrowseSurface",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L186"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L186"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L188"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L194"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L214"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L231"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L236"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "deriveSearchState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L237"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L238"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L243"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L289"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L294"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L300"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L306"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L323"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L342"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useGoToDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L350"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L352"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L359"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L360"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L365"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L366"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L368"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L368"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L371"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "isHomeCatalogueSearchActive",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L373"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useSearchDialogBrowsePreview",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L375"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useSearchDialogStudios",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L380"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogTmdbLanguage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L387"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useSearchDialogGenres",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L394"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L400"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L407"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L445"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "mergeSearchDialogGenres",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L449"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L455"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L462"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L480"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L499"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogueTagSearch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L506"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCatalogTextSearch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L516"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L527"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "normalizeProfileSearchQuery",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L533"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L535"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useProfileSearch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L537"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L539"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L575"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L581"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L587"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L644"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L656"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L749"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L799"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "clampCatalogSearchPanelLeftFromCenter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L816"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L913"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L932"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L984"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1052"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1111"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1143"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1148"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_catalogsearchdialogroot",
+			"callee": "createPortal",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1202"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1209"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1210"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1211"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1212"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1213"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useTheme",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1214"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1215"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1216"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1217"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useCatalogSearchDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1218"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1220"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "parseHomeBrowseSurface",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1221"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1221"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1223"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1223"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "isHomeCatalogueSearchActive",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1226"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useSearchDialogStudios",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1234"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useCatalogTmdbLanguage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1235"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useSearchDialogGenres",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1240"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1242"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1270"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "appThemeSearchBorderBeamColor",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1274"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "resolveAppTheme",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1276"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1280"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1285"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1291"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1317"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1343"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1357"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1377"
+		},
+		{
+			"caller_nid": "home_home_sticky_search_homestickysearch",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx",
+			"source_location": "L1399"
+		}
+	]
+}

@@ -1,0 +1,261 @@
+"use client";
+
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@still/ui/components/popover";
+import { cn } from "@still/ui/lib/utils";
+import { type ReactElement, useMemo, useRef, useState } from "react";
+
+import {
+	FilterChipRow,
+	filterChipBaseClass,
+} from "@/components/ui/filter-chip-row";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
+import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import {
+	type HomeCatalogFilters,
+	hasActiveHomeCatalogFilters,
+	mergeHomeCatalogFiltersIntoHref,
+} from "@/lib/home-catalog-filters";
+import type { HomeVenue } from "@/lib/home-venue";
+import { useCatalogTmdbLanguage } from "@/lib/use-catalog-tmdb-language";
+import { useSearchDialogGenres } from "@/lib/use-search-dialog-genres";
+import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
+
+const MONETIZATION_OPTIONS = [
+	{ id: "flatrate", label: "Subscription" },
+	{ id: "rent", label: "Rent" },
+	{ id: "buy", label: "Buy" },
+	{ id: "free", label: "Free" },
+	{ id: "ads", label: "Ads" },
+] as const;
+
+/** Footer / utility pill — same rhythm as notifications dropdown actions. */
+const panelPillClassName = cn(
+	"inline-flex min-h-10 items-center justify-center rounded-full bg-card px-4 py-2 font-medium text-muted-foreground text-sm transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none",
+	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+);
+
+function sectionLabel(text: string) {
+	return (
+		<p className="mb-2 px-0.5 font-medium text-muted-foreground text-xs tracking-wide">
+			{text}
+		</p>
+	);
+}
+
+function genreChipClass(active: boolean) {
+	return cn(
+		filterChipBaseClass,
+		"min-h-10 transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none",
+		active
+			? "bg-foreground/10 text-foreground"
+			: cn("bg-card text-muted-foreground", DETAIL_CANVAS_ON_CARD_HOVER_CLASS),
+	);
+}
+
+/** Scroll edge fades — matches `NotificationMenuScrims` on `bg-background`. */
+function CatalogFiltersMenuScrims({
+	showHeaderFade,
+	showFooterFade,
+}: {
+	showHeaderFade: boolean;
+	showFooterFade: boolean;
+}) {
+	return (
+		<>
+			<div
+				aria-hidden
+				className={cn(
+					"pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-linear-to-b from-25% from-background via-background/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					showHeaderFade ? "opacity-100" : "opacity-0",
+				)}
+			/>
+			<div
+				aria-hidden
+				className={cn(
+					"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-linear-to-t from-15% from-background/95 via-background/25 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					showFooterFade ? "opacity-100" : "opacity-0",
+				)}
+			/>
+		</>
+	);
+}
+
+export type HomeCatalogFiltersPopoverProps = {
+	browse: "movies" | "tv";
+	venue: HomeVenue;
+	filters: HomeCatalogFilters;
+	summaryLabel: string;
+	currentHref: string;
+	onNavigate: (href: string) => void;
+	onPrefetch?: (href: string) => void;
+	trigger: ReactElement;
+	/** TV **This season** already pins Animation — hide genre picks. */
+	hideGenreFilter?: boolean;
+};
+
+/**
+ * In-lobby discover refinements — genre and watch type for Movies/TV browse.
+ * Sort order stays on the left Popular · Latest · Upcoming rail.
+ */
+export function HomeCatalogFiltersPopover({
+	browse,
+	venue,
+	filters,
+	summaryLabel,
+	currentHref,
+	onNavigate,
+	onPrefetch,
+	trigger,
+	hideGenreFilter = false,
+}: HomeCatalogFiltersPopoverProps) {
+	const [open, setOpen] = useState(false);
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const catalogLanguage = useCatalogTmdbLanguage(open);
+	const {
+		movieGenres,
+		tvGenres,
+		loading: genresLoading,
+	} = useSearchDialogGenres(open, catalogLanguage);
+
+	const showWatchType = venue === "streaming";
+	const activeMonetization = filters.monetization ?? "flatrate";
+	const genreOptions = browse === "tv" ? tvGenres : movieGenres;
+
+	const navigateFilters = (next: HomeCatalogFilters) => {
+		const href = mergeHomeCatalogFiltersIntoHref(currentHref, next);
+		onNavigate(href);
+		onPrefetch?.(href);
+	};
+
+	const sortedGenres = useMemo(
+		() => [...genreOptions].sort((a, b) => a.name.localeCompare(b.name)),
+		[genreOptions],
+	);
+
+	const scrollContentKey = `${browse}-${sortedGenres.length}-${showWatchType}-${genresLoading}-${hideGenreFilter ? "season" : "genre"}`;
+	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
+		scrollRef,
+		open,
+		scrollContentKey,
+	);
+
+	return (
+		<Popover open={open} onOpenChange={setOpen} modal={false}>
+			<PopoverTrigger render={trigger} />
+			<PopoverContent
+				side="bottom"
+				align="end"
+				sideOffset={12}
+				initialFocus={false}
+				className="w-[min(100vw-1.5rem,22rem)] overflow-visible rounded-[1.75rem] p-3 shadow-mobbin-xl"
+			>
+				<div className="flex min-h-0 flex-col gap-2">
+					<div className="shrink-0 px-0.5">
+						<p className="text-balance font-semibold text-base text-foreground leading-snug">
+							Filters
+						</p>
+						<p className="mt-0.5 text-pretty text-muted-foreground text-sm leading-snug">
+							{summaryLabel}
+						</p>
+					</div>
+
+					<div className="relative min-h-0 overflow-hidden rounded-2xl">
+						<CatalogFiltersMenuScrims
+							showHeaderFade={showHeaderFade}
+							showFooterFade={showFooterFade}
+						/>
+						<div
+							ref={scrollRef}
+							className="scrollbar-none max-h-[min(56vh,26rem)] min-h-0 overflow-y-auto overscroll-y-contain px-0.5 py-0.5"
+						>
+							{hideGenreFilter ? null : (
+								<>
+									{sectionLabel("Genre")}
+									<FilterChipRow aria-label="Genre" className="mb-4 gap-1.5">
+										<button
+											type="button"
+											className={genreChipClass(filters.genreId == null)}
+											aria-pressed={filters.genreId == null}
+											onClick={() =>
+												navigateFilters({ ...filters, genreId: null })
+											}
+										>
+											All genres
+										</button>
+										{genresLoading ? (
+											<span className="px-2 py-1.5 text-muted-foreground text-xs">
+												Loading genres…
+											</span>
+										) : null}
+										{sortedGenres.map((genre) => {
+											const active = filters.genreId === genre.id;
+											return (
+												<button
+													key={genre.id}
+													type="button"
+													className={genreChipClass(active)}
+													aria-pressed={active}
+													onClick={() =>
+														navigateFilters({
+															...filters,
+															genreId: active ? null : genre.id,
+														})
+													}
+												>
+													{genre.name}
+												</button>
+											);
+										})}
+									</FilterChipRow>
+								</>
+							)}
+
+							{showWatchType ? (
+								<div className="mb-1">
+									{sectionLabel("Watch type")}
+									<SegmentedPillToolbar
+										layoutId={`home-catalog-filter-monetization-${browse}`}
+										aria-label="Watch type"
+										value={activeMonetization}
+										onChange={(next) =>
+											navigateFilters({
+												...filters,
+												monetization: next === "flatrate" ? null : next,
+											})
+										}
+										options={MONETIZATION_OPTIONS.map((opt) => ({
+											id: opt.id,
+											label: opt.label,
+										}))}
+										compact
+									/>
+								</div>
+							) : null}
+						</div>
+					</div>
+
+					{hasActiveHomeCatalogFilters(filters) ? (
+						<div className="flex shrink-0 justify-end px-0.5 pt-0.5">
+							<button
+								type="button"
+								className={panelPillClassName}
+								onClick={() =>
+									navigateFilters({
+										genreId: null,
+										monetization: null,
+									})
+								}
+							>
+								Clear filters
+							</button>
+						</div>
+					) : null}
+				</div>
+			</PopoverContent>
+		</Popover>
+	);
+}
