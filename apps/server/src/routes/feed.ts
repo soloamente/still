@@ -16,6 +16,7 @@ import {
 	eq,
 	exists,
 	inArray,
+	isNull,
 	lt,
 	lte,
 	max,
@@ -173,6 +174,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					.where(
 						and(
 							inArray(log.userId, ids),
+							isNull(log.removedAt),
 							contentVisibilityWhere(viewer.id, log.userId, log.visibility),
 							withinCommunityPeriod(log.createdAt, start, end),
 							logBefore,
@@ -193,6 +195,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 								review.userId,
 								review.visibility,
 							),
+							isNull(review.removedAt),
 							inArray(review.userId, ids),
 							withinCommunityPeriod(review.publishedAt, start, end),
 							reviewBefore,
@@ -211,7 +214,14 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					.leftJoin(latestListAdded, eq(list.id, latestListAdded.listId))
 					.leftJoin(user, eq(list.userId, user.id))
 					.leftJoin(profile, eq(profile.userId, user.id))
-					.where(and(inArray(list.userId, ids), listPeriodWhere, listBefore))
+					.where(
+						and(
+							inArray(list.userId, ids),
+							isNull(list.removedAt),
+							listPeriodWhere,
+							listBefore,
+						),
+					)
 					.orderBy(desc(listActivityAtSql))
 					.limit(fetchLimit),
 			]);
@@ -321,6 +331,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					.where(
 						and(
 							contentVisibilityWhere(null, review.userId, review.visibility),
+							isNull(review.removedAt),
 							withinCommunityPeriod(review.publishedAt, start, end),
 						),
 					)
@@ -334,6 +345,7 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					.where(
 						and(
 							eq(list.isPublic, true),
+							isNull(list.removedAt),
 							withinCommunityPeriod(list.updatedAt, start, end),
 						),
 					)

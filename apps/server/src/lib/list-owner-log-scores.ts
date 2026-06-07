@@ -1,5 +1,5 @@
 import { db, log } from "@still/db";
-import { and, desc, eq, inArray, or } from "drizzle-orm";
+import { and, desc, eq, inArray, isNull, or } from "drizzle-orm";
 
 import { logMediaKey } from "./sense-taste-overlap";
 
@@ -50,7 +50,7 @@ export async function fetchOwnerLogScoresForListItems(
 			watchedAt: log.watchedAt,
 		})
 		.from(log)
-		.where(and(eq(log.userId, ownerUserId), mediaFilter))
+		.where(and(eq(log.userId, ownerUserId), isNull(log.removedAt), mediaFilter))
 		.orderBy(desc(log.watchedAt));
 
 	const scores = new Map<string, OwnerLogScore>();

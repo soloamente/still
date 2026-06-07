@@ -1,5 +1,5 @@
 import { db, list, listCollaborator, profile } from "@still/db";
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, isNull } from "drizzle-orm";
 
 import { isListCollaborator } from "./list-collaborator-access";
 
@@ -30,7 +30,7 @@ export async function fetchCollaboratedListsForPatron(
 		.from(listCollaborator)
 		.innerJoin(list, eq(listCollaborator.listId, list.id))
 		.innerJoin(profile, eq(list.userId, profile.userId))
-		.where(eq(listCollaborator.userId, userId))
+		.where(and(eq(listCollaborator.userId, userId), isNull(list.removedAt)))
 		.orderBy(desc(list.updatedAt));
 
 	return rows.map((row) => ({

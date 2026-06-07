@@ -1,5 +1,14 @@
 import { db, follow, log, movie, profile, tv, user } from "@still/db";
-import { and, desc, eq, inArray, isNotNull, or, sql } from "drizzle-orm";
+import {
+	and,
+	desc,
+	eq,
+	inArray,
+	isNotNull,
+	isNull,
+	or,
+	sql,
+} from "drizzle-orm";
 
 import { fetchOverlapDiarySlices } from "./fetch-overlap-diary-slices";
 import {
@@ -94,7 +103,7 @@ async function fetchPatronGenreWeights(
 		.from(log)
 		.leftJoin(movie, eq(log.movieId, movie.tmdbId))
 		.leftJoin(tv, eq(log.tvId, tv.tmdbId))
-		.where(eq(log.userId, userId))
+		.where(and(eq(log.userId, userId), isNull(log.removedAt)))
 		.orderBy(desc(log.watchedAt))
 		.limit(GENRE_WEIGHT_LOG_LIMIT);
 
@@ -157,7 +166,12 @@ async function fetchOverlapCandidateUserIds(input: {
 		.from(log)
 		.innerJoin(profile, eq(log.userId, profile.userId))
 		.where(
-			and(mediaFilter, eq(profile.isPrivate, false), isNotNull(profile.handle)),
+			and(
+				mediaFilter,
+				isNull(log.removedAt),
+				eq(profile.isPrivate, false),
+				isNotNull(profile.handle),
+			),
 		)
 		.groupBy(log.userId)
 		.orderBy(desc(sql`count(*)`))

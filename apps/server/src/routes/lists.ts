@@ -10,7 +10,7 @@ import {
 } from "@still/db";
 import { env } from "@still/env/server";
 import { get } from "@vercel/blob";
-import { and, asc, desc, eq, ilike, inArray, sql } from "drizzle-orm";
+import { and, asc, desc, eq, ilike, inArray, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
@@ -115,6 +115,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.where(
 					and(
 						eq(list.isPublic, true),
+						isNull(list.removedAt),
 						withinCommunityPeriod(list.updatedAt, start, end),
 					),
 				)
@@ -145,7 +146,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			const rows = await db
 				.select()
 				.from(list)
-				.where(eq(list.isPublic, true))
+				.where(and(eq(list.isPublic, true), isNull(list.removedAt)))
 				.orderBy(
 					listDiscoverabilityOrder,
 					desc(list.likesCount),
@@ -170,6 +171,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.where(
 					and(
 						eq(list.isPublic, true),
+						isNull(list.removedAt),
 						sql`length(trim(coalesce(${list.description}, ''))) >= ${LIST_DESCRIPTION_DISCOVERABILITY_MIN_CHARS}`,
 						sql`${list.systemKind} is null`,
 					),
@@ -200,8 +202,12 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.from(list)
 				.where(
 					q
-						? and(eq(list.userId, user.id), ilike(list.title, `%${q}%`))
-						: eq(list.userId, user.id),
+						? and(
+								eq(list.userId, user.id),
+								isNull(list.removedAt),
+								ilike(list.title, `%${q}%`),
+							)
+						: and(eq(list.userId, user.id), isNull(list.removedAt)),
 				)
 				.orderBy(desc(list.updatedAt))
 				.limit(limit);
@@ -222,7 +228,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				db
 					.select()
 					.from(list)
-					.where(eq(list.userId, user.id))
+					.where(and(eq(list.userId, user.id), isNull(list.removedAt)))
 					.orderBy(desc(list.updatedAt)),
 				fetchCollaboratedListsForPatron(user.id),
 			]);
@@ -325,7 +331,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 					userId: list.userId,
 				})
 				.from(list)
-				.where(eq(list.id, params.id))
+				.where(and(eq(list.id, params.id), isNull(list.removedAt)))
 				.limit(1);
 			if (!row || !(await canViewList(row, user?.id)))
 				return status(404, "Not found");
@@ -383,7 +389,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			const [meta] = await db
 				.select()
 				.from(list)
-				.where(eq(list.id, params.id))
+				.where(and(eq(list.id, params.id), isNull(list.removedAt)))
 				.limit(1);
 			if (!meta) return status(404, "Not found");
 			if (!(await canViewList(meta, user?.id))) return status(404, "Not found");
@@ -916,7 +922,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			const [listRow] = await db
 				.select({ id: list.id, isPublic: list.isPublic })
 				.from(list)
-				.where(eq(list.id, params.id))
+				.where(and(eq(list.id, params.id), isNull(list.removedAt)))
 				.limit(1);
 			if (!listRow) return status(404, "Not found");
 			if (!listRow.isPublic) return status(403, "Private list");
@@ -976,7 +982,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			const rows = await db
 				.select()
 				.from(list)
-				.where(eq(list.userId, params.userId))
+				.where(and(eq(list.userId, params.userId), isNull(list.removedAt)))
 				.orderBy(desc(list.updatedAt))
 				.limit(limit);
 			return withCoverPosterPaths(rows);

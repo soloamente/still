@@ -10,7 +10,7 @@ import {
 	user,
 } from "@still/db";
 import { env } from "@still/env/server";
-import { and, desc, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray, isNull } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { filterMovieCatalogueResults } from "../lib/adult-content-catalogue-filter";
@@ -856,6 +856,7 @@ export const moviesRoute = new Elysia({
 				.where(
 					and(
 						eq(review.movieId, id),
+						isNull(review.removedAt),
 						contentVisibilityWhere(
 							currentUser?.id ?? null,
 							review.userId,

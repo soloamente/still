@@ -7,7 +7,7 @@ import {
 	review,
 	user,
 } from "@still/db";
-import { and, asc, eq, inArray, sql } from "drizzle-orm";
+import { and, asc, eq, inArray, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
@@ -162,6 +162,7 @@ export const commentsRoute = new Elysia({
 					and(
 						eq(comment.parentType, params.parentType as ParentType),
 						eq(comment.parentId, params.parentId),
+						isNull(comment.deletedAt),
 					),
 				)
 				.orderBy(asc(comment.createdAt));

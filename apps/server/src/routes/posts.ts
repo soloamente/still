@@ -1,5 +1,5 @@
 import { db, eventLog, post, profile, reaction, user } from "@still/db";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
@@ -140,7 +140,7 @@ export const postsRoute = new Elysia({ prefix: "/api/posts", tags: ["posts"] })
 				.from(post)
 				.leftJoin(user, eq(post.userId, user.id))
 				.leftJoin(profile, eq(profile.userId, user.id))
-				.where(eq(post.userId, params.userId))
+				.where(and(eq(post.userId, params.userId), isNull(post.removedAt)))
 				.orderBy(desc(post.publishedAt))
 				.limit(50);
 			return rows;

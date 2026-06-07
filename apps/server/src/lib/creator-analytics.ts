@@ -1,5 +1,5 @@
 import { db, list } from "@still/db";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, isNull, sql } from "drizzle-orm";
 import {
 	buildCuratorHeadline,
 	type CuratorContributionStats,
@@ -42,7 +42,13 @@ export async function fetchCreatorAnalyticsForUser(
 			hasDescription: sql<boolean>`${listDescribedSql}`,
 		})
 		.from(list)
-		.where(and(eq(list.userId, userId), eq(list.isPublic, true)))
+		.where(
+			and(
+				eq(list.userId, userId),
+				eq(list.isPublic, true),
+				isNull(list.removedAt),
+			),
+		)
 		.orderBy(desc(list.likesCount), desc(list.updatedAt))
 		.limit(5);
 

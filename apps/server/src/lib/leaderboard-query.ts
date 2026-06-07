@@ -7,6 +7,7 @@ import {
 	gt,
 	gte,
 	isNotNull,
+	isNull,
 	lt,
 	notInArray,
 	or,
@@ -133,6 +134,7 @@ function baseLogConditions(
 ) {
 	const conditions = [
 		eq(profile.isPrivate, false),
+		isNull(log.removedAt),
 		mediaFilter(kind),
 		gte(log.watchedAt, start),
 		lt(log.watchedAt, end),
@@ -323,6 +325,7 @@ export async function fetchLeaderboardLogs(opts: {
 			.where(
 				and(
 					eq(log.userId, opts.userId),
+					isNull(log.removedAt),
 					isNotNull(log.movieId),
 					gte(log.watchedAt, start),
 					lt(log.watchedAt, end),
@@ -373,6 +376,7 @@ export async function fetchLeaderboardLogs(opts: {
 		.where(
 			and(
 				eq(log.userId, opts.userId),
+				isNull(log.removedAt),
 				isNotNull(log.tvId),
 				gte(log.watchedAt, start),
 				lt(log.watchedAt, end),

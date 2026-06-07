@@ -6,6 +6,7 @@ import {
 	desc,
 	eq,
 	isNotNull,
+	isNull,
 	notExists,
 	or,
 	sql,
@@ -61,6 +62,7 @@ export const watchlistRoute = new Elysia({
 					.where(
 						and(
 							eq(log.userId, user.id),
+							isNull(log.removedAt),
 							or(
 								and(
 									isNotNull(watchlistItem.movieId),

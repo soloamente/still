@@ -1,5 +1,5 @@
 import { db, log, movie, tv } from "@still/db";
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq, isNull } from "drizzle-orm";
 
 import { logMediaKey, type OverlapDiarySlice } from "./sense-taste-overlap";
 
@@ -16,7 +16,7 @@ export async function fetchOverlapDiarySlices(
 		.from(log)
 		.leftJoin(movie, eq(log.movieId, movie.tmdbId))
 		.leftJoin(tv, eq(log.tvId, tv.tmdbId))
-		.where(eq(log.userId, userId))
+		.where(and(eq(log.userId, userId), isNull(log.removedAt)))
 		.orderBy(desc(log.watchedAt))
 		.limit(OVERLAP_DIARY_LIMIT);
 

@@ -1,5 +1,5 @@
 import { db, log } from "@still/db";
-import { and, desc, eq, isNotNull, sql } from "drizzle-orm";
+import { and, desc, eq, isNotNull, isNull, sql } from "drizzle-orm";
 
 import { reviewRatingDisplayAvgSql } from "./review-rating";
 
@@ -35,6 +35,7 @@ export async function fetchPublicDiaryCommunityStats(
 	const baseWhere = and(
 		isTv ? eq(log.tvId, input.tvId) : eq(log.movieId, input.movieId),
 		eq(log.visibility, "public"),
+		isNull(log.removedAt),
 		isNotNull(log.rating),
 		...(isTv ? [eq(log.logScope, "show")] : []),
 	);

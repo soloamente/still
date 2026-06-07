@@ -25,6 +25,7 @@ import {
 	gte,
 	ilike,
 	isNotNull,
+	isNull,
 	ne,
 	or,
 	sql,
@@ -781,7 +782,11 @@ export const profilesRoute = new Elysia({
 				.select({ watchedAt: log.watchedAt })
 				.from(log)
 				.where(
-					and(eq(log.userId, row.userId), gte(log.watchedAt, windowStart)),
+					and(
+						eq(log.userId, row.userId),
+						isNull(log.removedAt),
+						gte(log.watchedAt, windowStart),
+					),
 				);
 
 			return buildActivitySignature(rows.map((r) => r.watchedAt));
@@ -850,6 +855,7 @@ export const profilesRoute = new Elysia({
 				.where(
 					and(
 						eq(log.userId, row.userId),
+						isNull(log.removedAt),
 						isNotNull(idCol),
 						contentVisibilityWhere(viewerId, log.userId, log.visibility),
 						isTv
@@ -968,6 +974,7 @@ export const profilesRoute = new Elysia({
 				.where(
 					and(
 						eq(log.userId, targetUserId),
+						isNull(log.removedAt),
 						isNotNull(log.movieId),
 						contentVisibilityWhere(viewerId, log.userId, log.visibility),
 					),
@@ -980,6 +987,7 @@ export const profilesRoute = new Elysia({
 				.where(
 					and(
 						eq(log.userId, targetUserId),
+						isNull(log.removedAt),
 						isNotNull(log.tvId),
 						contentVisibilityWhere(viewerId, log.userId, log.visibility),
 					),
@@ -1052,6 +1060,7 @@ export const profilesRoute = new Elysia({
 					.where(
 						and(
 							eq(review.userId, targetUserId),
+							isNull(review.removedAt),
 							contentVisibilityWhere(
 								viewerId,
 								review.userId,
@@ -1066,7 +1075,13 @@ export const profilesRoute = new Elysia({
 				db
 					.select()
 					.from(list)
-					.where(and(eq(list.userId, targetUserId), eq(list.isPublic, true)))
+					.where(
+						and(
+							eq(list.userId, targetUserId),
+							eq(list.isPublic, true),
+							isNull(list.removedAt),
+						),
+					)
 					.orderBy(desc(list.likesCount), desc(list.updatedAt))
 					.limit(6)
 					.then((listRows) => withCoverPosterPaths(listRows)),

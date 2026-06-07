@@ -10,7 +10,7 @@ import {
 	review,
 	user,
 } from "@still/db";
-import { and, desc, eq, isNotNull, sql } from "drizzle-orm";
+import { and, desc, eq, isNotNull, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
@@ -296,7 +296,7 @@ export const reviewsRoute = new Elysia({
 				.leftJoin(log, eq(review.logId, log.id))
 				.leftJoin(profile, eq(review.userId, profile.userId))
 				.leftJoin(user, eq(review.userId, user.id))
-				.where(eq(review.id, params.id))
+				.where(and(eq(review.id, params.id), isNull(review.removedAt)))
 				.limit(1);
 			if (!row) return status(404, "Not found");
 			const author = row.review.userId;
@@ -382,6 +382,7 @@ export const reviewsRoute = new Elysia({
 							review.userId,
 							review.visibility,
 						),
+						isNull(review.removedAt),
 						withinCommunityPeriod(review.publishedAt, start, end),
 					),
 				)
@@ -419,10 +420,13 @@ export const reviewsRoute = new Elysia({
 				.from(review)
 				.leftJoin(movie, eq(review.movieId, movie.tmdbId))
 				.where(
-					contentVisibilityWhere(
-						currentUser?.id ?? null,
-						review.userId,
-						review.visibility,
+					and(
+						contentVisibilityWhere(
+							currentUser?.id ?? null,
+							review.userId,
+							review.visibility,
+						),
+						isNull(review.removedAt),
 					),
 				)
 				.orderBy(desc(review.likesCount), desc(review.publishedAt))

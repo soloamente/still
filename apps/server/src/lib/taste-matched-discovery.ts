@@ -1,5 +1,5 @@
 import { db, log, movie } from "@still/db";
-import { and, desc, eq, isNotNull, notInArray } from "drizzle-orm";
+import { and, desc, eq, isNotNull, isNull, notInArray } from "drizzle-orm";
 
 import type { TasteSignatureLogSlice } from "./sense-taste-signature";
 import { fetchDismissedMovieTmdbIds } from "./taste-dismissed-movie-store";
@@ -170,7 +170,7 @@ export async function scoreTasteMatchCandidatesForUser(
 		})
 		.from(log)
 		.leftJoin(movie, eq(log.movieId, movie.tmdbId))
-		.where(eq(log.userId, userId))
+		.where(and(eq(log.userId, userId), isNull(log.removedAt)))
 		.orderBy(desc(log.watchedAt))
 		.limit(400);
 

@@ -1,5 +1,5 @@
 import { db, list, profile, review, user } from "@still/db";
-import { and, eq, inArray, sql } from "drizzle-orm";
+import { and, eq, inArray, isNull, sql } from "drizzle-orm";
 
 import { creatorRecognitionThresholds } from "./creator-recognition-config";
 import { LIST_DESCRIPTION_DISCOVERABILITY_MIN_CHARS } from "./list-quality";
@@ -95,7 +95,13 @@ export async function fetchCuratorStatsForUser(
 			totalListLikes: sql<number>`coalesce(sum(${list.likesCount}), 0)::int`,
 		})
 		.from(list)
-		.where(and(eq(list.userId, userId), eq(list.isPublic, true)));
+		.where(
+			and(
+				eq(list.userId, userId),
+				eq(list.isPublic, true),
+				isNull(list.removedAt),
+			),
+		);
 
 	const [reviewRow] = await db
 		.select({
@@ -103,7 +109,13 @@ export async function fetchCuratorStatsForUser(
 			totalReviewLikes: sql<number>`coalesce(sum(${review.likesCount}), 0)::int`,
 		})
 		.from(review)
-		.where(and(eq(review.userId, userId), eq(review.visibility, "public")));
+		.where(
+			and(
+				eq(review.userId, userId),
+				eq(review.visibility, "public"),
+				isNull(review.removedAt),
+			),
+		);
 
 	return {
 		publicListsCount: Number(listRow?.publicListsCount ?? 0),
@@ -143,7 +155,7 @@ export async function fetchCuratorSpotlightPatrons(
 			totalListLikes: sql<number>`coalesce(sum(${list.likesCount}), 0)::int`,
 		})
 		.from(list)
-		.where(eq(list.isPublic, true))
+		.where(and(eq(list.isPublic, true), isNull(list.removedAt)))
 		.groupBy(list.userId)
 		.having(sql`count(*) >= ${minPublicListsForSpotlightAgg}`);
 
@@ -154,7 +166,7 @@ export async function fetchCuratorSpotlightPatrons(
 			totalReviewLikes: sql<number>`coalesce(sum(${review.likesCount}), 0)::int`,
 		})
 		.from(review)
-		.where(eq(review.visibility, "public"))
+		.where(and(eq(review.visibility, "public"), isNull(review.removedAt)))
 		.groupBy(review.userId);
 
 	const statsByUser = new Map<string, CuratorContributionStats>();

@@ -1,5 +1,5 @@
 import { db, movie, review } from "@still/db";
-import { and, eq, inArray } from "drizzle-orm";
+import { and, eq, inArray, isNull } from "drizzle-orm";
 
 /** Patron-chosen signature reviews on profile hero (ST.3). */
 export const MAX_PINNED_REVIEWS = 3;
@@ -45,6 +45,7 @@ export async function validatePinnedReviewIdsForUser(
 			and(
 				eq(review.userId, userId),
 				eq(review.visibility, "public"),
+				isNull(review.removedAt),
 				inArray(review.id, reviewIds),
 			),
 		);
@@ -76,6 +77,7 @@ export async function hydratePinnedReviews(
 			and(
 				eq(review.userId, userId),
 				eq(review.visibility, "public"),
+				isNull(review.removedAt),
 				inArray(review.id, reviewIds),
 			),
 		);

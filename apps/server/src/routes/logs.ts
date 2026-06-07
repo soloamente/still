@@ -18,6 +18,7 @@ import {
 	eq,
 	inArray,
 	isNotNull,
+	isNull,
 	or,
 	sql,
 } from "drizzle-orm";
@@ -425,6 +426,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.where(
 					and(
 						eq(profile.isPrivate, false),
+						isNull(log.removedAt),
 						contentVisibilityWhere(
 							viewer?.id ?? null,
 							log.userId,
@@ -469,11 +471,23 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				db
 					.select({ total: count() })
 					.from(log)
-					.where(and(eq(log.userId, user.id), isNotNull(log.movieId))),
+					.where(
+						and(
+							eq(log.userId, user.id),
+							isNull(log.removedAt),
+							isNotNull(log.movieId),
+						),
+					),
 				db
 					.select({ total: sql<number>`count(distinct ${log.tvId})` })
 					.from(log)
-					.where(and(eq(log.userId, user.id), isNotNull(log.tvId))),
+					.where(
+						and(
+							eq(log.userId, user.id),
+							isNull(log.removedAt),
+							isNotNull(log.tvId),
+						),
+					),
 			]);
 			const tabCounts = {
 				movies: Number(movieCountRow[0]?.total ?? 0),
@@ -483,6 +497,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 			if (media === "movie") {
 				const where = and(
 					eq(log.userId, user.id),
+					isNull(log.removedAt),
 					isNotNull(log.movieId),
 					venueWhere,
 					movieNotAdultSql(showAdultContent),
@@ -562,6 +577,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.where(
 					and(
 						eq(log.userId, user.id),
+						isNull(log.removedAt),
 						isNotNull(log.tvId),
 						tvNotAdultSql(showAdultContent),
 					),
@@ -615,6 +631,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 							.where(
 								and(
 									eq(log.userId, user.id),
+									isNull(log.removedAt),
 									isNotNull(log.tvId),
 									inArrayTvIds(log.tvId, pageTvIds),
 								),
@@ -635,6 +652,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 							.where(
 								and(
 									eq(log.userId, user.id),
+									isNull(log.removedAt),
 									isNotNull(log.tvId),
 									inArrayTvIds(log.tvId, pageTvIds),
 								),
@@ -715,6 +733,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.where(
 					and(
 						eq(log.userId, params.userId),
+						isNull(log.removedAt),
 						contentVisibilityWhere(
 							user?.id ?? null,
 							log.userId,
@@ -742,6 +761,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.where(
 					and(
 						eq(log.userId, user.id),
+						isNull(log.removedAt),
 						eq(log.movieId, Number(params.movieId)),
 						isNotNull(log.movieId),
 					),
@@ -761,6 +781,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.where(
 					and(
 						eq(log.userId, user.id),
+						isNull(log.removedAt),
 						eq(log.tvId, Number(params.tvId)),
 						isNotNull(log.tvId),
 					),

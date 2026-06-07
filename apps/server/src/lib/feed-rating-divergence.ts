@@ -1,5 +1,5 @@
 import { db, log, movie, profile, tv, user } from "@still/db";
-import { and, desc, eq, inArray, isNotNull } from "drizzle-orm";
+import { and, desc, eq, inArray, isNotNull, isNull } from "drizzle-orm";
 import { withinCommunityPeriod } from "./community-period";
 import { contentVisibilityWhere } from "./content-visibility";
 import { logMediaKey, storedRatingToDisplayTen } from "./sense-taste-overlap";
@@ -163,6 +163,7 @@ export async function findFeedRatingDivergence(args: {
 		.where(
 			and(
 				inArray(log.userId, args.followingUserIds),
+				isNull(log.removedAt),
 				isNotNull(log.rating),
 				withinCommunityPeriod(log.watchedAt, args.periodStart, args.periodEnd),
 				contentVisibilityWhere(args.viewerId, log.userId, log.visibility),
