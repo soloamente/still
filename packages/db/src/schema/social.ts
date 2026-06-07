@@ -71,6 +71,9 @@ export const post = pgTable(
 			.defaultNow()
 			.$onUpdate(() => new Date())
 			.notNull(),
+		removedAt: timestamp("removed_at"),
+		removedBy: text("removed_by"),
+		removalReason: text("removal_reason"),
 	},
 	(table) => [
 		index("post_user_idx").on(table.userId),

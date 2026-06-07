@@ -64,6 +64,9 @@ export const log = pgTable(
 			.defaultNow()
 			.$onUpdate(() => new Date())
 			.notNull(),
+		removedAt: timestamp("removed_at"),
+		removedBy: text("removed_by"),
+		removalReason: text("removal_reason"),
 	},
 	(table) => [
 		check(
@@ -112,6 +115,9 @@ export const review = pgTable(
 			.defaultNow()
 			.$onUpdate(() => new Date())
 			.notNull(),
+		removedAt: timestamp("removed_at"),
+		removedBy: text("removed_by"),
+		removalReason: text("removal_reason"),
 	},
 	(table) => [
 		index("review_user_idx").on(table.userId),

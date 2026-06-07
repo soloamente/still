@@ -12,6 +12,7 @@ export * from "./notification";
 export * from "./product-event";
 export * from "./profile";
 export * from "./social";
+export * from "./staff";
 export * from "./streak";
 export * from "./taste-dismissed-movie";
 export * from "./tv";
