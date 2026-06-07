@@ -1,7 +1,7 @@
 /** TMDb still path → absolute poster URL (feed thumbs, review cards, activity rows). */
 export function tmdbPosterUrlFromPath(
 	path: string | null | undefined,
-	size: "w185" | "w342" | "w780" = "w185",
+	size: "w92" | "w185" | "w342" | "w780" = "w185",
 ): string | null {
 	if (!path?.length) return null;
 	// Custom list covers and other absolute URLs must not get a TMDb prefix.
