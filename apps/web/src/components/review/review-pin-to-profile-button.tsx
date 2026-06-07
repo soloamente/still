@@ -1,14 +1,17 @@
 "use client";
 
 import { Button } from "@still/ui/components/button";
+import { cn } from "@still/ui/lib/utils";
 import { Pin, PinOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
+import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import { api } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
+import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	MAX_PINNED_REVIEWS,
 	togglePinnedReviewId,
@@ -21,9 +24,15 @@ import { SHEET_PRIMARY_PILL_CLASS } from "@/lib/sheet-chrome";
 export function ReviewPinToProfileButton({
 	reviewId,
 	reviewUserId,
+	variant = "pill",
+	iconButtonClassName,
 }: {
 	reviewId: string;
 	reviewUserId: string;
+	/** Icon-only header control with tooltip, or footer text pill. */
+	variant?: "pill" | "icon";
+	/** Optional class override for the icon header button (review reader handle row). */
+	iconButtonClassName?: string;
 }) {
 	const router = useRouter();
 	const { data: session } = authClient.useSession();
@@ -90,6 +99,36 @@ export function ReviewPinToProfileButton({
 
 	if (!isOwner) return null;
 
+	const pinLabel = isPinned ? "Unpin from profile" : "Pin to profile";
+
+	if (variant === "icon") {
+		return (
+			<DetailMotionButtonWrap>
+				<DetailIconTooltip label={pinLabel}>
+					<Button
+						type="button"
+						variant="ghost"
+						size="icon-pill"
+						className={cn(
+							iconButtonClassName ??
+								"size-10 rounded-[var(--radius-pill)] bg-background text-muted-foreground",
+							!iconButtonClassName && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+						)}
+						disabled={busy || loadingPins}
+						aria-label={pinLabel}
+						onClick={() => void handleTogglePin()}
+					>
+						{isPinned ? (
+							<PinOff className="size-5" aria-hidden />
+						) : (
+							<Pin className="size-5" aria-hidden />
+						)}
+					</Button>
+				</DetailIconTooltip>
+			</DetailMotionButtonWrap>
+		);
+	}
+
 	return (
 		<DetailMotionButtonWrap>
 			<Button
@@ -105,7 +144,7 @@ export function ReviewPinToProfileButton({
 				) : (
 					<Pin className="size-4" aria-hidden />
 				)}
-				{isPinned ? "Unpin from profile" : "Pin to profile"}
+				{pinLabel}
 			</Button>
 		</DetailMotionButtonWrap>
 	);

@@ -148,6 +148,27 @@
 			"when": 1779201600000,
 			"tag": "0020_taste_dismissed_movie",
 			"breakpoints": true
+		},
+		{
+			"idx": 21,
+			"version": "7",
+			"when": 1779201700000,
+			"tag": "0021_review_still_slide_key",
+			"breakpoints": true
+		},
+		{
+			"idx": 22,
+			"version": "7",
+			"when": 1779201800000,
+			"tag": "0022_review_dislikes",
+			"breakpoints": true
+		},
+		{
+			"idx": 23,
+			"version": "7",
+			"when": 1779201900000,
+			"tag": "0023_comment_dislikes",
+			"breakpoints": true
 		}
 	]
 }

@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@still/ui/lib/utils";
 import type { ReactNode } from "react";
 import { useCallback } from "react";
 import { Drawer } from "vaul";
-
 import {
 	MOVIE_DETAIL_DRAWER_BODY_CLASSNAME,
 	MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME,
@@ -18,6 +18,51 @@ const OVERLAY_CLASSNAME =
 	"fixed inset-0 z-50 bg-absolute-black/82 backdrop-blur-sm";
 const NESTED_OVERLAY_CLASSNAME = "fixed inset-0 z-60 bg-absolute-black/50";
 
+/** Drag rail with optional left/right chrome on the same row as the grip. */
+function DetailVaulDrawerHandleRow({
+	handleLeading,
+	handleTrailing,
+}: {
+	handleLeading?: ReactNode;
+	handleTrailing?: ReactNode;
+}) {
+	const hasAccessory = Boolean(handleLeading || handleTrailing);
+
+	return (
+		<div
+			className={cn(
+				"relative w-full shrink-0",
+				// Extra inset when chrome shares the handle row — avoids flush top edge.
+				hasAccessory && "pt-4 pb-2",
+			)}
+		>
+			<Drawer.Handle
+				className={cn(
+					MOVIE_DETAIL_DRAWER_HANDLE_CLASSNAME,
+					hasAccessory && "mt-0 min-h-12",
+				)}
+				aria-label="Drag sheet"
+			>
+				<span
+					className={MOVIE_DETAIL_DRAWER_HANDLE_GRIP_CLASSNAME}
+					aria-hidden
+				/>
+			</Drawer.Handle>
+			{hasAccessory ? (
+				<div className="pointer-events-none absolute inset-0 grid grid-cols-[minmax(0,1fr)_3rem_minmax(0,1fr)] items-center gap-2 px-3 md:px-4 md:pt-3">
+					<div className="pointer-events-auto min-w-0 justify-self-start">
+						{handleLeading}
+					</div>
+					<div aria-hidden />
+					<div className="pointer-events-auto flex justify-self-end">
+						{handleTrailing}
+					</div>
+				</div>
+			) : null}
+		</div>
+	);
+}
+
 /**
  * Vaul filmography / cast sheet — drag the handle to move or dismiss; scroll uses the
  * full sheet width (`data-vaul-no-drag` on the scrollport). Grip styling is ours only —
@@ -31,6 +76,10 @@ export function DetailVaulSheet({
 	nested = false,
 	scrollLock = open,
 	trigger,
+	/** Left slot aligned with the drag handle row (e.g. patron avatar in review reader). */
+	handleLeading,
+	/** Right slot aligned with the drag handle row (e.g. icon actions). */
+	handleTrailing,
 	children,
 }: {
 	open: boolean;
@@ -41,6 +90,8 @@ export function DetailVaulSheet({
 	/** When nested opens on top of a parent sheet, keep Lenis locked for either. */
 	scrollLock?: boolean;
 	trigger?: ReactNode;
+	handleLeading?: ReactNode;
+	handleTrailing?: ReactNode;
 	children: ReactNode;
 }) {
 	useLockDrawerScroll(scrollLock ?? open);
@@ -72,15 +123,10 @@ export function DetailVaulSheet({
 							: MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME
 					}
 				>
-					<Drawer.Handle
-						className={MOVIE_DETAIL_DRAWER_HANDLE_CLASSNAME}
-						aria-label="Drag sheet"
-					>
-						<span
-							className={MOVIE_DETAIL_DRAWER_HANDLE_GRIP_CLASSNAME}
-							aria-hidden
-						/>
-					</Drawer.Handle>
+					<DetailVaulDrawerHandleRow
+						handleLeading={handleLeading}
+						handleTrailing={handleTrailing}
+					/>
 					<Drawer.Title className="sr-only">{title}</Drawer.Title>
 					{description ? (
 						<Drawer.Description className="sr-only">

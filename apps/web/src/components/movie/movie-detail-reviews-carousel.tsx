@@ -1,16 +1,33 @@
 "use client";
 
-import IconPatronScoreLeafLeft from "@still/ui/icons/patron-score-leaf-left";
-import IconPatronScoreLeafRight from "@still/ui/icons/patron-score-leaf-right";
 import { cn } from "@still/ui/lib/utils";
 import { Heart, MessageCircle } from "lucide-react";
 import Link from "next/link";
-import type { KeyboardEvent, MouseEvent } from "react";
+import {
+	type KeyboardEvent,
+	type MouseEvent,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import type { MoviePageReview } from "@/components/movie/movie-detail-explore-tabs";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
-import { useReviewDetail } from "@/components/review/review-detail-sheet";
+import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
+import {
+	useReviewDetail,
+	useReviewEngagementCounts,
+} from "@/components/review/review-detail-sheet";
+import { ReviewEditorialPatronScore } from "@/components/review/review-editorial-patron-score";
+import { authClient } from "@/lib/auth-client";
 import { useDetailEditorialRailSnap } from "@/lib/detail-editorial-rail-snap";
-import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
+import {
+	REVIEW_SPOILER_REVEAL_CTA,
+	shouldMaskReviewSpoilers,
+} from "@/lib/review-spoiler-mask";
+import { useViewerHasWatchedMovie } from "@/lib/use-viewer-has-watched-movie";
+
+const SPOILER_MASK_POST_CLASS =
+	"opacity-65 blur-[var(--page-blur)] motion-reduce:blur-none motion-reduce:opacity-100";
 
 /** One editorial testimonial per viewport — centered via leading/trailing rail spacers. */
 const REVIEW_SLIDE_WIDTH_CLASS = "w-[min(36rem,88vw)]";
@@ -48,52 +65,76 @@ const REVIEW_SLIDE_INACTIVE_CLASS =
 const REVIEW_SLIDE_PRESS_CLASS =
 	"transition-transform duration-[var(--page-slide-dur)] ease-[var(--page-slide-ease)] motion-reduce:transition-none active:scale-[var(--modal-scale)] motion-reduce:active:scale-100";
 
-/** Patron score laurels — same leaf icons as movie detail community rating. */
-function ReviewSlidePatronScore({ rating }: { rating: number }) {
-	const scoreLabel = formatStoredLogRatingDisplay(rating);
-
-	return (
-		<div className="flex items-center justify-center gap-2 sm:gap-2.5">
-			<span className="sr-only">Rated {scoreLabel} out of 10</span>
-			<IconPatronScoreLeafLeft
-				className="h-8 w-auto shrink-0 text-foreground/55 sm:h-9"
-				aria-hidden
-			/>
-			<span className="font-sans font-semibold text-foreground text-lg tabular-nums tracking-tight sm:text-xl">
-				{scoreLabel}
-			</span>
-			<IconPatronScoreLeafRight
-				className="h-8 w-auto shrink-0 text-foreground/55 sm:h-9"
-				aria-hidden
-			/>
-		</div>
-	);
-}
-
 /** Large centered quote slide — tap opens the review reader sheet. */
 function MovieDetailReviewSlide({
 	review,
 	isActive,
+	hasWatchedMovie,
+	currentUserId,
 	className,
 }: {
 	review: MoviePageReview;
 	isActive: boolean;
+	hasWatchedMovie: boolean;
+	currentUserId: string | null;
 	className?: string;
 }) {
 	const openReviewDetail = useReviewDetail((s) => s.open);
+	const { likesCount, commentsCount } = useReviewEngagementCounts(review.id, {
+		likesCount: review.likesCount,
+		commentsCount: review.commentsCount,
+	});
 	const author = review.author;
+	const bodyRef = useRef<HTMLParagraphElement>(null);
+	const [bodyTruncated, setBodyTruncated] = useState(false);
+	const [spoilerRevealed, setSpoilerRevealed] = useState(false);
+	const isOwnReview = currentUserId != null && review.userId === currentUserId;
+	const spoilerMasked = shouldMaskReviewSpoilers({
+		containsSpoilers: review.containsSpoilers,
+		hasWatchedMovie,
+		isOwnReview,
+		revealed: spoilerRevealed,
+	});
+
+	// Blur + “See full review” only when line-clamp actually cuts the body.
+	const bodyMeasureKey = `${review.id}\0${review.body}\0${isActive ? "1" : "0"}`;
+	useEffect(() => {
+		const el = bodyRef.current;
+		if (!el) return;
+		void bodyMeasureKey;
+
+		const measure = () => {
+			setBodyTruncated(el.scrollHeight > el.clientHeight + 1);
+		};
+
+		measure();
+		const observer = new ResizeObserver(measure);
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, [bodyMeasureKey]);
+
+	const showExpandHint = bodyTruncated || spoilerMasked;
 
 	const handleOpenReview = () => {
 		openReviewDetail({
 			reviewId: review.id,
+			movieId: review.movieId,
 			preview: {
 				id: review.id,
 				title: review.title,
 				body: review.body,
 				rating: review.rating,
-				likesCount: review.likesCount,
-				commentsCount: review.commentsCount,
+				likesCount: likesCount,
+				commentsCount: commentsCount,
 				publishedAt: review.publishedAt,
+				containsSpoilers: review.containsSpoilers,
+				author: author
+					? {
+							handle: author.handle,
+							displayName: author.displayName,
+							image: author.image,
+						}
+					: null,
 			},
 		});
 	};
@@ -101,12 +142,20 @@ function MovieDetailReviewSlide({
 	const handleReviewAreaClick = (event: MouseEvent<HTMLDivElement>) => {
 		// Profile link stays its own destination inside the blurred post.
 		if ((event.target as HTMLElement).closest("a")) return;
+		if (spoilerMasked) {
+			setSpoilerRevealed(true);
+			return;
+		}
 		handleOpenReview();
 	};
 
 	const handleReviewAreaKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
 		if (event.key !== "Enter" && event.key !== " ") return;
 		event.preventDefault();
+		if (spoilerMasked) {
+			setSpoilerRevealed(true);
+			return;
+		}
 		handleOpenReview();
 	};
 
@@ -126,21 +175,31 @@ function MovieDetailReviewSlide({
 				tabIndex={0}
 				className={cn(
 					"t-review-slide group/review flex h-full min-h-full w-full cursor-pointer select-none flex-col items-center justify-center px-3 py-4 text-center sm:px-4",
+					spoilerMasked && "t-review-slide--spoiler-masked",
+					bodyTruncated && !spoilerMasked && "t-review-slide--truncated",
 					REVIEW_SLIDE_PRESS_CLASS,
 					"[-webkit-tap-highlight-color:transparent]",
 					!isActive && REVIEW_SLIDE_INACTIVE_CLASS,
 				)}
-				aria-haspopup="dialog"
 				aria-label={
-					review.title ? `Read review: ${review.title}` : "Read review"
+					spoilerMasked
+						? REVIEW_SPOILER_REVEAL_CTA
+						: review.title
+							? `Read review: ${review.title}`
+							: "Read review"
 				}
 				onClick={handleReviewAreaClick}
 				onKeyDown={handleReviewAreaKeyDown}
 			>
-				<div className="t-review-slide__post">
+				<div
+					className={cn(
+						"t-review-slide__post",
+						spoilerMasked && SPOILER_MASK_POST_CLASS,
+					)}
+				>
 					{review.rating != null ? (
 						<div className="mt-6">
-							<ReviewSlidePatronScore rating={review.rating} />
+							<ReviewEditorialPatronScore rating={review.rating} />
 						</div>
 					) : null}
 
@@ -156,15 +215,17 @@ function MovieDetailReviewSlide({
 					) : null}
 
 					<p
+						ref={bodyRef}
 						data-review-body=""
 						className={cn(
-							"line-clamp-8 w-full max-w-prose px-2 py-1 text-center tracking-tight outline-none",
+							"w-full max-w-prose px-2 py-1 text-center tracking-tight outline-none",
+							bodyTruncated && "line-clamp-8",
 							review.title
 								? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
 								: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
 						)}
 					>
-						{review.body}
+						<ReviewBodyWithMentions body={review.body} />
 					</p>
 
 					{author ? (
@@ -202,11 +263,11 @@ function MovieDetailReviewSlide({
 								<div className="mt-1.5 flex min-h-6 flex-wrap items-center justify-center gap-x-3 gap-y-1 text-muted-foreground text-xs tabular-nums">
 									<span className="inline-flex items-center gap-1">
 										<Heart className="size-3 opacity-70" aria-hidden />
-										{review.likesCount}
+										{likesCount}
 									</span>
 									<span className="inline-flex items-center gap-1">
 										<MessageCircle className="size-3 opacity-70" aria-hidden />
-										{review.commentsCount}
+										{commentsCount}
 									</span>
 								</div>
 							</div>
@@ -215,19 +276,23 @@ function MovieDetailReviewSlide({
 						<div className="mt-4 flex min-h-10 flex-wrap items-center justify-center gap-x-3 gap-y-1 px-3 text-muted-foreground text-xs tabular-nums">
 							<span className="inline-flex items-center gap-1">
 								<Heart className="size-3 opacity-70" aria-hidden />
-								{review.likesCount}
+								{likesCount}
 							</span>
 							<span className="inline-flex items-center gap-1">
 								<MessageCircle className="size-3 opacity-70" aria-hidden />
-								{review.commentsCount}
+								{commentsCount}
 							</span>
 						</div>
 					)}
 				</div>
 
-				<div aria-hidden className="t-review-slide__cta">
-					<span className="t-review-slide__cta-label">See full review</span>
-				</div>
+				{showExpandHint ? (
+					<div aria-hidden className="t-review-slide__cta">
+						<span className="t-review-slide__cta-label">
+							{spoilerMasked ? REVIEW_SPOILER_REVEAL_CTA : "See full review"}
+						</span>
+					</div>
+				) : null}
 			</div>
 		</li>
 	);
@@ -238,12 +303,17 @@ function MovieDetailReviewSlide({
  * patron below, horizontal scroll with first slide centered).
  */
 export function MovieDetailReviewsCarousel({
+	movieId,
 	reviews,
 	className,
 }: {
+	movieId: number;
 	reviews: MoviePageReview[];
 	className?: string;
 }) {
+	const { data: session } = authClient.useSession();
+	const currentUserId = session?.user?.id ?? null;
+	const { hasWatched } = useViewerHasWatchedMovie(movieId);
 	const { railRef, activeSlideIndex } = useDetailEditorialRailSnap({
 		slideCount: reviews.length,
 		slideSelector: "[data-review-slide]",
@@ -294,6 +364,8 @@ export function MovieDetailReviewsCarousel({
 							key={review.id}
 							review={review}
 							isActive={index === activeSlideIndex}
+							hasWatchedMovie={hasWatched}
+							currentUserId={currentUserId}
 							className={index > 0 ? REVIEW_SLIDE_GAP_CLASS : undefined}
 						/>
 					))}

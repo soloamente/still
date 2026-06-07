@@ -3,9 +3,11 @@
 import { cn } from "@still/ui/lib/utils";
 import { Heart, MessageCircle } from "lucide-react";
 import { FeedListingThumb } from "@/components/feed/feed-listing-thumb";
+import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import {
 	type ReviewPreview,
 	useReviewDetail,
+	useReviewEngagementCounts,
 } from "@/components/review/review-detail-sheet";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
@@ -34,6 +36,10 @@ export const REVIEW_CARD_CLASS =
  */
 export function ReviewCard({ review }: { review: Review }) {
 	const openReviewDetail = useReviewDetail((s) => s.open);
+	const { likesCount, commentsCount } = useReviewEngagementCounts(review.id, {
+		likesCount: review.likesCount,
+		commentsCount: review.commentsCount,
+	});
 	const listing = review.listing;
 
 	return (
@@ -54,8 +60,8 @@ export function ReviewCard({ review }: { review: Review }) {
 						title: review.title,
 						body: review.body,
 						rating: review.rating,
-						likesCount: review.likesCount,
-						commentsCount: review.commentsCount,
+						likesCount: likesCount,
+						commentsCount: commentsCount,
 						publishedAt: review.publishedAt,
 					},
 				})
@@ -89,16 +95,16 @@ export function ReviewCard({ review }: { review: Review }) {
 					</h3>
 				) : null}
 				<p className="mt-2 line-clamp-4 text-pretty font-editorial text-foreground/85 text-sm leading-relaxed">
-					{review.body}
+					<ReviewBodyWithMentions body={review.body} />
 				</p>
 				<footer className="mt-4 flex items-center gap-4 text-muted-foreground text-xs tabular-nums">
 					<span className="inline-flex items-center gap-1.5">
 						<Heart className="size-3.5 opacity-70" aria-hidden />
-						{review.likesCount}
+						{likesCount}
 					</span>
 					<span className="inline-flex items-center gap-1.5">
 						<MessageCircle className="size-3.5 opacity-70" aria-hidden />
-						{review.commentsCount}
+						{commentsCount}
 					</span>
 				</footer>
 			</div>

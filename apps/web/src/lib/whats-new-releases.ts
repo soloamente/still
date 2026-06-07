@@ -29,27 +29,27 @@ export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
 		{
 			title: "What's new in Sense",
 			description:
-				"Editorial review and stills rails on film & TV detail, a sharper diary rating slider, and Community loads the first time you open it — no more endless skeleton.",
+				"Tag other films and shows inside reviews, pick a hero still for your post, and cleaner detail navigation — plus Community and review likes that stay in sync.",
 		},
 		{
-			title: "Reviews, center stage",
+			title: "Tag titles in your review",
 			description:
-				"On film and TV About tabs, patron reviews scroll in a wide editorial carousel — quote, score, and byline centered. Hover to open the full review.",
+				"Type @ while writing to search and mention another film or show. Readers tap the title to open it — finished reviews show a clean link, not an @ handle.",
 		},
 		{
-			title: "Background stills",
+			title: "A still for your review",
 			description:
-				"TMDb backdrops get their own cinematic rail on detail pages. Download a still when you want a wallpaper or reference frame.",
+				"Authors can set a still image as the review thumbnail. Pick from the rail below your draft; readers see your frame when they open the post.",
 		},
 		{
-			title: "Community, first try",
+			title: "Reader polish",
 			description:
-				"Landing on /home Community no longer hangs on the loading skeleton. Switching from Movies or TV first is no longer required.",
+				"Comment replies thread under the parent in the review drawer. Liking a review there updates the count on the film detail carousel right away.",
 		},
 		{
-			title: "Rating slider refresh",
+			title: "Detail artwork pills",
 			description:
-				"Quick Log and review composer share a rebuilt 0–10 slider with clearer fill, chevron nudges, and a live score ticker.",
+				"Poster and background rails on film and TV detail use minimal step indicators — tap a pill to jump, or swipe the rail as before.",
 		},
 	],
 };

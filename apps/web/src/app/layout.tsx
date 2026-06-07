@@ -3,6 +3,7 @@ import { DialRoot } from "dialkit";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import "dialkit/styles.css";
+import "pasito/styles.css";
 import { Fraunces, Geist_Mono, Outfit } from "next/font/google";
 import localFont from "next/font/local";
 

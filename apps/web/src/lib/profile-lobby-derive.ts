@@ -20,6 +20,25 @@ function readLogWatchVenue(
 	return undefined;
 }
 
+function compareFilmographyRecency(
+	a: ProfileFilmographyRow,
+	b: ProfileFilmographyRow,
+): number {
+	const aw = new Date(a.log.watchedAt).getTime();
+	const bw = new Date(b.log.watchedAt).getTime();
+	if (aw !== bw) return bw - aw;
+	const ac =
+		"createdAt" in a.log && a.log.createdAt
+			? new Date(a.log.createdAt as string | Date).getTime()
+			: 0;
+	const bc =
+		"createdAt" in b.log && b.log.createdAt
+			? new Date(b.log.createdAt as string | Date).getTime()
+			: 0;
+	if (ac !== bc) return bc - ac;
+	return b.log.id.localeCompare(a.log.id);
+}
+
 /** One row per film or series — keeps the newest log when the patron rewatched a title. */
 export function filmographyFromRecentlyWatched(
 	recentlyWatched: ProfileFilmographyRow[],
@@ -33,11 +52,7 @@ export function filmographyFromRecentlyWatched(
 				: null;
 		if (!key) continue;
 		const existing = byKey.get(key);
-		const nextTs = new Date(row.log.watchedAt).getTime();
-		const prevTs = existing
-			? new Date(existing.log.watchedAt).getTime()
-			: Number.NEGATIVE_INFINITY;
-		if (!existing || nextTs >= prevTs) {
+		if (!existing || compareFilmographyRecency(row, existing) < 0) {
 			const log = row.log as ProfileFilmographyRow["log"] & {
 				watch_venue?: unknown;
 			};
@@ -50,10 +65,7 @@ export function filmographyFromRecentlyWatched(
 			});
 		}
 	}
-	return [...byKey.values()].sort(
-		(a, b) =>
-			new Date(b.log.watchedAt).getTime() - new Date(a.log.watchedAt).getTime(),
-	);
+	return [...byKey.values()].sort(compareFilmographyRecency);
 }
 
 export function profileInitials(displayName: string): string {

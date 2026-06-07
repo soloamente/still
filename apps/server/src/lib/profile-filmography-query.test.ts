@@ -5,6 +5,7 @@ import {
 	FILMOGRAPHY_MAX_LIMIT,
 	filmographyOffset,
 	filmographyTotalPages,
+	logMatchesFilmographyVenue,
 	parseFilmographyFavorites,
 	parseFilmographyLimit,
 	parseFilmographyMedia,
@@ -37,6 +38,17 @@ describe("parseFilmographyVenue", () => {
 		expect(parseFilmographyVenue("streaming")).toBe("streaming");
 		expect(parseFilmographyVenue(undefined)).toBe(null);
 		expect(parseFilmographyVenue("all")).toBe(null);
+	});
+});
+
+describe("logMatchesFilmographyVenue", () => {
+	test("explicit venue must match; legacy rows match both slices", () => {
+		expect(logMatchesFilmographyVenue("streaming", "streaming")).toBe(true);
+		expect(logMatchesFilmographyVenue("streaming", "theaters")).toBe(false);
+		expect(logMatchesFilmographyVenue("theaters", "theaters")).toBe(true);
+		expect(logMatchesFilmographyVenue(null, "streaming")).toBe(true);
+		expect(logMatchesFilmographyVenue(undefined, "theaters")).toBe(true);
+		expect(logMatchesFilmographyVenue("cinema", "streaming")).toBe(true);
 	});
 });
 

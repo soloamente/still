@@ -126,6 +126,19 @@ describe("buildCatalogueRadialItemSpecs", () => {
 		);
 	});
 
+	test("drawer surface matches home lobby actions", () => {
+		expect(
+			ids(
+				buildCatalogueRadialItemSpecs({
+					surface: "drawer",
+					listingKind: "movie",
+					signedIn: true,
+					inWatchlist: false,
+				}),
+			),
+		).toEqual(["open", "copy", "quick-log", "watchlist", "add-to-list"]);
+	});
+
 	test("home surface does not include not-interested", () => {
 		expect(
 			ids(

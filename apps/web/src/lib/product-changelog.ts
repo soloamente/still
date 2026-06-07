@@ -27,6 +27,40 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-06-07-reviews-tagging-reader",
+		versionLabel: "0.2.1",
+		dateLabel: "June 7, 2026",
+		headline: "Review tagging & reader polish",
+		summary:
+			"Link other films and shows inside reviews, pick a hero still, and smoother Community and detail navigation.",
+		items: [
+			{
+				title: "Tag films & shows in reviews",
+				body: "Type @ while writing to search and link another title in your review. Readers see the title as a tap-through link — no @ symbol in the finished post.",
+			},
+			{
+				title: "Hero still on your review",
+				body: "When you own the review, pick a TMDb backdrop still for the reader hero. Visitors see your choice; until you pick one, you get a simple placeholder with the still rail below.",
+			},
+			{
+				title: "Threaded replies in the review reader",
+				body: "Comment replies indent under the parent with a clear reply line and handle — easier to follow conversations on long reviews.",
+			},
+			{
+				title: "Community Activity on first open",
+				body: "Switching to Community → Activity no longer flashes an empty state while the feed is still loading.",
+			},
+			{
+				title: "Review likes stay in sync",
+				body: "Liking a review in the reader updates the count on the film detail reviews carousel right away — no refresh needed.",
+			},
+			{
+				title: "Artwork step indicators",
+				body: "Poster and background rails on film and TV detail use minimal pill steppers. Tap a pill to jump to that slide; swipe the rail as before.",
+			},
+		],
+	},
+	{
 		id: "2026-06-06-detail-editorial-community",
 		versionLabel: "0.2.0",
 		dateLabel: "June 6, 2026",

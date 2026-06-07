@@ -7,7 +7,8 @@ export type CatalogueRadialSurface =
 	| "home"
 	| "diary"
 	| "watchlist"
-	| "taste-rail";
+	| "taste-rail"
+	| "drawer";
 
 export type CatalogueRadialItemSpec = {
 	id: string;
@@ -64,8 +65,9 @@ export function buildCatalogueRadialItemSpecs(
 		hasPriorLog,
 	} = input;
 	const isTasteRail = surface === "taste-rail";
-	// Taste rails reuse home catalogue actions plus recommendation feedback.
-	const catalogueSurface = isTasteRail ? "home" : surface;
+	// Taste rails and drawer catalogues reuse home lobby actions (log, watchlist, lists).
+	const catalogueSurface =
+		isTasteRail || surface === "drawer" ? "home" : surface;
 	const isMovie = listingKind === "movie";
 
 	const specs: CatalogueRadialItemSpec[] = [

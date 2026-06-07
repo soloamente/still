@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 
+import { CommunityFeedSkeleton } from "@/components/home/community-feed-skeleton";
 import { HomeCommunityLobby } from "@/components/home/home-community-lobby";
 import {
 	HomeCommunityLobbyParamsProvider,
@@ -20,8 +21,17 @@ export function HomeCommunityPatronBody({
 	signedIn: boolean;
 	viewerUserId: string | null;
 }) {
-	const { committedFeed, committedPeriod, seed, leaderboard } =
+	const { feed, committedFeed, period, committedPeriod, seed, leaderboard } =
 		useHomeCommunityLobbyParams();
+
+	// Optimistic chip taps use `useTransition` — RSC keeps the previous tab's body
+	// until the new payload lands; show a feed-shaped skeleton instead of stale empty states.
+	const lobbyBodyStale = feed !== committedFeed || period !== committedPeriod;
+
+	if (lobbyBodyStale) {
+		return <CommunityFeedSkeleton feed={feed} />;
+	}
+
 	return (
 		<HomeCommunityLobby
 			feed={committedFeed}

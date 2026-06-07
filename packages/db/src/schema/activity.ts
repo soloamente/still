@@ -102,8 +102,11 @@ export const review = pgTable(
 		visibility: contentVisibility("visibility").default("public").notNull(),
 		// Denormalized counters to avoid count(*) on every render. Updated by triggers.
 		likesCount: integer("likes_count").default(0).notNull(),
+		dislikesCount: integer("dislikes_count").default(0).notNull(),
 		commentsCount: integer("comments_count").default(0).notNull(),
 		rating: smallint("rating"), // mirrors log.rating if linked; saved here for unlinked reviews
+		/** TMDb backdrop slide key from `buildScreenshotSlides` — review reader hero. */
+		stillSlideKey: text("still_slide_key"),
 		publishedAt: timestamp("published_at").defaultNow().notNull(),
 		updatedAt: timestamp("updated_at")
 			.defaultNow()

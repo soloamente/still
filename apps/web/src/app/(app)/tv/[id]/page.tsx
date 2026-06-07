@@ -2,6 +2,7 @@ import { cn } from "@still/ui/lib/utils";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { AdultContentBlockedState } from "@/components/detail/adult-content-blocked-state";
+import { ListingDetailHeroSynopsis } from "@/components/detail/listing-detail-hero-synopsis";
 import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
@@ -13,6 +14,7 @@ import { TvDetailCommunityFallback } from "@/components/tv/tv-detail-community-f
 import { TvDetailPrimaryActions } from "@/components/tv/tv-detail-primary-actions";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { formatRuntime } from "@/lib/format";
+import { listingDetailHeroSynopsisBlurb } from "@/lib/listing-detail-hero-synopsis";
 import {
 	mapCastToArcCards,
 	mapCrewToArcCards,
@@ -153,10 +155,17 @@ export async function generateMetadata({
 		.tv({ id })
 		?.get?.()
 		.catch(() => ({ data: null }));
-	const data = res?.data as { title?: string; tagline?: string | null } | null;
+	const data = res?.data as {
+		title?: string;
+		tagline?: string | null;
+		overview?: string | null;
+	} | null;
 	return {
 		title: data?.title ?? "TV show",
-		description: data?.tagline ?? undefined,
+		description:
+			listingDetailHeroSynopsisBlurb(data?.overview) ??
+			data?.tagline ??
+			undefined,
 	};
 }
 
@@ -254,13 +263,6 @@ export default async function TvShowPage({
 	if (runtimeLabel) heroMetaBits.push(`${runtimeLabel} / ep`);
 	const heroMetaLine =
 		heroMetaBits.length > 0 ? heroMetaBits.join("\u00a0\u00a0") : null;
-	const heroBlurb =
-		data.tagline?.trim() ||
-		(data.overview
-			? data.overview.length > 280
-				? `${data.overview.slice(0, 277)}…`
-				: data.overview
-			: null);
 
 	const hasCast = arcCast.length > 0 || arcCrew.length > 0;
 	const sectionNavItems = [
@@ -315,11 +317,7 @@ export default async function TvShowPage({
 			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
 				{data.title}
 			</h1>
-			{heroBlurb ? (
-				<p className="mt-4 w-full max-w-2xl text-balance font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
-					{heroBlurb}
-				</p>
-			) : null}
+			<ListingDetailHeroSynopsis title={data.title} overview={data.overview} />
 			<MovieDetailCommunityRatingHero
 				variant="compact"
 				communityAverage={communityAverage}

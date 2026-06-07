@@ -1646,7 +1646,7 @@ html.theme-lobby-light .cinema-vignette {
 }
 
 /* ---------------------------------------------------------------------------
- * transitions.dev — movie detail review carousel (`MovieDetailReviewsCarousel`).
+ * transitions.dev — movie detail review carousel + hero synopsis preview.
  * Body hover blurs the full post; CTA cross-fades with page + icon-swap tokens.
  * --------------------------------------------------------------------------- */
 .t-review-slide {
@@ -1666,8 +1666,9 @@ html.theme-lobby-light .cinema-vignette {
 }
 
 @media (hover: hover) {
-  .t-review-slide__post:has([data-review-body]:hover),
-  .t-review-slide__post:has([data-review-body]:focus-visible) {
+  .t-review-slide--truncated .t-review-slide__post:has([data-review-body]:hover),
+  .t-review-slide--truncated
+    .t-review-slide__post:has([data-review-body]:focus-visible) {
     opacity: 0.65;
     filter: blur(var(--page-blur));
   }
@@ -1687,8 +1688,9 @@ html.theme-lobby-light .cinema-vignette {
 }
 
 @media (hover: hover) {
-  .t-review-slide:has([data-review-body]:hover) .t-review-slide__cta,
-  .t-review-slide:has([data-review-body]:focus-visible) .t-review-slide__cta {
+  .t-review-slide--truncated:has([data-review-body]:hover) .t-review-slide__cta,
+  .t-review-slide--truncated:has([data-review-body]:focus-visible)
+    .t-review-slide__cta {
     opacity: 1;
   }
 }
@@ -1710,7 +1712,7 @@ html.theme-lobby-light .cinema-vignette {
 }
 
 @media (hover: hover) {
-  .t-review-slide:not(:has([data-review-body]:hover)):not(
+  .t-review-slide--truncated:not(:has([data-review-body]:hover)):not(
       :has([data-review-body]:focus-visible)
     )
     .t-review-slide__cta-label {
@@ -1719,8 +1721,30 @@ html.theme-lobby-light .cinema-vignette {
     transform: scale(0.25);
   }
 
-  .t-review-slide:has([data-review-body]:hover) .t-review-slide__cta-label,
-  .t-review-slide:has([data-review-body]:focus-visible)
+  .t-review-slide--truncated:has([data-review-body]:hover) .t-review-slide__cta-label,
+  .t-review-slide--truncated:has([data-review-body]:focus-visible)
+    .t-review-slide__cta-label {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+/* Spoiler-tagged reviews — reveal CTA without hover (touch + at-rest). */
+.t-review-slide--spoiler-masked .t-review-slide__cta {
+  opacity: 1;
+}
+
+.t-review-slide--spoiler-masked .t-review-slide__cta-label {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+@media (hover: hover) {
+  .t-review-slide--spoiler-masked:not(:has([data-review-body]:hover)):not(
+      :has([data-review-body]:focus-visible)
+    )
     .t-review-slide__cta-label {
     opacity: 1;
     filter: blur(0);
@@ -1735,19 +1759,21 @@ html.theme-lobby-light .cinema-vignette {
     transition: none !important;
   }
 
-  .t-review-slide__post:has([data-review-body]:hover),
-  .t-review-slide__post:has([data-review-body]:focus-visible) {
+  .t-review-slide--truncated .t-review-slide__post:has([data-review-body]:hover),
+  .t-review-slide--truncated
+    .t-review-slide__post:has([data-review-body]:focus-visible) {
     filter: none;
     opacity: 1;
   }
 
-  .t-review-slide:has([data-review-body]:hover) .t-review-slide__cta,
-  .t-review-slide:has([data-review-body]:focus-visible) .t-review-slide__cta {
+  .t-review-slide--truncated:has([data-review-body]:hover) .t-review-slide__cta,
+  .t-review-slide--truncated:has([data-review-body]:focus-visible)
+    .t-review-slide__cta {
     opacity: 1;
   }
 
-  .t-review-slide:has([data-review-body]:hover) .t-review-slide__cta-label,
-  .t-review-slide:has([data-review-body]:focus-visible)
+  .t-review-slide--truncated:has([data-review-body]:hover) .t-review-slide__cta-label,
+  .t-review-slide--truncated:has([data-review-body]:focus-visible)
     .t-review-slide__cta-label {
     filter: none;
     transform: none;
@@ -1767,6 +1793,26 @@ html.theme-lobby-light .cinema-vignette {
 
 .t-modal {
   transform-origin: center;
+  transform: scale(var(--modal-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-open-dur) var(--modal-ease),
+    opacity var(--modal-open-dur) var(--modal-ease);
+  will-change: transform, opacity;
+}
+.t-modal.is-open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.t-modal.is-closing {
+  transform: scale(var(--modal-scale-close));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-close-dur) var(--modal-ease),
+    opacity var(--modal-close-dur) var(--modal-ease);
 }
 
 @media (prefers-reduced-motion: reduce) {

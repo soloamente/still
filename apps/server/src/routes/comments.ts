@@ -1,8 +1,20 @@
-import { comment, db, eventLog, profile, review, user } from "@still/db";
-import { and, asc, eq, sql } from "drizzle-orm";
+import {
+	comment,
+	db,
+	eventLog,
+	profile,
+	reaction,
+	review,
+	user,
+} from "@still/db";
+import { and, asc, eq, inArray, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import {
+	readCommentReactionSnapshot,
+	removeViewerCommentReaction,
+} from "../lib/comment-reactions";
 import { makeId } from "../lib/cuid";
 import { notifyOnReviewComment } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
@@ -140,7 +152,7 @@ export const commentsRoute = new Elysia({
 	)
 	.get(
 		"/of/:parentType/:parentId",
-		async ({ params }) => {
+		async ({ params, user: viewer }) => {
 			const rows = await db
 				.select({ comment, user, profile })
 				.from(comment)
@@ -153,7 +165,136 @@ export const commentsRoute = new Elysia({
 					),
 				)
 				.orderBy(asc(comment.createdAt));
-			return rows;
+
+			const likedCommentIds = new Set<string>();
+			const dislikedCommentIds = new Set<string>();
+			if (viewer && rows.length > 0) {
+				const commentIds = rows.map((row) => row.comment.id);
+				const reactionRows = await db
+					.select({ parentId: reaction.parentId, kind: reaction.kind })
+					.from(reaction)
+					.where(
+						and(
+							eq(reaction.userId, viewer.id),
+							eq(reaction.parentType, "comment"),
+							inArray(reaction.parentId, commentIds),
+							inArray(reaction.kind, ["like", "dislike"]),
+						),
+					);
+				for (const row of reactionRows) {
+					if (row.kind === "like") likedCommentIds.add(row.parentId);
+					if (row.kind === "dislike") dislikedCommentIds.add(row.parentId);
+				}
+			}
+
+			return rows.map((row) => ({
+				...row,
+				liked: likedCommentIds.has(row.comment.id),
+				disliked: dislikedCommentIds.has(row.comment.id),
+			}));
 		},
 		{ params: t.Object({ parentType: t.String(), parentId: t.String() }) },
+	)
+	.post(
+		"/:id/like",
+		async ({ params, user: viewer, status }) => {
+			if (!viewer) return status(401, "Sign in");
+			if (
+				!hit(`comment-like:${viewer.id}`, { limit: 120, windowMs: 60_000 }).ok
+			)
+				return status(429, "Slow down");
+
+			const [commentRow] = await db
+				.select()
+				.from(comment)
+				.where(eq(comment.id, params.id))
+				.limit(1);
+			if (!commentRow || commentRow.deletedAt) return status(404, "Not found");
+
+			const [existing] = await db
+				.select()
+				.from(reaction)
+				.where(
+					and(
+						eq(reaction.userId, viewer.id),
+						eq(reaction.parentType, "comment"),
+						eq(reaction.parentId, params.id),
+						eq(reaction.kind, "like"),
+					),
+				)
+				.limit(1);
+
+			if (existing) {
+				await removeViewerCommentReaction(viewer.id, params.id, "like");
+				return readCommentReactionSnapshot(params.id, viewer.id);
+			}
+
+			await removeViewerCommentReaction(viewer.id, params.id, "dislike");
+
+			await db.insert(reaction).values({
+				userId: viewer.id,
+				parentType: "comment",
+				parentId: params.id,
+				kind: "like",
+			});
+			await db
+				.update(comment)
+				.set({ likesCount: sql`${comment.likesCount} + 1` })
+				.where(eq(comment.id, params.id));
+
+			return readCommentReactionSnapshot(params.id, viewer.id);
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	.post(
+		"/:id/dislike",
+		async ({ params, user: viewer, status }) => {
+			if (!viewer) return status(401, "Sign in");
+			if (
+				!hit(`comment-dislike:${viewer.id}`, { limit: 120, windowMs: 60_000 })
+					.ok
+			)
+				return status(429, "Slow down");
+
+			const [commentRow] = await db
+				.select()
+				.from(comment)
+				.where(eq(comment.id, params.id))
+				.limit(1);
+			if (!commentRow || commentRow.deletedAt) return status(404, "Not found");
+
+			const [existing] = await db
+				.select()
+				.from(reaction)
+				.where(
+					and(
+						eq(reaction.userId, viewer.id),
+						eq(reaction.parentType, "comment"),
+						eq(reaction.parentId, params.id),
+						eq(reaction.kind, "dislike"),
+					),
+				)
+				.limit(1);
+
+			if (existing) {
+				await removeViewerCommentReaction(viewer.id, params.id, "dislike");
+				return readCommentReactionSnapshot(params.id, viewer.id);
+			}
+
+			await removeViewerCommentReaction(viewer.id, params.id, "like");
+
+			await db.insert(reaction).values({
+				userId: viewer.id,
+				parentType: "comment",
+				parentId: params.id,
+				kind: "dislike",
+			});
+			await db
+				.update(comment)
+				.set({ dislikesCount: sql`${comment.dislikesCount} + 1` })
+				.where(eq(comment.id, params.id));
+
+			return readCommentReactionSnapshot(params.id, viewer.id);
+		},
+		{ params: t.Object({ id: t.String() }) },
 	);

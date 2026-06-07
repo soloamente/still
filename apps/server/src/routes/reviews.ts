@@ -35,8 +35,17 @@ import {
 } from "../lib/notification-delivery";
 import { removePinnedReviewId } from "../lib/profile-pinned-reviews";
 import { hit } from "../lib/rate-limit";
+import {
+	assertValidReviewStillSlideKey,
+	fetchReviewMovieScreenshots,
+	resolveReviewStillSlide,
+} from "../lib/review-movie-screenshots";
 import { movieReviewNotificationHref } from "../lib/review-notification-href";
 import { isValidReviewRatingStored } from "../lib/review-rating";
+import {
+	readReviewReactionSnapshot,
+	removeViewerReviewReaction,
+} from "../lib/review-reactions";
 import { routeBody } from "../lib/route-body";
 
 const reviewRatingSchema = t.Optional(
@@ -51,6 +60,7 @@ type CreateReviewBody = {
 	rating?: number;
 	containsSpoilers?: boolean;
 	visibility?: ContentVisibility;
+	stillSlideKey?: string | null;
 };
 
 type PatchReviewBody = {
@@ -59,6 +69,7 @@ type PatchReviewBody = {
 	rating?: number;
 	containsSpoilers?: boolean;
 	visibility?: ContentVisibility;
+	stillSlideKey?: string | null;
 };
 
 export const reviewsRoute = new Elysia({
@@ -108,6 +119,15 @@ export const reviewsRoute = new Elysia({
 				return status(400, "Invalid rating");
 			}
 
+			const stillSlideKey = body.stillSlideKey ?? null;
+			if (stillSlideKey) {
+				const valid = await assertValidReviewStillSlideKey(
+					body.movieId,
+					stillSlideKey,
+				);
+				if (!valid) return status(400, "Invalid still");
+			}
+
 			let visibility = body.visibility ?? null;
 			if (!visibility) {
 				const [own] = await db
@@ -131,6 +151,7 @@ export const reviewsRoute = new Elysia({
 					containsSpoilers: body.containsSpoilers ?? false,
 					visibility,
 					rating,
+					stillSlideKey,
 				})
 				.returning();
 			await db.insert(eventLog).values({
@@ -150,6 +171,7 @@ export const reviewsRoute = new Elysia({
 				rating: reviewRatingSchema,
 				containsSpoilers: t.Optional(t.Boolean()),
 				visibility: t.Optional(visibilitySchema),
+				stillSlideKey: t.Optional(t.Union([t.String(), t.Null()])),
 			}),
 		},
 	)
@@ -174,6 +196,13 @@ export const reviewsRoute = new Elysia({
 			if (nextRating != null && !isValidReviewRatingStored(nextRating)) {
 				return status(400, "Invalid rating");
 			}
+			if (body.stillSlideKey !== undefined && body.stillSlideKey !== null) {
+				const valid = await assertValidReviewStillSlideKey(
+					existing.movieId,
+					body.stillSlideKey,
+				);
+				if (!valid) return status(400, "Invalid still");
+			}
 			const [updated] = await db
 				.update(review)
 				.set({
@@ -182,6 +211,10 @@ export const reviewsRoute = new Elysia({
 					containsSpoilers: body.containsSpoilers ?? existing.containsSpoilers,
 					visibility: body.visibility ?? existing.visibility,
 					rating: nextRating,
+					stillSlideKey:
+						body.stillSlideKey !== undefined
+							? body.stillSlideKey
+							: existing.stillSlideKey,
 				})
 				.where(eq(review.id, params.id))
 				.returning();
@@ -195,6 +228,7 @@ export const reviewsRoute = new Elysia({
 				rating: reviewRatingSchema,
 				containsSpoilers: t.Optional(t.Boolean()),
 				visibility: t.Optional(visibilitySchema),
+				stillSlideKey: t.Optional(t.Union([t.String(), t.Null()])),
 			}),
 		},
 	)
@@ -247,21 +281,32 @@ export const reviewsRoute = new Elysia({
 	)
 	.get(
 		"/:id",
-		async ({ params, status, user }) => {
+		async ({ params, status, user: currentUser }) => {
+			// Auth `currentUser` must not shadow the Drizzle `user` table used in joins below.
 			const [row] = await db
-				.select({ review, movie, log, authorProfile: profile })
+				.select({
+					review,
+					movie,
+					log,
+					authorProfile: profile,
+					authorUser: user,
+				})
 				.from(review)
 				.leftJoin(movie, eq(review.movieId, movie.tmdbId))
 				.leftJoin(log, eq(review.logId, log.id))
 				.leftJoin(profile, eq(review.userId, profile.userId))
+				.leftJoin(user, eq(review.userId, user.id))
 				.where(eq(review.id, params.id))
 				.limit(1);
 			if (!row) return status(404, "Not found");
 			const author = row.review.userId;
-			const follows = await resolveViewerFollow(user?.id ?? null, author);
+			const follows = await resolveViewerFollow(
+				currentUser?.id ?? null,
+				author,
+			);
 			if (
 				!canViewContent({
-					viewerId: user?.id ?? null,
+					viewerId: currentUser?.id ?? null,
 					authorId: author,
 					visibility: row.review.visibility,
 					...follows,
@@ -269,23 +314,11 @@ export const reviewsRoute = new Elysia({
 			) {
 				return status(404, "Not found");
 			}
-			// Is the current user liking this?
-			let liked = false;
-			if (user) {
-				const [r] = await db
-					.select({ id: reaction.parentId })
-					.from(reaction)
-					.where(
-						and(
-							eq(reaction.userId, user.id),
-							eq(reaction.parentType, "review"),
-							eq(reaction.parentId, params.id),
-							eq(reaction.kind, "like"),
-						),
-					)
-					.limit(1);
-				liked = Boolean(r);
-			}
+			// Viewer like/dislike + public counters.
+			const reactionSnapshot = await readReviewReactionSnapshot(
+				params.id,
+				currentUser?.id ?? null,
+			);
 			const likedByProfiles = await db
 				.select({
 					displayName: profile.displayName,
@@ -302,9 +335,29 @@ export const reviewsRoute = new Elysia({
 				)
 				.orderBy(desc(reaction.createdAt))
 				.limit(40);
+			const handle = row.authorProfile?.handle?.trim();
+			const displayName = row.authorProfile?.displayName?.trim();
+			const screenshots = await fetchReviewMovieScreenshots(row.review.movieId);
+			const selectedStill = resolveReviewStillSlide(
+				screenshots,
+				row.review.stillSlideKey,
+			);
 			return {
 				...row,
-				liked,
+				author:
+					handle && displayName
+						? {
+								handle,
+								displayName,
+								image: row.authorUser?.image ?? null,
+							}
+						: null,
+				screenshots,
+				selectedStill,
+				liked: reactionSnapshot.liked,
+				disliked: reactionSnapshot.disliked,
+				likesCount: reactionSnapshot.likesCount,
+				dislikesCount: reactionSnapshot.dislikesCount,
 				likedByProfiles,
 			};
 		},
@@ -397,22 +450,13 @@ export const reviewsRoute = new Elysia({
 				)
 				.limit(1);
 			if (existing) {
-				await db
-					.delete(reaction)
-					.where(
-						and(
-							eq(reaction.userId, user.id),
-							eq(reaction.parentType, "review"),
-							eq(reaction.parentId, params.id),
-							eq(reaction.kind, "like"),
-						),
-					);
-				await db
-					.update(review)
-					.set({ likesCount: sql`greatest(${review.likesCount} - 1, 0)` })
-					.where(eq(review.id, params.id));
-				return { liked: false };
+				await removeViewerReviewReaction(user.id, params.id, "like");
+				return readReviewReactionSnapshot(params.id, user.id);
 			}
+
+			// Like and dislike are mutually exclusive on reviews.
+			await removeViewerReviewReaction(user.id, params.id, "dislike");
+
 			await db.insert(reaction).values({
 				userId: user.id,
 				parentType: "review",
@@ -466,7 +510,50 @@ export const reviewsRoute = new Elysia({
 				});
 			}
 
-			return { liked: true };
+			return readReviewReactionSnapshot(params.id, user.id);
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	.post(
+		"/:id/dislike",
+		async ({ params, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			if (
+				!hit(`review-dislike:${user.id}`, { limit: 120, windowMs: 60_000 }).ok
+			)
+				return status(429, "Slow down");
+
+			const [existing] = await db
+				.select()
+				.from(reaction)
+				.where(
+					and(
+						eq(reaction.userId, user.id),
+						eq(reaction.parentType, "review"),
+						eq(reaction.parentId, params.id),
+						eq(reaction.kind, "dislike"),
+					),
+				)
+				.limit(1);
+			if (existing) {
+				await removeViewerReviewReaction(user.id, params.id, "dislike");
+				return readReviewReactionSnapshot(params.id, user.id);
+			}
+
+			await removeViewerReviewReaction(user.id, params.id, "like");
+
+			await db.insert(reaction).values({
+				userId: user.id,
+				parentType: "review",
+				parentId: params.id,
+				kind: "dislike",
+			});
+			await db
+				.update(review)
+				.set({ dislikesCount: sql`${review.dislikesCount} + 1` })
+				.where(eq(review.id, params.id));
+
+			return readReviewReactionSnapshot(params.id, user.id);
 		},
 		{ params: t.Object({ id: t.String() }) },
 	);

@@ -6,10 +6,10 @@
 export const MOVIE_DETAIL_DRAWER_SURFACE_ATTR = "data-still-detail-drawer";
 
 export const MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME =
-	"fixed inset-x-0 bottom-0 z-50 flex h-[min(88svh,920px)] max-h-[min(96svh,920px)] flex-col overflow-hidden overscroll-none rounded-t-[2rem] bg-card outline-none shadow-2xl";
+	"fixed inset-x-0 bottom-0 z-50 flex h-[min(88svh,920px)] max-h-[min(96svh,920px)] flex-col overflow-hidden overscroll-none rounded-t-[2.25rem] bg-card outline-none shadow-2xl";
 
 export const MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME =
-	"fixed inset-x-0 bottom-0 z-60 flex h-[min(80svh,880px)] max-h-[min(92svh,880px)] flex-col overflow-hidden overscroll-none rounded-t-[2rem] bg-card outline-none shadow-2xl";
+	"fixed inset-x-0 bottom-0 z-60 flex h-[min(80svh,880px)] max-h-[min(92svh,880px)] flex-col overflow-hidden overscroll-none rounded-t-[2.25rem] bg-card outline-none shadow-2xl";
 
 /** Full-width scrollport — content columns live inside, not on this element. */
 export const MOVIE_DETAIL_DRAWER_SCROLL_CLASSNAME =

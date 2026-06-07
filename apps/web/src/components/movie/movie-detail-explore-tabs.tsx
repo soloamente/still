@@ -171,6 +171,7 @@ export type MoviePageReview = {
 	likesCount: number;
 	commentsCount: number;
 	publishedAt: string;
+	containsSpoilers: boolean;
 	author?: MoviePageReviewAuthor | null;
 };
 
@@ -190,7 +191,7 @@ export function MovieDetailExploreTabs({
 	relatedListingKind = "movie",
 	movieId,
 	movieTitle,
-	listingTmdbId,
+	listingTmdbId: _listingTmdbId,
 	listCountLabel = "films",
 }: {
 	lists: MovieListForPageTab[];
@@ -254,7 +255,9 @@ export function MovieDetailExploreTabs({
 
 	const reviewsSubsectionLabel = formatReviewsSubsectionLabel(reviews.length);
 
-	const reviewsPanel = <MovieDetailReviewsCarousel reviews={reviews} />;
+	const reviewsPanel = (
+		<MovieDetailReviewsCarousel movieId={movieId} reviews={reviews} />
+	);
 
 	const listsPanel = lists.length ? (
 		<ul className="grid gap-4 sm:grid-cols-2">

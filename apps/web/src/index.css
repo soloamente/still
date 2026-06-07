@@ -1,2 +1,19 @@
 /* Workspace package CSS aliases are not expanded before Tailwind in Turbopack dev — use a relative path. */
 @import "../../../packages/ui/src/styles/globals.css";
+
+/* Pasito stepper — movie/TV artwork rails (see detail-artwork-pasito-stepper.tsx). */
+.detail-artwork-pasito-hero {
+	--pill-dot-size: 8px;
+	--pill-active-width: 36px;
+	--pill-gap: 6px;
+	--pill-bg: color-mix(in oklab, var(--muted-foreground) 45%, transparent);
+	--pill-active-bg: var(--foreground);
+	--pill-container-bg: transparent;
+	--pill-container-border: transparent;
+	padding: 0;
+	border: none;
+}
+
+.detail-artwork-pasito-hero .pasito-step:focus-visible {
+	outline-color: color-mix(in oklab, var(--foreground) 35%, transparent);
+}

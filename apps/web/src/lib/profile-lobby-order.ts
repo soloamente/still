@@ -75,6 +75,26 @@ function listingTitle(row: ProfileFilmographyRow): string {
 	return row.movie?.title ?? row.tv?.title ?? "";
 }
 
+/** Deterministic tiebreak for equal watchedAt — mirrors diary lobby recency. */
+function compareProfileLogRecency(
+	a: ProfileFilmographyRow,
+	b: ProfileFilmographyRow,
+): number {
+	const aw = new Date(a.log.watchedAt).getTime();
+	const bw = new Date(b.log.watchedAt).getTime();
+	if (aw !== bw) return bw - aw;
+	const ac =
+		"createdAt" in a.log && a.log.createdAt
+			? new Date(a.log.createdAt as string | Date).getTime()
+			: 0;
+	const bc =
+		"createdAt" in b.log && b.log.createdAt
+			? new Date(b.log.createdAt as string | Date).getTime()
+			: 0;
+	if (ac !== bc) return bc - ac;
+	return b.log.id.localeCompare(a.log.id);
+}
+
 function compareProfileFilmographyRows(
 	a: ProfileFilmographyRow,
 	b: ProfileFilmographyRow,
@@ -82,24 +102,15 @@ function compareProfileFilmographyRows(
 ): number {
 	switch (order) {
 		case "latest_seen":
-			return (
-				new Date(b.log.watchedAt).getTime() -
-				new Date(a.log.watchedAt).getTime()
-			);
+			return compareProfileLogRecency(a, b);
 		case "earliest_seen":
-			return (
-				new Date(a.log.watchedAt).getTime() -
-				new Date(b.log.watchedAt).getTime()
-			);
+			return -compareProfileLogRecency(a, b);
 		case "title_az": {
 			const t = listingTitle(a).localeCompare(listingTitle(b), undefined, {
 				sensitivity: "base",
 			});
 			if (t !== 0) return t;
-			return (
-				new Date(b.log.watchedAt).getTime() -
-				new Date(a.log.watchedAt).getTime()
-			);
+			return compareProfileLogRecency(a, b);
 		}
 		default: {
 			const _exhaustive: never = order;

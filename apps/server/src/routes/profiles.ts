@@ -789,9 +789,9 @@ export const profilesRoute = new Elysia({
 		{ params: t.Object({ handle: t.String() }) },
 	)
 	/**
-	 * Paginated filmography for the Movies / TV profile grids. Dedups to the newest
-	 * log per title, then filters venue/favorites, orders, and paginates — matching
-	 * the web app's prior client-side derivation.
+	 * Paginated filmography for the Movies / TV profile grids. When `venue` is set,
+	 * dedup keeps the newest log per title **within that venue slice** (not the
+	 * globally newest log), then favorites filter, order, and paginate.
 	 */
 	.get(
 		"/:handle/filmography",
@@ -820,11 +820,22 @@ export const profilesRoute = new Elysia({
 			const idCol = isTv ? log.tvId : log.movieId;
 			const listing = isTv ? tv : movie;
 
-			// Newest log per title (DISTINCT ON the media id, ordered by watchedAt desc).
+			// Venue slice before dedup — keeps the newest in-venue log per title so
+			// "Latest seen" + "At home" reflects the latest at-home watch, not the
+			// globally newest log that may belong to the other venue.
+			const venueLogWhere = venue
+				? or(
+						eq(log.watchVenue, venue),
+						sql`${log.watchVenue} not in ('theaters','streaming')`,
+					)
+				: undefined;
+
+			// Newest log per title within the active slice (DISTINCT ON media id).
 			const deduped = db
 				.selectDistinctOn([idCol], {
 					logId: log.id,
 					watchedAt: log.watchedAt,
+					createdAt: log.createdAt,
 					rating: log.rating,
 					liked: log.liked,
 					watchVenue: log.watchVenue,
@@ -844,27 +855,28 @@ export const profilesRoute = new Elysia({
 						isTv
 							? tvNotAdultSql(showAdultContent)
 							: movieNotAdultSql(showAdultContent),
+						venueLogWhere,
 					),
 				)
-				.orderBy(idCol, desc(log.watchedAt))
+				.orderBy(idCol, desc(log.watchedAt), desc(log.createdAt), desc(log.id))
 				.as("dedup");
 
-			// Venue filter on the kept row: legacy/unset venue matches all venues.
-			const venueWhere = venue
-				? or(
-						eq(deduped.watchVenue, venue),
-						sql`${deduped.watchVenue} not in ('theaters','streaming')`,
-					)
-				: undefined;
 			const favWhere = favorites ? eq(deduped.liked, true) : undefined;
-			const outerWhere = and(venueWhere, favWhere);
 
 			const orderBy =
 				order === "earliest"
-					? [asc(deduped.watchedAt), asc(deduped.tmdbId)]
+					? [
+							asc(deduped.watchedAt),
+							asc(deduped.createdAt),
+							asc(deduped.tmdbId),
+						]
 					: order === "title"
 						? [asc(deduped.title), asc(deduped.tmdbId)]
-						: [desc(deduped.watchedAt), asc(deduped.tmdbId)];
+						: [
+								desc(deduped.watchedAt),
+								desc(deduped.createdAt),
+								asc(deduped.tmdbId),
+							];
 
 			const [rows, totalRow, venueCountRow] = await Promise.all([
 				db
@@ -881,12 +893,12 @@ export const profilesRoute = new Elysia({
 						posterPath: deduped.posterPath,
 					})
 					.from(deduped)
-					.where(outerWhere)
+					.where(favWhere)
 					.orderBy(...orderBy)
 					.limit(limit)
 					.offset(offset),
-				db.select({ total: count() }).from(deduped).where(outerWhere),
-				db.select({ total: count() }).from(deduped).where(venueWhere),
+				db.select({ total: count() }).from(deduped).where(favWhere),
+				db.select({ total: count() }).from(deduped),
 			]);
 
 			const total = Number(totalRow[0]?.total ?? 0);

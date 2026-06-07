@@ -45,6 +45,7 @@ import {
 	quickLogSheetHeading,
 	quickLogSubmitLabel,
 } from "@/lib/quick-log-copy";
+import { shouldRefreshRouteAfterMutation } from "@/lib/router-refresh-after-mutation";
 import {
 	deleteLog,
 	fetchMoviesSearch,
@@ -543,8 +544,7 @@ export function QuickLogRoot() {
 					movieTitle.trim() ? `Updated “${movieTitle}”` : "Diary log updated",
 				);
 				args.onSuccess?.();
-				// Diary lobby hoists logs in the RSC shell — refresh so edits show without a full navigation.
-				if (pathname.startsWith("/diary")) {
+				if (shouldRefreshRouteAfterMutation(pathname)) {
 					router.refresh();
 				}
 				handleClose();
@@ -583,6 +583,9 @@ export function QuickLogRoot() {
 				movieTitle.trim() ? `Logged “${movieTitle}”` : "Saved to diary",
 			);
 			args.onSuccess?.();
+			if (shouldRefreshRouteAfterMutation(pathname)) {
+				router.refresh();
+			}
 			handleClose();
 		} catch (err) {
 			console.error(err);

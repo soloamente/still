@@ -1,6 +1,6 @@
 "use client";
 
-import { MoviePoster } from "@/components/movie/movie-poster";
+import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import type { LeaderboardLogItem } from "@/lib/home-leaderboard-types";
 import { patronWatchLedgerPosterLabels } from "@/lib/patron-watch-ledger-poster-labels";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
@@ -31,21 +31,23 @@ export function PatronWatchLedgerGrid({
 
 	return (
 		<div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
-			{items.map((item) => {
+			{items.map((item, index) => {
 				const tmdbId = item.movieId ?? item.tvId;
 				if (tmdbId == null) return null;
 
+				const listingKind = item.tvId != null ? "tv" : "movie";
 				const { posterCaption, posterCaptionSubline, metaLine } =
 					patronWatchLedgerPosterLabels(item);
 
 				return (
 					<div key={item.logId} className="min-w-0 text-center">
-						<MoviePoster
-							movieId={tmdbId}
+						<CataloguePosterTile
+							surface="drawer"
+							listingKind={listingKind}
+							tmdbId={tmdbId}
 							title={item.title}
 							posterUrl={tmdbPosterUrlFromPath(item.posterPath, "w342")}
-							listingKind={item.tvId != null ? "tv" : "movie"}
-							showTitle
+							priority={index < 6}
 							hoverEffect="elevation"
 							hoverStacking="sheet"
 							frameClassName={LEDGER_POSTER_FRAME_CLASSNAME}

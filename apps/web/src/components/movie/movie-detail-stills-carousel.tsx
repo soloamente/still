@@ -1,12 +1,12 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { ChevronLeft, ChevronRight, Download, Loader2 } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { Download, Loader2 } from "lucide-react";
 import Image from "next/image";
 import type { MouseEvent } from "react";
 import { useCallback, useState } from "react";
 
+import { DetailArtworkPasitoStepper } from "@/components/movie/detail-artwork-pasito-stepper";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { useDetailEditorialRailSnap } from "@/lib/detail-editorial-rail-snap";
@@ -18,10 +18,6 @@ import {
 /** Inset image edge — pure black/white at 10% (not tinted neutrals). */
 const STILL_IMAGE_OUTLINE_CLASS =
 	"outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10";
-
-/** Nav pill depth on `bg-card` about column. */
-const STILLS_NAV_PILL_CLASS =
-	"shadow-[0_0_0_1px_rgba(255,255,255,0.08)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08)]";
 
 /** One widescreen still per viewport — centered via leading/trailing rail spacers. */
 const STILL_SLIDE_WIDTH_CLASS = "w-[min(56rem,92vw)]";
@@ -55,107 +51,34 @@ function StillsRailEdgeSpacer() {
 const STILL_SLIDE_INACTIVE_CLASS =
 	"opacity-45 blur-[3px] scale-[0.98] motion-reduce:blur-none motion-reduce:scale-100";
 
-/** Show per-slide dots up to this count; larger sets use a page counter instead. */
-const STILLS_CAROUSEL_MAX_DOTS = 16;
+/** Window Pasito pills when backdrop count exceeds this (matches prior dot-strip cap). */
+const STILLS_CAROUSEL_MAX_VISIBLE_STEPS = 16;
 
 function StillsCarouselNavigation({
 	totalSlides,
 	activeSlideIndex,
-	onPrev,
-	onNext,
 	onGoto,
 }: {
 	totalSlides: number;
 	activeSlideIndex: number;
-	onPrev: () => void;
-	onNext: () => void;
 	onGoto: (index: number) => void;
 }) {
-	const reduceMotion = useReducedMotion();
-	const atStart = activeSlideIndex === 0;
-	const atEnd = activeSlideIndex === totalSlides - 1;
-	const useDotStrip = totalSlides <= STILLS_CAROUSEL_MAX_DOTS;
-
 	return (
 		<div
-			className={cn(
-				"mx-auto mt-4 flex w-fit max-w-full touch-manipulation items-center gap-2 rounded-full bg-background px-2 py-1.5 sm:gap-3 sm:px-3 sm:py-2",
-				STILLS_NAV_PILL_CLASS,
-			)}
-			role="toolbar"
-			aria-label="Background navigation"
+			className="mx-auto mt-4 flex justify-center"
+			role="tablist"
+			aria-label="Background slides"
 		>
-			<DetailMotionButton
-				type="button"
-				className="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-opacity duration-150 ease-out [-webkit-tap-highlight-color:transparent] disabled:cursor-not-allowed disabled:opacity-30 [@media(hover:hover)]:hover:opacity-80"
-				onClick={onPrev}
-				disabled={atStart}
-				aria-label="Previous background"
-			>
-				<ChevronLeft className="size-5 -translate-x-px" aria-hidden />
-			</DetailMotionButton>
-
-			{useDotStrip ? (
-				<div
-					className="scrollbar-none flex max-w-[min(100%,20rem)] items-center justify-center gap-0.5 overflow-x-auto [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-					role="tablist"
-					aria-label="Background pages"
-				>
-					{Array.from({ length: totalSlides }, (_, pageIndex) => {
-						const isActive = pageIndex === activeSlideIndex;
-						return (
-							<motion.button
-								// biome-ignore lint/suspicious/noArrayIndexKey: fixed-length pagination dots, order never changes
-								key={pageIndex}
-								type="button"
-								role="tab"
-								aria-selected={isActive}
-								aria-label={`Background ${pageIndex + 1} of ${totalSlides}`}
-								className="relative flex size-10 shrink-0 items-center justify-center rounded-full border-0 bg-transparent p-0 [-webkit-tap-highlight-color:transparent]"
-								whileTap={reduceMotion ? undefined : { scale: 0.96 }}
-								onClick={() => onGoto(pageIndex)}
-							>
-								<motion.span
-									aria-hidden
-									className={cn(
-										"block h-2 rounded-full",
-										isActive
-											? "bg-foreground"
-											: "bg-muted-foreground/40 [@media(hover:hover)]:hover:bg-muted-foreground/60",
-									)}
-									layout
-									transition={
-										reduceMotion
-											? { duration: 0 }
-											: {
-													type: "spring",
-													stiffness: 400,
-													damping: 28,
-													bounce: 0,
-												}
-									}
-									animate={{ width: isActive ? 16 : 8 }}
-								/>
-							</motion.button>
-						);
-					})}
-				</div>
-			) : (
-				<p className="min-w-[5rem] px-1 text-center font-medium text-foreground text-sm tabular-nums">
-					{activeSlideIndex + 1}
-					<span className="text-muted-foreground"> / {totalSlides}</span>
-				</p>
-			)}
-
-			<DetailMotionButton
-				type="button"
-				className="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-opacity duration-150 ease-out [-webkit-tap-highlight-color:transparent] disabled:cursor-not-allowed disabled:opacity-30 [@media(hover:hover)]:hover:opacity-80"
-				onClick={onNext}
-				disabled={atEnd}
-				aria-label="Next background"
-			>
-				<ChevronRight className="size-5 translate-x-px" aria-hidden />
-			</DetailMotionButton>
+			<DetailArtworkPasitoStepper
+				count={totalSlides}
+				active={activeSlideIndex}
+				onStepClick={onGoto}
+				maxVisible={
+					totalSlides > STILLS_CAROUSEL_MAX_VISIBLE_STEPS
+						? STILLS_CAROUSEL_MAX_VISIBLE_STEPS
+						: undefined
+				}
+			/>
 		</div>
 	);
 }
@@ -253,17 +176,11 @@ export function MovieDetailStillsCarousel({
 	titleSlug: string;
 	className?: string;
 }) {
-	const {
-		railRef,
-		activeSlideIndex,
-		totalSlides,
-		gotoSlide,
-		nextSlide,
-		prevSlide,
-	} = useDetailEditorialRailSnap({
-		slideCount: screenshots.length,
-		slideSelector: "[data-still-slide]",
-	});
+	const { railRef, activeSlideIndex, totalSlides, gotoSlide } =
+		useDetailEditorialRailSnap({
+			slideCount: screenshots.length,
+			slideSelector: "[data-still-slide]",
+		});
 
 	if (screenshots.length === 0) return null;
 
@@ -318,8 +235,6 @@ export function MovieDetailStillsCarousel({
 				<StillsCarouselNavigation
 					totalSlides={totalSlides}
 					activeSlideIndex={activeSlideIndex}
-					onPrev={prevSlide}
-					onNext={nextSlide}
 					onGoto={gotoSlide}
 				/>
 			) : null}

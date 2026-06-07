@@ -17,6 +17,12 @@ describe("formatReleaseVersionLabel", () => {
 
 describe("whatsNewReleasePillLabel", () => {
 	test("joins changelog version and date", () => {
+		expect(whatsNewReleasePillLabel("2026-06-07-reviews-tagging-reader")).toBe(
+			"v0.2.1 · June 7, 2026",
+		);
+	});
+
+	test("joins prior release version and date", () => {
 		expect(
 			whatsNewReleasePillLabel("2026-06-06-detail-editorial-community"),
 		).toBe("v0.2.0 · June 6, 2026");

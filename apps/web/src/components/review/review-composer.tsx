@@ -3,24 +3,23 @@
 import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
 import { Label } from "@still/ui/components/label";
-import { Textarea } from "@still/ui/components/textarea";
 import { cn } from "@still/ui/lib/utils";
 import { Loader2, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
-
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
-import {
-	DetailMotionButton,
-	DetailMotionButtonWrap,
-} from "@/components/movie/detail-motion-pressable";
+import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { ReviewListingMentionTextarea } from "@/components/review/review-listing-mention-textarea";
 import {
 	type ContentVisibility,
 	VisibilitySelect,
 } from "@/components/review/visibility-select";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
+import { TransitionsModalLayer } from "@/components/ui/transitions-modal-layer";
 import { api } from "@/lib/api";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
@@ -29,6 +28,7 @@ import {
 	logRatingToDisplay,
 	logRatingToStored,
 } from "@/lib/log-rating";
+import { shouldRefreshRouteAfterMutation } from "@/lib/router-refresh-after-mutation";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 const BODY_MAX = 20_000;
@@ -36,6 +36,9 @@ const TITLE_MAX = 200;
 const DEFAULT_RATING = 7;
 
 const SHEET_EASE = [0.165, 0.84, 0.44, 1] as const;
+
+const SHEET_DIALOG_CLASS =
+	"relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10";
 
 type ComposerStep = "compose" | "spoilers";
 
@@ -60,13 +63,15 @@ type Store = {
 	args: ComposerArgs | null;
 	open: (args: ComposerArgs) => void;
 	close: () => void;
+	clearArgs: () => void;
 };
 
 export const useReviewComposer = create<Store>((set) => ({
 	isOpen: false,
 	args: null,
 	open: (args) => set({ isOpen: true, args }),
-	close: () => set({ isOpen: false, args: null }),
+	close: () => set({ isOpen: false }),
+	clearArgs: () => set({ args: null }),
 }));
 
 function posterSrcFromPath(path: string | null | undefined): string | null {
@@ -81,8 +86,10 @@ function posterSrcFromPath(path: string | null | undefined): string | null {
  * Mounted in `AppShell`; open via `useReviewComposer().open()`.
  */
 export function ReviewComposerRoot() {
+	const pathname = usePathname();
+	const router = useRouter();
 	const reduceMotion = useReducedMotion();
-	const { isOpen, args, close } = useReviewComposer();
+	const { isOpen, args, close, clearArgs } = useReviewComposer();
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
 	const [ratingDisplay, setRatingDisplay] = useState(DEFAULT_RATING);
@@ -99,8 +106,14 @@ export function ReviewComposerRoot() {
 		close();
 	}, [close]);
 
+	const handleClosed = useCallback(() => {
+		if (!useReviewComposer.getState().isOpen) {
+			clearArgs();
+		}
+	}, [clearArgs]);
+
 	useEffect(() => {
-		if (!isOpen) {
+		if (!args) {
 			setTitle("");
 			setBody("");
 			setRatingDisplay(DEFAULT_RATING);
@@ -111,7 +124,7 @@ export function ReviewComposerRoot() {
 			setPosterUrl(null);
 			setAverageRating(null);
 		}
-	}, [isOpen]);
+	}, [args]);
 
 	useEffect(() => {
 		if (!isOpen || !args) return;
@@ -144,9 +157,9 @@ export function ReviewComposerRoot() {
 	);
 
 	useEffect(() => {
-		if (!isOpen) return;
+		if (!args) return;
 		const onKey = (e: KeyboardEvent) => {
-			if (e.key !== "Escape") return;
+			if (e.key !== "Escape" || !isOpen) return;
 			if (step === "spoilers") {
 				setStep("compose");
 				setContainsSpoilers(false);
@@ -156,7 +169,7 @@ export function ReviewComposerRoot() {
 		};
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
-	}, [isOpen, handleClose, step]);
+	}, [args, isOpen, handleClose, step]);
 
 	const canPublish = useMemo(() => {
 		if (!args) return false;
@@ -167,20 +180,13 @@ export function ReviewComposerRoot() {
 		return true;
 	}, [args, body, title.length]);
 
-	const dialogLayoutTransition = reduceMotion
+	const stepTransition = reduceMotion
 		? { duration: 0 }
-		: { duration: 0.32, ease: SHEET_EASE };
+		: { duration: 0.18, ease: SHEET_EASE };
 
 	if (!args) return null;
 
-	const spoilerChip = (active: boolean) =>
-		cn(
-			"inline-flex min-h-12 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
-			active
-				? "bg-foreground text-background"
-				: "bg-background text-foreground",
-			!active && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-		);
+	const spoilerChoice = containsSpoilers ? "yes" : "no";
 
 	// Sheet fields sit on `bg-card` — suppress default Input/Textarea focus ring and border wash.
 	const fieldClass =
@@ -223,6 +229,9 @@ export function ReviewComposerRoot() {
 				});
 				toast.success("Review published");
 			}
+			if (shouldRefreshRouteAfterMutation(pathname)) {
+				router.refresh();
+			}
 			handleClose();
 		} catch (err) {
 			console.error(err);
@@ -235,273 +244,243 @@ export function ReviewComposerRoot() {
 	}
 
 	return (
-		<AnimatePresence>
-			{isOpen ? (
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ duration: 0.18 }}
-					className="fixed inset-0 z-50 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center"
+		<TransitionsModalLayer
+			open={isOpen}
+			onClose={handleClose}
+			onClosed={handleClosed}
+			aria-labelledby="review-composer-title"
+			dialogClassName={SHEET_DIALOG_CLASS}
+		>
+			<div className="mb-4 flex justify-end">
+				<Button
+					variant="ghost"
+					size="icon-pill"
 					onClick={handleClose}
+					aria-label="Close"
+					className="text-muted-foreground"
 				>
-					<motion.div
-						role="dialog"
-						aria-modal="true"
-						aria-labelledby="review-composer-title"
-						layout
-						layoutRoot
-						initial={{ y: 32, opacity: 0, scale: 0.98 }}
-						animate={{ y: 0, opacity: 1, scale: 1 }}
-						exit={{ y: 16, opacity: 0, scale: 0.98 }}
-						transition={{
-							duration: 0.18,
-							ease: SHEET_EASE,
-							layout: dialogLayoutTransition,
-						}}
-						onClick={(e) => e.stopPropagation()}
-						className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
-					>
-						<div className="mb-4 flex justify-end">
-							<Button
-								variant="ghost"
-								size="icon-pill"
-								onClick={handleClose}
-								aria-label="Close"
-								className="text-muted-foreground"
+					<X className="size-4" />
+				</Button>
+			</div>
+
+			<div className="relative">
+				<div
+					ref={scrollRef}
+					className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+				>
+					<AnimatePresence mode="wait" initial={false}>
+						{step === "compose" ? (
+							<motion.div
+								key="review-compose"
+								initial={{ opacity: 0, y: 8 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -6 }}
+								transition={stepTransition}
 							>
-								<X className="size-4" />
-							</Button>
-						</div>
+								{posterUrl ? (
+									<div className="mx-auto mb-5 flex justify-center">
+										<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
+											<Image
+												src={posterUrl}
+												alt=""
+												fill
+												sizes="120px"
+												className="object-cover"
+												unoptimized
+											/>
+										</div>
+									</div>
+								) : null}
 
-						<div className="relative">
-							<div
-								ref={scrollRef}
-								className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-							>
-								<AnimatePresence mode="wait" initial={false}>
-									{step === "compose" ? (
-										<motion.div
-											key="review-compose"
-											initial={{ opacity: 0, y: 8 }}
-											animate={{ opacity: 1, y: 0 }}
-											exit={{ opacity: 0, y: -6 }}
-											transition={{ duration: 0.18, ease: SHEET_EASE }}
-										>
-											{posterUrl ? (
-												<div className="mx-auto mb-5 flex justify-center">
-													<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
-														<Image
-															src={posterUrl}
-															alt=""
-															fill
-															sizes="120px"
-															className="object-cover"
-															unoptimized
-														/>
-													</div>
-												</div>
-											) : null}
-
-											<h2
-												id="review-composer-title"
-												className="mb-2 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
-											>
-												{isEdit ? "Edit your review" : "Share your review"}
-											</h2>
-											<p
-												className={cn(
-													"text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base",
-													usesDiaryRating ? "mb-2" : "mb-6",
-												)}
-											>
-												{args.movieTitle}
-											</p>
-
-											{usesDiaryRating && diaryScoreLabel ? (
-												<p className="mb-6 text-center font-semibold text-2xl text-foreground tabular-nums tracking-tight">
-													{diaryScoreLabel}
-												</p>
-											) : usesDiaryRating ? null : (
-												<LogRatingSlider
-													value={clampLogRatingDisplay(ratingDisplay)}
-													onChange={setRatingDisplay}
-													averageRating={averageRating}
-													className="mb-6"
-												/>
-											)}
-
-											<fieldset className="mb-6 flex flex-col items-center space-y-2 border-0 p-0 text-sm">
-												<legend className="w-full text-center text-muted-foreground text-xs">
-													Who can see this
-												</legend>
-												<VisibilitySelect
-													id="review-visibility"
-													variant="pills"
-													value={visibility}
-													onChange={(next) => {
-														setVisibility(next);
-														setVisibilityTouched(true);
-													}}
-												/>
-											</fieldset>
-
-											<div className="mb-5 space-y-2">
-												<Label
-													htmlFor="review-title"
-													className="w-full justify-center text-center text-muted-foreground text-xs"
-												>
-													Headline (optional)
-												</Label>
-												<Input
-													id="review-title"
-													value={title}
-													onChange={(e) => setTitle(e.target.value)}
-													maxLength={TITLE_MAX}
-													placeholder="A line for your take"
-													autoComplete="off"
-													spellCheck
-													className={fieldClass}
-												/>
-											</div>
-
-											<div className="mb-5 space-y-2">
-												<Label
-													htmlFor="review-body"
-													className="w-full justify-center text-center text-muted-foreground text-xs"
-												>
-													Your review
-												</Label>
-												<Textarea
-													id="review-body"
-													value={body}
-													onChange={(e) => setBody(e.target.value)}
-													rows={6}
-													placeholder="What stayed with you?"
-													maxLength={BODY_MAX}
-													spellCheck
-													className={cn(
-														fieldClass,
-														"min-h-[10rem] resize-y py-3 leading-relaxed",
-													)}
-												/>
-												<p className="text-right text-muted-foreground text-xs tabular-nums">
-													{body.length.toLocaleString()} /{" "}
-													{BODY_MAX.toLocaleString()}
-												</p>
-											</div>
-										</motion.div>
-									) : (
-										<motion.div
-											key="review-spoilers"
-											initial={{ opacity: 0, y: 8 }}
-											animate={{ opacity: 1, y: 0 }}
-											exit={{ opacity: 0, y: -6 }}
-											transition={{ duration: 0.18, ease: SHEET_EASE }}
-											className="flex flex-col items-center justify-center px-2 py-8"
-										>
-											<h2
-												id="review-composer-title"
-												className="mb-3 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
-											>
-												One last thing
-											</h2>
-											<p className="mb-8 max-w-sm text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
-												Does your review reveal plot details others may not have
-												seen yet?
-											</p>
-											<fieldset className="flex flex-wrap items-center justify-center gap-2 border-0 p-0">
-												<legend className="sr-only">Spoiler disclosure</legend>
-												<DetailMotionButton
-													type="button"
-													className={spoilerChip(!containsSpoilers)}
-													aria-pressed={!containsSpoilers}
-													onClick={() => setContainsSpoilers(false)}
-												>
-													No spoilers
-												</DetailMotionButton>
-												<DetailMotionButton
-													type="button"
-													className={spoilerChip(containsSpoilers)}
-													aria-pressed={containsSpoilers}
-													onClick={() => setContainsSpoilers(true)}
-												>
-													Contains spoilers
-												</DetailMotionButton>
-											</fieldset>
-										</motion.div>
-									)}
-								</AnimatePresence>
-							</div>
-							{/* Compose-only scrim — sibling of scroll, not measured for layout */}
-							{step === "compose" ? (
-								<div
-									aria-hidden
+								<h2
+									id="review-composer-title"
+									className="mb-2 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+								>
+									{isEdit ? "Edit your review" : "Share your review"}
+								</h2>
+								<p
 									className={cn(
-										"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-										showFooterFade ? "opacity-100" : "opacity-0",
+										"text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base",
+										usesDiaryRating ? "mb-2" : "mb-6",
 									)}
+								>
+									{args.movieTitle}
+								</p>
+
+								{usesDiaryRating && diaryScoreLabel ? (
+									<p className="mb-6 text-center font-semibold text-2xl text-foreground tabular-nums tracking-tight">
+										{diaryScoreLabel}
+									</p>
+								) : usesDiaryRating ? null : (
+									<LogRatingSlider
+										value={clampLogRatingDisplay(ratingDisplay)}
+										onChange={setRatingDisplay}
+										averageRating={averageRating}
+										className="mb-6"
+									/>
+								)}
+
+								<fieldset className="mb-6 flex flex-col items-center space-y-2 border-0 p-0 text-sm">
+									<legend className="w-full text-center text-muted-foreground text-xs">
+										Who can see this
+									</legend>
+									<VisibilitySelect
+										id="review-visibility"
+										variant="pills"
+										value={visibility}
+										onChange={(next) => {
+											setVisibility(next);
+											setVisibilityTouched(true);
+										}}
+									/>
+								</fieldset>
+
+								<div className="mb-5 space-y-2">
+									<Label
+										htmlFor="review-title"
+										className="w-full justify-center text-center text-muted-foreground text-xs"
+									>
+										Headline (optional)
+									</Label>
+									<Input
+										id="review-title"
+										value={title}
+										onChange={(e) => setTitle(e.target.value)}
+										maxLength={TITLE_MAX}
+										placeholder="A line for your take"
+										autoComplete="off"
+										spellCheck
+										className={fieldClass}
+									/>
+								</div>
+
+								<div className="mb-5 space-y-2">
+									<Label
+										htmlFor="review-body"
+										className="w-full justify-center text-center text-muted-foreground text-xs"
+									>
+										Your review
+									</Label>
+									<ReviewListingMentionTextarea
+										id="review-body"
+										value={body}
+										onChange={setBody}
+										rows={6}
+										placeholder="What stayed with you? Type @ to tag another film or show."
+										maxLength={BODY_MAX}
+										className={cn(
+											fieldClass,
+											"min-h-[10rem] resize-y py-3 leading-relaxed",
+										)}
+									/>
+									<p className="text-center text-muted-foreground text-xs">
+										Type <span className="font-medium">@</span> to link other
+										films or TV shows in your review.
+									</p>
+									<p className="text-right text-muted-foreground text-xs tabular-nums">
+										{body.length.toLocaleString()} / {BODY_MAX.toLocaleString()}
+									</p>
+								</div>
+							</motion.div>
+						) : (
+							<motion.div
+								key="review-spoilers"
+								initial={{ opacity: 0, y: 8 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -6 }}
+								transition={stepTransition}
+								className="flex flex-col items-center justify-center px-2 py-8"
+							>
+								<h2
+									id="review-composer-title"
+									className="mb-3 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+								>
+									One last thing
+								</h2>
+								<p className="mb-8 max-w-sm text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+									Does your review reveal plot details others may not have seen
+									yet?
+								</p>
+								<SegmentedPillToolbar
+									layoutId="review-composer-spoilers"
+									aria-label="Spoiler disclosure"
+									value={spoilerChoice}
+									onChange={(next) => setContainsSpoilers(next === "yes")}
+									options={[
+										{ id: "no", label: "No spoilers" },
+										{ id: "yes", label: "Contains spoilers" },
+									]}
 								/>
-							) : null}
-						</div>
+							</motion.div>
+						)}
+					</AnimatePresence>
+				</div>
+				{/* Compose-only scrim — sibling of scroll, not measured for layout */}
+				{step === "compose" ? (
+					<div
+						aria-hidden
+						className={cn(
+							"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+							showFooterFade ? "opacity-100" : "opacity-0",
+						)}
+					/>
+				) : null}
+			</div>
 
-						<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
-							<DetailMotionButtonWrap>
-								<Button
-									type="button"
-									variant="ghost"
-									size="pill"
-									className={cn(
-										"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-muted-foreground",
-										DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-									)}
-									disabled={saving}
-									onClick={() => {
-										if (step === "spoilers") {
-											setStep("compose");
-											setContainsSpoilers(false);
-											return;
-										}
-										handleClose();
-									}}
-								>
-									{step === "spoilers" ? "Back" : "Cancel"}
-								</Button>
-							</DetailMotionButtonWrap>
-							<DetailMotionButtonWrap>
-								<Button
-									type="button"
-									variant="default"
-									size="pill"
-									className="hover:!bg-foreground hover:!text-background h-auto min-h-10 min-w-[8.5rem] bg-foreground px-5 py-2.5 text-background text-base [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background"
-									disabled={
-										(step === "compose" && !canPublish) ||
-										(step === "spoilers" && saving)
-									}
-									onClick={() => {
-										if (step === "compose") {
-											handlePublishClick();
-											return;
-										}
-										void submit();
-									}}
-								>
-									{saving ? (
-										<Loader2 className="size-3.5 animate-spin" aria-hidden />
-									) : null}
-									{step === "spoilers"
-										? isEdit
-											? "Save changes"
-											: "Publish now"
-										: isEdit
-											? "Continue"
-											: "Publish"}
-								</Button>
-							</DetailMotionButtonWrap>
-						</footer>
-					</motion.div>
-				</motion.div>
-			) : null}
-		</AnimatePresence>
+			<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
+				<DetailMotionButtonWrap>
+					<Button
+						type="button"
+						variant="ghost"
+						size="pill"
+						className={cn(
+							"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-muted-foreground",
+							DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+						)}
+						disabled={saving}
+						onClick={() => {
+							if (step === "spoilers") {
+								setStep("compose");
+								setContainsSpoilers(false);
+								return;
+							}
+							handleClose();
+						}}
+					>
+						{step === "spoilers" ? "Back" : "Cancel"}
+					</Button>
+				</DetailMotionButtonWrap>
+				<DetailMotionButtonWrap>
+					<Button
+						type="button"
+						variant="default"
+						size="pill"
+						className="hover:!bg-foreground hover:!text-background h-auto min-h-10 min-w-[8.5rem] bg-foreground px-5 py-2.5 text-background text-base [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background"
+						disabled={
+							(step === "compose" && !canPublish) ||
+							(step === "spoilers" && saving)
+						}
+						onClick={() => {
+							if (step === "compose") {
+								handlePublishClick();
+								return;
+							}
+							void submit();
+						}}
+					>
+						{saving ? (
+							<Loader2 className="size-3.5 animate-spin" aria-hidden />
+						) : null}
+						{step === "spoilers"
+							? isEdit
+								? "Save changes"
+								: "Publish now"
+							: isEdit
+								? "Continue"
+								: "Publish"}
+					</Button>
+				</DetailMotionButtonWrap>
+			</footer>
+		</TransitionsModalLayer>
 	);
 }

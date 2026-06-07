@@ -2,30 +2,69 @@
 
 import { Button } from "@still/ui/components/button";
 import { Skeleton } from "@still/ui/components/skeleton";
+import { TooltipProvider } from "@still/ui/components/tooltip";
+import IconPen2Fill from "@still/ui/icons/pen-2-fill";
+import IconTrashXmarkFill from "@still/ui/icons/trash-xmark-fill";
 import { cn } from "@still/ui/lib/utils";
-import { Loader2, MessageCircle, X } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
+import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
+import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
+import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
+import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
+import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import { useReviewComposer } from "@/components/review/review-composer";
 import { ReviewDeleteConfirmDialog } from "@/components/review/review-delete-confirm-dialog";
+import { ReviewEditorialPatronScore } from "@/components/review/review-editorial-patron-score";
 import { ReviewPinToProfileButton } from "@/components/review/review-pin-to-profile-button";
+import { ReviewReaderStillSection } from "@/components/review/review-reader-still-section";
+import { ReviewSpoilerGuard } from "@/components/review/review-spoiler-guard";
 import { VisibilityChip } from "@/components/review/visibility-chip";
-import { CommentsThread } from "@/components/social/comments-thread";
-import { ReactionsBar } from "@/components/social/reactions-bar";
+import {
+	type CommentRow,
+	CommentsThread,
+} from "@/components/social/comments-thread";
+import {
+	ReactionsBar,
+	type ReviewReactionSnapshot,
+} from "@/components/social/reactions-bar";
 import { api } from "@/lib/api";
 import { APP_MEMBER_LABEL } from "@/lib/app-brand";
 import { authClient } from "@/lib/auth-client";
+import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
-import { SHEET_PRIMARY_PILL_CLASS } from "@/lib/sheet-chrome";
-import { useDismissSheetOnRouteChange } from "@/lib/use-dismiss-sheet-on-route-change";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
+import { useViewerHasWatchedMovie } from "@/lib/use-viewer-has-watched-movie";
+
+/** Avatar byline pill + handle-row icon buttons share one height. */
+const REVIEW_READER_HEADER_PILL_CLASS =
+	"min-h-12 items-center rounded-full bg-background";
+
+const REVIEW_READER_HEADER_ICON_BUTTON_CLASS = cn(
+	"!size-12 rounded-[var(--radius-pill)] bg-background text-muted-foreground",
+	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+);
+
+const REVIEW_READER_HEADER_DELETE_ICON_BUTTON_CLASS = cn(
+	"!size-12 rounded-[var(--radius-pill)] bg-background text-destructive",
+	"[@media(hover:hover)]:hover:bg-destructive/10 [@media(hover:hover)]:hover:text-destructive",
+);
+
+/** Patron identity shown in the drawer header while detail loads. */
+export type ReviewAuthorPreview = {
+	handle: string;
+	displayName: string;
+	image: string | null;
+};
 
 /** Card / list preview fields — shown instantly while the sheet loads full detail. */
 export type ReviewPreview = {
@@ -36,26 +75,64 @@ export type ReviewPreview = {
 	likesCount: number;
 	commentsCount: number;
 	publishedAt: string;
+	containsSpoilers?: boolean;
+	author?: ReviewAuthorPreview | null;
 };
 
 type OpenArgs = {
 	reviewId: string;
+	movieId?: number;
 	preview: ReviewPreview;
+};
+
+/** Patches list/card counts after reactions in the reader drawer. */
+export type ReviewEngagementPatch = {
+	likesCount: number;
+	dislikesCount?: number;
+	commentsCount?: number;
 };
 
 type Store = {
 	isOpen: boolean;
 	args: OpenArgs | null;
+	/** Stale-safe engagement overrides keyed by review id. */
+	engagementByReviewId: Record<string, ReviewEngagementPatch>;
 	open: (args: OpenArgs) => void;
 	close: () => void;
+	clearArgs: () => void;
+	setReviewEngagement: (reviewId: string, patch: ReviewEngagementPatch) => void;
 };
 
 export const useReviewDetail = create<Store>((set) => ({
 	isOpen: false,
 	args: null,
+	engagementByReviewId: {},
 	open: (args) => set({ isOpen: true, args }),
-	close: () => set({ isOpen: false, args: null }),
+	close: () => set({ isOpen: false }),
+	clearArgs: () => set({ args: null }),
+	setReviewEngagement: (reviewId, patch) =>
+		set((state) => ({
+			engagementByReviewId: {
+				...state.engagementByReviewId,
+				[reviewId]: {
+					...state.engagementByReviewId[reviewId],
+					...patch,
+				},
+			},
+		})),
 }));
+
+/** Merge server counts with any engagement changes from the review reader drawer. */
+export function useReviewEngagementCounts(
+	reviewId: string,
+	fallback: { likesCount: number; commentsCount: number },
+) {
+	const patch = useReviewDetail((s) => s.engagementByReviewId[reviewId]);
+	return {
+		likesCount: patch?.likesCount ?? fallback.likesCount,
+		commentsCount: patch?.commentsCount ?? fallback.commentsCount,
+	};
+}
 
 type ReviewDetailPayload = {
 	review: {
@@ -67,9 +144,11 @@ type ReviewDetailPayload = {
 		body: string;
 		rating: number | null;
 		likesCount: number;
+		dislikesCount: number;
 		commentsCount: number;
 		containsSpoilers: boolean;
 		publishedAt: string;
+		stillSlideKey?: string | null;
 		visibility?: "public" | "followers" | "friends" | "private";
 	};
 	movie: {
@@ -79,22 +158,37 @@ type ReviewDetailPayload = {
 		year: number | null;
 	} | null;
 	authorProfile: { displayName: string; handle: string | null } | null;
+	author: ReviewAuthorPreview | null;
+	screenshots?: MovieDetailHeroSlide[];
+	selectedStill?: MovieDetailHeroSlide | null;
 	liked: boolean;
+	disliked: boolean;
 };
 
-type CommentRow = {
-	comment: {
-		id: string;
-		userId: string;
-		body: string;
-		createdAt: string;
-		replyToId: string | null;
-	};
-	user: { name: string; image: string | null } | null;
-	profile: { handle: string; displayName: string } | null;
-};
-
-const SHEET_EASE = [0.165, 0.84, 0.44, 1] as const;
+/** Normalize comment API rows — likes + viewer state may be absent on older payloads. */
+function normalizeCommentRows(rows: unknown): CommentRow[] {
+	if (!Array.isArray(rows)) return [];
+	return rows.map((row) => {
+		const entry = row as Partial<CommentRow> & {
+			comment?: Partial<CommentRow["comment"]>;
+		};
+		return {
+			comment: {
+				id: entry.comment?.id ?? "",
+				userId: entry.comment?.userId ?? "",
+				body: entry.comment?.body ?? "",
+				createdAt: entry.comment?.createdAt ?? new Date().toISOString(),
+				replyToId: entry.comment?.replyToId ?? null,
+				likesCount: entry.comment?.likesCount ?? 0,
+				dislikesCount: entry.comment?.dislikesCount ?? 0,
+			},
+			user: entry.user ?? null,
+			profile: entry.profile ?? null,
+			liked: entry.liked ?? false,
+			disliked: entry.disliked ?? false,
+		};
+	});
+}
 
 function posterSrcFromPath(path: string | null | undefined): string | null {
 	if (!path) return null;
@@ -103,23 +197,30 @@ function posterSrcFromPath(path: string | null | undefined): string | null {
 	return `https://image.tmdb.org/t/p/w342${fragment}`;
 }
 
-function authorLine(profile: ReviewDetailPayload["authorProfile"]): string {
+function resolveReviewAuthor(
+	detail: ReviewDetailPayload | null,
+	preview: ReviewPreview | undefined,
+): ReviewAuthorPreview | null {
+	if (detail?.author) return detail.author;
+	if (preview?.author) return preview.author;
+	const profile = detail?.authorProfile;
 	const handle = profile?.handle?.trim();
-	if (handle) return `@${handle}`;
-	const display = profile?.displayName?.trim();
-	if (display) return display;
-	return APP_MEMBER_LABEL;
+	if (!handle) return null;
+	return {
+		handle,
+		displayName: profile?.displayName?.trim() || APP_MEMBER_LABEL,
+		image: null,
+	};
 }
 
 /**
- * Bottom review reader — mirrors `ReviewComposerRoot` shell, motion, and footer chrome.
+ * Bottom review reader — Vaul drawer with drag handle (same shell as cast filmography).
  * Open via `useReviewDetail().open({ reviewId, preview })`.
  */
 export function ReviewDetailRoot() {
 	const pathname = usePathname();
 	const router = useRouter();
-	const reduceMotion = useReducedMotion();
-	const { isOpen, args, close } = useReviewDetail();
+	const { isOpen, args, close, clearArgs } = useReviewDetail();
 	const openComposer = useReviewComposer((s) => s.open);
 	const { data: session } = authClient.useSession();
 	const [detail, setDetail] = useState<ReviewDetailPayload | null>(null);
@@ -128,9 +229,11 @@ export function ReviewDetailRoot() {
 	const [loadError, setLoadError] = useState<string | null>(null);
 	const [deleteOpen, setDeleteOpen] = useState(false);
 	const [deleting, setDeleting] = useState(false);
+	const [savingStill, setSavingStill] = useState(false);
+	const [spoilerRevealed, setSpoilerRevealed] = useState(false);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const reviewScrollKey = `${detail?.review.id ?? ""}-${comments.length}-${loading}-${loadError ?? ""}`;
-	const { showFooterFade } = useSheetScrollFades(
+	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		isOpen,
 		reviewScrollKey,
@@ -140,8 +243,20 @@ export function ReviewDetailRoot() {
 		close();
 	}, [close]);
 
-	// Movie / profile links in the reader navigate underneath — dismiss the sheet on route change.
-	useDismissSheetOnRouteChange(isOpen, handleClose);
+	const handleOpenChange = useCallback(
+		(open: boolean) => {
+			if (open) return;
+			close();
+		},
+		[close],
+	);
+
+	// Keep preview mounted through the Vaul close animation, then drop store args.
+	useEffect(() => {
+		if (isOpen || !args) return;
+		const timer = window.setTimeout(() => clearArgs(), 320);
+		return () => window.clearTimeout(timer);
+	}, [isOpen, args, clearArgs]);
 
 	const handleEdit = useCallback(() => {
 		if (!detail?.review || !detail.movie) return;
@@ -177,17 +292,80 @@ export function ReviewDetailRoot() {
 		}
 	}, [detail, handleClose, router]);
 
+	const handleSelectStill = useCallback(
+		async (slideKey: string) => {
+			if (!detail?.review || detail.review.stillSlideKey === slideKey) return;
+			setSavingStill(true);
+			try {
+				const res = await api.api.reviews({ id: detail.review.id }).patch({
+					stillSlideKey: slideKey,
+				});
+				if (res.error) {
+					toast.error("Couldn't save movie still");
+					return;
+				}
+				const updated = res.data as { stillSlideKey?: string | null } | null;
+				const nextKey = updated?.stillSlideKey ?? slideKey;
+				setDetail((current) =>
+					current
+						? {
+								...current,
+								review: { ...current.review, stillSlideKey: nextKey },
+								selectedStill:
+									current.screenshots?.find((slide) => slide.key === nextKey) ??
+									null,
+							}
+						: current,
+				);
+				router.refresh();
+			} catch (err) {
+				console.error(err);
+				toast.error("Couldn't save movie still");
+			} finally {
+				setSavingStill(false);
+			}
+		},
+		[detail, router],
+	);
+
+	const handleReactionChange = useCallback((state: ReviewReactionSnapshot) => {
+		setDetail((current) =>
+			current
+				? {
+						...current,
+						liked: state.liked,
+						disliked: state.disliked,
+						review: {
+							...current.review,
+							likesCount: state.likes,
+							dislikesCount: state.dislikes,
+						},
+					}
+				: current,
+		);
+		// Keep carousel / community cards in sync after the drawer closes.
+		const reviewId = useReviewDetail.getState().args?.reviewId ?? null;
+		if (reviewId) {
+			useReviewDetail.getState().setReviewEngagement(reviewId, {
+				likesCount: state.likes,
+				dislikesCount: state.dislikes,
+			});
+		}
+	}, []);
+
 	useEffect(() => {
-		if (!isOpen) {
+		if (!args) {
 			setDetail(null);
 			setComments([]);
 			setLoading(false);
 			setLoadError(null);
+			setSpoilerRevealed(false);
 		}
-	}, [isOpen]);
+	}, [args]);
 
 	useEffect(() => {
 		if (!isOpen || !args) return;
+		setSpoilerRevealed(false);
 		const reviewId = args.reviewId;
 		let cancelled = false;
 
@@ -203,13 +381,17 @@ export function ReviewDetailRoot() {
 						.catch(() => ({ data: [] })),
 				]);
 				if (cancelled) return;
+				if (reviewRes.error) {
+					setLoadError("This review is no longer available.");
+					return;
+				}
 				const payload = reviewRes.data as ReviewDetailPayload | null;
 				if (!payload?.review) {
 					setLoadError("This review is no longer available.");
 					return;
 				}
 				setDetail(payload);
-				setComments((commentsRes.data as CommentRow[] | null) ?? []);
+				setComments(normalizeCommentRows(commentsRes.data));
 			} catch (err) {
 				console.error(err);
 				if (!cancelled) {
@@ -227,319 +409,332 @@ export function ReviewDetailRoot() {
 		};
 	}, [isOpen, args]);
 
-	useEffect(() => {
-		if (!isOpen) return;
-		const onKey = (e: KeyboardEvent) => {
-			if (e.key === "Escape") handleClose();
-		};
-		window.addEventListener("keydown", onKey);
-		return () => window.removeEventListener("keydown", onKey);
-	}, [isOpen, handleClose]);
-
 	const preview = args?.preview;
 	const review = detail?.review ?? null;
+	const movieIdForWatchCheck =
+		detail?.movie?.tmdbId ?? detail?.review?.movieId ?? args?.movieId ?? null;
+	const { hasWatched: hasWatchedMovie } =
+		useViewerHasWatchedMovie(movieIdForWatchCheck);
 	const isReviewOwner = Boolean(
 		session?.user?.id && review?.userId && session.user.id === review.userId,
 	);
+	const containsSpoilers =
+		review?.containsSpoilers ?? preview?.containsSpoilers ?? false;
 	const displayTitle = review?.title ?? preview?.title ?? null;
 	const displayBody = review?.body ?? preview?.body ?? "";
 	const displayRating = review?.rating ?? preview?.rating ?? null;
 	const displayLikes = review?.likesCount ?? preview?.likesCount ?? 0;
+	const displayDislikes = review?.dislikesCount ?? 0;
 	const displayComments = review?.commentsCount ?? preview?.commentsCount ?? 0;
 	const displayPublishedAt =
 		review?.publishedAt ?? preview?.publishedAt ?? new Date().toISOString();
 	const displayLiked = detail?.liked ?? false;
+	const displayDisliked = detail?.disliked ?? false;
 	const showMovieContext =
 		Boolean(detail?.movie) && pathname !== `/movies/${detail?.movie?.tmdbId}`;
 	const posterUrl = posterSrcFromPath(detail?.movie?.posterPath);
 	const movieTitleLine = detail?.movie
 		? `${detail.movie.title}${detail.movie.year ? ` (${detail.movie.year})` : ""}`
 		: null;
+	const displayAuthor = resolveReviewAuthor(detail, preview);
+	const movieScreenshots = detail?.screenshots ?? [];
+	const selectedStillKey = review?.stillSlideKey ?? null;
+	const publishedAgoLabel = `${formatDistanceToNowStrict(new Date(displayPublishedAt))} ago`;
+	const hasDisplayRating =
+		displayRating != null &&
+		formatStoredLogRatingDisplay(displayRating) != null;
 
-	const dialogLayoutTransition = reduceMotion
-		? { duration: 0 }
-		: { duration: 0.32, ease: SHEET_EASE };
+	if (!args) return null;
 
-	if (!args || !preview) return null;
+	const drawerTitle = displayTitle ?? "Member review";
+
+	const handleLeading = displayAuthor ? (
+		<Link
+			href={`/profile/${displayAuthor.handle}`}
+			onClick={handleClose}
+			className={cn(
+				"flex max-w-full gap-2 p-2 pr-6 transition-colors duration-150",
+				REVIEW_READER_HEADER_PILL_CLASS,
+				DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+			)}
+		>
+			<PatronPortraitAvatar
+				handle={displayAuthor.handle}
+				avatarUrl={displayAuthor.image}
+				name={displayAuthor.displayName}
+				width={32}
+				height={32}
+				className="size-8 shrink-0 rounded-full"
+			/>
+			<span className="min-w-0 text-left">
+				<span className="block truncate font-medium text-foreground text-sm leading-snug">
+					{displayAuthor.displayName}
+				</span>
+				<span className="block text-muted-foreground text-xs tabular-nums leading-snug">
+					{publishedAgoLabel}
+				</span>
+			</span>
+		</Link>
+	) : (
+		<span
+			className={cn(
+				"min-w-0 p-2 pr-4 text-left",
+				REVIEW_READER_HEADER_PILL_CLASS,
+			)}
+		>
+			<span className="block font-medium text-muted-foreground text-sm leading-snug">
+				{APP_MEMBER_LABEL}
+			</span>
+			<span className="block text-muted-foreground text-xs tabular-nums leading-snug">
+				{publishedAgoLabel}
+			</span>
+		</span>
+	);
+
+	const handleTrailing = args ? (
+		<TooltipProvider>
+			<div className="flex shrink-0 items-center gap-1">
+				{isReviewOwner && review ? (
+					<>
+						<ReviewPinToProfileButton
+							reviewId={review.id}
+							reviewUserId={review.userId}
+							variant="icon"
+							iconButtonClassName={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
+						/>
+						<DetailMotionButtonWrap>
+							<DetailIconTooltip label="Edit">
+								<Button
+									type="button"
+									variant="ghost"
+									size="icon-pill"
+									className={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
+									aria-label="Edit review"
+									onClick={handleEdit}
+								>
+									<IconPen2Fill
+										size="20px"
+										className="shrink-0 opacity-90"
+										aria-hidden
+									/>
+								</Button>
+							</DetailIconTooltip>
+						</DetailMotionButtonWrap>
+						<DetailMotionButtonWrap>
+							<DetailIconTooltip label="Delete">
+								<Button
+									type="button"
+									variant="ghost"
+									size="icon-pill"
+									className={REVIEW_READER_HEADER_DELETE_ICON_BUTTON_CLASS}
+									aria-label="Delete review"
+									onClick={() => setDeleteOpen(true)}
+								>
+									<IconTrashXmarkFill
+										size="20px"
+										className="shrink-0 opacity-90"
+										aria-hidden
+									/>
+								</Button>
+							</DetailIconTooltip>
+						</DetailMotionButtonWrap>
+					</>
+				) : null}
+				<ReactionsBar
+					appearance="header"
+					targetKind="review"
+					targetId={review?.id ?? args.reviewId}
+					initialLikes={displayLikes}
+					initialLiked={displayLiked}
+					initialDislikes={displayDislikes}
+					initialDisliked={displayDisliked}
+					iconButtonClassName={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
+					onReactionChange={handleReactionChange}
+				/>
+			</div>
+		</TooltipProvider>
+	) : null;
 
 	return (
-		<AnimatePresence>
-			{isOpen ? (
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ duration: 0.18 }}
-					className="fixed inset-0 z-50 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center"
-					onClick={handleClose}
-				>
-					<motion.div
-						role="dialog"
-						aria-modal="true"
-						aria-labelledby="review-detail-title"
-						layout
-						layoutRoot
-						initial={{ y: 32, opacity: 0, scale: 0.98 }}
-						animate={{ y: 0, opacity: 1, scale: 1 }}
-						exit={{ y: 16, opacity: 0, scale: 0.98 }}
-						transition={{
-							duration: 0.18,
-							ease: SHEET_EASE,
-							layout: dialogLayoutTransition,
-						}}
-						onClick={(e) => e.stopPropagation()}
-						className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
-					>
-						<div className="mb-4 flex justify-end">
-							<Button
-								variant="ghost"
-								size="icon-pill"
-								onClick={handleClose}
-								aria-label="Close"
-								className="text-muted-foreground"
-							>
-								<X className="size-4" />
-							</Button>
-						</div>
+		<DetailVaulSheet
+			open={isOpen}
+			onOpenChange={handleOpenChange}
+			title={drawerTitle}
+			description="Read a patron review"
+			handleLeading={handleLeading}
+			handleTrailing={handleTrailing}
+		>
+			<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
+				<DetailDrawerScrollBody scrollRef={scrollRef}>
+					<div className="mx-auto w-full max-w-xl pt-2 pb-10">
+						{detail && movieScreenshots.length > 0 ? (
+							<ReviewReaderStillSection
+								slides={movieScreenshots}
+								selectedKey={selectedStillKey}
+								isOwner={isReviewOwner}
+								saving={savingStill}
+								onSelect={(slideKey) => void handleSelectStill(slideKey)}
+							/>
+						) : loading && !detail ? (
+							<Skeleton className="mb-6 aspect-video w-full rounded-[1.5rem] bg-background" />
+						) : null}
 
-						<div className="relative min-h-0 flex-1">
-							<div
-								ref={scrollRef}
-								className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-							>
-								<motion.div
-									initial={{ opacity: 0, y: 8 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.18, ease: SHEET_EASE }}
+						{showMovieContext && posterUrl ? (
+							<div className="mx-auto mb-5 flex justify-center">
+								<Link
+									href={`/movies/${detail?.movie?.tmdbId}`}
+									onClick={handleClose}
+									className="relative block aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg transition-transform duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none"
 								>
-									{showMovieContext && posterUrl ? (
-										<div className="mx-auto mb-5 flex justify-center">
-											<Link
-												href={`/movies/${detail?.movie?.tmdbId}`}
-												onClick={handleClose}
-												className="relative block aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg transition-transform duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none"
-											>
-												<Image
-													src={posterUrl}
-													alt=""
-													fill
-													sizes="120px"
-													className="object-cover"
-													unoptimized
-												/>
-											</Link>
+									<Image
+										src={posterUrl}
+										alt=""
+										fill
+										sizes="120px"
+										className="object-cover"
+										unoptimized
+									/>
+								</Link>
+							</div>
+						) : null}
+
+						{showMovieContext && movieTitleLine ? (
+							<p className="mb-5 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+								<Link
+									href={`/movies/${detail?.movie?.tmdbId}`}
+									className="text-foreground/90 hover:text-desert-orange"
+									onClick={handleClose}
+								>
+									{movieTitleLine}
+								</Link>
+							</p>
+						) : null}
+
+						{isReviewOwner &&
+						review?.visibility &&
+						review.visibility !== "public" ? (
+							<div className="mb-6 flex justify-center">
+								<VisibilityChip visibility={review.visibility} />
+							</div>
+						) : null}
+
+						{loadError ? (
+							<p className="mb-6 rounded-2xl bg-background px-4 py-3 text-center text-muted-foreground text-sm">
+								{loadError}
+							</p>
+						) : null}
+
+						{containsSpoilers && spoilerRevealed ? (
+							<p className="mb-5 rounded-2xl bg-desert-orange/10 px-4 py-2.5 text-center text-desert-orange text-sm">
+								Contains spoilers
+							</p>
+						) : null}
+
+						<div className="relative mb-6">
+							<ReviewSpoilerGuard
+								containsSpoilers={containsSpoilers}
+								hasWatchedMovie={hasWatchedMovie}
+								isOwnReview={isReviewOwner}
+								revealed={spoilerRevealed}
+								onReveal={() => setSpoilerRevealed(true)}
+							>
+								<div className="mx-auto flex w-full max-w-prose flex-col items-center text-center">
+									{hasDisplayRating ? (
+										<div
+											className={
+												showMovieContext && posterUrl ? "mt-3" : "mt-6"
+											}
+										>
+											<ReviewEditorialPatronScore rating={displayRating} />
 										</div>
 									) : null}
 
 									{displayTitle ? (
 										<h2
 											id="review-detail-title"
-											className="mb-2 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+											className={cn(
+												"max-w-prose text-balance px-3 font-semibold font-serif text-foreground text-xl leading-snug tracking-tight sm:px-4 sm:text-2xl",
+												hasDisplayRating ? "mt-3" : "mt-6",
+											)}
 										>
 											{displayTitle}
 										</h2>
 									) : (
-										<h2
-											id="review-detail-title"
-											className="mb-2 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
-										>
-											Member review
+										<h2 id="review-detail-title" className="sr-only">
+											{drawerTitle}
 										</h2>
 									)}
 
-									{showMovieContext && movieTitleLine ? (
-										<p className="mb-2 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
-											<Link
-												href={`/movies/${detail?.movie?.tmdbId}`}
-												className="text-foreground/90 hover:text-desert-orange"
-												onClick={handleClose}
-											>
-												{movieTitleLine}
-											</Link>
-										</p>
-									) : null}
-
 									<p
-										className={
-											isReviewOwner &&
-											review?.visibility &&
-											review.visibility !== "public"
-												? "mb-2 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base"
-												: "mb-6 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base"
-										}
+										data-review-body=""
+										className={cn(
+											"w-full max-w-prose whitespace-pre-wrap px-2 py-1 text-center tracking-tight outline-none",
+											displayTitle
+												? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
+												: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
+										)}
 									>
-										{detail
-											? authorLine(detail.authorProfile)
-											: APP_MEMBER_LABEL}
-										{" · "}
-										{formatDistanceToNowStrict(new Date(displayPublishedAt))}{" "}
-										ago
+										<ReviewBodyWithMentions body={displayBody} />
 									</p>
-									{isReviewOwner &&
-									review?.visibility &&
-									review.visibility !== "public" ? (
-										<div className="mb-6 flex justify-center">
-											<VisibilityChip visibility={review.visibility} />
-										</div>
-									) : null}
-
-									{displayRating != null &&
-									formatStoredLogRatingDisplay(displayRating) != null ? (
-										<p className="mb-6 text-center font-medium text-2xl text-foreground tabular-nums">
-											{formatStoredLogRatingDisplay(displayRating)}
-											<span className="text-base text-muted-foreground">
-												/10
-											</span>
-										</p>
-									) : null}
-
-									{loadError ? (
-										<p className="mb-6 rounded-2xl bg-background px-4 py-3 text-center text-muted-foreground text-sm">
-											{loadError}
-										</p>
-									) : null}
-
-									{review?.containsSpoilers ? (
-										<p className="mb-5 rounded-2xl bg-desert-orange/10 px-4 py-2.5 text-center text-desert-orange text-sm">
-											Contains spoilers
-										</p>
-									) : null}
-
-									<div className="relative mb-6">
-										<p className="mx-auto max-w-prose whitespace-pre-wrap text-left font-editorial text-foreground/90 text-sm leading-relaxed sm:text-base">
-											{displayBody}
-										</p>
-										{loading && !detail ? (
-											<div
-												aria-hidden
-												className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-b from-transparent via-card/40 to-card"
-											/>
-										) : null}
-									</div>
-
-									<div className="mb-8 flex flex-col items-center gap-2">
-										{detail ? (
-											<ReactionsBar
-												appearance="sheet"
-												targetKind="review"
-												targetId={detail.review.id}
-												initialLikes={displayLikes}
-												initialLiked={displayLiked}
-											/>
-										) : (
-											<span className="text-muted-foreground text-sm tabular-nums">
-												{displayLikes} {displayLikes === 1 ? "like" : "likes"}
-											</span>
-										)}
-										<p className="inline-flex items-center gap-1.5 text-muted-foreground text-xs tabular-nums">
-											<MessageCircle
-												className="size-3.5 opacity-70"
-												aria-hidden
-											/>
-											{displayComments}{" "}
-											{displayComments === 1 ? "comment" : "comments"}
-										</p>
-										{loading ? (
-											<Loader2
-												className="size-4 animate-spin text-muted-foreground"
-												aria-label="Loading review"
-											/>
-										) : null}
-									</div>
-
-									<section className="space-y-3" aria-label="Comments">
-										<p className="w-full text-center text-muted-foreground text-xs">
-											Comments
-										</p>
-										{detail ? (
-											<CommentsThread
-												appearance="sheet"
-												targetKind="review"
-												targetId={detail.review.id}
-												initialComments={comments}
-											/>
-										) : loading ? (
-											<ul className="space-y-3" aria-hidden>
-												{[0, 1].map((i) => (
-													<li key={i}>
-														<Skeleton className="h-16 w-full rounded-2xl bg-background" />
-													</li>
-												))}
-											</ul>
-										) : (
-											<p className="text-center text-muted-foreground text-sm">
-												Comments unavailable.
-											</p>
-										)}
-									</section>
-								</motion.div>
-							</div>
-
-							<div
-								aria-hidden
-								className={cn(
-									"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-linear-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-									showFooterFade ? "opacity-100" : "opacity-0",
-								)}
-							/>
+								</div>
+							</ReviewSpoilerGuard>
+							{loading && !detail ? (
+								<div
+									aria-hidden
+									className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-b from-transparent via-card/40 to-card"
+								/>
+							) : null}
 						</div>
 
-						<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
-							{isReviewOwner && review ? (
-								<Button
-									type="button"
-									variant="ghost"
-									size="pill"
-									className="h-auto min-h-10 px-3 font-medium text-destructive"
-									onClick={() => setDeleteOpen(true)}
-								>
-									Delete
-								</Button>
-							) : (
-								<span aria-hidden className="min-w-0 shrink" />
-							)}
-							<div className="flex items-center gap-3">
-								{review ? (
-									<ReviewPinToProfileButton
-										reviewId={review.id}
-										reviewUserId={review.userId}
+						<section className="space-y-3" aria-label="Comments">
+							<div className="flex w-full items-center justify-center gap-2">
+								<p className="text-center text-muted-foreground text-xs tabular-nums">
+									{displayComments}{" "}
+									{displayComments === 1 ? "comment" : "comments"}
+								</p>
+								{loading ? (
+									<Loader2
+										className="size-3.5 animate-spin text-muted-foreground"
+										aria-label="Loading review"
 									/>
 								) : null}
-								{isReviewOwner && review ? (
-									<DetailMotionButtonWrap>
-										<Button
-											type="button"
-											variant="secondary"
-											size="pill"
-											className="h-auto min-h-10 bg-background px-5 py-2.5"
-											onClick={handleEdit}
-										>
-											Edit
-										</Button>
-									</DetailMotionButtonWrap>
-								) : null}
-								<DetailMotionButtonWrap>
-									<Button
-										type="button"
-										variant="default"
-										size="pill"
-										className={SHEET_PRIMARY_PILL_CLASS}
-										onClick={handleClose}
-									>
-										Done
-									</Button>
-								</DetailMotionButtonWrap>
 							</div>
-						</footer>
-						<ReviewDeleteConfirmDialog
-							open={deleteOpen}
-							deleting={deleting}
-							onCancel={() => setDeleteOpen(false)}
-							onConfirm={() => void handleConfirmDelete()}
-						/>
-					</motion.div>
-				</motion.div>
-			) : null}
-		</AnimatePresence>
+							{detail ? (
+								<CommentsThread
+									appearance="sheet"
+									targetKind="review"
+									targetId={detail.review.id}
+									initialComments={comments}
+								/>
+							) : loading ? (
+								<ul className="space-y-3" aria-hidden>
+									{[0, 1].map((i) => (
+										<li key={i}>
+											<Skeleton className="h-16 w-full rounded-2xl bg-background" />
+										</li>
+									))}
+								</ul>
+							) : (
+								<p className="text-center text-muted-foreground text-sm">
+									Comments unavailable.
+								</p>
+							)}
+						</section>
+					</div>
+				</DetailDrawerScrollBody>
+
+				<SheetScrollScrims
+					showHeaderFade={showHeaderFade}
+					showFooterFade={showFooterFade}
+				/>
+
+				<ReviewDeleteConfirmDialog
+					open={deleteOpen}
+					deleting={deleting}
+					onCancel={() => setDeleteOpen(false)}
+					onConfirm={() => void handleConfirmDelete()}
+				/>
+			</div>
+		</DetailVaulSheet>
 	);
 }

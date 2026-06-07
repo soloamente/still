@@ -4,6 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import { DetailArtworkPasitoStepper } from "@/components/movie/detail-artwork-pasito-stepper";
 import { isListCoverProxySrc } from "@/lib/list-cover-image";
 
 export type MovieDetailHeroSlide = {
@@ -90,30 +91,15 @@ export function MovieDetailHeroMedia({
 			</div>
 			{showDots ? (
 				<div
-					className="mx-auto mt-4 flex h-1.5 items-center justify-center gap-1.5"
+					className="mx-auto mt-4 flex justify-center"
 					role="tablist"
 					aria-label="Artwork slides"
 				>
-					{slides.map((s, i) => (
-						<button
-							key={s.key}
-							type="button"
-							role="tab"
-							aria-selected={i === safeIndex}
-							className="group -m-3 flex touch-manipulation items-center justify-center p-3"
-							onClick={() => setIndex(i)}
-						>
-							<span
-								className={cn(
-									"block shrink-0 rounded-full transition-[width,background-color] duration-200 ease-out motion-reduce:transition-none",
-									i === safeIndex
-										? "h-1.5 w-9 bg-foreground"
-										: "h-1.5 w-2 bg-muted-foreground/45 [@media(hover:hover)]:group-hover:bg-muted-foreground/60",
-								)}
-							/>
-							<span className="sr-only">{s.label}</span>
-						</button>
-					))}
+					<DetailArtworkPasitoStepper
+						count={slides.length}
+						active={safeIndex}
+						onStepClick={setIndex}
+					/>
 				</div>
 			) : (
 				<div className="mt-4 h-1.5" aria-hidden />

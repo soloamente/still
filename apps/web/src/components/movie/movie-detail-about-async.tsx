@@ -32,6 +32,7 @@ type ReviewRow = {
 	rating: number | null;
 	likesCount: number;
 	commentsCount: number;
+	containsSpoilers?: boolean;
 	publishedAt: string | Date;
 	author?: {
 		handle: string;
@@ -50,6 +51,7 @@ function normalizeReviewRow(raw: ReviewRow) {
 		rating: raw.rating,
 		likesCount: raw.likesCount ?? 0,
 		commentsCount: raw.commentsCount ?? 0,
+		containsSpoilers: raw.containsSpoilers ?? false,
 		publishedAt:
 			raw.publishedAt instanceof Date
 				? raw.publishedAt.toISOString()

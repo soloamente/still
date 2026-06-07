@@ -1,6 +1,6 @@
 "use client";
 
-import { MoviePoster } from "@/components/movie/movie-poster";
+import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import {
 	filmographyReleaseYear,
 	type PersonFilmographyRow,
@@ -28,23 +28,32 @@ export function PersonFilmographyGrid({
 
 	return (
 		<div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
-			{rows.map((m) => {
+			{rows.map((m, index) => {
 				const yearLabel = filmographyReleaseYear(m.releaseDate);
+				const listingKind = m.mediaKind === "tv" ? "tv" : "movie";
+
 				return (
 					<div
 						key={`${m.mediaKind}-${m.tmdbId}`}
 						className="min-w-0 text-center"
 					>
-						<MoviePoster
-							movieId={m.tmdbId}
+						<CataloguePosterTile
+							surface="drawer"
+							listingKind={listingKind}
+							tmdbId={m.tmdbId}
 							title={m.title}
 							posterUrl={m.posterUrl}
-							listingKind={m.mediaKind === "tv" ? "tv" : "movie"}
-							showTitle
+							priority={index < 6}
 							hoverEffect="elevation"
 							hoverStacking="sheet"
 							frameClassName={FILMOGRAPHY_POSTER_FRAME_CLASSNAME}
+							posterCaption={m.posterCaption}
 						/>
+						{m.posterUrl ? (
+							<p className="mt-2 line-clamp-2 min-w-0 text-pretty text-center text-[0.8rem] text-muted-foreground leading-snug sm:text-sm">
+								{m.title}
+							</p>
+						) : null}
 						<p className="mt-1 line-clamp-3 text-center text-[10px] text-muted-foreground leading-snug">
 							{m.roles.join(" · ")}
 						</p>

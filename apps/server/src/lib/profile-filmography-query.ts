@@ -6,6 +6,18 @@ export type FilmographyMedia = "movie" | "tv";
 export type FilmographyOrder = "latest" | "earliest" | "title";
 export type FilmographyVenue = "theaters" | "streaming";
 
+/**
+ * Whether a diary log belongs in a venue-filtered filmography slice.
+ * Legacy rows without `theaters`/`streaming` stay visible in both slices.
+ */
+export function logMatchesFilmographyVenue(
+	watchVenue: string | null | undefined,
+	lobbyVenue: FilmographyVenue,
+): boolean {
+	if (watchVenue !== "theaters" && watchVenue !== "streaming") return true;
+	return watchVenue === lobbyVenue;
+}
+
 export const FILMOGRAPHY_DEFAULT_LIMIT = 48;
 export const FILMOGRAPHY_MAX_LIMIT = 96;
 
