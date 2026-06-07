@@ -165,6 +165,52 @@ type ReviewDetailPayload = {
 	disliked: boolean;
 };
 
+/** Eden may deserialize DB timestamps as Date; reader state keeps ISO strings. */
+function normalizeReviewDetailPayload(
+	data: unknown,
+): ReviewDetailPayload | null {
+	if (!data || typeof data !== "object") return null;
+	const entry = data as {
+		review?: Omit<ReviewDetailPayload["review"], "publishedAt"> & {
+			publishedAt?: string | Date;
+		};
+		movie?: ReviewDetailPayload["movie"];
+		authorProfile?: ReviewDetailPayload["authorProfile"];
+		author?: ReviewAuthorPreview | null;
+		screenshots?: MovieDetailHeroSlide[];
+		selectedStill?: MovieDetailHeroSlide | null;
+		liked?: boolean;
+		disliked?: boolean;
+		likesCount?: number;
+		dislikesCount?: number;
+	};
+	if (!entry.review) return null;
+
+	const publishedAtRaw = entry.review.publishedAt;
+	const publishedAt =
+		publishedAtRaw instanceof Date
+			? publishedAtRaw.toISOString()
+			: typeof publishedAtRaw === "string"
+				? publishedAtRaw
+				: new Date().toISOString();
+
+	return {
+		review: {
+			...entry.review,
+			publishedAt,
+			likesCount: entry.likesCount ?? entry.review.likesCount,
+			dislikesCount: entry.dislikesCount ?? entry.review.dislikesCount,
+		},
+		movie: entry.movie ?? null,
+		authorProfile: entry.authorProfile ?? null,
+		author: entry.author ?? null,
+		screenshots: entry.screenshots,
+		selectedStill: entry.selectedStill ?? null,
+		liked: entry.liked ?? false,
+		disliked: entry.disliked ?? false,
+	};
+}
+
 /** Normalize comment API rows — likes + viewer state may be absent on older payloads. */
 function normalizeCommentRows(rows: unknown): CommentRow[] {
 	if (!Array.isArray(rows)) return [];
@@ -385,7 +431,7 @@ export function ReviewDetailRoot() {
 					setLoadError("This review is no longer available.");
 					return;
 				}
-				const payload = reviewRes.data as ReviewDetailPayload | null;
+				const payload = normalizeReviewDetailPayload(reviewRes.data);
 				if (!payload?.review) {
 					setLoadError("This review is no longer available.");
 					return;
