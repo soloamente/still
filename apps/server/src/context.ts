@@ -45,6 +45,8 @@ export function requireUser<T extends { user: unknown }>(
 
 type Resource = "user" | "content" | "audit";
 
+type HasPermissionOptions = Parameters<typeof auth.api.userHasPermission>[0];
+
 /**
  * Assert the current user is signed in AND holds the given permission for their
  * role. Uses the Better Auth admin plugin's server-side check, which evaluates
@@ -57,8 +59,6 @@ export async function requirePermission(
 	if (!ctx.user) throw new Error("UNAUTHORIZED");
 	const role = (ctx.user.role ?? "user") as StaffRole | "user";
 	if (role === "user") throw new Error("FORBIDDEN");
-	const { auth } = await import("@still/auth");
-	type HasPermissionOptions = Parameters<typeof auth.api.userHasPermission>[0];
 	// `userHasPermission`'s body type is inferred from the registered access
 	// control statements (string-literal action unions per resource); our
 	// helper accepts the broader `Partial<Record<Resource, string[]>>` shape
