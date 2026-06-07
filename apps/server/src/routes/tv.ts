@@ -1,6 +1,6 @@
 import { db, list, listItem, profile, tv } from "@still/db";
 import { env } from "@still/env/server";
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, isNull } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
@@ -463,7 +463,13 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				.from(listItem)
 				.innerJoin(list, eq(listItem.listId, list.id))
 				.innerJoin(profile, eq(list.userId, profile.userId))
-				.where(and(eq(listItem.tvId, tvId), eq(list.isPublic, true)))
+				.where(
+					and(
+						eq(listItem.tvId, tvId),
+						eq(list.isPublic, true),
+						isNull(list.removedAt),
+					),
+				)
 				.orderBy(desc(list.likesCount), desc(list.updatedAt))
 				.limit(24);
 			const mapped = rows.map((r) => ({

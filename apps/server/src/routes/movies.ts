@@ -891,7 +891,13 @@ export const moviesRoute = new Elysia({
 				.from(listItem)
 				.innerJoin(list, eq(listItem.listId, list.id))
 				.innerJoin(profile, eq(list.userId, profile.userId))
-				.where(and(eq(listItem.movieId, movieId), eq(list.isPublic, true)))
+				.where(
+					and(
+						eq(listItem.movieId, movieId),
+						eq(list.isPublic, true),
+						isNull(list.removedAt),
+					),
+				)
 				.orderBy(desc(list.likesCount), desc(list.updatedAt))
 				.limit(24);
 			const mapped = rows.map((r) => ({
