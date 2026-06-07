@@ -23,6 +23,7 @@ import { postsRoute } from "../routes/posts";
 import { productEventsRoute } from "../routes/product-events";
 import { profilesRoute } from "../routes/profiles";
 import { reviewsRoute } from "../routes/reviews";
+import { staffRoute } from "../routes/staff";
 import { streaksRoute } from "../routes/streaks";
 import { tasteRoute } from "../routes/taste";
 import { tvRoute } from "../routes/tv";
@@ -106,6 +107,7 @@ export const app = new Elysia()
 	.use(newsRoute)
 	.use(chatRoute)
 	.use(notificationsRoute)
+	.use(staffRoute)
 	.use(wsRoute)
 	.onError(({ error, code }) => {
 		console.error(`[server] error code=${code}`, error);
