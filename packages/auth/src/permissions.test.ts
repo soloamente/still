@@ -2,14 +2,27 @@ import { describe, expect, it } from "bun:test";
 import { ac, roles, STAFF_ROLES } from "./permissions";
 
 describe("staff permission matrix", () => {
-	it("exposes exactly the four staff roles", () => {
+	it("exposes the four staff roles plus the non-staff user role", () => {
 		expect(Object.keys(roles).sort()).toEqual([
 			"admin",
 			"moderator",
 			"owner",
 			"support",
+			"user",
 		]);
 		expect(STAFF_ROLES).toEqual(["owner", "admin", "moderator", "support"]);
+	});
+
+	it("the user role grants no staff permissions", () => {
+		// `user` was granted nothing, so better-auth narrows its `authorize`
+		// query type to exclude every resource; the cast preserves the runtime
+		// assertion (still returns success: false) without weakening the matrix.
+		expect(roles.user.authorize({ content: ["hide"] } as never).success).toBe(
+			false,
+		);
+		expect(roles.user.authorize({ user: ["list"] } as never).success).toBe(
+			false,
+		);
 	});
 
 	it("owner can do everything including set-role and audit", () => {

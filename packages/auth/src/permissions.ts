@@ -43,8 +43,20 @@ export const support = ac.newRole({
 	content: ["hide"],
 });
 
+/**
+ * The default, non-staff role. It holds no staff permissions, but it MUST be
+ * present in the `roles` map so the admin plugin's setRole accepts demoting a
+ * staff member back to a normal user.
+ *
+ * Every resource is granted an empty action list (rather than `newRole({})`):
+ * this grants nothing at runtime but keeps the resulting `Role` structurally
+ * compatible with the plugin's `roles` map type. An empty `newRole({})` infers
+ * its resource key as `never`, which the admin plugin's `roles` option rejects.
+ */
+export const user = ac.newRole({ user: [], content: [], audit: [] });
+
 /** Map consumed by the better-auth `admin` plugin `roles` option. */
-export const roles = { owner, admin, moderator, support };
+export const roles = { owner, admin, moderator, support, user };
 
 /** Rank order, highest first. Mirrors the spec hierarchy. */
 export const STAFF_ROLES = ["owner", "admin", "moderator", "support"] as const;

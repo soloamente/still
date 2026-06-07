@@ -430,6 +430,31 @@ describe("POST /api/staff/users/:id/ban (outranks enforcement)", () => {
 	});
 });
 
+describe("POST /api/staff/users/:id/role (demotion to user)", () => {
+	test("owner demotes a moderator to user -> 200, setRole + audits user.set-role", async () => {
+		state.users = { "mod-9": { id: "mod-9", role: "moderator" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/mod-9/role", {
+				method: "POST",
+				headers: authHeaders("owner-1", "owner"),
+				body: JSON.stringify({ role: "user" }),
+			}),
+		);
+		expect(res.status).toBe(200);
+		expect(await res.json()).toEqual({ ok: true });
+
+		const call = state.authCalls.find((c) => c.method === "setRole");
+		expect(call).toBeDefined();
+		expect(call?.body).toEqual({ userId: "mod-9", role: "user" });
+
+		const audit = state.audits.find((a) => a.action === "user.set-role");
+		expect(audit).toBeDefined();
+		expect(audit?.targetType).toBe("user");
+		expect(audit?.targetId).toBe("mod-9");
+		expect(audit?.metadata).toEqual({ from: "moderator", to: "user" });
+	});
+});
+
 describe("GET /api/staff/audit", () => {
 	test("moderator lacks audit:read -> 403", async () => {
 		const res = await makeApp().handle(

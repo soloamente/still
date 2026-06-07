@@ -146,19 +146,8 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 					"Cannot change role of a peer or higher staff member",
 				);
 			}
-			// better-auth's `setRole` body type only admits the four staff roles
-			// registered in `@still/auth`'s `roles` map (owner/admin/moderator/
-			// support); `"user"` is the plugin's default role and is NOT a key in
-			// that map, so the endpoint rejects it at runtime with BAD_REQUEST.
-			// We still accept `"user"` on our HTTP surface (demotion intent) and
-			// cast at this boundary; demoting a staff member to a plain user via
-			// this endpoint is therefore unsupported until `"user"` is added to the
-			// roles map. Promotions/lateral changes among staff roles work.
 			await auth.api.setRole({
-				body: {
-					userId: params.id,
-					role: body.role as Exclude<typeof body.role, "user">,
-				},
+				body: { userId: params.id, role: body.role },
 				headers: request.headers,
 			});
 			await writeAuditLog({
