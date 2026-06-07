@@ -1446,14 +1446,23 @@ export async function fetchCommunityActivity(
 	period: HomeLeaderboardPeriod,
 	tz: string,
 	signedIn: boolean,
-	opts?: { before?: string | null; signal?: AbortSignal },
+	opts?: {
+		before?: string | null;
+		beforeKind?: string | null;
+		beforeId?: string | null;
+		signal?: AbortSignal;
+	},
 ): Promise<{
 	items: { kind: string; at: string | Date; payload: unknown }[];
 } | null> {
 	const path = signedIn ? "/api/feed" : "/api/feed/discover";
 	const url = new URL(path, stillApiOrigin());
 	if (signedIn) url.searchParams.set("limit", String(COMMUNITY_ACTIVITY_LIMIT));
-	if (signedIn && opts?.before) url.searchParams.set("before", opts.before);
+	if (signedIn && opts?.before) {
+		url.searchParams.set("before", opts.before);
+		if (opts.beforeKind) url.searchParams.set("beforeKind", opts.beforeKind);
+		if (opts.beforeId) url.searchParams.set("beforeId", opts.beforeId);
+	}
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
 	}

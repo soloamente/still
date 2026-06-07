@@ -11,6 +11,9 @@ const SYNOPSIS_MAX_WIDTH_CLASS = "max-w-md";
 
 const SYNOPSIS_TEXT_CLASS = `w-full ${SYNOPSIS_MAX_WIDTH_CLASS} text-pretty text-muted-foreground text-sm sm:text-base leading-relaxed`;
 
+/** Hero overview clamp — long TMDb overviews use the review-slide blur + CTA. */
+const SYNOPSIS_LINE_CLAMP_CLASS = "line-clamp-5";
+
 /** Press feedback — same modal scale token as review carousel slides. */
 const SYNOPSIS_PRESS_CLASS =
 	"transition-transform duration-[var(--page-slide-dur)] ease-[var(--page-slide-ease)] motion-reduce:transition-none active:scale-[var(--modal-scale)] motion-reduce:active:scale-100";
@@ -36,7 +39,7 @@ export function ListingDetailHeroSynopsis({
 	if (!synopsis.isTruncated) {
 		return (
 			<p className={cn("mt-4", SYNOPSIS_TEXT_CLASS, className)}>
-				{synopsis.preview}
+				{synopsis.full}
 			</p>
 		);
 	}
@@ -47,7 +50,7 @@ export function ListingDetailHeroSynopsis({
 
 	return (
 		<>
-			{/* Reuses review-carousel blur + CTA tokens from globals.css. */}
+			{/* zone-hover: blur + CTA on any hover inside the hero synopsis block. */}
 			<div
 				className={cn(
 					"relative mt-4 w-full",
@@ -58,7 +61,7 @@ export function ListingDetailHeroSynopsis({
 				<button
 					type="button"
 					className={cn(
-						"t-review-slide group/synopsis w-full cursor-pointer select-none border-none bg-transparent p-0 text-center",
+						"t-review-slide t-review-slide--truncated t-review-slide--zone-hover group/synopsis w-full cursor-pointer select-none border-none bg-transparent p-0 text-center",
 						SYNOPSIS_PRESS_CLASS,
 						"[-webkit-tap-highlight-color:transparent]",
 					)}
@@ -69,16 +72,18 @@ export function ListingDetailHeroSynopsis({
 					<div className="t-review-slide__post w-full">
 						<p
 							data-review-body=""
-							className={cn(SYNOPSIS_TEXT_CLASS, "outline-none")}
+							className={cn(
+								SYNOPSIS_TEXT_CLASS,
+								SYNOPSIS_LINE_CLAMP_CLASS,
+								"outline-none",
+							)}
 						>
-							{synopsis.preview}
+							{synopsis.full}
 						</p>
 					</div>
 
 					<div aria-hidden className="t-review-slide__cta">
-						<span className="t-review-slide__cta-label">
-							See full description
-						</span>
+						<span className="t-review-slide__cta-label">View more</span>
 					</div>
 				</button>
 			</div>

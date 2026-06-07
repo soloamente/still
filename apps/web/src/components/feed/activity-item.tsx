@@ -15,7 +15,11 @@ import {
 } from "@/components/feed/feed-listing-thumb";
 import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
 import { isFeedRatingDivergencePayload } from "@/lib/feed-rating-divergence";
-import { formatTimeAgoLabel } from "@/lib/format";
+import {
+	formatActivityWatchTimestamp,
+	formatTimeAgoLabel,
+	shouldShowActivityWatchDateMeta,
+} from "@/lib/format";
 import type { HomeCommunityActivityKind } from "@/lib/home-community-activity";
 import { listBoardRowPosterUrl } from "@/lib/list-cover-image";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
@@ -33,11 +37,13 @@ export const ACTIVITY_ROW_CLASS =
 export function ActivityItem({ item }: { item: Item }) {
 	switch (item.kind) {
 		case "log":
-			return <LogActivity payload={item.payload as LogPayload} />;
+			return <LogActivity item={item} payload={item.payload as LogPayload} />;
 		case "review":
-			return <ReviewActivity payload={item.payload as ReviewPayload} />;
+			return (
+				<ReviewActivity item={item} payload={item.payload as ReviewPayload} />
+			);
 		case "list":
-			return <ListActivity payload={item.payload as ListPayload} />;
+			return <ListActivity item={item} payload={item.payload as ListPayload} />;
 		case "divergence":
 			return isFeedRatingDivergencePayload(item.payload) ? (
 				<ActivityDivergenceRow payload={item.payload} />
@@ -138,12 +144,16 @@ function ActivityByline({
 	person,
 	kind,
 	rewatch,
-	timestamp,
+	dateTime,
+	timeLabel,
 }: {
 	person: Person;
 	kind: FeedActivityKind;
 	rewatch?: boolean;
-	timestamp: string;
+	/** ISO anchor for `<time dateTime>` — matches the feed row `at`. */
+	dateTime: string;
+	/** Preformatted relative label from feed `at`. */
+	timeLabel: string;
 }) {
 	return (
 		<div className="flex min-w-0 items-center gap-2.5">
@@ -154,10 +164,10 @@ function ActivityByline({
 				<FeedActivityVerb kind={kind} rewatch={rewatch} />
 				<span className="text-muted-foreground"> · </span>
 				<time
-					dateTime={timestamp}
+					dateTime={dateTime}
 					className="text-muted-foreground tabular-nums"
 				>
-					{formatTimeAgoLabel(timestamp)}
+					{timeLabel}
 				</time>
 			</p>
 		</div>
@@ -200,7 +210,7 @@ function ActivityTextLink({
 	);
 }
 
-function LogActivity({ payload }: { payload: LogPayload }) {
+function LogActivity({ item, payload }: { item: Item; payload: LogPayload }) {
 	const { log, movie, tv } = payload;
 	const listing = movie ?? tv ?? null;
 	const isTv = movie == null && tv != null;
@@ -210,6 +220,7 @@ function LogActivity({ payload }: { payload: LogPayload }) {
 			: `/movies/${listing.tmdbId}`
 		: undefined;
 	const listingTitle = listing?.title ?? "Unknown title";
+	const showWatchMeta = shouldShowActivityWatchDateMeta(log.watchedAt, item.at);
 
 	return (
 		<article className={ACTIVITY_ROW_CLASS}>
@@ -228,7 +239,8 @@ function LogActivity({ payload }: { payload: LogPayload }) {
 					person={payload}
 					kind="log"
 					rewatch={log.rewatch}
-					timestamp={log.watchedAt}
+					dateTime={item.at}
+					timeLabel={formatTimeAgoLabel(item.at)}
 				/>
 				{listing && detailHref ? (
 					<ListingTitleLink href={detailHref} title={listing.title} />
@@ -237,6 +249,11 @@ function LogActivity({ payload }: { payload: LogPayload }) {
 						{listingTitle}
 					</p>
 				)}
+				{showWatchMeta ? (
+					<ActivityMetaRow>
+						<span>Watched {formatActivityWatchTimestamp(log.watchedAt)}</span>
+					</ActivityMetaRow>
+				) : null}
 				{log.rating != null || log.liked ? (
 					<ActivityMetaRow>
 						<DiaryLogRatingLabel stored={log.rating} />
@@ -253,7 +270,13 @@ function LogActivity({ payload }: { payload: LogPayload }) {
 	);
 }
 
-function ReviewActivity({ payload }: { payload: ReviewPayload }) {
+function ReviewActivity({
+	item,
+	payload,
+}: {
+	item: Item;
+	payload: ReviewPayload;
+}) {
 	const { review, movie } = payload;
 	const detailHref = movie ? `/movies/${movie.tmdbId}` : undefined;
 	const listingTitle = movie?.title ?? "Unknown title";
@@ -274,7 +297,8 @@ function ReviewActivity({ payload }: { payload: ReviewPayload }) {
 				<ActivityByline
 					person={payload}
 					kind="review"
-					timestamp={review.publishedAt}
+					dateTime={item.at}
+					timeLabel={formatTimeAgoLabel(item.at)}
 				/>
 				{movie && detailHref ? (
 					<ListingTitleLink href={detailHref} title={movie.title} />
@@ -302,7 +326,7 @@ function ReviewActivity({ payload }: { payload: ReviewPayload }) {
 	);
 }
 
-function ListActivity({ payload }: { payload: ListPayload }) {
+function ListActivity({ item, payload }: { item: Item; payload: ListPayload }) {
 	const { list } = payload;
 	const posterUrl = listBoardRowPosterUrl(list, "w185");
 	const listHref = `/lists/${list.id}`;
@@ -326,7 +350,8 @@ function ListActivity({ payload }: { payload: ListPayload }) {
 				<ActivityByline
 					person={payload}
 					kind="list"
-					timestamp={list.updatedAt}
+					dateTime={item.at}
+					timeLabel={formatTimeAgoLabel(item.at)}
 				/>
 				<ListingTitleLink href={listHref} title={list.title} />
 				<ActivityMetaRow>

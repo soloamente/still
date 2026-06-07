@@ -1668,7 +1668,10 @@ html.theme-lobby-light .cinema-vignette {
 @media (hover: hover) {
   .t-review-slide--truncated .t-review-slide__post:has([data-review-body]:hover),
   .t-review-slide--truncated
-    .t-review-slide__post:has([data-review-body]:focus-visible) {
+    .t-review-slide__post:has([data-review-body]:focus-visible),
+  .t-review-slide--zone-hover.t-review-slide--truncated:hover .t-review-slide__post,
+  .t-review-slide--zone-hover.t-review-slide--truncated:focus-visible
+    .t-review-slide__post {
     opacity: 0.65;
     filter: blur(var(--page-blur));
   }
@@ -1690,6 +1693,9 @@ html.theme-lobby-light .cinema-vignette {
 @media (hover: hover) {
   .t-review-slide--truncated:has([data-review-body]:hover) .t-review-slide__cta,
   .t-review-slide--truncated:has([data-review-body]:focus-visible)
+    .t-review-slide__cta,
+  .t-review-slide--zone-hover.t-review-slide--truncated:hover .t-review-slide__cta,
+  .t-review-slide--zone-hover.t-review-slide--truncated:focus-visible
     .t-review-slide__cta {
     opacity: 1;
   }
@@ -1714,7 +1720,7 @@ html.theme-lobby-light .cinema-vignette {
 @media (hover: hover) {
   .t-review-slide--truncated:not(:has([data-review-body]:hover)):not(
       :has([data-review-body]:focus-visible)
-    )
+    ):not(.t-review-slide--zone-hover:hover):not(.t-review-slide--zone-hover:focus-visible)
     .t-review-slide__cta-label {
     opacity: 0;
     filter: blur(2px);
@@ -1723,6 +1729,10 @@ html.theme-lobby-light .cinema-vignette {
 
   .t-review-slide--truncated:has([data-review-body]:hover) .t-review-slide__cta-label,
   .t-review-slide--truncated:has([data-review-body]:focus-visible)
+    .t-review-slide__cta-label,
+  .t-review-slide--zone-hover.t-review-slide--truncated:hover
+    .t-review-slide__cta-label,
+  .t-review-slide--zone-hover.t-review-slide--truncated:focus-visible
     .t-review-slide__cta-label {
     opacity: 1;
     filter: blur(0);
@@ -1761,19 +1771,29 @@ html.theme-lobby-light .cinema-vignette {
 
   .t-review-slide--truncated .t-review-slide__post:has([data-review-body]:hover),
   .t-review-slide--truncated
-    .t-review-slide__post:has([data-review-body]:focus-visible) {
+    .t-review-slide__post:has([data-review-body]:focus-visible),
+  .t-review-slide--zone-hover.t-review-slide--truncated:hover .t-review-slide__post,
+  .t-review-slide--zone-hover.t-review-slide--truncated:focus-visible
+    .t-review-slide__post {
     filter: none;
     opacity: 1;
   }
 
   .t-review-slide--truncated:has([data-review-body]:hover) .t-review-slide__cta,
   .t-review-slide--truncated:has([data-review-body]:focus-visible)
+    .t-review-slide__cta,
+  .t-review-slide--zone-hover.t-review-slide--truncated:hover .t-review-slide__cta,
+  .t-review-slide--zone-hover.t-review-slide--truncated:focus-visible
     .t-review-slide__cta {
     opacity: 1;
   }
 
   .t-review-slide--truncated:has([data-review-body]:hover) .t-review-slide__cta-label,
   .t-review-slide--truncated:has([data-review-body]:focus-visible)
+    .t-review-slide__cta-label,
+  .t-review-slide--zone-hover.t-review-slide--truncated:hover
+    .t-review-slide__cta-label,
+  .t-review-slide--zone-hover.t-review-slide--truncated:focus-visible
     .t-review-slide__cta-label {
     filter: none;
     transform: none;

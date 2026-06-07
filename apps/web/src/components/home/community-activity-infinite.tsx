@@ -6,9 +6,12 @@ import { ActivityItem } from "@/components/feed/activity-item";
 import { CommunityInfiniteFooter } from "@/components/home/community-infinite-footer";
 import { HomeFriendActivityRail } from "@/components/home/home-friend-activity-rail";
 import {
+	type ActivityFeedCursor,
+	activityFeedCursorFromItem,
 	type HomeCommunityActivityItem,
 	homeCommunityActivityRowKey,
 	parseFeedApiActivityItems,
+	sortActivityItems,
 } from "@/lib/home-community-activity";
 import { deriveFriendRailEntries } from "@/lib/home-friend-rail";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
@@ -26,39 +29,52 @@ export function CommunityActivityInfinite({
 	signedIn,
 }: {
 	seeds: HomeCommunityActivityItem[];
-	initialCursor: string | null;
+	initialCursor: ActivityFeedCursor | null;
 	period: HomeLeaderboardPeriod;
 	signedIn: boolean;
 }) {
+	const sortedSeeds = useMemo(() => sortActivityItems(seeds), [seeds]);
+
 	const loadMore = useCallback(
-		async (before: string, signal: AbortSignal) => {
+		async (cursor: ActivityFeedCursor, signal: AbortSignal) => {
 			const payload = await fetchCommunityActivity(
 				period,
 				readViewerTimeZone(),
 				signedIn,
-				{ before, signal },
+				{
+					before: cursor.before,
+					beforeKind: cursor.beforeKind,
+					beforeId: cursor.beforeId,
+					signal,
+				},
 			);
 			if (payload == null) return { error: true as const };
-			const items = parseFeedApiActivityItems(payload);
+			const items = sortActivityItems(parseFeedApiActivityItems(payload));
 			const last = items[items.length - 1];
 			return {
 				items,
 				nextCursor:
-					items.length >= COMMUNITY_ACTIVITY_LIMIT && last ? last.at : null,
+					items.length >= COMMUNITY_ACTIVITY_LIMIT && last
+						? activityFeedCursorFromItem(last)
+						: null,
 			};
 		},
 		[period, signedIn],
 	);
 
-	const { items, footerState, sentinelRef, retry } = useInfinitePager<
-		HomeCommunityActivityItem,
-		string
-	>({
-		seeds,
+	const {
+		items: rawItems,
+		footerState,
+		sentinelRef,
+		retry,
+	} = useInfinitePager<HomeCommunityActivityItem, ActivityFeedCursor>({
+		seeds: sortedSeeds,
 		initialCursor,
 		loadMore,
 		getKey: homeCommunityActivityRowKey,
 	});
+
+	const items = useMemo(() => sortActivityItems(rawItems), [rawItems]);
 
 	const friendRailEntries = useMemo(
 		() => deriveFriendRailEntries(items),

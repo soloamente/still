@@ -2,6 +2,7 @@ import {
 	db,
 	follow,
 	list,
+	listItem,
 	log,
 	movie,
 	profile,
@@ -9,7 +10,18 @@ import {
 	tv,
 	user,
 } from "@still/db";
-import { and, desc, eq, inArray, lt } from "drizzle-orm";
+import {
+	and,
+	desc,
+	eq,
+	exists,
+	inArray,
+	lt,
+	lte,
+	max,
+	or,
+	sql,
+} from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
@@ -21,8 +33,13 @@ import { contentVisibilityWhere } from "../lib/content-visibility";
 import { reviewEngagementOrderSql } from "../lib/creator-recognition";
 import {
 	enrichFeedListRows,
+	type FeedActivityKind,
+	type FeedSortRow,
 	feedAtMs,
+	isFeedRowOlderThanCursor,
+	listActivityAt,
 	serializeFeedAt,
+	sortFeedRows,
 } from "../lib/feed-items";
 import {
 	type FeedRatingDivergencePayload,
@@ -31,10 +48,43 @@ import {
 
 /** Timeline rows returned from `GET /api/feed` before serialization. */
 type FeedMergedTimelineItem = {
-	kind: "log" | "review" | "list" | "divergence";
+	kind: FeedActivityKind;
 	at: Date;
 	payload: unknown;
 };
+
+function parseFeedCursor(query: {
+	before?: string;
+	beforeKind?: string;
+	beforeId?: string;
+}): FeedSortRow | null {
+	if (typeof query.before !== "string" || query.before.length === 0)
+		return null;
+	const at = new Date(query.before);
+	if (Number.isNaN(at.getTime())) return null;
+	const kind = query.beforeKind as FeedActivityKind | undefined;
+	if (kind && typeof query.beforeId === "string" && query.beforeId.length > 0) {
+		return { kind, at, id: query.beforeId };
+	}
+	return null;
+}
+
+function feedRowIdFromMerged(row: FeedMergedTimelineItem): string {
+	if (row.kind === "divergence") {
+		const payload = row.payload as FeedRatingDivergencePayload;
+		return payload.movieId != null
+			? `m:${payload.movieId}`
+			: `t:${payload.tvId ?? "unknown"}`;
+	}
+	const pl = row.payload as {
+		log?: { id: string };
+		review?: { id: string };
+		list?: { id: string };
+	};
+	if (row.kind === "log") return pl.log?.id ?? "";
+	if (row.kind === "review") return pl.review?.id ?? "";
+	return pl.list?.id ?? "";
+}
 
 /**
  * Personalized activity feed: logs + reviews + new lists from people the
@@ -48,32 +98,69 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 		async ({ user: viewer, status, query }) => {
 			if (!viewer) return status(401, "Sign in");
 			const limit = Math.min(Number(query.limit ?? 40), 80);
+			const fetchLimit = limit + 24;
 			const { start, end } = resolveCommunityPeriodQuery(query);
 
-			const beforeDate =
-				typeof query.before === "string" && query.before.length > 0
+			const compositeCursor = parseFeedCursor(query);
+			const legacyBeforeDate =
+				!compositeCursor &&
+				typeof query.before === "string" &&
+				query.before.length > 0
 					? new Date(query.before)
 					: null;
+			const beforeDate = compositeCursor?.at ?? legacyBeforeDate;
 			const beforeValid =
 				beforeDate != null && !Number.isNaN(beforeDate.getTime());
-			const logBefore =
-				beforeDate != null && !Number.isNaN(beforeDate.getTime())
-					? lt(log.watchedAt, beforeDate)
-					: undefined;
-			const reviewBefore =
-				beforeDate != null && !Number.isNaN(beforeDate.getTime())
-					? lt(review.publishedAt, beforeDate)
-					: undefined;
-			const listBefore =
-				beforeDate != null && !Number.isNaN(beforeDate.getTime())
-					? lt(list.updatedAt, beforeDate)
-					: undefined;
+
+			// Diary rows surface by when the patron logged — not backdated watchedAt.
+			const logBefore = beforeValid
+				? compositeCursor
+					? lte(log.createdAt, beforeDate)
+					: lt(log.createdAt, beforeDate)
+				: undefined;
+			const reviewBefore = beforeValid
+				? compositeCursor
+					? lte(review.publishedAt, beforeDate)
+					: lt(review.publishedAt, beforeDate)
+				: undefined;
 
 			const following = await db
 				.select({ id: follow.followingId })
 				.from(follow)
 				.where(eq(follow.followerId, viewer.id));
 			const ids = [viewer.id, ...following.map((f) => f.id)];
+
+			// Latest title add per list — drives list activity time (not metadata edits).
+			const latestListAdded = db
+				.select({
+					listId: listItem.listId,
+					latestAddedAt: max(listItem.addedAt).as("latestAddedAt"),
+				})
+				.from(listItem)
+				.groupBy(listItem.listId)
+				.as("latestListAdded");
+
+			const listActivityAtSql = sql<Date>`GREATEST(${list.createdAt}, COALESCE(${latestListAdded.latestAddedAt}, ${list.createdAt}))`;
+			const listBefore = beforeValid
+				? compositeCursor
+					? lte(listActivityAtSql, beforeDate)
+					: lt(listActivityAtSql, beforeDate)
+				: undefined;
+
+			const listPeriodWhere = or(
+				withinCommunityPeriod(list.createdAt, start, end),
+				exists(
+					db
+						.select({ one: sql`1` })
+						.from(listItem)
+						.where(
+							and(
+								eq(listItem.listId, list.id),
+								withinCommunityPeriod(listItem.addedAt, start, end),
+							),
+						),
+				),
+			);
 
 			const [logs, reviews, lists] = await Promise.all([
 				db
@@ -87,12 +174,12 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 						and(
 							inArray(log.userId, ids),
 							contentVisibilityWhere(viewer.id, log.userId, log.visibility),
-							withinCommunityPeriod(log.watchedAt, start, end),
+							withinCommunityPeriod(log.createdAt, start, end),
 							logBefore,
 						),
 					)
-					.orderBy(desc(log.watchedAt))
-					.limit(limit),
+					.orderBy(desc(log.createdAt))
+					.limit(fetchLimit),
 				db
 					.select({ review, movie, user, profile })
 					.from(review)
@@ -112,29 +199,29 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 						),
 					)
 					.orderBy(desc(review.publishedAt))
-					.limit(limit),
+					.limit(fetchLimit),
 				db
-					.select({ list, user, profile })
+					.select({
+						list,
+						user,
+						profile,
+						latestItemAddedAt: latestListAdded.latestAddedAt,
+					})
 					.from(list)
+					.leftJoin(latestListAdded, eq(list.id, latestListAdded.listId))
 					.leftJoin(user, eq(list.userId, user.id))
 					.leftJoin(profile, eq(profile.userId, user.id))
-					.where(
-						and(
-							inArray(list.userId, ids),
-							withinCommunityPeriod(list.updatedAt, start, end),
-							listBefore,
-						),
-					)
-					.orderBy(desc(list.updatedAt))
-					.limit(limit),
+					.where(and(inArray(list.userId, ids), listPeriodWhere, listBefore))
+					.orderBy(desc(listActivityAtSql))
+					.limit(fetchLimit),
 			]);
 
 			const listsEnriched = await enrichFeedListRows(lists);
 
-			const merged: FeedMergedTimelineItem[] = [
+			const mergedRows: FeedMergedTimelineItem[] = [
 				...logs.map((row) => ({
 					kind: "log" as const,
-					at: row.log.watchedAt,
+					at: row.log.createdAt,
 					payload: row,
 				})),
 				...reviews
@@ -146,10 +233,30 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					})),
 				...listsEnriched.map((row) => ({
 					kind: "list" as const,
-					at: row.list.updatedAt,
+					at: listActivityAt(row.list, row.latestItemAddedAt),
 					payload: row,
 				})),
-			].sort((a, b) => feedAtMs(b.at) - feedAtMs(a.at));
+			];
+
+			const sortable = mergedRows.map((row) => ({
+				kind: row.kind,
+				at: row.at,
+				id: feedRowIdFromMerged(row),
+				payload: row.payload,
+			}));
+
+			let filtered = sortable;
+			if (compositeCursor) {
+				filtered = sortable.filter((row) =>
+					isFeedRowOlderThanCursor(row, compositeCursor),
+				);
+			}
+
+			const merged = sortFeedRows(filtered).map((row) => ({
+				kind: row.kind,
+				at: row.at,
+				payload: row.payload,
+			}));
 
 			const followingOnly = following.map((f) => f.id);
 			const divergence =
@@ -184,6 +291,15 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 				t.Object({
 					limit: t.Optional(t.String()),
 					before: t.Optional(t.String()),
+					beforeKind: t.Optional(
+						t.Union([
+							t.Literal("log"),
+							t.Literal("review"),
+							t.Literal("list"),
+							t.Literal("divergence"),
+						]),
+					),
+					beforeId: t.Optional(t.String()),
 				}),
 				communityPeriodQuery,
 			]),

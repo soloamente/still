@@ -1,5 +1,7 @@
 import type { CuratorSpotlightPatron } from "@/lib/creator-recognition";
 import {
+	type ActivityFeedCursor,
+	activityFeedCursorFromItem,
 	coerceActivityTimestamp,
 	type HomeCommunityActivityItem,
 	parseFeedApiActivityItems,
@@ -93,8 +95,8 @@ export type CommunityFeedSeed = {
 	/** Page 2 for offset feeds (lists/reviews); null when seed is the whole set. */
 	initialListCursor: number | null;
 	initialReviewCursor: number | null;
-	/** Last item `at` for the activity cursor; null when no more. */
-	initialActivityCursor: string | null;
+	/** Composite cursor for activity infinite scroll; null when no more. */
+	initialActivityCursor: ActivityFeedCursor | null;
 };
 
 const EMPTY_COMMUNITY_SEED: CommunityFeedSeed = {
@@ -183,7 +185,7 @@ export async function fetchHomeCommunityFeedSeed(input: {
 		// Discover (logged-out) is a bounded snapshot — never paginates.
 		const initialActivityCursor =
 			input.session && activityItems.length >= COMMUNITY_ACTIVITY_LIMIT && last
-				? last.at
+				? activityFeedCursorFromItem(last)
 				: null;
 		return { ...EMPTY_COMMUNITY_SEED, activityItems, initialActivityCursor };
 	}
