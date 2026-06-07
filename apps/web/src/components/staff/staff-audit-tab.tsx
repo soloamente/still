@@ -34,7 +34,7 @@ export function StaffAuditTab() {
 		let cancelled = false;
 		(async () => {
 			try {
-				const res = await api.api.staff.audit.get({ query: { limit: 100 } });
+				const res = await api.api.staff.audit.get({ query: { limit: "100" } });
 				if (cancelled) return;
 				if (res.error) {
 					toast.error("Could not load audit log");

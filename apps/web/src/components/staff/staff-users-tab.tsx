@@ -2,7 +2,7 @@
 
 import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { api } from "@/lib/api";
@@ -54,10 +54,17 @@ export function StaffUsersTab({ currentRole }: { currentRole: string }) {
 	const [loading, setLoading] = useState(false);
 	const [busyId, setBusyId] = useState<string | null>(null);
 
+	// Incremented on every load request; only the response matching the
+	// latest token is committed, so out-of-order responses (e.g. a slow
+	// earlier search resolving after a faster later one) are ignored.
+	const requestTokenRef = useRef(0);
+
 	const load = useCallback(async (q: string) => {
+		const token = ++requestTokenRef.current;
 		setLoading(true);
 		try {
 			const res = await api.api.staff.users.get({ query: { q } });
+			if (requestTokenRef.current !== token) return;
 			if (res.error) {
 				toast.error(errorMessage(res.error.value, "Could not load users"));
 				return;
@@ -65,9 +72,13 @@ export function StaffUsersTab({ currentRole }: { currentRole: string }) {
 			const data = res.data as { users?: StaffUser[] } | null;
 			setUsers(data?.users ?? []);
 		} catch {
-			toast.error("Could not load users");
+			if (requestTokenRef.current === token) {
+				toast.error("Could not load users");
+			}
 		} finally {
-			setLoading(false);
+			if (requestTokenRef.current === token) {
+				setLoading(false);
+			}
 		}
 	}, []);
 
