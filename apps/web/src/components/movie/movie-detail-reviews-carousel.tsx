@@ -307,7 +307,8 @@ export function MovieDetailReviewsCarousel({
 	reviews,
 	className,
 }: {
-	movieId: number;
+	/** Internal film id for spoiler / watched checks; omitted on TV detail (reviews empty today). */
+	movieId?: number;
 	reviews: MoviePageReview[];
 	className?: string;
 }) {
