@@ -15,6 +15,9 @@ export type ServerSession = {
 		email?: string;
 		image?: string | null;
 		emailVerified?: boolean;
+		// Provided by the better-auth admin plugin in the get-session payload.
+		role?: string | null;
+		banned?: boolean | null;
 	};
 };
 
