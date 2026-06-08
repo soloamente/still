@@ -6,6 +6,7 @@ import {
 } from "@still/ui/components/dropdown-menu";
 import IconAwardFill from "@still/ui/icons/award-fill";
 import IconGear from "@still/ui/icons/gear";
+import IconLockFill from "@still/ui/icons/lock-fill";
 import { cn } from "@still/ui/lib/utils";
 import { useRouter } from "next/navigation";
 
@@ -73,8 +74,12 @@ export const accountMenuContentClassName = cn(
 /**
  * Rich account dropdown body: identity block, primary patron routes, settings, log out.
  */
+const STAFF_ROLES = ["owner", "admin", "moderator", "support"];
+
 export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 	const router = useRouter();
+	const { data: session } = authClient.useSession();
+	const isStaff = STAFF_ROLES.includes(session?.user?.role ?? "user");
 
 	const go = (path: string) => {
 		router.push(path);
@@ -148,6 +153,18 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 						<IconGear size="20px" className="size-5 shrink-0 opacity-80" />
 						Settings
 					</DropdownMenuItem>
+					{isStaff ? (
+						<DropdownMenuItem
+							className={accountMenuItemOnBackgroundClassName}
+							onClick={() => go("/staff")}
+						>
+							<IconLockFill
+								size="20px"
+								className="size-5 shrink-0 opacity-80"
+							/>
+							Staff
+						</DropdownMenuItem>
+					) : null}
 				</DropdownMenuGroup>
 			</div>
 
