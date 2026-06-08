@@ -14,6 +14,21 @@ const DELETE_ROLES = ["owner", "admin", "moderator"];
 
 type Op = "hide" | "delete" | "restore";
 
+/** Extract the server-provided message from `res.error.value` (string or
+ * `{ value }` envelope), falling back to a generic message. */
+function errorMessage(value: unknown, fallback: string): string {
+	if (typeof value === "string") return value;
+	if (
+		value &&
+		typeof value === "object" &&
+		"value" in value &&
+		typeof (value as { value: unknown }).value === "string"
+	) {
+		return (value as { value: string }).value;
+	}
+	return fallback;
+}
+
 /**
  * Inline staff moderation row for a single piece of content. Self-hides for
  * non-staff (returns null when the viewer lacks `content:hide`), so it is safe
@@ -44,11 +59,13 @@ export function StaffContentActions({
 	async function act(op: Op) {
 		setBusy(true);
 		try {
+			// Omit `reason` entirely — sending "" would record an empty-string
+			// removalReason / audit reason server-side instead of null.
 			const res = await api.api.staff
 				.content({ type })({ id })({ op })
-				.post({ reason: "" });
+				.post({});
 			if (res.error) {
-				toast.error("Action failed");
+				toast.error(errorMessage(res.error.value, "Action failed"));
 				return;
 			}
 			toast.success(`Content ${op === "restore" ? "restored" : `${op}d`}`);

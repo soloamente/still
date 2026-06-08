@@ -2,6 +2,7 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { Heart, MessageCircle } from "lucide-react";
+import { useState } from "react";
 import { FeedListingThumb } from "@/components/feed/feed-listing-thumb";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import {
@@ -45,6 +46,12 @@ export function ReviewCard({ review }: { review: Review }) {
 	const { data: session } = authClient.useSession();
 	const viewerRole = session?.user?.role ?? "user";
 	const listing = review.listing;
+	// Local in-session feedback: once a staff member hides/deletes the review,
+	// drop it from view (matches next-reload behavior — removed reviews are
+	// filtered from public reads). Declared with the other hooks; early-return
+	// below runs only after all hooks have been called.
+	const [hidden, setHidden] = useState(false);
+	if (hidden) return null;
 
 	return (
 		<>
@@ -116,7 +123,15 @@ export function ReviewCard({ review }: { review: Review }) {
 					</footer>
 				</div>
 			</button>
-			<StaffContentActions type="review" id={review.id} role={viewerRole} />
+			<StaffContentActions
+				type="review"
+				id={review.id}
+				role={viewerRole}
+				// The public feed never surfaces removed reviews, so this card is
+				// always showing live content.
+				isRemoved={false}
+				onChanged={() => setHidden(true)}
+			/>
 		</>
 	);
 }
