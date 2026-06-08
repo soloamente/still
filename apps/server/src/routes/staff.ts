@@ -1,5 +1,16 @@
 import { auth } from "@still/auth";
-import { db, list, log, post, review, staffAuditLog, user } from "@still/db";
+import { permissionSummary } from "@still/auth/permission-summary";
+import type { AppRole } from "@still/auth/permissions";
+import {
+	db,
+	list,
+	log,
+	post,
+	profile,
+	review,
+	staffAuditLog,
+	user,
+} from "@still/db";
 import { desc, eq, ilike, or } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
@@ -56,6 +67,53 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 			.orderBy(desc(user.createdAt))
 			.limit(50);
 		return { users: rows };
+	})
+	.get("/users/:id", async ({ user: viewer, params, status }) => {
+		try {
+			await requirePermission({ user: viewer }, { user: ["list"] });
+		} catch (e) {
+			return forbidden(status, e);
+		}
+		const [target] = await db
+			.select({
+				id: user.id,
+				name: user.name,
+				email: user.email,
+				image: user.image,
+				role: user.role,
+				banned: user.banned,
+				banExpires: user.banExpires,
+				emailVerified: user.emailVerified,
+				createdAt: user.createdAt,
+			})
+			.from(user)
+			.where(eq(user.id, params.id));
+		if (!target) return status(404, "User not found");
+
+		const [targetProfile] = await db
+			.select({
+				userId: profile.userId,
+				handle: profile.handle,
+				displayName: profile.displayName,
+				bio: profile.bio,
+				pronouns: profile.pronouns,
+				location: profile.location,
+				website: profile.website,
+				bannerUrl: profile.bannerUrl,
+				accentColor: profile.accentColor,
+				isPro: profile.isPro,
+				isPrivate: profile.isPrivate,
+				statsCache: profile.statsCache,
+			})
+			.from(profile)
+			.where(eq(profile.userId, params.id));
+
+		const role = (target.role ?? "user") as AppRole;
+		return {
+			user: target,
+			profile: targetProfile ?? null,
+			permissions: permissionSummary(role),
+		};
 	})
 	.post(
 		"/users/:id/ban",

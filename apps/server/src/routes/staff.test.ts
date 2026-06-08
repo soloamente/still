@@ -395,6 +395,87 @@ describe("GET /api/staff/users", () => {
 	});
 });
 
+describe("GET /api/staff/users/:id", () => {
+	test("returns 401 when signed out", async () => {
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1", { method: "GET" }),
+		);
+		expect(res.status).toBe(401);
+	});
+
+	test("moderator (has user:list) gets user + profile + permission summary", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		state.profiles = {
+			"u-1": {
+				userId: "u-1",
+				handle: "cinephile",
+				displayName: "Cinephile",
+				isPro: true,
+				isPrivate: false,
+				statsCache: { filmsLogged: 42, followers: 3 },
+			},
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1", {
+				method: "GET",
+				headers: authHeaders("mod-1", "moderator"),
+			}),
+		);
+		expect(res.status).toBe(200);
+		const body = (await res.json()) as {
+			user: { id: string };
+			profile: { handle: string; isPro: boolean } | null;
+			permissions: Array<{ resource: string; action: string }>;
+		};
+		expect(body.user.id).toBe("u-1");
+		expect(body.profile?.handle).toBe("cinephile");
+		expect(body.profile?.isPro).toBe(true);
+		// Target role is "user" -> no staff permissions.
+		expect(body.permissions).toEqual([]);
+	});
+
+	test("returns the target role's permission summary, not the viewer's", async () => {
+		state.users = { "sup-9": { id: "sup-9", role: "support" } };
+		state.profiles = {};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/sup-9", {
+				method: "GET",
+				headers: authHeaders("owner-1", "owner"),
+			}),
+		);
+		expect(res.status).toBe(200);
+		const body = (await res.json()) as {
+			profile: unknown;
+			permissions: Array<{ resource: string; action: string }>;
+		};
+		expect(body.profile).toBeNull();
+		expect(body.permissions.map((p) => `${p.resource}:${p.action}`)).toEqual([
+			"user:list",
+			"content:hide",
+		]);
+	});
+
+	test("unknown user -> 404", async () => {
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/missing", {
+				method: "GET",
+				headers: authHeaders("mod-1", "moderator"),
+			}),
+		);
+		expect(res.status).toBe(404);
+	});
+
+	test("non-staff viewer lacks user:list -> 403", async () => {
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1", {
+				method: "GET",
+				headers: authHeaders("plain-1", "user"),
+			}),
+		);
+		expect(res.status).toBe(403);
+	});
+});
+
 describe("POST /api/staff/content/:type/:id/:op", () => {
 	test("moderator can hide a post -> 200, updates post.removedAt, audits content.hide", async () => {
 		state.content = { post: new Set(["pst-1"]) };
