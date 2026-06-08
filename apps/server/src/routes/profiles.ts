@@ -105,7 +105,7 @@ type ProfileMePatchBody = {
 };
 
 /** Lowercase letterboxd-style handle: letters, digits, underscore, dot, dash, 2–24 chars. */
-const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;
+export const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;
 
 /**
  * Profile routes. **Order matters:** `/me` and `/check-handle/*` must be
