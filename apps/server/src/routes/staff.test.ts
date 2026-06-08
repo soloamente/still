@@ -8,6 +8,26 @@ import { Elysia } from "elysia";
 type TestState = {
 	// Map of userId -> role, used by the user-lookup select in ban / set-role.
 	users: Record<string, { id: string; role: string }>;
+	// Map of userId -> profile row, used by GET/POST /users/:id and /edit /pro.
+	profiles: Record<
+		string,
+		{
+			userId: string;
+			handle: string;
+			displayName: string;
+			isPro: boolean;
+			isPrivate: boolean;
+			statsCache: Record<string, number>;
+		}
+	>;
+	// Notes recorded via POST /users/:id/notes, keyed implicitly by userId.
+	notes: Array<{
+		id: string;
+		userId: string;
+		authorId: string;
+		body: string;
+		createdAt: Date;
+	}>;
 	// Content rows keyed by table name; presence determines update().returning().
 	content: Record<string, Set<string>>;
 	updates: Array<{ table: string; set: Record<string, unknown>; id: string }>;
@@ -25,6 +45,8 @@ type TestState = {
 
 const state: TestState = {
 	users: {},
+	profiles: {},
+	notes: [],
 	content: {},
 	updates: [],
 	inserts: [],
@@ -38,8 +60,11 @@ function makeTable(name: string) {
 	return {
 		__table: name,
 		id: { __column: `${name}.id` },
+		userId: { __column: `${name}.userId` },
+		authorId: { __column: `${name}.authorId` },
 		name: { __column: `${name}.name` },
 		email: { __column: `${name}.email` },
+		emailVerified: { __column: `${name}.emailVerified` },
 		image: { __column: `${name}.image` },
 		role: { __column: `${name}.role` },
 		banned: { __column: `${name}.banned` },
@@ -49,6 +74,18 @@ function makeTable(name: string) {
 		removedBy: { __column: `${name}.removedBy` },
 		removalReason: { __column: `${name}.removalReason` },
 		actorId: { __column: `${name}.actorId` },
+		handle: { __column: `${name}.handle` },
+		displayName: { __column: `${name}.displayName` },
+		bio: { __column: `${name}.bio` },
+		pronouns: { __column: `${name}.pronouns` },
+		location: { __column: `${name}.location` },
+		website: { __column: `${name}.website` },
+		bannerUrl: { __column: `${name}.bannerUrl` },
+		accentColor: { __column: `${name}.accentColor` },
+		isPro: { __column: `${name}.isPro` },
+		isPrivate: { __column: `${name}.isPrivate` },
+		statsCache: { __column: `${name}.statsCache` },
+		body: { __column: `${name}.body` },
 	};
 }
 
@@ -59,6 +96,8 @@ const listTable = makeTable("list");
 const postTable = makeTable("post");
 const staffAuditLogTable = makeTable("staff_audit_log");
 const notificationTable = makeTable("notification");
+const profileTable = makeTable("profile");
+const staffUserNoteTable = makeTable("staff_user_note");
 
 // NOTE: we do NOT mock `drizzle-orm`. `mock.module` is process-global in Bun,
 // and stubbing eq/or/desc here would leak into every other route test that
@@ -136,6 +175,15 @@ function createSelectQuery() {
 		if (fromTable === "staff_audit_log") {
 			return state.audits;
 		}
+		if (fromTable === "profile") {
+			const id = findEqValue(whereCondition);
+			const p = id ? state.profiles[id] : undefined;
+			return p ? [p] : [];
+		}
+		if (fromTable === "staff_user_note") {
+			const id = findEqValue(whereCondition);
+			return state.notes.filter((n) => n.userId === id);
+		}
 		return [];
 	}
 
@@ -157,6 +205,12 @@ function createUpdateQuery(table: unknown) {
 		async returning() {
 			const id = builder._id;
 			state.updates.push({ table: tableName, set: setValues, id: id ?? "" });
+			if (tableName === "profile") {
+				return id != null && state.profiles[id] ? [{ id }] : [];
+			}
+			if (tableName === "user") {
+				return id != null && state.users[id] ? [{ id }] : [];
+			}
 			const exists = id != null && state.content[tableName]?.has(id);
 			return exists ? [{ id }] : [];
 		},
@@ -184,6 +238,8 @@ const db = {
 mock.module("@still/db", () => ({
 	db,
 	user: userTable,
+	profile: profileTable,
+	staffUserNote: staffUserNoteTable,
 	review: reviewTable,
 	log: logTable,
 	list: listTable,
@@ -198,12 +254,21 @@ mock.module("@still/db", () => ({
 // ---------------------------------------------------------------------------
 const MATRIX: Record<string, Record<string, string[]>> = {
 	owner: {
-		user: ["list", "ban", "unban", "set-role", "impersonate"],
+		user: [
+			"list",
+			"ban",
+			"unban",
+			"set-role",
+			"impersonate",
+			"edit",
+			"note",
+			"pro",
+		],
 		content: ["hide", "delete", "restore"],
 		audit: ["read"],
 	},
 	admin: {
-		user: ["list", "ban", "unban"],
+		user: ["list", "ban", "unban", "edit", "note", "pro"],
 		content: ["hide", "delete", "restore"],
 		audit: ["read"],
 	},
@@ -261,6 +326,14 @@ mock.module("@still/auth", () => ({
 				state.authCalls.push({ method: "setRole", body });
 				return { user: {} };
 			},
+			impersonateUser: async ({ body }: { body: unknown }) => {
+				state.authCalls.push({ method: "impersonateUser", body });
+				return { session: { id: "imp-session" }, user: {} };
+			},
+			stopImpersonating: async () => {
+				state.authCalls.push({ method: "stopImpersonating", body: null });
+				return {};
+			},
 		},
 		handler: () => new Response("ok"),
 	},
@@ -291,6 +364,8 @@ function authHeaders(id: string, role: string): Record<string, string> {
 
 beforeEach(() => {
 	state.users = {};
+	state.profiles = {};
+	state.notes = [];
 	state.content = {};
 	state.updates = [];
 	state.inserts = [];
