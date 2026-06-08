@@ -80,6 +80,9 @@ export function createAuth() {
 				defaultRole: "user",
 				// Users holding these roles may call the admin API endpoints.
 				adminRoles: ["owner", "admin"],
+				// Impersonated sessions auto-expire after 1 hour — better-auth's
+				// native time-boxed impersonation (no custom session code needed).
+				impersonationSessionDuration: 3600,
 			}),
 			...(polarPlugin ? [polarPlugin] : []),
 		],
