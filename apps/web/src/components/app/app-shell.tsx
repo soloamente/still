@@ -11,6 +11,7 @@ import { QuickLogRoot } from "@/components/log/quick-log-sheet";
 import { PersonFilmographyDrawerRoot } from "@/components/movie/person-filmography-drawer";
 import { ReviewComposerRoot } from "@/components/review/review-composer";
 import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
+import { RoleChangeDialogRoot } from "@/components/staff/role-change-dialog-root";
 
 /**
  * Track B — authenticated app chrome (single shell for `(app)` routes).
@@ -82,6 +83,7 @@ export function AppShell({
 			<PatronWatchLedgerDrawerRoot />
 			<BadgeWatcher />
 			<WhatsNewDialogRoot userId={user.id} />
+			<RoleChangeDialogRoot />
 			<MobileTabBar
 				user={{
 					id: user.id,
