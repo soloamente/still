@@ -22,7 +22,7 @@ export function RoleChangeDialogRoot() {
 
 	useEffect(() => {
 		let cancelled = false;
-		let openTimer: ReturnType<typeof window.setTimeout> | undefined;
+		let openTimer: number | undefined;
 		(async () => {
 			try {
 				const res = await api.api.notifications["role-change"].get();
