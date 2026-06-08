@@ -25,20 +25,38 @@ describe("staff permission matrix", () => {
 		);
 	});
 
-	it("owner can do everything including set-role and audit", () => {
+	it("owner can do everything including set-role, impersonate, edit, note, pro", () => {
 		expect(roles.owner.authorize({ user: ["set-role"] }).success).toBe(true);
 		expect(roles.owner.authorize({ user: ["ban"] }).success).toBe(true);
+		expect(roles.owner.authorize({ user: ["impersonate"] }).success).toBe(true);
+		expect(roles.owner.authorize({ user: ["edit"] }).success).toBe(true);
+		expect(roles.owner.authorize({ user: ["note"] }).success).toBe(true);
+		expect(roles.owner.authorize({ user: ["pro"] }).success).toBe(true);
 		expect(roles.owner.authorize({ content: ["delete"] }).success).toBe(true);
 		expect(roles.owner.authorize({ audit: ["read"] }).success).toBe(true);
 	});
 
-	it("admin can ban and read audit but cannot set-role or impersonate", () => {
+	it("admin can edit/note/pro but not set-role or impersonate", () => {
 		expect(roles.admin.authorize({ user: ["ban"] }).success).toBe(true);
+		expect(roles.admin.authorize({ user: ["edit"] }).success).toBe(true);
+		expect(roles.admin.authorize({ user: ["note"] }).success).toBe(true);
+		expect(roles.admin.authorize({ user: ["pro"] }).success).toBe(true);
 		expect(roles.admin.authorize({ audit: ["read"] }).success).toBe(true);
 		expect(roles.admin.authorize({ user: ["set-role"] }).success).toBe(false);
 		expect(roles.admin.authorize({ user: ["impersonate"] }).success).toBe(
 			false,
 		);
+	});
+
+	it("moderator and support lack edit/note/pro/impersonate", () => {
+		for (const role of [roles.moderator, roles.support]) {
+			expect(role.authorize({ user: ["edit"] } as never).success).toBe(false);
+			expect(role.authorize({ user: ["note"] } as never).success).toBe(false);
+			expect(role.authorize({ user: ["pro"] } as never).success).toBe(false);
+			expect(role.authorize({ user: ["impersonate"] } as never).success).toBe(
+				false,
+			);
+		}
 	});
 
 	it("moderator can moderate content but not ban or read audit", () => {

@@ -14,7 +14,16 @@ import { defaultStatements } from "better-auth/plugins/admin/access";
  */
 export const statement = {
 	...defaultStatements,
-	user: ["list", "ban", "unban", "set-role", "impersonate"],
+	user: [
+		"list",
+		"ban",
+		"unban",
+		"set-role",
+		"impersonate",
+		"edit",
+		"note",
+		"pro",
+	],
 	content: ["hide", "delete", "restore"],
 	audit: ["read"],
 } as const;
@@ -22,13 +31,22 @@ export const statement = {
 export const ac = createAccessControl(statement);
 
 export const owner = ac.newRole({
-	user: ["list", "ban", "unban", "set-role", "impersonate"],
+	user: [
+		"list",
+		"ban",
+		"unban",
+		"set-role",
+		"impersonate",
+		"edit",
+		"note",
+		"pro",
+	],
 	content: ["hide", "delete", "restore"],
 	audit: ["read"],
 });
 
 export const admin = ac.newRole({
-	user: ["list", "ban", "unban"],
+	user: ["list", "ban", "unban", "edit", "note", "pro"],
 	content: ["hide", "delete", "restore"],
 	audit: ["read"],
 });
