@@ -159,6 +159,22 @@ export const notificationsRoute = new Elysia({
 		},
 		{ query: t.Object({ limit: t.Optional(t.String()) }) },
 	)
+	.get("/role-change", async ({ user, status }) => {
+		if (!user) return status(401, "Sign in");
+		const [row] = await db
+			.select()
+			.from(notification)
+			.where(
+				and(
+					eq(notification.userId, user.id),
+					eq(notification.kind, "staff.role_changed"),
+					isNull(notification.readAt),
+				),
+			)
+			.orderBy(desc(notification.createdAt))
+			.limit(1);
+		return { notification: row ?? null };
+	})
 	.get("/unread-count", async ({ user, status }) => {
 		if (!user) return status(401, "Sign in");
 		const [row] = await db
