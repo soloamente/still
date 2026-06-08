@@ -7,12 +7,15 @@ export type PermissionSummaryEntry = {
 };
 
 /**
- * Human-readable label per `resource:action`. Covers every action granted to
- * any staff role — the Owner bundle is the superset, so this map is exhaustive
- * for display purposes. Object key order defines display order (user, content,
+ * Human-readable label per `resource:action`. Covers the resource/action pairs
+ * the staff roles in `roles` currently grant (`user`/`content`/`audit`). If a
+ * role is later granted a new action — including from `defaultStatements`'s
+ * `session` resource — and this map isn't updated, that capability would be
+ * silently omitted from the "This role can…" display. The test below guards
+ * against that drift. Object key order defines display order (user, content,
  * audit) so the list renders in a stable, predictable sequence.
  */
-const ACTION_LABELS: Record<string, Record<string, string>> = {
+export const ACTION_LABELS: Record<string, Record<string, string>> = {
 	user: {
 		list: "View the user list",
 		ban: "Ban users",

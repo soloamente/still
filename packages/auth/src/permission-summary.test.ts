@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 
-import { permissionSummary } from "./permission-summary";
+import { ACTION_LABELS, permissionSummary } from "./permission-summary";
+import { roles } from "./permissions";
 
 describe("permissionSummary", () => {
 	it("owner gets the full list including impersonate and pro", () => {
@@ -42,5 +43,15 @@ describe("permissionSummary", () => {
 
 	it("a plain user gets nothing", () => {
 		expect(permissionSummary("user")).toEqual([]);
+	});
+
+	it("has a label for every action any role actually grants", () => {
+		for (const role of Object.values(roles)) {
+			for (const [resource, actions] of Object.entries(role.statements)) {
+				for (const action of actions) {
+					expect(ACTION_LABELS[resource]?.[action]).toBeDefined();
+				}
+			}
+		}
 	});
 });
