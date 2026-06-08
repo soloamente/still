@@ -74,6 +74,10 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 		} catch (e) {
 			return forbidden(status, e);
 		}
+		if (!viewer) return status(401, "Sign in");
+		// Read-only detail view: intentionally no audit-log entry here.
+		// Sensitive mutations on this user (edit/pro/notes/impersonate) are
+		// audited by their own endpoints.
 		const [target] = await db
 			.select({
 				id: user.id,
