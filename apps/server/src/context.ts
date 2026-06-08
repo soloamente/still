@@ -14,10 +14,18 @@ export const context = new Elysia({ name: "context" }).derive(
 	async ({ request }) => {
 		try {
 			const session = await auth.api.getSession({ headers: request.headers });
+			const sessionUser = session?.user ?? null;
+			// Defense-in-depth: Better Auth's admin plugin already revokes a
+			// banned user's sessions, but if one somehow still presents a valid
+			// session we treat them as signed out so no authenticated endpoint
+			// serves a banned account.
+			if (sessionUser && isBanned(sessionUser)) {
+				return { db, session: null, user: null };
+			}
 			return {
 				db,
 				session: session?.session ?? null,
-				user: session?.user ?? null,
+				user: sessionUser,
 			};
 		} catch (err) {
 			console.error(
