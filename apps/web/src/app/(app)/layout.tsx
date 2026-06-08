@@ -13,7 +13,12 @@ export const dynamic = "force-dynamic";
 
 export default async function AppLayout({ children }: { children: ReactNode }) {
 	const session = await authServer();
-	if (!session) redirect("/sign-in");
+	// Redirect through /signed-out (a Route Handler) rather than straight to
+	// /sign-in: a banned/revoked session leaves a stale cookie in the browser,
+	// and the proxy gates on cookie *presence*, so a direct /sign-in redirect
+	// bounces back to /home in an infinite loop. /signed-out clears the cookie
+	// first, breaking the loop.
+	if (!session) redirect("/signed-out");
 
 	const profileResult = await fetchMeProfile();
 	const profileFetchFailed = profileResult === PROFILE_FETCH_FAILED;

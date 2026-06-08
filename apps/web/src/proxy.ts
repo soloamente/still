@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 import { retiredCatalogueRedirectUrl } from "@/lib/retired-catalogue-redirect";
+import { SESSION_COOKIE_NAMES } from "@/lib/session-cookie";
 
 /**
  * Lightweight gate: redirects to /sign-in when accessing an authenticated
@@ -22,11 +23,6 @@ const PROTECTED_PREFIXES = [
 ];
 
 const AUTH_ONLY_PREFIXES = ["/sign-in", "/sign-up", "/onboarding"];
-
-const SESSION_COOKIE_NAMES = [
-	"better-auth.session_token",
-	"__Secure-better-auth.session_token",
-];
 
 export function proxy(req: NextRequest) {
 	const { pathname } = req.nextUrl;
