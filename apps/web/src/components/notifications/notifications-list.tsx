@@ -8,6 +8,7 @@ import {
 	Download,
 	Heart,
 	MessageCircle,
+	ShieldCheck,
 	Trophy,
 	Tv,
 	UserPlus,
@@ -67,6 +68,7 @@ function formatGroupHeading(dayKeyStr: string): string {
 
 /** Map dotted `kind` strings from the API to a small icon set. */
 function iconForKind(kind: string) {
+	if (kind === "staff.role_changed") return ShieldCheck;
 	if (kind.startsWith("follow.")) return UserPlus;
 	if (kind.startsWith("chat.")) return MessageCircle;
 	if (kind.startsWith("comment.")) return MessageCircle;

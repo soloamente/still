@@ -11,6 +11,7 @@ import {
 	Flame,
 	Heart,
 	MessageCircle,
+	ShieldCheck,
 	Trophy,
 	Tv,
 	UserPlus,
@@ -42,6 +43,7 @@ export type NotificationPreviewRow = {
 };
 
 function iconForKind(kind: string): LucideIcon {
+	if (kind === "staff.role_changed") return ShieldCheck;
 	if (kind.startsWith("follow.")) return UserPlus;
 	if (kind.startsWith("chat.")) return MessageCircle;
 	if (kind.startsWith("comment.")) return MessageCircle;
