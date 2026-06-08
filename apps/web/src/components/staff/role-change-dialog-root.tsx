@@ -22,6 +22,7 @@ export function RoleChangeDialogRoot() {
 
 	useEffect(() => {
 		let cancelled = false;
+		let openTimer: ReturnType<typeof window.setTimeout> | undefined;
 		(async () => {
 			try {
 				const res = await api.api.notifications["role-change"].get();
@@ -38,7 +39,7 @@ export function RoleChangeDialogRoot() {
 					return;
 				}
 				setPending({ id: row.id, direction, newRole });
-				window.setTimeout(() => {
+				openTimer = window.setTimeout(() => {
 					if (!cancelled) setOpen(true);
 				}, OPEN_DELAY_MS);
 			} catch {
@@ -47,6 +48,7 @@ export function RoleChangeDialogRoot() {
 		})();
 		return () => {
 			cancelled = true;
+			if (openTimer !== undefined) window.clearTimeout(openTimer);
 		};
 	}, []);
 
