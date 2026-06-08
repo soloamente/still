@@ -48,15 +48,34 @@ describe("staff permission matrix", () => {
 		);
 	});
 
-	it("moderator and support lack edit/note/pro/impersonate", () => {
-		for (const role of [roles.moderator, roles.support]) {
-			expect(role.authorize({ user: ["edit"] } as never).success).toBe(false);
-			expect(role.authorize({ user: ["note"] } as never).success).toBe(false);
-			expect(role.authorize({ user: ["pro"] } as never).success).toBe(false);
-			expect(role.authorize({ user: ["impersonate"] } as never).success).toBe(
-				false,
-			);
-		}
+	it("moderator lacks edit/note/pro/impersonate", () => {
+		expect(roles.moderator.authorize({ user: ["edit"] } as never).success).toBe(
+			false,
+		);
+		expect(roles.moderator.authorize({ user: ["note"] } as never).success).toBe(
+			false,
+		);
+		expect(roles.moderator.authorize({ user: ["pro"] } as never).success).toBe(
+			false,
+		);
+		expect(
+			roles.moderator.authorize({ user: ["impersonate"] } as never).success,
+		).toBe(false);
+	});
+
+	it("support lacks edit/note/pro/impersonate", () => {
+		expect(roles.support.authorize({ user: ["edit"] } as never).success).toBe(
+			false,
+		);
+		expect(roles.support.authorize({ user: ["note"] } as never).success).toBe(
+			false,
+		);
+		expect(roles.support.authorize({ user: ["pro"] } as never).success).toBe(
+			false,
+		);
+		expect(
+			roles.support.authorize({ user: ["impersonate"] } as never).success,
+		).toBe(false);
 	});
 
 	it("moderator can moderate content but not ban or read audit", () => {

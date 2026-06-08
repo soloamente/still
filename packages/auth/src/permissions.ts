@@ -5,7 +5,8 @@ import { defaultStatements } from "better-auth/plugins/admin/access";
  * Atomic permission statements (resource -> actions). We extend better-auth's
  * `defaultStatements` (which already defines the `user`/`session` admin verbs
  * the plugin needs internally) with our own `content` and `audit` resources,
- * and add our extra `user` verbs (set-role / impersonate / list / unban).
+ * and add our extra `user` verbs beyond `defaultStatements` (see the `user`
+ * array below for the authoritative list).
  *
  * Note: in better-auth 1.6.9, `defaultStatements` is exported from
  * `better-auth/plugins/admin/access` (not `better-auth/plugins/access`, which
