@@ -11,6 +11,7 @@ type TestState = {
 	// Content rows keyed by table name; presence determines update().returning().
 	content: Record<string, Set<string>>;
 	updates: Array<{ table: string; set: Record<string, unknown>; id: string }>;
+	inserts: Array<{ table: string; values: Record<string, unknown> }>;
 	audits: Array<{
 		actorId: string;
 		action: string;
@@ -26,6 +27,7 @@ const state: TestState = {
 	users: {},
 	content: {},
 	updates: [],
+	inserts: [],
 	audits: [],
 	authCalls: [],
 };
@@ -56,6 +58,7 @@ const logTable = makeTable("log");
 const listTable = makeTable("list");
 const postTable = makeTable("post");
 const staffAuditLogTable = makeTable("staff_audit_log");
+const notificationTable = makeTable("notification");
 
 // NOTE: we do NOT mock `drizzle-orm`. `mock.module` is process-global in Bun,
 // and stubbing eq/or/desc here would leak into every other route test that
@@ -162,9 +165,20 @@ function createUpdateQuery(table: unknown) {
 	return builder;
 }
 
+function createInsertQuery(table: unknown) {
+	const tableName = (table as { __table?: string }).__table ?? "unknown";
+	return {
+		async values(values: Record<string, unknown>) {
+			state.inserts.push({ table: tableName, values });
+			return [];
+		},
+	};
+}
+
 const db = {
 	select: () => createSelectQuery(),
 	update: (table: unknown) => createUpdateQuery(table),
+	insert: (table: unknown) => createInsertQuery(table),
 };
 
 mock.module("@still/db", () => ({
@@ -175,6 +189,7 @@ mock.module("@still/db", () => ({
 	list: listTable,
 	post: postTable,
 	staffAuditLog: staffAuditLogTable,
+	notification: notificationTable,
 }));
 
 // ---------------------------------------------------------------------------
@@ -278,6 +293,7 @@ beforeEach(() => {
 	state.users = {};
 	state.content = {};
 	state.updates = [];
+	state.inserts = [];
 	state.audits = [];
 	state.authCalls = [];
 });
@@ -452,6 +468,13 @@ describe("POST /api/staff/users/:id/role (demotion to user)", () => {
 		expect(audit?.targetType).toBe("user");
 		expect(audit?.targetId).toBe("mod-9");
 		expect(audit?.metadata).toEqual({ from: "moderator", to: "user" });
+
+		const ntf = state.inserts.find((i) => i.table === "notification");
+		expect(ntf).toBeDefined();
+		expect(ntf?.values.kind).toBe("staff.role_changed");
+		const payload = ntf?.values.payload as Record<string, unknown>;
+		expect(payload.direction).toBe("demoted");
+		expect(payload.newRole).toBe("user");
 	});
 });
 

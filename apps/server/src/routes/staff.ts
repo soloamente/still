@@ -5,6 +5,7 @@ import { Elysia, t } from "elysia";
 
 import { context, requirePermission } from "../context";
 import { hit } from "../lib/rate-limit";
+import { notifyRoleChanged } from "../lib/role-change-notification";
 import { type AuditTargetType, writeAuditLog } from "../lib/staff-audit";
 import { outranks } from "../lib/staff-rank";
 
@@ -156,6 +157,11 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 				targetType: "user",
 				targetId: params.id,
 				metadata: { from: target.role, to: body.role },
+			});
+			await notifyRoleChanged({
+				userId: params.id,
+				previousRole: target.role ?? "user",
+				newRole: body.role,
 			});
 			return { ok: true };
 		},
