@@ -76,7 +76,10 @@ export function MeLetterboxdImport() {
 		: { duration: 0.2, ease: [0.165, 0.84, 0.44, 1] as const };
 
 	function applyPicked(files: FileList | File[]) {
-		setSelectedFiles((prev) => mergePickedFiles(prev, [...files]));
+		// Copy synchronously: FileList is live and `e.target.value = ""` (or the
+		// drag event ending) empties it before React runs the state updater.
+		const picked = Array.from(files);
+		setSelectedFiles((prev) => mergePickedFiles(prev, picked));
 		setLastResult(null);
 	}
 

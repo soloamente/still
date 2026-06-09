@@ -15,6 +15,8 @@ import { MeAnilistImport } from "@/components/profile/me-anilist-import";
 import { MeAppearanceSettings } from "@/components/profile/me-appearance-settings";
 import { MeCatalogLanguageSelect } from "@/components/profile/me-catalog-language-select";
 import { MeCatalogWatchRegionSelect } from "@/components/profile/me-catalog-watch-region-select";
+import { MeDangerZone } from "@/components/profile/me-danger-zone";
+import { MeDataExportPanel } from "@/components/profile/me-data-export-panel";
 import {
 	MeFormField,
 	meFieldControlClass,
@@ -335,11 +337,13 @@ export function SettingsAppearanceSection() {
 	);
 }
 
-export function SettingsImportsSection() {
+export function SettingsDataSection() {
 	return (
 		<SettingsSectionPage>
 			<MeLetterboxdImport />
 			<MeAnilistImport />
+			<MeDataExportPanel />
+			<MeDangerZone />
 		</SettingsSectionPage>
 	);
 }

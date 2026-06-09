@@ -1,5 +1,6 @@
-import { SettingsImportsSection } from "@/components/profile/settings-section-panels";
+import { redirect } from "next/navigation";
 
+/** Legacy route — the Imports tab became Data (import + export + danger zone). */
 export default function SettingsImportsPage() {
-	return <SettingsImportsSection />;
+	redirect("/me/settings/data");
 }
