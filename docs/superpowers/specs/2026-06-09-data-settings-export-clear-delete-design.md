@@ -16,7 +16,7 @@ social identity, and delete the whole account via an email-verified flow.
 | Clear-library scope | Watch data only: diary logs, ratings, TV progress, watchlist, streaks. Reviews, lists, follows, comments, profile stay. |
 | Gamification on clear | Reset everything diary-derived: earned badges, challenge enrollments/progress, watch streak. |
 | Export format | Letterboxd-style ZIP of CSVs (mirrors the real Letterboxd export folder layout). |
-| TV in export | Film CSVs stay strictly Letterboxd-compatible; TV ships in separate `tv-diary.csv` + `tv-progress.csv`. |
+| TV in export | Film CSVs stay strictly Letterboxd-compatible; TV ships in separate `tv-diary.csv`, `tv-watchlist.csv`, and `tv-progress.csv`. |
 | Account deletion | Better Auth `deleteUser` with email verification link. |
 | Email infra | Set up Resend now (also unblocks password reset later). |
 | Machinery | Synchronous everything — in-memory ZIP streamed from the API, single-transaction clear, no job system, no soft-delete. |
@@ -61,9 +61,10 @@ into Letterboxd or back into Sense):
 | `watched.csv` | One row per watched film — `Date,Name,Year,Letterboxd URI` layout with the URI column left empty (we have no boxd.it IDs); adds a `TMDb ID` column. |
 | `diary.csv` | Film diary logs — `Date,Name,Year,…,Rating,Rewatch,Tags,Watched Date` layout. |
 | `ratings.csv` | Latest rating per film. `Rating` on Letterboxd's 0.5–5 scale (stored tenths ÷ 20), plus a `Rating10` column with the native 0.0–10.0 score. |
-| `watchlist.csv` | Film + TV watchlist; TV rows carry a `Type` column (`film`/`tv`). |
+| `watchlist.csv` | Film watchlist only — Letterboxd layout. |
 | `reviews.csv` | Published reviews with body markdown, spoiler flag, rating, linked watch date. |
 | `tv-diary.csv` | TV logs with `Scope` (`show`/`season`/`episode`), `Season`, `Episode` columns. |
+| `tv-watchlist.csv` | TV shows on the watchlist (name, year, TMDb ID, added date). |
 | `tv-progress.csv` | `tv_watch` rows: show, status (`watching`/`paused`/`abandoned`/`finished`/`rewatching`), counts, timestamps. |
 | `lists/<list-slug>.csv` | One CSV per owned list (including Favorites): position, title, year, TMDb ID, curator note. |
 | `comments.csv` | Comments the user has written (review id, body, date). |
