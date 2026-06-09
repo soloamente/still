@@ -203,6 +203,7 @@ export function assembleExportFiles(input: ExportInput): ExportFile[] {
 				"Rating10",
 				"Rewatch",
 				"Watched Date",
+				"Note",
 			],
 			input.filmLogs.map((row) => {
 				const [stars, ten] = ratingColumns(row.rating);
@@ -215,6 +216,7 @@ export function assembleExportFiles(input: ExportInput): ExportFile[] {
 					ten,
 					row.rewatch,
 					exportDateKey(row.watchedAt),
+					row.note,
 				];
 			}),
 		),
@@ -336,6 +338,7 @@ export function assembleExportFiles(input: ExportInput): ExportFile[] {
 				"Rating10",
 				"Rewatch",
 				"Watched Date",
+				"Note",
 			],
 			input.tvLogs.map((row) => {
 				const [stars, ten] = ratingColumns(row.rating);
@@ -351,6 +354,7 @@ export function assembleExportFiles(input: ExportInput): ExportFile[] {
 					ten,
 					row.rewatch,
 					exportDateKey(row.watchedAt),
+					row.note,
 				];
 			}),
 		),
@@ -427,18 +431,28 @@ export function assembleExportFiles(input: ExportInput): ExportFile[] {
 		),
 	});
 
+	// One row per liked film — keep the earliest watch when multiple logs hearted it.
+	const likedFilmByTmdbId = new Map<number, (typeof input.filmLogs)[number]>();
+	for (const row of input.filmLogs) {
+		if (!row.liked) continue;
+		const existing = likedFilmByTmdbId.get(row.tmdbId);
+		if (
+			!existing ||
+			new Date(row.watchedAt).getTime() < new Date(existing.watchedAt).getTime()
+		) {
+			likedFilmByTmdbId.set(row.tmdbId, row);
+		}
+	}
 	files.push({
 		path: "likes/films.csv",
 		contents: buildCsv(
 			["Date", "Name", "Year", "TMDb ID"],
-			input.filmLogs
-				.filter((row) => row.liked)
-				.map((row) => [
-					exportDateKey(row.watchedAt),
-					row.title,
-					row.year,
-					row.tmdbId,
-				]),
+			[...likedFilmByTmdbId.values()].map((row) => [
+				exportDateKey(row.watchedAt),
+				row.title,
+				row.year,
+				row.tmdbId,
+			]),
 		),
 	});
 
@@ -495,7 +509,7 @@ export async function fetchExportInput(userId: string): Promise<ExportInput> {
 		.from(user)
 		.where(eq(user.id, userId));
 
-	const favoriteFilms =
+	const favoriteFilmsRaw =
 		profileRow.favoriteMovieIds.length > 0
 			? await db
 					.select({
@@ -506,6 +520,13 @@ export async function fetchExportInput(userId: string): Promise<ExportInput> {
 					.from(movie)
 					.where(inArray(movie.tmdbId, profileRow.favoriteMovieIds))
 			: [];
+	// Preserve the patron's pinned order from profile.favoriteMovieIds.
+	const favoriteByTmdbId = new Map(
+		favoriteFilmsRaw.map((row) => [row.tmdbId, row]),
+	);
+	const favoriteFilms = profileRow.favoriteMovieIds
+		.map((id) => favoriteByTmdbId.get(id))
+		.filter((row): row is (typeof favoriteFilmsRaw)[number] => row != null);
 
 	const filmLogs = await db
 		.select({

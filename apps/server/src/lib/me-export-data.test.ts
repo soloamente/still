@@ -155,8 +155,8 @@ describe("assembleExportFiles", () => {
 			(f) => f.path === "diary.csv",
 		);
 		expect(diary?.contents).toBe(
-			"Date,Name,Year,TMDb ID,Rating,Rating10,Rewatch,Watched Date\n" +
-				"2026-01-06,Whiplash,2014,244786,5,9.5,Yes,2026-01-06\n",
+			"Date,Name,Year,TMDb ID,Rating,Rating10,Rewatch,Watched Date,Note\n" +
+				"2026-01-06,Whiplash,2014,244786,5,9.5,Yes,2026-01-06,\n",
 		);
 	});
 
@@ -192,9 +192,10 @@ describe("assembleExportFiles", () => {
 			(f) => f.path === "tv-diary.csv",
 		);
 		expect(tvDiary?.contents).toContain(
-			"Date,Name,Year,TMDb ID,Scope,Season,Episode,Rating,Rating10,Rewatch,Watched Date",
+			"Date,Name,Year,TMDb ID,Scope,Season,Episode,Rating,Rating10,Rewatch,Watched Date,Note",
 		);
 		expect(tvDiary?.contents).toContain("season,2,");
+		expect(tvDiary?.contents).toContain("great finale");
 	});
 
 	test("watchlist.csv contains films only", () => {
@@ -227,10 +228,117 @@ describe("assembleExportFiles", () => {
 		const diary = assembleExportFiles(input).find(
 			(f) => f.path === "diary.csv",
 		);
-		expect(diary?.contents).toContain("244786,,,Yes");
+		expect(diary?.contents).toContain("244786,,,Yes,");
 		const ratings = assembleExportFiles(input).find(
 			(f) => f.path === "ratings.csv",
 		);
 		expect(ratings?.contents.trim().split("\n")).toHaveLength(1); // header only
+	});
+
+	test("empty input still emits all fixed files with header-only rows", () => {
+		const input: ExportInput = {
+			profile: {
+				handle: "empty",
+				displayName: "Empty",
+				bio: null,
+				pronouns: null,
+				location: null,
+				website: null,
+				joinedAt: "2026-01-01T00:00:00Z",
+				email: "empty@example.com",
+			},
+			favoriteFilms: [],
+			filmLogs: [],
+			tvLogs: [],
+			filmWatchlist: [],
+			tvWatchlist: [],
+			tvProgress: [],
+			reviews: [],
+			lists: [],
+			comments: [],
+			likedReviews: [],
+			likedLists: [],
+		};
+		const files = assembleExportFiles(input);
+		const paths = files.map((f) => f.path).sort();
+		expect(paths).toEqual(
+			[
+				"comments.csv",
+				"diary.csv",
+				"likes/films.csv",
+				"likes/lists.csv",
+				"likes/reviews.csv",
+				"profile.csv",
+				"ratings.csv",
+				"reviews.csv",
+				"tv-diary.csv",
+				"tv-progress.csv",
+				"tv-watchlist.csv",
+				"watched.csv",
+				"watchlist.csv",
+			].sort(),
+		);
+		for (const file of files) {
+			expect(file.contents.endsWith("\n")).toBe(true);
+		}
+	});
+
+	test("ISO string dates format correctly in diary.csv", () => {
+		const input: ExportInput = {
+			...baseInput,
+			filmLogs: [
+				{
+					title: "Whiplash",
+					year: 2014,
+					tmdbId: 244786,
+					watchedAt: "2026-01-06T00:00:00.000Z",
+					createdAt: "2026-01-06T12:00:00.000Z",
+					rating: 95,
+					rewatch: false,
+					liked: false,
+					note: null,
+				},
+			],
+		};
+		const diary = assembleExportFiles(input).find(
+			(f) => f.path === "diary.csv",
+		);
+		expect(diary?.contents).toContain("2026-01-06,Whiplash,2014,244786");
+	});
+
+	test("likes/films.csv dedupes to one row per film (earliest watch)", () => {
+		const input: ExportInput = {
+			...baseInput,
+			filmLogs: [
+				{
+					title: "Whiplash",
+					year: 2014,
+					tmdbId: 244786,
+					watchedAt: new Date("2026-03-01T00:00:00Z"),
+					createdAt: new Date("2026-03-01T12:00:00Z"),
+					rating: 80,
+					rewatch: true,
+					liked: true,
+					note: null,
+				},
+				{
+					title: "Whiplash",
+					year: 2014,
+					tmdbId: 244786,
+					watchedAt: new Date("2026-01-06T00:00:00Z"),
+					createdAt: new Date("2026-01-06T12:00:00Z"),
+					rating: 95,
+					rewatch: false,
+					liked: true,
+					note: null,
+				},
+			],
+		};
+		const likes = assembleExportFiles(input).find(
+			(f) => f.path === "likes/films.csv",
+		);
+		const lines = likes?.contents.trim().split("\n") ?? [];
+		expect(lines).toHaveLength(2); // header + one film
+		expect(lines[1]).toContain("2026-01-06");
 	});
 });
