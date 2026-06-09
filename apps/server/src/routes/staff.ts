@@ -410,48 +410,57 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 		},
 		{ body: t.Object({ body: t.String({ minLength: 1, maxLength: 2000 }) }) },
 	)
-	.post("/users/:id/impersonate", async ({ user: viewer, params, status }) => {
-		try {
-			await requirePermission({ user: viewer }, { user: ["impersonate"] });
-		} catch (e) {
-			return forbidden(status, e);
-		}
-		if (!viewer) return status(401, "Sign in");
-		const [target] = await db
-			.select({ id: user.id })
-			.from(user)
-			.where(eq(user.id, params.id));
-		if (!target) return status(404, "User not found");
+	.post(
+		"/users/:id/impersonate",
+		async ({ user: viewer, params, status, request }) => {
+			try {
+				await requirePermission({ user: viewer }, { user: ["impersonate"] });
+			} catch (e) {
+				return forbidden(status, e);
+			}
+			if (!viewer) return status(401, "Sign in");
+			const [target] = await db
+				.select({ id: user.id })
+				.from(user)
+				.where(eq(user.id, params.id));
+			if (!target) return status(404, "User not found");
 
-		// No `outranks` gate here, intentionally: `user:impersonate` is granted
-		// Owner-only by the access-control matrix, and the Owner must be able
-		// to impersonate *any* account — including other Owners — to debug
-		// account-specific issues. Gating on rank would block owner-vs-owner.
-		await auth.api.impersonateUser({ body: { userId: params.id } });
+			// No `outranks` gate here, intentionally: `user:impersonate` is granted
+			// Owner-only by the access-control matrix, and the Owner must be able
+			// to impersonate *any* account — including other Owners — to debug
+			// account-specific issues. Gating on rank would block owner-vs-owner.
+			await auth.api.impersonateUser({
+				body: { userId: params.id },
+				headers: request.headers,
+			});
 
-		await writeAuditLog({
-			actorId: viewer.id,
-			action: "user.impersonate.start",
-			targetType: "user",
-			targetId: params.id,
-		});
-		return { ok: true };
-	})
-	.post("/stop-impersonating", async ({ user: viewer, session, status }) => {
-		if (!viewer || !session) return status(401, "Sign in");
-		const realActorId = session.impersonatedBy;
-		if (!realActorId) {
-			return status(400, "Not currently impersonating");
-		}
-		await auth.api.stopImpersonating();
-		await writeAuditLog({
-			actorId: realActorId,
-			action: "user.impersonate.stop",
-			targetType: "user",
-			targetId: viewer.id,
-		});
-		return { ok: true };
-	})
+			await writeAuditLog({
+				actorId: viewer.id,
+				action: "user.impersonate.start",
+				targetType: "user",
+				targetId: params.id,
+			});
+			return { ok: true };
+		},
+	)
+	.post(
+		"/stop-impersonating",
+		async ({ user: viewer, session, status, request }) => {
+			if (!viewer || !session) return status(401, "Sign in");
+			const realActorId = session.impersonatedBy;
+			if (!realActorId) {
+				return status(400, "Not currently impersonating");
+			}
+			await auth.api.stopImpersonating({ headers: request.headers });
+			await writeAuditLog({
+				actorId: realActorId,
+				action: "user.impersonate.stop",
+				targetType: "user",
+				targetId: viewer.id,
+			});
+			return { ok: true };
+		},
+	)
 	.post(
 		"/content/:type/:id/:op",
 		async ({ user: viewer, params, body, status }) => {
