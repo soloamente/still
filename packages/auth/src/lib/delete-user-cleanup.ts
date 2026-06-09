@@ -4,10 +4,21 @@ import { del } from "@vercel/blob";
 import { eq } from "drizzle-orm";
 
 /**
+ * Only delete blobs we actually host. `user.image` may be an OAuth avatar
+ * (e.g. googleusercontent.com) — same idiom as profiles.ts / lists.ts.
+ */
+function looksLikeVercelBlobUrl(url: string): boolean {
+	return url.includes("blob.vercel-storage.com");
+}
+
+/**
  * Best-effort Vercel Blob cleanup before account deletion. Collects every
  * blob URL the patron owns (avatar on `user.image`, profile banner, custom
  * list covers) and deletes them in one call. Never throws — a failed blob
  * delete must not block the account deletion itself.
+ *
+ * Accepted tradeoff: this runs in `beforeDelete`, so if the user-row deletion
+ * subsequently fails, the account survives without its images.
  */
 export async function deleteUserBlobAssets(userId: string): Promise<void> {
 	if (!env.BLOB_READ_WRITE_TOKEN) return;
@@ -18,13 +29,15 @@ export async function deleteUserBlobAssets(userId: string): Promise<void> {
 			.select({ image: user.image })
 			.from(user)
 			.where(eq(user.id, userId));
-		if (userRow?.image?.startsWith("https://")) urls.push(userRow.image);
+		if (userRow?.image && looksLikeVercelBlobUrl(userRow.image)) {
+			urls.push(userRow.image);
+		}
 
 		const [profileRow] = await db
 			.select({ bannerUrl: profile.bannerUrl })
 			.from(profile)
 			.where(eq(profile.userId, userId));
-		if (profileRow?.bannerUrl?.startsWith("https://")) {
+		if (profileRow?.bannerUrl && looksLikeVercelBlobUrl(profileRow.bannerUrl)) {
 			urls.push(profileRow.bannerUrl);
 		}
 
@@ -33,7 +46,7 @@ export async function deleteUserBlobAssets(userId: string): Promise<void> {
 			.from(list)
 			.where(eq(list.userId, userId));
 		for (const row of ownedLists) {
-			if (row.coverImageUrl?.startsWith("https://")) {
+			if (row.coverImageUrl && looksLikeVercelBlobUrl(row.coverImageUrl)) {
 				urls.push(row.coverImageUrl);
 			}
 		}

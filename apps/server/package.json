@@ -21,7 +21,7 @@
 		"@still/auth": "workspace:*",
 		"@still/db": "workspace:*",
 		"@still/env": "workspace:*",
-		"@vercel/blob": "^2.3.3",
+		"@vercel/blob": "^2.4.0",
 		"better-auth": "catalog:",
 		"dotenv": "catalog:",
 		"drizzle-orm": "^0.45.2",

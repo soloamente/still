@@ -66,6 +66,7 @@ export function createAuth() {
 		user: {
 			deleteUser: {
 				enabled: true,
+				deleteTokenExpiresIn: 60 * 60 * 24, // 24h — matches the email copy
 				// Email-verified deletion: the patron clicks a link in their inbox;
 				// Better Auth's callback then deletes the user row and DB cascades
 				// wipe everything else.

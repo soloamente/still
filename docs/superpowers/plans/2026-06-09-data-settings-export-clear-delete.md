@@ -294,6 +294,8 @@ git add packages/auth/src/index.ts packages/auth/src/lib/delete-user-cleanup.ts 
 git commit -m "feat(auth): enable email-verified account deletion with blob cleanup"
 ```
 
+**Known gap (accepted):** account deletion does not cancel an active Polar subscription; webhook handlers must tolerate events for unknown (already-deleted) users. Follow-up work is tracked outside this plan.
+
 ---
 
 ### Task 3: CSV export primitives
