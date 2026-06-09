@@ -296,7 +296,7 @@ const MATRIX: Record<string, Record<string, string[]>> = {
 		audit: ["read"],
 	},
 	moderator: {
-		user: ["list", "note"],
+		user: ["list"],
 		content: ["hide", "delete", "restore"],
 	},
 	support: {
@@ -920,20 +920,20 @@ describe("GET /api/staff/audit", () => {
 });
 
 describe("staff user notes endpoints", () => {
-	test("GET /users/:id/notes -> 200 with notes for staff with user:note", async () => {
+	test("GET /users/:id/notes -> 200 with notes for admin with user:note", async () => {
 		state.users = { "u-1": { id: "u-1", role: "user" } };
 		state.notes = [
 			{
 				id: "note-1",
 				userId: "u-1",
-				authorId: "mod-1",
+				authorId: "admin-1",
 				body: "Heads up",
 				createdAt: new Date("2026-01-01T00:00:00Z"),
 			},
 		];
 		const res = await makeApp().handle(
 			new Request("http://localhost/api/staff/users/u-1/notes", {
-				headers: authHeaders("mod-1", "moderator"),
+				headers: authHeaders("admin-1", "admin"),
 			}),
 		);
 		expect(res.status).toBe(200);
@@ -942,22 +942,22 @@ describe("staff user notes endpoints", () => {
 		expect(data.notes[0]?.id).toBe("note-1");
 	});
 
-	test("POST /users/:id/notes -> 201, persists note, audits user.note.add", async () => {
+	test("POST /users/:id/notes -> 201, persists note, audits user.note.add with note id", async () => {
 		state.users = { "u-1": { id: "u-1", role: "user" } };
 		const res = await makeApp().handle(
 			new Request("http://localhost/api/staff/users/u-1/notes", {
 				method: "POST",
-				headers: authHeaders("mod-1", "moderator"),
+				headers: authHeaders("admin-1", "admin"),
 				body: JSON.stringify({ body: "Watch this account" }),
 			}),
 		);
 		expect(res.status).toBe(201);
 		expect(state.notes).toHaveLength(1);
 		expect(state.notes[0]?.body).toBe("Watch this account");
-		expect(state.notes[0]?.authorId).toBe("mod-1");
-		expect(
-			state.audits.find((a) => a.action === "user.note.add"),
-		).toBeDefined();
+		expect(state.notes[0]?.authorId).toBe("admin-1");
+		const audit = state.audits.find((a) => a.action === "user.note.add");
+		expect(audit).toBeDefined();
+		expect(audit?.metadata?.noteId).toBeDefined();
 	});
 
 	test("POST /users/:id/notes rejects an empty body -> 422", async () => {
@@ -965,12 +965,22 @@ describe("staff user notes endpoints", () => {
 		const res = await makeApp().handle(
 			new Request("http://localhost/api/staff/users/u-1/notes", {
 				method: "POST",
-				headers: authHeaders("mod-1", "moderator"),
+				headers: authHeaders("admin-1", "admin"),
 				body: JSON.stringify({ body: "" }),
 			}),
 		);
 		expect(res.status).toBe(422);
 		expect(state.notes).toHaveLength(0);
+	});
+
+	test("moderator lacks user:note -> 403", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/notes", {
+				headers: authHeaders("mod-1", "moderator"),
+			}),
+		);
+		expect(res.status).toBe(403);
 	});
 
 	test("support lacks user:note -> 403", async () => {

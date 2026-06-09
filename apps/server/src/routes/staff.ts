@@ -404,6 +404,7 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 				action: "user.note.add",
 				targetType: "user",
 				targetId: params.id,
+				metadata: { noteId: note.id },
 			});
 			return status(201, { note });
 		},
