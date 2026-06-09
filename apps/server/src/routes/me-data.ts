@@ -36,9 +36,10 @@ export function buildMeDataRoute(options: MeDataRouteOptions = {}): Elysia {
 	// Tests use `deriveUser`; production mounts the shared `context` plugin.
 	// Global derive matches `context` so route tests still see `user` after
 	// other suites register the real context plugin in-process.
-	const withAuth = (options.deriveUser
+	const deriveUser = options.deriveUser;
+	const withAuth = (deriveUser
 		? base.derive({ as: "global" }, () => ({
-				user: options.deriveUser!(),
+				user: deriveUser(),
 			}))
 		: base.use(context)) as unknown as Elysia;
 
