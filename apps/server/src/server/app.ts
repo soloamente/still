@@ -15,6 +15,7 @@ import { importRoute } from "../routes/import";
 import { leaderboardRoute } from "../routes/leaderboard";
 import { listsRoute } from "../routes/lists";
 import { logsRoute } from "../routes/logs";
+import { meDataRoute } from "../routes/me-data";
 import { moviesRoute } from "../routes/movies";
 import { newsRoute } from "../routes/news";
 import { notificationsRoute } from "../routes/notifications";
@@ -97,6 +98,7 @@ export const app = new Elysia()
 	.use(challengesRoute)
 	.use(streaksRoute)
 	.use(importRoute)
+	.use(meDataRoute)
 	.use(followsRoute)
 	.use(feedRoute)
 	.use(leaderboardRoute)
