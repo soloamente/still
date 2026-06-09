@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { api } from "@/lib/api";
+import { errorMessage } from "@/lib/staff-error-message";
 
 type ContentType = "review" | "list" | "post" | "log";
 
@@ -13,21 +14,6 @@ const HIDE_ROLES = ["owner", "admin", "moderator", "support"];
 const DELETE_ROLES = ["owner", "admin", "moderator"];
 
 type Op = "hide" | "delete" | "restore";
-
-/** Extract the server-provided message from `res.error.value` (string or
- * `{ value }` envelope), falling back to a generic message. */
-function errorMessage(value: unknown, fallback: string): string {
-	if (typeof value === "string") return value;
-	if (
-		value &&
-		typeof value === "object" &&
-		"value" in value &&
-		typeof (value as { value: unknown }).value === "string"
-	) {
-		return (value as { value: string }).value;
-	}
-	return fallback;
-}
 
 /**
  * Inline staff moderation row for a single piece of content. Self-hides for

@@ -25,10 +25,13 @@ describe("staff permission matrix", () => {
 		);
 	});
 
-	it("owner can do everything including set-role, impersonate, edit, note, pro", () => {
+	it("owner can do everything including set-role, impersonate, impersonate-admins, edit, note, pro", () => {
 		expect(roles.owner.authorize({ user: ["set-role"] }).success).toBe(true);
 		expect(roles.owner.authorize({ user: ["ban"] }).success).toBe(true);
 		expect(roles.owner.authorize({ user: ["impersonate"] }).success).toBe(true);
+		expect(
+			roles.owner.authorize({ user: ["impersonate-admins"] }).success,
+		).toBe(true);
 		expect(roles.owner.authorize({ user: ["edit"] }).success).toBe(true);
 		expect(roles.owner.authorize({ user: ["note"] }).success).toBe(true);
 		expect(roles.owner.authorize({ user: ["pro"] }).success).toBe(true);
@@ -46,6 +49,9 @@ describe("staff permission matrix", () => {
 		expect(roles.admin.authorize({ user: ["impersonate"] }).success).toBe(
 			false,
 		);
+		expect(
+			roles.admin.authorize({ user: ["impersonate-admins"] } as never).success,
+		).toBe(false);
 	});
 
 	it("moderator lacks edit/note/pro/impersonate", () => {

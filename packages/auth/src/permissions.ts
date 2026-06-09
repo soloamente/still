@@ -21,6 +21,9 @@ export const statement = {
 		"unban",
 		"set-role",
 		"impersonate",
+		// Required by better-auth to impersonate accounts in `adminRoles`
+		// (owner/admin) — without this, Owner→Admin impersonation silently fails.
+		"impersonate-admins",
 		"edit",
 		"note",
 		"pro",
@@ -38,6 +41,7 @@ export const owner = ac.newRole({
 		"unban",
 		"set-role",
 		"impersonate",
+		"impersonate-admins",
 		"edit",
 		"note",
 		"pro",

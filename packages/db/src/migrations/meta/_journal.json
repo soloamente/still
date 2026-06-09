@@ -183,6 +183,13 @@
 			"when": 1779202100000,
 			"tag": "0025_staff_user_notes",
 			"breakpoints": true
+		},
+		{
+			"idx": 26,
+			"version": "7",
+			"when": 1779202200000,
+			"tag": "0026_session_impersonated_by",
+			"breakpoints": true
 		}
 	]
 }

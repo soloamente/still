@@ -40,9 +40,9 @@ export function MeDangerZone() {
 					</div>
 					<Button
 						type="button"
-						variant="ghost"
+						variant="destructive"
 						size="pill"
-						className="bg-background text-destructive"
+						className="border-transparent"
 						onClick={() => setOpenDialog("clear")}
 					>
 						Clear library…
@@ -67,9 +67,9 @@ export function MeDangerZone() {
 					</div>
 					<Button
 						type="button"
-						variant="ghost"
+						variant="destructive"
 						size="pill"
-						className="bg-background text-destructive"
+						className="border-transparent"
 						onClick={() => setOpenDialog("delete")}
 					>
 						Delete account…

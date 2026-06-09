@@ -6,6 +6,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { api } from "@/lib/api";
+import { errorMessage } from "@/lib/staff-error-message";
+
+import { StaffUserDetail } from "./staff-user-detail";
 
 type StaffUser = {
 	id: string;
@@ -26,19 +29,6 @@ const ASSIGNABLE_ROLES = [
 	"owner",
 ] as const;
 
-function errorMessage(value: unknown, fallback: string): string {
-	if (typeof value === "string") return value;
-	if (
-		value &&
-		typeof value === "object" &&
-		"value" in value &&
-		typeof (value as { value: unknown }).value === "string"
-	) {
-		return (value as { value: string }).value;
-	}
-	return fallback;
-}
-
 /**
  * Users tab: search + ban/unban + (owner-only) role assignment. Mirrors the
  * app's data pattern (`api.api.*` with `res.data`/`res.error`, local state, and
@@ -53,6 +43,7 @@ export function StaffUsersTab({ currentRole }: { currentRole: string }) {
 	const [users, setUsers] = useState<StaffUser[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [busyId, setBusyId] = useState<string | null>(null);
+	const [expandedId, setExpandedId] = useState<string | null>(null);
 
 	// Incremented on every load request; only the response matching the
 	// latest token is committed, so out-of-order responses (e.g. a slow
@@ -166,60 +157,76 @@ export function StaffUsersTab({ currentRole }: { currentRole: string }) {
 						const role = u.role ?? "user";
 						const busy = busyId === u.id;
 						return (
-							<li
-								key={u.id}
-								className="flex flex-wrap items-center gap-3 px-4 py-3"
-							>
-								<div className="min-w-0 flex-1">
-									<p className="truncate font-medium text-sm">
-										{u.name || "Unnamed"}
-										{u.banned ? (
-											<span className="ml-2 font-normal text-destructive text-xs">
-												banned
-											</span>
-										) : null}
-									</p>
-									<p className="truncate text-muted-foreground text-xs">
-										{u.email} · {role}
-									</p>
+							<li key={u.id}>
+								<div className="flex flex-wrap items-center gap-3 px-4 py-3">
+									<button
+										type="button"
+										className="min-w-0 flex-1 text-left"
+										aria-expanded={expandedId === u.id}
+										onClick={() =>
+											setExpandedId((prev) => (prev === u.id ? null : u.id))
+										}
+									>
+										<p className="truncate font-medium text-sm">
+											{u.name || "Unnamed"}
+											{u.banned ? (
+												<span className="ml-2 font-normal text-destructive text-xs">
+													banned
+												</span>
+											) : null}
+										</p>
+										<p className="truncate text-muted-foreground text-xs">
+											{u.email} · {role}
+										</p>
+									</button>
+
+									{canSetRole ? (
+										<select
+											value={role}
+											disabled={busy}
+											onChange={(e) => void handleSetRole(u, e.target.value)}
+											className="h-8 rounded-md border border-input bg-muted/40 px-2 text-sm outline-none disabled:opacity-60"
+											aria-label={`Set role for ${u.email}`}
+										>
+											{ASSIGNABLE_ROLES.map((r) => (
+												<option key={r} value={r}>
+													{r}
+												</option>
+											))}
+										</select>
+									) : null}
+
+									{canModerate ? (
+										u.banned ? (
+											<Button
+												variant="outline"
+												size="sm"
+												disabled={busy}
+												onClick={() => void handleUnban(u)}
+											>
+												Unban
+											</Button>
+										) : (
+											<Button
+												variant="destructive"
+												size="sm"
+												disabled={busy}
+												onClick={() => void handleBan(u)}
+											>
+												Ban
+											</Button>
+										)
+									) : null}
 								</div>
 
-								{canSetRole ? (
-									<select
-										value={role}
-										disabled={busy}
-										onChange={(e) => void handleSetRole(u, e.target.value)}
-										className="h-8 rounded-md border border-input bg-muted/40 px-2 text-sm outline-none disabled:opacity-60"
-										aria-label={`Set role for ${u.email}`}
-									>
-										{ASSIGNABLE_ROLES.map((r) => (
-											<option key={r} value={r}>
-												{r}
-											</option>
-										))}
-									</select>
-								) : null}
-
-								{canModerate ? (
-									u.banned ? (
-										<Button
-											variant="outline"
-											size="sm"
-											disabled={busy}
-											onClick={() => void handleUnban(u)}
-										>
-											Unban
-										</Button>
-									) : (
-										<Button
-											variant="destructive"
-											size="sm"
-											disabled={busy}
-											onClick={() => void handleBan(u)}
-										>
-											Ban
-										</Button>
-									)
+								{expandedId === u.id ? (
+									<StaffUserDetail
+										userId={u.id}
+										canEdit={canModerate}
+										canNote={canModerate}
+										canPro={canModerate}
+										canImpersonate={canSetRole}
+									/>
 								) : null}
 							</li>
 						);

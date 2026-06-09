@@ -62,19 +62,17 @@ export function MeClearLibraryDialog({
 			onClose={onClose}
 			onConfirm={() => void runClear()}
 		>
-			<p>
-				This permanently removes your{" "}
-				<strong>
-					diary logs, ratings, watchlist, TV progress, streaks, badges, and
-					challenge progress
-				</strong>
-				. Your favorites list is emptied.
+			<p className="text-balance leading-tight">
+				This permanently removes your diary logs, ratings, watchlist, TV
+				progress, streaks, badges, and challenge progress. Your favorites list
+				is emptied.
 			</p>
-			<p className="mt-2">
-				Your <strong>reviews, lists, comments, followers, and profile</strong>{" "}
-				are kept. There is no undo.
+			<p className="text-balance leading-tight">
+				Your reviews, lists, comments, followers, and profile are kept.
+				<br />
+				This cannot be undone.
 			</p>
-			<p className="mt-3">
+			<p className="text-balance leading-tight">
 				<button
 					type="button"
 					className="font-medium text-foreground underline underline-offset-2"

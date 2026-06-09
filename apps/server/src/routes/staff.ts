@@ -15,6 +15,7 @@ import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context, requirePermission } from "../context";
+import { forwardAuthSetCookies } from "../lib/forward-auth-set-cookies";
 import { HANDLE_RE } from "../lib/handle-re";
 import { hit } from "../lib/rate-limit";
 import { notifyRoleChanged } from "../lib/role-change-notification";
@@ -412,7 +413,7 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 	)
 	.post(
 		"/users/:id/impersonate",
-		async ({ user: viewer, params, status, request }) => {
+		async ({ user: viewer, params, status, request, set }) => {
 			try {
 				await requirePermission({ user: viewer }, { user: ["impersonate"] });
 			} catch (e) {
@@ -429,10 +430,14 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 			// Owner-only by the access-control matrix, and the Owner must be able
 			// to impersonate *any* account — including other Owners — to debug
 			// account-specific issues. Gating on rank would block owner-vs-owner.
-			await auth.api.impersonateUser({
+			const authResult = await auth.api.impersonateUser({
 				body: { userId: params.id },
 				headers: request.headers,
+				returnHeaders: true,
 			});
+			// Without forwarding Set-Cookie, the browser keeps the staff session and
+			// impersonation appears to do nothing after redirect.
+			forwardAuthSetCookies(set, authResult.headers);
 
 			await writeAuditLog({
 				actorId: viewer.id,
@@ -445,13 +450,18 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 	)
 	.post(
 		"/stop-impersonating",
-		async ({ user: viewer, session, status, request }) => {
+		async ({ user: viewer, session, status, request, set }) => {
 			if (!viewer || !session) return status(401, "Sign in");
 			const realActorId = session.impersonatedBy;
 			if (!realActorId) {
 				return status(400, "Not currently impersonating");
 			}
-			await auth.api.stopImpersonating({ headers: request.headers });
+			const authResult = await auth.api.stopImpersonating({
+				headers: request.headers,
+				returnHeaders: true,
+			});
+			forwardAuthSetCookies(set, authResult.headers);
+
 			await writeAuditLog({
 				actorId: realActorId,
 				action: "user.impersonate.stop",

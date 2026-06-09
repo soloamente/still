@@ -33,6 +33,9 @@ export const session = pgTable(
 		userId: text("user_id")
 			.notNull()
 			.references(() => user.id, { onDelete: "cascade" }),
+		// Set by the better-auth admin plugin when an Owner impersonates another
+		// account — stores the real staff member's user id for audit + stop flow.
+		impersonatedBy: text("impersonated_by"),
 	},
 	(table) => [index("session_userId_idx").on(table.userId)],
 );

@@ -204,8 +204,7 @@ process used for the redirect-loop fix (`c248990`).
 Task-by-task breakdown (18 tasks: schema → auth → server → web UI → verification):
 `docs/superpowers/plans/2026-06-08-staff-user-info-and-management.md`.
 
-**Progress at spec finalization (2026-06-09):** Tasks 1–11 shipped (db migration,
-`edit`/`note`/`pro` permissions, `permissionSummary`, staff routes + tests,
-`impersonationSessionDuration`). Web UI and verification (Tasks 12–18: shared
-`errorMessage` helper, impersonation banner, `StaffUserDetail` sub-components,
-expandable rows, full verification pass) remain.
+**Progress (2026-06-09):** Shipped end-to-end. Tasks 1–18 complete including web
+UI (`StaffUserDetail`, impersonation banner, expandable rows), `session.impersonated_by`
+migration, Set-Cookie forwarding on impersonate/stop, and Owner `impersonate-admins`
+for staff-role targets. Human QA signed off.

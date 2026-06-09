@@ -57,14 +57,16 @@ export function MeDeleteAccountDialog({
 			onClose={onClose}
 			onConfirm={() => void requestDeletion()}
 		>
-			<p>
-				This permanently deletes your <strong>entire account</strong> — profile,
-				diary, reviews, lists, followers, everything. There is no undo.
+			<p className="text-balance leading-tight">
+				This permanently deletes your entire account — profile, diary, reviews,
+				lists, followers, everything.
+				<br />
+				This cannot be undone.
 			</p>
-			<p className="mt-2">
-				To confirm it's you, we'll email a verification link to your account
-				address. Your account is only deleted after you click it. The link
-				expires in 24 hours.
+			<p className="text-balance leading-tight">
+				To confirm it&apos;s you, we&apos;ll email a verification link to your
+				account address. Your account is only deleted after you click it. The
+				link expires in 24 hours.
 			</p>
 		</MeDestructiveConfirmDialog>
 	);

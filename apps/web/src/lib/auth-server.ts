@@ -8,7 +8,14 @@ import { webAppOriginFromHeaders } from "@/lib/auth-request-origin";
  * the user is signed in. We keep this minimal to match what the app reads.
  */
 export type ServerSession = {
-	session: { id: string; userId: string; expiresAt?: Date | string };
+	session: {
+		id: string;
+		userId: string;
+		expiresAt?: Date | string;
+		// Present once an Owner starts impersonating this account; carries the
+		// real staff member's user id so we can show a banner and let them stop.
+		impersonatedBy?: string | null;
+	};
 	user: {
 		id: string;
 		name?: string | null;

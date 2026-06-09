@@ -354,14 +354,41 @@ mock.module("@still/auth", () => ({
 				state.authCalls.push({ method: "setRole", body });
 				return { user: {} };
 			},
-			impersonateUser: async ({ body }: { body: { userId: string } }) => {
+			impersonateUser: async ({
+				body,
+				returnHeaders,
+			}: {
+				body: { userId: string };
+				returnHeaders?: boolean;
+			}) => {
 				state.authCalls.push({ method: "impersonateUser", body });
 				state.impersonateCalls.push({ userId: body.userId });
-				return { session: { id: "imp-session" }, user: {} };
+				const payload = { session: { id: "imp-session" }, user: {} };
+				if (returnHeaders) {
+					return {
+						headers: new Headers({
+							"set-cookie": "better-auth.session_token=impersonated",
+						}),
+						response: payload,
+					};
+				}
+				return payload;
 			},
-			stopImpersonating: async () => {
+			stopImpersonating: async ({
+				returnHeaders,
+			}: {
+				returnHeaders?: boolean;
+			}) => {
 				state.authCalls.push({ method: "stopImpersonating", body: null });
 				state.stopImpersonatingCalls += 1;
+				if (returnHeaders) {
+					return {
+						headers: new Headers({
+							"set-cookie": "better-auth.session_token=restored",
+						}),
+						response: {},
+					};
+				}
 				return {};
 			},
 		},
@@ -1008,6 +1035,8 @@ describe("staff impersonation endpoints", () => {
 		expect(
 			state.audits.find((a) => a.action === "user.impersonate.start"),
 		).toBeDefined();
+		const setCookies = res.headers.getSetCookie().join("\n");
+		expect(setCookies).toContain("better-auth.session_token=impersonated");
 	});
 
 	test("POST /users/:id/impersonate -> owner can impersonate another owner (no outranks gate)", async () => {
