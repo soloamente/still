@@ -15,6 +15,19 @@ export async function sendEmail(input: SendEmailInput): Promise<void> {
 	// Lazy import: evaluating @still/env/server validates required vars
 	// (DATABASE_URL etc.), which would crash pure-helper tests at import time.
 	const { env } = await import("@still/env/server");
+	// Exactly one of the two vars set = misconfiguration. Fail loudly instead
+	// of silently console-logging emails (which would leak deletion links to
+	// prod logs and never reach the user).
+	if (env.RESEND_API_KEY && !env.EMAIL_FROM) {
+		throw new Error(
+			"Email misconfigured: RESEND_API_KEY is set but EMAIL_FROM is missing",
+		);
+	}
+	if (!env.RESEND_API_KEY && env.EMAIL_FROM) {
+		throw new Error(
+			"Email misconfigured: EMAIL_FROM is set but RESEND_API_KEY is missing",
+		);
+	}
 	if (!env.RESEND_API_KEY || !env.EMAIL_FROM) {
 		console.info(
 			`[send-email:dev-fallback] to=${input.to} subject=${input.subject}\n${input.text}`,

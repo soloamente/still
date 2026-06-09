@@ -7,7 +7,9 @@ import { type BetterAuthPlugin, betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin as adminPlugin } from "better-auth/plugins";
 
+import { deleteUserBlobAssets } from "./lib/delete-user-cleanup";
 import { polarClient } from "./lib/payments";
+import { buildDeleteAccountEmail, sendEmail } from "./lib/send-email";
 import { ac, roles } from "./permissions";
 
 /**
@@ -60,6 +62,25 @@ export function createAuth() {
 		],
 		emailAndPassword: {
 			enabled: true,
+		},
+		user: {
+			deleteUser: {
+				enabled: true,
+				// Email-verified deletion: the patron clicks a link in their inbox;
+				// Better Auth's callback then deletes the user row and DB cascades
+				// wipe everything else.
+				sendDeleteAccountVerification: async ({ user: target, url }) => {
+					const email = buildDeleteAccountEmail({ url });
+					await sendEmail({
+						to: target.email,
+						subject: email.subject,
+						text: email.text,
+					});
+				},
+				beforeDelete: async (target) => {
+					await deleteUserBlobAssets(target.id);
+				},
+			},
 		},
 		secret: env.BETTER_AUTH_SECRET,
 		baseURL: env.BETTER_AUTH_URL,
