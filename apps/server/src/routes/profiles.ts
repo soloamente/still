@@ -104,8 +104,7 @@ type ProfileMePatchBody = {
 	defaultVisibility?: ContentVisibility;
 };
 
-/** Lowercase letterboxd-style handle: letters, digits, underscore, dot, dash, 2–24 chars. */
-export const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;
+export { HANDLE_RE } from "../lib/handle-re";
 
 /**
  * Profile routes. **Order matters:** `/me` and `/check-handle/*` must be

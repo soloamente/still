@@ -11,10 +11,11 @@ import {
 	staffAuditLog,
 	user,
 } from "@still/db";
-import { desc, eq, ilike, or } from "drizzle-orm";
+import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context, requirePermission } from "../context";
+import { HANDLE_RE } from "../lib/handle-re";
 import { hit } from "../lib/rate-limit";
 import { notifyRoleChanged } from "../lib/role-change-notification";
 import { type AuditTargetType, writeAuditLog } from "../lib/staff-audit";
@@ -22,6 +23,18 @@ import { outranks } from "../lib/staff-rank";
 
 const CONTENT_TABLES = { review, log, list, post } as const;
 type ContentType = keyof typeof CONTENT_TABLES;
+
+const EDITABLE_PROFILE_FIELDS = [
+	"displayName",
+	"handle",
+	"bio",
+	"pronouns",
+	"location",
+	"website",
+	"bannerUrl",
+	"accentColor",
+] as const;
+type EditableProfileField = (typeof EDITABLE_PROFILE_FIELDS)[number];
 
 // The four content tables share the same soft-removal columns (removedAt /
 // removedBy / removalReason) and a text `id`, but their inferred Drizzle types
@@ -236,6 +249,92 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 					t.Literal("admin"),
 					t.Literal("owner"),
 				]),
+			}),
+		},
+	)
+	.post(
+		"/users/:id/edit",
+		async ({ user: viewer, params, body, status }) => {
+			try {
+				await requirePermission({ user: viewer }, { user: ["edit"] });
+			} catch (e) {
+				return forbidden(status, e);
+			}
+			if (!viewer) return status(401, "Sign in");
+			if (!hit(`staff:edit:${viewer.id}`, { limit: 30, windowMs: 60_000 }).ok) {
+				return status(429, "Slow down");
+			}
+			const [target] = await db
+				.select({ id: user.id, role: user.role })
+				.from(user)
+				.where(eq(user.id, params.id));
+			if (!target) return status(404, "User not found");
+			if (!outranks(viewer.role, target.role)) {
+				return status(
+					403,
+					"Cannot act on a peer or higher-ranked staff member",
+				);
+			}
+
+			const setValues: Record<string, unknown> = {};
+			const changedFields: EditableProfileField[] = [];
+			for (const field of EDITABLE_PROFILE_FIELDS) {
+				const value = body[field];
+				if (value === undefined) continue;
+				if (field === "handle") {
+					const desired = value.toLowerCase();
+					if (!HANDLE_RE.test(desired)) {
+						return status(400, "Invalid handle format");
+					}
+					const [taken] = await db
+						.select({ userId: profile.userId })
+						.from(profile)
+						.where(
+							and(
+								eq(profile.handle, desired),
+								sql`${profile.userId} <> ${params.id}`,
+							),
+						);
+					if (taken) return status(409, "Handle already taken");
+					setValues.handle = desired;
+				} else {
+					setValues[field] = value;
+				}
+				changedFields.push(field);
+			}
+			if (changedFields.length === 0) {
+				return status(400, "No fields to update");
+			}
+			setValues.updatedAt = new Date();
+
+			const updated = await db
+				.update(profile)
+				.set(setValues)
+				.where(eq(profile.userId, params.id))
+				.returning({ userId: profile.userId });
+			if (updated.length === 0) return status(404, "Profile not found");
+
+			// Log which fields changed, not their before/after values — full
+			// diffs would put PII (bios, locations, websites) in the audit log.
+			await writeAuditLog({
+				actorId: viewer.id,
+				action: "user.edit",
+				targetType: "user",
+				targetId: params.id,
+				metadata: { changedFields },
+			});
+			return { ok: true };
+		},
+		{
+			body: t.Object({
+				displayName: t.Optional(t.String({ maxLength: 80 })),
+				handle: t.Optional(t.String({ maxLength: 24 })),
+				bio: t.Optional(t.String({ maxLength: 500 })),
+				pronouns: t.Optional(t.String({ maxLength: 40 })),
+				location: t.Optional(t.String({ maxLength: 80 })),
+				website: t.Optional(t.String({ maxLength: 200 })),
+				bannerUrl: t.Optional(t.String({ maxLength: 1000 })),
+				accentColor: t.Optional(t.String({ maxLength: 20 })),
 			}),
 		},
 	)

@@ -476,6 +476,100 @@ describe("GET /api/staff/users/:id", () => {
 	});
 });
 
+describe("POST /api/staff/users/:id/edit", () => {
+	test("admin edits a regular user's profile -> 200, updates profile, audits user.edit", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		state.profiles = {
+			"u-1": {
+				userId: "u-1",
+				handle: "old-handle",
+				displayName: "Old Name",
+				isPro: false,
+				isPrivate: false,
+				statsCache: {},
+			},
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/edit", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+				body: JSON.stringify({
+					displayName: "New Name",
+					handle: "new-handle",
+					bio: "Loves cinema",
+				}),
+			}),
+		);
+		expect(res.status).toBe(200);
+		expect(await res.json()).toEqual({ ok: true });
+
+		const upd = state.updates.find((u) => u.table === "profile");
+		expect(upd).toBeDefined();
+		expect(upd?.id).toBe("u-1");
+		expect(upd?.set.displayName).toBe("New Name");
+		expect(upd?.set.handle).toBe("new-handle");
+		expect(upd?.set.bio).toBe("Loves cinema");
+
+		const audit = state.audits.find((a) => a.action === "user.edit");
+		expect(audit).toBeDefined();
+		expect(audit?.targetId).toBe("u-1");
+		expect(audit?.metadata).toEqual({
+			changedFields: ["displayName", "handle", "bio"],
+		});
+	});
+
+	test("invalid handle format -> 400, no update/audit", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		state.profiles = {
+			"u-1": {
+				userId: "u-1",
+				handle: "old-handle",
+				displayName: "Old Name",
+				isPro: false,
+				isPrivate: false,
+				statsCache: {},
+			},
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/edit", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+				body: JSON.stringify({ handle: "Not Valid!" }),
+			}),
+		);
+		expect(res.status).toBe(400);
+		expect(state.updates).toHaveLength(0);
+		expect(state.audits).toHaveLength(0);
+	});
+
+	test("admin editing an owner -> 403 from outranks, no update/audit", async () => {
+		state.users = { "owner-1": { id: "owner-1", role: "owner" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/owner-1/edit", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+				body: JSON.stringify({ displayName: "Hijacked" }),
+			}),
+		);
+		expect(res.status).toBe(403);
+		expect(state.updates).toHaveLength(0);
+		expect(state.audits).toHaveLength(0);
+	});
+
+	test("moderator lacks user:edit -> 403", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/edit", {
+				method: "POST",
+				headers: authHeaders("mod-1", "moderator"),
+				body: JSON.stringify({ displayName: "Nope" }),
+			}),
+		);
+		expect(res.status).toBe(403);
+		expect(state.updates).toHaveLength(0);
+	});
+});
+
 describe("POST /api/staff/content/:type/:id/:op", () => {
 	test("moderator can hide a post -> 200, updates post.removedAt, audits content.hide", async () => {
 		state.content = { post: new Set(["pst-1"]) };
