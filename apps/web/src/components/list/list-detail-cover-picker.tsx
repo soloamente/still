@@ -12,6 +12,7 @@ import { toast } from "sonner";
 
 import type { ListDetailFilmRow } from "@/components/list/list-detail-films-grid";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { ModalSheetScrollScrims } from "@/components/ui/modal-sheet-scroll-scrims";
 import { api } from "@/lib/api";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
@@ -54,7 +55,7 @@ export function ListDetailCoverPicker({
 	const [open, setOpen] = useState(false);
 	const [mounted, setMounted] = useState(false);
 	const [saving, setSaving] = useState<CoverSaving>(null);
-	const { showFooterFade } = useSheetScrollFades(
+	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		open,
 		`${films.length}-${coverMovieId ?? ""}-${coverTvId ?? ""}`,
@@ -416,12 +417,9 @@ export function ListDetailCoverPicker({
 											</div>
 										) : null}
 									</div>
-									<div
-										aria-hidden
-										className={cn(
-											"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-linear-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-											showFooterFade ? "opacity-100" : "opacity-0",
-										)}
+									<ModalSheetScrollScrims
+										showHeaderFade={showHeaderFade}
+										showFooterFade={showFooterFade}
 									/>
 								</div>
 

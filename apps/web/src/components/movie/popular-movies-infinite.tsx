@@ -115,6 +115,11 @@ interface PopularMoviesInfiniteProps {
 	/** Replaces the auto “popular / discover / upcoming” phrase in the exhausted caption. */
 	catalogLabel?: string;
 	/**
+	 * Personal ledger scope for the exhausted caption (e.g. “Anselmo’s profile”, “your watchlist”).
+	 * When set, copy omits the TMDb catalogue phrase.
+	 */
+	catalogExhaustedScope?: string;
+	/**
 	 * When true, skip infinite scroll, intersection observers, and the TMDb “scrolled through”
 	 * tail copy — reuse the same grid + poster stack as `/home` for static lists (e.g. diary).
 	 */
@@ -177,6 +182,7 @@ export function PopularMoviesInfinite({
 	posterFrameClassName,
 	showTitle = true,
 	catalogLabel: catalogLabelProp,
+	catalogExhaustedScope,
 	posterHoverEffect = "lift",
 	monochromePeersOnHover = false,
 	staggerPosterEntrance = false,
@@ -643,7 +649,9 @@ export function PopularMoviesInfinite({
 						<span className="tabular-nums">{items.length}</span>
 						{items.length === 1 ? " title" : " titles"}
 						{totalResults >= items.length
-							? ` of ${totalResults.toLocaleString()} in TMDb’s ${catalogueLabel} catalogue.`
+							? catalogExhaustedScope
+								? ` of ${totalResults.toLocaleString()} in ${catalogExhaustedScope}.`
+								: ` of ${totalResults.toLocaleString()} in TMDb’s ${catalogueLabel} catalogue.`
 							: "."}
 					</p>
 				) : null}

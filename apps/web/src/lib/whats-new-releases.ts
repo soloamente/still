@@ -23,33 +23,33 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-06-detail-editorial-community",
+	id: "2026-06-09-home-reviews-detail",
 	fullReleaseHref: "/changelog",
 	slides: [
 		{
 			title: "What's new in Sense",
 			description:
-				"Tag other films and shows inside reviews, pick a hero still for your post, and cleaner detail navigation — plus Community and review likes that stay in sync.",
+				"Cleaner at-home browsing, review stills in the composer, and film detail rails you can drag or step through with chevrons and dots.",
 		},
 		{
-			title: "Tag titles in your review",
+			title: "At home means at home",
 			description:
-				"Type @ while writing to search and mention another film or show. Readers tap the title to open it — finished reviews show a clean link, not an @ handle.",
+				"The Movies home At home filter no longer mixes in titles that are only playing in cinemas — streaming picks respect digital releases in your catalogue region.",
 		},
 		{
-			title: "A still for your review",
+			title: "Review still before you publish",
 			description:
-				"Authors can set a still image as the review thumbnail. Pick from the rail below your draft; readers see your frame when they open the post.",
+				"Choose a backdrop still while writing your review, not only after it goes live. The composer loads the same still rail as the reader.",
 		},
 		{
-			title: "Reader polish",
+			title: "Drag the detail rails",
 			description:
-				"Comment replies thread under the parent in the review drawer. Liking a review there updates the count on the film detail carousel right away.",
+				"On film About, grab the backgrounds or reviews carousel to scroll horizontally. Side arrows, step dots, and taps on peeking slides help you move without only swiping.",
 		},
 		{
-			title: "Detail artwork pills",
+			title: "Sheets & navigation",
 			description:
-				"Poster and background rails on film and TV detail use minimal step indicators — tap a pill to jump, or swipe the rail as before.",
+				"Review and quick-log dialogs scroll more smoothly on slower GPUs, with edge fades so lists do not hard-cut. Back from profile or settings returns to your last browse context.",
 		},
 	],
 };

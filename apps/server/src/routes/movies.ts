@@ -29,6 +29,7 @@ import {
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
+import { fetchReviewMovieScreenshots } from "../lib/review-movie-screenshots";
 import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
 import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
@@ -568,6 +569,8 @@ export const moviesRoute = new Elysia({
 				? sortRaw
 				: "popularity.desc";
 			const venueRaw = (query.venue ?? "").trim().toLowerCase();
+			// Monetization-only discover (at-home lobby) must still scope to digital release type `4` —
+			// otherwise TMDb returns theatrical titles that merely have a flatrate provider listed.
 			const withReleaseTypes =
 				venueRaw === "theaters"
 					? "2|3"
@@ -580,6 +583,9 @@ export const moviesRoute = new Elysia({
 			)
 				? monetizationRaw
 				: undefined;
+			const withReleaseTypesResolved =
+				withReleaseTypes ??
+				(withWatchMonetizationTypes !== undefined ? "4" : undefined);
 			const regionRaw = (query.watch_region ?? "").trim().toUpperCase();
 			const watchRegionAll =
 				regionRaw === "ALL" || regionRaw === "ANY" || regionRaw === "WORLD";
@@ -647,7 +653,7 @@ export const moviesRoute = new Elysia({
 				withKeywords: withKeywords.length > 0 ? withKeywords : undefined,
 				withCompanies,
 				sortBy,
-				withReleaseTypes,
+				withReleaseTypes: withReleaseTypesResolved,
 				region: discoveryRegion,
 				primaryReleaseDateLte,
 				primaryReleaseDateGte: primaryReleaseDateGteFromQuery,
@@ -836,6 +842,17 @@ export const moviesRoute = new Elysia({
 				}),
 				community,
 			};
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	/** TMDb backdrops for review composer + reader still picker (capped rail). */
+	.get(
+		"/:id/review-stills",
+		async ({ params, status }) => {
+			const id = Number(params.id);
+			if (!Number.isFinite(id)) return status(400, "Invalid id");
+			const screenshots = await fetchReviewMovieScreenshots(id);
+			return { screenshots };
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

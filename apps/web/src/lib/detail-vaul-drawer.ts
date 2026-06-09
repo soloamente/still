@@ -13,10 +13,10 @@ export const MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME =
 
 /** Full-width scrollport — content columns live inside, not on this element. */
 export const MOVIE_DETAIL_DRAWER_SCROLL_CLASSNAME =
-	"w-full min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pt-2 pb-10 [-ms-overflow-style:none] scrollbar-none sm:px-8 sm:pb-12";
+	"w-full min-h-0 flex-1 contain-[paint] overflow-y-auto overscroll-contain px-5 pt-2 pb-10 [-ms-overflow-style:none] scrollbar-none sm:px-8 sm:pb-12";
 
 export const MOVIE_DETAIL_NESTED_DRAWER_SCROLL_CLASSNAME =
-	"w-full min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pt-2 pb-10 [-ms-overflow-style:none] scrollbar-none sm:px-8 sm:pb-12";
+	"w-full min-h-0 flex-1 contain-[paint] overflow-y-auto overscroll-contain px-5 pt-2 pb-10 [-ms-overflow-style:none] scrollbar-none sm:px-8 sm:pb-12";
 
 /** Wraps sheet children below the handle so the body fills remaining height. */
 export const MOVIE_DETAIL_DRAWER_BODY_CLASSNAME =

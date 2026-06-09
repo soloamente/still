@@ -11,7 +11,7 @@ import {
 	DetailMotionButton,
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
-import { useMovieDetailReturn } from "@/components/movie/use-movie-detail-return";
+import { useProfileReturn } from "@/components/profile/use-profile-return";
 
 /**
  * Profile sticky header — same shell as `MovieDetailTopBar` (back pill, title, share).
@@ -24,7 +24,7 @@ export function ProfileTopBar({
 	/** Path + query to copy (e.g. `/profile/adgv?tab=movies`). */
 	sharePath: string;
 }) {
-	const back = useMovieDetailReturn();
+	const back = useProfileReturn();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [shareCopied, setShareCopied] = useState(false);
 

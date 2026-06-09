@@ -13,6 +13,7 @@ import { toast } from "sonner";
 
 import { ListDescriptionQualityHint } from "@/components/list/list-description-quality-hint";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { ModalSheetScrollScrims } from "@/components/ui/modal-sheet-scroll-scrims";
 import { api } from "@/lib/api";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
@@ -44,7 +45,7 @@ export function ListLobbyEditDialog({
 	const [title, setTitle] = useState(initialTitle);
 	const [description, setDescription] = useState(initialDescription ?? "");
 	const [saving, setSaving] = useState(false);
-	const { showFooterFade } = useSheetScrollFades(
+	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		open,
 		`${title}|${description}`,
@@ -224,12 +225,9 @@ export function ListLobbyEditDialog({
 									</div>
 								</form>
 							</div>
-							<div
-								aria-hidden
-								className={cn(
-									"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-linear-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-									showFooterFade ? "opacity-100" : "opacity-0",
-								)}
+							<ModalSheetScrollScrims
+								showHeaderFade={showHeaderFade}
+								showFooterFade={showFooterFade}
 							/>
 						</div>
 

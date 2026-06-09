@@ -23,6 +23,7 @@ import {
  */
 export function ProfileLobbyCatalogue({
 	handle,
+	displayName,
 	seeds,
 	totalPages,
 	totalResults,
@@ -32,6 +33,8 @@ export function ProfileLobbyCatalogue({
 	isOwnProfile = false,
 }: {
 	handle: string;
+	/** Patron-facing name for the exhausted-scroll footer — not TMDb catalogue copy. */
+	displayName: string;
 	seeds: PopularMovieSeed[];
 	totalPages: number;
 	totalResults: number;
@@ -40,6 +43,9 @@ export function ProfileLobbyCatalogue({
 	monochromePeersOnHover?: boolean;
 	isOwnProfile?: boolean;
 }) {
+	const catalogExhaustedScope = isOwnProfile
+		? "your profile"
+		: `${displayName.trim() || handle}'s profile`;
 	const cellKey = useCallback(
 		(m: PopularMovieSeed) =>
 			m.patronLogId
@@ -74,8 +80,8 @@ export function ProfileLobbyCatalogue({
 	return (
 		<PopularMoviesInfinite
 			blockedReason={null}
+			catalogExhaustedScope={catalogExhaustedScope}
 			catalogMedia="movie"
-			catalogLabel="profile"
 			catalogueWaveKeyOverride={catalogueWaveKeyOverride}
 			getPosterCellKey={cellKey}
 			getDedupeKey={cellKey}

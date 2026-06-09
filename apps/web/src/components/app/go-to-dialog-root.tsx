@@ -58,7 +58,7 @@ export function GoToDialogRoot() {
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.16, ease: [0.32, 0.72, 0, 1] }}
-					className="fixed inset-0 z-[60] grid place-items-start bg-absolute-black/70 backdrop-blur-sm"
+					className="modal-overlay-scrim fixed inset-0 z-[60] grid place-items-start bg-absolute-black/70 backdrop-blur-sm"
 					onClick={close}
 				>
 					<motion.div

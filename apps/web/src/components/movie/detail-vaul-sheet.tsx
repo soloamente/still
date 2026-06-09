@@ -13,9 +13,12 @@ import {
 } from "@/lib/detail-vaul-drawer";
 import { useDismissSheetOnRouteChange } from "@/lib/use-dismiss-sheet-on-route-change";
 import { useLockDrawerScroll } from "@/lib/use-lock-drawer-scroll";
+import { useSoftwareGpuRendering } from "@/lib/use-software-gpu-rendering";
 
-const OVERLAY_CLASSNAME =
+/** Opaque scrim when blur would repaint the full viewport on software renderers. */
+const OVERLAY_CLASSNAME_GPU =
 	"fixed inset-0 z-50 bg-absolute-black/82 backdrop-blur-sm";
+const OVERLAY_CLASSNAME_SOFTWARE = "fixed inset-0 z-50 bg-absolute-black/90";
 const NESTED_OVERLAY_CLASSNAME = "fixed inset-0 z-60 bg-absolute-black/50";
 
 /** Drag rail with optional left/right chrome on the same row as the grip. */
@@ -95,6 +98,10 @@ export function DetailVaulSheet({
 	children: ReactNode;
 }) {
 	useLockDrawerScroll(scrollLock ?? open);
+	const softwareGpu = useSoftwareGpuRendering();
+	const overlayClassName = softwareGpu
+		? OVERLAY_CLASSNAME_SOFTWARE
+		: OVERLAY_CLASSNAME_GPU;
 
 	const dismissOnNavigate = useCallback(() => {
 		onOpenChange(false);
@@ -113,7 +120,7 @@ export function DetailVaulSheet({
 			{trigger ? <Drawer.Trigger asChild>{trigger}</Drawer.Trigger> : null}
 			<Drawer.Portal>
 				<Drawer.Overlay
-					className={nested ? NESTED_OVERLAY_CLASSNAME : OVERLAY_CLASSNAME}
+					className={nested ? NESTED_OVERLAY_CLASSNAME : overlayClassName}
 				/>
 				<Drawer.Content
 					data-still-detail-drawer=""

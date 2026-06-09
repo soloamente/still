@@ -10,6 +10,10 @@ import {
 	useRef,
 	useState,
 } from "react";
+import {
+	DetailEditorialRailArrowButtons,
+	DetailEditorialRailPasito,
+} from "@/components/movie/detail-editorial-rail-controls";
 import type { MoviePageReview } from "@/components/movie/movie-detail-explore-tabs";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
@@ -71,12 +75,16 @@ function MovieDetailReviewSlide({
 	isActive,
 	hasWatchedMovie,
 	currentUserId,
+	onSelect,
+	shouldSuppressRailClick,
 	className,
 }: {
 	review: MoviePageReview;
 	isActive: boolean;
 	hasWatchedMovie: boolean;
 	currentUserId: string | null;
+	onSelect: () => void;
+	shouldSuppressRailClick: () => boolean;
 	className?: string;
 }) {
 	const openReviewDetail = useReviewDetail((s) => s.open);
@@ -142,6 +150,11 @@ function MovieDetailReviewSlide({
 	const handleReviewAreaClick = (event: MouseEvent<HTMLDivElement>) => {
 		// Profile link stays its own destination inside the blurred post.
 		if ((event.target as HTMLElement).closest("a")) return;
+		if (shouldSuppressRailClick()) return;
+		if (!isActive) {
+			onSelect();
+			return;
+		}
 		if (spoilerMasked) {
 			setSpoilerRevealed(true);
 			return;
@@ -152,6 +165,10 @@ function MovieDetailReviewSlide({
 	const handleReviewAreaKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
 		if (event.key !== "Enter" && event.key !== " ") return;
 		event.preventDefault();
+		if (!isActive) {
+			onSelect();
+			return;
+		}
 		if (spoilerMasked) {
 			setSpoilerRevealed(true);
 			return;
@@ -315,7 +332,16 @@ export function MovieDetailReviewsCarousel({
 	const { data: session } = authClient.useSession();
 	const currentUserId = session?.user?.id ?? null;
 	const { hasWatched } = useViewerHasWatchedMovie(movieId);
-	const { railRef, activeSlideIndex } = useDetailEditorialRailSnap({
+	const {
+		railRef,
+		activeSlideIndex,
+		totalSlides,
+		isDragging,
+		gotoSlide,
+		nextSlide,
+		prevSlide,
+		shouldSuppressRailClick,
+	} = useDetailEditorialRailSnap({
 		slideCount: reviews.length,
 		slideSelector: "[data-review-slide]",
 	});
@@ -329,50 +355,68 @@ export function MovieDetailReviewsCarousel({
 	}
 
 	return (
-		<section
-			className={cn(
-				// Break out of about-column padding; on xl+ use the nav gutter too so the rail spans the card width.
-				"relative isolate",
-				"-mx-2.5 w-[calc(100%+1.25rem)] sm:-mx-4 sm:w-[calc(100%+2rem)] md:-mx-5 md:w-[calc(100%+2.5rem)]",
-				"xl:-mx-28 xl:w-[calc(100%+14rem)] 2xl:-mx-32 2xl:w-[calc(100%+16rem)]",
-				className,
-			)}
-			aria-label="Patron reviews"
-		>
-			{/* Card-toned scrims reinforce the mask at the layout inset (page padding). */}
-			<div
-				aria-hidden
-				className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
-			/>
-			<div
-				aria-hidden
-				className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
-			/>
-
-			<div
-				ref={railRef}
+		<div className={cn("flex flex-col", className)}>
+			<section
 				className={cn(
-					"@container flex min-w-0 overflow-x-auto overscroll-x-contain",
-					REVIEW_RAIL_MIN_HEIGHT_CLASS,
-					REVIEW_RAIL_X_FADE_CLASS,
-					"scrollbar-none items-center [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+					// Break out of about-column padding; on xl+ use the nav gutter too so the rail spans the card width.
+					"relative isolate",
+					"-mx-2.5 w-[calc(100%+1.25rem)] sm:-mx-4 sm:w-[calc(100%+2rem)] md:-mx-5 md:w-[calc(100%+2.5rem)]",
+					"xl:-mx-28 xl:w-[calc(100%+14rem)] 2xl:-mx-32 2xl:w-[calc(100%+16rem)]",
 				)}
+				aria-label="Patron reviews"
 			>
-				<ul className="flex min-h-full w-max items-stretch">
-					<ReviewRailEdgeSpacer />
-					{reviews.map((review, index) => (
-						<MovieDetailReviewSlide
-							key={review.id}
-							review={review}
-							isActive={index === activeSlideIndex}
-							hasWatchedMovie={hasWatched}
-							currentUserId={currentUserId}
-							className={index > 0 ? REVIEW_SLIDE_GAP_CLASS : undefined}
-						/>
-					))}
-					<ReviewRailEdgeSpacer />
-				</ul>
-			</div>
-		</section>
+				{/* Card-toned scrims reinforce the mask at the layout inset (page padding). */}
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
+				/>
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
+				/>
+
+				<DetailEditorialRailArrowButtons
+					totalSlides={totalSlides}
+					activeSlideIndex={activeSlideIndex}
+					onPrev={prevSlide}
+					onNext={nextSlide}
+				/>
+
+				<div
+					ref={railRef}
+					className={cn(
+						"@container flex min-w-0 cursor-grab touch-pan-x overflow-x-auto overscroll-x-contain",
+						isDragging && "cursor-grabbing",
+						REVIEW_RAIL_MIN_HEIGHT_CLASS,
+						REVIEW_RAIL_X_FADE_CLASS,
+						"scrollbar-none select-none items-center [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+					)}
+				>
+					<ul className="flex min-h-full w-max items-stretch">
+						<ReviewRailEdgeSpacer />
+						{reviews.map((review, index) => (
+							<MovieDetailReviewSlide
+								key={review.id}
+								review={review}
+								isActive={index === activeSlideIndex}
+								hasWatchedMovie={hasWatched}
+								currentUserId={currentUserId}
+								onSelect={() => gotoSlide(index)}
+								shouldSuppressRailClick={shouldSuppressRailClick}
+								className={index > 0 ? REVIEW_SLIDE_GAP_CLASS : undefined}
+							/>
+						))}
+						<ReviewRailEdgeSpacer />
+					</ul>
+				</div>
+			</section>
+
+			<DetailEditorialRailPasito
+				totalSlides={totalSlides}
+				activeSlideIndex={activeSlideIndex}
+				onGoto={gotoSlide}
+				ariaLabel="Patron reviews"
+			/>
+		</div>
 	);
 }

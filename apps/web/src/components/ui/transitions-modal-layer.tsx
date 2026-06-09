@@ -82,7 +82,7 @@ export function TransitionsModalLayer({
 				type="button"
 				aria-label="Close dialog"
 				className={cn(
-					"absolute inset-0 bg-absolute-black/82 backdrop-blur-sm",
+					"modal-overlay-scrim absolute inset-0 bg-absolute-black/82 backdrop-blur-sm",
 					"transition-opacity ease-[var(--modal-ease)] motion-reduce:transition-none",
 					panelOpen && !closing
 						? "pointer-events-auto opacity-100 duration-[var(--modal-open-dur)]"

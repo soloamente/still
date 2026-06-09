@@ -385,6 +385,7 @@ export default async function HomePage({
 							? await fetchMoviesDiscover(SEED_PAGE, {
 									cookieHeader,
 									sortBy: "primary_release_date.asc",
+									venue: "streaming",
 									monetization: movieFilterMonetization,
 									releaseGte: catalogReleaseFloorUtc,
 									watchRegion: streamingWatchRegionApi,
@@ -410,6 +411,7 @@ export default async function HomePage({
 												sort === "popular"
 													? "popularity.desc"
 													: LATEST_DISCOVER_SORT,
+											venue: "streaming",
 											monetization: movieFilterMonetization,
 											watchRegion: streamingWatchRegionApi,
 											genreId: movieFilterGenreId,
@@ -531,10 +533,12 @@ export default async function HomePage({
 						? "now_playing"
 						: "discover";
 
-	/** Theatrical “newest in cinemas” discover uses `venue=theaters`; at-home streaming uses monetization only (`discoverVenue` null). */
+	/** Theatrical discover uses `venue=theaters`; at-home pairs `venue=streaming` (digital release type) with monetization. */
 	const discoverVenueForInfinite = movieLobbyTheatersLatestDiscover
 		? "theaters"
-		: null;
+		: movieLobbyStreamingCatalog || movieLobbyStreamingUpcoming
+			? "streaming"
+			: null;
 
 	const discoverMonetizationForInfinite =
 		movieLobbyStreamingCatalog ||

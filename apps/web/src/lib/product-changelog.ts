@@ -27,6 +27,74 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-06-09-home-reviews-detail",
+		versionLabel: "0.2.3",
+		dateLabel: "June 9, 2026",
+		headline: "Home filters, review stills & detail rails",
+		summary:
+			"At-home browsing stays theatrical-free, you can pick a review still while writing, and film detail carousels are easier to scroll.",
+		items: [
+			{
+				title: "At home vs in cinemas",
+				body: "On the Movies home catalogue, the At home filter no longer surfaces titles that are only in cinemas — streaming lists stick to digital releases in your region.",
+			},
+			{
+				title: "Pick a still when you publish",
+				body: "The review composer lets you choose a TMDb backdrop still before you publish — same rail as the reader, so your hero image is set on day one.",
+			},
+			{
+				title: "Community list likes",
+				body: "Public list tiles on Community show likes once in a top-right pill on the poster — not duplicated in the bottom meta row.",
+			},
+			{
+				title: "Smoother review & log sheets",
+				body: "Review and quick-log dialogs scroll more smoothly on devices without GPU acceleration, with soft fades at the top and bottom so content does not clip harshly.",
+			},
+			{
+				title: "Drag & step through stills and reviews",
+				body: "On film detail, grab the backgrounds or reviews rail to drag-scroll horizontally. Use the side chevrons, step dots, or tap a peeking slide to jump — reviews get the same controls as stills.",
+			},
+			{
+				title: "Profile & settings navigation",
+				body: "Back from a profile or settings page returns you to where you were browsing instead of looping between Profile and Settings. Filmography footers name the patron whose catalogue you finished scrolling.",
+			},
+		],
+	},
+	{
+		id: "2026-06-08-search-detail-polish",
+		versionLabel: "0.2.2",
+		dateLabel: "June 8, 2026",
+		headline: "Catalogue search & film detail polish",
+		summary:
+			"Studio searches load the full catalogue, film detail awards and cast look sharper, and a few reliability fixes for streaks and streaming.",
+		items: [
+			{
+				title: "Studio search loads every title",
+				body: "Searching a studio on the home catalogue (for example A24) now keeps loading that studio's full film list as you scroll — not just the first page.",
+			},
+			{
+				title: "Search dialog chips",
+				body: "Films / TV and browse category chips in ⌘K use the same sliding pill animation as home filters. Browse preview shows Movies, TV Shows, and People — Community was removed from the empty-state rail.",
+			},
+			{
+				title: "Monochrome cast & crew (optional)",
+				body: "Settings → Experience → Monochrome cast & crew keeps headshots grayscale until you hover on film and TV detail. Off by default — previews show full color unless you opt in.",
+			},
+			{
+				title: "Awards & festivals layout",
+				body: "Partial second rows of festival logos center correctly. Generic award and premiere columns use properly sized filled icons that match the other festival marks.",
+			},
+			{
+				title: "Streaming tab on Cozy",
+				body: "The selected streaming provider is visible again on the Cozy theme — the highlight pill uses the canvas surface so it does not vanish against the card background.",
+			},
+			{
+				title: "Diary streak stays accurate",
+				body: "Your profile streak stat now stays in sync with the activity heatmap when backdated diary logs or imports would have reset the count incorrectly.",
+			},
+		],
+	},
+	{
 		id: "2026-06-07-reviews-tagging-reader",
 		versionLabel: "0.2.1",
 		dateLabel: "June 7, 2026",

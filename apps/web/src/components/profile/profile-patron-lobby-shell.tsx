@@ -210,6 +210,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 					<ProfileTabPanels
 						activeTab={contentTab}
 						handle={handle}
+						displayName={displayName}
 						seeds={seeds}
 						totalPages={totalPages}
 						totalResults={totalResults}

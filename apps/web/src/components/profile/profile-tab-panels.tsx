@@ -13,6 +13,7 @@ import type { FilmographyQueryOpts } from "@/lib/profile-filmography-fetch";
 export function ProfileTabPanels({
 	activeTab,
 	handle,
+	displayName,
 	seeds,
 	totalPages,
 	totalResults,
@@ -32,6 +33,7 @@ export function ProfileTabPanels({
 }: {
 	activeTab: ProfileTabId;
 	handle: string;
+	displayName: string;
 	seeds: PopularMovieSeed[];
 	totalPages: number;
 	totalResults: number;
@@ -55,6 +57,7 @@ export function ProfileTabPanels({
 		return (
 			<ProfileFilmographyPanel
 				handle={handle}
+				displayName={displayName}
 				seeds={seeds}
 				totalPages={totalPages}
 				totalResults={totalResults}

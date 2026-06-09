@@ -13,14 +13,18 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { ReviewListingMentionTextarea } from "@/components/review/review-listing-mention-textarea";
+import { ReviewReaderStillSection } from "@/components/review/review-reader-still-section";
 import {
 	type ContentVisibility,
 	VisibilitySelect,
 } from "@/components/review/visibility-select";
+import { ModalSheetScrollScrims } from "@/components/ui/modal-sheet-scroll-scrims";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { TransitionsModalLayer } from "@/components/ui/transitions-modal-layer";
 import { api } from "@/lib/api";
+import { MODAL_SHEET_SCROLL_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	clampLogRatingDisplay,
@@ -56,6 +60,8 @@ type ComposerArgs = {
 	initialBody?: string;
 	initialContainsSpoilers?: boolean;
 	initialVisibility?: ContentVisibility;
+	/** Saved TMDb backdrop key — edit flow seeds the composer still picker. */
+	initialStillSlideKey?: string | null;
 };
 
 type Store = {
@@ -100,6 +106,11 @@ export function ReviewComposerRoot() {
 	const [saving, setSaving] = useState(false);
 	const [posterUrl, setPosterUrl] = useState<string | null>(null);
 	const [averageRating, setAverageRating] = useState<number | null>(null);
+	const [movieScreenshots, setMovieScreenshots] = useState<
+		MovieDetailHeroSlide[]
+	>([]);
+	const [screenshotsLoading, setScreenshotsLoading] = useState(false);
+	const [selectedStillKey, setSelectedStillKey] = useState<string | null>(null);
 	const scrollRef = useRef<HTMLDivElement>(null);
 
 	const handleClose = useCallback(() => {
@@ -123,6 +134,9 @@ export function ReviewComposerRoot() {
 			setStep("compose");
 			setPosterUrl(null);
 			setAverageRating(null);
+			setMovieScreenshots([]);
+			setScreenshotsLoading(false);
+			setSelectedStillKey(null);
 		}
 	}, [args]);
 
@@ -132,6 +146,7 @@ export function ReviewComposerRoot() {
 		setAverageRating(args.averageRating ?? null);
 		const fromDiary = logRatingToDisplay(args.diaryRatingStored);
 		setRatingDisplay(fromDiary ?? DEFAULT_RATING);
+		setSelectedStillKey(args.initialStillSlideKey ?? null);
 		if (args.reviewId) {
 			setTitle(args.initialTitle ?? "");
 			setBody(args.initialBody ?? "");
@@ -139,6 +154,35 @@ export function ReviewComposerRoot() {
 			setVisibility(args.initialVisibility ?? "public");
 			setVisibilityTouched(true);
 		}
+	}, [isOpen, args]);
+
+	// TMDb backdrops for optional review hero still — same pool as the reader drawer picker.
+	useEffect(() => {
+		if (!isOpen || !args) return;
+		let cancelled = false;
+		setScreenshotsLoading(true);
+		void api.api
+			.movies({ id: String(args.movieId) })
+			["review-stills"].get()
+			.then((res) => {
+				if (cancelled) return;
+				const shots = (
+					res.data as
+						| { screenshots?: MovieDetailHeroSlide[] }
+						| null
+						| undefined
+				)?.screenshots;
+				setMovieScreenshots(Array.isArray(shots) ? shots : []);
+			})
+			.catch(() => {
+				if (!cancelled) setMovieScreenshots([]);
+			})
+			.finally(() => {
+				if (!cancelled) setScreenshotsLoading(false);
+			});
+		return () => {
+			cancelled = true;
+		};
 	}, [isOpen, args]);
 
 	const diaryScoreLabel = useMemo(() => {
@@ -149,8 +193,8 @@ export function ReviewComposerRoot() {
 	const usesDiaryRating = Boolean(args?.diaryLogId);
 	const isEdit = Boolean(args?.reviewId);
 
-	const composeScrollKey = `${usesDiaryRating}-${posterUrl ?? ""}-${body.length}`;
-	const { showFooterFade } = useSheetScrollFades(
+	const composeScrollKey = `${usesDiaryRating}-${posterUrl ?? ""}-${selectedStillKey ?? ""}-${movieScreenshots.length}-${body.length}`;
+	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		isOpen && step === "compose",
 		composeScrollKey,
@@ -202,11 +246,15 @@ export function ReviewComposerRoot() {
 		if (!canPublish || !args || step !== "spoilers") return;
 		setSaving(true);
 		try {
+			const stillPayload = selectedStillKey
+				? { stillSlideKey: selectedStillKey }
+				: {};
 			const patchBody = {
 				title: title.trim() || undefined,
 				body: body.trim(),
 				containsSpoilers,
 				...(visibilityTouched ? { visibility } : {}),
+				...stillPayload,
 				...(!usesDiaryRating
 					? { rating: logRatingToStored(ratingDisplay) ?? undefined }
 					: {}),
@@ -226,6 +274,7 @@ export function ReviewComposerRoot() {
 					rating,
 					containsSpoilers,
 					...(visibilityTouched ? { visibility } : {}),
+					...stillPayload,
 				});
 				toast.success("Review published");
 			}
@@ -264,10 +313,7 @@ export function ReviewComposerRoot() {
 			</div>
 
 			<div className="relative">
-				<div
-					ref={scrollRef}
-					className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-				>
+				<div ref={scrollRef} className={MODAL_SHEET_SCROLL_CLASS}>
 					<AnimatePresence mode="wait" initial={false}>
 						{step === "compose" ? (
 							<motion.div
@@ -277,7 +323,20 @@ export function ReviewComposerRoot() {
 								exit={{ opacity: 0, y: -6 }}
 								transition={stepTransition}
 							>
-								{posterUrl ? (
+								{screenshotsLoading ? (
+									<div
+										className="mb-6 aspect-video w-full animate-pulse rounded-[1.5rem] bg-background"
+										aria-hidden
+									/>
+								) : movieScreenshots.length > 0 ? (
+									<ReviewReaderStillSection
+										slides={movieScreenshots}
+										selectedKey={selectedStillKey}
+										isOwner
+										saving={false}
+										onSelect={setSelectedStillKey}
+									/>
+								) : posterUrl ? (
 									<div className="mx-auto mb-5 flex justify-center">
 										<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
 											<Image
@@ -415,14 +474,11 @@ export function ReviewComposerRoot() {
 						)}
 					</AnimatePresence>
 				</div>
-				{/* Compose-only scrim — sibling of scroll, not measured for layout */}
+				{/* Compose-only scrims — siblings of scroll, not measured for layout */}
 				{step === "compose" ? (
-					<div
-						aria-hidden
-						className={cn(
-							"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-							showFooterFade ? "opacity-100" : "opacity-0",
-						)}
+					<ModalSheetScrollScrims
+						showHeaderFade={showHeaderFade}
+						showFooterFade={showFooterFade}
 					/>
 				) : null}
 			</div>

@@ -6,6 +6,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 /** Wait for scroll momentum to settle before easing to the target slide. */
 export const EDITORIAL_RAIL_SNAP_SETTLE_MS = 120;
 
+/** Movement past this threshold counts as a drag (suppresses accidental slide clicks). */
+const EDITORIAL_RAIL_DRAG_THRESHOLD_PX = 6;
+
+/** Selectors that should keep their native click — not start a rail drag. */
+const EDITORIAL_RAIL_DRAG_IGNORE_SELECTOR =
+	"button, a, input, textarea, select, [data-rail-nav]";
+
 /** Snap tween — editorial deceleration; slower than page-slide for large slide gaps. */
 export const EDITORIAL_RAIL_SNAP_TWEEN = {
 	type: "tween" as const,
@@ -75,9 +82,17 @@ export function useDetailEditorialRailSnap({
 }) {
 	const railRef = useRef<HTMLDivElement>(null);
 	const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+	const [isDragging, setIsDragging] = useState(false);
 	const snapLockRef = useRef(false);
 	const scrollEndTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const pointerDownRef = useRef(false);
+	const dragSessionRef = useRef<{
+		pointerId: number;
+		startX: number;
+		startScrollLeft: number;
+		moved: boolean;
+	} | null>(null);
+	const suppressNextClickRef = useRef(false);
 	const lastScrollLeftRef = useRef(0);
 	const scrollVelocityRef = useRef(0);
 	const animationRef = useRef<ReturnType<typeof animate> | null>(null);
@@ -204,6 +219,13 @@ export function useDetailEditorialRailSnap({
 		paginateSlide(-1);
 	}, [paginateSlide]);
 
+	/** True once after a drag — clears on read so slide clicks do not fire. */
+	const shouldSuppressRailClick = useCallback(() => {
+		if (!suppressNextClickRef.current) return false;
+		suppressNextClickRef.current = false;
+		return true;
+	}, []);
+
 	useEffect(() => {
 		const rail = railRef.current;
 		if (!rail || slideCount === 0) return;
@@ -223,15 +245,73 @@ export function useDetailEditorialRailSnap({
 			scheduleSnapToSettledSlide();
 		};
 
-		const handlePointerDown = () => {
+		const endDragSession = (pointerId: number) => {
+			const session = dragSessionRef.current;
+			if (!session || session.pointerId !== pointerId) return;
+
+			if (rail.hasPointerCapture(pointerId)) {
+				rail.releasePointerCapture(pointerId);
+			}
+
+			if (session.moved) {
+				suppressNextClickRef.current = true;
+			}
+
+			dragSessionRef.current = null;
+			pointerDownRef.current = false;
+			setIsDragging(false);
+			scheduleSnapToSettledSlide();
+		};
+
+		const handlePointerDown = (event: PointerEvent) => {
+			if (event.button !== 0) return;
+			const target = event.target;
+			if (
+				target instanceof Element &&
+				target.closest(EDITORIAL_RAIL_DRAG_IGNORE_SELECTOR)
+			) {
+				return;
+			}
+
 			pointerDownRef.current = true;
 			cancelSnapAnimation();
 			if (scrollEndTimerRef.current) clearTimeout(scrollEndTimerRef.current);
+
+			dragSessionRef.current = {
+				pointerId: event.pointerId,
+				startX: event.clientX,
+				startScrollLeft: rail.scrollLeft,
+				moved: false,
+			};
+
+			try {
+				rail.setPointerCapture(event.pointerId);
+			} catch {
+				// Pointer capture can fail on some hybrid inputs — drag still works via bubbling moves.
+			}
 		};
 
-		const handlePointerUp = () => {
-			pointerDownRef.current = false;
-			scheduleSnapToSettledSlide();
+		const handlePointerMove = (event: PointerEvent) => {
+			const session = dragSessionRef.current;
+			if (!session || event.pointerId !== session.pointerId) return;
+
+			const deltaX = event.clientX - session.startX;
+			if (!session.moved) {
+				if (Math.abs(deltaX) < EDITORIAL_RAIL_DRAG_THRESHOLD_PX) return;
+				session.moved = true;
+				setIsDragging(true);
+			}
+
+			event.preventDefault();
+			rail.scrollLeft = session.startScrollLeft - deltaX;
+		};
+
+		const handlePointerUp = (event: PointerEvent) => {
+			endDragSession(event.pointerId);
+		};
+
+		const handlePointerCancel = (event: PointerEvent) => {
+			endDragSession(event.pointerId);
 		};
 
 		// Capture Shift+scroll / horizontal wheel only — vertical wheel passes through to the page.
@@ -261,15 +341,17 @@ export function useDetailEditorialRailSnap({
 
 		rail.addEventListener("scroll", handleScroll, { passive: true });
 		rail.addEventListener("pointerdown", handlePointerDown);
+		rail.addEventListener("pointermove", handlePointerMove);
 		rail.addEventListener("pointerup", handlePointerUp);
-		rail.addEventListener("pointercancel", handlePointerUp);
+		rail.addEventListener("pointercancel", handlePointerCancel);
 		rail.addEventListener("wheel", handleWheel, wheelOptions);
 
 		return () => {
 			rail.removeEventListener("scroll", handleScroll);
 			rail.removeEventListener("pointerdown", handlePointerDown);
+			rail.removeEventListener("pointermove", handlePointerMove);
 			rail.removeEventListener("pointerup", handlePointerUp);
-			rail.removeEventListener("pointercancel", handlePointerUp);
+			rail.removeEventListener("pointercancel", handlePointerCancel);
 			rail.removeEventListener("wheel", handleWheel, wheelOptions);
 			if (scrollEndTimerRef.current) clearTimeout(scrollEndTimerRef.current);
 			if (activeIndexFrameRef.current !== null) {
@@ -289,8 +371,10 @@ export function useDetailEditorialRailSnap({
 		railRef,
 		activeSlideIndex,
 		totalSlides: slideCount,
+		isDragging,
 		gotoSlide,
 		nextSlide,
 		prevSlide,
+		shouldSuppressRailClick,
 	};
 }

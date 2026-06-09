@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { useMeAccountSession } from "@/components/profile/me-account-session-context";
 import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
 import { profilePatronAvatarImageUrl } from "@/lib/profile-avatar";
@@ -21,7 +20,6 @@ const PROFILE_BANNER_PLACEHOLDER_ACCENT = "#c45c26";
 
 type ProfileMediaCustomizerProps = {
 	handle: string;
-	displayName: string;
 	bannerUrl: string | null;
 	hasAvatar: boolean;
 	/** Disables pickers while the settings form is saving. */
@@ -34,7 +32,6 @@ type ProfileMediaCustomizerProps = {
  */
 export function ProfileMediaCustomizer({
 	handle,
-	displayName,
 	bannerUrl: initialBannerUrl,
 	hasAvatar: initialHasAvatar,
 	disabled = false,
@@ -169,13 +166,16 @@ export function ProfileMediaCustomizer({
 					<button
 						type="button"
 						className={cn(
-							"group relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg ring-4 ring-card sm:w-24",
+							"group relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl shadow-lg ring-4 ring-card sm:w-24",
+							portraitSrc ? "bg-muted/30" : "bg-card",
 							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
 							"disabled:pointer-events-none disabled:opacity-50",
 						)}
 						onClick={() => avatarFileRef.current?.click()}
 						disabled={disabled}
-						aria-label="Change profile photo"
+						aria-label={
+							portraitSrc ? "Change profile photo" : "Add profile photo"
+						}
 					>
 						{portraitSrc ? (
 							// biome-ignore lint/performance/noImgElement: blob preview or streamed avatar
@@ -185,25 +185,30 @@ export function ProfileMediaCustomizer({
 								className="relative z-0 size-full object-cover"
 							/>
 						) : (
-							<PersonCreditPortrait
-								name={displayName}
-								profilePath={null}
-								className="relative z-0 bg-muted/40"
-								grayscale={false}
-								sizes="96px"
-							/>
-						)}
-						<span
-							className={cn(
-								"pointer-events-none absolute inset-0 z-10 flex items-end justify-center bg-gradient-to-t from-card/80 via-transparent to-transparent pb-2 transition-opacity duration-200 ease-out",
-								"opacity-0 [@media(hover:hover)]:group-hover:opacity-100",
-							)}
-							aria-hidden
-						>
-							<span className="rounded-full bg-background/90 px-2.5 py-1 font-medium text-foreground text-xs">
-								Edit
+							// Raised card tile — must read as tappable on `bg-background` settings panels.
+							<span className="relative z-0 flex size-full flex-col items-center justify-center gap-1.5 px-2 text-center">
+								<Upload
+									className="size-5 shrink-0 text-muted-foreground"
+									aria-hidden
+								/>
+								<span className="font-medium text-foreground text-xs">
+									Add photo
+								</span>
 							</span>
-						</span>
+						)}
+						{portraitSrc ? (
+							<span
+								className={cn(
+									"pointer-events-none absolute inset-0 z-10 flex items-end justify-center bg-gradient-to-t from-card/80 via-transparent to-transparent pb-2 transition-opacity duration-200 ease-out",
+									"opacity-0 [@media(hover:hover)]:group-hover:opacity-100",
+								)}
+								aria-hidden
+							>
+								<span className="rounded-full bg-background/90 px-2.5 py-1 font-medium text-foreground text-xs">
+									Edit
+								</span>
+							</span>
+						) : null}
 					</button>
 				</div>
 

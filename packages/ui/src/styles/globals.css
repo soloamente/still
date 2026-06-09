@@ -1841,6 +1841,17 @@ html.theme-lobby-light .cinema-vignette {
   }
 }
 
+/* Modal sheets — software GPU / hardware acceleration off: blur repaints the full viewport on scroll. */
+html[data-software-gpu] .modal-overlay-scrim {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: color-mix(in srgb, var(--color-absolute-black) 88%, transparent);
+}
+
+.modal-sheet-scroll {
+  contain: paint;
+}
+
 /* ---------------------------------------------------------------------------
  * transitions.dev — icon swap (favorite heart, share copied, etc.).
  * --------------------------------------------------------------------------- */

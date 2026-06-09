@@ -94,6 +94,7 @@ import {
 } from "@/lib/use-search-dialog-genres";
 import { useSearchDialogStudios } from "@/lib/use-search-dialog-studios";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
+import { useSoftwareGpuRendering } from "@/lib/use-software-gpu-rendering";
 
 /** First TMDb search page is 20 rows; show all so the dialog can scroll when the sheet is short. */
 const SEARCH_DIALOG_MAX_RESULTS = 20;
@@ -366,6 +367,7 @@ export function CatalogSearchDialogRoot({
 	const [portalReady, setPortalReady] = useState(false);
 
 	const reduceMotion = useReducedMotion();
+	const softwareGpu = useSoftwareGpuRendering();
 	const browseSurface = parseHomeBrowseSurface(searchParams.get("browse"));
 
 	useEffect(() => {
@@ -964,7 +966,10 @@ export function CatalogSearchDialogRoot({
 					<motion.div
 						key="home-sticky-search-dim"
 						aria-hidden
-						className="absolute inset-0 z-0 bg-black/55 backdrop-blur-[2px]"
+						className={cn(
+							"absolute inset-0 z-0",
+							softwareGpu ? "bg-black/70" : "bg-black/55 backdrop-blur-[2px]",
+						)}
 						initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
@@ -1092,7 +1097,7 @@ export function CatalogSearchDialogRoot({
 							<div
 								ref={searchBodyScrollRef}
 								data-lenis-prevent-wheel
-								className="scrollbar-none min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch]"
+								className="scrollbar-none contain-[paint] min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch]"
 							>
 								{!isEmptyDraft && viewer ? (
 									<SearchDialogPeopleResults

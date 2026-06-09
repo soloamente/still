@@ -28,7 +28,9 @@ import {
 	type ContentVisibility,
 	VisibilitySelect,
 } from "@/components/review/visibility-select";
+import { ModalSheetScrollScrims } from "@/components/ui/modal-sheet-scroll-scrims";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
+import { MODAL_SHEET_SCROLL_CLASS } from "@/lib/app-modal-layer";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	useDetailActionMotion,
@@ -228,7 +230,7 @@ export function QuickLogRoot() {
 		episodeNumber,
 		searchResults.length,
 	].join("|");
-	const { showFooterFade } = useSheetScrollFades(
+	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		isOpen,
 		scrollContentKey,
@@ -661,7 +663,7 @@ export function QuickLogRoot() {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.18 }}
-						className="fixed inset-0 z-50 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center"
+						className="modal-overlay-scrim fixed inset-0 z-50 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center"
 						onClick={handleClose}
 					>
 						<motion.div
@@ -691,10 +693,7 @@ export function QuickLogRoot() {
 							</div>
 
 							<div className="relative">
-								<div
-									ref={scrollRef}
-									className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-								>
+								<div ref={scrollRef} className={MODAL_SHEET_SCROLL_CLASS}>
 									{needsCatalogPick ? (
 										<div className="mb-6 space-y-2">
 											<Label htmlFor="quick-log-search">Pick a film</Label>
@@ -905,13 +904,9 @@ export function QuickLogRoot() {
 										</fieldset>
 									</div>
 								</div>
-								{/* Compose-only scrim — sibling of scroll, not measured for layout (review composer). */}
-								<div
-									aria-hidden
-									className={cn(
-										"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-										showFooterFade ? "opacity-100" : "opacity-0",
-									)}
+								<ModalSheetScrollScrims
+									showHeaderFade={showHeaderFade}
+									showFooterFade={showFooterFade}
 								/>
 							</div>
 

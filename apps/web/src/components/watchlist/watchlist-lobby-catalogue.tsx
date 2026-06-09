@@ -80,7 +80,7 @@ export function WatchlistLobbyCatalogue({
 			catalogueRadialSurface="watchlist"
 			signedIn={signedIn}
 			catalogMedia="movie"
-			catalogLabel="watchlist"
+			catalogExhaustedScope="your watchlist"
 			catalogueWaveKeyOverride={`watchlist:${order}`}
 			getPosterCellKey={cellKey}
 			getDedupeKey={cellKey}

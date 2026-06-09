@@ -24,12 +24,16 @@ import { toast } from "sonner";
 
 import { ListDescriptionQualityHint } from "@/components/list/list-description-quality-hint";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { ModalSheetScrollScrims } from "@/components/ui/modal-sheet-scroll-scrims";
 import {
 	type AddToListMedia,
 	addToListItemPostBody,
 } from "@/lib/add-to-list-media";
 import { api } from "@/lib/api";
-import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
+import {
+	APP_MODAL_OVERLAY_CLASS,
+	MODAL_SHEET_SCROLL_CLASS,
+} from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
@@ -93,7 +97,11 @@ export function CreateListDialog({
 	const [isPublic, setIsPublic] = useState(true);
 	const [isRanked, setIsRanked] = useState(false);
 	const [saving, setSaving] = useState(false);
-	const { showFooterFade } = useSheetScrollFades(scrollRef, open, description);
+	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
+		scrollRef,
+		open,
+		description,
+	);
 
 	const handleClose = useCallback(() => {
 		onOpenChange(false);
@@ -235,10 +243,7 @@ export function CreateListDialog({
 						</div>
 
 						<div className="relative min-h-0 flex-1">
-							<div
-								ref={scrollRef}
-								className="max-h-[min(calc(92svh-11rem),640px)] overflow-y-auto overscroll-contain pb-24 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-							>
+							<div ref={scrollRef} className={MODAL_SHEET_SCROLL_CLASS}>
 								<h2
 									id="create-list-title"
 									className="mb-2 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
@@ -359,12 +364,9 @@ export function CreateListDialog({
 									</TooltipProvider>
 								</form>
 							</div>
-							<div
-								aria-hidden
-								className={cn(
-									"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-25% from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-									showFooterFade ? "opacity-100" : "opacity-0",
-								)}
+							<ModalSheetScrollScrims
+								showHeaderFade={showHeaderFade}
+								showFooterFade={showFooterFade}
 							/>
 						</div>
 

@@ -3,10 +3,13 @@
 import { cn } from "@still/ui/lib/utils";
 import { Download, Loader2 } from "lucide-react";
 import Image from "next/image";
-import type { MouseEvent } from "react";
+import type { KeyboardEvent, MouseEvent } from "react";
 import { useCallback, useState } from "react";
 
-import { DetailArtworkPasitoStepper } from "@/components/movie/detail-artwork-pasito-stepper";
+import {
+	DetailEditorialRailArrowButtons,
+	DetailEditorialRailPasito,
+} from "@/components/movie/detail-editorial-rail-controls";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { useDetailEditorialRailSnap } from "@/lib/detail-editorial-rail-snap";
@@ -51,49 +54,21 @@ function StillsRailEdgeSpacer() {
 const STILL_SLIDE_INACTIVE_CLASS =
 	"opacity-45 blur-[3px] scale-[0.98] motion-reduce:blur-none motion-reduce:scale-100";
 
-/** Window Pasito pills when backdrop count exceeds this (matches prior dot-strip cap). */
-const STILLS_CAROUSEL_MAX_VISIBLE_STEPS = 16;
-
-function StillsCarouselNavigation({
-	totalSlides,
-	activeSlideIndex,
-	onGoto,
-}: {
-	totalSlides: number;
-	activeSlideIndex: number;
-	onGoto: (index: number) => void;
-}) {
-	return (
-		<div
-			className="mx-auto mt-4 flex justify-center"
-			role="tablist"
-			aria-label="Background slides"
-		>
-			<DetailArtworkPasitoStepper
-				count={totalSlides}
-				active={activeSlideIndex}
-				onStepClick={onGoto}
-				maxVisible={
-					totalSlides > STILLS_CAROUSEL_MAX_VISIBLE_STEPS
-						? STILLS_CAROUSEL_MAX_VISIBLE_STEPS
-						: undefined
-				}
-			/>
-		</div>
-	);
-}
-
 function MovieDetailStillSlide({
 	slide,
 	slideIndex,
 	titleSlug,
 	isActive,
+	onSelect,
+	shouldSuppressRailClick,
 	className,
 }: {
 	slide: MovieDetailHeroSlide;
 	slideIndex: number;
 	titleSlug: string;
 	isActive: boolean;
+	onSelect: () => void;
+	shouldSuppressRailClick: () => boolean;
 	className?: string;
 }) {
 	const [downloading, setDownloading] = useState(false);
@@ -116,6 +91,19 @@ function MovieDetailStillSlide({
 		[downloadUrl, downloading, slideIndex, titleSlug],
 	);
 
+	const handleSlideClick = (event: MouseEvent<HTMLLIElement>) => {
+		if (isActive || shouldSuppressRailClick()) return;
+		if ((event.target as HTMLElement).closest("button")) return;
+		onSelect();
+	};
+
+	const handleSlideKeyDown = (event: KeyboardEvent<HTMLLIElement>) => {
+		if (isActive) return;
+		if (event.key !== "Enter" && event.key !== " ") return;
+		event.preventDefault();
+		onSelect();
+	};
+
 	return (
 		<li
 			data-still-slide
@@ -123,8 +111,13 @@ function MovieDetailStillSlide({
 				STILL_SLIDE_WIDTH_CLASS,
 				"group/still shrink-0 list-none transition-[opacity,filter,transform] duration-(--page-fade-dur) ease-(--page-fade-ease) motion-reduce:transition-none",
 				!isActive && STILL_SLIDE_INACTIVE_CLASS,
+				!isActive && "cursor-pointer",
 				className,
 			)}
+			tabIndex={isActive ? -1 : 0}
+			aria-label={isActive ? undefined : `Show still: ${slide.label}`}
+			onClick={handleSlideClick}
+			onKeyDown={handleSlideKeyDown}
 		>
 			<figure className="relative aspect-video overflow-hidden rounded-[1.5rem] bg-background shadow-[0_12px_40px_-16px_rgba(0,0,0,0.55)] sm:rounded-[1.5rem] md:rounded-[1.75rem]">
 				<Image
@@ -176,15 +169,21 @@ export function MovieDetailStillsCarousel({
 	titleSlug: string;
 	className?: string;
 }) {
-	const { railRef, activeSlideIndex, totalSlides, gotoSlide } =
-		useDetailEditorialRailSnap({
-			slideCount: screenshots.length,
-			slideSelector: "[data-still-slide]",
-		});
+	const {
+		railRef,
+		activeSlideIndex,
+		totalSlides,
+		isDragging,
+		gotoSlide,
+		nextSlide,
+		prevSlide,
+		shouldSuppressRailClick,
+	} = useDetailEditorialRailSnap({
+		slideCount: screenshots.length,
+		slideSelector: "[data-still-slide]",
+	});
 
 	if (screenshots.length === 0) return null;
-
-	const showNavigation = totalSlides > 1;
 
 	return (
 		<div className={cn("flex flex-col", className)}>
@@ -205,13 +204,21 @@ export function MovieDetailStillsCarousel({
 					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
 				/>
 
+				<DetailEditorialRailArrowButtons
+					totalSlides={totalSlides}
+					activeSlideIndex={activeSlideIndex}
+					onPrev={prevSlide}
+					onNext={nextSlide}
+				/>
+
 				<div
 					ref={railRef}
 					className={cn(
-						"@container flex min-w-0 overflow-x-auto overscroll-x-contain",
+						"@container flex min-w-0 cursor-grab touch-pan-x overflow-x-auto overscroll-x-contain",
+						isDragging && "cursor-grabbing",
 						STILL_RAIL_MIN_HEIGHT_CLASS,
 						STILL_RAIL_X_FADE_CLASS,
-						"scrollbar-none items-center [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+						"scrollbar-none select-none items-center [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
 					)}
 				>
 					<ul className="flex min-h-full w-max items-stretch">
@@ -223,6 +230,8 @@ export function MovieDetailStillsCarousel({
 								slideIndex={index}
 								titleSlug={titleSlug}
 								isActive={index === activeSlideIndex}
+								onSelect={() => gotoSlide(index)}
+								shouldSuppressRailClick={shouldSuppressRailClick}
 								className={index > 0 ? STILL_SLIDE_GAP_CLASS : undefined}
 							/>
 						))}
@@ -231,13 +240,12 @@ export function MovieDetailStillsCarousel({
 				</div>
 			</section>
 
-			{showNavigation ? (
-				<StillsCarouselNavigation
-					totalSlides={totalSlides}
-					activeSlideIndex={activeSlideIndex}
-					onGoto={gotoSlide}
-				/>
-			) : null}
+			<DetailEditorialRailPasito
+				totalSlides={totalSlides}
+				activeSlideIndex={activeSlideIndex}
+				onGoto={gotoSlide}
+				ariaLabel="Background slides"
+			/>
 		</div>
 	);
 }

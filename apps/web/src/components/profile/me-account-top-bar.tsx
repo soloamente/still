@@ -9,13 +9,14 @@ import { useMeAccountBarActions } from "@/components/profile/me-account-bar-acti
 import { useMeAccountSession } from "@/components/profile/me-account-session-context";
 import { MeSaveButton } from "@/components/profile/me-save-button";
 import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
+import { useSettingsReturn } from "@/components/profile/use-settings-return";
 
-/** Sticky account chrome — back to profile on the left; Save / Cancel from the active `/me` page on the right. */
-export function MeAccountTopBar({ handle }: { handle: string }) {
+/** Sticky account chrome — back to the prior route on the left; Save / Cancel on the right. */
+export function MeAccountTopBar({ handle: _handle }: { handle: string }) {
 	const { actions } = useMeAccountBarActions();
 	const { requestLeaveTo, anyUnsaved } = useMeAccountSession();
+	const back = useSettingsReturn();
 	const [isScrolled, setIsScrolled] = useState(false);
-	const profileHref = `/profile/${encodeURIComponent(handle)}`;
 
 	useEffect(() => {
 		// Same scroll scrim as `/home` sticky chrome and `ProfileTopBar`.
@@ -28,13 +29,13 @@ export function MeAccountTopBar({ handle }: { handle: string }) {
 		return () => window.removeEventListener("scroll", onScroll);
 	}, []);
 
-	const handleProfileNavClick = useCallback(
+	const handleBackNavClick = useCallback(
 		(e: MouseEvent<HTMLAnchorElement>) => {
 			if (!anyUnsaved()) return;
 			e.preventDefault();
-			requestLeaveTo(profileHref);
+			requestLeaveTo(back.href);
 		},
-		[anyUnsaved, profileHref, requestLeaveTo],
+		[anyUnsaved, back.href, requestLeaveTo],
 	);
 
 	const pill = cn(
@@ -54,12 +55,12 @@ export function MeAccountTopBar({ handle }: { handle: string }) {
 			<div className="flex w-full items-center justify-between gap-3 px-2.5 py-2 sm:px-3">
 				<div className="flex min-w-0 justify-start">
 					<DetailMotionLink
-						href={`/profile/${encodeURIComponent(handle)}`}
+						href={back.href}
 						className={cn(pill, "max-w-full pl-3")}
-						onClick={handleProfileNavClick}
+						onClick={handleBackNavClick}
 					>
 						<IconShareIn size="20px" className="shrink-0 opacity-90" />
-						<span className="truncate">Profile</span>
+						<span className="truncate">{back.label}</span>
 					</DetailMotionLink>
 				</div>
 				{actions ? (

@@ -73,7 +73,6 @@ export function SettingsProfileSection() {
 			>
 				<ProfileMediaCustomizer
 					handle={profile.handle}
-					displayName={displayName.trim() || profile.displayName}
 					bannerUrl={profile.bannerUrl ?? null}
 					hasAvatar={Boolean(profile.hasAvatar)}
 					disabled={saving}

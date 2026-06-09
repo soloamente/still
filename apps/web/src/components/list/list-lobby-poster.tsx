@@ -320,14 +320,16 @@ export function ListLobbyPoster({
 							</span>
 						</div>
 					)}
-					{/* Likes read at a glance on poster walls (community + `/lists` lobby). */}
-					<span className="pointer-events-none absolute top-3 right-3 z-10 inline-flex min-h-6 items-center gap-1 rounded-full bg-card/90 px-2 py-1 font-medium text-[10px] text-foreground tabular-nums shadow-sm">
-						<IconHeartFilled
-							className="size-2.5 shrink-0 text-desert-orange"
-							aria-hidden
-						/>
-						{list.likesCount}
-					</span>
+					{/* Likes pill — top-right only; bottom scrim is title + meta (no duplicate heart row). */}
+					{list.likesCount > 0 ? (
+						<span className="pointer-events-none absolute top-3 right-3 z-10 inline-flex min-h-6 items-center gap-1 rounded-full bg-card/90 px-2 py-1 font-medium text-[10px] text-foreground tabular-nums shadow-sm">
+							<IconHeartFilled
+								className="size-2.5 shrink-0 text-desert-orange"
+								aria-hidden
+							/>
+							{list.likesCount}
+						</span>
+					) : null}
 					<div
 						className={cn(
 							"pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center bg-linear-to-t from-card/95 via-card/55 to-transparent px-3 pb-3.5 text-center sm:px-4 sm:pb-4",
@@ -339,14 +341,6 @@ export function ListLobbyPoster({
 						</p>
 						<p className="mt-1 flex max-w-full flex-wrap items-center justify-center gap-1.5 text-[10px] text-muted-foreground tabular-nums">
 							<span>{metaLine}</span>
-							<span aria-hidden>·</span>
-							<span className="inline-flex items-center gap-0.5">
-								<IconHeartFilled
-									className="size-2.5 shrink-0 opacity-80"
-									aria-hidden
-								/>
-								{likesLine}
-							</span>
 							{isSharedList ? (
 								<span className="inline-flex items-center gap-0.5 rounded-full bg-background/80 px-1.5 py-0.5 font-medium uppercase tracking-wide">
 									Shared

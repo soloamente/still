@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react";
 
 import {
 	isListingDetailPath,
+	isMeSettingsPath,
+	isProfileLobbyPath,
 	persistMovieDetailReturn,
 } from "@/lib/movie-detail-return";
 
@@ -26,10 +28,19 @@ export function DetailReturnCapture() {
 		const searchSuffix = search.length > 0 ? `?${search}` : "";
 		const previous = previousRef.current;
 
-		if (
-			isListingDetailPath(pathname) &&
-			!isListingDetailPath(previous.pathname)
-		) {
+		const enteringListingDetail =
+			isListingDetailPath(pathname) && !isListingDetailPath(previous.pathname);
+		const enteringProfileLobby =
+			isProfileLobbyPath(pathname) &&
+			previous.pathname.length > 0 &&
+			!isProfileLobbyPath(previous.pathname);
+		const enteringSettings =
+			isMeSettingsPath(pathname) &&
+			previous.pathname.length > 0 &&
+			!isMeSettingsPath(previous.pathname);
+
+		// Remember the prior route for detail, profile, and settings back pills.
+		if (enteringListingDetail || enteringProfileLobby || enteringSettings) {
 			persistMovieDetailReturn(previous.pathname, previous.search);
 		}
 

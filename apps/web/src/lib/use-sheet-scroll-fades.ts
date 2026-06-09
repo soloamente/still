@@ -1,6 +1,12 @@
 "use client";
 
-import { type RefObject, useCallback, useEffect, useState } from "react";
+import {
+	type RefObject,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 
 const SCROLL_EDGE_THRESHOLD_PX = 8;
 
@@ -15,22 +21,33 @@ export function useSheetScrollFades(
 ) {
 	const [showHeaderFade, setShowHeaderFade] = useState(false);
 	const [showFooterFade, setShowFooterFade] = useState(true);
+	const fadeStateRef = useRef({ header: false, footer: true });
 
 	const syncScrollFades = useCallback(() => {
 		const el = scrollRef.current;
 		if (!el) return;
-		setShowHeaderFade(el.scrollTop > SCROLL_EDGE_THRESHOLD_PX);
+
+		const nextHeader = el.scrollTop > SCROLL_EDGE_THRESHOLD_PX;
 		const scrollable =
 			el.scrollHeight - el.clientHeight > SCROLL_EDGE_THRESHOLD_PX;
 		const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
 		// Show bottom scrim whenever content extends below the fold, even at scrollTop 0.
-		setShowFooterFade(
-			scrollable && distanceFromBottom > SCROLL_EDGE_THRESHOLD_PX,
-		);
+		const nextFooter =
+			scrollable && distanceFromBottom > SCROLL_EDGE_THRESHOLD_PX;
+
+		if (fadeStateRef.current.header !== nextHeader) {
+			fadeStateRef.current.header = nextHeader;
+			setShowHeaderFade(nextHeader);
+		}
+		if (fadeStateRef.current.footer !== nextFooter) {
+			fadeStateRef.current.footer = nextFooter;
+			setShowFooterFade(nextFooter);
+		}
 	}, [scrollRef]);
 
 	useEffect(() => {
 		if (!enabled) {
+			fadeStateRef.current = { header: false, footer: true };
 			setShowHeaderFade(false);
 			setShowFooterFade(true);
 			return;
@@ -40,8 +57,20 @@ export function useSheetScrollFades(
 		// Re-measure scrims when drawer body content changes (filmography, cast list, etc.).
 		void contentKey;
 
+		let scrollRaf: number | null = null;
+		let resizeRaf: number | null = null;
+
 		const runSync = () => {
 			syncScrollFades();
+		};
+
+		// Coalesce scroll-driven fade updates to one frame — avoids React work every wheel tick.
+		const handleScroll = () => {
+			if (scrollRaf !== null) return;
+			scrollRaf = requestAnimationFrame(() => {
+				scrollRaf = null;
+				runSync();
+			});
 		};
 
 		runSync();
@@ -51,18 +80,26 @@ export function useSheetScrollFades(
 		});
 
 		const resizeObserver = new ResizeObserver(() => {
-			runSync();
+			if (resizeRaf !== null) return;
+			resizeRaf = requestAnimationFrame(() => {
+				resizeRaf = null;
+				runSync();
+			});
 		});
 		resizeObserver.observe(el);
 		for (const child of el.children) {
 			resizeObserver.observe(child);
 		}
 
-		el.addEventListener("scroll", runSync, { passive: true });
+		el.addEventListener("load", runSync, true);
+		el.addEventListener("scroll", handleScroll, { passive: true });
 		return () => {
+			if (scrollRaf !== null) cancelAnimationFrame(scrollRaf);
+			if (resizeRaf !== null) cancelAnimationFrame(resizeRaf);
 			cancelAnimationFrame(raf1);
 			resizeObserver.disconnect();
-			el.removeEventListener("scroll", runSync);
+			el.removeEventListener("load", runSync, true);
+			el.removeEventListener("scroll", handleScroll);
 		};
 	}, [enabled, contentKey, syncScrollFades, scrollRef]);
 

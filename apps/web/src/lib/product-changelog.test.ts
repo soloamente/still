@@ -17,6 +17,18 @@ describe("formatReleaseVersionLabel", () => {
 
 describe("whatsNewReleasePillLabel", () => {
 	test("joins changelog version and date", () => {
+		expect(whatsNewReleasePillLabel("2026-06-09-home-reviews-detail")).toBe(
+			"v0.2.3 · June 9, 2026",
+		);
+	});
+
+	test("joins prior release version and date", () => {
+		expect(whatsNewReleasePillLabel("2026-06-08-search-detail-polish")).toBe(
+			"v0.2.2 · June 8, 2026",
+		);
+	});
+
+	test("joins prior release version and date", () => {
 		expect(whatsNewReleasePillLabel("2026-06-07-reviews-tagging-reader")).toBe(
 			"v0.2.1 · June 7, 2026",
 		);

@@ -22,6 +22,7 @@ export type ProfileFilmographyRow = {
 
 type ProfileFilmographyPanelProps = {
 	handle: string;
+	displayName: string;
 	seeds: PopularMovieSeed[];
 	totalPages: number;
 	totalResults: number;
@@ -41,6 +42,7 @@ type ProfileFilmographyPanelProps = {
 /** Patron ledger — `/home` lobby poster grid for films or TV only. */
 export function ProfileFilmographyPanel({
 	handle,
+	displayName,
 	seeds,
 	totalPages,
 	totalResults,
@@ -137,6 +139,7 @@ export function ProfileFilmographyPanel({
 	return (
 		<ProfileLobbyCatalogue
 			handle={handle}
+			displayName={displayName}
 			seeds={seeds}
 			totalPages={totalPages}
 			totalResults={totalResults}

@@ -317,6 +317,7 @@ export function ReviewDetailRoot() {
 			initialBody: detail.review.body,
 			initialContainsSpoilers: detail.review.containsSpoilers,
 			initialVisibility: detail.review.visibility,
+			initialStillSlideKey: detail.review.stillSlideKey ?? null,
 		});
 		handleClose();
 	}, [detail, openComposer, handleClose]);
@@ -602,185 +603,187 @@ export function ReviewDetailRoot() {
 	) : null;
 
 	return (
-		<DetailVaulSheet
-			open={isOpen}
-			onOpenChange={handleOpenChange}
-			title={drawerTitle}
-			description="Read a patron review"
-			handleLeading={handleLeading}
-			handleTrailing={handleTrailing}
-		>
-			<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
-				<DetailDrawerScrollBody scrollRef={scrollRef}>
-					<div className="mx-auto w-full max-w-xl pt-2 pb-10">
-						{detail && movieScreenshots.length > 0 ? (
-							<ReviewReaderStillSection
-								slides={movieScreenshots}
-								selectedKey={selectedStillKey}
-								isOwner={isReviewOwner}
-								saving={savingStill}
-								onSelect={(slideKey) => void handleSelectStill(slideKey)}
-							/>
-						) : loading && !detail ? (
-							<Skeleton className="mb-6 aspect-video w-full rounded-[1.5rem] bg-background" />
-						) : null}
+		<>
+			<DetailVaulSheet
+				open={isOpen}
+				onOpenChange={handleOpenChange}
+				title={drawerTitle}
+				description="Read a patron review"
+				handleLeading={handleLeading}
+				handleTrailing={handleTrailing}
+			>
+				<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
+					<DetailDrawerScrollBody scrollRef={scrollRef}>
+						<div className="mx-auto w-full max-w-xl pt-2 pb-10">
+							{detail && movieScreenshots.length > 0 ? (
+								<ReviewReaderStillSection
+									slides={movieScreenshots}
+									selectedKey={selectedStillKey}
+									isOwner={isReviewOwner}
+									saving={savingStill}
+									onSelect={(slideKey) => void handleSelectStill(slideKey)}
+								/>
+							) : loading && !detail ? (
+								<Skeleton className="mb-6 aspect-video w-full rounded-[1.5rem] bg-background" />
+							) : null}
 
-						{showMovieContext && posterUrl ? (
-							<div className="mx-auto mb-5 flex justify-center">
-								<Link
-									href={`/movies/${detail?.movie?.tmdbId}`}
-									onClick={handleClose}
-									className="relative block aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg transition-transform duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none"
+							{showMovieContext && posterUrl ? (
+								<div className="mx-auto mb-5 flex justify-center">
+									<Link
+										href={`/movies/${detail?.movie?.tmdbId}`}
+										onClick={handleClose}
+										className="relative block aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg transition-transform duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none"
+									>
+										<Image
+											src={posterUrl}
+											alt=""
+											fill
+											sizes="120px"
+											className="object-cover"
+											unoptimized
+										/>
+									</Link>
+								</div>
+							) : null}
+
+							{showMovieContext && movieTitleLine ? (
+								<p className="mb-5 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+									<Link
+										href={`/movies/${detail?.movie?.tmdbId}`}
+										className="text-foreground/90 hover:text-desert-orange"
+										onClick={handleClose}
+									>
+										{movieTitleLine}
+									</Link>
+								</p>
+							) : null}
+
+							{isReviewOwner &&
+							review?.visibility &&
+							review.visibility !== "public" ? (
+								<div className="mb-6 flex justify-center">
+									<VisibilityChip visibility={review.visibility} />
+								</div>
+							) : null}
+
+							{loadError ? (
+								<p className="mb-6 rounded-2xl bg-background px-4 py-3 text-center text-muted-foreground text-sm">
+									{loadError}
+								</p>
+							) : null}
+
+							{containsSpoilers && spoilerRevealed ? (
+								<p className="mb-5 rounded-2xl bg-desert-orange/10 px-4 py-2.5 text-center text-desert-orange text-sm">
+									Contains spoilers
+								</p>
+							) : null}
+
+							<div className="relative mb-6">
+								<ReviewSpoilerGuard
+									containsSpoilers={containsSpoilers}
+									hasWatchedMovie={hasWatchedMovie}
+									isOwnReview={isReviewOwner}
+									revealed={spoilerRevealed}
+									onReveal={() => setSpoilerRevealed(true)}
 								>
-									<Image
-										src={posterUrl}
-										alt=""
-										fill
-										sizes="120px"
-										className="object-cover"
-										unoptimized
-									/>
-								</Link>
-							</div>
-						) : null}
+									<div className="mx-auto flex w-full max-w-prose flex-col items-center text-center">
+										{hasDisplayRating ? (
+											<div
+												className={
+													showMovieContext && posterUrl ? "mt-3" : "mt-6"
+												}
+											>
+												<ReviewEditorialPatronScore rating={displayRating} />
+											</div>
+										) : null}
 
-						{showMovieContext && movieTitleLine ? (
-							<p className="mb-5 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
-								<Link
-									href={`/movies/${detail?.movie?.tmdbId}`}
-									className="text-foreground/90 hover:text-desert-orange"
-									onClick={handleClose}
-								>
-									{movieTitleLine}
-								</Link>
-							</p>
-						) : null}
+										{displayTitle ? (
+											<h2
+												id="review-detail-title"
+												className={cn(
+													"max-w-prose text-balance px-3 font-semibold font-serif text-foreground text-xl leading-snug tracking-tight sm:px-4 sm:text-2xl",
+													hasDisplayRating ? "mt-3" : "mt-6",
+												)}
+											>
+												{displayTitle}
+											</h2>
+										) : (
+											<h2 id="review-detail-title" className="sr-only">
+												{drawerTitle}
+											</h2>
+										)}
 
-						{isReviewOwner &&
-						review?.visibility &&
-						review.visibility !== "public" ? (
-							<div className="mb-6 flex justify-center">
-								<VisibilityChip visibility={review.visibility} />
-							</div>
-						) : null}
-
-						{loadError ? (
-							<p className="mb-6 rounded-2xl bg-background px-4 py-3 text-center text-muted-foreground text-sm">
-								{loadError}
-							</p>
-						) : null}
-
-						{containsSpoilers && spoilerRevealed ? (
-							<p className="mb-5 rounded-2xl bg-desert-orange/10 px-4 py-2.5 text-center text-desert-orange text-sm">
-								Contains spoilers
-							</p>
-						) : null}
-
-						<div className="relative mb-6">
-							<ReviewSpoilerGuard
-								containsSpoilers={containsSpoilers}
-								hasWatchedMovie={hasWatchedMovie}
-								isOwnReview={isReviewOwner}
-								revealed={spoilerRevealed}
-								onReveal={() => setSpoilerRevealed(true)}
-							>
-								<div className="mx-auto flex w-full max-w-prose flex-col items-center text-center">
-									{hasDisplayRating ? (
-										<div
-											className={
-												showMovieContext && posterUrl ? "mt-3" : "mt-6"
-											}
-										>
-											<ReviewEditorialPatronScore rating={displayRating} />
-										</div>
-									) : null}
-
-									{displayTitle ? (
-										<h2
-											id="review-detail-title"
+										<p
+											data-review-body=""
 											className={cn(
-												"max-w-prose text-balance px-3 font-semibold font-serif text-foreground text-xl leading-snug tracking-tight sm:px-4 sm:text-2xl",
-												hasDisplayRating ? "mt-3" : "mt-6",
+												"w-full max-w-prose whitespace-pre-wrap px-2 py-1 text-center tracking-tight outline-none",
+												displayTitle
+													? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
+													: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
 											)}
 										>
-											{displayTitle}
-										</h2>
-									) : (
-										<h2 id="review-detail-title" className="sr-only">
-											{drawerTitle}
-										</h2>
-									)}
-
-									<p
-										data-review-body=""
-										className={cn(
-											"w-full max-w-prose whitespace-pre-wrap px-2 py-1 text-center tracking-tight outline-none",
-											displayTitle
-												? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
-												: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
-										)}
-									>
-										<ReviewBodyWithMentions body={displayBody} />
-									</p>
-								</div>
-							</ReviewSpoilerGuard>
-							{loading && !detail ? (
-								<div
-									aria-hidden
-									className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-b from-transparent via-card/40 to-card"
-								/>
-							) : null}
-						</div>
-
-						<section className="space-y-3" aria-label="Comments">
-							<div className="flex w-full items-center justify-center gap-2">
-								<p className="text-center text-muted-foreground text-xs tabular-nums">
-									{displayComments}{" "}
-									{displayComments === 1 ? "comment" : "comments"}
-								</p>
-								{loading ? (
-									<Loader2
-										className="size-3.5 animate-spin text-muted-foreground"
-										aria-label="Loading review"
+											<ReviewBodyWithMentions body={displayBody} />
+										</p>
+									</div>
+								</ReviewSpoilerGuard>
+								{loading && !detail ? (
+									<div
+										aria-hidden
+										className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-b from-transparent via-card/40 to-card"
 									/>
 								) : null}
 							</div>
-							{detail ? (
-								<CommentsThread
-									appearance="sheet"
-									targetKind="review"
-									targetId={detail.review.id}
-									initialComments={comments}
-								/>
-							) : loading ? (
-								<ul className="space-y-3" aria-hidden>
-									{[0, 1].map((i) => (
-										<li key={i}>
-											<Skeleton className="h-16 w-full rounded-2xl bg-background" />
-										</li>
-									))}
-								</ul>
-							) : (
-								<p className="text-center text-muted-foreground text-sm">
-									Comments unavailable.
-								</p>
-							)}
-						</section>
-					</div>
-				</DetailDrawerScrollBody>
 
-				<SheetScrollScrims
-					showHeaderFade={showHeaderFade}
-					showFooterFade={showFooterFade}
-				/>
+							<section className="space-y-3" aria-label="Comments">
+								<div className="flex w-full items-center justify-center gap-2">
+									<p className="text-center text-muted-foreground text-xs tabular-nums">
+										{displayComments}{" "}
+										{displayComments === 1 ? "comment" : "comments"}
+									</p>
+									{loading ? (
+										<Loader2
+											className="size-3.5 animate-spin text-muted-foreground"
+											aria-label="Loading review"
+										/>
+									) : null}
+								</div>
+								{detail ? (
+									<CommentsThread
+										appearance="sheet"
+										targetKind="review"
+										targetId={detail.review.id}
+										initialComments={comments}
+									/>
+								) : loading ? (
+									<ul className="space-y-3" aria-hidden>
+										{[0, 1].map((i) => (
+											<li key={i}>
+												<Skeleton className="h-16 w-full rounded-2xl bg-background" />
+											</li>
+										))}
+									</ul>
+								) : (
+									<p className="text-center text-muted-foreground text-sm">
+										Comments unavailable.
+									</p>
+								)}
+							</section>
+						</div>
+					</DetailDrawerScrollBody>
 
-				<ReviewDeleteConfirmDialog
-					open={deleteOpen}
-					deleting={deleting}
-					onCancel={() => setDeleteOpen(false)}
-					onConfirm={() => void handleConfirmDelete()}
-				/>
-			</div>
-		</DetailVaulSheet>
+					<SheetScrollScrims
+						showHeaderFade={showHeaderFade}
+						showFooterFade={showFooterFade}
+					/>
+				</div>
+			</DetailVaulSheet>
+			{/* Portaled confirm — sibling of the Vaul sheet so drawer layers cannot steal taps. */}
+			<ReviewDeleteConfirmDialog
+				open={deleteOpen}
+				deleting={deleting}
+				onCancel={() => setDeleteOpen(false)}
+				onConfirm={() => void handleConfirmDelete()}
+			/>
+		</>
 	);
 }

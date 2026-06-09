@@ -13,7 +13,10 @@ import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
 
 const DELETE_CONFIRM_OVERLAY_CLASS =
-	"fixed inset-0 z-[250] grid min-h-[100dvh] place-items-center overflow-y-auto overscroll-contain bg-absolute-black/78 px-4 py-8 backdrop-blur-sm";
+	"pointer-events-auto fixed inset-0 z-[250] isolate grid min-h-[100dvh] touch-none place-items-center overflow-y-auto overscroll-contain px-4 py-8";
+
+const DELETE_CONFIRM_BACKDROP_CLASS =
+	"absolute inset-0 bg-absolute-black/78 backdrop-blur-sm";
 
 /** Confirms deleting a review from the review detail sheet. */
 export function ReviewDeleteConfirmDialog({
@@ -42,6 +45,22 @@ export function ReviewDeleteConfirmDialog({
 		document.body.style.overflow = "hidden";
 		return () => {
 			document.body.style.overflow = prev;
+		};
+	}, [open]);
+
+	// Vaul drawers stay interactive under portaled modals — block hits on the sheet while confirming.
+	useEffect(() => {
+		if (!open) return;
+		const drawerLayers = document.querySelectorAll<HTMLElement>(
+			"[data-vaul-drawer], [data-vaul-overlay]",
+		);
+		for (const layer of drawerLayers) {
+			layer.style.pointerEvents = "none";
+		}
+		return () => {
+			for (const layer of drawerLayers) {
+				layer.style.pointerEvents = "";
+			}
 		};
 	}, [open]);
 
@@ -76,10 +95,13 @@ export function ReviewDeleteConfirmDialog({
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={backdropTransition}
-					aria-hidden
 					className={DELETE_CONFIRM_OVERLAY_CLASS}
-					onClick={deleting ? undefined : onCancel}
 				>
+					<div
+						aria-hidden
+						className={DELETE_CONFIRM_BACKDROP_CLASS}
+						onClick={deleting ? undefined : onCancel}
+					/>
 					<motion.div
 						role="alertdialog"
 						aria-modal="true"
@@ -89,9 +111,10 @@ export function ReviewDeleteConfirmDialog({
 						animate={{ opacity: 1, y: 0, scale: 1 }}
 						exit={{ opacity: 0, y: 10, scale: 0.98 }}
 						transition={panelTransition}
+						onPointerDown={(event) => event.stopPropagation()}
 						onClick={(event) => event.stopPropagation()}
 						className={cn(
-							"relative flex min-h-[20rem] w-full max-w-sm flex-col overflow-hidden rounded-[2rem] bg-card text-foreground shadow-mobbin-xl sm:min-h-[22rem] sm:rounded-[2.25rem]",
+							"pointer-events-auto relative z-10 flex min-h-[20rem] w-full max-w-sm touch-auto flex-col overflow-hidden rounded-[2rem] bg-card text-foreground shadow-mobbin-xl sm:min-h-[22rem] sm:rounded-[2.25rem]",
 						)}
 					>
 						<div className="absolute top-3 right-3 sm:top-4 sm:right-4">

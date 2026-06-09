@@ -3,6 +3,7 @@ import { AppScrollToTop } from "@/components/app/app-scroll-to-top";
 import { DetailReturnCapture } from "@/components/app/detail-return-capture";
 import { GoToDialogRoot } from "@/components/app/go-to-dialog-root";
 import { MobileTabBar } from "@/components/app/mobile-tab-bar";
+import { SoftwareGpuDocumentProbe } from "@/components/app/software-gpu-document-probe";
 import { WhatsNewDialogRoot } from "@/components/app/whats-new-dialog-root";
 import { BadgeWatcher } from "@/components/gamification/badge-watcher";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
@@ -59,6 +60,7 @@ export function AppShell({
 }) {
 	return (
 		<div className="relative flex min-h-svh flex-col bg-background">
+			<SoftwareGpuDocumentProbe />
 			<Suspense fallback={null}>
 				<DetailReturnCapture />
 			</Suspense>
