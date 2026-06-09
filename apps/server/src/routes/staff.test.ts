@@ -41,6 +41,17 @@ type TestState = {
 		metadata?: Record<string, unknown>;
 	}>;
 	authCalls: Array<{ method: string; body: unknown }>;
+	// Dedicated counters for impersonation calls.
+	impersonateCalls: Array<{ userId: string }>;
+	stopImpersonatingCalls: number;
+	// Optional session override: when set, the context mock returns this instead
+	// of deriving session from x-user-id / x-user-role headers.
+	session:
+		| {
+				user: { id: string; role: string };
+				session: { id: string; impersonatedBy: string | null };
+		  }
+		| undefined;
 };
 
 const state: TestState = {
@@ -52,6 +63,9 @@ const state: TestState = {
 	inserts: [],
 	audits: [],
 	authCalls: [],
+	impersonateCalls: [],
+	stopImpersonatingCalls: 0,
+	session: undefined,
 };
 
 // Table sentinels. Each carries `__table` (so the db mock can resolve which
@@ -224,6 +238,15 @@ function createInsertQuery(table: unknown) {
 	return {
 		async values(values: Record<string, unknown>) {
 			state.inserts.push({ table: tableName, values });
+			if (tableName === "staff_user_note") {
+				state.notes.push({
+					id: (values.id as string) ?? `note-${state.notes.length + 1}`,
+					userId: values.userId as string,
+					authorId: values.authorId as string,
+					body: values.body as string,
+					createdAt: new Date(),
+				});
+			}
 			return [];
 		},
 	};
@@ -273,7 +296,7 @@ const MATRIX: Record<string, Record<string, string[]>> = {
 		audit: ["read"],
 	},
 	moderator: {
-		user: ["list"],
+		user: ["list", "note"],
 		content: ["hide", "delete", "restore"],
 	},
 	support: {
@@ -301,11 +324,16 @@ mock.module("@still/auth", () => ({
 	auth: {
 		api: {
 			getSession: async ({ headers }: { headers: Headers }) => {
+				// Allow tests to override the session (e.g. to simulate an active
+				// impersonation session via session.impersonatedBy).
+				if (state.session !== undefined) {
+					return state.session;
+				}
 				const id = headers.get("x-user-id");
 				if (!id) return null;
 				const role = headers.get("x-user-role") ?? "user";
 				return {
-					session: { id: `session-${id}` },
+					session: { id: `session-${id}`, impersonatedBy: null },
 					user: { id, role, banned: false, banExpires: null },
 				};
 			},
@@ -326,12 +354,14 @@ mock.module("@still/auth", () => ({
 				state.authCalls.push({ method: "setRole", body });
 				return { user: {} };
 			},
-			impersonateUser: async ({ body }: { body: unknown }) => {
+			impersonateUser: async ({ body }: { body: { userId: string } }) => {
 				state.authCalls.push({ method: "impersonateUser", body });
+				state.impersonateCalls.push({ userId: body.userId });
 				return { session: { id: "imp-session" }, user: {} };
 			},
 			stopImpersonating: async () => {
 				state.authCalls.push({ method: "stopImpersonating", body: null });
+				state.stopImpersonatingCalls += 1;
 				return {};
 			},
 		},
@@ -371,6 +401,9 @@ beforeEach(() => {
 	state.inserts = [];
 	state.audits = [];
 	state.authCalls = [];
+	state.impersonateCalls = [];
+	state.stopImpersonatingCalls = 0;
+	state.session = undefined;
 });
 
 describe("GET /api/staff/users", () => {
@@ -883,5 +916,146 @@ describe("GET /api/staff/audit", () => {
 		expect(res.status).toBe(200);
 		const body = (await res.json()) as { entries: unknown[] };
 		expect(body.entries.length).toBeGreaterThan(0);
+	});
+});
+
+describe("staff user notes endpoints", () => {
+	test("GET /users/:id/notes -> 200 with notes for staff with user:note", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		state.notes = [
+			{
+				id: "note-1",
+				userId: "u-1",
+				authorId: "mod-1",
+				body: "Heads up",
+				createdAt: new Date("2026-01-01T00:00:00Z"),
+			},
+		];
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/notes", {
+				headers: authHeaders("mod-1", "moderator"),
+			}),
+		);
+		expect(res.status).toBe(200);
+		const data = (await res.json()) as { notes: Array<{ id: string }> };
+		expect(data.notes).toHaveLength(1);
+		expect(data.notes[0]?.id).toBe("note-1");
+	});
+
+	test("POST /users/:id/notes -> 201, persists note, audits user.note.add", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/notes", {
+				method: "POST",
+				headers: authHeaders("mod-1", "moderator"),
+				body: JSON.stringify({ body: "Watch this account" }),
+			}),
+		);
+		expect(res.status).toBe(201);
+		expect(state.notes).toHaveLength(1);
+		expect(state.notes[0]?.body).toBe("Watch this account");
+		expect(state.notes[0]?.authorId).toBe("mod-1");
+		expect(
+			state.audits.find((a) => a.action === "user.note.add"),
+		).toBeDefined();
+	});
+
+	test("POST /users/:id/notes rejects an empty body -> 422", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/notes", {
+				method: "POST",
+				headers: authHeaders("mod-1", "moderator"),
+				body: JSON.stringify({ body: "" }),
+			}),
+		);
+		expect(res.status).toBe(422);
+		expect(state.notes).toHaveLength(0);
+	});
+
+	test("support lacks user:note -> 403", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/notes", {
+				headers: authHeaders("support-1", "support"),
+			}),
+		);
+		expect(res.status).toBe(403);
+	});
+});
+
+describe("staff impersonation endpoints", () => {
+	test("POST /users/:id/impersonate -> 200, calls auth.api.impersonateUser, audits user.impersonate.start", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/impersonate", {
+				method: "POST",
+				headers: authHeaders("owner-1", "owner"),
+			}),
+		);
+		expect(res.status).toBe(200);
+		expect(state.impersonateCalls).toEqual([{ userId: "u-1" }]);
+		expect(
+			state.audits.find((a) => a.action === "user.impersonate.start"),
+		).toBeDefined();
+	});
+
+	test("POST /users/:id/impersonate -> owner can impersonate another owner (no outranks gate)", async () => {
+		state.users = { "owner-2": { id: "owner-2", role: "owner" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/owner-2/impersonate", {
+				method: "POST",
+				headers: authHeaders("owner-1", "owner"),
+			}),
+		);
+		expect(res.status).toBe(200);
+		expect(state.impersonateCalls).toEqual([{ userId: "owner-2" }]);
+	});
+
+	test("admin lacks user:impersonate -> 403", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/impersonate", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+			}),
+		);
+		expect(res.status).toBe(403);
+		expect(state.impersonateCalls).toHaveLength(0);
+	});
+
+	test("POST /stop-impersonating -> 200, calls auth.api.stopImpersonating, audits user.impersonate.stop attributed to the real actor", async () => {
+		state.session = {
+			user: { id: "u-1", role: "user" },
+			session: { id: "sess-1", impersonatedBy: "owner-1" },
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/stop-impersonating", {
+				method: "POST",
+				headers: authHeaders("u-1", "user"),
+			}),
+		);
+		expect(res.status).toBe(200);
+		expect(state.stopImpersonatingCalls).toBe(1);
+		const entry = state.audits.find(
+			(a) => a.action === "user.impersonate.stop",
+		);
+		expect(entry?.actorId).toBe("owner-1");
+		expect(entry?.targetId).toBe("u-1");
+	});
+
+	test("POST /stop-impersonating when not impersonating -> 400", async () => {
+		state.session = {
+			user: { id: "u-1", role: "user" },
+			session: { id: "sess-1", impersonatedBy: null },
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/stop-impersonating", {
+				method: "POST",
+				headers: authHeaders("u-1", "user"),
+			}),
+		);
+		expect(res.status).toBe(400);
+		expect(state.stopImpersonatingCalls).toBe(0);
 	});
 });
