@@ -1,27 +1,28 @@
 {
-  "name": "@still/auth",
-  "type": "module",
-  "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
-  },
-  "scripts": {},
-  "dependencies": {
-    "@better-auth/expo": "catalog:",
-    "@polar-sh/better-auth": "catalog:",
-    "@polar-sh/sdk": "^0.42.2",
-    "@still/db": "workspace:*",
-    "@still/env": "workspace:*",
-    "better-auth": "catalog:",
-    "dotenv": "catalog:",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
-    "@still/config": "workspace:*",
-    "typescript": "^6"
-  }
+	"name": "@still/auth",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@better-auth/expo": "catalog:",
+		"@polar-sh/better-auth": "catalog:",
+		"@polar-sh/sdk": "^0.42.2",
+		"@still/db": "workspace:*",
+		"@still/env": "workspace:*",
+		"better-auth": "catalog:",
+		"dotenv": "catalog:",
+		"resend": "^6.12.4",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@still/config": "workspace:*",
+		"typescript": "^6"
+	}
 }

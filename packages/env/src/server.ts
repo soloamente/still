@@ -50,6 +50,11 @@ const serverEnv = {
 	// `put()` time. Set to `private` for private stores (banners are served
 	// through GET /api/profiles/banner/:handle which streams via `get()`).
 	BLOB_STORE_ACCESS: z.enum(["public", "private"]).default("public"),
+	// Resend API key for transactional email (account-deletion verification).
+	// Optional — when unset (local dev), emails fall back to console logging.
+	RESEND_API_KEY: optionalNonEmptyString(),
+	// Verified Resend sender, e.g. "Sense <noreply@updates.example.com>".
+	EMAIL_FROM: optionalNonEmptyString(),
 };
 
 export const env = createEnv<undefined, typeof serverEnv>({
