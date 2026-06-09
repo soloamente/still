@@ -104,7 +104,9 @@ type ProfileMePatchBody = {
 	defaultVisibility?: ContentVisibility;
 };
 
-export { HANDLE_RE } from "../lib/handle-re";
+import { HANDLE_RE } from "../lib/handle-re";
+
+export { HANDLE_RE };
 
 /**
  * Profile routes. **Order matters:** `/me` and `/check-handle/*` must be

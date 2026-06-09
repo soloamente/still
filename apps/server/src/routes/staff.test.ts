@@ -568,6 +568,54 @@ describe("POST /api/staff/users/:id/edit", () => {
 		expect(res.status).toBe(403);
 		expect(state.updates).toHaveLength(0);
 	});
+
+	test("handle is lowercased before validation and storage", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		state.profiles = {
+			"u-1": {
+				userId: "u-1",
+				handle: "old-handle",
+				displayName: "Old Name",
+				isPro: false,
+				isPrivate: false,
+				statsCache: {},
+			},
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/edit", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+				body: JSON.stringify({ handle: "New-Handle" }),
+			}),
+		);
+		expect(res.status).toBe(200);
+		const upd = state.updates.find((u) => u.table === "profile");
+		expect(upd?.set.handle).toBe("new-handle");
+	});
+
+	test("empty body (no editable fields) -> 400, no update/audit", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		state.profiles = {
+			"u-1": {
+				userId: "u-1",
+				handle: "h",
+				displayName: "H",
+				isPro: false,
+				isPrivate: false,
+				statsCache: {},
+			},
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/edit", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+				body: JSON.stringify({}),
+			}),
+		);
+		expect(res.status).toBe(400);
+		expect(state.updates).toHaveLength(0);
+		expect(state.audits).toHaveLength(0);
+	});
 });
 
 describe("POST /api/staff/content/:type/:id/:op", () => {
