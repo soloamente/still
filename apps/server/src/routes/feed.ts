@@ -109,20 +109,26 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 				query.before.length > 0
 					? new Date(query.before)
 					: null;
-			const beforeDate = compositeCursor?.at ?? legacyBeforeDate;
+			const beforeDateRaw = compositeCursor?.at ?? legacyBeforeDate;
+			const beforeCursor =
+				beforeDateRaw instanceof Date
+					? beforeDateRaw
+					: beforeDateRaw != null
+						? new Date(beforeDateRaw)
+						: null;
 			const beforeValid =
-				beforeDate != null && !Number.isNaN(beforeDate.getTime());
+				beforeCursor != null && !Number.isNaN(beforeCursor.getTime());
 
 			// Diary rows surface by when the patron logged — not backdated watchedAt.
 			const logBefore = beforeValid
 				? compositeCursor
-					? lte(log.createdAt, beforeDate)
-					: lt(log.createdAt, beforeDate)
+					? lte(log.createdAt, beforeCursor)
+					: lt(log.createdAt, beforeCursor)
 				: undefined;
 			const reviewBefore = beforeValid
 				? compositeCursor
-					? lte(review.publishedAt, beforeDate)
-					: lt(review.publishedAt, beforeDate)
+					? lte(review.publishedAt, beforeCursor)
+					: lt(review.publishedAt, beforeCursor)
 				: undefined;
 
 			const following = await db
@@ -144,8 +150,8 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 			const listActivityAtSql = sql<Date>`GREATEST(${list.createdAt}, COALESCE(${latestListAdded.latestAddedAt}, ${list.createdAt}))`;
 			const listBefore = beforeValid
 				? compositeCursor
-					? lte(listActivityAtSql, beforeDate)
-					: lt(listActivityAtSql, beforeDate)
+					? lte(listActivityAtSql, beforeCursor)
+					: lt(listActivityAtSql, beforeCursor)
 				: undefined;
 
 			const listPeriodWhere = or(

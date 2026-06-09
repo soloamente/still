@@ -11,6 +11,11 @@ import { authServer } from "@/lib/auth-server";
 import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
 import { fetchProfileFilmographyServer } from "@/lib/fetch-profile-filmography-server";
 import { toListBoardRow } from "@/lib/list-board-row";
+import {
+	OG_DEFAULT_PATH,
+	ogImageMetadataFields,
+	ogTastePath,
+} from "@/lib/og/og-image-metadata";
 import { readProfileBannerFramePref } from "@/lib/profile-appearance";
 import {
 	buildProfileLobbyHref,
@@ -30,7 +35,36 @@ export async function generateMetadata({
 	params: Promise<{ handle: string }>;
 }) {
 	const { handle } = await params;
-	return { title: `@${handle}` };
+	const normalized = handle.toLowerCase();
+	const title = `@${normalized}`;
+
+	try {
+		const api = await serverApi();
+		const res = await api.api.profiles({ handle: normalized }).get();
+		const data = res.data as {
+			profile?: { displayName?: string; isPrivate?: boolean };
+			user?: { name?: string | null };
+		} | null;
+		const isPrivate = data?.profile?.isPrivate === true;
+		const displayName = data?.profile?.displayName ?? data?.user?.name ?? title;
+
+		if (isPrivate) {
+			return {
+				title,
+				...ogImageMetadataFields(OG_DEFAULT_PATH, displayName),
+			};
+		}
+
+		return {
+			title,
+			...ogImageMetadataFields(ogTastePath(normalized), displayName),
+		};
+	} catch {
+		return {
+			title,
+			...ogImageMetadataFields(ogTastePath(normalized), title),
+		};
+	}
 }
 
 type ProfileData = {

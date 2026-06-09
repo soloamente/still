@@ -34,6 +34,11 @@ import {
 	MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
 	MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
 } from "@/lib/movie-detail-sections";
+import {
+	OG_DEFAULT_PATH,
+	ogImageMetadataFields,
+	ogListPath,
+} from "@/lib/og/og-image-metadata";
 import { serverApi } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
@@ -52,12 +57,21 @@ export async function generateMetadata({
 	const data = await fetchListDetailById(id);
 	const title = data?.title ?? "List";
 	const description = data?.description?.trim();
+	const imageFields = ogImageMetadataFields(
+		data?.isPublic ? ogListPath(id) : OG_DEFAULT_PATH,
+		title,
+	);
+
 	return {
 		title,
 		description: description || undefined,
-		openGraph: description
-			? { title, description: description.slice(0, 200) }
-			: { title },
+		openGraph: {
+			...(description
+				? { title, description: description.slice(0, 200) }
+				: { title }),
+			...imageFields.openGraph,
+		},
+		twitter: imageFields.twitter,
 	};
 }
 

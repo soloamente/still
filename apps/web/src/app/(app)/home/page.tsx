@@ -1,4 +1,5 @@
 import { cn } from "@still/ui/lib/utils";
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -67,6 +68,10 @@ import {
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 import { parseHomeVenue, parseTvLobbyVenue } from "@/lib/home-venue";
 import {
+	OG_HOME_PATH,
+	ogImageMetadataFields,
+} from "@/lib/og/og-image-metadata";
+import {
 	catalogWatchRegionToApiQuery,
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbWatchRegionPref,
@@ -83,6 +88,10 @@ import {
 import type { TasteMatchedDiscoveryPayload } from "@/lib/taste-matched-discovery";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+	...ogImageMetadataFields(OG_HOME_PATH),
+};
 
 /** First sheet from TMDb — client infinite scroll asks for page 2…N the same way as `/movies/popular`. */
 const SEED_PAGE = 1;

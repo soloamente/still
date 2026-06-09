@@ -12,6 +12,7 @@ import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { api } from "@/lib/api";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { formatLogRatingDisplay } from "@/lib/log-rating";
+import { compareSharePath } from "@/lib/og/og-image-metadata";
 import {
 	parseTasteOverlapResponse,
 	type TasteOverlapResponse,
@@ -91,7 +92,7 @@ export function TasteOverlapDialog({
 		if (!data) return;
 		const viewer = data.viewer.handle;
 		const target = data.target.handle;
-		const url = `${window.location.origin}/og/compare/${encodeURIComponent(viewer)}/${encodeURIComponent(target)}`;
+		const url = `${window.location.origin}${compareSharePath(viewer, target)}`;
 		try {
 			await navigator.clipboard.writeText(url);
 			toast.success("Comparison card link copied");

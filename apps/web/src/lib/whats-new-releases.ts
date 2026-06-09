@@ -23,33 +23,33 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-09-home-reviews-detail",
+	id: "2026-06-09-share-previews",
 	fullReleaseHref: "/changelog",
 	slides: [
 		{
 			title: "What's new in Sense",
 			description:
-				"Cleaner at-home browsing, review stills in the composer, and film detail rails you can drag or step through with chevrons and dots.",
+				"Links you share now show a preview image — film stills, taste cards, and list covers with minimal Sense branding.",
 		},
 		{
-			title: "At home means at home",
+			title: "Share a film or show",
 			description:
-				"The Movies home At home filter no longer mixes in titles that are only playing in cinemas — streaming picks respect digital releases in your catalogue region.",
+				"Movie and TV detail URLs preview with a backdrop still and a small Sense mark. No cluttered title overlays on the image itself.",
 		},
 		{
-			title: "Review still before you publish",
+			title: "Profiles & lists",
 			description:
-				"Choose a backdrop still while writing your review, not only after it goes live. The composer loads the same still rail as the reader.",
+				"Public profile links use your taste card. Public lists use the cover art you picked — uploaded or pinned from the catalogue.",
 		},
 		{
-			title: "Drag the detail rails",
+			title: "Compare taste links",
 			description:
-				"On film About, grab the backgrounds or reviews carousel to scroll horizontally. Side arrows, step dots, and taps on peeking slides help you move without only swiping.",
+				"Copying a taste comparison shares a proper preview card, then opens the overlap sheet when someone taps through.",
 		},
 		{
-			title: "Sheets & navigation",
+			title: "Still polishing home & detail",
 			description:
-				"Review and quick-log dialogs scroll more smoothly on slower GPUs, with edge fades so lists do not hard-cut. Back from profile or settings returns to your last browse context.",
+				"This release also includes cleaner at-home browsing, review stills in the composer, and drag-friendly carousels on film About.",
 		},
 	],
 };

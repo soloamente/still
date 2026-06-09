@@ -36,6 +36,10 @@ import {
 import { parseMovieDetailView } from "@/lib/movie-detail-view";
 import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
 import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
+import {
+	ogImageMetadataFields,
+	ogTitleTvPath,
+} from "@/lib/og/og-image-metadata";
 import { serverApi } from "@/lib/server-api";
 import { TV_DETAIL_SECTION } from "@/lib/tv-detail-sections";
 
@@ -166,6 +170,7 @@ export async function generateMetadata({
 			listingDetailHeroSynopsisBlurb(data?.overview) ??
 			data?.tagline ??
 			undefined,
+		...ogImageMetadataFields(ogTitleTvPath(id), data?.title ?? "TV show"),
 	};
 }
 

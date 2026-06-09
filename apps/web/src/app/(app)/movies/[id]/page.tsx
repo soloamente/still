@@ -33,6 +33,10 @@ import {
 import { parseMovieDetailView } from "@/lib/movie-detail-view";
 import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
 import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
+import {
+	ogImageMetadataFields,
+	ogTitleMoviePath,
+} from "@/lib/og/og-image-metadata";
 import { serverApi } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
@@ -61,6 +65,7 @@ export async function generateMetadata({
 			listingDetailHeroSynopsisBlurb(data?.overview) ??
 			data?.tagline ??
 			undefined,
+		...ogImageMetadataFields(ogTitleMoviePath(id), data?.title ?? "Film"),
 	};
 }
 

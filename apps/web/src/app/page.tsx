@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { APP_METADATA_DEFAULT_TITLE } from "@/lib/app-brand";
+import {
+	APP_METADATA_DEFAULT_TITLE,
+	APP_METADATA_DESCRIPTION,
+	APP_NAME,
+} from "@/lib/app-brand";
+import {
+	OG_HOME_PATH,
+	ogImageMetadataFields,
+} from "@/lib/og/og-image-metadata";
 import { serverApi } from "@/lib/server-api";
+import { getSiteOrigin } from "@/lib/site-origin";
 import { LandingFeatures } from "./_marketing/landing-features";
 import { LandingFlows } from "./_marketing/landing-flows";
 import { LandingFooter } from "./_marketing/landing-footer";
@@ -17,6 +26,20 @@ export const metadata: Metadata = {
 	title: APP_METADATA_DEFAULT_TITLE,
 	description:
 		"Log every film you watch, rate it, share it. A modern social home for cinephiles — diaries, reviews, lists, and community.",
+	openGraph: {
+		type: "website",
+		url: getSiteOrigin(),
+		siteName: APP_NAME,
+		title: APP_METADATA_DEFAULT_TITLE,
+		description: APP_METADATA_DESCRIPTION,
+		...ogImageMetadataFields(OG_HOME_PATH).openGraph,
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: APP_METADATA_DEFAULT_TITLE,
+		description: APP_METADATA_DESCRIPTION,
+		...ogImageMetadataFields(OG_HOME_PATH).twitter,
+	},
 };
 
 export const dynamic = "force-dynamic";

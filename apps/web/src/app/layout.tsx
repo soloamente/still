@@ -16,6 +16,11 @@ import {
 	APP_METADATA_TITLE_TEMPLATE,
 	APP_NAME,
 } from "@/lib/app-brand";
+import {
+	OG_DEFAULT_PATH,
+	ogImageMetadataFields,
+} from "@/lib/og/og-image-metadata";
+import { getSiteOrigin } from "@/lib/site-origin";
 
 /**
  * UI sans: **SF Pro Rounded** from `public/fonts/SF_Pro_Rounded` (next/font `localFont`),
@@ -98,12 +103,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+	metadataBase: new URL(getSiteOrigin()),
 	title: {
 		default: APP_METADATA_DEFAULT_TITLE,
 		template: APP_METADATA_TITLE_TEMPLATE,
 	},
 	description: APP_METADATA_DESCRIPTION,
 	applicationName: APP_NAME,
+	openGraph: {
+		type: "website",
+		locale: "en_US",
+		siteName: APP_NAME,
+		title: APP_METADATA_DEFAULT_TITLE,
+		description: APP_METADATA_DESCRIPTION,
+		...ogImageMetadataFields(OG_DEFAULT_PATH).openGraph,
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: APP_METADATA_DEFAULT_TITLE,
+		description: APP_METADATA_DESCRIPTION,
+		...ogImageMetadataFields(OG_DEFAULT_PATH).twitter,
+	},
 };
 
 export const viewport: Viewport = {

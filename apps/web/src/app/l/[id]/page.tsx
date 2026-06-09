@@ -27,6 +27,7 @@ import {
 	MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
 	MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS,
 } from "@/lib/movie-detail-sections";
+import { ogImageMetadataFields, ogListPath } from "@/lib/og/og-image-metadata";
 
 export const dynamic = "force-dynamic";
 
@@ -60,11 +61,12 @@ export async function generateMetadata({
 			description: description?.slice(0, 200),
 			url: canonical,
 			type: "article",
+			...ogImageMetadataFields(ogListPath(id), title).openGraph,
 		},
 		twitter: {
-			card: description ? "summary_large_image" : "summary",
 			title,
 			description: description?.slice(0, 200),
+			...ogImageMetadataFields(ogListPath(id), title).twitter,
 		},
 	};
 }

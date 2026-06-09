@@ -27,6 +27,36 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-06-09-share-previews",
+		versionLabel: "0.2.4",
+		dateLabel: "June 9, 2026",
+		headline: "Link share previews",
+		summary:
+			"Pasting Sense links into messages and social apps now shows a proper preview image — minimal film art, taste cards, and list covers.",
+		items: [
+			{
+				title: "Home & landing",
+				body: "Sharing the site or your home catalogue shows a popular film still with the Sense wordmark — or a branded fallback when artwork is unavailable.",
+			},
+			{
+				title: "Film & TV detail",
+				body: "Movie and show links preview with a backdrop still and a small Sense mark in the corner — title and description stay in the link text, not painted on the image.",
+			},
+			{
+				title: "Profiles & lists",
+				body: "Public profile links use your taste card preview. Public lists use the list cover (custom upload or pinned title) with the same minimal Sense mark.",
+			},
+			{
+				title: "Taste comparison links",
+				body: "When you copy a comparison from Compare taste, the link opens a shareable page with the compatibility card preview — then takes you to the overlap sheet on the profile.",
+			},
+			{
+				title: "Everywhere else",
+				body: "Diary, settings, and other routes inherit a simple Sense-branded default so links never ship without a preview image.",
+			},
+		],
+	},
+	{
 		id: "2026-06-09-home-reviews-detail",
 		versionLabel: "0.2.3",
 		dateLabel: "June 9, 2026",
