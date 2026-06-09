@@ -339,6 +339,43 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 		},
 	)
 	.post(
+		"/users/:id/pro",
+		async ({ user: viewer, params, body, status }) => {
+			try {
+				await requirePermission({ user: viewer }, { user: ["pro"] });
+			} catch (e) {
+				return forbidden(status, e);
+			}
+			if (!viewer) return status(401, "Sign in");
+			const [target] = await db
+				.select({ id: user.id, role: user.role })
+				.from(user)
+				.where(eq(user.id, params.id));
+			if (!target) return status(404, "User not found");
+			if (!outranks(viewer.role, target.role)) {
+				return status(
+					403,
+					"Cannot act on a peer or higher-ranked staff member",
+				);
+			}
+			const updated = await db
+				.update(profile)
+				.set({ isPro: body.isPro, updatedAt: new Date() })
+				.where(eq(profile.userId, params.id))
+				.returning({ userId: profile.userId });
+			if (updated.length === 0) return status(404, "Profile not found");
+
+			await writeAuditLog({
+				actorId: viewer.id,
+				action: body.isPro ? "user.pro.grant" : "user.pro.revoke",
+				targetType: "user",
+				targetId: params.id,
+			});
+			return { ok: true };
+		},
+		{ body: t.Object({ isPro: t.Boolean() }) },
+	)
+	.post(
 		"/content/:type/:id/:op",
 		async ({ user: viewer, params, body, status }) => {
 			const { type, id, op } = params as {

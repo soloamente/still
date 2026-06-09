@@ -618,6 +618,86 @@ describe("POST /api/staff/users/:id/edit", () => {
 	});
 });
 
+describe("POST /api/staff/users/:id/pro", () => {
+	test("admin grants Pro -> 200, updates profile.isPro, audits user.pro.grant", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		state.profiles = {
+			"u-1": {
+				userId: "u-1",
+				handle: "h",
+				displayName: "H",
+				isPro: false,
+				isPrivate: false,
+				statsCache: {},
+			},
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/pro", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+				body: JSON.stringify({ isPro: true }),
+			}),
+		);
+		expect(res.status).toBe(200);
+		const upd = state.updates.find((u) => u.table === "profile");
+		expect(upd?.set.isPro).toBe(true);
+		expect(
+			state.audits.find((a) => a.action === "user.pro.grant"),
+		).toBeDefined();
+	});
+
+	test("admin revokes Pro -> 200, audits user.pro.revoke", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		state.profiles = {
+			"u-1": {
+				userId: "u-1",
+				handle: "h",
+				displayName: "H",
+				isPro: true,
+				isPrivate: false,
+				statsCache: {},
+			},
+		};
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/pro", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+				body: JSON.stringify({ isPro: false }),
+			}),
+		);
+		expect(res.status).toBe(200);
+		expect(
+			state.audits.find((a) => a.action === "user.pro.revoke"),
+		).toBeDefined();
+	});
+
+	test("admin acting on an owner -> 403 from outranks", async () => {
+		state.users = { "owner-1": { id: "owner-1", role: "owner" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/owner-1/pro", {
+				method: "POST",
+				headers: authHeaders("admin-1", "admin"),
+				body: JSON.stringify({ isPro: true }),
+			}),
+		);
+		expect(res.status).toBe(403);
+		expect(state.updates).toHaveLength(0);
+		expect(state.audits).toHaveLength(0);
+	});
+
+	test("moderator lacks user:pro -> 403", async () => {
+		state.users = { "u-1": { id: "u-1", role: "user" } };
+		const res = await makeApp().handle(
+			new Request("http://localhost/api/staff/users/u-1/pro", {
+				method: "POST",
+				headers: authHeaders("mod-1", "moderator"),
+				body: JSON.stringify({ isPro: true }),
+			}),
+		);
+		expect(res.status).toBe(403);
+	});
+});
+
 describe("POST /api/staff/content/:type/:id/:op", () => {
 	test("moderator can hide a post -> 200, updates post.removedAt, audits content.hide", async () => {
 		state.content = { post: new Set(["pst-1"]) };
