@@ -1,7 +1,8 @@
 # Staff Panel — User Info & Advanced User Management — Design
 
 **Date:** 2026-06-08
-**Status:** Approved (brainstorming) — ready for implementation plan
+**Status:** Approved — brainstorming complete; implementation plan written
+**Plan:** `docs/superpowers/plans/2026-06-08-staff-user-info-and-management.md`
 **Scope:** First of a planned sequence of staff-panel sub-projects (see "Roadmap" below).
 This one extends the existing Users tab with richer per-user information and four new
 staff powers: profile editing, internal notes, Pro toggling, and impersonation.
@@ -24,9 +25,9 @@ Two gaps prompted this spec:
 
 ## Roadmap (for context — not all built now)
 
-This is sub-project 1 of 6 identified during brainstorming, each to get its own
+This is sub-project **1 of 4** identified during brainstorming, each to get its own
 spec → plan → implementation cycle:
-1. **User info & advanced user management** (this spec)
+1. **User info & advanced user management** (this spec — includes impersonation)
 2. Reports/flagging system (full: user-facing report flow + staff queue)
 3. Chat moderation
 4. Editorial tools (featured news/lists, badge management)
@@ -43,8 +44,9 @@ it's a `user:*` permission alongside edit/note/pro.)
   subscription, or carry confidential information).
 - **`user:impersonate`** stays **Owner-only** (per the original matrix) — the most
   sensitive power (full account access). The Owner may impersonate **any** account,
-  including other staff (no extra restriction beyond the existing `outranks` check,
-  which an Owner always satisfies).
+  including other Owners. The impersonate endpoint intentionally **skips `outranks`**
+  so owner-to-owner debugging is never blocked (the permission gate alone is
+  sufficient because only Owners hold `user:impersonate`).
 - **Role permissions display:** read-only — show what a role *can do* in plain
   language. No per-user à la carte permission overrides (would be an architecture
   change away from the deliberate "named bundles" model; out of scope).
@@ -113,9 +115,10 @@ unchanged.
 All follow the existing pattern: `requirePermission` → `outranks` (where acting on a
 target user) → mutate → `writeAuditLog` → rate-limit via `hit()` on write paths.
 
-- `GET /api/staff/users/:id` — full detail: profile fields, `statsCache`, the
-  requested role's permission list (derived from the `roles` map — read-only, no
-  extra DB access), and the note history. Perm `user:list`.
+- `GET /api/staff/users/:id` — user auth fields, profile fields, `statsCache`, and
+  the target role's permission summary (derived from the `roles` map — read-only, no
+  extra DB access). Perm `user:list`. Read-only — no audit log entry. Notes are
+  **not** bundled here; they load lazily via the notes endpoint when the row expands.
 - `POST /api/staff/users/:id/edit` — body: partial profile fields (displayName,
   handle, bio, pronouns, location, website, bannerUrl, accentColor — reuses existing
   validation helpers, e.g. handle format). Perm `user:edit` + `assertOutranks`.
@@ -127,17 +130,19 @@ target user) → mutate → `writeAuditLog` → rate-limit via `hit()` on write 
 - `POST /api/staff/users/:id/notes` — body `{ body: string }`, max 2000 chars. Perm
   `user:note`. Audit action `user.note.add` (references the note id in metadata).
 - `POST /api/staff/users/:id/impersonate` — wraps `auth.api.impersonateUser({ body: {
-  userId } })`. Perm `user:impersonate` (Owner-only by matrix) + `assertOutranks`.
-  Audit action `user.impersonate.start`.
+  userId } })`. Perm `user:impersonate` (Owner-only by matrix). **No `outranks`
+  gate** (see Decisions). Audit action `user.impersonate.start`.
 - `POST /api/staff/stop-impersonating` — wraps `auth.api.stopImpersonating()`.
   Audit action `user.impersonate.stop`. No extra permission check — anyone in an
   impersonated session can exit it.
 
-### d) Role-permissions helper (`packages/auth/src/permissions.ts` or a small new module)
+### d) Role-permissions helper (`packages/auth/src/permission-summary.ts`)
 
-A pure function `permissionsForRole(role): { resource, action, label }[]` that walks
-the `roles` map and returns a flat, human-readable list — consumed by both the new
-`GET /users/:id` endpoint and any future surface that needs "what can this role do".
+A pure function `permissionSummary(role): { resource, action, label }[]` backed by an
+`ACTION_LABELS` map. Walks the role's granted statements and returns a flat,
+human-readable list — consumed by `GET /users/:id` and any future surface that needs
+"what can this role do". Unit-tested to stay in sync when new actions are added to
+role bundles.
 
 ## UI (web) — `apps/web/src/components/staff/`
 
@@ -151,8 +156,9 @@ permission, mirroring the existing `canModerate`/`canSetRole` pattern):
   followers/following) from `statsCache`.
 - **"This role can…"** — plain-language list of the target's role permissions (always
   visible to any staff member who can see the row; pure display, server-derived).
-- **Notes** — chronological list (author name + relative timestamp + text) with an
-  inline textarea + submit, shown only with `user:note`.
+- **Notes** — fetched via `GET /users/:id/notes` on expand; chronological list (author
+  name + relative timestamp + text) with an inline textarea + submit. Section visible
+  only with `user:note` (Owner + Admin — Moderator/Support do not see notes).
 - **Pro toggle** — switch control, shown only with `user:pro`.
 - **"Edit profile"** button (only with `user:edit`) — opens a dialog with the
   editable profile fields, reusing existing form patterns from the profile-settings
@@ -175,8 +181,8 @@ A persistent bar shown across the app whenever the session carries `impersonated
   `outranks` enforced, for each new endpoint; notes are append-only (no PATCH/DELETE
   routes exist); impersonation produces a session with `impersonatedBy` set and
   `stopImpersonating` restores the original session.
-- `permissionsForRole` (or equivalent helper): unit test asserting the flat list
-  matches the matrix per role.
+- `permission-summary.test.ts`: unit test asserting `permissionSummary` matches the
+  matrix per role and stays in sync with `ACTION_LABELS`.
 - Web: type-check clean; conditional-rendering checks for permission-gated controls
   (buttons/sections appear only for the right role) following existing component test
   patterns in `apps/web/src/components/staff/`.
@@ -190,5 +196,16 @@ process used for the redirect-loop fix (`c248990`).
 - Per-user à la carte permission overrides (explicitly rejected — stays role-based).
 - Session/login activity (IP, user-agent, last-seen) — not selected during
   brainstorming; can be added to a future iteration of the user-detail view.
-- The other 5 roadmap sub-projects (reports, chat moderation, editorial tools) — each
+- The other 3 roadmap sub-projects (reports, chat moderation, editorial tools) — each
   gets its own spec.
+
+## Implementation
+
+Task-by-task breakdown (18 tasks: schema → auth → server → web UI → verification):
+`docs/superpowers/plans/2026-06-08-staff-user-info-and-management.md`.
+
+**Progress at spec finalization (2026-06-09):** Tasks 1–11 shipped (db migration,
+`edit`/`note`/`pro` permissions, `permissionSummary`, staff routes + tests,
+`impersonationSessionDuration`). Web UI and verification (Tasks 12–18: shared
+`errorMessage` helper, impersonation banner, `StaffUserDetail` sub-components,
+expandable rows, full verification pass) remain.
