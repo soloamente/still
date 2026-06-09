@@ -1,6 +1,5 @@
 "use client";
 
-import { env } from "@still/env/web";
 import { Button } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import { Check, CircleAlert, FileSpreadsheet, Upload } from "lucide-react";
@@ -12,6 +11,16 @@ import {
 	MeSettingsSection,
 } from "@/components/profile/me-settings-layout";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import { stillApiOrigin } from "@/lib/still-api-origin";
+
+/** Recognized Letterboxd export filenames (basename match, case-insensitive). */
+const LETTERBOXD_RECOGNIZED_FILES = new Set([
+	"diary.csv",
+	"ratings.csv",
+	"watchlist.csv",
+	"reviews.csv",
+	"films.csv",
+]);
 
 /** Files we surface in the UI; other `.csv` files in the export folder are ignored. */
 const LETTERBOXD_PICK_FILES = [
@@ -19,21 +28,52 @@ const LETTERBOXD_PICK_FILES = [
 		fileName: "diary.csv",
 		title: "diary.csv",
 		detail: "Watch dates, rewatches, and diary entries",
-		required: true,
+		label: "Recommended",
 	},
 	{
 		fileName: "ratings.csv",
 		title: "ratings.csv",
-		detail: "Star ratings — merged into matching films",
-		required: false,
+		detail: "Star ratings — merged into matching diary rows",
+		label: "Optional",
+	},
+	{
+		fileName: "watchlist.csv",
+		title: "watchlist.csv",
+		detail: "Films to watch — skipped when already in your diary",
+		label: "Optional",
+	},
+	{
+		fileName: "reviews.csv",
+		title: "reviews.csv",
+		detail: "Long-form reviews with ratings and dates",
+		label: "Optional",
+	},
+	{
+		fileName: "films.csv",
+		title: "films.csv",
+		detail: "Liked films from the likes/ folder in your export",
+		label: "Optional",
 	},
 ] as const;
+
+type ImportCountGroup = {
+	imported?: number;
+	updated?: number;
+	skipped: number;
+	unmatched: number;
+	favorited?: number;
+	logsCreated?: number;
+};
 
 type ImportResult = {
 	imported: number;
 	skipped: number;
 	unmatched: number;
 	totalRows?: number;
+	diary?: ImportCountGroup;
+	watchlist?: ImportCountGroup;
+	reviews?: ImportCountGroup;
+	likes?: ImportCountGroup;
 };
 
 function fileKey(file: File) {
@@ -50,13 +90,42 @@ function mergePickedFiles(prev: File[], incoming: File[]): File[] {
 	return [...map.values()];
 }
 
-function hasDiaryCsv(files: File[]) {
-	return files.some((f) => f.name.toLowerCase() === "diary.csv");
+function hasRecognizedLetterboxdFile(files: File[]) {
+	return files.some((f) =>
+		LETTERBOXD_RECOGNIZED_FILES.has(f.name.toLowerCase()),
+	);
+}
+
+function formatImportToast(result: ImportResult) {
+	const parts: string[] = [];
+	if (result.diary?.imported) {
+		parts.push(
+			`${result.diary.imported} diary ${result.diary.imported === 1 ? "entry" : "entries"}`,
+		);
+	}
+	if (result.watchlist?.imported) {
+		parts.push(
+			`${result.watchlist.imported} watchlist ${result.watchlist.imported === 1 ? "title" : "titles"}`,
+		);
+	}
+	const reviewCount =
+		(result.reviews?.imported ?? 0) + (result.reviews?.updated ?? 0);
+	if (reviewCount > 0) {
+		parts.push(`${reviewCount} ${reviewCount === 1 ? "review" : "reviews"}`);
+	}
+	if (result.likes?.favorited) {
+		parts.push(
+			`${result.likes.favorited} ${result.likes.favorited === 1 ? "favorite" : "favorites"}`,
+		);
+	}
+	if (parts.length === 0) {
+		return "Letterboxd import finished — no new items added";
+	}
+	return `Imported ${parts.join(" · ")}`;
 }
 
 /**
- * Letterboxd CSV import (Sense Tier 0).
- * Letterboxd exports a folder of CSVs; patrons upload diary.csv (+ optional ratings.csv).
+ * Letterboxd CSV import — diary, watchlist, reviews, and liked films in one upload.
  */
 export function MeLetterboxdImport() {
 	const inputId = useId();
@@ -68,8 +137,9 @@ export function MeLetterboxdImport() {
 	const [lastResult, setLastResult] = useState<ImportResult | null>(null);
 
 	const selectedNames = new Set(selectedFiles.map((f) => f.name.toLowerCase()));
-	const canImport = hasDiaryCsv(selectedFiles) && !isImporting;
-	const missingDiary = selectedFiles.length > 0 && !hasDiaryCsv(selectedFiles);
+	const canImport = hasRecognizedLetterboxdFile(selectedFiles) && !isImporting;
+	const missingRecognized =
+		selectedFiles.length > 0 && !hasRecognizedLetterboxdFile(selectedFiles);
 
 	const resultMotion = reduceMotion
 		? { duration: 0 }
@@ -91,7 +161,7 @@ export function MeLetterboxdImport() {
 			const form = new FormData();
 			for (const file of selectedFiles) form.append("files", file);
 			const res = await fetch(
-				`${env.NEXT_PUBLIC_SERVER_URL}/api/import/letterboxd`,
+				new URL("/api/import/letterboxd", stillApiOrigin()),
 				{
 					method: "POST",
 					body: form,
@@ -114,9 +184,13 @@ export function MeLetterboxdImport() {
 				skipped: data?.skipped ?? 0,
 				unmatched: data?.unmatched ?? 0,
 				totalRows: data?.totalRows,
+				diary: data?.diary,
+				watchlist: data?.watchlist,
+				reviews: data?.reviews,
+				likes: data?.likes,
 			};
 			setLastResult(result);
-			toast.success(`Imported ${result.imported} films into your diary`);
+			toast.success(formatImportToast(result));
 			setSelectedFiles([]);
 			if (inputRef.current) inputRef.current.value = "";
 		} catch (err) {
@@ -165,15 +239,15 @@ export function MeLetterboxdImport() {
 							title: "Add files below",
 							body: (
 								<>
-									Select{" "}
+									Select any recognized CSVs below —{" "}
 									<span className="font-mono text-foreground/90 text-xs">
 										diary.csv
 									</span>{" "}
-									(required). Add{" "}
+									plus optional watchlist, reviews, ratings, and liked{" "}
 									<span className="font-mono text-foreground/90 text-xs">
-										ratings.csv
-									</span>{" "}
-									if your diary rows have no stars.
+										films.csv
+									</span>
+									.
 								</>
 							),
 						},
@@ -227,15 +301,9 @@ export function MeLetterboxdImport() {
 									<div className="min-w-0 space-y-0.5">
 										<p className="font-medium text-foreground text-sm">
 											<span className="font-mono text-xs">{spec.title}</span>
-											{spec.required ? (
-												<span className="ml-2 font-normal font-sans text-muted-foreground text-xs">
-													Required
-												</span>
-											) : (
-												<span className="ml-2 font-normal font-sans text-muted-foreground text-xs">
-													Recommended
-												</span>
-											)}
+											<span className="ml-2 font-normal font-sans text-muted-foreground text-xs">
+												{spec.label}
+											</span>
 										</p>
 										<p className="text-muted-foreground text-xs leading-relaxed">
 											{spec.detail}
@@ -246,7 +314,9 @@ export function MeLetterboxdImport() {
 						})}
 					</ul>
 					<p className="text-muted-foreground text-xs leading-relaxed">
-						Other export files (watchlist, reviews, likes) are not imported yet.
+						Imported: diary, ratings, watchlist, reviews, liked films. Not yet:
+						comments, custom lists, liked reviews/lists, or TV (use Anilist
+						import).
 					</p>
 				</div>
 
@@ -331,7 +401,7 @@ export function MeLetterboxdImport() {
 						</ul>
 					) : null}
 
-					{missingDiary ? (
+					{missingRecognized ? (
 						<p className="flex items-start gap-2 text-muted-foreground text-sm">
 							<CircleAlert
 								className="mt-0.5 size-4 shrink-0 text-foreground/70"
@@ -339,11 +409,15 @@ export function MeLetterboxdImport() {
 								aria-hidden
 							/>
 							<span>
-								Add{" "}
+								Add at least one recognized file — for example{" "}
 								<span className="font-mono text-foreground/90 text-xs">
 									diary.csv
 								</span>{" "}
-								from the export folder — it is required for the import.
+								or{" "}
+								<span className="font-mono text-foreground/90 text-xs">
+									watchlist.csv
+								</span>
+								.
 							</span>
 						</p>
 					) : null}
@@ -388,22 +462,106 @@ export function MeLetterboxdImport() {
 							role="status"
 						>
 							<p className="font-medium text-foreground text-sm">Last import</p>
-							<dl className="mt-2 grid grid-cols-3 gap-3">
+							<div className="mt-3 space-y-4">
 								{[
-									{ label: "Added", value: lastResult.imported },
-									{ label: "Skipped", value: lastResult.skipped },
-									{ label: "Unmatched", value: lastResult.unmatched },
-								].map((row) => (
-									<div key={row.label} className="space-y-0.5">
-										<dt className="text-muted-foreground text-xs">
-											{row.label}
-										</dt>
-										<dd className="font-medium text-foreground text-lg tabular-nums tracking-tight">
-											{row.value}
-										</dd>
+									{
+										title: "Diary",
+										rows: [
+											{
+												label: "Added",
+												value:
+													lastResult.diary?.imported ?? lastResult.imported,
+											},
+											{
+												label: "Skipped",
+												value: lastResult.diary?.skipped ?? lastResult.skipped,
+											},
+											{
+												label: "Unmatched",
+												value:
+													lastResult.diary?.unmatched ?? lastResult.unmatched,
+											},
+										],
+									},
+									{
+										title: "Watchlist",
+										rows: [
+											{
+												label: "Added",
+												value: lastResult.watchlist?.imported ?? 0,
+											},
+											{
+												label: "Skipped",
+												value: lastResult.watchlist?.skipped ?? 0,
+											},
+											{
+												label: "Unmatched",
+												value: lastResult.watchlist?.unmatched ?? 0,
+											},
+										],
+									},
+									{
+										title: "Reviews",
+										rows: [
+											{
+												label: "Added",
+												value: lastResult.reviews?.imported ?? 0,
+											},
+											{
+												label: "Updated",
+												value: lastResult.reviews?.updated ?? 0,
+											},
+											{
+												label: "Skipped",
+												value: lastResult.reviews?.skipped ?? 0,
+											},
+											{
+												label: "Unmatched",
+												value: lastResult.reviews?.unmatched ?? 0,
+											},
+										],
+									},
+									{
+										title: "Favorites",
+										rows: [
+											{
+												label: "Favorited",
+												value: lastResult.likes?.favorited ?? 0,
+											},
+											{
+												label: "Logs created",
+												value: lastResult.likes?.logsCreated ?? 0,
+											},
+											{
+												label: "Skipped",
+												value: lastResult.likes?.skipped ?? 0,
+											},
+											{
+												label: "Unmatched",
+												value: lastResult.likes?.unmatched ?? 0,
+											},
+										],
+									},
+								].map((section) => (
+									<div key={section.title} className="space-y-2">
+										<p className="font-medium text-foreground text-xs">
+											{section.title}
+										</p>
+										<dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+											{section.rows.map((row) => (
+												<div key={row.label} className="space-y-0.5">
+													<dt className="text-muted-foreground text-xs">
+														{row.label}
+													</dt>
+													<dd className="font-medium text-base text-foreground tabular-nums tracking-tight">
+														{row.value}
+													</dd>
+												</div>
+											))}
+										</dl>
 									</div>
 								))}
-							</dl>
+							</div>
 							<p className="mt-3 text-muted-foreground text-xs leading-relaxed">
 								Your taste signature updates after import. Check your diary or
 								profile if anything looks off.

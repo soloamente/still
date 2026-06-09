@@ -1,47 +1,20 @@
-import { badge, db, log, movie, profile } from "@still/db";
-import { and, eq, ilike, sql } from "drizzle-orm";
+import { badge, db, profile } from "@still/db";
+import { eq } from "drizzle-orm";
 import { Elysia } from "elysia";
 
 import { context } from "../context";
 import { awardBadgeToUser } from "../jobs/badge-evaluator";
 import { applyAnilistImport } from "../lib/anilist-import-apply";
 import { parseAnilistImportJson } from "../lib/anilist-import-json";
-import { makeId } from "../lib/cuid";
-import { ensureMovieCached } from "../lib/ensure-movie-cached";
-import {
-	letterboxdImportDedupeKey,
-	letterboxdStarsToStoredTenths,
-	mergeLetterboxdImportRows,
-	parseLetterboxdCsv,
-} from "../lib/letterboxd-csv";
+import { hasRecognizedLetterboxdFile } from "../lib/letterboxd-file-classifier";
+import { applyLetterboxdImport } from "../lib/letterboxd-import-apply";
 import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
 import { resolveAnilistMediaToTmdbTvId } from "../lib/resolve-anilist-tv-tmdb";
-import { tmdbApi } from "../lib/tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 import { ensureTvCached } from "../lib/tv-cache";
-
-async function resolveMovieTmdbId(
-	name: string,
-	year: number | null,
-): Promise<number | null> {
-	if (year != null) {
-		const [byYear] = await db
-			.select({ tmdbId: movie.tmdbId })
-			.from(movie)
-			.where(and(ilike(movie.title, name), eq(movie.year, year)))
-			.limit(1);
-		if (byYear) return byYear.tmdbId;
-	}
-	const [byTitle] = await db
-		.select({ tmdbId: movie.tmdbId })
-		.from(movie)
-		.where(ilike(movie.title, name))
-		.limit(1);
-	return byTitle?.tmdbId ?? null;
-}
 
 /**
  * Sense Tier 0 — Letterboxd CSV import (diary export).
@@ -75,8 +48,15 @@ export const importRoute = new Elysia({
 
 		if (csvFiles.length === 0) return status(400, "Missing CSV file(s)");
 
+		if (!hasRecognizedLetterboxdFile(csvFiles.map((f) => f.name))) {
+			return status(
+				400,
+				"No recognized Letterboxd CSV files — include diary.csv, watchlist.csv, reviews.csv, films.csv, or ratings.csv",
+			);
+		}
+
 		let totalBytes = 0;
-		const parsedBatches: ReturnType<typeof parseLetterboxdCsv>[] = [];
+		const uploaded: { name: string; text: string }[] = [];
 		for (const file of csvFiles) {
 			const name = file.name.toLowerCase();
 			if (!name.endsWith(".csv") && file.type !== "text/csv") {
@@ -86,89 +66,27 @@ export const importRoute = new Elysia({
 			if (totalBytes > 8_000_000) {
 				return status(413, "Files too large (max 8MB total)");
 			}
-			const rows = parseLetterboxdCsv(await file.text());
-			if (rows.length > 0) parsedBatches.push(rows);
+			uploaded.push({ name: file.name, text: await file.text() });
 		}
 
-		const parsed = mergeLetterboxdImportRows(parsedBatches);
-		if (parsed.length === 0) {
+		let applyResult: Awaited<ReturnType<typeof applyLetterboxdImport>>;
+		try {
+			applyResult = await applyLetterboxdImport({
+				userId: user.id,
+				files: uploaded,
+			});
+		} catch (err) {
+			console.error("[import/letterboxd] apply failed", err);
+			return status(500, {
+				error: "Import failed — try again in a moment",
+			});
+		}
+
+		if (applyResult.totalRows === 0) {
 			return status(
 				400,
-				"No diary rows found — use diary.csv and/or ratings.csv from your Letterboxd export folder",
+				"No importable rows found — check your Letterboxd export CSV files",
 			);
-		}
-
-		const seenKeys = new Set<string>();
-		let imported = 0;
-		let skipped = 0;
-		let unmatched = 0;
-
-		for (const row of parsed) {
-			const dedupeKey = letterboxdImportDedupeKey(row);
-			if (seenKeys.has(dedupeKey)) {
-				skipped++;
-				continue;
-			}
-			seenKeys.add(dedupeKey);
-
-			let tmdbId = await resolveMovieTmdbId(row.name, row.year);
-			if (tmdbId == null) {
-				try {
-					const search = await tmdbApi.searchMovies(row.name, 1);
-					const candidates = search.results ?? [];
-					const hit =
-						row.year != null
-							? candidates.find((c) =>
-									c.release_date?.startsWith(String(row.year)),
-								)
-							: candidates[0];
-					if (hit?.id) tmdbId = hit.id;
-				} catch (err) {
-					console.error("[import/letterboxd] TMDb search failed", err);
-				}
-			}
-			if (tmdbId == null) {
-				unmatched++;
-				continue;
-			}
-
-			await ensureMovieCached(tmdbId);
-
-			const watchedAt = row.watchedAt ?? new Date();
-			const [existing] = await db
-				.select({ id: log.id })
-				.from(log)
-				.where(
-					and(
-						eq(log.userId, user.id),
-						eq(log.movieId, tmdbId),
-						sql`date_trunc('day', ${log.watchedAt}) = date_trunc('day', ${watchedAt}::timestamp)`,
-					),
-				)
-				.limit(1);
-			if (existing) {
-				skipped++;
-				continue;
-			}
-
-			const rating =
-				row.ratingStars != null
-					? letterboxdStarsToStoredTenths(row.ratingStars)
-					: null;
-
-			await db.insert(log).values({
-				id: makeId("log"),
-				userId: user.id,
-				movieId: tmdbId,
-				watchedAt,
-				rating,
-				rewatch: row.rewatch,
-				note: row.letterboxdUri
-					? `Imported from Letterboxd (${row.letterboxdUri})`
-					: "Imported from Letterboxd",
-				watchVenue: "streaming",
-			});
-			imported++;
 		}
 
 		const [prof] = await db
@@ -177,51 +95,79 @@ export const importRoute = new Elysia({
 			.where(eq(profile.userId, user.id))
 			.limit(1);
 
-		if (imported > 0) {
-			await recomputeUserTasteSignature(user.id).catch((err) => {
-				console.error("[import/letterboxd] taste recompute failed", err);
-			});
+		const touched =
+			applyResult.diary.imported +
+			applyResult.ratingFilled +
+			applyResult.watchlist.imported +
+			applyResult.reviews.imported +
+			applyResult.reviews.updated +
+			applyResult.likes.favorited;
+
+		if (touched > 0) {
+			const tasteChanged =
+				applyResult.diary.imported > 0 ||
+				applyResult.ratingFilled > 0 ||
+				applyResult.reviews.imported > 0 ||
+				applyResult.reviews.updated > 0;
+			if (tasteChanged) {
+				await recomputeUserTasteSignature(user.id).catch((err) => {
+					console.error("[import/letterboxd] taste recompute failed", err);
+				});
+			}
 			const diaryHref = prof?.handle ? `/profile/${prof.handle}` : "/diary";
+			const summary = [
+				`${applyResult.diary.imported} diary`,
+				`${applyResult.watchlist.imported} watchlist`,
+				`${applyResult.reviews.imported + applyResult.reviews.updated} reviews`,
+				`${applyResult.likes.favorited} favorites`,
+			].join(" · ");
 			await deliverNotification({
 				userId: user.id,
 				kind: "import.completed",
 				title: "Letterboxd import complete",
-				body: `Added ${imported} ${imported === 1 ? "film" : "films"} to your diary.`,
+				body: `Letterboxd import complete — ${summary}`,
 				payload: {
-					imported,
+					imported: applyResult.diary.imported,
 					source: "letterboxd",
 					href: diaryHref,
+					diary: applyResult.diary,
+					watchlist: applyResult.watchlist,
+					reviews: applyResult.reviews,
+					likes: applyResult.likes,
 				},
 			});
-			const [importBadge] = await db
-				.select()
-				.from(badge)
-				.where(eq(badge.id, "prestige_diaries_merged"))
-				.limit(1);
-			if (importBadge) {
-				await awardBadgeToUser(
-					user.id,
-					importBadge,
-					{
-						imported,
-						source: "letterboxd",
-					},
-					{ suppressInbox: true },
-				);
+			if (applyResult.diary.imported > 0) {
+				const [importBadge] = await db
+					.select()
+					.from(badge)
+					.where(eq(badge.id, "prestige_diaries_merged"))
+					.limit(1);
+				if (importBadge) {
+					await awardBadgeToUser(
+						user.id,
+						importBadge,
+						{
+							imported: applyResult.diary.imported,
+							source: "letterboxd",
+						},
+						{ suppressInbox: true },
+					);
+				}
 			}
 			void recordProductEvent(user.id, "import.letterboxd.completed", {
-				imported,
-				skipped,
-				unmatched,
-				totalRows: parsed.length,
+				imported: applyResult.diary.imported,
+				skipped: applyResult.diary.skipped,
+				unmatched: applyResult.diary.unmatched,
+				totalRows: applyResult.totalRows,
+				diary: applyResult.diary,
+				watchlist: applyResult.watchlist,
+				reviews: applyResult.reviews,
+				likes: applyResult.likes,
 			});
 		}
 
 		return {
-			imported,
-			skipped,
-			unmatched,
-			totalRows: parsed.length,
+			...applyResult,
 			profileHandle: prof?.handle ?? null,
 		};
 	})
