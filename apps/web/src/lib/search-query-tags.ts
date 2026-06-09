@@ -255,7 +255,19 @@ export function upsertTag(tags: SearchTag[], next: SearchTag): SearchTag[] {
 /** Middle-dot separator for recent-search round-trip (tags then trailing free text). */
 export const STRUCTURED_QUERY_SEP = " · ";
 
+/** Stable `?search=` token — studio id survives without the curated studio list. */
 function tagSegmentLabel(tag: SearchTag): string {
+	if (tag.kind === "studio") return `studio:${tag.id}`;
+	if (tag.kind === "media") {
+		return tag.listingKind === "movie" ? "Films" : "TV shows";
+	}
+	if (tag.kind === "genre") return tag.name;
+	if (tag.kind === "curated") return tag.label;
+	return "Lists";
+}
+
+/** Patron-facing chip copy — names, not `studio:41077` tokens. */
+export function displayTagSegmentLabel(tag: SearchTag): string {
 	if (tag.kind === "studio") return tag.name;
 	if (tag.kind === "media") {
 		return tag.listingKind === "movie" ? "Films" : "TV shows";
@@ -325,6 +337,21 @@ function parseStructuredQuerySegments(
 		const lower = seg.toLowerCase();
 
 		if (!tags.some((t) => t.kind === "studio")) {
+			// Stable committed-search token — parses before `/api/movies/studios` hydrates.
+			const studioIdMatch = /^studio:(\d+)$/i.exec(seg);
+			if (studioIdMatch) {
+				const id = Number(studioIdMatch[1]);
+				if (Number.isFinite(id) && id > 0) {
+					const known = studios.find((s) => s.id === id);
+					tags.push({
+						kind: "studio",
+						id,
+						name: known?.name ?? "Studio",
+						logoUrl: known?.logoUrl ?? null,
+					});
+					continue;
+				}
+			}
 			const studio = studios.find(
 				(s) =>
 					s.name.toLowerCase() === lower ||

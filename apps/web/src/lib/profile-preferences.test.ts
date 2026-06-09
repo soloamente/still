@@ -1,11 +1,13 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER,
 	PROFILE_PREF_CATALOG_TMDB_LANGUAGE,
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
 	PROFILE_PREF_SHOW_ADULT_CONTENT,
 	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
 	PROFILE_PREF_SMOOTH_SCROLL,
+	readCastCrewMonochromeOnHoverPref,
 	readCatalogTmdbLanguagePref,
 	readShowAdultContentPref,
 	readShowBirthDateOnProfilePref,
@@ -68,6 +70,21 @@ describe("readShowBirthDateOnProfilePref", () => {
 		expect(
 			readShowBirthDateOnProfilePref({
 				[PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE]: true,
+			}),
+		).toBe(true);
+	});
+});
+
+describe("readCastCrewMonochromeOnHoverPref", () => {
+	test("defaults to false", () => {
+		expect(readCastCrewMonochromeOnHoverPref(null)).toBe(false);
+		expect(readCastCrewMonochromeOnHoverPref({})).toBe(false);
+	});
+
+	test("reads explicit true", () => {
+		expect(
+			readCastCrewMonochromeOnHoverPref({
+				[PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER]: true,
 			}),
 		).toBe(true);
 	});

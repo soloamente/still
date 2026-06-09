@@ -85,7 +85,8 @@ export function MovieDetailStreaming({
 							{active ? (
 								<motion.span
 									layoutId="movie-streaming-provider-pill"
-									className="absolute inset-0 z-0 rounded-2xl bg-muted/50"
+									// Canvas on `bg-card` — `bg-muted/*` vanishes on Cozy where `--muted` === `--card`.
+									className="absolute inset-0 z-0 rounded-2xl bg-background"
 									transition={pillTransition}
 								/>
 							) : null}

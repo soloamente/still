@@ -18,7 +18,7 @@ export function PersonCreditPortrait({
 	className?: string;
 	imageClassName?: string;
 	sizes?: string;
-	/** Credits catalog uses grayscale; the arc spotlight tints on hover. */
+	/** When true, headshots are grayscale until the parent `.group` is hovered. */
 	grayscale?: boolean;
 }) {
 	if (profilePath) {

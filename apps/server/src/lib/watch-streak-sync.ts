@@ -81,6 +81,10 @@ export async function syncWatchStreakForUser(
 ): Promise<StreakSnapshot> {
 	const prev = await loadUserStreakState(userId);
 	const activityDay = toUtcDayKey(watchedAt);
+	// Out-of-order `watched_at` (imports, backfills) needs a full diary rebuild.
+	if (prev.lastActiveDay && activityDay < prev.lastActiveDay) {
+		return backfillWatchStreakFromLogs(userId);
+	}
 	const next = applyQualifyingDay(prev, activityDay);
 	await saveUserStreakState(userId, next);
 	return toStreakSnapshot(next);
@@ -95,6 +99,57 @@ async function userHasDiaryLogs(userId: string): Promise<boolean> {
 	return row != null;
 }
 
+async function loadDiaryQualifyingDayKeys(userId: string): Promise<string[]> {
+	const rows = await db
+		.select({ watchedAt: log.watchedAt })
+		.from(log)
+		.where(eq(log.userId, userId));
+	return collectQualifyingDayKeys(rows.map((row) => row.watchedAt));
+}
+
+/** True when persisted streak counts lag behind diary history (heatmap still shows a solid run). */
+function streakDriftedFromDiary(
+	persisted: UserStreakState,
+	fromDiary: UserStreakState,
+): boolean {
+	if (fromDiary.currentStreak > persisted.currentStreak) return true;
+	const latestDiaryDay = fromDiary.lastActiveDay;
+	const lastPersistedDay = persisted.lastActiveDay;
+	if (latestDiaryDay && lastPersistedDay && latestDiaryDay > lastPersistedDay) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Repair `user_streak` when incremental updates diverged from diary day keys.
+ * Preserves shield / auto-grace metadata; never lowers a grace-bridged run.
+ */
+async function reconcileStreakWithDiaryIfNeeded(
+	userId: string,
+	persisted: UserStreakState,
+): Promise<UserStreakState> {
+	const dayKeys = await loadDiaryQualifyingDayKeys(userId);
+	const fromDiary = computeLivingStreakFromDayKeys(dayKeys, {
+		shieldsRemaining: persisted.shieldsRemaining,
+		autoGraceAvailable: persisted.autoGraceAvailable,
+	});
+
+	if (!streakDriftedFromDiary(persisted, fromDiary)) {
+		return persisted;
+	}
+
+	const next: UserStreakState = {
+		...fromDiary,
+		freezeCoversDay: persisted.freezeCoversDay,
+		shieldsRemaining: persisted.shieldsRemaining,
+		autoGraceAvailable: persisted.autoGraceAvailable,
+		longestStreak: Math.max(fromDiary.longestStreak, persisted.longestStreak),
+	};
+	await saveUserStreakState(userId, next);
+	return next;
+}
+
 /**
  * Patron-facing streak — backfills from diary when the row is empty but logs exist
  * (feature shipped after patrons already had filmography).
@@ -102,7 +157,7 @@ async function userHasDiaryLogs(userId: string): Promise<boolean> {
 export async function getWatchStreakSnapshot(
 	userId: string,
 ): Promise<StreakSnapshot> {
-	const state = await loadUserStreakState(userId);
+	let state = await loadUserStreakState(userId);
 	const needsBackfill =
 		state.lastActiveDay == null ||
 		(state.currentStreak === 0 && (await userHasDiaryLogs(userId)));
@@ -111,6 +166,7 @@ export async function getWatchStreakSnapshot(
 		return backfillWatchStreakFromLogs(userId);
 	}
 
+	state = await reconcileStreakWithDiaryIfNeeded(userId, state);
 	return toStreakSnapshot(state);
 }
 

@@ -2,8 +2,9 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { X } from "lucide-react";
-import Image from "next/image";
 
+import { SearchDialogStudioLogo } from "@/components/home/search-dialog-studio-logo";
+import { searchDialogStudioHasLogo } from "@/lib/search-dialog-studio-logo";
 import type { SearchTag } from "@/lib/search-query-tags";
 
 function pillLabel(tag: SearchTag): string {
@@ -31,7 +32,8 @@ export function SearchTagPill({
 	density?: "default" | "compact";
 }) {
 	const label = pillLabel(tag);
-	const hasLogo = tag.kind === "studio" && Boolean(tag.logoUrl);
+	const hasLogo =
+		tag.kind === "studio" && searchDialogStudioHasLogo(tag.id, tag.logoUrl);
 	const editable = variant === "editable" && onRemove != null;
 	const compact = density === "compact";
 
@@ -44,17 +46,11 @@ export function SearchTagPill({
 				editable ? "pr-1" : compact ? "pr-2.5" : "pr-4",
 			)}
 		>
-			{hasLogo && tag.kind === "studio" && tag.logoUrl ? (
-				<Image
-					src={tag.logoUrl}
-					alt=""
-					width={20}
-					height={20}
-					className={cn(
-						"shrink-0 object-contain",
-						compact ? "size-4" : "size-5",
-					)}
-					unoptimized
+			{hasLogo && tag.kind === "studio" ? (
+				<SearchDialogStudioLogo
+					studioId={tag.id}
+					fallbackLogoUrl={tag.logoUrl}
+					variant={compact ? "pillCompact" : "pill"}
 				/>
 			) : null}
 			<span

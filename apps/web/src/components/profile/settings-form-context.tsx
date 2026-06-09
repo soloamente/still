@@ -47,6 +47,7 @@ import {
 } from "@/lib/profile-appearance";
 import {
 	PROFILE_PREF_APP_THEME,
+	PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER,
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
 	PROFILE_PREF_CATALOG_TMDB_LANGUAGE,
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
@@ -54,6 +55,7 @@ import {
 	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
 	PROFILE_PREF_SMOOTH_SCROLL,
 	readAppThemePref,
+	readCastCrewMonochromeOnHoverPref,
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbLanguagePref,
 	readCatalogTmdbWatchRegionPref,
@@ -62,6 +64,7 @@ import {
 	readSmoothScrollPref,
 } from "@/lib/profile-preferences";
 import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
+import { invalidateCastCrewMonochromePrefCache } from "@/lib/use-cast-crew-monochrome-pref";
 import { invalidateCatalogTmdbLanguageCache } from "@/lib/use-catalog-tmdb-language";
 import { clearSearchDialogGenreCache } from "@/lib/use-search-dialog-genres";
 
@@ -115,6 +118,8 @@ type SettingsFormContextValue = {
 	setTheaterAudio: (value: boolean) => void;
 	smoothScroll: boolean;
 	setSmoothScroll: (value: boolean) => void;
+	castCrewMonochromeOnHover: boolean;
+	setCastCrewMonochromeOnHover: (value: boolean) => void;
 	catalogMonochromePeersOnHover: boolean;
 	setCatalogMonochromePeersOnHover: (value: boolean) => void;
 	catalogTmdbWatchRegion: string;
@@ -177,6 +182,9 @@ export function SettingsFormProvider({
 	);
 	const [smoothScroll, setSmoothScroll] = useState(() =>
 		readSmoothScrollPref(profile.preferences ?? null),
+	);
+	const [castCrewMonochromeOnHover, setCastCrewMonochromeOnHover] = useState(
+		() => readCastCrewMonochromeOnHoverPref(profile.preferences ?? null),
 	);
 	const [catalogMonochromePeersOnHover, setCatalogMonochromePeersOnHover] =
 		useState(() =>
@@ -242,6 +250,11 @@ export function SettingsFormProvider({
 			typeof stored.smoothScroll === "boolean"
 				? stored.smoothScroll
 				: readSmoothScrollPref(profile.preferences ?? null),
+		);
+		setCastCrewMonochromeOnHover(
+			typeof stored.castCrewMonochromeOnHover === "boolean"
+				? stored.castCrewMonochromeOnHover
+				: readCastCrewMonochromeOnHoverPref(profile.preferences ?? null),
 		);
 		setCatalogMonochromePeersOnHover(
 			typeof stored.catalogMonochromePeersOnHover === "boolean"
@@ -310,6 +323,8 @@ export function SettingsFormProvider({
 			isPrivate !== Boolean(profile.isPrivate) ||
 			theaterAudio !== Boolean(profile.preferences?.theaterAudio === true) ||
 			smoothScroll !== readSmoothScrollPref(profile.preferences ?? null) ||
+			castCrewMonochromeOnHover !==
+				readCastCrewMonochromeOnHoverPref(profile.preferences ?? null) ||
 			catalogMonochromePeersOnHover !==
 				readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null) ||
 			showAdultContent !==
@@ -335,6 +350,7 @@ export function SettingsFormProvider({
 		isPrivate,
 		theaterAudio,
 		smoothScroll,
+		castCrewMonochromeOnHover,
 		catalogMonochromePeersOnHover,
 		showAdultContent,
 		catalogTmdbWatchRegion,
@@ -364,6 +380,9 @@ export function SettingsFormProvider({
 		setIsPrivate(Boolean(profile.isPrivate));
 		setTheaterAudio(Boolean(profile.preferences?.theaterAudio === true));
 		setSmoothScroll(readSmoothScrollPref(profile.preferences ?? null));
+		setCastCrewMonochromeOnHover(
+			readCastCrewMonochromeOnHoverPref(profile.preferences ?? null),
+		);
 		setCatalogMonochromePeersOnHover(
 			readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null),
 		);
@@ -420,6 +439,7 @@ export function SettingsFormProvider({
 				isPrivate,
 				theaterAudio,
 				smoothScroll,
+				castCrewMonochromeOnHover,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
@@ -440,6 +460,7 @@ export function SettingsFormProvider({
 				isPrivate,
 				theaterAudio,
 				smoothScroll,
+				castCrewMonochromeOnHover,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
@@ -535,6 +556,8 @@ export function SettingsFormProvider({
 					...(profile.preferences ?? {}),
 					theaterAudio,
 					[PROFILE_PREF_SMOOTH_SCROLL]: smoothScroll,
+					[PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER]:
+						castCrewMonochromeOnHover,
 					[PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER]:
 						catalogMonochromePeersOnHover,
 					[PROFILE_PREF_SHOW_ADULT_CONTENT]: showAdultContent,
@@ -608,6 +631,7 @@ export function SettingsFormProvider({
 					router.refresh();
 				}
 				toast.success("Saved");
+				invalidateCastCrewMonochromePrefCache(castCrewMonochromeOnHover);
 				invalidateCatalogTmdbLanguageCache();
 				clearSearchDialogGenreCache();
 				clearStoredSettingsDraft();
@@ -623,6 +647,7 @@ export function SettingsFormProvider({
 			profile,
 			theaterAudio,
 			smoothScroll,
+			castCrewMonochromeOnHover,
 			catalogMonochromePeersOnHover,
 			showAdultContent,
 			birthDate,
@@ -691,6 +716,8 @@ export function SettingsFormProvider({
 			setTheaterAudio,
 			smoothScroll,
 			setSmoothScroll,
+			castCrewMonochromeOnHover,
+			setCastCrewMonochromeOnHover,
 			catalogMonochromePeersOnHover,
 			setCatalogMonochromePeersOnHover,
 			catalogTmdbWatchRegion,

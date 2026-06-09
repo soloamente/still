@@ -1,6 +1,9 @@
 "use client";
 
 import { Skeleton } from "@still/ui/components/skeleton";
+import { cn } from "@still/ui/lib/utils";
+
+import { SEARCH_DIALOG_STUDIO_RAIL_CHIP_CLASS } from "@/lib/search-dialog-studios";
 
 const POSTER_SKELETON_SLOTS = [
 	"one",
@@ -65,7 +68,7 @@ export function SearchDialogStudioRailSkeleton() {
 			{STUDIO_CHIP_SKELETON_SLOTS.map((slot) => (
 				<Skeleton
 					key={`studio-skel-${slot}`}
-					className="size-11 shrink-0 rounded-xl"
+					className={cn("shrink-0", SEARCH_DIALOG_STUDIO_RAIL_CHIP_CLASS)}
 				/>
 			))}
 		</>

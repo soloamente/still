@@ -1,20 +1,19 @@
 import type React from "react";
 
-/** Filled award — account menu Achievements row. */
+/** Filled award — account menu, film-detail festival fallback, etc. */
 function IconAwardFill({
-	size = "18px",
+	size,
 	...props
 }: React.SVGProps<SVGSVGElement> & { size?: string }) {
 	return (
 		<svg
+			aria-label="Award"
 			xmlns="http://www.w3.org/2000/svg"
-			width={size}
-			height={size}
 			viewBox="0 0 18 18"
+			{...(size ? { width: size, height: size } : {})}
 			{...props}
 			aria-hidden={props["aria-hidden"] ?? true}
 		>
-			<title>Award</title>
 			<path
 				d="M12.077,13.497h-.56l-.428,.359c-.586,.492-1.328,.762-2.09,.762s-1.505-.271-2.09-.762l-.428-.359h-.56c-.321,0-.628-.058-.923-.145v3.898c0,.286,.162,.546,.419,.673,.254,.125,.561,.096,.788-.079l2.793-2.148,2.793,2.148c.134,.103,.295,.156,.457,.156,.113,0,.227-.025,.331-.077,.257-.126,.419-.387,.419-.673v-3.898c-.295,.087-.602,.145-.923,.145Z"
 				fill="currentColor"

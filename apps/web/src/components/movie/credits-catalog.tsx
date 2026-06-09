@@ -4,6 +4,7 @@ import { MovieCrewTable } from "@/components/movie/movie-crew-table";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import type { CrewRow } from "@/lib/movie-detail-tmdb";
 import type { PersonFilmographySeed } from "@/lib/person-filmography";
+import { useCastCrewMonochromeOnHover } from "@/lib/use-cast-crew-monochrome-pref";
 
 export type CreditsCastMember = {
 	id: number;
@@ -25,10 +26,12 @@ function CastCard({
 	member,
 	isSheet,
 	onPersonSelect,
+	monochromeOnHover,
 }: {
 	member: CreditsCastMember;
 	isSheet: boolean;
 	onPersonSelect?: (credit: PersonFilmographySeed) => void;
+	monochromeOnHover: boolean;
 }) {
 	const inner = (
 		<>
@@ -36,7 +39,7 @@ function CastCard({
 				<PersonCreditPortrait
 					name={member.name}
 					profilePath={member.profile_path}
-					grayscale
+					grayscale={monochromeOnHover}
 				/>
 			</div>
 			<p className="mt-2 line-clamp-1 font-medium text-foreground text-xs">
@@ -90,6 +93,7 @@ export function CreditsCatalog({
 	onPersonSelect,
 }: CreditsCatalogProps) {
 	const isSheet = appearance === "sheet";
+	const monochromeOnHover = useCastCrewMonochromeOnHover();
 
 	return (
 		<div className="mx-auto max-w-4xl space-y-10">
@@ -117,6 +121,7 @@ export function CreditsCatalog({
 									member={c}
 									isSheet={isSheet}
 									onPersonSelect={onPersonSelect}
+									monochromeOnHover={monochromeOnHover}
 								/>
 							</li>
 						))}

@@ -97,6 +97,11 @@ export function applyQualifyingDay(
 		};
 	}
 
+	// Backdated diary entries must not rewind `lastActiveDay` or reset the run.
+	if (activityDay < last) {
+		return prev;
+	}
+
 	const gap = utcDayDiff(activityDay, last);
 	if (gap === 1) {
 		const current = prev.currentStreak + 1;

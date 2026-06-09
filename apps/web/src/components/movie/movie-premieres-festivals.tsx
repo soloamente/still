@@ -5,7 +5,6 @@ import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-sec
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
 import {
 	type FestivalRecognitionEntry,
-	MOVIE_FESTIVAL_RECOGNITION_COLUMNS,
 	MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
 } from "@/lib/movie-festival-recognition";
 
@@ -44,21 +43,15 @@ function groupFestivalDetailLines(
 	return groups;
 }
 
-/** Grid vs centered row — full 6-col grid only when we fill most of a large row. */
+/**
+ * Flex wrap keeps partial second rows centered (e.g. 7–11 entries under the 6-column cap).
+ * Fixed-width columns still pack ~6 per row on large viewports without left-aligned leftovers.
+ */
 function festivalRecognitionListLayout(count: number): string {
 	if (count === 1) {
 		return "flex justify-center";
 	}
-	if (count < MOVIE_FESTIVAL_RECOGNITION_COLUMNS) {
-		return cn(
-			"grid w-fit max-w-full place-items-start",
-			count === 2 && "grid-cols-2",
-			count === 3 && "grid-cols-2 sm:grid-cols-3",
-			count === 4 && "grid-cols-2 sm:grid-cols-4",
-			count === 5 && "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5",
-		);
-	}
-	return "grid w-full grid-cols-2 place-items-start sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6";
+	return "flex flex-wrap justify-center";
 }
 
 /**
@@ -76,8 +69,6 @@ export function MoviePremieresFestivals({
 		MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
 	);
 	const entryCount = displayEntries.length;
-	const isSingleEntry = entryCount === 1;
-	const isCompactRow = entryCount < MOVIE_FESTIVAL_RECOGNITION_COLUMNS;
 
 	return (
 		<MovieDetailBodySection
@@ -97,12 +88,7 @@ export function MoviePremieresFestivals({
 					{displayEntries.map((entry) => (
 						<li
 							key={entry.id}
-							className={cn(
-								"flex min-w-0 flex-col items-center gap-2.5 overflow-visible text-center sm:gap-2",
-								isSingleEntry || isCompactRow
-									? "w-36 max-w-44 sm:w-40 sm:max-w-48"
-									: "w-full",
-							)}
+							className="flex w-36 min-w-0 max-w-44 flex-col items-center gap-2.5 overflow-visible text-center sm:w-40 sm:max-w-48 sm:gap-2"
 						>
 							<div className="flex min-h-11 w-full items-center justify-center overflow-visible sm:min-h-12">
 								<FestivalRecognitionIcon icon={entry.icon} />

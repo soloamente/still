@@ -91,15 +91,34 @@ describe("serializeHomeCatalogueSearchParam / parseHomeCatalogueSearchParam", ()
 		expect(parsed.freeText).toBe("interstellar");
 	});
 
-	test("single studio tag round-trips without middle dot", () => {
+	test("single studio tag round-trips as stable studio id token", () => {
 		const serialized = serializeHomeCatalogueSearchParam([studioTag], "");
-		expect(serialized).toBe("A24");
+		expect(serialized).toBe("studio:41077");
 		const parsed = parseHomeCatalogueSearchParam(serialized, [...studios], {
 			movieGenres,
 			tvGenres,
 		});
 		expect(parsed.tags).toEqual([studioTag]);
 		expect(parsed.freeText).toBe("");
+	});
+
+	test("studio id token parses before curated studio list hydrates", () => {
+		const parsed = parseHomeCatalogueSearchParam("studio:41077", [], {
+			movieGenres,
+			tvGenres,
+		});
+		expect(parsed.tags).toEqual([
+			{ kind: "studio", id: 41077, name: "Studio", logoUrl: null },
+		]);
+		expect(parsed.freeText).toBe("");
+	});
+
+	test("omits redundant media tag from committed search param", () => {
+		const serialized = serializeHomeCatalogueSearchParam(
+			[studioTag, { kind: "media", listingKind: "movie" }],
+			"",
+		);
+		expect(serialized).toBe("studio:41077");
 	});
 });
 
@@ -156,7 +175,9 @@ describe("buildHomeCatalogueSearchCommitHref", () => {
 		expect(url.searchParams.has("venue")).toBe(false);
 		expect(url.searchParams.has("run")).toBe(false);
 		expect(url.searchParams.has("animeSeason")).toBe(false);
-		expect(url.searchParams.get(HOME_CATALOGUE_SEARCH_PARAM)).toContain("A24");
+		expect(url.searchParams.get(HOME_CATALOGUE_SEARCH_PARAM)).toContain(
+			"studio:41077",
+		);
 		expect(url.searchParams.get(HOME_CATALOGUE_SEARCH_PARAM)).toContain("neon");
 	});
 

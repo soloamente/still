@@ -11,6 +11,7 @@ import type {
 	PersonFilmographySeed,
 } from "@/lib/person-filmography";
 import { fetchPersonFilmography } from "@/lib/still-api-fetch";
+import { useCastCrewMonochromeOnHover } from "@/lib/use-cast-crew-monochrome-pref";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 /**
@@ -79,6 +80,7 @@ export function PersonFilmographyPanel({
 	const knownFor = person?.knownForDepartment?.trim();
 	const filmography = payload?.filmography ?? [];
 	const titleCount = filmography.length;
+	const monochromeOnHover = useCastCrewMonochromeOnHover();
 
 	return (
 		<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
@@ -86,11 +88,11 @@ export function PersonFilmographyPanel({
 				<div className="mx-auto w-full max-w-4xl">
 					<header className="mx-auto mb-8 max-w-md text-center">
 						<div className="mx-auto mb-4 flex justify-center">
-							<div className="relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg sm:w-24">
+							<div className="group relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg sm:w-24">
 								<PersonCreditPortrait
 									name={displayName}
 									profilePath={person?.profilePath ?? seed.profilePath}
-									grayscale
+									grayscale={monochromeOnHover}
 									sizes="96px"
 								/>
 							</div>

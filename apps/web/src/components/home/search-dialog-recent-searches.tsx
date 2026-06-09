@@ -4,12 +4,12 @@ import { cn } from "@still/ui/lib/utils";
 import { X } from "lucide-react";
 import { useRef } from "react";
 
-import {
-	filterChipBaseClass,
-	filterChipIdleClass,
-} from "@/components/ui/filter-chip-row";
+import { filterChipBaseClass } from "@/components/ui/filter-chip-row";
 import type { RecentSearchEntryV2 } from "@/lib/home-search-recent-storage";
-import { useHorizontalScrollFades } from "@/lib/use-horizontal-scroll-fades";
+import {
+	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
+	useHorizontalScrollFades,
+} from "@/lib/use-horizontal-scroll-fades";
 
 /**
  * Horizontal recent-search chip rail for the catalog search dialog empty state.
@@ -58,9 +58,13 @@ export function SearchDialogRecentSearches({
 				/>
 				<div
 					ref={scrollRef}
+					data-lenis-prevent-wheel
 					role="toolbar"
 					aria-labelledby={headingId}
-					className="scrollbar-none flex flex-nowrap items-center gap-2 overflow-x-auto overscroll-x-contain pr-4 pb-0.5 pl-4 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+					className={cn(
+						HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
+						"items-center pr-4 pb-0.5 pl-4",
+					)}
 				>
 					{entries.map((entry) => (
 						<RecentSearchChip
@@ -89,8 +93,7 @@ function RecentSearchChip({
 		<span
 			className={cn(
 				filterChipBaseClass,
-				filterChipIdleClass,
-				"inline-flex h-8 max-w-64 shrink-0 items-center gap-0.5 py-0 pr-1 pl-3",
+				"search-recent-chip inline-flex h-8 max-w-64 shrink-0 items-center gap-0.5 py-0 pr-1 pl-3",
 			)}
 		>
 			<button

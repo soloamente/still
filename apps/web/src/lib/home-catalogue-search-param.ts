@@ -6,9 +6,11 @@ import {
 } from "@/lib/home-lobby-persist";
 import type { SearchDialogStudio } from "@/lib/search-dialog-studios";
 import {
+	displayTagSegmentLabel,
 	type ParseRecentOptions,
 	parseRecentStructuredQuery,
 	type SearchTag,
+	STRUCTURED_QUERY_SEP,
 	serializeStructuredQuery,
 } from "@/lib/search-query-tags";
 import type { CatalogTextSearchListingKind } from "@/lib/use-catalog-text-search";
@@ -77,7 +79,9 @@ export function serializeHomeCatalogueSearchParam(
 	tags: SearchTag[],
 	freeText: string,
 ): string {
-	return serializeStructuredQuery(tags, freeText);
+	// Browse rail already implies Films vs TV — omit redundant media pills from `?search=`.
+	const catalogueTags = tags.filter((tag) => tag.kind !== "media");
+	return serializeStructuredQuery(catalogueTags, freeText);
 }
 
 /** Restores tags + free text from the `search` URL param (middle-dot segments). */
@@ -91,13 +95,18 @@ export function parseHomeCatalogueSearchParam(
 	return parseRecentStructuredQuery(trimmed, studios, options);
 }
 
-/** Headbar pill label — full query when short, ellipsis when long. */
+/** Headbar pill label — patron names, not `studio:41077` tokens. */
 export function formatCommittedSearchSummary(
 	tags: SearchTag[],
 	freeText: string,
 	maxLen = 40,
 ): string {
-	const full = serializeStructuredQuery(tags, freeText).trim();
+	const parts = tags
+		.filter((tag) => tag.kind !== "media")
+		.map(displayTagSegmentLabel);
+	const ft = freeText.trim();
+	if (ft) parts.push(ft);
+	const full = parts.join(STRUCTURED_QUERY_SEP).trim();
 	if (!full) return "";
 	if (full.length <= maxLen) return full;
 	return `${full.slice(0, maxLen - 1)}…`;

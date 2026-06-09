@@ -7,6 +7,7 @@ import {
 	type ArcCreditCard,
 	arcRowVisualForSlot,
 } from "@/lib/movie-cast-crew-arc";
+import { useCastCrewMonochromeOnHover } from "@/lib/use-cast-crew-monochrome-pref";
 
 /** Client-only arc row — portrait taps open the filmography drawer. */
 export function MovieCastCrewArcRow({
@@ -16,6 +17,8 @@ export function MovieCastCrewArcRow({
 	cards: ArcCreditCard[];
 	row: "cast" | "crew";
 }) {
+	const monochromeOnHover = useCastCrewMonochromeOnHover();
+
 	return (
 		<ul
 			className={cn(
@@ -33,6 +36,7 @@ export function MovieCastCrewArcRow({
 					slotIndex={slotIndex}
 					slotCount={cards.length}
 					row={row}
+					monochromeOnHover={monochromeOnHover}
 				/>
 			))}
 		</ul>
@@ -44,11 +48,13 @@ function MovieCastCrewArcCard({
 	slotIndex,
 	slotCount,
 	row,
+	monochromeOnHover,
 }: {
 	person: ArcCreditCard;
 	slotIndex: number;
 	slotCount: number;
 	row: "cast" | "crew";
+	monochromeOnHover: boolean;
 }) {
 	const { translateY } = arcRowVisualForSlot(slotIndex, slotCount, row);
 
@@ -76,7 +82,7 @@ function MovieCastCrewArcCard({
 					<PersonCreditPortrait
 						name={person.name}
 						profilePath={person.profilePath}
-						grayscale
+						grayscale={monochromeOnHover}
 						sizes="(max-width: 640px) 104px, (max-width: 1280px) 140px, 168px"
 						imageClassName="transition-[filter] duration-200 ease-out"
 					/>

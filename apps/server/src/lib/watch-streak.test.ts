@@ -59,4 +59,16 @@ describe("watch-streak", () => {
 			"2026-05-02",
 		);
 	});
+
+	test("backdated logs do not rewind streak state", () => {
+		let s = applyQualifyingDay(computeStreakFromDayKeys([]), "2026-06-01");
+		s = applyQualifyingDay(s, "2026-06-02");
+		s = applyQualifyingDay(s, "2026-06-03");
+		expect(s.currentStreak).toBe(3);
+		expect(s.lastActiveDay).toBe("2026-06-03");
+
+		s = applyQualifyingDay(s, "2026-05-15");
+		expect(s.currentStreak).toBe(3);
+		expect(s.lastActiveDay).toBe("2026-06-03");
+	});
 });

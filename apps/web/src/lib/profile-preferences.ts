@@ -35,6 +35,13 @@ export const PROFILE_PREF_APP_THEME = "appTheme" as const;
 /** Lenis wheel smoothing — opt-in from Settings → Experience (default off). */
 export const PROFILE_PREF_SMOOTH_SCROLL = "smoothScroll" as const;
 
+/**
+ * Film/TV cast & crew headshots: grayscale until hover on detail previews.
+ * Opt-in from Settings → Experience (default off — full color).
+ */
+export const PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER =
+	"castCrewMonochromeOnHover" as const;
+
 /** 18+ films and anime in catalogue surfaces — opt-in from Settings → Catalogue (default off). */
 export const PROFILE_PREF_SHOW_ADULT_CONTENT = "showAdultContent" as const;
 
@@ -111,6 +118,15 @@ export function readCatalogMonochromePeersOnHoverPref(
 ): boolean {
 	if (preferences == null) return false;
 	const raw = preferences[PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER];
+	return raw === true;
+}
+
+/** Cast & crew previews on film/TV detail — grayscale until hover when opted in. */
+export function readCastCrewMonochromeOnHoverPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	if (preferences == null) return false;
+	const raw = preferences[PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER];
 	return raw === true;
 }
 

@@ -200,7 +200,7 @@ describe("structured recent queries", () => {
 			],
 			"marty",
 		);
-		expect(raw).toBe("A24 · Films · marty");
+		expect(raw).toBe("studio:41077 · Films · marty");
 	});
 
 	test("serialize includes genre and curated pills", () => {
@@ -212,7 +212,15 @@ describe("structured recent queries", () => {
 			],
 			"marty",
 		);
-		expect(raw).toBe("A24 · Horror · Anime · marty");
+		expect(raw).toBe("studio:1 · Horror · Anime · marty");
+	});
+
+	test("parse studio id token without curated studio list", () => {
+		const parsed = parseRecentStructuredQuery("studio:41077", []);
+		expect(parsed.tags).toEqual([
+			{ kind: "studio", id: 41077, name: "Studio", logoUrl: null },
+		]);
+		expect(parsed.freeText).toBe("");
 	});
 
 	test("parse restores tags and free text", () => {

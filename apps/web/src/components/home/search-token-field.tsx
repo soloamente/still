@@ -1,9 +1,10 @@
 "use client";
 
+import IconCinema from "@still/ui/icons/cinema";
+import IconTvShows from "@still/ui/icons/tv-shows";
 import { cn } from "@still/ui/lib/utils";
-import { Clapperboard, List, Sparkles, Tag, Tv } from "lucide-react";
+import { List, Sparkles, Tag } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import {
 	type KeyboardEvent,
 	useCallback,
@@ -13,11 +14,10 @@ import {
 	useState,
 } from "react";
 
+import { SearchDialogStudioLogo } from "@/components/home/search-dialog-studio-logo";
 import { SearchTagPill } from "@/components/home/search-tag-pill";
-import {
-	SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
-	type SearchDialogStudio,
-} from "@/lib/search-dialog-studios";
+import { searchDialogStudioHasLogo } from "@/lib/search-dialog-studio-logo";
+import type { SearchDialogStudio } from "@/lib/search-dialog-studios";
 import {
 	rankTagSuggestions,
 	type SearchDialogGenre,
@@ -85,9 +85,9 @@ function SuggestionKindIcon({
 	switch (suggestion.kind) {
 		case "media":
 			return suggestion.listingKind === "tv" ? (
-				<Tv className={iconClass} aria-hidden />
+				<IconTvShows className={cn(iconClass, "size-5")} aria-hidden />
 			) : (
-				<Clapperboard className={iconClass} aria-hidden />
+				<IconCinema className={cn(iconClass, "size-5")} aria-hidden />
 			);
 		case "genre":
 			return <Tag className={iconClass} aria-hidden />;
@@ -337,22 +337,16 @@ export function SearchTokenField({
 											onClick={() => commitSuggestion(suggestion)}
 											onMouseEnter={() => setHighlightIndex(index)}
 										>
-											{suggestion.kind === "studio" && suggestion.logoUrl ? (
-												<span
-													className={cn(
-														"studio-logo-chip-outline inline-flex size-9 shrink-0 items-center justify-center rounded-lg shadow-sm",
-														SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
-													)}
-												>
-													<Image
-														src={suggestion.logoUrl}
-														alt=""
-														width={28}
-														height={28}
-														className="size-7 object-contain p-0.5"
-														unoptimized
-													/>
-												</span>
+											{suggestion.kind === "studio" &&
+											searchDialogStudioHasLogo(
+												suggestion.id,
+												suggestion.logoUrl,
+											) ? (
+												<SearchDialogStudioLogo
+													studioId={suggestion.id}
+													fallbackLogoUrl={suggestion.logoUrl}
+													variant="suggestion"
+												/>
 											) : (
 												<span
 													className={cn(

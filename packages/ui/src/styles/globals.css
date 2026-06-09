@@ -71,10 +71,14 @@
   --surface-overlay: var(--palette-raised);
   --surface-translucent-overlay: rgba(0, 0, 0, 0.5);
   --surface-accent-card: #776157;
-  /* Search dialog studio logos — per-theme overrides on `html.theme-*` (Calm default below). */
-  --surface-studio-logo: oklch(0.54 0.024 58);
-  --surface-studio-logo-hover: oklch(0.58 0.028 58);
-  --surface-studio-logo-foreground: oklch(0.28 0.02 58);
+  /* Canvas chips on raised `bg-card` (search dialog studio logos, recent-search pills). */
+  --surface-studio-logo: var(--background);
+  --surface-studio-logo-hover: color-mix(
+    in oklab,
+    var(--foreground) 6%,
+    var(--background)
+  );
+  --surface-studio-logo-foreground: var(--foreground);
 
   /* UI sans: SF Pro Rounded (local next/font) → Outfit webfont → system stack. */
   --font-proxima-nova:
@@ -324,9 +328,6 @@ html.theme-theater {
   --sidebar-accent-foreground: var(--color-pure-white);
   --sidebar-border: rgba(255, 255, 255, 0.055);
   --sidebar-ring: var(--color-desert-orange);
-  --surface-studio-logo: oklch(0.54 0.024 58);
-  --surface-studio-logo-hover: oklch(0.58 0.028 58);
-  --surface-studio-logo-foreground: oklch(0.28 0.02 58);
 }
 
 html.theme-lobby-light {
@@ -376,9 +377,6 @@ html.theme-lobby-light {
   --cinema-grain-opacity: 0.02;
   --cinema-vignette-spread: 120px;
   --cinema-vignette-alpha: 0.1;
-  --surface-studio-logo: oklch(0.92 0.012 78);
-  --surface-studio-logo-hover: oklch(0.89 0.015 78);
-  --surface-studio-logo-foreground: #141414;
 }
 
 html.theme-lobby-light ::selection {
@@ -428,9 +426,6 @@ html.theme-noir {
   --sidebar-border: rgba(255, 255, 255, 0.045);
   --sidebar-ring: var(--color-desert-orange);
   --cinema-vignette-alpha: 0.68;
-  --surface-studio-logo: oklch(0.56 0.038 250);
-  --surface-studio-logo-hover: oklch(0.6 0.04 250);
-  --surface-studio-logo-foreground: oklch(0.22 0.035 250);
 }
 
 html.theme-ember {
@@ -466,9 +461,6 @@ html.theme-ember {
   --sidebar-accent-foreground: var(--color-pure-white);
   --sidebar-border: rgba(255, 255, 255, 0.06);
   --sidebar-ring: var(--color-desert-orange);
-  --surface-studio-logo: oklch(0.52 0.095 38);
-  --surface-studio-logo-hover: oklch(0.56 0.1 38);
-  --surface-studio-logo-foreground: oklch(0.26 0.065 38);
 }
 
 html.theme-midnight {
@@ -504,9 +496,6 @@ html.theme-midnight {
   --sidebar-accent-foreground: var(--color-pure-white);
   --sidebar-border: rgba(255, 255, 255, 0.05);
   --sidebar-ring: var(--color-desert-orange);
-  --surface-studio-logo: oklch(0.54 0.048 280);
-  --surface-studio-logo-hover: oklch(0.58 0.05 280);
-  --surface-studio-logo-foreground: oklch(0.24 0.04 280);
 }
 
 @theme inline {
@@ -1474,7 +1463,7 @@ html.theme-lobby-light .cinema-vignette {
     transition: background-color 9999s ease-out 0s;
   }
 
-  /* Search dialog studio logo tiles — per-theme via `--surface-studio-logo*` tokens. */
+  /* Search dialog studio logo tiles — canvas (`--background`) on raised dialog card. */
   .studio-logo-chip {
     background-color: var(--surface-studio-logo);
     color: var(--surface-studio-logo-foreground);
@@ -1488,14 +1477,25 @@ html.theme-lobby-light .cinema-vignette {
       background-color: var(--surface-studio-logo-hover);
     }
   }
+
+  /* Recent-search pills on `bg-card` — Calm: `--muted` aliases `--card`, so never hover to `bg-muted`. */
+  .search-recent-chip {
+    background-color: var(--surface-studio-logo);
+    color: var(--muted-foreground);
+    transition:
+      background-color 200ms ease-out,
+      color 200ms ease-out;
+  }
+  @media (hover: hover) {
+    .search-recent-chip:hover {
+      background-color: var(--surface-studio-logo-hover);
+      color: var(--foreground);
+    }
+  }
   .studio-logo-chip-outline {
     outline-width: 1px;
     outline-style: solid;
-    outline-color: color-mix(
-      in oklch,
-      var(--surface-studio-logo-foreground) 15%,
-      transparent
-    );
+    outline-color: color-mix(in oklab, var(--foreground) 12%, transparent);
   }
 }
 

@@ -346,8 +346,14 @@ export function SettingsImportsSection() {
 }
 
 export function SettingsExperienceSection() {
-	const { theaterAudio, setTheaterAudio, smoothScroll, setSmoothScroll } =
-		useSettingsForm();
+	const {
+		theaterAudio,
+		setTheaterAudio,
+		smoothScroll,
+		setSmoothScroll,
+		castCrewMonochromeOnHover,
+		setCastCrewMonochromeOnHover,
+	} = useSettingsForm();
 
 	return (
 		<SettingsSectionPage>
@@ -362,6 +368,13 @@ export function SettingsExperienceSection() {
 						onChange={setSmoothScroll}
 						title="Smooth scroll"
 						description="Gentle wheel inertia across the app (Lenis). Leave off on slower devices — native scroll stays snappy and lighter on the GPU."
+					/>
+					<MePreferenceToggle
+						id="cast-crew-monochrome-hover"
+						checked={castCrewMonochromeOnHover}
+						onChange={setCastCrewMonochromeOnHover}
+						title="Monochrome cast & crew"
+						description="On film and TV detail pages, cast and crew headshots stay grayscale until you hover. Off by default — previews show full color."
 					/>
 					<MePreferenceToggle
 						id="theater-audio"

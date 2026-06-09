@@ -5,8 +5,11 @@ export type SearchDialogStudio = {
 	logoUrl: string | null;
 };
 
-/** Per-theme studio logo tile (`.studio-logo-chip` in globals.css). */
+/** Canvas studio logo tile on search `bg-card` (`.studio-logo-chip` in globals.css). */
 export const SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS = "studio-logo-chip";
+
+/** Studio rail chip — baked tiles read best at 64px; keep in sync with logo + skeleton. */
+export const SEARCH_DIALOG_STUDIO_RAIL_CHIP_CLASS = "size-16 rounded-2xl";
 
 export function findSearchDialogStudio(
 	studios: SearchDialogStudio[],
@@ -21,8 +24,11 @@ export function studioShortName(name: string): string {
 	const n = name.trim();
 	if (n.length <= 12) return n;
 	if (n.toLowerCase().includes("searchlight")) return "Searchlight";
-	if (n.toLowerCase().includes("sony")) return "SPC";
+	if (n.toLowerCase().includes("sony pictures classics")) return "SPC";
+	if (n.toLowerCase().includes("sony")) return "Sony";
 	if (n.toLowerCase().includes("focus")) return "Focus";
+	if (n.toLowerCase().includes("blumhouse")) return "Blumhouse";
+	if (n.toLowerCase().includes("annapurna")) return "Annapurna";
 	return n.split(/\s+/)[0] ?? n;
 }
 
@@ -40,6 +46,8 @@ export function studioSearchTokens(studio: SearchDialogStudio): string[] {
 		tokens.add("spc");
 	}
 	if (name.includes("focus")) tokens.add("focus");
+	if (name.includes("blumhouse")) tokens.add("blumhouse");
+	if (name.includes("annapurna")) tokens.add("annapurna");
 	if (name === "neon" || name.startsWith("neon ")) tokens.add("neon");
 	if (name.includes("mubi")) tokens.add("mubi");
 	if (name.includes("netflix")) tokens.add("netflix");

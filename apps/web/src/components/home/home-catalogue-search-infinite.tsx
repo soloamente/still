@@ -87,14 +87,21 @@ export function HomeCatalogueSearchInfinite({
 	const catalogMedia = browse === "tv" ? "tv" : "movie";
 	const emptyNoun = browse === "tv" ? "shows" : "films";
 
-	// Tag metadata only for scroll paging on structured queries — never blocks first paint.
+	// Tag metadata for scroll paging — page 1 is RSC; client must rebuild the same plan before page 2+.
 	const needsTagMetadata = committedCatalogueSearchNeedsTagMetadata(searchRaw);
 	const catalogTmdbLanguage = useCatalogTmdbLanguage(needsTagMetadata);
-	const { studios } = useSearchDialogStudios(needsTagMetadata);
-	const { movieGenres, tvGenres } = useSearchDialogGenres(
-		needsTagMetadata,
-		catalogTmdbLanguage,
-	);
+	const { studios, loaded: studiosLoaded } =
+		useSearchDialogStudios(needsTagMetadata);
+	const {
+		movieGenres,
+		tvGenres,
+		loading: genresLoading,
+	} = useSearchDialogGenres(needsTagMetadata, catalogTmdbLanguage);
+	/** `studio:41077` parses without the studio list; legacy name chips wait for `/api/movies/studios`. */
+	const hasStableStudioIdToken = /studio:\d+/i.test(searchRaw);
+	const tagMetadataReady =
+		!needsTagMetadata ||
+		((hasStableStudioIdToken || studiosLoaded) && !genresLoading);
 
 	const parsed = useMemo(
 		() =>
@@ -120,8 +127,13 @@ export function HomeCatalogueSearchInfinite({
 		formatCommittedSearchSummary(parsed.tags, parsed.freeText) || searchRaw;
 
 	const loadPage = useCallback(
-		(page: number) => loadCatalogueSearchPage(plan, page),
-		[plan],
+		(page: number) => {
+			if (!tagMetadataReady) {
+				return Promise.resolve({ error: true as const });
+			}
+			return loadCatalogueSearchPage(plan, page);
+		},
+		[plan, tagMetadataReady],
 	);
 
 	const cellKey = useCallback(
@@ -178,7 +190,7 @@ export function HomeCatalogueSearchInfinite({
 
 	return (
 		<PopularMoviesInfinite
-			key={searchWaveKey}
+			key={`${searchWaveKey}:${tagMetadataReady ? "paging" : "seeds"}`}
 			blockedReason={null}
 			catalogueRadialSurface="home"
 			signedIn={signedIn}
@@ -187,7 +199,8 @@ export function HomeCatalogueSearchInfinite({
 			catalogueWaveKeyOverride={searchWaveKey}
 			getPosterCellKey={cellKey}
 			getDedupeKey={cellKey}
-			loadPage={loadPage}
+			loadPage={tagMetadataReady ? loadPage : undefined}
+			staticCatalogue={!tagMetadataReady}
 			gridClassName={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}
 			monochromePeersOnHover={monochromePeersOnHover}
 			posterFrameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}

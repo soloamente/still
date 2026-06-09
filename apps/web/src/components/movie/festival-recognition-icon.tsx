@@ -1,4 +1,5 @@
 import IconAcademyAwards from "@still/ui/icons/academy-awards";
+import IconAwardFill from "@still/ui/icons/award-fill";
 import IconBafta from "@still/ui/icons/bafta";
 import IconBeyondFestival from "@still/ui/icons/beyond-festival";
 import IconBfi from "@still/ui/icons/bfi";
@@ -7,12 +8,12 @@ import IconCannesFestival from "@still/ui/icons/cannes-festival";
 import IconLocarnoFestival from "@still/ui/icons/locarno-festival";
 import IconMillValleyFestival from "@still/ui/icons/mill-valley-festival";
 import IconMtv from "@still/ui/icons/mtv";
+import IconScreeningFill from "@still/ui/icons/screening-fill";
 import IconTellurideFestival from "@still/ui/icons/telluride-festival";
 import IconTiffFestival from "@still/ui/icons/tiff-festival";
 import IconVeniceFestival from "@still/ui/icons/venice-festival";
 import IconZurichFestival from "@still/ui/icons/zurich-festival";
 import { cn } from "@still/ui/lib/utils";
-import { Award, Clapperboard } from "lucide-react";
 import type { ReactNode } from "react";
 
 import type { FestivalIconId } from "@/lib/movie-festival-recognition";
@@ -161,21 +162,13 @@ export function FestivalRecognitionIcon({
 		case "premiere":
 			return (
 				<BrandMarkSlot className={slot}>
-					<Clapperboard
-						className="size-8 max-h-full max-w-full sm:size-9"
-						strokeWidth={1.75}
-						aria-hidden
-					/>
+					<IconScreeningFill aria-hidden className={BRAND_MARK_SVG} />
 				</BrandMarkSlot>
 			);
 		case "award":
 			return (
 				<BrandMarkSlot className={slot}>
-					<Award
-						className="size-8 max-h-full max-w-full sm:size-9"
-						strokeWidth={1.75}
-						aria-hidden
-					/>
+					<IconAwardFill aria-hidden className={BRAND_MARK_SVG} />
 				</BrandMarkSlot>
 			);
 		default:
