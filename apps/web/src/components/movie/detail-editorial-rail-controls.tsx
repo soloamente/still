@@ -10,7 +10,7 @@ import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 const EDITORIAL_RAIL_MAX_VISIBLE_STEPS = 16;
 
 const RAIL_FOOTER_NAV_BUTTON_CLASS = cn(
-	"inline-flex size-11 shrink-0 select-none items-center justify-center rounded-full border-transparent bg-background/90 text-foreground shadow-sm backdrop-blur-sm [-webkit-tap-highlight-color:transparent]",
+	"inline-flex size-11 shrink-0 select-none items-center justify-center rounded-full border-transparent bg-background/90 text-foreground backdrop-blur-sm [-webkit-tap-highlight-color:transparent]",
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	"disabled:pointer-events-none disabled:opacity-35",
 );

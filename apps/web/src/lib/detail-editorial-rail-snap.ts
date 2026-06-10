@@ -283,12 +283,8 @@ export function useDetailEditorialRailSnap({
 				startScrollLeft: rail.scrollLeft,
 				moved: false,
 			};
-
-			try {
-				rail.setPointerCapture(event.pointerId);
-			} catch {
-				// Pointer capture can fail on some hybrid inputs — drag still works via bubbling moves.
-			}
+			// Capture only after the drag threshold — immediate capture steals click
+			// targets on review/still slides (open reader, select slide).
 		};
 
 		const handlePointerMove = (event: PointerEvent) => {
@@ -300,6 +296,11 @@ export function useDetailEditorialRailSnap({
 				if (Math.abs(deltaX) < EDITORIAL_RAIL_DRAG_THRESHOLD_PX) return;
 				session.moved = true;
 				setIsDragging(true);
+				try {
+					rail.setPointerCapture(event.pointerId);
+				} catch {
+					// Pointer capture can fail on some hybrid inputs — drag still works via bubbling moves.
+				}
 			}
 
 			event.preventDefault();
