@@ -27,7 +27,10 @@ import {
 } from "./letterboxd-import-log-resolve";
 import { parseLetterboxdLikesCsv } from "./letterboxd-likes-csv";
 import { parseLetterboxdReviewsCsv } from "./letterboxd-reviews-csv";
-import { resolveLetterboxdMovieTmdbId } from "./letterboxd-tmdb-resolve";
+import {
+	createMemoizedLetterboxdTmdbResolver,
+	resolveLetterboxdMovieTmdbId,
+} from "./letterboxd-tmdb-resolve";
 import { parseLetterboxdWatchlistCsv } from "./letterboxd-watchlist-csv";
 
 export interface LetterboxdImportDiaryCounts {
@@ -562,7 +565,7 @@ export async function applyLetterboxdImport(
 	const importDay = opts.importedAt ?? new Date();
 	const resolveTmdbId =
 		opts.resolveTmdbId ??
-		((name, year) => resolveLetterboxdMovieTmdbId(name, year));
+		createMemoizedLetterboxdTmdbResolver(resolveLetterboxdMovieTmdbId);
 	const ensureMovie =
 		opts.ensureMovie ?? (async (tmdbId) => ensureMovieCached(tmdbId));
 	const hasAnyLogForMovie =

@@ -22,6 +22,8 @@ type ProfileMediaCustomizerProps = {
 	handle: string;
 	bannerUrl: string | null;
 	hasAvatar: boolean;
+	/** Shows Pro GIF upload helper when the patron has Sense Pro. */
+	isPro?: boolean;
 	/** Disables pickers while the settings form is saving. */
 	disabled?: boolean;
 };
@@ -34,6 +36,7 @@ export function ProfileMediaCustomizer({
 	handle,
 	bannerUrl: initialBannerUrl,
 	hasAvatar: initialHasAvatar,
+	isPro = false,
 	disabled = false,
 }: ProfileMediaCustomizerProps) {
 	const {
@@ -216,6 +219,11 @@ export function ProfileMediaCustomizer({
 					Choose a banner or portrait, then use Save in the header to apply.
 					Cancel drops unstaged picks.
 				</p>
+				{isPro ? (
+					<p className="mt-2 text-balance text-muted-foreground text-sm leading-relaxed">
+						Sense Pro: upload animated GIF for banner and portrait.
+					</p>
+				) : null}
 			</div>
 
 			<input

@@ -12,7 +12,7 @@ import {
 } from "react";
 import { DetailEditorialRailFooterControls } from "@/components/movie/detail-editorial-rail-controls";
 import type { MoviePageReview } from "@/components/movie/movie-detail-explore-tabs";
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import {
 	useReviewDetail,
@@ -21,6 +21,7 @@ import {
 import { ReviewEditorialPatronScore } from "@/components/review/review-editorial-patron-score";
 import { authClient } from "@/lib/auth-client";
 import { useDetailEditorialRailSnap } from "@/lib/detail-editorial-rail-snap";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 import {
 	REVIEW_SPOILER_REVEAL_CTA,
 	shouldMaskReviewSpoilers,
@@ -138,6 +139,7 @@ function MovieDetailReviewSlide({
 							handle: author.handle,
 							displayName: author.displayName,
 							image: author.image,
+							avatarIsAnimated: author.avatarIsAnimated,
 						}
 					: null,
 			},
@@ -249,13 +251,18 @@ function MovieDetailReviewSlide({
 								className="rounded-full outline-none transition-transform duration-150 ease-out [-webkit-tap-highlight-color:transparent] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card active:scale-[0.96] motion-reduce:active:scale-100"
 								onClick={(event) => event.stopPropagation()}
 							>
-								<PatronPortraitAvatar
+								<PatronPortraitWithMetalTier
 									handle={author.handle}
 									avatarUrl={author.image}
 									name={author.displayName}
 									width={80}
 									height={80}
 									className="size-13 rounded-full"
+									isAnimated={inferAnimatedFromProfileUrl(
+										author.image,
+										author.avatarIsAnimated,
+									)}
+									diaryMetalTier={author.diaryMetalTier ?? null}
 								/>
 							</Link>
 							{/* Display name, handle, and engagement counts read as one byline block. */}

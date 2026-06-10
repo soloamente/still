@@ -1,4 +1,5 @@
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
+import type { MovieDetailFollowingRating } from "@/components/movie/movie-detail-following-ratings";
 import type { TmdbMovieSummary } from "@/lib/movie-detail-tmdb";
 import { serverApi } from "@/lib/server-api";
 
@@ -13,15 +14,7 @@ type TvListRow = {
 };
 
 type FollowingRatingsPayload = {
-	entries: {
-		userId: string;
-		handle: string;
-		displayName: string;
-		image: string | null;
-		rating: number | null;
-		liked: boolean;
-		watchedAt: string;
-	}[];
+	entries: MovieDetailFollowingRating[];
 	moreCount: number;
 };
 

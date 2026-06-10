@@ -143,6 +143,7 @@ interface PopularMoviesInfiniteProps {
 	 */
 	loadPage?: (
 		page: number,
+		signal?: AbortSignal,
 	) => Promise<
 		{ results: PopularMovieSeed[]; total_pages: number } | { error: true }
 	>;
@@ -211,6 +212,9 @@ export function PopularMoviesInfinite({
 	totalPagesRef.current = initialTotalPages;
 
 	const loadingRef = useRef(false);
+	/** Bumped on catalogue re-seed so in-flight page fetches discard stale results. */
+	const seedGenRef = useRef(0);
+	const abortRef = useRef<AbortController | null>(null);
 
 	/** Footer UX only — observers use refs so we never miss a “still pinned” sentinel. */
 	const [footerState, setFooterState] = useState<
@@ -265,6 +269,10 @@ export function PopularMoviesInfinite({
 		loadingRef.current = true;
 		setFooterState("loading");
 
+		const gen = seedGenRef.current;
+		const controller = new AbortController();
+		abortRef.current = controller;
+
 		try {
 			let pageData: {
 				results?: PopularMovieSeed[];
@@ -272,7 +280,17 @@ export function PopularMoviesInfinite({
 			} | null = null;
 
 			if (loadPage) {
-				const res = await loadPage(next);
+				let res: Awaited<ReturnType<NonNullable<typeof loadPage>>>;
+				try {
+					res = await loadPage(next, controller.signal);
+				} catch {
+					// Aborted by a re-seed or network throw — drop if superseded.
+					if (gen !== seedGenRef.current) return;
+					loadingRef.current = false;
+					setFooterState("error");
+					return;
+				}
+				if (gen !== seedGenRef.current) return;
 				loadingRef.current = false;
 				if ("error" in res) {
 					setFooterState("error");
@@ -321,6 +339,7 @@ export function PopularMoviesInfinite({
 										? await fetchTvPopular(next)
 										: await fetchMoviesPopular(next);
 
+				if (gen !== seedGenRef.current) return;
 				loadingRef.current = false;
 
 				if (error || !data || typeof data !== "object") {
@@ -332,6 +351,8 @@ export function PopularMoviesInfinite({
 					total_pages?: number;
 				};
 			}
+
+			if (gen !== seedGenRef.current) return;
 
 			const batch = Array.isArray(pageData.results) ? pageData.results : [];
 
@@ -371,6 +392,7 @@ export function PopularMoviesInfinite({
 				queueMicrotask(() => peekIfRoomForMore());
 			}
 		} catch {
+			if (gen !== seedGenRef.current) return;
 			loadingRef.current = false;
 			setFooterState("error");
 		}
@@ -404,6 +426,9 @@ export function PopularMoviesInfinite({
 		// `waveKey` is read so this effect re-runs when sort/genre/medium changes even if
 		// the server seed happens to reuse the same first-page ids as the previous surface.
 		void waveKey;
+		seedGenRef.current += 1;
+		abortRef.current?.abort();
+		abortRef.current = null;
 		setItems([...seedMovies]);
 		nextPageRef.current = seedPage + 1;
 		totalPagesRef.current = initialTotalPages;
@@ -434,9 +459,12 @@ export function PopularMoviesInfinite({
 		loadMoreRef.current = loadMore;
 	}, [loadMore]);
 
+	const showSentinel =
+		!staticCatalogue && !blockedReason && footerState !== "exhausted";
+
 	/** IntersectionObserver — primary trigger for normal scroll velocities. */
 	useEffect(() => {
-		if (staticCatalogue || blockedReason) return;
+		if (!showSentinel) return;
 
 		const el = sentinelRef.current;
 		if (!el) return;
@@ -451,7 +479,13 @@ export function PopularMoviesInfinite({
 
 		observer.observe(el);
 		return () => observer.disconnect();
-	}, [blockedReason, staticCatalogue]);
+	}, [showSentinel]);
+
+	/** Sentinel remounts when exhausted → idle (e.g. after `router.refresh()`); peek drains tall viewports. */
+	useEffect(() => {
+		if (!showSentinel) return;
+		queueMicrotask(() => peekIfRoomForMore());
+	}, [showSentinel, peekIfRoomForMore]);
 
 	/** First paint — short catalogues sometimes keep the sentinel in view without an IO edge. */
 	useEffect(() => {
@@ -600,7 +634,7 @@ export function PopularMoviesInfinite({
 				)}
 			</div>
 
-			{!staticCatalogue && !blockedReason && footerState !== "exhausted" ? (
+			{showSentinel ? (
 				<div
 					ref={sentinelRef}
 					className="pointer-events-none h-px w-full shrink-0"

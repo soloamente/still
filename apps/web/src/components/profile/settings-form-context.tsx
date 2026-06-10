@@ -55,6 +55,7 @@ import {
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
 	PROFILE_PREF_CATALOG_TMDB_LANGUAGE,
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
+	PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER,
 	PROFILE_PREF_SHOW_ADULT_CONTENT,
 	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
 	PROFILE_PREF_SMOOTH_SCROLL,
@@ -63,6 +64,7 @@ import {
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbLanguagePref,
 	readCatalogTmdbWatchRegionPref,
+	readProfilePortraitGrayscaleUntilHoverPref,
 	readShowAdultContentPref,
 	readShowBirthDateOnProfilePref,
 	readSmoothScrollPref,
@@ -124,6 +126,8 @@ type SettingsFormContextValue = {
 	setSmoothScroll: (value: boolean) => void;
 	castCrewMonochromeOnHover: boolean;
 	setCastCrewMonochromeOnHover: (value: boolean) => void;
+	profilePortraitGrayscaleUntilHover: boolean;
+	setProfilePortraitGrayscaleUntilHover: (value: boolean) => void;
 	catalogMonochromePeersOnHover: boolean;
 	setCatalogMonochromePeersOnHover: (value: boolean) => void;
 	catalogTmdbWatchRegion: string;
@@ -189,6 +193,12 @@ export function SettingsFormProvider({
 	);
 	const [castCrewMonochromeOnHover, setCastCrewMonochromeOnHover] = useState(
 		() => readCastCrewMonochromeOnHoverPref(profile.preferences ?? null),
+	);
+	const [
+		profilePortraitGrayscaleUntilHover,
+		setProfilePortraitGrayscaleUntilHover,
+	] = useState(() =>
+		readProfilePortraitGrayscaleUntilHoverPref(profile.preferences ?? null),
 	);
 	const [catalogMonochromePeersOnHover, setCatalogMonochromePeersOnHover] =
 		useState(() =>
@@ -260,6 +270,13 @@ export function SettingsFormProvider({
 				? stored.castCrewMonochromeOnHover
 				: readCastCrewMonochromeOnHoverPref(profile.preferences ?? null),
 		);
+		setProfilePortraitGrayscaleUntilHover(
+			typeof stored.profilePortraitGrayscaleUntilHover === "boolean"
+				? stored.profilePortraitGrayscaleUntilHover
+				: readProfilePortraitGrayscaleUntilHoverPref(
+						profile.preferences ?? null,
+					),
+		);
 		setCatalogMonochromePeersOnHover(
 			typeof stored.catalogMonochromePeersOnHover === "boolean"
 				? stored.catalogMonochromePeersOnHover
@@ -329,6 +346,10 @@ export function SettingsFormProvider({
 			smoothScroll !== readSmoothScrollPref(profile.preferences ?? null) ||
 			castCrewMonochromeOnHover !==
 				readCastCrewMonochromeOnHoverPref(profile.preferences ?? null) ||
+			profilePortraitGrayscaleUntilHover !==
+				readProfilePortraitGrayscaleUntilHoverPref(
+					profile.preferences ?? null,
+				) ||
 			catalogMonochromePeersOnHover !==
 				readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null) ||
 			showAdultContent !==
@@ -355,6 +376,7 @@ export function SettingsFormProvider({
 		theaterAudio,
 		smoothScroll,
 		castCrewMonochromeOnHover,
+		profilePortraitGrayscaleUntilHover,
 		catalogMonochromePeersOnHover,
 		showAdultContent,
 		catalogTmdbWatchRegion,
@@ -386,6 +408,9 @@ export function SettingsFormProvider({
 		setSmoothScroll(readSmoothScrollPref(profile.preferences ?? null));
 		setCastCrewMonochromeOnHover(
 			readCastCrewMonochromeOnHoverPref(profile.preferences ?? null),
+		);
+		setProfilePortraitGrayscaleUntilHover(
+			readProfilePortraitGrayscaleUntilHoverPref(profile.preferences ?? null),
 		);
 		setCatalogMonochromePeersOnHover(
 			readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null),
@@ -444,6 +469,7 @@ export function SettingsFormProvider({
 				theaterAudio,
 				smoothScroll,
 				castCrewMonochromeOnHover,
+				profilePortraitGrayscaleUntilHover,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
@@ -465,6 +491,7 @@ export function SettingsFormProvider({
 				theaterAudio,
 				smoothScroll,
 				castCrewMonochromeOnHover,
+				profilePortraitGrayscaleUntilHover,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
@@ -562,6 +589,8 @@ export function SettingsFormProvider({
 					[PROFILE_PREF_SMOOTH_SCROLL]: smoothScroll,
 					[PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER]:
 						castCrewMonochromeOnHover,
+					[PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER]:
+						profilePortraitGrayscaleUntilHover,
 					[PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER]:
 						catalogMonochromePeersOnHover,
 					[PROFILE_PREF_SHOW_ADULT_CONTENT]: showAdultContent,
@@ -660,6 +689,7 @@ export function SettingsFormProvider({
 			theaterAudio,
 			smoothScroll,
 			castCrewMonochromeOnHover,
+			profilePortraitGrayscaleUntilHover,
 			catalogMonochromePeersOnHover,
 			showAdultContent,
 			birthDate,
@@ -730,6 +760,8 @@ export function SettingsFormProvider({
 			setSmoothScroll,
 			castCrewMonochromeOnHover,
 			setCastCrewMonochromeOnHover,
+			profilePortraitGrayscaleUntilHover,
+			setProfilePortraitGrayscaleUntilHover,
 			catalogMonochromePeersOnHover,
 			setCatalogMonochromePeersOnHover,
 			catalogTmdbWatchRegion,
@@ -765,6 +797,8 @@ export function SettingsFormProvider({
 			isPrivate,
 			theaterAudio,
 			smoothScroll,
+			castCrewMonochromeOnHover,
+			profilePortraitGrayscaleUntilHover,
 			catalogMonochromePeersOnHover,
 			showAdultContent,
 			enableAdultContentWithBirthDate,

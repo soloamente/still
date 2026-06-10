@@ -2,7 +2,6 @@
 
 import { useForm } from "@tanstack/react-form";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -100,14 +99,6 @@ export function SignInForm({ redirectTo = "/home" }: { redirectTo?: string }) {
 									value={field.state.value}
 								/>
 								<AuthFieldErrors errors={field.state.meta.errors} />
-								<p className="text-center text-muted-foreground text-sm">
-									<Link
-										className="font-medium text-foreground underline-offset-4 hover:underline"
-										href="/forgot-password"
-									>
-										Forgot password?
-									</Link>
-								</p>
 							</div>
 						)}
 					</form.Field>

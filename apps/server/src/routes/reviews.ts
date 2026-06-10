@@ -10,7 +10,7 @@ import {
 	review,
 	user,
 } from "@still/db";
-import { and, desc, eq, isNotNull, isNull, sql } from "drizzle-orm";
+import { and, count, desc, eq, isNotNull, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
@@ -29,10 +29,12 @@ import {
 } from "../lib/content-visibility";
 import { reviewEngagementOrderSql } from "../lib/creator-recognition";
 import { makeId } from "../lib/cuid";
+import { resolveDiaryMetalTier } from "../lib/diary-metal-tier";
 import {
 	areUsersMutualFollows,
 	deliverNotification,
 } from "../lib/notification-delivery";
+import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { removePinnedReviewId } from "../lib/profile-pinned-reviews";
 import { hit } from "../lib/rate-limit";
 import {
@@ -370,6 +372,10 @@ export const reviewsRoute = new Elysia({
 				screenshots,
 				row.review.stillSlideKey,
 			);
+			const [logCountRow] = await db
+				.select({ c: count(log.id) })
+				.from(log)
+				.where(and(eq(log.userId, author), isNull(log.removedAt)));
 			return {
 				...row,
 				author:
@@ -378,6 +384,15 @@ export const reviewsRoute = new Elysia({
 								handle,
 								displayName,
 								image: row.authorUser?.image ?? null,
+								avatarIsAnimated: readAvatarIsAnimatedPref(
+									row.authorProfile?.preferences as
+										| Record<string, unknown>
+										| null
+										| undefined,
+								),
+								diaryMetalTier: resolveDiaryMetalTier(
+									Number(logCountRow?.c ?? 0),
+								),
 							}
 						: null,
 				screenshots,

@@ -23,33 +23,28 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-09-share-previews",
+	id: "2026-06-10-letterboxd-streak",
 	fullReleaseHref: "/changelog",
 	slides: [
 		{
 			title: "What's new in Sense",
 			description:
-				"Links you share now show a preview image — film stills, taste cards, and list covers with minimal Sense branding.",
+				"Letterboxd imports match more titles, and your diary streak stays in sync with the activity heatmap after a bulk import.",
 		},
 		{
-			title: "Share a film or show",
+			title: "Better Letterboxd matching",
 			description:
-				"Movie and TV detail URLs preview with a backdrop still and a small Sense mark. No cluttered title overlays on the image itself.",
+				"Diary and watched CSV rows resolve more reliably — even when Letterboxd’s year differs from TMDb’s theatrical release date.",
 		},
 		{
-			title: "Profiles & lists",
+			title: "Watched-only titles",
 			description:
-				"Public profile links use your taste card. Public lists use the cover art you picked — uploaded or pinned from the catalogue.",
+				"Upload watched.csv from your Letterboxd export to backfill films you marked watched without a diary line — skipped when you already have a log.",
 		},
 		{
-			title: "Compare taste links",
+			title: "Streak after import",
 			description:
-				"Copying a taste comparison shares a proper preview card, then opens the overlap sheet when someone taps through.",
-		},
-		{
-			title: "Still polishing home & detail",
-			description:
-				"This release also includes cleaner at-home browsing, review stills in the composer, and drag-friendly carousels on film About.",
+				"Your profile streak rebuilds from imported diary dates instead of staying on an old manual count. Refresh your profile to pick up the fix.",
 		},
 	],
 };

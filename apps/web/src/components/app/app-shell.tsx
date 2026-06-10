@@ -13,6 +13,7 @@ import { PersonFilmographyDrawerRoot } from "@/components/movie/person-filmograp
 import { ReviewComposerRoot } from "@/components/review/review-composer";
 import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
 import { RoleChangeDialogRoot } from "@/components/staff/role-change-dialog-root";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 
 /**
  * Track B — authenticated app chrome (single shell for `(app)` routes).
@@ -38,6 +39,8 @@ export type AppShellUser = {
 	handle: string;
 	email?: string | null;
 	isPro?: boolean;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 };
 
 /**
@@ -94,6 +97,8 @@ export function AppShell({
 					handle: user.handle,
 					email: user.email,
 					isPro: user.isPro,
+					avatarIsAnimated: user.avatarIsAnimated,
+					diaryMetalTier: user.diaryMetalTier ?? null,
 				}}
 			/>
 		</div>

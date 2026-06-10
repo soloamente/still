@@ -17,6 +17,7 @@ import {
 } from "@/components/movie/movie-detail-following-ratings";
 import { MovieDetailReviewsCarousel } from "@/components/movie/movie-detail-reviews-carousel";
 import { Section } from "@/components/ui/section";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -159,6 +160,8 @@ export type MoviePageReviewAuthor = {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 };
 
 export type MoviePageReview = {

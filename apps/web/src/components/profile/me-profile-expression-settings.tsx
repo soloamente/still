@@ -2,6 +2,7 @@
 
 import { cn } from "@still/ui/lib/utils";
 
+import { MePreferenceToggle } from "@/components/profile/me-preference-toggle";
 import {
 	PROFILE_ACCENT_PRESETS,
 	PROFILE_BANNER_FRAMES,
@@ -15,12 +16,16 @@ export function MeProfileExpressionSettings({
 	bannerFrame,
 	onProfileAccentChange,
 	onBannerFrameChange,
+	profilePortraitGrayscaleUntilHover,
+	onProfilePortraitGrayscaleUntilHoverChange,
 }: {
 	isPro: boolean;
 	profileAccent: ProfileAccentId | null;
 	bannerFrame: ProfileBannerFrameId;
 	onProfileAccentChange: (next: ProfileAccentId) => void;
 	onBannerFrameChange: (next: ProfileBannerFrameId) => void;
+	profilePortraitGrayscaleUntilHover: boolean;
+	onProfilePortraitGrayscaleUntilHoverChange: (next: boolean) => void;
 }) {
 	const accentEntries = Object.entries(PROFILE_ACCENT_PRESETS) as [
 		ProfileAccentId,
@@ -121,6 +126,14 @@ export function MeProfileExpressionSettings({
 					})}
 				</fieldset>
 			</div>
+
+			<MePreferenceToggle
+				id="profile-portrait-grayscale-hover"
+				checked={profilePortraitGrayscaleUntilHover}
+				onChange={onProfilePortraitGrayscaleUntilHoverChange}
+				title="Grayscale portrait until hover"
+				description="On your public profile, your portrait stays monochrome until a visitor hovers. Off keeps full color on the profile hero. Does not affect small avatars elsewhere."
+			/>
 		</div>
 	);
 }

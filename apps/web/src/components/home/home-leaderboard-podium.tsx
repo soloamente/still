@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { openPatronWatchLedger } from "@/components/home/patron-watch-ledger-drawer";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import {
 	leaderboardCountButtonClassName,
 	leaderboardHandleLinkClassName,
@@ -16,6 +16,7 @@ import type {
 	LeaderboardEntry,
 	LeaderboardKind,
 } from "@/lib/home-leaderboard-types";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 type PodiumSlot = "second" | "first" | "third";
 
@@ -69,13 +70,18 @@ function PodiumTile({
 				href={`/profile/${entry.handle}`}
 				className="mt-2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
 			>
-				<PatronPortraitAvatar
+				<PatronPortraitWithMetalTier
 					handle={entry.handle}
 					avatarUrl={entry.image}
 					name={entry.displayName}
 					className="size-14 rounded-full bg-card object-cover font-medium text-foreground sm:size-16"
 					width={64}
 					height={64}
+					isAnimated={inferAnimatedFromProfileUrl(
+						entry.image,
+						entry.avatarIsAnimated,
+					)}
+					diaryMetalTier={entry.diaryMetalTier}
 				/>
 			</Link>
 			<p className="mt-2 max-w-full truncate font-semibold text-foreground text-sm">
@@ -102,6 +108,8 @@ function PodiumTile({
 						handle: entry.handle,
 						displayName: entry.displayName,
 						image: entry.image,
+						avatarIsAnimated: entry.avatarIsAnimated,
+						diaryMetalTier: entry.diaryMetalTier,
 						kind,
 						period,
 					})

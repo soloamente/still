@@ -21,6 +21,10 @@ import {
 } from "../lib/adult-content-policy";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { contentVisibilityWhere } from "../lib/content-visibility";
+import {
+	fetchDiaryLogCountsForUserIds,
+	resolveDiaryMetalTier,
+} from "../lib/diary-metal-tier";
 import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
 import {
 	buildHeroArtworkSlides,
@@ -29,6 +33,7 @@ import {
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
+import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { fetchReviewMovieScreenshots } from "../lib/review-movie-screenshots";
 import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
@@ -866,6 +871,7 @@ export const moviesRoute = new Elysia({
 					handle: profile.handle,
 					displayName: profile.displayName,
 					image: user.image,
+					preferences: profile.preferences,
 				})
 				.from(review)
 				.leftJoin(profile, eq(review.userId, profile.userId))
@@ -883,17 +889,28 @@ export const moviesRoute = new Elysia({
 				)
 				.orderBy(desc(review.likesCount), desc(review.publishedAt))
 				.limit(20);
-			return rows.map(({ review: row, handle, displayName, image }) => ({
-				...row,
-				author:
-					handle && displayName
-						? {
-								handle,
-								displayName,
-								image: image ?? null,
-							}
-						: null,
-			}));
+			const logCounts = await fetchDiaryLogCountsForUserIds(
+				rows.map((row) => row.review.userId),
+			);
+			return rows.map(
+				({ review: row, handle, displayName, image, preferences }) => ({
+					...row,
+					author:
+						handle && displayName
+							? {
+									handle,
+									displayName,
+									image: image ?? null,
+									avatarIsAnimated: readAvatarIsAnimatedPref(
+										preferences as Record<string, unknown> | null,
+									),
+									diaryMetalTier: resolveDiaryMetalTier(
+										logCounts.get(row.userId) ?? 0,
+									),
+								}
+							: null,
+				}),
+			);
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

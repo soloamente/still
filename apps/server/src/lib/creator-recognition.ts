@@ -2,7 +2,13 @@ import { db, list, profile, review, user } from "@still/db";
 import { and, eq, inArray, isNull, sql } from "drizzle-orm";
 
 import { creatorRecognitionThresholds } from "./creator-recognition-config";
+import {
+	type DiaryMetalTier,
+	fetchDiaryLogCountsForUserIds,
+	resolveDiaryMetalTier,
+} from "./diary-metal-tier";
 import { LIST_DESCRIPTION_DISCOVERABILITY_MIN_CHARS } from "./list-quality";
+import { readAvatarIsAnimatedPref } from "./profile-media";
 
 /** Review Community ranking — engagement, not body length (SN.11). */
 export const REVIEW_ENGAGEMENT_LIKE_WEIGHT = 2;
@@ -21,6 +27,8 @@ export interface CuratorSpotlightPatron {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	headline: string;
 	spotlightScore: number;
 }
@@ -213,12 +221,14 @@ export async function fetchCuratorSpotlightPatrons(
 			handle: profile.handle,
 			displayName: profile.displayName,
 			image: user.image,
+			preferences: profile.preferences,
 		})
 		.from(profile)
 		.innerJoin(user, eq(profile.userId, user.id))
 		.where(and(eq(profile.isPrivate, false), inArray(profile.userId, userIds)));
 
 	const profileByUser = new Map(profiles.map((row) => [row.userId, row]));
+	const logCounts = await fetchDiaryLogCountsForUserIds(userIds);
 
 	return ranked
 		.map((row) => {
@@ -229,6 +239,10 @@ export async function fetchCuratorSpotlightPatrons(
 				handle: patron.handle,
 				displayName: patron.displayName,
 				image: patron.image,
+				avatarIsAnimated: readAvatarIsAnimatedPref(
+					patron.preferences as Record<string, unknown> | null,
+				),
+				diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
 				headline: buildCuratorHeadline(row.stats),
 				spotlightScore: row.score,
 			} satisfies CuratorSpotlightPatron;

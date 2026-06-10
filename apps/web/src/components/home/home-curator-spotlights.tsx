@@ -3,8 +3,9 @@
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import type { CuratorSpotlightPatron } from "@/lib/creator-recognition";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 /**
  * Community lists tab — surfaces patrons earning curator recognition (SN.11).
@@ -36,13 +37,18 @@ export function HomeCuratorSpotlights({
 									href={`/profile/${patron.handle}`}
 									className="flex w-[9.5rem] flex-col items-center rounded-2xl bg-background px-3 py-3 text-center transition-colors [@media(hover:hover)]:hover:bg-background/80"
 								>
-									<PatronPortraitAvatar
+									<PatronPortraitWithMetalTier
 										handle={patron.handle}
 										avatarUrl={patron.image}
 										name={patron.displayName}
 										width={56}
 										height={56}
 										className="size-14 rounded-full"
+										isAnimated={inferAnimatedFromProfileUrl(
+											patron.image,
+											patron.avatarIsAnimated,
+										)}
+										diaryMetalTier={patron.diaryMetalTier}
 									/>
 									<p className="mt-2 line-clamp-1 w-full font-medium text-foreground text-sm leading-snug">
 										{patron.displayName}

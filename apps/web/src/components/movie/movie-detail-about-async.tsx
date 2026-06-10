@@ -5,6 +5,7 @@ import { CreditsFooter } from "@/components/cinema/credits-footer";
 import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
+import type { MovieDetailFollowingRating } from "@/components/movie/movie-detail-following-ratings";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailStillsSection } from "@/components/movie/movie-detail-stills-carousel";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
@@ -75,15 +76,7 @@ type MovieListRow = {
 };
 
 type FollowingRatingsPayload = {
-	entries: {
-		userId: string;
-		handle: string;
-		displayName: string;
-		image: string | null;
-		rating: number | null;
-		liked: boolean;
-		watchedAt: string;
-	}[];
+	entries: MovieDetailFollowingRating[];
 	moreCount: number;
 };
 

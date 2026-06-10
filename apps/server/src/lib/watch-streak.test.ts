@@ -3,6 +3,7 @@ import { describe, expect, test } from "bun:test";
 import {
 	applyQualifyingDay,
 	applyStreakShield,
+	computeLivingStreakFromDayKeys,
 	computeStreakFromDayKeys,
 	deriveStreakStatus,
 	toUtcDayKey,
@@ -58,6 +59,31 @@ describe("watch-streak", () => {
 		expect(toUtcDayKey(new Date("2026-05-02T00:30:00.000Z"))).toBe(
 			"2026-05-02",
 		);
+	});
+
+	test("living streak counts consecutive days ending on latest log", () => {
+		const dayKeys: string[] = [];
+		for (let i = 0; i < 90; i += 1) {
+			const d = new Date("2026-03-12T12:00:00.000Z");
+			d.setUTCDate(d.getUTCDate() + i);
+			dayKeys.push(toUtcDayKey(d));
+		}
+		const streak = computeLivingStreakFromDayKeys(dayKeys);
+		expect(streak.currentStreak).toBe(90);
+		expect(streak.lastActiveDay).toBe("2026-06-09");
+	});
+
+	test("living streak breaks on the first gap before the latest log", () => {
+		const streak = computeLivingStreakFromDayKeys([
+			"2026-06-01",
+			"2026-06-02",
+			"2026-06-03",
+			"2026-06-10",
+			"2026-06-11",
+			"2026-06-12",
+		]);
+		expect(streak.currentStreak).toBe(3);
+		expect(streak.lastActiveDay).toBe("2026-06-12");
 	});
 
 	test("backdated logs do not rewind streak state", () => {

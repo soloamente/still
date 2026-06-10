@@ -11,8 +11,19 @@ const OVERLAP_DIARY_LIMIT = 500;
 export async function fetchOverlapDiarySlices(
 	userId: string,
 ): Promise<OverlapDiarySlice[]> {
+	// Select only overlap fields — full `movie`/`tv` rows include large `tmdb_json`
+	// blobs and can exceed Neon's 64MB HTTP response cap at the 500-log limit.
 	const rows = await db
-		.select({ log, movie, tv })
+		.select({
+			movieId: log.movieId,
+			tvId: log.tvId,
+			rating: log.rating,
+			watchedAt: log.watchedAt,
+			movieTitle: movie.title,
+			moviePosterPath: movie.posterPath,
+			tvTitle: tv.title,
+			tvPosterPath: tv.posterPath,
+		})
 		.from(log)
 		.leftJoin(movie, eq(log.movieId, movie.tmdbId))
 		.leftJoin(tv, eq(log.tvId, tv.tmdbId))
@@ -22,18 +33,18 @@ export async function fetchOverlapDiarySlices(
 
 	const slices: OverlapDiarySlice[] = [];
 	for (const row of rows) {
-		const key = logMediaKey(row.log.movieId, row.log.tvId);
+		const key = logMediaKey(row.movieId, row.tvId);
 		if (!key) continue;
-		const isMovie = row.log.movieId != null;
+		const isMovie = row.movieId != null;
 		slices.push({
 			key,
 			mediaKind: isMovie ? "movie" : "tv",
-			movieId: row.log.movieId,
-			tvId: row.log.tvId,
-			title: row.movie?.title ?? row.tv?.title ?? "Untitled",
-			posterPath: row.movie?.posterPath ?? row.tv?.posterPath ?? null,
-			rating: row.log.rating,
-			watchedAtMs: row.log.watchedAt.getTime(),
+			movieId: row.movieId,
+			tvId: row.tvId,
+			title: row.movieTitle ?? row.tvTitle ?? "Untitled",
+			posterPath: row.moviePosterPath ?? row.tvPosterPath ?? null,
+			rating: row.rating,
+			watchedAtMs: row.watchedAt.getTime(),
 		});
 	}
 	return slices;

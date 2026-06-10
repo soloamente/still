@@ -9,6 +9,7 @@ import type { ProfileReviewRow } from "@/components/profile/profile-reviews-pane
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { authServer } from "@/lib/auth-server";
 import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { fetchProfileFilmographyServer } from "@/lib/fetch-profile-filmography-server";
 import { toListBoardRow } from "@/lib/list-board-row";
 import {
@@ -23,7 +24,13 @@ import {
 	parseProfileLobbyOrder,
 	parseProfileLobbyVenue,
 } from "@/lib/profile-lobby-order";
-import { readCatalogMonochromePeersOnHoverPref } from "@/lib/profile-preferences";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
+import {
+	readAvatarIsAnimatedPref,
+	readBannerIsAnimatedPref,
+	readCatalogMonochromePeersOnHoverPref,
+	readProfilePortraitGrayscaleUntilHoverPref,
+} from "@/lib/profile-preferences";
 import { parseTasteSignatureJson } from "@/lib/sense-taste-signature";
 import { serverApi } from "@/lib/server-api";
 
@@ -85,6 +92,7 @@ type ProfileData = {
 		sectionOrder: string[] | null;
 		isPrivate: boolean;
 		tasteSignature?: unknown;
+		diaryMetalTier?: DiaryMetalTier | null;
 	};
 	stats: { followers: number; following: number };
 	creator?: { isCurator: boolean; headline: string | null };
@@ -221,6 +229,14 @@ export default async function ProfilePage({
 	const initialTasteCompareOpen =
 		canCompareTaste && (sp.tasteCompare === "1" || sp.tasteCompare === "true");
 	const bannerFrame = readProfileBannerFramePref(profile.preferences ?? null);
+	const avatarUrl = user.image;
+	const bannerUrl = profile.bannerUrl;
+	const avatarFlag = readAvatarIsAnimatedPref(profile.preferences);
+	const bannerFlag = readBannerIsAnimatedPref(profile.preferences);
+	const avatarIsAnimated = inferAnimatedFromProfileUrl(avatarUrl, avatarFlag);
+	const bannerIsAnimated = inferAnimatedFromProfileUrl(bannerUrl, bannerFlag);
+	const profilePortraitGrayscaleUntilHover =
+		readProfilePortraitGrayscaleUntilHoverPref(profile.preferences);
 
 	return (
 		<ProfilePatronLobbyShell
@@ -228,7 +244,7 @@ export default async function ProfilePage({
 			displayName={profile.displayName}
 			pronouns={profile.pronouns}
 			bio={profile.bio}
-			avatarUrl={user.image}
+			avatarUrl={avatarUrl}
 			stats={stats}
 			location={profile.location}
 			website={profile.website}
@@ -236,7 +252,7 @@ export default async function ProfilePage({
 			isMe={isMe}
 			targetUserId={user.id}
 			viewerId={session?.user.id ?? null}
-			bannerUrl={profile.bannerUrl}
+			bannerUrl={bannerUrl}
 			bannerFrame={bannerFrame}
 			accentColor={profile.accentColor}
 			seeds={filmographyPage1.seeds}
@@ -255,6 +271,10 @@ export default async function ProfilePage({
 			canCompareTaste={canCompareTaste}
 			initialTasteCompareOpen={initialTasteCompareOpen}
 			curatorHeadline={data.creator?.headline ?? null}
+			avatarIsAnimated={avatarIsAnimated}
+			bannerIsAnimated={bannerIsAnimated}
+			profilePortraitGrayscaleUntilHover={profilePortraitGrayscaleUntilHover}
+			diaryMetalTier={profile.diaryMetalTier ?? null}
 		/>
 	);
 }

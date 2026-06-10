@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { PatronWatchLedgerPanel } from "@/components/home/patron-watch-ledger-panel";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardKind } from "@/lib/home-leaderboard-types";
 
@@ -11,6 +12,8 @@ export type PatronWatchLedgerSeed = {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 	kind: LeaderboardKind;
 	period: HomeLeaderboardPeriod;
 };

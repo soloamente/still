@@ -2,6 +2,11 @@ import { db, log, movie, profile, tv, user } from "@still/db";
 import { and, desc, eq, inArray, isNotNull, isNull } from "drizzle-orm";
 import { withinCommunityPeriod } from "./community-period";
 import { contentVisibilityWhere } from "./content-visibility";
+import {
+	type DiaryMetalTier,
+	fetchDiaryLogCountsForUserIds,
+} from "./diary-metal-tier";
+import { serializePatronProfileForClient } from "./profile-media";
 import { logMediaKey, storedRatingToDisplayTen } from "./sense-taste-overlap";
 
 /** Minimum 0–10 spread between two followed patrons on the same title (ST.5). */
@@ -10,7 +15,12 @@ export const FEED_DIVERGENCE_MIN_DELTA = 4;
 export type FeedDivergencePatron = {
 	userId: string;
 	user: { id: string; name: string; image: string | null };
-	profile: { handle: string; displayName: string } | null;
+	profile: {
+		handle: string;
+		displayName: string;
+		avatarIsAnimated: boolean;
+		diaryMetalTier: DiaryMetalTier | null;
+	} | null;
 	/** Stored `log.rating` (tenths or legacy). */
 	rating: number;
 	displayRating: number;
@@ -44,7 +54,11 @@ type DivergenceLogRow = {
 	} | null;
 	tv: { tmdbId: number; title: string; posterPath: string | null } | null;
 	user: { id: string; name: string; image: string | null };
-	profile: { handle: string; displayName: string } | null;
+	profile: {
+		handle: string;
+		displayName: string;
+		preferences?: Record<string, unknown> | null;
+	} | null;
 };
 
 /**
@@ -52,6 +66,7 @@ type DivergenceLogRow = {
  */
 export function pickFeedRatingDivergence(
 	rows: DivergenceLogRow[],
+	logCounts: ReadonlyMap<string, number> = new Map(),
 ): { at: Date; payload: FeedRatingDivergencePayload } | null {
 	const byMedia = new Map<
 		string,
@@ -75,7 +90,10 @@ export function pickFeedRatingDivergence(
 		const patron: FeedDivergencePatron = {
 			userId: row.log.userId,
 			user: row.user,
-			profile: row.profile,
+			profile: serializePatronProfileForClient(
+				row.profile,
+				logCounts.get(row.log.userId) ?? 0,
+			),
 			rating: row.log.rating,
 			displayRating,
 			watchedAtMs,
@@ -172,5 +190,8 @@ export async function findFeedRatingDivergence(args: {
 		.orderBy(desc(log.watchedAt))
 		.limit(600);
 
-	return pickFeedRatingDivergence(rows);
+	const userIds = [...new Set(rows.map((row) => row.log.userId))];
+	const logCounts = await fetchDiaryLogCountsForUserIds(userIds);
+
+	return pickFeedRatingDivergence(rows, logCounts);
 }

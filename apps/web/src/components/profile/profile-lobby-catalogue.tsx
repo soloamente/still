@@ -54,7 +54,8 @@ export function ProfileLobbyCatalogue({
 		[],
 	);
 	const loadPage = useCallback(
-		(page: number) => fetchProfileFilmography(handle, page, query),
+		(page: number, signal?: AbortSignal) =>
+			fetchProfileFilmography(handle, page, { ...query, signal }),
 		[handle, query],
 	);
 

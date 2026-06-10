@@ -10,6 +10,7 @@ import {
 	type MeProfile,
 	PROFILE_FETCH_FAILED,
 } from "@/lib/fetch-me-profile";
+import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +32,10 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	// While impersonating, `session.user` is the impersonated account.
 	const impersonatedName =
 		session.user.name || session.user.email || "this account";
+	const avatarIsAnimated = resolvePatronAvatarIsAnimated(
+		session.user.image ?? null,
+		profile?.preferences ?? null,
+	);
 
 	return (
 		<AppThemeShell
@@ -47,6 +52,8 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 					handle: profile?.handle ?? session.user.id,
 					email: session.user.email ?? null,
 					isPro: Boolean(profile?.isPro),
+					avatarIsAnimated,
+					diaryMetalTier: profile?.diaryMetalTier ?? null,
 				}}
 			>
 				{children}

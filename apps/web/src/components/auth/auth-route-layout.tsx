@@ -11,15 +11,25 @@ const AUTH_ROUTES = {
 		title: "Welcome back",
 		description: "Pick up your diary where you left off.",
 		footer: (
-			<>
-				New to {APP_NAME}?{" "}
-				<Link
-					className="font-medium text-foreground underline-offset-4 hover:underline"
-					href="/sign-up"
-				>
-					Create an account
-				</Link>
-			</>
+			<div className="flex flex-col gap-2">
+				<p>
+					New to {APP_NAME}?{" "}
+					<Link
+						className="font-medium text-foreground underline-offset-4 hover:underline"
+						href="/sign-up"
+					>
+						Create an account
+					</Link>
+				</p>
+				<p>
+					<Link
+						className="font-medium text-foreground underline-offset-4 hover:underline"
+						href="/forgot-password"
+					>
+						Forgot password?
+					</Link>
+				</p>
+			</div>
 		),
 	},
 	"/sign-up": {

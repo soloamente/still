@@ -3,7 +3,11 @@
 export type FeedDivergencePatron = {
 	userId: string;
 	user: { id: string; name: string; image: string | null };
-	profile: { handle: string; displayName: string } | null;
+	profile: {
+		handle: string;
+		displayName: string;
+		avatarIsAnimated: boolean;
+	} | null;
 	rating: number;
 	displayRating: number;
 	watchedAtMs: number;

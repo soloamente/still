@@ -16,7 +16,9 @@ import {
 	removeViewerCommentReaction,
 } from "../lib/comment-reactions";
 import { makeId } from "../lib/cuid";
+import { fetchDiaryLogCountsForUserIds } from "../lib/diary-metal-tier";
 import { notifyOnReviewComment } from "../lib/notification-delivery";
+import { serializePatronProfileForClient } from "../lib/profile-media";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
 
@@ -188,8 +190,16 @@ export const commentsRoute = new Elysia({
 				}
 			}
 
+			const logCounts = await fetchDiaryLogCountsForUserIds(
+				rows.map((row) => row.comment.userId),
+			);
+
 			return rows.map((row) => ({
 				...row,
+				profile: serializePatronProfileForClient(
+					row.profile,
+					logCounts.get(row.comment.userId) ?? 0,
+				),
 				liked: likedCommentIds.has(row.comment.id),
 				disliked: dislikedCommentIds.has(row.comment.id),
 			}));

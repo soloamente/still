@@ -1,3 +1,4 @@
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 
 export type LeaderboardKind = "films" | "tv";
@@ -8,6 +9,8 @@ export type LeaderboardEntry = {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	count: number;
 };
 
@@ -33,7 +36,13 @@ export type LeaderboardLogItem = {
 };
 
 export type LeaderboardLogsPayload = {
-	user: { handle: string; displayName: string; image: string | null };
+	user: {
+		handle: string;
+		displayName: string;
+		image: string | null;
+		avatarIsAnimated: boolean;
+		diaryMetalTier: DiaryMetalTier | null;
+	};
 	period: HomeLeaderboardPeriod;
 	window: { start: string; end: string };
 	items: LeaderboardLogItem[];

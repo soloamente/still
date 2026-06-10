@@ -30,6 +30,7 @@ import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useHomeBrowseSurfaceOptional } from "@/components/home/home-browse-surface-context";
 import { HomeNotificationsMenu } from "@/components/home/home-notifications-menu";
 import { HomeStickySearch } from "@/components/home/home-sticky-search";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import {
 	type HomeBrowseSurface,
 	parseHomeBrowseSurface,
@@ -56,6 +57,8 @@ export type HomeStickyChromeUser = {
 	handle: string;
 	email?: string | null;
 	isPro?: boolean;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 };
 
 /**
@@ -385,6 +388,8 @@ export function HomeStickyChrome({
 													name={user.name}
 													handle={user.handle}
 													size="compact"
+													isAnimated={user.avatarIsAnimated ?? false}
+													diaryMetalTier={user.diaryMetalTier ?? null}
 												/>
 											</Button>
 										}
@@ -401,6 +406,8 @@ export function HomeStickyChrome({
 												handle: user.handle,
 												email: user.email,
 												isPro: user.isPro,
+												avatarIsAnimated: user.avatarIsAnimated,
+												diaryMetalTier: user.diaryMetalTier ?? null,
 											}}
 										/>
 									</DropdownMenuContent>

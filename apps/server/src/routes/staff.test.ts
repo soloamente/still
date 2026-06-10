@@ -405,6 +405,20 @@ mock.module("../lib/staff-audit", () => ({
 	},
 }));
 
+// Route tests mock `@still/db` without `follow`; mirror profile.statsCache in tests.
+mock.module("../lib/staff-user-stats", () => ({
+	fetchStaffUserActivityStats: async (userId: string) => {
+		const cached = state.profiles[userId]?.statsCache ?? {};
+		return {
+			filmsLogged: cached.filmsLogged ?? 0,
+			reviewsCount: cached.reviewsCount ?? 0,
+			listsCount: cached.listsCount ?? 0,
+			followers: cached.followers ?? 0,
+			following: cached.following ?? 0,
+		};
+	},
+}));
+
 const { staffRoute } = await import("./staff");
 
 function makeApp() {

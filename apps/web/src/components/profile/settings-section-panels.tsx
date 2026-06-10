@@ -49,6 +49,7 @@ function SettingsSectionPage({ children }: { children: ReactNode }) {
 export function SettingsProfileSection() {
 	const {
 		profile,
+		isPro,
 		displayName,
 		setDisplayName,
 		pronouns,
@@ -80,6 +81,7 @@ export function SettingsProfileSection() {
 					handle={profile.handle}
 					bannerUrl={profile.bannerUrl ?? null}
 					hasAvatar={Boolean(profile.hasAvatar)}
+					isPro={isPro}
 					disabled={saving}
 				/>
 				<MeSettingsPanel className="flex flex-col">
@@ -314,6 +316,8 @@ export function SettingsAppearanceSection() {
 		setProfileAccent,
 		bannerFrame,
 		setBannerFrame,
+		profilePortraitGrayscaleUntilHover,
+		setProfilePortraitGrayscaleUntilHover,
 	} = useSettingsForm();
 
 	return (
@@ -338,6 +342,12 @@ export function SettingsAppearanceSection() {
 								);
 							}
 						}}
+						profilePortraitGrayscaleUntilHover={
+							profilePortraitGrayscaleUntilHover
+						}
+						onProfilePortraitGrayscaleUntilHoverChange={
+							setProfilePortraitGrayscaleUntilHover
+						}
 					/>
 				</MeSettingsPanel>
 			</MeSettingsSection>

@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import {
+	MOVIE_DETAIL_RETURN_SSR_FALLBACK,
 	type MovieDetailReturn,
 	resolveSettingsReturn,
 } from "@/lib/movie-detail-return";
@@ -12,8 +13,9 @@ import {
 export function useSettingsReturn(): MovieDetailReturn {
 	const pathname = usePathname();
 
-	const [back, setBack] = useState<MovieDetailReturn>(() =>
-		resolveSettingsReturn(pathname),
+	// Keep first paint aligned with SSR — resolveSettingsReturn reads sessionStorage.
+	const [back, setBack] = useState<MovieDetailReturn>(
+		MOVIE_DETAIL_RETURN_SSR_FALLBACK,
 	);
 
 	useEffect(() => {

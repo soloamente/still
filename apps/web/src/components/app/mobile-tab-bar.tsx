@@ -12,6 +12,7 @@ import { MobileYouSheet } from "@/components/app/mobile-you-sheet";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { useDismissSheetOnRouteChange } from "@/lib/use-dismiss-sheet-on-route-change";
 
 type TabUser = {
@@ -21,6 +22,8 @@ type TabUser = {
 	handle: string;
 	email?: string | null;
 	isPro?: boolean;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 };
 
 const itemClass =
@@ -128,6 +131,8 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 								name={user.name}
 								handle={user.handle}
 								size="compact"
+								isAnimated={user.avatarIsAnimated ?? false}
+								diaryMetalTier={user.diaryMetalTier ?? null}
 							/>
 						</span>
 						You

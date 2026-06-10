@@ -28,6 +28,7 @@ export type MeAccountSettingsDraftPayload = {
 	theaterAudio: boolean;
 	smoothScroll: boolean;
 	castCrewMonochromeOnHover: boolean;
+	profilePortraitGrayscaleUntilHover: boolean;
 	catalogMonochromePeersOnHover: boolean;
 	catalogTmdbWatchRegion: string;
 	catalogTmdbLanguage: string;

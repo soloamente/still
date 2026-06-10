@@ -1,3 +1,5 @@
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+
 /** Patron row from `GET /api/profiles/search`. */
 export type ProfileSearchRelationship = "mutual" | "following" | "none";
 
@@ -6,6 +8,8 @@ export interface ProfileSearchHit {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	relationship: ProfileSearchRelationship;
 }
 

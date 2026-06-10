@@ -1,7 +1,7 @@
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { ProfileAboutCollapsible } from "@/components/profile/profile-about-collapsible";
 import { openProfileFollows } from "@/components/profile/profile-follows-drawer";
 import { ProfilePatronActions } from "@/components/profile/profile-patron-actions";
@@ -10,6 +10,7 @@ import type { ProfileReviewRow } from "@/components/profile/profile-reviews-pane
 import { ProfileStatCell } from "@/components/profile/profile-stat-cell";
 import { ProfileStreakStatCell } from "@/components/profile/profile-streak-stat-cell";
 import { ProfileTasteSignature } from "@/components/profile/profile-taste-signature";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import {
 	type ProfileBannerFrameId,
 	profileBannerFrameClass,
@@ -44,6 +45,10 @@ type ProfilePatronHeaderProps = {
 	pinnedReviews?: ProfileReviewRow[];
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
+	avatarIsAnimated?: boolean;
+	bannerIsAnimated?: boolean;
+	profilePortraitGrayscaleUntilHover?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 };
 
 /**
@@ -71,6 +76,10 @@ export function ProfilePatronHeader({
 	pinnedReviews = [],
 	canCompareTaste,
 	initialTasteCompareOpen,
+	avatarIsAnimated,
+	bannerIsAnimated,
+	profilePortraitGrayscaleUntilHover,
+	diaryMetalTier = null,
 }: ProfilePatronHeaderProps) {
 	const accent = accentColor?.trim() || "#c45c26";
 	const hasBanner = Boolean(bannerUrl?.trim());
@@ -88,15 +97,24 @@ export function ProfilePatronHeader({
 				)}
 			>
 				{bannerSrc ? (
-					<Image
-						src={bannerSrc}
-						alt=""
-						fill
-						unoptimized
-						className="object-cover"
-						sizes="(max-width: 1280px) 100vw, 1200px"
-						priority
-					/>
+					bannerIsAnimated ? (
+						// Animated GIF/WebP must use native <img> so frames play.
+						<img
+							src={bannerSrc}
+							alt=""
+							className="absolute inset-0 size-full object-cover"
+						/>
+					) : (
+						<Image
+							src={bannerSrc}
+							alt=""
+							fill
+							unoptimized
+							className="object-cover"
+							sizes="(max-width: 1280px) 100vw, 1200px"
+							priority
+						/>
+					)
 				) : (
 					<div
 						className="size-full"
@@ -117,13 +135,16 @@ export function ProfilePatronHeader({
 				<div className="mx-auto mb-4 flex justify-center">
 					<div className="relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg ring-4 ring-card sm:w-24">
 						{hasPortrait ? (
-							<PatronPortraitAvatar
+							<PatronPortraitWithMetalTier
 								handle={handle}
 								avatarUrl={avatarUrl}
 								name={displayName || initials}
 								width={192}
 								height={288}
-								className="size-full rounded-2xl grayscale [@media(hover:hover)]:hover:grayscale-0"
+								isAnimated={avatarIsAnimated}
+								grayscaleUntilHover={profilePortraitGrayscaleUntilHover ?? true}
+								className="size-full rounded-2xl"
+								diaryMetalTier={diaryMetalTier}
 							/>
 						) : (
 							<PersonCreditPortrait

@@ -1,5 +1,5 @@
 import { db, log, userStreak } from "@still/db";
-import { eq } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 
 import {
 	applyQualifyingDay,
@@ -90,102 +90,77 @@ export async function syncWatchStreakForUser(
 	return toStreakSnapshot(next);
 }
 
-async function userHasDiaryLogs(userId: string): Promise<boolean> {
-	const [row] = await db
-		.select({ id: log.id })
-		.from(log)
-		.where(eq(log.userId, userId))
-		.limit(1);
-	return row != null;
-}
-
 async function loadDiaryQualifyingDayKeys(userId: string): Promise<string[]> {
 	const rows = await db
 		.select({ watchedAt: log.watchedAt })
 		.from(log)
-		.where(eq(log.userId, userId));
+		.where(and(eq(log.userId, userId), isNull(log.removedAt)));
 	return collectQualifyingDayKeys(rows.map((row) => row.watchedAt));
 }
 
-/** True when persisted streak counts lag behind diary history (heatmap still shows a solid run). */
-function streakDriftedFromDiary(
-	persisted: UserStreakState,
-	fromDiary: UserStreakState,
+function streakStateChanged(
+	before: UserStreakState,
+	after: UserStreakState,
 ): boolean {
-	if (fromDiary.currentStreak > persisted.currentStreak) return true;
-	const latestDiaryDay = fromDiary.lastActiveDay;
-	const lastPersistedDay = persisted.lastActiveDay;
-	if (latestDiaryDay && lastPersistedDay && latestDiaryDay > lastPersistedDay) {
-		return true;
-	}
-	return false;
+	return (
+		before.currentStreak !== after.currentStreak ||
+		before.lastActiveDay !== after.lastActiveDay ||
+		before.longestStreak !== after.longestStreak
+	);
 }
 
 /**
- * Repair `user_streak` when incremental updates diverged from diary day keys.
- * Preserves shield / auto-grace metadata; never lowers a grace-bridged run.
+ * Derive streak counters from diary day keys — same source as the profile heatmap.
+ * Preserves shield / auto-grace metadata from the persisted row.
  */
-async function reconcileStreakWithDiaryIfNeeded(
-	userId: string,
+function mergeStreakFromDiaryDayKeys(
 	persisted: UserStreakState,
-): Promise<UserStreakState> {
-	const dayKeys = await loadDiaryQualifyingDayKeys(userId);
+	dayKeys: string[],
+): UserStreakState {
+	if (dayKeys.length === 0) return persisted;
+
 	const fromDiary = computeLivingStreakFromDayKeys(dayKeys, {
 		shieldsRemaining: persisted.shieldsRemaining,
 		autoGraceAvailable: persisted.autoGraceAvailable,
 	});
 
-	if (!streakDriftedFromDiary(persisted, fromDiary)) {
-		return persisted;
-	}
-
-	const next: UserStreakState = {
+	return {
 		...fromDiary,
 		freezeCoversDay: persisted.freezeCoversDay,
 		shieldsRemaining: persisted.shieldsRemaining,
 		autoGraceAvailable: persisted.autoGraceAvailable,
 		longestStreak: Math.max(fromDiary.longestStreak, persisted.longestStreak),
 	};
-	await saveUserStreakState(userId, next);
-	return next;
 }
 
 /**
- * Patron-facing streak — backfills from diary when the row is empty but logs exist
- * (feature shipped after patrons already had filmography).
+ * Patron-facing streak — always reconciled against diary logs so imports and
+ * backdated edits stay aligned with the activity heatmap.
  */
 export async function getWatchStreakSnapshot(
 	userId: string,
 ): Promise<StreakSnapshot> {
-	let state = await loadUserStreakState(userId);
-	const needsBackfill =
-		state.lastActiveDay == null ||
-		(state.currentStreak === 0 && (await userHasDiaryLogs(userId)));
+	const persisted = await loadUserStreakState(userId);
+	const dayKeys = await loadDiaryQualifyingDayKeys(userId);
 
-	if (needsBackfill) {
-		return backfillWatchStreakFromLogs(userId);
+	if (dayKeys.length === 0) {
+		return toStreakSnapshot(persisted);
 	}
 
-	state = await reconcileStreakWithDiaryIfNeeded(userId, state);
-	return toStreakSnapshot(state);
+	const next = mergeStreakFromDiaryDayKeys(persisted, dayKeys);
+	if (streakStateChanged(persisted, next)) {
+		await saveUserStreakState(userId, next);
+	}
+	return toStreakSnapshot(next);
 }
 
 /** Rebuild from diary — import repair or first-time backfill. */
 export async function backfillWatchStreakFromLogs(
 	userId: string,
 ): Promise<StreakSnapshot> {
-	const rows = await db
-		.select({ watchedAt: log.watchedAt })
-		.from(log)
-		.where(eq(log.userId, userId));
-	const prev = await loadUserStreakState(userId);
-	const next = computeLivingStreakFromDayKeys(
-		collectQualifyingDayKeys(rows.map((r) => r.watchedAt)),
-		{
-			shieldsRemaining: prev.shieldsRemaining,
-			autoGraceAvailable: prev.autoGraceAvailable,
-		},
-	);
+	const persisted = await loadUserStreakState(userId);
+	const dayKeys = await loadDiaryQualifyingDayKeys(userId);
+	const next = mergeStreakFromDiaryDayKeys(persisted, dayKeys);
 	await saveUserStreakState(userId, next);
 	return toStreakSnapshot(next);
 }

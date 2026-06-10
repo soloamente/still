@@ -5,6 +5,7 @@ import {
 	type RadialToolkitItem,
 	useRadialToolkitAnchor,
 } from "@still/ui/components/radial-toolkit";
+import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import IconHeartFilled from "@still/ui/icons/heart-filled";
 import IconLinkFill from "@still/ui/icons/link-fill";
 import IconListPlay from "@still/ui/icons/list-play";
@@ -38,9 +39,14 @@ import {
 } from "@/lib/list-radial-items";
 import type { MyTvLog } from "@/lib/my-tv-log";
 import {
+	deleteWatchlistItem,
+	deleteWatchlistTvItem,
 	fetchMyLogsForMovie,
 	fetchMyLogsForTv,
+	fetchWatchlistCheck,
+	fetchWatchlistCheckTv,
 	patchLog,
+	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 
@@ -105,6 +111,8 @@ export function ProfileFilmographyPosterTile({
 	const [latestLog, setLatestLog] = useState<MyMovieLog | MyTvLog | null>(null);
 	const [liked, setLiked] = useState(patronLogLiked);
 	const [favoriteBusy, setFavoriteBusy] = useState(false);
+	const [inWatchlist, setInWatchlist] = useState(false);
+	const [watchlistBusy, setWatchlistBusy] = useState(false);
 
 	const isMovie = listingKind === "movie";
 	const href = detailHref(listingKind, tmdbId);
@@ -116,7 +124,7 @@ export function ProfileFilmographyPosterTile({
 		title,
 	});
 
-	/** Hydrate viewer diary state when radial opens — own profile seeds log id from the row. */
+	/** Hydrate viewer diary + watchlist when radial opens — own profile seeds log id from the row. */
 	useEffect(() => {
 		if (!open || !signedIn) return;
 		let cancelled = false;
@@ -143,6 +151,13 @@ export function ProfileFilmographyPosterTile({
 				setLatestLogId(row?.id ?? null);
 				setLiked(Boolean(row?.liked));
 			}
+
+			const wlRes = isMovie
+				? await fetchWatchlistCheck(tmdbId)
+				: await fetchWatchlistCheckTv(tmdbId);
+			if (cancelled) return;
+			const wlPayload = wlRes.data as { inWatchlist?: boolean } | null;
+			setInWatchlist(Boolean(wlPayload?.inWatchlist));
 		})();
 		return () => {
 			cancelled = true;
@@ -236,6 +251,39 @@ export function ProfileFilmographyPosterTile({
 		tmdbId,
 	]);
 
+	const toggleWatchlist = useCallback(async () => {
+		if (watchlistBusy) return;
+		setWatchlistBusy(true);
+		try {
+			if (inWatchlist) {
+				const result = isMovie
+					? await deleteWatchlistItem(tmdbId)
+					: await deleteWatchlistTvItem(tmdbId);
+				if (!result.ok) {
+					toast.error("Couldn't remove from watchlist");
+					return;
+				}
+				toast.success("Removed from watchlist");
+				setInWatchlist(false);
+			} else {
+				const result = await postWatchlistAdd(
+					isMovie ? { movieId: tmdbId } : { tvId: tmdbId },
+				);
+				if (!result.ok) {
+					toast.error("Couldn't add to watchlist");
+					return;
+				}
+				toast.success("Added to watchlist");
+				setInWatchlist(true);
+			}
+			onOpenChange(false);
+		} catch {
+			toast.error("Couldn't update watchlist");
+		} finally {
+			setWatchlistBusy(false);
+		}
+	}, [inWatchlist, isMovie, onOpenChange, tmdbId, watchlistBusy]);
+
 	const handleToggleFavorite = useCallback(async () => {
 		if (favoriteBusy || !latestLogId) {
 			if (!latestLogId) toast.error("Log this title first");
@@ -271,8 +319,10 @@ export function ProfileFilmographyPosterTile({
 				liked,
 				canEditMembership: false,
 				isFavoritesList: false,
+				context: "profile",
+				inWatchlist,
 			}),
-		[signedIn, listingKind, hasPriorLog, liked],
+		[signedIn, listingKind, hasPriorLog, liked, inWatchlist],
 	);
 
 	const radialItems = useMemo((): RadialToolkitItem[] => {
@@ -284,6 +334,7 @@ export function ProfileFilmographyPosterTile({
 			copy: () => void handleCopyLink(),
 			"quick-log": handleQuickLog,
 			"edit-log": handleEditLog,
+			watchlist: () => void toggleWatchlist(),
 			"add-to-list": () => {
 				onOpenChange(false);
 				void addToList.openPicker();
@@ -300,6 +351,11 @@ export function ProfileFilmographyPosterTile({
 				<IconTicketFilled className="opacity-90" aria-hidden />
 			),
 			"edit-log": <IconPen2Fill className="opacity-90" aria-hidden />,
+			watchlist: inWatchlist ? (
+				<IconTrashXmarkFill className="opacity-90" aria-hidden />
+			) : (
+				<IconClockRotateClockwise className="opacity-90" aria-hidden />
+			),
 			"add-to-list": <IconListPlay className="opacity-90" aria-hidden />,
 			"toggle-favorite": liked ? (
 				<IconTrashXmarkFill className="opacity-90" aria-hidden />
@@ -313,7 +369,9 @@ export function ProfileFilmographyPosterTile({
 			label: spec.label,
 			shortcut: spec.shortcut,
 			variant: spec.variant,
-			disabled: favoriteBusy && spec.id === "toggle-favorite",
+			disabled:
+				(favoriteBusy && spec.id === "toggle-favorite") ||
+				(watchlistBusy && spec.id === "watchlist"),
 			icon: icons[spec.id] ?? null,
 			onSelect: () => {
 				if (!signedIn && isListRadialGatedAction(spec.id)) {
@@ -327,6 +385,7 @@ export function ProfileFilmographyPosterTile({
 	}, [
 		addToList,
 		favoriteBusy,
+		inWatchlist,
 		handleCopyLink,
 		handleEditLog,
 		handleQuickLog,
@@ -339,6 +398,8 @@ export function ProfileFilmographyPosterTile({
 		onOpenChange,
 		router,
 		signedIn,
+		toggleWatchlist,
+		watchlistBusy,
 	]);
 
 	return (

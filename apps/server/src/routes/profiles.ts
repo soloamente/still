@@ -49,6 +49,10 @@ import {
 	fetchCuratorSpotlightPatrons,
 	resolveCuratorRecognition,
 } from "../lib/creator-recognition";
+import {
+	fetchDiaryLogCountsForUserIds,
+	resolveDiaryMetalTier,
+} from "../lib/diary-metal-tier";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import {
 	isProfileAccentId,
@@ -71,6 +75,13 @@ import {
 	parseFilmographyPage,
 	parseFilmographyVenue,
 } from "../lib/profile-filmography-query";
+import {
+	isAnimatedGifUpload,
+	mergeAvatarAnimationPref,
+	mergeBannerAnimationPref,
+	PRO_ANIMATED_MEDIA_REQUIRED,
+	readAvatarIsAnimatedPref,
+} from "../lib/profile-media";
 import {
 	hydratePinnedReviews,
 	validatePinnedReviewIdsForUser,
@@ -354,9 +365,14 @@ export const profilesRoute = new Elysia({
 			.where(eq(profile.userId, user.id))
 			.limit(1);
 		if (!row) return null;
+		const [logCountRow] = await db
+			.select({ c: count(log.id) })
+			.from(log)
+			.where(and(eq(log.userId, user.id), isNull(log.removedAt)));
 		return {
 			...row,
 			birthDate: profileBirthDateToIso(row.birthDate),
+			diaryMetalTier: resolveDiaryMetalTier(Number(logCountRow?.c ?? 0)),
 		};
 	})
 	.get("/me/creator-analytics", async ({ user, status }) => {
@@ -436,6 +452,23 @@ export const profilesRoute = new Elysia({
 		if (!file.type.startsWith("image/")) return status(400, "Image only");
 		if (file.size > 4_000_000) return status(413, "File too large (max 4MB)");
 
+		const wantsAnimated = isAnimatedGifUpload(file);
+
+		const [profileRow] = await db
+			.select({ isPro: profile.isPro, preferences: profile.preferences })
+			.from(profile)
+			.where(eq(profile.userId, user.id))
+			.limit(1);
+		if (!profileRow) return status(400, "Profile not found");
+
+		// Pro gate: animated GIF banners require Sense Pro before blob upload.
+		if (wantsAnimated && !profileRow.isPro) {
+			return status(403, {
+				error: "Animated banner requires Sense Pro",
+				code: PRO_ANIMATED_MEDIA_REQUIRED,
+			});
+		}
+
 		const key = `banners/${user.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
 		let blob: { url: string };
 		try {
@@ -466,15 +499,14 @@ export const profilesRoute = new Elysia({
 			return status(502, { error: "Blob upload failed" });
 		}
 
-		const [existing] = await db
-			.select()
-			.from(profile)
-			.where(eq(profile.userId, user.id))
-			.limit(1);
-		if (!existing) return status(400, "Profile not found");
+		// Persist banner URL and animation flag together so prefs never lag the asset.
+		const mergedPrefs = mergeBannerAnimationPref(
+			(profileRow.preferences as Record<string, unknown>) ?? {},
+			wantsAnimated,
+		);
 		const [updated] = await db
 			.update(profile)
-			.set({ bannerUrl: blob.url })
+			.set({ bannerUrl: blob.url, preferences: mergedPrefs })
 			.where(eq(profile.userId, user.id))
 			.returning({ bannerUrl: profile.bannerUrl });
 		if (!updated?.bannerUrl) {
@@ -507,6 +539,23 @@ export const profilesRoute = new Elysia({
 		if (!(file instanceof File)) return status(400, "Missing file");
 		if (!file.type.startsWith("image/")) return status(400, "Image only");
 		if (file.size > 4_000_000) return status(413, "File too large (max 4MB)");
+
+		const wantsAnimated = isAnimatedGifUpload(file);
+
+		const [profileRow] = await db
+			.select({ isPro: profile.isPro, preferences: profile.preferences })
+			.from(profile)
+			.where(eq(profile.userId, authUser.id))
+			.limit(1);
+		if (!profileRow) return status(400, "Profile not found");
+
+		// Pro gate: animated GIF portraits require Sense Pro before blob upload.
+		if (wantsAnimated && !profileRow.isPro) {
+			return status(403, {
+				error: "Animated portrait requires Sense Pro",
+				code: PRO_ANIMATED_MEDIA_REQUIRED,
+			});
+		}
 
 		const key = `avatars/${authUser.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
 		let blob: { url: string };
@@ -546,6 +595,16 @@ export const profilesRoute = new Elysia({
 			console.error("[profiles/me/avatar] user row not updated", authUser.id);
 			return status(500, { error: "Failed to save portrait" });
 		}
+
+		// Avatar bytes live on user.image; animation flag lives on profile.preferences.
+		const mergedPrefs = mergeAvatarAnimationPref(
+			(profileRow.preferences as Record<string, unknown>) ?? {},
+			wantsAnimated,
+		);
+		await db
+			.update(profile)
+			.set({ preferences: mergedPrefs })
+			.where(eq(profile.userId, authUser.id));
 
 		return { url: updated.image };
 	})
@@ -710,6 +769,7 @@ export const profilesRoute = new Elysia({
 					handle: profile.handle,
 					displayName: profile.displayName,
 					image: user.image,
+					preferences: profile.preferences,
 					isMutual: follow.isMutual,
 					followerId: follow.followerId,
 				})
@@ -735,12 +795,19 @@ export const profilesRoute = new Elysia({
 					),
 				)
 				.limit(50);
+			const logCounts = await fetchDiaryLogCountsForUserIds(
+				rows.map((row) => row.userId),
+			);
 			return rankProfileSearchHits(
 				rows.map((row) => ({
 					userId: row.userId,
 					handle: row.handle,
 					displayName: row.displayName,
 					image: row.image,
+					avatarIsAnimated: readAvatarIsAnimatedPref(
+						row.preferences as Record<string, unknown> | null,
+					),
+					diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
 					isFollowing: row.followerId != null,
 					isMutual: row.isMutual ?? false,
 				})),
@@ -1152,6 +1219,12 @@ export const profilesRoute = new Elysia({
 				row.profile.tasteSignature,
 			);
 
+			const [logCountRow] = await db
+				.select({ c: count(log.id) })
+				.from(log)
+				.where(and(eq(log.userId, targetUserId), isNull(log.removedAt)));
+			const diaryMetalTier = resolveDiaryMetalTier(Number(logCountRow?.c ?? 0));
+
 			const birthIso = profileBirthDateToIso(row.profile.birthDate);
 			const showBirthday = readShowBirthDateOnProfilePref(
 				row.profile.preferences as Record<string, unknown> | null,
@@ -1166,6 +1239,7 @@ export const profilesRoute = new Elysia({
 				user: { id: row.user.id, name: row.user.name, image: row.user.image },
 				profile: {
 					...publicProfile,
+					diaryMetalTier,
 					...(freshTasteSignature
 						? { tasteSignature: freshTasteSignature }
 						: {}),

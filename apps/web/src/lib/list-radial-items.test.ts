@@ -98,6 +98,57 @@ describe("buildListRadialItemSpecs", () => {
 		]);
 	});
 
+	test("profile signed-in without log — watchlist and add to list (home parity)", () => {
+		const specs = buildListRadialItemSpecs({
+			signedIn: true,
+			listingKind: "movie",
+			hasPriorLog: false,
+			liked: false,
+			canEditMembership: false,
+			isFavoritesList: false,
+			context: "profile",
+			inWatchlist: false,
+		});
+		expect(ids(specs)).toEqual([
+			"open",
+			"copy",
+			"quick-log",
+			"watchlist",
+			"add-to-list",
+		]);
+		expect(specs.find((s) => s.id === "watchlist")?.label).toBe(
+			"Add to watchlist",
+		);
+	});
+
+	test("profile with log and watchlisted — edit, remove watchlist, favorites", () => {
+		const specs = buildListRadialItemSpecs({
+			signedIn: true,
+			listingKind: "tv",
+			hasPriorLog: true,
+			liked: false,
+			canEditMembership: false,
+			isFavoritesList: false,
+			context: "profile",
+			inWatchlist: true,
+		});
+		expect(ids(specs)).toEqual([
+			"open",
+			"copy",
+			"quick-log",
+			"edit-log",
+			"watchlist",
+			"add-to-list",
+			"toggle-favorite",
+		]);
+		expect(specs.find((s) => s.id === "watchlist")?.label).toBe(
+			"Remove from watchlist",
+		);
+		expect(specs.find((s) => s.id === "watchlist")?.variant).toBe(
+			"destructive",
+		);
+	});
+
 	test("favorites list editor flag does not expose remove-from-list", () => {
 		expect(
 			ids(

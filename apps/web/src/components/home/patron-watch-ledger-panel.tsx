@@ -9,7 +9,7 @@ import { PatronWatchLedgerGrid } from "@/components/home/patron-watch-ledger-gri
 import { PatronWatchLedgerOrderChips } from "@/components/home/patron-watch-ledger-order-chips";
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { leaderboardHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import {
 	leaderboardPeriodLabel,
@@ -20,6 +20,7 @@ import {
 	type PatronWatchLedgerOrder,
 	sortPatronWatchLedgerItems,
 } from "@/lib/patron-watch-ledger-order";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 async function fetchPatronWatchLedger(
@@ -93,6 +94,11 @@ export function PatronWatchLedgerPanel({
 
 	const displayName = payload?.user.displayName ?? seed.displayName;
 	const handle = payload?.user.handle ?? seed.handle;
+	const avatarImage = payload?.user.image ?? seed.image;
+	const avatarIsAnimated =
+		payload?.user.avatarIsAnimated ?? seed.avatarIsAnimated;
+	const diaryMetalTier =
+		payload?.user.diaryMetalTier ?? seed.diaryMetalTier ?? null;
 	const items = payload?.items ?? [];
 	const sortedItems = useMemo(
 		() => sortPatronWatchLedgerItems(items, order),
@@ -109,13 +115,18 @@ export function PatronWatchLedgerPanel({
 					<header className="mx-auto mb-8 max-w-md text-center">
 						<div className="mx-auto mb-4 flex justify-center">
 							<div className="relative aspect-2/3 w-22 overflow-hidden rounded-2xl bg-muted/30 shadow-lg sm:w-24">
-								<PatronPortraitAvatar
+								<PatronPortraitWithMetalTier
 									handle={handle}
-									avatarUrl={payload?.user.image ?? seed.image}
+									avatarUrl={avatarImage}
 									name={displayName}
 									className="size-full rounded-2xl"
 									width={96}
 									height={144}
+									isAnimated={inferAnimatedFromProfileUrl(
+										avatarImage,
+										avatarIsAnimated,
+									)}
+									diaryMetalTier={diaryMetalTier}
 								/>
 							</div>
 						</div>

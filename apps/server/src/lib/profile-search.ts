@@ -1,3 +1,5 @@
+import type { DiaryMetalTier } from "./diary-metal-tier";
+
 /** Relationship tier for sorting profile search hits (lower = higher in list). */
 export type ProfileSearchRelationship = "mutual" | "following" | "none";
 
@@ -6,6 +8,8 @@ export interface ProfileSearchCandidate {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	isFollowing: boolean;
 	isMutual: boolean;
 }
@@ -15,6 +19,8 @@ export interface ProfileSearchHit {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	relationship: ProfileSearchRelationship;
 }
 
@@ -59,6 +65,8 @@ export function rankProfileSearchHits(
 				handle: row.handle,
 				displayName: row.displayName,
 				image: row.image,
+				avatarIsAnimated: row.avatarIsAnimated,
+				diaryMetalTier: row.diaryMetalTier,
 				relationship,
 				_sortTier: relationshipSortTier(relationship),
 				_handlePrefix: handlePrefix ? 0 : 1,
@@ -75,11 +83,23 @@ export function rankProfileSearchHits(
 			if (a._handleLen !== b._handleLen) return a._handleLen - b._handleLen;
 			return a.handle.localeCompare(b.handle);
 		})
-		.map(({ userId, handle, displayName, image, relationship }) => ({
-			userId,
-			handle,
-			displayName,
-			image,
-			relationship,
-		}));
+		.map(
+			({
+				userId,
+				handle,
+				displayName,
+				image,
+				avatarIsAnimated,
+				diaryMetalTier,
+				relationship,
+			}) => ({
+				userId,
+				handle,
+				displayName,
+				image,
+				avatarIsAnimated,
+				diaryMetalTier,
+				relationship,
+			}),
+		);
 }

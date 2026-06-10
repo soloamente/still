@@ -15,6 +15,12 @@ export type MovieDetailReturn = {
 	label: string;
 };
 
+/** SSR-safe back pill before client hydration reads sessionStorage / referrer. */
+export const MOVIE_DETAIL_RETURN_SSR_FALLBACK: MovieDetailReturn = {
+	href: "/home",
+	label: "Movies",
+};
+
 /** Persisted when entering film/TV detail from another in-app route (client navigations). */
 export const MOVIE_DETAIL_RETURN_STORAGE_KEY = "still:detail-return:v1";
 

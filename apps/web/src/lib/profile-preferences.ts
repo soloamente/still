@@ -49,6 +49,16 @@ export const PROFILE_PREF_SHOW_ADULT_CONTENT = "showAdultContent" as const;
 export const PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE =
 	"showBirthDateOnProfile" as const;
 
+/** Profile portrait: grayscale until hover — default on unless explicitly opted out. */
+export const PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER =
+	"profilePortraitGrayscaleUntilHover" as const;
+
+/** Avatar GIF playback — opt-in when patron uploads animated media. */
+export const PROFILE_PREF_AVATAR_IS_ANIMATED = "avatarIsAnimated" as const;
+
+/** Banner GIF playback — opt-in when patron uploads animated media. */
+export const PROFILE_PREF_BANNER_IS_ANIMATED = "bannerIsAnimated" as const;
+
 /** `null` = patron has not chosen yet (home shows one-time region prompt when signed in). */
 export type CatalogTmdbWatchRegionPref = "ALL" | string | null;
 
@@ -167,4 +177,26 @@ export function readAppThemePref(
 ): AppThemeClass {
 	if (preferences == null) return DEFAULT_APP_THEME_CLASS;
 	return resolveAppTheme(preferences[PROFILE_PREF_APP_THEME]);
+}
+
+/** Profile portrait grayscale-on-idle — default on; only explicit `false` opts out. */
+export function readProfilePortraitGrayscaleUntilHoverPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	if (preferences == null) return true;
+	return (
+		preferences[PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER] !== false
+	);
+}
+
+export function readAvatarIsAnimatedPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	return preferences?.[PROFILE_PREF_AVATAR_IS_ANIMATED] === true;
+}
+
+export function readBannerIsAnimatedPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	return preferences?.[PROFILE_PREF_BANNER_IS_ANIMATED] === true;
 }

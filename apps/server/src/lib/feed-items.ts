@@ -1,4 +1,5 @@
 import { withCoverPosterPaths } from "./list-cover-posters";
+import { serializePatronProfileForClient } from "./profile-media";
 
 type FeedAt = Date | string;
 
@@ -76,6 +77,38 @@ type ListPayloadRow = {
 	user: unknown;
 	profile: unknown;
 };
+
+type FeedActivityPersonPayload = {
+	user?: { id?: string } | null;
+	profile?: {
+		handle: string;
+		displayName: string;
+		preferences?: Record<string, unknown> | null;
+	} | null;
+};
+
+/** Actor id on feed log/review/list rows — used for batch metal-tier hydration. */
+export function readFeedActorUserId(payload: unknown): string | null {
+	if (!payload || typeof payload !== "object") return null;
+	const user = (payload as FeedActivityPersonPayload).user;
+	return typeof user?.id === "string" ? user.id : null;
+}
+
+/** Map joined profile rows to the slim person shape feed avatars consume. */
+export function enrichFeedActivityPayload(
+	payload: unknown,
+	logCounts: ReadonlyMap<string, number> = new Map(),
+): unknown {
+	if (!payload || typeof payload !== "object") return payload;
+	const row = payload as FeedActivityPersonPayload;
+	if (!("profile" in row)) return payload;
+	const userId = readFeedActorUserId(row);
+	const logsCount = userId ? (logCounts.get(userId) ?? 0) : 0;
+	return {
+		...row,
+		profile: serializePatronProfileForClient(row.profile ?? null, logsCount),
+	};
+}
 
 /** Attach `coverPosterPaths` so list activity rows can show real artwork. */
 export async function enrichFeedListRows<T extends ListPayloadRow>(

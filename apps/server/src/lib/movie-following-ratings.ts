@@ -1,6 +1,12 @@
 import { db, follow, log, profile, user } from "@still/db";
 import { and, desc, eq, inArray, isNotNull, isNull, or } from "drizzle-orm";
 import { contentVisibilityWhere } from "./content-visibility";
+import {
+	type DiaryMetalTier,
+	fetchDiaryLogCountsForUserIds,
+	resolveDiaryMetalTier,
+} from "./diary-metal-tier";
+import { readAvatarIsAnimatedPref } from "./profile-media";
 
 /** One followed patron's latest diary signal for a film (rating and/or favorite). */
 export type MovieFollowingRatingEntry = {
@@ -8,6 +14,8 @@ export type MovieFollowingRatingEntry = {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	/** Stored `log.rating` (tenths or legacy whole). */
 	rating: number | null;
 	liked: boolean;
@@ -22,7 +30,11 @@ type FollowingLogRow = {
 		watchedAt: Date;
 	};
 	user: { id: string; name: string; image: string | null };
-	profile: { handle: string; displayName: string } | null;
+	profile: {
+		handle: string;
+		displayName: string;
+		preferences?: Record<string, unknown> | null;
+	} | null;
 };
 
 /** Visible avatar chips on film detail — overflow collapses to a “+N more” pill. */
@@ -35,6 +47,7 @@ export const MOVIE_FOLLOWING_RATINGS_VISIBLE = 8;
 export function pickLatestFollowingRatingsPerPatron(
 	rows: FollowingLogRow[],
 	viewerId: string,
+	logCounts: ReadonlyMap<string, number> = new Map(),
 ): MovieFollowingRatingEntry[] {
 	const byUser = new Map<string, MovieFollowingRatingEntry>();
 
@@ -55,6 +68,8 @@ export function pickLatestFollowingRatingsPerPatron(
 			handle,
 			displayName: row.profile?.displayName ?? row.user.name,
 			image: row.user.image,
+			avatarIsAnimated: readAvatarIsAnimatedPref(row.profile?.preferences),
+			diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.log.userId) ?? 0),
 			rating: row.log.rating,
 			liked: row.log.liked,
 			watchedAt: row.log.watchedAt.toISOString(),
@@ -97,7 +112,14 @@ async function fetchFollowingRatingsForTitle(
 		.orderBy(desc(log.watchedAt))
 		.limit(400);
 
-	const deduped = pickLatestFollowingRatingsPerPatron(rows, viewerId);
+	const logCounts = await fetchDiaryLogCountsForUserIds(
+		rows.map((row) => row.log.userId),
+	);
+	const deduped = pickLatestFollowingRatingsPerPatron(
+		rows,
+		viewerId,
+		logCounts,
+	);
 	const visible = deduped.slice(0, MOVIE_FOLLOWING_RATINGS_VISIBLE);
 	const moreCount = Math.max(0, deduped.length - visible.length);
 

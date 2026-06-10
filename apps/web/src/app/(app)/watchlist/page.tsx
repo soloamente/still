@@ -7,7 +7,9 @@ import { WatchlistLobbyCatalogue } from "@/components/watchlist/watchlist-lobby-
 import { WatchlistLobbyFallback } from "@/components/watchlist/watchlist-lobby-fallback";
 import { WatchlistPatronLobbyShell } from "@/components/watchlist/watchlist-patron-lobby-shell";
 import { authServer } from "@/lib/auth-server";
+import type { MeProfile } from "@/lib/fetch-me-profile";
 import { fetchMyWatchlistServer } from "@/lib/fetch-my-watchlist-server";
+import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
 import {
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbWatchRegionPref,
@@ -30,12 +32,7 @@ const loadWatchlistChromeContext = cache(async () => {
 		.get()
 		.catch(() => ({ data: null }));
 
-	const profileData = profileRes.data as {
-		handle: string;
-		displayName: string;
-		isPro?: boolean;
-		preferences?: Record<string, unknown> | null;
-	} | null;
+	const profileData = profileRes.data as Exclude<MeProfile, null> | null;
 
 	const mePrefs = profileData?.preferences ?? null;
 	const stickyUser =
@@ -47,6 +44,11 @@ const loadWatchlistChromeContext = cache(async () => {
 					handle: profileData.handle,
 					email: session.user.email ?? null,
 					isPro: Boolean(profileData.isPro),
+					avatarIsAnimated: resolvePatronAvatarIsAnimated(
+						session.user.image ?? null,
+						profileData.preferences ?? null,
+					),
+					diaryMetalTier: profileData.diaryMetalTier ?? null,
 				}
 			: null;
 

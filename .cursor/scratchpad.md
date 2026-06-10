@@ -1,5 +1,12 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Diary metal tier avatars (2026-06-10)
+
+**Implementation complete (2026-06-10).** Spec: `docs/superpowers/specs/2026-06-10-diary-metal-tier-avatars-design.md`. Thresholds: 100 silver · 500 gold · 1000+ chromatic (total diary logs). Server: `diary-metal-tier.ts`, `serializePatronProfileForClient(..., logsCount)` → `diaryMetalTier` on profiles, feed, search, leaderboards, reviews, following-ratings, etc. Web: `metal-fx` + `PatronPortraitWithMetalTier` (shader or static ring on reduced motion / software GPU); all patron avatar call sites migrated. Tests: server 20 pass (diary-metal-tier, profile-media, feed-rating-divergence, movie-following-ratings); web 2 pass; `bun run build` green after `MeProfile` typing on diary/lists/watchlist + following-ratings payload types. **Human verify:** patron with ≥100 logs shows silver ring in nav/feed/profile; 500/1000 upgrades; reduced motion → static ring only; <100 → no ring.
+
+
+**Implementation complete (2026-06-10).** Spec + plan as above. Subagent-driven Tasks 1–8 landed: server Pro GIF gate, preference flags, `PatronPortraitAvatar` animated path, profile hero wiring, Settings grayscale toggle + Pro copy, `avatarIsAnimated` threaded through feed/nav/leaderboards. Tests: server 13 pass (profile-media + feed helpers), web 22 pass (prefs + profile-media). **Human verify:** Pro GIF upload on Settings → Profile; toggle grayscale in Appearance; check profile hero + nav/feed animation.
+
 ## Background and Motivation
 
 Still is already designed as a cinephile diary with an explicit "cinema atmosphere"

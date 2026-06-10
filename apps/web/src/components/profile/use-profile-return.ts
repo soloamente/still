@@ -4,6 +4,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import {
+	MOVIE_DETAIL_RETURN_SSR_FALLBACK,
 	type MovieDetailReturn,
 	resolveProfileReturn,
 } from "@/lib/movie-detail-return";
@@ -17,8 +18,9 @@ export function useProfileReturn(): MovieDetailReturn {
 		return search.length > 0 ? `?${search}` : "";
 	}, [searchParams]);
 
-	const [back, setBack] = useState<MovieDetailReturn>(() =>
-		resolveProfileReturn(pathname, searchSuffix),
+	// Keep first paint aligned with SSR — resolveProfileReturn reads sessionStorage.
+	const [back, setBack] = useState<MovieDetailReturn>(
+		MOVIE_DETAIL_RETURN_SSR_FALLBACK,
 	);
 
 	useEffect(() => {

@@ -2,7 +2,9 @@
 
 import { cn } from "@still/ui/lib/utils";
 
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 import type { ProfileSearchRelationship } from "@/lib/profile-search-query";
 
 function relationshipLabel(
@@ -20,6 +22,8 @@ export function SearchDialogPeopleRow({
 	handle,
 	displayName,
 	image,
+	avatarIsAnimated,
+	diaryMetalTier = null,
 	relationship,
 	metaLine,
 	onSelect,
@@ -27,6 +31,8 @@ export function SearchDialogPeopleRow({
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 	relationship?: ProfileSearchRelationship;
 	/** Secondary line under @handle — taste match stats, etc. */
 	metaLine?: string | null;
@@ -45,13 +51,15 @@ export function SearchDialogPeopleRow({
 					"focus-visible:bg-background focus-visible:outline-none",
 				)}
 			>
-				<PatronPortraitAvatar
+				<PatronPortraitWithMetalTier
 					handle={handle}
 					avatarUrl={image}
 					name={displayName}
 					width={44}
 					height={44}
 					className="size-11 shrink-0 rounded-full"
+					isAnimated={inferAnimatedFromProfileUrl(image, avatarIsAnimated)}
+					diaryMetalTier={diaryMetalTier}
 				/>
 				<div className="min-w-0 flex-1">
 					<p className="truncate font-semibold text-foreground text-sm leading-snug">

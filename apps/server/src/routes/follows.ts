@@ -4,11 +4,13 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { makeId } from "../lib/cuid";
+import { fetchDiaryLogCountsForUserIds } from "../lib/diary-metal-tier";
 import {
 	annotateViewerFollows,
 	fetchViewerFollowingIds,
 } from "../lib/follow-list";
 import { deliverNotification } from "../lib/notification-delivery";
+import { serializePatronProfileForClient } from "../lib/profile-media";
 import { hit } from "../lib/rate-limit";
 import {
 	assertEmailVerified,
@@ -158,7 +160,16 @@ export const followsRoute = new Elysia({
 						rows.map((row) => row.userId),
 					)
 				: new Set<string>();
-			return annotateViewerFollows(rows, followingIds);
+			const logCounts = await fetchDiaryLogCountsForUserIds(
+				rows.map((row) => row.userId),
+			);
+			return annotateViewerFollows(rows, followingIds).map((row) => ({
+				...row,
+				profile: serializePatronProfileForClient(
+					row.profile,
+					logCounts.get(row.userId) ?? 0,
+				),
+			}));
 		},
 		{ params: t.Object({ userId: t.String() }) },
 	)
@@ -184,7 +195,16 @@ export const followsRoute = new Elysia({
 						rows.map((row) => row.userId),
 					)
 				: new Set<string>();
-			return annotateViewerFollows(rows, followingIds);
+			const logCounts = await fetchDiaryLogCountsForUserIds(
+				rows.map((row) => row.userId),
+			);
+			return annotateViewerFollows(rows, followingIds).map((row) => ({
+				...row,
+				profile: serializePatronProfileForClient(
+					row.profile,
+					logCounts.get(row.userId) ?? 0,
+				),
+			}));
 		},
 		{ params: t.Object({ userId: t.String() }) },
 	)

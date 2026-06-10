@@ -10,6 +10,9 @@ export type ListRadialItemSpec = {
 	variant?: "default" | "destructive";
 };
 
+/** Profile filmography vs list-detail membership tiles — profile adds watchlist + list without a diary log. */
+export type ListRadialContext = "list-detail" | "profile";
+
 export type BuildListRadialSpecsInput = {
 	signedIn: boolean;
 	listingKind: "movie" | "tv";
@@ -18,14 +21,19 @@ export type BuildListRadialSpecsInput = {
 	/** Owner or collaborator — custom list membership edits only. */
 	canEditMembership: boolean;
 	isFavoritesList: boolean;
+	/** Profile lobby — viewer can watchlist / list titles from another patron's ledger. */
+	context?: ListRadialContext;
+	/** Profile — toggles Add vs Remove watchlist label. */
+	inWatchlist?: boolean;
 };
 
-/** Stable slot order for list-detail poster radial menus. */
+/** Stable slot order for list-detail and profile poster radial menus. */
 const SLOT_ORDER: string[] = [
 	"open",
 	"copy",
 	"quick-log",
 	"edit-log",
+	"watchlist",
 	"add-to-list",
 	"toggle-favorite",
 	"remove-from-list",
@@ -51,7 +59,10 @@ export function buildListRadialItemSpecs(
 		liked,
 		canEditMembership,
 		isFavoritesList,
+		context = "list-detail",
+		inWatchlist = false,
 	} = input;
+	const isProfile = context === "profile";
 	const isMovie = listingKind === "movie";
 
 	const specs: ListRadialItemSpec[] = [
@@ -83,11 +94,27 @@ export function buildListRadialItemSpecs(
 			label: "Edit log",
 			shortcut: "E",
 		});
+	}
+
+	if (isProfile) {
+		specs.push({
+			id: "watchlist",
+			label: inWatchlist ? "Remove from watchlist" : "Add to watchlist",
+			shortcut: "W",
+			variant: inWatchlist ? "destructive" : "default",
+		});
+	}
+
+	// Profile: curate from another patron's ledger without logging first (home parity).
+	if (isProfile || hasPriorLog) {
 		specs.push({
 			id: "add-to-list",
 			label: "Add to list",
 			shortcut: "A",
 		});
+	}
+
+	if (hasPriorLog) {
 		specs.push({
 			id: "toggle-favorite",
 			label: liked ? "Remove from favorites" : "Add to favorites",

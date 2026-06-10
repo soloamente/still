@@ -22,6 +22,7 @@ import { notifyRoleChanged } from "../lib/role-change-notification";
 import { type AuditTargetType, writeAuditLog } from "../lib/staff-audit";
 import { outranks } from "../lib/staff-rank";
 import { addStaffUserNote, listStaffUserNotes } from "../lib/staff-user-notes";
+import { fetchStaffUserActivityStats } from "../lib/staff-user-stats";
 
 const CONTENT_TABLES = { review, log, list, post } as const;
 type ContentType = keyof typeof CONTENT_TABLES;
@@ -122,15 +123,20 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 				accentColor: profile.accentColor,
 				isPro: profile.isPro,
 				isPrivate: profile.isPrivate,
-				statsCache: profile.statsCache,
 			})
 			.from(profile)
 			.where(eq(profile.userId, params.id));
 
+		const activityStats = targetProfile
+			? await fetchStaffUserActivityStats(params.id)
+			: null;
+
 		const role = (target.role ?? "user") as AppRole;
 		return {
 			user: target,
-			profile: targetProfile ?? null,
+			profile: targetProfile
+				? { ...targetProfile, statsCache: activityStats }
+				: null,
 			permissions: permissionSummary(role),
 		};
 	})

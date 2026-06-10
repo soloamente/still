@@ -11,9 +11,11 @@ import { cn } from "@still/ui/lib/utils";
 import { useRouter } from "next/navigation";
 
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 /** Session + profile fields needed for the Mobbin-style account surface (nav + home header). */
 export type AccountMenuUser = {
@@ -24,6 +26,8 @@ export type AccountMenuUser = {
 	email?: string | null;
 	/** Polar / billing hook — badge stays hidden until we wire subscription state. */
 	isPro?: boolean;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 };
 
 type AppUserAccountMenuBodyProps = {
@@ -92,13 +96,18 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 			{/* Identity — avatar row, PRO chip, profile CTA on raised card (home / detail token rhythm). */}
 			<div className="pt-1 pb-1">
 				<div className="flex items-start gap-3">
-					<PatronPortraitAvatar
+					<PatronPortraitWithMetalTier
 						handle={user.handle}
 						avatarUrl={user.image}
 						name={user.name}
-						width={80}
-						height={80}
-						className="size-11 shrink-0 rounded-full text-[11px]"
+						width={36}
+						height={36}
+						className="size-9 shrink-0 rounded-full text-[10px]"
+						isAnimated={inferAnimatedFromProfileUrl(
+							user.image,
+							user.avatarIsAnimated,
+						)}
+						diaryMetalTier={user.diaryMetalTier ?? null}
 					/>
 					<div className="min-w-0 flex-1">
 						<div className="flex flex-col gap-0">

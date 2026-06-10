@@ -1,7 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
-
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { serverApi } from "@/lib/server-api";
 
 export type MeProfile = {
@@ -9,6 +9,7 @@ export type MeProfile = {
 	displayName: string;
 	isPro: boolean;
 	preferences: Record<string, unknown> | null;
+	diaryMetalTier?: DiaryMetalTier | null;
 } | null;
 
 /**

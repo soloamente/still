@@ -23,7 +23,7 @@
 		"agentation": "^3.0.2",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"better-auth": "catalog:",
-		"border-beam": "^1.0.1",
+		"border-beam": "1.2.0",
 		"cmdk": "^1.1.1",
 		"dialkit": "^1.2.0",
 		"dotenv": "catalog:",

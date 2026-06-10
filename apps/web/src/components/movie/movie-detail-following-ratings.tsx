@@ -3,14 +3,18 @@ import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 export type MovieDetailFollowingRating = {
 	userId: string;
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	rating: number | null;
 	liked: boolean;
 	watchedAt: string;
@@ -75,14 +79,24 @@ function FollowingRatingChip({ entry }: { entry: MovieDetailFollowingRating }) {
 				"transition-[transform,background-color] duration-(--aker-duration) ease-(--aker-ease)",
 			)}
 		>
-			<span className="relative isolate size-11 overflow-hidden rounded-full bg-muted active:scale-[0.96] motion-reduce:active:scale-100 [@media(hover:hover)]:group-hover:bg-foreground/10">
-				<PatronPortraitAvatar
+			<span
+				className={cn(
+					"relative isolate size-11 rounded-full bg-muted active:scale-[0.96] motion-reduce:active:scale-100 [@media(hover:hover)]:group-hover:bg-foreground/10",
+					entry.diaryMetalTier ? "overflow-visible" : "overflow-hidden",
+				)}
+			>
+				<PatronPortraitWithMetalTier
 					handle={entry.handle}
 					avatarUrl={entry.image}
 					name={entry.displayName}
 					width={44}
 					height={44}
 					className="size-full rounded-full"
+					isAnimated={inferAnimatedFromProfileUrl(
+						entry.image,
+						entry.avatarIsAnimated,
+					)}
+					diaryMetalTier={entry.diaryMetalTier}
 				/>
 			</span>
 			<span className="font-semibold text-foreground text-sm tabular-nums leading-none">

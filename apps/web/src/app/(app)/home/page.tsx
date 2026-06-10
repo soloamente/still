@@ -71,6 +71,7 @@ import {
 	OG_HOME_PATH,
 	ogImageMetadataFields,
 } from "@/lib/og/og-image-metadata";
+import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
 import {
 	catalogWatchRegionToApiQuery,
 	readCatalogMonochromePeersOnHoverPref,
@@ -489,6 +490,11 @@ export default async function HomePage({
 					handle: profileData.handle,
 					email: session.user.email ?? null,
 					isPro: Boolean(profileData.isPro),
+					avatarIsAnimated: resolvePatronAvatarIsAnimated(
+						session.user.image ?? null,
+						profileData.preferences ?? null,
+					),
+					diaryMetalTier: profileData.diaryMetalTier ?? null,
 				}
 			: null;
 

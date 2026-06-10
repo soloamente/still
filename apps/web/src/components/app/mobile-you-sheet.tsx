@@ -19,6 +19,7 @@ import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-pick
 import { MOBILE_YOU_DESTINATIONS } from "@/components/app/mobile-nav";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { authClient } from "@/lib/auth-client";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 
 type YouUser = {
 	id: string;
@@ -27,6 +28,8 @@ type YouUser = {
 	handle: string;
 	email?: string | null;
 	isPro?: boolean;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 };
 
 /** Icon per destination href (kept out of the pure helper module). */
@@ -120,6 +123,8 @@ export function MobileYouSheet({
 								src={user.image}
 								name={user.name}
 								handle={user.handle}
+								isAnimated={user.avatarIsAnimated ?? false}
+								diaryMetalTier={user.diaryMetalTier ?? null}
 							/>
 							<div className="min-w-0 flex-1">
 								<p className="truncate font-semibold text-base text-foreground">

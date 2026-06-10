@@ -42,7 +42,8 @@ export function WatchlistLobbyCatalogue({
 	);
 
 	const loadPage = useCallback(
-		(page: number) => fetchMyWatchlist(page, { order }),
+		(page: number, signal?: AbortSignal) =>
+			fetchMyWatchlist(page, { order, signal }),
 		[order],
 	);
 

@@ -15,6 +15,7 @@ import { recordProductEvent } from "../lib/record-product-event";
 import { resolveAnilistMediaToTmdbTvId } from "../lib/resolve-anilist-tv-tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 import { ensureTvCached } from "../lib/tv-cache";
+import { backfillWatchStreakFromLogs } from "../lib/watch-streak-sync";
 
 /**
  * Sense Tier 0 — Letterboxd CSV import (diary export).
@@ -114,6 +115,15 @@ export const importRoute = new Elysia({
 			if (tasteChanged) {
 				await recomputeUserTasteSignature(user.id).catch((err) => {
 					console.error("[import/letterboxd] taste recompute failed", err);
+				});
+			}
+			const diaryTouched =
+				applyResult.diary.imported > 0 ||
+				applyResult.ratingFilled > 0 ||
+				applyResult.watched.imported > 0;
+			if (diaryTouched) {
+				await backfillWatchStreakFromLogs(user.id).catch((err) => {
+					console.error("[import/letterboxd] streak backfill failed", err);
 				});
 			}
 			const diaryHref = prof?.handle ? `/profile/${prof.handle}` : "/diary";
@@ -252,6 +262,11 @@ export const importRoute = new Elysia({
 				await recomputeUserTasteSignature(user.id).catch((err) => {
 					console.error("[import/anilist] taste recompute failed", err);
 				});
+				if (applyResult.imported > 0) {
+					await backfillWatchStreakFromLogs(user.id).catch((err) => {
+						console.error("[import/anilist] streak backfill failed", err);
+					});
+				}
 				const diaryHref = prof?.handle ? `/profile/${prof.handle}` : "/diary";
 				await deliverNotification({
 					userId: user.id,

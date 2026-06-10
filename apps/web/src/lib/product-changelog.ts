@@ -27,6 +27,28 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-06-10-letterboxd-streak",
+		versionLabel: "0.2.5",
+		dateLabel: "June 10, 2026",
+		headline: "Letterboxd import & diary streak",
+		summary:
+			"Letterboxd imports match more of your diary, and your profile streak stays aligned with the activity heatmap after a bulk import.",
+		items: [
+			{
+				title: "Fewer unmatched Letterboxd titles",
+				body: "Diary and watched CSV rows now resolve more reliably to TMDb — including when Letterboxd’s release year differs from theatrical dates (common on festival and streaming releases).",
+			},
+			{
+				title: "Watched.csv gap-fill",
+				body: "Films marked watched on Letterboxd without a diary entry can fill gaps in your Sense diary after the main import — no duplicate logs for titles you already logged.",
+			},
+			{
+				title: "Streak matches your heatmap",
+				body: "After importing Letterboxd or Anilist, your streak counter rebuilds from diary history instead of staying stuck on pre-import manual logs. Opening your profile also reconciles streak with the same dates the Diary rhythm grid uses.",
+			},
+		],
+	},
+	{
 		id: "2026-06-09-share-previews",
 		versionLabel: "0.2.4",
 		dateLabel: "June 9, 2026",

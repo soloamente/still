@@ -19,7 +19,7 @@ import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressab
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import { useReviewComposer } from "@/components/review/review-composer";
 import { ReviewDeleteConfirmDialog } from "@/components/review/review-delete-confirm-dialog";
@@ -40,8 +40,10 @@ import { api } from "@/lib/api";
 import { APP_MEMBER_LABEL } from "@/lib/app-brand";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 import { useViewerHasWatchedMovie } from "@/lib/use-viewer-has-watched-movie";
 
@@ -64,6 +66,8 @@ export type ReviewAuthorPreview = {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 };
 
 /** Card / list preview fields — shown instantly while the sheet loads full detail. */
@@ -505,13 +509,18 @@ export function ReviewDetailRoot() {
 				DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 			)}
 		>
-			<PatronPortraitAvatar
+			<PatronPortraitWithMetalTier
 				handle={displayAuthor.handle}
 				avatarUrl={displayAuthor.image}
 				name={displayAuthor.displayName}
 				width={32}
 				height={32}
 				className="size-8 shrink-0 rounded-full"
+				isAnimated={inferAnimatedFromProfileUrl(
+					displayAuthor.image,
+					displayAuthor.avatarIsAnimated,
+				)}
+				diaryMetalTier={displayAuthor.diaryMetalTier ?? null}
 			/>
 			<span className="min-w-0 text-left">
 				<span className="block truncate font-medium text-foreground text-sm leading-snug">

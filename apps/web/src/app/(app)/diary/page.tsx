@@ -11,7 +11,9 @@ import {
 	parseDiaryLobbyOrder,
 	parseDiaryLobbyVenue,
 } from "@/lib/diary-lobby-order";
+import type { MeProfile } from "@/lib/fetch-me-profile";
 import { fetchMyDiaryServer } from "@/lib/fetch-my-diary-server";
+import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
 import {
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbWatchRegionPref,
@@ -41,12 +43,7 @@ export default async function DiaryPage({
 	const profileRes = await api.api.profiles.me
 		.get()
 		.catch(() => ({ data: null }));
-	const profileData = profileRes.data as {
-		handle: string;
-		displayName: string;
-		isPro?: boolean;
-		preferences?: Record<string, unknown> | null;
-	} | null;
+	const profileData = profileRes.data as Exclude<MeProfile, null> | null;
 	const mePrefs = profileData?.preferences ?? null;
 	const monochromePeersOnHover = readCatalogMonochromePeersOnHoverPref(mePrefs);
 	const catalogWatchPref = readCatalogTmdbWatchRegionPref(mePrefs);
@@ -63,6 +60,11 @@ export default async function DiaryPage({
 					handle: profileData.handle,
 					email: session.user.email ?? null,
 					isPro: Boolean(profileData.isPro),
+					avatarIsAnimated: resolvePatronAvatarIsAnimated(
+						session.user.image ?? null,
+						profileData.preferences ?? null,
+					),
+					diaryMetalTier: profileData.diaryMetalTier ?? null,
 				}
 			: null;
 

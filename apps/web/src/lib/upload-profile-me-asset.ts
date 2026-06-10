@@ -32,6 +32,8 @@ export async function uploadProfileMeAsset(
 					"Add BLOB_READ_WRITE_TOKEN to the API server .env (Vercel Blob token).";
 			} else if (body.code === "BLOB_ACCESS_MISMATCH" && body.hint) {
 				msg = body.hint;
+			} else if (body.code === "PRO_ANIMATED_MEDIA_REQUIRED") {
+				msg = "Animated banner and portrait require Sense Pro.";
 			} else if (body.error) msg = body.error;
 		} catch {
 			/* use default */

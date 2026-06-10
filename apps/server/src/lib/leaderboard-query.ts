@@ -2,6 +2,7 @@ import { block, db, log, movie, profile, tv, user } from "@still/db";
 import {
 	and,
 	asc,
+	count,
 	desc,
 	eq,
 	gt,
@@ -15,8 +16,14 @@ import {
 } from "drizzle-orm";
 
 import { contentVisibilityWhere } from "./content-visibility";
+import {
+	type DiaryMetalTier,
+	fetchDiaryLogCountsForUserIds,
+	resolveDiaryMetalTier,
+} from "./diary-metal-tier";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
+import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type LeaderboardKind = "films" | "tv";
 
@@ -27,6 +34,8 @@ export type LeaderboardEntry = {
 	displayName: string;
 	/** Auth `user.image` — UI routes through `/api/profiles/avatar/:handle`. */
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	count: number;
 };
 
@@ -170,6 +179,7 @@ export async function fetchLeaderboard(opts: {
 			handle: profile.handle,
 			displayName: profile.displayName,
 			image: sql<string | null>`max(${user.image})`.as("image"),
+			preferences: profile.preferences,
 			count: sql<number>`count(*)::int`.as("count"),
 			lastWatch: sql<Date>`max(${log.watchedAt})`.as("last_watch"),
 		})
@@ -177,7 +187,12 @@ export async function fetchLeaderboard(opts: {
 		.innerJoin(profile, eq(log.userId, profile.userId))
 		.innerJoin(user, eq(log.userId, user.id))
 		.where(baseLogConditions(opts.kind, start, end, blockedIds))
-		.groupBy(log.userId, profile.handle, profile.displayName)
+		.groupBy(
+			log.userId,
+			profile.handle,
+			profile.displayName,
+			profile.preferences,
+		)
 		.orderBy(
 			desc(sql`count(*)`),
 			asc(sql`max(${log.watchedAt})`),
@@ -185,12 +200,20 @@ export async function fetchLeaderboard(opts: {
 		)
 		.limit(50);
 
+	const logCounts = await fetchDiaryLogCountsForUserIds(
+		rows.map((row) => row.userId),
+	);
+
 	const entries: LeaderboardEntry[] = rows.map((row, index) => ({
 		rank: index + 1,
 		userId: row.userId,
 		handle: row.handle,
 		displayName: row.displayName,
 		image: row.image ?? null,
+		avatarIsAnimated: readAvatarIsAnimatedPref(
+			row.preferences as Record<string, unknown> | null,
+		),
+		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
 		count: Number(row.count),
 	}));
 
@@ -284,7 +307,13 @@ export async function fetchLeaderboardLogs(opts: {
 	now?: Date;
 	viewerId?: string | null;
 }): Promise<{
-	user: { handle: string; displayName: string; image: string | null };
+	user: {
+		handle: string;
+		displayName: string;
+		image: string | null;
+		avatarIsAnimated: boolean;
+		diaryMetalTier: DiaryMetalTier | null;
+	};
 	period: LeaderboardPeriod;
 	window: { start: string; end: string };
 	items: LeaderboardLogItem[];
@@ -295,6 +324,7 @@ export async function fetchLeaderboardLogs(opts: {
 			displayName: profile.displayName,
 			isPrivate: profile.isPrivate,
 			image: user.image,
+			preferences: profile.preferences,
 		})
 		.from(profile)
 		.innerJoin(user, eq(profile.userId, user.id))
@@ -302,6 +332,12 @@ export async function fetchLeaderboardLogs(opts: {
 		.limit(1);
 
 	if (!row || row.isPrivate) return null;
+
+	const [logCountRow] = await db
+		.select({ c: count(log.id) })
+		.from(log)
+		.where(and(eq(log.userId, opts.userId), isNull(log.removedAt)));
+	const diaryMetalTier = resolveDiaryMetalTier(Number(logCountRow?.c ?? 0));
 
 	const { start, end } = resolveLeaderboardWindow(
 		opts.period,
@@ -343,6 +379,10 @@ export async function fetchLeaderboardLogs(opts: {
 				handle: row.handle,
 				displayName: row.displayName,
 				image: row.image ?? null,
+				avatarIsAnimated: readAvatarIsAnimatedPref(
+					row.preferences as Record<string, unknown> | null,
+				),
+				diaryMetalTier,
 			},
 			period: opts.period,
 			window: { start: start.toISOString(), end: end.toISOString() },
@@ -394,6 +434,10 @@ export async function fetchLeaderboardLogs(opts: {
 			handle: row.handle,
 			displayName: row.displayName,
 			image: row.image ?? null,
+			avatarIsAnimated: readAvatarIsAnimatedPref(
+				row.preferences as Record<string, unknown> | null,
+			),
+			diaryMetalTier,
 		},
 		period: opts.period,
 		window: { start: start.toISOString(), end: end.toISOString() },

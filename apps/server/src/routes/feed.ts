@@ -32,13 +32,16 @@ import {
 } from "../lib/community-period";
 import { contentVisibilityWhere } from "../lib/content-visibility";
 import { reviewEngagementOrderSql } from "../lib/creator-recognition";
+import { fetchDiaryLogCountsForUserIds } from "../lib/diary-metal-tier";
 import {
+	enrichFeedActivityPayload,
 	enrichFeedListRows,
 	type FeedActivityKind,
 	type FeedSortRow,
 	feedAtMs,
 	isFeedRowOlderThanCursor,
 	listActivityAt,
+	readFeedActorUserId,
 	serializeFeedAt,
 	sortFeedRows,
 } from "../lib/feed-items";
@@ -294,10 +297,24 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 				merged.splice(Math.min(3, merged.length), 0, divergenceRow);
 			}
 
-			const items = merged.slice(0, limit).map((row) => ({
+			const pageRows = merged.slice(0, limit);
+			const actorIds = pageRows.flatMap((row) => {
+				if (row.kind === "divergence") {
+					const payload = row.payload as FeedRatingDivergencePayload;
+					return [payload.lowPatron.userId, payload.highPatron.userId];
+				}
+				const id = readFeedActorUserId(row.payload);
+				return id ? [id] : [];
+			});
+			const logCounts = await fetchDiaryLogCountsForUserIds(actorIds);
+
+			const items = pageRows.map((row) => ({
 				kind: row.kind,
 				at: serializeFeedAt(row.at),
-				payload: row.payload,
+				payload:
+					row.kind === "divergence"
+						? row.payload
+						: enrichFeedActivityPayload(row.payload, logCounts),
 			}));
 
 			return { items };
@@ -371,14 +388,22 @@ export const feedRoute = new Elysia({ prefix: "/api/feed", tags: ["feed"] })
 					at: row.list.updatedAt,
 					payload: row,
 				})),
-			]
-				.sort((a, b) => feedAtMs(b.at) - feedAtMs(a.at))
-				.map((row) => ({
+			].sort((a, b) => feedAtMs(b.at) - feedAtMs(a.at));
+
+			const discoverActorIds = items.flatMap((row) => {
+				const id = readFeedActorUserId(row.payload);
+				return id ? [id] : [];
+			});
+			const discoverLogCounts =
+				await fetchDiaryLogCountsForUserIds(discoverActorIds);
+
+			return {
+				items: items.map((row) => ({
 					kind: row.kind,
 					at: serializeFeedAt(row.at),
-					payload: row.payload,
-				}));
-			return { items };
+					payload: enrichFeedActivityPayload(row.payload, discoverLogCounts),
+				})),
+			};
 		},
 		{ query: communityPeriodQuery },
 	);

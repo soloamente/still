@@ -3,12 +3,16 @@
  * feed payload the lobby list uses — no extra API round-trip.
  */
 
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+
 import type { HomeCommunityActivityItem } from "./home-community-activity";
 
 export type HomeFriendRailEntry = {
 	handle: string;
 	displayName: string;
 	image: string | null;
+	avatarIsAnimated: boolean;
+	diaryMetalTier: DiaryMetalTier | null;
 	/** One-line summary for the rail (most recent activity per person in this window). */
 	snippet: string;
 	atMs: number;
@@ -16,7 +20,12 @@ export type HomeFriendRailEntry = {
 
 type PersonRow = {
 	user: { id: string; name: string; image: string | null } | null;
-	profile: { handle: string; displayName: string } | null;
+	profile: {
+		handle: string;
+		displayName: string;
+		avatarIsAnimated?: boolean;
+		diaryMetalTier?: DiaryMetalTier | null;
+	} | null;
 };
 
 type FriendRailActivityItem = HomeCommunityActivityItem & {
@@ -77,6 +86,8 @@ export function deriveFriendRailEntries(
 			displayName:
 				person.profile?.displayName ?? person.user?.name ?? "Someone",
 			image: person.user?.image ?? null,
+			avatarIsAnimated: person.profile?.avatarIsAnimated ?? false,
+			diaryMetalTier: person.profile?.diaryMetalTier ?? null,
 			snippet: snippetForItem(item),
 			atMs,
 		});

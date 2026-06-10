@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { openPatronWatchLedger } from "@/components/home/patron-watch-ledger-drawer";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import {
 	leaderboardCountButtonClassName,
 	leaderboardHandleLinkClassName,
@@ -15,6 +15,7 @@ import type {
 	LeaderboardEntry,
 	LeaderboardKind,
 } from "@/lib/home-leaderboard-types";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 export function HomeLeaderboardRow({
 	entry,
@@ -41,20 +42,25 @@ export function HomeLeaderboardRow({
 				href={`/profile/${entry.handle}`}
 				className="shrink-0 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
 			>
-				<PatronPortraitAvatar
+				<PatronPortraitWithMetalTier
 					handle={entry.handle}
 					avatarUrl={entry.image}
 					name={entry.displayName}
 					className="size-10 rounded-full"
 					width={40}
 					height={40}
+					isAnimated={inferAnimatedFromProfileUrl(
+						entry.image,
+						entry.avatarIsAnimated,
+					)}
+					diaryMetalTier={entry.diaryMetalTier}
 				/>
 			</Link>
-			<div className="min-w-0 flex-1">
+			<div className="min-w-0 flex-1 leading-none">
 				<Link
 					href={`/profile/${entry.handle}`}
 					className={leaderboardHandleLinkClassName(
-						"block max-w-full truncate text-foreground text-sm",
+						"block max-w-full truncate font-semibold text-foreground text-sm leading-none",
 					)}
 					title={`Open ${entry.displayName}'s profile`}
 				>
@@ -63,7 +69,7 @@ export function HomeLeaderboardRow({
 				<Link
 					href={`/profile/${entry.handle}`}
 					className={leaderboardHandleLinkClassName(
-						"mt-0.5 block max-w-full truncate text-xs",
+						"mt-0.5 block max-w-full truncate text-xs leading-none",
 					)}
 					title={`Open @${entry.handle}'s profile`}
 				>
@@ -82,6 +88,8 @@ export function HomeLeaderboardRow({
 						handle: entry.handle,
 						displayName: entry.displayName,
 						image: entry.image,
+						avatarIsAnimated: entry.avatarIsAnimated,
+						diaryMetalTier: entry.diaryMetalTier,
 						kind,
 						period,
 					})

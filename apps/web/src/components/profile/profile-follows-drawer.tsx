@@ -7,9 +7,11 @@ import { toast } from "sonner";
 import { create } from "zustand";
 
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
-import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { api } from "@/lib/api";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 const PROFILE_FOLLOWS_TAB_OPTIONS = [
 	{ id: "followers" as const, label: "Followers" },
@@ -31,7 +33,12 @@ type FollowsTab = "followers" | "following";
 type FollowsListRow = {
 	userId: string;
 	user: { id: string; name: string | null; image: string | null } | null;
-	profile: { handle: string; displayName: string } | null;
+	profile: {
+		handle: string;
+		displayName: string;
+		avatarIsAnimated?: boolean;
+		diaryMetalTier?: DiaryMetalTier | null;
+	} | null;
 	viewerFollows: boolean;
 };
 
@@ -274,13 +281,18 @@ function FollowRow({
 	return (
 		<li className="flex items-center gap-3 border-white/5 border-t px-2 py-2.5 first:border-t-0">
 			{handle ? (
-				<PatronPortraitAvatar
+				<PatronPortraitWithMetalTier
 					handle={handle}
 					avatarUrl={row.user?.image}
 					name={name}
 					width={40}
 					height={40}
 					className="size-10 shrink-0 rounded-full"
+					isAnimated={inferAnimatedFromProfileUrl(
+						row.user?.image,
+						row.profile?.avatarIsAnimated,
+					)}
+					diaryMetalTier={row.profile?.diaryMetalTier ?? null}
 				/>
 			) : (
 				<span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted/40 font-medium text-foreground/80 text-sm">

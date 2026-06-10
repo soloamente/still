@@ -55,7 +55,11 @@ export function ActivityItem({ item }: { item: Item }) {
 
 type Person = {
 	user: { id: string; name: string; image: string | null } | null;
-	profile: { handle: string; displayName: string } | null;
+	profile: {
+		handle: string;
+		displayName: string;
+		avatarIsAnimated?: boolean;
+	} | null;
 };
 
 type LogPayload = Person & {

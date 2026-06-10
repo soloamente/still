@@ -221,15 +221,13 @@ export function StaffUserDetail({
 									</span>
 								) : null}
 							</p>
-							{profile.statsCache ? (
-								<p className="text-muted-foreground text-xs">
-									{profile.statsCache.filmsLogged ?? 0} films logged ·{" "}
-									{profile.statsCache.reviewsCount ?? 0} reviews ·{" "}
-									{profile.statsCache.listsCount ?? 0} lists ·{" "}
-									{profile.statsCache.followers ?? 0} followers ·{" "}
-									{profile.statsCache.following ?? 0} following
-								</p>
-							) : null}
+							<p className="text-muted-foreground text-xs">
+								{profile.statsCache?.filmsLogged ?? 0} films logged ·{" "}
+								{profile.statsCache?.reviewsCount ?? 0} reviews ·{" "}
+								{profile.statsCache?.listsCount ?? 0} lists ·{" "}
+								{profile.statsCache?.followers ?? 0} followers ·{" "}
+								{profile.statsCache?.following ?? 0} following
+							</p>
 						</>
 					) : null}
 				</div>

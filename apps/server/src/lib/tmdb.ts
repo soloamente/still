@@ -225,6 +225,8 @@ export type TmdbFetchOptions = {
 	language?: string;
 	/** When true, TMDb may return adult titles in search/discover list endpoints. */
 	showAdultContent?: boolean;
+	/** Optional primary release year filter for `/search/movie`. */
+	year?: number | null;
 };
 
 function tmdbIncludeAdult(showAdult?: boolean): "true" | "false" {
@@ -309,14 +311,16 @@ async function tmdb<T>(
 
 export const tmdbApi = {
 	searchMovies(query: string, page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		const { year, ...rest } = fetchOpts;
 		return tmdb<TmdbPaged<TmdbMovieSummary>>(
 			"/search/movie",
 			{
 				query,
 				page,
-				include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent),
+				include_adult: tmdbIncludeAdult(rest.showAdultContent),
+				...(year != null ? { year } : {}),
 			},
-			fetchOpts,
+			rest,
 		);
 	},
 	/** TMDb `/search/tv` — list rows use `name`; callers map to `title` for shared grid components. */

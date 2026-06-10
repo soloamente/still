@@ -21,6 +21,7 @@ import type { ProfileReviewRow } from "@/components/profile/profile-reviews-pane
 import { ProfileTabPanels } from "@/components/profile/profile-tab-panels";
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { ProfileTopBar } from "@/components/profile/profile-top-bar";
+import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
@@ -67,6 +68,10 @@ export interface ProfilePatronLobbyShellProps {
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
 	curatorHeadline?: string | null;
+	avatarIsAnimated?: boolean;
+	bannerIsAnimated?: boolean;
+	profilePortraitGrayscaleUntilHover?: boolean;
+	diaryMetalTier?: DiaryMetalTier | null;
 }
 
 function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
@@ -102,6 +107,10 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		canCompareTaste,
 		initialTasteCompareOpen,
 		curatorHeadline,
+		avatarIsAnimated,
+		bannerIsAnimated,
+		profilePortraitGrayscaleUntilHover,
+		diaryMetalTier = null,
 	} = props;
 
 	const {
@@ -195,6 +204,12 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 					pinnedReviews={pinnedReviews}
 					canCompareTaste={canCompareTaste}
 					initialTasteCompareOpen={initialTasteCompareOpen}
+					avatarIsAnimated={avatarIsAnimated}
+					bannerIsAnimated={bannerIsAnimated}
+					profilePortraitGrayscaleUntilHover={
+						profilePortraitGrayscaleUntilHover
+					}
+					diaryMetalTier={diaryMetalTier}
 				/>
 
 				<ProfilePatronMilestones

@@ -25,6 +25,8 @@ export function MeAppearanceSettings({
 	bannerFrame,
 	onProfileAccentChange,
 	onBannerFrameChange,
+	profilePortraitGrayscaleUntilHover,
+	onProfilePortraitGrayscaleUntilHoverChange,
 }: {
 	isPro: boolean;
 	appTheme: AppThemeClass;
@@ -33,6 +35,8 @@ export function MeAppearanceSettings({
 	bannerFrame: ProfileBannerFrameId;
 	onProfileAccentChange: (next: ProfileAccentId) => void;
 	onBannerFrameChange: (next: ProfileBannerFrameId) => void;
+	profilePortraitGrayscaleUntilHover: boolean;
+	onProfilePortraitGrayscaleUntilHoverChange: (next: boolean) => void;
 }) {
 	const { theme } = useTheme();
 	const { applyThemeSelection } = useAppThemeShell();
@@ -123,6 +127,10 @@ export function MeAppearanceSettings({
 				bannerFrame={bannerFrame}
 				onProfileAccentChange={onProfileAccentChange}
 				onBannerFrameChange={onBannerFrameChange}
+				profilePortraitGrayscaleUntilHover={profilePortraitGrayscaleUntilHover}
+				onProfilePortraitGrayscaleUntilHoverChange={
+					onProfilePortraitGrayscaleUntilHoverChange
+				}
 			/>
 		</div>
 	);

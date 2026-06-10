@@ -13,6 +13,7 @@ import { ListsCatalogOrderChips } from "@/components/list/lists-catalog-order-ch
 import { ListsLobbyCatalogue } from "@/components/list/lists-lobby-catalogue";
 import { ListsNewListButton } from "@/components/list/lists-new-list-button";
 import { authServer } from "@/lib/auth-server";
+import type { MeProfile } from "@/lib/fetch-me-profile";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import { toListBoardRow } from "@/lib/list-board-row";
 import {
@@ -20,6 +21,7 @@ import {
 	parseListsLobbyOrder,
 	sortListsLobbyRows,
 } from "@/lib/lists-lobby-order";
+import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
 import { readCatalogMonochromePeersOnHoverPref } from "@/lib/profile-preferences";
 import { serverApi } from "@/lib/server-api";
 
@@ -40,12 +42,7 @@ export default async function ListsPage({
 		api.api.profiles.me.get().catch(() => ({ data: null })),
 	]);
 
-	const profileData = profileRes.data as {
-		handle: string;
-		displayName: string;
-		isPro?: boolean;
-		preferences?: Record<string, unknown> | null;
-	} | null;
+	const profileData = profileRes.data as Exclude<MeProfile, null> | null;
 
 	const mePrefs = profileData?.preferences ?? null;
 	const monochromePeersOnHover = readCatalogMonochromePeersOnHoverPref(mePrefs);
@@ -59,6 +56,11 @@ export default async function ListsPage({
 					handle: profileData.handle,
 					email: session.user.email ?? null,
 					isPro: Boolean(profileData.isPro),
+					avatarIsAnimated: resolvePatronAvatarIsAnimated(
+						session.user.image ?? null,
+						profileData.preferences ?? null,
+					),
+					diaryMetalTier: profileData.diaryMetalTier ?? null,
 				}
 			: null;
 
