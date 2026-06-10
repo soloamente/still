@@ -10,10 +10,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import {
-	DetailEditorialRailArrowButtons,
-	DetailEditorialRailPasito,
-} from "@/components/movie/detail-editorial-rail-controls";
+import { DetailEditorialRailFooterControls } from "@/components/movie/detail-editorial-rail-controls";
 import type { MoviePageReview } from "@/components/movie/movie-detail-explore-tabs";
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
@@ -375,13 +372,6 @@ export function MovieDetailReviewsCarousel({
 					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
 				/>
 
-				<DetailEditorialRailArrowButtons
-					totalSlides={totalSlides}
-					activeSlideIndex={activeSlideIndex}
-					onPrev={prevSlide}
-					onNext={nextSlide}
-				/>
-
 				<div
 					ref={railRef}
 					className={cn(
@@ -411,9 +401,11 @@ export function MovieDetailReviewsCarousel({
 				</div>
 			</section>
 
-			<DetailEditorialRailPasito
+			<DetailEditorialRailFooterControls
 				totalSlides={totalSlides}
 				activeSlideIndex={activeSlideIndex}
+				onPrev={prevSlide}
+				onNext={nextSlide}
 				onGoto={gotoSlide}
 				ariaLabel="Patron reviews"
 			/>

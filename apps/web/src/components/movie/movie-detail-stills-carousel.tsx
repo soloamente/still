@@ -6,10 +6,7 @@ import Image from "next/image";
 import type { KeyboardEvent, MouseEvent } from "react";
 import { useCallback, useState } from "react";
 
-import {
-	DetailEditorialRailArrowButtons,
-	DetailEditorialRailPasito,
-} from "@/components/movie/detail-editorial-rail-controls";
+import { DetailEditorialRailFooterControls } from "@/components/movie/detail-editorial-rail-controls";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { useDetailEditorialRailSnap } from "@/lib/detail-editorial-rail-snap";
@@ -204,13 +201,6 @@ export function MovieDetailStillsCarousel({
 					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
 				/>
 
-				<DetailEditorialRailArrowButtons
-					totalSlides={totalSlides}
-					activeSlideIndex={activeSlideIndex}
-					onPrev={prevSlide}
-					onNext={nextSlide}
-				/>
-
 				<div
 					ref={railRef}
 					className={cn(
@@ -240,9 +230,11 @@ export function MovieDetailStillsCarousel({
 				</div>
 			</section>
 
-			<DetailEditorialRailPasito
+			<DetailEditorialRailFooterControls
 				totalSlides={totalSlides}
 				activeSlideIndex={activeSlideIndex}
+				onPrev={prevSlide}
+				onNext={nextSlide}
 				onGoto={gotoSlide}
 				ariaLabel="Background slides"
 			/>
