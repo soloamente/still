@@ -23,4 +23,13 @@ describe("classifyLetterboxdFileName", () => {
 		expect(hasRecognizedLetterboxdFile(["watchlist.csv"])).toBe(true);
 		expect(hasRecognizedLetterboxdFile(["comments.csv"])).toBe(false);
 	});
+
+	test("maps watched.csv", () => {
+		expect(classifyLetterboxdFileName("watched.csv")).toBe("watched");
+		expect(classifyLetterboxdFileName("WATCHED.CSV")).toBe("watched");
+	});
+
+	test("hasRecognizedLetterboxdFile allows watched-only", () => {
+		expect(hasRecognizedLetterboxdFile(["watched.csv"])).toBe(true);
+	});
 });

@@ -36,7 +36,7 @@ classified **by filename** (case-insensitive):
 | `reviews.csv` | root | `review` + linked `log` |
 | `films.csv` | `likes/films.csv` | `log.liked` + system Favorites list |
 
-**Ignored in v1:** `comments.csv`, `watched.csv` (diary supersedes), custom list
+**Ignored in v1:** `comments.csv`, ~~`watched.csv` (diary supersedes)~~ — **superseded 2026-06-10:** see `2026-06-10-letterboxd-watched-csv-import-design.md` (gap-fill after diary). Custom list
 CSVs under `lists/`, `likes/reviews.csv`, `likes/lists.csv`, `profile.csv`,
 `deleted/` and `orphaned/` subtrees.
 

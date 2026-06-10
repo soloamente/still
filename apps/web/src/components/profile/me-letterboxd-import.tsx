@@ -17,6 +17,7 @@ import { stillApiOrigin } from "@/lib/still-api-origin";
 const LETTERBOXD_RECOGNIZED_FILES = new Set([
 	"diary.csv",
 	"ratings.csv",
+	"watched.csv",
 	"watchlist.csv",
 	"reviews.csv",
 	"films.csv",
@@ -34,6 +35,13 @@ const LETTERBOXD_PICK_FILES = [
 		fileName: "ratings.csv",
 		title: "ratings.csv",
 		detail: "Star ratings — merged into matching diary rows",
+		label: "Optional",
+	},
+	{
+		fileName: "watched.csv",
+		title: "watched.csv",
+		detail:
+			"Films marked watched without a diary entry — fills gaps after diary import",
 		label: "Optional",
 	},
 	{
@@ -71,6 +79,7 @@ type ImportResult = {
 	unmatched: number;
 	totalRows?: number;
 	diary?: ImportCountGroup;
+	watched?: ImportCountGroup;
 	watchlist?: ImportCountGroup;
 	reviews?: ImportCountGroup;
 	likes?: ImportCountGroup;
@@ -103,6 +112,11 @@ function formatImportToast(result: ImportResult) {
 			`${result.diary.imported} diary ${result.diary.imported === 1 ? "entry" : "entries"}`,
 		);
 	}
+	if (result.watched?.imported) {
+		parts.push(
+			`${result.watched.imported} watched ${result.watched.imported === 1 ? "title" : "titles"}`,
+		);
+	}
 	if (result.watchlist?.imported) {
 		parts.push(
 			`${result.watchlist.imported} watchlist ${result.watchlist.imported === 1 ? "title" : "titles"}`,
@@ -125,7 +139,7 @@ function formatImportToast(result: ImportResult) {
 }
 
 /**
- * Letterboxd CSV import — diary, watchlist, reviews, and liked films in one upload.
+ * Letterboxd CSV import — diary, watched gap-fill, watchlist, reviews, and liked films.
  */
 export function MeLetterboxdImport() {
 	const inputId = useId();
@@ -185,6 +199,7 @@ export function MeLetterboxdImport() {
 				unmatched: data?.unmatched ?? 0,
 				totalRows: data?.totalRows,
 				diary: data?.diary,
+				watched: data?.watched,
 				watchlist: data?.watchlist,
 				reviews: data?.reviews,
 				likes: data?.likes,
@@ -243,7 +258,7 @@ export function MeLetterboxdImport() {
 									<span className="font-mono text-foreground/90 text-xs">
 										diary.csv
 									</span>{" "}
-									plus optional watchlist, reviews, ratings, and liked{" "}
+									plus optional watched, watchlist, reviews, ratings, and liked{" "}
 									<span className="font-mono text-foreground/90 text-xs">
 										films.csv
 									</span>
@@ -314,9 +329,9 @@ export function MeLetterboxdImport() {
 						})}
 					</ul>
 					<p className="text-muted-foreground text-xs leading-relaxed">
-						Imported: diary, ratings, watchlist, reviews, liked films. Not yet:
-						comments, custom lists, liked reviews/lists, or TV (use Anilist
-						import).
+						Imported: diary, ratings, watched, watchlist, reviews, liked films.
+						Not yet: comments, custom lists, liked reviews/lists, or TV (use
+						Anilist import).
 					</p>
 				</div>
 
@@ -415,7 +430,7 @@ export function MeLetterboxdImport() {
 								</span>{" "}
 								or{" "}
 								<span className="font-mono text-foreground/90 text-xs">
-									watchlist.csv
+									watched.csv
 								</span>
 								.
 							</span>
@@ -480,6 +495,23 @@ export function MeLetterboxdImport() {
 												label: "Unmatched",
 												value:
 													lastResult.diary?.unmatched ?? lastResult.unmatched,
+											},
+										],
+									},
+									{
+										title: "Watched",
+										rows: [
+											{
+												label: "Added",
+												value: lastResult.watched?.imported ?? 0,
+											},
+											{
+												label: "Skipped",
+												value: lastResult.watched?.skipped ?? 0,
+											},
+											{
+												label: "Unmatched",
+												value: lastResult.watched?.unmatched ?? 0,
 											},
 										],
 									},

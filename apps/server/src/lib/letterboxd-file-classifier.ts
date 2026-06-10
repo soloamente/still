@@ -8,6 +8,7 @@ export type LetterboxdCsvKind =
 	| "watchlist"
 	| "reviews"
 	| "likes"
+	| "watched"
 	| "unknown";
 
 /** Map export filename → import phase (case-insensitive basename). */
@@ -26,6 +27,8 @@ export function classifyLetterboxdFileName(
 			return "reviews";
 		case "films.csv":
 			return "likes";
+		case "watched.csv":
+			return "watched";
 		default:
 			return "unknown";
 	}

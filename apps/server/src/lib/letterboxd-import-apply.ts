@@ -16,6 +16,7 @@ import {
 	type LetterboxdCsvKind,
 } from "./letterboxd-file-classifier";
 import {
+	anyLogExistsForMovie,
 	createMinimalLetterboxdLog,
 	defaultMinimalLogWatchedAt,
 	fillLogRatingIfNull,
@@ -55,8 +56,15 @@ export interface LetterboxdImportLikesCounts {
 	unmatched: number;
 }
 
+export interface LetterboxdImportWatchedCounts {
+	imported: number;
+	skipped: number;
+	unmatched: number;
+}
+
 export interface LetterboxdImportApplyResult {
 	diary: LetterboxdImportDiaryCounts;
+	watched: LetterboxdImportWatchedCounts;
 	watchlist: LetterboxdImportWatchlistCounts;
 	reviews: LetterboxdImportReviewsCounts;
 	likes: LetterboxdImportLikesCounts;
@@ -73,17 +81,31 @@ export interface LetterboxdUploadedFile {
 	text: string;
 }
 
+export interface LetterboxdMinimalLogInsertInput {
+	userId: string;
+	movieId: number;
+	watchedAt: Date;
+	ratingStars: number | null;
+	rewatch: boolean;
+	letterboxdUri: string | null;
+}
+
 export interface ApplyLetterboxdImportOptions {
 	userId: string;
 	files: LetterboxdUploadedFile[];
 	resolveTmdbId?: (name: string, year: number | null) => Promise<number | null>;
 	ensureMovie?: (tmdbId: number) => Promise<void>;
 	importedAt?: Date;
+	hasAnyLogForMovie?: (userId: string, movieId: number) => Promise<boolean>;
+	insertMinimalLog?: (
+		input: LetterboxdMinimalLogInsertInput,
+	) => Promise<string>;
 }
 
 function emptyResult(): LetterboxdImportApplyResult {
 	return {
 		diary: { imported: 0, skipped: 0, unmatched: 0 },
+		watched: { imported: 0, skipped: 0, unmatched: 0 },
 		watchlist: { imported: 0, skipped: 0, unmatched: 0 },
 		reviews: { imported: 0, updated: 0, skipped: 0, unmatched: 0 },
 		likes: { favorited: 0, logsCreated: 0, skipped: 0, unmatched: 0 },
@@ -387,6 +409,66 @@ async function applyLikesPhase(
 	return counts;
 }
 
+async function applyWatchedGapFillPhase(
+	userId: string,
+	rows: LetterboxdCsvRow[],
+	importDay: Date,
+	resolveTmdbId: (name: string, year: number | null) => Promise<number | null>,
+	ensureMovie: (tmdbId: number) => Promise<void>,
+	hasAnyLogForMovie: (userId: string, movieId: number) => Promise<boolean>,
+	insertMinimalLog: (input: LetterboxdMinimalLogInsertInput) => Promise<string>,
+): Promise<LetterboxdImportWatchedCounts> {
+	const counts: LetterboxdImportWatchedCounts = {
+		imported: 0,
+		skipped: 0,
+		unmatched: 0,
+	};
+	const seenKeys = new Set<string>();
+
+	for (const row of rows) {
+		const key = letterboxdTitleMatchKey(row);
+		if (seenKeys.has(key)) {
+			counts.skipped++;
+			continue;
+		}
+		seenKeys.add(key);
+
+		const movieId = await resolveMovieId(
+			row.name,
+			row.year,
+			resolveTmdbId,
+			ensureMovie,
+		);
+		if (movieId == null) {
+			counts.unmatched++;
+			continue;
+		}
+
+		if (await hasAnyLogForMovie(userId, movieId)) {
+			counts.skipped++;
+			continue;
+		}
+
+		const watchedAt = defaultMinimalLogWatchedAt(
+			row.watchedAt,
+			null,
+			importDay,
+		);
+
+		await insertMinimalLog({
+			userId,
+			movieId,
+			watchedAt,
+			ratingStars: null,
+			rewatch: false,
+			letterboxdUri: row.letterboxdUri,
+		});
+		counts.imported++;
+	}
+
+	return counts;
+}
+
 async function applyWatchlistPhase(
 	userId: string,
 	rows: ReturnType<typeof parseLetterboxdWatchlistCsv>,
@@ -470,8 +552,8 @@ function bucketFiles(
 }
 
 /**
- * Apply a multi-file Letterboxd export for one patron — diary, reviews, likes,
- * then watchlist (diary first so later phases can attach to new logs).
+ * Apply a multi-file Letterboxd export for one patron — diary, watched gap-fill,
+ * reviews, likes, then watchlist (diary first so later phases can attach to new logs).
  */
 export async function applyLetterboxdImport(
 	opts: ApplyLetterboxdImportOptions,
@@ -483,6 +565,11 @@ export async function applyLetterboxdImport(
 		((name, year) => resolveLetterboxdMovieTmdbId(name, year));
 	const ensureMovie =
 		opts.ensureMovie ?? (async (tmdbId) => ensureMovieCached(tmdbId));
+	const hasAnyLogForMovie =
+		opts.hasAnyLogForMovie ??
+		((userId, movieId) => anyLogExistsForMovie(userId, movieId));
+	const insertMinimalLog =
+		opts.insertMinimalLog ?? ((input) => createMinimalLetterboxdLog(input));
 
 	const buckets = bucketFiles(opts.files);
 	const diaryTexts = [
@@ -491,6 +578,9 @@ export async function applyLetterboxdImport(
 	];
 	const diaryBatches = diaryTexts.map((text) => parseLetterboxdCsv(text));
 	const diaryRows = mergeLetterboxdImportRows(diaryBatches);
+	const watchedRows = (buckets.get("watched") ?? []).flatMap((text) =>
+		parseLetterboxdCsv(text),
+	);
 	const reviewRows = (buckets.get("reviews") ?? []).flatMap((text) =>
 		parseLetterboxdReviewsCsv(text),
 	);
@@ -503,6 +593,7 @@ export async function applyLetterboxdImport(
 
 	result.totalRows =
 		diaryRows.length +
+		watchedRows.length +
 		reviewRows.length +
 		likeRows.length +
 		watchlistRows.length;
@@ -520,6 +611,16 @@ export async function applyLetterboxdImport(
 	result.diary = diaryOutcome.counts;
 	result.ratingFilled = diaryOutcome.ratingFilled;
 	syncLegacyDiaryFields(result);
+
+	result.watched = await applyWatchedGapFillPhase(
+		opts.userId,
+		watchedRows,
+		importDay,
+		resolveTmdbId,
+		ensureMovie,
+		hasAnyLogForMovie,
+		insertMinimalLog,
+	);
 
 	const defaultVisibility = await loadDefaultReviewVisibility(opts.userId);
 

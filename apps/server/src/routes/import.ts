@@ -51,7 +51,7 @@ export const importRoute = new Elysia({
 		if (!hasRecognizedLetterboxdFile(csvFiles.map((f) => f.name))) {
 			return status(
 				400,
-				"No recognized Letterboxd CSV files — include diary.csv, watchlist.csv, reviews.csv, films.csv, or ratings.csv",
+				"No recognized Letterboxd CSV files — include diary.csv, watched.csv, watchlist.csv, reviews.csv, films.csv, or ratings.csv",
 			);
 		}
 
@@ -98,6 +98,7 @@ export const importRoute = new Elysia({
 		const touched =
 			applyResult.diary.imported +
 			applyResult.ratingFilled +
+			applyResult.watched.imported +
 			applyResult.watchlist.imported +
 			applyResult.reviews.imported +
 			applyResult.reviews.updated +
@@ -107,6 +108,7 @@ export const importRoute = new Elysia({
 			const tasteChanged =
 				applyResult.diary.imported > 0 ||
 				applyResult.ratingFilled > 0 ||
+				applyResult.watched.imported > 0 ||
 				applyResult.reviews.imported > 0 ||
 				applyResult.reviews.updated > 0;
 			if (tasteChanged) {
@@ -115,12 +117,16 @@ export const importRoute = new Elysia({
 				});
 			}
 			const diaryHref = prof?.handle ? `/profile/${prof.handle}` : "/diary";
-			const summary = [
-				`${applyResult.diary.imported} diary`,
+			const summaryParts = [`${applyResult.diary.imported} diary`];
+			if (applyResult.watched.imported > 0) {
+				summaryParts.push(`${applyResult.watched.imported} watched`);
+			}
+			summaryParts.push(
 				`${applyResult.watchlist.imported} watchlist`,
 				`${applyResult.reviews.imported + applyResult.reviews.updated} reviews`,
 				`${applyResult.likes.favorited} favorites`,
-			].join(" · ");
+			);
+			const summary = summaryParts.join(" · ");
 			await deliverNotification({
 				userId: user.id,
 				kind: "import.completed",
@@ -131,6 +137,7 @@ export const importRoute = new Elysia({
 					source: "letterboxd",
 					href: diaryHref,
 					diary: applyResult.diary,
+					watched: applyResult.watched,
 					watchlist: applyResult.watchlist,
 					reviews: applyResult.reviews,
 					likes: applyResult.likes,
@@ -160,6 +167,7 @@ export const importRoute = new Elysia({
 				unmatched: applyResult.diary.unmatched,
 				totalRows: applyResult.totalRows,
 				diary: applyResult.diary,
+				watched: applyResult.watched,
 				watchlist: applyResult.watchlist,
 				reviews: applyResult.reviews,
 				likes: applyResult.likes,
