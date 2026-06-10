@@ -82,6 +82,11 @@ import {
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
+import {
+	assertEmailVerified,
+	EmailVerificationRequiredError,
+	emailVerificationRequiredBody,
+} from "../lib/require-verified-email";
 import { routeBody } from "../lib/route-body";
 import { sanitizeAppearancePreferences } from "../lib/sanitize-appearance-preferences";
 import { ensureFreshTasteSignature } from "../lib/taste-signature-cache";
@@ -125,6 +130,17 @@ export const profilesRoute = new Elysia({
 			if (!hit(`profile:update:${user.id}`, { limit: 20, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
 			const body = routeBody<ProfileMePatchBody>(rawBody);
+
+			if (body.isPrivate === false || body.defaultVisibility === "public") {
+				try {
+					assertEmailVerified(user);
+				} catch (e) {
+					if (e instanceof EmailVerificationRequiredError) {
+						return status(403, emailVerificationRequiredBody());
+					}
+					throw e;
+				}
+			}
 
 			const [existing] = await db
 				.select()
@@ -364,6 +380,14 @@ export const profilesRoute = new Elysia({
 		"/me/pins",
 		async ({ body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			try {
+				assertEmailVerified(user);
+			} catch (e) {
+				if (e instanceof EmailVerificationRequiredError) {
+					return status(403, emailVerificationRequiredBody());
+				}
+				throw e;
+			}
 			if (!hit(`profile:pins:${user.id}`, { limit: 30, windowMs: 60_000 }).ok) {
 				return status(429, "Slow down");
 			}

@@ -10,6 +10,11 @@ import {
 } from "../lib/follow-list";
 import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
+import {
+	assertEmailVerified,
+	EmailVerificationRequiredError,
+	emailVerificationRequiredBody,
+} from "../lib/require-verified-email";
 
 export const followsRoute = new Elysia({
 	prefix: "/api/follows",
@@ -20,6 +25,14 @@ export const followsRoute = new Elysia({
 		"/:userId",
 		async ({ params, user: viewer, status }) => {
 			if (!viewer) return status(401, "Sign in");
+			try {
+				assertEmailVerified(viewer);
+			} catch (e) {
+				if (e instanceof EmailVerificationRequiredError) {
+					return status(403, emailVerificationRequiredBody());
+				}
+				throw e;
+			}
 			if (viewer.id === params.userId)
 				return status(400, "Cannot follow yourself");
 			if (!hit(`follow:${viewer.id}`, { limit: 60, windowMs: 60_000 }).ok)

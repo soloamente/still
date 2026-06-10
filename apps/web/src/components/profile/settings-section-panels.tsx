@@ -31,6 +31,7 @@ import {
 import { ProfileMediaCustomizer } from "@/components/profile/profile-media-customizer";
 import { useSettingsForm } from "@/components/profile/settings-form-context";
 import { patronMeetsAdultAgeGate } from "@/lib/adult-content-age-gate";
+import { authClient } from "@/lib/auth-client";
 import { NOTIFICATION_KIND_SETTINGS } from "@/lib/notification-preferences";
 import { inferProfileAccentFromHex } from "@/lib/profile-appearance";
 import { resolveCatalogTmdbLanguage } from "@/lib/profile-preferences";
@@ -66,6 +67,8 @@ export function SettingsProfileSection() {
 		setIsPrivate,
 		saving,
 	} = useSettingsForm();
+	const { data: session } = authClient.useSession();
+	const showEmailVerificationNote = session?.user?.emailVerified === false;
 
 	return (
 		<SettingsSectionPage>
@@ -167,7 +170,12 @@ export function SettingsProfileSection() {
 							/>
 						</MeFormField>
 					</div>
-					<div className="flex justify-end pt-5">
+					<div className="flex flex-col items-end gap-2 pt-5">
+						{showEmailVerificationNote ? (
+							<p className="max-w-md text-pretty text-right text-muted-foreground text-sm">
+								Verify your email before making your profile or posts public.
+							</p>
+						) : null}
 						<MeProfileVisibilityToggle
 							checked={isPrivate}
 							onChange={setIsPrivate}

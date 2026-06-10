@@ -46,6 +46,11 @@ import {
 } from "../lib/list-quality";
 import { canViewList } from "../lib/list-view-access";
 import { hit } from "../lib/rate-limit";
+import {
+	assertEmailVerified,
+	EmailVerificationRequiredError,
+	emailVerificationRequiredBody,
+} from "../lib/require-verified-email";
 import { routeBody } from "../lib/route-body";
 import { logMediaKey } from "../lib/sense-taste-overlap";
 import { ensureTvCached } from "../lib/tv-cache";
@@ -294,6 +299,17 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			if (!hit(`list:create:${user.id}`, { limit: 8, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
 			const body = routeBody<CreateListBody>(rawBody);
+			const effectiveIsPublic = body.isPublic ?? true;
+			if (effectiveIsPublic) {
+				try {
+					assertEmailVerified(user);
+				} catch (e) {
+					if (e instanceof EmailVerificationRequiredError) {
+						return status(403, emailVerificationRequiredBody());
+					}
+					throw e;
+				}
+			}
 			const id = makeId("lst");
 			const [row] = await db
 				.insert(list)
@@ -520,6 +536,17 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Not found");
+			const effectiveIsPublic = body.isPublic ?? existing.isPublic;
+			if (effectiveIsPublic) {
+				try {
+					assertEmailVerified(user);
+				} catch (e) {
+					if (e instanceof EmailVerificationRequiredError) {
+						return status(403, emailVerificationRequiredBody());
+					}
+					throw e;
+				}
+			}
 			if (isFavoritesSystemList(existing) && patchTouchesNonCoverFields(body)) {
 				return status(403, "This list is synced from your favorites");
 			}

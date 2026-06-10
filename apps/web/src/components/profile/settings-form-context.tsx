@@ -31,6 +31,10 @@ import { api } from "@/lib/api";
 import { type AppThemeClass, resolveAppThemeForPatron } from "@/lib/app-themes";
 import { authClient } from "@/lib/auth-client";
 import {
+	EMAIL_VERIFICATION_TOAST,
+	isEmailVerificationRequiredError,
+} from "@/lib/email-verification-error";
+import {
 	buildNotificationPrefsPatch,
 	NOTIFICATION_KIND_SETTINGS,
 	type NotificationKind,
@@ -596,7 +600,7 @@ export function SettingsFormProvider({
 				delete prefs.cinemaPreset;
 				delete prefs.cinemaPresetUserOverride;
 
-				await api.api.profiles.me.patch({
+				const saveRes = await api.api.profiles.me.patch({
 					displayName: displayName.trim(),
 					bio: bio.trim() || undefined,
 					pronouns: pronouns.trim() || undefined,
@@ -608,6 +612,14 @@ export function SettingsFormProvider({
 						(profile.defaultVisibility as ContentVisibility) ?? "public",
 					preferences: prefs,
 				});
+				if (saveRes.error) {
+					if (isEmailVerificationRequiredError(saveRes.error.value)) {
+						toast.error(EMAIL_VERIFICATION_TOAST);
+					} else {
+						toast.error("Couldn't save");
+					}
+					return;
+				}
 				setTheaterAudioEnabled(theaterAudio);
 				setSmoothScrollEnabled(smoothScroll);
 				const hadPendingMedia = Boolean(pendingBanner || pendingAvatar);

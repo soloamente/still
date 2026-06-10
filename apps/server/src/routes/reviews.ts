@@ -36,6 +36,12 @@ import {
 import { removePinnedReviewId } from "../lib/profile-pinned-reviews";
 import { hit } from "../lib/rate-limit";
 import {
+	assertEmailVerified,
+	EmailVerificationRequiredError,
+	emailVerificationRequiredBody,
+	isPublicContentVisibility,
+} from "../lib/require-verified-email";
+import {
 	assertValidReviewStillSlideKey,
 	fetchReviewMovieScreenshots,
 	resolveReviewStillSlide,
@@ -138,6 +144,17 @@ export const reviewsRoute = new Elysia({
 				visibility = own?.d ?? "public";
 			}
 
+			if (isPublicContentVisibility(visibility)) {
+				try {
+					assertEmailVerified(user);
+				} catch (e) {
+					if (e instanceof EmailVerificationRequiredError) {
+						return status(403, emailVerificationRequiredBody());
+					}
+					throw e;
+				}
+			}
+
 			const id = makeId("rev");
 			const [row] = await db
 				.insert(review)
@@ -187,6 +204,17 @@ export const reviewsRoute = new Elysia({
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Not found");
+			const effectiveVisibility = body.visibility ?? existing.visibility;
+			if (isPublicContentVisibility(effectiveVisibility)) {
+				try {
+					assertEmailVerified(user);
+				} catch (e) {
+					if (e instanceof EmailVerificationRequiredError) {
+						return status(403, emailVerificationRequiredBody());
+					}
+					throw e;
+				}
+			}
 			const nextRating =
 				existing.logId != null
 					? existing.rating

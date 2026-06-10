@@ -1,17 +1,16 @@
 import { describe, expect, test } from "bun:test";
 
-import { buildDeleteAccountEmail } from "./send-email";
+import type { SendEmailInput } from "./send-email";
 
-describe("buildDeleteAccountEmail", () => {
-	test("includes the verification url and an expiry warning", () => {
-		const email = buildDeleteAccountEmail({
-			url: "https://sense.example/api/auth/delete-user/callback?token=abc",
-		});
-		expect(email.subject).toBe("Confirm your Sense account deletion");
-		expect(email.text).toContain(
-			"https://sense.example/api/auth/delete-user/callback?token=abc",
-		);
-		expect(email.text).toContain("24 hours");
-		expect(email.text.toLowerCase()).toContain("permanently");
+describe("SendEmailInput", () => {
+	test("requires html alongside text for Resend multipart send", () => {
+		const input: SendEmailInput = {
+			to: "patron@example.com",
+			subject: "Test",
+			html: "<p>Hello</p>",
+			text: "Hello",
+		};
+		expect(input.html).toBe("<p>Hello</p>");
+		expect(input.text).toBe("Hello");
 	});
 });

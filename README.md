@@ -72,6 +72,20 @@ Session cookies must be set on the **web** hostname. If `NEXT_PUBLIC_SERVER_URL`
 
 Redeploy **both** projects after changing these values.
 
+## Email (Resend)
+
+Transactional auth email (verify, password reset, delete account) sends through
+[Resend](https://resend.com) from **`cinema.sense.fans`**.
+
+1. Verify the subdomain in Resend (SPF + DKIM on `sense.fans`).
+2. Set on the **server** app (Vercel / `apps/server/.env`):
+
+   - `RESEND_API_KEY`
+   - `EMAIL_FROM=Sense <noreply@cinema.sense.fans>`
+
+Local dev without these vars logs email bodies to the server console instead of sending.
+Production requires both vars or sends throw at runtime.
+
 ## UI Customization
 
 React web apps in this stack share shadcn/ui primitives through `packages/ui`.

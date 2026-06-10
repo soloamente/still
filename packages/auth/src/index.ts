@@ -6,11 +6,31 @@ import { env } from "@still/env/server";
 import { type BetterAuthPlugin, betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin as adminPlugin } from "better-auth/plugins";
+import type { ReactElement } from "react";
 
+import { DeleteAccountEmail } from "./emails/delete-account";
+import { renderAuthEmail } from "./emails/render-email";
+import { ResetPasswordEmail } from "./emails/reset-password";
+import { VerifyEmail } from "./emails/verify-email";
 import { deleteUserBlobAssets } from "./lib/delete-user-cleanup";
 import { polarClient } from "./lib/payments";
-import { buildDeleteAccountEmail, sendEmail } from "./lib/send-email";
+import { sendEmail } from "./lib/send-email";
 import { ac, roles } from "./permissions";
+
+/** Render a React Email template and send html + plain-text via Resend. */
+async function sendAuthEmail(
+	to: string,
+	element: ReactElement,
+	subject: string,
+): Promise<void> {
+	const rendered = await renderAuthEmail(element, subject);
+	await sendEmail({
+		to,
+		subject: rendered.subject,
+		html: rendered.html,
+		text: rendered.text,
+	});
+}
 
 /**
  * The Polar plugin is opt-in: registering it unconditionally means every
@@ -60,8 +80,29 @@ export function createAuth() {
 					]
 				: []),
 		],
+		emailVerification: {
+			sendOnSignUp: true,
+			autoSignInAfterVerification: true,
+			expiresIn: 60 * 60 * 24,
+			sendVerificationEmail: async ({ user, url }) => {
+				await sendAuthEmail(
+					user.email,
+					VerifyEmail({ url }),
+					"Confirm your email for Sense",
+				);
+			},
+		},
 		emailAndPassword: {
 			enabled: true,
+			requireEmailVerification: false,
+			sendResetPassword: async ({ user, url }) => {
+				await sendAuthEmail(
+					user.email,
+					ResetPasswordEmail({ url }),
+					"Reset your Sense password",
+				);
+			},
+			resetPasswordTokenExpiresIn: 60 * 60,
 		},
 		user: {
 			deleteUser: {
@@ -71,12 +112,11 @@ export function createAuth() {
 				// Better Auth's callback then deletes the user row and DB cascades
 				// wipe everything else.
 				sendDeleteAccountVerification: async ({ user: target, url }) => {
-					const email = buildDeleteAccountEmail({ url });
-					await sendEmail({
-						to: target.email,
-						subject: email.subject,
-						text: email.text,
-					});
+					await sendAuthEmail(
+						target.email,
+						DeleteAccountEmail({ url }),
+						"Confirm your Sense account deletion",
+					);
 				},
 				beforeDelete: async (target) => {
 					await deleteUserBlobAssets(target.id);

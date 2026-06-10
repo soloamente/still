@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { AppShell } from "@/components/app/app-shell";
 import { AppThemeShell } from "@/components/app/app-theme-shell";
+import { VerifyEmailBanner } from "@/components/auth/verify-email-banner";
 import { ImpersonationBanner } from "@/components/staff/impersonation-banner";
 import { authServer } from "@/lib/auth-server";
 import {
@@ -37,6 +38,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 			isPro={Boolean(profile?.isPro)}
 		>
 			{impersonatedBy ? <ImpersonationBanner name={impersonatedName} /> : null}
+			<VerifyEmailBanner session={session} />
 			<AppShell
 				user={{
 					id: session.user.id,
