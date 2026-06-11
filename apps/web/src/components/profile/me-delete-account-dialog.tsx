@@ -27,7 +27,9 @@ export function MeDeleteAccountDialog({
 		setError(null);
 		try {
 			const { error: apiError } = await authClient.deleteUser({
-				callbackURL: "/",
+				// Land on the cookie-clearing handler after the email link confirms
+				// deletion — avoids `/` → `/home` loops with a stale session token.
+				callbackURL: "/signed-out",
 			});
 			if (apiError) {
 				setError(

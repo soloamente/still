@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import {
 	APP_METADATA_DEFAULT_TITLE,
 	APP_METADATA_DESCRIPTION,
 	APP_NAME,
 } from "@/lib/app-brand";
+import { authServer } from "@/lib/auth-server";
 import {
 	OG_HOME_PATH,
 	ogImageMetadataFields,
@@ -45,12 +45,10 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function LandingPage() {
-	const cookieStore = await cookies();
-	const hasSession = [
-		"better-auth.session_token",
-		"__Secure-better-auth.session_token",
-	].some((n) => cookieStore.has(n));
-	if (hasSession) redirect("/home");
+	// Validate the session server-side — a stale cookie after account deletion
+	// must not bounce patrons into the authenticated `/home` shell.
+	const session = await authServer();
+	if (session) redirect("/home");
 
 	const api = await serverApi();
 	const popular = await api.api.movies.popular

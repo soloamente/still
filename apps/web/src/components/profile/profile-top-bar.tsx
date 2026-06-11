@@ -69,7 +69,8 @@ export function ProfileTopBar({
 				isScrolled && "after:opacity-100",
 			)}
 		>
-			<div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2 px-2.5 py-2 sm:px-3">
+			{/* auto | minmax(0,1fr) | auto — title fills space between pills and ellipsizes. */}
+			<div className="grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-2.5 py-2 sm:px-3">
 				<div className="flex min-w-0 justify-start">
 					<DetailMotionLink
 						href={back.href}
@@ -79,9 +80,14 @@ export function ProfileTopBar({
 						<span className="truncate">{back.label}</span>
 					</DetailMotionLink>
 				</div>
-				<p className="max-w-[min(100%,12rem)] truncate text-center font-medium text-foreground text-sm sm:max-w-xs">
-					{displayName}
-				</p>
+				<div className="flex min-w-0 justify-center overflow-hidden px-1">
+					<p
+						className="w-full min-w-0 truncate text-center font-medium text-foreground text-sm"
+						title={displayName}
+					>
+						{displayName}
+					</p>
+				</div>
 				<div className="flex min-w-0 justify-end">
 					<DetailMotionButton
 						type="button"

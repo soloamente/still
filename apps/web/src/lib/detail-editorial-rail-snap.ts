@@ -368,6 +368,47 @@ export function useDetailEditorialRailSnap({
 		paginateSlide,
 	]);
 
+	/** Re-center the active slide when layout width changes (mobile rotation, font load). */
+	useEffect(() => {
+		const rail = railRef.current;
+		if (!rail || slideCount === 0) return;
+
+		const syncScrollPosition = () => {
+			if (snapLockRef.current || pointerDownRef.current) return;
+
+			const slides = getSlides(rail);
+			if (slides.length === 0) return;
+
+			const index = resolveSnapSlideIndex(
+				Array.from(slides),
+				rail,
+				rail.scrollLeft,
+				0,
+			);
+			const slide = slides[index];
+			if (!slide) return;
+
+			const targetLeft = slideTargetScrollLeft(rail, slide);
+			if (Math.abs(rail.scrollLeft - targetLeft) > 1.5) {
+				rail.scrollLeft = targetLeft;
+			}
+			setActiveSlideIndex(index);
+		};
+
+		syncScrollPosition();
+		const raf = requestAnimationFrame(syncScrollPosition);
+
+		const observer = new ResizeObserver(() => {
+			syncScrollPosition();
+		});
+		observer.observe(rail);
+
+		return () => {
+			cancelAnimationFrame(raf);
+			observer.disconnect();
+		};
+	}, [slideCount, getSlides]);
+
 	return {
 		railRef,
 		activeSlideIndex,

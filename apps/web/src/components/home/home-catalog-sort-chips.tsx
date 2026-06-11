@@ -13,6 +13,10 @@ import {
 	parseHomeCatalogueSearchLobbySort,
 } from "@/lib/home-catalogue-search-param";
 import { HOME_COMMUNITY_FEEDS } from "@/lib/home-community-feed";
+import {
+	HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
+	HOME_LOBBY_CHIP_TRACK_CLASSNAME,
+} from "@/lib/home-lobby-catalogue-layout";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 
 /**
@@ -39,7 +43,7 @@ function HomeCommunityFeedChips({
 
 	const chipButton = (active: boolean) =>
 		cn(
-			"relative inline-flex min-h-10 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-3.5",
+			HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
 			active
 				? "text-foreground"
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
@@ -51,7 +55,7 @@ function HomeCommunityFeedChips({
 				{description}
 			</p>
 			<div
-				className="flex w-fit max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+				className={HOME_LOBBY_CHIP_TRACK_CLASSNAME}
 				role="toolbar"
 				aria-label="Community feeds"
 				aria-describedby={sortToolbarDescId}
@@ -119,10 +123,9 @@ function HomeTmdbSortChips({
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	const chipButton = (active: boolean, compact: boolean) =>
+	const chipButton = (active: boolean) =>
 		cn(
-			"relative inline-flex min-h-10 items-center justify-center rounded-full text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
-			compact ? "px-3 py-2 sm:px-3.5" : "px-5 py-2.5",
+			HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
 			active
 				? "text-foreground"
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
@@ -143,7 +146,7 @@ function HomeTmdbSortChips({
 				key={sort}
 				type="button"
 				aria-current={active ? "page" : undefined}
-				className={chipButton(active, true)}
+				className={chipButton(active)}
 				title="Theatrical or streaming titles with primary release dates from today onward"
 				aria-label="Upcoming — releases ahead on TMDb"
 				onClick={() => selectSort(sort)}
@@ -204,7 +207,7 @@ function HomeTmdbSortChips({
 				key={sort}
 				type="button"
 				aria-current={active ? "page" : undefined}
-				className={chipButton(active, true)}
+				className={chipButton(active)}
 				title={labels.title}
 				aria-label={labels.ariaLabel}
 				onClick={() => {
@@ -243,7 +246,7 @@ function HomeTmdbSortChips({
 				{description}
 			</p>
 			<div
-				className="flex max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+				className={HOME_LOBBY_CHIP_TRACK_CLASSNAME}
 				role="toolbar"
 				aria-label="Catalogue sort"
 				aria-describedby={sortToolbarDescId}
@@ -255,7 +258,7 @@ function HomeTmdbSortChips({
 					<button
 						type="button"
 						aria-current={animeSeason ? "page" : undefined}
-						className={chipButton(animeSeason, true)}
+						className={chipButton(animeSeason)}
 						title="Animation TV that started airing within the last 90 days and is still returning"
 						aria-label="This season — airing anime simulcasts"
 						onClick={() => selectAnimeSeason()}

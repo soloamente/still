@@ -75,6 +75,9 @@ export function MovieDetailTopBar({
 		"bg-card text-foreground [@media(hover:hover)]:hover:bg-muted/35",
 		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 	);
+	/** Narrow viewports: square icon targets; label copy stays on `sm+`. */
+	const pillIconOnlyMobile =
+		"max-sm:size-10 max-sm:justify-center max-sm:gap-0 max-sm:p-0";
 
 	/** Copies the current page URL — no native share sheet. */
 	async function handleShare() {
@@ -168,9 +171,13 @@ export function MovieDetailTopBar({
 		>
 			<div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2 px-2.5 py-2 sm:px-3">
 				<div className="flex min-w-0 justify-start">
-					<DetailMotionLink href={back.href} className={cn(pill, "pl-3")}>
+					<DetailMotionLink
+						href={back.href}
+						className={cn(pill, pillIconOnlyMobile, "pl-3 max-sm:pl-0")}
+						aria-label={back.label}
+					>
 						<IconShareIn size="20px" className="shrink-0 opacity-90" />
-						{back.label}
+						<span className="hidden truncate sm:inline">{back.label}</span>
 					</DetailMotionLink>
 				</div>
 				<nav
@@ -183,12 +190,14 @@ export function MovieDetailTopBar({
 				<div className="flex min-w-0 justify-end">
 					<DetailMotionButton
 						type="button"
-						className={cn(pill, "pr-3")}
+						className={cn(pill, pillIconOnlyMobile, "pr-3 max-sm:pr-0")}
 						onClick={() => void handleShare()}
 						aria-label={shareCopied ? "Link copied" : `Copy link for ${title}`}
 						iconSwapKey={shareCopied ? "copied" : "share"}
 					>
-						{shareCopied ? "Copied" : "Share"}
+						<span className="hidden sm:inline">
+							{shareCopied ? "Copied" : "Share"}
+						</span>
 						{shareCopied ? (
 							<Check className="size-4 shrink-0 opacity-90" aria-hidden />
 						) : (

@@ -25,3 +25,21 @@ export const HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME =
 /** Base `className` for the rounded card that wraps sort chips + `PopularMoviesInfinite`. */
 export const HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME =
 	"flex flex-1 flex-col gap-2.5 rounded-[2.5rem] bg-card p-4";
+
+/**
+ * Sort + venue chip row under sticky chrome — always one line.
+ * Leading sort/feed rail scrolls; trailing venue/period popovers stay pinned on the right.
+ */
+export const HOME_LOBBY_FILTER_ROW_CLASSNAME =
+	"flex items-center gap-2 sm:gap-x-3";
+
+/** Leading sort/feed rail — grows and scrolls; never squeezes chip labels onto a second line. */
+export const HOME_LOBBY_FILTER_ROW_LEADING_CLASSNAME = "min-w-0 flex-1";
+
+/** Shared pill track for lobby chip toolbars (sort, venue, period). */
+export const HOME_LOBBY_CHIP_TRACK_CLASSNAME =
+	"flex w-fit max-w-full flex-nowrap gap-1 rounded-full bg-background p-1";
+
+/** Compact chip tap target — matches `HomeCatalogSortChips` beside wider `sm:` padding. */
+export const HOME_LOBBY_CHIP_BUTTON_CLASSNAME =
+	"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-5 sm:py-2.5";

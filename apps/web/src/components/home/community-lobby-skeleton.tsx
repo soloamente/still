@@ -5,6 +5,7 @@ import {
 	LobbyVenueChipFallback,
 } from "@/components/app/lobby-suspense-fallbacks";
 import { CommunityFeedSkeleton } from "@/components/home/community-feed-skeleton";
+import { HomeLobbyFilterRow } from "@/components/home/home-lobby-filter-row";
 
 /**
  * Placeholder while the Community RSC payload loads after an optimistic browse tap.
@@ -17,10 +18,10 @@ export function CommunityLobbySkeleton() {
 			aria-live="polite"
 		>
 			<p className="sr-only">Loading community…</p>
-			<div className="flex shrink-0 items-center justify-between gap-3">
-				<LobbyCatalogChipFallback />
-				<LobbyVenueChipFallback />
-			</div>
+			<HomeLobbyFilterRow
+				leading={<LobbyCatalogChipFallback />}
+				trailing={<LobbyVenueChipFallback />}
+			/>
 			{/* Default community tab is Lists — poster-wall silhouette. */}
 			<CommunityFeedSkeleton feed="lists" />
 		</div>

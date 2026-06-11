@@ -12,7 +12,18 @@ export default function robots(): MetadataRoute.Robots {
 	return {
 		rules: {
 			userAgent: "*",
-			allow: ["/", "/l/"],
+			// Explicit allow for link-preview crawlers — they must fetch `/og/*` images
+			// and shareable detail HTML even when those paths also appear in disallow.
+			allow: [
+				"/",
+				"/l/",
+				"/og/",
+				"/movies/",
+				"/tv/",
+				"/profile/",
+				"/people/",
+				"/compare/",
+			],
 			disallow: [
 				"/api/",
 				"/home",
@@ -30,7 +41,6 @@ export default function robots(): MetadataRoute.Robots {
 				"/people/",
 				"/me/",
 				"/onboarding",
-				"/og/",
 			],
 		},
 		sitemap: `${origin}/sitemap.xml`,

@@ -133,6 +133,42 @@ export function HomeTasteMatchedRail({
 		[movies],
 	);
 
+	/** After quick log, drop the title immediately and backfill from a fresh for-you fetch. */
+	const handleLogged = useCallback(
+		async (tmdbId: number) => {
+			const snapshot = movies;
+			const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
+			if (index < 0) return;
+
+			setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
+
+			try {
+				const res = await api.api.taste["for-you"].get();
+				if (res.error || !res.data || res.data.coldStart) return;
+
+				const onScreenIds = new Set(
+					snapshot.map((film) => film.tmdbId).filter((id) => id !== tmdbId),
+				);
+				const replacement = res.data.movies.find(
+					(film) => !onScreenIds.has(film.tmdbId),
+				);
+				if (!replacement) return;
+
+				setMovies((prev) => {
+					if (prev.some((film) => film.tmdbId === replacement.tmdbId)) {
+						return prev;
+					}
+					const next = [...prev];
+					next.splice(Math.min(index, next.length), 0, replacement);
+					return next;
+				});
+			} catch {
+				// Title is already removed — silent if backfill fails.
+			}
+		},
+		[movies],
+	);
+
 	if (loading) {
 		return <HomeTasteMatchedRailSkeleton />;
 	}
@@ -172,6 +208,7 @@ export function HomeTasteMatchedRail({
 								frameClassName={RAIL_POSTER_FRAME_CLASSNAME}
 								hoverEffect="elevation"
 								listingKind="movie"
+								onActionComplete={() => void handleLogged(film.tmdbId)}
 								onNotInterested={handleNotInterested}
 								posterUrl={tmdbPosterUrl(film.posterPath)}
 								priority={index < 4}

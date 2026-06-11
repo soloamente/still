@@ -1,7 +1,9 @@
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { AppShell } from "@/components/app/app-shell";
 import { AppThemeShell } from "@/components/app/app-theme-shell";
+import { PublicShareShell } from "@/components/app/public-share-shell";
 import { VerifyEmailBanner } from "@/components/auth/verify-email-banner";
 import { ImpersonationBanner } from "@/components/staff/impersonation-banner";
 import { authServer } from "@/lib/auth-server";
@@ -11,11 +13,25 @@ import {
 	PROFILE_FETCH_FAILED,
 } from "@/lib/fetch-me-profile";
 import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
+import { isShareableAppPath } from "@/lib/shareable-app-paths";
 
 export const dynamic = "force-dynamic";
 
 export default async function AppLayout({ children }: { children: ReactNode }) {
 	const session = await authServer();
+	const pathname =
+		(await headers()).get("x-still-pathname")?.split("?")[0] ?? "";
+	const isPublicShareRoute = isShareableAppPath(pathname);
+
+	// Film/TV/profile pages must render for link-preview crawlers (no session cookie).
+	if (!session && isPublicShareRoute) {
+		return (
+			<AppThemeShell initialAppearance={null} isPro={false}>
+				<PublicShareShell>{children}</PublicShareShell>
+			</AppThemeShell>
+		);
+	}
+
 	// Redirect through /signed-out (a Route Handler) rather than straight to
 	// /sign-in: a banned/revoked session leaves a stale cookie in the browser,
 	// and the proxy gates on cookie *presence*, so a direct /sign-in redirect

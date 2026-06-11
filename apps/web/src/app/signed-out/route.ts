@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-import { SESSION_COOKIE_NAMES } from "@/lib/session-cookie";
+import { clearSessionCookies } from "@/lib/session-cookie";
 
 /**
  * Clears the Better Auth session cookies and redirects to `/sign-in`.
@@ -19,8 +19,6 @@ export function GET(req: NextRequest): NextResponse {
 	url.pathname = "/sign-in";
 	url.search = "";
 	const res = NextResponse.redirect(url);
-	for (const name of SESSION_COOKIE_NAMES) {
-		res.cookies.delete(name);
-	}
+	clearSessionCookies(res);
 	return res;
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { LobbyOrderChipFallback } from "@/components/app/lobby-suspense-fallbacks";
 import { ProfileCatalogOrderChips } from "@/components/profile/profile-catalog-order-chips";
 import { ProfileCatalogVenueChips } from "@/components/profile/profile-catalog-venue-chips";
 import { useProfileLobbyParams } from "@/components/profile/profile-lobby-params-context";
@@ -23,27 +22,24 @@ export function ProfileLobbyChrome({
 		ledgerTab === "movies" ||
 		ledgerTab === "tv" ||
 		toolbarActiveTab === "favorites";
-	const chipFallback = <LobbyOrderChipFallback />;
 
 	return (
 		<div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-3">
-			<div className="flex min-w-0 justify-start">
-				{showLedgerRails ? (
+			{showLedgerRails ? (
+				<div className="flex min-w-0 justify-center sm:justify-start">
 					<ProfileCatalogOrderChips ledgerTab={ledgerTab} />
-				) : (
-					chipFallback
-				)}
-			</div>
+				</div>
+			) : null}
 
-			<div className="flex min-w-0 justify-start sm:justify-center">
+			<div className="flex min-w-0 justify-center">
 				<ProfileTabToolbar socialTabs={socialTabs} />
 			</div>
 
-			<div className="flex min-w-0 justify-start sm:justify-end">
-				{showLedgerRails ? (
+			{showLedgerRails ? (
+				<div className="flex min-w-0 justify-center sm:justify-end">
 					<ProfileCatalogVenueChips ledgerTab={ledgerTab} />
-				) : null}
-			</div>
+				</div>
+			) : null}
 		</div>
 	);
 }

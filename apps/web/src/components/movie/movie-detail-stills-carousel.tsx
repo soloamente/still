@@ -9,6 +9,16 @@ import { useCallback, useState } from "react";
 import { DetailEditorialRailFooterControls } from "@/components/movie/detail-editorial-rail-controls";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
+import {
+	DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_LEFT_CLASS,
+	DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_RIGHT_CLASS,
+	DETAIL_EDITORIAL_RAIL_SCROLLPORT_CLASS,
+	DETAIL_EDITORIAL_RAIL_SLIDE_SNAP_CLASS,
+	DETAIL_EDITORIAL_RAIL_X_FADE_CLASS,
+	DETAIL_EDITORIAL_STILL_RAIL_EDGE_SPACER_CLASS,
+	DETAIL_EDITORIAL_STILL_SLIDE_GAP_CLASS,
+	DETAIL_EDITORIAL_STILL_SLIDE_WIDTH_CLASS,
+} from "@/lib/detail-editorial-rail-chrome";
 import { useDetailEditorialRailSnap } from "@/lib/detail-editorial-rail-snap";
 import {
 	downloadTmdbImage,
@@ -19,28 +29,15 @@ import {
 const STILL_IMAGE_OUTLINE_CLASS =
 	"outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10";
 
-/** One widescreen still per viewport — centered via leading/trailing rail spacers. */
-const STILL_SLIDE_WIDTH_CLASS = "w-[min(56rem,92vw)]";
-/** Horizontal edge softening — hides harsh clip where peeking slides meet page padding. */
-const STILL_RAIL_X_FADE_CLASS =
-	"[mask-image:linear-gradient(to_right,transparent_0,black_10rem,black_calc(100%-10rem),transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0,black_10rem,black_calc(100%-10rem),transparent_100%)]";
-
 /** Cinematic rail height — 16:9 frame plus vertical breathing room. */
 const STILL_RAIL_MIN_HEIGHT_CLASS = "min-h-[min(24rem,52vh)]";
-
-/** Space between still slides — margin on 2+ items only (spacers must stay flush). */
-const STILL_SLIDE_GAP_CLASS = "ml-28 sm:ml-36 md:ml-40";
-
-/** Half the leftover scrollport width so the first/last snap targets sit centered. */
-const STILL_RAIL_EDGE_SPACER_CLASS =
-	"w-[max(1.25rem,calc((100cqw-min(56rem,92vw))/2))]";
 
 function StillsRailEdgeSpacer() {
 	return (
 		<li
 			aria-hidden
 			className={cn(
-				STILL_RAIL_EDGE_SPACER_CLASS,
+				DETAIL_EDITORIAL_STILL_RAIL_EDGE_SPACER_CLASS,
 				"pointer-events-none shrink-0 list-none",
 			)}
 		/>
@@ -105,7 +102,8 @@ function MovieDetailStillSlide({
 		<li
 			data-still-slide
 			className={cn(
-				STILL_SLIDE_WIDTH_CLASS,
+				DETAIL_EDITORIAL_STILL_SLIDE_WIDTH_CLASS,
+				DETAIL_EDITORIAL_RAIL_SLIDE_SNAP_CLASS,
 				"group/still shrink-0 list-none transition-[opacity,filter,transform] duration-(--page-fade-dur) ease-(--page-fade-ease) motion-reduce:transition-none",
 				!isActive && STILL_SLIDE_INACTIVE_CLASS,
 				!isActive && "cursor-pointer",
@@ -194,21 +192,20 @@ export function MovieDetailStillsCarousel({
 			>
 				<div
 					aria-hidden
-					className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
+					className={DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_LEFT_CLASS}
 				/>
 				<div
 					aria-hidden
-					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
+					className={DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_RIGHT_CLASS}
 				/>
 
 				<div
 					ref={railRef}
 					className={cn(
-						"@container flex min-w-0 cursor-grab touch-pan-x overflow-x-auto overscroll-x-contain",
+						DETAIL_EDITORIAL_RAIL_SCROLLPORT_CLASS,
 						isDragging && "cursor-grabbing",
 						STILL_RAIL_MIN_HEIGHT_CLASS,
-						STILL_RAIL_X_FADE_CLASS,
-						"scrollbar-none select-none items-center [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+						DETAIL_EDITORIAL_RAIL_X_FADE_CLASS,
 					)}
 				>
 					<ul className="flex min-h-full w-max items-stretch">
@@ -222,7 +219,9 @@ export function MovieDetailStillsCarousel({
 								isActive={index === activeSlideIndex}
 								onSelect={() => gotoSlide(index)}
 								shouldSuppressRailClick={shouldSuppressRailClick}
-								className={index > 0 ? STILL_SLIDE_GAP_CLASS : undefined}
+								className={
+									index > 0 ? DETAIL_EDITORIAL_STILL_SLIDE_GAP_CLASS : undefined
+								}
 							/>
 						))}
 						<StillsRailEdgeSpacer />

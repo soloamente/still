@@ -14,8 +14,17 @@ export type ArcCreditCard = {
 /** Default visible slots per arc row (odd count keeps a true center card). */
 export const CAST_CREW_ARC_SLOT_COUNT = 11;
 
+/** Narrow viewports — hide outer billing so portraits stay legible. */
+export const CAST_CREW_ARC_MOBILE_SLOT_COUNT = 5;
+
 /** Outermost card offset from the row baseline at full width (11-slot row). */
 export const CAST_CREW_ARC_EDGE_OFFSET_PX = 80;
+
+/** Gentler arc lift on mobile when fewer slots are visible. */
+export const CAST_CREW_ARC_MOBILE_EDGE_OFFSET_PX = 64;
+
+/** Scale down edge translate on mobile — larger cards need a shallower curve. */
+export const CAST_CREW_ARC_MOBILE_CURVE_SCALE = 0.82;
 
 /** How many slots to show — always odd when >1 so one card sits on the arc apex. */
 export function arcVisibleSlotCount(
@@ -60,6 +69,20 @@ export function reorderForCenterArc<T>(items: T[], visibleCount: number): T[] {
 	}
 
 	return result;
+}
+
+/**
+ * Keeps the visual center of an already arc-ordered row — drops outer slots so
+ * mobile can show fewer, larger portraits without clipping off-screen.
+ */
+export function sliceArcCenterCards<T>(items: T[], maxVisible: number): T[] {
+	const n = arcVisibleSlotCount(items.length, maxVisible);
+	if (n >= items.length) return items;
+
+	const center = Math.floor(items.length / 2);
+	const half = Math.floor(n / 2);
+	const start = Math.max(0, center - half);
+	return items.slice(start, start + n);
 }
 
 export type ArcRowVisual = {

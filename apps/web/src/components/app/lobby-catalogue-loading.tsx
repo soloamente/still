@@ -6,6 +6,7 @@ import {
 	LobbyStickyChromeFallback,
 	LobbyVenueChipFallback,
 } from "@/components/app/lobby-suspense-fallbacks";
+import { HomeLobbyFilterRow } from "@/components/home/home-lobby-filter-row";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
@@ -57,10 +58,10 @@ export function LobbyCatalogueLoading() {
 					"overflow-visible",
 				)}
 			>
-				<div className="flex shrink-0 items-center justify-between gap-3">
-					<LobbyCatalogChipFallback />
-					<LobbyVenueChipFallback />
-				</div>
+				<HomeLobbyFilterRow
+					leading={<LobbyCatalogChipFallback />}
+					trailing={<LobbyVenueChipFallback />}
+				/>
 				<LobbyPosterGridFallback />
 			</section>
 		</div>

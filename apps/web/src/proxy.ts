@@ -22,8 +22,6 @@ const PROTECTED_PREFIXES = [
 	"/notifications",
 ];
 
-const AUTH_ONLY_PREFIXES = ["/sign-in", "/sign-up", "/onboarding"];
-
 export function proxy(req: NextRequest) {
 	const { pathname } = req.nextUrl;
 	const catalogueRedirect = retiredCatalogueRedirectUrl(
@@ -46,13 +44,15 @@ export function proxy(req: NextRequest) {
 		url.searchParams.set("from", pathname);
 		return NextResponse.redirect(url);
 	}
-	if (AUTH_ONLY_PREFIXES.some((p) => pathname.startsWith(p)) && hasSession) {
-		const url = req.nextUrl.clone();
-		url.pathname = "/home";
-		url.search = "";
-		return NextResponse.redirect(url);
-	}
-	return NextResponse.next();
+	// Do not redirect `/sign-in` → `/home` on cookie presence alone: after account
+	// deletion (or ban/revoke) the token can remain in the browser while the
+	// session is invalid server-side, which produced `/home` ⇄ `/sign-in` loops.
+	// Auth routes use `AuthSessionRedirect` for valid sessions instead.
+	const requestHeaders = new Headers(req.headers);
+	requestHeaders.set("x-still-pathname", pathname);
+	return NextResponse.next({
+		request: { headers: requestHeaders },
+	});
 }
 
 export const config = {

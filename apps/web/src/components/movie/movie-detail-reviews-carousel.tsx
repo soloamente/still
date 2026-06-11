@@ -20,6 +20,16 @@ import {
 } from "@/components/review/review-detail-sheet";
 import { ReviewEditorialPatronScore } from "@/components/review/review-editorial-patron-score";
 import { authClient } from "@/lib/auth-client";
+import {
+	DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_LEFT_CLASS,
+	DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_RIGHT_CLASS,
+	DETAIL_EDITORIAL_RAIL_SCROLLPORT_CLASS,
+	DETAIL_EDITORIAL_RAIL_SLIDE_SNAP_CLASS,
+	DETAIL_EDITORIAL_RAIL_X_FADE_CLASS,
+	DETAIL_EDITORIAL_REVIEW_RAIL_EDGE_SPACER_CLASS,
+	DETAIL_EDITORIAL_REVIEW_SLIDE_GAP_CLASS,
+	DETAIL_EDITORIAL_REVIEW_SLIDE_WIDTH_CLASS,
+} from "@/lib/detail-editorial-rail-chrome";
 import { useDetailEditorialRailSnap } from "@/lib/detail-editorial-rail-snap";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 import {
@@ -31,28 +41,15 @@ import { useViewerHasWatchedMovie } from "@/lib/use-viewer-has-watched-movie";
 const SPOILER_MASK_POST_CLASS =
 	"opacity-65 blur-[var(--page-blur)] motion-reduce:blur-none motion-reduce:opacity-100";
 
-/** One editorial testimonial per viewport — centered via leading/trailing rail spacers. */
-const REVIEW_SLIDE_WIDTH_CLASS = "w-[min(36rem,88vw)]";
-/** Horizontal edge softening — hides harsh clip where peeking slides meet page padding. */
-const REVIEW_RAIL_X_FADE_CLASS =
-	"[mask-image:linear-gradient(to_right,transparent_0,black_10rem,black_calc(100%-10rem),transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0,black_10rem,black_calc(100%-10rem),transparent_100%)]";
-
 /** Editorial scene height — slides vertically center inside the rail. */
 const REVIEW_RAIL_MIN_HEIGHT_CLASS = "min-h-[min(32rem,72vh)]";
-
-/** Space between editorial slides — margin on 2+ items only (spacers must stay flush). */
-const REVIEW_SLIDE_GAP_CLASS = "ml-28 sm:ml-36 md:ml-40";
-
-/** Half the leftover scrollport width so the first/last snap targets sit centered. */
-const REVIEW_RAIL_EDGE_SPACER_CLASS =
-	"w-[max(1.25rem,calc((100cqw-min(36rem,88vw))/2))]";
 
 function ReviewRailEdgeSpacer() {
 	return (
 		<li
 			aria-hidden
 			className={cn(
-				REVIEW_RAIL_EDGE_SPACER_CLASS,
+				DETAIL_EDITORIAL_REVIEW_RAIL_EDGE_SPACER_CLASS,
 				"pointer-events-none shrink-0 list-none",
 			)}
 		/>
@@ -179,7 +176,8 @@ function MovieDetailReviewSlide({
 		<li
 			data-review-slide
 			className={cn(
-				REVIEW_SLIDE_WIDTH_CLASS,
+				DETAIL_EDITORIAL_REVIEW_SLIDE_WIDTH_CLASS,
+				DETAIL_EDITORIAL_RAIL_SLIDE_SNAP_CLASS,
 				"flex min-w-0 shrink-0 list-none items-center justify-center self-stretch",
 				className,
 			)}
@@ -372,21 +370,20 @@ export function MovieDetailReviewsCarousel({
 				{/* Card-toned scrims reinforce the mask at the layout inset (page padding). */}
 				<div
 					aria-hidden
-					className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
+					className={DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_LEFT_CLASS}
 				/>
 				<div
 					aria-hidden
-					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-0% from-card via-30% via-card/90 to-transparent sm:w-32 md:w-40 xl:w-48"
+					className={DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_RIGHT_CLASS}
 				/>
 
 				<div
 					ref={railRef}
 					className={cn(
-						"@container flex min-w-0 cursor-grab touch-pan-x overflow-x-auto overscroll-x-contain",
+						DETAIL_EDITORIAL_RAIL_SCROLLPORT_CLASS,
 						isDragging && "cursor-grabbing",
 						REVIEW_RAIL_MIN_HEIGHT_CLASS,
-						REVIEW_RAIL_X_FADE_CLASS,
-						"scrollbar-none select-none items-center [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+						DETAIL_EDITORIAL_RAIL_X_FADE_CLASS,
 					)}
 				>
 					<ul className="flex min-h-full w-max items-stretch">
@@ -400,7 +397,11 @@ export function MovieDetailReviewsCarousel({
 								currentUserId={currentUserId}
 								onSelect={() => gotoSlide(index)}
 								shouldSuppressRailClick={shouldSuppressRailClick}
-								className={index > 0 ? REVIEW_SLIDE_GAP_CLASS : undefined}
+								className={
+									index > 0
+										? DETAIL_EDITORIAL_REVIEW_SLIDE_GAP_CLASS
+										: undefined
+								}
 							/>
 						))}
 						<ReviewRailEdgeSpacer />

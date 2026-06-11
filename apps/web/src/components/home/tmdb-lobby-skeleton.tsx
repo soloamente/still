@@ -6,6 +6,7 @@ import {
 	LobbyCatalogChipFallback,
 	LobbyVenueChipFallback,
 } from "@/components/app/lobby-suspense-fallbacks";
+import { HomeLobbyFilterRow } from "@/components/home/home-lobby-filter-row";
 import { HOME_LOBBY_CATALOGUE_GRID_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 
 const TMDB_LOBBY_POSTER_SKELETON_KEYS = [
@@ -34,10 +35,10 @@ export function TmdbLobbySkeleton() {
 			aria-live="polite"
 		>
 			<p className="sr-only">Loading catalogue…</p>
-			<div className="flex shrink-0 items-center justify-between gap-3">
-				<LobbyCatalogChipFallback />
-				<LobbyVenueChipFallback />
-			</div>
+			<HomeLobbyFilterRow
+				leading={<LobbyCatalogChipFallback />}
+				trailing={<LobbyVenueChipFallback />}
+			/>
 			<div className={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}>
 				{TMDB_LOBBY_POSTER_SKELETON_KEYS.map((posterKey) => (
 					<ShimmerBone

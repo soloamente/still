@@ -640,6 +640,8 @@ html.theme-midnight {
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 		/* Subtly suppress text selection on chrome elements per the Aker
        "Interactive elements should disable user-select" guideline. */
 	}
@@ -677,8 +679,6 @@ html.theme-midnight {
 		overflow-y: visible;
 		-ms-overflow-style: none;
 		scrollbar-width: none;
-		/* Better legibility on dark surfaces (Aker guidance) */
-		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
 	}
 	body::-webkit-scrollbar {
@@ -696,7 +696,7 @@ html.theme-midnight {
 	   overlaps content / empty states. Desktop (>= md, 768px) keeps 10px. */
 	@media (max-width: 767.98px) {
 		#main-content {
-			padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+			padding-bottom: calc(4rem + env(safe-area-inset-bottom));
 		}
 	}
 	/* Display headings: reduce lone-word wraps on large titles (editorial polish). */

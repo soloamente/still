@@ -6,6 +6,7 @@ import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-sec
 import {
 	type ArcCreditCard,
 	CAST_CREW_ARC_EDGE_OFFSET_PX,
+	CAST_CREW_ARC_MOBILE_EDGE_OFFSET_PX,
 } from "@/lib/movie-cast-crew-arc";
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
 import type { CrewRow } from "@/lib/movie-detail-tmdb";
@@ -42,16 +43,17 @@ export function MovieCastCrewArc({
 			contentClassName="mt-8"
 		>
 			<div
-				className="relative flex flex-col items-center gap-2 overflow-visible sm:gap-3"
+				className="relative flex flex-col items-center gap-5 overflow-x-clip [--cast-crew-arc-edge:var(--cast-crew-arc-edge-mobile)] sm:gap-3 sm:overflow-visible sm:[--cast-crew-arc-edge:var(--cast-crew-arc-edge-desktop)]"
 				style={
 					{
-						"--cast-crew-arc-edge": `${CAST_CREW_ARC_EDGE_OFFSET_PX}px`,
+						"--cast-crew-arc-edge-mobile": `${CAST_CREW_ARC_MOBILE_EDGE_OFFSET_PX}px`,
+						"--cast-crew-arc-edge-desktop": `${CAST_CREW_ARC_EDGE_OFFSET_PX}px`,
 					} as CSSProperties
 				}
 			>
 				{cast.length ? <MovieCastCrewArcRow cards={cast} row="cast" /> : null}
 
-				<div className="relative z-20 -my-3 flex shrink-0 items-center justify-center sm:-my-4">
+				<div className="relative z-20 -my-1 flex shrink-0 items-center justify-center sm:-my-4">
 					<CastCrewViewAllDrawer
 						title={creditsCatalog.title}
 						cast={creditsCatalog.cast}

@@ -91,7 +91,7 @@ export function ProfileTabToolbar({
 	return (
 		<LayoutGroup id="profile-catalog-tab-pill-group">
 			<nav
-				className="flex min-w-0 max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+				className="flex min-w-0 max-w-full flex-wrap justify-center gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
 				role="toolbar"
 				aria-label="Profile sections"
 			>

@@ -1,13 +1,37 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import { useEffect, useMemo, useState } from "react";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { openPersonFilmography } from "@/components/movie/person-filmography-drawer";
 import {
 	type ArcCreditCard,
 	arcRowVisualForSlot,
+	CAST_CREW_ARC_MOBILE_CURVE_SCALE,
+	CAST_CREW_ARC_MOBILE_SLOT_COUNT,
+	CAST_CREW_ARC_SLOT_COUNT,
+	sliceArcCenterCards,
 } from "@/lib/movie-cast-crew-arc";
 import { useCastCrewMonochromeOnHover } from "@/lib/use-cast-crew-monochrome-pref";
+
+function resolveArcSlotLimit(matchesSm: boolean): number {
+	return matchesSm ? CAST_CREW_ARC_SLOT_COUNT : CAST_CREW_ARC_MOBILE_SLOT_COUNT;
+}
+
+/** Match Tailwind `sm` — fewer arc slots below this width. */
+function useCastCrewArcSlotLimit(): number {
+	const [limit, setLimit] = useState(CAST_CREW_ARC_MOBILE_SLOT_COUNT);
+
+	useEffect(() => {
+		const mq = window.matchMedia("(min-width: 640px)");
+		const sync = () => setLimit(resolveArcSlotLimit(mq.matches));
+		sync();
+		mq.addEventListener("change", sync);
+		return () => mq.removeEventListener("change", sync);
+	}, []);
+
+	return limit;
+}
 
 /** Client-only arc row — portrait taps open the filmography drawer. */
 export function MovieCastCrewArcRow({
@@ -18,24 +42,32 @@ export function MovieCastCrewArcRow({
 	row: "cast" | "crew";
 }) {
 	const monochromeOnHover = useCastCrewMonochromeOnHover();
+	const slotLimit = useCastCrewArcSlotLimit();
+	const visibleCards = useMemo(
+		() => sliceArcCenterCards(cards, slotLimit),
+		[cards, slotLimit],
+	);
+	const arcCurveScale =
+		slotLimit < CAST_CREW_ARC_SLOT_COUNT ? CAST_CREW_ARC_MOBILE_CURVE_SCALE : 1;
 
 	return (
 		<ul
 			className={cn(
-				"flex w-full justify-center gap-0.5 px-2 sm:gap-1 sm:px-3 lg:gap-1.5 lg:px-4",
+				"flex w-full justify-center gap-1.5 px-2 sm:gap-1 sm:px-3 lg:gap-1.5 lg:px-4",
 				row === "cast"
 					? "items-start pb-[var(--cast-crew-arc-edge)]"
 					: "items-end pt-[var(--cast-crew-arc-edge)]",
 			)}
 			aria-label={row === "cast" ? "Featured cast" : "Featured crew"}
 		>
-			{cards.map((person, slotIndex) => (
+			{visibleCards.map((person, slotIndex) => (
 				<MovieCastCrewArcCard
 					key={`${row}-${person.id}-${person.subtitle ?? ""}`}
 					person={person}
 					slotIndex={slotIndex}
-					slotCount={cards.length}
+					slotCount={visibleCards.length}
 					row={row}
+					arcCurveScale={arcCurveScale}
 					monochromeOnHover={monochromeOnHover}
 				/>
 			))}
@@ -48,21 +80,27 @@ function MovieCastCrewArcCard({
 	slotIndex,
 	slotCount,
 	row,
+	arcCurveScale,
 	monochromeOnHover,
 }: {
 	person: ArcCreditCard;
 	slotIndex: number;
 	slotCount: number;
 	row: "cast" | "crew";
+	arcCurveScale: number;
 	monochromeOnHover: boolean;
 }) {
 	const { translateY } = arcRowVisualForSlot(slotIndex, slotCount, row);
+	const scaledTranslateY = translateY * arcCurveScale;
 
 	return (
 		<li
-			className="relative flex w-[clamp(3.25rem,7vw,6.5rem)] shrink-0 justify-center sm:w-[clamp(3.75rem,6.8vw,7.25rem)] lg:w-[clamp(4.25rem,7.2vw,8.5rem)] xl:w-[clamp(4.5rem,7.8vw,9.25rem)] 2xl:w-[clamp(5rem,8.2vw,9.75rem)]"
+			className="relative flex w-[clamp(4.25rem,17vw,5.75rem)] shrink-0 justify-center sm:w-[clamp(3.75rem,6.8vw,7.25rem)] lg:w-[clamp(4.25rem,7.2vw,8.5rem)] xl:w-[clamp(4.5rem,7.8vw,9.25rem)] 2xl:w-[clamp(5rem,8.2vw,9.75rem)]"
 			style={{
-				transform: translateY !== 0 ? `translateY(${translateY}px)` : undefined,
+				transform:
+					scaledTranslateY !== 0
+						? `translateY(${scaledTranslateY}px)`
+						: undefined,
 			}}
 		>
 			<button

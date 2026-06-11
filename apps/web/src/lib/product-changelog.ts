@@ -27,6 +27,56 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-06-11-taste-mobile",
+		versionLabel: "0.2.7",
+		dateLabel: "June 11, 2026",
+		headline: "Tailored For you picks & mobile polish",
+		summary:
+			"The Movies For you rail reflects what you actually love and learns from dismissals — plus film detail, home, and profile are easier to use on your phone.",
+		items: [
+			{
+				title: "Rated taste, not just volume",
+				body: "For you weighs films you scored highly — not only genres you log often — so the rail tracks your real favorites instead of your most-watched categories.",
+			},
+			{
+				title: "More variety in the row",
+				body: "Suggestions spread across genres and eras instead of clustering on one kind of film, with fewer obvious blockbusters dominating the rail.",
+			},
+			{
+				title: "Niche when your diary is niche",
+				body: "If you mostly log deep cuts and festival titles, For you reaches further into the catalogue instead of defaulting to the same popular picks.",
+			},
+			{
+				title: "From patrons with similar taste",
+				body: "Highly rated titles from people you follow — and from patrons with overlapping diaries — can appear in your For you row when they match what you have not logged yet.",
+			},
+			{
+				title: "Not interested sticks",
+				body: "Dismissing a For you poster forever hides that title and downranks similar suggestions — same genre cluster, era, or language — so the rail steers away from picks you rejected.",
+			},
+			{
+				title: "Film detail header on mobile",
+				body: "Back and Share in the sticky header show as icon-only buttons on narrow screens — more room for About and Streaming tabs without crowding the bar.",
+			},
+			{
+				title: "Reviews & stills that land centered",
+				body: "Patron review quotes and background stills snap to the middle of the screen on load and after swipes, with lighter edge fades so the active slide stays fully readable.",
+			},
+			{
+				title: "Cast & Crew on small screens",
+				body: "The arc spotlight shows five larger portraits instead of eleven tiny ones, with spacing tuned so edge cards do not overlap between the cast and crew rows.",
+			},
+			{
+				title: "Home filters on one row",
+				body: "Sort chips scroll horizontally on mobile while venue, TV run, and Community period controls tuck into a compact menu — no more wrapped filter rows.",
+			},
+			{
+				title: "Profile & navigation",
+				body: "Long display names truncate in the profile sticky header, lobby chips center on narrow widths, and the bottom tab bar uses a tighter icon-only pill.",
+			},
+		],
+	},
+	{
 		id: "2026-06-10-letterboxd-streak",
 		versionLabel: "0.2.5",
 		dateLabel: "June 10, 2026",

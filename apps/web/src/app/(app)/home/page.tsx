@@ -19,6 +19,7 @@ import { HomeCommunityPeriodToolbar } from "@/components/home/home-community-per
 import { HomeCommunityRscPayload } from "@/components/home/home-community-rsc-payload";
 import { HomeContinueWatchingRail } from "@/components/home/home-continue-watching-rail";
 import { HomeLobbyBodyGate } from "@/components/home/home-lobby-body-gate";
+import { HomeLobbyFilterRow } from "@/components/home/home-lobby-filter-row";
 import { HomeLobbyNavigationRoot } from "@/components/home/home-lobby-navigation-root";
 import { HomeLobbySessionRestore } from "@/components/home/home-lobby-session-restore";
 import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
@@ -689,16 +690,19 @@ export default async function HomePage({
 									feed={communityFeed}
 									period={communityPeriod}
 								>
-									<div className="flex shrink-0 items-center justify-between gap-3">
-										<Suspense fallback={<LobbyCatalogChipFallback />}>
-											<div className="min-w-0 shrink">
+									<HomeLobbyFilterRow
+										leadingScrollKey={`community-${communityFeed}`}
+										leading={
+											<Suspense fallback={<LobbyCatalogChipFallback />}>
 												<HomeCatalogSortChips catalogBrowse="community" />
-											</div>
-										</Suspense>
-										<Suspense fallback={<LobbyVenueChipFallback />}>
-											<HomeCommunityPeriodToolbar />
-										</Suspense>
-									</div>
+											</Suspense>
+										}
+										trailing={
+											<Suspense fallback={<LobbyVenueChipFallback />}>
+												<HomeCommunityPeriodToolbar />
+											</Suspense>
+										}
+									/>
 									<HomeCommunityPatronBody
 										monochromePeersOnHover={monochromePeersOnHover}
 										signedIn={Boolean(session)}
@@ -708,16 +712,19 @@ export default async function HomePage({
 							</Suspense>
 						) : (
 							<HomeTmdbLobbyChrome>
-								<div className="flex shrink-0 items-center justify-between gap-3">
-									<Suspense fallback={<LobbyCatalogChipFallback />}>
-										<div className="min-w-0 shrink">
+								<HomeLobbyFilterRow
+									leadingScrollKey={`${browse}-${sort}-${catalogRun ?? ""}`}
+									leading={
+										<Suspense fallback={<LobbyCatalogChipFallback />}>
 											<HomeCatalogSortChips catalogBrowse={browse} />
-										</div>
-									</Suspense>
-									<Suspense fallback={<LobbyVenueChipFallback />}>
-										<HomeCatalogViewModeToolbar />
-									</Suspense>
-								</div>
+										</Suspense>
+									}
+									trailing={
+										<Suspense fallback={<LobbyVenueChipFallback />}>
+											<HomeCatalogViewModeToolbar />
+										</Suspense>
+									}
+								/>
 
 								{!catalogueSearchActive &&
 								session &&

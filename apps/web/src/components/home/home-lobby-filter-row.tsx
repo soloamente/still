@@ -1,0 +1,84 @@
+"use client";
+
+import { cn } from "@still/ui/lib/utils";
+import { type ReactNode, useRef } from "react";
+
+import {
+	HOME_LOBBY_FILTER_ROW_CLASSNAME,
+	HOME_LOBBY_FILTER_ROW_LEADING_CLASSNAME,
+} from "@/lib/home-lobby-catalogue-layout";
+import {
+	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
+	useHorizontalScrollFades,
+} from "@/lib/use-horizontal-scroll-fades";
+
+/** Horizontal scroll + edge fades when sort/feed chips overflow on narrow viewports. */
+function HomeLobbyFilterScrollRail({
+	children,
+	contentKey = "",
+}: {
+	children: ReactNode;
+	contentKey?: string;
+}) {
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const { showStartFade, showEndFade } = useHorizontalScrollFades(
+		scrollRef,
+		true,
+		contentKey,
+	);
+
+	return (
+		<div
+			className={cn(
+				HOME_LOBBY_FILTER_ROW_LEADING_CLASSNAME,
+				"relative overflow-hidden",
+			)}
+		>
+			<div
+				aria-hidden
+				className={cn(
+					"pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-linear-to-r from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					showStartFade ? "opacity-100" : "opacity-0",
+				)}
+			/>
+			<div
+				aria-hidden
+				className={cn(
+					"pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-linear-to-l from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					showEndFade ? "opacity-100" : "opacity-0",
+				)}
+			/>
+			<div
+				ref={scrollRef}
+				className={cn(HORIZONTAL_OVERFLOW_RAIL_CLASSNAME, "gap-0 pb-0")}
+				data-lenis-prevent-wheel
+			>
+				{children}
+			</div>
+		</div>
+	);
+}
+
+/**
+ * Sort/feed rail + secondary toolbar under `/home` sticky chrome.
+ * Single row: scrollable sort chips on the left, compact popovers + filters pinned right.
+ */
+export function HomeLobbyFilterRow({
+	leading,
+	leadingScrollKey = "",
+	trailing,
+}: {
+	leading: ReactNode;
+	/** Resync scroll fades when sort/feed options change (e.g. browse surface). */
+	leadingScrollKey?: string;
+	trailing: ReactNode;
+}) {
+	return (
+		<div className={HOME_LOBBY_FILTER_ROW_CLASSNAME}>
+			<HomeLobbyFilterScrollRail contentKey={leadingScrollKey}>
+				{leading}
+			</HomeLobbyFilterScrollRail>
+			<div className="flex shrink-0 items-center gap-1">{trailing}</div>
+		</div>
+	);
+}

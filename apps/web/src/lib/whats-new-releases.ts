@@ -23,28 +23,33 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-10-letterboxd-streak",
+	id: "2026-06-11-taste-mobile",
 	fullReleaseHref: "/changelog",
 	slides: [
 		{
 			title: "What's new in Sense",
 			description:
-				"Letterboxd imports match more titles, and your diary streak stays in sync with the activity heatmap after a bulk import.",
+				"For you suggestions follow your ratings more closely, and film detail, home, and profile feel sharper on your phone.",
 		},
 		{
-			title: "Better Letterboxd matching",
+			title: "Picks tuned to your taste",
 			description:
-				"Diary and watched CSV rows resolve more reliably — even when Letterboxd’s year differs from TMDb’s theatrical release date.",
+				"The Movies For you rail weighs what you scored highly, spreads across genres and eras, and learns when you tap Not interested.",
 		},
 		{
-			title: "Watched-only titles",
+			title: "From patrons like you",
 			description:
-				"Upload watched.csv from your Letterboxd export to backfill films you marked watched without a diary line — skipped when you already have a log.",
+				"Titles highly rated by people you follow — or patrons with overlapping taste — can surface when you have not logged them yet.",
 		},
 		{
-			title: "Streak after import",
+			title: "Film detail on mobile",
 			description:
-				"Your profile streak rebuilds from imported diary dates instead of staying on an old manual count. Refresh your profile to pick up the fix.",
+				"Back and Share stay icon-only in the header, reviews and stills load centered with lighter edge fades, and Cast & Crew shows fewer, larger portraits.",
+		},
+		{
+			title: "Browse & profile polish",
+			description:
+				"Home sort and venue filters fit on one row, the bottom tab bar is compact, and long profile names truncate cleanly in the sticky header.",
 		},
 	],
 };
