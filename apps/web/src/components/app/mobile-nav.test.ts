@@ -40,13 +40,11 @@ describe("isActive", () => {
 });
 
 describe("MOBILE_YOU_DESTINATIONS", () => {
-	test("lists the six long-tail destinations not in the bar", () => {
+	test("lists long-tail destinations not in the bar", () => {
 		expect(MOBILE_YOU_DESTINATIONS.map((d) => d.href)).toEqual([
 			"/diary",
 			"/watchlist",
 			"/lists",
-			"/news",
-			"/chat",
 			"/achievements",
 		]);
 	});

@@ -12,24 +12,39 @@ import { Loader2, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+	useSyncExternalStore,
+} from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { LogWatchedDatePicker } from "@/components/log/log-watched-date-picker";
 import { QuickLogRemoveConfirmDialog } from "@/components/log/quick-log-remove-confirm-dialog";
 import { TvLogScopePicker } from "@/components/log/tv-log-scope-picker";
+import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import {
 	DetailMotionButton,
 	DetailMotionButtonWrap,
 } from "@/components/movie/detail-motion-pressable";
+import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
+import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import {
 	type ContentVisibility,
 	VisibilitySelect,
 } from "@/components/review/visibility-select";
 import { ModalSheetScrollScrims } from "@/components/ui/modal-sheet-scroll-scrims";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
+import {
+	getAppMobileVaulServerSnapshot,
+	getAppMobileVaulSnapshot,
+	subscribeAppMobileVaul,
+} from "@/lib/app-mobile-vaul";
 import { MODAL_SHEET_SCROLL_CLASS } from "@/lib/app-modal-layer";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
@@ -48,6 +63,7 @@ import {
 	quickLogSubmitLabel,
 } from "@/lib/quick-log-copy";
 import { shouldRefreshRouteAfterMutation } from "@/lib/router-refresh-after-mutation";
+import { SHEET_FIELD_CLASS, SHEET_FIELD_LABEL_CLASS } from "@/lib/sheet-chrome";
 import {
 	deleteLog,
 	fetchMoviesSearch,
@@ -57,6 +73,7 @@ import {
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
+import { useLockDrawerScroll } from "@/lib/use-lock-drawer-scroll";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 /** Max note length — keep in sync with `apps/server` log create validation. */
@@ -70,6 +87,34 @@ type MovieHit = {
 	year?: string;
 	poster_url: string | null;
 };
+
+/** Top + bottom edge fades on the catalog-pick results list — softens the max-height clip. */
+function QuickLogSearchResultsScrims({
+	showHeaderFade,
+	showFooterFade,
+}: {
+	showHeaderFade: boolean;
+	showFooterFade: boolean;
+}) {
+	return (
+		<>
+			<div
+				aria-hidden
+				className={cn(
+					"pointer-events-none absolute inset-x-0 top-0 z-10 h-10 bg-linear-to-b from-25% from-background via-background/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					showHeaderFade ? "opacity-100" : "opacity-0",
+				)}
+			/>
+			<div
+				aria-hidden
+				className={cn(
+					"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-12 bg-linear-to-t from-15% from-background/95 via-background/25 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					showFooterFade ? "opacity-100" : "opacity-0",
+				)}
+			/>
+		</>
+	);
+}
 
 export type QuickLogArgs = {
 	movieId?: number;
@@ -118,6 +163,15 @@ export const useQuickLog = create<Store>((set) => ({
 	open: (args) => set({ isOpen: true, args: args ?? {} }),
 	close: () => set({ isOpen: false, args: null }),
 }));
+
+/** Mobile tab bar + detail sheets — Vaul drawer below Tailwind `md`. */
+function useMobileQuickLogVaul() {
+	return useSyncExternalStore(
+		subscribeAppMobileVaul,
+		getAppMobileVaulSnapshot,
+		getAppMobileVaulServerSnapshot,
+	);
+}
 
 function ymdToNoonIso(ymd: string): string {
 	return new Date(`${ymd}T12:00:00`).toISOString();
@@ -172,6 +226,7 @@ function tvLogScopePayload(
  */
 export function QuickLogRoot() {
 	const { isOpen, args, close } = useQuickLog();
+	const isMobileVaul = useMobileQuickLogVaul();
 	const router = useRouter();
 	const pathname = usePathname();
 	const [movieId, setMovieId] = useState<number | null>(null);
@@ -219,6 +274,7 @@ export function QuickLogRoot() {
 	 */
 	const [sheetLayoutActive, setSheetLayoutActive] = useState(false);
 	const scrollRef = useRef<HTMLDivElement>(null);
+	const searchResultsScrollRef = useRef<HTMLDivElement>(null);
 	const metaRowRef = useRef<HTMLDivElement>(null);
 	/** Skip first TV scope effect pass so `args.rewatch` is not cleared on open. */
 	const tvScopeEffectReady = useRef(false);
@@ -235,6 +291,18 @@ export function QuickLogRoot() {
 		isOpen,
 		scrollContentKey,
 	);
+	const searchResultsContentKey = searchResults.map((m) => m.id).join(",");
+	const {
+		showHeaderFade: showSearchHeaderFade,
+		showFooterFade: showSearchFooterFade,
+	} = useSheetScrollFades(
+		searchResultsScrollRef,
+		searchResults.length > 0,
+		searchResultsContentKey,
+	);
+
+	const showSheet = Boolean(isOpen && args);
+	useLockDrawerScroll(isMobileVaul && showSheet);
 
 	/** transitions.dev avatar-group-hover — screening pills + favorite comb lift. */
 	const setMetaAvatarShifts = useCallback(
@@ -506,13 +574,13 @@ export function QuickLogRoot() {
 	}, [close]);
 
 	useEffect(() => {
-		if (!isOpen) return;
+		if (!isOpen || isMobileVaul) return;
 		const onKey = (e: KeyboardEvent) => {
 			if (e.key === "Escape") handleClose();
 		};
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
-	}, [isOpen, handleClose]);
+	}, [isOpen, isMobileVaul, handleClose]);
 
 	async function persist(options: { skipDetails: boolean }) {
 		if (!canSubmit || (movieId == null && tvId == null) || !args) return;
@@ -632,9 +700,7 @@ export function QuickLogRoot() {
 		}
 	}
 
-	if (!args) return null;
-
-	const showSheet = isOpen && args != null;
+	if (!isMobileVaul && !args) return null;
 
 	const isSeriesLog = tvId != null;
 	const heading = isEditMode
@@ -653,10 +719,350 @@ export function QuickLogRoot() {
 				logScope,
 			});
 
+	const quickLogFormFields = (
+		<>
+			{needsCatalogPick ? (
+				<div className="mb-6 space-y-2">
+					<Label htmlFor="quick-log-search" className={SHEET_FIELD_LABEL_CLASS}>
+						Pick a film
+					</Label>
+					<Input
+						id="quick-log-search"
+						type="search"
+						autoComplete="off"
+						spellCheck={false}
+						value={searchQuery}
+						onChange={(e) => setSearchQuery(e.target.value)}
+						placeholder="Search by title…"
+						className={SHEET_FIELD_CLASS}
+					/>
+					{searchHint ? (
+						<p className="text-center text-amber-600 text-xs">{searchHint}</p>
+					) : null}
+					{searching ? (
+						<p className="text-center text-muted-foreground text-xs">
+							Searching…
+						</p>
+					) : searchQuery.trim() && searchResults.length === 0 ? (
+						<p className="text-center text-muted-foreground text-xs">
+							No matches — try another title.
+						</p>
+					) : null}
+					{/* Inset surface only when there are hits — empty box read as a separator. */}
+					{searchResults.length > 0 ? (
+						<div className="relative min-h-0 overflow-hidden rounded-2xl bg-background">
+							<QuickLogSearchResultsScrims
+								showHeaderFade={showSearchHeaderFade}
+								showFooterFade={showSearchFooterFade}
+							/>
+							<div
+								ref={searchResultsScrollRef}
+								className="scrollbar-none max-h-48 min-h-0 overflow-y-auto overscroll-y-contain p-1 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+								data-lenis-prevent-wheel
+							>
+								<ul className="space-y-0.5">
+									{searchResults.map((m) => (
+										<li key={m.id}>
+											<button
+												type="button"
+												className={cn(
+													"flex min-h-11 w-full items-center gap-3 rounded-xl px-2 py-2 text-left text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
+													"[@media(hover:hover)]:hover:bg-card",
+													"focus-visible:bg-card focus-visible:outline-none",
+												)}
+												onClick={() => {
+													setMovieId(m.id);
+													setTvId(null);
+													setMovieTitle(
+														m.title + (m.year ? ` (${m.year})` : ""),
+													);
+													setPosterUrl(m.poster_url);
+													setSearchQuery("");
+													setSearchResults([]);
+												}}
+											>
+												<div className="relative aspect-2/3 h-11 shrink-0 overflow-hidden rounded-lg bg-muted/30">
+													{m.poster_url ? (
+														<Image
+															src={m.poster_url}
+															alt=""
+															fill
+															sizes="44px"
+															className="object-cover"
+														/>
+													) : null}
+												</div>
+												<div className="min-w-0 flex-1">
+													<p className="line-clamp-2 font-medium leading-snug">
+														{m.title}
+													</p>
+													{m.year ? (
+														<p className="text-muted-foreground text-xs tabular-nums leading-snug">
+															{m.year}
+														</p>
+													) : null}
+												</div>
+											</button>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					) : null}
+				</div>
+			) : null}
+
+			{posterUrl ? (
+				<div className="mx-auto mb-5 flex justify-center">
+					<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
+						<Image
+							src={posterUrl}
+							alt=""
+							fill
+							sizes="120px"
+							className="object-cover"
+							unoptimized
+						/>
+					</div>
+				</div>
+			) : null}
+
+			<h2
+				id="quick-log-title"
+				className="mb-6 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
+			>
+				{heading}
+			</h2>
+
+			{tvId != null ? (
+				<TvLogScopePicker
+					tvId={tvId}
+					logScope={logScope}
+					seasonNumber={seasonNumber}
+					episodeNumber={episodeNumber}
+					onScopeChange={setLogScope}
+					onSeasonChange={setSeasonNumber}
+					onEpisodeChange={setEpisodeNumber}
+				/>
+			) : null}
+
+			<fieldset className="mx-auto mb-5 w-fit border-0 p-0">
+				<legend className="sr-only">Where did you watch?</legend>
+				<div className="flex justify-center">
+					<SegmentedPillToolbar
+						layoutId="quick-log-venue-pill"
+						aria-label="Watch venue"
+						value={watchVenue}
+						onChange={setWatchVenue}
+						options={[
+							{ id: "theaters", label: "In cinemas" },
+							{ id: "streaming", label: "At home" },
+						]}
+					/>
+				</div>
+			</fieldset>
+
+			<LogRatingSlider
+				value={clampLogRatingDisplay(ratingDisplay)}
+				onChange={(next) => {
+					setRatingDisplay(next);
+					setIncludeRating(true);
+				}}
+				averageRating={averageRating}
+				className="mb-5"
+			/>
+
+			<div className="mb-6 space-y-5">
+				<div
+					ref={metaRowRef}
+					className="quick-log-meta-row t-avatar-group flex flex-wrap items-end justify-center gap-2"
+				>
+					<div className="t-avatar">
+						<SegmentedPillToolbar
+							layoutId="quick-log-screening-pill"
+							aria-label="First watch or rewatch"
+							value={rewatch ? "rewatch" : "first"}
+							onChange={(next) => setRewatch(next === "rewatch")}
+							options={[
+								{ id: "first", label: "First watch" },
+								{ id: "rewatch", label: "Rewatch" },
+							]}
+						/>
+					</div>
+					<div className="t-avatar">
+						<TooltipProvider delay={0} closeDelay={80}>
+							<DetailIconTooltip
+								label={liked ? "Remove favorite" : "Mark as favorite"}
+							>
+								<DetailMotionButton
+									layout={sheetLayoutActive ? "position" : false}
+									className={cn(
+										"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
+										!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+										liked && "bg-foreground text-background",
+									)}
+									aria-pressed={liked}
+									aria-label={liked ? "Remove favorite" : "Mark as favorite"}
+									transition={{
+										...detailMotion.buttonTransition,
+										layout: metaRowLayoutTransition,
+									}}
+									onClick={() => setLiked((v) => !v)}
+								>
+									<span
+										className="t-icon-swap"
+										data-state={liked ? "b" : "a"}
+										aria-hidden
+									>
+										<span className="t-icon" data-icon="a">
+											<IconHeart className="size-5" aria-hidden />
+										</span>
+										<span className="t-icon" data-icon="b">
+											<IconHeartFilled className="size-5" aria-hidden />
+										</span>
+									</span>
+								</DetailMotionButton>
+							</DetailIconTooltip>
+						</TooltipProvider>
+					</div>
+				</div>
+
+				<div className="mx-auto w-full max-w-sm space-y-2">
+					<LogWatchedDatePicker
+						id="quick-log-date"
+						value={watchedDate}
+						onChange={setWatchedDate}
+					/>
+				</div>
+
+				<fieldset className="mx-auto mb-0 flex flex-col items-center space-y-2 border-0 p-0 text-sm">
+					<legend className="text-center text-muted-foreground text-xs">
+						Who can see this
+					</legend>
+					<VisibilitySelect
+						id="log-visibility"
+						variant="pills"
+						value={visibility}
+						onChange={(next) => {
+							setVisibility(next);
+							setVisibilityTouched(true);
+						}}
+					/>
+				</fieldset>
+			</div>
+		</>
+	);
+
+	const quickLogFooter = (variant: "modal" | "inline") => (
+		<footer
+			className={cn(
+				"flex items-center justify-between gap-3",
+				variant === "modal" &&
+					"absolute inset-x-3 bottom-3 z-20 md:inset-x-4 md:bottom-4",
+				variant === "inline" && "mt-8 px-1",
+			)}
+		>
+			{!isEditMode ? (
+				<DetailMotionButtonWrap>
+					<Button
+						type="button"
+						variant="ghost"
+						size="pill"
+						className={cn(
+							"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-muted-foreground",
+							DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+						)}
+						disabled={!canSubmit || saving}
+						onClick={() => void persist({ skipDetails: true })}
+					>
+						Skip
+					</Button>
+				</DetailMotionButtonWrap>
+			) : (
+				<DetailMotionButtonWrap>
+					<Button
+						type="button"
+						variant="ghost"
+						size="pill"
+						className={cn(
+							"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 font-medium text-destructive",
+							DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+						)}
+						disabled={saving || removing}
+						onClick={() => setRemoveConfirmOpen(true)}
+					>
+						{removing ? (
+							<Loader2 className="size-3.5 animate-spin" aria-hidden />
+						) : null}
+						Remove
+					</Button>
+				</DetailMotionButtonWrap>
+			)}
+			<DetailMotionButtonWrap>
+				<Button
+					type="button"
+					variant="default"
+					size="pill"
+					className="hover:!bg-foreground hover:!text-background h-auto min-h-10 min-w-[8.5rem] bg-foreground px-5 py-2.5 text-background text-base [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background"
+					disabled={!canSubmit || saving || removing}
+					onClick={() => void persist({ skipDetails: false })}
+				>
+					{saving ? (
+						<Loader2 className="size-3.5 animate-spin" aria-hidden />
+					) : null}
+					{primaryLabel}
+				</Button>
+			</DetailMotionButtonWrap>
+		</footer>
+	);
+
+	const removeConfirmDialog = removeConfirmOpen ? (
+		<QuickLogRemoveConfirmDialog
+			open
+			titleLabel={movieTitle.trim() || "this title"}
+			removing={removing}
+			onCancel={() => setRemoveConfirmOpen(false)}
+			onConfirm={() => void confirmRemoveFromWatched()}
+		/>
+	) : null;
+
+	if (isMobileVaul) {
+		return (
+			<>
+				<DetailVaulSheet
+					open={showSheet}
+					onOpenChange={(next) => {
+						if (!next) handleClose();
+					}}
+					appStack
+					title={heading}
+					description="Log a film or TV show to your diary"
+				>
+					{args ? (
+						<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
+							<DetailDrawerScrollBody scrollRef={scrollRef}>
+								<div className="mx-auto w-full max-w-xl pt-2 pb-10">
+									{quickLogFormFields}
+									{quickLogFooter("inline")}
+								</div>
+							</DetailDrawerScrollBody>
+							<SheetScrollScrims
+								showHeaderFade={showHeaderFade}
+								showFooterFade={showFooterFade}
+								footerTone="filmography"
+							/>
+						</div>
+					) : null}
+				</DetailVaulSheet>
+				{removeConfirmDialog}
+			</>
+		);
+	}
+
 	return (
 		<>
 			<AnimatePresence mode="wait">
-				{showSheet ? (
+				{showSheet && args ? (
 					<motion.div
 						key="quick-log-sheet"
 						initial={{ opacity: 0 }}
@@ -694,215 +1100,7 @@ export function QuickLogRoot() {
 
 							<div className="relative">
 								<div ref={scrollRef} className={MODAL_SHEET_SCROLL_CLASS}>
-									{needsCatalogPick ? (
-										<div className="mb-6 space-y-2">
-											<Label htmlFor="quick-log-search">Pick a film</Label>
-											<Input
-												id="quick-log-search"
-												type="search"
-												autoComplete="off"
-												spellCheck={false}
-												value={searchQuery}
-												onChange={(e) => setSearchQuery(e.target.value)}
-												placeholder="Search by title…"
-												className="min-h-11 text-base"
-											/>
-											{searchHint ? (
-												<p className="text-amber-600 text-xs">{searchHint}</p>
-											) : null}
-											{searching ? (
-												<p className="text-muted-foreground text-xs">
-													Searching…
-												</p>
-											) : searchQuery.trim() && searchResults.length === 0 ? (
-												<p className="text-muted-foreground text-xs">
-													No matches — try another title.
-												</p>
-											) : null}
-											<ul className="max-h-48 space-y-1 overflow-y-auto rounded-2xl bg-muted/25 p-1">
-												{searchResults.map((m) => (
-													<li key={m.id}>
-														<button
-															type="button"
-															className="flex w-full items-center gap-2 rounded-xl px-2 py-2 text-left text-sm [@media(hover:hover)]:hover:bg-muted/60"
-															onClick={() => {
-																setMovieId(m.id);
-																setTvId(null);
-																setMovieTitle(
-																	m.title + (m.year ? ` (${m.year})` : ""),
-																);
-																setPosterUrl(m.poster_url);
-																setSearchQuery("");
-																setSearchResults([]);
-															}}
-														>
-															<span className="line-clamp-2 font-medium">
-																{m.title}
-															</span>
-															{m.year ? (
-																<span className="shrink-0 text-muted-foreground text-xs tabular-nums">
-																	{m.year}
-																</span>
-															) : null}
-														</button>
-													</li>
-												))}
-											</ul>
-										</div>
-									) : null}
-
-									{posterUrl ? (
-										<div className="mx-auto mb-5 flex justify-center">
-											<div className="relative aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg">
-												<Image
-													src={posterUrl}
-													alt=""
-													fill
-													sizes="120px"
-													className="object-cover"
-													unoptimized
-												/>
-											</div>
-										</div>
-									) : null}
-
-									<h2
-										id="quick-log-title"
-										className="mb-6 text-balance text-center font-semibold text-foreground text-xl sm:text-2xl"
-									>
-										{heading}
-									</h2>
-
-									{tvId != null ? (
-										<TvLogScopePicker
-											tvId={tvId}
-											logScope={logScope}
-											seasonNumber={seasonNumber}
-											episodeNumber={episodeNumber}
-											onScopeChange={setLogScope}
-											onSeasonChange={setSeasonNumber}
-											onEpisodeChange={setEpisodeNumber}
-										/>
-									) : null}
-
-									<fieldset className="mx-auto mb-5 w-fit border-0 p-0">
-										<legend className="sr-only">Where did you watch?</legend>
-										<div className="flex justify-center">
-											<SegmentedPillToolbar
-												layoutId="quick-log-venue-pill"
-												aria-label="Watch venue"
-												value={watchVenue}
-												onChange={setWatchVenue}
-												options={[
-													{ id: "theaters", label: "In cinemas" },
-													{ id: "streaming", label: "At home" },
-												]}
-											/>
-										</div>
-									</fieldset>
-
-									<LogRatingSlider
-										value={clampLogRatingDisplay(ratingDisplay)}
-										onChange={(next) => {
-											setRatingDisplay(next);
-											setIncludeRating(true);
-										}}
-										averageRating={averageRating}
-										className="mb-5"
-									/>
-
-									<div className="mb-6 space-y-5">
-										<div
-											ref={metaRowRef}
-											className="quick-log-meta-row t-avatar-group flex flex-wrap items-end justify-center gap-2"
-										>
-											<div className="t-avatar">
-												<SegmentedPillToolbar
-													layoutId="quick-log-screening-pill"
-													aria-label="First watch or rewatch"
-													value={rewatch ? "rewatch" : "first"}
-													onChange={(next) => setRewatch(next === "rewatch")}
-													options={[
-														{ id: "first", label: "First watch" },
-														{ id: "rewatch", label: "Rewatch" },
-													]}
-												/>
-											</div>
-											<div className="t-avatar">
-												<TooltipProvider delay={0} closeDelay={80}>
-													<DetailIconTooltip
-														label={
-															liked ? "Remove favorite" : "Mark as favorite"
-														}
-													>
-														<DetailMotionButton
-															layout={sheetLayoutActive ? "position" : false}
-															className={cn(
-																"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
-																!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-																liked && "bg-foreground text-background",
-															)}
-															aria-pressed={liked}
-															aria-label={
-																liked ? "Remove favorite" : "Mark as favorite"
-															}
-															transition={{
-																...detailMotion.buttonTransition,
-																layout: metaRowLayoutTransition,
-															}}
-															onClick={() => setLiked((v) => !v)}
-														>
-															{/* transitions.dev icon-swap — outline ↔ filled favorite. */}
-															<span
-																className="t-icon-swap"
-																data-state={liked ? "b" : "a"}
-																aria-hidden
-															>
-																<span className="t-icon" data-icon="a">
-																	<IconHeart className="size-5" aria-hidden />
-																</span>
-																<span className="t-icon" data-icon="b">
-																	<IconHeartFilled
-																		className="size-5"
-																		aria-hidden
-																	/>
-																</span>
-															</span>
-														</DetailMotionButton>
-													</DetailIconTooltip>
-												</TooltipProvider>
-											</div>
-										</div>
-
-										<div className="mx-auto w-full max-w-sm space-y-2">
-											{/* <Label
-										htmlFor="quick-log-date"
-										className="w-full justify-center text-center text-muted-foreground text-xs"
-									>
-										Watched on
-									</Label> */}
-											<LogWatchedDatePicker
-												id="quick-log-date"
-												value={watchedDate}
-												onChange={setWatchedDate}
-											/>
-										</div>
-
-										<fieldset className="mx-auto mb-0 flex flex-col items-center space-y-2 border-0 p-0 text-sm">
-											<legend className="text-center text-muted-foreground text-xs">
-												Who can see this
-											</legend>
-											<VisibilitySelect
-												id="log-visibility"
-												variant="pills"
-												value={visibility}
-												onChange={(next) => {
-													setVisibility(next);
-													setVisibilityTouched(true);
-												}}
-											/>
-										</fieldset>
-									</div>
+									{quickLogFormFields}
 								</div>
 								<ModalSheetScrollScrims
 									showHeaderFade={showHeaderFade}
@@ -910,75 +1108,12 @@ export function QuickLogRoot() {
 								/>
 							</div>
 
-							<footer className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between gap-3 md:inset-x-4 md:bottom-4">
-								{!isEditMode ? (
-									<DetailMotionButtonWrap>
-										<Button
-											type="button"
-											variant="ghost"
-											size="pill"
-											className={cn(
-												"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-muted-foreground",
-												DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-											)}
-											disabled={!canSubmit || saving}
-											onClick={() => void persist({ skipDetails: true })}
-										>
-											Skip
-										</Button>
-									</DetailMotionButtonWrap>
-								) : (
-									<DetailMotionButtonWrap>
-										<Button
-											type="button"
-											variant="ghost"
-											size="pill"
-											className={cn(
-												"h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 font-medium text-destructive",
-												DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-											)}
-											disabled={saving || removing}
-											onClick={() => setRemoveConfirmOpen(true)}
-										>
-											{removing ? (
-												<Loader2
-													className="size-3.5 animate-spin"
-													aria-hidden
-												/>
-											) : null}
-											Remove
-										</Button>
-									</DetailMotionButtonWrap>
-								)}
-								<DetailMotionButtonWrap>
-									<Button
-										type="button"
-										variant="default"
-										size="pill"
-										className="hover:!bg-foreground hover:!text-background h-auto min-h-10 min-w-[8.5rem] bg-foreground px-5 py-2.5 text-background text-base [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background"
-										disabled={!canSubmit || saving || removing}
-										onClick={() => void persist({ skipDetails: false })}
-									>
-										{saving ? (
-											<Loader2 className="size-3.5 animate-spin" aria-hidden />
-										) : null}
-										{primaryLabel}
-									</Button>
-								</DetailMotionButtonWrap>
-							</footer>
+							{quickLogFooter("modal")}
 						</motion.div>
 					</motion.div>
 				) : null}
 			</AnimatePresence>
-			{removeConfirmOpen ? (
-				<QuickLogRemoveConfirmDialog
-					open
-					titleLabel={movieTitle.trim() || "this title"}
-					removing={removing}
-					onCancel={() => setRemoveConfirmOpen(false)}
-					onConfirm={() => void confirmRemoveFromWatched()}
-				/>
-			) : null}
+			{removeConfirmDialog}
 		</>
 	);
 }

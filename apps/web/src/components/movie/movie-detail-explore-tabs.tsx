@@ -31,6 +31,7 @@ import {
 } from "@/lib/list-cover-image";
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
 import type { TmdbMovieSummary } from "@/lib/movie-detail-tmdb";
+import { requestCreateList } from "@/lib/open-create-list-surface";
 
 type TabId = "reviews" | "lists" | "related";
 
@@ -90,7 +91,11 @@ function MovieDetailListsEmpty({
 						"mt-6 inline-flex items-center justify-center rounded-full bg-card px-5 py-2.5 font-medium text-foreground text-sm shadow-sm",
 						"[@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground",
 					)}
-					onClick={() => setCreateOpen(true)}
+					onClick={() =>
+						requestCreateList({ movieId, movieTitle }, () =>
+							setCreateOpen(true),
+						)
+					}
 				>
 					Create a list
 				</DetailMotionButton>

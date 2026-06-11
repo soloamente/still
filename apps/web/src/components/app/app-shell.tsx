@@ -8,6 +8,7 @@ import { WhatsNewDialogRoot } from "@/components/app/whats-new-dialog-root";
 import { BadgeWatcher } from "@/components/gamification/badge-watcher";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
 import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledger-drawer";
+import { CreateListDrawerRoot } from "@/components/list/create-list-drawer";
 import { QuickLogRoot } from "@/components/log/quick-log-sheet";
 import { PersonFilmographyDrawerRoot } from "@/components/movie/person-filmography-drawer";
 import { ReviewComposerRoot } from "@/components/review/review-composer";
@@ -85,6 +86,7 @@ export function AppShell({
 			<ReviewComposerRoot />
 			<ReviewDetailRoot />
 			<PersonFilmographyDrawerRoot />
+			<CreateListDrawerRoot />
 			<PatronWatchLedgerDrawerRoot />
 			<BadgeWatcher />
 			<WhatsNewDialogRoot userId={user.id} />

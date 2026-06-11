@@ -6,6 +6,8 @@ import { type ReactNode, useRef } from "react";
 import {
 	HOME_LOBBY_FILTER_ROW_CLASSNAME,
 	HOME_LOBBY_FILTER_ROW_LEADING_CLASSNAME,
+	HOME_LOBBY_SCROLL_FADE_LEFT_CLASSNAME,
+	HOME_LOBBY_SCROLL_FADE_RIGHT_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
 import {
 	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
@@ -37,14 +39,16 @@ function HomeLobbyFilterScrollRail({
 			<div
 				aria-hidden
 				className={cn(
-					"pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-linear-to-r from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					HOME_LOBBY_SCROLL_FADE_LEFT_CLASSNAME,
+					"transition-opacity duration-200 motion-reduce:transition-none",
 					showStartFade ? "opacity-100" : "opacity-0",
 				)}
 			/>
 			<div
 				aria-hidden
 				className={cn(
-					"pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-linear-to-l from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					HOME_LOBBY_SCROLL_FADE_RIGHT_CLASSNAME,
+					"transition-opacity duration-200 motion-reduce:transition-none",
 					showEndFade ? "opacity-100" : "opacity-0",
 				)}
 			/>

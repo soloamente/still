@@ -7,7 +7,6 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { HomeCatalogFiltersPopover } from "@/components/home/home-catalog-filters-popover";
-import { HomeLobbyChipPopover } from "@/components/home/home-lobby-chip-popover";
 import { useHomeTmdbLobbyParamsOptional } from "@/components/home/home-tmdb-lobby-params-context";
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 
@@ -43,6 +42,7 @@ import {
 import {
 	HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
 	HOME_LOBBY_CHIP_TRACK_CLASSNAME,
+	HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
 import { readHomeLobbyPersisted } from "@/lib/home-lobby-persist";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
@@ -53,23 +53,6 @@ import {
 	parseTvLobbyVenue,
 } from "@/lib/home-venue";
 import { tvDiscoverCatalogUrl } from "@/lib/tv-discover-catalog-url";
-
-const filtersTriggerClass = cn(
-	"relative inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none",
-	"[@media(hover:hover)]:hover:bg-card/55 [@media(hover:hover)]:hover:text-foreground",
-	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-);
-
-const HOME_VENUE_PICKER_OPTIONS = [
-	{ id: "theaters" as const, label: "In cinemas" },
-	{ id: "streaming" as const, label: "At home" },
-] as const;
-
-const TV_RUN_PICKER_OPTIONS = [
-	{ id: "ongoing" as const, label: "Ongoing" },
-	{ id: "completed" as const, label: "Completed" },
-	{ id: "upcoming" as const, label: "Upcoming" },
-] as const satisfies readonly { id: HomeCatalogRun; label: string }[];
 
 function CatalogueFiltersControl({
 	usePopover,
@@ -83,6 +66,11 @@ function CatalogueFiltersControl({
 	onNavigate,
 	onPrefetch,
 	hideGenreFilter = false,
+	showVenuePicker = false,
+	onVenueChange,
+	showRunPicker = false,
+	catalogRun = "ongoing",
+	onRunChange,
 }: {
 	usePopover: boolean;
 	browse: "movies" | "tv";
@@ -96,11 +84,18 @@ function CatalogueFiltersControl({
 	onPrefetch?: (href: string) => void;
 	/** TV **This season** pins Animation genre — hide genre picks while active. */
 	hideGenreFilter?: boolean;
+	/** Mobile — release window picker inside the filters popover. */
+	showVenuePicker?: boolean;
+	onVenueChange?: (venue: HomeVenue) => void;
+	/** Mobile TV — Ongoing / Completed / Upcoming inside the filters popover. */
+	showRunPicker?: boolean;
+	catalogRun?: HomeCatalogRun;
+	onRunChange?: (run: HomeCatalogRun) => void;
 }) {
 	const trigger = (
 		<button
 			type="button"
-			className={filtersTriggerClass}
+			className={HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME}
 			aria-label={filtersAria}
 			title={filtersAria}
 		>
@@ -118,7 +113,7 @@ function CatalogueFiltersControl({
 		return (
 			<Link
 				href={filtersHref}
-				className={filtersTriggerClass}
+				className={HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME}
 				aria-label={filtersAria}
 				title={filtersAria}
 			>
@@ -142,6 +137,11 @@ function CatalogueFiltersControl({
 			onPrefetch={onPrefetch}
 			trigger={trigger}
 			hideGenreFilter={hideGenreFilter}
+			showVenuePicker={showVenuePicker}
+			onVenueChange={onVenueChange}
+			showRunPicker={showRunPicker}
+			catalogRun={catalogRun}
+			onRunChange={onRunChange}
 		/>
 	);
 }
@@ -250,39 +250,12 @@ export function HomeCatalogViewModeToolbar() {
 		void router.prefetch(href);
 	};
 
-	if (browse === "community" && !isDiaryLobby && !isWatchlistLobby) {
+	if (isWatchlistLobby) {
 		return null;
 	}
 
-	if (isWatchlistLobby) {
-		const filtersHref = "/home";
-		const filtersAria =
-			"Search — find films and TV shows to add to your watchlist";
-		return (
-			<div className="flex shrink-0 flex-col items-end gap-1">
-				<div
-					className={HOME_LOBBY_CHIP_TRACK_CLASSNAME}
-					role="toolbar"
-					aria-label="Catalogue filters"
-				>
-					<CatalogueFiltersControl
-						usePopover={false}
-						browse="movies"
-						filtersHref={filtersHref}
-						filtersAria={filtersAria}
-						venue={parseHomeVenue(searchParams.get("venue"), catalogSort)}
-						filters={{
-							genreId: null,
-							monetization: null,
-						}}
-						summaryLabel=""
-						currentHref={filtersHref}
-						onNavigate={handleFilterNavigate}
-						onPrefetch={filterPrefetch}
-					/>
-				</div>
-			</div>
-		);
+	if (browse === "community" && !isDiaryLobby && !isWatchlistLobby) {
+		return null;
 	}
 
 	const pillTransition = reduceMotion
@@ -620,65 +593,13 @@ export function HomeCatalogViewModeToolbar() {
 				<p id={tvToolbarDescId} className="sr-only">
 					{tvToolbarCopy}
 				</p>
-				{/* Mobile — compact popovers when sort + TV rails cannot share one row */}
+				{/* Mobile — TV run, venue, and discover filters inside one chip track */}
 				<div
-					className="flex items-center gap-1 sm:hidden"
+					className={cn(HOME_LOBBY_CHIP_TRACK_CLASSNAME, "sm:hidden")}
 					role="toolbar"
 					aria-label="TV lifecycle and filters"
 					aria-describedby={tvToolbarDescId}
 				>
-					{!seasonActive ? (
-						<HomeLobbyChipPopover
-							aria-label="TV catalogue slice"
-							title="Ongoing, completed, or upcoming TV on TMDb"
-							layoutId="home-catalog-tv-run-pill-mobile"
-							value={
-								activeRun === "completed" || activeRun === "upcoming"
-									? activeRun
-									: "ongoing"
-							}
-							triggerLabel={
-								activeRun === "completed"
-									? "Completed"
-									: activeRun === "upcoming"
-										? "Upcoming"
-										: "Ongoing"
-							}
-							options={TV_RUN_PICKER_OPTIONS}
-							onChange={(run) => {
-								if (tmdbLobby) {
-									tmdbLobby.selectRun(run);
-									return;
-								}
-								handleFilterNavigate(tvRunChipHref(run));
-							}}
-						/>
-					) : null}
-					{showUpcomingVenue ? (
-						<HomeLobbyChipPopover
-							aria-label="Release window"
-							title="Broadcast vs subscription streaming upcoming TV"
-							layoutId="home-catalog-view-mode-pill-mobile"
-							value={effectiveVenue}
-							triggerLabel={theatersActive ? "In cinemas" : "At home"}
-							options={HOME_VENUE_PICKER_OPTIONS}
-							onChange={(venue) => {
-								if (tmdbLobby) {
-									tmdbLobby.selectVenue(venue);
-									return;
-								}
-								handleFilterNavigate(
-									buildHomeLobbyHref({
-										sort: activeSort,
-										browse: "tv",
-										venue,
-										run: activeRun,
-										animeSeason: false,
-									}),
-								);
-							}}
-						/>
-					) : null}
 					<CatalogueFiltersControl
 						usePopover={showHomeFiltersPopover}
 						browse="tv"
@@ -691,6 +612,31 @@ export function HomeCatalogViewModeToolbar() {
 						onNavigate={handleFilterNavigate}
 						onPrefetch={filterPrefetch}
 						hideGenreFilter={seasonActive}
+						showRunPicker={!seasonActive}
+						catalogRun={activeRun}
+						onRunChange={(run) => {
+							if (tmdbLobby) {
+								tmdbLobby.selectRun(run);
+								return;
+							}
+							handleFilterNavigate(tvRunChipHref(run));
+						}}
+						showVenuePicker={showUpcomingVenue}
+						onVenueChange={(nextVenue) => {
+							if (tmdbLobby) {
+								tmdbLobby.selectVenue(nextVenue);
+								return;
+							}
+							handleFilterNavigate(
+								buildHomeLobbyHref({
+									sort: activeSort,
+									browse: "tv",
+									venue: nextVenue,
+									run: activeRun,
+									animeSeason: false,
+								}),
+							);
+						}}
 					/>
 				</div>
 				<div
@@ -864,22 +810,13 @@ export function HomeCatalogViewModeToolbar() {
 			<p id={toolbarDescId} className="sr-only">
 				{srToolbarCopy}
 			</p>
-			{/* Mobile — venue popover + filters when sort rail uses the row above */}
+			{/* Mobile — filters (venue inside popover) in the same pill track as sort chips */}
 			<div
-				className="flex items-center gap-1 sm:hidden"
+				className={cn(HOME_LOBBY_CHIP_TRACK_CLASSNAME, "sm:hidden")}
 				role="toolbar"
 				aria-label="Release window and filters"
 				aria-describedby={toolbarDescId}
 			>
-				<HomeLobbyChipPopover
-					aria-label="Release window"
-					title="Theatrical or at-home catalogue"
-					layoutId="home-catalog-view-mode-pill-mobile"
-					value={effectiveVenue}
-					triggerLabel={theatersActive ? "In cinemas" : "At home"}
-					options={HOME_VENUE_PICKER_OPTIONS}
-					onChange={selectLobbyVenue}
-				/>
 				<CatalogueFiltersControl
 					usePopover={showHomeFiltersPopover && !isDiaryLobby}
 					browse="movies"
@@ -891,6 +828,8 @@ export function HomeCatalogViewModeToolbar() {
 					currentHref={currentFilterHref}
 					onNavigate={handleFilterNavigate}
 					onPrefetch={filterPrefetch}
+					showVenuePicker={!isDiaryLobby}
+					onVenueChange={selectLobbyVenue}
 				/>
 			</div>
 			<div

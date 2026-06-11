@@ -24,7 +24,5 @@ export const MOBILE_YOU_DESTINATIONS: readonly MobileYouDestination[] = [
 	{ href: "/diary", label: "Diary" },
 	{ href: "/watchlist", label: "Watchlist" },
 	{ href: "/lists", label: "Lists" },
-	{ href: "/news", label: "News" },
-	{ href: "/chat", label: "Chat" },
 	{ href: "/achievements", label: "Achievements" },
 ] as const;

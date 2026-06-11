@@ -17,6 +17,7 @@ import {
 } from "@/lib/add-to-list-media";
 import { api } from "@/lib/api";
 import { type ListBoardRow, toListBoardRow } from "@/lib/list-board-row";
+import { requestCreateList } from "@/lib/open-create-list-surface";
 import { fetchListsMe } from "@/lib/still-api-fetch";
 
 /**
@@ -161,7 +162,16 @@ export function useAddToListRadial(media: AddToListMedia) {
 							onSelectList={(list) => void addTitleToList(list)}
 							onCreateNew={() => {
 								handlePickerOpenChange(false);
-								setCreateOpen(true);
+								requestCreateList(
+									{
+										media,
+										onCreated: () => {
+											void loadLists();
+											setCreateOpen(false);
+										},
+									},
+									() => setCreateOpen(true),
+								);
 							}}
 						/>
 					</PopoverContent>

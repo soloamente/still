@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useCallback } from "react";
 import { Drawer } from "vaul";
 import {
+	APP_DETAIL_DRAWER_CONTENT_CLASSNAME,
 	MOVIE_DETAIL_DRAWER_BODY_CLASSNAME,
 	MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME,
 	MOVIE_DETAIL_DRAWER_HANDLE_CLASSNAME,
@@ -19,6 +20,10 @@ import { useSoftwareGpuRendering } from "@/lib/use-software-gpu-rendering";
 const OVERLAY_CLASSNAME_GPU =
 	"fixed inset-0 z-50 bg-absolute-black/82 backdrop-blur-sm";
 const OVERLAY_CLASSNAME_SOFTWARE = "fixed inset-0 z-50 bg-absolute-black/90";
+const APP_OVERLAY_CLASSNAME_GPU =
+	"fixed inset-0 z-[60] bg-absolute-black/82 backdrop-blur-sm";
+const APP_OVERLAY_CLASSNAME_SOFTWARE =
+	"fixed inset-0 z-[60] bg-absolute-black/90";
 const NESTED_OVERLAY_CLASSNAME = "fixed inset-0 z-60 bg-absolute-black/50";
 
 /** Drag rail with optional left/right chrome on the same row as the grip. */
@@ -77,6 +82,8 @@ export function DetailVaulSheet({
 	title,
 	description,
 	nested = false,
+	/** App routes with tab bar — overlay + sheet at `z-[60]`. */
+	appStack = false,
 	scrollLock = open,
 	trigger,
 	/** Left slot aligned with the drag handle row (e.g. patron avatar in review reader). */
@@ -90,6 +97,7 @@ export function DetailVaulSheet({
 	title: string;
 	description?: string;
 	nested?: boolean;
+	appStack?: boolean;
 	/** When nested opens on top of a parent sheet, keep Lenis locked for either. */
 	scrollLock?: boolean;
 	trigger?: ReactNode;
@@ -99,9 +107,21 @@ export function DetailVaulSheet({
 }) {
 	useLockDrawerScroll(scrollLock ?? open);
 	const softwareGpu = useSoftwareGpuRendering();
-	const overlayClassName = softwareGpu
-		? OVERLAY_CLASSNAME_SOFTWARE
-		: OVERLAY_CLASSNAME_GPU;
+	const overlayClassName = nested
+		? NESTED_OVERLAY_CLASSNAME
+		: appStack
+			? softwareGpu
+				? APP_OVERLAY_CLASSNAME_SOFTWARE
+				: APP_OVERLAY_CLASSNAME_GPU
+			: softwareGpu
+				? OVERLAY_CLASSNAME_SOFTWARE
+				: OVERLAY_CLASSNAME_GPU;
+
+	const contentClassName = nested
+		? MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME
+		: appStack
+			? APP_DETAIL_DRAWER_CONTENT_CLASSNAME
+			: MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME;
 
 	const dismissOnNavigate = useCallback(() => {
 		onOpenChange(false);
@@ -119,16 +139,10 @@ export function DetailVaulSheet({
 		>
 			{trigger ? <Drawer.Trigger asChild>{trigger}</Drawer.Trigger> : null}
 			<Drawer.Portal>
-				<Drawer.Overlay
-					className={nested ? NESTED_OVERLAY_CLASSNAME : overlayClassName}
-				/>
+				<Drawer.Overlay className={overlayClassName} />
 				<Drawer.Content
 					data-still-detail-drawer=""
-					className={
-						nested
-							? MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME
-							: MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME
-					}
+					className={contentClassName}
 				>
 					<DetailVaulDrawerHandleRow
 						handleLeading={handleLeading}

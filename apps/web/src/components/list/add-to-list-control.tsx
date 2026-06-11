@@ -31,6 +31,7 @@ import {
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
 import { type ListBoardRow, toListBoardRow } from "@/lib/list-board-row";
+import { requestCreateList } from "@/lib/open-create-list-surface";
 import { fetchListsMe } from "@/lib/still-api-fetch";
 
 type AddToListControlProps = {
@@ -232,7 +233,9 @@ export function AddToListControl({
 							onSelectList={(list) => void addTitleToList(list)}
 							onCreateNew={() => {
 								handlePickerOpenChange(false);
-								setCreateOpen(true);
+								requestCreateList({ media, onCreated: handleListCreated }, () =>
+									setCreateOpen(true),
+								);
 							}}
 						/>
 					</PopoverContent>

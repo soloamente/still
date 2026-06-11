@@ -38,7 +38,7 @@ export function DiaryMediaTabToolbar() {
 
 	return (
 		<nav
-			className="flex min-w-0 max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+			className="flex min-w-0 max-w-full flex-nowrap gap-1 rounded-full bg-background p-1"
 			role="toolbar"
 			aria-label="Diary media type"
 		>

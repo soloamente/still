@@ -1,7 +1,9 @@
 "use client";
 
+import IconBell from "@still/ui/icons/bell";
+import IconHomeFilled from "@still/ui/icons/home-filled";
 import { cn } from "@still/ui/lib/utils";
-import { Bell, Home, Plus, Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import { LayoutGroup, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -120,7 +122,11 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 								label="Home"
 								reduceMotion={reduceMotion}
 							>
-								<Home className="size-5" aria-hidden />
+								<IconHomeFilled
+									size="20px"
+									className="size-5 shrink-0"
+									aria-hidden
+								/>
 							</MobileTabSlot>
 						</Link>
 
@@ -165,7 +171,7 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 								label="Inbox"
 								reduceMotion={reduceMotion}
 							>
-								<Bell className="size-5" aria-hidden />
+								<IconBell size="20px" className="size-5 shrink-0" aria-hidden />
 							</MobileTabSlot>
 						</Link>
 

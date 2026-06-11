@@ -66,7 +66,7 @@ export function DiaryCatalogOrderChips() {
 				when you watched them or alphabetically by film title.
 			</p>
 			<div
-				className="flex max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
+				className="flex max-w-full flex-nowrap gap-1 rounded-full bg-background p-1"
 				role="toolbar"
 				aria-label="Diary order"
 				aria-describedby={sortToolbarDescId}

@@ -43,3 +43,17 @@ export const HOME_LOBBY_CHIP_TRACK_CLASSNAME =
 /** Compact chip tap target — matches `HomeCatalogSortChips` beside wider `sm:` padding. */
 export const HOME_LOBBY_CHIP_BUTTON_CLASSNAME =
 	"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-5 sm:py-2.5";
+
+/** Icon-only filters trigger inside the lobby chip track (Movies/TV/Community mobile). */
+export const HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME =
+	"relative inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none [@media(hover:hover)]:hover:bg-card/55 [@media(hover:hover)]:hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+
+/**
+ * Horizontal scroll edge fades on `bg-card` — use `to-card/0`, not `transparent`,
+ * so OKLab gradients do not dip through black on mobile.
+ */
+export const HOME_LOBBY_SCROLL_FADE_LEFT_CLASSNAME =
+	"pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-linear-to-r from-card from-0% via-card/50 via-35% to-card/0 sm:w-8";
+
+export const HOME_LOBBY_SCROLL_FADE_RIGHT_CLASSNAME =
+	"pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-linear-to-l from-card from-0% via-card/50 via-35% to-card/0 sm:w-8";

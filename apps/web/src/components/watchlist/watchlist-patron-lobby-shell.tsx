@@ -3,16 +3,14 @@
 import { cn } from "@still/ui/lib/utils";
 import type { ReactNode } from "react";
 
-import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
 import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-provider";
 import { WatchlistCatalogOrderChips } from "@/components/watchlist/watchlist-catalog-order-chips";
 import { WatchlistLobbyParamsProvider } from "@/components/watchlist/watchlist-lobby-params-context";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 
 /**
- * Client `/watchlist` chrome — renders the order chips + view toolbar instantly,
- * then slots in the streamed poster grid (`children`). Order is URL-driven so the
- * server can seed page 1 in the same order the chips show.
+ * Client `/watchlist` chrome — order chips + streamed poster grid.
+ * Search lives in sticky chrome / mobile tab bar — no redundant filters rail here.
  */
 export function WatchlistPatronLobbyShell({
 	children,
@@ -28,9 +26,8 @@ export function WatchlistPatronLobbyShell({
 						"overflow-visible",
 					)}
 				>
-					<div className="flex shrink-0 items-center justify-between gap-3">
+					<div className="flex shrink-0 items-center">
 						<WatchlistCatalogOrderChips />
-						<HomeCatalogViewModeToolbar />
 					</div>
 					{children}
 				</section>

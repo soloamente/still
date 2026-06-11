@@ -13,12 +13,12 @@ export const DETAIL_EDITORIAL_RAIL_X_FADE_CLASS = cn(
 	"md:[-webkit-mask-image:linear-gradient(to_right,transparent_0,black_10rem,black_calc(100%-10rem),transparent_100%)]",
 );
 
-/** Card-toned scrims at layout insets — kept narrow on mobile. */
+/** Card-toned scrims at layout insets — `to-card/0` keeps the fade clean on mobile. */
 export const DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_LEFT_CLASS =
-	"pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-linear-to-r from-0% from-card via-50% via-card/80 to-transparent sm:w-24 sm:via-30% sm:via-card/90 md:w-40 xl:w-48";
+	"pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-linear-to-r from-card from-0% via-card/50 via-40% to-card/0 sm:w-24 sm:via-card/65 md:w-40 xl:w-48";
 
 export const DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_RIGHT_CLASS =
-	"pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-linear-to-l from-0% from-card via-50% via-card/80 to-transparent sm:w-24 sm:via-30% sm:via-card/90 md:w-40 xl:w-48";
+	"pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-linear-to-l from-card from-0% via-card/50 via-40% to-card/0 sm:w-24 sm:via-card/65 md:w-40 xl:w-48";
 
 /** Shared @container rail layout — slide + spacer widths must use the same cqw basis. */
 export const DETAIL_EDITORIAL_REVIEW_SLIDE_WIDTH_CLASS = "w-[min(36rem,92cqw)]";

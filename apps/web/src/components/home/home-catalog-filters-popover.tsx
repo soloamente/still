@@ -19,6 +19,7 @@ import {
 	hasActiveHomeCatalogFilters,
 	mergeHomeCatalogFiltersIntoHref,
 } from "@/lib/home-catalog-filters";
+import type { HomeCatalogRun } from "@/lib/home-catalog-run";
 import type { HomeVenue } from "@/lib/home-venue";
 import { useCatalogTmdbLanguage } from "@/lib/use-catalog-tmdb-language";
 import { useSearchDialogGenres } from "@/lib/use-search-dialog-genres";
@@ -30,6 +31,17 @@ const MONETIZATION_OPTIONS = [
 	{ id: "buy", label: "Buy" },
 	{ id: "free", label: "Free" },
 	{ id: "ads", label: "Ads" },
+] as const;
+
+const VENUE_PICKER_OPTIONS = [
+	{ id: "theaters" as const, label: "In cinemas" },
+	{ id: "streaming" as const, label: "At home" },
+] as const;
+
+const TV_RUN_PICKER_OPTIONS = [
+	{ id: "ongoing" as const, label: "Ongoing" },
+	{ id: "completed" as const, label: "Completed" },
+	{ id: "upcoming" as const, label: "Upcoming" },
 ] as const;
 
 /** Footer / utility pill — same rhythm as notifications dropdown actions. */
@@ -69,14 +81,14 @@ function CatalogFiltersMenuScrims({
 			<div
 				aria-hidden
 				className={cn(
-					"pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-linear-to-b from-25% from-background via-background/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					"pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-linear-to-b from-25% from-background via-background/40 to-background/0 transition-opacity duration-200 motion-reduce:transition-none",
 					showHeaderFade ? "opacity-100" : "opacity-0",
 				)}
 			/>
 			<div
 				aria-hidden
 				className={cn(
-					"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-linear-to-t from-15% from-background/95 via-background/25 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+					"pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-linear-to-t from-15% from-background via-background/35 to-background/0 transition-opacity duration-200 motion-reduce:transition-none",
 					showFooterFade ? "opacity-100" : "opacity-0",
 				)}
 			/>
@@ -95,6 +107,13 @@ export type HomeCatalogFiltersPopoverProps = {
 	trigger: ReactElement;
 	/** TV **This season** already pins Animation — hide genre picks. */
 	hideGenreFilter?: boolean;
+	/** Mobile — In cinemas / At home lives in this panel instead of a separate popover. */
+	showVenuePicker?: boolean;
+	onVenueChange?: (venue: HomeVenue) => void;
+	/** Mobile TV — Ongoing / Completed / Upcoming in this panel instead of a separate popover. */
+	showRunPicker?: boolean;
+	catalogRun?: HomeCatalogRun;
+	onRunChange?: (run: HomeCatalogRun) => void;
 };
 
 /**
@@ -111,6 +130,11 @@ export function HomeCatalogFiltersPopover({
 	onPrefetch,
 	trigger,
 	hideGenreFilter = false,
+	showVenuePicker = false,
+	onVenueChange,
+	showRunPicker = false,
+	catalogRun = "ongoing",
+	onRunChange,
 }: HomeCatalogFiltersPopoverProps) {
 	const [open, setOpen] = useState(false);
 	const scrollRef = useRef<HTMLDivElement>(null);
@@ -136,7 +160,7 @@ export function HomeCatalogFiltersPopover({
 		[genreOptions],
 	);
 
-	const scrollContentKey = `${browse}-${sortedGenres.length}-${showWatchType}-${genresLoading}-${hideGenreFilter ? "season" : "genre"}`;
+	const scrollContentKey = `${browse}-${sortedGenres.length}-${showWatchType}-${genresLoading}-${hideGenreFilter ? "season" : "genre"}-${showVenuePicker ? venue : "no-venue"}-${showRunPicker ? catalogRun : "no-run"}`;
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		open,
@@ -172,6 +196,38 @@ export function HomeCatalogFiltersPopover({
 							ref={scrollRef}
 							className="scrollbar-none max-h-[min(56vh,26rem)] min-h-0 overflow-y-auto overscroll-y-contain px-0.5 py-0.5"
 						>
+							{showRunPicker && onRunChange ? (
+								<div className="mb-4">
+									{sectionLabel("Catalogue slice")}
+									<SegmentedPillToolbar
+										layoutId="home-catalog-filter-tv-run"
+										aria-label="TV catalogue slice"
+										value={
+											catalogRun === "completed" || catalogRun === "upcoming"
+												? catalogRun
+												: "ongoing"
+										}
+										onChange={(next) => onRunChange(next)}
+										options={TV_RUN_PICKER_OPTIONS}
+										compact
+									/>
+								</div>
+							) : null}
+
+							{showVenuePicker && onVenueChange ? (
+								<div className="mb-4">
+									{sectionLabel("Release window")}
+									<SegmentedPillToolbar
+										layoutId={`home-catalog-filter-venue-${browse}`}
+										aria-label="Release window"
+										value={venue}
+										onChange={(next) => onVenueChange(next)}
+										options={VENUE_PICKER_OPTIONS}
+										compact
+									/>
+								</div>
+							) : null}
+
 							{hideGenreFilter ? null : (
 								<>
 									{sectionLabel("Genre")}

@@ -1,13 +1,31 @@
 "use client";
 
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@still/ui/components/popover";
 import IconSlider from "@still/ui/icons/slider";
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
+import { useState } from "react";
 
 import { useDiaryLobbyParams } from "@/components/diary/diary-lobby-params-context";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { discoverCatalogUrl } from "@/lib/discover-catalog-url";
+import {
+	HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
+	HOME_LOBBY_CHIP_TRACK_CLASSNAME,
+	HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME,
+} from "@/lib/home-lobby-catalogue-layout";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+import type { HomeVenue } from "@/lib/home-venue";
+
+const DIARY_VENUE_PICKER_OPTIONS = [
+	{ id: "theaters" as const, label: "In cinemas" },
+	{ id: "streaming" as const, label: "At home" },
+] as const;
 
 /**
  * `/diary` right rail — **In cinemas / At home** + filters shortcut.
@@ -15,6 +33,7 @@ import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
  */
 export function DiaryVenueChips() {
 	const { venue, selectVenue } = useDiaryLobbyParams();
+	const [open, setOpen] = useState(false);
 	const reduceMotion = useReducedMotion();
 
 	const pillTransition = reduceMotion
@@ -27,7 +46,7 @@ export function DiaryVenueChips() {
 
 	const chipButton = (active: boolean) =>
 		cn(
-			"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
+			HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
 			active
 				? "text-foreground"
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
@@ -35,6 +54,7 @@ export function DiaryVenueChips() {
 
 	const theatersActive = venue === "theaters";
 	const streamingActive = venue === "streaming";
+	const venueLabel = theatersActive ? "In cinemas" : "At home";
 
 	const filtersHref =
 		venue === "theaters"
@@ -55,15 +75,88 @@ export function DiaryVenueChips() {
 
 	const toolbarDescId = "diary-catalog-view-mode-desc";
 
+	const handleVenueChange = (next: HomeVenue) => {
+		selectVenue(next);
+	};
+
 	return (
-		<div className="flex shrink-0 flex-col items-end gap-1">
+		<div className="shrink-0">
 			<p id={toolbarDescId} className="sr-only">
 				On your diary, In cinemas vs At home sets which catalogue slice the
 				filters button opens; your logged films list is ordered by the left
 				chips.
 			</p>
+
+			{/* Mobile — venue inside filters panel */}
 			<div
-				className="flex w-fit items-center rounded-full bg-background p-1"
+				className={cn(HOME_LOBBY_CHIP_TRACK_CLASSNAME, "sm:hidden")}
+				role="toolbar"
+				aria-label="Release window and filters"
+				aria-describedby={toolbarDescId}
+			>
+				<Popover open={open} onOpenChange={setOpen} modal={false}>
+					<PopoverTrigger
+						type="button"
+						className={HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME}
+						aria-label={`Diary filters — ${venueLabel}`}
+						title={`Diary filters — ${venueLabel}`}
+					>
+						<IconSlider
+							size="1.125rem"
+							className="shrink-0 opacity-95"
+							aria-hidden
+						/>
+					</PopoverTrigger>
+					<PopoverContent
+						side="bottom"
+						align="end"
+						sideOffset={12}
+						initialFocus={false}
+						className="w-[min(100vw-1.5rem,22rem)] overflow-visible rounded-[1.75rem] p-3 shadow-mobbin-xl"
+					>
+						<div className="flex min-h-0 flex-col gap-3">
+							<div className="shrink-0 px-0.5">
+								<p className="text-balance font-semibold text-base text-foreground leading-snug">
+									Filters
+								</p>
+								<p className="mt-0.5 text-pretty text-muted-foreground text-sm leading-snug">
+									{venueLabel}
+								</p>
+							</div>
+							<div>
+								<p className="mb-2 px-0.5 font-medium text-muted-foreground text-xs tracking-wide">
+									Release window
+								</p>
+								<SegmentedPillToolbar
+									layoutId="diary-catalog-view-mode-pill-mobile"
+									aria-label="Release window"
+									compact
+									value={venue}
+									onChange={handleVenueChange}
+									options={DIARY_VENUE_PICKER_OPTIONS}
+								/>
+							</div>
+							<div className="flex shrink-0 justify-end px-0.5">
+								<Link
+									href={filtersHref}
+									className={cn(
+										HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
+										"bg-card text-foreground",
+										"transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none",
+									)}
+									onClick={() => setOpen(false)}
+								>
+									Browse catalogue
+								</Link>
+							</div>
+						</div>
+					</PopoverContent>
+				</Popover>
+			</div>
+
+			{/* Desktop — inline venue rail + discover link */}
+			<div
+				className={cn(HOME_LOBBY_CHIP_TRACK_CLASSNAME, "hidden sm:flex")}
 				role="toolbar"
 				aria-label="Release window and filters"
 				aria-describedby={toolbarDescId}
@@ -112,11 +205,7 @@ export function DiaryVenueChips() {
 
 				<Link
 					href={filtersHref}
-					className={cn(
-						"inline-flex size-10 shrink-0 items-center justify-center rounded-full text-foreground transition-colors duration-200 ease-out motion-reduce:transition-none",
-						"[@media(hover:hover)]:hover:bg-card/55 [@media(hover:hover)]:hover:text-foreground",
-						"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-					)}
+					className={HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME}
 					aria-label={filtersAria}
 					title={filtersAria}
 				>
