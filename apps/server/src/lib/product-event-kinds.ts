@@ -6,6 +6,7 @@ export const PRODUCT_EVENT_KINDS = [
 	"onboarding.completed",
 	"taste_card.shared",
 	"taste.dismissed",
+	"taste.for_you.served",
 ] as const;
 
 export type ProductEventKind = (typeof PRODUCT_EVENT_KINDS)[number];

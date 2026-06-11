@@ -6,13 +6,17 @@ import { context } from "../context";
 import { fetchOverlapDiarySlices } from "../lib/fetch-overlap-diary-slices";
 import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
+import { recordProductEvent } from "../lib/record-product-event";
 import {
 	buildOverlapDiaryMap,
 	computeTasteOverlap,
 } from "../lib/sense-taste-overlap";
 import { buildSuggestedPatrons } from "../lib/suggested-patron-discovery";
 import { dismissTasteMovie } from "../lib/taste-dismissed-movie";
-import { buildTasteMatchedDiscovery } from "../lib/taste-matched-discovery";
+import {
+	buildTasteMatchedDiscoveryWithMeta,
+	TASTE_MATCH_MIN_RESULTS,
+} from "../lib/taste-matched-discovery";
 
 async function resolveProfileByHandle(handle: string) {
 	const normalized = handle.toLowerCase();
@@ -79,7 +83,17 @@ export const tasteRoute = new Elysia({
 		if (!hit(`taste:for-you:${user.id}`, { limit: 60, windowMs: 60_000 }).ok) {
 			return status(429, "Slow down");
 		}
-		return buildTasteMatchedDiscovery(user.id);
+		const { payload, meta } = await buildTasteMatchedDiscoveryWithMeta(user.id);
+		if (
+			!payload.coldStart &&
+			payload.movies.length >= TASTE_MATCH_MIN_RESULTS
+		) {
+			void recordProductEvent(user.id, "taste.for_you.served", {
+				movieCount: payload.movies.length,
+				...meta,
+			});
+		}
+		return payload;
 	})
 	/** Forever-hide a taste-rail suggestion and return the next replacement pick. */
 	.post(

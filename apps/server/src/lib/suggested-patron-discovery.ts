@@ -1,27 +1,22 @@
-import { db, follow, log, movie, profile, tv, user } from "@still/db";
-import {
-	and,
-	desc,
-	eq,
-	inArray,
-	isNotNull,
-	isNull,
-	or,
-	sql,
-} from "drizzle-orm";
+import { db, log, movie, profile, tv, user } from "@still/db";
+import { and, desc, eq, inArray, isNull } from "drizzle-orm";
 
 import { fetchOverlapDiarySlices } from "./fetch-overlap-diary-slices";
 import {
 	buildOverlapDiaryMap,
 	computeTasteOverlap,
 } from "./sense-taste-overlap";
+import {
+	collectMediaIdsFromMap,
+	fetchFollowingUserIds,
+	fetchOverlapCandidateUserIds,
+} from "./taste-neighbor-discovery";
 
 /** Viewer needs enough diary signal before patron suggestions replace cold-start. */
 export const SUGGESTED_PATRON_MIN_VIEWER_LOGS = 5;
 
 export const SUGGESTED_PATRON_RESULT_LIMIT = 12;
 
-const CANDIDATE_POOL_LIMIT = 32;
 const GENRE_WEIGHT_LOG_LIMIT = 200;
 const MIN_SHARED_TITLES_FOR_CANDIDATE = 2;
 
@@ -118,72 +113,6 @@ async function fetchPatronGenreWeights(
 		}
 	}
 	return weights;
-}
-
-async function fetchFollowingUserIds(viewerId: string): Promise<string[]> {
-	const rows = await db
-		.select({ followingId: follow.followingId })
-		.from(follow)
-		.where(eq(follow.followerId, viewerId));
-	return rows.map((row) => row.followingId);
-}
-
-function collectMediaIdsFromMap(
-	viewerMap: Map<string, { movieId: number | null; tvId: number | null }>,
-): { movieIds: number[]; tvIds: number[] } {
-	const movieIds = new Set<number>();
-	const tvIds = new Set<number>();
-	for (const entry of viewerMap.values()) {
-		if (entry.movieId != null) movieIds.add(entry.movieId);
-		if (entry.tvId != null) tvIds.add(entry.tvId);
-	}
-	return { movieIds: [...movieIds], tvIds: [...tvIds] };
-}
-
-async function fetchOverlapCandidateUserIds(input: {
-	viewerId: string;
-	movieIds: number[];
-	tvIds: number[];
-	excludeUserIds: string[];
-}): Promise<Array<{ userId: string; sharedCount: number }>> {
-	const { viewerId, movieIds, tvIds, excludeUserIds } = input;
-	if (movieIds.length === 0 && tvIds.length === 0) return [];
-
-	const mediaFilter =
-		movieIds.length > 0 && tvIds.length > 0
-			? or(inArray(log.movieId, movieIds), inArray(log.tvId, tvIds))
-			: movieIds.length > 0
-				? inArray(log.movieId, movieIds)
-				: inArray(log.tvId, tvIds);
-
-	const exclude = new Set([viewerId, ...excludeUserIds]);
-
-	const rows = await db
-		.select({
-			userId: log.userId,
-			sharedCount: sql<number>`count(*)::int`,
-		})
-		.from(log)
-		.innerJoin(profile, eq(log.userId, profile.userId))
-		.where(
-			and(
-				mediaFilter,
-				isNull(log.removedAt),
-				eq(profile.isPrivate, false),
-				isNotNull(profile.handle),
-			),
-		)
-		.groupBy(log.userId)
-		.orderBy(desc(sql`count(*)`))
-		.limit(CANDIDATE_POOL_LIMIT);
-
-	return rows
-		.filter(
-			(row) =>
-				!exclude.has(row.userId) &&
-				row.sharedCount >= MIN_SHARED_TITLES_FOR_CANDIDATE,
-		)
-		.map((row) => ({ userId: row.userId, sharedCount: row.sharedCount }));
 }
 
 /**

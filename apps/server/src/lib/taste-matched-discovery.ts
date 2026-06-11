@@ -1,8 +1,29 @@
 import { db, log, movie } from "@still/db";
-import { and, desc, eq, isNotNull, isNull, notInArray } from "drizzle-orm";
+import { and, desc, eq, isNull } from "drizzle-orm";
 
-import type { TasteSignatureLogSlice } from "./sense-taste-signature";
-import { fetchDismissedMovieTmdbIds } from "./taste-dismissed-movie-store";
+import { fetchOverlapDiarySlices } from "./fetch-overlap-diary-slices";
+import { buildOverlapDiaryMap } from "./sense-taste-overlap";
+import {
+	fetchDismissedMoviesWithMetadata,
+	fetchDismissedMovieTmdbIds,
+} from "./taste-dismissed-movie-store";
+import { resolveTasteNeighbors } from "./taste-neighbor-discovery";
+import {
+	applyRepeatGenreDownweight,
+	buildDismissNegativeProfile,
+	buildWeightedTasteProfile,
+	genrePhraseFromWeights,
+	scoreSoloCandidate,
+	type TasteProfileSlice,
+} from "./taste-profile";
+import {
+	applyDismissSimilarityPenalty,
+	type DismissMetadata,
+	mmrSelectCandidates,
+	normalizeScores,
+} from "./taste-scoring-math";
+import { fetchSocialCandidates } from "./taste-social-candidates";
+import { fetchStratifiedCandidates } from "./taste-stratified-candidates";
 
 /** Minimum diary rows before taste-matched rail replaces cold-start (ST.4). */
 export const TASTE_MATCH_MIN_LOGS = 10;
@@ -13,7 +34,13 @@ export const TASTE_MATCH_MIN_RESULTS = 6;
 /** Enough titles for wide taste rails (`auto-fill` grid on `/home` Movies). */
 export const TASTE_MATCH_TARGET_RESULTS = 24;
 
-const CANDIDATE_POOL_LIMIT = 500;
+/** Platform popularity baseline for niche calibration when catalogue sample unavailable. */
+const PLATFORM_MEDIAN_POPULARITY = 30;
+
+const SOCIAL_BLEND_MIN_CANDIDATES = 5;
+const SOCIAL_BLEND_SOLO_WEIGHT = 0.6;
+const SOCIAL_BLEND_SOCIAL_WEIGHT = 0.4;
+const MMR_LAMBDA = 0.35;
 
 export type TasteMatchMovie = {
 	tmdbId: number;
@@ -29,140 +56,118 @@ export type TasteMatchedDiscoveryPayload = {
 	movies: TasteMatchMovie[];
 };
 
-type TasteDiscoveryLogSlice = TasteSignatureLogSlice & {
-	movieId?: number;
-	year?: number | null;
-	originalLanguage?: string | null;
+export type TasteMatchServeMeta = {
+	socialCount: number;
+	soloCount: number;
+	neighborCount: number;
+	nicheBoostApplied: boolean;
+	dismissCount: number;
 };
 
-type TasteProfile = {
-	genreWeights: Map<number, number>;
-	decadeWeights: Map<number, number>;
-	languageWeights: Map<string, number>;
-	loggedMovieIds: Set<number>;
+export type TasteMatchedDiscoveryResult = {
+	payload: TasteMatchedDiscoveryPayload;
+	meta: TasteMatchServeMeta;
 };
-
-const TMDB_GENRE_NAMES: Record<number, string> = {
-	28: "action",
-	12: "adventure",
-	16: "animation",
-	35: "comedy",
-	80: "crime",
-	99: "documentary",
-	18: "drama",
-	10751: "family",
-	14: "fantasy",
-	36: "history",
-	27: "horror",
-	10402: "music",
-	9648: "mystery",
-	10749: "romance",
-	878: "science fiction",
-	10770: "TV movie",
-	53: "thriller",
-	10752: "war",
-	37: "western",
-};
-
-function genreLabel(id: number): string {
-	return TMDB_GENRE_NAMES[id] ?? "film";
-}
-
-function decadeFromYear(year: number | null | undefined): number | null {
-	if (year == null || !Number.isFinite(year)) return null;
-	return Math.floor(year / 10) * 10;
-}
-
-function buildTasteProfile(slices: TasteDiscoveryLogSlice[]): TasteProfile {
-	const genreWeights = new Map<number, number>();
-	const decadeWeights = new Map<number, number>();
-	const languageWeights = new Map<string, number>();
-
-	for (const slice of slices) {
-		for (const id of slice.genreIds) {
-			genreWeights.set(id, (genreWeights.get(id) ?? 0) + 1);
-		}
-		const decade = decadeFromYear(slice.year ?? null);
-		if (decade != null) {
-			decadeWeights.set(decade, (decadeWeights.get(decade) ?? 0) + 1);
-		}
-		const lang = slice.originalLanguage?.trim().toLowerCase();
-		if (lang) {
-			languageWeights.set(lang, (languageWeights.get(lang) ?? 0) + 1);
-		}
-	}
-
-	return {
-		genreWeights,
-		decadeWeights,
-		languageWeights,
-		loggedMovieIds: new Set(
-			slices
-				.map((s) => s.movieId)
-				.filter((id): id is number => typeof id === "number" && id > 0),
-		),
-	};
-}
-
-function genrePhraseFromWeights(weights: Map<number, number>): string | null {
-	const ranked = [...weights.entries()].sort((a, b) => b[1] - a[1]);
-	const primary = ranked[0]?.[0];
-	const secondary = ranked[1]?.[0];
-	if (primary == null) return null;
-	if (secondary != null && primary !== secondary) {
-		return `${genreLabel(primary)} and ${genreLabel(secondary)}`;
-	}
-	return genreLabel(primary);
-}
-
-function scoreCandidate(
-	movie: {
-		tmdbId: number;
-		genreIds: number[];
-		year: number | null;
-		originalLanguage: string | null;
-		popularity: number | null;
-	},
-	profile: TasteProfile,
-): number {
-	let score = 0;
-
-	for (const id of movie.genreIds) {
-		const w = profile.genreWeights.get(id) ?? 0;
-		if (w > 0) score += w * 8;
-	}
-
-	const decade = decadeFromYear(movie.year);
-	if (decade != null) {
-		score += (profile.decadeWeights.get(decade) ?? 0) * 6;
-	}
-
-	const lang = movie.originalLanguage?.trim().toLowerCase();
-	if (lang) {
-		score += (profile.languageWeights.get(lang) ?? 0) * 4;
-	}
-
-	const pop = movie.popularity ?? 0;
-	score += Math.min(pop / 15, 12);
-
-	return score;
-}
 
 export type ScoredTasteMatchCandidate = {
 	row: TasteMatchMovie;
 	score: number;
+	genreIds: number[];
+	year: number | null;
 };
 
-/**
- * Score unseen catalogue candidates for a patron — excludes logged and dismissed titles.
- */
-export async function scoreTasteMatchCandidatesForUser(
-	userId: string,
-): Promise<{
+type ScoreTasteMatchResult = {
 	coldStart: boolean;
 	genrePhrase: string | null;
 	scored: ScoredTasteMatchCandidate[];
-}> {
+	meta: TasteMatchServeMeta;
+};
+
+type CandidateEntry = {
+	tmdbId: number;
+	row: TasteMatchMovie;
+	genreIds: number[];
+	year: number | null;
+	originalLanguage: string | null;
+	popularity: number | null;
+};
+
+function percentile75(values: number[]): number {
+	if (values.length === 0) return PLATFORM_MEDIAN_POPULARITY;
+	const sorted = [...values].sort((a, b) => a - b);
+	const idx = Math.floor(sorted.length * 0.75);
+	return sorted[Math.min(idx, sorted.length - 1)] ?? PLATFORM_MEDIAN_POPULARITY;
+}
+
+function topGenreIdsFromProfile(
+	genreWeights: Map<number, number>,
+	limit: number,
+): number[] {
+	return [...genreWeights.entries()]
+		.sort((a, b) => b[1] - a[1])
+		.slice(0, limit)
+		.map(([id]) => id);
+}
+
+/**
+ * Pure merge path — solo/social blend, dismiss layer 1, for unit tests and orchestrator.
+ */
+export function mergeBlendAndPenalizeCandidates(input: {
+	candidates: CandidateEntry[];
+	soloScores: Map<number, number>;
+	socialScores: Map<number, number>;
+	dismissMetadata: DismissMetadata[];
+}): ScoredTasteMatchCandidate[] {
+	const soloNorm = normalizeScores(
+		[...input.soloScores.entries()].map(([key, score]) => ({ key, score })),
+	);
+	const socialNorm = normalizeScores(
+		[...input.socialScores.entries()].map(([key, score]) => ({ key, score })),
+	);
+
+	const useSocialBlend =
+		[...input.socialScores.values()].filter((score) => score > 0).length >=
+		SOCIAL_BLEND_MIN_CANDIDATES;
+
+	const scored: ScoredTasteMatchCandidate[] = [];
+
+	for (const candidate of input.candidates) {
+		const solo = soloNorm.get(candidate.tmdbId) ?? 0;
+		const social = socialNorm.get(candidate.tmdbId) ?? 0;
+		const blended = useSocialBlend
+			? solo * SOCIAL_BLEND_SOLO_WEIGHT + social * SOCIAL_BLEND_SOCIAL_WEIGHT
+			: solo;
+
+		const finalScore = applyDismissSimilarityPenalty(
+			blended,
+			{
+				genreIds: candidate.genreIds,
+				year: candidate.year,
+				originalLanguage: candidate.originalLanguage,
+			},
+			input.dismissMetadata,
+		);
+
+		if (finalScore <= 0) continue;
+
+		scored.push({
+			row: candidate.row,
+			score: finalScore,
+			genreIds: candidate.genreIds,
+			year: candidate.year,
+		});
+	}
+
+	return scored.sort((a, b) => b.score - a.score);
+}
+
+/**
+ * Score unseen catalogue candidates for a patron — excludes logged and dismissed titles.
+ * Returns the full ranked pool (pre-MMR) for dismiss replacement picks.
+ */
+export async function scoreTasteMatchCandidatesForUser(
+	userId: string,
+): Promise<ScoreTasteMatchResult> {
 	const rows = await db
 		.select({
 			log,
@@ -176,91 +181,213 @@ export async function scoreTasteMatchCandidatesForUser(
 
 	const movieRows = rows.filter((row) => row.log.movieId != null);
 	if (movieRows.length < TASTE_MATCH_MIN_LOGS) {
-		return { coldStart: true, genrePhrase: null, scored: [] };
+		return {
+			coldStart: true,
+			genrePhrase: null,
+			scored: [],
+			meta: {
+				socialCount: 0,
+				soloCount: 0,
+				neighborCount: 0,
+				nicheBoostApplied: false,
+				dismissCount: 0,
+			},
+		};
 	}
 
-	const slices: TasteDiscoveryLogSlice[] = movieRows.map((row) => ({
+	const total = movieRows.length;
+	const slices: TasteProfileSlice[] = movieRows.map((row, index) => ({
 		genreIds: (row.movie?.genreIds as number[] | undefined) ?? [],
 		rating: row.log.rating,
-		tmdbVoteAverage: row.movie?.voteAverage ?? null,
-		title: row.movie?.title ?? null,
-		movieId: row.log.movieId ?? undefined,
 		year: row.movie?.year ?? null,
 		originalLanguage: row.movie?.originalLanguage ?? null,
+		popularity: row.movie?.popularity ?? null,
+		index,
+		total,
+		movieTmdbId: row.log.movieId ?? undefined,
 	}));
 
-	const tasteProfile = buildTasteProfile(slices);
-	const genrePhrase = genrePhraseFromWeights(tasteProfile.genreWeights);
-	const loggedIds = [...tasteProfile.loggedMovieIds];
+	const profile = buildWeightedTasteProfile(slices);
+	const genrePhrase = genrePhraseFromWeights(profile);
 	const dismissedIds = await fetchDismissedMovieTmdbIds(userId);
-	const excludeIds = [...new Set([...loggedIds, ...dismissedIds])];
+	const excludeIds = [...new Set([...profile.loggedMovieIds, ...dismissedIds])];
+	const topGenreIds = topGenreIdsFromProfile(profile.genreWeights, 3);
 
-	const candidateWhere =
-		excludeIds.length > 0
-			? and(isNotNull(movie.popularity), notInArray(movie.tmdbId, excludeIds))
-			: isNotNull(movie.popularity);
+	const nicheBoost = profile.medianPopularity < PLATFORM_MEDIAN_POPULARITY;
+	const viewerPopularityP75 = percentile75(profile.popularitySamples);
 
-	const candidates = await db
-		.select({
-			tmdbId: movie.tmdbId,
-			title: movie.title,
-			posterPath: movie.posterPath,
-			year: movie.year,
-			genreIds: movie.genreIds,
-			originalLanguage: movie.originalLanguage,
-			popularity: movie.popularity,
-		})
-		.from(movie)
-		.where(candidateWhere)
-		.orderBy(desc(movie.popularity))
-		.limit(CANDIDATE_POOL_LIMIT);
+	let stratifiedCandidates: Awaited<
+		ReturnType<typeof fetchStratifiedCandidates>
+	> = [];
+	let dismissedMetadata: Awaited<
+		ReturnType<typeof fetchDismissedMoviesWithMetadata>
+	> = [];
+	let socialCandidates = new Map<
+		number,
+		Awaited<ReturnType<typeof fetchSocialCandidates>> extends Map<
+			number,
+			infer V
+		>
+			? V
+			: never
+	>();
 
-	const scored = candidates
-		.map((row) => ({
+	let neighborCount = 0;
+
+	try {
+		const viewerSlices = await fetchOverlapDiarySlices(userId);
+		const viewerMap = buildOverlapDiaryMap(viewerSlices);
+
+		const [stratified, dismissed, neighbors] = await Promise.all([
+			fetchStratifiedCandidates({ topGenreIds, excludeTmdbIds: excludeIds }),
+			fetchDismissedMoviesWithMetadata(userId, 50),
+			resolveTasteNeighbors({
+				viewerId: userId,
+				viewerMap,
+				minSharedTitles: 3,
+				minCompatibility: 40,
+				limit: 20,
+			}),
+		]);
+
+		stratifiedCandidates = stratified;
+		dismissedMetadata = dismissed;
+		neighborCount = neighbors.length;
+		socialCandidates = await fetchSocialCandidates({
+			viewerId: userId,
+			neighbors,
+			excludeTmdbIds: excludeIds,
+		});
+	} catch (err) {
+		console.error("[taste-match] neighbor/social fetch failed; solo-only", {
+			userId,
+			err,
+		});
+		const [stratified, dismissed] = await Promise.all([
+			fetchStratifiedCandidates({ topGenreIds, excludeTmdbIds: excludeIds }),
+			fetchDismissedMoviesWithMetadata(userId, 50),
+		]);
+		stratifiedCandidates = stratified;
+		dismissedMetadata = dismissed;
+	}
+
+	const negativeProfile = buildDismissNegativeProfile(dismissedMetadata);
+	const dismissMetadata: DismissMetadata[] = dismissedMetadata.map((row) => ({
+		genreIds: row.genreIds,
+		year: row.year,
+		originalLanguage: row.originalLanguage,
+	}));
+
+	const candidateMap = new Map<number, CandidateEntry>();
+
+	for (const row of stratifiedCandidates) {
+		candidateMap.set(row.tmdbId, {
+			tmdbId: row.tmdbId,
 			row: {
 				tmdbId: row.tmdbId,
 				title: row.title,
 				posterPath: row.posterPath,
 				year: row.year,
 			},
-			score: scoreCandidate(
-				{
-					tmdbId: row.tmdbId,
-					genreIds: (row.genreIds as number[]) ?? [],
-					year: row.year,
-					originalLanguage: row.originalLanguage,
-					popularity: row.popularity,
-				},
-				tasteProfile,
-			),
-		}))
-		.filter((entry) => entry.score > 0)
-		.sort((a, b) => b.score - a.score);
+			genreIds: row.genreIds,
+			year: row.year,
+			originalLanguage: row.originalLanguage,
+			popularity: row.popularity,
+		});
+	}
+
+	for (const social of socialCandidates.values()) {
+		if (candidateMap.has(social.tmdbId)) continue;
+		candidateMap.set(social.tmdbId, {
+			tmdbId: social.tmdbId,
+			row: {
+				tmdbId: social.tmdbId,
+				title: social.title,
+				posterPath: social.posterPath,
+				year: social.year,
+			},
+			genreIds: social.genreIds,
+			year: social.year,
+			originalLanguage: social.originalLanguage,
+			popularity: social.popularity,
+		});
+	}
+
+	const soloScores = new Map<number, number>();
+	const socialScores = new Map<number, number>();
+
+	for (const candidate of candidateMap.values()) {
+		const metadata = {
+			genreIds: candidate.genreIds,
+			year: candidate.year,
+			originalLanguage: candidate.originalLanguage,
+			popularity: candidate.popularity,
+		};
+
+		let soloRaw = scoreSoloCandidate(metadata, profile, {
+			nicheBoost,
+			viewerPopularityP75,
+		});
+		soloRaw = applyRepeatGenreDownweight(
+			soloRaw,
+			metadata,
+			profile,
+			negativeProfile,
+		);
+		if (soloRaw > 0) soloScores.set(candidate.tmdbId, soloRaw);
+
+		const social = socialCandidates.get(candidate.tmdbId);
+		if (social != null && social.socialScore > 0) {
+			socialScores.set(candidate.tmdbId, social.socialScore);
+		}
+	}
+
+	const scored = mergeBlendAndPenalizeCandidates({
+		candidates: [...candidateMap.values()],
+		soloScores,
+		socialScores,
+		dismissMetadata,
+	});
 
 	return {
 		coldStart: false,
 		genrePhrase,
 		scored,
+		meta: {
+			socialCount: [...socialScores.keys()].length,
+			soloCount: [...soloScores.keys()].length,
+			neighborCount,
+			nicheBoostApplied: nicheBoost,
+			dismissCount: dismissedMetadata.length,
+		},
 	};
 }
 
-/**
- * Rule-based taste-matched movie picks (ST.4) — genre, decade, language vs diary;
- * excludes logged and dismissed titles.
- */
-export async function buildTasteMatchedDiscovery(
-	userId: string,
-): Promise<TasteMatchedDiscoveryPayload> {
-	const { coldStart, genrePhrase, scored } =
-		await scoreTasteMatchCandidatesForUser(userId);
-
-	if (coldStart) {
+function payloadFromScoredResult(
+	result: ScoreTasteMatchResult,
+): TasteMatchedDiscoveryPayload {
+	if (result.coldStart) {
 		return { coldStart: true, genrePhrase: null, movies: [] };
 	}
 
-	const movies = scored
-		.slice(0, TASTE_MATCH_TARGET_RESULTS)
-		.map(({ row }) => row);
+	const mmrPool = result.scored.map((entry) => ({
+		id: entry.row.tmdbId,
+		score: entry.score,
+		genreIds: entry.genreIds,
+		year: entry.year,
+	}));
+
+	const selected = mmrSelectCandidates(mmrPool, {
+		limit: TASTE_MATCH_TARGET_RESULTS,
+		lambda: MMR_LAMBDA,
+	});
+
+	const rowById = new Map(
+		result.scored.map((entry) => [entry.row.tmdbId, entry.row]),
+	);
+	const movies = selected
+		.map((entry) => rowById.get(entry.id))
+		.filter((row): row is TasteMatchMovie => row != null);
 
 	if (movies.length < TASTE_MATCH_MIN_RESULTS) {
 		return { coldStart: true, genrePhrase: null, movies: [] };
@@ -268,7 +395,29 @@ export async function buildTasteMatchedDiscovery(
 
 	return {
 		coldStart: false,
-		genrePhrase,
+		genrePhrase: result.genrePhrase,
 		movies,
 	};
+}
+
+/** Full discovery payload plus serve metadata for analytics. */
+export async function buildTasteMatchedDiscoveryWithMeta(
+	userId: string,
+): Promise<TasteMatchedDiscoveryResult> {
+	const result = await scoreTasteMatchCandidatesForUser(userId);
+	return {
+		payload: payloadFromScoredResult(result),
+		meta: result.meta,
+	};
+}
+
+/**
+ * Social-augmented taste-matched movie picks — stratified pool, neighbor signal,
+ * MMR diversity, dismiss-aware scoring.
+ */
+export async function buildTasteMatchedDiscovery(
+	userId: string,
+): Promise<TasteMatchedDiscoveryPayload> {
+	const { payload } = await buildTasteMatchedDiscoveryWithMeta(userId);
+	return payload;
 }
