@@ -2,7 +2,7 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { type ReactNode, useEffect } from "react";
 import { AuthBackgroundCarousel } from "@/components/auth/auth-background-carousel";
 import { AuthSessionRedirect } from "@/components/auth/auth-session-redirect";
 import { BrandMark } from "@/components/brand-mark";
@@ -27,6 +27,22 @@ export function AuthPageShell({
 }) {
 	const reduceMotion = useReducedMotion();
 	const { data: session, isPending } = authClient.useSession();
+
+	// iOS Safari: stop rubber-band scroll exposing the body canvas past the backdrop.
+	useEffect(() => {
+		const html = document.documentElement;
+		const body = document.body;
+		const prevHtmlOverflow = html.style.overflow;
+		const prevBodyOverflow = body.style.overflow;
+
+		html.style.overflow = "hidden";
+		body.style.overflow = "hidden";
+
+		return () => {
+			html.style.overflow = prevHtmlOverflow;
+			body.style.overflow = prevBodyOverflow;
+		};
+	}, []);
 
 	if (!isPending && session) {
 		return null;
@@ -56,24 +72,28 @@ export function AuthPageShell({
 	return (
 		<>
 			<AuthSessionRedirect />
+			{/* lvh (not inset-0/dvh) — largest viewport so Safari chrome never letterboxes the stills. */}
+			<div
+				aria-hidden
+				className="pointer-events-none fixed top-[calc(-1*env(safe-area-inset-top,0px))] left-0 z-0 h-[calc(100lvh+env(safe-area-inset-top,0px))] min-h-[calc(100lvh+env(safe-area-inset-top,0px))] w-full md:inset-0 md:top-0 md:h-auto md:min-h-dvh"
+			>
+				<AuthBackgroundCarousel className="absolute inset-0 size-full" />
+			</div>
 			<main
 				aria-label="Authentication"
 				className={cn(
-					"relative flex w-full max-w-[100vw] overflow-x-hidden font-sans antialiased",
-					// Mobile Safari: pin to the visual viewport so body never letterboxes;
-					// carousel stays full-bleed behind the inset card.
-					"max-md:fixed max-md:inset-0 max-md:z-40 max-md:h-dvh max-md:max-h-dvh max-md:min-h-dvh max-md:items-center max-md:justify-center max-md:overflow-hidden max-md:p-2.5",
+					"relative z-10 flex w-full max-w-[100vw] overflow-x-hidden bg-transparent font-sans antialiased",
+					// Card inset only — backdrop stays full-bleed in the fixed layer above.
+					"max-md:fixed max-md:inset-0 max-md:flex max-md:flex-col max-md:overflow-hidden max-md:p-2.5",
 					"md:min-h-dvh md:items-center md:justify-end md:p-2.5",
 					className,
 				)}
 			>
-				<AuthBackgroundCarousel className="z-0" />
-
 				<div className="absolute isolate z-10 flex max-w-[calc(100%-1.25rem)] items-center max-md:pointer-events-none max-md:top-[max(1rem,env(safe-area-inset-top))] max-md:left-1/2 max-md:-translate-x-1/2 max-md:justify-center md:pointer-events-auto md:top-6 md:left-6 md:translate-x-0 md:justify-start">
 					<BrandMark href="/" size="lg" wordmarkFont="sans" />
 				</div>
 
-				<div className="relative isolate z-10 flex h-[calc(100dvh-1.25rem)] w-full min-w-0 flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-card font-medium shadow-lg md:w-1/2 md:max-w-[50%]">
+				<div className="relative isolate z-10 flex min-h-0 w-full min-w-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-card font-medium shadow-lg md:h-[calc(100dvh-1.25rem)] md:w-1/2 md:max-w-[50%] md:flex-none">
 					<div className="relative flex min-h-0 w-full min-w-0 flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden overscroll-contain p-8 max-md:px-6 max-md:pt-[max(5rem,calc(env(safe-area-inset-top)+3.5rem))] max-md:pb-[max(2rem,env(safe-area-inset-bottom))]">
 						<div className="mx-auto w-full min-w-0 max-w-md">
 							{/* CSS enter (not Motion opacity) — direct /sign-in on mobile stayed invisible after useSession re-render. */}
