@@ -91,6 +91,7 @@ export function useTvDetailUserState(
 			posterUrl: options?.posterUrl ?? undefined,
 			averageRating: options?.averageRating ?? undefined,
 			priorLogCount: scopedPrior,
+			priorLiked: myLogs.some((row) => row.liked),
 			priorTvLogs: myLogs,
 			rewatch: isRewatch,
 			logScope: scope?.logScope,

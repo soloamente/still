@@ -139,6 +139,8 @@ export type QuickLogArgs = {
 	watchVenue?: HomeVenue;
 	/** When logging again after an existing diary row — defaults rewatch on. */
 	priorLogCount?: number;
+	/** Patron already favorited this title — prefill/hide re-add on rewatch compose. */
+	priorLiked?: boolean;
 	/** TV only — recompute rewatch when scope/season/episode changes in the sheet. */
 	priorTvLogs?: MyTvLog[];
 	/** TV diary scope — defaults to whole show when omitted. */
@@ -224,6 +226,19 @@ function tvLogScopePayload(
  * Cinematic log / edit sheet — rating slider, watch venue, rewatch, and favorite.
  * Mounted in `AppShell` so any client surface can open it via `useQuickLog`.
  */
+/** Title-level favorite before composing a new rewatch log (not the new row's `liked`). */
+function resolvePriorTitleFavorited(
+	args: QuickLogArgs,
+	scopedPrior: number,
+): boolean {
+	if (args.logId) return Boolean(args.liked);
+	if (args.priorLiked != null) return Boolean(args.priorLiked);
+	if (args.liked != null) return Boolean(args.liked);
+	if (args.priorTvLogs?.some((row) => row.liked)) return true;
+	void scopedPrior;
+	return false;
+}
+
 export function QuickLogRoot() {
 	const { isOpen, args, close } = useQuickLog();
 	const isMobileVaul = useMobileQuickLogVaul();
@@ -241,6 +256,8 @@ export function QuickLogRoot() {
 	const [watchVenue, setWatchVenue] = useState<HomeVenue>("streaming");
 	const [liked, setLiked] = useState(false);
 	const [rewatch, setRewatch] = useState(false);
+	/** Rewatch compose when the title is already on the patron Favorites list. */
+	const [titleAlreadyFavorited, setTitleAlreadyFavorited] = useState(false);
 	const [logScope, setLogScope] = useState<TvLogScope>("show");
 	const [seasonNumber, setSeasonNumber] = useState<number | null>(null);
 	const [episodeNumber, setEpisodeNumber] = useState<number | null>(null);
@@ -393,6 +410,7 @@ export function QuickLogRoot() {
 			setWatchVenue("streaming");
 			setLiked(false);
 			setRewatch(false);
+			setTitleAlreadyFavorited(false);
 			setLogScope("show");
 			setSeasonNumber(null);
 			setEpisodeNumber(null);
@@ -461,7 +479,6 @@ export function QuickLogRoot() {
 		setRatingDisplay(DEFAULT_RATING);
 		setIncludeRating(true);
 		setNote("");
-		setLiked(false);
 		const scope = args.logScope ?? "show";
 		const scopedPrior =
 			args.priorTvLogs != null
@@ -471,8 +488,12 @@ export function QuickLogRoot() {
 						episodeNumber: args.episodeNumber ?? null,
 					})
 				: (args.priorLogCount ?? 0);
+		const isRewatchCompose = Boolean(args.rewatch) || scopedPrior > 0;
+		const priorFavorited = resolvePriorTitleFavorited(args, scopedPrior);
+		setTitleAlreadyFavorited(isRewatchCompose && priorFavorited);
+		setLiked(isRewatchCompose ? priorFavorited : false);
 		// Honor explicit rewatch from rewatch entry points (hero / season row).
-		setRewatch(Boolean(args.rewatch) || scopedPrior > 0);
+		setRewatch(isRewatchCompose);
 		tvScopeEffectReady.current = false;
 		setWatchVenue("streaming");
 		setLogScope(scope);
@@ -623,12 +644,18 @@ export function QuickLogRoot() {
 
 			if (tvId == null && movieId == null) return;
 
+			const omitRewatchFavorite =
+				!args.logId && rewatch && titleAlreadyFavorited;
 			const logPayload = {
 				watchedAt: ymdToNoonIso(watchedDate),
 				rating: storedRating ?? undefined,
 				note: !options.skipDetails && note.trim() ? note.trim() : undefined,
 				watchVenue,
-				liked: options.skipDetails ? undefined : liked || undefined,
+				liked: options.skipDetails
+					? undefined
+					: omitRewatchFavorite
+						? undefined
+						: liked || undefined,
 				rewatch: options.skipDetails ? undefined : rewatch || undefined,
 				...(visibilityTouched ? { visibility } : {}),
 				...(tvId != null
@@ -889,42 +916,45 @@ export function QuickLogRoot() {
 							]}
 						/>
 					</div>
-					<div className="t-avatar">
-						<TooltipProvider delay={0} closeDelay={80}>
-							<DetailIconTooltip
-								label={liked ? "Remove favorite" : "Mark as favorite"}
-							>
-								<DetailMotionButton
-									layout={sheetLayoutActive ? "position" : false}
-									className={cn(
-										"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
-										!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-										liked && "bg-foreground text-background",
-									)}
-									aria-pressed={liked}
-									aria-label={liked ? "Remove favorite" : "Mark as favorite"}
-									transition={{
-										...detailMotion.buttonTransition,
-										layout: metaRowLayoutTransition,
-									}}
-									onClick={() => setLiked((v) => !v)}
+					{/* Favorites are title-level — hide re-add when already on the list during rewatch. */}
+					{!(titleAlreadyFavorited && rewatch && !isEditMode) ? (
+						<div className="t-avatar">
+							<TooltipProvider delay={0} closeDelay={80}>
+								<DetailIconTooltip
+									label={liked ? "Remove favorite" : "Mark as favorite"}
 								>
-									<span
-										className="t-icon-swap"
-										data-state={liked ? "b" : "a"}
-										aria-hidden
+									<DetailMotionButton
+										layout={sheetLayoutActive ? "position" : false}
+										className={cn(
+											"inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-background transition-colors duration-200 ease-out motion-reduce:transition-none",
+											!liked && DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+											liked && "bg-foreground text-background",
+										)}
+										aria-pressed={liked}
+										aria-label={liked ? "Remove favorite" : "Mark as favorite"}
+										transition={{
+											...detailMotion.buttonTransition,
+											layout: metaRowLayoutTransition,
+										}}
+										onClick={() => setLiked((v) => !v)}
 									>
-										<span className="t-icon" data-icon="a">
-											<IconHeart className="size-5" aria-hidden />
+										<span
+											className="t-icon-swap"
+											data-state={liked ? "b" : "a"}
+											aria-hidden
+										>
+											<span className="t-icon" data-icon="a">
+												<IconHeart className="size-5" aria-hidden />
+											</span>
+											<span className="t-icon" data-icon="b">
+												<IconHeartFilled className="size-5" aria-hidden />
+											</span>
 										</span>
-										<span className="t-icon" data-icon="b">
-											<IconHeartFilled className="size-5" aria-hidden />
-										</span>
-									</span>
-								</DetailMotionButton>
-							</DetailIconTooltip>
-						</TooltipProvider>
-					</div>
+									</DetailMotionButton>
+								</DetailIconTooltip>
+							</TooltipProvider>
+						</div>
+					) : null}
 				</div>
 
 				<div className="mx-auto w-full max-w-sm space-y-2">

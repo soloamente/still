@@ -14,6 +14,8 @@ export type HomeLobbySearchParams = {
 	animeSeason?: string;
 	/** Leaderboard window when community sort is `ranks`. */
 	period?: string;
+	/** Film vs TV logs when `sort=ranks`. */
+	rank?: string;
 	genre?: string;
 	monetization?: string;
 };
@@ -34,6 +36,7 @@ export function parseHomeLobbyHrefCookie(
 			url.searchParams.has("run") ||
 			url.searchParams.has("animeSeason") ||
 			url.searchParams.has("period") ||
+			url.searchParams.has("rank") ||
 			url.searchParams.has("genre") ||
 			url.searchParams.has("monetization");
 		if (!hasAny) return null;
@@ -44,6 +47,7 @@ export function parseHomeLobbyHrefCookie(
 			run: url.searchParams.get("run") ?? undefined,
 			animeSeason: url.searchParams.get("animeSeason") ?? undefined,
 			period: url.searchParams.get("period") ?? undefined,
+			rank: url.searchParams.get("rank") ?? undefined,
 			genre: url.searchParams.get("genre") ?? undefined,
 			monetization: url.searchParams.get("monetization") ?? undefined,
 		};
@@ -74,6 +78,7 @@ export function isBareHomeLobbySearchParams(
 		!sp.run &&
 		!sp.animeSeason &&
 		!sp.period &&
+		!sp.rank &&
 		!sp.genre &&
 		!sp.monetization
 	);

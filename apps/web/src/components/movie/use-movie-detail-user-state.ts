@@ -90,6 +90,7 @@ export function useMovieDetailUserState(
 			posterUrl: options?.posterUrl ?? undefined,
 			averageRating: options?.averageRating ?? undefined,
 			priorLogCount: myLogs.length,
+			priorLiked: myLogs.some((row) => row.liked),
 			rewatch: isRewatch,
 			onSuccess: () => {
 				void play("reel-clack").catch(() => undefined);

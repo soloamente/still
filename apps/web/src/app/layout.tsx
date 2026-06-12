@@ -127,6 +127,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+	// Extend the page canvas under the notch / home indicator on iOS Safari.
+	viewportFit: "cover",
 	themeColor: [
 		{ media: "(prefers-color-scheme: light)", color: "#f2f2f2" },
 		{ media: "(prefers-color-scheme: dark)", color: "#09090a" },
