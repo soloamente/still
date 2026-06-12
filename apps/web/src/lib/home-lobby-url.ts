@@ -6,8 +6,14 @@ import {
 	type HomeCatalogRun,
 } from "@/lib/home-catalog-run";
 import type { HomeCatalogSort } from "@/lib/home-catalog-sort";
-import type { HomeCommunityFeed } from "@/lib/home-community-feed";
-import { DEFAULT_HOME_COMMUNITY_FEED } from "@/lib/home-community-feed";
+import type {
+	HomeCommunityFeed,
+	HomeCommunityRankKind,
+} from "@/lib/home-community-feed";
+import {
+	DEFAULT_HOME_COMMUNITY_FEED,
+	DEFAULT_HOME_COMMUNITY_RANK_KIND,
+} from "@/lib/home-community-feed";
 import {
 	DEFAULT_HOME_LEADERBOARD_PERIOD,
 	type HomeLeaderboardPeriod,
@@ -48,6 +54,8 @@ export function buildHomeLobbyHref(input: {
 	animeSeason?: boolean;
 	/** Time window for Community tabs (`lists`, `activity`, ranks, …). */
 	period?: HomeLeaderboardPeriod;
+	/** Film vs TV logs when `sort=ranks`. */
+	rankKind?: HomeCommunityRankKind;
 	/** Discover refinements — movies lobby filter popover. */
 	genreId?: number | null;
 	monetization?: string | null;
@@ -63,6 +71,12 @@ export function buildHomeLobbyHref(input: {
 		const period = input.period ?? DEFAULT_HOME_LEADERBOARD_PERIOD;
 		if (period !== DEFAULT_HOME_LEADERBOARD_PERIOD) {
 			params.set("period", period);
+		}
+		if (feed === "ranks") {
+			const rankKind = input.rankKind ?? DEFAULT_HOME_COMMUNITY_RANK_KIND;
+			if (rankKind !== DEFAULT_HOME_COMMUNITY_RANK_KIND) {
+				params.set("rank", rankKind);
+			}
 		}
 	} else {
 		if (input.browse === "tv") {

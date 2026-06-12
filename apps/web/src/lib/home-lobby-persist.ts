@@ -11,8 +11,11 @@ import {
 } from "@/lib/home-catalog-sort";
 import {
 	DEFAULT_HOME_COMMUNITY_FEED,
+	DEFAULT_HOME_COMMUNITY_RANK_KIND,
 	type HomeCommunityFeed,
+	type HomeCommunityRankKind,
 	parseHomeCommunityFeed,
+	parseHomeCommunityRankKind,
 } from "@/lib/home-community-feed";
 import {
 	DEFAULT_HOME_LEADERBOARD_PERIOD,
@@ -39,6 +42,7 @@ export interface HomeLobbyPersisted {
 	community: {
 		feed: HomeCommunityFeed;
 		period?: HomeLeaderboardPeriod;
+		rankKind?: HomeCommunityRankKind;
 	} | null;
 	/** Last `/home` browse rail — used when film detail has no same-origin referrer. */
 	lastBrowseSurface?: HomeBrowseSurface | null;
@@ -84,10 +88,12 @@ export function mergePersistFromHomeUrl(
 	const prev = readHomeLobbyPersisted() ?? emptyHomeLobbyPersisted();
 	prev.lastBrowseSurface = surface;
 	if (surface === "community") {
-		const feed = parseHomeCommunityFeed(params.get("sort"));
+		const sort = params.get("sort");
+		const feed = parseHomeCommunityFeed(sort);
 		prev.community = {
 			feed,
 			period: parseHomeCommunityPeriod(params.get("period")),
+			rankKind: parseHomeCommunityRankKind(params.get("rank"), sort),
 		};
 		writeHomeLobbyPersisted(prev);
 		return;
@@ -116,11 +122,13 @@ export function homeLobbyHrefFromSearchParams(
 	params: URLSearchParams,
 ): string {
 	if (surface === "community") {
-		const feed = parseHomeCommunityFeed(params.get("sort"));
+		const sort = params.get("sort");
+		const feed = parseHomeCommunityFeed(sort);
 		return buildHomeLobbyHref({
 			browse: "community",
 			sort: feed,
 			period: parseHomeCommunityPeriod(params.get("period")),
+			rankKind: parseHomeCommunityRankKind(params.get("rank"), sort),
 		});
 	}
 	const sort = parseHomeCatalogSort(params.get("sort"), surface);
@@ -161,6 +169,8 @@ export function buildHomeHrefFromPersisted(
 			browse: "community",
 			sort: feed,
 			period: persisted.community?.period ?? DEFAULT_HOME_LEADERBOARD_PERIOD,
+			rankKind:
+				persisted.community?.rankKind ?? DEFAULT_HOME_COMMUNITY_RANK_KIND,
 		});
 	}
 	if (surface === "tv") {

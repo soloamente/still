@@ -48,12 +48,12 @@ export function AchievementsCreatorAnalyticsCard() {
 
 	if (!analytics) return null;
 
-	const { stats, topLists, headline } = analytics;
+	const { stats, topLists } = analytics;
 
 	return (
 		<div className="mx-auto w-full max-w-md rounded-2xl bg-background px-5 py-4">
 			<div className="space-y-4">
-				<div className="space-y-1 text-center">
+				<div className="text-center">
 					<div className="inline-flex items-center gap-1.5 rounded-full bg-card px-3 py-1 font-medium text-[11px] text-desert-orange tracking-wide">
 						<IconListPlay
 							className="size-3.5 shrink-0 opacity-90"
@@ -61,9 +61,6 @@ export function AchievementsCreatorAnalyticsCard() {
 						/>
 						Curator reach
 					</div>
-					<p className="text-balance text-muted-foreground text-xs leading-relaxed">
-						{headline}
-					</p>
 				</div>
 
 				<dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -84,7 +81,9 @@ export function AchievementsCreatorAnalyticsCard() {
 
 				{topLists.length > 0 ? (
 					<div className="space-y-2">
-						<p className="font-medium text-foreground text-xs">Top lists</p>
+						<p className="text-center font-medium text-foreground text-xs">
+							Top lists
+						</p>
 						<ul className="space-y-1.5">
 							{topLists.map((row) => {
 								const updated = formatUpdatedAt(row.updatedAt);

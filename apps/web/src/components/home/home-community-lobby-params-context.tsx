@@ -16,7 +16,11 @@ import {
 	homeLeaderboardMapsAreEmpty,
 } from "@/lib/fetch-home-leaderboards-client";
 import type { CommunityFeedSeed } from "@/lib/home-community-core-fetch";
-import type { HomeCommunityFeed } from "@/lib/home-community-feed";
+import type {
+	HomeCommunityFeed,
+	HomeCommunityRankKind,
+} from "@/lib/home-community-feed";
+import { isHomeLeaderboardFeed } from "@/lib/home-community-feed";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
@@ -24,12 +28,14 @@ import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 interface HomeCommunityLobbySnapshot {
 	feed: HomeCommunityFeed;
 	period: HomeLeaderboardPeriod;
+	rankKind: HomeCommunityRankKind;
 }
 
 interface HomeCommunityLobbyParamsContextValue
 	extends HomeCommunityLobbySnapshot {
 	committedFeed: HomeCommunityFeed;
 	committedPeriod: HomeLeaderboardPeriod;
+	committedRankKind: HomeCommunityRankKind;
 	seed: CommunityFeedSeed;
 	leaderboard: LeaderboardPayload | null;
 	leaderboardsLoading: boolean;
@@ -37,6 +43,7 @@ interface HomeCommunityLobbyParamsContextValue
 	retryLeaderboards: () => void;
 	selectFeed: (feed: HomeCommunityFeed) => void;
 	selectPeriod: (period: HomeLeaderboardPeriod) => void;
+	selectRankKind: (rankKind: HomeCommunityRankKind) => void;
 }
 
 const HomeCommunityLobbyParamsContext =
@@ -46,12 +53,14 @@ export function HomeCommunityLobbyParamsProvider({
 	seed,
 	feed,
 	period,
+	rankKind,
 	signedIn: _signedIn,
 	children,
 }: {
 	seed: CommunityFeedSeed;
 	feed: HomeCommunityFeed;
 	period: HomeLeaderboardPeriod;
+	rankKind: HomeCommunityRankKind;
 	signedIn: boolean;
 	children: ReactNode;
 }) {
@@ -129,28 +138,32 @@ export function HomeCommunityLobbyParamsProvider({
 	// Committed state is the URL-resolved feed/period props from the RSC; `pending`
 	// is the optimistic overlay so chip navigation feels instant.
 	const committed = useMemo<HomeCommunityLobbySnapshot>(
-		() => ({ feed, period }),
-		[feed, period],
+		() => ({ feed, period, rankKind }),
+		[feed, period, rankKind],
 	);
 	const active = pending ?? committed;
 
 	useEffect(() => {
-		if (pending && pending.feed === feed && pending.period === period) {
+		if (
+			pending &&
+			pending.feed === feed &&
+			pending.period === period &&
+			pending.rankKind === rankKind
+		) {
 			setPending(null);
 		}
-	}, [pending, feed, period]);
+	}, [pending, feed, period, rankKind]);
 
 	const leaderboard = useMemo(() => {
-		if (active.feed === "film-ranks") {
-			return filmLeaderboardsByPeriod[active.period] ?? null;
-		}
-		if (active.feed === "tv-ranks") {
+		if (!isHomeLeaderboardFeed(active.feed)) return null;
+		if (active.rankKind === "tv") {
 			return tvLeaderboardsByPeriod[active.period] ?? null;
 		}
-		return null;
+		return filmLeaderboardsByPeriod[active.period] ?? null;
 	}, [
 		active.feed,
 		active.period,
+		active.rankKind,
 		filmLeaderboardsByPeriod,
 		tvLeaderboardsByPeriod,
 	]);
@@ -163,6 +176,7 @@ export function HomeCommunityLobbyParamsProvider({
 					browse: "community",
 					sort: next.feed,
 					period: next.period,
+					rankKind: next.rankKind,
 				}),
 			);
 		},
@@ -171,24 +185,46 @@ export function HomeCommunityLobbyParamsProvider({
 
 	const selectFeed = useCallback(
 		(nextFeed: HomeCommunityFeed) => {
-			navigateLobby({ feed: nextFeed, period: active.period });
+			navigateLobby({
+				feed: nextFeed,
+				period: active.period,
+				rankKind: active.rankKind,
+			});
 		},
-		[active.period, navigateLobby],
+		[active.period, active.rankKind, navigateLobby],
 	);
 
 	const selectPeriod = useCallback(
 		(nextPeriod: HomeLeaderboardPeriod) => {
-			navigateLobby({ feed: active.feed, period: nextPeriod });
+			navigateLobby({
+				feed: active.feed,
+				period: nextPeriod,
+				rankKind: active.rankKind,
+			});
 		},
-		[active.feed, navigateLobby],
+		[active.feed, active.rankKind, navigateLobby],
+	);
+
+	const selectRankKind = useCallback(
+		(nextRankKind: HomeCommunityRankKind) => {
+			if (!isHomeLeaderboardFeed(active.feed)) return;
+			navigateLobby({
+				feed: active.feed,
+				period: active.period,
+				rankKind: nextRankKind,
+			});
+		},
+		[active.feed, active.period, navigateLobby],
 	);
 
 	const value = useMemo(
 		(): HomeCommunityLobbyParamsContextValue => ({
 			feed: active.feed,
 			period: active.period,
+			rankKind: active.rankKind,
 			committedFeed: feed,
 			committedPeriod: period,
+			committedRankKind: rankKind,
 			seed,
 			leaderboard,
 			leaderboardsLoading,
@@ -196,12 +232,15 @@ export function HomeCommunityLobbyParamsProvider({
 			retryLeaderboards,
 			selectFeed,
 			selectPeriod,
+			selectRankKind,
 		}),
 		[
 			active.feed,
 			active.period,
+			active.rankKind,
 			feed,
 			period,
+			rankKind,
 			seed,
 			leaderboard,
 			leaderboardsLoading,
@@ -209,6 +248,7 @@ export function HomeCommunityLobbyParamsProvider({
 			retryLeaderboards,
 			selectFeed,
 			selectPeriod,
+			selectRankKind,
 		],
 	);
 

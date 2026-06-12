@@ -15,8 +15,8 @@ import { HomeCatalogSortChips } from "@/components/home/home-catalog-sort-chips"
 import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
 import { HomeCatalogueSearchInfinite } from "@/components/home/home-catalogue-search-infinite";
 import { HomeCommunityPatronBody } from "@/components/home/home-community-patron-shell";
-import { HomeCommunityPeriodToolbar } from "@/components/home/home-community-period-toolbar";
 import { HomeCommunityRscPayload } from "@/components/home/home-community-rsc-payload";
+import { HomeCommunityTrailingToolbar } from "@/components/home/home-community-trailing-toolbar";
 import { HomeContinueWatchingRail } from "@/components/home/home-continue-watching-rail";
 import { HomeLobbyBodyGate } from "@/components/home/home-lobby-body-gate";
 import { HomeLobbyFilterRow } from "@/components/home/home-lobby-filter-row";
@@ -53,7 +53,10 @@ import {
 	isHomeCatalogueSearchActive,
 	parseHomeCatalogueSearchLobbySort,
 } from "@/lib/home-catalogue-search-param";
-import { parseHomeCommunityFeed } from "@/lib/home-community-feed";
+import {
+	parseHomeCommunityFeed,
+	parseHomeCommunityRankKind,
+} from "@/lib/home-community-feed";
 import { parseHomeCommunityPeriod } from "@/lib/home-leaderboard-period";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -123,6 +126,8 @@ export default async function HomePage({
 		run?: string;
 		animeSeason?: string;
 		period?: string;
+		/** Films vs TV when `sort=ranks`. */
+		rank?: string;
 		search?: string;
 		genre?: string;
 		monetization?: string;
@@ -202,6 +207,7 @@ export default async function HomePage({
 	const sort = parseHomeCatalogSort(sp.sort, browse);
 	const communityFeed = parseHomeCommunityFeed(sp.sort);
 	const communityPeriod = parseHomeCommunityPeriod(sp.period);
+	const communityRankKind = parseHomeCommunityRankKind(sp.rank, sp.sort);
 	const movieVenue =
 		browse === "movies" ? parseHomeVenue(sp.venue, sort) : null;
 	const tvVenue =
@@ -689,9 +695,10 @@ export default async function HomePage({
 								<HomeCommunityRscPayload
 									feed={communityFeed}
 									period={communityPeriod}
+									rankKind={communityRankKind}
 								>
 									<HomeLobbyFilterRow
-										leadingScrollKey={`community-${communityFeed}`}
+										leadingScrollKey={`community-${communityFeed}-${communityRankKind}`}
 										leading={
 											<Suspense fallback={<LobbyCatalogChipFallback />}>
 												<HomeCatalogSortChips catalogBrowse="community" />
@@ -699,7 +706,7 @@ export default async function HomePage({
 										}
 										trailing={
 											<Suspense fallback={<LobbyVenueChipFallback />}>
-												<HomeCommunityPeriodToolbar />
+												<HomeCommunityTrailingToolbar />
 											</Suspense>
 										}
 									/>

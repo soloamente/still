@@ -59,7 +59,7 @@ function mergeAchievementRows(
 }
 
 /**
- * Achievements lobby ÔÇö profile/diary shell (`bg-card` tray, sticky top bar, tab chips).
+ * Achievements lobby — profile/diary shell (`bg-card` tray, sticky top bar, tab chips).
  */
 export function AchievementsLobby({
 	activeTab,
@@ -91,7 +91,7 @@ export function AchievementsLobby({
 					</p>
 					<p className="mx-auto max-w-xs text-balance text-muted-foreground text-sm leading-relaxed">
 						Badges mark moments on the circuit. <br /> Goals track the slow-burn
-						routes ÔÇö log, review, and show up for your circle.
+						routes — log, review, and show up for your circle.
 					</p>
 				</header>
 

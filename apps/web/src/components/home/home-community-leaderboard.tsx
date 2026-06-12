@@ -14,15 +14,14 @@ import { fetchCommunityLeaderboard } from "@/lib/still-api-fetch";
  * Community rank feeds — period chips, tier podium, list from #4, optional viewer footer.
  */
 export function HomeCommunityLeaderboard({
-	feed,
+	kind,
 	data: initialData,
 	viewerUserId,
 }: {
-	feed: "film-ranks" | "tv-ranks";
+	kind: "films" | "tv";
 	data: LeaderboardPayload;
 	viewerUserId: string | null;
 }) {
-	const kind = feed === "film-ranks" ? "films" : "tv";
 	const [data, setData] = useState(initialData);
 
 	// SSR uses UTC; refetch in the patron's zone so week/month boundaries match local midnight.
@@ -68,7 +67,7 @@ export function HomeCommunityLeaderboard({
 			<div className="flex min-h-0 flex-1 flex-col gap-4">
 				<HomeCommunityEmpty
 					title={
-						feed === "film-ranks"
+						kind === "films"
 							? "No film logs this period"
 							: "No TV logs this period"
 					}

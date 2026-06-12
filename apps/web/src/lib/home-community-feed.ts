@@ -2,17 +2,28 @@
  * Community lobby “sort” dimension — maps to `?sort=` when `?browse=community`.
  * (Movies/TV still use {@link import("./home-catalog-sort").HomeCatalogSort}.)
  */
-export type HomeCommunityFeed =
-	| "lists"
-	| "reviews"
-	| "activity"
-	| "film-ranks"
-	| "tv-ranks";
+export type HomeCommunityFeed = "lists" | "reviews" | "activity" | "ranks";
+
+/** Film vs TV diary logs when `sort=ranks` — `?rank=` on the URL. */
+export type HomeCommunityRankKind = "films" | "tv";
+
+export const HOME_COMMUNITY_RANK_KINDS = [
+	{ id: "films", label: "Films" },
+	{ id: "tv", label: "TV" },
+] as const satisfies readonly { id: HomeCommunityRankKind; label: string }[];
+
+export const DEFAULT_HOME_COMMUNITY_RANK_KIND: HomeCommunityRankKind = "films";
 
 export function isHomeLeaderboardFeed(
 	feed: HomeCommunityFeed,
-): feed is "film-ranks" | "tv-ranks" {
-	return feed === "film-ranks" || feed === "tv-ranks";
+): feed is "ranks" {
+	return feed === "ranks";
+}
+
+export function homeCommunityRankKindLabel(
+	kind: HomeCommunityRankKind,
+): string {
+	return kind === "tv" ? "TV" : "Films";
 }
 
 export const HOME_COMMUNITY_FEEDS: readonly {
@@ -38,14 +49,9 @@ export const HOME_COMMUNITY_FEEDS: readonly {
 		hint: "Watch logs, reviews, and lists from people you follow",
 	},
 	{
-		id: "film-ranks",
-		label: "Film ranks",
-		hint: "Patrons ranked by movie diary logs in this period",
-	},
-	{
-		id: "tv-ranks",
-		label: "TV ranks",
-		hint: "Patrons ranked by TV diary logs in this period",
+		id: "ranks",
+		label: "Ranks",
+		hint: "Patrons ranked by diary logs in this period — switch Films or TV on the right",
 	},
 ];
 
@@ -55,6 +61,9 @@ export const DEFAULT_HOME_COMMUNITY_FEED: HomeCommunityFeed = "lists";
 /**
  * Reads `?sort=` for the community lobby. TMDb values (`latest`, `popular`) normalize
  * to {@link DEFAULT_HOME_COMMUNITY_FEED} when users switch from Movies/TV.
+ *
+ * Legacy `film-ranks` / `tv-ranks` normalize to `ranks` — pair with
+ * {@link parseHomeCommunityRankKind} for the film/TV slice.
  */
 export function parseHomeCommunityFeed(
 	raw: string | undefined | null,
@@ -71,9 +80,34 @@ export function parseHomeCommunityFeed(
 		s === "log"
 	)
 		return "activity";
-	if (s === "film-ranks" || s === "film-rank" || s === "films") {
-		return "film-ranks";
+	if (
+		s === "ranks" ||
+		s === "rank" ||
+		s === "film-ranks" ||
+		s === "film-rank" ||
+		s === "films" ||
+		s === "tv-ranks" ||
+		s === "tv-rank"
+	) {
+		return "ranks";
 	}
-	if (s === "tv-ranks" || s === "tv-rank") return "tv-ranks";
 	return DEFAULT_HOME_COMMUNITY_FEED;
+}
+
+/**
+ * Reads `?rank=` when `sort=ranks`. Legacy `?sort=film-ranks|tv-ranks` still imply kind.
+ */
+export function parseHomeCommunityRankKind(
+	rankParam: string | undefined | null,
+	sortParam: string | undefined | null,
+): HomeCommunityRankKind {
+	const sort = sortParam?.trim().toLowerCase() ?? "";
+	if (sort === "tv-ranks" || sort === "tv-rank") return "tv";
+	if (sort === "film-ranks" || sort === "film-rank" || sort === "films") {
+		return "films";
+	}
+
+	const rank = rankParam?.trim().toLowerCase() ?? "";
+	if (rank === "tv" || rank === "shows" || rank === "tv-shows") return "tv";
+	return DEFAULT_HOME_COMMUNITY_RANK_KIND;
 }

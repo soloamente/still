@@ -57,11 +57,11 @@ export function MovieDetailStreaming({
 	}
 
 	return (
-		<div className="mx-auto flex w-full min-w-0 max-w-2xl flex-1 flex-col gap-8">
+		<div className="mx-auto flex w-full min-w-0 max-w-2xl flex-col gap-8">
 			{/* Provider picker — native horizontal scroll; Lenis ignores wheel here. */}
 			<div
 				data-lenis-prevent-wheel
-				className="scrollbar-none -mx-1 flex flex-nowrap gap-2 overflow-x-auto overscroll-x-contain px-1 pb-1 [-webkit-overflow-scrolling:touch]"
+				className="scrollbar-none -mx-1 flex flex-nowrap items-start gap-2 overflow-x-auto overscroll-x-contain px-1 pb-1 [-webkit-overflow-scrolling:touch]"
 				role="tablist"
 				aria-label="Streaming and rental services"
 			>

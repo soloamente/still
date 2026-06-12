@@ -1447,9 +1447,33 @@ html.theme-lobby-light .cinema-vignette {
 	}
 
 	/*
-   * Auth inputs (`bg-input` on `bg-card`) — WebKit autofill paints a light/yellow fill;
-   * inset shadow + long transition keeps the raised input surface on sign-in / sign-up.
-   */
+	 * Auth shell enter — transform only (opacity stays 1) so direct mobile loads never
+	 * stick invisible when Motion re-runs after `useSession` resolves.
+	 */
+	@keyframes auth-page-content-enter {
+		from {
+			transform: translateY(8px) scale(0.98);
+		}
+		to {
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	.auth-page-content-enter {
+		animation: auth-page-content-enter 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+		will-change: transform;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.auth-page-content-enter {
+			animation: none;
+		}
+	}
+
+	/*
+	 * Auth inputs (`bg-input` on `bg-card`) — WebKit autofill paints a light/yellow fill;
+	 * inset shadow + long transition keeps the raised input surface on sign-in / sign-up.
+	 */
 	.auth-input:-webkit-autofill,
 	.auth-input:-webkit-autofill:hover,
 	.auth-input:-webkit-autofill:focus,

@@ -15,6 +15,7 @@ import { APP_NAME } from "@/lib/app-brand";
 import type { CommunityFeedSeed } from "@/lib/home-community-core-fetch";
 import {
 	type HomeCommunityFeed,
+	type HomeCommunityRankKind,
 	isHomeLeaderboardFeed,
 } from "@/lib/home-community-feed";
 import {
@@ -83,6 +84,7 @@ function HomeCommunityLobbyRanksFallback({
 export function HomeCommunityLobby({
 	feed,
 	period,
+	rankKind,
 	seed,
 	leaderboard,
 	monochromePeersOnHover,
@@ -91,6 +93,7 @@ export function HomeCommunityLobby({
 }: {
 	feed: HomeCommunityFeed;
 	period: HomeLeaderboardPeriod;
+	rankKind: HomeCommunityRankKind;
 	seed: CommunityFeedSeed;
 	leaderboard: LeaderboardPayload | null;
 	monochromePeersOnHover: boolean;
@@ -111,7 +114,7 @@ export function HomeCommunityLobby({
 		return (
 			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
 				<HomeCommunityLeaderboard
-					feed={feed}
+					kind={rankKind}
 					data={leaderboard}
 					viewerUserId={viewerUserId}
 				/>

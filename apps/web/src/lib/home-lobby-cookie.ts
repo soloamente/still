@@ -12,7 +12,7 @@ export type HomeLobbySearchParams = {
 	run?: string;
 	/** TV seasonal anime slice (`?animeSeason=1`, SN.17.2). */
 	animeSeason?: string;
-	/** Leaderboard window when community sort is `film-ranks` or `tv-ranks`. */
+	/** Leaderboard window when community sort is `ranks`. */
 	period?: string;
 	genre?: string;
 	monetization?: string;

@@ -9,7 +9,10 @@ import {
 	useHomeCommunityLobbyParams,
 } from "@/components/home/home-community-lobby-params-context";
 import type { CommunityFeedSeed } from "@/lib/home-community-core-fetch";
-import type { HomeCommunityFeed } from "@/lib/home-community-feed";
+import type {
+	HomeCommunityFeed,
+	HomeCommunityRankKind,
+} from "@/lib/home-community-feed";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 
 export function HomeCommunityPatronBody({
@@ -21,12 +24,23 @@ export function HomeCommunityPatronBody({
 	signedIn: boolean;
 	viewerUserId: string | null;
 }) {
-	const { feed, committedFeed, period, committedPeriod, seed, leaderboard } =
-		useHomeCommunityLobbyParams();
+	const {
+		feed,
+		committedFeed,
+		period,
+		committedPeriod,
+		rankKind,
+		committedRankKind,
+		seed,
+		leaderboard,
+	} = useHomeCommunityLobbyParams();
 
 	// Optimistic chip taps use `useTransition` — RSC keeps the previous tab's body
 	// until the new payload lands; show a feed-shaped skeleton instead of stale empty states.
-	const lobbyBodyStale = feed !== committedFeed || period !== committedPeriod;
+	const lobbyBodyStale =
+		feed !== committedFeed ||
+		period !== committedPeriod ||
+		rankKind !== committedRankKind;
 
 	if (lobbyBodyStale) {
 		return <CommunityFeedSkeleton feed={feed} />;
@@ -36,6 +50,7 @@ export function HomeCommunityPatronBody({
 		<HomeCommunityLobby
 			feed={committedFeed}
 			period={committedPeriod}
+			rankKind={committedRankKind}
 			seed={seed}
 			leaderboard={leaderboard}
 			monochromePeersOnHover={monochromePeersOnHover}
@@ -49,12 +64,14 @@ export function HomeCommunityPatronProviders({
 	seed,
 	feed,
 	period,
+	rankKind,
 	signedIn,
 	children,
 }: {
 	seed: CommunityFeedSeed;
 	feed: HomeCommunityFeed;
 	period: HomeLeaderboardPeriod;
+	rankKind: HomeCommunityRankKind;
 	signedIn: boolean;
 	children: ReactNode;
 }) {
@@ -63,6 +80,7 @@ export function HomeCommunityPatronProviders({
 			seed={seed}
 			feed={feed}
 			period={period}
+			rankKind={rankKind}
 			signedIn={signedIn}
 		>
 			{children}

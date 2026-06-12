@@ -232,7 +232,7 @@ const BADGES = [
 		id: "prestige_babel",
 		slug: "babel",
 		name: "Babel",
-		description: "Logged films in eight different languages.",
+		description: "Logged films in 8 different languages.",
 		tier: "platinum",
 		category: "prestige",
 		points: 130,

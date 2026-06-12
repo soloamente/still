@@ -37,14 +37,10 @@ export function AchievementsWatchStreakCard() {
 
 	if (loading) {
 		return (
-			<div
-				className="mx-auto h-auto w-fit max-w-full"
-				role="status"
-				aria-live="polite"
-			>
+			<div className="mx-auto w-full max-w-md" role="status" aria-live="polite">
 				<span className="sr-only">Loading streak</span>
 				<div
-					className="h-17 w-80 max-w-full animate-pulse rounded-2xl bg-muted/30"
+					className="h-20 w-full animate-pulse rounded-2xl bg-muted/30"
 					aria-hidden
 				/>
 			</div>
@@ -60,11 +56,19 @@ export function AchievementsWatchStreakCard() {
 		streak.shieldsRemaining > 0 && streak.status !== "at_risk";
 	const showDiaryNudge =
 		!hasCount || streak.status === "at_risk" || streak.status === "broken";
+	const showShieldAction =
+		streak.status === "at_risk" && streak.shieldsRemaining > 0;
+	const showActions = showShieldAction || showDiaryNudge;
 
 	return (
-		<div className="mx-auto h-auto w-fit max-w-full rounded-2xl bg-background px-5 py-3 text-center">
-			<div className="flex min-w-0 flex-col items-center justify-center gap-3 sm:gap-4">
-				<div className="flex min-w-0 flex-col items-center justify-center space-y-1 text-center">
+		<div className="mx-auto w-full max-w-md rounded-2xl bg-background px-5 py-3 text-center">
+			<div
+				className={cn(
+					"flex min-w-0 flex-col items-center",
+					showActions && "gap-3 sm:gap-4",
+				)}
+			>
+				<div className="flex min-w-0 flex-col items-center space-y-1 text-center">
 					<div
 						className="inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-0.5"
 						role="status"
@@ -114,25 +118,27 @@ export function AchievementsWatchStreakCard() {
 					) : null}
 				</div>
 
-				<div className="flex flex-wrap items-center justify-center gap-2">
-					{streak.status === "at_risk" && streak.shieldsRemaining > 0 ? (
-						<DetailMotionButton
-							type="button"
-							disabled={freezeBusy}
-							className={shieldPillClassName}
-							onClick={() => void freeze()}
-						>
-							{freezeBusy
-								? "Activating…"
-								: `Use shield (${streak.shieldsRemaining})`}
-						</DetailMotionButton>
-					) : null}
-					{showDiaryNudge ? (
-						<DetailMotionLink href="/diary" className={actionPillClassName}>
-							Go to diary
-						</DetailMotionLink>
-					) : null}
-				</div>
+				{showActions ? (
+					<div className="flex flex-wrap items-center justify-center gap-2">
+						{showShieldAction ? (
+							<DetailMotionButton
+								type="button"
+								disabled={freezeBusy}
+								className={shieldPillClassName}
+								onClick={() => void freeze()}
+							>
+								{freezeBusy
+									? "Activating…"
+									: `Use shield (${streak.shieldsRemaining})`}
+							</DetailMotionButton>
+						) : null}
+						{showDiaryNudge ? (
+							<DetailMotionLink href="/diary" className={actionPillClassName}>
+								Go to diary
+							</DetailMotionLink>
+						) : null}
+					</div>
+				) : null}
 			</div>
 		</div>
 	);

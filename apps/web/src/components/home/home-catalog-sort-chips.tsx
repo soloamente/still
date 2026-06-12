@@ -294,7 +294,7 @@ export function HomeCatalogSortChips({
 	const sortToolbarDescId = "home-catalog-sort-desc";
 	const sortToolbarDescription =
 		catalogBrowse === "community"
-			? "Choose what kind of member-made content to browse — public lists, reviews, or activity from people you follow."
+			? "Choose what kind of member-made content to browse — public lists, reviews, activity, or patron rankings. Switch Films or TV on the right when Ranks is active."
 			: catalogBrowse === "tv"
 				? searchParams.get("search")?.trim()
 					? "Latest and Popular reorder committed search results. Clear search from the chip on the right."

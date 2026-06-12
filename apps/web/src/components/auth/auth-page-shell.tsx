@@ -1,28 +1,16 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 import { AuthBackgroundCarousel } from "@/components/auth/auth-background-carousel";
 import { AuthSessionRedirect } from "@/components/auth/auth-session-redirect";
 import { BrandMark } from "@/components/brand-mark";
 import { authClient } from "@/lib/auth-client";
 
-const AUTH_PAGE_LOAD_EASE = [0.22, 1, 0.36, 1] as const;
-
-/** One compositor-friendly enter (opacity + transform). No blur/stagger — those caused jank. */
-const AUTH_PAGE_CONTENT_LOAD = {
-	initial: { opacity: 0, transform: "translateY(8px) scale(0.98)" },
-	animate: {
-		opacity: 1,
-		transform: "translateY(0px) scale(1)",
-	},
-	transition: { duration: 0.38, ease: AUTH_PAGE_LOAD_EASE },
-} as const;
-
 /**
- * Full-bleed auth chrome: carousel, wordmark, floating panel. Content fades in on first load
- * only; sign-in ↔ sign-up swaps instantly (shared layout keeps one shell instance).
+ * Full-bleed auth chrome: carousel, wordmark, floating panel. Content uses a CSS enter
+ * (transform-only) on first paint; sign-in ↔ sign-up swaps instantly (shared layout).
  */
 export function AuthPageShell({
 	title,
@@ -84,20 +72,15 @@ export function AuthPageShell({
 				<div className="relative isolate z-10 flex h-[calc(100dvh-1.25rem)] w-full min-w-0 flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-card font-medium shadow-lg md:w-1/2 md:max-w-[50%]">
 					<div className="relative flex min-h-0 w-full min-w-0 flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden overscroll-contain p-8">
 						<div className="mx-auto w-full min-w-0 max-w-md">
-							{reduceMotion ? (
-								<div className="flex w-full min-w-0 flex-col space-y-8">
-									{routeContent}
-								</div>
-							) : (
-								<motion.div
-									animate={AUTH_PAGE_CONTENT_LOAD.animate}
-									className="flex w-full min-w-0 flex-col space-y-8"
-									initial={AUTH_PAGE_CONTENT_LOAD.initial}
-									transition={AUTH_PAGE_CONTENT_LOAD.transition}
-								>
-									{routeContent}
-								</motion.div>
-							)}
+							{/* CSS enter (not Motion opacity) — direct /sign-in on mobile stayed invisible after useSession re-render. */}
+							<div
+								className={cn(
+									"flex w-full min-w-0 flex-col space-y-8",
+									!reduceMotion && "auth-page-content-enter",
+								)}
+							>
+								{routeContent}
+							</div>
 						</div>
 					</div>
 				</div>
