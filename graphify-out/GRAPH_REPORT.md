@@ -1,16 +1,16 @@
-# Graph Report - still  (2026-06-06)
+# Graph Report - still  (2026-06-12)
 
 ## Corpus Check
-- 1213 files · ~1,096,455 words
+- 1414 files · ~1,419,343 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 22968 nodes · 52399 edges · 884 communities (720 shown, 164 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 1200 edges (avg confidence: 0.8)
+- 24699 nodes · 55516 edges · 971 communities (790 shown, 181 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 1207 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1caf4087`
+- Built from commit: `d1c1d475`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -859,11 +859,97 @@
 - [[_COMMUNITY_Community 879|Community 879]]
 - [[_COMMUNITY_Community 880|Community 880]]
 - [[_COMMUNITY_Community 881|Community 881]]
+- [[_COMMUNITY_Community 882|Community 882]]
+- [[_COMMUNITY_Community 883|Community 883]]
+- [[_COMMUNITY_Community 884|Community 884]]
+- [[_COMMUNITY_Community 885|Community 885]]
+- [[_COMMUNITY_Community 886|Community 886]]
 - [[_COMMUNITY_Community 887|Community 887]]
+- [[_COMMUNITY_Community 888|Community 888]]
+- [[_COMMUNITY_Community 889|Community 889]]
+- [[_COMMUNITY_Community 890|Community 890]]
 - [[_COMMUNITY_Community 891|Community 891]]
+- [[_COMMUNITY_Community 892|Community 892]]
+- [[_COMMUNITY_Community 893|Community 893]]
+- [[_COMMUNITY_Community 894|Community 894]]
+- [[_COMMUNITY_Community 895|Community 895]]
+- [[_COMMUNITY_Community 896|Community 896]]
+- [[_COMMUNITY_Community 897|Community 897]]
+- [[_COMMUNITY_Community 898|Community 898]]
+- [[_COMMUNITY_Community 899|Community 899]]
+- [[_COMMUNITY_Community 900|Community 900]]
+- [[_COMMUNITY_Community 901|Community 901]]
+- [[_COMMUNITY_Community 902|Community 902]]
+- [[_COMMUNITY_Community 903|Community 903]]
+- [[_COMMUNITY_Community 904|Community 904]]
+- [[_COMMUNITY_Community 905|Community 905]]
+- [[_COMMUNITY_Community 906|Community 906]]
+- [[_COMMUNITY_Community 907|Community 907]]
+- [[_COMMUNITY_Community 908|Community 908]]
+- [[_COMMUNITY_Community 909|Community 909]]
+- [[_COMMUNITY_Community 910|Community 910]]
+- [[_COMMUNITY_Community 911|Community 911]]
+- [[_COMMUNITY_Community 912|Community 912]]
+- [[_COMMUNITY_Community 913|Community 913]]
+- [[_COMMUNITY_Community 914|Community 914]]
+- [[_COMMUNITY_Community 915|Community 915]]
+- [[_COMMUNITY_Community 916|Community 916]]
+- [[_COMMUNITY_Community 917|Community 917]]
+- [[_COMMUNITY_Community 918|Community 918]]
+- [[_COMMUNITY_Community 919|Community 919]]
+- [[_COMMUNITY_Community 920|Community 920]]
+- [[_COMMUNITY_Community 921|Community 921]]
+- [[_COMMUNITY_Community 922|Community 922]]
+- [[_COMMUNITY_Community 923|Community 923]]
+- [[_COMMUNITY_Community 924|Community 924]]
+- [[_COMMUNITY_Community 925|Community 925]]
+- [[_COMMUNITY_Community 926|Community 926]]
+- [[_COMMUNITY_Community 927|Community 927]]
+- [[_COMMUNITY_Community 928|Community 928]]
+- [[_COMMUNITY_Community 929|Community 929]]
+- [[_COMMUNITY_Community 930|Community 930]]
+- [[_COMMUNITY_Community 931|Community 931]]
+- [[_COMMUNITY_Community 932|Community 932]]
+- [[_COMMUNITY_Community 933|Community 933]]
+- [[_COMMUNITY_Community 934|Community 934]]
+- [[_COMMUNITY_Community 936|Community 936]]
+- [[_COMMUNITY_Community 937|Community 937]]
+- [[_COMMUNITY_Community 938|Community 938]]
+- [[_COMMUNITY_Community 939|Community 939]]
+- [[_COMMUNITY_Community 940|Community 940]]
+- [[_COMMUNITY_Community 941|Community 941]]
+- [[_COMMUNITY_Community 942|Community 942]]
+- [[_COMMUNITY_Community 943|Community 943]]
+- [[_COMMUNITY_Community 944|Community 944]]
+- [[_COMMUNITY_Community 945|Community 945]]
+- [[_COMMUNITY_Community 946|Community 946]]
+- [[_COMMUNITY_Community 947|Community 947]]
+- [[_COMMUNITY_Community 948|Community 948]]
+- [[_COMMUNITY_Community 949|Community 949]]
+- [[_COMMUNITY_Community 950|Community 950]]
+- [[_COMMUNITY_Community 951|Community 951]]
+- [[_COMMUNITY_Community 952|Community 952]]
+- [[_COMMUNITY_Community 953|Community 953]]
+- [[_COMMUNITY_Community 954|Community 954]]
+- [[_COMMUNITY_Community 955|Community 955]]
+- [[_COMMUNITY_Community 956|Community 956]]
+- [[_COMMUNITY_Community 957|Community 957]]
+- [[_COMMUNITY_Community 958|Community 958]]
+- [[_COMMUNITY_Community 959|Community 959]]
+- [[_COMMUNITY_Community 960|Community 960]]
+- [[_COMMUNITY_Community 961|Community 961]]
+- [[_COMMUNITY_Community 962|Community 962]]
+- [[_COMMUNITY_Community 963|Community 963]]
+- [[_COMMUNITY_Community 964|Community 964]]
+- [[_COMMUNITY_Community 965|Community 965]]
+- [[_COMMUNITY_Community 966|Community 966]]
+- [[_COMMUNITY_Community 967|Community 967]]
+- [[_COMMUNITY_Community 968|Community 968]]
+- [[_COMMUNITY_Community 969|Community 969]]
+- [[_COMMUNITY_Community 970|Community 970]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `cn()` - 428 edges
+1. `cn()` - 451 edges
 2. `error()` - 270 edges
 3. `error()` - 251 edges
 4. `l()` - 163 edges
@@ -879,42 +965,46 @@
   apps/native/components/container.tsx → packages/ui/src/lib/utils.ts
 - `ProfileLoading()` --calls--> `cn()`  [EXTRACTED]
   apps/web/src/app/(app)/profile/[handle]/loading.tsx → packages/ui/src/lib/utils.ts
+- `ScrollTopPill()` --calls--> `cn()`  [EXTRACTED]
+  apps/web/src/components/app/app-scroll-to-top.tsx → packages/ui/src/lib/utils.ts
 - `ListingTitleLink()` --calls--> `cn()`  [EXTRACTED]
   apps/web/src/components/feed/activity-item.tsx → packages/ui/src/lib/utils.ts
 - `ActivityMetaRow()` --calls--> `cn()`  [EXTRACTED]
   apps/web/src/components/feed/activity-item.tsx → packages/ui/src/lib/utils.ts
-- `FeedActivityKindBadge()` --calls--> `cn()`  [EXTRACTED]
-  apps/web/src/components/feed/feed-activity-kind-badge.tsx → packages/ui/src/lib/utils.ts
 
-## Communities (884 total, 164 thin omitted)
+## Communities (971 total, 181 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.05
-Nodes (70): CHIPS, DiaryCatalogOrderChips(), DiaryLobbyCatalogue(), DiaryLobbyChrome(), DiaryLobbyGrid(), DiaryLobbyInfinite(), FooterState, DiaryLobbyParamsContext (+62 more)
+Cohesion: 0.04
+Nodes (22): Ai, b0(), checkoutElementClickHandler(), cloneWithColumnAlteration(), cloneWithExpression(), cloneWithTableProps(), createWithChild(), createWithSchema() (+14 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.00
-Nodes (638): _1(), _1A(), _5A(), A00(), A2, A_1(), aaA(), aB() (+630 more)
+Nodes (626): _1A(), _5A(), A8, A_1(), aaA(), aB(), _acquireClient(), _addColor() (+618 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.02
 Nodes (100): 2026-05-13 — `db:migrate` fix (pg + env path + baseline hint), 2026-05-13 — `/movies/[id]` hero taps (Log / Watchlist / overlap), 2026-05-13 — Phase 2 (per-film color world) implemented, 2026-05-13 — Phase 5 Executor pass (Planner confirm), 2026-05-13 — Phase 6 Executor pass (Planner confirm), 2026-05-13 — Phase 7 Executor pass (Planner confirm), 2026-05-13 — Task 1.1 complete, awaiting manual verify, 2026-05-13 — Task 1.2 complete, awaiting manual verify (+92 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.03
-Nodes (85): AchievementsPage(), metadata, UserAchievementMeRow, Tooltip(), TooltipContent(), TooltipProvider(), TooltipTrigger(), AchievementsBadgesPanel() (+77 more)
+Cohesion: 0.04
+Nodes (65): AchievementsPage(), metadata, UserAchievementMeRow, LobbyCenterTabFallback(), AchievementsBadgesPanel(), BadgeCatalogRow, CATEGORY_LABEL, EarnedBadgeRow (+57 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.01
-Nodes (143): v0(), $5(), abort(), _acquireClient(), addCString(), addInt16(), addInt32(), addString() (+135 more)
+Nodes (89): v0(), Ah1(), arrayBuffer(), attachListeners(), BA(), bbA, bind(), bk1() (+81 more)
+
+### Community 5 - "Community 5"
+Cohesion: 0.03
+Nodes (10): Bk, BP(), ci, ei, hasAdditionalProperties(), Jz, mG, rS (+2 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.05
-Nodes (59): annotateViewerFollows(), fetchViewerFollowingIds(), [first], result, rows, Bucket, buckets, hit() (+51 more)
+Cohesion: 0.03
+Nodes (100): awardBadge(), AwardBadgeOptions, awardBadgeToUser(), Criteria, meetsCriteria(), progressAchievement(), runEvaluator(), snapshot() (+92 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.06
-Nodes (31): dependencies, agentation, babel-plugin-react-compiler, better-auth, border-beam, cmdk, dialkit, @dnd-kit/core (+23 more)
+Nodes (32): dependencies, agentation, babel-plugin-react-compiler, better-auth, border-beam, cmdk, dialkit, @dnd-kit/core (+24 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.07
@@ -922,7 +1012,7 @@ Nodes (30): constructor(), convertPatternToRegex(), escapeForRegex(), includes()
 
 ### Community 10 - "Community 10"
 Cohesion: 0.00
-Nodes (565): $a0, a1(), aD6(), addCommandComplete(), addCString(), addFields(), addInt16(), addInt32() (+557 more)
+Nodes (578): $a0, a1(), aD6(), addCommandComplete(), addCString(), addFields(), addInt16(), addInt32() (+570 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.04
@@ -933,8 +1023,8 @@ Cohesion: 0.05
 Nodes (43): 1. Logo Cover, 1. Monogram + Meaning, 2 × 3 REFERENCE-STYLE LAYOUT, 2. Logo Construction, 2. Product Action, 3. Digital Application, 3. Metaphor Fusion, 4. Brand Essence (+35 more)
 
 ### Community 13 - "Community 13"
-Cohesion: 0.05
-Nodes (43): better-auth, @better-auth/expo, dotenv, lucide-react, next-themes, @polar-sh/better-auth, sonner, @tanstack/react-form (+35 more)
+Cohesion: 0.04
+Nodes (45): better-auth, @better-auth/expo, dotenv, lucide-react, next-themes, @polar-sh/better-auth, sonner, @tanstack/react-form (+37 more)
 
 ### Community 14 - "Community 14"
 Cohesion: 0.05
@@ -946,11 +1036,11 @@ Nodes (37): App Themes — Named Palettes (Theater · Lobby Light · Noir), `App
 
 ### Community 16 - "Community 16"
 Cohesion: 0.05
-Nodes (27): BuA(), clearFastTimeout(), close(), _dA, et(), format(), getPalette(), getPalettes() (+19 more)
+Nodes (21): addParameter(), DcA, Fu1(), G5(), HhA, isEmpty(), NcA, nullable() (+13 more)
 
 ### Community 17 - "Community 17"
 Cohesion: 0.01
-Nodes (420): Ee(), Q, $, $11(), $20(), $3(), $31(), $71() (+412 more)
+Nodes (308): $1(), Q, $, $11(), $20(), $71(), A8A(), add() (+300 more)
 
 ### Community 18 - "Community 18"
 Cohesion: 0.05
@@ -1014,7 +1104,7 @@ Nodes (37): Agent Prompt Guide, App Screenshot Card, Border Radius, Category Nav
 
 ### Community 33 - "Community 33"
 Cohesion: 0.02
-Nodes (146): DiaryLogRatingLabel(), DiaryStillTile(), tmdbPosterSrc(), ActivityDivergenceRow(), patronHandle(), patronName(), PatronScoreLink(), ActivityByline() (+138 more)
+Nodes (150): DiaryEntry(), DiaryStillTile(), tmdbPosterSrc(), ActivityDivergenceRow(), patronHandle(), patronName(), PatronScoreLink(), ActivityByline() (+142 more)
 
 ### Community 34 - "Community 34"
 Cohesion: 0.05
@@ -1026,19 +1116,19 @@ Nodes (36): code:ts (// packages/db/src/schema/tv-watch.ts), code:bash (curl -s 
 
 ### Community 36 - "Community 36"
 Cohesion: 0.02
-Nodes (146): A9(), Ad0(), Am0(), Au0(), AUTH_SECRET(), AW(), b1(), Bd0() (+138 more)
+Nodes (180): A9(), Ad0(), aF(), Am0(), Au0(), AUTH_SECRET(), AW(), Ay0() (+172 more)
 
 ### Community 37 - "Community 37"
 Cohesion: 0.06
 Nodes (34): 1. Contract First, 2. Consistent Error Semantics, 3. Validate at Boundaries, 4. Prefer Addition Over Modification, 5. Predictable Naming, API and Interface Design, code:typescript (// Define the contract first), code:typescript (// Input: what the caller provides) (+26 more)
 
 ### Community 38 - "Community 38"
-Cohesion: 0.07
-Nodes (39): byte(), bytes(), c6, consumeDimensions(), cstring(), dV6(), Gj, handlePacket() (+31 more)
+Cohesion: 0.02
+Nodes (114): aD(), bJ(), BP(), bR0(), BU6(), byte(), bytes(), BZ6() (+106 more)
 
 ### Community 39 - "Community 39"
 Cohesion: 0.01
-Nodes (117): $30(), aT(), $c0(), c7(), CB6(), compileQuery(), Cq0(), cS() (+109 more)
+Nodes (158): $30(), acquireMigrationLock(), AQ0(), aT(), beforeHandle(), bh0(), BY6(), $c0() (+150 more)
 
 ### Community 40 - "Community 40"
 Cohesion: 0.06
@@ -1054,11 +1144,11 @@ Nodes (34): 10. DEVICE MOCKUP FRAME RULE, 11. ONBOARDING FLOW RULE, 12. FIRST SC
 
 ### Community 43 - "Community 43"
 Cohesion: 0.02
-Nodes (251): $7(), a5(), aB, Ab0(), Af0(), Ag0(), An(), AO() (+243 more)
+Nodes (250): $7(), a5(), aB, Ab0(), Af0(), Ag0(), An(), AO() (+242 more)
 
 ### Community 44 - "Community 44"
-Cohesion: 0.03
-Nodes (60): p1, a3A(), AZ(), bG, BZ(), DH(), dp(), DQA() (+52 more)
+Cohesion: 0.02
+Nodes (90): p1, A7A(), array(), AZ(), B7A(), bG, catchall(), check() (+82 more)
 
 ### Community 45 - "Community 45"
 Cohesion: 0.06
@@ -1077,8 +1167,8 @@ Cohesion: 0.06
 Nodes (32): code:block1 (1. MEASURE  → Establish baseline with real data), code:typescript (// Cache frequently-read, rarely-changed data), code:block11 (JavaScript bundle: < 200KB gzipped (initial load)), code:bash (# Bundle size check), code:bash (# Synthetic: Lighthouse in Chrome DevTools (or CI)), code:bash (# Response time logging), code:block4 (What is slow?), code:typescript (// BAD: N+1 — one query per task for the owner) (+24 more)
 
 ### Community 49 - "Community 49"
-Cohesion: 0.05
-Nodes (56): communityPeriodQuery, resolveCommunityPeriodQuery(), withinCommunityPeriod(), canViewContent(), contentVisibilityWhere(), resolveViewerFollow(), base, visibilitySchema (+48 more)
+Cohesion: 0.11
+Nodes (30): resolveCommunityPeriodQuery(), addMonths(), endOfPeriodInZone(), getTimeZoneOffsetMs(), getZonedParts(), isoWeekday(), LeaderboardPeriod, normalizeLeaderboardTimeZone() (+22 more)
 
 ### Community 50 - "Community 50"
 Cohesion: 0.06
@@ -1098,7 +1188,7 @@ Nodes (31): Accessibility, Code Quality, code:typescript (// Feature flag check)
 
 ### Community 54 - "Community 54"
 Cohesion: 0.06
-Nodes (31): dependencies, better-auth, dotenv, drizzle-orm, elysia, @elysiajs/cors, @elysiajs/eden, node-vibrant (+23 more)
+Nodes (32): dependencies, better-auth, dotenv, drizzle-orm, elysia, @elysiajs/cors, @elysiajs/eden, fflate (+24 more)
 
 ### Community 55 - "Community 55"
 Cohesion: 0.06
@@ -1107,6 +1197,10 @@ Nodes (30): 10. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEF
 ### Community 56 - "Community 56"
 Cohesion: 0.06
 Nodes (30): code:block1 (┌──────────────────────────────────────┐), code:block2 (Slice 1: Create a task (DB + API + basic UI)), code:block3 (Slice 0: Define the API contract (types, interfaces, OpenAPI), code:block4 (Slice 1: Prove the WebSocket connection works (highest risk)), code:block5 (SIMPLICITY CHECK:), code:block6 (NOTICED BUT NOT TOUCHING:), code:typescript (// Feature flag for work-in-progress), code:typescript (// Safe: disabled by default, opt-in) (+22 more)
+
+### Community 57 - "Community 57"
+Cohesion: 0.05
+Nodes (46): AppScrollToTop(), CHROME, ICON, LABEL, PILL, PRESS, SCROLL, ScrollTopPill() (+38 more)
 
 ### Community 58 - "Community 58"
 Cohesion: 0.06
@@ -1121,12 +1215,12 @@ Cohesion: 0.07
 Nodes (29): ADR Lifecycle, ADR Template, API Documentation, Architecture Decision Records (ADRs), Changelog Maintenance, code:markdown (# ADR-001: Use PostgreSQL for primary database), code:block2 (PROPOSED → ACCEPTED → (SUPERSEDED or DEPRECATED)), code:typescript (// BAD: Restates the code) (+21 more)
 
 ### Community 61 - "Community 61"
-Cohesion: 0.03
-Nodes (156): DetailReturnCapture(), CinemaSceneCut(), HomeBrowseSurfaceContext, HomeBrowseSurfaceContextValue, HomeBrowseSurfaceProvider(), useHomeBrowseSurface(), useHomeBrowseSurfaceOptional(), DISCOVER_SORT_OPTIONS (+148 more)
+Cohesion: 0.02
+Nodes (212): CHIPS, DiaryCatalogOrderChips(), DiaryLobbyCatalogue(), DiaryLobbyChrome(), DIARY_LOBBY_POSTER_GRID_MONOCHROME_CLASSNAME, DiaryLobbyGrid(), renderCell(), tmdbPosterUrl() (+204 more)
 
 ### Community 62 - "Community 62"
 Cohesion: 0.03
-Nodes (76): APP_LOADING_POSTER_KEYS, LOBBY_POSTER_KEYS, LobbyCatalogueLoading(), LobbyPosterGridFallback(), LobbyCatalogChipFallback(), LobbyCenterTabFallback(), LobbyOrderChipFallback(), LobbyStickyChromeFallback() (+68 more)
+Nodes (74): APP_LOADING_POSTER_KEYS, LOBBY_POSTER_KEYS, LobbyCatalogueLoading(), LobbyPosterGridFallback(), LobbyCatalogChipFallback(), LobbyOrderChipFallback(), LobbyStickyChromeFallback(), LobbyVenueChipFallback() (+66 more)
 
 ### Community 63 - "Community 63"
 Cohesion: 0.07
@@ -1134,15 +1228,15 @@ Nodes (28): Approval, Architecture, Chrome under the bar, Client types, code:blo
 
 ### Community 64 - "Community 64"
 Cohesion: 0.01
-Nodes (151): $, $56(), A8(), AC, B20, B3, cC, cloneWith() (+143 more)
+Nodes (150): $, $56(), A8(), AC, Ah, B20, B3, cC (+142 more)
 
 ### Community 65 - "Community 65"
 Cohesion: 0.02
-Nodes (128): Fi(), r5(), _3A(), A5(), A7A(), AdA(), AH(), array() (+120 more)
+Nodes (105): Fi(), hL(), r5(), _3A(), A5(), AH(), as(), B3A() (+97 more)
 
 ### Community 66 - "Community 66"
 Cohesion: 0.01
-Nodes (141): s1, $1(), aq(), o0(), Ta(), _a1(), a3(), A9A() (+133 more)
+Nodes (161): s1, aq(), Ta(), _a1(), a3(), A9A(), $AA(), ae() (+153 more)
 
 ### Community 67 - "Community 67"
 Cohesion: 0.07
@@ -1158,7 +1252,7 @@ Nodes (27): dependsOn, env, inputs, outputs, dependsOn, cache, cache, cache (+19
 
 ### Community 70 - "Community 70"
 Cohesion: 0.02
-Nodes (243): _9(), $01(), _2(), $21(), $2A(), $61(), $6A(), $9() (+235 more)
+Nodes (253): _9(), $01(), _2(), $21(), $2A(), $3(), $61(), $6A() (+245 more)
 
 ### Community 71 - "Community 71"
 Cohesion: 0.08
@@ -1166,31 +1260,31 @@ Nodes (25): action, default_popup, default_title, background, service_worker, co
 
 ### Community 72 - "Community 72"
 Cohesion: 0.02
-Nodes (173): CATALOGUE_POSTER_SHELL_CLASSNAME, CataloguePosterTile(), CataloguePosterTileProps, detailHref(), useAddToListRadial(), DoubleFeaturePick, resolvePosterSrc(), SIZE_PRESETS (+165 more)
+Nodes (175): AuthBackgroundCarousel(), AUTH_PAGE_CONTENT_LOAD, AUTH_PAGE_LOAD_EASE, AuthSessionRedirect(), AuthSessionRedirectInner(), CATALOGUE_POSTER_SHELL_CLASSNAME, cataloguePosterShellClassName(), CataloguePosterTile() (+167 more)
 
 ### Community 73 - "Community 73"
-Cohesion: 0.06
-Nodes (47): airedRecently(), episodeCode(), isTvEpisodeSyncEnabled(), notificationExists(), notifyNewEpisodesForWatch(), parseAirDate(), syncTvNewEpisodeNotifications(), markEpisodeProgress() (+39 more)
+Cohesion: 0.05
+Nodes (64): DEFAULT_RSS_SOURCES, ensureRssSources(), ingestRss(), linkMoviesByTitle(), parseRss(), ACHIEVEMENTS, BADGES, seedCatalog() (+56 more)
 
 ### Community 74 - "Community 74"
 Cohesion: 0.02
-Nodes (188): AccountMenuThemePicker(), MENU_THEME_LABEL, AppThemeShell(), AppThemeShellContext, AppThemeShellContextValue, InitialAppearancePrefs, useAppThemeShell(), fraunces (+180 more)
+Nodes (196): AccountMenuThemePicker(), MENU_THEME_LABEL, AppThemeShell(), AppThemeShellContext, AppThemeShellContextValue, InitialAppearancePrefs, useAppThemeShell(), fraunces (+188 more)
 
 ### Community 76 - "Community 76"
 Cohesion: 0.08
 Nodes (23): dependencies, react, react-dom, description, devDependencies, @types/react, @types/react-dom, typescript (+15 more)
 
 ### Community 77 - "Community 77"
-Cohesion: 0.05
-Nodes (48): LandingPage(), metadata, AuthPageShell(), AUTH_ROUTES, AuthRouteLayout(), SignUpForm(), BrandMark(), LandingFeatureAddToListVisual() (+40 more)
+Cohesion: 0.04
+Nodes (57): LandingPage(), metadata, AuthFieldErrors(), AuthMotionInput(), AuthSubmitButton(), Field(), schema, SignInForm() (+49 more)
 
 ### Community 78 - "Community 78"
 Cohesion: 0.02
-Nodes (51): A_0(), BA0(), bw0(), c_0(), Cu(), da0(), DE0(), Du() (+43 more)
+Nodes (53): A_0(), BA0(), bw0(), c_0(), cL0(), Cu(), da0(), DE0() (+45 more)
 
 ### Community 79 - "Community 79"
-Cohesion: 0.03
-Nodes (27): acquireConnection(), Ah, Al0(), BB6(), BZ(), cloneWithConstraint(), commit(), fh (+19 more)
+Cohesion: 0.05
+Nodes (33): A2(), ag, as(), Bf(), BU(), _calculateRT(), _createWeights(), d96() (+25 more)
 
 ### Community 80 - "Community 80"
 Cohesion: 0.08
@@ -1198,7 +1292,7 @@ Nodes (23): Approval, Architecture, Auth, Client state, code:block1 ([ A24 | × 
 
 ### Community 81 - "Community 81"
 Cohesion: 0.01
-Nodes (244): a26(), AB6(), acquireMigrationLock(), appendImmediateValue(), apply(), AQ0(), aX6(), bJ() (+236 more)
+Nodes (99): AB6(), Al0(), aX6(), BB6(), BZ(), c1(), c7(), checkoutElementClickHandler() (+91 more)
 
 ### Community 82 - "Community 82"
 Cohesion: 0.03
@@ -1210,39 +1304,39 @@ Nodes (22): code:block1 (HYPOTHESIS: You want a way to answer "how are we doing?
 
 ### Community 84 - "Community 84"
 Cohesion: 0.04
-Nodes (67): classifyJikanAnimeAdult(), discoverQueryIncludesAnimeKeyword(), ensureTvAdultClassification(), fetchJikanAdultSignals(), isStillAdultCacheFresh(), persistStillAdultBlock(), warmTvAdultClassificationBatch(), filterMovieCatalogueResults() (+59 more)
+Nodes (71): classifyJikanAnimeAdult(), discoverQueryIncludesAnimeKeyword(), ensureTvAdultClassification(), fetchJikanAdultSignals(), isStillAdultCacheFresh(), persistStillAdultBlock(), warmTvAdultClassificationBatch(), filterMovieCatalogueResults() (+63 more)
 
 ### Community 85 - "Community 85"
 Cohesion: 0.05
 Nodes (4): LD, MD, wD, Yz
 
 ### Community 86 - "Community 86"
-Cohesion: 0.03
-Nodes (44): AZA(), bWA(), catchall(), cF(), check(), CP(), Cv1(), CW() (+36 more)
+Cohesion: 0.02
+Nodes (58): AdA(), aM, AX(), AZA(), Bh1(), blob(), bWA(), cF() (+50 more)
 
 ### Community 87 - "Community 87"
 Cohesion: 0.06
 Nodes (33): default, name, notNull, primaryKey, type, added_at, movie_id, note (+25 more)
 
 ### Community 88 - "Community 88"
-Cohesion: 0.07
-Nodes (28): default, name, notNull, primaryKey, type, added_at, movie_id, note (+20 more)
+Cohesion: 0.06
+Nodes (33): default, name, notNull, primaryKey, type, added_at, movie_id, note (+25 more)
 
 ### Community 89 - "Community 89"
 Cohesion: 0.09
 Nodes (22): Accessibility, Action matrix (signed-in), `buildCatalogueRadialItems` (`apps/web/src/lib/catalogue-radial-items.ts`), `CataloguePosterTile` (`apps/web/src/components/catalogue/catalogue-poster-tile.tsx`), code:ts (type CatalogueRadialSurface = "home" | "diary" | "watchlist"), Component design, Data & mutations, Decisions (locked) (+14 more)
 
 ### Community 91 - "Community 91"
-Cohesion: 0.11
-Nodes (127): AG6(), AH6(), aK0(), AQ6(), BG6(), bK0(), bK6(), BN6() (+119 more)
+Cohesion: 0.10
+Nodes (128): AG6(), AH6(), aK0(), AK6(), AQ6(), BG6(), bK0(), bK6() (+120 more)
 
 ### Community 92 - "Community 92"
 Cohesion: 0.09
 Nodes (21): default, dependencies, dotenv, drizzle-orm, @neondatabase/serverless, pg, @still/env, zod (+13 more)
 
 ### Community 93 - "Community 93"
-Cohesion: 0.01
-Nodes (140): $60(), A60(), aD(), ag, Ao0(), Ap(), az(), b() (+132 more)
+Cohesion: 0.02
+Nodes (119): $60(), A60(), az(), B40(), B60(), BB(), bX6(), C40() (+111 more)
 
 ### Community 94 - "Community 94"
 Cohesion: 0.09
@@ -1265,12 +1359,12 @@ Cohesion: 0.06
 Nodes (33): default, name, notNull, primaryKey, type, added_at, movie_id, note (+25 more)
 
 ### Community 99 - "Community 99"
-Cohesion: 0.06
-Nodes (34): name, notNull, primaryKey, type, body, contains_spoilers, likes_count, log_id (+26 more)
+Cohesion: 0.05
+Nodes (39): name, notNull, primaryKey, type, body, comments_count, likes_count, log_id (+31 more)
 
 ### Community 100 - "Community 100"
 Cohesion: 0.06
-Nodes (32): created_at, expires_at, ip_address, token, user_agent, user_id, default, name (+24 more)
+Nodes (32): expires_at, id, ip_address, token, updated_at, user_agent, name, notNull (+24 more)
 
 ### Community 101 - "Community 101"
 Cohesion: 0.05
@@ -1294,11 +1388,11 @@ Nodes (20): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent 
 
 ### Community 106 - "Community 106"
 Cohesion: 0.02
-Nodes (203): AppShell(), appShellMainContentMinHeightStyle, AppShellUser, CommandItem(), CommandPaletteRoot(), MovieHit, NAV_SHORTCUTS, Store (+195 more)
+Nodes (209): GoToDialogRoot(), DiscoverMoviesPage(), DiscoverPayload, metadata, normalizeTvDiscoverSort(), parseCompanyId(), parseGenreId(), TV_DISCOVER_SORT_WHITELIST (+201 more)
 
 ### Community 107 - "Community 107"
-Cohesion: 0.06
-Nodes (56): generateMetadata(), ListDetail, ListDetailPage(), listHeroPosterUrls(), listSharePath(), PublicListDetailPage(), publicListSharePath(), result (+48 more)
+Cohesion: 0.04
+Nodes (36): addEventListener(), bj0(), close(), EM(), fj0(), G76(), Gj0(), gZ (+28 more)
 
 ### Community 108 - "Community 108"
 Cohesion: 0.05
@@ -1306,7 +1400,7 @@ Nodes (39): Adult Content Settings Implementation Plan, code:ts (import { descri
 
 ### Community 109 - "Community 109"
 Cohesion: 0.03
-Nodes (70): $0A(), $7A(), A, a0A(), acquireConnection(), ay(), b0A(), bA1() (+62 more)
+Nodes (75): $0A(), $7A(), A, a0A(), ay(), b0A(), bA1(), BC1() (+67 more)
 
 ### Community 110 - "Community 110"
 Cohesion: 0.04
@@ -1321,20 +1415,20 @@ Cohesion: 0.04
 Nodes (46): name, notNull, primaryKey, type, name, notNull, primaryKey, type (+38 more)
 
 ### Community 113 - "Community 113"
-Cohesion: 0.07
-Nodes (32): isActive(), MOBILE_YOU_DESTINATIONS, MobileYouDestination, shouldHideMobileTabBar(), MobileTabBar(), TabUser, DESTINATION_ICON, MobileYouSheet() (+24 more)
+Cohesion: 0.10
+Nodes (31): DetailReturnCapture(), AchievementsTopBar(), homeBrowseSurfaceLabel(), homeBrowseFallback(), hrefFromPath(), isFilmDetailPath(), isListingDetailPath(), isMeSettingsPath() (+23 more)
 
 ### Community 114 - "Community 114"
-Cohesion: 0.03
-Nodes (43): _7(), $9A(), aJ, anA(), B31(), B9A(), Br1(), brA() (+35 more)
+Cohesion: 0.02
+Nodes (78): $31(), _7(), $9A(), A2, abort(), aJ, anA(), B31() (+70 more)
 
 ### Community 115 - "Community 115"
 Cohesion: 0.10
 Nodes (19): compilerOptions, allowSyntheticDefaultImports, esModuleInterop, forceConsistentCasingInFileNames, isolatedModules, lib, module, moduleResolution (+11 more)
 
 ### Community 116 - "Community 116"
-Cohesion: 0.19
-Nodes (13): ActivityListCard(), ActivityLogCard(), ActivityReviewCard(), LogPayload, patronName(), ReviewPayload, formatTimeAgo(), NOW (+5 more)
+Cohesion: 0.18
+Nodes (14): ActivityDivergenceCard(), DivergencePayload, isDivergence(), ActivityListCard(), ActivityLogCard(), ActivityReviewCard(), ListPayload, patronName() (+6 more)
 
 ### Community 117 - "Community 117"
 Cohesion: 0.10
@@ -1342,7 +1436,7 @@ Nodes (19): code:block1 (Doubt cycle:), code:block2 (CLAIM: "The new caching lay
 
 ### Community 118 - "Community 118"
 Cohesion: 0.05
-Nodes (65): _8(), Ai(), Bi(), Ci(), cR(), Cx0(), Di(), dR() (+57 more)
+Nodes (67): _8(), Ai(), Bi(), Ci(), cR(), Cx0(), Di(), dR() (+59 more)
 
 ### Community 120 - "Community 120"
 Cohesion: 0.10
@@ -1369,16 +1463,16 @@ Cohesion: 0.08
 Nodes (22): code:ts (// apps/web/src/lib/home-catalog-filters.test.ts), code:tsx (<HomeCatalogFiltersPopover), code:bash (cd apps/web && bun test src/lib/home-catalog-filters.test.ts), code:bash (cd apps/web && bun run check-types), code:bash (cd apps/web && bun test src/lib/home-catalog-filters.test.ts), code:ts (export const HOME_CATALOG_FILTER_PARAMS = {), code:ts (export function buildHomeLobbyHref(input: {), code:ts (import { buildHomeLobbyHref } from "./home-lobby-url";) (+14 more)
 
 ### Community 126 - "Community 126"
-Cohesion: 0.03
-Nodes (28): A5A(), B6A(), bbA, checkFunc(), CU(), d5A(), D6A, E4A() (+20 more)
+Cohesion: 0.04
+Nodes (29): A5A(), B6A(), checkFunc(), CU(), d5A(), D6A, E4A(), e8A() (+21 more)
 
 ### Community 127 - "Community 127"
-Cohesion: 0.09
-Nodes (11): [BZ0](), d1(), en0(), [EZ0](), Hz0(), $M6(), Mz0(), onResponse() (+3 more)
+Cohesion: 0.04
+Nodes (40): _addColor(), [BZ0](), _colorStats1D(), _colorStats2D(), d1(), en0(), [EZ0](), fetch() (+32 more)
 
 ### Community 128 - "Community 128"
-Cohesion: 0.08
-Nodes (37): joinedTitleItemNotAdultSql(), movieNotAdultSql(), tvNotAdultSql(), dateToYmd(), formatBirthdayDisplayPublic(), formatTodayYmd(), parseProfileBirthDate(), profileBirthDateToIso() (+29 more)
+Cohesion: 0.04
+Nodes (76): CreatorAnalyticsPayload, CreatorListHighlight, fetchCreatorAnalyticsForUser(), listDescribedSql, buildCuratorHeadline(), creatorRecognitionRelaxed(), CreatorRecognitionThresholds, CuratorContributionStats (+68 more)
 
 ### Community 129 - "Community 129"
 Cohesion: 0.11
@@ -1390,7 +1484,7 @@ Nodes (17): Example 1: Vague Early-Stage Concept (Full 3-Phase Session), Example
 
 ### Community 131 - "Community 131"
 Cohesion: 0.06
-Nodes (34): id, liked, rating, rewatch, watch_venue, watched_at, name, notNull (+26 more)
+Nodes (36): contains_spoilers, created_at, liked, rewatch, watch_venue, watched_at, default, name (+28 more)
 
 ### Community 132 - "Community 132"
 Cohesion: 0.08
@@ -1398,11 +1492,11 @@ Nodes (26): session_user_id_user_id_fk, session_userId_idx, compositePrimaryKeys
 
 ### Community 133 - "Community 133"
 Cohesion: 0.05
-Nodes (41): contains_spoilers, created_at, liked, rating, rewatch, watch_venue, watched_at, default (+33 more)
+Nodes (41): contains_spoilers, created_at, liked, rating, rewatch, updated_at, watched_at, default (+33 more)
 
 ### Community 134 - "Community 134"
-Cohesion: 0.11
-Nodes (17): default, dependencies, better-auth, @better-auth/expo, dotenv, @polar-sh/better-auth, @polar-sh/sdk, @still/db (+9 more)
+Cohesion: 0.07
+Nodes (26): default, dependencies, better-auth, @better-auth/expo, dotenv, drizzle-orm, @polar-sh/better-auth, @polar-sh/sdk (+18 more)
 
 ### Community 135 - "Community 135"
 Cohesion: 0.11
@@ -1410,15 +1504,15 @@ Nodes (17): 1. Surface Assumptions, 2. Manage Confusion Actively, 3. Push Back W
 
 ### Community 136 - "Community 136"
 Cohesion: 0.03
-Nodes (85): CustomizationPage(), AchievementsWatchStreakCard(), actionPillClassName, shieldPillClassName, RequestHeaderBag, webAppOriginFromHeaders(), authServer(), ServerSession (+77 more)
+Nodes (85): CustomizationPage(), AchievementsWatchStreakCard(), actionPillClassName, shieldPillClassName, flexCol, GET(), RequestHeaderBag, webAppOriginFromHeaders() (+77 more)
 
 ### Community 137 - "Community 137"
 Cohesion: 0.12
 Nodes (16): Anti-patterns to Avoid, code:bash (# Optional: Initialize the ideas directory), code:markdown (# [Idea Name]), Detailed Instructions, How It Works, Idea Refine, Output, Phase 1: Understand & Expand (Divergent) (+8 more)
 
 ### Community 138 - "Community 138"
-Cohesion: 0.12
-Nodes (16): 10. SECTION RHYTHM RULE, 12. DENSITY & SPACING DISCIPLINE, 14. IMAGE / MEDIA DIRECTION, 16. MULTI-IMAGE CONSISTENCY RULE, 17. CLARITY CHECK, 19. RESPONSE BEHAVIOR, 1. ACTIVE BASELINE CONFIGURATION, 21. FINAL GOAL (+8 more)
+Cohesion: 0.14
+Nodes (14): 10. SECTION RHYTHM RULE, 12. DENSITY & SPACING DISCIPLINE, 14. IMAGE / MEDIA DIRECTION, 16. MULTI-IMAGE CONSISTENCY RULE, 17. CLARITY CHECK, 19. RESPONSE BEHAVIOR, 1. ACTIVE BASELINE CONFIGURATION, 21. FINAL GOAL (+6 more)
 
 ### Community 139 - "Community 139"
 Cohesion: 0.12
@@ -1441,8 +1535,8 @@ Cohesion: 0.04
 Nodes (46): name, notNull, primaryKey, type, name, notNull, primaryKey, type (+38 more)
 
 ### Community 144 - "Community 144"
-Cohesion: 0.11
-Nodes (19): Add app-specific blocks, Add more shared components, Available Scripts, code:bash (bun install), code:bash (bun run db:push), code:bash (bun run dev), code:env (# Browser + RSC call this origin; Next rewrites `/api/*` to ), code:bash (npx shadcn@latest add accordion dialog popover sheet table -) (+11 more)
+Cohesion: 0.10
+Nodes (20): Add app-specific blocks, Add more shared components, Available Scripts, code:bash (bun install), code:bash (bun run db:push), code:bash (bun run dev), code:env (# Browser + RSC call this origin; Next rewrites `/api/*` to ), code:bash (npx shadcn@latest add accordion dialog popover sheet table -) (+12 more)
 
 ### Community 145 - "Community 145"
 Cohesion: 0.12
@@ -1466,7 +1560,7 @@ Nodes (25): columnsFrom, columnsTo, name, onDelete, onUpdate, tableFrom, tableTo
 
 ### Community 150 - "Community 150"
 Cohesion: 0.05
-Nodes (40): name, notNull, primaryKey, type, body, is_public, likes_count, log_id (+32 more)
+Nodes (40): name, notNull, primaryKey, type, body, comments_count, is_public, likes_count (+32 more)
 
 ### Community 151 - "Community 151"
 Cohesion: 0.14
@@ -1474,7 +1568,7 @@ Nodes (10): unstable_settings, StyledIonicons, ThemeToggle(), AppThemeContext, A
 
 ### Community 152 - "Community 152"
 Cohesion: 0.01
-Nodes (218): AppNav(), NAV_MAIN, NAV_MORE, NavUser, NavUserAvatar(), AppScrollToTop(), CHROME, ICON (+210 more)
+Nodes (298): NAV_MAIN, NAV_MORE, NavUser, NavUserAvatar(), accountMenuContentClassName, footerNavButtonClass, fullReleaseLinkClass, PANEL_EASE (+290 more)
 
 ### Community 153 - "Community 153"
 Cohesion: 0.11
@@ -1505,8 +1599,8 @@ Cohesion: 0.13
 Nodes (14): compilerOptions, esModuleInterop, forceConsistentCasingInFileNames, module, moduleResolution, noEmit, paths, resolveJsonModule (+6 more)
 
 ### Community 160 - "Community 160"
-Cohesion: 0.10
-Nodes (20): Phase 1 — Foundation, Phase 2 — Per-film color world, Phase 2 — Per-film color world, Phase 3 — Scene-cut transitions, Phase 4 — Film stock detail, Phase 4 — Film stock detail, Phase 5 — Credits patterns, Phase 5 — Credits patterns (+12 more)
+Cohesion: 0.08
+Nodes (26): Phase 1 — Foundation, Phase 2 — Per-film color world, Phase 2 — Per-film color world, Phase 2 — Per-film color world, Phase 3 — Scene-cut transitions, Phase 4 — Film stock detail, Phase 4 — Film stock detail, Phase 4 — Film stock detail (+18 more)
 
 ### Community 161 - "Community 161"
 Cohesion: 0.14
@@ -1544,21 +1638,25 @@ Nodes (13): Avatar group hover, code:html (<!-- Apply .t-avatar to each item in 
 Cohesion: 0.14
 Nodes (13): code:html (<!-- Apply .t-input-wrap to your wrapper, .t-input to the), code:css (:root {), code:css (/* Border-color tween. Define your input's default / focused), code:js (// Trigger the error state, replay the shake, and schedule t), code:block5 (total                = 2·A + 2·B  =  2·80 + 2·60 = 280ms), CSS, Error state shake, HTML usage (+5 more)
 
+### Community 170 - "Community 170"
+Cohesion: 0.06
+Nodes (8): compileQuery(), EQ(), fQ(), ka, NZA, O_1(), r1, RzA()
+
 ### Community 171 - "Community 171"
-Cohesion: 0.21
-Nodes (5): SignIn(), signInSchema, SignUp(), signUpSchema, cookieFetcher
+Cohesion: 0.25
+Nodes (4): SignIn(), signInSchema, SignUp(), signUpSchema
 
 ### Community 172 - "Community 172"
-Cohesion: 0.13
-Nodes (6): cloneWithOutput(), cloneWithReturning(), cloneWithSelections(), L8(), MY, s9()
+Cohesion: 0.08
+Nodes (33): compareFeedRows(), enrichFeedActivityPayload(), enrichFeedListRows(), FEED_KIND_RANK, FeedActivityKind, FeedActivityPersonPayload, FeedAt, feedAtMs() (+25 more)
 
 ### Community 173 - "Community 173"
-Cohesion: 0.25
-Nodes (8): 1. Typography is the single biggest gap, 2. Per-film color world requires sync-time work, 3. Page transitions: Next 16 view-transitions API is the right tool, 4. Audio is the riskiest ingredient, 5. Scope is large — must phase aggressively, 6. Existing "arthouse" preset is conceptually fine but underused, 7. Design system reboot vs. cinematic maximalism (2026-05-14), Key Challenges and Analysis
+Cohesion: 0.15
+Nodes (12): 1. Typography is the single biggest gap, 2. Per-film color world requires sync-time work, 3. Page transitions: Next 16 view-transitions API is the right tool, 4. Audio is the riskiest ingredient, 5. Scope is large — must phase aggressively, 6. Existing "arthouse" preset is conceptually fine but underused, 7. Design system reboot vs. cinematic maximalism (2026-05-14), Background and Motivation (+4 more)
 
 ### Community 174 - "Community 174"
-Cohesion: 0.08
-Nodes (32): fetchOverlapDiarySlices(), fetchOwnerLogScoresForListItems(), OwnerLogScore, buildOverlapDiaryMap(), buildOverlapFraming(), computeCompatibilityPercent(), computeTasteOverlap(), logMediaKey() (+24 more)
+Cohesion: 0.03
+Nodes (128): withinCommunityPeriod(), contentVisibilityWhere(), DivergenceLogRow, FeedDivergencePatron, FeedRatingDivergencePayload, findFeedRatingDivergence(), isFeedRatingDivergencePayload(), pickFeedRatingDivergence() (+120 more)
 
 ### Community 175 - "Community 175"
 Cohesion: 0.15
@@ -1589,8 +1687,8 @@ Cohesion: 0.17
 Nodes (11): code:bash (cd apps/web && bun test src/lib/catalogue-radial-items.test.), Executor handoff, File map, RadialToolkit — Catalogue Lobbies Implementation Plan, Task 1: Recipe builder (TDD), Task 2: `CataloguePosterTile` shell, Task 3: Add-to-list from radial, Task 4: `PopularMoviesInfinite` integration (+3 more)
 
 ### Community 182 - "Community 182"
-Cohesion: 0.20
-Nodes (8): polarClient, auth, buildPolarPlugin(), createAuth(), createDb(), Database, db, Schema
+Cohesion: 0.05
+Nodes (40): DeleteAccountEmail(), AuthEmailLayout(), bodyStyle, buttonStyle, containerStyle, copyStyle, footerStyle, headingStyle (+32 more)
 
 ### Community 183 - "Community 183"
 Cohesion: 0.18
@@ -1613,8 +1711,8 @@ Cohesion: 0.18
 Nodes (10): achievement, achievementRelations, badge, badgeRelations, badgeTier, eventLog, userAchievement, userAchievementRelations (+2 more)
 
 ### Community 188 - "Community 188"
-Cohesion: 0.13
-Nodes (14): account, accountRelations, session, sessionRelations, user, userRelations, verification, userCompletionistChallenge (+6 more)
+Cohesion: 0.10
+Nodes (19): account, accountRelations, session, sessionRelations, user, userRelations, verification, userCompletionistChallenge (+11 more)
 
 ### Community 189 - "Community 189"
 Cohesion: 0.18
@@ -1702,7 +1800,7 @@ Nodes (9): 18. EXTRA CREATIVITY & IMPLEMENTATION EDGE, Composition variety check
 
 ### Community 210 - "Community 210"
 Cohesion: 0.06
-Nodes (8): BEYOND_PATHS, BUSAN_PATHS, MILL_VALLEY_PATHS, TELLURIDE_PATHS, ZURICH_PATHS, FestivalIconId, BrandMarkSlot(), FestivalRecognitionIcon()
+Nodes (29): BEYOND_PATHS, BUSAN_PATHS, MILL_VALLEY_PATHS, TELLURIDE_PATHS, ZURICH_PATHS, achievementFromKeyword(), achievementFromWikidataAward(), augmentPremiereFestivals() (+21 more)
 
 ### Community 211 - "Community 211"
 Cohesion: 0.09
@@ -1737,20 +1835,20 @@ Cohesion: 0.08
 Nodes (23): id, name, dialect, id, name, notNull, primaryKey, type (+15 more)
 
 ### Community 220 - "Community 220"
-Cohesion: 0.13
-Nodes (5): cL0(), cloneWithOn(), dL0(), nl0(), tU
+Cohesion: 0.08
+Nodes (28): forwardAuthSetCookies(), OutgoingHeaderBag, notifyRoleChanged(), NotifyRoleChangeInput, ROLE_LABELS, RoleChangeDirection, roleChangeNotificationContent(), roleLabel() (+20 more)
 
 ### Community 221 - "Community 221"
-Cohesion: 0.08
-Nodes (5): Ai, cloneWithColumns(), cloneWithTableProps(), PG(), v3
+Cohesion: 0.09
+Nodes (5): cloneWithColumns(), cloneWithTop(), PG(), v3, XE()
 
 ### Community 222 - "Community 222"
 Cohesion: 0.08
 Nodes (25): columnsFrom, columnsTo, name, onDelete, onUpdate, tableFrom, tableTo, columns (+17 more)
 
 ### Community 223 - "Community 223"
-Cohesion: 0.07
-Nodes (43): A2(), as(), B00(), Bf(), BQ0(), cP(), D40(), DD6() (+35 more)
+Cohesion: 0.03
+Nodes (51): B00(), BQ0(), BW(), c00(), checkFunc(), cn0(), cP(), CY6() (+43 more)
 
 ### Community 225 - "Community 225"
 Cohesion: 0.08
@@ -1765,16 +1863,16 @@ Cohesion: 0.22
 Nodes (8): chatMember, chatMemberRelations, chatMemberRole, chatMessage, chatMessageRelations, chatThread, chatThreadKind, chatThreadRelations
 
 ### Community 228 - "Community 228"
-Cohesion: 0.13
-Nodes (14): mtimeMs, mtimeMs, mtimeMs, mtimeMs, mtimeMs, mtimeMs, transcripts, C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\13e3c71b-a29b-48c3-b85a-22617705509f\\13e3c71b-a29b-48c3-b85a-22617705509f.jsonl (+6 more)
+Cohesion: 0.09
+Nodes (22): mtimeMs, mtimeMs, mtimeMs, mtimeMs, mtimeMs, mtimeMs, mtimeMs, mtimeMs (+14 more)
 
 ### Community 229 - "Community 229"
 Cohesion: 0.22
 Nodes (8): compilerOptions, jsx, lib, paths, exclude, extends, include, @still/ui/*
 
 ### Community 230 - "Community 230"
-Cohesion: 0.25
-Nodes (7): compilerOptions, composite, declaration, declarationMap, outDir, sourceMap, extends
+Cohesion: 0.17
+Nodes (11): compilerOptions, composite, declaration, declarationMap, jsx, lib, outDir, sourceMap (+3 more)
 
 ### Community 231 - "Community 231"
 Cohesion: 0.25
@@ -1797,12 +1895,12 @@ Cohesion: 0.25
 Nodes (8): 8. ANTI-AI-SLOP RULES, Carousel / marquee slop (layout), Content slop, Data / KPI slop, Density slop, Layout slop, Typography slop, Visual slop
 
 ### Community 236 - "Community 236"
-Cohesion: 0.02
-Nodes (70): aKA(), aQA(), aR(), ArA(), ATA(), BR(), BTA(), cTA() (+62 more)
+Cohesion: 0.01
+Nodes (72): aQA(), aR(), ArA(), ATA(), BR(), BTA(), cTA(), DTA() (+64 more)
 
 ### Community 237 - "Community 237"
-Cohesion: 0.06
-Nodes (16): cd1(), G7A(), Gm(), hi1(), jB1(), Lm(), lP(), Ni1() (+8 more)
+Cohesion: 0.11
+Nodes (4): RiA(), TiA(), wb(), yN
 
 ### Community 238 - "Community 238"
 Cohesion: 0.04
@@ -1814,15 +1912,15 @@ Nodes (44): Basic Usage, Caveat: Explicit Types, code:bash (bun add @elysiajs/op
 
 ### Community 240 - "Community 240"
 Cohesion: 0.07
-Nodes (48): AnilistImportApplyResult, anilistStatusToTvWatchStatus(), applyAnilistImport(), ApplyAnilistImportOptions, ensureImportedShowLog(), ensureTvWatchRow(), importLogIsCompletion(), parseImportDate() (+40 more)
+Nodes (49): AnilistImportApplyResult, anilistStatusToTvWatchStatus(), applyAnilistImport(), ApplyAnilistImportOptions, ensureImportedShowLog(), ensureTvWatchRow(), importLogIsCompletion(), parseImportDate() (+41 more)
 
 ### Community 241 - "Community 241"
 Cohesion: 0.08
 Nodes (25): review_log_id_log_id_fk, review_movie_id_movie_tmdb_id_fk, review_user_id_user_id_fk, foreignKeys, columnsFrom, columnsTo, name, onDelete (+17 more)
 
 ### Community 242 - "Community 242"
-Cohesion: 0.07
-Nodes (7): addEventListener(), blob(), H6, j6, removeEventListener(), RX, ZmA()
+Cohesion: 0.08
+Nodes (5): addEventListener(), H6, j6, removeEventListener(), RX
 
 ### Community 243 - "Community 243"
 Cohesion: 0.07
@@ -1833,8 +1931,8 @@ Cohesion: 0.05
 Nodes (41): Affix (Bulk Remap), Assignment Patterns, code:ts (new Elysia()), code:ts (new Elysia()), code:ts (new Elysia()), code:ts (new Elysia()), code:ts (const plugin = new Elysia({ name: "setup" }).decorate({), code:ts (const app = new Elysia().get("/", "hi");) (+33 more)
 
 ### Community 245 - "Community 245"
-Cohesion: 0.03
-Nodes (175): qv(), $41(), $51(), $81(), A41(), A51(), A81(), A91() (+167 more)
+Cohesion: 0.02
+Nodes (192): qv(), $41(), $5(), $51(), $81(), A41(), A51(), A81() (+184 more)
 
 ### Community 246 - "Community 246"
 Cohesion: 0.07
@@ -1845,8 +1943,8 @@ Cohesion: 0.05
 Nodes (39): Build-time vs Runtime, code:js (// next.config.js), code:js (// next.config.js), code:js (// next.config.js), code:js (// lib/image-loader.js), code:js (// Available at build time only (baked into bundle)), code:tsx (// app/api/config/route.ts), code:bash (npx create-sst@latest) (+31 more)
 
 ### Community 248 - "Community 248"
-Cohesion: 0.11
-Nodes (24): DEFAULT_RSS_SOURCES, ensureRssSources(), ingestRss(), linkMoviesByTitle(), parseRss(), ACHIEVEMENTS, BADGES, seedCatalog() (+16 more)
+Cohesion: 0.05
+Nodes (36): code:typescript (// apps/server/src/lib/role-change-notification.test.ts), code:typescript (// apps/web/src/lib/role-change-dialog-copy.test.ts), code:typescript (// apps/web/src/lib/staff-role-labels.ts), code:typescript (// apps/web/src/lib/role-change-dialog-copy.ts), code:bash (git add apps/web/src/lib/staff-role-labels.ts apps/web/src/l), code:tsx (// apps/web/src/components/staff/role-badge-pill.tsx), code:tsx (// apps/web/src/components/staff/role-change-dialog.tsx), code:bash (git add apps/web/src/components/staff/role-badge-pill.tsx ap) (+28 more)
 
 ### Community 249 - "Community 249"
 Cohesion: 0.05
@@ -1865,8 +1963,8 @@ Cohesion: 0.06
 Nodes (33): add - Update Specific Properties, Basic Usage, code:typescript (import { Elysia } from "elysia";), code:typescript (.get('/', ({ cookie: { name } }) => {), code:typescript (.get('/', ({ cookie: { name } }) => {), code:typescript (.get('/', ({ cookie, cookie: { name } }) => {), code:typescript (import { Elysia, t } from "elysia";), code:typescript (cookie: t.Cookie({) (+25 more)
 
 ### Community 253 - "Community 253"
-Cohesion: 0.07
-Nodes (37): communityOffset(), parseCommunityPage(), countListItems(), ensureFavoritesList(), FAVORITES_ITEM_ORDER, isFavoritesSystemList(), refreshListAggregates(), repairFavoritesListPositions() (+29 more)
+Cohesion: 0.04
+Nodes (67): joinedTitleItemNotAdultSql(), movieNotAdultSql(), tvNotAdultSql(), getShowAdultContentForUser(), communityOffset(), parseCommunityPage(), communityPeriodQuery, DiaryMedia (+59 more)
 
 ### Community 254 - "Community 254"
 Cohesion: 0.09
@@ -1890,11 +1988,11 @@ Nodes (26): ACTIVITY_SIGNATURE_LEVEL_CLASS, ACTIVITY_SIGNATURE_ROW_LABELS, ACTIV
 
 ### Community 259 - "Community 259"
 Cohesion: 0.02
-Nodes (167): AppLayout(), ChatPane(), ChatPage(), metadata, Thread, CreditsCrawl(), CreditsCrawlLine, CreditsFooter() (+159 more)
+Nodes (171): ChatPane(), ChatPage(), metadata, Thread, CreditsCrawl(), CreditsCrawlLine, CreditsFooter(), Detail (+163 more)
 
 ### Community 260 - "Community 260"
-Cohesion: 0.07
-Nodes (65): filmographyFromRecentlyWatched(), PROFILE_TOOLBAR_SOCIAL_ORDER, ProfileData, profileInitials(), ProfilePage(), readLogWatchVenue(), resolveProfileTab(), splitFilmographyLedger() (+57 more)
+Cohesion: 0.05
+Nodes (76): filmographyFromRecentlyWatched(), PROFILE_TOOLBAR_SOCIAL_ORDER, ProfileData, profileInitials(), ProfilePage(), readLogWatchVenue(), resolveProfileTab(), splitFilmographyLedger() (+68 more)
 
 ### Community 261 - "Community 261"
 Cohesion: 0.08
@@ -1925,8 +2023,8 @@ Cohesion: 0.08
 Nodes (24): watchlist_user_added_idx, watchlist_user_movie_uk, watchlist_user_tv_uk, indexes, columns, concurrently, isUnique, method (+16 more)
 
 ### Community 269 - "Community 269"
-Cohesion: 0.16
-Nodes (14): WhatsNewDialogRoot(), WhatsNewDialog(), formatChangelogReleaseKicker(), formatReleaseDateFromId(), formatReleaseVersionLabel(), getProductChangelogRelease(), PRODUCT_CHANGELOG_RELEASES, ProductChangelogItem (+6 more)
+Cohesion: 0.12
+Nodes (20): WhatsNewDialogRoot(), WhatsNewDialog(), metadata, formatChangelogReleaseKicker(), formatReleaseDateFromId(), formatReleaseVersionLabel(), getProductChangelogRelease(), PRODUCT_CHANGELOG_RELEASES (+12 more)
 
 ### Community 270 - "Community 270"
 Cohesion: 0.06
@@ -1961,8 +2059,8 @@ Cohesion: 0.29
 Nodes (7): 4. HERO MINIMALISM RULES, Absolute Hero Rules, Graphic Restraint, Headline Rule, Hero Composition Bias, Pre-output check, Typography Execution
 
 ### Community 278 - "Community 278"
-Cohesion: 0.15
-Nodes (29): addUtcDays(), applyQualifyingDay(), applyStreakShield(), collectQualifyingDayKeys(), computeLivingStreakFromDayKeys(), computeStreakFromDayKeys(), deriveStreakStatus(), longestStreakFromDayKeys() (+21 more)
+Cohesion: 0.13
+Nodes (35): addUtcDays(), applyQualifyingDay(), applyStreakShield(), collectQualifyingDayKeys(), computeLivingStreakFromDayKeys(), computeStreakFromDayKeys(), deriveStreakStatus(), longestStreakFromDayKeys() (+27 more)
 
 ### Community 279 - "Community 279"
 Cohesion: 0.07
@@ -1981,8 +2079,8 @@ Cohesion: 0.07
 Nodes (25): code:ts (const plugin = new Elysia().decorate("plugin", "hi").get("/p), code:ts (.guard({), code:ts (const plugin = new Elysia()), code:ts (// plugin.ts), code:ts (const app = new Elysia().use(import("./plugin")); // loaded ), code:ts (await app.modules; // ensure all deferred/lazy modules loade), code:ts (const auth = new Elysia().decorate("Auth", Auth);), code:ts (const ip = new Elysia({ name: "ip" }) // unique identifier) (+17 more)
 
 ### Community 283 - "Community 283"
-Cohesion: 0.03
-Nodes (8): cloneWithExplain(), cloneWithJoin(), cloneWithoutOrderBy(), cloneWithoutReturning(), cloneWithoutWhere(), LS, withPlugin(), YD
+Cohesion: 0.04
+Nodes (12): cloneWithOutput(), cloneWithoutReturning(), cloneWithoutWhere(), cloneWithReturning(), cloneWithSelections(), cloneWithTables(), cloneWithUsing(), L8() (+4 more)
 
 ### Community 284 - "Community 284"
 Cohesion: 0.07
@@ -2025,8 +2123,8 @@ Cohesion: 0.08
 Nodes (23): code:tsx (// app/layout.tsx), code:tsx (// Bad: Manual link tag (blocks rendering, no optimization)), code:tsx (// Bad: Importing font in every component), code:tsx (// For component-specific fonts, export from a shared file), code:tsx (import { Inter, Roboto_Mono } from "next/font/google";), code:css (body {), code:tsx (// Single weight), code:tsx (import localFont from "next/font/local";) (+15 more)
 
 ### Community 294 - "Community 294"
-Cohesion: 0.06
-Nodes (49): awardBadge(), AwardBadgeOptions, awardBadgeToUser(), Criteria, meetsCriteria(), progressAchievement(), runEvaluator(), snapshot() (+41 more)
+Cohesion: 0.05
+Nodes (74): headerIndex(), LetterboxdCsvRow, letterboxdImportDedupeKey(), letterboxdStarsToStoredTenths(), mergeLetterboxdImportRows(), mergeLetterboxdPair(), headerIndex(), parseCsvLine() (+66 more)
 
 ### Community 295 - "Community 295"
 Cohesion: 0.09
@@ -2034,19 +2132,19 @@ Nodes (22): API (mirror watchlist / logs), Architecture, Catalogue radial, code:
 
 ### Community 296 - "Community 296"
 Cohesion: 0.06
-Nodes (36): log_movie_idx, log_tv_idx, log_user_movie_idx, log_user_tv_idx, log_user_watched_idx, columns, concurrently, isUnique (+28 more)
+Nodes (36): log_movie_idx, log_rating_idx, log_tv_idx, log_user_movie_idx, log_user_venue_idx, columns, concurrently, isUnique (+28 more)
 
 ### Community 297 - "Community 297"
-Cohesion: 0.03
-Nodes (128): ActivityItem(), CommunityActivityInfinite(), CommunityInfiniteFooter(), CommunityListsInfinite(), CommunityReviewsInfinite(), HomeCommunityFeedChips(), HomeCommunityEmpty(), HomeCommunityLeaderboard() (+120 more)
+Cohesion: 0.02
+Nodes (174): accountMenuItemClassName, accountMenuItemOnBackgroundClassName, accountMenuPrimaryItemClassName, accountMenuPrimaryOnBackgroundClassName, AccountMenuUser, AppUserAccountMenuBody(), AppUserAccountMenuBodyProps, STAFF_ROLES (+166 more)
 
 ### Community 298 - "Community 298"
 Cohesion: 0.09
 Nodes (21): Available Tools, code:bash (curl -X POST http://localhost:<port>/_next/mcp \), code:json ({ "name": "get_errors", "arguments": {} }), code:json ({ "name": "get_routes", "arguments": {} }), code:json ({ "name": "get_project_metadata", "arguments": {} }), code:json ({ "name": "get_page_metadata", "arguments": {} }), code:json ({ "name": "get_logs", "arguments": {} }), code:json ({ "name": "get_server_action_by_id", "arguments": { "actionI) (+13 more)
 
 ### Community 299 - "Community 299"
-Cohesion: 0.14
-Nodes (15): CatalogSearchDialogStore, CatalogSearchShellUi, clampCatalogSearchPanelLeftFromCenter(), computeCatalogSearchAnchoredPanelStyle(), defaultCatalogSearchShortcutAnchorRect(), isCatalogSearchAnchorVisibleInViewport(), normalizeCatalogSearchAnchorRect(), resolveOpenAnchor() (+7 more)
+Cohesion: 0.04
+Nodes (41): AppNav(), isActive(), MOBILE_YOU_DESTINATIONS, MobileYouDestination, shouldHideMobileTabBar(), MobileTabBar(), TabUser, DESTINATION_ICON (+33 more)
 
 ### Community 300 - "Community 300"
 Cohesion: 0.09
@@ -2121,8 +2219,8 @@ Cohesion: 0.10
 Nodes (19): autoDetect, autoDoctype, Basic Usage, code:bash (bun add @elysiajs/html), code:tsx (import React from "react";), code:jsonc (// tsconfig.json), code:tsx (import React from "react";), code:tsx (import { Html } from "@elysiajs/html";) (+11 more)
 
 ### Community 318 - "Community 318"
-Cohesion: 0.02
-Nodes (91): add(), aF(), all(), applyMacro(), Ay0(), B6, beforeHandle(), By0() (+83 more)
+Cohesion: 0.01
+Nodes (103): $0, add(), all(), _alterNeighbour(), _alterSingle(), apply(), applyMacro(), BD() (+95 more)
 
 ### Community 320 - "Community 320"
 Cohesion: 0.11
@@ -2182,7 +2280,7 @@ Nodes (16): code:tsx (// Bad: Native script tag), code:tsx (// Bad: Missing id),
 
 ### Community 335 - "Community 335"
 Cohesion: 0.01
-Nodes (158): $0, _A(), _acquireClient(), adapter(), _addColor(), addEventListener(), ah0(), Aj (+150 more)
+Nodes (131): _A(), a26(), _acquireClient(), acquireConnection(), adapter(), ah0(), Aj, AN0() (+123 more)
 
 ### Community 336 - "Community 336"
 Cohesion: 0.12
@@ -2235,6 +2333,10 @@ Nodes (26): 4-cell stats grid, Build order, code:block1 (// After the db.update(
 ### Community 350 - "Community 350"
 Cohesion: 0.09
 Nodes (22): Action matrix, code:block1 (Radial open), Component design, Data flow, Decisions (locked), Error handling, Everyone, Files (expected touch set) (+14 more)
+
+### Community 351 - "Community 351"
+Cohesion: 0.06
+Nodes (35): 1. Resend operational setup, 2. Auth emails module + Better Auth hooks, 3. Soft verification gate, 4. Web auth pages, 5. Error handling, 6. Testing, Better Auth configuration (`packages/auth/src/index.ts`), Client UX (+27 more)
 
 ### Community 352 - "Community 352"
 Cohesion: 0.13
@@ -2461,16 +2563,16 @@ Cohesion: 0.14
 Nodes (14): 8.10 AI TELLS (FORBIDDEN PATTERNS), 8.11 CREATIVE ARSENAL, 8.12 MOTION-ENGINE BENTO PARADIGM, 8.13 HERO AND PAGE CHECKSUM RULES, 8.1 CORE PRIORITY, 8.2 ACTIVE BASELINE INTERPRETATION, 8.3 DEFAULT ARCHITECTURE & CONVENTIONS, 8.4 DESIGN ENGINEERING DIRECTIVES (+6 more)
 
 ### Community 426 - "Community 426"
-Cohesion: 0.17
-Nodes (17): CreatorAnalyticsPayload, CreatorListHighlight, fetchCreatorAnalyticsForUser(), listDescribedSql, buildCuratorHeadline(), creatorRecognitionRelaxed(), CreatorRecognitionThresholds, CuratorContributionStats (+9 more)
+Cohesion: 0.06
+Nodes (33): Canonical types (used across tasks), code:ts (// apps/server/src/lib/feed-items.ts & mirrored in apps/web/), code:ts (const merged = sortFeedRows([), code:bash (git add apps/server/src/routes/feed.ts apps/server/src/lib/f), code:ts (import { describe, expect, test } from "bun:test";), code:ts (export type ActivityFeedCursor = {), code:bash (git add apps/web/src/lib/home-community-activity.ts apps/web), code:tsx (<ActivityByline) (+25 more)
 
 ### Community 430 - "Community 430"
-Cohesion: 0.07
-Nodes (39): recomputeUserTasteSignature(), appendContrarianNote(), ARCHETYPE_TEMPLATES, buildPayload(), buildTasteStats(), classifyTasteArchetype(), computeTasteSignatureFromLogs(), fillTemplate() (+31 more)
+Cohesion: 0.09
+Nodes (30): recomputeUserTasteSignature(), appendContrarianNote(), ARCHETYPE_TEMPLATES, buildPayload(), buildTasteStats(), classifyTasteArchetype(), computeTasteSignatureFromLogs(), fillTemplate() (+22 more)
 
 ### Community 432 - "Community 432"
-Cohesion: 0.05
-Nodes (10): H6(), Iu, pl0(), qL0(), QM(), RX, tl0(), tn0() (+2 more)
+Cohesion: 0.06
+Nodes (8): Iu, pl0(), qL0(), RX, tl0(), tn0(), xL0(), yL0()
 
 ### Community 437 - "Community 437"
 Cohesion: 0.21
@@ -2480,13 +2582,17 @@ Nodes (12): BadgeWatcher(), BadgePrestigeInput, badgePrestigeScore(), compareBad
 Cohesion: 0.08
 Nodes (23): Architecture, Automated, Browse tap sequence, code:block1 (home/page.tsx (RSC)), Community data tiers, Component changes, Confirmed symptoms (human QA 2026-05-29), Decisions (locked) (+15 more)
 
+### Community 448 - "Community 448"
+Cohesion: 0.06
+Nodes (23): audit, body, call, data, db, entry, id, listTable (+15 more)
+
 ### Community 450 - "Community 450"
-Cohesion: 0.11
-Nodes (22): DiaryMedia, diaryOffset(), DiaryOrder, diaryTotalPages(), DiaryVenue, parseDiaryLimit(), parseDiaryMedia(), parseDiaryOrder() (+14 more)
+Cohesion: 0.13
+Nodes (21): DiaryLogRatingLabel(), clampLogRatingDisplay(), formatLogRatingDisplay(), formatPatronScoreTickerLabel(), logRatingToDisplay(), LogRatingScoreDigits(), LogRatingSlider(), ratingFromClientX() (+13 more)
 
 ### Community 451 - "Community 451"
-Cohesion: 0.12
-Nodes (14): aA0(), asA(), cA0(), cSA(), isA(), lA0(), lSA(), msA() (+6 more)
+Cohesion: 0.10
+Nodes (15): aA0(), aKA(), asA(), cA0(), cSA(), isA(), lA0(), lSA() (+7 more)
 
 ### Community 454 - "Community 454"
 Cohesion: 0.08
@@ -2503,10 +2609,6 @@ Nodes (14): 8.10 AI TELLS (FORBIDDEN PATTERNS), 8.11 CREATIVE ARSENAL, 8.12 MOTI
 ### Community 478 - "Community 478"
 Cohesion: 0.09
 Nodes (22): Button states, Client API, code:block1 (GET /api/movies/:id/friends-ratings   -> FriendRatingRow[]), Feature 1 — Friends' ratings on movie detail, Feature 2 — Followers / following drawer, Feature 3 — Speed up profile + home community rail, Feature 4 — Remove watched items, Feature 5 — List author byline in movie community section (+14 more)
-
-### Community 479 - "Community 479"
-Cohesion: 0.13
-Nodes (4): $f1(), fQ(), Kq, RzA()
 
 ### Community 480 - "Community 480"
 Cohesion: 0.14
@@ -2537,8 +2639,8 @@ Cohesion: 0.15
 Nodes (12): Algorithm, code:block1 (delta = 0.4), code:block2 (maxChroma = findMaxChroma(step[i].L, hue, colorSpace)), code:css (:root {), code:css (:root {), code:css (:root {), CSS variable output, Dark mode (+4 more)
 
 ### Community 488 - "Community 488"
-Cohesion: 0.13
-Nodes (3): cloneWithDistinct(), cloneWithFilter(), uQ
+Cohesion: 0.11
+Nodes (3): cloneWithDistinct(), cloneWithoutOrderBy(), uQ
 
 ### Community 489 - "Community 489"
 Cohesion: 0.17
@@ -2553,12 +2655,12 @@ Cohesion: 0.50
 Nodes (3): name, private, version
 
 ### Community 492 - "Community 492"
-Cohesion: 0.12
-Nodes (4): er, k5, qPA(), xPA()
+Cohesion: 0.02
+Nodes (80): o0(), ABA(), acquireMigrationLock(), aV1(), B71(), BM1(), BpA(), Cc() (+72 more)
 
 ### Community 494 - "Community 494"
-Cohesion: 0.18
-Nodes (11): buildCatalogueRadialItemSpecs(), BuildCatalogueRadialSpecsInput, CatalogueRadialItemSpec, CatalogueRadialSurface, isCatalogueRadialGatedAction(), SLOT_ORDER, sortSpecs(), log (+3 more)
+Cohesion: 0.06
+Nodes (29): code:ts (test("maps watched.csv", () => {), code:ts ("No recognized Letterboxd CSV files — include diary.csv, wat), code:ts (const touched =), code:ts (const tasteChanged =), code:ts (const summaryParts = [), code:bash (git add apps/server/src/routes/import.ts), code:ts ("watched.csv",), code:ts ({) (+21 more)
 
 ### Community 496 - "Community 496"
 Cohesion: 0.08
@@ -2593,12 +2695,12 @@ Cohesion: 0.18
 Nodes (10): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, 5. TECHNICAL REFERENCE (Dial Definitions), DESIGN_VARIANCE (Level 1-10), High-Agency Cinematic Product Frontend Skill (+2 more)
 
 ### Community 505 - "Community 505"
-Cohesion: 0.29
-Nodes (6): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, High-Agency Dark Luxe Frontend Skill
+Cohesion: 0.18
+Nodes (10): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, High-Agency Dark Luxe Frontend Skill (+2 more)
 
 ### Community 506 - "Community 506"
-Cohesion: 0.29
-Nodes (6): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, High-Agency Dashboards Frontend Skill
+Cohesion: 0.18
+Nodes (10): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, High-Agency Dashboards Frontend Skill (+2 more)
 
 ### Community 507 - "Community 507"
 Cohesion: 0.18
@@ -2617,12 +2719,12 @@ Cohesion: 0.18
 Nodes (10): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, High-Agency Premium Bento Frontend Skill (+2 more)
 
 ### Community 511 - "Community 511"
-Cohesion: 0.29
-Nodes (6): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, High-Agency Quiet Luxury Frontend Skill
+Cohesion: 0.18
+Nodes (10): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, High-Agency Quiet Luxury Frontend Skill (+2 more)
 
 ### Community 512 - "Community 512"
-Cohesion: 0.29
-Nodes (6): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, High-Agency Soft Brutalism Frontend Skill
+Cohesion: 0.18
+Nodes (10): 10.1 QUICK DECISION SHORTCUTS, 10. FAILURE MODES AND RECOVERY LOOP, 11. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, High-Agency Soft Brutalism Frontend Skill (+2 more)
 
 ### Community 513 - "Community 513"
 Cohesion: 0.18
@@ -2658,7 +2760,7 @@ Nodes (23): Accessibility and Input, API Changes (Server), Background and Motiva
 
 ### Community 521 - "Community 521"
 Cohesion: 0.06
-Nodes (11): beginTransaction(), commitTransaction(), En, Ik(), init(), ll1(), Mi, Pl1() (+3 more)
+Nodes (7): cloneWithColumn(), createIntrospector(), introspection(), TY, withoutPlugins(), withPlugin(), withSchema()
 
 ### Community 522 - "Community 522"
 Cohesion: 0.20
@@ -2741,12 +2843,12 @@ Cohesion: 0.28
 Nodes (8): cacheDir, download(), main(), scriptDir, stableTarball, tarballIsValid(), versionedTarball, webRoot
 
 ### Community 544 - "Community 544"
-Cohesion: 0.18
-Nodes (4): Ah1(), ddA, pdA, pick()
+Cohesion: 0.06
+Nodes (30): code:ts (// apps/server/src/lib/taste-scoring-math.test.ts), code:ts (// apps/server/src/lib/taste-stratified-candidates.ts), code:ts (// apps/server/src/lib/taste-social-candidates.ts), code:bash (git add apps/server/src/lib/taste-stratified-candidates.ts a), code:bash (git add apps/server/src/lib/taste-matched-discovery.ts apps/), code:ts (// product-event-kinds.ts — add to PRODUCT_EVENT_KINDS array), code:ts (const payload = await buildTasteMatchedDiscovery(user.id);), code:ts (type TasteMatchServeMeta = {) (+22 more)
 
 ### Community 546 - "Community 546"
-Cohesion: 0.01
-Nodes (150): _6(), a$A(), appendImmediateValue(), aw1(), b0(), b$A(), BD, BE() (+142 more)
+Cohesion: 0.02
+Nodes (77): _6(), a$A(), BD, CH1(), cloneWithDistinctOn(), cloneWithEnum(), cloneWithFetch(), cloneWithGroupByItems() (+69 more)
 
 ### Community 547 - "Community 547"
 Cohesion: 0.25
@@ -2770,11 +2872,11 @@ Nodes (20): API, Catalogue section (`SettingsCatalogueSection`), Column, Data mo
 
 ### Community 553 - "Community 553"
 Cohesion: 0.24
-Nodes (8): ActivityKind, activityRowKey(), coerceActivityTimestamp(), FeedMedia, FeedPerson, ListPayload, parseFeedApiActivityItems(), out
+Nodes (8): ActivityKind, activityRowKey(), coerceActivityTimestamp(), FeedMedia, FeedPerson, LogPayload, parseFeedApiActivityItems(), out
 
 ### Community 554 - "Community 554"
-Cohesion: 0.25
-Nodes (9): fetchFollowingRatingsForMovie(), fetchFollowingRatingsForTitle(), fetchFollowingRatingsForTv(), FollowingLogRow, MovieFollowingRatingEntry, pickLatestFollowingRatingsPerPatron(), entries, newer (+1 more)
+Cohesion: 0.06
+Nodes (29): Accessibility & performance, API, Batch counts for lists, Call-site migration, code:ts (/** Diary volume metal ring — null means no tier (< 100 logs), code:ts (export function resolveDiaryMetalTier(logsCount: number): Di), code:ts ({), code:bash (bun add metal-fx --filter web) (+21 more)
 
 ### Community 555 - "Community 555"
 Cohesion: 0.29
@@ -2822,11 +2924,11 @@ Nodes (19): code:powershell (cd apps/server; bun test src/lib/anilist-import-jso
 
 ### Community 566 - "Community 566"
 Cohesion: 0.02
-Nodes (109): abort(), Ac0(), AI0, ArrayBuffer(), AU(), AU6(), az6(), BD() (+101 more)
+Nodes (87): abort(), Ac0(), AI0, ArrayBuffer(), AU6(), az6(), bezierInterpolation(), BI0 (+79 more)
 
 ### Community 567 - "Community 567"
 Cohesion: 0.05
-Nodes (12): cloneWithHaving(), cloneWithIndexWhere(), cloneWithOn(), cloneWithWhen(), cloneWithWhere(), QD, Ul(), v6() (+4 more)
+Nodes (17): cloneWithFilter(), cloneWithHaving(), cloneWithIndexOrWhere(), cloneWithIndexWhere(), cloneWithOn(), cloneWithOperation(), cloneWithOrFilter(), cloneWithUpdateOrWhere() (+9 more)
 
 ### Community 568 - "Community 568"
 Cohesion: 0.33
@@ -2896,13 +2998,17 @@ Nodes (6): 3. DESIGN ENGINEERING DIRECTIVES (Bias Correction), Color and Brand, 
 Cohesion: 0.33
 Nodes (6): 3. DESIGN ENGINEERING DIRECTIVES (Bias Correction), Color and Brand, Layout and Hierarchy, Materiality, Cards, and Components, States, Forms, and Copy Behavior, Typography
 
+### Community 585 - "Community 585"
+Cohesion: 0.07
+Nodes (26): Animated Profile Media Implementation Plan, code:ts (import { describe, expect, test } from "bun:test";), code:ts (const grayscaleClass =), code:ts (avatarIsAnimated?: boolean;), code:tsx (<PatronPortraitAvatar), code:ts (avatarIsAnimated: readAvatarIsAnimatedPref(profile.preferenc), code:ts (} else if (body.code === "PRO_ANIMATED_MEDIA_REQUIRED") {), code:ts (profile: { handle: string; displayName: string; avatarIsAnim) (+18 more)
+
 ### Community 588 - "Community 588"
 Cohesion: 0.10
 Nodes (19): Anime chip, Architecture, Client, code:block1 (effectiveListingKind =), code:block2 (HomeStickySearch), Curated Anime rules (unchanged ids), Error handling & empty states, Implementation note (+11 more)
 
 ### Community 589 - "Community 589"
-Cohesion: 0.05
-Nodes (20): Ay1(), Bh(), Bj, BM1(), bS(), EP(), Fl, fn() (+12 more)
+Cohesion: 0.01
+Nodes (90): _1(), A00(), a3A(), acquireConnection(), adapter(), Ay1(), beginTransaction(), Bh() (+82 more)
 
 ### Community 591 - "Community 591"
 Cohesion: 0.31
@@ -3045,8 +3151,8 @@ Cohesion: 0.50
 Nodes (4): code:typescript (.macro({), code:block17 (src/), Macro, Project Structure (Recommended)
 
 ### Community 634 - "Community 634"
-Cohesion: 0.29
-Nodes (7): log_rating_idx, columns, concurrently, isUnique, method, name, with
+Cohesion: 0.07
+Nodes (29): Client changes (minimal), code:block1 (similarity(candidate, dismissed) =), code:block2 (GET /api/taste/for-you), Decisions (locked), Dismiss negative signal (Not interested matters), Error handling & fallbacks, Future work, Genre phrase (+21 more)
 
 ### Community 635 - "Community 635"
 Cohesion: 0.50
@@ -3093,8 +3199,8 @@ Cohesion: 0.23
 Nodes (3): AnimatedView, Container(), Props
 
 ### Community 648 - "Community 648"
-Cohesion: 0.07
-Nodes (28): A8, byte(), cstring(), handlePacket(), int16(), int32(), JHA, jvA (+20 more)
+Cohesion: 0.19
+Nodes (23): byte(), bytes(), cstring(), handlePacket(), int16(), int32(), parseAuthenticationResponse(), parseBackendKeyData() (+15 more)
 
 ### Community 650 - "Community 650"
 Cohesion: 0.14
@@ -3105,8 +3211,8 @@ Cohesion: 0.11
 Nodes (16): Checkpoint: Integration (after Tasks 1–8), code:bash (cd apps/web && bun test src/lib/home-catalogue-search-param.), code:ts (export const HOME_CATALOGUE_SEARCH_PARAM = "search";), File structure, Home Catalogue Search Commit — Implementation Plan, Out of scope (do not implement), Risks and mitigations, Success criteria (from spec) (+8 more)
 
 ### Community 656 - "Community 656"
-Cohesion: 0.29
-Nodes (7): log_user_venue_idx, columns, concurrently, isUnique, method, name, with
+Cohesion: 0.07
+Nodes (28): Animated profile media + portrait color preference, API, code:ts (isAnimated?: boolean;), code:block2 (grayscale [@media(hover:hover)]:hover:grayscale-0), Data model, Error handling, Implementation plan, Inferring animation without flags (fallback) (+20 more)
 
 ### Community 659 - "Community 659"
 Cohesion: 0.50
@@ -3137,8 +3243,8 @@ Cohesion: 0.67
 Nodes (3): code:ts (new Elysia()), code:ts (new Elysia()), Reference Model
 
 ### Community 669 - "Community 669"
-Cohesion: 0.33
-Nodes (6): comments_count, default, name, notNull, primaryKey, type
+Cohesion: 0.07
+Nodes (26): code:ts (import { describe, expect, test } from "bun:test";), code:ts (if (existing) {), code:ts (const classified = classifyUploadedFiles(csvFiles);), code:ts (const touched =), code:ts (const RECOGNIZED = new Set([), code:ts (export type LetterboxdCsvKind =), code:bash (git add apps/server/src/lib/letterboxd-csv-parse.ts apps/ser), code:ts (import { describe, expect, test } from "bun:test";) (+18 more)
 
 ### Community 670 - "Community 670"
 Cohesion: 0.17
@@ -3165,8 +3271,8 @@ Cohesion: 0.13
 Nodes (14): Architecture, code:block1 (APP_THEMES[].label  ──►  Settings swatches (MeAppearanceSett), Design principles, Error handling, Implementation follow-up, In scope, Locked display names (Set A), Out of scope (+6 more)
 
 ### Community 676 - "Community 676"
-Cohesion: 0.33
-Nodes (6): published_at, default, name, notNull, primaryKey, type
+Cohesion: 0.13
+Nodes (23): buildCsv(), csvEscape(), CsvValue, displayTenToLetterboxdStars(), exportDateKey(), formatRatingTenDisplay(), storedRatingToDisplayTen(), csv (+15 more)
 
 ### Community 677 - "Community 677"
 Cohesion: 0.14
@@ -3197,8 +3303,8 @@ Cohesion: 0.17
 Nodes (12): code:ts (import { pgEnum } from "drizzle-orm/pg-core";), code:json ({), code:bash (git add packages/db/src/schema/visibility.ts packages/db/src), code:ts (export * from "./visibility";), code:ts (import { contentVisibility } from "./visibility";), code:ts (isPublic: boolean("is_public").default(true).notNull(),), code:ts (visibility: contentVisibility("visibility").notNull().defaul), code:ts (visibility: contentVisibility("visibility").notNull().defaul) (+4 more)
 
 ### Community 685 - "Community 685"
-Cohesion: 0.03
-Nodes (58): hL(), b2, Be1(), _calculateRT(), Ce1(), _createWeights(), cWA(), DJ() (+50 more)
+Cohesion: 0.02
+Nodes (71): Ae1(), b2, Be1(), boA(), _calculateRT(), Ce1(), _createWeights(), createWithChildren() (+63 more)
 
 ### Community 687 - "Community 687"
 Cohesion: 0.14
@@ -3225,20 +3331,24 @@ Cohesion: 0.09
 Nodes (22): Archetypes, Architecture, code:ts (export type TasteArchetype =), code:block2 (log rows (recompute)), code:block3 (profile.taste_signature), contrarian, curator, Data model (+14 more)
 
 ### Community 696 - "Community 696"
-Cohesion: 0.03
-Nodes (24): bo(), cgA(), CkA(), egA(), eKA(), Go(), gR(), HLA() (+16 more)
+Cohesion: 0.04
+Nodes (18): bo(), cgA(), Do(), egA(), Go(), gR(), igA(), Jr() (+10 more)
 
 ### Community 697 - "Community 697"
 Cohesion: 0.39
 Nodes (5): robots(), sitemap(), fetchSitemapLists(), SitemapListEntry, getSiteOrigin()
 
 ### Community 698 - "Community 698"
-Cohesion: 0.54
-Nodes (5): hasStorage(), markWhatsNewSeen(), readWhatsNewSeenReleaseId(), shouldShowWhatsNewRelease(), storageKey()
+Cohesion: 0.07
+Nodes (26): Action matrix (taste-rail tiles), `buildTasteMatchedDiscovery(userId)`, `catalogue-radial-items.ts`, `CataloguePosterTile`, Client architecture, code:ts ({), code:ts (type CatalogueRadialSurface = "home" | "diary" | "watchlist"), Data model (+18 more)
 
 ### Community 699 - "Community 699"
 Cohesion: 0.22
 Nodes (9): code:tsx ("use client";), code:tsx (import type { PopularMovieSeed } from "@/components/movie/po), code:tsx ("use client";), code:ts (seeds: PopularMovieSeed[];), code:ts (const { order, venue, favoritesOnly, toolbarActiveTab, conte), code:tsx (<ProfileTabPanels), code:tsx (export function ProfilePatronLobbyShell(props: ProfilePatron), code:block32 (git add apps/web/src/components/profile/profile-lobby-catalo) (+1 more)
+
+### Community 700 - "Community 700"
+Cohesion: 0.19
+Nodes (23): buildWatchedDateMonthGrid(), dateToYmd(), defaultBirthDatePickerAnchorYmd(), formatMonthLabel(), formatMonthShortLabel(), formatMonthYearLabel(), formatTodayYmd(), formatWatchedDateLabel() (+15 more)
 
 ### Community 701 - "Community 701"
 Cohesion: 0.22
@@ -3249,8 +3359,8 @@ Cohesion: 0.22
 Nodes (9): Architecture slices (Phase 1), code:block3 (logs/ratings (DB) → computeTasteSignature() → profile.taste_), code:block4 (Upload CSV → import job → TMDB match → upsert log/watchlist/), code:block5 (editorial config → merge with friend feed when follows empty), code:block6 (profile + badges + taste JSON → OG image route → share UX), Editorial feed, Import pipeline, Taste card (+1 more)
 
 ### Community 703 - "Community 703"
-Cohesion: 0.10
-Nodes (6): bB1(), fmA, JMA, KmA, smA(), YMA
+Cohesion: 0.12
+Nodes (4): bB1(), fmA, JMA, YMA
 
 ### Community 705 - "Community 705"
 Cohesion: 0.14
@@ -3264,13 +3374,17 @@ Nodes (7): code:tsx ("use client";), code:bash (cd apps/web && bun run typecheck
 Cohesion: 0.25
 Nodes (8): code:ts (filmographyCounts: {), code:ts (const counts = data.filmographyCounts;), code:ts (import { fetchProfileFilmographyServer } from "@/lib/fetch-p), code:ts (const socialTabs = PROFILE_TOOLBAR_SOCIAL_ORDER.filter((sec)), code:tsx (seeds={filmographyPage1.seeds}), code:block38 (./node_modules/.bin/biome check apps/web/src 2>&1 | grep -iE), code:block39 (git add apps/web/src/app/\(app\)/profile apps/web/src/lib/pr), Task 8: Web — profile page seeds page 1; prune; verify
 
+### Community 708 - "Community 708"
+Cohesion: 0.09
+Nodes (19): code:ts (// packages/db/src/schema/taste-dismissed-movie.ts), code:ts (const handleNotInterested = useCallback(async (tmdbId: numbe), code:tsx (<CataloguePosterTile), code:ts (// taste-dismissed-movie.test.ts — test pickNextTasteMatchCa), code:ts (export async function fetchDismissedMovieTmdbIds(userId: str), code:ts (test("taste-rail adds Not interested after add-to-list", () ), code:ts (export type CatalogueRadialSurface = "home" | "diary" | "wat), code:ts (onNotInterested?: (tmdbId: number) => void | Promise<void>;) (+11 more)
+
 ### Community 709 - "Community 709"
 Cohesion: 0.36
 Nodes (6): formatFilmSegment(), formatListMetaLine(), formatShowSegment(), ListMetaLineInput, priv, pub
 
 ### Community 710 - "Community 710"
-Cohesion: 0.33
-Nodes (6): comments_count, default, name, notNull, primaryKey, type
+Cohesion: 0.09
+Nodes (21): `ActivityItem` / `ActivityByline`, Automated, Client re-sort, code:block1 ((at < cursorAt) OR (at = cursorAt AND kind/id tiebreak is ol), Community Activity feed — ordering & timestamps, Composite cursor (signed-in `GET /api/feed`), Decisions, Divergence (+13 more)
 
 ### Community 720 - "Community 720"
 Cohesion: 0.29
@@ -3296,6 +3410,10 @@ Nodes (6): code:ts (import { profile } from "@still/db";), code:ts (const nextRa
 Cohesion: 0.29
 Nodes (7): code:ts (type ComposerArgs = {), code:ts (if (args.reviewId) {), code:ts (const isEdit = Boolean(args.reviewId);), code:ts (const openComposer = useReviewComposer((s) => s.open);), code:bash (cd apps/web && bun run check-types), code:bash (git add apps/web/src/components/review/review-composer.tsx a), Task 7: Review composer — edit mode
 
+### Community 733 - "Community 733"
+Cohesion: 0.09
+Nodes (21): 1. Accepted CSV files & parsing, 2. Import pipeline & merge rules, 3. API response & side effects, 4. Server module layout, 5. Web UI (`me-letterboxd-import.tsx`), 6. Edge cases, 7. Testing, 8. Out of scope (v1) (+13 more)
+
 ### Community 734 - "Community 734"
 Cohesion: 0.29
 Nodes (7): Loss Aversion, Section 10: Psychological Triggers in Successful Social/Tracking Apps, Social Comparison (upward and lateral), Social Proof at the Individual Level, The Endowment Effect, The Zeigarnik Effect, Variable Reward (intermittent reinforcement)
@@ -3305,8 +3423,12 @@ Cohesion: 0.29
 Nodes (7): Section 7: The Most Dangerous Weaknesses in Your Current Thinking, Weakness 1 — Achievements without meaning, Weakness 2 — "Better UX" is not a moat, Weakness 3 — Trying to do movies, TV, and anime simultaneously at launch, Weakness 4 — Streaks without safeguards, Weakness 5 — The cold start problem for social features, Weakness 6 — Ignoring the creator economy inside your platform
 
 ### Community 736 - "Community 736"
-Cohesion: 0.09
-Nodes (21): 2026-05-27 — Instant lobby navigation / perceived performance (Planner), 2026-05-27 — TV diary rewatch scope (Executor), 2026-05-27 — TV on lists (Planner), 2026-05-28 — Home sticky icon tooltips (Executor), 2026-05-28 — Landing hero Mobbin layout on dark canvas (Executor), 2026-05-28 — Ranked list drag reorder (Planner), 2026-05-29 — Home browse instant navigation (Planner), 2026-05-29 — Sense product roadmap + Phase 1 launch blockers (Planner → Executor) (+13 more)
+Cohesion: 0.11
+Nodes (18): 2026-05-27 — Instant lobby navigation / perceived performance (Planner), 2026-05-27 — TV diary rewatch scope (Executor), 2026-05-27 — TV on lists (Planner), 2026-05-28 — Home sticky icon tooltips (Executor), 2026-05-28 — Landing hero Mobbin layout on dark canvas (Executor), 2026-05-28 — Ranked list drag reorder (Planner), 2026-05-29 — Home browse instant navigation (Planner), 2026-05-29 — Sense product roadmap + Phase 1 launch blockers (Planner → Executor) (+10 more)
+
+### Community 737 - "Community 737"
+Cohesion: 0.10
+Nodes (19): code:ts (import { describe, expect, test } from "bun:test";), code:ts (import { db, log } from "@still/db";), code:ts (import { serializePatronProfileForClient } from "./profile-m), code:ts (export type DiaryMetalTier = "silver" | "gold" | "chromatic"), code:tsx ("use client";), Conventions, Diary Metal Tier Avatars Implementation Plan, Execution handoff (+11 more)
 
 ### Community 739 - "Community 739"
 Cohesion: 0.20
@@ -3320,13 +3442,17 @@ Nodes (10): Canonical types & names (used across tasks), code:ts (export type Co
 Cohesion: 0.18
 Nodes (6): amA(), eb1(), headers(), imA(), nmA(), WC()
 
+### Community 742 - "Community 742"
+Cohesion: 0.10
+Nodes (20): 1. Accepted file & parsing, 2. Pipeline & merge rules, 3. API response & UI, 4. Server module layout, 5. Edge cases, 6. Testing, 7. Out of scope, 8. Success criteria (+12 more)
+
 ### Community 743 - "Community 743"
 Cohesion: 0.18
 Nodes (11): code:ts (import { communityOffset, parseCommunityPage } from "../lib/), code:ts (const limit = Math.min(Number(query.limit ?? 20), 50);), code:ts (const limit = Math.min(Number(query.limit ?? 20), 50);), code:ts (query: t.Object({), code:bash (git add apps/server/src/routes/lists.ts apps/server/src/rout), code:ts (import { communityOffset, parseCommunityPage } from "../lib/), code:ts (const limit = Math.min(Number(query.limit ?? 24), 60);), code:ts (const limit = Math.min(Number(query.limit ?? 24), 60);) (+3 more)
 
 ### Community 744 - "Community 744"
-Cohesion: 0.03
-Nodes (60): bK, BW(), _calculateRT(), catchall(), check(), checkFunc(), cn0(), _createWeights() (+52 more)
+Cohesion: 0.05
+Nodes (34): b(), catchall(), check(), env(), Gt(), int(), j00(), loose() (+26 more)
 
 ### Community 745 - "Community 745"
 Cohesion: 0.33
@@ -3396,9 +3522,13 @@ Nodes (5): Phase 0 — Foundation (now → ~2–3 weeks), Phase 2 — First 90 d
 Cohesion: 0.22
 Nodes (8): Background for the implementer, code:block1 (apps/native/), code:tsx (import { Image } from "expo-image";), code:bash (git add apps/native/components/ui/avatar.tsx), Done — Phase 1 complete, File structure, Mobile Foundation + Activity Feed Implementation Plan, Task 9: Design-system primitive — Avatar
 
+### Community 765 - "Community 765"
+Cohesion: 0.23
+Nodes (12): GET(), GET(), fetchOgHomeBackdropUrl(), fetchOgMovieBackdropUrl(), fetchOgTvBackdropUrl(), ListingRow, PopularRow, flex (+4 more)
+
 ### Community 766 - "Community 766"
-Cohesion: 0.04
-Nodes (12): Bk, cloneWithColumnAlteration(), cloneWithConstraint(), cloneWithEndModifier(), cloneWithFrontModifier(), cQ, createWithExpression(), Jz (+4 more)
+Cohesion: 0.05
+Nodes (8): cloneWithConstraint(), cloneWithEndModifier(), cloneWithFrontModifier(), cQ, createWithExpression(), sd1(), VUA, wUA
 
 ### Community 767 - "Community 767"
 Cohesion: 0.40
@@ -3413,8 +3543,8 @@ Cohesion: 0.40
 Nodes (5): Section 9: High-Impact Feature Roadmap, Tier 0 — Launch-Critical (must exist at launch), Tier 1 — First 90 Days, Tier 2 — Months 3–6, Tier 3 — Months 6–12
 
 ### Community 770 - "Community 770"
-Cohesion: 0.44
-Nodes (5): POST(), POST(), POST(), apiUpstreamOrigin(), proxyMultipartUpstream()
+Cohesion: 0.36
+Nodes (6): POST(), POST(), POST(), POST(), apiUpstreamOrigin(), proxyMultipartUpstream()
 
 ### Community 771 - "Community 771"
 Cohesion: 0.50
@@ -3427,6 +3557,14 @@ Nodes (3): collaboratorChecks, privateList, publicList
 ### Community 773 - "Community 773"
 Cohesion: 0.08
 Nodes (36): buildDiaryLobbyGridItems(), buildDiaryLobbyPage(), coerceDiaryLogRows(), compareGridItems(), compareLogIdAsc(), compareLogIdDesc(), countDiaryLedgerRows(), DiaryLobbyGridItem (+28 more)
+
+### Community 774 - "Community 774"
+Cohesion: 0.10
+Nodes (19): a) Access control config (`packages/auth/src/`), a) `user` table (via better-auth `admin` plugin), b) Authorization helpers (`apps/server/src/context.ts`), b) Content moderation columns, Bootstrapping the first Owner, c) `staff_audit_log` table (new — `schema/staff.ts`, exported from the barrel), c) Staff routes (`apps/server/src/routes/staff.ts`, mounted in `index.ts`), d) Ban enforcement (+11 more)
+
+### Community 775 - "Community 775"
+Cohesion: 0.10
+Nodes (19): a) Plugin config (`packages/auth/src/index.ts`), b) Access control (`packages/auth/src/permissions.ts`), c) New/extended endpoints (`apps/server/src/routes/staff.ts`), Context, d) Role-permissions helper (`packages/auth/src/permission-summary.ts`), Data Model, Decisions (from brainstorming), Expandable user row (extends `StaffUsersTab`) (+11 more)
 
 ### Community 776 - "Community 776"
 Cohesion: 0.50
@@ -3455,6 +3593,10 @@ Nodes (4): code:ts (avgRating: sql<number>`avg(${review.rating})`.as("avgRating"
 ### Community 782 - "Community 782"
 Cohesion: 0.50
 Nodes (4): code:tsx ("use client";), code:bash (cd apps/web && bun run typecheck), code:bash (git add apps/web/src/components/profile/profile-about-collap), Task 4 — Profile redesign: collapsible about panel
+
+### Community 783 - "Community 783"
+Cohesion: 0.13
+Nodes (16): ClearLibraryCounts, clearUserLibrary(), fetchExportInput(), buildMeDataRoute(), EXPORT_RATE_LIMIT, MeDataRequestUser, meDataRoute, MeDataRouteOptions (+8 more)
 
 ### Community 784 - "Community 784"
 Cohesion: 0.50
@@ -3501,8 +3643,12 @@ Cohesion: 0.67
 Nodes (3): Automated, Launch blockers QA, Testing
 
 ### Community 796 - "Community 796"
-Cohesion: 0.18
-Nodes (14): AK6(), B8(), BQ6(), CK6(), G30, JH6(), LQ6(), MG6() (+6 more)
+Cohesion: 0.16
+Nodes (14): B8(), BQ6(), EG6(), G30, JH6(), LQ6(), MG6(), MQ6() (+6 more)
+
+### Community 799 - "Community 799"
+Cohesion: 0.11
+Nodes (18): a) `notifyRoleChanged` helper (`apps/server/src/lib/notification-delivery.ts`), a) `RoleChangeDialog` (`apps/web/src/components/staff/role-change-dialog.tsx`), Architecture Overview, b) Hook into the role endpoint (`apps/server/src/routes/staff.ts`), b) `RoleChangeDialogRoot` (`apps/web/src/components/staff/role-change-dialog-root.tsx`), c) Endpoint: latest unread role change (`apps/server/src/routes/notifications.ts`), c) Role labels & pill (`apps/web/src/lib/staff-role-labels.ts` + the pill component), code:block1 (owner sets role ──▶ /api/staff/users/:id/role (existing)) (+10 more)
 
 ### Community 800 - "Community 800"
 Cohesion: 0.22
@@ -3520,41 +3666,61 @@ Nodes (5): code:tsx (export function HomeCommunityLobbyParamsProvider({), code:t
 Cohesion: 0.29
 Nodes (7): code:ts (import {), code:tsx (import type { ReactNode } from "react";), code:ts (const communityFeed = parseHomeCommunityFeed(sp.sort);), code:ts (import { parseHomeCommunityFeed } from "@/lib/home-community), code:tsx (<HomeCommunityRscPayload feed={communityFeed} period={commun), code:bash (git add apps/web/src/lib/home-community-core-fetch.ts apps/w), Task 6: RSC active-feed-only seed
 
+### Community 813 - "Community 813"
+Cohesion: 0.11
+Nodes (18): 1. Settings IA & UI, 2. Export — `GET /api/me/export`, 3. Clear library data — `DELETE /api/me/library`, 4. Delete account — Better Auth + Resend, Better Auth configuration, Data settings: export, clear library, delete account — Design, Decisions made during brainstorming, Email infrastructure (+10 more)
+
 ### Community 819 - "Community 819"
 Cohesion: 0.29
 Nodes (7): code:tsx (import { Text, View } from "react-native";), code:tsx (import { Text, View } from "react-native";), code:tsx (import { Text, View } from "react-native";), code:tsx (import { Text, View } from "react-native";), code:tsx (import type {), code:bash (git add apps/native/features/feed/cards), Task 12: Rich card components
+
+### Community 820 - "Community 820"
+Cohesion: 0.14
+Nodes (13): clearSessionCookies(), SESSION_COOKIE_CLEAR_OPTIONS, SESSION_COOKIE_NAMES, res, setCookies, GET(), res, setCookies (+5 more)
 
 ### Community 821 - "Community 821"
 Cohesion: 0.33
 Nodes (5): Activity feed — manual smoke checklist (Phase 1), Navigation, Signed-in, Signed-out, States
 
 ### Community 828 - "Community 828"
-Cohesion: 0.05
-Nodes (9): cloneWithoutGroupBy(), cloneWithoutLimit(), cloneWithoutOffset(), cloneWithoutSelections(), cloneWithSetOperations(), HyA, Ll, Oi (+1 more)
+Cohesion: 0.12
+Nodes (14): db, eventLogTable, getByUser(), id, ids, makeApp(), postTable, profileTable (+6 more)
 
 ### Community 829 - "Community 829"
 Cohesion: 0.33
 Nodes (6): code:ts (const beforeDate =), code:ts (const divergence =), code:ts (query: t.Composite([), code:ts (query: t.Composite([), code:bash (git add apps/server/src/routes/feed.ts), Task 3: Server — paginate `/api/feed` (timestamp cursor)
 
 ### Community 830 - "Community 830"
-Cohesion: 0.67
-Nodes (3): ActivityDivergenceCard(), DivergencePayload, isDivergence()
+Cohesion: 0.24
+Nodes (9): HomeTasteMatchedRail(), HomeTasteMatchedRailSkeleton(), SKELETON_SLOT_IDS, tasteRailIsEmpty(), tasteRailVisibleCount(), TasteMatchedDiscoveryPayload, tasteMatchedRailTitle(), TasteMatchMovie (+1 more)
 
 ### Community 831 - "Community 831"
-Cohesion: 0.50
-Nodes (4): 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, Motion and Interaction, Performance Guardrails
+Cohesion: 0.21
+Nodes (11): formatReviewListingMention(), getActiveListingMentionQuery(), insertReviewListingMention(), listingMentionPickerSubtitle(), parseReviewBodyWithMentions(), ReviewListingMentionPart, active, { nextBody, nextCursor } (+3 more)
+
+### Community 832 - "Community 832"
+Cohesion: 0.14
+Nodes (13): code:ts (import { beforeEach, describe, expect, mock, test } from "bu), code:ts (import { db, staffUserNote } from "@still/db";), code:block19 (git add apps/server/src/lib/staff-user-notes.ts apps/server/), code:tsx ("use client";), code:block60 (git add apps/web/src/components/staff/staff-user-notes.tsx), code:tsx ("use client";), code:block64 (git add apps/web/src/components/staff/staff-user-detail.tsx), code:block70 (git add -A) (+5 more)
+
+### Community 833 - "Community 833"
+Cohesion: 0.15
+Nodes (12): 1. Layout, 2. Component changes, 3. Interaction & accessibility, 4. Visual notes, 5. Testing, 6. Success criteria, 7. Out of scope, code:block1 ([ Prev ]   ● ● ● ●   [ Next ]) (+4 more)
 
 ### Community 834 - "Community 834"
-Cohesion: 0.50
-Nodes (4): 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, Motion and Interaction, Performance Guardrails
+Cohesion: 0.17
+Nodes (12): code:ts (function makeTable(name: string) {), code:ts (const profileTable = makeTable("profile");), code:ts (// Map of userId -> profile row, used by GET/POST /users/:id), code:ts (const state: TestState = {), code:ts (if (fromTable === "profile") {), code:ts (async returning() {), code:ts (mock.module("@still/db", () => ({), code:ts (const MATRIX: Record<string, Record<string, string[]>> = {) (+4 more)
 
 ### Community 835 - "Community 835"
 Cohesion: 0.40
 Nodes (5): code:ts (import { useInfiniteQuery } from "@tanstack/react-query";), code:tsx (import { useCallback } from "react";), code:tsx (import { SafeAreaView } from "react-native-safe-area-context), code:bash (git add apps/native/features/feed/use-activity-feed.ts apps/), Task 13: useActivityFeed hook + feed screen + wire Home
 
 ### Community 837 - "Community 837"
-Cohesion: 0.50
-Nodes (4): 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, Motion and Interaction, Performance Guardrails
+Cohesion: 0.24
+Nodes (8): EMPTY, fetchFriendsRatings(), FriendRatingRow, FriendsRatingsResult, rankFriendsRatings(), RawFriendLog, raw, result
+
+### Community 838 - "Community 838"
+Cohesion: 0.20
+Nodes (9): Architecture, Caching, Data & fallbacks, Follow-up, Goal, Metadata wiring, OG share images — design, Share matrix (+1 more)
 
 ### Community 839 - "Community 839"
 Cohesion: 0.50
@@ -3597,8 +3763,8 @@ Cohesion: 0.50
 Nodes (4): code:ts (import { describe, expect, test } from "bun:test";), code:ts (/** TMDb still path → absolute poster URL. Ported from apps/), code:bash (git add apps/native/features/feed/tmdb-poster-url.ts apps/na), Task 2: Pure helper — TMDB poster URL (TDD)
 
 ### Community 849 - "Community 849"
-Cohesion: 0.50
-Nodes (4): 4. CREATIVE PROACTIVITY, MOTION, AND PERFORMANCE, Creative Proactivity, Motion and Interaction, Performance Guardrails
+Cohesion: 0.20
+Nodes (5): CkA(), eKA(), JKA(), Uo, ZkA()
 
 ### Community 854 - "Community 854"
 Cohesion: 0.67
@@ -3612,29 +3778,225 @@ Nodes (3): code:tsx (import { View } from "react-native";), code:bash (git add a
 Cohesion: 0.67
 Nodes (3): code:markdown (# Activity feed — manual smoke checklist (Phase 1)), code:bash (git add apps/native/features/feed/SMOKE.md), Task 14: Full test run + manual smoke pass
 
+### Community 857 - "Community 857"
+Cohesion: 0.22
+Nodes (9): code:ts ({ href: "/me/settings/data", label: "Data" },), code:ts (export function resolveMeAccountNavPath(pathname: string): s), code:tsx (import { SettingsDataSection } from "@/components/profile/se), code:tsx (import { redirect } from "next/navigation";), code:tsx (import { MeDangerZone } from "@/components/profile/me-danger), code:tsx ("use client";), code:tsx ("use client";), code:bash (git add apps/web/src/lib/me-account-nav.ts "apps/web/src/app) (+1 more)
+
+### Community 858 - "Community 858"
+Cohesion: 0.22
+Nodes (9): code:tsx ("use client";), code:bash (git add apps/web/src/components/profile/me-data-export-panel), code:bash (rg "references\(\(\) => user\.id" packages/db/src/schema -A ), code:bash (rg "export" packages/db/src/index.ts), code:bash (git status), File structure, Task 10: Cascade audit, Task 11: Full verification (+1 more)
+
 ### Community 860 - "Community 860"
 Cohesion: 0.15
 Nodes (3): DH1(), EUA, TS()
 
+### Community 861 - "Community 861"
+Cohesion: 0.22
+Nodes (9): code:bash (bun add @react-email/components @react-email/render react re), code:ts (import { describe, expect, test } from "bun:test";), code:bash (bun test src/emails/render-email.test.ts), code:tsx (import {), code:tsx (import { Text } from "@react-email/components";), code:ts (import { render } from "@react-email/render";), code:bash (bun test src/emails/render-email.test.ts), code:bash (git add packages/auth/package.json packages/auth/src/emails ) (+1 more)
+
+### Community 864 - "Community 864"
+Cohesion: 0.32
+Nodes (6): CLIENT_PRODUCT_EVENT_KINDS, ClientProductEventKind, isClientProductEventKind(), isProductEventKind(), PRODUCT_EVENT_KINDS, ProductEventKind
+
+### Community 871 - "Community 871"
+Cohesion: 0.25
+Nodes (7): code:block1 (RESEND_API_KEY=re_…), code:bash (git add apps/web/src/components/profile/settings-form-contex), File structure, Plan self-review, Resend + Auth Transactional Email Implementation Plan, Task 0: Resend domain + production env (human), Task 8: Settings profile note + API toast wiring
+
+### Community 873 - "Community 873"
+Cohesion: 0.25
+Nodes (7): code:ts (session: { id: string; userId: string; expiresAt?: Date | st), code:ts (session: {), code:tsx ("use client";), code:tsx (import { ImpersonationBanner } from "@/components/staff/impe), code:tsx (const impersonatedBy = session?.session.impersonatedBy ?? nu), code:block58 (git add apps/web/src/lib/auth-server.ts apps/web/src/compone), Task 13: Impersonation banner — session type, component, layout wiring
+
+### Community 876 - "Community 876"
+Cohesion: 0.29
+Nodes (4): id, json, Notif, state
+
+### Community 880 - "Community 880"
+Cohesion: 0.29
+Nodes (6): code:block37 (./node_modules/.bin/tsc -p apps/server/tsconfig.json --noEmi), code:bash (git add -A), File Structure, Self-Review Notes (coverage map), Staff Roles & Permissions Implementation Plan, Task 12: Full verification pass
+
+### Community 882 - "Community 882"
+Cohesion: 0.29
+Nodes (7): log_user_tv_idx, columns, concurrently, isUnique, method, name, with
+
+### Community 883 - "Community 883"
+Cohesion: 0.29
+Nodes (7): log_user_watched_idx, columns, concurrently, isUnique, method, name, with
+
+### Community 884 - "Community 884"
+Cohesion: 0.29
+Nodes (7): code:typescript (// apps/web/src/lib/auth-client.ts), code:typescript (user: {), code:tsx (// apps/web/src/app/(app)/staff/page.tsx), code:tsx (// apps/web/src/components/staff/staff-users-tab.tsx), code:tsx (// apps/web/src/components/staff/staff-audit-tab.tsx), code:bash (git add apps/web/src/lib/auth-client.ts apps/web/src/lib/aut), Task 10: Web — admin client, session role, staff panel
+
+### Community 885 - "Community 885"
+Cohesion: 0.29
+Nodes (7): code:bash (bun add fflate), code:ts (import { beforeEach, describe, expect, mock, test } from "bu), code:ts (import { strToU8, zipSync } from "fflate";), code:ts (import { meDataRoute } from "../routes/me-data";), code:ts (.use(importRoute)), code:bash (git add apps/server/src/routes/me-data.ts apps/server/src/ro), Task 6: `/api/me` route group (export ZIP + clear library)
+
+### Community 886 - "Community 886"
+Cohesion: 0.29
+Nodes (6): code:tsx ("use client";), code:tsx ("use client";), code:tsx ("use client";), code:tsx ("use client";), code:bash (git add apps/web/src/components/profile/me-destructive-confi), Task 9: Danger zone — clear library + delete account dialogs
+
+### Community 888 - "Community 888"
+Cohesion: 0.29
+Nodes (7): code:tsx (import { Text } from "@react-email/components";), code:tsx (import { Text } from "@react-email/components";), code:ts (import { describe, expect, test } from "bun:test";), code:ts (export interface SendEmailInput {), code:bash (cd packages/auth && bun test), code:bash (git add packages/auth/src/emails packages/auth/src/lib/send-), Task 2: Remaining email templates + sendEmail html upgrade
+
+### Community 889 - "Community 889"
+Cohesion: 0.29
+Nodes (6): code:ts (import { DeleteAccountEmail } from "./emails/delete-account"), code:ts (emailVerification: {), code:ts (emailAndPassword: {), code:ts (sendDeleteAccountVerification: async ({ user: target, url })), code:bash (git add packages/auth/src/index.ts), Task 3: Better Auth email hooks
+
+### Community 890 - "Community 890"
+Cohesion: 0.29
+Nodes (7): code:ts (export const EMAIL_VERIFICATION_REQUIRED_CODE = "EMAIL_VERIF), code:ts (await authClient.sendVerificationEmail({), code:tsx (import { VerifyEmailBanner } from "@/components/auth/verify-), code:ts (toast.success("Check your inbox to verify before sharing pub), code:bash (cd apps/web && bun run build), code:bash (git add apps/web/src/components/auth/verify-email-banner.tsx), Task 6: Verify email banner + client error handling
+
+### Community 893 - "Community 893"
+Cohesion: 0.33
+Nodes (6): watch_venue, default, name, notNull, primaryKey, type
+
+### Community 894 - "Community 894"
+Cohesion: 0.33
+Nodes (6): code:typescript (export * from "./staff";), code:bash (git add packages/db/src/schema packages/db/src/migrations), code:typescript (role: text("role").default("user").notNull(),), code:typescript (removedAt: timestamp("removed_at"),), code:typescript (// packages/db/src/schema/staff.ts), Task 3: Database schema — user admin fields, moderation columns, audit table
+
+### Community 895 - "Community 895"
+Cohesion: 0.33
+Nodes (4): code:ts (describe("staff user notes endpoints", () => {), code:ts (describe("staff impersonation endpoints", () => {), code:block46 (git add apps/server/src/routes/staff.ts apps/server/src/rout), Task 11: Notes endpoints + impersonation endpoints
+
+### Community 896 - "Community 896"
+Cohesion: 0.33
+Nodes (6): code:block47 (src/components/staff/staff-users-tab.tsx:NN:function errorMe), code:ts (/**), code:ts (import { errorMessage } from "@/lib/staff-error-message";), code:ts (import { errorMessage } from "@/lib/staff-error-message";), code:block51 (git add apps/web/src/lib/staff-error-message.ts apps/web/src), Task 12: Extract shared `errorMessage` helper for the web staff panel
+
+### Community 897 - "Community 897"
+Cohesion: 0.33
+Nodes (5): code:ts (import { StaffUserDetail } from "./staff-user-detail";), code:tsx (<li), code:tsx (<li key={u.id}>), code:block69 (git add apps/web/src/components/staff/staff-users-tab.tsx), Task 17: Wire expandable rows into `StaffUsersTab`
+
+### Community 898 - "Community 898"
+Cohesion: 0.33
+Nodes (6): code:ts (// Resend API key for transactional email (account-deletion ), code:bash (bun add resend), code:ts (import { describe, expect, test } from "bun:test";), code:ts (import { env } from "@still/env/server";), code:bash (git add packages/env/src/server.ts packages/auth/src/lib/sen), Task 1: Env vars + Resend email helper
+
+### Community 899 - "Community 899"
+Cohesion: 0.33
+Nodes (6): code:bash (git add packages/auth/src/index.ts packages/auth/src/lib/del), code:bash (bun add @vercel/blob), code:ts (import { db, list, profile, user } from "@still/db";), code:ts (import { deleteUserBlobAssets } from "./lib/delete-user-clea), code:ts (user: {), Task 2: Better Auth deleteUser + blob cleanup
+
+### Community 900 - "Community 900"
+Cohesion: 0.33
+Nodes (6): code:ts (import { describe, expect, test } from "bun:test";), code:bash (cd apps/server && bun test src/lib/require-verified-email.te), code:ts (import type { ContentVisibility } from "@still/db";), code:bash (cd apps/server && bun test src/lib/require-verified-email.te), code:bash (git add apps/server/src/lib/require-verified-email.ts apps/s), Task 4: Server verification gate helper
+
+### Community 901 - "Community 901"
+Cohesion: 0.40
+Nodes (5): code:typescript (// apps/server/src/routes/staff.ts), code:typescript (import { staffRoute } from "../routes/staff";), code:typescript (// apps/server/src/routes/staff.test.ts), code:bash (git add apps/server/src/routes/staff.ts apps/server/src/rout), Task 8: Staff routes — users, content, audit
+
+### Community 902 - "Community 902"
+Cohesion: 0.40
+Nodes (3): code:json ({), code:bash (git add packages/db/src/schema/staff.ts packages/db/src/migr), Task 1: `staff_user_note` table + migration
+
+### Community 903 - "Community 903"
+Cohesion: 0.40
+Nodes (5): code:ts (describe("GET /api/staff/users/:id", () => {), code:ts (import { auth } from "@still/auth";), code:ts (.get("/users/:id", async ({ user: viewer, params, status }) ), code:block34 (git add apps/server/src/routes/staff.ts apps/server/src/rout), Task 8: `GET /api/staff/users/:id` — full detail endpoint
+
+### Community 904 - "Community 904"
+Cohesion: 0.40
+Nodes (4): code:ts (describe("POST /api/staff/users/:id/edit", () => {), code:ts (const EDITABLE_PROFILE_FIELDS = [), code:block38 (git add apps/server/src/routes/staff.ts apps/server/src/rout), Task 9: `POST /api/staff/users/:id/edit` — staff profile editing
+
+### Community 905 - "Community 905"
+Cohesion: 0.40
+Nodes (5): code:ts (await authClient.requestPasswordReset({), code:ts (await authClient.resetPassword({ newPassword, token });), code:tsx (<p className="text-center text-muted-foreground text-sm">), code:bash (git add apps/web/src/components/auth/forgot-password-form.ts), Task 7: Forgot / reset password pages
+
+### Community 906 - "Community 906"
+Cohesion: 0.40
+Nodes (5): code:markdown (## Email (Resend)), code:bash (cd packages/auth && bun test), code:bash (git add README.md), code:bash (graphify update .), Task 9: README + final verification
+
+### Community 907 - "Community 907"
+Cohesion: 0.50
+Nodes (3): NoteRow, staffUserNoteTable, state
+
+### Community 908 - "Community 908"
+Cohesion: 0.50
+Nodes (4): code:typescript (// packages/auth/src/permissions.test.ts), code:typescript (// packages/auth/src/permissions.ts), code:bash (git add packages/auth/src/permissions.ts packages/auth/src/p), Task 1: Access-control statements & role bundles
+
+### Community 909 - "Community 909"
+Cohesion: 0.50
+Nodes (4): code:typescript (// apps/server/src/lib/staff-rank.test.ts), code:typescript (// apps/server/src/lib/staff-rank.ts), code:bash (git add apps/server/src/lib/staff-rank.ts apps/server/src/li), Task 4: Rank helper (`outranks`)
+
+### Community 910 - "Community 910"
+Cohesion: 0.50
+Nodes (4): code:typescript (import type { StaffRole } from "@still/auth/permissions";), code:typescript (type Resource = "user" | "content" | "audit";), code:bash (git add apps/server/src/context.ts), Task 5: Authorization helpers in context
+
+### Community 911 - "Community 911"
+Cohesion: 0.50
+Nodes (4): code:typescript (// before), code:typescript (it("omits removed posts from the public list", async () => {), code:bash (git add apps/server/src), Task 6: Filter removed content from public reads
+
+### Community 912 - "Community 912"
+Cohesion: 0.50
+Nodes (4): code:typescript (import { admin } from "better-auth/plugins";), code:typescript (plugins: [), code:bash (git add packages/auth/src/index.ts), Task 2: Register the better-auth `admin` plugin
+
+### Community 913 - "Community 913"
+Cohesion: 0.50
+Nodes (4): code:bash (git add packages/auth/src/permission-summary.ts packages/aut), code:ts (import { describe, expect, it } from "bun:test";), code:ts (import { type AppRole, roles } from "./permissions";), Task 3: `permissionSummary` helper (read-only "this role can…" list)
+
+### Community 914 - "Community 914"
+Cohesion: 0.50
+Nodes (4): code:ts (adminPlugin({), code:ts (adminPlugin({), code:bash (git add packages/auth/src/index.ts), Task 4: Time-boxed impersonation session config
+
+### Community 915 - "Community 915"
+Cohesion: 0.50
+Nodes (4): code:ts (const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;), code:ts (export const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;), code:block16 (git add apps/server/src/routes/profiles.ts), Task 5: Export `HANDLE_RE` from the profiles route
+
+### Community 916 - "Community 916"
+Cohesion: 0.50
+Nodes (3): code:ts (describe("POST /api/staff/users/:id/pro", () => {), code:block41 (git add apps/server/src/routes/staff.ts apps/server/src/rout), Task 10: `POST /api/staff/users/:id/pro` — Pro override toggle
+
+### Community 917 - "Community 917"
+Cohesion: 0.50
+Nodes (4): code:ts (it("owner can do everything including set-role, impersonate,), code:ts (export const statement = {), code:bash (git add packages/auth/src/permissions.ts packages/auth/src/p), Task 2: Access-control statements & role bundles (`edit`/`note`/`pro`)
+
+### Community 918 - "Community 918"
+Cohesion: 0.50
+Nodes (4): code:ts (import { describe, expect, test } from "bun:test";), code:ts (/**), code:bash (git add apps/server/src/lib/me-export-csv.ts apps/server/src), Task 3: CSV export primitives
+
+### Community 919 - "Community 919"
+Cohesion: 0.50
+Nodes (4): code:ts (import { describe, expect, test } from "bun:test";), code:ts (import {), code:bash (git add apps/server/src/lib/me-export-data.ts apps/server/sr), Task 4: Export data assembly (pure) + db fetch
+
+### Community 920 - "Community 920"
+Cohesion: 0.50
+Nodes (4): code:ts (import {), code:bash (cd apps/server && bun test), code:bash (git add apps/server/src/routes/follows.ts apps/server/src/ro), Task 5: Apply gate on API routes
+
+### Community 924 - "Community 924"
+Cohesion: 0.67
+Nodes (3): code:typescript (// apps/server/src/lib/staff-audit.ts), code:bash (git add apps/server/src/lib/staff-audit.ts), Task 7: Audit-log writer
+
+### Community 925 - "Community 925"
+Cohesion: 0.67
+Nodes (3): code:typescript (// apps/server/src/jobs/set-owner.ts), code:bash (git add apps/server/src/jobs/set-owner.ts), Task 9: Bootstrap script — promote the first owner
+
+### Community 926 - "Community 926"
+Cohesion: 0.67
+Nodes (3): code:tsx (// apps/web/src/components/staff/staff-content-actions.tsx), code:bash (git add apps/web/src/components/staff apps/web/src/component), Task 11: Web — inline content moderation menu + staff nav link
+
+### Community 927 - "Community 927"
+Cohesion: 0.67
+Nodes (3): code:tsx ("use client";), code:block62 (git add apps/web/src/components/staff/staff-user-edit-form.t), Task 15: `StaffUserEditForm` component
+
+### Community 928 - "Community 928"
+Cohesion: 0.67
+Nodes (3): code:ts (import {), code:bash (git add apps/server/src/lib/clear-user-library.ts), Task 5: Clear-library transaction
+
 ## Knowledge Gaps
-- **7230 isolated node(s):** `expo`, `$schema`, `enabled`, `clientKind`, `useIgnoreFile` (+7225 more)
+- **8135 isolated node(s):** `expo`, `$schema`, `enabled`, `clientKind`, `useIgnoreFile` (+8130 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **164 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **181 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `showInviteInputError()` connect `Community 152` to `Community 81`, `Community 17`?**
-  _High betweenness centrality (0.106) - this node is a cross-community bridge._
-- **Why does `cn()` connect `Community 152` to `Community 0`, `Community 258`, `Community 259`, `Community 3`, `Community 260`, `Community 646`, `Community 136`, `Community 33`, `Community 297`, `Community 45`, `Community 61`, `Community 62`, `Community 72`, `Community 74`, `Community 77`, `Community 210`, `Community 106`, `Community 107`, `Community 113`?**
-  _High betweenness centrality (0.056) - this node is a cross-community bridge._
-- **Why does `clearTimeout()` connect `Community 17` to `Community 1`, `Community 4`, `Community 335`, `Community 16`, `Community 81`, `Community 566`, `Community 152`?**
-  _High betweenness centrality (0.054) - this node is a cross-community bridge._
+- **Why does `showInviteInputError()` connect `Community 152` to `Community 17`, `Community 39`?**
+  _High betweenness centrality (0.111) - this node is a cross-community bridge._
+- **Why does `ms()` connect `Community 39` to `Community 152`, `Community 81`, `Community 10`?**
+  _High betweenness centrality (0.058) - this node is a cross-community bridge._
+- **Why does `clearTimeout()` connect `Community 17` to `Community 1`, `Community 4`, `Community 492`, `Community 335`, `Community 566`, `Community 152`, `Community 318`?**
+  _High betweenness centrality (0.053) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `cn()` (e.g. with `clsx` and `Container()`) actually correct?**
   _`cn()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `expo`, `$schema`, `enabled` to the rest of the system?**
-  _7230 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _8135 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.048600883652430045 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.043717152412804584 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.003490477015810657 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0035735441676035735 - nodes in this community are weakly interconnected._

@@ -1,0 +1,199 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"label": "home-lobby-filter-row.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_lobby_filter_row_homelobbyfilterscrollrail",
+			"label": "HomeLobbyFilterScrollRail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "home_home_lobby_filter_row_homelobbyfilterrow",
+			"label": "HomeLobbyFilterRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L70"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_catalogue_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_filter_row_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_filter_row_leading_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_scroll_fade_left_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_scroll_fade_right_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_horizontal_scroll_fades_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "lib_use_horizontal_scroll_fades_horizontal_overflow_rail_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "home_home_lobby_filter_row_homelobbyfilterscrollrail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_filter_row_tsx",
+			"target": "home_home_lobby_filter_row_homelobbyfilterrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L70",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_lobby_filter_row_homelobbyfilterscrollrail",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "home_home_lobby_filter_row_homelobbyfilterscrollrail",
+			"callee": "useHorizontalScrollFades",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "home_home_lobby_filter_row_homelobbyfilterscrollrail",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "home_home_lobby_filter_row_homelobbyfilterscrollrail",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "home_home_lobby_filter_row_homelobbyfilterscrollrail",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "home_home_lobby_filter_row_homelobbyfilterscrollrail",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx",
+			"source_location": "L57"
+		}
+	]
+}

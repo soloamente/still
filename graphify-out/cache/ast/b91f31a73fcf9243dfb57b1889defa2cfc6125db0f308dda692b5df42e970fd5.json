@@ -1,0 +1,863 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_07_staff_roles_permissions_md",
+			"label": "2026-06-07-staff-roles-permissions.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"label": "Staff Roles & Permissions Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_file_structure",
+			"label": "File Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_1_access_control_statements_role_bundles",
+			"label": "Task 1: Access-control statements & role bundles",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_1",
+			"label": "code:typescript (// packages/auth/src/permissions.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_2",
+			"label": "code:typescript (// packages/auth/src/permissions.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L114"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_3",
+			"label": "code:bash (git add packages/auth/src/permissions.ts packages/auth/src/p)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_2_register_the_better_auth_admin_plugin",
+			"label": "Task 2: Register the better-auth `admin` plugin",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_4",
+			"label": "code:typescript (import { admin } from \"better-auth/plugins\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L192"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_5",
+			"label": "code:typescript (plugins: [)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L202"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_6",
+			"label": "code:bash (git add packages/auth/src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L225"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_3_database_schema_user_admin_fields_moderation_columns_audit_table",
+			"label": "Task 3: Database schema \u2014 user admin fields, moderation columns, audit table",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L232"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_7",
+			"label": "code:typescript (role: text(\"role\").default(\"user\").notNull(),)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L248"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_8",
+			"label": "code:typescript (removedAt: timestamp(\"removed_at\"),)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L261"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_9",
+			"label": "code:typescript (// packages/db/src/schema/staff.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L279"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_10",
+			"label": "code:typescript (export * from \"./staff\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L318"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_11",
+			"label": "code:bash (git add packages/db/src/schema packages/db/src/migrations)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L338"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_4_rank_helper_outranks",
+			"label": "Task 4: Rank helper (`outranks`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L345"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_12",
+			"label": "code:typescript (// apps/server/src/lib/staff-rank.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L355"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_13",
+			"label": "code:typescript (// apps/server/src/lib/staff-rank.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L392"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_14",
+			"label": "code:bash (git add apps/server/src/lib/staff-rank.ts apps/server/src/li)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L423"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_5_authorization_helpers_in_context",
+			"label": "Task 5: Authorization helpers in context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L430"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_15",
+			"label": "code:typescript (import type { StaffRole } from \"@still/auth/permissions\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L441"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_16",
+			"label": "code:typescript (type Resource = \"user\" | \"content\" | \"audit\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L449"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_17",
+			"label": "code:bash (git add apps/server/src/context.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L499"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_6_filter_removed_content_from_public_reads",
+			"label": "Task 6: Filter removed content from public reads",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L506"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_18",
+			"label": "code:typescript (// before)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L524"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_19",
+			"label": "code:typescript (it(\"omits removed posts from the public list\", async () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L537"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_20",
+			"label": "code:bash (git add apps/server/src)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L554"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_7_audit_log_writer",
+			"label": "Task 7: Audit-log writer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L561"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_21",
+			"label": "code:typescript (// apps/server/src/lib/staff-audit.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L570"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_22",
+			"label": "code:bash (git add apps/server/src/lib/staff-audit.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L613"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_8_staff_routes_users_content_audit",
+			"label": "Task 8: Staff routes \u2014 users, content, audit",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L620"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_23",
+			"label": "code:typescript (// apps/server/src/routes/staff.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L631"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_24",
+			"label": "code:typescript (import { staffRoute } from \"../routes/staff\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L862"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_25",
+			"label": "code:typescript (// apps/server/src/routes/staff.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L870"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_26",
+			"label": "code:bash (git add apps/server/src/routes/staff.ts apps/server/src/rout)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L912"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_9_bootstrap_script_promote_the_first_owner",
+			"label": "Task 9: Bootstrap script \u2014 promote the first owner",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L919"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_27",
+			"label": "code:typescript (// apps/server/src/jobs/set-owner.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L926"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_28",
+			"label": "code:bash (git add apps/server/src/jobs/set-owner.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L966"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_10_web_admin_client_session_role_staff_panel",
+			"label": "Task 10: Web \u2014 admin client, session role, staff panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L973"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_29",
+			"label": "code:typescript (// apps/web/src/lib/auth-client.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L984"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_30",
+			"label": "code:typescript (user: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1003"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_31",
+			"label": "code:tsx (// apps/web/src/app/(app)/staff/page.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1019"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_32",
+			"label": "code:tsx (// apps/web/src/components/staff/staff-users-tab.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1053"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_33",
+			"label": "code:tsx (// apps/web/src/components/staff/staff-audit-tab.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1145"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_34",
+			"label": "code:bash (git add apps/web/src/lib/auth-client.ts apps/web/src/lib/aut)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1188"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_11_web_inline_content_moderation_menu_staff_nav_link",
+			"label": "Task 11: Web \u2014 inline content moderation menu + staff nav link",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1195"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_35",
+			"label": "code:tsx (// apps/web/src/components/staff/staff-content-actions.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1204"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_36",
+			"label": "code:bash (git add apps/web/src/components/staff apps/web/src/component)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1274"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_task_12_full_verification_pass",
+			"label": "Task 12: Full verification pass",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1281"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_37",
+			"label": "code:block37 (./node_modules/.bin/tsc -p apps/server/tsconfig.json --noEmi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1296"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_codeblock_38",
+			"label": "code:bash (git add -A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1309"
+		},
+		{
+			"id": "plans_2026_06_07_staff_roles_permissions_self_review_notes_coverage_map",
+			"label": "Self-Review Notes (coverage map)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1316"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_07_staff_roles_permissions_md",
+			"target": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_1_access_control_statements_role_bundles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_1_access_control_statements_role_bundles",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_1_access_control_statements_role_bundles",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_1_access_control_statements_role_bundles",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_2_register_the_better_auth_admin_plugin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_2_register_the_better_auth_admin_plugin",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_2_register_the_better_auth_admin_plugin",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L202",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_2_register_the_better_auth_admin_plugin",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L225",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_3_database_schema_user_admin_fields_moderation_columns_audit_table",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L232",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_3_database_schema_user_admin_fields_moderation_columns_audit_table",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L248",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_3_database_schema_user_admin_fields_moderation_columns_audit_table",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L261",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_3_database_schema_user_admin_fields_moderation_columns_audit_table",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L279",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_3_database_schema_user_admin_fields_moderation_columns_audit_table",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L318",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_3_database_schema_user_admin_fields_moderation_columns_audit_table",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L338",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_4_rank_helper_outranks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L345",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_4_rank_helper_outranks",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L355",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_4_rank_helper_outranks",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L392",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_4_rank_helper_outranks",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L423",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_5_authorization_helpers_in_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L430",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_5_authorization_helpers_in_context",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L441",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_5_authorization_helpers_in_context",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L449",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_5_authorization_helpers_in_context",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L499",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_6_filter_removed_content_from_public_reads",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L506",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_6_filter_removed_content_from_public_reads",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L524",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_6_filter_removed_content_from_public_reads",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L537",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_6_filter_removed_content_from_public_reads",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L554",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_7_audit_log_writer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L561",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_7_audit_log_writer",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L570",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_7_audit_log_writer",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L613",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_8_staff_routes_users_content_audit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L620",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_8_staff_routes_users_content_audit",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L631",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_8_staff_routes_users_content_audit",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L862",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_8_staff_routes_users_content_audit",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L870",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_8_staff_routes_users_content_audit",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L912",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_9_bootstrap_script_promote_the_first_owner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L919",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_9_bootstrap_script_promote_the_first_owner",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L926",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_9_bootstrap_script_promote_the_first_owner",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L966",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_10_web_admin_client_session_role_staff_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L973",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_10_web_admin_client_session_role_staff_panel",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L984",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_10_web_admin_client_session_role_staff_panel",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1003",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_10_web_admin_client_session_role_staff_panel",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1019",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_10_web_admin_client_session_role_staff_panel",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1053",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_10_web_admin_client_session_role_staff_panel",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1145",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_10_web_admin_client_session_role_staff_panel",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1188",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_11_web_inline_content_moderation_menu_staff_nav_link",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1195",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_11_web_inline_content_moderation_menu_staff_nav_link",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_35",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1204",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_11_web_inline_content_moderation_menu_staff_nav_link",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_36",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1274",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_task_12_full_verification_pass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1281",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_12_full_verification_pass",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_37",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1296",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_task_12_full_verification_pass",
+			"target": "plans_2026_06_07_staff_roles_permissions_codeblock_38",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1309",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_staff_roles_permissions_staff_roles_permissions_implementation_plan",
+			"target": "plans_2026_06_07_staff_roles_permissions_self_review_notes_coverage_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md",
+			"source_location": "L1316",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

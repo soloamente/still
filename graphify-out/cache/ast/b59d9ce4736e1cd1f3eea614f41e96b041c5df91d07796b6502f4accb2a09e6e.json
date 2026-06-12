@@ -1,0 +1,60 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_auth_src_emails_delete_account_tsx",
+			"label": "delete-account.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\delete-account.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "emails_delete_account_deleteaccountemail",
+			"label": "DeleteAccountEmail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\delete-account.tsx",
+			"source_location": "L5"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_emails_delete_account_tsx",
+			"target": "components",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\delete-account.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_emails_delete_account_tsx",
+			"target": "c_users_utente_documents_still_packages_auth_src_emails_layout_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\delete-account.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_emails_delete_account_tsx",
+			"target": "emails_layout_authemaillayout",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\delete-account.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_emails_delete_account_tsx",
+			"target": "emails_delete_account_deleteaccountemail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\delete-account.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,927 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_10_resend_auth_email_md",
+			"label": "2026-06-10-resend-auth-email.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_resend_auth_transactional_email_implementation_plan",
+			"label": "Resend + Auth Transactional Email Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_0_resend_domain_production_env_human",
+			"label": "Task 0: Resend domain + production env (human)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_1",
+			"label": "code:block1 (RESEND_API_KEY=re_\u2026)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"label": "Task 1: React Email dependencies + render helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_2",
+			"label": "code:bash (bun add @react-email/components @react-email/render react re)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_3",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_4",
+			"label": "code:bash (bun test src/emails/render-email.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L136"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_5",
+			"label": "code:tsx (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_6",
+			"label": "code:tsx (import { Text } from \"@react-email/components\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L244"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_7",
+			"label": "code:ts (import { render } from \"@react-email/render\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L274"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_8",
+			"label": "code:bash (bun test src/emails/render-email.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L290"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_9",
+			"label": "code:bash (git add packages/auth/package.json packages/auth/src/emails )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L298"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_2_remaining_email_templates_sendemail_html_upgrade",
+			"label": "Task 2: Remaining email templates + sendEmail html upgrade",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L305"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_10",
+			"label": "code:tsx (import { Text } from \"@react-email/components\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L318"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_11",
+			"label": "code:tsx (import { Text } from \"@react-email/components\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L345"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_12",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L375"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_13",
+			"label": "code:ts (export interface SendEmailInput {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L410"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_14",
+			"label": "code:bash (cd packages/auth && bun test)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L427"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_15",
+			"label": "code:bash (git add packages/auth/src/emails packages/auth/src/lib/send-)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L435"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_3_better_auth_email_hooks",
+			"label": "Task 3: Better Auth email hooks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L442"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_16",
+			"label": "code:ts (import { DeleteAccountEmail } from \"./emails/delete-account\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L451"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_17",
+			"label": "code:ts (async function sendAuthEmail()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L461"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_18",
+			"label": "code:ts (emailVerification: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L483"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_19",
+			"label": "code:ts (emailAndPassword: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L500"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_20",
+			"label": "code:ts (sendDeleteAccountVerification: async ({ user: target, url }))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L517"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_21",
+			"label": "code:bash (git add packages/auth/src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L533"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_4_server_verification_gate_helper",
+			"label": "Task 4: Server verification gate helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L540"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_22",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L550"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_23",
+			"label": "code:bash (cd apps/server && bun test src/lib/require-verified-email.te)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L599"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_24",
+			"label": "code:ts (import type { ContentVisibility } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L607"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_25",
+			"label": "code:bash (cd apps/server && bun test src/lib/require-verified-email.te)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L647"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_26",
+			"label": "code:bash (git add apps/server/src/lib/require-verified-email.ts apps/s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L653"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_5_apply_gate_on_api_routes",
+			"label": "Task 5: Apply gate on API routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L660"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_27",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L671"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_28",
+			"label": "code:bash (cd apps/server && bun test)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L714"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_29",
+			"label": "code:bash (git add apps/server/src/routes/follows.ts apps/server/src/ro)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L722"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_6_verify_email_banner_client_error_handling",
+			"label": "Task 6: Verify email banner + client error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L729"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_30",
+			"label": "code:ts (export const EMAIL_VERIFICATION_REQUIRED_CODE = \"EMAIL_VERIF)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L741"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_31",
+			"label": "code:ts (await authClient.sendVerificationEmail({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L760"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_32",
+			"label": "code:tsx (import { VerifyEmailBanner } from \"@/components/auth/verify-)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L774"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_33",
+			"label": "code:ts (toast.success(\"Check your inbox to verify before sharing pub)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L787"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_34",
+			"label": "code:bash (cd apps/web && bun run build)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L795"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_35",
+			"label": "code:bash (git add apps/web/src/components/auth/verify-email-banner.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L803"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_7_forgot_reset_password_pages",
+			"label": "Task 7: Forgot / reset password pages",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L810"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_36",
+			"label": "code:ts (await authClient.requestPasswordReset({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L833"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_37",
+			"label": "code:ts (await authClient.resetPassword({ newPassword, token });)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L849"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_38",
+			"label": "code:tsx (<p className=\"text-center text-muted-foreground text-sm\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L862"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_39",
+			"label": "code:bash (git add apps/web/src/components/auth/forgot-password-form.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L878"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_8_settings_profile_note_api_toast_wiring",
+			"label": "Task 8: Settings profile note + API toast wiring",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L885"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_40",
+			"label": "code:bash (git add apps/web/src/components/profile/settings-form-contex)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L906"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_task_9_readme_final_verification",
+			"label": "Task 9: README + final verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L913"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_41",
+			"label": "code:markdown (## Email (Resend))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L922"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_42",
+			"label": "code:bash (cd packages/auth && bun test)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L940"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_43",
+			"label": "code:bash (git add README.md)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L954"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_codeblock_44",
+			"label": "code:bash (graphify update .)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L961"
+		},
+		{
+			"id": "plans_2026_06_10_resend_auth_email_plan_self_review",
+			"label": "Plan self-review",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L969"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_10_resend_auth_email_md",
+			"target": "plans_2026_06_10_resend_auth_email_resend_auth_transactional_email_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_resend_auth_transactional_email_implementation_plan",
+			"target": "plans_2026_06_10_resend_auth_email_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_0_resend_domain_production_env_human",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_0_resend_domain_production_env_human",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L136",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L244",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L274",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L290",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_1_react_email_dependencies_render_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L298",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_2_remaining_email_templates_sendemail_html_upgrade",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L305",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_2_remaining_email_templates_sendemail_html_upgrade",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L318",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_2_remaining_email_templates_sendemail_html_upgrade",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L345",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_2_remaining_email_templates_sendemail_html_upgrade",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L375",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_2_remaining_email_templates_sendemail_html_upgrade",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L410",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_2_remaining_email_templates_sendemail_html_upgrade",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L427",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_2_remaining_email_templates_sendemail_html_upgrade",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L435",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_3_better_auth_email_hooks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L442",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_3_better_auth_email_hooks",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L451",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_3_better_auth_email_hooks",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L461",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_3_better_auth_email_hooks",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L483",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_3_better_auth_email_hooks",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L500",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_3_better_auth_email_hooks",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L517",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_3_better_auth_email_hooks",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L533",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_4_server_verification_gate_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L540",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_4_server_verification_gate_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L550",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_4_server_verification_gate_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L599",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_4_server_verification_gate_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L607",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_4_server_verification_gate_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L647",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_4_server_verification_gate_helper",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L653",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_5_apply_gate_on_api_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L660",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_5_apply_gate_on_api_routes",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L671",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_5_apply_gate_on_api_routes",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L714",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_5_apply_gate_on_api_routes",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L722",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_6_verify_email_banner_client_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L729",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_6_verify_email_banner_client_error_handling",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L741",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_6_verify_email_banner_client_error_handling",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L760",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_6_verify_email_banner_client_error_handling",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L774",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_6_verify_email_banner_client_error_handling",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L787",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_6_verify_email_banner_client_error_handling",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L795",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_6_verify_email_banner_client_error_handling",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_35",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L803",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_7_forgot_reset_password_pages",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L810",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_7_forgot_reset_password_pages",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_36",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L833",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_7_forgot_reset_password_pages",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_37",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L849",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_7_forgot_reset_password_pages",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_38",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L862",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_7_forgot_reset_password_pages",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_39",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L878",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_8_settings_profile_note_api_toast_wiring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L885",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_8_settings_profile_note_api_toast_wiring",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_40",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L906",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_file_structure",
+			"target": "plans_2026_06_10_resend_auth_email_task_9_readme_final_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L913",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_9_readme_final_verification",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_41",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L922",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_9_readme_final_verification",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_42",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L940",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_9_readme_final_verification",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_43",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L954",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_task_9_readme_final_verification",
+			"target": "plans_2026_06_10_resend_auth_email_codeblock_44",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L961",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_resend_auth_email_resend_auth_transactional_email_implementation_plan",
+			"target": "plans_2026_06_10_resend_auth_email_plan_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md",
+			"source_location": "L969",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

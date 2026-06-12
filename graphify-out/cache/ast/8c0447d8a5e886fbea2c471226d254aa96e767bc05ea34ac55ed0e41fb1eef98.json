@@ -1,0 +1,102 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_og_fetch_og_list_cover_ts",
+			"label": "fetch-og-list-cover.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "og_fetch_og_list_cover_fetchoglistcoverurl",
+			"label": "fetchOgListCoverUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_fetch_og_list_cover_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_fetch_list_detail_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_fetch_og_list_cover_ts",
+			"target": "lib_fetch_list_detail_fetchlistdetailbyid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_fetch_og_list_cover_ts",
+			"target": "lib_fetch_list_detail_listdetailtofilmrows",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_fetch_og_list_cover_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_list_detail_hero_posters_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_fetch_og_list_cover_ts",
+			"target": "lib_list_detail_hero_posters_listheroposterurls",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_fetch_og_list_cover_ts",
+			"target": "og_fetch_og_list_cover_fetchoglistcoverurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "og_fetch_og_list_cover_fetchoglistcoverurl",
+			"callee": "fetchListDetailById",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "og_fetch_og_list_cover_fetchoglistcoverurl",
+			"callee": "listDetailToFilmRows",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "og_fetch_og_list_cover_fetchoglistcoverurl",
+			"callee": "listHeroPosterUrls",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts",
+			"source_location": "L15"
+		}
+	]
+}

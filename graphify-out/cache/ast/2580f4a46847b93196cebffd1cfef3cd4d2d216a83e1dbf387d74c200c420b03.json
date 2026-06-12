@@ -1,0 +1,65 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_ui_modal_sheet_scroll_scrims_tsx",
+			"label": "modal-sheet-scroll-scrims.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\modal-sheet-scroll-scrims.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "ui_modal_sheet_scroll_scrims_modalsheetscrollscrims",
+			"label": "ModalSheetScrollScrims()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\modal-sheet-scroll-scrims.tsx",
+			"source_location": "L9"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_modal_sheet_scroll_scrims_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\modal-sheet-scroll-scrims.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_modal_sheet_scroll_scrims_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\modal-sheet-scroll-scrims.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_ui_modal_sheet_scroll_scrims_tsx",
+			"target": "ui_modal_sheet_scroll_scrims_modalsheetscrollscrims",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\modal-sheet-scroll-scrims.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "ui_modal_sheet_scroll_scrims_modalsheetscrollscrims",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\modal-sheet-scroll-scrims.tsx",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "ui_modal_sheet_scroll_scrims_modalsheetscrollscrims",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\modal-sheet-scroll-scrims.tsx",
+			"source_location": "L27"
+		}
+	]
+}

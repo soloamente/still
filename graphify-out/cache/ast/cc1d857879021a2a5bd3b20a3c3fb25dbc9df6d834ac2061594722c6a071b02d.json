@@ -1,0 +1,107 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_app_mobile_vaul_ts",
+			"label": "app-mobile-vaul.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_app_mobile_vaul_subscribeappmobilevaul",
+			"label": "subscribeAppMobileVaul()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_app_mobile_vaul_getappmobilevaulsnapshot",
+			"label": "getAppMobileVaulSnapshot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_app_mobile_vaul_getappmobilevaulserversnapshot",
+			"label": "getAppMobileVaulServerSnapshot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_app_mobile_vaul_shoulduseappmobilevaul",
+			"label": "shouldUseAppMobileVaul()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L19"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_mobile_vaul_ts",
+			"target": "lib_app_mobile_vaul_subscribeappmobilevaul",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_mobile_vaul_ts",
+			"target": "lib_app_mobile_vaul_getappmobilevaulsnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_mobile_vaul_ts",
+			"target": "lib_app_mobile_vaul_getappmobilevaulserversnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_app_mobile_vaul_ts",
+			"target": "lib_app_mobile_vaul_shoulduseappmobilevaul",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_app_mobile_vaul_subscribeappmobilevaul",
+			"callee": "matchMedia",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L5"
+		},
+		{
+			"caller_nid": "lib_app_mobile_vaul_subscribeappmobilevaul",
+			"callee": "addEventListener",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L6"
+		},
+		{
+			"caller_nid": "lib_app_mobile_vaul_getappmobilevaulsnapshot",
+			"callee": "matchMedia",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_app_mobile_vaul_shoulduseappmobilevaul",
+			"callee": "matchMedia",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts",
+			"source_location": "L21"
+		}
+	]
+}

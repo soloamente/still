@@ -1,0 +1,138 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"label": "open-create-list-surface.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_open_create_list_surface_requestcreatelistargs",
+			"label": "RequestCreateListArgs",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_open_create_list_surface_requestcreatelist",
+			"label": "requestCreateList()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L20"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_components_list_create_list_drawer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "list_create_list_drawer_opencreatelistdrawer",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_components_list_create_list_form_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "list_create_list_form_createlistsheetprops",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_mobile_vaul_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "lib_app_mobile_vaul_app_mobile_vaul_mq",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "lib_app_mobile_vaul_shoulduseappmobilevaul",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "lib_open_create_list_surface_requestcreatelistargs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_open_create_list_surface_ts",
+			"target": "lib_open_create_list_surface_requestcreatelist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_open_create_list_surface_requestcreatelist",
+			"callee": "shouldUseAppMobileVaul",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_open_create_list_surface_requestcreatelist",
+			"callee": "openCreateListDrawer",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_open_create_list_surface_requestcreatelist",
+			"callee": "openDesktopDialog",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts",
+			"source_location": "L28"
+		}
+	]
+}

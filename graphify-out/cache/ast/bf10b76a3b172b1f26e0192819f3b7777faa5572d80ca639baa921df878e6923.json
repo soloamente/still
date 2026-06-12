@@ -1,0 +1,78 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_review_review_editorial_patron_score_tsx",
+			"label": "review-editorial-patron-score.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "review_review_editorial_patron_score_revieweditorialpatronscore",
+			"label": "ReviewEditorialPatronScore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx",
+			"source_location": "L7"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_editorial_patron_score_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_patron_score_leaf_left_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_editorial_patron_score_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_patron_score_leaf_right_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_editorial_patron_score_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_editorial_patron_score_tsx",
+			"target": "lib_log_rating_formatstoredlogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_editorial_patron_score_tsx",
+			"target": "review_review_editorial_patron_score_revieweditorialpatronscore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "review_review_editorial_patron_score_revieweditorialpatronscore",
+			"callee": "formatStoredLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx",
+			"source_location": "L8"
+		}
+	]
+}

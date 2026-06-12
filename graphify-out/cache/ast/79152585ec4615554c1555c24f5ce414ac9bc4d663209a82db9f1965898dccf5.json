@@ -1,0 +1,803 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"label": "creator-recognition.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_creator_recognition_curatorcontributionstats",
+			"label": "CuratorContributionStats",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_creator_recognition_curatorspotlightpatron",
+			"label": "CuratorSpotlightPatron",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "lib_creator_recognition_reviewengagementscore",
+			"label": "reviewEngagementScore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "lib_creator_recognition_reviewengagementordersql",
+			"label": "reviewEngagementOrderSql()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "lib_creator_recognition_listdescribedsql",
+			"label": "listDescribedSql",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L51"
+		},
+		{
+			"id": "lib_creator_recognition_qualifiesascurator",
+			"label": "qualifiesAsCurator()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L56"
+		},
+		{
+			"id": "lib_creator_recognition_buildcuratorheadline",
+			"label": "buildCuratorHeadline()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L76"
+		},
+		{
+			"id": "lib_creator_recognition_curatorspotlightscore",
+			"label": "curatorSpotlightScore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L89"
+		},
+		{
+			"id": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"label": "fetchCuratorStatsForUser()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L96"
+		},
+		{
+			"id": "lib_creator_recognition_resolvecuratorrecognition",
+			"label": "resolveCuratorRecognition()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L137"
+		},
+		{
+			"id": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"label": "fetchCuratorSpotlightPatrons()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L152"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_config_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_config_creatorrecognitionthresholds",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_diary_metal_tier_fetchdiarylogcountsforuserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_diary_metal_tier_resolvediarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_list_quality_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_list_quality_list_description_discoverability_min_chars",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_profile_media_readavatarisanimatedpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_curatorcontributionstats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_curatorspotlightpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_reviewengagementscore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_reviewengagementordersql",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_listdescribedsql",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_qualifiesascurator",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_buildcuratorheadline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_curatorspotlightscore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_resolvecuratorrecognition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_creator_recognition_resolvecuratorrecognition",
+			"target": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_creator_recognition_resolvecuratorrecognition",
+			"target": "lib_creator_recognition_qualifiesascurator",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L142",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_creator_recognition_resolvecuratorrecognition",
+			"target": "lib_creator_recognition_buildcuratorheadline",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L145",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_creator_recognition_reviewengagementordersql",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_qualifiesascurator",
+			"callee": "creatorRecognitionThresholds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L121"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L133"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "creatorRecognitionThresholds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "having",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L158"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "groupBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L158"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L158"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L158"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L158"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "groupBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L184"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L186"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L193"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L200"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L201"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L217"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L218"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L218"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L218"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L218"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L227"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L228"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L228"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L228"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L230"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "fetchDiaryLogCountsForUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L231"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L233"
+		},
+		{
+			"caller_nid": "lib_creator_recognition_fetchcuratorspotlightpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts",
+			"source_location": "L233"
+		}
+	]
+}

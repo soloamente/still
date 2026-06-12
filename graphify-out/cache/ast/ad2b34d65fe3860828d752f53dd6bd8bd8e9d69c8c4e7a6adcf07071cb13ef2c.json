@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_08_staff_user_info_and_management_design_md",
+			"label": "2026-06-08-staff-user-info-and-management-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"label": "Staff Panel \u2014 User Info & Advanced User Management \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_context",
+			"label": "Context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L10"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_roadmap_for_context_not_all_built_now",
+			"label": "Roadmap (for context \u2014 not all built now)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_decisions_from_brainstorming",
+			"label": "Decisions (from brainstorming)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_updated_permission_matrix",
+			"label": "Updated Permission Matrix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_data_model",
+			"label": "Data Model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_new_table_staff_user_note_in_packages_db_src_schema_staff_ts",
+			"label": "New table: `staff_user_note` (in `packages/db/src/schema/staff.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_no_other_schema_changes",
+			"label": "No other schema changes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L91"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_server",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_a_plugin_config_packages_auth_src_index_ts",
+			"label": "a) Plugin config (`packages/auth/src/index.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_b_access_control_packages_auth_src_permissions_ts",
+			"label": "b) Access control (`packages/auth/src/permissions.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_c_new_extended_endpoints_apps_server_src_routes_staff_ts",
+			"label": "c) New/extended endpoints (`apps/server/src/routes/staff.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_d_role_permissions_helper_packages_auth_src_permission_summary_ts",
+			"label": "d) Role-permissions helper (`packages/auth/src/permission-summary.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_ui_web_apps_web_src_components_staff",
+			"label": "UI (web) \u2014 `apps/web/src/components/staff/`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L147"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_expandable_user_row_extends_staffuserstab",
+			"label": "Expandable user row (extends `StaffUsersTab`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L149"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_impersonation_banner_apps_web_src_components_app_app_shell_tsx_or_a_small_new",
+			"label": "Impersonation banner (`apps/web/src/components/app/app-shell.tsx` or a small new",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L169"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_testing_bun_test_test_ts",
+			"label": "Testing (Bun test, `*.test.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L176"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_out_of_scope_this_spec",
+			"label": "Out of Scope (this spec)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L194"
+		},
+		{
+			"id": "specs_2026_06_08_staff_user_info_and_management_design_implementation",
+			"label": "Implementation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L202"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_08_staff_user_info_and_management_design_md",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_roadmap_for_context_not_all_built_now",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_decisions_from_brainstorming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_updated_permission_matrix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_data_model",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_new_table_staff_user_note_in_packages_db_src_schema_staff_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_data_model",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_no_other_schema_changes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_server",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_a_plugin_config_packages_auth_src_index_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_server",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_b_access_control_packages_auth_src_permissions_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_server",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_c_new_extended_endpoints_apps_server_src_routes_staff_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_server",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_d_role_permissions_helper_packages_auth_src_permission_summary_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_ui_web_apps_web_src_components_staff",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_ui_web_apps_web_src_components_staff",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_expandable_user_row_extends_staffuserstab",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_ui_web_apps_web_src_components_staff",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_impersonation_banner_apps_web_src_components_app_app_shell_tsx_or_a_small_new",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_testing_bun_test_test_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L176",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_out_of_scope_this_spec",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_staff_user_info_and_management_design_staff_panel_user_info_advanced_user_management_design",
+			"target": "specs_2026_06_08_staff_user_info_and_management_design_implementation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md",
+			"source_location": "L202",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

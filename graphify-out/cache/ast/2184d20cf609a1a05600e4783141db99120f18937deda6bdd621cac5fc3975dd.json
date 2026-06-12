@@ -1,0 +1,514 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"label": "movie-following-ratings.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_movie_following_ratings_moviefollowingratingentry",
+			"label": "MovieFollowingRatingEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_movie_following_ratings_followinglogrow",
+			"label": "FollowingLogRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"label": "pickLatestFollowingRatingsPerPatron()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"label": "fetchFollowingRatingsForTitle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L84"
+		},
+		{
+			"id": "lib_movie_following_ratings_fetchfollowingratingsformovie",
+			"label": "fetchFollowingRatingsForMovie()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L130"
+		},
+		{
+			"id": "lib_movie_following_ratings_fetchfollowingratingsfortv",
+			"label": "fetchFollowingRatingsForTv()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L138"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_content_visibility_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_content_visibility_contentvisibilitywhere",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_diary_metal_tier_fetchdiarylogcountsforuserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_diary_metal_tier_resolvediarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_profile_media_readavatarisanimatedpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_movie_following_ratings_moviefollowingratingentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_movie_following_ratings_followinglogrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_movie_following_ratings_fetchfollowingratingsformovie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_movie_following_ratings_ts",
+			"target": "lib_movie_following_ratings_fetchfollowingratingsfortv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"target": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_following_ratings_fetchfollowingratingsformovie",
+			"target": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_following_ratings_fetchfollowingratingsfortv",
+			"target": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L142",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "readAvatarIsAnimatedPref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "resolveDiaryMetalTier",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_picklatestfollowingratingsperpatron",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "or",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "contentVisibilityWhere",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "fetchDiaryLogCountsForUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L115"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L116"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortitle",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsformovie",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L134"
+		},
+		{
+			"caller_nid": "lib_movie_following_ratings_fetchfollowingratingsfortv",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts",
+			"source_location": "L142"
+		}
+	]
+}

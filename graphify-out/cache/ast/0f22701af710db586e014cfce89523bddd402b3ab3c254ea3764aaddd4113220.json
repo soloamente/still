@@ -1,0 +1,447 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_09_letterboxd_extended_import_md",
+			"label": "2026-06-09-letterboxd-extended-import.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_letterboxd_extended_import_implementation_plan",
+			"label": "Letterboxd Extended Import Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_1_shared_csv_parse_helpers_filename_classifier",
+			"label": "Task 1: Shared CSV parse helpers + filename classifier",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_1",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_2",
+			"label": "code:ts (export type LetterboxdCsvKind =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L82"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_3",
+			"label": "code:bash (git add apps/server/src/lib/letterboxd-csv-parse.ts apps/ser)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_2_watchlist_csv_parser",
+			"label": "Task 2: Watchlist CSV parser",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_4",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_5",
+			"label": "code:ts (import { headerIndex, parseCsvLine, parseDate } from \"./lett)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_3_reviews_csv_parser_html_strip",
+			"label": "Task 3: Reviews CSV parser + HTML strip",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L178"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_6",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L186"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_4_likes_films_csv_parser",
+			"label": "Task 4: Likes (`films.csv`) parser",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L219"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_5_tmdb_resolve_helper",
+			"label": "Task 5: TMDb resolve helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L231"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_7",
+			"label": "code:ts (export async function resolveLetterboxdMovieTmdbId()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L241"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_6_log_resolution_helper",
+			"label": "Task 6: Log resolution helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L253"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_8",
+			"label": "code:ts (export function letterboxdTitleMatchKey(input: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L261"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_7_diary_phase_in_orchestrator_with_rating_merge",
+			"label": "Task 7: Diary phase in orchestrator (with rating merge)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L292"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_9",
+			"label": "code:ts (export interface LetterboxdImportApplyResult {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L300"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_10",
+			"label": "code:ts (if (existing) {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L335"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_8_reviews_likes_watchlist_phases",
+			"label": "Task 8: Reviews, likes, watchlist phases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L352"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_9_thin_route_side_effects",
+			"label": "Task 9: Thin route + side effects",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L385"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_11",
+			"label": "code:ts (const classified = classifyUploadedFiles(csvFiles);)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L392"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_12",
+			"label": "code:ts (const touched =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L404"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_10_web_ui",
+			"label": "Task 10: Web UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L431"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_codeblock_13",
+			"label": "code:ts (const RECOGNIZED = new Set([)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L447"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_task_11_final_verification",
+			"label": "Task 11: Final verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L474"
+		},
+		{
+			"id": "plans_2026_06_09_letterboxd_extended_import_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L483"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_09_letterboxd_extended_import_md",
+			"target": "plans_2026_06_09_letterboxd_extended_import_letterboxd_extended_import_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_letterboxd_extended_import_implementation_plan",
+			"target": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_1_shared_csv_parse_helpers_filename_classifier",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_1_shared_csv_parse_helpers_filename_classifier",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_1_shared_csv_parse_helpers_filename_classifier",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_1_shared_csv_parse_helpers_filename_classifier",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_2_watchlist_csv_parser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_2_watchlist_csv_parser",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_2_watchlist_csv_parser",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_3_reviews_csv_parser_html_strip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L178",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_3_reviews_csv_parser_html_strip",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L186",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_4_likes_films_csv_parser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L219",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_5_tmdb_resolve_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L231",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_5_tmdb_resolve_helper",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_6_log_resolution_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L253",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_6_log_resolution_helper",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L261",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_7_diary_phase_in_orchestrator_with_rating_merge",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L292",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_7_diary_phase_in_orchestrator_with_rating_merge",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_7_diary_phase_in_orchestrator_with_rating_merge",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L335",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_8_reviews_likes_watchlist_phases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L352",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_9_thin_route_side_effects",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L385",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_9_thin_route_side_effects",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L392",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_9_thin_route_side_effects",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L404",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_10_web_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L431",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_task_10_web_ui",
+			"target": "plans_2026_06_09_letterboxd_extended_import_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L447",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_file_map",
+			"target": "plans_2026_06_09_letterboxd_extended_import_task_11_final_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L474",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_letterboxd_extended_import_letterboxd_extended_import_implementation_plan",
+			"target": "plans_2026_06_09_letterboxd_extended_import_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md",
+			"source_location": "L483",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

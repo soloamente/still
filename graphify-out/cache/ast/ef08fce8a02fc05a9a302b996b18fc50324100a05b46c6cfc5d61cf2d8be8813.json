@@ -1,0 +1,55 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_prefers_reduced_motion_ts",
+			"label": "use-prefers-reduced-motion.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-prefers-reduced-motion.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_prefers_reduced_motion_useprefersreducedmotion",
+			"label": "usePrefersReducedMotion()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-prefers-reduced-motion.ts",
+			"source_location": "L5"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_prefers_reduced_motion_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-prefers-reduced-motion.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_prefers_reduced_motion_ts",
+			"target": "lib_use_prefers_reduced_motion_useprefersreducedmotion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-prefers-reduced-motion.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_prefers_reduced_motion_useprefersreducedmotion",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-prefers-reduced-motion.ts",
+			"source_location": "L6"
+		},
+		{
+			"caller_nid": "lib_use_prefers_reduced_motion_useprefersreducedmotion",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-prefers-reduced-motion.ts",
+			"source_location": "L7"
+		}
+	]
+}

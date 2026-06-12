@@ -1,0 +1,68 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_forward_auth_set_cookies_ts",
+			"label": "forward-auth-set-cookies.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_forward_auth_set_cookies_outgoingheaderbag",
+			"label": "OutgoingHeaderBag",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_forward_auth_set_cookies_forwardauthsetcookies",
+			"label": "forwardAuthSetCookies()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_forward_auth_set_cookies_ts",
+			"target": "lib_forward_auth_set_cookies_outgoingheaderbag",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_forward_auth_set_cookies_ts",
+			"target": "lib_forward_auth_set_cookies_forwardauthsetcookies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_forward_auth_set_cookies_forwardauthsetcookies",
+			"callee": "getSetCookie",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_forward_auth_set_cookies_forwardauthsetcookies",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_forward_auth_set_cookies_forwardauthsetcookies",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts",
+			"source_location": "L21"
+		}
+	]
+}

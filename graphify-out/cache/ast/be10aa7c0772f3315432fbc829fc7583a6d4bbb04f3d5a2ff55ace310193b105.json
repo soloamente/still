@@ -1,0 +1,168 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_textarea_caret_viewport_ts",
+			"label": "textarea-caret-viewport.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_textarea_caret_viewport_textarea_mirror_properties",
+			"label": "TEXTAREA_MIRROR_PROPERTIES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_textarea_caret_viewport_textareacaretviewportanchor",
+			"label": "TextareaCaretViewportAnchor",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"label": "measureTextareaCaretViewportAnchor()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L43"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_textarea_caret_viewport_ts",
+			"target": "lib_textarea_caret_viewport_textarea_mirror_properties",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_textarea_caret_viewport_ts",
+			"target": "lib_textarea_caret_viewport_textareacaretviewportanchor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_textarea_caret_viewport_ts",
+			"target": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "createElement",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "getComputedStyle",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "setAttribute",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "setProperty",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "getPropertyValue",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "createElement",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "appendChild",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "appendChild",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "parseFloat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "parseFloat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "parseFloat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "removeChild",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_textarea_caret_viewport_measuretextareacaretviewportanchor",
+			"callee": "getBoundingClientRect",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts",
+			"source_location": "L85"
+		}
+	]
+}

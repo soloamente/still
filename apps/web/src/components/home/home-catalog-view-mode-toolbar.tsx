@@ -440,7 +440,8 @@ export function HomeCatalogViewModeToolbar() {
 			? tmdbLobby.venue
 			: parseTvLobbyVenue(searchParams.get("venue"), catalogSort, catalogRun);
 		const activeSort = tmdbLobby?.sort ?? catalogSort;
-		const activeRun = tmdbLobby?.run ?? catalogRun;
+		// Coalesce null (e.g. anime season or absent `?run=`) to the default Ongoing slice for chip/filter props.
+		const activeRun = tmdbLobby?.run ?? catalogRun ?? DEFAULT_HOME_CATALOG_RUN;
 		const seasonActive = tmdbLobby?.animeSeason ?? animeSeasonActive;
 		const theatersActive = effectiveVenue === "theaters";
 		const streamingActive = effectiveVenue === "streaming";

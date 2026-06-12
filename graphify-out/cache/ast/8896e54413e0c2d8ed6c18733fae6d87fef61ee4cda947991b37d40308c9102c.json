@@ -1,0 +1,303 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_08_role_change_notification_dialog_design_md",
+			"label": "2026-06-08-role-change-notification-dialog-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"label": "Role-Change Notification Dialog \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_decisions_from_brainstorming",
+			"label": "Decisions (from brainstorming)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_architecture_overview",
+			"label": "Architecture Overview",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_codeblock_1",
+			"label": "code:block1 (owner sets role \u2500\u2500\u25b6 /api/staff/users/:id/role (existing))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_server",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_a_notifyrolechanged_helper_apps_server_src_lib_notification_delivery_ts",
+			"label": "a) `notifyRoleChanged` helper (`apps/server/src/lib/notification-delivery.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_codeblock_2",
+			"label": "code:block2 (notifyRoleChanged({ userId, previousRole, newRole }): Promis)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_b_hook_into_the_role_endpoint_apps_server_src_routes_staff_ts",
+			"label": "b) Hook into the role endpoint (`apps/server/src/routes/staff.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_c_endpoint_latest_unread_role_change_apps_server_src_routes_notifications_ts",
+			"label": "c) Endpoint: latest unread role change (`apps/server/src/routes/notifications.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_web",
+			"label": "Web",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_a_rolechangedialog_apps_web_src_components_staff_role_change_dialog_tsx",
+			"label": "a) `RoleChangeDialog` (`apps/web/src/components/staff/role-change-dialog.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L82"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_b_rolechangedialogroot_apps_web_src_components_staff_role_change_dialog_root_tsx",
+			"label": "b) `RoleChangeDialogRoot` (`apps/web/src/components/staff/role-change-dialog-root.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L95"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_c_role_labels_pill_apps_web_src_lib_staff_role_labels_ts_the_pill_component",
+			"label": "c) Role labels & pill (`apps/web/src/lib/staff-role-labels.ts` + the pill component)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_d_inbox_rendering_apps_web_src_components_notifications_notifications_list_tsx",
+			"label": "d) Inbox rendering (`apps/web/src/components/notifications/notifications-list.tsx`,",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_copy",
+			"label": "Copy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L124"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "specs_2026_06_08_role_change_notification_dialog_design_out_of_scope",
+			"label": "Out of Scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L157"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_08_role_change_notification_dialog_design_md",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_decisions_from_brainstorming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_architecture_overview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_architecture_overview",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_server",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_a_notifyrolechanged_helper_apps_server_src_lib_notification_delivery_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_a_notifyrolechanged_helper_apps_server_src_lib_notification_delivery_ts",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_server",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_b_hook_into_the_role_endpoint_apps_server_src_routes_staff_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_server",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_c_endpoint_latest_unread_role_change_apps_server_src_routes_notifications_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_web",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_a_rolechangedialog_apps_web_src_components_staff_role_change_dialog_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_web",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_b_rolechangedialogroot_apps_web_src_components_staff_role_change_dialog_root_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_web",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_c_role_labels_pill_apps_web_src_lib_staff_role_labels_ts_the_pill_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_web",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_d_inbox_rendering_apps_web_src_components_notifications_notifications_list_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_copy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L124",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_08_role_change_notification_dialog_design_role_change_notification_dialog_design",
+			"target": "specs_2026_06_08_role_change_notification_dialog_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md",
+			"source_location": "L157",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

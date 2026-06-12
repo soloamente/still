@@ -1,0 +1,128 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_jobs_set_owner_ts",
+			"label": "set-owner.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "jobs_set_owner_main",
+			"label": "main()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_set_owner_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_set_owner_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_set_owner_ts",
+			"target": "jobs_set_owner_main",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "exit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "returning",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "exit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "log",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "jobs_set_owner_main",
+			"callee": "exit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts",
+			"source_location": "L26"
+		}
+	]
+}

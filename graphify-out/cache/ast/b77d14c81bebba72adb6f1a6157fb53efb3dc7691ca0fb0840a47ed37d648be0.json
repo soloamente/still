@@ -1,0 +1,357 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"label": "profile-media-customizer.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_profile_media_customizer_profilemediacustomizerprops",
+			"label": "ProfileMediaCustomizerProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "profile_profile_media_customizer_profilemediacustomizer",
+			"label": "ProfileMediaCustomizer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L35"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "profile_me_account_session_context_usemeaccountsession",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_secondary_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "profile_me_secondary_button_mesecondarybutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_avatar_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "lib_profile_avatar_profilepatronavatarimageurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_banner_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "lib_profile_banner_profilebannerimageurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_media_cache_key_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "lib_profile_media_cache_key_assertprofilemediauploadsize",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "lib_profile_media_cache_key_profilemediacachekey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "profile_profile_media_customizer_profilemediacustomizerprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_media_customizer_tsx",
+			"target": "profile_profile_media_customizer_profilemediacustomizer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L35",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useMeAccountSession",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "profileBannerImageUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "profileMediaCacheKey",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "profilePatronAvatarImageUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "profile_profile_media_customizer_profilemediacustomizer",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx",
+			"source_location": "L204"
+		}
+	]
+}

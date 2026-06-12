@@ -1,0 +1,326 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_staff_user_stats_ts",
+			"label": "staff-user-stats.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_staff_user_stats_staffuseractivitystats",
+			"label": "StaffUserActivityStats",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"label": "fetchStaffUserActivityStats()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_stats_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_stats_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_stats_ts",
+			"target": "lib_staff_user_stats_staffuseractivitystats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_stats_ts",
+			"target": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "count",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "count",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "count",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "count",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_staff_user_stats_fetchstaffuseractivitystats",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts",
+			"source_location": "L56"
+		}
+	]
+}

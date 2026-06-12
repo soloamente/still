@@ -1,0 +1,134 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"label": "use-cast-crew-monochrome-pref.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_cast_crew_monochrome_pref_loadcastcrewmonochromepref",
+			"label": "loadCastCrewMonochromePref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_use_cast_crew_monochrome_pref_invalidatecastcrewmonochromeprefcache",
+			"label": "invalidateCastCrewMonochromePrefCache()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L34"
+		},
+		{
+			"id": "lib_use_cast_crew_monochrome_pref_usecastcrewmonochromeonhover",
+			"label": "useCastCrewMonochromeOnHover()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L43"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"target": "lib_profile_preferences_readcastcrewmonochromeonhoverpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"target": "lib_use_cast_crew_monochrome_pref_loadcastcrewmonochromepref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"target": "lib_use_cast_crew_monochrome_pref_invalidatecastcrewmonochromeprefcache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_cast_crew_monochrome_pref_ts",
+			"target": "lib_use_cast_crew_monochrome_pref_usecastcrewmonochromeonhover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_cast_crew_monochrome_pref_loadcastcrewmonochromepref",
+			"callee": "(async () => {\r\n\t\ttry {\r\n\t\t\tconst res = await api.api.profiles.me.get().catch(() => ({ data: null }));\r\n\t\t\tconst row = res.data as\r\n\t\t\t\t| { preferences?: Record<string, unknown> }\r\n\t\t\t\t| null\r\n\t\t\t\t| undefined;\r\n\t\t\tcachedPref = readCastCrewMonochromeOnHoverPref(row?.preferences ?? null);\r\n\t\t\treturn cachedPref;\r\n\t\t} catch {\r\n\t\t\tcachedPref = false;\r\n\t\t\treturn false;\r\n\t\t} finally {\r\n\t\t\tinflight = null;\r\n\t\t}\r\n\t})",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_use_cast_crew_monochrome_pref_usecastcrewmonochromeonhover",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_use_cast_crew_monochrome_pref_usecastcrewmonochromeonhover",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts",
+			"source_location": "L46"
+		}
+	]
+}

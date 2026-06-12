@@ -1,0 +1,166 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_ts",
+			"label": "staff-user-notes.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_staff_user_notes_staffusernote",
+			"label": "StaffUserNote",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_staff_user_notes_liststaffusernotes",
+			"label": "listStaffUserNotes()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_staff_user_notes_addstaffusernote",
+			"label": "addStaffUserNote()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L28"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_cuid_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_ts",
+			"target": "lib_cuid_makeid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_ts",
+			"target": "lib_staff_user_notes_staffusernote",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_ts",
+			"target": "lib_staff_user_notes_liststaffusernotes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_ts",
+			"target": "lib_staff_user_notes_addstaffusernote",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_staff_user_notes_liststaffusernotes",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_staff_user_notes_liststaffusernotes",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_staff_user_notes_liststaffusernotes",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_staff_user_notes_liststaffusernotes",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_staff_user_notes_liststaffusernotes",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_staff_user_notes_liststaffusernotes",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_staff_user_notes_addstaffusernote",
+			"callee": "makeId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_staff_user_notes_addstaffusernote",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_staff_user_notes_addstaffusernote",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts",
+			"source_location": "L35"
+		}
+	]
+}

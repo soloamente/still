@@ -1,0 +1,66 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_chrome_ts",
+			"label": "detail-editorial-rail-chrome.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-chrome.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_detail_editorial_rail_chrome_detail_editorial_rail_x_fade_class",
+			"label": "DETAIL_EDITORIAL_RAIL_X_FADE_CLASS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-chrome.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_detail_editorial_rail_chrome_detail_editorial_rail_scrollport_class",
+			"label": "DETAIL_EDITORIAL_RAIL_SCROLLPORT_CLASS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-chrome.ts",
+			"source_location": "L42"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_chrome_ts",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-chrome.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_chrome_ts",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-chrome.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_chrome_ts",
+			"target": "lib_detail_editorial_rail_chrome_detail_editorial_rail_x_fade_class",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-chrome.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_chrome_ts",
+			"target": "lib_detail_editorial_rail_chrome_detail_editorial_rail_scrollport_class",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-chrome.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

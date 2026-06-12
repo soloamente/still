@@ -1,0 +1,72 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_staff_role_labels_ts",
+			"label": "staff-role-labels.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_staff_role_labels_staff_role_labels",
+			"label": "STAFF_ROLE_LABELS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_staff_role_labels_rolelabel",
+			"label": "roleLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_staff_role_labels_rolewitharticle",
+			"label": "roleWithArticle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_staff_role_labels_ts",
+			"target": "lib_staff_role_labels_staff_role_labels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_staff_role_labels_ts",
+			"target": "lib_staff_role_labels_rolelabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_staff_role_labels_ts",
+			"target": "lib_staff_role_labels_rolewitharticle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_staff_role_labels_rolewitharticle",
+			"target": "lib_staff_role_labels_rolelabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -5,9 +5,9 @@
 		"hash": "2672d0ea4f39e0eeca7f912d6a80be62fbb635a86c22d002b781ffbc83d86d84"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\package.json": {
-		"size": 1379,
-		"mtime_ns": 1779968960726053100,
-		"hash": "b18cf3f4de8ab79bf355eab51951bc9be870bbdd8500d537a2a36522a0d20180"
+		"size": 1430,
+		"mtime_ns": 1781245853457006400,
+		"hash": "2a77eefd4505373a44a8041d5f19a29512f4d1f5622734ace138d91c87d73bb4"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\skills-lock.json": {
 		"size": 3175,
@@ -30,14 +30,14 @@
 		"hash": "d2835b94d4d5ed151d02900325c948639789323a1c93145858b036474f9b3d43"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning-index.json": {
-		"size": 12252,
-		"mtime_ns": 1780643678586268400,
-		"hash": "53d1a248996d70ff8a464ae66fd1fc4caf7ebd48b56943bd1df10293de5667f5"
+		"size": 19664,
+		"mtime_ns": 1781245852958324200,
+		"hash": "75bce4b533ab4e7150859e233d5211f61198c1a927d7adba1c431df4b4cdbdaa"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json": {
 		"size": 221,
-		"mtime_ns": 1780741246372299500,
-		"hash": "f64cd8468d6b925ee3a22b6c6b20612c097ae317f25e7a02b49c957f4a521c67"
+		"mtime_ns": 1781245852959629100,
+		"hash": "b4b3cf0ff161e3d7f056a31b1c2da9d37a4aef0291b4a04c36739c1f5ceae452"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\idea-refine\\scripts\\idea-refine.sh": {
 		"size": 342,
@@ -245,9 +245,9 @@
 		"hash": "0e9b37c4562649e76f60283691f7bfca53acf0f6aa35392a2c66309e1fc1fc69"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\package.json": {
-		"size": 1044,
-		"mtime_ns": 1779968960562620300,
-		"hash": "9f2986f896543e892a6178cb8c65a5b44aba9a7167ea1d903949d3d316ec37b4"
+		"size": 1067,
+		"mtime_ns": 1781245852966944000,
+		"hash": "fb3280872030c68e5a2db3b02131b9ac10f96a1fd6b1544203c5207640aee868"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\tsconfig.json": {
 		"size": 222,
@@ -270,9 +270,9 @@
 		"hash": "52270e7d360b47ccf2b068aab8f7266bdc4d2c742e4b22105ec677efdcdb768d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\context.ts": {
-		"size": 1202,
-		"mtime_ns": 1779968960564620600,
-		"hash": "a8a153e90420253c0bcb01a74da53cad609806ba21aaa07a26c7125ddf65be88"
+		"size": 3652,
+		"mtime_ns": 1781245852968123200,
+		"hash": "a9712048df25e1a1c52833de030ff69e47075ff6f0caf5ca4820245d9a15f944"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\index.ts": {
 		"size": 315,
@@ -325,9 +325,9 @@
 		"hash": "457fa2232c15c021156aaf6135d785b4eb803ae7451a5264a897112005259bf2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\feed-items.ts": {
-		"size": 1082,
-		"mtime_ns": 1779439643462720900,
-		"hash": "3512a704b211351936366b1a73fe2943e8a007540221ae6079e487760013029f"
+		"size": 4010,
+		"mtime_ns": 1781245852977381200,
+		"hash": "57c6b5a709bf4537990d131d6991c87485cc3c0dbe06648d70b57fd059b060e0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\hero-artwork-slides.ts": {
 		"size": 4364,
@@ -345,9 +345,9 @@
 		"hash": "bd490749bb3b53a5d4360a0779589f38564571b9b466564e27be312dc98787b3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\leaderboard-query.ts": {
-		"size": 10182,
-		"mtime_ns": 1780643678617276500,
-		"hash": "ef3f9e6c224bad3ee966e2a2bc53937262625e8b41e790de0d9be60d40c50dbc"
+		"size": 11512,
+		"mtime_ns": 1781245852984531600,
+		"hash": "1b1598ff68da93c6b37c5b44a3152f9de9e93c061ff6807b067066b77639bc67"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-cover-posters.ts": {
 		"size": 3772,
@@ -370,9 +370,9 @@
 		"hash": "3dbf15736b616527a29f0b7c7cee4a17a4ca2add290e6f36f5f5190568831ae5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\search-dialog-studio-ids.ts": {
-		"size": 1068,
-		"mtime_ns": 1779439643465722000,
-		"hash": "fe113ffc438f167d270d77a9b0b75d8030c128831d57f3c5b1e8666b60cf4818"
+		"size": 393,
+		"mtime_ns": 1781245853016218100,
+		"hash": "3b9196629c563962179de734f769c2d9f23da903ab75dcbdff3c3ea671524677"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sync-movie-palette.ts": {
 		"size": 745,
@@ -390,9 +390,9 @@
 		"hash": "efdd12d86b2706d622f3be6e7608ddbb1d9b049a122dce5d71d419c64a941afb"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb.ts": {
-		"size": 22130,
-		"mtime_ns": 1780741246375301500,
-		"hash": "08aa7b655cd144e02a9cbcc5e38d23982aad76c2daf53d1164e926155ec6e273"
+		"size": 22291,
+		"mtime_ns": 1781245853034709400,
+		"hash": "d7b5ea0254574c3e78feaef86df43951d1183d33988a5d72929da0a828416c63"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-cache.ts": {
 		"size": 1724,
@@ -430,19 +430,19 @@
 		"hash": "144c315b75147741c99b71075ee773b918dfae4512708c5cc256036e1f0de5ad"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\comments.ts": {
-		"size": 4635,
-		"mtime_ns": 1780467519544765100,
-		"hash": "0293e7120a6eadbb90f16023cdf1a45f81f7eb502a91d3ee9ad5add66173d508"
+		"size": 8863,
+		"mtime_ns": 1781245853040193000,
+		"hash": "8d68bfa75917cd89324665b59cffec9387dce6495c68065ad007c462fa708dd3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\feed.ts": {
-		"size": 6982,
-		"mtime_ns": 1780501876237659900,
-		"hash": "a7914099d13e42651dc0c4cb10d72fce9c35bed71b03b9afc4f5dc16d2a2519b"
+		"size": 11593,
+		"mtime_ns": 1781245853040787200,
+		"hash": "470c4dea673c10d1965ab8100ee6e714f5d335873e1510572f1a0eeb4f41c6ff"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\follows.ts": {
-		"size": 6262,
-		"mtime_ns": 1780467519545764400,
-		"hash": "18de87803bc48848e6a68d46859d84cd45a8f6fad4cee07634bafad0196557f9"
+		"size": 7256,
+		"mtime_ns": 1781245853042005400,
+		"hash": "33855e4a3965aaf4f37e2f8e8c01ca1ba0ab0088a995df557ee52646fa240727"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\leaderboard.ts": {
 		"size": 2271,
@@ -450,19 +450,19 @@
 		"hash": "7f54a0b2a588084a93c67dec2947f73ca8653ad14d11f2e44cb55089e8eab97b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\lists.ts": {
-		"size": 28277,
-		"mtime_ns": 1780676719955603900,
-		"hash": "bac63933f7284d8edcdf0623091f820d7f407c9d41061cf93f8d642192daa591"
+		"size": 30350,
+		"mtime_ns": 1781245853043772800,
+		"hash": "91a96c552a824d1d2051172f36c0d584e72b61f0d85caecb69d42ba0365e0d8e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\logs.ts": {
-		"size": 21745,
-		"mtime_ns": 1780674679236843400,
-		"hash": "d86394458415307f728f5d03381fb5aae5277d8c2a027ba283d5dc13a0f148f8"
+		"size": 23703,
+		"mtime_ns": 1781245853044988900,
+		"hash": "ba249b76a31e275c28a882e6e179300ae29f0f25fd56f6971e8b075bac64ddc8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\movies.ts": {
-		"size": 31074,
-		"mtime_ns": 1780741246376301400,
-		"hash": "203a8b73a1dfe7b6d5c6ab03eaa4f11b7205b073bf287f601aae130d76ba3e76"
+		"size": 32586,
+		"mtime_ns": 1781245853047348600,
+		"hash": "ae383926be067525943185ccae2db624296226ef98f4d602918f5fe05f3b83c2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\news.ts": {
 		"size": 1313,
@@ -470,9 +470,9 @@
 		"hash": "85cf5a8df5917bc19caa2c616f797cf0afdcf88392c920cff608ad2e6e5c504b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\notifications.ts": {
-		"size": 5874,
-		"mtime_ns": 1780467519550766000,
-		"hash": "f26ccad0458316408f3924003ca800f60f820b4333f83dbeefa3361a9d4624d5"
+		"size": 6302,
+		"mtime_ns": 1781245853049115900,
+		"hash": "5e91350e99a44f2b4cb3cc1c6b8ae10c12fa3de21e6f22b6d52e95389f088ca2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\people.ts": {
 		"size": 4909,
@@ -480,19 +480,19 @@
 		"hash": "34a86737d86e3b244533e72275a6a89076d4a5f4f0616ee563f5758788240c59"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\posts.ts": {
-		"size": 3972,
-		"mtime_ns": 1779968960610502500,
-		"hash": "8b39b947df2217abd78c3429286931c028246904c32c55b4b3871fd2a635d89d"
+		"size": 4009,
+		"mtime_ns": 1781245853051613800,
+		"hash": "0453a6c833566b579d73dd3c502e51e45ee930e994c9e62263c6fbac8bbb61e1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\profiles.ts": {
-		"size": 34695,
-		"mtime_ns": 1780676720058133400,
-		"hash": "1c4622642dc2c11deabca63169040adcb68e90896715b46a8eeb8c71e4b883d2"
+		"size": 39556,
+		"mtime_ns": 1781245853052951600,
+		"hash": "1eeadd30f7c0132d83ae4e8355faeeddd87c675ab08098790137418d54a7f04c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\reviews.ts": {
-		"size": 12144,
-		"mtime_ns": 1780501757276142800,
-		"hash": "ec5a91d074ac3976609c86db611361b61b8f946059bfb5888eeba80159a52536"
+		"size": 16863,
+		"mtime_ns": 1781245853054194600,
+		"hash": "70545a63275b0a55f49b69284353aa61d681812a2fe4246fa5b2941fcb635ca2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\tv-watch.ts": {
 		"size": 14769,
@@ -500,14 +500,14 @@
 		"hash": "8548d1da78a61dbc5b25a8369ee9c666db17ad0a2852e67696f5a78310173578"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\tv.ts": {
-		"size": 18846,
-		"mtime_ns": 1780741246377300700,
-		"hash": "3aa2e008d3475f3040acfc48fc3a4c35877b070b938d3764cdfa3feb63524da8"
+		"size": 18922,
+		"mtime_ns": 1781245853059000800,
+		"hash": "e1b606e4f39cb6f166f6a2b8db8a229e2c2a22b28b94130857daa8f57e27daa5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\watchlist.ts": {
-		"size": 6447,
-		"mtime_ns": 1780676719978610300,
-		"hash": "13b4ee07b177f6421fbe8aee6740c608143940ce7f2355998284a4bf2c81481b"
+		"size": 6730,
+		"mtime_ns": 1781245853060246500,
+		"hash": "22542cefcc8b639435858177863b59a8ccfd29edfbd5152d3ac6917097bd767a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\ws\\hub.ts": {
 		"size": 1697,
@@ -535,9 +535,9 @@
 		"hash": "d0ff93f4479061301afb892ef8cfb3923cc8beca9cf0e85c47406757eabe777f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\package.json": {
-		"size": 1408,
-		"mtime_ns": 1780643678622278800,
-		"hash": "9d94ec82e4249bb07b8c2d25ea39e990fcb73d5b0eeb3f195c75e5ed9d4a52f5"
+		"size": 1430,
+		"mtime_ns": 1781245853062625900,
+		"hash": "0cd6ceac279d126f999f1be1c9b66cb54505c2d8eff82a311abce68807ea26ff"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\postcss.config.mjs": {
 		"size": 86,
@@ -560,9 +560,9 @@
 		"hash": "72f46fc96a5edaff74ccbf88e3e7c220dfdb52f4464f6250c7532338cb411dc6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\proxy.ts": {
-		"size": 2105,
-		"mtime_ns": 1779467345409403200,
-		"hash": "a9a593b2c90987b11ada27e2979ba1d2a4dc8c6efc73e46a17c9f9f4bf2a8274"
+		"size": 2319,
+		"mtime_ns": 1781245853426091800,
+		"hash": "76dac936707cc2feba31ea60f515490996d5bb5f25c5a593d4d0aacf7f7f6436"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\global-error.tsx": {
 		"size": 759,
@@ -570,14 +570,14 @@
 		"hash": "c61fc4514e46c059b4109d17c4024ae26bcc360648697affc35bf326349985b5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\layout.tsx": {
-		"size": 4137,
-		"mtime_ns": 1780467519570766600,
-		"hash": "9c3b2f5f8877d27eb7bfbfcaffbd46af06573c4d0e23526714a0a498dd473833"
+		"size": 5018,
+		"mtime_ns": 1781245853170780500,
+		"hash": "c82e50b53381b258ddac433f86ad9d8422965befb69f7ee734301b85fb31ad3d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\page.tsx": {
-		"size": 2206,
-		"mtime_ns": 1780643654605837700,
-		"hash": "058196ca135d3fad9dc791713ae3b859827bbfad4444ebce66df6baa73714a42"
+		"size": 2811,
+		"mtime_ns": 1781245853179456600,
+		"hash": "2ebf8690f85c6e58c435a8a160cd535a4661801ae57bb084ef5f36b49fff08c0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\error.tsx": {
 		"size": 824,
@@ -585,9 +585,9 @@
 		"hash": "a665276fe0e33e5cfd75e628df46dd1ddf75732a49a2ba097423654298b7b915"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\layout.tsx": {
-		"size": 1270,
-		"mtime_ns": 1780472568390529100,
-		"hash": "3ca18569c205b7f2b83f1b726262f945459f2acdf1a4f6e24f60ceb1c1b4c1b0"
+		"size": 3044,
+		"mtime_ns": 1781245853148548000,
+		"hash": "2730f81c75714e065c5beaa2665366d3b0f7deba810868f1e387c2cb43485d3e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\loading.tsx": {
 		"size": 947,
@@ -605,19 +605,19 @@
 		"hash": "6f85536fc5d2db0697f5ca5ff65da167fa86041b984cc3c5dd99baf8290fc8dc"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\diary\\page.tsx": {
-		"size": 3395,
-		"mtime_ns": 1780645275278808000,
-		"hash": "2c1b37ff6fbb41149a1047c71d2274b13978167f91e2225aa4429b27b32c7ff2"
+		"size": 3733,
+		"mtime_ns": 1781245853145061600,
+		"hash": "7b8188b87c48b669541bbbde77420f4d7ad17e7c3c62e0e4b656d599b337d3e3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\home\\page.tsx": {
-		"size": 33037,
-		"mtime_ns": 1780746209348311300,
-		"hash": "7a639f05a0a52851c22d580ea86942882e655e10728f8ebb8e52676202bd304b"
+		"size": 33789,
+		"mtime_ns": 1781245853146810200,
+		"hash": "6d6071c39453d50f8a215d92f1c6486a1b415b8ab1604295c1fb437886692669"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\page.tsx": {
-		"size": 4490,
-		"mtime_ns": 1780648325435130600,
-		"hash": "81eb5f3cdd14da2c934f7f957e4b30476693a56d8310c6aa89b1476197ce8519"
+		"size": 4854,
+		"mtime_ns": 1781245853150875200,
+		"hash": "f3d365502d493d2f9233aa4cd6007008734cc0e69f82bc09a6d83d4a0dc627a7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\new\\page.tsx": {
 		"size": 204,
@@ -625,9 +625,9 @@
 		"hash": "9fc351cc8b79eb939878f01af10ab04081e3b65f7530f43cff103e68a09a8a1f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\[id]\\page.tsx": {
-		"size": 9139,
-		"mtime_ns": 1780750263612452500,
-		"hash": "2045756f17ab2a39dbfe2c8c53b3c59940d0f92d5689218a6da79f7d5352e95e"
+		"size": 9443,
+		"mtime_ns": 1781245853149707400,
+		"hash": "ebbd8c6aeeef6e912d5130b7bba04b288520a71324f1676a783b70be7f151954"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\layout.tsx": {
 		"size": 644,
@@ -641,7 +641,7 @@
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\page.tsx": {
 		"size": 206,
-		"mtime_ns": 1780740850076739800,
+		"mtime_ns": 1781246851572096000,
 		"hash": "4c476a7dc21969d89879763f9db006bdcc0aaee886486695f8b0bcdf017e561a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\movies\\discover\\page.tsx": {
@@ -675,9 +675,9 @@
 		"hash": "4fd3761b3e8248ae5981a6929b378023f1ea47f4e5c69c9c6f3d14097e5976b0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\movies\\[id]\\page.tsx": {
-		"size": 10568,
-		"mtime_ns": 1780741246383806400,
-		"hash": "6ba7d941b49ec8cd27b2b2c6512abb6dd68290baf8e8b2af609220d1575a47af"
+		"size": 10728,
+		"mtime_ns": 1781245853155525100,
+		"hash": "561032831239c7d5c88940cbf3585654ed96cc6741eb38c8dac87c97e0e8ea5c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\movies\\[id]\\credits\\page.tsx": {
 		"size": 3600,
@@ -705,9 +705,9 @@
 		"hash": "f6b74a79897038597b5ce472c083477274d4ed513d7a994a8626ef1af007ae3d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\profile\\[handle]\\page.tsx": {
-		"size": 7056,
-		"mtime_ns": 1780676023831771500,
-		"hash": "b6b0ec136d519197324449fb1d5b3d3cc3937ea45d77fd43859d77b5bb0dbd9d"
+		"size": 9105,
+		"mtime_ns": 1781245853156745200,
+		"hash": "751a016684cf0b84394f613e179f516d687855fa23683f573b80353965fe9f79"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\reviews\\[id]\\page.tsx": {
 		"size": 839,
@@ -740,9 +740,9 @@
 		"hash": "b62e15310487c22700d78a5003621b159e6852673945cb0a87bd2320114409f1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\tv\\[id]\\page.tsx": {
-		"size": 11627,
-		"mtime_ns": 1780741246384810900,
-		"hash": "80e383398486981d7346fab860188c3af71812629fe089082d1bd43364c58d51"
+		"size": 11784,
+		"mtime_ns": 1781245853160443000,
+		"hash": "9c906026de79342478355ee61bf4c3f9a863ba32e494ee0c59a631569bc7d267"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\tv\\[id]\\credits\\page.tsx": {
 		"size": 3598,
@@ -750,9 +750,9 @@
 		"hash": "539bdd9b944f28aa2d1fbd95ee699cfcdfa5f648c9a0728b7c58cd0d44567109"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\watchlist\\page.tsx": {
-		"size": 3815,
-		"mtime_ns": 1780648325334381900,
-		"hash": "409faebca81b7ddf0ee601857ed507f161727e3fcaef9143a00e7b87ac9788fd"
+		"size": 4166,
+		"mtime_ns": 1781245853161605700,
+		"hash": "b82708f7930e788f1c8987f5c8d1117804ec063e84ed7f9889b511a21ede40b7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(auth)\\layout.tsx": {
 		"size": 318,
@@ -860,14 +860,14 @@
 		"hash": "8d385750ca626e5e706192b3992daff525df21f701f59b571ba7a2e2fce197d5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-shell.tsx": {
-		"size": 3712,
-		"mtime_ns": 1780650628571020200,
-		"hash": "9c145c455da7a707d77c455a9480c3ba0b473612c06898a1f604e125ec5e1dd5"
+		"size": 4385,
+		"mtime_ns": 1781245853183585400,
+		"hash": "2d9dced246d5bbad9e3bd3c81e9c0b69a45f154773458deba26b2030599b8a73"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\app-user-account-menu.tsx": {
-		"size": 8974,
-		"mtime_ns": 1780740850075740900,
-		"hash": "7f582390b3146da37f7761f5d6a521d8715cce809c8beec9c959d88ccd04fd7f"
+		"size": 10184,
+		"mtime_ns": 1781245853184741000,
+		"hash": "ce6d75a146696c193c873af1c76299f7b3d428b309c0889d0f7fbed1f27aa5f1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\command-palette.tsx": {
 		"size": 9620,
@@ -875,9 +875,9 @@
 		"hash": "2d1b6187abaee4683ecc75df04459e06256b8679d2dc6094ef62b21cb77a347a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\detail-return-capture.tsx": {
-		"size": 1130,
-		"mtime_ns": 1779439643499721000,
-		"hash": "b1ebc3c17605c1e1dda1f23afc60b9825b583e9103bd0bcab11a9c31fc96f00b"
+		"size": 1630,
+		"mtime_ns": 1781245853185908000,
+		"hash": "287f076035b1a4210b0c5000609a2b6958d304d4e96ace26cca5b72c5757b36b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-suspense-fallbacks.tsx": {
 		"size": 1224,
@@ -900,9 +900,9 @@
 		"hash": "3e33036b10a25a558573276e4b7e3c9ca90967d5c1e36175b957c82d61fd9cdb"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx": {
-		"size": 1528,
-		"mtime_ns": 1780467519580767800,
-		"hash": "51dcbc49c6e0e228817622641cae1a132a649224478d7f098f5e70cd99a69319"
+		"size": 2729,
+		"mtime_ns": 1781245853196333200,
+		"hash": "7d5cffea3ac0fd4b0479c3d88dfcd6c9a9259b9b6ccc7a49d1f6b7bdc56f6976"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-submit-button.tsx": {
 		"size": 2124,
@@ -920,19 +920,19 @@
 		"hash": "035a1513ee6cf40e836715aefcbd687bf6b8d86f6ef991abc2416e618d205d08"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\sign-up-form.tsx": {
-		"size": 6902,
-		"mtime_ns": 1780467519580767800,
-		"hash": "0b6f1b3cfd0901145d039da2b174fb8b095b4407e5b7b6e954b574265ab3efbd"
+		"size": 6904,
+		"mtime_ns": 1781245853199209200,
+		"hash": "8af4ff8f803ec1cc514dd63fabe7f170ec5d60522796ddf9f86f57e6c4394ec3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\catalogue\\catalogue-poster-tile.tsx": {
-		"size": 13413,
-		"mtime_ns": 1779968960651817500,
-		"hash": "83200bf8ac6b77c2e6a91f92d5b8021b813fb456db5af7c7ba457ad42be71d09"
+		"size": 14385,
+		"mtime_ns": 1781245853200926300,
+		"hash": "b9b1a28173be1d80dea7960ffa2f1abc8d7ef60bc612997c36eb81cd3d60dc32"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\catalogue\\use-add-to-list-radial.tsx": {
-		"size": 5301,
-		"mtime_ns": 1779968960652817400,
-		"hash": "8c965acf8bc3e80957bb142cd77c2e02737c3c88b6f901bdebfe4e4c696785a4"
+		"size": 5568,
+		"mtime_ns": 1781245853202060100,
+		"hash": "02386eae8e920fec1bece6aca69355a04661650ebb137071bf83f4d617e9941e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx": {
 		"size": 9865,
@@ -1005,9 +1005,9 @@
 		"hash": "91807052316975ed21883fd04a8d7538878b4f198415c490a6c6222ea8f81441"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-catalog-order-chips.tsx": {
-		"size": 3016,
-		"mtime_ns": 1779968960653819000,
-		"hash": "c52e78e0a1126a35e47c4360f62d997c52dd2221e7c9c70afcaabbbaac09f6ea"
+		"size": 3003,
+		"mtime_ns": 1781245853203971400,
+		"hash": "78fc68ee826426850eb1d9a52356eae8cc325532d696eefe9eb4fcc80cd9b10d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-entry.tsx": {
 		"size": 4588,
@@ -1050,9 +1050,9 @@
 		"hash": "9e5dff6edab9130afe8a789042e376be0445908b30bf13fa905e15a5d7b44a4d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-item.tsx": {
-		"size": 9629,
-		"mtime_ns": 1780467519587765100,
-		"hash": "78eda86178da896f2a4b793c919f0214b2727e39d6d53538a5e236f21c86c85d"
+		"size": 10346,
+		"mtime_ns": 1781245853208598600,
+		"hash": "b543fd5a4f16386d4a1243c2bbb1a4c699c1d410f15992b8ca50d2f0403d8a23"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-activity-kind-badge.tsx": {
 		"size": 2443,
@@ -1065,9 +1065,9 @@
 		"hash": "bee8dad850e1b6f7810c23612e3df10659e38cde2cfecb3f174d5197d95af753"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\feed-person-avatar.tsx": {
-		"size": 1960,
-		"mtime_ns": 1779439643513721800,
-		"hash": "055b55e6769fe706e4904062dc467bfd66170e52ff249a9a469c25b833bec12d"
+		"size": 2520,
+		"mtime_ns": 1781245853209781700,
+		"hash": "45d9c550ae4c90c4e085352ebfea0c35d7239902bc1cd6f276c00b06e5fdfe49"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\achievement-progress.tsx": {
 		"size": 1864,
@@ -1116,18 +1116,18 @@
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\catalog-watch-region-prompt.tsx": {
 		"size": 7118,
-		"mtime_ns": 1780740850075740900,
+		"mtime_ns": 1781246851571098100,
 		"hash": "3c9f520b028dc6429cd085dac54aa2f7af54bc0fd3f870eb8a50318ada655c05"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-sort-chips.tsx": {
-		"size": 10010,
-		"mtime_ns": 1780643678640794000,
-		"hash": "213e9b77717aa70f3d8f9949ddb5e5bf87210d105663721923234924287673e6"
+		"size": 9645,
+		"mtime_ns": 1781245853214965100,
+		"hash": "c5aa21b8883398eaefd95243ff61ee9b143b35c4868a07d09f0918092919b9d4"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-view-mode-toolbar.tsx": {
-		"size": 28950,
-		"mtime_ns": 1780746205210837600,
-		"hash": "28ce55eec4ab4f2d5a42f11e5d123c6ad101631b69782290f0b1d484412cda43"
+		"size": 30893,
+		"mtime_ns": 1781246947225110200,
+		"hash": "b4349dd5fd8f8903da23e16b266a66d5c65d33bb63b08ac1ce2762df549c6b28"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-empty.tsx": {
 		"size": 1728,
@@ -1145,9 +1145,9 @@
 		"hash": "45138e15557f2305563d1ef2c04817bf5e0cbb87fbd848ec553cf8496ab31c28"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-period-toolbar.tsx": {
-		"size": 925,
-		"mtime_ns": 1779968960663986300,
-		"hash": "3e22442361af0b3f916fb9b84faab5f8115ec1c209c6d8c62f6c2e80b8fb7215"
+		"size": 3290,
+		"mtime_ns": 1781245853218396800,
+		"hash": "6eda669d1230b963076254a7537d323f433086a3c57ba912b1ecb9f4de8719c1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-continue-watching-rail.tsx": {
 		"size": 3025,
@@ -1155,19 +1155,19 @@
 		"hash": "decc3764352f2c2054dbfc94205c76caa7cc1d70a8b1cd3c16ec1e3ec3ee0d50"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-friend-activity-rail.tsx": {
-		"size": 3788,
-		"mtime_ns": 1779450040447636100,
-		"hash": "bc00d2129f593918207f2b9f07e906ae80d8dea0a929ed9dc118a6cf72ad01ef"
+		"size": 4276,
+		"mtime_ns": 1781245853220188900,
+		"hash": "b11d7558860582031e078eb433d08c70fe2cc8731b4e8b63b6e7986077030c7b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-leaderboard-podium.tsx": {
-		"size": 4680,
-		"mtime_ns": 1780643678642792200,
-		"hash": "4553f00fa66cb26fb61ad91845109efbc95d832ae99531ec717d0be8eba56d6f"
+		"size": 5016,
+		"mtime_ns": 1781245853221337800,
+		"hash": "d578e885ede631592d4a2c0ac478ec655cc2bf815debcb2ae92f5e251a218c98"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-leaderboard-row.tsx": {
-		"size": 2543,
-		"mtime_ns": 1779450039724773600,
-		"hash": "90392fa33a73eaa3fe50e9b5363677a1c9fdc05d46455642b2a5738431c9b485"
+		"size": 3027,
+		"mtime_ns": 1781245853222485400,
+		"hash": "85c6221eaf17e9cd53907cc12c5e483d0f7daacb4a6fef4153f1d915061861b7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-session-restore.tsx": {
 		"size": 1380,
@@ -1185,29 +1185,29 @@
 		"hash": "f2cd0942ff41bee90c440eb50c5e10aa3ab9cd708eb716a3155447f3183b57c4"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-chrome.tsx": {
-		"size": 15392,
-		"mtime_ns": 1780648325181310200,
-		"hash": "da0328bef24ac4ebb7e4a5f24f43484878fd894d97deedeea358265fe630fbaa"
+		"size": 16176,
+		"mtime_ns": 1781245853225372700,
+		"hash": "f70103f6ba7a6a80bbcbdf5d5705314cea696903f5fb9ca66526d814e347ea10"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-sticky-search.tsx": {
-		"size": 53790,
-		"mtime_ns": 1780743369399333900,
-		"hash": "2b4d01fec863ed61f751672c1b777713175a2b3f967376e0c4efdd9bd03a68b0"
+		"size": 51757,
+		"mtime_ns": 1781246851575098200,
+		"hash": "e0b3d4891ebee4340faaa94c766cc66ca5b5de8b075d2ecc2686618576e2134e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-drawer.tsx": {
-		"size": 1650,
-		"mtime_ns": 1780673248432858400,
-		"hash": "5f36f5b15d460e5f159bd2938e13f7eebc054e6790e07cf8cb1a273700fe2c91"
+		"size": 1845,
+		"mtime_ns": 1781245853228771700,
+		"hash": "c5605e82b28395575070e48a31cf891ceb0709346affced7fd394dabfe3033be"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-grid.tsx": {
-		"size": 1946,
-		"mtime_ns": 1780643678645793600,
-		"hash": "258842123263e408c87cb7edfe62aec5441ee184eef10b739e45f0458ab4c948"
+		"size": 2055,
+		"mtime_ns": 1781245853229480600,
+		"hash": "85c7322618cd1deafcf5733d7e06a2302e0d6a2be82c30c345153c76a6e9f7f1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-panel.tsx": {
-		"size": 5817,
-		"mtime_ns": 1780662896949366700,
-		"hash": "27bcd66a5ddaeb9172bd5b356e645ffb9ed3e59573015978a9ddb6a5281ceeae"
+		"size": 6465,
+		"mtime_ns": 1781245853230620300,
+		"hash": "f20c59183d4754c8813d4c96609122c41c507dd14b1ec859fd1023b8bbdaee25"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-list-results.tsx": {
 		"size": 1995,
@@ -1215,24 +1215,24 @@
 		"hash": "88b50763d1b12214da5840e04f3a3978cf5e22cd9ea71f752543a2234ca1a567"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-result-skeletons.tsx": {
-		"size": 2645,
-		"mtime_ns": 1779439643523724100,
-		"hash": "e2f37a7cf8d7652f6f03a4d01f8f04540dc00fd4add9366a38f50db464a6656f"
+		"size": 2800,
+		"mtime_ns": 1781245853234058700,
+		"hash": "e8f689228eee797df76b1b70b06c6d4fe7793544f1d0162b5d98ac3deb80f69c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-studio-rail.tsx": {
-		"size": 3979,
-		"mtime_ns": 1780743743087736600,
-		"hash": "e1d07b970ee495b2e54aecdf57c7d4d7dbf6b4a2ccff85baea959837a32a01f6"
+		"size": 4649,
+		"mtime_ns": 1781246851570096500,
+		"hash": "61d0075c8c0a09a33382600c7189a8e4d2a8e12a2d29f593c243f3c4f5b22e6d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-tag-pill.tsx": {
-		"size": 2467,
-		"mtime_ns": 1780742705126969300,
-		"hash": "9ae5d59c65fb0c0d2895c14247c9f6ee8e15900cbe4c8bdadb0f393ed84864a6"
+		"size": 2440,
+		"mtime_ns": 1781246851572096000,
+		"hash": "2b87091d29b3225318e796ef80b4a8e39fbded95b8de096c025b83fb4248afb2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\add-to-list-control.tsx": {
-		"size": 7197,
-		"mtime_ns": 1780650825400438800,
-		"hash": "9e863d3e683f86c4a861c2f8ee4008b3754d642c721cd77ebe4137ef2df5c13a"
+		"size": 7608,
+		"mtime_ns": 1781245853239841600,
+		"hash": "2f6f630582a8030db36b77ed8241bd4b7c569cb13afee9a47f62d38247280fa8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\add-to-list-picker.tsx": {
 		"size": 7724,
@@ -1240,19 +1240,19 @@
 		"hash": "457318f8fdd0548d4f02983e5725791266db1a299172258f9bb4fa1e24033d85"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\create-list-dialog.tsx": {
-		"size": 15457,
-		"mtime_ns": 1780741246390816300,
-		"hash": "43012bdbf7cdbda3cbb8f15f7e6944f09192816aabaaf7a151e7011dfa6940f0"
+		"size": 4994,
+		"mtime_ns": 1781245853240992000,
+		"hash": "dee8fe27166fe1037db61eccb82b4ccca7c5c491455ec67237725a82a97c5f80"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-cover-picker.tsx": {
-		"size": 15915,
-		"mtime_ns": 1780467519607765000,
-		"hash": "21a93041c080f86524c846ab9c3cec1e876e0d03f919a26b21541919781ac922"
+		"size": 15804,
+		"mtime_ns": 1781245853243801100,
+		"hash": "85369223beb7df7e18af6de1abe158175c237d4c9eb1f166903723a334bf08c7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-films-grid.tsx": {
-		"size": 4629,
-		"mtime_ns": 1780750266894528600,
-		"hash": "11fd67d391ddc255f11d74859efbf877272a78342e49b825aad9027afd1a5192"
+		"size": 4475,
+		"mtime_ns": 1780750530656239600,
+		"hash": "8ba5f50f0bf4f252524bda97303fe100a1d78ef18be2794b6996666213a4fe70"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-hero-media.tsx": {
 		"size": 493,
@@ -1270,14 +1270,14 @@
 		"hash": "0d0a6c56cd36360af689a6c011e26d292108fffc444b6a55548a0a9f42135c24"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-lobby-edit-dialog.tsx": {
-		"size": 8989,
-		"mtime_ns": 1780467519612765800,
-		"hash": "9f168c4bf8e5020d7411b643248ee6f3c9d51786c3d354edb721a328594b5dd8"
+		"size": 8884,
+		"mtime_ns": 1781245853244934900,
+		"hash": "388ed9ef0ec0aa0f4cd18d714e96fdfdbe7704d431c72601abf380e70491a8d8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-lobby-poster.tsx": {
-		"size": 13507,
-		"mtime_ns": 1780467519613766600,
-		"hash": "f97a2698216f49cb22bd7633316dd17d51c3b4c7306c8377dd0ebf3b9bf1fe34"
+		"size": 13334,
+		"mtime_ns": 1781245853245503500,
+		"hash": "c0847c5d97c0bdb3bf6aa4fcc680863ecc75eb90a0e71b3eb98f5d1eb138b7e1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-lobby-tile.tsx": {
 		"size": 4708,
@@ -1300,9 +1300,9 @@
 		"hash": "3a0a19ca962d517d41ec30acc3d374ba5d9c1b9e9e44172ed287b8549010d0d2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\lists-new-list-button.tsx": {
-		"size": 1419,
-		"mtime_ns": 1779439643534721100,
-		"hash": "c6fbf3199aefe506e5a320ba579d28631712991584eddc369781c9bfa58f3a89"
+		"size": 2158,
+		"mtime_ns": 1781245853247271500,
+		"hash": "d7b910cf271c9da2d4f85ecb93db53b3a37d0c9181748246469c758a0786719b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\new-list-form.tsx": {
 		"size": 3329,
@@ -1320,9 +1320,9 @@
 		"hash": "a93b5ec1bd9d87a82c842f8ed8503f31654e6cff43a2f0deae7bf78acc7117ca"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-sheet.tsx": {
-		"size": 32739,
-		"mtime_ns": 1780741246393814900,
-		"hash": "eba281c4615adf4c34bdf4b0f36ea9ad0ef91bf1a76d32d4e4e57653501b61d4"
+		"size": 35472,
+		"mtime_ns": 1781245853248461400,
+		"hash": "1e32dfc0079021574d1bee9d906121cc6df7b8e0451da5467572ab72246b16c6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\tv-log-scope-picker.tsx": {
 		"size": 5109,
@@ -1335,9 +1335,9 @@
 		"hash": "4a135df64e87e2f71a009c23013e21eeb1a8c85226b57e5fa18fb7240ca8322b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\credits-catalog.tsx": {
-		"size": 4043,
-		"mtime_ns": 1779251031632880800,
-		"hash": "6f82449235a5502c7c24f49bf09ef5da996cfaae40e1dd4412001bffcc7341b0"
+		"size": 4307,
+		"mtime_ns": 1781245853249695700,
+		"hash": "5636f1a48e53cb143e8c3b18096ac8a30b32866a5968143680d0a3b3980b076d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-drawer-scroll-body.tsx": {
 		"size": 864,
@@ -1350,9 +1350,9 @@
 		"hash": "635b3a5e510ffdf304346a47e5fdf534c79f773f3667774cfe4dc8f2b35bd9e8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx": {
-		"size": 4339,
-		"mtime_ns": 1780676719955603900,
-		"hash": "bf63d9818b6a6fb37c947403c93e45f4e029cea26d855ae4378a6f3d5a7bd8ad"
+		"size": 6798,
+		"mtime_ns": 1781245853252072700,
+		"hash": "794fcd3897292cd66895ea61dce854d1a9725f794acb33afc9078548d80a2e8f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-watchlist-button.tsx": {
 		"size": 3753,
@@ -1360,9 +1360,9 @@
 		"hash": "e30168217b5c7fa6f742fb72bdcde8dcdc604ce6b06ff86f4e273fed2ad61dd9"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\festival-recognition-icon.tsx": {
-		"size": 5518,
-		"mtime_ns": 1779251031633881200,
-		"hash": "e9a197c6528934f4aa95fb8515fce91125b9fc51ef98f808b9cca2e7ff17d059"
+		"size": 5460,
+		"mtime_ns": 1781245853253223300,
+		"hash": "b65c88788fe51b168372975fdf5bc3730f49216575e5e914761b3f72b3cb54c9"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-actions.tsx": {
 		"size": 3865,
@@ -1370,14 +1370,14 @@
 		"hash": "d46060f581afbc0f9bf00c7647cfc05437bdd3e555c011a1298be8b209c30544"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-cast-crew-arc-cards.tsx": {
-		"size": 3320,
-		"mtime_ns": 1779251031635881200,
-		"hash": "ec3c792d666b794f75db4693f1c19eb1fea46a4a5ae55da430b0b81995141508"
+		"size": 4810,
+		"mtime_ns": 1781245853254365800,
+		"hash": "ac5893c734edfbbd8db004d5b9918c60571d0c7f525143903bf8a73f264ed03c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-cast-crew-arc.tsx": {
-		"size": 2103,
-		"mtime_ns": 1779439643539722100,
-		"hash": "10210d50ae682d84c1c3f6c7736976f3724507ac4eb38e08414cbe7746bd8682"
+		"size": 2367,
+		"mtime_ns": 1781245853254936100,
+		"hash": "cd1626f0aad889855ce265a403f190756a9a52b357ab50089a66dd9d25937c1e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-catalog-surface-chips.tsx": {
 		"size": 1209,
@@ -1400,14 +1400,14 @@
 		"hash": "4ddffc4397a602bce3cbcb0f6c2a8b42d21f212eae5e7d31f10b48ac9be80552"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-explore-tabs.tsx": {
-		"size": 15216,
-		"mtime_ns": 1780749405610663700,
-		"hash": "8249d4c1a9ae39b1ff74f07f7c2d2c56e0cbb5469f115010612da23132e7e116"
+		"size": 15571,
+		"mtime_ns": 1781245853257221200,
+		"hash": "2e4c27c464a72edc8099a6ca58b68465939f68a9438f32c9e8112f7e0783bbb3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-hero-media.tsx": {
-		"size": 3816,
-		"mtime_ns": 1780741246396815600,
-		"hash": "e83313efc9ccf88613fad18a6dc70c9a4bc976237e54e3219b0eccd447f0dddb"
+		"size": 3296,
+		"mtime_ns": 1781245853259518100,
+		"hash": "d29740573a8565635eaeafd3290bfe7348f96fa00730eb0f80c1f75c618369ea"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-primary-actions.tsx": {
 		"size": 8404,
@@ -1420,14 +1420,14 @@
 		"hash": "5c101226971bb93346933c386a1380bf6869ebf603ddd1b5e2b8fbeed13144ce"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-streaming.tsx": {
-		"size": 6674,
-		"mtime_ns": 1779251031639880100,
-		"hash": "b386fbca3d438b1c37931f92d79f35e45e8f8fee148947ef2d308732db0926c7"
+		"size": 6773,
+		"mtime_ns": 1781245853262965200,
+		"hash": "e46e283d007f6a98ee783b7b92f05a087961d0c683c803aee9ed3c328bd7d2a4"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-top-bar.tsx": {
-		"size": 6901,
-		"mtime_ns": 1779968960676566300,
-		"hash": "8c9863339ef07eaf57915a52afa0952c2f04fd36b93eaf17afd3eb3ee66f90b3"
+		"size": 7298,
+		"mtime_ns": 1781245853264104400,
+		"hash": "39b651bb8f55a1d1b94e99554c9532b517d4192179593f262158cb399c37940f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-discover-toolbar.tsx": {
 		"size": 4098,
@@ -1440,9 +1440,9 @@
 		"hash": "574c7201965effd10c833b10f714d3db74095ea4de2007b64c2e3e0860c84b48"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-premieres-festivals.tsx": {
-		"size": 4504,
-		"mtime_ns": 1779439643545720800,
-		"hash": "92074245ffbd78c4cc361836919483d1ed3e31367d17694e8fa935da3b93ee98"
+		"size": 3989,
+		"mtime_ns": 1781245853265236300,
+		"hash": "1a9b2d5b4f389468443a079c31340bf96447e8091030a21f5bf928133180dd50"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-theme-provider.tsx": {
 		"size": 1301,
@@ -1450,9 +1450,9 @@
 		"hash": "b8d801650477d0dee3b99549b063ea6c4620ced2834ad4ce47b0f25eae92827f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\person-credit-portrait.tsx": {
-		"size": 1266,
-		"mtime_ns": 1779251031642880200,
-		"hash": "daa0e5e916b31df0622a96641b63f32ce13e7fb2d16d95a817fa4eded6d03305"
+		"size": 1273,
+		"mtime_ns": 1781245853265800700,
+		"hash": "6a933db9778be010d50e25368dee72a524b2dfc6699af7bb65db5be4a6477844"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\person-filmography-drawer.tsx": {
 		"size": 1401,
@@ -1460,19 +1460,19 @@
 		"hash": "1e7039ee44a80713e38f659e8ecedb510627646ef00c37dd3036999e8c21f38f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\person-filmography-grid.tsx": {
-		"size": 1680,
-		"mtime_ns": 1779439643547721200,
-		"hash": "3dd7003ca0faad41fde892a40586c8c9f363fa009ace745fe3019305abb5716d"
+		"size": 2038,
+		"mtime_ns": 1781245853267042500,
+		"hash": "7d86e9b17622fb745af8b5bdc0956e61ef1b4bc58b6dbb8858f785286378cfe3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\person-filmography-panel.tsx": {
-		"size": 4720,
-		"mtime_ns": 1779439643547721200,
-		"hash": "ba4fa10b98d4455cff92cf0415683bfd01494770165aebea359ce94659ef3f4e"
+		"size": 4891,
+		"mtime_ns": 1781245853268196600,
+		"hash": "7aa8645bba9acb57c4e19d215b6a2088c2905d9488cca2395d36422c8433b1a3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\popular-movies-infinite.tsx": {
-		"size": 21309,
-		"mtime_ns": 1780750447080492800,
-		"hash": "3422cca9455eea5caf54ca72a2a7631f6e859e70799178e5761c715b1babd5ee"
+		"size": 23453,
+		"mtime_ns": 1781245853269362400,
+		"hash": "6224decb87b12382fa8a2a02321e9fdb8af850378923e6491840c9967b9e9d35"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\sheet-scroll-scrims.tsx": {
 		"size": 1261,
@@ -1480,9 +1480,9 @@
 		"hash": "06c16235b85056c771535fb6e50827b0dffc020fe948a8bed6b208d8dd833114"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\use-movie-detail-return.ts": {
-		"size": 504,
-		"mtime_ns": 1779251031645881300,
-		"hash": "f6bbeb91c1369f161311d2283210695b06a2100f1f974bbb6fa41d85dc8a081c"
+		"size": 537,
+		"mtime_ns": 1781245853269950100,
+		"hash": "7ff2059046406948af8fd48c5a4419a08f8dee7aff809b162d83ddb54b306118"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\use-movie-detail-user-state.ts": {
 		"size": 5749,
@@ -1495,9 +1495,9 @@
 		"hash": "fa6b3b393b778c5e1397ac5e8cd295145d70a3695e4f5ca87abd089fe95d9c96"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-dropdown-panel.tsx": {
-		"size": 11280,
-		"mtime_ns": 1780467519625765300,
-		"hash": "642360605d0c70b69b6c2620d0367da62b548bc8714d050fe399bf0f5d3a3ca7"
+		"size": 11352,
+		"mtime_ns": 1781245853271178900,
+		"hash": "4fee442a5178c719fcca0299b0a0b1aba1052c6b54f9fab3459a0e1ca6f033d1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-filter-chips.tsx": {
 		"size": 1887,
@@ -1505,9 +1505,9 @@
 		"hash": "4e18a9f83a2dd9ea7206b1fcecf3081edaf3d4002a091fd24b1a4f2897cac404"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list.tsx": {
-		"size": 7843,
-		"mtime_ns": 1780467519626766000,
-		"hash": "a2fb104e6e3e8a9d704b55e1a4f5e89607a18fbbfae3a858481166b966111d6b"
+		"size": 7915,
+		"mtime_ns": 1781245853272906900,
+		"hash": "3804241e3f529d67692604590059bde64bafcfd5304a317fbc771e1c68ef9ac2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-flow.tsx": {
 		"size": 13997,
@@ -1541,7 +1541,7 @@
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-nav.tsx": {
 		"size": 1779,
-		"mtime_ns": 1780740850075740900,
+		"mtime_ns": 1781246851572096000,
 		"hash": "363cb2e11637e3e58096aef871e0a6a8f6964d18f218e7aa3f3c5ddc0c1a2b6c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-page-intro.tsx": {
@@ -1550,9 +1550,9 @@
 		"hash": "16171d1bab5979dbc6bd459cec639d22eed014813932e4f23a4a21aef2fd747b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx": {
-		"size": 7300,
-		"mtime_ns": 1780676348732794400,
-		"hash": "67fc3107ca21ab123047db9a30a7c00eaab913740a0be58f18caf3f0767487a1"
+		"size": 7669,
+		"mtime_ns": 1781245853274062300,
+		"hash": "362e34f2c25ba692533f5ca8221640ecb691c578ad568087dbe37bc201eed04f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-shell.tsx": {
 		"size": 1976,
@@ -1560,9 +1560,9 @@
 		"hash": "9756359d54e72e45822bf2805a0cf57ef9f57b3c02dfd14a9c1de19fecc2e0d9"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-top-bar.tsx": {
-		"size": 3641,
-		"mtime_ns": 1780648325912049700,
-		"hash": "4adc6ed7c5aca9c62c37c3a709f084edc4dd14d08c5b50c9952cbaf5141c0271"
+		"size": 3736,
+		"mtime_ns": 1781245853275199700,
+		"hash": "91f115176204c7f80d851633ba7dd2f57664eda9640e85f6a1b44b29e169a869"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-catalog-language-select.tsx": {
 		"size": 3063,
@@ -1615,9 +1615,9 @@
 		"hash": "7cc1edf6cdf601e36f81999ef86ba79eab841dac9c0a64f04f9cd9a77f000988"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx": {
-		"size": 1445,
-		"mtime_ns": 1780672245319485200,
-		"hash": "eb70d632862e1b38e7e663bcbf18fbc16221098aa35082e267933aaf182c6195"
+		"size": 3124,
+		"mtime_ns": 1781245853283202700,
+		"hash": "d38c5c9cf4e51221c1cd0013047243048884134400181e28f43a17824b4fab7e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-order-chips.tsx": {
 		"size": 2994,
@@ -1630,9 +1630,9 @@
 		"hash": "55d9fb6f201dd7ca1bd34bd35b5ac5e833b5349b67adb1eba154429d7ed883ee"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-filmography-panel.tsx": {
-		"size": 4749,
-		"mtime_ns": 1780750466549124300,
-		"hash": "f1d9c52ff3c7b380d60114ce2a95348ed4a838bcae3008dcb8b0521e4e3c5eaa"
+		"size": 4966,
+		"mtime_ns": 1781245853284893800,
+		"hash": "93660eda2da2bd55fe4e6579c51e479fa8ce030d274b6367698f00d21a246769"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lists-panel.tsx": {
 		"size": 1306,
@@ -1640,14 +1640,14 @@
 		"hash": "4a675acba0c10e37c1a571a6e8a4a5017fb2cff1e61629184c4c7548e4c011a6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-catalogue.tsx": {
-		"size": 2730,
-		"mtime_ns": 1780750470470698100,
-		"hash": "b836bcb989601cec86777acb9d60dd48fda5519255590b16233c19b31e5fcee6"
+		"size": 3133,
+		"mtime_ns": 1781245853288253500,
+		"hash": "4d989b25fcfc9619030a17c7a0fdeb105f348c410102beab9f2d3e24c2b8c031"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-lobby-chrome.tsx": {
-		"size": 1641,
-		"mtime_ns": 1780643678653791800,
-		"hash": "25a352c614f9def63123388990e0266a0821791901f8a70d8a7787efffc11838"
+		"size": 1484,
+		"mtime_ns": 1781245853289393200,
+		"hash": "d2b70f6cf23be8b391772f881df9f69f459697b75ca98bf108a84b9a687c9e1f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-actions.tsx": {
 		"size": 6079,
@@ -1655,9 +1655,9 @@
 		"hash": "25c534e8da9a0316ee74dcf4b912ff11be5c1c2932264d2be874fe4832f16689"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-header.tsx": {
-		"size": 6041,
-		"mtime_ns": 1780676021968750400,
-		"hash": "a024189201c455cd3ed9cd4aad129c411004b809aeb062fbda4051fe2a5225c4"
+		"size": 6928,
+		"mtime_ns": 1781245853291068300,
+		"hash": "7a216f17fe6ee86d87de19bd6888c9c7a835d54de8779a7844739c210b78127f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-milestones.tsx": {
 		"size": 7586,
@@ -1675,19 +1675,19 @@
 		"hash": "9f0374fff8af42817da82bcd922d2a8e334da693fb17b755c5a99be50af15357"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-tab-panels.tsx": {
-		"size": 2538,
-		"mtime_ns": 1780750466920598100,
-		"hash": "cafb15c9eb1ef7728a80c3af03711c419ee881cd84b59ab8cdfe18ca3ae05146"
+		"size": 2607,
+		"mtime_ns": 1781245853293307300,
+		"hash": "9f31ae7dac2be5a3a165816109c875f52ef662eb2d854e50357ef37610e699e2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-tab-toolbar.tsx": {
-		"size": 3455,
-		"mtime_ns": 1780650825455956900,
-		"hash": "67de0b57b125d8791344fd58d7747724661208b1b0546063f5a45eab7461a229"
+		"size": 3597,
+		"mtime_ns": 1781245853294416700,
+		"hash": "746455e92473e74bbb240cdfd00a2b5ab0057732b35690696d5943cc80840c05"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-top-bar.tsx": {
-		"size": 3734,
-		"mtime_ns": 1779295389674537100,
-		"hash": "9dc825aadd58411b32eb7dabf642b926b0966d4b17fd3325e16134afe1d7a201"
+		"size": 4039,
+		"mtime_ns": 1781245853295531500,
+		"hash": "29d16cb254c5a35c9c11db6595601717fedbff221b98a95fdaa7085c9a055522"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form.tsx": {
 		"size": 22129,
@@ -1700,29 +1700,29 @@
 		"hash": "68a2fcf20ba4cdca9e979e284024b33b50e1db29065c910b20974fff39311a67"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-card.tsx": {
-		"size": 3524,
-		"mtime_ns": 1780467519644765000,
-		"hash": "f7a86e3fff3c41f5987a24567b245b07f1b86d0d7c44984531281004779d6cdc"
+		"size": 4794,
+		"mtime_ns": 1781245853302516200,
+		"hash": "8dcb4a5240aae437d4d0dc2a2c9532f41b358a42b48932992df9c8a420f137af"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-composer.tsx": {
-		"size": 17249,
-		"mtime_ns": 1780741246400318800,
-		"hash": "e5085e72aa3949e21dcc6d331dae688fe3f0cc7c27a78dc6869d18b45894c3f3"
+		"size": 17966,
+		"mtime_ns": 1781245853303092100,
+		"hash": "0610908efee3fcafe05aaad32840c3669a8cf0e6c6134a050bd5e95567f57a97"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-detail-sheet.tsx": {
-		"size": 17701,
-		"mtime_ns": 1780673252196560900,
-		"hash": "0b7a41661c41730de5de1c76404048e7e1ec53d951c97f5d2aabadd8fa76d594"
+		"size": 26544,
+		"mtime_ns": 1781245853305919600,
+		"hash": "6c700168fdedb7bc9d680411d4ecef9cf40bf856d317f0e1d9eaaf16f3e9999b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\social\\comments-thread.tsx": {
-		"size": 5874,
-		"mtime_ns": 1780467519647765000,
-		"hash": "db2190229e8846e3853843099e0c8efd0e7d42915b0434e05b24ef526d2a790c"
+		"size": 18861,
+		"mtime_ns": 1781245853312250000,
+		"hash": "eaed19bd188827a639ce49752730993a44952c16f72d37f0de5cef31c8ce1816"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\social\\reactions-bar.tsx": {
-		"size": 3203,
-		"mtime_ns": 1780467519648767000,
-		"hash": "2c3f83d04ad51ee38b92f68bcd3425e241777af37ef3fca9662cfb3f1ddc9ad0"
+		"size": 8716,
+		"mtime_ns": 1781245853313401700,
+		"hash": "736eb2b94668ae235ba133f1c6353008948ece8a588043d0c1fa23fc01d7eb01"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-client-root.tsx": {
 		"size": 654,
@@ -1805,9 +1805,9 @@
 		"hash": "e25b9ee6abcaec12b9d39fdd1ae8fac8168803180d7dd0b377182abc287f6984"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-lobby-catalogue.tsx": {
-		"size": 3152,
-		"mtime_ns": 1780467519653765600,
-		"hash": "ef2418b5b7202ff6a4c87413ebe98a5d6df58765e20f363513266ea432debb2f"
+		"size": 3200,
+		"mtime_ns": 1781245853326416000,
+		"hash": "717b01181ce4791728f982a78de9aae261aadcfba7d853ebb5884885188edb11"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\achievements-lobby-tab.test.ts": {
 		"size": 1260,
@@ -1825,14 +1825,14 @@
 		"hash": "be68fedc29c2f2212d57f21a2fa98b87ba377448437032f74eefe65359afe884"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-modal-layer.ts": {
-		"size": 565,
-		"mtime_ns": 1779439643572720300,
-		"hash": "a016b9cdd496646da8be4cc46b9d6ea4af32906546051510b12edc5fe665e0d1"
+		"size": 1051,
+		"mtime_ns": 1781245853331765200,
+		"hash": "2c30236c93d3535f0e578853ee8cde42054716ebb98041c601f35a9731ae4dbb"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-client.ts": {
-		"size": 363,
-		"mtime_ns": 1779968960698820900,
-		"hash": "99605abee6a4a197d755d3770edf37584a52bd13e7d1a7c8886a6f93590c2cf5"
+		"size": 817,
+		"mtime_ns": 1781245853332918300,
+		"hash": "6ae19d9ca0cefa7f75f9068294b5b40790df0326887a9bb312b02c97bfc9bc94"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-page-backgrounds.ts": {
 		"size": 2141,
@@ -1840,9 +1840,9 @@
 		"hash": "389ed8de6bd10112d18693b820b296e86173600b3b70d2baaf53c51441c3ea30"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts": {
-		"size": 1952,
-		"mtime_ns": 1779968960699827800,
-		"hash": "44fef33a211d6c0ccd428edc9154d90ebe7462ed3d45fe160b8db6239a3b5eb8"
+		"size": 2279,
+		"mtime_ns": 1781245853334105900,
+		"hash": "5586fa31dd9fc70e8e6d5fbdeaef33e5e490689cc567a3fae007aedc38db7ac4"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\badge-artwork.ts": {
 		"size": 746,
@@ -1865,14 +1865,14 @@
 		"hash": "053e2ea6ddd38ecef909983bd958b1e6f620386504db445276b0bd21d721e443"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-radial-items.test.ts": {
-		"size": 3363,
-		"mtime_ns": 1779968960701828200,
-		"hash": "571001b2e93982c843fade14fe3baeeaf61b5ece65fcd718d4fab9244a69a782"
+		"size": 4371,
+		"mtime_ns": 1781245853335264900,
+		"hash": "5ef8c1d3c41d68b09741100e824a558aa8b8dd51a36c483057c1268075a010b4"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\catalogue-radial-items.ts": {
-		"size": 3238,
-		"mtime_ns": 1779968960702826500,
-		"hash": "3afa1af1477f78cc50f7cbcadfc44b4b4db45d66c98da99cb8c6093d6f5e9427"
+		"size": 3734,
+		"mtime_ns": 1781245853336412600,
+		"hash": "4118b72942c3a46792295611a77ff2327db15b40056161811620d85ff098b05c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cinema-accents.ts": {
 		"size": 1908,
@@ -1885,9 +1885,9 @@
 		"hash": "84c47dbc29f0b06de5f2191eaa62164f47d414540429e538397d757a6f136fc5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-vaul-drawer.ts": {
-		"size": 1832,
-		"mtime_ns": 1780467519662765100,
-		"hash": "0ca2cde46b60291899c2f5e7adeaefb246832a369d805b95ec7fcb173a242ea4"
+		"size": 2187,
+		"mtime_ns": 1781245853339812100,
+		"hash": "c089e35ae98c312c24f5cc639b8161090c04dce3767a947a2c8ab03b8d2ed5ba"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-lobby-grouping.test.ts": {
 		"size": 2081,
@@ -1925,9 +1925,9 @@
 		"hash": "e45efb9ed9d9673137c1f8f315428eb1159accad9b3814a4ff1dbc2d2d4b7039"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\format.ts": {
-		"size": 1580,
-		"mtime_ns": 1779439643579721800,
-		"hash": "9f4016a509a8fa18296cd512f9a9f3bf8d082e6757bc759ae7b507d884387aba"
+		"size": 3026,
+		"mtime_ns": 1781245853348006400,
+		"hash": "19b03ec8b204bceb8dbc077fc03e315e2bff7f7f345b0bd99d3188c7eb214602"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-browse-surface.ts": {
 		"size": 734,
@@ -1935,14 +1935,14 @@
 		"hash": "51d2c25d9f67f6a3a3a4d8fdb826abe084cf4125ecea178ceb8bb91bffdf3b27"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.test.ts": {
-		"size": 1722,
-		"mtime_ns": 1780746210695555400,
-		"hash": "837ea250b85c78ec51646b3d2f3808e945df72c350d27c3e5c0de6444751c376"
+		"size": 1667,
+		"mtime_ns": 1780750530672248800,
+		"hash": "404d1a852f515e31c3cf9dfc89a3684f58de1b645e5fe33bfff5c1fbcf265f0b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts": {
-		"size": 2310,
-		"mtime_ns": 1780746196337125200,
-		"hash": "26111493bde86266c97d2c8e6e411588eaa0bdc5704b7a094afbd4dd5ca39ba6"
+		"size": 2246,
+		"mtime_ns": 1780750530679767300,
+		"hash": "82bc7f0a3fc0b6d0a87b0a6f1c8c500e2845a1bf1864de5ff0716ab34efc33cc"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-sort.test.ts": {
 		"size": 692,
@@ -1955,9 +1955,9 @@
 		"hash": "808383efc9d711b1e35bc67e8dcbf97b7ee703d658ca03e70c9db5d4350a0d48"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-activity.ts": {
-		"size": 2291,
-		"mtime_ns": 1780467519670767700,
-		"hash": "d0d9886b5fa578766aba3f18124755382104b5855128188b67b229aba545340a"
+		"size": 4466,
+		"mtime_ns": 1781245853352091000,
+		"hash": "de6f1d30952f7853faa8b36a5baea523dd9f3a97d421b3e46c7d2ab38e51f834"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.test.ts": {
 		"size": 652,
@@ -1970,9 +1970,9 @@
 		"hash": "84acbea11f0ab71e19a03b19d76c4f58f156e379849233439540a57e031d65e0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-friend-rail.ts": {
-		"size": 2817,
-		"mtime_ns": 1780467519671767100,
-		"hash": "f39c47231d45836e3c6d743ef69c2d624efb4246d54a9a82c8bf7a75079dcbcf"
+		"size": 3160,
+		"mtime_ns": 1781245853354982300,
+		"hash": "ce9dc15687f3eae473eb280c26c02556609167e496b1534bcdef18de1d7944a6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-interactive.ts": {
 		"size": 1036,
@@ -1990,24 +1990,24 @@
 		"hash": "752db11355de533bf819e4f01d8815805a5b13bbff0369d1c3484d3a368273b9"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts": {
-		"size": 1008,
-		"mtime_ns": 1780643678665793100,
-		"hash": "b0a62ba9710223c3dc3d10f0fadc7e7235c78adeb63b5c375b63116e1d4fab4c"
+		"size": 1225,
+		"mtime_ns": 1781245853356169800,
+		"hash": "aade2229c2838569525789241794e6f546d6a6ded683b1f96caab595c1b5f114"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-catalogue-layout.ts": {
-		"size": 1819,
-		"mtime_ns": 1779968960703828400,
-		"hash": "fa9becf5993cce3f19ac71d86b4b47babdeea3eff7865a9a249935c2a8d38daa"
+		"size": 3916,
+		"mtime_ns": 1781245853358260000,
+		"hash": "55a4d735cd6cc55284bb7dd8d1926dffc162f80b85cabe60766c66e2e3b371c0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-cookie.ts": {
-		"size": 2581,
-		"mtime_ns": 1780745456546672200,
-		"hash": "c9b52826f303f523a64b531737f5034ca6a004f4df988f3ea536181f8cd4e15d"
+		"size": 2501,
+		"mtime_ns": 1780750530692284900,
+		"hash": "18f65eef48e3c778557d41473aef6de0d6d9075876ea542234b92e32e3f7a891"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-persist.ts": {
-		"size": 6327,
-		"mtime_ns": 1780745459000295000,
-		"hash": "68187d020837926b9010ad54bf95bb1ac5c17671572e430be95cfe2cff9b2c86"
+		"size": 6133,
+		"mtime_ns": 1780750530697285100,
+		"hash": "280dc9d7880b59f275b0805cffa7ead639066b25cbf9ce6f91de79822d2f2b16"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-url.test.ts": {
 		"size": 1165,
@@ -2015,19 +2015,19 @@
 		"hash": "c5bbf6452ced5032c51431420bd909e7408b73307dc88f77f562e49b6e81f233"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-url.ts": {
-		"size": 5183,
-		"mtime_ns": 1780746196336124200,
-		"hash": "73670853f27c03da1a299c5851b874966c343310c2ca2bb8b613f92624207d81"
+		"size": 5050,
+		"mtime_ns": 1780750530700282600,
+		"hash": "c27c0634f549e7a4896dfb59c18a728afe36263a0a064e636715e993954ac44a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.test.ts": {
-		"size": 3918,
-		"mtime_ns": 1780742872306084800,
-		"hash": "941c56e8d6584f324fd7baec71fdec68f0319f151d6a1131dac36097ef3b6e64"
+		"size": 3774,
+		"mtime_ns": 1780750530705282300,
+		"hash": "c91592517c62e384d1578f092549fda2c69316e8294b26c8b0619734f0cbe0e0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-search-recent-storage.ts": {
-		"size": 6129,
-		"mtime_ns": 1780742863039304700,
-		"hash": "9be6f34778a9fe83d2428bb91979a6c29d03c3da4e3e0a0603c9a28d72366810"
+		"size": 5928,
+		"mtime_ns": 1780750530707284400,
+		"hash": "2827ecc842b525326f304c231cc29c407ab6e56e704c7b6b8f40d3c1bfb50446"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-venue.ts": {
 		"size": 2105,
@@ -2070,19 +2070,19 @@
 		"hash": "7a1040a688355ae4bc733322150b6560cb8d29f12619b9cdfa924256af2c8f7b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.ts": {
-		"size": 4953,
-		"mtime_ns": 1779251031660883000,
-		"hash": "d21c3b8839376cd6216480c46dc94518bac7ff47e51c12bfc056c2c602453cd7"
+		"size": 5861,
+		"mtime_ns": 1781245853366396200,
+		"hash": "1c85ad7c6de988557c209428b062e3b713b1a3a85890efa9abf2ecec6fe6e57a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.test.ts": {
-		"size": 1111,
-		"mtime_ns": 1779439643591727300,
-		"hash": "2880e87df718b41aec3470b4cc18d30288b0ee750043f0950e137024a1119c77"
+		"size": 2228,
+		"mtime_ns": 1781245853367643800,
+		"hash": "1115be3eb5dbd8d6ca5a7892c3ee53dc835c48c9e1ac7f58328f6e143b0a57cf"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts": {
-		"size": 6490,
-		"mtime_ns": 1780741246406035400,
-		"hash": "79868630786e1c21bc58fdaeef0a27c5812d8e4e0d0cc01f2de11858fd86fd92"
+		"size": 10019,
+		"mtime_ns": 1781245853369464400,
+		"hash": "430fa064bfcdede9fc81077e116ddfe5211b8d4981b9a6cfea4acd450c5db07b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-sections.ts": {
 		"size": 2388,
@@ -2140,19 +2140,19 @@
 		"hash": "8fff8d4e737065403c7d97f92150325a87e7d5239b028e56a0b0e31bdd78b788"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-lobby-order.ts": {
-		"size": 4427,
-		"mtime_ns": 1779968960710387700,
-		"hash": "07d46aa2eb93dd4fae78295569234e851f110d2111322218c8e52e808fe31d9c"
+		"size": 4896,
+		"mtime_ns": 1781245853385206400,
+		"hash": "dc4a93d0ea7074b76511381c2e54259b8e6c02e5593daab029c9578409cef6d7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.test.ts": {
-		"size": 2189,
-		"mtime_ns": 1780676024761424100,
-		"hash": "c391048e9ce1bb3739f4a6d0f3e8594ac1a5d1ef7747a6459791ddfc95e3f93c"
+		"size": 4105,
+		"mtime_ns": 1781245853388342400,
+		"hash": "dc11d290ebaf49e4c3c7b2326c6e97d85271e7ba925fb32aecb931647b8c178b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-preferences.ts": {
-		"size": 5648,
-		"mtime_ns": 1780675977022767200,
-		"hash": "cd954feb52efb3b297377b277591c14ea9efe70c4a9252ee8328fbd6f285124b"
+		"size": 7670,
+		"mtime_ns": 1781245853390188500,
+		"hash": "9d23716cf78d556186f243cf7e118368557a589f7ed5be025d9591134853fe1c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-curated-tags.ts": {
 		"size": 1043,
@@ -2160,19 +2160,19 @@
 		"hash": "b3bad76ba7ce5d5a6d44ce3498d800af2d8f7cc5521c9f5ba506761460a91fd7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studios.ts": {
-		"size": 2304,
-		"mtime_ns": 1780743947643448400,
-		"hash": "ae8e3ead3ef733bcdae2422f1b12d344567683e67a866be2394b81fafbd485bd"
+		"size": 2815,
+		"mtime_ns": 1781245853403400900,
+		"hash": "af26f09b08b21bf29e576d0151a6a5d13e6f36a5dc0b346db891f47b73a60e00"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.test.ts": {
-		"size": 7502,
-		"mtime_ns": 1780643678667797500,
-		"hash": "7efc87dcab1a52d66966630f0d38aba1e3290056d3665d9a2cc0eb270b214f2a"
+		"size": 7801,
+		"mtime_ns": 1781245853404711300,
+		"hash": "6eec7355304e37c9130dd649024c759fb109dbc1f1d49c911ac59044c0079b7b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-query-tags.ts": {
-		"size": 11861,
-		"mtime_ns": 1780643678668793100,
-		"hash": "e4097d2940f76f5577a3cbccfb450c2d37dbf79faf2f7756f36e2dc52a0812a8"
+		"size": 12827,
+		"mtime_ns": 1781245853406604700,
+		"hash": "d4e33dba5a5905cc6bc13ba5b8c966ec200db43a48a7e369136a1a280871489a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\server-api.ts": {
 		"size": 917,
@@ -2180,14 +2180,14 @@
 		"hash": "c16af4e3e9176d6f166451e561c5df139eca988c105f1daa75bc38c4f6c5240a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sheet-chrome.ts": {
-		"size": 781,
-		"mtime_ns": 1779251031663883000,
-		"hash": "7e856504677640ddcad06cf608ee8e2e665999871378629bfb064b116f95dcb7"
+		"size": 979,
+		"mtime_ns": 1781245853410183100,
+		"hash": "ec773ce8ec99352ea5f8a7eaff96f79622d8abff04bbd85c539eef07024bc02f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts": {
-		"size": 46427,
-		"mtime_ns": 1780750229983695000,
-		"hash": "be9ee6b95c8a484927471cea963adfd41310ce1787b5819dce10462afcc8149c"
+		"size": 46653,
+		"mtime_ns": 1781245853413091000,
+		"hash": "f8bde648cf80b78eba4ee777a3605e1fad09f98e2e6a7dd0a380216af645c3c9"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tmdb-config.ts": {
 		"size": 427,
@@ -2195,9 +2195,9 @@
 		"hash": "8755438b4ee2b422038bf4f2a01f3fdf93b1062e5491390e77bf7d7f4e92076a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tmdb-poster-url.ts": {
-		"size": 509,
-		"mtime_ns": 1780467519695768000,
-		"hash": "1414e0b656a7734a480efad3a8a9963cae54e5a918fba3e2059bb7d613f5e94c"
+		"size": 517,
+		"mtime_ns": 1781245853415987700,
+		"hash": "848be0c8d3d53f2dcc4e2296ebeb2d74ffa9e0ddf1e76239e5d588400debc7c0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tv-detail-sections.ts": {
 		"size": 187,
@@ -2230,9 +2230,9 @@
 		"hash": "d9566ab1591479b9c26304db5c8325b15e943023937c964366de25de8279e5a8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\upload-profile-me-asset.ts": {
-		"size": 1387,
-		"mtime_ns": 1780676349364909200,
-		"hash": "00a0eca84d83ac8284f3f035b234a21d921dcb14261d30b3e744d59d9ca656d9"
+		"size": 1558,
+		"mtime_ns": 1781245853416582700,
+		"hash": "710822168ba72a7b36fa9f7e2a2aae6e5781c42badec25acc00097ea4233d23f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-catalog-text-search.ts": {
 		"size": 2146,
@@ -2255,9 +2255,9 @@
 		"hash": "1284b2a32a56df282fa78dfdee68d2b29076b78701a27814cc92ce696b132f99"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-search-dialog-browse-preview.ts": {
-		"size": 7425,
-		"mtime_ns": 1780743371093380700,
-		"hash": "2a2ec47cf4fd054708ea553865c04f28490e3bdc998ad622b5a45597d2814ff8"
+		"size": 4291,
+		"mtime_ns": 1781245853421423900,
+		"hash": "fb347d445780322fb4097cd46c7a708830e803131569ee9ae635bf213d70f093"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-search-dialog-genres.ts": {
 		"size": 3539,
@@ -2270,9 +2270,9 @@
 		"hash": "fd2201b27940085853d5c21e40dee09793de754b9c9112ba90fc3722bf02b43e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-sheet-scroll-fades.ts": {
-		"size": 2055,
-		"mtime_ns": 1780467519701766900,
-		"hash": "1bc9f88a332f4ccff6baa3883c2286fa614d615fb43afaa78d6daeb79211b128"
+		"size": 3165,
+		"mtime_ns": 1781245853422606300,
+		"hash": "be7877fa1dffee09e12e8d2c79c8fd36fb1057fcf5fe15d670a10f37534f0a2b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\watchlist-lobby-order.ts": {
 		"size": 2780,
@@ -2330,19 +2330,19 @@
 		"hash": "41327fe907e6e7f152cc3d9153ca91424dea06813e712158beee943d16ced546"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\package.json": {
-		"size": 579,
-		"mtime_ns": 1779015945962260200,
-		"hash": "f417b97db62c0cbf9846a217467ef51b18699ec52e99664f2f934522e9549fb4"
+		"size": 810,
+		"mtime_ns": 1781245853458194200,
+		"hash": "addb7a4dc81bffb855f84517abceaf7f0fa86f9ab318fc9b6d71ffd6b1441087"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\tsconfig.json": {
-		"size": 210,
-		"mtime_ns": 1779015945964270900,
-		"hash": "172a352dc6a96eae4fc3539b8fa342e2ef321a4830d9b079cab69534807f6bdb"
+		"size": 342,
+		"mtime_ns": 1781245853472500000,
+		"hash": "00b47dfb57f2328f55516d0c995fa50e7979fa9e414407c58b2a8691b2213fdb"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts": {
-		"size": 2337,
-		"mtime_ns": 1779015945963767900,
-		"hash": "0bf60547da66e78936d423bc781222a8a7ef4d75f00a0acabf6fbebe4d73046e"
+		"size": 4655,
+		"mtime_ns": 1781245853465828100,
+		"hash": "375a347a666cfe5a619f477426f03987d446dacdee7e7ff9c10789b35c2fb764"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\payments.ts": {
 		"size": 191,
@@ -2470,19 +2470,19 @@
 		"hash": "a974043534ac2493f39e49eafd24813f781df748b8b1cd58d5da52658ff3b7f2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\meta\\_journal.json": {
-		"size": 2633,
-		"mtime_ns": 1780675907219783200,
-		"hash": "38a7f3397f9e8e805f61c01e001118ced8cd8ddca0e67b722e2f26425bd48856"
+		"size": 3733,
+		"mtime_ns": 1781245853478799300,
+		"hash": "bf5068b0a835d4403d4856124c59a8d3cf3213c0809eda858e2db55217c4bc0e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\activity.ts": {
-		"size": 6724,
-		"mtime_ns": 1780467519720767200,
-		"hash": "cba1e55e0e4d7795e2bab1c12560201f607be9ff5dd6e95552d16e0a6a8f0ec9"
+		"size": 7150,
+		"mtime_ns": 1781245853479950600,
+		"hash": "df78758249cc7806c3bcd45d249395bb545ce5f2958390b69103e1fbf189331e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\auth.ts": {
-		"size": 2979,
-		"mtime_ns": 1779015945974478000,
-		"hash": "59e0f54b835719a0f3b274407160e50391ad86b70cfd5091c32760b7b50739d0"
+		"size": 3229,
+		"mtime_ns": 1781245853480533000,
+		"hash": "2ddbbcce5452c04de739aa92ce791c5d046f8cee6724539215f3de74cccd6073"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\chat.ts": {
 		"size": 3923,
@@ -2495,14 +2495,14 @@
 		"hash": "ed93d0b47367db1d2af3687fa7acbb813f6426419ef9c730ee980defb7dba5b7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\index.ts": {
-		"size": 535,
-		"mtime_ns": 1780467519721766600,
-		"hash": "e7698db610399d6ab5c216029c9bd78c8c61af0f3b59072a095f74825817e249"
+		"size": 603,
+		"mtime_ns": 1781245853481756800,
+		"hash": "ef0da96aa1d5ad9beb0c12c37b77e707b296ba26febbec13e6be96b0ad83b548"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\list.ts": {
-		"size": 5562,
-		"mtime_ns": 1780467519721766600,
-		"hash": "cb1e03e67f4af6efcda35be63d1663cf16f846bc1298a1455000a50fb3fde57a"
+		"size": 5677,
+		"mtime_ns": 1781245853482983300,
+		"hash": "eecebcde9663c4ac9b5141f393d573187398e6214adc7f4da553238be1952f8c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\movie.ts": {
 		"size": 4713,
@@ -2525,9 +2525,9 @@
 		"hash": "1a2b5ba5557c95fb029fbfa38a87688fb6ecd5cd3fcd24114e39f6a9fced9040"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\social.ts": {
-		"size": 4219,
-		"mtime_ns": 1779015945978476900,
-		"hash": "a92502a596c5b1107045d7681ebbf2923386c2ebc9d1303978288393ad18c6de"
+		"size": 4323,
+		"mtime_ns": 1781245853484101000,
+		"hash": "b854b0cf5eac149cc3f2839d176fb69f8310e155d98118c75f423a05c2a1f11a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\tv-watch.ts": {
 		"size": 2889,
@@ -2595,9 +2595,9 @@
 		"hash": "3fa40c6a90d3c1c49892e20cd2e61920f3af0e64a8bb1d178eacb7ed8fc98520"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\popover.tsx": {
-		"size": 1939,
-		"mtime_ns": 1779439643637411100,
-		"hash": "cc52d88eb6265d116d9b6953475feb3140cd1122ba2c8396ae4dc1a1422c5604"
+		"size": 3941,
+		"mtime_ns": 1781245853488286200,
+		"hash": "25b1781cd75d6cb1a90d54117e548b602e314c203f2e5e65d05b0c200dda3736"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\components\\radial-toolkit.tsx": {
 		"size": 22453,
@@ -2650,9 +2650,9 @@
 		"hash": "4e44dc603b1e3b0bfdd67333bf9d9a159030669f28c493c90629a3439119c4dc"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\award-fill.tsx": {
-		"size": 1725,
-		"mtime_ns": 1779439643640411300,
-		"hash": "a63793542f75925cdae3b37c3aac3c611d2183c626cd49e28188c4fc3ce62823"
+		"size": 1751,
+		"mtime_ns": 1781245853489428000,
+		"hash": "681c5bde49ad286c8f7307fa934b878b70264e4cc14fcad2a422e435d4fdb343"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\bafta.tsx": {
 		"size": 2963,
@@ -2845,9 +2845,9 @@
 		"hash": "a72631727eb87fb5fff503cf470c89b2865412f82fda725ae009c93e86b32b69"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\AGENTS.md": {
-		"size": 26995,
-		"mtime_ns": 1780643678589268200,
-		"hash": "c7a705990bf924cef92cb45c0de406472dc28cde33afa2a2823994760af807cd"
+		"size": 40274,
+		"mtime_ns": 1781245852963968700,
+		"hash": "01c63a72af18faa85d002939279208aef7b09b5245a5e3fdf5521e57a764b73b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\design.md": {
 		"size": 20706,
@@ -2855,9 +2855,9 @@
 		"hash": "65a8d99b10c0ead6e93a5ca20d58c18959cd321a759c52f96c849d64a1c34568"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\README.md": {
-		"size": 4830,
-		"mtime_ns": 1779968960559614400,
-		"hash": "8c37b142a33270fe50a97dac11034de522c11ecf7aa35d70d63de14d83b626d9"
+		"size": 5350,
+		"mtime_ns": 1781245852965151000,
+		"hash": "b2ee3e4d6c4abd6845ea0e09f68657c26e7b7b118a7e74fe9acfa65d53440a8f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\brandkit\\SKILL.md": {
 		"size": 16790,
@@ -2950,9 +2950,9 @@
 		"hash": "d18a347ae84bbfa6a66e6cc66fadc2710660ecea9e6985c704c12181a7296f40"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md": {
-		"size": 171029,
-		"mtime_ns": 1780744907487644400,
-		"hash": "53bf9d06867d232d59edc7a2aae3329d2576a45df158067cc5dcd081f68a2a23"
+		"size": 178288,
+		"mtime_ns": 1781245852961989800,
+		"hash": "6f394a6f0afcae3bfce4e151cdd206318cf074f0b0f1cfd674d51fa44bc485e1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\.cursor\\skills\\api-and-interface-design\\SKILL.md": {
 		"size": 10307,
@@ -3245,9 +3245,9 @@
 		"hash": "5e35956dc022647f98e4f47945810cde8ed476d852d0879b5eaad5bd4b080692"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-appearance-settings.tsx": {
-		"size": 4251,
-		"mtime_ns": 1780467519628765400,
-		"hash": "42d37c1939432e101d167d9219edd0dda1856b4d5d578a7fc0b16c8ac29c91c1"
+		"size": 4636,
+		"mtime_ns": 1781245853276332800,
+		"hash": "45aaad45355f19f4c9167ff83734a7422b1b71a4b740255a09e65d962107e0c8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-themes.test.ts": {
 		"size": 2172,
@@ -3415,9 +3415,9 @@
 		"hash": "8a8211c107fe588080a4ee4339493a82575591be887f9df76125f948d71c1c4e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\server\\app.ts": {
-		"size": 4069,
-		"mtime_ns": 1780467519554767000,
-		"hash": "1a0290b855ab3a93cc74d790eecffe97a3a6e294edfc810da3355034957a6aee"
+		"size": 4205,
+		"mtime_ns": 1781245853061432400,
+		"hash": "53c8814ac9adc02f0ccaff9d56770ca409de07c35b2a044f6e6bc343c7af6340"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\scripts\\ensure-motion-plus.mjs": {
 		"size": 2559,
@@ -3485,9 +3485,9 @@
 		"hash": "5d2e31acddac0907737f6c4420d89523629d2f634ba26b88f27258001de7781a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-venue-chips.tsx": {
-		"size": 4416,
-		"mtime_ns": 1779968960655964800,
-		"hash": "7f97a4aa8a43101219a6be1d3c6dd94c6e2f3116fa700b3c9eecf07c08a74fab"
+		"size": 6840,
+		"mtime_ns": 1781245853207452500,
+		"hash": "6835934fef71881124ac7318ea4e075339a1b821de81580935d0cae6e03431d2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-lobby-params-context.tsx": {
 		"size": 5944,
@@ -3495,9 +3495,9 @@
 		"hash": "826355e5a990c24c938d73080c736bf03adcd64823d30b31905a0551a7c495e3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-community-patron-shell.tsx": {
-		"size": 1426,
-		"mtime_ns": 1780503926888392400,
-		"hash": "ca2a806aea5c91b4848151856209fa17e0def7347acd90b2a8d71226bb17bd02"
+		"size": 1924,
+		"mtime_ns": 1781245853217828100,
+		"hash": "74858887a1baea92ab0eec47428d358d3327215f0f3579e90b8c05cf0c8af274"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-chrome.tsx": {
 		"size": 915,
@@ -3505,9 +3505,9 @@
 		"hash": "aae0211db6bfbeb938ece11db357cd96ca6973630e7603156aeb31e9073e4138"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-tmdb-lobby-params-context.tsx": {
-		"size": 6657,
-		"mtime_ns": 1780746209452928400,
-		"hash": "7c17db537ea5dc6487068ba00103335ba1dbcac7b472d18e257aa7559d42ebd0"
+		"size": 6413,
+		"mtime_ns": 1780750530634237200,
+		"hash": "17ccb69f3a18e0295f61292a09e8a2cec10868b4d0ba41a735672a6bcbbc067d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\lobby\\lobby-navigation-provider.tsx": {
 		"size": 1189,
@@ -3515,9 +3515,9 @@
 		"hash": "347540f759ed989c21af924d95a0f2388503d3d0879f9685beff19a17181d1c4"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-async.tsx": {
-		"size": 6370,
-		"mtime_ns": 1780741246394815900,
-		"hash": "e4b23d86e64fa59b14fb85d34415b64e6dc62f0dfbcf50461b4865a17158a138"
+		"size": 6421,
+		"mtime_ns": 1781245853256077000,
+		"hash": "0a94fc803b88b2000d73359c55d4fa80cd1c68f83983600761d41962a82f2630"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-about-fallback.tsx": {
 		"size": 256,
@@ -3535,9 +3535,9 @@
 		"hash": "02acbdfb4864e348266c1077f30ff70c587e2d7856930871ce8620531fa0b9e1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-patron-lobby-shell.tsx": {
-		"size": 7234,
-		"mtime_ns": 1780676761195290300,
-		"hash": "7ad8f159e65343fe080d7bfa7f4f8e4efd3e9182bff4278866209f1a891bc795"
+		"size": 8056,
+		"mtime_ns": 1781245853292189200,
+		"hash": "4cd2bd14e7eca19c5ba206b9e76f0211bf0b4060cc028d60873211e7353f40a6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-about-panel.tsx": {
 		"size": 3933,
@@ -3550,9 +3550,9 @@
 		"hash": "258d5333a38c7ab82824cd2f579b368b074057cb4df7a7f1b3c0e8c5e5cd61ee"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\watchlist\\watchlist-patron-lobby-shell.tsx": {
-		"size": 1397,
-		"mtime_ns": 1780467519654766600,
-		"hash": "2fe0575427a18907bc4a9148d4bdda9231e0e60b7299af9614e170c0f406d2ce"
+		"size": 1169,
+		"mtime_ns": 1781245853327661800,
+		"hash": "33adc601405feacc25556a8c71129f3c0f227890ea8b1341859c97f4144c5f4e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\add-to-list-media.ts": {
 		"size": 498,
@@ -3595,9 +3595,9 @@
 		"hash": "834ab89fea4c671f90064e12a37a5ac796870df9f23ec9ac7c36b124efae6086"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-lobby-derive.ts": {
-		"size": 4924,
-		"mtime_ns": 1780467519687765200,
-		"hash": "f75c0ab828e13cdfbb82454187e543095e65a14895220816474a0fd3f4b4e6af"
+		"size": 5285,
+		"mtime_ns": 1781245853382691600,
+		"hash": "3b5d6a1d83344f1b6bb11efb0a53161675625d1a6bceff683b85c6b868ed654f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quick-log-copy.test.ts": {
 		"size": 976,
@@ -4120,9 +4120,9 @@
 		"hash": "ff8e82cf350d5fc5fa90467979f5a25047f1ec8e76dabb62fdaa06218266ddc8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\ranked-list-reorder-grid.tsx": {
-		"size": 17312,
-		"mtime_ns": 1780750259922499300,
-		"hash": "9056ad2bfbdb720ba93eb351decce8febc5f8d759576abce2baf3e8631c05e24"
+		"size": 16734,
+		"mtime_ns": 1780750530680273800,
+		"hash": "5eddb4205e52cb9895599d5ec422a7ce48e804aa08847705770a4e78f086e8d2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\lists\\[id]\\page.test.ts": {
 		"size": 2075,
@@ -4130,9 +4130,9 @@
 		"hash": "bdda1a722d54714ef5c44091b832f0bb268887859e2ec5709c6fe247a5c8571f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-owner-controls.tsx": {
-		"size": 4095,
-		"mtime_ns": 1780742275339199700,
-		"hash": "e9999b1afc7586eb97f6ab7622f2693f71b2fcbd71cff43c410a426b3eb98070"
+		"size": 3728,
+		"mtime_ns": 1781246851574099000,
+		"hash": "c4982ae9f4cfa094d6a890a9da70ad3cee91e5f1dd34c44c25ac77cb84b92f1b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-page-branching.ts": {
 		"size": 868,
@@ -4220,9 +4220,9 @@
 		"hash": "8f488cbfc36f1d199ccaf08e0de588ee8a4d0db87fe8b7d5f25b017106a0c4ff"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts": {
-		"size": 1817,
-		"mtime_ns": 1780467519512675000,
-		"hash": "8a1eb7c7189666b19e367626ee95ae2143d9bc009279c60d37fb14a8cf7f56c8"
+		"size": 1881,
+		"mtime_ns": 1781245852972559500,
+		"hash": "dba059b0efb5ebd8e50c985db72f4ad60bd17e302b3ac8ec80cb84c1f641b727"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition-config.ts": {
 		"size": 1202,
@@ -4235,9 +4235,9 @@
 		"hash": "22debcb6e6fefc8030f763796067598f9aede11977e50a228feeff7e7d80d56a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-recognition.ts": {
-		"size": 7177,
-		"mtime_ns": 1780648328336360500,
-		"hash": "182b72963d35649c0d0ca0112e0d8dd370ee378ae2947dcb116c4a7c1b99d9f5"
+		"size": 8133,
+		"mtime_ns": 1781245852973733800,
+		"hash": "79152585ec4615554c1555c24f5ce414ac9bc4d663209a82db9f1965898dccf5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\feed-rating-divergence.test.ts": {
 		"size": 1975,
@@ -4245,14 +4245,14 @@
 		"hash": "db7aa9068687997ea420d994efa4285533281a9002c850fa049bd21450127a11"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\feed-rating-divergence.ts": {
-		"size": 5139,
-		"mtime_ns": 1780467519514674200,
-		"hash": "48a2bcd20b90c832d3edfee8b78c04a647e52a06a4fa7c7004b3248bca0d7823"
+		"size": 5764,
+		"mtime_ns": 1781245852978566000,
+		"hash": "5c319c12bf42e8afcee871347e1a15c5ace911c912e80fa92ef893b4af318d1a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\fetch-overlap-diary-slices.ts": {
-		"size": 1215,
-		"mtime_ns": 1780467519515674400,
-		"hash": "3450d09f3aed99b29a04c21b7bccc4ec453c1522830b9fe85a2939231cfd18d3"
+		"size": 1595,
+		"mtime_ns": 1781245852979154900,
+		"hash": "8c48bc3ffc382e0aad69755c2155eb6481a15e4036fd6e4a15b1d04ba1f4347e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\follow-list.test.ts": {
 		"size": 959,
@@ -4270,9 +4270,9 @@
 		"hash": "1960350e7ea417b1831e32b03b6e4d8428412b39b7a4196f38e81a05de6876a5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\friends-ratings.ts": {
-		"size": 3628,
-		"mtime_ns": 1780467519516674300,
-		"hash": "4056438e7b3730ccd82d209dc92d38c5f23820cc7df80dc7407e3d33c6dbf86e"
+		"size": 3664,
+		"mtime_ns": 1781245852982082400,
+		"hash": "3bd1419b828346456a3351bdbf51b0b9323b96fd0d5c0951b5b6ce32b6bb9928"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-csv.test.ts": {
 		"size": 1819,
@@ -4280,9 +4280,9 @@
 		"hash": "27903ab41c4a47701f05629d4d987cf2c3afe270ce01d179640100112ede432c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-csv.ts": {
-		"size": 5230,
-		"mtime_ns": 1780467519518675500,
-		"hash": "417e360d2c0a52ffe11d5dfe14bc4c67e444d3cca0255d7e4fc756d9a4c8d256"
+		"size": 4177,
+		"mtime_ns": 1781245852986305900,
+		"hash": "64e59b929a28070dbf4cac6002eda9cadc20cd59535815b4274428e33b5026e3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborator-access.ts": {
 		"size": 825,
@@ -4290,14 +4290,14 @@
 		"hash": "4f4c03c17fc0d827b0b0843e8d11369b09cc55a74224521a055f7fadc582d66d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts": {
-		"size": 4150,
-		"mtime_ns": 1780467519518675500,
-		"hash": "3de4a78d576363d581767d2710f0144374deb926370c5237f4aab79c67077fae"
+		"size": 4187,
+		"mtime_ns": 1781245852998351600,
+		"hash": "38c47a8f0ef22ae257a4003e530ed6ba6f14b651dabc31db878bc74410f81c67"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-owner-log-scores.ts": {
-		"size": 1683,
-		"mtime_ns": 1780467519519674800,
-		"hash": "93ca5e674716313f8b846a9c6a67e73d4316d02f750b90185d87f6c09f3f6b1a"
+		"size": 1714,
+		"mtime_ns": 1781245852998930400,
+		"hash": "af1a842685e070cbe9f0d6106f648b2a881973f43c650249cf1bd52fdf365bf3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-quality.ts": {
 		"size": 663,
@@ -4335,9 +4335,9 @@
 		"hash": "0b89dfd1133369444f56e8d8a524f51f430febbed3b416e8fedbcc94746e675a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\movie-following-ratings.ts": {
-		"size": 3823,
-		"mtime_ns": 1780467519522675000,
-		"hash": "51107195b04a5c78fed29c2c38ddb1654fd67269b4d43ebb04924e0b12811e08"
+		"size": 4501,
+		"mtime_ns": 1781245853003630900,
+		"hash": "2184d20cf609a1a05600e4783141db99120f18937deda6bdd621cac5fc3975dd"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\notification-delivery.test.ts": {
 		"size": 2057,
@@ -4355,9 +4355,9 @@
 		"hash": "08881d49e585ed75b938e644426768db04d9a5ca4fa727ee315328bb69f08076"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\product-event-kinds.ts": {
-		"size": 930,
-		"mtime_ns": 1780467519524675000,
-		"hash": "1b802a527df0deb96729039b042554e2d1a7cd1a6dd641295661f2512b8d2366"
+		"size": 977,
+		"mtime_ns": 1781245853004211300,
+		"hash": "e13aea652e65f6926213c670c20380110f19efcce3fe2d4e56454f842c83d436"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-appearance.test.ts": {
 		"size": 597,
@@ -4370,14 +4370,14 @@
 		"hash": "86dc1f30a7c924956f26430dfab6d0039d4759b8e5401562edffb0c8faeb8a76"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.test.ts": {
-		"size": 2746,
-		"mtime_ns": 1780467519526767100,
-		"hash": "f37d003cff296d5a50059303085caca8cfee8477577a2c05b345c0b9fef112fa"
+		"size": 3353,
+		"mtime_ns": 1781245853005377300,
+		"hash": "92e9bb91e0a310ef4f68335ef2242eaecd9f10c8d6d1dc671112a9b8ae0812e5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-filmography-query.ts": {
-		"size": 1872,
-		"mtime_ns": 1780467519526767100,
-		"hash": "cc127fd4111bfca5b35806a461a180d9154047cc8847692d22d61393d9981639"
+		"size": 2278,
+		"mtime_ns": 1781245853006636900,
+		"hash": "d611f44c538e7166c65413b94ac83be8d3c19c233131c01e8bb6403ba03344a2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-pinned-reviews.test.ts": {
 		"size": 669,
@@ -4385,9 +4385,9 @@
 		"hash": "e5e1252012d8331aba0e010da9c66764dbf9db9872ddcc54352112f5e6d081fb"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-pinned-reviews.ts": {
-		"size": 2496,
-		"mtime_ns": 1780495889058336100,
-		"hash": "c865aab104ed3cce17e3edc70b0c64ce3c27310e717fcfe62efd2d12dd2d6d2c"
+		"size": 2661,
+		"mtime_ns": 1781245853008976300,
+		"hash": "717405529361d2990faa31da08b803e1c04dd7c6caf1c7456b9ae0f38037e2f9"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-search.test.ts": {
 		"size": 1857,
@@ -4395,9 +4395,9 @@
 		"hash": "c487510e3428de248ecfede24d6ab95f42da6dada31f685fd347978039b73c9e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-search.ts": {
-		"size": 2540,
-		"mtime_ns": 1780467519527767000,
-		"hash": "8aca4fc97bc388a8dc820e0ec12542b98613399c52ab9a4961456d54e9739ff0"
+		"size": 2961,
+		"mtime_ns": 1781245853010152600,
+		"hash": "dc24608d6dd8f3c450ad05a8e3a5f9975e5ee214a44ed0550c0da1e241020869"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\recompute-user-taste-signature.ts": {
 		"size": 1323,
@@ -4460,9 +4460,9 @@
 		"hash": "a4c88612171bdfcbc3fa071b7ce3bd2f359593892f17e3203392684ac3c10074"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts": {
-		"size": 7917,
-		"mtime_ns": 1780467519533768900,
-		"hash": "e7ad85219ab2096904cf9fa86e8b7b857470e810ca2617a9694bce411daa2cea"
+		"size": 6110,
+		"mtime_ns": 1781245853022201400,
+		"hash": "7fbdc77df3c1da7dfb6b89c10e127983219f0d2445d12a7f56bc041331b369cf"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\sync-linked-review-rating.ts": {
 		"size": 340,
@@ -4470,14 +4470,14 @@
 		"hash": "a4dd26266405ba6682d26c3f0b255d9db867aa00572c40ae451120154b1792bc"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-matched-discovery.test.ts": {
-		"size": 355,
-		"mtime_ns": 1780467519534767000,
-		"hash": "e58839371a7c78f610bb58c0006e912e74b0cdac13dac328662b18e93e7fa8ba"
+		"size": 2427,
+		"mtime_ns": 1781245853025779100,
+		"hash": "9b8f79b10f2001eee1ae809d42dba87c94657ed0ec109a6111a56e9ee407377c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-matched-discovery.ts": {
-		"size": 6468,
-		"mtime_ns": 1780467519535766400,
-		"hash": "dc4c1eda5fa5aba61102183837ff2168189bfd87aef2472e1b001945f94c3f76"
+		"size": 11835,
+		"mtime_ns": 1781245853026965700,
+		"hash": "9a2c271223bdaf3a730cd28a693b1a57e857a4e1f492d090a37430f36bcfc1d3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tv-mal-id.ts": {
 		"size": 1626,
@@ -4495,19 +4495,19 @@
 		"hash": "9402a7f9c477edf1af23263ccb21d001c2c58b1580c0819ffb29245988f209fc"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak-sync.ts": {
-		"size": 3793,
-		"mtime_ns": 1780467519539766900,
-		"hash": "58f21c7a776e25da1fd6666bef7c66cf0e5051b49c42dad2b265a75c9f683f3a"
+		"size": 5001,
+		"mtime_ns": 1781245853035905400,
+		"hash": "ae35c455b6c07cb2336559c3d5cdc130bce6fbd22b8daa8e630b7a2ae3096180"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.test.ts": {
-		"size": 2084,
-		"mtime_ns": 1780467519539766900,
-		"hash": "9a2a3b0f54a23556ef4b69cb09c1e4ab8569b39154c4d749011a94785d1ad902"
+		"size": 3343,
+		"mtime_ns": 1781245853037756900,
+		"hash": "9d4c75abfe7f0a8600c5564ed6fad7cc249add8e9b1c91e154964ff3d8a9e2b3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watch-streak.ts": {
-		"size": 6874,
-		"mtime_ns": 1780467519540766800,
-		"hash": "6b124a472bd378ee1a9ed6347ad6a651b63c98bf397d863eaaa292f2b5d34de2"
+		"size": 7003,
+		"mtime_ns": 1781245853038973000,
+		"hash": "d8cd20c85266c9ae09df334a9f0d2473662e4509c40e3f665e7c16ea158cb1a9"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\watchlist-query-args.test.ts": {
 		"size": 2140,
@@ -4530,9 +4530,9 @@
 		"hash": "e156d730b146078ddeb38af482ccc4255fa41c54753a442fe9c77f344f8513df"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\import.ts": {
-		"size": 10256,
-		"mtime_ns": 1780467519545764400,
-		"hash": "63df8e9da25f922a9af67afa69f5a5d6c5182f8c9261301cbaabf409809ac6ed"
+		"size": 10284,
+		"mtime_ns": 1781245853042593800,
+		"hash": "9e5fa2402feabfca7ac1ab4033faa2a5e96d703cf7101a0fa9411459ae97a2b2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\product-events.ts": {
 		"size": 1224,
@@ -4545,9 +4545,9 @@
 		"hash": "8125a2d68affd98242a6a678e3c55021dfc704139be4aa4e69929dff9d3fd21e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\taste.ts": {
-		"size": 7478,
-		"mtime_ns": 1780467519552766100,
-		"hash": "c96c25ecca55a7e718b15488ad64d4f539e03f6ab1bc675b492f1c0df273f58e"
+		"size": 8651,
+		"mtime_ns": 1781245853057788500,
+		"hash": "493c11dafb9393d94f53f605759e0fd1488fc790e3b5c2beb86862a731130a8c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\vercel.json": {
 		"size": 82,
@@ -4555,9 +4555,9 @@
 		"hash": "6ed42be0cbf701654d3b2a0ef60d7adf37f0506a5b15240e339cd06dbb5ced32"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\robots.ts": {
-		"size": 746,
-		"mtime_ns": 1780741246385817200,
-		"hash": "9b661cbf945908c6fd25d58f43e09a166710a480a3265ebf01eaed301264353a"
+		"size": 1009,
+		"mtime_ns": 1781245853180603000,
+		"hash": "0b16f43befb8c675cedf8dfd4f09003e03ed3d21732f43d6058cdbeac9ba50b1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\sitemap.ts": {
 		"size": 932,
@@ -4590,9 +4590,9 @@
 		"hash": "bdafc66361d22f0728bb6e37f10bd4ffec53f57a192d08b3683c61a971219539"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\l\\[id]\\page.tsx": {
-		"size": 7052,
-		"mtime_ns": 1780750264043064700,
-		"hash": "9035025b01679e37e37c3ca425eeadf3035ef7a11bcf78e60edeef01d3119ceb"
+		"size": 7198,
+		"mtime_ns": 1781245853169636200,
+		"hash": "13db6011a6a2b5e867d7280ec9fd91ce27bd84e44aa83d79b757c8cfc9f9a678"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\compare\\[viewer]\\[target]\\route.tsx": {
 		"size": 2752,
@@ -4630,24 +4630,24 @@
 		"hash": "ab76d8744c8f74221aa4e918ea26e20dd3e82cc168c63ba3eec42f22e632e4c2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\go-to-dialog-root.tsx": {
-		"size": 4577,
-		"mtime_ns": 1780467519578766100,
-		"hash": "e69503d0b107da6c595b5fd911d031503fd15c21e9763b15253eaebcb663e352"
+		"size": 4597,
+		"mtime_ns": 1781245853186477600,
+		"hash": "00e692283a378e02df504f7ede5e29f091fc99616d55d5ee3f6c324210b5c6d3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\lobby-catalogue-loading.tsx": {
-		"size": 1899,
-		"mtime_ns": 1780467519578766100,
-		"hash": "6f449d3d82c977db510090df64b4b7f4f8bc17d91d86d238eb960d754ef2d145"
+		"size": 1948,
+		"mtime_ns": 1781245853187646800,
+		"hash": "64affba539915e3d39cb7bec623f349671d39cf48a99da7ea73eb03d8f633ba2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-lobby-chrome.tsx": {
-		"size": 1139,
-		"mtime_ns": 1780643678638795600,
-		"hash": "6f693f1fa9e832609c07c9499fb6276d3f1c2a4a2d72597b51e9eb369f042828"
+		"size": 2623,
+		"mtime_ns": 1781245853205185400,
+		"hash": "d1d4115f251434113fde9f4879e2a8bb7e7ff4656cd6e4b7dc10d8488f2ad670"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\diary\\diary-media-tab-toolbar.tsx": {
-		"size": 2030,
-		"mtime_ns": 1780467519585764800,
-		"hash": "5aee3a9797db09633175a158c8a6e65568fc6edf0715b02c224675da8d7bae43"
+		"size": 2017,
+		"mtime_ns": 1781245853206316800,
+		"hash": "b0d331d290eef30af43094c9b5024c1a25ec2210fed120f5bfda39b5146ba445"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feed\\activity-divergence-row.tsx": {
 		"size": 4743,
@@ -4670,9 +4670,9 @@
 		"hash": "e42cb7a105a22ebc8b66462fd05ae94bbcf4aafd0442b3a0f86e46e14ee0fe6e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-lobby-skeleton.tsx": {
-		"size": 1355,
-		"mtime_ns": 1780467519592766300,
-		"hash": "4a1a974f4e5caaf88a4b3df76ff97e572b1387b20e29c86c8ab063df0e68415c"
+		"size": 855,
+		"mtime_ns": 1781245853212690400,
+		"hash": "cd4555cae73aa04134f431a70bc3bf49af436bba2ded7ce9adef737fbac95c90"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-ranks-skeleton.tsx": {
 		"size": 1199,
@@ -4690,9 +4690,9 @@
 		"hash": "9b847b87336178093d824fcfd3e33b6c9ef8d92fdb977f4f4ce110e90951b7c1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-curator-spotlights.tsx": {
-		"size": 2149,
-		"mtime_ns": 1780467519597768100,
-		"hash": "d730495782c3ab8c28aca753a5b5bbe995929eb8ca581fa5ca3bb9c9b7c7179f"
+		"size": 2419,
+		"mtime_ns": 1781245853219542200,
+		"hash": "59f7a08378ee32007f20a5ff27c3c069facd702c8329f106820fd128a99a5c36"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-editorial-highlights.tsx": {
 		"size": 1181,
@@ -4700,9 +4700,9 @@
 		"hash": "64a62b96a475088b9c4ad1f98c3eec7a0de5c4c733a1b8fc7b60637c5f5dbc21"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-body-gate.tsx": {
-		"size": 2350,
-		"mtime_ns": 1780745926622325500,
-		"hash": "c9eb3a4403e890149e5a18445ebaa0ea610c77d20be9dafc9d512b33824108f3"
+		"size": 2274,
+		"mtime_ns": 1780750530634237200,
+		"hash": "9344fb9b7c489b48c07d819a219c087287bf303eefcd1caaaf1607f5e263add2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-navigation-root.tsx": {
 		"size": 629,
@@ -4715,34 +4715,34 @@
 		"hash": "e2791789e798da6a59761340a79ec7202693cbb68960fd4b8c8d55271f561bc6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-matched-rail.tsx": {
-		"size": 3746,
-		"mtime_ns": 1780467519601765400,
-		"hash": "fcfd5b44400d47c1273f8c99221c991440187d14a02635ea909b7079b64508fd"
+		"size": 7173,
+		"mtime_ns": 1781245853227636300,
+		"hash": "86be081feba9758b6803deff47d695f9b3d4e18258955776921f00dde734ad34"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-people-results.tsx": {
-		"size": 1242,
-		"mtime_ns": 1780467519604764900,
-		"hash": "0315c26aedb7d6e36a238ed6265f397c5beb2a81dae7bf6a1c2c2d438f0a27ca"
+		"size": 1332,
+		"mtime_ns": 1781245853231186700,
+		"hash": "5fedf594204f9a5dfe3bed9771f47c495bf3f64221228ffb9a785df8d3b32d79"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-people-row.tsx": {
-		"size": 2188,
-		"mtime_ns": 1780742705729959800,
-		"hash": "61a43b5c2becb9552f63d28038c207d98ed6aa4d0b4a788a8c07780591d3905a"
+		"size": 2454,
+		"mtime_ns": 1781246851571098100,
+		"hash": "a2ea80183fe88da9da2b724f07b29d258ddbc23911f4237966b22ca7d2253068"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-people-suggestions.tsx": {
-		"size": 4354,
-		"mtime_ns": 1780743197911971500,
-		"hash": "9ef5bbb59df4f0a098c7dc613a5323b154798d7acef0670db2becd655538df5c"
+		"size": 4199,
+		"mtime_ns": 1780750530635239300,
+		"hash": "372460ef003915896a1cff6268a7ab66a816472c03f30d8b0170662dc4490c55"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\tmdb-lobby-skeleton.tsx": {
-		"size": 1235,
-		"mtime_ns": 1780467519605766500,
-		"hash": "7ef9310473ea6f9b3757d8cc14bd16d8b4ea081bce67fdedd3dfc35519214c91"
+		"size": 1284,
+		"mtime_ns": 1781245853238706300,
+		"hash": "a24b052d479751f15cf60ef61a00836beebe6ca65033fa98d5143fd033674ce6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-collaborator-invite.tsx": {
-		"size": 5778,
-		"mtime_ns": 1780742279852043700,
-		"hash": "d290972017b5595a4d760cd5de2d6593f3f36eb84f4bfe5fec8abae40cf3b603"
+		"size": 5193,
+		"mtime_ns": 1781246851571098100,
+		"hash": "0b2bfceda22255b254bf49f0e62ed143179a71f02f5e6c9a024070958b77d7c0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-description-quality-hint.tsx": {
 		"size": 1029,
@@ -4755,9 +4755,9 @@
 		"hash": "07c3192cf58ec3e101b5ced27f92ce8f4926fd8378688c5b55e8da649c371703"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-discoverability-nudge.tsx": {
-		"size": 895,
-		"mtime_ns": 1780742191773980900,
-		"hash": "4a0e5889b2b3cadf2ee7c2fe8310ae56f75cd5efba1385e71218cb76f0609253"
+		"size": 826,
+		"mtime_ns": 1781246851572096000,
+		"hash": "6d94ebfa41036dc0abcee9c5b2bda400650fa9d5adbde2233597618f27725d26"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-like-section.tsx": {
 		"size": 1357,
@@ -4790,9 +4790,9 @@
 		"hash": "1c0cf7d53ffad87c7bee02c5521efbde2dfec57ed99234f4e0e24a59ecf8b549"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-following-ratings.tsx": {
-		"size": 3881,
-		"mtime_ns": 1780467519621764900,
-		"hash": "9b58e232d08f1928353c10ef47be4fe9726b2a53c907e86fa36e4e6f0fc3ec9d"
+		"size": 4339,
+		"mtime_ns": 1781245853258380000,
+		"hash": "a2703e5c378cdbe62c23b187bf48160809c24c123e5cc06b5b2ca555a0c42d2f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-friends-ratings.tsx": {
 		"size": 3100,
@@ -4810,14 +4810,14 @@
 		"hash": "f587a656769ff20e5ed1469967c64b07434b9f990a8ce2b2ca1f82d3c51d6505"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-letterboxd-import.tsx": {
-		"size": 13113,
-		"mtime_ns": 1780467519628765400,
-		"hash": "f9803eceef97b63c90c76427990d24b5b9ff1e46f7af69e0fffcd8e893b4b22e"
+		"size": 18367,
+		"mtime_ns": 1781245853280907800,
+		"hash": "9bb92a4b1b62ee792315b0f71d6bc866600493af36b0158acae5aab8f2d2f4df"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-profile-expression-settings.tsx": {
-		"size": 4112,
-		"mtime_ns": 1780467519628765400,
-		"hash": "5f395612c537359e8bdd35f419691a163446f35ffd0224ba7fbe8cb67a48c248"
+		"size": 4805,
+		"mtime_ns": 1781245853282085300,
+		"hash": "d45614826c62a2571151f051334feb5096dcefb5cd8b56e48137974c754c1463"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-about-collapsible.tsx": {
 		"size": 3094,
@@ -4835,9 +4835,9 @@
 		"hash": "acb2758f9c3efb3956c0d93e28bca2ef652572044019debcd40b53ab613e882e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-follows-drawer.tsx": {
-		"size": 8476,
-		"mtime_ns": 1780662896979380600,
-		"hash": "3bf3a9df9485e91dd66a765ed041c802412d945ae528abd04c136172401501ab"
+		"size": 9213,
+		"mtime_ns": 1781245853287128600,
+		"hash": "81d111b06cd3ed606bb5e798062c799af049bff880c3bdb2025020194e08f4b2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-pinned-reviews-strip.tsx": {
 		"size": 1865,
@@ -4860,9 +4860,9 @@
 		"hash": "1ac6637f1d99bb020a5acfbfd1fae23e49bf068991471646875e610ee91d46de"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\taste-overlap-dialog.tsx": {
-		"size": 9644,
-		"mtime_ns": 1780467519643764900,
-		"hash": "3a91a37cc0ba1cdb413d55f164aaf21966aeb18c5f4ab5c4934eea099279ed53"
+		"size": 12650,
+		"mtime_ns": 1781245853299056200,
+		"hash": "72173c1b814ea5abc3b421860b704d638b1d53aa0541e59a9505ba47f2aa8095"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\movie-review-deep-link-opener.tsx": {
 		"size": 1563,
@@ -4870,14 +4870,14 @@
 		"hash": "047005d758fc7ca178c3394779983bbd809c8f5d802ecbdf4be95d541e207669"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-delete-confirm-dialog.tsx": {
-		"size": 5455,
-		"mtime_ns": 1780495889059336900,
-		"hash": "fbac6211ccaad2c65b3b1ec5fbda4fbe613de7935462df9c40569e803eaccc0a"
+		"size": 6366,
+		"mtime_ns": 1781245853304802200,
+		"hash": "b4c19e8ec4aa20d0edc7d084ba90a8e0135a6fb868066cadf903ec9be9a4a260"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-pin-to-profile-button.tsx": {
-		"size": 3165,
-		"mtime_ns": 1780467519646764400,
-		"hash": "f8e817854fc0c71edfadaa7d00098a4da8db21b61321bd4b32b1a6359ba3dd26"
+		"size": 4412,
+		"mtime_ns": 1781245853309346600,
+		"hash": "c758734c1f4e6020155a29a925c73249a55e00fd512fb68b69f6eecdc2fc581a"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\visibility-chip.tsx": {
 		"size": 797,
@@ -4890,9 +4890,9 @@
 		"hash": "f11dca0fea074fc15c5e00b31ec0c3a9862bca1f2a38e57dc5788374db291337"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-community-async.tsx": {
-		"size": 1852,
-		"mtime_ns": 1780741246402033600,
-		"hash": "c08d7a096d166158a953f11e657955999ad94f10de6cc76866ae6bd356e8f295"
+		"size": 1821,
+		"mtime_ns": 1781245853324188400,
+		"hash": "f985163be232ebddba83ca7a8577921663ef899cb594dba363f20b3c65c982d0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\tv\\tv-detail-community-fallback.tsx": {
 		"size": 587,
@@ -4945,9 +4945,9 @@
 		"hash": "010a25fa47b409fb1e7469ae97ce8845cf515041c25914280dd50dae1c88b295"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts": {
-		"size": 749,
-		"mtime_ns": 1780467519662765100,
-		"hash": "a7f38ec9a9ff8942923aa4f97992953133d52ba253991f216c3961589457db82"
+		"size": 884,
+		"mtime_ns": 1781245853337556900,
+		"hash": "7d5bdf7e506f20d283b921b766120da9419ccd0798535f3ce6edf568e028f2b7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-lobby-order.test.ts": {
 		"size": 2585,
@@ -4960,9 +4960,9 @@
 		"hash": "12b0e6b6c2bbc2c7d002044a4147c0736ec93ffe90ad13bd2762d4c9455c69b5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feed-rating-divergence.ts": {
-		"size": 1022,
-		"mtime_ns": 1780467519664764800,
-		"hash": "2010eea517f1c75542495953fda7c2bdea18d274d181bc06aab133bf920cb286"
+		"size": 1061,
+		"mtime_ns": 1781245853344471700,
+		"hash": "055206dce8931609ea9da417ed4c62c80eba75e6f9aa29c41d8b838af7bed3c8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-home-leaderboards-client.ts": {
 		"size": 1174,
@@ -4975,9 +4975,9 @@
 		"hash": "6a4423a83864783c8b97839f3a53f39baac6c358e49ac6b1cb2484b09bf93235"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-me-profile.ts": {
-		"size": 855,
-		"mtime_ns": 1780472509613006400,
-		"hash": "64621dbde48e98e3a0b7c97a790a824817ceba45a792a17fe1bbd111b0447b87"
+		"size": 990,
+		"mtime_ns": 1781245853345662900,
+		"hash": "d1bd8cd4451293e06c18a26a6de1c5009ce41299834428cc3954ec2183490d95"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-my-watchlist-server.ts": {
 		"size": 1672,
@@ -4995,9 +4995,9 @@
 		"hash": "1cac948fcac4750f8472c14cb902f6d45f6ba6c193ab7f8ac858ca38444711c3"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-sitemap-lists.ts": {
-		"size": 613,
-		"mtime_ns": 1780467519668767100,
-		"hash": "bd48278433ab1d97f7705da85b1133002394e05e9c78205c378629b872938163"
+		"size": 744,
+		"mtime_ns": 1781245853346847600,
+		"hash": "2416f90d0dad30095a6b760f6712d974b100554d2b011dd0befb7d0690fc25b6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\go-to-dialog-store.ts": {
 		"size": 455,
@@ -5025,9 +5025,9 @@
 		"hash": "1b075b08e03db2faa4f18dde1f075d67f628facc154f18483196e0e372dd8d23"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-core-fetch.ts": {
-		"size": 5635,
-		"mtime_ns": 1780503909280544800,
-		"hash": "f8d3630673ffc752778ec1feb867cb11b588b3b62a0d0287d7a3bbbd1fb0c8fc"
+		"size": 5929,
+		"mtime_ns": 1781245853353833400,
+		"hash": "400c694e1d6ac1f273c46e45fb2c0f258d082a6df469a3dae54cf294c678b815"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-taste-matched-rail-layout.test.ts": {
 		"size": 494,
@@ -5110,9 +5110,9 @@
 		"hash": "88721014386cb40885eee0567a23735a24c05315ebfb67e4e4791e323cd3ee64"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-fetch.ts": {
-		"size": 2645,
-		"mtime_ns": 1780750442482024700,
-		"hash": "c3e3febfb199ff9b1c6f89a4bfb7c49d7ac607d88979e124ac596655da2218f9"
+		"size": 2567,
+		"mtime_ns": 1780750530718289600,
+		"hash": "404884da0a448557f6d0de71e7138001790083d5666387b025403222ae6461d6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-filmography-page-size.ts": {
 		"size": 132,
@@ -5140,9 +5140,9 @@
 		"hash": "65ae42922cfa40ec66a8a478399baf76100c467889e1a7da27d742e39b6f11d1"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-search-query.ts": {
-		"size": 490,
-		"mtime_ns": 1780467519688765300,
-		"hash": "4ad4939af203e47f39739d143e654e9b98c4f3527bfe68ccb7e2f9ad7cf7ef6f"
+		"size": 625,
+		"mtime_ns": 1781245853392093600,
+		"hash": "b824125fc3a677f6d1921cb4515c47488b87391ba59884752c5e5419f7863b32"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-deep-link.test.ts": {
 		"size": 543,
@@ -5185,9 +5185,9 @@
 		"hash": "bd46f5481aec40a5b7c01fe8f057724543235257559c584ba164cc547c39eb1e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts": {
-		"size": 548,
-		"mtime_ns": 1780467519694767400,
-		"hash": "ac1726497d5cda4e6a2ca856060c58340a667e5afe53a049e0c6d8f132770897"
+		"size": 677,
+		"mtime_ns": 1781245853413657300,
+		"hash": "1ab03a80acb399e2616d4c1bfee991bb2ab47e31111bad9b7f1f576b4ae1d0a7"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-suggested-patrons.test.ts": {
 		"size": 574,
@@ -5665,9 +5665,9 @@
 		"hash": "e7b7546d98b3aaa13298019313431f134273cc927d6e0cb9e9a023c8518c355c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\fetch-public-diary-community-stats.ts": {
-		"size": 1987,
-		"mtime_ns": 1780643678616276400,
-		"hash": "5e40e1592c7da38bab5fb30a720f1d18a2e341cc9b81204483367956d328f65c"
+		"size": 2021,
+		"mtime_ns": 1781245852980323400,
+		"hash": "d3144626bc524ad54825e0919e18b5d42b71ffcd718857897c721e416475300c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\leaderboard-query-annotate.test.ts": {
 		"size": 1044,
@@ -5675,34 +5675,34 @@
 		"hash": "bc3ba67a50f6011091a4f13fc107ef6c0940b0c95f6c6bed7b032977ed687161"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-nav.test.ts": {
-		"size": 1970,
-		"mtime_ns": 1780643678633793000,
-		"hash": "f63204ac2d5f69713c5838f7fff7ba00b36b5349f2ba6e44df82a4e3d10585c4"
+		"size": 1936,
+		"mtime_ns": 1781245853188786000,
+		"hash": "0e6a728ba9e4aa6d4bf03fdbc736642c3606aa4b8ebafa1a23548900086799ab"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-nav.ts": {
-		"size": 1307,
-		"mtime_ns": 1780643678634793700,
-		"hash": "672bb0100795aeb54ea366076e991a998ba513da48f0399c342bbfa5693d3989"
+		"size": 1235,
+		"mtime_ns": 1781245853189986600,
+		"hash": "b57154cb0ebccbc15f0a22056348897e1ade4a13dcbc61c0e1cc55c3d31b3ef8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-tab-bar.tsx": {
-		"size": 4734,
-		"mtime_ns": 1780676719944594900,
-		"hash": "1dfa0b68a0a3086d2fdab53a7025a35488dee0c988a900a5f22c240082972a0a"
+		"size": 6638,
+		"mtime_ns": 1781245853191143700,
+		"hash": "38b88cee1a3e9f8ca63cb0b4fbc0c025e21505c6f3b5cd6555cf90d6969b11df"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\mobile-you-sheet.tsx": {
-		"size": 5759,
-		"mtime_ns": 1780662896950368900,
-		"hash": "867fc03d38ae90eb92ed9bbef1052221991b48e3c1292b0a831edc92c2282d03"
+		"size": 6705,
+		"mtime_ns": 1781245853192865500,
+		"hash": "d27c4f98846f9e75b5255b77a6038f761ceb23e2cb062a64ed8ceec882cac8be"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\nav-user-avatar.tsx": {
-		"size": 724,
-		"mtime_ns": 1780643678636792100,
-		"hash": "64c6bdcd690ffec6cf0b6a3fb3817fa1361ba280913130e1398112f36aeb26c8"
+		"size": 1030,
+		"mtime_ns": 1781245853193435700,
+		"hash": "2832526087e461bc2df5ecfda93bf491b1cf07a4f5ac1348213535e54afaa963"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-activity-infinite.tsx": {
-		"size": 2520,
-		"mtime_ns": 1780502757152206500,
-		"hash": "f6a16b4276afcb7f05541b40db8b4ef4b8552614d71f14c45775c2530292b6ad"
+		"size": 3061,
+		"mtime_ns": 1781245853210929100,
+		"hash": "9af44f84f51c93db40e7e4fe2a214630c670e28ddad61db1ec1d8c8db4de5a5d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-infinite-footer.tsx": {
 		"size": 1265,
@@ -5720,9 +5720,9 @@
 		"hash": "9ad4d43824f009363f6d0ee31b92d95c517e7173640df23ffecf11b255d6b23d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalogue-search-infinite.tsx": {
-		"size": 6053,
-		"mtime_ns": 1780643678642792200,
-		"hash": "794e344555a7e4ef1c91ed469fe999d50898564e8adae341f9c8589352899f2e"
+		"size": 6647,
+		"mtime_ns": 1781245853216687300,
+		"hash": "b49c334ef89c471888c69472d73dc1f96c65cd4d2a5247126cd312c37abee480"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-watch-ledger-order-chips.tsx": {
 		"size": 2914,
@@ -5750,14 +5750,14 @@
 		"hash": "e5c3214c8ec7000a98a1051b1443c0e90dbacfed831fb59e5e946ab5b97d21a6"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.test.ts": {
-		"size": 6628,
-		"mtime_ns": 1780643678663795000,
-		"hash": "571ad32fb13137caa08290c7f14ba9c454d5d1d714c27c603c123deeb0214a0e"
+		"size": 7252,
+		"mtime_ns": 1781245853349165400,
+		"hash": "aa8ee5fe5a569f1dd95b9f27e48b2a63afd2d083d1a8596a3a21ed2295ffbfae"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts": {
-		"size": 6021,
-		"mtime_ns": 1780643678664793000,
-		"hash": "ee5f6072634cac2fd7c0bc578005c9a915dc66c19f4662416c20bbbb32b86592"
+		"size": 6383,
+		"mtime_ns": 1781245853350354500,
+		"hash": "9b1c6292ce5e7dab1acb8237d4354b16bcf58a70a8339dc7cddfcb98c97211c8"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-watch-ledger-order.ts": {
 		"size": 1312,
@@ -5870,9 +5870,9 @@
 		"hash": "56bf20f9e00da2426b5b56d6ef89e22fd7d3f258d1b5d3d7b0ece3d3fc3eaa8b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\imports\\page.tsx": {
-		"size": 174,
-		"mtime_ns": 1780648327336363700,
-		"hash": "45b18358ef2c9e36df39e0e96ab6d1cc43e7e34fd498cb908a1a023f25c4a6f3"
+		"size": 218,
+		"mtime_ns": 1781245853153775900,
+		"hash": "7526d86a98ba24a3b7bfb048e933a688b6c892125c77fd4e86fa68048e906fcf"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\notifications\\page.tsx": {
 		"size": 192,
@@ -5890,9 +5890,9 @@
 		"hash": "ac0f3248ebe0a20ddf37c9c0778ec03f8baa119677227d9014c64ba78622bacf"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form-context.tsx": {
-		"size": 21593,
-		"mtime_ns": 1780676720066133400,
-		"hash": "31c1e292390d72f062b733e8c5f79f6556d6f3b0efbe367099123c2ff33dc3d8"
+		"size": 25249,
+		"mtime_ns": 1781245853296735100,
+		"hash": "829d5bc06d1a7bebfe3ef390f1b0707175ef8424b6f6267c07bbc662f5d51d89"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-form-shell.tsx": {
 		"size": 716,
@@ -5900,14 +5900,14 @@
 		"hash": "d8fad45ffa18e8c42013e9ce324148edb46704f27b82e3c8ac511c7fb19388e9"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\settings-section-panels.tsx": {
-		"size": 11623,
-		"mtime_ns": 1780676749021680100,
-		"hash": "bccb9818513a56795c7da64ffab2abc352151775815db9c537c4942fff0de65a"
+		"size": 13289,
+		"mtime_ns": 1781245853297870100,
+		"hash": "5fce208cbfb7cdf21f1a4c86c9dea5b4b9a1ce7659f336dd4aa618af17de5b8e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\me-account-nav.ts": {
-		"size": 1603,
-		"mtime_ns": 1780676333973766500,
-		"hash": "ea7121cf2c2a55d01b41e03669f4088e6cdc367cd152b63a116a115711c7c2ed"
+		"size": 1860,
+		"mtime_ns": 1781245853364632600,
+		"hash": "f6774d652efdea8e57e6e20c7aa9bea5f4510a0976cc8c9d3aec9e73618b6dc2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-stat-cell.tsx": {
 		"size": 1123,
@@ -5930,9 +5930,9 @@
 		"hash": "8508593d204c02b782ce4f66ae272fc744dd22a3e7e35e6cae2c4719a540cb4e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-releases.ts": {
-		"size": 2127,
-		"mtime_ns": 1780741246409032900,
-		"hash": "4dafa6bab25dd3c6c72f49fccbf4ff3c8b28557e307dbed6886c00e6408be8e1"
+		"size": 2105,
+		"mtime_ns": 1781245853424937300,
+		"hash": "f7230033612a9f0d66094f4a93d63c428189222d3dfb66ca26ded7165dff4870"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\whats-new-seen.test.ts": {
 		"size": 1258,
@@ -6125,9 +6125,9 @@
 		"hash": "0755f04813dbc8aec5799859c68d8ee358611df96004210a91ac4298742da665"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-media-customizer.tsx": {
-		"size": 7231,
-		"mtime_ns": 1780676719997234600,
-		"hash": "8a37956ffcd4c7e98469f55a10391759d73c40af916b5d0329a0b08eb62906c1"
+		"size": 8032,
+		"mtime_ns": 1781245853290510300,
+		"hash": "b77d14c81bebba72adb6f1a6157fb53efb3dc7691ca0fb0840a47ed37d648be0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-icon-tooltip.tsx": {
 		"size": 789,
@@ -6140,14 +6140,14 @@
 		"hash": "b209e836baeffed3468093d311dd32fc9c4fe1e5ec04847ca7d0b0ec1bbfc002"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-reviews-carousel.tsx": {
-		"size": 11565,
-		"mtime_ns": 1780741246397814900,
-		"hash": "55fcc81ca8a24e7cfb59d8e6ff7df1dbc3b1449f4204422e878e617d78ca5c8d"
+		"size": 14245,
+		"mtime_ns": 1781245853260664800,
+		"hash": "d17ca2ad091144899d38568ee50e9bcbc110242f33dcf046ee738a5361322bf2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-stills-carousel.tsx": {
-		"size": 11529,
-		"mtime_ns": 1780741246397814900,
-		"hash": "59f3d06bf251723ea96ec7fb619743be5081adcb0402234ebf7b7642126a11ad"
+		"size": 7917,
+		"mtime_ns": 1781245853261244400,
+		"hash": "c7f578726eb90699051202620cf1231d7f70e659ac1e6989938d5506e1124169"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\review-quote-mark.tsx": {
 		"size": 1261,
@@ -6155,9 +6155,9 @@
 		"hash": "664c979eee32dc8cce804c28643051000150210157b4b879e0be94272932b9f5"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts": {
-		"size": 8866,
-		"mtime_ns": 1780741246403033100,
-		"hash": "7488f0d7f858eb34435e357ba4cd2ea6de30af2228c3a38a3819d5808fc77cae"
+		"size": 12634,
+		"mtime_ns": 1781245853339255700,
+		"hash": "9778fd8340f3e88c4c820fdaf4c00f34f73a79e951c1a959cb4bdd2e57caf411"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\download-tmdb-image.ts": {
 		"size": 1224,
@@ -6165,24 +6165,24 @@
 		"hash": "3b800a3f6492a5965459822555a7347e42ee4df130d05a887ffbdefac65a473c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-body-gate-mode.test.ts": {
-		"size": 1874,
-		"mtime_ns": 1780745928856743200,
-		"hash": "ff24fe335ba5f7a79a125b5707c422f9ca11580fb29193cd73b990b4ebfa6e7f"
+		"size": 1802,
+		"mtime_ns": 1780750530691283800,
+		"hash": "2501ad6d741bd3b01fd4bf009a1457c2c40253496313515e37e2530cc5671f3f"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-lobby-body-gate-mode.ts": {
-		"size": 1254,
-		"mtime_ns": 1780745926385155000,
-		"hash": "cc19f7d066651f1ad6478a3aa80ad70843e09beaf5cde55f89d0cb88b51da851"
+		"size": 1218,
+		"mtime_ns": 1780750530689283700,
+		"hash": "4dbcd9eaebb204b848ff93e70018a2067a3e8b6cab2b02e4f3ada78256c96679"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.test.ts": {
-		"size": 860,
-		"mtime_ns": 1780741246407033100,
-		"hash": "c44479238a9ca42dd4aa30986addee4f1fcfa0becf3fb69d8509b47aa60015b9"
+		"size": 1574,
+		"mtime_ns": 1781245853379675600,
+		"hash": "f88f761b9e79bda52ff4e001b54d6b73ba947c9b8e649ec1052db9650247388d"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts": {
-		"size": 5324,
-		"mtime_ns": 1780741246408034100,
-		"hash": "e9b235534adeabc978fb6adaa3a3cddd6329746f83edcd390a282701b852a895"
+		"size": 15418,
+		"mtime_ns": 1781245853381425300,
+		"hash": "83eb5c7696a60a154eaa4b11016cdd413f4936daa0c56b3b9c4b886b0d35dca0"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-community-first-load.md": {
 		"size": 1477,
@@ -6200,29 +6200,29 @@
 		"hash": "1a24556c8b5a286f9ec3b96dc83b97b75d0e1f01b41bed1909d57f445390497c"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-recent-searches.tsx": {
-		"size": 3457,
-		"mtime_ns": 1780742994730066800,
-		"hash": "5f6a7e01c9bdc2213f330858b430096acb22c0631afd49819c0c028e3c555a3e"
+		"size": 3430,
+		"mtime_ns": 1781245853233493100,
+		"hash": "8e295546144349641b87ecabe610b599473b1126589259f0d396fa7ce3f4096b"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts": {
-		"size": 1865,
-		"mtime_ns": 1780742858767082500,
-		"hash": "7213b77a0025a2ee2ae001f29772661a68d9999e11df3304f073bb6d154ebb0e"
+		"size": 3131,
+		"mtime_ns": 1781245853418368000,
+		"hash": "59820e40d857ae4b74a8eae73ef8b4a83a7ae44d2f9b5ca3e001ac6fb000bc16"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-catalog-filters-popover.tsx": {
-		"size": 8052,
-		"mtime_ns": 1780745681209524600,
-		"hash": "e67727da1cb88a27045dc03fe97439138d287efab336151c6b831848f4ba4b3c"
+		"size": 10017,
+		"mtime_ns": 1781245853213837500,
+		"hash": "5dd41b4e5162a76b14cf0b38059a021eae2ceb95352fb901a8918c06a259cd30"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-filters.test.ts": {
-		"size": 2991,
-		"mtime_ns": 1780745451930742200,
-		"hash": "bbff022e194e8e3b8b85e39dd9e13d8a2e69663bfb30d339d9d7edd6db953980"
+		"size": 2779,
+		"mtime_ns": 1780750530668249900,
+		"hash": "a3e8b58f31e1202c424b820a88fdbbf4e7e3b8ca251b6f79e19c146ff013eaac"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-filters.ts": {
-		"size": 3707,
-		"mtime_ns": 1780745442166099900,
-		"hash": "afc26729e0997958217d1bb781b23a54e212888e79a481bbe386819f156e3cc0"
+		"size": 3502,
+		"mtime_ns": 1780750530666250100,
+		"hash": "d7bd7486fc52f18fdb281ac0b23aac57725578c236c46fe5a74fb82eadcee6a2"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-home-catalog-filters-popover.md": {
 		"size": 15932,
@@ -6235,19 +6235,19 @@
 		"hash": "1d67697e54e343fbde13274c47318db65501af81f7ac06000abf1f396cc84007"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\list-detail-poster-tile.tsx": {
-		"size": 13045,
-		"mtime_ns": 1780750247632634000,
-		"hash": "755db85f66772bd6decf4f121443d518a1b34876916e0e40869961eadbb4c527"
+		"size": 12624,
+		"mtime_ns": 1780750530669249300,
+		"hash": "fc1634d9df75d59fa2856e2698e8ca7d03a91909189967bcadce3b8861a88c96"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-radial-items.test.ts": {
-		"size": 3011,
-		"mtime_ns": 1780750226178031000,
-		"hash": "40323e2d8bea6ebc5ca34b368497459c22190cb928d0273d5c08b90e8a8a913d"
+		"size": 4242,
+		"mtime_ns": 1781245853359497000,
+		"hash": "952c682e7adc5634908c2dc261e3f14e7b1cbb437af09d7e7a606a88f31c6402"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\list-radial-items.ts": {
-		"size": 2542,
-		"mtime_ns": 1780750223749502200,
-		"hash": "6b9c59e03102f84c7d81baa088538435d011c25e984aee2f3135f1f49984ec13"
+		"size": 3416,
+		"mtime_ns": 1781245853361405600,
+		"hash": "11c1abc9ff8d285bf8f0f19df791ff10e8c317f096e7d60c4646893e9891300e"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-list-detail-radial-design.md": {
 		"size": 10625,
@@ -6255,8 +6255,1018 @@
 		"hash": "3bffa8d7552cb30107f85b496364fd265d2ca756cdbd393da085bc277493d8bc"
 	},
 	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-filmography-poster-tile.tsx": {
+		"size": 13403,
+		"mtime_ns": 1781245853286012100,
+		"hash": "bea0dab7cf7efee59f7e31c8198860f904dca62c775b0c2f1146a4cd0894349a"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\set-owner.ts": {
+		"size": 837,
+		"mtime_ns": 1781245852968728100,
+		"hash": "e1dd77237a374221f2c4d2cba97ccf1e899716fc014f05ddff124d2d3efe7808"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts": {
+		"size": 3706,
+		"mtime_ns": 1781245852970028200,
+		"hash": "8fae907cbaa30f16822c21e8d0ea8933eca20f247552a6453ead21756ee62646"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\comment-reactions.ts": {
+		"size": 2217,
+		"mtime_ns": 1781245852970725500,
+		"hash": "b0f3bd195957139924a4e959ff98ed50a3e819f431aeddbefb451f8726ea4e45"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\diary-metal-tier.test.ts": {
+		"size": 1063,
+		"mtime_ns": 1781245852974326500,
+		"hash": "e4245140fe57e1a9348829fccb32c759d1f78ec8b492b7fa621507eeab331331"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\diary-metal-tier.ts": {
+		"size": 1306,
+		"mtime_ns": 1781245852975018300,
+		"hash": "7877688babd71560d55c3d437067c5d7bb8417d430cb33d2f74ba4ff409faad5"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\feed-items.test.ts": {
+		"size": 2748,
+		"mtime_ns": 1781245852976205700,
+		"hash": "2fb9751584864bdef1994632ae6cf4c2f76ad57a50190517c0b5796ff6197d8b"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\forward-auth-set-cookies.ts": {
+		"size": 943,
+		"mtime_ns": 1781245852980910300,
+		"hash": "ccf5293778c91d7584095c9e78dca8bf4feced06d485c013c52d45f0a6eeef4e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\handle-re.ts": {
+		"size": 164,
+		"mtime_ns": 1781245852983288500,
+		"hash": "ec738ec0ac844f6cd5136a98edccc4c880576851fa90387694f344c357daf81b"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-csv-parse.ts": {
+		"size": 1277,
+		"mtime_ns": 1781245852985124800,
+		"hash": "47969d430d302e5952613e5fddc118e0cfa91cfed9c9e94cd7ca4b2b226223e9"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.test.ts": {
+		"size": 1361,
+		"mtime_ns": 1781245852986923600,
+		"hash": "0444f9ab147081435508cd114392c7365a7a88ecc0b862b3631fd52520b9b323"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts": {
+		"size": 1006,
+		"mtime_ns": 1781245852987513000,
+		"hash": "82fc443dcdd34d4affcc3906e1eb95d8e979332e0e4e2f588fa5489d033c0296"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-import-apply.test.ts": {
+		"size": 2519,
+		"mtime_ns": 1781245852988673700,
+		"hash": "e570cdfb1d58efe72b967406fef3670cd289bc6e201cbd1ff72dc5d76ec2032b"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-import-apply.ts": {
+		"size": 16323,
+		"mtime_ns": 1781245852989331100,
+		"hash": "f185fb80781a91a66d55ce1273363a1c9a2070dd3de871f9853a85ef13bbaf02"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-import-log-resolve.test.ts": {
+		"size": 1132,
+		"mtime_ns": 1781245852990058000,
+		"hash": "6b5962aec2d04e1d8ef54a8d4f9e2265ab10f94d83747b04764d6747df4f57a5"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-import-log-resolve.ts": {
+		"size": 3576,
+		"mtime_ns": 1781245852991297400,
+		"hash": "5a87b7ead728858d0dc720dfb78c46f7d2bb6276938cede98e4761dbc6b817ee"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-likes-csv.test.ts": {
+		"size": 549,
+		"mtime_ns": 1781245852991896900,
+		"hash": "e55b39d3b76e7adc043d214803cbc7cf4f62def24d1f3623cbdfe87c967af672"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-likes-csv.ts": {
+		"size": 1471,
+		"mtime_ns": 1781245852992482100,
+		"hash": "4496f4d576a6d1d78a4cbdd497d9d33423028dfc8985c2b28fee9128677e38e7"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-reviews-csv.test.ts": {
+		"size": 1016,
+		"mtime_ns": 1781245852993067200,
+		"hash": "a36d459f8f93e689cd7758d7260b30b0c712301f77b78be5174ac069f04bbbff"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-reviews-csv.ts": {
+		"size": 3174,
+		"mtime_ns": 1781245852994238500,
+		"hash": "0b7ab19527efb252d7ea933b02a00a09fb9da4b58b941ee518b69b1684e4a90e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-tmdb-resolve.test.ts": {
+		"size": 1244,
+		"mtime_ns": 1781245852994819200,
+		"hash": "faee8e685bbbcddb077c46ba7dfa28b414276a7f0938b19467e905f859bc78b9"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-tmdb-resolve.ts": {
+		"size": 4639,
+		"mtime_ns": 1781245852995982100,
+		"hash": "f9552235e381d28dd9350cdcfb70d27ab7c446249209d62d4264d66576f3b6ca"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-watchlist-csv.test.ts": {
+		"size": 559,
+		"mtime_ns": 1781245852996577900,
+		"hash": "79922a35298dd9378655554608d4965a9b03d4694d12271d129b8167d3d163f2"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-watchlist-csv.ts": {
+		"size": 1471,
+		"mtime_ns": 1781245852997172700,
+		"hash": "9f7e49940ea43d03fb4a9b29f83b919204b772cea45a36062506d0f6a07f93f6"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\me-export-csv.test.ts": {
+		"size": 2364,
+		"mtime_ns": 1781245852999510500,
+		"hash": "6d0929c626732ca620600259292400c4d2395d5a13cebcdb52a0490817b66e84"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\me-export-csv.ts": {
+		"size": 1885,
+		"mtime_ns": 1781245853000667200,
+		"hash": "174b71a28a8b3a5d22b6dc3390f63e0e3eca7e3b99e0a7e249234b30015f65ae"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\me-export-data.test.ts": {
+		"size": 8602,
+		"mtime_ns": 1781245853001259500,
+		"hash": "3ce67fa243e2bdd294617a049f019681764eade0d2f57fc204adcf554201fd61"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\me-export-data.ts": {
+		"size": 17858,
+		"mtime_ns": 1781245853001863200,
+		"hash": "ea72bbd4a144b9f08228f6a6f5647de93ac80b21acf49d49319511ebd74788a1"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.test.ts": {
+		"size": 1785,
+		"mtime_ns": 1781245853007229700,
+		"hash": "11d28526f3dec22486c8a869993431accce21fd7d804d91056a68fbc1ba35ef5"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts": {
+		"size": 2850,
+		"mtime_ns": 1781245853007811800,
+		"hash": "c639a9023583f9209d64b1e5cb3d3f73d4034fd53d138b892e2620b7cee06368"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.test.ts": {
+		"size": 1298,
+		"mtime_ns": 1781245853010765200,
+		"hash": "f4a2dc3efee4e173288f906a7c245f7d2eaccbaaca998adac02259d1373c4d92"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts": {
+		"size": 905,
+		"mtime_ns": 1781245853011394200,
+		"hash": "1ec001ca08c7f64c77f6996e7ee8272d56c70d22de10558302b8d15262698886"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts": {
+		"size": 1673,
+		"mtime_ns": 1781245853012005700,
+		"hash": "97c11855d012330567c98b76b58bd955e9c0b23ff83674044cc51d2434b88d60"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-reactions.ts": {
+		"size": 2187,
+		"mtime_ns": 1781245853013225000,
+		"hash": "42f337e0a95a556c6cd921b29a1f43bf234c73a5e930d1a6016a48050d4d1690"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\role-change-notification.test.ts": {
+		"size": 1964,
+		"mtime_ns": 1781245853013825800,
+		"hash": "f949c20f4e0c0882e544f3e666a2c29b339c74d677913fb7e6fce66e20ffb24f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\role-change-notification.ts": {
+		"size": 2836,
+		"mtime_ns": 1781245853015031300,
+		"hash": "9e18be9a6397a1d0c8b29b1c468209f285c4270e00a5a513e6d859818e13cf5e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-audit.ts": {
+		"size": 664,
+		"mtime_ns": 1781245853017446000,
+		"hash": "8af3634ea1818e94b26923620a333698aee825457fe10e1c1c09e31c7b0aa0c8"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.test.ts": {
+		"size": 984,
+		"mtime_ns": 1781245853018031000,
+		"hash": "b5d740f1712fcbcf24814c4a8064d94817c420adcd1cacade3d45f4ecf1240bc"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts": {
+		"size": 698,
+		"mtime_ns": 1781245853018631400,
+		"hash": "82a9c4cd5b2cb7bf88745370b1ba41a6fe43dcbe78c21942cc185e5bed551d36"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts": {
+		"size": 2074,
+		"mtime_ns": 1781245853019215700,
+		"hash": "eddcd44ac7ad2a38c51c1a88552c38c1e3285c3ffcc3f7127bb8ffe0d2c232ab"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.ts": {
+		"size": 1086,
+		"mtime_ns": 1781245853019796200,
+		"hash": "feab5c89ce9e38b36f3e423b5e4c54dfa313578999289157ac82ae96f8f4aa3f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-stats.ts": {
+		"size": 1620,
+		"mtime_ns": 1781245853020957300,
+		"hash": "86e57d072899b12520d451f0bb85dcdb3e3db3f5415ea5f6265f2016f7da7f53"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-dismissed-movie-store.ts": {
+		"size": 1932,
+		"mtime_ns": 1781245853022803200,
+		"hash": "320e9d6c2e37d5b9c4f44c64b89ca8e174240d50ee24be2be07075d6e327861f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-dismissed-movie.test.ts": {
+		"size": 826,
+		"mtime_ns": 1781245853023394000,
+		"hash": "04b3f63d56c8cf83c701fad50fe28b42eef94d6fab2e583ef0e850d66f146de1"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-dismissed-movie.ts": {
+		"size": 1776,
+		"mtime_ns": 1781245853024581600,
+		"hash": "3b60e9985c87ea394c36e4ee2d4145180885fc436f76210c25ba7ce5c1728e21"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-neighbor-discovery.test.ts": {
+		"size": 447,
+		"mtime_ns": 1781245853027552200,
+		"hash": "af2bd6c511c5d80e167a336a1e4ccd9ad2198f85afd1465ae4ea74335e935399"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-neighbor-discovery.ts": {
+		"size": 5135,
+		"mtime_ns": 1781245853028134000,
+		"hash": "1d20876fe6dcf8418bab645e4abb1ed81881f99c2b4281b21540e5ca55030c9c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-profile.test.ts": {
+		"size": 2672,
+		"mtime_ns": 1781245853029327300,
+		"hash": "e8b4e5acf610130e3840110c8846dc034f61912c4eeeb8fbd673cbd17d4947fd"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-profile.ts": {
+		"size": 6917,
+		"mtime_ns": 1781245853029909700,
+		"hash": "79d202bfaf309b505a82d459525c3122d6ca8cc4549a97ce9fc12b7b47455fdb"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-scoring-math.test.ts": {
+		"size": 2403,
+		"mtime_ns": 1781245853031083700,
+		"hash": "219c9a7e6831cbb7996089a1091dd8c9bf159afa8addc909550251b8d2897708"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-scoring-math.ts": {
+		"size": 4901,
+		"mtime_ns": 1781245853031672400,
+		"hash": "f962436455e4dc6f88b28e470b7473c24a89d64ef38bbeb0a4c178a5ed0d7a19"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-social-candidates.ts": {
+		"size": 3031,
+		"mtime_ns": 1781245853032866900,
+		"hash": "40961a5204a0e1bc3a992a4920d694fe3523e0b6b31ab0b97e9fa5de9cde33dc"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\taste-stratified-candidates.ts": {
+		"size": 3453,
+		"mtime_ns": 1781245853033507100,
+		"hash": "90fb688c31dfc6a369617bedc7c6db66e84683216710d070f4a2e9e815d94c9d"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\me-data.test.ts": {
+		"size": 4165,
+		"mtime_ns": 1781245853045569700,
+		"hash": "a221714811f854494b6d2061cbe142b7ba0f43288b4e25d073574b7cdbacac4c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\me-data.ts": {
+		"size": 2965,
+		"mtime_ns": 1781245853046164800,
+		"hash": "3504e91e41616801f4b740fe65e2c2eb181becb3d52aa9c3c706326550c0cd50"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\notifications.test.ts": {
+		"size": 3250,
+		"mtime_ns": 1781245853047944200,
+		"hash": "3b0744ad6aaf1027df31581daf846753a4feffbcbe9396609fe0190d3acff516"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\posts.test.ts": {
+		"size": 4337,
+		"mtime_ns": 1781245853050334600,
+		"hash": "8ae071340dcfab9df34d97fda97f50529411c6027e35b9aff4fbd015434818b0"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\staff.test.ts": {
+		"size": 35793,
+		"mtime_ns": 1781245853055400000,
+		"hash": "e7e9d4a45d06e4ec313adbbd0638ab1fd4241ea8e9984ca204cedb20d462e418"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\staff.ts": {
+		"size": 16762,
+		"mtime_ns": 1781245853056597800,
+		"hash": "004d24805b70114cb2fa062940f0db565d6124311e600bef00369a33d38daf69"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\me\\settings\\data\\page.tsx": {
+		"size": 170,
+		"mtime_ns": 1781245853152606000,
+		"hash": "893fb061cd3737fdd1105ab663d8f01934fca39f097d82451a700f5d052c18d7"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(app)\\staff\\page.tsx": {
+		"size": 1256,
+		"mtime_ns": 1781245853158695700,
+		"hash": "d3f3b60c9193e0dbffe0242fb97968cd2a54a8c9a23cd6b051433236a36dcdc4"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(auth)\\forgot-password\\page.tsx": {
+		"size": 380,
+		"mtime_ns": 1781245853163323500,
+		"hash": "e607b799f7de1edccda63ba8b901c868d9035f4a1cb4ee63a0e6754010c6e200"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\(auth)\\reset-password\\page.tsx": {
+		"size": 384,
+		"mtime_ns": 1781245853163902000,
+		"hash": "4473d16771d454ce04cb9d9a2f4b50322e02dc139ac49a9ad0c05d907982599a"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\import\\letterboxd\\route.ts": {
+		"size": 593,
+		"mtime_ns": 1781245853165647300,
+		"hash": "0c74421a354c795c6f6eb344168005b8d98b381ff068c38c9af396b132e9286f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx": {
+		"size": 1453,
+		"mtime_ns": 1781245853167938300,
+		"hash": "e5fae5df73afae10b9fba85380f50e877d0491fb91ca0524ff55bb21685133bb"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\default\\route.tsx": {
+		"size": 335,
+		"mtime_ns": 1781245853171937800,
+		"hash": "e3e636853173f88aea9625f906a00bf4d529adcf64f884b8c1b18ed8c23c894f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\home\\route.tsx": {
+		"size": 732,
+		"mtime_ns": 1781245853173098500,
+		"hash": "3674b6f4e31a4bdf4d33be06ea505d746e7a0bccb4ef6d4eae2db116f2dd1372"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\list\\[id]\\route.tsx": {
+		"size": 777,
+		"mtime_ns": 1781245853174910800,
+		"hash": "4040f2cf8c008f2b6fab42119a42737869e8668ca5c0116b79b09726f705ab9f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\title\\movie\\[id]\\route.tsx": {
+		"size": 792,
+		"mtime_ns": 1781245853177196700,
+		"hash": "67ddbe1f95e5a338ab7d028eadf7c51e4812af77b811475c581b73c45d16cf7a"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\title\\tv\\[id]\\route.tsx": {
+		"size": 784,
+		"mtime_ns": 1781245853178331300,
+		"hash": "8edd7b2b473936aa7106d6efab1d0d67dc3e7be2c0a37a5c45df1279df937863"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\signed-out\\route.test.ts": {
+		"size": 842,
+		"mtime_ns": 1781245853181773900,
+		"hash": "111357ef94639a1d276fb9eb2b57bab50fa8461635eb877b23ed9e356cb6e8a6"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\signed-out\\route.ts": {
+		"size": 1056,
+		"mtime_ns": 1781245853182365300,
+		"hash": "8b0e00c12577b5bb52e6d9637940caa47307ca4a8bcf7941e46732c83e234a9a"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\public-share-shell.tsx": {
+		"size": 664,
+		"mtime_ns": 1781245853194578500,
+		"hash": "09e7d2f5c5f5254adcf50e9f6bb2f7dfee9eb859fdd5de857c4621a64f9a3d02"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\software-gpu-document-probe.tsx": {
+		"size": 287,
+		"mtime_ns": 1781245853195155600,
+		"hash": "3752624deae2ac3d32a4bc18e5e3e58dcaba635ee9c2a5d5cf1f8cde511966a9"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\verify-email-banner.tsx": {
+		"size": 2143,
+		"mtime_ns": 1781245853199783000,
+		"hash": "2ade92dc3fadc56d1455cda65080f75bbb536d6021f22ccd4bb6f37413eb96db"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\detail\\listing-detail-hero-synopsis.tsx": {
+		"size": 3402,
+		"mtime_ns": 1781245853202807700,
+		"hash": "ebc5767372a561676ab28727bfb57cd3c8467106e648a1812d22b0457963e957"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx": {
+		"size": 2363,
+		"mtime_ns": 1781245853211524200,
+		"hash": "4a646722398ccc6c08ed2823f1d108249e96f7f3702b20fadef25ae2c34034b0"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-chip-popover.tsx": {
+		"size": 1901,
+		"mtime_ns": 1781245853223619600,
+		"hash": "c5efcf44bd4f9fe352002e488fa80e65c39c7147f0cbbfb9b64cd7865149859c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-filter-row.tsx": {
+		"size": 2283,
+		"mtime_ns": 1781245853224221000,
+		"hash": "962b4b683ca2d9767fcbede7f43adccd5568796c03f0e457b4a28439529218f6"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-studio-logo.tsx": {
+		"size": 3256,
+		"mtime_ns": 1781245853234624500,
+		"hash": "342976ad0ae2bac555fb017aea7075f02b7a1df601a85bf1d363c571558b64f8"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\create-list-drawer.tsx": {
+		"size": 4490,
+		"mtime_ns": 1781245853241507300,
+		"hash": "6d38e8967605c9569b3d7302bd1a1bba374d4fdc5c607829241d9b20cd5fb2ff"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\list\\create-list-form.tsx": {
+		"size": 13186,
+		"mtime_ns": 1781245853242657100,
+		"hash": "00b883bcc2c80bc8070221ccb06d3259dd382aca427124a360eb385e1a2bf873"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-artwork-pasito-stepper.tsx": {
+		"size": 757,
+		"mtime_ns": 1781245853250273500,
+		"hash": "7c27326e4d92cd3777f2e5e71cb82d5cdd53f9481292436d05e0e0bd3155674a"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-editorial-rail-controls.tsx": {
+		"size": 2434,
+		"mtime_ns": 1781245853250923200,
+		"hash": "644bbc21430beb3ba4f305f57ab5e6b9315d8bd32c462a1b515966e78daca797"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-clear-library-dialog.tsx": {
+		"size": 2342,
+		"mtime_ns": 1781245853276909100,
+		"hash": "60f43b026dea87f74772d8dcfda32ecb402b006b443f3561a28203c01c33812f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-danger-zone.tsx": {
+		"size": 3243,
+		"mtime_ns": 1781245853277485000,
+		"hash": "5637f98290c2cdfa5ab0f3adde6dc3de70ea8c4792290477b424f8765e5d544e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-data-export-panel.tsx": {
+		"size": 4074,
+		"mtime_ns": 1781245853278047500,
+		"hash": "048fcf6f9447c187b66f9e398652237f798cfaf73b7a80ec5b404b2c4b87a5fc"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-delete-account-dialog.tsx": {
+		"size": 2152,
+		"mtime_ns": 1781245853278599600,
+		"hash": "50ec189007a742506ec2a1184cee36e5a3a8439e5b6febd404b188465443dfc2"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-destructive-confirm-dialog.tsx": {
+		"size": 8202,
+		"mtime_ns": 1781245853279742400,
+		"hash": "aad68a5125bce2da0162618bc2bbdd903f276e5b767acaa472580b456d21176d"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx": {
+		"size": 1744,
+		"mtime_ns": 1781245853283770100,
+		"hash": "43e75e7d5dab13f79714abadcab8f2ffdb452e2e5e2934410f2804de571f6c2b"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\use-profile-return.ts": {
+		"size": 966,
+		"mtime_ns": 1781245853299654700,
+		"hash": "4a7edf3ec49af8c4364dfeda2ca7e9205eaa8d7c51f3733637bb2c2cc519cfe4"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\use-settings-return.ts": {
+		"size": 708,
+		"mtime_ns": 1781245853300218700,
+		"hash": "a8b3fc716b3b08ae25102268fa56d97973f70fe22c47bff0ab692db28dfd7c15"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-body-with-mentions.tsx": {
+		"size": 3657,
+		"mtime_ns": 1781245853301353800,
+		"hash": "923051279541e2930568ac9598b8f8eb929b2242114dc35d0f3032c2e48738b6"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-editorial-patron-score.tsx": {
+		"size": 990,
+		"mtime_ns": 1781245853307059500,
+		"hash": "bf10b76a3b172b1f26e0192819f3b7777faa5572d80ca639baa921df878e6923"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-listing-mention-textarea.tsx": {
+		"size": 8824,
+		"mtime_ns": 1781245853308214200,
+		"hash": "c8a16e9243b8484ebfb6d556c0c689a5dd18b9c1df69734c8da9bdce63aa6822"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-reader-still-section.tsx": {
+		"size": 4603,
+		"mtime_ns": 1781245853309912200,
+		"hash": "ffa69a91fdb5ff5ab6ee4ef889e7043f973387fe3a6e21177e81d526ad0084c8"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx": {
+		"size": 1786,
+		"mtime_ns": 1781245853311045200,
+		"hash": "560a6d8a5a7efa1da63900e093fb268225595c3abafded18492c80b9c096e6ae"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\impersonation-banner.tsx": {
+		"size": 1656,
+		"mtime_ns": 1781245853315082600,
+		"hash": "9e653257d04e63cb1cd44a1011a7ff220ac766767d4410471cabd59cd6555ea8"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\role-badge-pill.tsx": {
+		"size": 723,
+		"mtime_ns": 1781245853315645500,
+		"hash": "5be8cb53d5b76094418af7666146010521fb2d3cab4dae0da1e7f269988a8bd4"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\role-change-dialog-root.tsx": {
+		"size": 1946,
+		"mtime_ns": 1781245853316834600,
+		"hash": "97321f06fc4841edbaf03e7a64708f8521096a7e1301953bc65d5503ed0dff82"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\role-change-dialog.tsx": {
+		"size": 4730,
+		"mtime_ns": 1781245853317397200,
+		"hash": "d9bbe477c6784f5e69faeee521f3ebded5e4b04df457dc7ea177338473295397"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-audit-tab.tsx": {
+		"size": 2505,
+		"mtime_ns": 1781245853317963200,
+		"hash": "c6375dbae9fa27ad68ef9e29bcfcfc32cbd1071a9deecea57229d9c5bf153c37"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-content-actions.tsx": {
+		"size": 2879,
+		"mtime_ns": 1781245853319100500,
+		"hash": "354bbdb4cd8d3b64a62f64817734d0997c8a3dcfe9f9a7a978037b1d0bc3b2ee"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-user-detail.tsx": {
+		"size": 8540,
+		"mtime_ns": 1781245853320251700,
+		"hash": "6f06bf784a3afce002e878feb26d381622e480c71d735e2d4ab83b85af95a10d"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-user-edit-form.tsx": {
+		"size": 6843,
+		"mtime_ns": 1781245853321375900,
+		"hash": "cfd0f31fca1496462bc70086902b5f959239c28cd356dbfd8c6e76b7312c06d1"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-user-notes.tsx": {
+		"size": 2889,
+		"mtime_ns": 1781245853321937300,
+		"hash": "1e13b94f7e909b907f98d56a3a107386723a62a93809e4e20002fd9fe50e05af"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-users-tab.tsx": {
+		"size": 6863,
+		"mtime_ns": 1781245853323069800,
+		"hash": "f406aa13526f72e2fa03f46ac91d9dabaf1b0c4a33fada23fbd832781448c420"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\modal-sheet-scroll-scrims.tsx": {
+		"size": 1066,
+		"mtime_ns": 1781245853324740500,
+		"hash": "2580f4a46847b93196cebffd1cfef3cd4d2d216a83e1dbf387d74c200c420b03"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\ui\\transitions-modal-layer.tsx": {
+		"size": 3216,
+		"mtime_ns": 1781245853325306200,
+		"hash": "e0334bbfb033fc54a6ac2544845d3522515bb28a5544f66e7aa2d0a33b593d6b"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-feed-timestamp.test.ts": {
+		"size": 946,
+		"mtime_ns": 1781245853330038700,
+		"hash": "cf95e1cfc981dd88aa5a00f588b6d67592df359c3c0159b0920e57d2ea684bcb"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\app-mobile-vaul.ts": {
+		"size": 833,
+		"mtime_ns": 1781245853330613500,
+		"hash": "cc1d857879021a2a5bd3b20a3c3fb25dbc9df6d834ac2061594722c6a071b02d"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-chrome.ts": {
+		"size": 2717,
+		"mtime_ns": 1781245853338128900,
+		"hash": "01d89515b10270d4352bef74304b7954cb2dff0242206778171818ef27627151"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detect-software-gpu-rendering.ts": {
+		"size": 931,
+		"mtime_ns": 1781245853340935700,
+		"hash": "728f7819ba234fe679242359b166272d85f660880c019e68e12c8d153cc30b1c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.test.ts": {
+		"size": 890,
+		"mtime_ns": 1781245853341496000,
+		"hash": "2d897ef24e26508258e1724a0a4a99e625378cdd96d9ae99f7a810a0d5c41ee8"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts": {
+		"size": 1022,
+		"mtime_ns": 1781245853342123500,
+		"hash": "8dc4ec3f364a53bdb180eb32a00fc80dab2df23f909e674e58c612738ba51e22"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\email-verification-error.ts": {
+		"size": 448,
+		"mtime_ns": 1781245853343282500,
+		"hash": "c50dd0c81105bcb1491f1fc4bb1dac6c295026501aad19a596e779fe598416eb"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-activity-sort.test.ts": {
+		"size": 1241,
+		"mtime_ns": 1781245853350941000,
+		"hash": "68ea5d885ed2e48adfe7df5fac2183aa983246c616d8b052c705b67329200617"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.test.ts": {
+		"size": 1261,
+		"mtime_ns": 1781245853362051700,
+		"hash": "a65f94d0fe8e9e067b5a369b0e0192367f549b7a3aad02b98b8e9ba588fbc2f1"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts": {
+		"size": 989,
+		"mtime_ns": 1781245853363374700,
+		"hash": "e6bc5288d4d373f176e40a2e98e70a1be4ea8030cdeb451b54fe33c21e6ad53c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts": {
+		"size": 1133,
+		"mtime_ns": 1781245853365202100,
+		"hash": "ca4656d886813007e7ef4b5621e78bca72597da9d217c8982df26e7a0c7c4110"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\open-create-list-surface.ts": {
+		"size": 903,
+		"mtime_ns": 1781245853377053700,
+		"hash": "fca20330b6cc5a7fd3227df9cfe9b31d5b457020d797cf54ab66f2f94a7b1145"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.test.ts": {
+		"size": 1181,
+		"mtime_ns": 1781245853385841200,
+		"hash": "0284819a5272a0eb63ac527de2e25812b8bc1a447239145d800ee9be715ce5d4"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts": {
+		"size": 859,
+		"mtime_ns": 1781245853386875500,
+		"hash": "09f346dd4a128fd757ecd186a340599237c8c18330f93383d9d99006ca8c6b06"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-listing-mentions.test.ts": {
+		"size": 2198,
+		"mtime_ns": 1781245853392735400,
+		"hash": "cb9183686061d6d25e8e56bc488763f32623c279047b3c1c231573a0e468d0b8"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-listing-mentions.ts": {
+		"size": 3819,
+		"mtime_ns": 1781245853394034700,
+		"hash": "09a1684f83a63a00b66c8938a88d392bd387ee4048267c4ab63a6986239001d6"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-spoiler-mask.test.ts": {
+		"size": 1175,
+		"mtime_ns": 1781245853395254000,
+		"hash": "ac3ee64700bde1ce6c125bcf123d43d82c417498d2e419e152e51d2e307dc294"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-spoiler-mask.ts": {
+		"size": 508,
+		"mtime_ns": 1781245853395838000,
+		"hash": "95f61190882dc8026ac06902bf5951a4b61dfde157a5f850796ee4aec1b6835d"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.test.ts": {
+		"size": 1576,
+		"mtime_ns": 1781245853397331700,
+		"hash": "69c263eb8db8dda1257ec2a3595ac558629ecd2088847eaa388579462afb591e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts": {
+		"size": 1104,
+		"mtime_ns": 1781245853398577400,
+		"hash": "f9cd4b2d5e67779d5c3f4abab8d0efe8797afa7bea48619ec7dedc60a3584869"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\router-refresh-after-mutation.test.ts": {
+		"size": 734,
+		"mtime_ns": 1781245853399760400,
+		"hash": "42112edc2de0615ffff7d63cf56cd988e7da9b4db63c2ca55b92cfa52725c7bc"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\router-refresh-after-mutation.ts": {
+		"size": 484,
+		"mtime_ns": 1781245853400344100,
+		"hash": "0e5ce6f967b1a0892980b06e87ad0b946a8c5fd5e44393902c50e23a1ec62514"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.test.ts": {
+		"size": 3532,
+		"mtime_ns": 1781245853401519700,
+		"hash": "ed7f59d22cca61068ebb76ddab89c928a27654a83574ae3e381c4c2115d8e391"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts": {
+		"size": 2036,
+		"mtime_ns": 1781245853402172700,
+		"hash": "f6a75cf18033ed68221e3750ac2ff356d12eb97dc6d88923d7fa0581830e4fe6"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\session-cookie.test.ts": {
+		"size": 741,
+		"mtime_ns": 1781245853407210000,
+		"hash": "32e27156cbe0b9fa34c88219c32bf7d79af9d9ebc1151122f51065dad6999178"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\session-cookie.ts": {
+		"size": 1058,
+		"mtime_ns": 1781245853407830200,
+		"hash": "8af6c8a44f78a69c105f6db712ca145e3803ea58a05aac896038000ad45b78fa"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\shareable-app-paths.test.ts": {
+		"size": 808,
+		"mtime_ns": 1781245853409023100,
+		"hash": "a5bd12c6d2f0d42d903573c6f0c98d9da412823b687b25319f9fafa28d47921e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\shareable-app-paths.ts": {
+		"size": 590,
+		"mtime_ns": 1781245853409599300,
+		"hash": "2278d37063d62bd0dc3e6f59e2b9dac441812b47a5c6006c87cec0f40c1635e3"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-error-message.ts": {
+		"size": 749,
+		"mtime_ns": 1781245853410760000,
+		"hash": "4574ff5c7c3bfa42c4750d333c80c15f9ceb70dc899b4e792abc00a2bdf76172"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\staff-role-labels.ts": {
+		"size": 607,
+		"mtime_ns": 1781245853411931500,
+		"hash": "25d340f1bb21b3e9436ee044def145873f3a4c2f1c661465648a19cb1b885dcb"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\textarea-caret-viewport.ts": {
+		"size": 2506,
+		"mtime_ns": 1781245853414809600,
+		"hash": "be10aa7c0772f3315432fbc829fc7583a6d4bbb04f3d5a2ff55ace310193b105"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-cast-crew-monochrome-pref.ts": {
+		"size": 1566,
+		"mtime_ns": 1781245853417177800,
+		"hash": "4ca0b49c1c47590c075ce75aa587015f7c6081dda8b27a72c476e5f8c30a55fa"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-listing-mention-search.ts": {
+		"size": 1862,
+		"mtime_ns": 1781245853419606800,
+		"hash": "51953272e42e81fe94d20b211a75708743eda49a1d42acec17f870faa086ece6"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-prefers-reduced-motion.ts": {
+		"size": 449,
+		"mtime_ns": 1781245853420213800,
+		"hash": "ef08fce8a02fc05a9a302b996b18fc50324100a05b46c6cfc5d61cf2d8be8813"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts": {
+		"size": 714,
+		"mtime_ns": 1781245853423178300,
+		"hash": "661183076ac3cf8c46a045f4d9b1a7303a34e38fbc8707db108fff132883b2a5"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-viewer-has-watched-movie.ts": {
+		"size": 996,
+		"mtime_ns": 1781245853423760100,
+		"hash": "396e7e38ec574b5569406068b2a4ee43a881fc3de6bd79f7a32dcca5ac2a084c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-backdrops.ts": {
+		"size": 1511,
+		"mtime_ns": 1781245853370712400,
+		"hash": "2888ecdffcd4ca9862e1faf9ecded8ca3cc38e37c3a7faeb8a2dcd6b2fcf436e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\fetch-og-list-cover.ts": {
+		"size": 685,
+		"mtime_ns": 1781245853371866700,
+		"hash": "8c0447d8a5e886fbea2c471226d254aa96e767bc05ea34ac55ed0e41fb1eef98"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.test.ts": {
+		"size": 1144,
+		"mtime_ns": 1781245853372564500,
+		"hash": "e8a9eec2fa4a0001aaaec9a65dc31b5f3d5b4d4ef28ea30d871f1aa21721b756"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts": {
+		"size": 1662,
+		"mtime_ns": 1781245853373790900,
+		"hash": "c92288520fe3c7299cd19456fa5d61c2112a9fac926ebb331cddb69d7c11fdab"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx": {
+		"size": 2599,
+		"mtime_ns": 1781245853374298300,
+		"hash": "59126a834475285d0daeec7bdf90eb5303b0b81482282eef3e6abb92652f6c1e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.test.ts": {
+		"size": 1883,
+		"mtime_ns": 1781245853468227800,
+		"hash": "bc60f9e3321a0e56736e6e44d11f57c573700f4f352c1a9bf86df9ba41cb8f3f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts": {
+		"size": 2143,
+		"mtime_ns": 1781245853469466400,
+		"hash": "2b91a135f12bcb9f406cf32af25c3948734728f550f41a29aca934dc5aeae29f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.test.ts": {
+		"size": 4675,
+		"mtime_ns": 1781245853470703700,
+		"hash": "49147ac39b69720472acada1c67d7d954b612acc551c266ec8c78338bc11e91c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts": {
+		"size": 2865,
+		"mtime_ns": 1781245853471304000,
+		"hash": "d612da69b34ccbc8dfab4411d835553dd732fa51532e06f094b2036ec4b935dc"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\delete-account.tsx": {
+		"size": 759,
+		"mtime_ns": 1781245853459960800,
+		"hash": "b59d9ce4736e1cd1f3eea614f41e96b041c5df91d07796b6502f4accb2a09e6e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\layout.tsx": {
+		"size": 1822,
+		"mtime_ns": 1781245853460547600,
+		"hash": "3c5684af333ba354a24d7a2b7a4b657d904f0be3639712e9b4547dead3116778"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\render-email.test.ts": {
+		"size": 643,
+		"mtime_ns": 1781245853461717200,
+		"hash": "4f3ccdd0c05b1816c9cada37c932817a53271de7f5ce4cb82ad2617ead9ec6fe"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\render-email.ts": {
+		"size": 445,
+		"mtime_ns": 1781245853462291200,
+		"hash": "54c28a2081a4352cb0b068876b85ff209c422bd918d29f7eeb10458e4219388f"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\templates.test.ts": {
+		"size": 994,
+		"mtime_ns": 1781245853464023100,
+		"hash": "5e8f471da7207e7b17a46c09230f688592676f6467a700af8e4f71568b503f22"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\emails\\verify-email.tsx": {
+		"size": 771,
+		"mtime_ns": 1781245853464597900,
+		"hash": "7ecdc7a1edb88e315302f147dc90a7ad2941a879a8d1f5d6da8464975042ed32"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\delete-user-cleanup.ts": {
+		"size": 2002,
+		"mtime_ns": 1781245853466419800,
+		"hash": "5c90ed619613252b048071170f38539e9b3d36e56bd0e733a5a4d701e214c7c5"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.test.ts": {
+		"size": 447,
+		"mtime_ns": 1781245853466998600,
+		"hash": "c5cc74ba67bb24f3d47513aaa7912fcf15507f1cc24db5e989be5c8f0ec435d2"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts": {
+		"size": 1432,
+		"mtime_ns": 1781245853468227800,
+		"hash": "451785c4837b35d53f625dd465b8c7358d7ac623f3ae35f5b2b0e5113026cfca"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\0020_taste_dismissed_movie.sql": {
+		"size": 774,
+		"mtime_ns": 1781245853473656800,
+		"hash": "a75fe79c3b82724405d5162f40eb03840a4d5b064e472695b53cb3e27de947c1"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\0021_review_still_slide_key.sql": {
+		"size": 168,
+		"mtime_ns": 1781245853474232200,
+		"hash": "95911fca073a1be072893a21c8978dae26e9ad5b6dbf61d57b0595f09728743e"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\0022_review_dislikes.sql": {
+		"size": 330,
+		"mtime_ns": 1781245853474807000,
+		"hash": "7eb9a7e79c48ad313724c67474dc5180eba119e959481edae24a9825355d90e3"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\0023_comment_dislikes.sql": {
+		"size": 177,
+		"mtime_ns": 1781245853475374000,
+		"hash": "868f6b0580c08209a6c116eb042ee17fb689f00c926d7935e4367f459b1face1"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\0024_staff_admin_moderation.sql": {
+		"size": 2309,
+		"mtime_ns": 1781245853475946500,
+		"hash": "e2d56e607846a43e59c0a320ca1c3e79f96a98e40cecdc3cc772af0037772ec9"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\0025_staff_user_notes.sql": {
+		"size": 998,
+		"mtime_ns": 1781245853476518700,
+		"hash": "0f9b8154827224fe390ed77296c0d5c361c6002e40974f6eab05fcf2ef3a6a3b"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\migrations\\0026_session_impersonated_by.sql": {
+		"size": 72,
+		"mtime_ns": 1781245853477091500,
+		"hash": "4da08441e1293867473ed236c491ab0979768ef36951c281a25be39b062cfbf7"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\staff.ts": {
+		"size": 1952,
+		"mtime_ns": 1781245853484786900,
+		"hash": "f0a90eb08bb88e62441aa057879a0ba2833ca9cb123f08a4df0b6bbfd15a3d13"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\schema\\taste-dismissed-movie.ts": {
+		"size": 746,
+		"mtime_ns": 1781245853485977200,
+		"hash": "b5a2cda33f3c78a26680a2d2765e615b40650a083a701b0f775d9955155c3871"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\cinema.tsx": {
+		"size": 1126,
+		"mtime_ns": 1781245853490555000,
+		"hash": "dff824f19b0296ea0b299b88d428671a1ccb490480e57f6e4d275834c5bacfd3"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\home-filled.tsx": {
+		"size": 809,
+		"mtime_ns": 1781245853491112700,
+		"hash": "ddd369a59539c83d9aa60f6857d4893f74e5b581b568b61111752280f89080fd"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\people.tsx": {
+		"size": 1566,
+		"mtime_ns": 1781245853491671100,
+		"hash": "ead06701255cbe297204ad121e0819e657f00e2ff56dead8b93db102c049152a"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\screening-fill.tsx": {
+		"size": 1152,
+		"mtime_ns": 1781245853492807900,
+		"hash": "179d962212af60bb021d04641b9bb02c1beb996a40f2ac6255278305835297db"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\packages\\ui\\src\\icons\\tv-shows.tsx": {
+		"size": 1269,
+		"mtime_ns": 1781245853493378300,
+		"hash": "0d1a9d71aba03b7f980896a06800fb1cb7a84dff3775390b66ab0c0fd6a4469c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-06-taste-rail-not-interested.md": {
+		"size": 12807,
+		"mtime_ns": 1781245853431329500,
+		"hash": "9b4fc9d8d89f73ffa0421e863caf30aeeaa2bdf465a32dde0f80709096df086a"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md": {
+		"size": 18977,
+		"mtime_ns": 1781245853432489700,
+		"hash": "f617dd864b982f59e8bce1d105b42083edb106ecad1ca0069b805f8ea9667ce4"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-staff-roles-permissions.md": {
+		"size": 47758,
+		"mtime_ns": 1781245853433657400,
+		"hash": "b91f31a73fcf9243dfb57b1889defa2cfc6125db0f308dda692b5df42e970fd5"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-role-change-notification-dialog.md": {
+		"size": 35198,
+		"mtime_ns": 1781245853434237100,
+		"hash": "88b58a512a310c5a362f92c819be4eff9264a502f15f749d777043ed10daf77b"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md": {
+		"size": 103702,
+		"mtime_ns": 1781245853436042000,
+		"hash": "fe27b22d8bcae61c4f81c12e3dc0301958c29ccaa82bde39b6e72c12000a4902"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md": {
+		"size": 84293,
+		"mtime_ns": 1781245853437202600,
+		"hash": "33477392ed5944ef747fe0b232fd0e7ca367230e91e95f6c186ece68af58fd06"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-letterboxd-extended-import.md": {
+		"size": 16072,
+		"mtime_ns": 1781245853437802700,
+		"hash": "0f22701af710db586e014cfce89523bddd402b3ab3c254ea3764aaddd4113220"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md": {
+		"size": 18431,
+		"mtime_ns": 1781245853439102700,
+		"hash": "99ddaa8e6ff4b2a8295b3128a0ac993e526e636c96be76067e0c951d1c31c02a"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md": {
+		"size": 13489,
+		"mtime_ns": 1781245853440318100,
+		"hash": "4e1ad8846b739201d98c01931df158eea1c7ebca42b3531faa2c7d132cb2152b"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-letterboxd-watched-csv-import.md": {
+		"size": 16132,
+		"mtime_ns": 1781245853441513800,
+		"hash": "f353df36aa3541cb11167d8eebd67a7a6ed296c9ab8d9d3b17c98c664fa5325d"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-resend-auth-email.md": {
+		"size": 29383,
+		"mtime_ns": 1781245853442106100,
+		"hash": "bfb52428bf9b9138491461e932e420d4dc6120df163a4749dd86d0405393b0c0"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-11-taste-for-you-algorithm-v2.md": {
+		"size": 27260,
+		"mtime_ns": 1781245853443299800,
+		"hash": "a5a57edf91591c205bea3ed5e40ecd0ed95396944741304d393c33baf76090fc"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md": {
+		"size": 8068,
+		"mtime_ns": 1781245853443889400,
+		"hash": "2269ac77739ae79ac2477cb51bda069a32e102c17a9eb311194a12d79fb6bd85"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-community-activity-feed-ordering-design.md": {
+		"size": 8117,
+		"mtime_ns": 1781245853445064000,
+		"hash": "04bc4bcd277c4e5065a023b10fff25fd0d3b794355b194052b37bd5983bf8e6d"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md": {
+		"size": 8063,
+		"mtime_ns": 1781245853446263500,
+		"hash": "95a2787416319bf0ac46e99804084e49ddf0f103261056533b96cd53495dd23d"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-role-change-notification-dialog-design.md": {
+		"size": 8391,
+		"mtime_ns": 1781245853446855600,
+		"hash": "8896e54413e0c2d8ed6c18733fae6d87fef61ee4cda947991b37d40308c9102c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-08-staff-user-info-and-management-design.md": {
+		"size": 11448,
+		"mtime_ns": 1781245853448022900,
+		"hash": "ad2b34d65fe3860828d752f53dd6bd8bd8e9d69c8c4e7a6adcf07071cb13ef2c"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md": {
+		"size": 8790,
+		"mtime_ns": 1781245853449229500,
+		"hash": "ca97a9d432007467e1b907dabfd8ed4e2b976b1c8fa35531acddf45d7f5e4bd9"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-letterboxd-extended-import-design.md": {
+		"size": 8904,
+		"mtime_ns": 1781245853449818400,
+		"hash": "63aed3a23c4fc376e9fb097edd6a712bf883734f46a6011829022810454949fe"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md": {
+		"size": 2102,
+		"mtime_ns": 1781245853450466600,
+		"hash": "285a9c2f123242fe678fe840ae292e234201be6709ddfd346a7e99bd14184d03"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-animated-profile-media-design.md": {
+		"size": 9948,
+		"mtime_ns": 1781245853451673300,
+		"hash": "002aed44899cd2777008436fa7670f6295ff0c2caf4178d31a3a811b10d5e374"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-diary-metal-tier-avatars-design.md": {
+		"size": 9247,
+		"mtime_ns": 1781245853452271000,
+		"hash": "88fb2ff9a2a13111e804c174e9507aad88a82f5e4bba8a1e480b120764db2ebc"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md": {
+		"size": 7124,
+		"mtime_ns": 1781245853453445900,
+		"hash": "be8096517e29a57d359b5883bac18b4c913ba69b82cc714cab9ed9eaf1dfe892"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md": {
+		"size": 4334,
+		"mtime_ns": 1781245853454053600,
+		"hash": "7634ccb31fbe67ddff277494320fb76f23a1c167eea33ab784530a984e525499"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-resend-auth-email-design.md": {
 		"size": 11506,
-		"mtime_ns": 1780750469922421600,
-		"hash": "a524463766bf0f773985fddad2767b9bc192fdc07eea9e911dc720ace77cf676"
+		"mtime_ns": 1781245853454647300,
+		"hash": "056e86160c24a42681299830509241050b04181e5afa0db6dbb4f494a4d14c12"
+	},
+	"C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-11-taste-for-you-algorithm-v2-design.md": {
+		"size": 15964,
+		"mtime_ns": 1781245853455835200,
+		"hash": "9e18869adffab943b65a78b20bc973fedc5cc3350b895493e27f7d229c4bdaba"
 	}
 }

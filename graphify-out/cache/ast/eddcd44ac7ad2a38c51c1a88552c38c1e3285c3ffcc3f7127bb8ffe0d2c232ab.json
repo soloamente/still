@@ -1,0 +1,72 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_test_ts",
+			"label": "staff-user-notes.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_staff_user_notes_test_noterow",
+			"label": "NoteRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_staff_user_notes_test_state",
+			"label": "state",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_staff_user_notes_test_staffusernotetable",
+			"label": "staffUserNoteTable",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_test_ts",
+			"target": "lib_staff_user_notes_test_noterow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_test_ts",
+			"target": "lib_staff_user_notes_test_state",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_user_notes_test_ts",
+			"target": "lib_staff_user_notes_test_staffusernotetable",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-user-notes.test.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

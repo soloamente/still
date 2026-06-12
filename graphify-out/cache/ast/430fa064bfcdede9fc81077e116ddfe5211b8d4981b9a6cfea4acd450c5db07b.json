@@ -1,0 +1,931 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"label": "movie-detail-return.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_movie_detail_return_moviedetailreturn",
+			"label": "MovieDetailReturn",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_movie_detail_return_movie_detail_return_ssr_fallback",
+			"label": "MOVIE_DETAIL_RETURN_SSR_FALLBACK",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_movie_detail_return_persisteddetailreturn",
+			"label": "PersistedDetailReturn",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_movie_detail_return_islistingdetailpath",
+			"label": "isListingDetailPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L37"
+		},
+		{
+			"id": "lib_movie_detail_return_isprofilelobbypath",
+			"label": "isProfileLobbyPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_movie_detail_return_ismesettingspath",
+			"label": "isMeSettingsPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "lib_movie_detail_return_parsereturnpathname",
+			"label": "parseReturnPathname()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L51"
+		},
+		{
+			"id": "lib_movie_detail_return_ismesettingsreturnhref",
+			"label": "isMeSettingsReturnHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L64"
+		},
+		{
+			"id": "lib_movie_detail_return_isfilmdetailpath",
+			"label": "isFilmDetailPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L70"
+		},
+		{
+			"id": "lib_movie_detail_return_istvdetailpath",
+			"label": "isTvDetailPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L74"
+		},
+		{
+			"id": "lib_movie_detail_return_returnforhomesurface",
+			"label": "returnForHomeSurface()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L78"
+		},
+		{
+			"id": "lib_movie_detail_return_hreffrompath",
+			"label": "hrefFromPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L86"
+		},
+		{
+			"id": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"label": "resolveMovieDetailReturnFromPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L91"
+		},
+		{
+			"id": "lib_movie_detail_return_persistmoviedetailreturn",
+			"label": "persistMovieDetailReturn()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L182"
+		},
+		{
+			"id": "lib_movie_detail_return_readpersistedmoviedetailreturn",
+			"label": "readPersistedMovieDetailReturn()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L200"
+		},
+		{
+			"id": "lib_movie_detail_return_homebrowsefallback",
+			"label": "homeBrowseFallback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L216"
+		},
+		{
+			"id": "lib_movie_detail_return_issameprofilereturnhref",
+			"label": "isSameProfileReturnHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L221"
+		},
+		{
+			"id": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"label": "resolveDetailReturnCandidate()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L247"
+		},
+		{
+			"id": "lib_movie_detail_return_resolvemoviedetailreturn",
+			"label": "resolveMovieDetailReturn()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L266"
+		},
+		{
+			"id": "lib_movie_detail_return_resolveprofilereturn",
+			"label": "resolveProfileReturn()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L276"
+		},
+		{
+			"id": "lib_movie_detail_return_resolvesettingsreturn",
+			"label": "resolveSettingsReturn()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L302"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_home_browse_surface_homebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_home_browse_surface_homebrowsesurfacelabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_home_browse_surface_parsehomebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_persist_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_home_lobby_persist_buildhomehreffrompersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_home_lobby_persist_emptyhomelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_home_lobby_persist_readhomelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_home_lobby_persist_readlasthomebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_moviedetailreturn",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_movie_detail_return_ssr_fallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_persisteddetailreturn",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_islistingdetailpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_isprofilelobbypath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_ismesettingspath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_parsereturnpathname",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_ismesettingsreturnhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_isfilmdetailpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_istvdetailpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_returnforhomesurface",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_hreffrompath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_persistmoviedetailreturn",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_readpersistedmoviedetailreturn",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_homebrowsefallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L216",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_issameprofilereturnhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L221",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_resolvemoviedetailreturn",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L266",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_resolveprofilereturn",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L276",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_return_ts",
+			"target": "lib_movie_detail_return_resolvesettingsreturn",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L302",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_ismesettingsreturnhref",
+			"target": "lib_movie_detail_return_parsereturnpathname",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_ismesettingsreturnhref",
+			"target": "lib_movie_detail_return_ismesettingspath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"target": "lib_movie_detail_return_returnforhomesurface",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"target": "lib_movie_detail_return_hreffrompath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_persistmoviedetailreturn",
+			"target": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_readpersistedmoviedetailreturn",
+			"target": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L208",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_homebrowsefallback",
+			"target": "lib_movie_detail_return_returnforhomesurface",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"target": "lib_movie_detail_return_readpersistedmoviedetailreturn",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L248",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"target": "lib_movie_detail_return_isfilmdetailpath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"target": "lib_movie_detail_return_istvdetailpath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"target": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvemoviedetailreturn",
+			"target": "lib_movie_detail_return_homebrowsefallback",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L267",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvemoviedetailreturn",
+			"target": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L269",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolveprofilereturn",
+			"target": "lib_movie_detail_return_homebrowsefallback",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L280",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolveprofilereturn",
+			"target": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L283",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolveprofilereturn",
+			"target": "lib_movie_detail_return_issameprofilereturnhref",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L286",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolveprofilereturn",
+			"target": "lib_movie_detail_return_ismesettingsreturnhref",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L291",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvesettingsreturn",
+			"target": "lib_movie_detail_return_homebrowsefallback",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L303",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvesettingsreturn",
+			"target": "lib_movie_detail_return_resolvedetailreturncandidate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L306",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvesettingsreturn",
+			"target": "lib_movie_detail_return_parsereturnpathname",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L309",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_movie_detail_return_resolvesettingsreturn",
+			"target": "lib_movie_detail_return_ismesettingspath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L314",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_movie_detail_return_islistingdetailpath",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_islistingdetailpath",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_isprofilelobbypath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_ismesettingspath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_ismesettingsreturnhref",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_isfilmdetailpath",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_istvdetailpath",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_returnforhomesurface",
+			"callee": "readHomeLobbyPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_returnforhomesurface",
+			"callee": "emptyHomeLobbyPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_returnforhomesurface",
+			"callee": "buildHomeHrefFromPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_returnforhomesurface",
+			"callee": "homeBrowseSurfaceLabel",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L82"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "parseHomeBrowseSurface",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L116"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L134"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "match",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L164"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_resolvemoviedetailreturnfrompath",
+			"callee": "match",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_persistmoviedetailreturn",
+			"callee": "setItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L191"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_persistmoviedetailreturn",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L193"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_readpersistedmoviedetailreturn",
+			"callee": "getItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L203"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_readpersistedmoviedetailreturn",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_homebrowsefallback",
+			"callee": "readLastHomeBrowseSurface",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L217"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_issameprofilereturnhref",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L227"
+		},
+		{
+			"caller_nid": "lib_movie_detail_return_issameprofilereturnhref",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-detail-return.ts",
+			"source_location": "L239"
+		}
+	]
+}

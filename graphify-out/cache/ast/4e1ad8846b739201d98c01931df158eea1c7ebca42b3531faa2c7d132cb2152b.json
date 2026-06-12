@@ -1,0 +1,335 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_10_diary_metal_tier_avatars_md",
+			"label": "2026-06-10-diary-metal-tier-avatars.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"label": "Diary Metal Tier Avatars Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_conventions",
+			"label": "Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_1_server_tier_resolver_batch_counts",
+			"label": "Task 1: Server tier resolver + batch counts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_1",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_2",
+			"label": "code:ts (import { db, log } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_2_extend_patron_profile_serializer",
+			"label": "Task 2: Extend patron profile serializer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_3",
+			"label": "code:ts (import { serializePatronProfileForClient } from \"./profile-m)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L147"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_4",
+			"label": "code:ts (export function serializePatronProfileForClient()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_3_profile_get_search_tiers",
+			"label": "Task 3: Profile GET + search tiers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_4_feed_divergence_tiers",
+			"label": "Task 4: Feed + divergence tiers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L195"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_5_remaining_api_surfaces",
+			"label": "Task 5: Remaining API surfaces",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L212"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_6_install_metal_fx_web_tier_tokens",
+			"label": "Task 6: Install metal-fx + web tier tokens",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L224"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_5",
+			"label": "code:ts (export type DiaryMetalTier = \"silver\" | \"gold\" | \"chromatic\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L237"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_7_patronportraitwithmetaltier_wrapper",
+			"label": "Task 7: `PatronPortraitWithMetalTier` wrapper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L269"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_6",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L276"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_8_migrate_call_sites",
+			"label": "Task 8: Migrate call sites",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L343"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_task_9_verification",
+			"label": "Task 9: Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L370"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_plan_self_review_spec_coverage",
+			"label": "Plan self-review (spec coverage)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L380"
+		},
+		{
+			"id": "plans_2026_06_10_diary_metal_tier_avatars_execution_handoff",
+			"label": "Execution handoff",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L397"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_10_diary_metal_tier_avatars_md",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_1_server_tier_resolver_batch_counts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_task_1_server_tier_resolver_batch_counts",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_task_1_server_tier_resolver_batch_counts",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_2_extend_patron_profile_serializer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_task_2_extend_patron_profile_serializer",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_task_2_extend_patron_profile_serializer",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_3_profile_get_search_tiers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_4_feed_divergence_tiers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L195",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_5_remaining_api_surfaces",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L212",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_6_install_metal_fx_web_tier_tokens",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L224",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_task_6_install_metal_fx_web_tier_tokens",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L237",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_7_patronportraitwithmetaltier_wrapper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L269",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_task_7_patronportraitwithmetaltier_wrapper",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L276",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_8_migrate_call_sites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L343",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_task_9_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L370",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_plan_self_review_spec_coverage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L380",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_diary_metal_tier_avatars_diary_metal_tier_avatars_implementation_plan",
+			"target": "plans_2026_06_10_diary_metal_tier_avatars_execution_handoff",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-diary-metal-tier-avatars.md",
+			"source_location": "L397",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

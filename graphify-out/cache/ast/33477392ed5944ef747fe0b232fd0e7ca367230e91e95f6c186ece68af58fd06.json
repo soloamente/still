@@ -1,0 +1,927 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_09_data_settings_export_clear_delete_md",
+			"label": "2026-06-09-data-settings-export-clear-delete.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_data_settings_export_clear_library_delete_account_implementation_plan",
+			"label": "Data Settings (Export, Clear Library, Delete Account) Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_1_env_vars_resend_email_helper",
+			"label": "Task 1: Env vars + Resend email helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_1",
+			"label": "code:ts (// Resend API key for transactional email (account-deletion )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_2",
+			"label": "code:bash (bun add resend)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_3",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_4",
+			"label": "code:ts (import { env } from \"@still/env/server\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L114"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_5",
+			"label": "code:bash (git add packages/env/src/server.ts packages/auth/src/lib/sen)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_2_better_auth_deleteuser_blob_cleanup",
+			"label": "Task 2: Better Auth deleteUser + blob cleanup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_6",
+			"label": "code:bash (bun add @vercel/blob)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L193"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_7",
+			"label": "code:ts (import { db, list, profile, user } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L201"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_8",
+			"label": "code:ts (import { deleteUserBlobAssets } from \"./lib/delete-user-clea)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L256"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_9",
+			"label": "code:ts (user: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L263"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_10",
+			"label": "code:bash (git add packages/auth/src/index.ts packages/auth/src/lib/del)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L292"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_3_csv_export_primitives",
+			"label": "Task 3: CSV export primitives",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L301"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_11",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L311"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_12",
+			"label": "code:ts (/**)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L398"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_13",
+			"label": "code:bash (git add apps/server/src/lib/me-export-csv.ts apps/server/src)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L459"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_4_export_data_assembly_pure_db_fetch",
+			"label": "Task 4: Export data assembly (pure) + db fetch",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L466"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_14",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L480"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_15",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L728"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_16",
+			"label": "code:bash (git add apps/server/src/lib/me-export-data.ts apps/server/sr)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1459"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_5_clear_library_transaction",
+			"label": "Task 5: Clear-library transaction",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1466"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_17",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1479"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_18",
+			"label": "code:bash (git add apps/server/src/lib/clear-user-library.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1628"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_6_api_me_route_group_export_zip_clear_library",
+			"label": "Task 6: `/api/me` route group (export ZIP + clear library)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1635"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_19",
+			"label": "code:bash (bun add fflate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1647"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_20",
+			"label": "code:ts (import { beforeEach, describe, expect, mock, test } from \"bu)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1658"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_21",
+			"label": "code:ts (import { strToU8, zipSync } from \"fflate\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1785"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_22",
+			"label": "code:ts (import { meDataRoute } from \"../routes/me-data\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1869"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_23",
+			"label": "code:ts (.use(importRoute))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1875"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_24",
+			"label": "code:bash (git add apps/server/src/routes/me-data.ts apps/server/src/ro)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1890"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"label": "Task 7: Web \u2014 rename Imports to Data",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1897"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_25",
+			"label": "code:ts ({ href: \"/me/settings/data\", label: \"Data\" },)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1909"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_26",
+			"label": "code:ts (export function resolveMeAccountNavPath(pathname: string): s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1917"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_27",
+			"label": "code:tsx (import { SettingsDataSection } from \"@/components/profile/se)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1944"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_28",
+			"label": "code:tsx (import { redirect } from \"next/navigation\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1954"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_29",
+			"label": "code:tsx (import { MeDangerZone } from \"@/components/profile/me-danger)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1969"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_30",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2000"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_31",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2010"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_32",
+			"label": "code:bash (git add apps/web/src/lib/me-account-nav.ts \"apps/web/src/app)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2018"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_8_export_panel_web",
+			"label": "Task 8: Export panel (web)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2025"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_33",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2036"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_34",
+			"label": "code:bash (git add apps/web/src/components/profile/me-data-export-panel)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2183"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_9_danger_zone_clear_library_delete_account_dialogs",
+			"label": "Task 9: Danger zone \u2014 clear library + delete account dialogs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2190"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_35",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2205"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_36",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2431"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_37",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2522"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_38",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2600"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_39",
+			"label": "code:tsx (return ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2706"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_40",
+			"label": "code:bash (git add apps/web/src/components/profile/me-destructive-confi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2730"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_10_cascade_audit",
+			"label": "Task 10: Cascade audit",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2737"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_41",
+			"label": "code:bash (rg \"references\\(\\(\\) => user\\.id\" packages/db/src/schema -A )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2746"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_42",
+			"label": "code:bash (rg \"export\" packages/db/src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2769"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_task_11_full_verification",
+			"label": "Task 11: Full verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2781"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_43",
+			"label": "code:bash (git status)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2815"
+		},
+		{
+			"id": "plans_2026_06_09_data_settings_export_clear_delete_self_review_notes_already_applied",
+			"label": "Self-review notes (already applied)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2823"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_09_data_settings_export_clear_delete_md",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_data_settings_export_clear_library_delete_account_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_data_settings_export_clear_library_delete_account_implementation_plan",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_1_env_vars_resend_email_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_1_env_vars_resend_email_helper",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_1_env_vars_resend_email_helper",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_1_env_vars_resend_email_helper",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_1_env_vars_resend_email_helper",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_1_env_vars_resend_email_helper",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_2_better_auth_deleteuser_blob_cleanup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_2_better_auth_deleteuser_blob_cleanup",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L193",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_2_better_auth_deleteuser_blob_cleanup",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L201",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_2_better_auth_deleteuser_blob_cleanup",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_2_better_auth_deleteuser_blob_cleanup",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L263",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_2_better_auth_deleteuser_blob_cleanup",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L292",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_3_csv_export_primitives",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L301",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_3_csv_export_primitives",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L311",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_3_csv_export_primitives",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L398",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_3_csv_export_primitives",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L459",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_4_export_data_assembly_pure_db_fetch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L466",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_4_export_data_assembly_pure_db_fetch",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L480",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_4_export_data_assembly_pure_db_fetch",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L728",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_4_export_data_assembly_pure_db_fetch",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1459",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_5_clear_library_transaction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1466",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_5_clear_library_transaction",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1479",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_5_clear_library_transaction",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1628",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_6_api_me_route_group_export_zip_clear_library",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1635",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_6_api_me_route_group_export_zip_clear_library",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1647",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_6_api_me_route_group_export_zip_clear_library",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1658",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_6_api_me_route_group_export_zip_clear_library",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1785",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_6_api_me_route_group_export_zip_clear_library",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1869",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_6_api_me_route_group_export_zip_clear_library",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1875",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_6_api_me_route_group_export_zip_clear_library",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1890",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1897",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1909",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1917",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1944",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1954",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L1969",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2000",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2010",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_7_web_rename_imports_to_data",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2018",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_8_export_panel_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2025",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_8_export_panel_web",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2036",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_8_export_panel_web",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2183",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_9_danger_zone_clear_library_delete_account_dialogs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2190",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_9_danger_zone_clear_library_delete_account_dialogs",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_35",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2205",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_9_danger_zone_clear_library_delete_account_dialogs",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_36",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2431",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_9_danger_zone_clear_library_delete_account_dialogs",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_37",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2522",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_9_danger_zone_clear_library_delete_account_dialogs",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_38",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2600",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_9_danger_zone_clear_library_delete_account_dialogs",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_39",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2706",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_9_danger_zone_clear_library_delete_account_dialogs",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_40",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2730",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_10_cascade_audit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2737",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_10_cascade_audit",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_41",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2746",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_10_cascade_audit",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_42",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2769",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_file_structure",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_task_11_full_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2781",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_task_11_full_verification",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_codeblock_43",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2815",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_09_data_settings_export_clear_delete_data_settings_export_clear_library_delete_account_implementation_plan",
+			"target": "plans_2026_06_09_data_settings_export_clear_delete_self_review_notes_already_applied",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-09-data-settings-export-clear-delete.md",
+			"source_location": "L2823",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,1439 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_08_staff_user_info_and_management_md",
+			"label": "2026-06-08-staff-user-info-and-management.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"label": "Staff Panel \u2014 User Info & Advanced User Management Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_1_staff_user_note_table_migration",
+			"label": "Task 1: `staff_user_note` table + migration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_1",
+			"label": "code:ts (export const staffUserNote = pgTable()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_2",
+			"label": "code:sql (CREATE TABLE IF NOT EXISTS \"staff_user_note\" ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_3",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_4",
+			"label": "code:bash (git add packages/db/src/schema/staff.ts packages/db/src/migr)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_2_access_control_statements_role_bundles_edit_note_pro",
+			"label": "Task 2: Access-control statements & role bundles (`edit`/`note`/`pro`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L156"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_5",
+			"label": "code:ts (it(\"owner can do everything including set-role, impersonate,)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L169"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_6",
+			"label": "code:ts (export const statement = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L219"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_7",
+			"label": "code:bash (git add packages/auth/src/permissions.ts packages/auth/src/p)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L272"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_3_permissionsummary_helper_read_only_this_role_can_list",
+			"label": "Task 3: `permissionSummary` helper (read-only \"this role can\u2026\" list)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L287"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_8",
+			"label": "code:ts (import { describe, expect, it } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L297"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_9",
+			"label": "code:ts (import { type AppRole, roles } from \"./permissions\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L357"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_10",
+			"label": "code:bash (git add packages/auth/src/permission-summary.ts packages/aut)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L421"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_4_time_boxed_impersonation_session_config",
+			"label": "Task 4: Time-boxed impersonation session config",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L436"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_11",
+			"label": "code:ts (adminPlugin({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L446"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_12",
+			"label": "code:ts (adminPlugin({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L461"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_13",
+			"label": "code:bash (git add packages/auth/src/index.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L486"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_5_export_handle_re_from_the_profiles_route",
+			"label": "Task 5: Export `HANDLE_RE` from the profiles route",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L501"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_14",
+			"label": "code:ts (const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L512"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_15",
+			"label": "code:ts (export const HANDLE_RE = /^[a-z0-9._-]{2,24}$/;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L518"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_16",
+			"label": "code:block16 (git add apps/server/src/routes/profiles.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L531"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_6_staff_user_notes_lib_helper_list_add",
+			"label": "Task 6: `staff-user-notes` lib helper (list + add)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L543"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_17",
+			"label": "code:ts (import { beforeEach, describe, expect, mock, test } from \"bu)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L553"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_18",
+			"label": "code:ts (import { db, staffUserNote } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L653"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_19",
+			"label": "code:block19 (git add apps/server/src/lib/staff-user-notes.ts apps/server/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L712"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"label": "Task 7: Extend `staff.test.ts` mock infrastructure for profile/notes/impersonation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L724"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_20",
+			"label": "code:ts (function makeTable(name: string) {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L739"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_21",
+			"label": "code:ts (const profileTable = makeTable(\"profile\");)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L777"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_22",
+			"label": "code:ts (// Map of userId -> profile row, used by GET/POST /users/:id)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L787"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_23",
+			"label": "code:ts (const state: TestState = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L812"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_24",
+			"label": "code:ts (if (fromTable === \"profile\") {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L830"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_25",
+			"label": "code:ts (async returning() {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L848"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_26",
+			"label": "code:ts (mock.module(\"@still/db\", () => ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L867"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_27",
+			"label": "code:ts (const MATRIX: Record<string, Record<string, string[]>> = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L886"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_28",
+			"label": "code:ts (setRole: async ({ body }: { body: unknown }) => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L923"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_29",
+			"label": "code:ts (beforeEach(() => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L942"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_30",
+			"label": "code:block30 (git add apps/server/src/routes/staff.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L965"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_8_get_api_staff_users_id_full_detail_endpoint",
+			"label": "Task 8: `GET /api/staff/users/:id` \u2014 full detail endpoint",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L978"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_31",
+			"label": "code:ts (describe(\"GET /api/staff/users/:id\", () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L989"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_32",
+			"label": "code:ts (import { auth } from \"@still/auth\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1082"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_33",
+			"label": "code:ts (.get(\"/users/:id\", async ({ user: viewer, params, status }) )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1111"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_34",
+			"label": "code:block34 (git add apps/server/src/routes/staff.ts apps/server/src/rout)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1181"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_9_post_api_staff_users_id_edit_staff_profile_editing",
+			"label": "Task 9: `POST /api/staff/users/:id/edit` \u2014 staff profile editing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1194"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_35",
+			"label": "code:ts (describe(\"POST /api/staff/users/:id/edit\", () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1204"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_36",
+			"label": "code:ts (const EDITABLE_PROFILE_FIELDS = [)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1311"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_37",
+			"label": "code:ts (.post()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1328"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_38",
+			"label": "code:block38 (git add apps/server/src/routes/staff.ts apps/server/src/rout)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1438"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_10_post_api_staff_users_id_pro_pro_override_toggle",
+			"label": "Task 10: `POST /api/staff/users/:id/pro` \u2014 Pro override toggle",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1451"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_39",
+			"label": "code:ts (describe(\"POST /api/staff/users/:id/pro\", () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1461"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_40",
+			"label": "code:ts (.post()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1553"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_41",
+			"label": "code:block41 (git add apps/server/src/routes/staff.ts apps/server/src/rout)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1610"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_11_notes_endpoints_impersonation_endpoints",
+			"label": "Task 11: Notes endpoints + impersonation endpoints",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1622"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_42",
+			"label": "code:ts (describe(\"staff user notes endpoints\", () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1632"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_43",
+			"label": "code:ts (describe(\"staff impersonation endpoints\", () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1703"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_44",
+			"label": "code:ts (.get()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1799"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_45",
+			"label": "code:ts (.post()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1842"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_46",
+			"label": "code:block46 (git add apps/server/src/routes/staff.ts apps/server/src/rout)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1912"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_12_extract_shared_errormessage_helper_for_the_web_staff_panel",
+			"label": "Task 12: Extract shared `errorMessage` helper for the web staff panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1929"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_47",
+			"label": "code:block47 (src/components/staff/staff-users-tab.tsx:NN:function errorMe)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1946"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_48",
+			"label": "code:ts (/**)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1957"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_49",
+			"label": "code:ts (import { errorMessage } from \"@/lib/staff-error-message\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1998"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_50",
+			"label": "code:ts (import { errorMessage } from \"@/lib/staff-error-message\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2005"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_51",
+			"label": "code:block51 (git add apps/web/src/lib/staff-error-message.ts apps/web/src)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2019"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"label": "Task 13: Impersonation banner \u2014 session type, component, layout wiring",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2034"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_52",
+			"label": "code:ts (session: { id: string; userId: string; expiresAt?: Date | st)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2046"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_53",
+			"label": "code:ts (session: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2052"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_54",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2068"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_55",
+			"label": "code:tsx (import { ImpersonationBanner } from \"@/components/staff/impe)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2138"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_56",
+			"label": "code:tsx (const impersonatedBy = session?.session.impersonatedBy ?? nu)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2145"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_57",
+			"label": "code:tsx (return ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2155"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_58",
+			"label": "code:block58 (git add apps/web/src/lib/auth-server.ts apps/web/src/compone)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2175"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_14_staffusernotes_component",
+			"label": "Task 14: `StaffUserNotes` component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2189"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_59",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2198"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_60",
+			"label": "code:block60 (git add apps/web/src/components/staff/staff-user-notes.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2329"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_15_staffusereditform_component",
+			"label": "Task 15: `StaffUserEditForm` component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2342"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_61",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2351"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_62",
+			"label": "code:block62 (git add apps/web/src/components/staff/staff-user-edit-form.t)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2560"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_16_staffuserdetail_component_composes_the_expanded_row",
+			"label": "Task 16: `StaffUserDetail` component (composes the expanded row)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2574"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_63",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2583"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_64",
+			"label": "code:block64 (git add apps/web/src/components/staff/staff-user-detail.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2907"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_17_wire_expandable_rows_into_staffuserstab",
+			"label": "Task 17: Wire expandable rows into `StaffUsersTab`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2922"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_65",
+			"label": "code:ts (const [expandedId, setExpandedId] = useState<string | null>()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2942"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_66",
+			"label": "code:ts (import { StaffUserDetail } from \"./staff-user-detail\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2951"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_67",
+			"label": "code:tsx (<li)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2959"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_68",
+			"label": "code:tsx (<li key={u.id}>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L3020"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_69",
+			"label": "code:block69 (git add apps/web/src/components/staff/staff-users-tab.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L3120"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_task_18_full_verification_pass",
+			"label": "Task 18: Full verification pass",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L3136"
+		},
+		{
+			"id": "plans_2026_06_08_staff_user_info_and_management_codeblock_70",
+			"label": "code:block70 (git add -A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L3222"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_08_staff_user_info_and_management_md",
+			"target": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_1_staff_user_note_table_migration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_1_staff_user_note_table_migration",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_1_staff_user_note_table_migration",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_1_staff_user_note_table_migration",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_1_staff_user_note_table_migration",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_2_access_control_statements_role_bundles_edit_note_pro",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_2_access_control_statements_role_bundles_edit_note_pro",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_2_access_control_statements_role_bundles_edit_note_pro",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L219",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_2_access_control_statements_role_bundles_edit_note_pro",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L272",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_3_permissionsummary_helper_read_only_this_role_can_list",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L287",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_3_permissionsummary_helper_read_only_this_role_can_list",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L297",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_3_permissionsummary_helper_read_only_this_role_can_list",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L357",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_3_permissionsummary_helper_read_only_this_role_can_list",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L421",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_4_time_boxed_impersonation_session_config",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L436",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_4_time_boxed_impersonation_session_config",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L446",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_4_time_boxed_impersonation_session_config",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L461",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_4_time_boxed_impersonation_session_config",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L486",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_5_export_handle_re_from_the_profiles_route",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L501",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_5_export_handle_re_from_the_profiles_route",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L512",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_5_export_handle_re_from_the_profiles_route",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L518",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_5_export_handle_re_from_the_profiles_route",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L531",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_6_staff_user_notes_lib_helper_list_add",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L543",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_6_staff_user_notes_lib_helper_list_add",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L553",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_6_staff_user_notes_lib_helper_list_add",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L653",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_6_staff_user_notes_lib_helper_list_add",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L712",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L724",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L739",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L777",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L787",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L812",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L830",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L848",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L867",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L886",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L923",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L942",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_7_extend_staff_test_ts_mock_infrastructure_for_profile_notes_impersonation",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L965",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_8_get_api_staff_users_id_full_detail_endpoint",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L978",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_8_get_api_staff_users_id_full_detail_endpoint",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L989",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_8_get_api_staff_users_id_full_detail_endpoint",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1082",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_8_get_api_staff_users_id_full_detail_endpoint",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1111",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_8_get_api_staff_users_id_full_detail_endpoint",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1181",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_9_post_api_staff_users_id_edit_staff_profile_editing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1194",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_9_post_api_staff_users_id_edit_staff_profile_editing",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_35",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1204",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_9_post_api_staff_users_id_edit_staff_profile_editing",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_36",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1311",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_9_post_api_staff_users_id_edit_staff_profile_editing",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_37",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1328",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_9_post_api_staff_users_id_edit_staff_profile_editing",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_38",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1438",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_10_post_api_staff_users_id_pro_pro_override_toggle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1451",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_10_post_api_staff_users_id_pro_pro_override_toggle",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_39",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1461",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_10_post_api_staff_users_id_pro_pro_override_toggle",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_40",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1553",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_10_post_api_staff_users_id_pro_pro_override_toggle",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_41",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1610",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_11_notes_endpoints_impersonation_endpoints",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1622",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_11_notes_endpoints_impersonation_endpoints",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_42",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1632",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_11_notes_endpoints_impersonation_endpoints",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_43",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1703",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_11_notes_endpoints_impersonation_endpoints",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_44",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1799",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_11_notes_endpoints_impersonation_endpoints",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_45",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1842",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_11_notes_endpoints_impersonation_endpoints",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_46",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1912",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_12_extract_shared_errormessage_helper_for_the_web_staff_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1929",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_12_extract_shared_errormessage_helper_for_the_web_staff_panel",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_47",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1946",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_12_extract_shared_errormessage_helper_for_the_web_staff_panel",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_48",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1957",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_12_extract_shared_errormessage_helper_for_the_web_staff_panel",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_49",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L1998",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_12_extract_shared_errormessage_helper_for_the_web_staff_panel",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_50",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2005",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_12_extract_shared_errormessage_helper_for_the_web_staff_panel",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_51",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2019",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2034",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_52",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2046",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_53",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2052",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_54",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2068",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_55",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2138",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_56",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2145",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_57",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2155",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_13_impersonation_banner_session_type_component_layout_wiring",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_58",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2175",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_14_staffusernotes_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2189",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_14_staffusernotes_component",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_59",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2198",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_14_staffusernotes_component",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_60",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2329",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_15_staffusereditform_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2342",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_15_staffusereditform_component",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_61",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2351",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_15_staffusereditform_component",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_62",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2560",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_16_staffuserdetail_component_composes_the_expanded_row",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2574",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_16_staffuserdetail_component_composes_the_expanded_row",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_63",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2583",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_16_staffuserdetail_component_composes_the_expanded_row",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_64",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2907",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_17_wire_expandable_rows_into_staffuserstab",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2922",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_17_wire_expandable_rows_into_staffuserstab",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_65",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2942",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_17_wire_expandable_rows_into_staffuserstab",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_66",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2951",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_17_wire_expandable_rows_into_staffuserstab",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_67",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L2959",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_17_wire_expandable_rows_into_staffuserstab",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_68",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L3020",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_17_wire_expandable_rows_into_staffuserstab",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_69",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L3120",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_staff_panel_user_info_advanced_user_management_implementation_plan",
+			"target": "plans_2026_06_08_staff_user_info_and_management_task_18_full_verification_pass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L3136",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_08_staff_user_info_and_management_task_18_full_verification_pass",
+			"target": "plans_2026_06_08_staff_user_info_and_management_codeblock_70",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-08-staff-user-info-and-management.md",
+			"source_location": "L3222",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

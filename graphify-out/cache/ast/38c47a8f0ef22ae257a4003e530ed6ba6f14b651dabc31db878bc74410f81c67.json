@@ -1,0 +1,564 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"label": "list-collaborators.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_list_collaborators_listpatronrole",
+			"label": "ListPatronRole",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_list_collaborators_patronlistlibraryrow",
+			"label": "PatronListLibraryRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_list_collaborators_listcollaboratorrow",
+			"label": "ListCollaboratorRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"label": "fetchCollaboratedListsForPatron()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_list_collaborators_fetchlistcollaborators",
+			"label": "fetchListCollaborators()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L44"
+		},
+		{
+			"id": "lib_list_collaborators_inviteresult",
+			"label": "InviteResult",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L59"
+		},
+		{
+			"id": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"label": "inviteListCollaboratorByHandle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L64"
+		},
+		{
+			"id": "lib_list_collaborators_removelistcollaborator",
+			"label": "removeListCollaborator()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L114"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_list_collaborator_access_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborator_access_islistcollaborator",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborators_listpatronrole",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborators_patronlistlibraryrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborators_listcollaboratorrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborators_fetchlistcollaborators",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborators_inviteresult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_list_collaborators_ts",
+			"target": "lib_list_collaborators_removelistcollaborator",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_list_collaborators_removelistcollaborator",
+			"target": "lib_list_collaborators_fetchlistcollaborators",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L137",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchcollaboratedlistsforpatron",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchlistcollaborators",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchlistcollaborators",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchlistcollaborators",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchlistcollaborators",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchlistcollaborators",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_fetchlistcollaborators",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "isListCollaborator",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_invitelistcollaboratorbyhandle",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L133"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "lib_list_collaborators_removelistcollaborator",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\list-collaborators.ts",
+			"source_location": "L142"
+		}
+	]
+}

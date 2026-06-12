@@ -1,0 +1,87 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_listing_detail_hero_synopsis_ts",
+			"label": "listing-detail-hero-synopsis.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_detail_hero_synopsis_listingdetailherosynopsis",
+			"label": "ListingDetailHeroSynopsis",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_listing_detail_hero_synopsis_resolvelistingdetailherosynopsis",
+			"label": "resolveListingDetailHeroSynopsis()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_listing_detail_hero_synopsis_listingdetailherosynopsisblurb",
+			"label": "listingDetailHeroSynopsisBlurb()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L27"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_detail_hero_synopsis_ts",
+			"target": "lib_listing_detail_hero_synopsis_listingdetailherosynopsis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_detail_hero_synopsis_ts",
+			"target": "lib_listing_detail_hero_synopsis_resolvelistingdetailherosynopsis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_detail_hero_synopsis_ts",
+			"target": "lib_listing_detail_hero_synopsis_listingdetailherosynopsisblurb",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_detail_hero_synopsis_listingdetailherosynopsisblurb",
+			"target": "lib_listing_detail_hero_synopsis_resolvelistingdetailherosynopsis",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_listing_detail_hero_synopsis_resolvelistingdetailherosynopsis",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_listing_detail_hero_synopsis_resolvelistingdetailherosynopsis",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-detail-hero-synopsis.ts",
+			"source_location": "L21"
+		}
+	]
+}

@@ -1,0 +1,672 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"label": "home-catalogue-search-param.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_home_catalogue_search_default_sort",
+			"label": "HOME_CATALOGUE_SEARCH_DEFAULT_SORT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_homecataloguesearchlobbysort",
+			"label": "HomeCatalogueSearchLobbySort",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_parsehomecataloguesearchlobbysort",
+			"label": "parseHomeCatalogueSearchLobbySort()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_buildhomecataloguesearchsorthref",
+			"label": "buildHomeCatalogueSearchSortHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L40"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_cancommitcataloguesearch",
+			"label": "canCommitCatalogueSearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L64"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_serializehomecataloguesearchparam",
+			"label": "serializeHomeCatalogueSearchParam()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L78"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_parsehomecataloguesearchparam",
+			"label": "parseHomeCatalogueSearchParam()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L88"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"label": "formatCommittedSearchSummary()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L99"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_resolvecommitbrowsefromdraft",
+			"label": "resolveCommitBrowseFromDraft()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L116"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"label": "buildHomeCatalogueSearchCommitHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L131"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_buildhomecataloguesearchclearhref",
+			"label": "buildHomeCatalogueSearchClearHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L161"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_ishomecataloguesearchactive",
+			"label": "isHomeCatalogueSearchActive()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L170"
+		},
+		{
+			"id": "lib_home_catalogue_search_param_readhomecataloguesearchfromparams",
+			"label": "readHomeCatalogueSearchFromParams()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L180"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_sort_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalog_sort_parsehomecatalogsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_persist_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_lobby_persist_buildhomehreffrompersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_lobby_persist_emptyhomelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_lobby_persist_homelobbypersisted",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studios_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_search_dialog_studios_searchdialogstudio",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_query_tags_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_search_query_tags_displaytagsegmentlabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_search_query_tags_parserecentoptions",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_search_query_tags_parserecentstructuredquery",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_search_query_tags_searchtag",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_search_query_tags_structured_query_sep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_search_query_tags_serializestructuredquery",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_catalog_text_search_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_use_catalog_text_search_catalogtextsearchlistingkind",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_home_catalogue_search_default_sort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_homecataloguesearchlobbysort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_parsehomecataloguesearchlobbysort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_buildhomecataloguesearchsorthref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_cancommitcataloguesearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_serializehomecataloguesearchparam",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_parsehomecataloguesearchparam",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_resolvecommitbrowsefromdraft",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_buildhomecataloguesearchclearhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_ishomecataloguesearchactive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalogue_search_param_ts",
+			"target": "lib_home_catalogue_search_param_readhomecataloguesearchfromparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"target": "lib_home_catalogue_search_param_serializehomecataloguesearchparam",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_catalogue_search_param_readhomecataloguesearchfromparams",
+			"target": "lib_home_catalogue_search_param_parsehomecataloguesearchparam",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L187",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_catalogue_search_param_parsehomecataloguesearchlobbysort",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_parsehomecataloguesearchlobbysort",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_parsehomecataloguesearchlobbysort",
+			"callee": "parseHomeCatalogSort",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchsorthref",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchsorthref",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchsorthref",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchsorthref",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchsorthref",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchsorthref",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_cancommitcataloguesearch",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_cancommitcataloguesearch",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_cancommitcataloguesearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_cancommitcataloguesearch",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_serializehomecataloguesearchparam",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_serializehomecataloguesearchparam",
+			"callee": "serializeStructuredQuery",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L84"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_parsehomecataloguesearchparam",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_parsehomecataloguesearchparam",
+			"callee": "parseRecentStructuredQuery",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_formatcommittedsearchsummary",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_resolvecommitbrowsefromdraft",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchcommithref",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchclearhref",
+			"callee": "emptyHomeLobbyPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L165"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_buildhomecataloguesearchclearhref",
+			"callee": "buildHomeHrefFromPersisted",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_ishomecataloguesearchactive",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_ishomecataloguesearchactive",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_ishomecataloguesearchactive",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_readhomecataloguesearchfromparams",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "lib_home_catalogue_search_param_readhomecataloguesearchfromparams",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalogue-search-param.ts",
+			"source_location": "L186"
+		}
+	]
+}

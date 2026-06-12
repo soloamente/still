@@ -1,0 +1,192 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"label": "search-dialog-studio-logo.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_search_dialog_studio_logo_search_dialog_studio_asset_slugs",
+			"label": "SEARCH_DIALOG_STUDIO_ASSET_SLUGS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_search_dialog_studio_logo_app_theme_studio_logo_suffix",
+			"label": "APP_THEME_STUDIO_LOGO_SUFFIX",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_search_dialog_studio_logo_studiothemedlogopath",
+			"label": "studioThemedLogoPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "lib_search_dialog_studio_logo_resolvestudiothemedlogourl",
+			"label": "resolveStudioThemedLogoUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L49"
+		},
+		{
+			"id": "lib_search_dialog_studio_logo_searchdialogstudiohaslogo",
+			"label": "searchDialogStudioHasLogo()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L59"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_themes_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_app_themes_app_theme_class_ember",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_app_themes_app_theme_class_lobby_light",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_app_themes_app_theme_class_midnight",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_app_themes_app_theme_class_noir",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_app_themes_app_theme_class_theater",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_app_themes_appthemeclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_app_themes_default_app_theme_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_search_dialog_studio_logo_search_dialog_studio_asset_slugs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_search_dialog_studio_logo_app_theme_studio_logo_suffix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_search_dialog_studio_logo_studiothemedlogopath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_search_dialog_studio_logo_resolvestudiothemedlogourl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_search_dialog_studio_logo_ts",
+			"target": "lib_search_dialog_studio_logo_searchdialogstudiohaslogo",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_search_dialog_studio_logo_resolvestudiothemedlogourl",
+			"target": "lib_search_dialog_studio_logo_studiothemedlogopath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_search_dialog_studio_logo_searchdialogstudiohaslogo",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\search-dialog-studio-logo.ts",
+			"source_location": "L63"
+		}
+	]
+}

@@ -1,0 +1,144 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"label": "og-satori-layout.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "og_og_satori_layout_flex",
+			"label": "flex",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L5"
+		},
+		{
+			"id": "og_og_satori_layout_og_image_response_size",
+			"label": "OG_IMAGE_RESPONSE_SIZE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L10"
+		},
+		{
+			"id": "og_og_satori_layout_ogdefaultcard",
+			"label": "OgDefaultCard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L16"
+		},
+		{
+			"id": "og_og_satori_layout_ogbackdropcardprops",
+			"label": "OgBackdropCardProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L44"
+		},
+		{
+			"id": "og_og_satori_layout_ogbackdropcard",
+			"label": "OgBackdropCard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L51"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_brand_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "lib_app_brand_app_name",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "og_og_image_metadata_og_image_height",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "og_og_image_metadata_og_image_width",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "og_og_satori_layout_flex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "og_og_satori_layout_og_image_response_size",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "og_og_satori_layout_ogdefaultcard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "og_og_satori_layout_ogbackdropcardprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"target": "og_og_satori_layout_ogbackdropcard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-satori-layout.tsx",
+			"source_location": "L51",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

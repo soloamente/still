@@ -1,0 +1,90 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_staff_rank_ts",
+			"label": "staff-rank.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_staff_rank_order",
+			"label": "ORDER",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_staff_rank_rankof",
+			"label": "rankOf()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_staff_rank_outranks",
+			"label": "outranks()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L13"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_rank_ts",
+			"target": "permissions",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_rank_ts",
+			"target": "lib_staff_rank_order",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_rank_ts",
+			"target": "lib_staff_rank_rankof",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_staff_rank_ts",
+			"target": "lib_staff_rank_outranks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_staff_rank_outranks",
+			"target": "lib_staff_rank_rankof",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_staff_rank_rankof",
+			"callee": "indexOf",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\staff-rank.ts",
+			"source_location": "L8"
+		}
+	]
+}

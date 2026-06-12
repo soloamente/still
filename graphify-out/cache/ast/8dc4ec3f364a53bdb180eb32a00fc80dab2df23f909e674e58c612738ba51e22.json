@@ -1,0 +1,94 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"label": "diary-metal-tier.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_diary_metal_tier_diarymetaltier",
+			"label": "DiaryMetalTier",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_diary_metal_tier_iscircularpatronportraitclass",
+			"label": "isCircularPatronPortraitClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_diary_metal_tier_diarymetalborderbeamcolorvariant",
+			"label": "diaryMetalBorderBeamColorVariant()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"target": "border_beam",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"target": "lib_diary_metal_tier_iscircularpatronportraitclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"target": "lib_diary_metal_tier_diarymetalborderbeamcolorvariant",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_diary_metal_tier_iscircularpatronportraitclass",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_diary_metal_tier_iscircularpatronportraitclass",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "lib_diary_metal_tier_iscircularpatronportraitclass",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\diary-metal-tier.ts",
+			"source_location": "L11"
+		}
+	]
+}

@@ -1,0 +1,424 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_clear_user_library_ts",
+			"label": "clear-user-library.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_clear_user_library_clearlibrarycounts",
+			"label": "ClearLibraryCounts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_clear_user_library_clearuserlibrary",
+			"label": "clearUserLibrary()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L42"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_clear_user_library_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_clear_user_library_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_clear_user_library_ts",
+			"target": "lib_clear_user_library_clearlibrarycounts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_clear_user_library_ts",
+			"target": "lib_clear_user_library_clearuserlibrary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "returning",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "returning",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L80"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "returning",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "returning",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "returning",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "returning",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "returning",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_clear_user_library_clearuserlibrary",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\clear-user-library.ts",
+			"source_location": "L121"
+		}
+	]
+}

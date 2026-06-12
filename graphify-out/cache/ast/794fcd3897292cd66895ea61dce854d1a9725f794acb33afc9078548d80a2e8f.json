@@ -1,0 +1,306 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"label": "detail-vaul-sheet.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "movie_detail_vaul_sheet_detailvauldrawerhandlerow",
+			"label": "DetailVaulDrawerHandleRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L30"
+		},
+		{
+			"id": "movie_detail_vaul_sheet_detailvaulsheet",
+			"label": "DetailVaulSheet()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L79"
+		},
+		{
+			"id": "movie_detail_vaul_sheet_detailvaulnestedsheet",
+			"label": "DetailVaulNestedSheet()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L166"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "vaul",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_vaul_drawer_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_detail_vaul_drawer_app_detail_drawer_content_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_detail_vaul_drawer_movie_detail_drawer_body_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_detail_vaul_drawer_movie_detail_drawer_content_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_detail_vaul_drawer_movie_detail_drawer_handle_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_detail_vaul_drawer_movie_detail_drawer_handle_grip_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_detail_vaul_drawer_movie_detail_nested_drawer_content_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_dismiss_sheet_on_route_change_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_use_dismiss_sheet_on_route_change_usedismisssheetonroutechange",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_lock_drawer_scroll_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_use_lock_drawer_scroll_uselockdrawerscroll",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_software_gpu_rendering_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "lib_use_software_gpu_rendering_usesoftwaregpurendering",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "movie_detail_vaul_sheet_detailvauldrawerhandlerow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "movie_detail_vaul_sheet_detailvaulsheet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_detail_vaul_sheet_tsx",
+			"target": "movie_detail_vaul_sheet_detailvaulnestedsheet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L166",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvauldrawerhandlerow",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvauldrawerhandlerow",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvauldrawerhandlerow",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvaulsheet",
+			"callee": "useLockDrawerScroll",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvaulsheet",
+			"callee": "useSoftwareGpuRendering",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvaulsheet",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvaulsheet",
+			"callee": "useDismissSheetOnRouteChange",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvaulnestedsheet",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "movie_detail_vaul_sheet_detailvaulnestedsheet",
+			"callee": "useDismissSheetOnRouteChange",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\detail-vaul-sheet.tsx",
+			"source_location": "L183"
+		}
+	]
+}

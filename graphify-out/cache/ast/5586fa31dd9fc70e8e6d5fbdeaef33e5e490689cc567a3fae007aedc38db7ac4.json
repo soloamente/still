@@ -1,0 +1,157 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"label": "auth-server.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_auth_server_serversession",
+			"label": "ServerSession",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_auth_server_authserver",
+			"label": "authServer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L39"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"target": "headers",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_auth_request_origin_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"target": "lib_auth_request_origin_webapporiginfromheaders",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"target": "lib_auth_server_serversession",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"target": "lib_auth_server_authserver",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "cookies",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "getAll",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "headers",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "webAppOriginFromHeaders",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_auth_server_authserver",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\auth-server.ts",
+			"source_location": "L64"
+		}
+	]
+}

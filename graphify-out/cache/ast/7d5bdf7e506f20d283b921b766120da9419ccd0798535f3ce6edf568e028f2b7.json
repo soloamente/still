@@ -1,0 +1,82 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"label": "creator-recognition.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_creator_recognition_curatorspotlightpatron",
+			"label": "CuratorSpotlightPatron",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_creator_recognition_profilecreatorrecognition",
+			"label": "ProfileCreatorRecognition",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_creator_recognition_reviewengagementscore",
+			"label": "reviewEngagementScore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L27"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_curatorspotlightpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_profilecreatorrecognition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_creator_recognition_ts",
+			"target": "lib_creator_recognition_reviewengagementscore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\creator-recognition.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

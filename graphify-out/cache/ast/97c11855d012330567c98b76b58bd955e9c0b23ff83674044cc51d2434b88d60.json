@@ -1,0 +1,230 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"label": "review-movie-screenshots.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"label": "fetchReviewMovieScreenshots()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_review_movie_screenshots_resolvereviewstillslide",
+			"label": "resolveReviewStillSlide()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L43"
+		},
+		{
+			"id": "lib_review_movie_screenshots_assertvalidreviewstillslidekey",
+			"label": "assertValidReviewStillSlideKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L52"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_hero_artwork_slides_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "lib_hero_artwork_slides_buildscreenshotslides",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "lib_hero_artwork_slides_heroartworkslide",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "lib_hero_artwork_slides_normalizetmdbimagesbundle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "lib_tmdb_tmdbapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "lib_review_movie_screenshots_resolvereviewstillslide",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_review_movie_screenshots_ts",
+			"target": "lib_review_movie_screenshots_assertvalidreviewstillslidekey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_review_movie_screenshots_assertvalidreviewstillslidekey",
+			"target": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L56",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "normalizeTmdbImagesBundle",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "movieImages",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_fetchreviewmoviescreenshots",
+			"callee": "buildScreenshotSlides",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_resolvereviewstillslide",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_review_movie_screenshots_assertvalidreviewstillslidekey",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\review-movie-screenshots.ts",
+			"source_location": "L57"
+		}
+	]
+}

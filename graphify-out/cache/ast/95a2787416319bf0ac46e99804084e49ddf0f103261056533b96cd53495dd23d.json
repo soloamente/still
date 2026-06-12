@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_07_staff_roles_permissions_design_md",
+			"label": "2026-06-07-staff-roles-permissions-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"label": "Staff Roles & Permissions \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_decisions_from_brainstorming",
+			"label": "Decisions (from brainstorming)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L16"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_roles_permission_matrix",
+			"label": "Roles & Permission Matrix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_statements_resource_actions",
+			"label": "Statements (resource \u2192 actions)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_matrix",
+			"label": "Matrix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_data_model",
+			"label": "Data Model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_a_user_table_via_better_auth_admin_plugin",
+			"label": "a) `user` table (via better-auth `admin` plugin)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_b_content_moderation_columns",
+			"label": "b) Content moderation columns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L70"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_c_staff_audit_log_table_new_schema_staff_ts_exported_from_the_barrel",
+			"label": "c) `staff_audit_log` table (new \u2014 `schema/staff.ts`, exported from the barrel)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_server",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_a_access_control_config_packages_auth_src",
+			"label": "a) Access control config (`packages/auth/src/`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_b_authorization_helpers_apps_server_src_context_ts",
+			"label": "b) Authorization helpers (`apps/server/src/context.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_c_staff_routes_apps_server_src_routes_staff_ts_mounted_in_index_ts",
+			"label": "c) Staff routes (`apps/server/src/routes/staff.ts`, mounted in `index.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_d_ban_enforcement",
+			"label": "d) Ban enforcement",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_ui_web_only_apps_web_src_app_app_staff",
+			"label": "UI (web only) \u2014 `apps/web/src/app/(app)/staff/`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_bootstrapping_the_first_owner",
+			"label": "Bootstrapping the first Owner",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_testing_bun_test_test_ts",
+			"label": "Testing (Bun test, `*.test.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "specs_2026_06_07_staff_roles_permissions_design_out_of_scope_v1",
+			"label": "Out of Scope (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L165"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_07_staff_roles_permissions_design_md",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_decisions_from_brainstorming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_roles_permission_matrix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_roles_permission_matrix",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_statements_resource_actions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_roles_permission_matrix",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_matrix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_data_model",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_a_user_table_via_better_auth_admin_plugin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_data_model",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_b_content_moderation_columns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_data_model",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_c_staff_audit_log_table_new_schema_staff_ts_exported_from_the_barrel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_server",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_a_access_control_config_packages_auth_src",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_server",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_b_authorization_helpers_apps_server_src_context_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_server",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_c_staff_routes_apps_server_src_routes_staff_ts_mounted_in_index_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_server",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_d_ban_enforcement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_ui_web_only_apps_web_src_app_app_staff",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_bootstrapping_the_first_owner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_testing_bun_test_test_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_07_staff_roles_permissions_design_staff_roles_permissions_design",
+			"target": "specs_2026_06_07_staff_roles_permissions_design_out_of_scope_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-07-staff-roles-permissions-design.md",
+			"source_location": "L165",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

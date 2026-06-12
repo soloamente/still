@@ -1,0 +1,431 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_06_taste_rail_not_interested_design_md",
+			"label": "2026-06-06-taste-rail-not-interested-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"label": "Taste Rail \u2014 \u201cNot Interested\u201d Dismiss",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_user_stories",
+			"label": "User stories",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_action_matrix_taste_rail_tiles",
+			"label": "Action matrix (taste-rail tiles)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_signed_in_taste_rail_only",
+			"label": "Signed in (taste rail only)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_signed_out",
+			"label": "Signed out",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_data_model",
+			"label": "Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_table_taste_dismissed_movie",
+			"label": "Table: `taste_dismissed_movie`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_server_behavior",
+			"label": "Server behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_buildtastematcheddiscovery_userid",
+			"label": "`buildTasteMatchedDiscovery(userId)`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L78"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_post_api_taste_dismiss",
+			"label": "`POST /api/taste/dismiss`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_codeblock_1",
+			"label": "code:ts ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_tests_server",
+			"label": "Tests (server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_client_architecture",
+			"label": "Client architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_surface_type",
+			"label": "Surface type",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_codeblock_2",
+			"label": "code:ts (type CatalogueRadialSurface = \"home\" | \"diary\" | \"watchlist\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_catalogue_radial_items_ts",
+			"label": "`catalogue-radial-items.ts`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_cataloguepostertile",
+			"label": "`CataloguePosterTile`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_hometastematchedrail",
+			"label": "`HomeTasteMatchedRail`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L140"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_motion",
+			"label": "Motion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_edge_cases",
+			"label": "Edge cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L156"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_future_rails",
+			"label": "Future rails",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L166"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_verification",
+			"label": "Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "specs_2026_06_06_taste_rail_not_interested_design_references",
+			"label": "References",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L182"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_06_taste_rail_not_interested_design_md",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_user_stories",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_action_matrix_taste_rail_tiles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_action_matrix_taste_rail_tiles",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_signed_in_taste_rail_only",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_action_matrix_taste_rail_tiles",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_signed_out",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_data_model",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_table_taste_dismissed_movie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_server_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_server_behavior",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_buildtastematcheddiscovery_userid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_server_behavior",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_post_api_taste_dismiss",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_post_api_taste_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_server_behavior",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_tests_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_client_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_client_architecture",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_surface_type",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_surface_type",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_client_architecture",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_catalogue_radial_items_ts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_client_architecture",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_cataloguepostertile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_client_architecture",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_hometastematchedrail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_client_architecture",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_motion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_edge_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L156",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_future_rails",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_06_taste_rail_not_interested_design_taste_rail_not_interested_dismiss",
+			"target": "specs_2026_06_06_taste_rail_not_interested_design_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-06-taste-rail-not-interested-design.md",
+			"source_location": "L182",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

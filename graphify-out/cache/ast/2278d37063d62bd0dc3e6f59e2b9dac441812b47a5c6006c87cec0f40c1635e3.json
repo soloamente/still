@@ -1,0 +1,54 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_shareable_app_paths_ts",
+			"label": "shareable-app-paths.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\shareable-app-paths.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_shareable_app_paths_shareable_app_prefixes",
+			"label": "SHAREABLE_APP_PREFIXES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\shareable-app-paths.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_shareable_app_paths_isshareableapppath",
+			"label": "isShareableAppPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\shareable-app-paths.ts",
+			"source_location": "L14"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_shareable_app_paths_ts",
+			"target": "lib_shareable_app_paths_shareable_app_prefixes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\shareable-app-paths.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_shareable_app_paths_ts",
+			"target": "lib_shareable_app_paths_isshareableapppath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\shareable-app-paths.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_shareable_app_paths_isshareableapppath",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\shareable-app-paths.ts",
+			"source_location": "L15"
+		}
+	]
+}

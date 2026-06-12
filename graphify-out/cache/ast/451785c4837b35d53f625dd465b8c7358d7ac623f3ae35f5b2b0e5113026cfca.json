@@ -1,0 +1,80 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_auth_src_lib_send_email_ts",
+			"label": "send-email.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_send_email_sendemailinput",
+			"label": "SendEmailInput",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_send_email_sendemail",
+			"label": "sendEmail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_lib_send_email_ts",
+			"target": "resend",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_lib_send_email_ts",
+			"target": "lib_send_email_sendemailinput",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_lib_send_email_ts",
+			"target": "lib_send_email_sendemail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_send_email_sendemail",
+			"target": "server",
+			"relation": "imports_from",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_send_email_sendemail",
+			"callee": "info",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_send_email_sendemail",
+			"callee": "send",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\lib\\send-email.ts",
+			"source_location": "L33"
+		}
+	]
+}

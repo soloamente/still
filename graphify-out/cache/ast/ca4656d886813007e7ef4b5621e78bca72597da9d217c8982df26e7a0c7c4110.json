@@ -1,0 +1,128 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"label": "movie-cast-crew-arc.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_test_items",
+			"label": "items",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_test_ordered",
+			"label": "ordered",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_test_centerindex",
+			"label": "centerIndex",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_movie_cast_crew_arc_test_sliced",
+			"label": "sliced",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L23"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "lib_movie_cast_crew_arc_arcvisibleslotcount",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "lib_movie_cast_crew_arc_reorderforcenterarc",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "lib_movie_cast_crew_arc_slicearccentercards",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "lib_movie_cast_crew_arc_test_items",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "lib_movie_cast_crew_arc_test_ordered",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "lib_movie_cast_crew_arc_test_centerindex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_movie_cast_crew_arc_test_ts",
+			"target": "lib_movie_cast_crew_arc_test_sliced",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\movie-cast-crew-arc.test.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

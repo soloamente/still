@@ -1,0 +1,303 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_09_data_settings_export_clear_delete_design_md",
+			"label": "2026-06-09-data-settings-export-clear-delete-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"label": "Data settings: export, clear library, delete account \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_decisions_made_during_brainstorming",
+			"label": "Decisions made during brainstorming",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_1_settings_ia_ui",
+			"label": "1. Settings IA & UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_2_export_get_api_me_export",
+			"label": "2. Export \u2014 `GET /api/me/export`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_server",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_zip_contents",
+			"label": "ZIP contents",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_web",
+			"label": "Web",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_3_clear_library_data_delete_api_me_library",
+			"label": "3. Clear library data \u2014 `DELETE /api/me/library`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_server_82",
+			"label": "Server",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L82"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_web_dialog",
+			"label": "Web dialog",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_4_delete_account_better_auth_resend",
+			"label": "4. Delete account \u2014 Better Auth + Resend",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_email_infrastructure",
+			"label": "Email infrastructure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L114"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_better_auth_configuration",
+			"label": "Better Auth configuration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_web_flow",
+			"label": "Web flow",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L142"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L152"
+		},
+		{
+			"id": "specs_2026_06_09_data_settings_export_clear_delete_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L165"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_09_data_settings_export_clear_delete_design_md",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_decisions_made_during_brainstorming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_1_settings_ia_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_2_export_get_api_me_export",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_2_export_get_api_me_export",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_2_export_get_api_me_export",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_zip_contents",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_2_export_get_api_me_export",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_3_clear_library_data_delete_api_me_library",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_3_clear_library_data_delete_api_me_library",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_server_82",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_3_clear_library_data_delete_api_me_library",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_web_dialog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_4_delete_account_better_auth_resend",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_4_delete_account_better_auth_resend",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_email_infrastructure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_4_delete_account_better_auth_resend",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_better_auth_configuration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_4_delete_account_better_auth_resend",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_web_flow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L142",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_data_settings_export_clear_delete_design_data_settings_export_clear_library_delete_account_design",
+			"target": "specs_2026_06_09_data_settings_export_clear_delete_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-data-settings-export-clear-delete-design.md",
+			"source_location": "L165",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

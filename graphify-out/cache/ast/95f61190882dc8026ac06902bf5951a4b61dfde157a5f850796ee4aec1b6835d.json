@@ -1,0 +1,30 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_review_spoiler_mask_ts",
+			"label": "review-spoiler-mask.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-spoiler-mask.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_review_spoiler_mask_shouldmaskreviewspoilers",
+			"label": "shouldMaskReviewSpoilers()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-spoiler-mask.ts",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_review_spoiler_mask_ts",
+			"target": "lib_review_spoiler_mask_shouldmaskreviewspoilers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-spoiler-mask.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,75 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_software_gpu_rendering_ts",
+			"label": "use-software-gpu-rendering.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_software_gpu_rendering_usesoftwaregpurendering",
+			"label": "useSoftwareGpuRendering()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_software_gpu_rendering_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_software_gpu_rendering_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detect_software_gpu_rendering_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_software_gpu_rendering_ts",
+			"target": "lib_detect_software_gpu_rendering_detectsoftwaregpurendering",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_software_gpu_rendering_ts",
+			"target": "lib_use_software_gpu_rendering_usesoftwaregpurendering",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_software_gpu_rendering_usesoftwaregpurendering",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_use_software_gpu_rendering_usesoftwaregpurendering",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-software-gpu-rendering.ts",
+			"source_location": "L14"
+		}
+	]
+}

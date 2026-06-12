@@ -1,0 +1,479 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_10_animated_profile_media_md",
+			"label": "2026-06-10-animated-profile-media.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"label": "Animated Profile Media Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_conventions",
+			"label": "Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_task_1_shared_profile_media_helpers_server",
+			"label": "Task 1: Shared profile-media helpers (server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_1",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_2",
+			"label": "code:ts (export const PROFILE_PREF_AVATAR_IS_ANIMATED = \"avatarIsAnim)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L114"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_task_2_pro_gif_upload_gate_avatar_banner",
+			"label": "Task 2: Pro GIF upload gate (avatar + banner)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L171"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_3",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L178"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_4",
+			"label": "code:ts (const [profileRow] = await db)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L189"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_5",
+			"label": "code:ts (const mergedPrefs = mergeBannerAnimationPref()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L208"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_task_3_web_preference_readers",
+			"label": "Task 3: Web preference readers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L229"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_6",
+			"label": "code:ts (export const PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_H)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L241"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_7",
+			"label": "code:ts (export function inferAnimatedFromProfileUrl()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L271"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_task_4_patronportraitavatar_animated_grayscale_reduced_motion",
+			"label": "Task 4: `PatronPortraitAvatar` animated + grayscale + reduced motion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L289"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_8",
+			"label": "code:ts (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L297"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_9",
+			"label": "code:ts (isAnimated?: boolean;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L317"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_10",
+			"label": "code:ts (const grayscaleClass =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L328"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_task_5_profile_hero_banner_portrait_wiring",
+			"label": "Task 5: Profile hero banner + portrait wiring",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L343"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_11",
+			"label": "code:ts (avatarIsAnimated?: boolean;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L351"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_12",
+			"label": "code:tsx (<PatronPortraitAvatar)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L363"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_13",
+			"label": "code:ts (avatarIsAnimated: readAvatarIsAnimatedPref(profile.preferenc)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L380"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_task_6_settings_grayscale_toggle_pro_gif_copy",
+			"label": "Task 6: Settings \u2014 grayscale toggle + Pro GIF copy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L392"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_14",
+			"label": "code:tsx ({isPro ? ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L407"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_15",
+			"label": "code:ts (} else if (body.code === \"PRO_ANIMATED_MEDIA_REQUIRED\") {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L415"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_task_7_thread_isanimated_through_feed_nav_call_sites",
+			"label": "Task 7: Thread `isAnimated` through feed + nav call sites",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L425"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_16",
+			"label": "code:ts (profile: { handle: string; displayName: string; avatarIsAnim)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L436"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_codeblock_17",
+			"label": "code:tsx (<PatronPortraitAvatar)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L444"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_task_8_verification",
+			"label": "Task 8: Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L468"
+		},
+		{
+			"id": "plans_2026_06_10_animated_profile_media_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L488"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_10_animated_profile_media_md",
+			"target": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_task_1_shared_profile_media_helpers_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_1_shared_profile_media_helpers_server",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_1_shared_profile_media_helpers_server",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_task_2_pro_gif_upload_gate_avatar_banner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L171",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_2_pro_gif_upload_gate_avatar_banner",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L178",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_2_pro_gif_upload_gate_avatar_banner",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L189",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_2_pro_gif_upload_gate_avatar_banner",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L208",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_task_3_web_preference_readers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L229",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_3_web_preference_readers",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_3_web_preference_readers",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L271",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_task_4_patronportraitavatar_animated_grayscale_reduced_motion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L289",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_4_patronportraitavatar_animated_grayscale_reduced_motion",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L297",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_4_patronportraitavatar_animated_grayscale_reduced_motion",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L317",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_4_patronportraitavatar_animated_grayscale_reduced_motion",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L328",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_task_5_profile_hero_banner_portrait_wiring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L343",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_5_profile_hero_banner_portrait_wiring",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L351",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_5_profile_hero_banner_portrait_wiring",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L363",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_5_profile_hero_banner_portrait_wiring",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L380",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_task_6_settings_grayscale_toggle_pro_gif_copy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L392",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_6_settings_grayscale_toggle_pro_gif_copy",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L407",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_6_settings_grayscale_toggle_pro_gif_copy",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L415",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_task_7_thread_isanimated_through_feed_nav_call_sites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L425",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_7_thread_isanimated_through_feed_nav_call_sites",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L436",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_task_7_thread_isanimated_through_feed_nav_call_sites",
+			"target": "plans_2026_06_10_animated_profile_media_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L444",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_task_8_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L468",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_10_animated_profile_media_animated_profile_media_implementation_plan",
+			"target": "plans_2026_06_10_animated_profile_media_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-10-animated-profile-media.md",
+			"source_location": "L488",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

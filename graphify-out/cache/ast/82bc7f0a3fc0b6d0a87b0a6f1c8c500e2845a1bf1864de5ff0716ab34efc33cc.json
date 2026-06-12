@@ -1,0 +1,113 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"label": "home-catalog-run.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_catalog_run_homecatalogrun",
+			"label": "HomeCatalogRun",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_home_catalog_run_parsehomecatalogrun",
+			"label": "parseHomeCatalogRun()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_home_catalog_run_effectivehomecatalogrun",
+			"label": "effectiveHomeCatalogRun()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L46"
+		},
+		{
+			"id": "lib_home_catalog_run_tvdiscoversortbyforlobbysort",
+			"label": "tvDiscoverSortByForLobbySort()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L56"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_browse_surface_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"target": "lib_home_browse_surface_homebrowsesurface",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"target": "lib_home_catalog_run_homecatalogrun",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"target": "lib_home_catalog_run_parsehomecatalogrun",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"target": "lib_home_catalog_run_effectivehomecatalogrun",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_catalog_run_ts",
+			"target": "lib_home_catalog_run_tvdiscoversortbyforlobbysort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L56",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_catalog_run_parsehomecatalogrun",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_home_catalog_run_parsehomecatalogrun",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-catalog-run.ts",
+			"source_location": "L24"
+		}
+	]
+}

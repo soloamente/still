@@ -1,0 +1,58 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_software_gpu_document_probe_tsx",
+			"label": "software-gpu-document-probe.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\software-gpu-document-probe.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_software_gpu_document_probe_softwaregpudocumentprobe",
+			"label": "SoftwareGpuDocumentProbe()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\software-gpu-document-probe.tsx",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_software_gpu_document_probe_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_software_gpu_rendering_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\software-gpu-document-probe.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_software_gpu_document_probe_tsx",
+			"target": "lib_use_software_gpu_rendering_usesoftwaregpurendering",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\software-gpu-document-probe.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_software_gpu_document_probe_tsx",
+			"target": "app_software_gpu_document_probe_softwaregpudocumentprobe",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\software-gpu-document-probe.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_software_gpu_document_probe_softwaregpudocumentprobe",
+			"callee": "useSoftwareGpuRendering",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\software-gpu-document-probe.tsx",
+			"source_location": "L9"
+		}
+	]
+}

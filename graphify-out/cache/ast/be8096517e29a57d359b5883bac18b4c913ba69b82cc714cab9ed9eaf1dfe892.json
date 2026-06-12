@@ -1,0 +1,335 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_10_letterboxd_watched_csv_import_design_md",
+			"label": "2026-06-10-letterboxd-watched-csv-import-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"label": "Letterboxd `watched.csv` gap-fill import \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_decisions_brainstorming",
+			"label": "Decisions (brainstorming)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_1_accepted_file_parsing",
+			"label": "1. Accepted file & parsing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_2_pipeline_merge_rules",
+			"label": "2. Pipeline & merge rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_processing_order_updated",
+			"label": "Processing order (updated)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_per_row_logic_watched_gap_fill",
+			"label": "Per-row logic (watched gap-fill)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_log_fields_on_insert",
+			"label": "Log fields on insert",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L84"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_re_import",
+			"label": "Re-import",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_overlap_examples",
+			"label": "Overlap examples",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_3_api_response_ui",
+			"label": "3. API response & UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_extended_json_response",
+			"label": "Extended JSON response",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L108"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_codeblock_1",
+			"label": "code:ts (watched: { imported: number; skipped: number; unmatched: num)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_web_ui_me_letterboxd_import_tsx",
+			"label": "Web UI (`me-letterboxd-import.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L126"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_4_server_module_layout",
+			"label": "4. Server module layout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_5_edge_cases",
+			"label": "5. Edge cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_6_testing",
+			"label": "6. Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L155"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_7_out_of_scope",
+			"label": "7. Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L165"
+		},
+		{
+			"id": "specs_2026_06_10_letterboxd_watched_csv_import_design_8_success_criteria",
+			"label": "8. Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L172"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_10_letterboxd_watched_csv_import_design_md",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_decisions_brainstorming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_1_accepted_file_parsing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_2_pipeline_merge_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_2_pipeline_merge_rules",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_processing_order_updated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_2_pipeline_merge_rules",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_per_row_logic_watched_gap_fill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_2_pipeline_merge_rules",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_log_fields_on_insert",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_2_pipeline_merge_rules",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_re_import",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_2_pipeline_merge_rules",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_overlap_examples",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_3_api_response_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_3_api_response_ui",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_extended_json_response",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_extended_json_response",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_3_api_response_ui",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_web_ui_me_letterboxd_import_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L126",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_4_server_module_layout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_5_edge_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_6_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L155",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_7_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L165",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_letterboxd_watched_csv_import_design_letterboxd_watched_csv_gap_fill_import_design",
+			"target": "specs_2026_06_10_letterboxd_watched_csv_import_design_8_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-letterboxd-watched-csv-import-design.md",
+			"source_location": "L172",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

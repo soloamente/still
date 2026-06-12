@@ -1,0 +1,128 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_require_verified_email_ts",
+			"label": "require-verified-email.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_require_verified_email_emailverifieduser",
+			"label": "EmailVerifiedUser",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_require_verified_email_emailverificationrequirederror",
+			"label": "EmailVerificationRequiredError",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_require_verified_email_emailverificationrequirederror_constructor",
+			"label": ".constructor()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_require_verified_email_emailverificationrequiredbody",
+			"label": "emailVerificationRequiredBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_require_verified_email_ispubliccontentvisibility",
+			"label": "isPublicContentVisibility()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "lib_require_verified_email_assertemailverified",
+			"label": "assertEmailVerified()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L31"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_require_verified_email_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_require_verified_email_ts",
+			"target": "lib_require_verified_email_emailverifieduser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_require_verified_email_ts",
+			"target": "lib_require_verified_email_emailverificationrequirederror",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_require_verified_email_emailverificationrequirederror",
+			"target": "lib_require_verified_email_emailverificationrequirederror_constructor",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_require_verified_email_ts",
+			"target": "lib_require_verified_email_emailverificationrequiredbody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_require_verified_email_ts",
+			"target": "lib_require_verified_email_ispubliccontentvisibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_require_verified_email_ts",
+			"target": "lib_require_verified_email_assertemailverified",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_require_verified_email_emailverificationrequirederror_constructor",
+			"callee": "super",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\require-verified-email.ts",
+			"source_location": "L12"
+		}
+	]
+}

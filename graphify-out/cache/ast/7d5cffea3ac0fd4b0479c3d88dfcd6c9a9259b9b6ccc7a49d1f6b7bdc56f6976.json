@@ -1,0 +1,166 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"label": "auth-route-layout.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "auth_auth_route_layout_auth_routes",
+			"label": "AUTH_ROUTES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "auth_auth_route_layout_authroutekey",
+			"label": "AuthRouteKey",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L83"
+		},
+		{
+			"id": "auth_auth_route_layout_resolveauthroute",
+			"label": "resolveAuthRoute()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L86"
+		},
+		{
+			"id": "auth_auth_route_layout_authroutelayout",
+			"label": "AuthRouteLayout()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L97"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_auth_auth_page_shell_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "auth_auth_page_shell_authpageshell",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_brand_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "lib_app_brand_app_name",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "auth_auth_route_layout_auth_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "auth_auth_route_layout_authroutekey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "auth_auth_route_layout_resolveauthroute",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_auth_auth_route_layout_tsx",
+			"target": "auth_auth_route_layout_authroutelayout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "auth_auth_route_layout_authroutelayout",
+			"target": "auth_auth_route_layout_resolveauthroute",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L99",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "auth_auth_route_layout_authroutelayout",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\auth\\auth-route-layout.tsx",
+			"source_location": "L98"
+		}
+	]
+}

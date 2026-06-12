@@ -1,0 +1,159 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_09_og_images_design_md",
+			"label": "2026-06-09-og-images-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"label": "OG share images \u2014 design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_share_matrix",
+			"label": "Share matrix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L10"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_visual_language",
+			"label": "Visual language",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L20"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_data_fallbacks",
+			"label": "Data & fallbacks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_caching",
+			"label": "Caching",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_metadata_wiring",
+			"label": "Metadata wiring",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "specs_2026_06_09_og_images_design_follow_up",
+			"label": "Follow-up",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L53"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_09_og_images_design_md",
+			"target": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"target": "specs_2026_06_09_og_images_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"target": "specs_2026_06_09_og_images_design_share_matrix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"target": "specs_2026_06_09_og_images_design_visual_language",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"target": "specs_2026_06_09_og_images_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"target": "specs_2026_06_09_og_images_design_data_fallbacks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"target": "specs_2026_06_09_og_images_design_caching",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"target": "specs_2026_06_09_og_images_design_metadata_wiring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_09_og_images_design_og_share_images_design",
+			"target": "specs_2026_06_09_og_images_design_follow_up",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-09-og-images-design.md",
+			"source_location": "L53",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,213 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"label": "page.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "target_page_params",
+			"label": "Params",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "target_page_generatemetadata",
+			"label": "generateMetadata()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "target_page_comparesharepage",
+			"label": "CompareSharePage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L44"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "next",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_brand_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "lib_app_brand_app_name",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "og_og_image_metadata_comparesharepath",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "og_og_image_metadata_ogcomparepath",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "og_og_image_metadata_ogimagemetadatafields",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "target_page_params",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "target_page_generatemetadata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_compare_viewer_target_page_tsx",
+			"target": "target_page_comparesharepage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "target_page_generatemetadata",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "target_page_generatemetadata",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "target_page_generatemetadata",
+			"callee": "compareSharePath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "target_page_generatemetadata",
+			"callee": "compareSharePath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "target_page_generatemetadata",
+			"callee": "ogImageMetadataFields",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "target_page_generatemetadata",
+			"callee": "ogComparePath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "target_page_generatemetadata",
+			"callee": "ogImageMetadataFields",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "target_page_generatemetadata",
+			"callee": "ogComparePath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "target_page_comparesharepage",
+			"callee": "redirect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "target_page_comparesharepage",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\compare\\[viewer]\\[target]\\page.tsx",
+			"source_location": "L50"
+		}
+	]
+}

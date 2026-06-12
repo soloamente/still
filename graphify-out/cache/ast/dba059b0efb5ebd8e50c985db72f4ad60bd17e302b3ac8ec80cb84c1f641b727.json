@@ -1,0 +1,274 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"label": "creator-analytics.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_creator_analytics_creatorlisthighlight",
+			"label": "CreatorListHighlight",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_creator_analytics_creatoranalyticspayload",
+			"label": "CreatorAnalyticsPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_creator_analytics_listdescribedsql",
+			"label": "listDescribedSql",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"label": "fetchCreatorAnalyticsForUser()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L30"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_creator_recognition_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_creator_recognition_buildcuratorheadline",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_creator_recognition_curatorcontributionstats",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_creator_recognition_fetchcuratorstatsforuser",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_creator_recognition_qualifiesascurator",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_list_quality_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_list_quality_list_description_discoverability_min_chars",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_creator_analytics_creatorlisthighlight",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_creator_analytics_creatoranalyticspayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_creator_analytics_listdescribedsql",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_creator_analytics_ts",
+			"target": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "fetchCuratorStatsForUser",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "qualifiesAsCurator",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_creator_analytics_fetchcreatoranalyticsforuser",
+			"callee": "buildCuratorHeadline",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\creator-analytics.ts",
+			"source_location": "L67"
+		}
+	]
+}

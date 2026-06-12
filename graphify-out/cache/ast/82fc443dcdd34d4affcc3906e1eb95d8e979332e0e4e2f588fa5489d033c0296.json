@@ -1,0 +1,84 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_letterboxd_file_classifier_ts",
+			"label": "letterboxd-file-classifier.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_letterboxd_file_classifier_letterboxdcsvkind",
+			"label": "LetterboxdCsvKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_letterboxd_file_classifier_classifyletterboxdfilename",
+			"label": "classifyLetterboxdFileName()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_letterboxd_file_classifier_hasrecognizedletterboxdfile",
+			"label": "hasRecognizedLetterboxdFile()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L38"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_letterboxd_file_classifier_ts",
+			"target": "lib_letterboxd_file_classifier_letterboxdcsvkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_letterboxd_file_classifier_ts",
+			"target": "lib_letterboxd_file_classifier_classifyletterboxdfilename",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_letterboxd_file_classifier_ts",
+			"target": "lib_letterboxd_file_classifier_hasrecognizedletterboxdfile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_letterboxd_file_classifier_classifyletterboxdfilename",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_letterboxd_file_classifier_classifyletterboxdfilename",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_letterboxd_file_classifier_hasrecognizedletterboxdfile",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\letterboxd-file-classifier.ts",
+			"source_location": "L39"
+		}
+	]
+}

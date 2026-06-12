@@ -1,0 +1,205 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"label": "patron-portrait-with-metal-tier.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltierprops",
+			"label": "PatronPortraitWithMetalTierProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"label": "PatronPortraitWithMetalTier()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L26"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "border_beam",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "profile_patron_portrait_avatar_patronportraitavatar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "profile_patron_portrait_avatar_patronportraitavatarprops",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "lib_diary_metal_tier_diary_metal_border_beam_strength",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "lib_diary_metal_tier_diarymetalborderbeamcolorvariant",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "lib_diary_metal_tier_iscircularpatronportraitclass",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_prefers_reduced_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "lib_use_prefers_reduced_motion_useprefersreducedmotion",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltierprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"target": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"callee": "usePrefersReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"callee": "isCircularPatronPortraitClass",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"callee": "diaryMetalBorderBeamColorVariant",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-with-metal-tier.tsx",
+			"source_location": "L61"
+		}
+	]
+}

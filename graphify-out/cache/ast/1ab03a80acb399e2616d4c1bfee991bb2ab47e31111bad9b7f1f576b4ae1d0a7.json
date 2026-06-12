@@ -1,0 +1,70 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_taste_matched_discovery_ts",
+			"label": "taste-matched-discovery.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_taste_matched_discovery_tastematchmovie",
+			"label": "TasteMatchMovie",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_taste_matched_discovery_tastematcheddiscoverypayload",
+			"label": "TasteMatchedDiscoveryPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_taste_matched_discovery_tastematchedrailtitle",
+			"label": "tasteMatchedRailTitle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts",
+			"source_location": "L19"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_taste_matched_discovery_ts",
+			"target": "lib_taste_matched_discovery_tastematchmovie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_taste_matched_discovery_ts",
+			"target": "lib_taste_matched_discovery_tastematcheddiscoverypayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_taste_matched_discovery_ts",
+			"target": "lib_taste_matched_discovery_tastematchedrailtitle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_taste_matched_discovery_tastematchedrailtitle",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-matched-discovery.ts",
+			"source_location": "L20"
+		}
+	]
+}

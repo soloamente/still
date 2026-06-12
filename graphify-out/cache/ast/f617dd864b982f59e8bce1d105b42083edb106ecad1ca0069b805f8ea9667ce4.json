@@ -1,0 +1,559 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_07_community_activity_feed_ordering_md",
+			"label": "2026-06-07-community-activity-feed-ordering.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"label": "Community Activity Feed Ordering Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_canonical_types_used_across_tasks",
+			"label": "Canonical types (used across tasks)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_1",
+			"label": "code:ts (// apps/server/src/lib/feed-items.ts & mirrored in apps/web/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_task_1_feed_sort_cursor_helpers_tdd",
+			"label": "Task 1: Feed sort + cursor helpers (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_2",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_3",
+			"label": "code:ts (export type FeedActivityKind = \"log\" | \"review\" | \"list\" | \")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L116"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_4",
+			"label": "code:bash (git add apps/server/src/lib/feed-items.ts apps/server/src/li)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"label": "Task 2: Server \u2014 list activity time + composite cursor in `GET /api/feed`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_5",
+			"label": "code:ts (// feed-items.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L191"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_6",
+			"label": "code:ts (import { listItem } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L213"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_7",
+			"label": "code:ts (...listRows.map((row) => ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L246"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_8",
+			"label": "code:ts (t.Object({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L259"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_9",
+			"label": "code:ts (function parseFeedCursor(query: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L277"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_10",
+			"label": "code:ts (const merged = sortFeedRows([)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L299"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_11",
+			"label": "code:bash (git add apps/server/src/routes/feed.ts apps/server/src/lib/f)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L320"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_task_3_web_sortactivityitems_cursor_types_tdd",
+			"label": "Task 3: Web \u2014 `sortActivityItems` + cursor types (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L327"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_12",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L335"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_13",
+			"label": "code:ts (export type ActivityFeedCursor = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L391"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_14",
+			"label": "code:bash (git add apps/web/src/lib/home-community-activity.ts apps/web)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L425"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_task_4_web_unified_bylines_watch_meta",
+			"label": "Task 4: Web \u2014 unified bylines + watch meta",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L432"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_15",
+			"label": "code:tsx (<ActivityByline)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L444"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_16",
+			"label": "code:tsx (function shouldShowWatchDateMeta(watchedAt: string, loggedAt)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L458"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_17",
+			"label": "code:bash (git add apps/web/src/components/feed/activity-item.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L479"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_task_5_wire_fetch_infinite_scroll",
+			"label": "Task 5: Wire fetch + infinite scroll",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L486"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_18",
+			"label": "code:ts (export async function fetchCommunityActivity()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L495"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_19",
+			"label": "code:ts (const loadMore = useCallback(async (cursor: ActivityFeedCurs)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L520"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_20",
+			"label": "code:tsx (const sortedSeeds = useMemo(() => sortActivityItems(seeds), )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L546"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_21",
+			"label": "code:tsx (const { items: rawItems, ...rest } = useInfinitePager(...);)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L552"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_22",
+			"label": "code:ts (const last = activityItems[activityItems.length - 1];)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L559"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_23",
+			"label": "code:bash (git add apps/web/src/lib/still-api-fetch.ts apps/web/src/com)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L579"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_task_6_verification",
+			"label": "Task 6: Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L586"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_codeblock_24",
+			"label": "code:bash (cd apps/server && bun test src/lib/feed-items.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L590"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L610"
+		},
+		{
+			"id": "plans_2026_06_07_community_activity_feed_ordering_execution_handoff",
+			"label": "Execution handoff",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L624"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_07_community_activity_feed_ordering_md",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_canonical_types_used_across_tasks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_canonical_types_used_across_tasks",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_task_1_feed_sort_cursor_helpers_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_1_feed_sort_cursor_helpers_tdd",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_1_feed_sort_cursor_helpers_tdd",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_1_feed_sort_cursor_helpers_tdd",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L191",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L213",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L246",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L277",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L299",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_2_server_list_activity_time_composite_cursor_in_get_api_feed",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L320",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_task_3_web_sortactivityitems_cursor_types_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L327",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_3_web_sortactivityitems_cursor_types_tdd",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L335",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_3_web_sortactivityitems_cursor_types_tdd",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L391",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_3_web_sortactivityitems_cursor_types_tdd",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L425",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_task_4_web_unified_bylines_watch_meta",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L432",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_4_web_unified_bylines_watch_meta",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L444",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_4_web_unified_bylines_watch_meta",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L458",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_4_web_unified_bylines_watch_meta",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L479",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_task_5_wire_fetch_infinite_scroll",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L486",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_5_wire_fetch_infinite_scroll",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L495",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_5_wire_fetch_infinite_scroll",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L520",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_5_wire_fetch_infinite_scroll",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L546",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_5_wire_fetch_infinite_scroll",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L552",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_5_wire_fetch_infinite_scroll",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L559",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_5_wire_fetch_infinite_scroll",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L579",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_task_6_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L586",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_task_6_verification",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L590",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L610",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_07_community_activity_feed_ordering_community_activity_feed_ordering_implementation_plan",
+			"target": "plans_2026_06_07_community_activity_feed_ordering_execution_handoff",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-07-community-activity-feed-ordering.md",
+			"source_location": "L624",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

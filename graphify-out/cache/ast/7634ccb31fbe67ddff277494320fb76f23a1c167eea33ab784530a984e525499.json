@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_10_movie_detail_rail_footer_controls_design_md",
+			"label": "2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"label": "Movie detail editorial rail controls \u2014 footer row design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_decision_brainstorming",
+			"label": "Decision (brainstorming)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_1_layout",
+			"label": "1. Layout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_codeblock_1",
+			"label": "code:block1 ([ Prev ]   \u25cf \u25cf \u25cf \u25cf   [ Next ])",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_2_component_changes",
+			"label": "2. Component changes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_3_interaction_accessibility",
+			"label": "3. Interaction & accessibility",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_4_visual_notes",
+			"label": "4. Visual notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_5_testing",
+			"label": "5. Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_6_success_criteria",
+			"label": "6. Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "specs_2026_06_10_movie_detail_rail_footer_controls_design_7_out_of_scope",
+			"label": "7. Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L95"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_10_movie_detail_rail_footer_controls_design_md",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_decision_brainstorming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_1_layout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_1_layout",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_2_component_changes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_3_interaction_accessibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_4_visual_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_5_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_6_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_10_movie_detail_rail_footer_controls_design_movie_detail_editorial_rail_controls_footer_row_design",
+			"target": "specs_2026_06_10_movie_detail_rail_footer_controls_design_7_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-10-movie-detail-rail-footer-controls-design.md",
+			"source_location": "L95",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

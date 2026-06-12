@@ -1,0 +1,612 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"label": "suggested-patron-discovery.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_suggested_patron_discovery_tmdb_genre_names",
+			"label": "TMDB_GENRE_NAMES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_suggested_patron_discovery_suggestedpatronrow",
+			"label": "SuggestedPatronRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L45"
+		},
+		{
+			"id": "lib_suggested_patron_discovery_suggestedpatronspayload",
+			"label": "SuggestedPatronsPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L55"
+		},
+		{
+			"id": "lib_suggested_patron_discovery_genrelabel",
+			"label": "genreLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L60"
+		},
+		{
+			"id": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"label": "buildSharedGenrePhrase()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L65"
+		},
+		{
+			"id": "lib_suggested_patron_discovery_ranksuggestedpatroncandidates",
+			"label": "rankSuggestedPatronCandidates()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L82"
+		},
+		{
+			"id": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"label": "fetchPatronGenreWeights()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L93"
+		},
+		{
+			"id": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"label": "buildSuggestedPatrons()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L122"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_fetch_overlap_diary_slices_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_fetch_overlap_diary_slices_fetchoverlapdiaryslices",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_sense_taste_overlap_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_sense_taste_overlap_buildoverlapdiarymap",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_sense_taste_overlap_computetasteoverlap",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_taste_neighbor_discovery_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_taste_neighbor_discovery_collectmediaidsfrommap",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_taste_neighbor_discovery_fetchfollowinguserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_taste_neighbor_discovery_fetchoverlapcandidateuserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_suggested_patron_discovery_tmdb_genre_names",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_suggested_patron_discovery_suggestedpatronrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_suggested_patron_discovery_suggestedpatronspayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_suggested_patron_discovery_genrelabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_suggested_patron_discovery_ranksuggestedpatroncandidates",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_suggested_patron_discovery_ts",
+			"target": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"target": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"target": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"target": "lib_suggested_patron_discovery_ranksuggestedpatroncandidates",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L203",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsharedgenrephrase",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_ranksuggestedpatroncandidates",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_fetchpatrongenreweights",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "fetchOverlapDiarySlices",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L125"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "buildOverlapDiaryMap",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "collectMediaIdsFromMap",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "fetchFollowingUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L136"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "fetchOverlapCandidateUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L147"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L159"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L161"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L169"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "buildOverlapDiaryMap",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L182"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "computeTasteOverlap",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "lib_suggested_patron_discovery_buildsuggestedpatrons",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\suggested-patron-discovery.ts",
+			"source_location": "L203"
+		}
+	]
+}

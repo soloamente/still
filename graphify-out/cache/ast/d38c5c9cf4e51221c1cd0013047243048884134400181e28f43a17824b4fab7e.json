@@ -1,0 +1,224 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"label": "patron-portrait-avatar.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_patron_portrait_avatar_patronportraitavatarprops",
+			"label": "PatronPortraitAvatarProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L10"
+		},
+		{
+			"id": "profile_patron_portrait_avatar_patronportraitavatar",
+			"label": "PatronPortraitAvatar()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L31"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_avatar_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "lib_profile_avatar_profilepatronavatarimageurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_media_cache_key_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "lib_profile_media_cache_key_profilemediacachekey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_prefers_reduced_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "lib_use_prefers_reduced_motion_useprefersreducedmotion",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "profile_patron_portrait_avatar_patronportraitavatarprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_avatar_tsx",
+			"target": "profile_patron_portrait_avatar_patronportraitavatar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "usePrefersReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "profilePatronAvatarImageUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "profileMediaCacheKey",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "profile_patron_portrait_avatar_patronportraitavatar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-portrait-avatar.tsx",
+			"source_location": "L100"
+		}
+	]
+}
