@@ -18,12 +18,15 @@ function toPinnedReviewProps(row: ProfileReviewRow) {
 	const { review, movie } = row;
 	return {
 		id: review.id,
+		userId: review.userId,
 		title: review.title,
 		body: review.body,
 		rating: review.rating,
 		likesCount: review.likesCount,
 		commentsCount: review.commentsCount,
 		publishedAt: normalizePublishedAt(review.publishedAt),
+		audioUrl: review.audioUrl ?? null,
+		audioDurationMs: review.audioDurationMs ?? null,
 		listing: movie
 			? {
 					title: movie.title,

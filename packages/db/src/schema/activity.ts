@@ -110,6 +110,10 @@ export const review = pgTable(
 		rating: smallint("rating"), // mirrors log.rating if linked; saved here for unlinked reviews
 		/** TMDb backdrop slide key from `buildScreenshotSlides` — review reader hero. */
 		stillSlideKey: text("still_slide_key"),
+		/** Optional voice note — public Blob URL when patron attaches audio to a review. */
+		audioUrl: text("audio_url"),
+		audioDurationMs: integer("audio_duration_ms"),
+		audioMimeType: text("audio_mime_type"),
 		publishedAt: timestamp("published_at").defaultNow().notNull(),
 		updatedAt: timestamp("updated_at")
 			.defaultNow()

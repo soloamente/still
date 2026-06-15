@@ -24,6 +24,10 @@ import {
 } from "./taste-scoring-math";
 import { fetchSocialCandidates } from "./taste-social-candidates";
 import { fetchStratifiedCandidates } from "./taste-stratified-candidates";
+import {
+	buildTasteMatchExcludeIds,
+	fetchWatchlistMovieTmdbIds,
+} from "./taste-watchlist-exclusion";
 
 /** Minimum diary rows before taste-matched rail replaces cold-start (ST.4). */
 export const TASTE_MATCH_MIN_LOGS = 10;
@@ -209,8 +213,15 @@ export async function scoreTasteMatchCandidatesForUser(
 
 	const profile = buildWeightedTasteProfile(slices);
 	const genrePhrase = genrePhraseFromWeights(profile);
-	const dismissedIds = await fetchDismissedMovieTmdbIds(userId);
-	const excludeIds = [...new Set([...profile.loggedMovieIds, ...dismissedIds])];
+	const [dismissedIds, watchlistMovieIds] = await Promise.all([
+		fetchDismissedMovieTmdbIds(userId),
+		fetchWatchlistMovieTmdbIds(userId),
+	]);
+	const excludeIds = buildTasteMatchExcludeIds({
+		loggedMovieIds: [...profile.loggedMovieIds],
+		dismissedIds,
+		watchlistMovieIds,
+	});
 	const topGenreIds = topGenreIdsFromProfile(profile.genreWeights, 3);
 
 	const nicheBoost = profile.medianPopularity < PLATFORM_MEDIAN_POPULARITY;

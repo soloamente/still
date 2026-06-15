@@ -16,6 +16,7 @@ const PROTECTED_PREFIXES = [
 	"/home",
 	"/diary",
 	"/watchlist",
+	"/quotes",
 	"/chat",
 	"/me",
 	"/achievements",
@@ -38,7 +39,16 @@ export function proxy(req: NextRequest) {
 
 	const hasSession = SESSION_COOKIE_NAMES.some((name) => req.cookies.has(name));
 
-	if (PROTECTED_PREFIXES.some((p) => pathname.startsWith(p)) && !hasSession) {
+	if (
+		PROTECTED_PREFIXES.some((p) => {
+			// `/me` must not match `/members` — use boundary after the prefix.
+			if (p === "/me") {
+				return pathname === "/me" || pathname.startsWith("/me/");
+			}
+			return pathname === p || pathname.startsWith(`${p}/`);
+		}) &&
+		!hasSession
+	) {
 		const url = req.nextUrl.clone();
 		url.pathname = "/sign-in";
 		url.searchParams.set("from", pathname);

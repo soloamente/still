@@ -27,6 +27,62 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-06-15-list-discovery-polish",
+		versionLabel: "0.2.9",
+		dateLabel: "June 15, 2026",
+		headline: "List discovery polish",
+		summary:
+			"Community Lists names how many public lists are trending, list detail titles read clearer at hero scale, and share copy confirms the list you copied.",
+		items: [
+			{
+				title: "Popular lists count",
+				body: "On Community → Lists, a header shows how many public lists match the active period — ordered by likes, same as the poster wall.",
+			},
+			{
+				title: "List detail typography",
+				body: "List titles on detail pages use balanced, semibold hero type so long names wrap cleanly without feeling cramped.",
+			},
+			{
+				title: "Share toast",
+				body: "Copying a list link from detail or your lists lobby shows Copied link · {title} so you know what went to the clipboard.",
+			},
+			{
+				title: "Discovery labels",
+				body: "Search empty-state people browse is labeled Patrons on Sense — discovery copy names the source instead of generic “suggested for you” wording.",
+			},
+		],
+	},
+	{
+		id: "2026-06-14-favorite-quotes",
+		versionLabel: "0.2.8",
+		dateLabel: "June 14, 2026",
+		headline: "Favorite quotes",
+		summary:
+			"Browse memorable lines on film and TV detail, upvote community favorites, save lines to your collection, and suggest new quotes for staff review.",
+		items: [
+			{
+				title: "Quotes tab on detail",
+				body: "Film and show pages have a dedicated Quotes tab — browse lines for the title, upvote favorites, and save lines to your collection. TV quotes are scoped by season and episode.",
+			},
+			{
+				title: "Your saved quotes",
+				body: "Saved lines live at /quotes — filter by films or shows, set visibility per save, and open the title’s Quotes tab from any row.",
+			},
+			{
+				title: "Suggest a line",
+				body: "Missing a quote? Submit it from the Quotes tab. Staff review submissions before they appear in the catalog — you’ll get a notification when yours is approved or declined.",
+			},
+			{
+				title: "Profile strip",
+				body: "Your profile shows up to three recent saves under your showcase. Visitors see public saves only; you can jump to the full collection from View all.",
+			},
+			{
+				title: "Detail navigation",
+				body: "The detail top bar is now About · Streaming · Community · Quotes — related catalogue stays on About; reviews and lists stay under Community.",
+			},
+		],
+	},
+	{
 		id: "2026-06-11-taste-mobile",
 		versionLabel: "0.2.7",
 		dateLabel: "June 11, 2026",

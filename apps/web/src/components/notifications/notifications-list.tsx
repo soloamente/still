@@ -8,6 +8,7 @@ import {
 	Download,
 	Heart,
 	MessageCircle,
+	Play,
 	ShieldCheck,
 	Trophy,
 	Tv,
@@ -75,6 +76,7 @@ function iconForKind(kind: string) {
 	if (kind.startsWith("badge.")) return Award;
 	if (kind.startsWith("achievement.")) return Trophy;
 	if (kind === "tv.new_episode") return Tv;
+	if (kind === "watchlist_now_streaming") return Play;
 	if (kind === "taste.challenge") return Trophy;
 	if (kind === "review.liked") return Heart;
 	if (kind === "import.completed") return Download;

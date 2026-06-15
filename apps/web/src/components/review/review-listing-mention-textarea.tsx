@@ -281,6 +281,7 @@ export function ReviewListingMentionTextarea({
 										subtitle={listingMentionPickerSubtitle(hit)}
 										posterUrl={tmdbPosterUrlFromPath(hit.poster_url, "w92")}
 										active={index === highlightIndex}
+										onMouseEnter={() => setHighlightIndex(index)}
 										onSelect={() => handleSelect(index)}
 									/>
 								</div>

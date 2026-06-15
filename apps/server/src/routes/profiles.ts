@@ -40,6 +40,7 @@ import { patronMeetsAdultAgeGate } from "../lib/adult-content-age-gate";
 import { readShowAdultContentPref } from "../lib/adult-content-policy";
 import { movieNotAdultSql, tvNotAdultSql } from "../lib/adult-content-sql";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
+import { backfillMissingListingPosters } from "../lib/backfill-listing-posters";
 import {
 	contentVisibilityWhere,
 	visibilitySchema,
@@ -54,11 +55,18 @@ import {
 	resolveDiaryMetalTier,
 } from "../lib/diary-metal-tier";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
+import { resolveListingPosterPath } from "../lib/listing-poster-path";
+import { fetchProfilePublicSavedQuotes } from "../lib/listing-quote-saves-query";
+import {
+	grandfatherOnboardedTimestamp,
+	shouldGrandfatherLegacyOnboarding,
+} from "../lib/onboarding-grandfather";
 import {
 	isProfileAccentId,
 	PROFILE_PREF_PROFILE_ACCENT,
 	profileAccentHex,
 } from "../lib/profile-appearance";
+import { sanitizeProfileAudioPreferences } from "../lib/profile-audio-preferences";
 import {
 	formatBirthdayDisplayPublic,
 	parseProfileBirthDate,
@@ -90,6 +98,10 @@ import {
 	normalizeProfileSearchQuery,
 	rankProfileSearchHits,
 } from "../lib/profile-search";
+import {
+	hydrateShowcaseTiles,
+	validateShowcaseItemsForUser,
+} from "../lib/profile-showcase";
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
@@ -101,6 +113,10 @@ import {
 import { routeBody } from "../lib/route-body";
 import { sanitizeAppearancePreferences } from "../lib/sanitize-appearance-preferences";
 import { ensureFreshTasteSignature } from "../lib/taste-signature-cache";
+import {
+	fetchYearInReviewForUser,
+	parseYearInReviewYear,
+} from "../lib/year-in-review";
 
 type ProfileMePatchBody = {
 	handle?: string;
@@ -199,6 +215,15 @@ export const profilesRoute = new Elysia({
 
 			const existingPreferences =
 				(existing?.preferences as Record<string, unknown> | undefined) ?? {};
+
+			if (preferencesForUpdate !== undefined) {
+				// Normalize nested audio prefs and keep legacy theaterAudio in sync.
+				preferencesForUpdate = sanitizeProfileAudioPreferences(
+					existingPreferences,
+					preferencesForUpdate,
+				);
+			}
+
 			const effectivePreferences = preferencesForUpdate ?? existingPreferences;
 			const adultPrefOn = readShowAdultContentPref(effectivePreferences);
 
@@ -357,22 +382,52 @@ export const profilesRoute = new Elysia({
 		},
 	)
 	// Get your own profile (used to bootstrap settings).
-	.get("/me", async ({ user, status }) => {
-		if (!user) return status(401, "Sign in");
+	.get("/me", async ({ user: authUser, status }) => {
+		if (!authUser) return status(401, "Sign in");
 		const [row] = await db
 			.select()
 			.from(profile)
-			.where(eq(profile.userId, user.id))
+			.where(eq(profile.userId, authUser.id))
 			.limit(1);
 		if (!row) return null;
 		const [logCountRow] = await db
 			.select({ c: count(log.id) })
 			.from(log)
-			.where(and(eq(log.userId, user.id), isNull(log.removedAt)));
+			.where(and(eq(log.userId, authUser.id), isNull(log.removedAt)));
+		const diaryLogCount = Number(logCountRow?.c ?? 0);
+
+		// Fresh portrait for nav chrome — session cookies can lag after blob upload.
+		const [userRow] = await db
+			.select({ image: user.image })
+			.from(user)
+			.where(eq(user.id, authUser.id))
+			.limit(1);
+		const portraitImage = userRow?.image ?? null;
+
+		// One-time legacy backfill — v3 gate uses onboarded_at; pre-v3 patrons never got it.
+		if (shouldGrandfatherLegacyOnboarding(row, diaryLogCount)) {
+			const [updated] = await db
+				.update(profile)
+				.set({
+					onboardedAt: grandfatherOnboardedTimestamp(row),
+				})
+				.where(eq(profile.userId, authUser.id))
+				.returning();
+			if (updated) {
+				return {
+					...updated,
+					image: portraitImage,
+					birthDate: profileBirthDateToIso(updated.birthDate),
+					diaryMetalTier: resolveDiaryMetalTier(diaryLogCount),
+				};
+			}
+		}
+
 		return {
 			...row,
+			image: portraitImage,
 			birthDate: profileBirthDateToIso(row.birthDate),
-			diaryMetalTier: resolveDiaryMetalTier(Number(logCountRow?.c ?? 0)),
+			diaryMetalTier: resolveDiaryMetalTier(diaryLogCount),
 		};
 	})
 	.get("/me/creator-analytics", async ({ user, status }) => {
@@ -427,6 +482,61 @@ export const profilesRoute = new Elysia({
 		{
 			body: t.Object({
 				reviewIds: t.Array(t.String(), { maxItems: 3 }),
+			}),
+		},
+	)
+	/** Patron-curated showcase strip — up to 4 film · TV · review slots. */
+	.patch(
+		"/me/showcase",
+		async ({ body: rawBody, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			try {
+				assertEmailVerified(user);
+			} catch (e) {
+				if (e instanceof EmailVerificationRequiredError) {
+					return status(403, emailVerificationRequiredBody());
+				}
+				throw e;
+			}
+			if (
+				!hit(`profile:showcase:${user.id}`, { limit: 30, windowMs: 60_000 }).ok
+			) {
+				return status(429, "Slow down");
+			}
+
+			const body = routeBody<{ items: unknown }>(rawBody);
+			const validated = await validateShowcaseItemsForUser(user.id, body.items);
+			if (!validated.ok) {
+				return status(validated.status, validated.error);
+			}
+
+			const [row] = await db
+				.update(profile)
+				.set({ showcaseItems: validated.items })
+				.where(eq(profile.userId, user.id))
+				.returning({ showcaseItems: profile.showcaseItems });
+
+			void recordProductEvent(user.id, "showcase.edited", {
+				count: validated.items.length,
+			});
+
+			return {
+				showcaseItems: row?.showcaseItems ?? [],
+			};
+		},
+		{
+			body: t.Object({
+				items: t.Array(
+					t.Object({
+						kind: t.Union([
+							t.Literal("movie"),
+							t.Literal("tv"),
+							t.Literal("review"),
+						]),
+						id: t.Union([t.Number(), t.String()]),
+					}),
+					{ maxItems: 4 },
+				),
 			}),
 		},
 	)
@@ -830,10 +940,10 @@ export const profilesRoute = new Elysia({
 		},
 		{ query: t.Object({ limit: t.Optional(t.String()) }) },
 	)
-	// Lightweight availability check for the signup form.
+	// Lightweight availability check for signup + onboarding (own handle counts as free).
 	.get(
 		"/check-handle/:handle",
-		async ({ params }) => {
+		async ({ params, user }) => {
 			const handle = params.handle.toLowerCase();
 			if (!HANDLE_RE.test(handle))
 				return { available: false, reason: "format" as const };
@@ -842,10 +952,13 @@ export const profilesRoute = new Elysia({
 				.from(profile)
 				.where(eq(profile.handle, handle))
 				.limit(1);
-			return {
-				available: !taken,
-				reason: taken ? ("taken" as const) : ("ok" as const),
-			};
+			if (!taken) {
+				return { available: true, reason: "ok" as const };
+			}
+			if (user?.id === taken.userId) {
+				return { available: true, reason: "yours" as const };
+			}
+			return { available: false, reason: "taken" as const };
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)
@@ -884,6 +997,37 @@ export const profilesRoute = new Elysia({
 			return buildActivitySignature(rows.map((r) => r.watchedAt));
 		},
 		{ params: t.Object({ handle: t.String() }) },
+	)
+	/** Public saved quotes for profile strip / visitor view — public saves only. */
+	.get(
+		"/:handle/quotes",
+		async ({ params, query, user: viewer, status }) => {
+			const handle = params.handle.toLowerCase();
+			const [row] = await db
+				.select({ userId: profile.userId, isPrivate: profile.isPrivate })
+				.from(profile)
+				.where(eq(profile.handle, handle))
+				.limit(1);
+			if (!row) return status(404, "Not found");
+
+			const isOwner = viewer?.id === row.userId;
+			if (row.isPrivate && !isOwner) return status(404, "Not found");
+
+			return fetchProfilePublicSavedQuotes({
+				userId: row.userId,
+				page: query.page,
+				limit: query.limit,
+				kind: query.kind,
+			});
+		},
+		{
+			params: t.Object({ handle: t.String() }),
+			query: t.Object({
+				page: t.Optional(t.String()),
+				limit: t.Optional(t.String()),
+				kind: t.Optional(t.String()),
+			}),
+		},
 	)
 	/**
 	 * Paginated filmography for the Movies / TV profile grids. When `venue` is set,
@@ -941,6 +1085,7 @@ export const profilesRoute = new Elysia({
 					tmdbId: listing.tmdbId,
 					title: listing.title,
 					posterPath: listing.posterPath,
+					listingTmdbJson: listing.tmdbJson,
 				})
 				.from(log)
 				.innerJoin(listing, eq(idCol, listing.tmdbId))
@@ -989,6 +1134,7 @@ export const profilesRoute = new Elysia({
 						tmdbId: deduped.tmdbId,
 						title: deduped.title,
 						posterPath: deduped.posterPath,
+						listingTmdbJson: deduped.listingTmdbJson,
 					})
 					.from(deduped)
 					.where(favWhere)
@@ -1000,21 +1146,35 @@ export const profilesRoute = new Elysia({
 			]);
 
 			const total = Number(totalRow[0]?.total ?? 0);
-			const results = rows.map((r) => ({
-				log: {
-					id: r.logId,
-					watchedAt: r.watchedAt,
-					rating: r.rating,
-					liked: r.liked,
-					watchVenue: r.watchVenue,
-				},
-				movie: isTv
-					? null
-					: { tmdbId: r.tmdbId, title: r.title, posterPath: r.posterPath },
-				tv: isTv
-					? { tmdbId: r.tmdbId, title: r.title, posterPath: r.posterPath }
-					: null,
-			}));
+
+			// Resolve artwork from column or cached TMDb JSON; backfill remaining gaps
+			// so profile grids match detail pages after a single load.
+			const resolvedPosters = rows.map((r) =>
+				resolveListingPosterPath(r.posterPath, r.listingTmdbJson),
+			);
+			const idsNeedingBackfill = rows
+				.filter((_r, index) => resolvedPosters[index] == null)
+				.map((r) => r.tmdbId);
+			const backfilledPosters = await backfillMissingListingPosters(
+				isTv ? "tv" : "movie",
+				idsNeedingBackfill,
+			);
+
+			const results = rows.map((r, index) => {
+				const posterPath =
+					resolvedPosters[index] ?? backfilledPosters.get(r.tmdbId) ?? null;
+				return {
+					log: {
+						id: r.logId,
+						watchedAt: r.watchedAt,
+						rating: r.rating,
+						liked: r.liked,
+						watchVenue: r.watchVenue,
+					},
+					movie: isTv ? null : { tmdbId: r.tmdbId, title: r.title, posterPath },
+					tv: isTv ? { tmdbId: r.tmdbId, title: r.title, posterPath } : null,
+				};
+			});
 
 			const venueCountForMedia = Number(venueCountRow[0]?.total ?? 0);
 			return {
@@ -1037,6 +1197,34 @@ export const profilesRoute = new Elysia({
 				page: t.Optional(t.String()),
 				limit: t.Optional(t.String()),
 			}),
+		},
+	)
+	/**
+	 * Public Wrapped stats for share previews — same payload as `/api/me/year/:year`
+	 * when the profile is public (404 for private non-owners).
+	 */
+	.get(
+		"/:handle/year/:year",
+		async ({ params, user: viewer, status }) => {
+			const handle = params.handle.toLowerCase();
+			const year = parseYearInReviewYear(params.year);
+			if (year == null) return status(400, "Invalid year");
+
+			const [row] = await db
+				.select({ userId: profile.userId, isPrivate: profile.isPrivate })
+				.from(profile)
+				.where(eq(profile.handle, handle))
+				.limit(1);
+			if (!row) return status(404, "Not found");
+
+			const viewerId = viewer?.id ?? null;
+			const isOwner = viewerId === row.userId;
+			if (row.isPrivate && !isOwner) return status(404, "Not found");
+
+			return fetchYearInReviewForUser(row.userId, year);
+		},
+		{
+			params: t.Object({ handle: t.String(), year: t.String() }),
 		},
 	)
 	// Public profile by handle (case-insensitive) — must stay last (catch-all).
@@ -1235,6 +1423,18 @@ export const profilesRoute = new Elysia({
 					? formatBirthdayDisplayPublic(birthIso)
 					: undefined;
 
+			// Showcase is identity chrome — hide on private profiles for non-owners.
+			const showcaseVisible =
+				!row.profile.isPrivate || viewerId === targetUserId;
+			const showcaseResolved = showcaseVisible
+				? {
+						items: await hydrateShowcaseTiles(
+							row.profile.showcaseItems,
+							row.profile.favoriteMovieIds,
+						),
+					}
+				: { items: [] };
+
 			return {
 				user: { id: row.user.id, name: row.user.name, image: row.user.image },
 				profile: {
@@ -1254,6 +1454,7 @@ export const profilesRoute = new Elysia({
 				filmographyCounts,
 				recentReviews,
 				pinnedReviews,
+				showcaseResolved,
 				lists,
 				pinnedBadges: pinned,
 				earnedBadges,

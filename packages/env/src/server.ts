@@ -36,6 +36,18 @@ const serverEnv = {
 	// https://www.themoviedb.org/settings/api
 	TMDB_API_KEY: z.string().min(10).optional(),
 	/**
+	 * External quote catalog provider slug.
+	 * - `moviefamous` — free keyless bulk catalog (recommended for dev)
+	 * - `moviequotes` — MovieQuotes.rocks (paid; free tier is only 20 quotes)
+	 */
+	QUOTE_API_PROVIDER: z.enum(["moviefamous", "moviequotes", "stub"]).optional(),
+	/** API key from https://moviequotes.rocks (Google form in their docs). */
+	MOVIQUOTES_API_KEY: optionalNonEmptyString(),
+	/** When `true`, seed empty film Quotes tabs from the configured provider. */
+	QUOTE_IMPORT_ENABLED: z
+		.enum(["true", "false", "1", "0", "yes", "no"])
+		.optional(),
+	/**
 	 * ISO 3166-1 alpha-2 (e.g. `US`, `IT`) — used for (1) TMDb discover
 	 * `watch_region` with monetization filters and (2) default `region` for
 	 * “newest in cinemas” theatrical discover (`primary_release_date.lte`).

@@ -44,8 +44,11 @@ describe("MOBILE_YOU_DESTINATIONS", () => {
 		expect(MOBILE_YOU_DESTINATIONS.map((d) => d.href)).toEqual([
 			"/diary",
 			"/watchlist",
+			"/quotes",
 			"/lists",
+			"/journal",
 			"/achievements",
+			"/year",
 		]);
 	});
 	test("every destination has a non-empty label", () => {

@@ -84,6 +84,7 @@ function ProfileReviewTile({
 					reviewId: review.id,
 					preview: {
 						id: review.id,
+						userId: review.userId,
 						title: review.title,
 						body: review.body,
 						rating: review.rating,

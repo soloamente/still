@@ -14,6 +14,7 @@ import type {
 	HomeCommunityRankKind,
 } from "@/lib/home-community-feed";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
+import type { MembersLeaderboardPayload } from "@/lib/members-leaderboard-types";
 
 export function HomeCommunityPatronBody({
 	monochromePeersOnHover,
@@ -33,10 +34,9 @@ export function HomeCommunityPatronBody({
 		committedRankKind,
 		seed,
 		leaderboard,
+		membersLeaderboard,
 	} = useHomeCommunityLobbyParams();
 
-	// Optimistic chip taps use `useTransition` — RSC keeps the previous tab's body
-	// until the new payload lands; show a feed-shaped skeleton instead of stale empty states.
 	const lobbyBodyStale =
 		feed !== committedFeed ||
 		period !== committedPeriod ||
@@ -53,6 +53,7 @@ export function HomeCommunityPatronBody({
 			rankKind={committedRankKind}
 			seed={seed}
 			leaderboard={leaderboard}
+			membersLeaderboard={membersLeaderboard}
 			monochromePeersOnHover={monochromePeersOnHover}
 			signedIn={signedIn}
 			viewerUserId={viewerUserId}
@@ -65,6 +66,7 @@ export function HomeCommunityPatronProviders({
 	feed,
 	period,
 	rankKind,
+	membersLeaderboard,
 	signedIn,
 	children,
 }: {
@@ -72,6 +74,7 @@ export function HomeCommunityPatronProviders({
 	feed: HomeCommunityFeed;
 	period: HomeLeaderboardPeriod;
 	rankKind: HomeCommunityRankKind;
+	membersLeaderboard: MembersLeaderboardPayload | null;
 	signedIn: boolean;
 	children: ReactNode;
 }) {
@@ -81,6 +84,7 @@ export function HomeCommunityPatronProviders({
 			feed={feed}
 			period={period}
 			rankKind={rankKind}
+			membersLeaderboard={membersLeaderboard}
 			signedIn={signedIn}
 		>
 			{children}

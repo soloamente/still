@@ -8,6 +8,7 @@ import {
 	type HomeCommunityReviewRow,
 	mapCommunityReviewRow,
 } from "@/lib/home-community-core-fetch";
+import type { HomeCommunityReviewSort } from "@/lib/home-community-review-sort";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
 import {
@@ -20,11 +21,15 @@ export function CommunityReviewsInfinite({
 	seeds,
 	initialCursor,
 	period,
+	reviewSort = "all",
 }: {
 	seeds: HomeCommunityReviewRow[];
 	initialCursor: number | null;
 	period: HomeLeaderboardPeriod;
+	reviewSort?: HomeCommunityReviewSort;
 }) {
+	const mostLikedOnly = reviewSort === "most-liked";
+
 	const loadMore = useCallback(
 		async (page: number, signal: AbortSignal) => {
 			const raw = await fetchCommunityReviewsRecent(
@@ -49,10 +54,22 @@ export function CommunityReviewsInfinite({
 		number
 	>({
 		seeds,
-		initialCursor,
+		initialCursor: mostLikedOnly ? null : initialCursor,
 		loadMore,
 		getKey: (r) => r.id,
 	});
+
+	if (mostLikedOnly) {
+		return (
+			<ul className="mx-auto flex w-full max-w-2xl flex-col gap-3">
+				{items.map((review) => (
+					<li key={review.id}>
+						<ReviewCard review={review} />
+					</li>
+				))}
+			</ul>
+		);
+	}
 
 	return (
 		<>

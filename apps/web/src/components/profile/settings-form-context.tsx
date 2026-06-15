@@ -50,6 +50,10 @@ import {
 	readProfileBannerFramePref,
 } from "@/lib/profile-appearance";
 import {
+	mergeProfileAudioPreferences,
+	readProfileAudioPreferences,
+} from "@/lib/profile-audio-preferences";
+import {
 	PROFILE_PREF_APP_THEME,
 	PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER,
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
@@ -59,6 +63,7 @@ import {
 	PROFILE_PREF_SHOW_ADULT_CONTENT,
 	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
 	PROFILE_PREF_SMOOTH_SCROLL,
+	PROFILE_PREF_WATCHLIST_STREAMING_ALERTS,
 	readAppThemePref,
 	readCastCrewMonochromeOnHoverPref,
 	readCatalogMonochromePeersOnHoverPref,
@@ -68,6 +73,7 @@ import {
 	readShowAdultContentPref,
 	readShowBirthDateOnProfilePref,
 	readSmoothScrollPref,
+	readWatchlistStreamingAlertsPref,
 } from "@/lib/profile-preferences";
 import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
 import { invalidateCastCrewMonochromePrefCache } from "@/lib/use-cast-crew-monochrome-pref";
@@ -120,8 +126,12 @@ type SettingsFormContextValue = {
 	setShowBirthDateOnProfile: (value: boolean) => void;
 	isPrivate: boolean;
 	setIsPrivate: (value: boolean) => void;
-	theaterAudio: boolean;
-	setTheaterAudio: (value: boolean) => void;
+	profileAudioEnabled: boolean;
+	setProfileAudioEnabled: (value: boolean) => void;
+	profileAudioAtmosphere: boolean;
+	setProfileAudioAtmosphere: (value: boolean) => void;
+	profileAudioFeedback: boolean;
+	setProfileAudioFeedback: (value: boolean) => void;
 	smoothScroll: boolean;
 	setSmoothScroll: (value: boolean) => void;
 	castCrewMonochromeOnHover: boolean;
@@ -134,6 +144,8 @@ type SettingsFormContextValue = {
 	setCatalogTmdbWatchRegion: (value: string) => void;
 	catalogTmdbLanguage: string;
 	setCatalogTmdbLanguage: (value: string) => void;
+	watchlistStreamingAlerts: boolean;
+	setWatchlistStreamingAlerts: (value: boolean) => void;
 	showAdultContent: boolean;
 	setShowAdultContent: (value: boolean) => void;
 	enableAdultContentWithBirthDate: (birthDateIso: string) => Promise<void>;
@@ -164,7 +176,7 @@ export function SettingsFormProvider({
 }) {
 	const router = useRouter();
 	const isPro = Boolean(profile.isPro);
-	const { setTheaterAudioEnabled } = useCinematicAudio();
+	const { setAudioPreferences } = useCinematicAudio();
 	const { setSmoothScrollEnabled } = useSmoothScrollPreference();
 	const {
 		syncSettingsDirty,
@@ -185,9 +197,22 @@ export function SettingsFormProvider({
 		readShowBirthDateOnProfilePref(profile.preferences ?? null),
 	);
 	const [isPrivate, setIsPrivate] = useState(Boolean(profile.isPrivate));
-	const [theaterAudio, setTheaterAudio] = useState(
-		Boolean(profile.preferences?.theaterAudio === true),
+	const [profileAudio, setProfileAudio] = useState(() =>
+		readProfileAudioPreferences(profile.preferences ?? null),
 	);
+	const setProfileAudioEnabled = useCallback((enabled: boolean) => {
+		setProfileAudio((prev) =>
+			enabled
+				? { ...prev, enabled: true, atmosphere: true, feedback: true }
+				: { ...prev, enabled: false, atmosphere: false, feedback: false },
+		);
+	}, []);
+	const setProfileAudioAtmosphere = useCallback((atmosphere: boolean) => {
+		setProfileAudio((prev) => ({ ...prev, atmosphere }));
+	}, []);
+	const setProfileAudioFeedback = useCallback((feedback: boolean) => {
+		setProfileAudio((prev) => ({ ...prev, feedback }));
+	}, []);
 	const [smoothScroll, setSmoothScroll] = useState(() =>
 		readSmoothScrollPref(profile.preferences ?? null),
 	);
@@ -211,6 +236,9 @@ export function SettingsFormProvider({
 	});
 	const [catalogTmdbLanguage, setCatalogTmdbLanguage] = useState(
 		() => readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
+	);
+	const [watchlistStreamingAlerts, setWatchlistStreamingAlerts] = useState(() =>
+		readWatchlistStreamingAlertsPref(profile.preferences ?? null),
 	);
 	const [showAdultContent, setShowAdultContent] = useState(() =>
 		readShowAdultContentPref(profile.preferences ?? null),
@@ -255,11 +283,26 @@ export function SettingsFormProvider({
 				? stored.isPrivate
 				: Boolean(profile.isPrivate),
 		);
-		setTheaterAudio(
-			typeof stored.theaterAudio === "boolean"
-				? stored.theaterAudio
-				: Boolean(profile.preferences?.theaterAudio === true),
-		);
+		if (typeof stored.senseAudioEnabled === "boolean") {
+			setProfileAudio((prev) => ({
+				...prev,
+				enabled: stored.senseAudioEnabled === true,
+				atmosphere:
+					stored.senseAudioAtmosphere !== false &&
+					stored.senseAudioEnabled === true,
+				feedback:
+					stored.senseAudioFeedback !== false &&
+					stored.senseAudioEnabled === true,
+			}));
+		} else if (typeof stored.theaterAudio === "boolean") {
+			const legacyOn = stored.theaterAudio === true;
+			setProfileAudio((prev) => ({
+				...prev,
+				enabled: legacyOn,
+				atmosphere: legacyOn,
+				feedback: legacyOn,
+			}));
+		}
 		setSmoothScroll(
 			typeof stored.smoothScroll === "boolean"
 				? stored.smoothScroll
@@ -298,6 +341,11 @@ export function SettingsFormProvider({
 				? stored.catalogTmdbLanguage
 				: (readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? ""),
 		);
+		setWatchlistStreamingAlerts(
+			typeof stored.watchlistStreamingAlerts === "boolean"
+				? stored.watchlistStreamingAlerts
+				: readWatchlistStreamingAlertsPref(profile.preferences ?? null),
+		);
 		if (typeof stored.showAdultContent === "boolean") {
 			setShowAdultContent(stored.showAdultContent);
 		}
@@ -332,6 +380,9 @@ export function SettingsFormProvider({
 		const notificationsDirty = NOTIFICATION_KIND_SETTINGS.some(
 			(k) => notificationPrefs[k.id] !== notificationsFromProfile[k.id],
 		);
+		const audioFromProfile = readProfileAudioPreferences(
+			profile.preferences ?? null,
+		);
 		return (
 			displayName.trim() !== (profile.displayName ?? "").trim() ||
 			bio.trim() !== (profile.bio ?? "").trim() ||
@@ -342,7 +393,9 @@ export function SettingsFormProvider({
 			showBirthDateOnProfile !==
 				readShowBirthDateOnProfilePref(profile.preferences ?? null) ||
 			isPrivate !== Boolean(profile.isPrivate) ||
-			theaterAudio !== Boolean(profile.preferences?.theaterAudio === true) ||
+			profileAudio.enabled !== audioFromProfile.enabled ||
+			profileAudio.atmosphere !== audioFromProfile.atmosphere ||
+			profileAudio.feedback !== audioFromProfile.feedback ||
 			smoothScroll !== readSmoothScrollPref(profile.preferences ?? null) ||
 			castCrewMonochromeOnHover !==
 				readCastCrewMonochromeOnHoverPref(profile.preferences ?? null) ||
@@ -356,6 +409,8 @@ export function SettingsFormProvider({
 				readShowAdultContentPref(profile.preferences ?? null) ||
 			catalogTmdbWatchRegion.trim() !== regionStr ||
 			catalogTmdbLanguage.trim() !== languageFromProfile ||
+			watchlistStreamingAlerts !==
+				readWatchlistStreamingAlertsPref(profile.preferences ?? null) ||
 			appTheme !== themeFromProfile ||
 			profileAccent !== accentFromProfile ||
 			bannerFrame !== frameFromProfile ||
@@ -373,7 +428,7 @@ export function SettingsFormProvider({
 		birthDate,
 		showBirthDateOnProfile,
 		isPrivate,
-		theaterAudio,
+		profileAudio,
 		smoothScroll,
 		castCrewMonochromeOnHover,
 		profilePortraitGrayscaleUntilHover,
@@ -381,6 +436,7 @@ export function SettingsFormProvider({
 		showAdultContent,
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
+		watchlistStreamingAlerts,
 		appTheme,
 		profileAccent,
 		bannerFrame,
@@ -404,7 +460,7 @@ export function SettingsFormProvider({
 			readShowBirthDateOnProfilePref(profile.preferences ?? null),
 		);
 		setIsPrivate(Boolean(profile.isPrivate));
-		setTheaterAudio(Boolean(profile.preferences?.theaterAudio === true));
+		setProfileAudio(readProfileAudioPreferences(profile.preferences ?? null));
 		setSmoothScroll(readSmoothScrollPref(profile.preferences ?? null));
 		setCastCrewMonochromeOnHover(
 			readCastCrewMonochromeOnHoverPref(profile.preferences ?? null),
@@ -419,6 +475,9 @@ export function SettingsFormProvider({
 		setCatalogTmdbWatchRegion(p === null ? "" : p === "ALL" ? "ALL" : p);
 		setCatalogTmdbLanguage(
 			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
+		);
+		setWatchlistStreamingAlerts(
+			readWatchlistStreamingAlertsPref(profile.preferences ?? null),
 		);
 		setShowAdultContent(readShowAdultContentPref(profile.preferences ?? null));
 		setAppTheme(
@@ -466,13 +525,17 @@ export function SettingsFormProvider({
 				birthDate,
 				showBirthDateOnProfile,
 				isPrivate,
-				theaterAudio,
+				senseAudioEnabled: profileAudio.enabled,
+				senseAudioAtmosphere: profileAudio.atmosphere,
+				senseAudioFeedback: profileAudio.feedback,
+				theaterAudio: profileAudio.enabled,
 				smoothScroll,
 				castCrewMonochromeOnHover,
 				profilePortraitGrayscaleUntilHover,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
+				watchlistStreamingAlerts,
 				showAdultContent,
 				appTheme,
 			});
@@ -488,13 +551,17 @@ export function SettingsFormProvider({
 				birthDate,
 				showBirthDateOnProfile,
 				isPrivate,
-				theaterAudio,
+				senseAudioEnabled: profileAudio.enabled,
+				senseAudioAtmosphere: profileAudio.atmosphere,
+				senseAudioFeedback: profileAudio.feedback,
+				theaterAudio: profileAudio.enabled,
 				smoothScroll,
 				castCrewMonochromeOnHover,
 				profilePortraitGrayscaleUntilHover,
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
+				watchlistStreamingAlerts,
 				showAdultContent,
 				appTheme,
 			});
@@ -509,11 +576,14 @@ export function SettingsFormProvider({
 		birthDate,
 		showBirthDateOnProfile,
 		isPrivate,
-		theaterAudio,
+		profileAudio,
 		smoothScroll,
+		castCrewMonochromeOnHover,
+		profilePortraitGrayscaleUntilHover,
 		catalogMonochromePeersOnHover,
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
+		watchlistStreamingAlerts,
 		showAdultContent,
 		appTheme,
 	]);
@@ -583,9 +653,8 @@ export function SettingsFormProvider({
 			}
 			setSaving(true);
 			try {
-				const prefs: Record<string, unknown> = {
+				let prefs: Record<string, unknown> = {
 					...(profile.preferences ?? {}),
-					theaterAudio,
 					[PROFILE_PREF_SMOOTH_SCROLL]: smoothScroll,
 					[PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER]:
 						castCrewMonochromeOnHover,
@@ -595,6 +664,7 @@ export function SettingsFormProvider({
 						catalogMonochromePeersOnHover,
 					[PROFILE_PREF_SHOW_ADULT_CONTENT]: showAdultContent,
 					[PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE]: showBirthDateOnProfile,
+					[PROFILE_PREF_WATCHLIST_STREAMING_ALERTS]: watchlistStreamingAlerts,
 					...(catalogTmdbWatchRegion.trim() !== ""
 						? {
 								[PROFILE_PREF_CATALOG_TMDB_WATCH_REGION]:
@@ -629,6 +699,15 @@ export function SettingsFormProvider({
 				delete prefs.cinemaPreset;
 				delete prefs.cinemaPresetUserOverride;
 
+				prefs = mergeProfileAudioPreferences(prefs, {
+					enabled: profileAudio.enabled,
+					atmosphere: profileAudio.atmosphere,
+					feedback: profileAudio.feedback,
+					streakMilestonesCelebrated: readProfileAudioPreferences(
+						profile.preferences ?? null,
+					).streakMilestonesCelebrated,
+				});
+
 				const saveRes = await api.api.profiles.me.patch({
 					displayName: displayName.trim(),
 					bio: bio.trim() || undefined,
@@ -649,7 +728,14 @@ export function SettingsFormProvider({
 					}
 					return;
 				}
-				setTheaterAudioEnabled(theaterAudio);
+				setAudioPreferences({
+					enabled: profileAudio.enabled,
+					atmosphere: profileAudio.atmosphere,
+					feedback: profileAudio.feedback,
+					streakMilestonesCelebrated: readProfileAudioPreferences(
+						profile.preferences ?? null,
+					).streakMilestonesCelebrated,
+				});
 				setSmoothScrollEnabled(smoothScroll);
 				const hadPendingMedia = Boolean(pendingBanner || pendingAvatar);
 				if (pendingBanner) {
@@ -686,7 +772,7 @@ export function SettingsFormProvider({
 		},
 		[
 			profile,
-			theaterAudio,
+			profileAudio,
 			smoothScroll,
 			castCrewMonochromeOnHover,
 			profilePortraitGrayscaleUntilHover,
@@ -696,6 +782,7 @@ export function SettingsFormProvider({
 			showBirthDateOnProfile,
 			catalogTmdbWatchRegion,
 			catalogTmdbLanguage,
+			watchlistStreamingAlerts,
 			appTheme,
 			isPro,
 			bannerFrame,
@@ -707,7 +794,7 @@ export function SettingsFormProvider({
 			location,
 			website,
 			isPrivate,
-			setTheaterAudioEnabled,
+			setAudioPreferences,
 			setSmoothScrollEnabled,
 			pendingBanner,
 			pendingAvatar,
@@ -754,8 +841,12 @@ export function SettingsFormProvider({
 			setShowBirthDateOnProfile,
 			isPrivate,
 			setIsPrivate,
-			theaterAudio,
-			setTheaterAudio,
+			profileAudioEnabled: profileAudio.enabled,
+			setProfileAudioEnabled,
+			profileAudioAtmosphere: profileAudio.atmosphere,
+			setProfileAudioAtmosphere,
+			profileAudioFeedback: profileAudio.feedback,
+			setProfileAudioFeedback,
 			smoothScroll,
 			setSmoothScroll,
 			castCrewMonochromeOnHover,
@@ -768,6 +859,8 @@ export function SettingsFormProvider({
 			setCatalogTmdbWatchRegion,
 			catalogTmdbLanguage,
 			setCatalogTmdbLanguage,
+			watchlistStreamingAlerts,
+			setWatchlistStreamingAlerts,
 			showAdultContent,
 			setShowAdultContent,
 			enableAdultContentWithBirthDate,
@@ -795,7 +888,7 @@ export function SettingsFormProvider({
 			birthDate,
 			showBirthDateOnProfile,
 			isPrivate,
-			theaterAudio,
+			profileAudio,
 			smoothScroll,
 			castCrewMonochromeOnHover,
 			profilePortraitGrayscaleUntilHover,
@@ -805,6 +898,7 @@ export function SettingsFormProvider({
 			persistShowAdultContent,
 			catalogTmdbWatchRegion,
 			catalogTmdbLanguage,
+			watchlistStreamingAlerts,
 			appTheme,
 			profileAccent,
 			bannerFrame,
@@ -813,6 +907,9 @@ export function SettingsFormProvider({
 			saving,
 			onSubmit,
 			resetToProfile,
+			setProfileAudioEnabled,
+			setProfileAudioAtmosphere,
+			setProfileAudioFeedback,
 		],
 	);
 

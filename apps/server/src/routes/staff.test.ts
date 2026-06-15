@@ -847,6 +847,67 @@ describe("POST /api/staff/content/:type/:id/:op", () => {
 		);
 		expect(res.status).toBe(404);
 	});
+
+	test("support can mark a review as spoiler -> 200, sets containsSpoilers, audits", async () => {
+		state.content = { review: new Set(["rev-1"]) };
+		const res = await makeApp().handle(
+			new Request(
+				"http://localhost/api/staff/content/review/rev-1/mark-spoiler",
+				{
+					method: "POST",
+					headers: authHeaders("sup-1", "support"),
+					body: JSON.stringify({}),
+				},
+			),
+		);
+		expect(res.status).toBe(200);
+		expect(await res.json()).toEqual({ ok: true, containsSpoilers: true });
+
+		const upd = state.updates.find((u) => u.table === "review");
+		expect(upd).toBeDefined();
+		expect(upd?.id).toBe("rev-1");
+		expect(upd?.set.containsSpoilers).toBe(true);
+
+		const audit = state.audits.find((a) => a.action === "content.mark-spoiler");
+		expect(audit).toBeDefined();
+		expect(audit?.targetType).toBe("review");
+		expect(audit?.targetId).toBe("rev-1");
+	});
+
+	test("mark-spoiler on non-review content -> 400", async () => {
+		state.content = { post: new Set(["pst-1"]) };
+		const res = await makeApp().handle(
+			new Request(
+				"http://localhost/api/staff/content/post/pst-1/mark-spoiler",
+				{
+					method: "POST",
+					headers: authHeaders("mod-1", "moderator"),
+					body: JSON.stringify({}),
+				},
+			),
+		);
+		expect(res.status).toBe(400);
+		expect(state.updates).toHaveLength(0);
+	});
+
+	test("moderator can unmark spoiler on a review -> 200", async () => {
+		state.content = { review: new Set(["rev-1"]) };
+		const res = await makeApp().handle(
+			new Request(
+				"http://localhost/api/staff/content/review/rev-1/unmark-spoiler",
+				{
+					method: "POST",
+					headers: authHeaders("mod-1", "moderator"),
+					body: JSON.stringify({}),
+				},
+			),
+		);
+		expect(res.status).toBe(200);
+		expect(await res.json()).toEqual({ ok: true, containsSpoilers: false });
+
+		const upd = state.updates.find((u) => u.table === "review");
+		expect(upd?.set.containsSpoilers).toBe(false);
+	});
 });
 
 describe("POST /api/staff/users/:id/ban (outranks enforcement)", () => {

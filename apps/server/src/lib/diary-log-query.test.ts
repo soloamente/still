@@ -3,6 +3,7 @@ import { describe, expect, test } from "bun:test";
 import {
 	DIARY_DEFAULT_LIMIT,
 	DIARY_MAX_LIMIT,
+	diaryDecadesFromYears,
 	diaryOffset,
 	diaryTotalPages,
 	parseDiaryLimit,
@@ -10,6 +11,9 @@ import {
 	parseDiaryOrder,
 	parseDiaryPage,
 	parseDiaryVenue,
+	parseDiaryWatchDecade,
+	parseDiaryWatchYear,
+	resolveDiaryWatchPeriodBounds,
 } from "./diary-log-query";
 
 describe("parseDiaryMedia", () => {
@@ -56,5 +60,29 @@ describe("page/limit/offset/totalPages", () => {
 		expect(diaryOffset(3, 36)).toBe(72);
 		expect(diaryTotalPages(0, 36)).toBe(0);
 		expect(diaryTotalPages(37, 36)).toBe(2);
+	});
+});
+
+describe("watch period parsers", () => {
+	test("parseDiaryWatchYear accepts valid years", () => {
+		expect(parseDiaryWatchYear("2024")).toBe(2024);
+		expect(parseDiaryWatchYear(undefined)).toBeNull();
+		expect(parseDiaryWatchYear("1899")).toBeNull();
+	});
+
+	test("parseDiaryWatchDecade accepts decade starts only", () => {
+		expect(parseDiaryWatchDecade("2010")).toBe(2010);
+		expect(parseDiaryWatchDecade("2015")).toBeNull();
+	});
+
+	test("resolveDiaryWatchPeriodBounds", () => {
+		const year = resolveDiaryWatchPeriodBounds(2024, null);
+		expect(year?.start.toISOString()).toBe("2024-01-01T00:00:00.000Z");
+		const decade = resolveDiaryWatchPeriodBounds(null, 2010);
+		expect(decade?.end.toISOString()).toBe("2020-01-01T00:00:00.000Z");
+	});
+
+	test("diaryDecadesFromYears", () => {
+		expect(diaryDecadesFromYears([2024, 2023, 2011])).toEqual([2020, 2010]);
 	});
 });

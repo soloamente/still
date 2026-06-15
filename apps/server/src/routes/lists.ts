@@ -10,7 +10,17 @@ import {
 } from "@still/db";
 import { env } from "@still/env/server";
 import { get } from "@vercel/blob";
-import { and, asc, desc, eq, ilike, inArray, isNull, sql } from "drizzle-orm";
+import {
+	and,
+	asc,
+	count,
+	desc,
+	eq,
+	ilike,
+	inArray,
+	isNull,
+	sql,
+} from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
@@ -114,25 +124,30 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			const limit = Math.min(Number(query.limit ?? 24), 60);
 			const page = parseCommunityPage(query.page);
 			const { start, end } = resolveCommunityPeriodQuery(query);
-			const rows = await db
-				.select()
-				.from(list)
-				.where(
-					and(
-						eq(list.isPublic, true),
-						isNull(list.removedAt),
-						withinCommunityPeriod(list.updatedAt, start, end),
-					),
-				)
-				.orderBy(
-					listDiscoverabilityOrder,
-					desc(list.likesCount),
-					desc(list.updatedAt),
-					desc(list.id),
-				)
-				.limit(limit)
-				.offset(communityOffset(page, limit));
-			return withCoverPosterPaths(rows);
+			const whereClause = and(
+				eq(list.isPublic, true),
+				isNull(list.removedAt),
+				withinCommunityPeriod(list.updatedAt, start, end),
+			);
+			const [rows, countRow] = await Promise.all([
+				db
+					.select()
+					.from(list)
+					.where(whereClause)
+					.orderBy(
+						listDiscoverabilityOrder,
+						desc(list.likesCount),
+						desc(list.updatedAt),
+						desc(list.id),
+					)
+					.limit(limit)
+					.offset(communityOffset(page, limit)),
+				db.select({ total: count() }).from(list).where(whereClause),
+			]);
+			return {
+				items: await withCoverPosterPaths(rows),
+				total: Number(countRow[0]?.total ?? 0),
+			};
 		},
 		{
 			query: t.Composite([

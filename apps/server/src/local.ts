@@ -4,6 +4,7 @@ import { ingestRss } from "./jobs/rss-ingest";
 import { seedCatalog } from "./jobs/seed";
 import { refreshStaleMovies, syncTmdbFeeds } from "./jobs/tmdb-sync";
 import { syncTvNewEpisodeNotifications } from "./jobs/tv-new-episode-sync";
+import { syncWatchlistStreamingAlerts } from "./lib/watchlist-streaming-alerts";
 import { app } from "./server/app";
 
 export type { App } from "./server/app";
@@ -60,4 +61,8 @@ setInterval(
 setInterval(
 	() => void safeRun("tv-new-episode", syncTvNewEpisodeNotifications),
 	6 * 60 * ONE_MINUTE,
+).unref?.();
+setInterval(
+	() => void safeRun("watchlist-streaming", syncWatchlistStreamingAlerts),
+	24 * 60 * ONE_MINUTE,
 ).unref?.();

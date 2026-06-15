@@ -12,7 +12,8 @@ import {
 	type MeProfile,
 	PROFILE_FETCH_FAILED,
 } from "@/lib/fetch-me-profile";
-import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
+import { patronNeedsOnboarding } from "@/lib/onboarding-gate";
+import { buildPatronNavUser } from "@/lib/patron-nav-user";
 import { isShareableAppPath } from "@/lib/shareable-app-paths";
 
 export const dynamic = "force-dynamic";
@@ -42,16 +43,14 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	const profileResult = await fetchMeProfile();
 	const profileFetchFailed = profileResult === PROFILE_FETCH_FAILED;
 	const profile: MeProfile = profileFetchFailed ? null : profileResult;
-	if (!profileFetchFailed && !profile?.handle) redirect("/onboarding");
+	if (!profileFetchFailed && patronNeedsOnboarding(profile)) {
+		redirect("/onboarding");
+	}
 
 	const impersonatedBy = session.session.impersonatedBy ?? null;
 	// While impersonating, `session.user` is the impersonated account.
 	const impersonatedName =
 		session.user.name || session.user.email || "this account";
-	const avatarIsAnimated = resolvePatronAvatarIsAnimated(
-		session.user.image ?? null,
-		profile?.preferences ?? null,
-	);
 
 	return (
 		<AppThemeShell
@@ -60,18 +59,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 		>
 			{impersonatedBy ? <ImpersonationBanner name={impersonatedName} /> : null}
 			<VerifyEmailBanner session={session} />
-			<AppShell
-				user={{
-					id: session.user.id,
-					name: session.user.name ?? profile?.displayName ?? "",
-					image: session.user.image ?? null,
-					handle: profile?.handle ?? session.user.id,
-					email: session.user.email ?? null,
-					isPro: Boolean(profile?.isPro),
-					avatarIsAnimated,
-					diaryMetalTier: profile?.diaryMetalTier ?? null,
-				}}
-			>
+			<AppShell user={buildPatronNavUser(session, profile)}>
 				{children}
 			</AppShell>
 		</AppThemeShell>

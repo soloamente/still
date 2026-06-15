@@ -4,6 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { Heart, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { FeedListingThumb } from "@/components/feed/feed-listing-thumb";
+import { ReviewVoiceAttachment } from "@/components/review/review-audio-player";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import {
 	type ReviewPreview,
@@ -14,6 +15,7 @@ import { StaffContentActions } from "@/components/staff/staff-content-actions";
 import { authClient } from "@/lib/auth-client";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
+import { shouldShowReviewBody } from "@/lib/review-audio-fields";
 
 /** Film or series shown beside review copy on community surfaces. */
 export type ReviewCardListing = {
@@ -46,11 +48,15 @@ export function ReviewCard({ review }: { review: Review }) {
 	const { data: session } = authClient.useSession();
 	const viewerRole = session?.user?.role ?? "user";
 	const listing = review.listing;
+	const showReviewBody = shouldShowReviewBody(review);
 	// Local in-session feedback: once a staff member hides/deletes the review,
 	// drop it from view (matches next-reload behavior — removed reviews are
 	// filtered from public reads). Declared with the other hooks; early-return
 	// below runs only after all hooks have been called.
 	const [hidden, setHidden] = useState(false);
+	const [containsSpoilers, setContainsSpoilers] = useState(
+		review.containsSpoilers ?? false,
+	);
 	if (hidden) return null;
 
 	return (
@@ -71,12 +77,15 @@ export function ReviewCard({ review }: { review: Review }) {
 						reviewId: review.id,
 						preview: {
 							id: review.id,
+							userId: review.userId,
 							title: review.title,
 							body: review.body,
 							rating: review.rating,
 							likesCount: likesCount,
 							commentsCount: commentsCount,
 							publishedAt: review.publishedAt,
+							audioUrl: review.audioUrl,
+							audioDurationMs: review.audioDurationMs,
 						},
 					})
 				}
@@ -108,9 +117,17 @@ export function ReviewCard({ review }: { review: Review }) {
 							{review.title}
 						</h3>
 					) : null}
-					<p className="mt-2 line-clamp-4 text-pretty font-editorial text-foreground/85 text-sm leading-relaxed">
-						<ReviewBodyWithMentions body={review.body} />
-					</p>
+					<ReviewVoiceAttachment
+						audioUrl={review.audioUrl}
+						audioDurationMs={review.audioDurationMs}
+						className="mt-3"
+						stopPropagation
+					/>
+					{showReviewBody ? (
+						<p className="mt-2 line-clamp-4 text-pretty font-editorial text-foreground/85 text-sm leading-relaxed">
+							<ReviewBodyWithMentions body={review.body} />
+						</p>
+					) : null}
 					<footer className="mt-4 flex items-center gap-4 text-muted-foreground text-xs tabular-nums">
 						<span className="inline-flex items-center gap-1.5">
 							<Heart className="size-3.5 opacity-70" aria-hidden />
@@ -127,10 +144,12 @@ export function ReviewCard({ review }: { review: Review }) {
 				type="review"
 				id={review.id}
 				role={viewerRole}
+				containsSpoilers={containsSpoilers}
 				// The public feed never surfaces removed reviews, so this card is
 				// always showing live content.
 				isRemoved={false}
 				onChanged={() => setHidden(true)}
+				onSpoilerChanged={setContainsSpoilers}
 			/>
 		</>
 	);

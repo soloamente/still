@@ -1,4 +1,5 @@
 import { describe, expect, it } from "bun:test";
+import { APP_NAME } from "./app-brand";
 import {
 	roleChangeDirection,
 	roleChangeNotificationContent,
@@ -24,7 +25,7 @@ describe("roleChangeNotificationContent", () => {
 	it("celebrates a promotion with the new role label", () => {
 		const c = roleChangeNotificationContent("promoted", "moderator");
 		expect(c.title).toBe("You're now a Moderator");
-		expect(c.body).toBe("You've got new staff permissions on Still.");
+		expect(c.body).toBe(`You've got new staff permissions on ${APP_NAME}.`);
 	});
 	it("uses the right article for admin and owner", () => {
 		expect(roleChangeNotificationContent("promoted", "admin").title).toBe(

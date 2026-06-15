@@ -32,6 +32,8 @@ import {
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
+import { fetchListingCommunityEngagementStats } from "../lib/listing-community-stats";
+import { fetchListingQuotesForMovie } from "../lib/listing-quotes-query";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
 import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { fetchReviewMovieScreenshots } from "../lib/review-movie-screenshots";
@@ -819,10 +821,13 @@ export const moviesRoute = new Elysia({
 				}
 			}
 
-			const [community, imagesFromDedicated] = await Promise.all([
-				fetchPublicDiaryCommunityStats({ movieId: id }),
-				imagesForRailPromise,
-			]);
+			const [communityRatings, communityEngagement, imagesFromDedicated] =
+				await Promise.all([
+					fetchPublicDiaryCommunityStats({ movieId: id }),
+					fetchListingCommunityEngagementStats({ movieId: id }),
+					imagesForRailPromise,
+				]);
+			const community = { ...communityRatings, ...communityEngagement };
 			const fullImagesBundle = normalizeTmdbImagesBundle(
 				imagesFromDedicated ?? detail?.images ?? cachedImages,
 			);
@@ -941,6 +946,29 @@ export const moviesRoute = new Elysia({
 			return withCoverPosterPaths(mapped);
 		},
 		{ params: t.Object({ id: t.String() }) },
+	)
+	/** Published dialogue quotes for the film detail Quotes tab. */
+	.get(
+		"/:id/quotes",
+		async ({ params, query, user, status }) => {
+			const movieId = Number(params.id);
+			if (!Number.isFinite(movieId)) return status(400, "Invalid id");
+			return fetchListingQuotesForMovie({
+				movieId,
+				sort: query.sort,
+				page: query.page,
+				limit: query.limit,
+				viewerUserId: user?.id ?? null,
+			});
+		},
+		{
+			params: t.Object({ id: t.String() }),
+			query: t.Object({
+				sort: t.Optional(t.String()),
+				page: t.Optional(t.String()),
+				limit: t.Optional(t.String()),
+			}),
+		},
 	)
 	/** Latest rated/favorited diary rows from patrons the viewer follows (film detail community). */
 	.get(

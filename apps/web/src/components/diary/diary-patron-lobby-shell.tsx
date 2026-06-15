@@ -14,7 +14,10 @@ import {
 	LobbyNavigationProvider,
 	useLobbyNavigation,
 } from "@/components/lobby/lobby-navigation-provider";
-import { buildDiaryLobbyHref } from "@/lib/diary-lobby-order";
+import {
+	buildDiaryLobbyHref,
+	formatDiaryDecadeLabel,
+} from "@/lib/diary-lobby-order";
 import type { DiarySeed } from "@/lib/fetch-my-diary-server";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { HomeVenue } from "@/lib/home-venue";
@@ -24,12 +27,31 @@ export interface DiaryPatronLobbyShellProps {
 	media: "movie" | "tv";
 	endpointOrder: "latest" | "earliest" | "title";
 	venue: HomeVenue;
+	watchYear: number | null;
+	watchDecade: number | null;
 	monochromePeersOnHover: boolean;
 }
 
+function diaryPeriodLabel(
+	year: number | null,
+	decade: number | null,
+): string | null {
+	if (year != null) return String(year);
+	if (decade != null) return formatDiaryDecadeLabel(decade);
+	return null;
+}
+
 function DiaryPatronLobbyBody(props: DiaryPatronLobbyShellProps) {
-	const { seed, media, endpointOrder, venue, monochromePeersOnHover } = props;
-	const { ledgerTab } = useDiaryLobbyParams();
+	const {
+		seed,
+		media,
+		endpointOrder,
+		venue,
+		watchYear,
+		watchDecade,
+		monochromePeersOnHover,
+	} = props;
+	const { ledgerTab, year, decade } = useDiaryLobbyParams();
 	const { navigate } = useLobbyNavigation();
 
 	const hasRows = seed.results.length > 0;
@@ -37,6 +59,10 @@ function DiaryPatronLobbyBody(props: DiaryPatronLobbyShellProps) {
 	const otherTabHasRows =
 		otherTab === "movies" ? seed.tabCounts.movies > 0 : seed.tabCounts.tv > 0;
 	const ledgerLabel = ledgerTab === "movies" ? "films" : "TV shows";
+	const periodActive = year != null || decade != null;
+	const periodLabel = diaryPeriodLabel(year, decade);
+	const tabCount =
+		ledgerTab === "movies" ? seed.tabCounts.movies : seed.tabCounts.tv;
 	const order =
 		endpointOrder === "earliest"
 			? "earliest_seen"
@@ -48,8 +74,23 @@ function DiaryPatronLobbyBody(props: DiaryPatronLobbyShellProps) {
 		order,
 		venue: venue === "theaters" ? "streaming" : "theaters",
 		tab: ledgerTab,
+		year,
+		decade,
 	});
-	const switchTabHref = buildDiaryLobbyHref({ order, venue, tab: otherTab });
+	const switchTabHref = buildDiaryLobbyHref({
+		order,
+		venue,
+		tab: otherTab,
+		year,
+		decade,
+	});
+	const clearPeriodHref = buildDiaryLobbyHref({
+		order,
+		venue,
+		tab: ledgerTab,
+		year: null,
+		decade: null,
+	});
 
 	return (
 		<section
@@ -66,7 +107,29 @@ function DiaryPatronLobbyBody(props: DiaryPatronLobbyShellProps) {
 						className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl border border-border border-dashed bg-card/40 px-6 py-12 text-center sm:px-10 sm:py-14"
 						role="status"
 					>
-						{seed.tabCounts.movies + seed.tabCounts.tv > 0 ? (
+						{periodActive && tabCount > 0 && periodLabel ? (
+							<>
+								<div className="space-y-2">
+									<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
+										No {ledgerLabel} logged in {periodLabel}
+									</p>
+									<p className="text-muted-foreground text-sm leading-relaxed">
+										Try another year or decade, or clear the filter to see your
+										full diary.
+									</p>
+								</div>
+								<button
+									type="button"
+									className={buttonVariants({
+										variant: "outline",
+										size: "pill",
+									})}
+									onClick={() => navigate(clearPeriodHref)}
+								>
+									Show all years
+								</button>
+							</>
+						) : seed.tabCounts.movies + seed.tabCounts.tv > 0 ? (
 							otherTabHasRows ? (
 								<>
 									<div className="space-y-2">
@@ -153,7 +216,13 @@ function DiaryPatronLobbyBody(props: DiaryPatronLobbyShellProps) {
 				<DiaryLobbyInfinite
 					seeds={seed.results}
 					totalPages={seed.total_pages}
-					query={{ media, order: endpointOrder, venue }}
+					query={{
+						media,
+						order: endpointOrder,
+						venue,
+						year: watchYear,
+						decade: watchDecade,
+					}}
 					monochromePeersOnHover={monochromePeersOnHover}
 				/>
 			)}
@@ -168,6 +237,7 @@ export function DiaryPatronLobbyShell(props: DiaryPatronLobbyShellProps) {
 			<DiaryLobbyParamsProvider
 				movieCount={props.seed.tabCounts.movies}
 				tvCount={props.seed.tabCounts.tv}
+				watchPeriods={props.seed.watchPeriods}
 			>
 				<DiaryPatronLobbyBody {...props} />
 			</DiaryLobbyParamsProvider>

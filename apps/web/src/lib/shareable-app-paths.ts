@@ -12,5 +12,8 @@ const SHAREABLE_APP_PREFIXES = [
 
 /** True when an unsigned visitor (or social crawler) may view this `(app)` path. */
 export function isShareableAppPath(pathname: string): boolean {
+	if (pathname === "/journal" || pathname.startsWith("/journal/")) {
+		return true;
+	}
 	return SHAREABLE_APP_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }

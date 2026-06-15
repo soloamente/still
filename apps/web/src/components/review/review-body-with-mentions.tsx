@@ -93,12 +93,15 @@ export function ListingMentionPickerRow({
 	posterUrl,
 	active,
 	onSelect,
+	onMouseEnter,
 }: {
 	title: string;
 	subtitle: string;
 	posterUrl: string | null;
 	active: boolean;
 	onSelect: () => void;
+	/** Sync keyboard highlight when the pointer moves over a row. */
+	onMouseEnter?: () => void;
 }) {
 	return (
 		<button
@@ -109,6 +112,7 @@ export function ListingMentionPickerRow({
 				"flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors",
 				active ? "bg-foreground/10 text-foreground" : "text-foreground/90",
 			)}
+			onMouseEnter={onMouseEnter}
 			onMouseDown={(event) => {
 				// Keep focus in the textarea when picking a title.
 				event.preventDefault();

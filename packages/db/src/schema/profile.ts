@@ -37,6 +37,12 @@ export interface TasteSignatureJson {
 	confidence: TasteSignatureConfidence;
 }
 
+/** Up to 4 patron-curated identity slots on the profile hero (film · TV · review). */
+export type ShowcaseItem =
+	| { kind: "movie"; id: number }
+	| { kind: "tv"; id: number }
+	| { kind: "review"; id: string };
+
 /**
  * One row per `user`. Holds the Letterboxd-style social handle plus all the
  * customization knobs the planning doc calls out (banner, accent override,
@@ -110,6 +116,11 @@ export const profile = pgTable(
 		/** Ordered review ids (max 3) shown on profile hero — ST.3 signature reviews. */
 		pinnedReviewIds: jsonb("pinned_review_ids")
 			.$type<string[]>()
+			.default([])
+			.notNull(),
+		/** Patron-curated showcase strip (max 4) — film, TV, or review identity slots. */
+		showcaseItems: jsonb("showcase_items")
+			.$type<ShowcaseItem[]>()
 			.default([])
 			.notNull(),
 		/** Auto-generated taste headline — see `recomputeUserTasteSignature`. */

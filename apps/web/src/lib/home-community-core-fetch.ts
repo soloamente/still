@@ -31,6 +31,8 @@ export type HomeCommunityReviewRow = {
 	likesCount: number;
 	commentsCount: number;
 	publishedAt: string;
+	audioUrl?: string | null;
+	audioDurationMs?: number | null;
 	listing?: {
 		title: string;
 		posterUrl: string | null;
@@ -54,6 +56,8 @@ export function mapCommunityReviewRow(
 			likesCount: number;
 			commentsCount: number;
 			publishedAt: string | Date;
+			audioUrl?: string | null;
+			audioDurationMs?: number | null;
 		};
 		movie: { tmdbId: number; title: string; posterPath: string | null } | null;
 	};
@@ -70,6 +74,8 @@ export function mapCommunityReviewRow(
 		likesCount: r.likesCount ?? 0,
 		commentsCount: r.commentsCount ?? 0,
 		publishedAt: coerceActivityTimestamp(r.publishedAt),
+		audioUrl: r.audioUrl ?? null,
+		audioDurationMs: r.audioDurationMs ?? null,
 		listing: movie
 			? {
 					title: movie.title,
@@ -89,7 +95,10 @@ type HomeSession = {
 
 export type CommunityFeedSeed = {
 	listSeeds: ListLobbySeed[];
+	/** Total public lists in the active community period (likes-ordered lobby). */
+	listTotalCount: number;
 	reviews: HomeCommunityReviewRow[];
+	viralReviews: HomeCommunityReviewRow[];
 	activityItems: HomeCommunityActivityItem[];
 	curatorSpotlights: CuratorSpotlightPatron[];
 	/** Page 2 for offset feeds (lists/reviews); null when seed is the whole set. */
@@ -101,7 +110,9 @@ export type CommunityFeedSeed = {
 
 const EMPTY_COMMUNITY_SEED: CommunityFeedSeed = {
 	listSeeds: [],
+	listTotalCount: 0,
 	reviews: [],
+	viralReviews: [],
 	activityItems: [],
 	curatorSpotlights: [],
 	initialListCursor: null,
@@ -133,9 +144,17 @@ export async function fetchHomeCommunityFeedSeed(input: {
 				.get({ query: { limit: "6" } })
 				.catch(() => ({ data: { patrons: [] } })),
 		]);
-		const listSeeds = ((listsRes.data as unknown[]) ?? [])
-			.map(toListBoardRow)
-			.map(listBoardRowToLobbySeed);
+		const listsPayload = listsRes.data as
+			| { items?: unknown[]; total?: number }
+			| null
+			| undefined;
+		const rawLists = listsPayload?.items ?? [];
+		const listSeeds = rawLists.map(toListBoardRow).map(listBoardRowToLobbySeed);
+		const listTotalCount =
+			typeof listsPayload?.total === "number" &&
+			Number.isFinite(listsPayload.total)
+				? listsPayload.total
+				: listSeeds.length;
 		const curatorPayload = curatorsRes.data as
 			| { patrons?: CuratorSpotlightPatron[] }
 			| null
@@ -143,24 +162,36 @@ export async function fetchHomeCommunityFeedSeed(input: {
 		return {
 			...EMPTY_COMMUNITY_SEED,
 			listSeeds,
+			listTotalCount,
 			curatorSpotlights: curatorPayload?.patrons ?? [],
 			initialListCursor: listSeeds.length >= COMMUNITY_LISTS_LIMIT ? 2 : null,
 		};
 	}
 
 	if (input.feed === "reviews") {
-		const reviewsRes = await input.api.api.reviews.recent
-			.get({
-				query: { limit: String(COMMUNITY_REVIEWS_LIMIT), ...periodQuery },
-			})
-			.catch(() => ({ data: [] }));
+		const [reviewsRes, viralRes] = await Promise.all([
+			input.api.api.reviews.recent
+				.get({
+					query: { limit: String(COMMUNITY_REVIEWS_LIMIT), ...periodQuery },
+				})
+				.catch(() => ({ data: [] })),
+			input.api.api.reviews.viral
+				.get({
+					query: { limit: "6", ...periodQuery },
+				})
+				.catch(() => ({ data: [] })),
+		]);
 		const rawReviews = (reviewsRes.data as unknown[]) ?? [];
 		const reviews = rawReviews
+			.map(mapCommunityReviewRow)
+			.filter((r): r is HomeCommunityReviewRow => r != null);
+		const viralReviews = ((viralRes.data as unknown[]) ?? [])
 			.map(mapCommunityReviewRow)
 			.filter((r): r is HomeCommunityReviewRow => r != null);
 		return {
 			...EMPTY_COMMUNITY_SEED,
 			reviews,
+			viralReviews,
 			initialReviewCursor:
 				rawReviews.length >= COMMUNITY_REVIEWS_LIMIT ? 2 : null,
 		};

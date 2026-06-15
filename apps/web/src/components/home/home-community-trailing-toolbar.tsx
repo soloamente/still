@@ -1,16 +1,11 @@
 "use client";
 
 import { HomeCommunityPeriodToolbar } from "@/components/home/home-community-period-toolbar";
-import { HomeCommunityRankKindToolbar } from "@/components/home/home-community-rank-kind-toolbar";
 
 /**
- * Right rail on Community browse — Films/TV when Ranks is active, then period window.
+ * Right rail on Community browse — period window (Week · Month · Year · All time).
+ * Films · Shows rank kind lives in the filter row center slot when Ranks is active.
  */
 export function HomeCommunityTrailingToolbar() {
-	return (
-		<>
-			<HomeCommunityRankKindToolbar />
-			<HomeCommunityPeriodToolbar />
-		</>
-	);
+	return <HomeCommunityPeriodToolbar />;
 }

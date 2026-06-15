@@ -13,6 +13,7 @@ import {
 import { DetailEditorialRailFooterControls } from "@/components/movie/detail-editorial-rail-controls";
 import type { MoviePageReview } from "@/components/movie/movie-detail-explore-tabs";
 import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { ReviewVoiceAttachment } from "@/components/review/review-audio-player";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import {
 	useReviewDetail,
@@ -32,6 +33,7 @@ import {
 } from "@/lib/detail-editorial-rail-chrome";
 import { useDetailEditorialRailSnap } from "@/lib/detail-editorial-rail-snap";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
+import { shouldShowReviewBody } from "@/lib/review-audio-fields";
 import {
 	REVIEW_SPOILER_REVEAL_CTA,
 	shouldMaskReviewSpoilers,
@@ -117,6 +119,7 @@ function MovieDetailReviewSlide({
 	}, [bodyMeasureKey]);
 
 	const showExpandHint = bodyTruncated || spoilerMasked;
+	const showReviewBody = shouldShowReviewBody(review);
 
 	const handleOpenReview = () => {
 		openReviewDetail({
@@ -124,6 +127,7 @@ function MovieDetailReviewSlide({
 			movieId: review.movieId,
 			preview: {
 				id: review.id,
+				userId: review.userId,
 				title: review.title,
 				body: review.body,
 				rating: review.rating,
@@ -131,6 +135,8 @@ function MovieDetailReviewSlide({
 				commentsCount: commentsCount,
 				publishedAt: review.publishedAt,
 				containsSpoilers: review.containsSpoilers,
+				audioUrl: review.audioUrl,
+				audioDurationMs: review.audioDurationMs,
 				author: author
 					? {
 							handle: author.handle,
@@ -228,19 +234,32 @@ function MovieDetailReviewSlide({
 						</h3>
 					) : null}
 
-					<p
-						ref={bodyRef}
-						data-review-body=""
-						className={cn(
-							"w-full max-w-prose px-2 py-1 text-center tracking-tight outline-none",
-							bodyTruncated && "line-clamp-8",
-							review.title
-								? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
-								: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
-						)}
-					>
-						<ReviewBodyWithMentions body={review.body} />
-					</p>
+					<ReviewVoiceAttachment
+						audioUrl={review.audioUrl}
+						audioDurationMs={review.audioDurationMs}
+						className="mt-4"
+						stopPropagation
+					/>
+
+					{showReviewBody ? (
+						<p
+							ref={bodyRef}
+							data-review-body=""
+							className={cn(
+								"w-full max-w-prose px-2 py-1 text-center tracking-tight outline-none",
+								bodyTruncated && "line-clamp-8",
+								review.title
+									? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
+									: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
+							)}
+						>
+							<ReviewBodyWithMentions body={review.body} />
+						</p>
+					) : (
+						<p ref={bodyRef} className="sr-only" data-review-body="">
+							Voice review
+						</p>
+					)}
 
 					{author ? (
 						<div className="mt-8 flex flex-col items-center gap-2 text-center">

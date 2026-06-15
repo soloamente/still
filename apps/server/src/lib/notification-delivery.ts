@@ -78,6 +78,27 @@ export const NOTIFICATION_KIND_REGISTRY = [
 		defaultEnabled: true,
 		requiresOptIn: false,
 	},
+	{
+		id: "quote.submission.approved",
+		label: "Quote approvals",
+		description: "When staff publishes a quote you submitted.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
+		id: "quote.submission.rejected",
+		label: "Quote rejections",
+		description: "When staff declines a quote you submitted.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
+		id: "watchlist_now_streaming",
+		label: "Watchlist streaming",
+		description: "When a watchlisted title starts streaming in your region.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
 ] as const;
 
 export type NotificationKind =

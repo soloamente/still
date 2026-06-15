@@ -13,7 +13,7 @@ const CAST_ARC_CARD_KEYS = ["a", "b", "c", "d", "e", "f", "g"] as const;
 /** Stable keys for related-title poster placeholders. */
 const RELATED_POSTER_KEYS = ["a", "b", "c", "d", "e", "f"] as const;
 
-/** Sticky film/TV header — back pill, About/Streaming track, Share pill. */
+/** Sticky film/TV header — back pill, four-tab track, Share pill. */
 function MovieDetailTopBarFallback() {
 	return (
 		<header className="sticky top-0 z-30 w-full bg-background">
@@ -23,8 +23,10 @@ function MovieDetailTopBarFallback() {
 			>
 				<Skeleton className="h-10 w-[min(100%,7.5rem)] rounded-full bg-card/70" />
 				<div className="flex shrink-0 gap-1 rounded-full bg-card p-1">
-					<Skeleton className="h-10 w-19 rounded-full bg-background/80" />
-					<Skeleton className="h-10 w-23 rounded-full bg-background/50" />
+					<Skeleton className="h-10 w-16 rounded-full bg-background/80" />
+					<Skeleton className="h-10 w-22 rounded-full bg-background/50" />
+					<Skeleton className="h-10 w-24 rounded-full bg-background/50" />
+					<Skeleton className="h-10 w-16 rounded-full bg-background/50" />
 				</div>
 				<Skeleton className="ml-auto h-10 w-[min(100%,5.5rem)] rounded-full bg-card/70" />
 			</div>
@@ -62,11 +64,13 @@ export function MovieDetailHeroFallback() {
 	);
 }
 
-/** About-tab body — cast arc, community tabs, and related grid placeholders. */
+/** About or Community tab body placeholders while RSC streams. */
 export function MovieDetailAboutBodyFallback({
 	ariaLabel = "Loading film details",
+	variant = "about",
 }: {
 	ariaLabel?: string;
+	variant?: "about" | "community";
 }) {
 	return (
 		<div
@@ -76,54 +80,58 @@ export function MovieDetailAboutBodyFallback({
 			aria-label={ariaLabel}
 		>
 			<div className="space-y-8">
-				<div className="flex flex-col items-center gap-8 pt-2 pb-4 sm:pb-6">
-					<Skeleton className="h-3 w-24 rounded-full bg-muted/40" />
-					<div className="flex w-full max-w-4xl items-end justify-center gap-2 sm:gap-3">
-						{CAST_ARC_CARD_KEYS.map((key, index) => (
-							<Skeleton
-								key={key}
-								className="aspect-2/3 w-[min(18vw,4.5rem)] rounded-2xl bg-muted/35 sm:w-[min(14vw,5.5rem)]"
-								style={{
-									marginBottom:
-										index === 3
-											? "1.75rem"
-											: index === 2 || index === 4
-												? "0.75rem"
-												: 0,
-								}}
-							/>
-						))}
+				{variant === "about" ? (
+					<div className="flex flex-col items-center gap-8 pt-2 pb-4 sm:pb-6">
+						<Skeleton className="h-3 w-24 rounded-full bg-muted/40" />
+						<div className="flex w-full max-w-4xl items-end justify-center gap-2 sm:gap-3">
+							{CAST_ARC_CARD_KEYS.map((key, index) => (
+								<Skeleton
+									key={key}
+									className="aspect-2/3 w-[min(18vw,4.5rem)] rounded-2xl bg-muted/35 sm:w-[min(14vw,5.5rem)]"
+									style={{
+										marginBottom:
+											index === 3
+												? "1.75rem"
+												: index === 2 || index === 4
+													? "0.75rem"
+													: 0,
+									}}
+								/>
+							))}
+						</div>
 					</div>
-				</div>
+				) : (
+					<>
+						<div className="mx-auto flex w-full max-w-md justify-center gap-2">
+							<Skeleton className="h-10 w-24 rounded-full bg-background/80" />
+							<Skeleton className="h-10 w-20 rounded-full bg-background/50" />
+							<Skeleton className="h-10 w-24 rounded-full bg-background/50" />
+						</div>
 
-				<div className="mx-auto flex w-full max-w-md justify-center gap-2">
-					<Skeleton className="h-10 w-24 rounded-full bg-background/80" />
-					<Skeleton className="h-10 w-20 rounded-full bg-background/50" />
-					<Skeleton className="h-10 w-24 rounded-full bg-background/50" />
-				</div>
+						<div className="mx-auto flex w-full max-w-xl flex-col items-center gap-4 rounded-2xl bg-background px-6 py-8">
+							<Skeleton className="h-3 w-28 rounded-full bg-muted/35" />
+							<Skeleton className="h-10 w-20 rounded-lg bg-muted/40" />
+							<Skeleton className="h-3 w-36 rounded-full bg-muted/30" />
+						</div>
 
-				<div className="mx-auto flex w-full max-w-xl flex-col items-center gap-4 rounded-2xl bg-background px-6 py-8">
-					<Skeleton className="h-3 w-28 rounded-full bg-muted/35" />
-					<Skeleton className="h-10 w-20 rounded-lg bg-muted/40" />
-					<Skeleton className="h-3 w-36 rounded-full bg-muted/30" />
-				</div>
+						<div className="space-y-4">
+							<Skeleton className="h-28 w-full rounded-2xl bg-background/80" />
+							<Skeleton className="h-28 w-full rounded-2xl bg-background/70" />
+						</div>
 
-				<div className="space-y-4">
-					<Skeleton className="h-28 w-full rounded-2xl bg-background/80" />
-					<Skeleton className="h-28 w-full rounded-2xl bg-background/70" />
-				</div>
-
-				<div className="space-y-4 pt-2">
-					<Skeleton className="mx-auto h-3 w-20 rounded-full bg-muted/35" />
-					<div className="grid grid-cols-3 gap-3 sm:grid-cols-6 sm:gap-2">
-						{RELATED_POSTER_KEYS.map((key) => (
-							<Skeleton
-								key={key}
-								className="aspect-2/3 w-full rounded-[3rem] bg-muted/30"
-							/>
-						))}
-					</div>
-				</div>
+						<div className="space-y-4 pt-2">
+							<Skeleton className="mx-auto h-3 w-20 rounded-full bg-muted/35" />
+							<div className="grid grid-cols-3 gap-3 sm:grid-cols-6 sm:gap-2">
+								{RELATED_POSTER_KEYS.map((key) => (
+									<Skeleton
+										key={key}
+										className="aspect-2/3 w-full rounded-[3rem] bg-muted/30"
+									/>
+								))}
+							</div>
+						</div>
+					</>
+				)}
 			</div>
 		</div>
 	);

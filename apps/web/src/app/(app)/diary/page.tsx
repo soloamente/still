@@ -10,10 +10,12 @@ import {
 	parseDiaryLedgerTab,
 	parseDiaryLobbyOrder,
 	parseDiaryLobbyVenue,
+	parseDiaryWatchDecade,
+	parseDiaryWatchYear,
 } from "@/lib/diary-lobby-order";
 import type { MeProfile } from "@/lib/fetch-me-profile";
 import { fetchMyDiaryServer } from "@/lib/fetch-my-diary-server";
-import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
+import { buildPatronNavUserOrNull } from "@/lib/patron-nav-user";
 import {
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbWatchRegionPref,
@@ -36,7 +38,13 @@ function toEndpointOrder(
 export default async function DiaryPage({
 	searchParams,
 }: {
-	searchParams: Promise<{ tab?: string; order?: string; venue?: string }>;
+	searchParams: Promise<{
+		tab?: string;
+		order?: string;
+		venue?: string;
+		year?: string;
+		decade?: string;
+	}>;
 }) {
 	const sp = await searchParams;
 	const [session, api] = await Promise.all([authServer(), serverApi()]);
@@ -51,39 +59,32 @@ export default async function DiaryPage({
 		session && catalogWatchPref === null,
 	);
 
-	const stickyUser =
-		session && profileData?.handle
-			? {
-					id: session.user.id,
-					name: session.user.name ?? profileData.displayName ?? "You",
-					image: session.user.image ?? null,
-					handle: profileData.handle,
-					email: session.user.email ?? null,
-					isPro: Boolean(profileData.isPro),
-					avatarIsAnimated: resolvePatronAvatarIsAnimated(
-						session.user.image ?? null,
-						profileData.preferences ?? null,
-					),
-					diaryMetalTier: profileData.diaryMetalTier ?? null,
-				}
-			: null;
+	const stickyUser = buildPatronNavUserOrNull(session, profileData);
 
 	const order = parseDiaryLobbyOrder(sp?.order ?? null);
 	const venue = parseDiaryLobbyVenue(sp?.venue ?? null);
+	const watchYear = parseDiaryWatchYear(sp?.year ?? null);
+	const watchDecade =
+		watchYear != null ? null : parseDiaryWatchDecade(sp?.decade ?? null);
 	const endpointOrder = toEndpointOrder(order);
 
 	const explicitTab = parseDiaryLedgerTab(sp?.tab ?? null);
 	const firstMedia: "movie" | "tv" = explicitTab === "tv" ? "tv" : "movie";
-	let seed = await fetchMyDiaryServer({
-		media: firstMedia,
+	const diaryQuery = {
 		order: endpointOrder,
 		venue,
+		year: watchYear,
+		decade: watchDecade,
+	} as const;
+	let seed = await fetchMyDiaryServer({
+		media: firstMedia,
+		...diaryQuery,
 	});
 	// No explicit tab + movies empty but TV has rows → default to TV (matches resolveDiaryLedgerTab).
 	let media: "movie" | "tv" = firstMedia;
 	if (!explicitTab && seed.tabCounts.movies === 0 && seed.tabCounts.tv > 0) {
 		media = "tv";
-		seed = await fetchMyDiaryServer({ media, order: endpointOrder, venue });
+		seed = await fetchMyDiaryServer({ media, ...diaryQuery });
 	}
 
 	return (
@@ -97,6 +98,8 @@ export default async function DiaryPage({
 				media={media}
 				endpointOrder={endpointOrder}
 				venue={venue}
+				watchYear={watchYear}
+				watchDecade={watchDecade}
 				monochromePeersOnHover={monochromePeersOnHover}
 			/>
 

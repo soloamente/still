@@ -24,7 +24,7 @@ export function PatronWatchLedgerGrid({
 				className="rounded-2xl bg-muted/25 p-8 text-center text-muted-foreground text-sm"
 				role="status"
 			>
-				No {kind === "tv" ? "TV" : "film"} logs in this window.
+				No {kind === "tv" ? "show" : "film"} logs in this window.
 			</p>
 		);
 	}

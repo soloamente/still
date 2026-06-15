@@ -49,7 +49,7 @@ export function HomeTasteMatchedRailSkeleton() {
 			aria-label="Loading taste-matched films"
 		>
 			<p className="sr-only">Loading films matched to your taste…</p>
-			<ShimmerBone className="h-4 w-56 max-w-[85%] rounded-md bg-background" />
+			<ShimmerBone className="mx-auto h-4 w-56 max-w-[85%] rounded-md bg-background" />
 			<div ref={trackRef} className={HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME}>
 				{slots.map((slot) => (
 					<div
@@ -57,7 +57,7 @@ export function HomeTasteMatchedRailSkeleton() {
 						className={`${HOME_TASTE_MATCHED_RAIL_CELL_CLASSNAME} gap-1.5`}
 					>
 						<ShimmerBone className="aspect-2/3 w-full rounded-2xl bg-background" />
-						<ShimmerBone className="h-3 w-[88%] rounded-md bg-background" />
+						<ShimmerBone className="mx-auto h-3 w-[88%] rounded-md bg-background" />
 					</div>
 				))}
 			</div>

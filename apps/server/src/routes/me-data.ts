@@ -1,10 +1,15 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 import { strToU8, zipSync } from "fflate";
 
 import { context } from "../context";
 import { clearUserLibrary } from "../lib/clear-user-library";
+import { fetchMySavedQuotes } from "../lib/listing-quote-saves-query";
 import { assembleExportFiles, fetchExportInput } from "../lib/me-export-data";
 import { hit } from "../lib/rate-limit";
+import {
+	fetchYearInReviewForUser,
+	parseYearInReviewYear,
+} from "../lib/year-in-review";
 
 type RateLimitHit = (
 	key: string,
@@ -71,7 +76,47 @@ export function buildMeDataRoute(options: MeDataRouteOptions = {}): Elysia {
 			if (!user) return status(401, "Sign in");
 			const counts = await clearUserLibrary(user.id);
 			return { ok: true as const, counts };
-		}) as unknown as Elysia;
+		})
+		.get("/year/:year", async (ctx) => {
+			const { user, status, params } = ctx as typeof ctx & {
+				user: MeDataRequestUser;
+				params: { year: string };
+			};
+			if (!user) return status(401, "Sign in");
+			const year = parseYearInReviewYear(params.year);
+			if (year == null) return status(400, "Invalid year");
+			return fetchYearInReviewForUser(user.id, year);
+		})
+		.get(
+			"/quotes/saved",
+			async (ctx) => {
+				const { user, status, query } = ctx as typeof ctx & {
+					user: MeDataRequestUser;
+					query: {
+						page?: string;
+						limit?: string;
+						kind?: string;
+						visibility?: string;
+					};
+				};
+				if (!user) return status(401, "Sign in");
+				return fetchMySavedQuotes({
+					userId: user.id,
+					page: query.page,
+					limit: query.limit,
+					kind: query.kind,
+					visibility: query.visibility,
+				});
+			},
+			{
+				query: t.Object({
+					page: t.Optional(t.String()),
+					limit: t.Optional(t.String()),
+					kind: t.Optional(t.String()),
+					visibility: t.Optional(t.String()),
+				}),
+			},
+		) as unknown as Elysia;
 }
 
 export const meDataRoute = buildMeDataRoute();

@@ -32,6 +32,7 @@
 		"db:studio": "turbo -F @still/db db:studio",
 		"db:generate": "turbo -F @still/db db:generate",
 		"db:migrate": "turbo -F @still/db db:migrate",
+		"db:seed-journal": "turbo -F @still/db db:seed-journal",
 		"db:baseline": "bun run ./packages/db/src/baseline-migrations.ts",
 		"check": "biome check --write ."
 	},

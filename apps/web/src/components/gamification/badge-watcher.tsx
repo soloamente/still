@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
 
+import { useCinematicAudio } from "@/components/cinema/sound-provider";
 import { shouldNotifyBadgeAward } from "@/lib/badge-prestige";
 import { fetchBadgesRecent } from "@/lib/still-api-fetch";
 
@@ -13,6 +14,8 @@ import { fetchBadgesRecent } from "@/lib/still-api-fetch";
  * lacks. Mount once in the (app)/layout.
  */
 export function BadgeWatcher() {
+	const { play } = useCinematicAudio();
+
 	useEffect(() => {
 		let cancelled = false;
 		let since = new Date().toISOString();
@@ -49,6 +52,9 @@ export function BadgeWatcher() {
 						description: row.badge.description ?? undefined,
 						duration: 6000,
 					});
+					void play("curtain-rise", { category: "feedback" }).catch(
+						() => undefined,
+					);
 					since = row.userBadge.awardedAt;
 				}
 			} catch {
@@ -61,7 +67,7 @@ export function BadgeWatcher() {
 			cancelled = true;
 			clearInterval(interval);
 		};
-	}, []);
+	}, [play]);
 
 	return null;
 }

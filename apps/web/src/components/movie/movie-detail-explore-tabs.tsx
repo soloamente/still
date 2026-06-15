@@ -147,6 +147,44 @@ function RelatedMoviesPosterGrid({
 	);
 }
 
+/** TMDb recommendations grid — lives on the About tab (section-nav **Related** anchor). */
+export function MovieDetailRelatedCatalogue({
+	movies,
+	listingKind = "movie",
+}: {
+	movies: TmdbMovieSummary[];
+	listingKind?: "movie" | "tv";
+}) {
+	const hasRelatedBody = movies.length > 0;
+
+	return (
+		<MovieDetailBodySection
+			id={MOVIE_DETAIL_SECTION.related}
+			title="Related"
+			subtitle="TMDb recommendations and similar titles."
+			className="pt-2 pb-2"
+		>
+			{hasRelatedBody ? (
+				<RelatedMoviesPosterGrid movies={movies} listingKind={listingKind} />
+			) : (
+				<div className="rounded-2xl bg-muted/25 p-8 text-center" role="status">
+					<Sparkles
+						className="mx-auto size-8 text-muted-foreground/70"
+						aria-hidden
+					/>
+					<p className="mt-3 font-display text-lg">
+						No related picks from TMDb
+					</p>
+					<p className="mt-2 text-muted-foreground text-sm">
+						This title doesn’t have recommendation/similar rows cached yet —
+						check back after the next catalogue sync.
+					</p>
+				</div>
+			)}
+		</MovieDetailBodySection>
+	);
+}
+
 export type MovieListForPageTab = {
 	id: string;
 	title: string;
@@ -180,6 +218,8 @@ export type MoviePageReview = {
 	commentsCount: number;
 	publishedAt: string;
 	containsSpoilers: boolean;
+	audioUrl?: string | null;
+	audioDurationMs?: number | null;
 	author?: MoviePageReviewAuthor | null;
 };
 
@@ -201,6 +241,8 @@ export function MovieDetailExploreTabs({
 	movieTitle,
 	listingTmdbId: _listingTmdbId,
 	listCountLabel = "films",
+	/** When false, stacked layout omits Related (rendered on About tab instead). */
+	showRelated = true,
 }: {
 	lists: MovieListForPageTab[];
 	reviews: MoviePageReview[];
@@ -217,6 +259,7 @@ export function MovieDetailExploreTabs({
 	listingTmdbId: number;
 	/** Meta line after list owner — `films` on movie detail, `titles` on TV. */
 	listCountLabel?: string;
+	showRelated?: boolean;
 }) {
 	const baseId = useId();
 	const [tab, setTab] = useState<TabId>("reviews");
@@ -394,14 +437,12 @@ export function MovieDetailExploreTabs({
 					{communityPanel}
 				</MovieDetailBodySection>
 
-				<MovieDetailBodySection
-					id={MOVIE_DETAIL_SECTION.related}
-					title="Related"
-					subtitle="TMDb recommendations and similar titles."
-					className="pt-2 pb-2"
-				>
-					{relatedPanel}
-				</MovieDetailBodySection>
+				{showRelated ? (
+					<MovieDetailRelatedCatalogue
+						movies={moreLikeThis}
+						listingKind={relatedListingKind}
+					/>
+				) : null}
 			</>
 		);
 	}
@@ -481,29 +522,7 @@ export function MovieDetailExploreTabs({
 				hidden={tab !== "related"}
 				className={tab === "related" ? "space-y-8" : "hidden"}
 			>
-				{hasRelatedBody ? (
-					<RelatedMoviesPosterGrid
-						movies={moreLikeThis}
-						listingKind={relatedListingKind}
-					/>
-				) : (
-					<div
-						className="rounded-2xl bg-muted/25 p-8 text-center"
-						role="status"
-					>
-						<Sparkles
-							className="mx-auto size-8 text-muted-foreground/70"
-							aria-hidden
-						/>
-						<p className="mt-3 font-display text-lg">
-							No related picks from TMDb
-						</p>
-						<p className="mt-2 text-muted-foreground text-sm">
-							This title doesn’t have recommendation/similar rows cached yet —
-							check back after the next catalogue sync.
-						</p>
-					</div>
-				)}
+				{relatedPanel}
 			</div>
 		</Section>
 	);

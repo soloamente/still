@@ -24,7 +24,8 @@ import {
 const TRACK_FILL_MOTION_CLASS = "log-rating-slider__fill-motion";
 
 function ratingFromClientX(rect: DOMRect, clientX: number): number {
-	const ratio = (clientX - rect.left) / rect.width;
+	if (rect.width <= 0) return 0;
+	const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
 	return clampLogRatingDisplay(ratio * 10);
 }
 
@@ -53,6 +54,89 @@ function readDigitPopInDurationMs(group: HTMLElement): number {
 	return dur + stagger * 2 + 32;
 }
 
+function readTextSwapDurationMs(el: HTMLElement): number {
+	const slider = el.closest(".log-rating-slider") ?? document.documentElement;
+	const styles = getComputedStyle(slider);
+	const parsed = Number.parseFloat(
+		styles.getPropertyValue("--text-swap-dur").trim(),
+	);
+	return Number.isFinite(parsed) ? parsed : 150;
+}
+
+/** transitions.dev text-states-swap — Rate ↔ live score on compact zero-state tiles. */
+function runTextStateSwap(el: HTMLElement, next: string) {
+	const dur = readTextSwapDurationMs(el);
+	el.classList.add("is-exit");
+	window.setTimeout(() => {
+		el.textContent = next;
+		el.classList.remove("is-exit");
+		el.classList.add("is-enter-start");
+		void el.offsetHeight;
+		el.classList.remove("is-enter-start");
+	}, dur);
+}
+
+/**
+ * Compact taste tile readout while value is still 0 — placeholder at rest,
+ * text-swap into live score on drag, plain updates while dragging.
+ */
+function CompactZeroScoreReadout({
+	placeholder,
+	value,
+	isDragging,
+	className,
+}: {
+	placeholder: string;
+	value: number;
+	isDragging: boolean;
+	className?: string;
+}) {
+	const ref = useRef<HTMLSpanElement>(null);
+	const prevDraggingRef = useRef(false);
+	const mountedRef = useRef(false);
+
+	useLayoutEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+
+		if (!mountedRef.current) {
+			mountedRef.current = true;
+			prevDraggingRef.current = isDragging;
+			return;
+		}
+
+		if (isDragging && !prevDraggingRef.current) {
+			runTextStateSwap(el, formatLogRatingDisplay(value));
+		} else if (!isDragging && prevDraggingRef.current) {
+			runTextStateSwap(el, placeholder);
+		}
+
+		prevDraggingRef.current = isDragging;
+	}, [isDragging, placeholder, value]);
+
+	useLayoutEffect(() => {
+		if (!isDragging) return;
+		const el = ref.current;
+		if (!el) return;
+		el.textContent = formatLogRatingDisplay(value);
+	}, [isDragging, value]);
+
+	return (
+		<span
+			ref={ref}
+			className={cn(
+				"t-text-swap inline-block tabular-nums tracking-tight",
+				isDragging
+					? "font-semibold text-sm"
+					: "font-medium text-muted-foreground text-xs",
+				className,
+			)}
+		>
+			{isDragging ? formatLogRatingDisplay(value) : placeholder}
+		</span>
+	);
+}
+
 /**
  * Live score readout in the track tail — digit pop-in on discrete updates
  * (chevrons, keyboard, drag release). Plain text while dragging avoids
@@ -62,10 +146,15 @@ function LogRatingScoreDigits({
 	value,
 	isDragging,
 	className,
+	animateDigits = true,
+	placeholderWhenZero,
 }: {
 	value: number;
 	isDragging: boolean;
 	className?: string;
+	animateDigits?: boolean;
+	/** Shown when value is 0 and not dragging (compact onboarding tiles). */
+	placeholderWhenZero?: string;
 }) {
 	const label = formatLogRatingDisplay(value);
 	const groupRef = useRef<HTMLSpanElement>(null);
@@ -74,6 +163,7 @@ function LogRatingScoreDigits({
 	const animTimerRef = useRef<number | null>(null);
 
 	const playDigitPopIn = useCallback(() => {
+		if (!animateDigits) return;
 		const group = groupRef.current;
 		if (!group) return;
 
@@ -90,9 +180,10 @@ function LogRatingScoreDigits({
 			group.classList.remove("is-animating");
 			animTimerRef.current = null;
 		}, readDigitPopInDurationMs(group));
-	}, []);
+	}, [animateDigits]);
 
 	useLayoutEffect(() => {
+		if (!animateDigits) return;
 		const group = groupRef.current;
 		if (!group) return;
 
@@ -106,9 +197,12 @@ function LogRatingScoreDigits({
 		const justReleasedDrag = wasDraggingRef.current;
 		wasDraggingRef.current = false;
 
-		// First paint: digits without entrance motion.
+		// First paint: digits without entrance motion (compact first commit plays pop-in).
 		if (prevLabelRef.current === null) {
 			prevLabelRef.current = label;
+			if (value > 0 && placeholderWhenZero) {
+				playDigitPopIn();
+			}
 			return;
 		}
 
@@ -117,7 +211,14 @@ function LogRatingScoreDigits({
 
 		prevLabelRef.current = label;
 		playDigitPopIn();
-	}, [isDragging, label, playDigitPopIn]);
+	}, [
+		animateDigits,
+		isDragging,
+		label,
+		placeholderWhenZero,
+		playDigitPopIn,
+		value,
+	]);
 
 	useEffect(() => {
 		return () => {
@@ -127,6 +228,17 @@ function LogRatingScoreDigits({
 		};
 	}, []);
 
+	if (placeholderWhenZero && value <= 0 && !isDragging) {
+		return (
+			<CompactZeroScoreReadout
+				className={className}
+				isDragging={isDragging}
+				placeholder={placeholderWhenZero}
+				value={value}
+			/>
+		);
+	}
+
 	const digits = splitRatingLabelDigits(label);
 
 	return (
@@ -134,11 +246,11 @@ function LogRatingScoreDigits({
 			ref={groupRef}
 			className={cn(
 				"inline-flex items-baseline font-semibold text-2xl tabular-nums tracking-tight",
-				!isDragging && "t-digit-group",
+				animateDigits && !isDragging && "t-digit-group",
 				className,
 			)}
 		>
-			{isDragging
+			{isDragging || !animateDigits
 				? label
 				: digits.map((digit, index) => (
 						<span
@@ -159,6 +271,7 @@ function LogRatingScoreDigits({
  * fill from 0→avg (does not move). The accent number in the tail is the user score and
  * updates as the thumb moves.
  * Chevron buttons step by **1.0**; drag / track tap sets **0.1** precision.
+ * **`compact`** — track-only row for narrow surfaces (e.g. onboarding taste tiles).
  */
 export function LogRatingSlider({
 	value,
@@ -166,11 +279,13 @@ export function LogRatingSlider({
 	/** TMDb or Sense community average on 0–10 — static fill + label inside the same track as the thumb. */
 	averageRating,
 	className,
+	variant = "default",
 }: {
 	value: number;
 	onChange: (next: number) => void;
 	averageRating?: number | null;
 	className?: string;
+	variant?: "default" | "compact";
 }) {
 	const { resolvedTheme } = useTheme();
 	const appTheme = resolveAppTheme(resolvedTheme ?? DEFAULT_APP_THEME_CLASS);
@@ -178,6 +293,13 @@ export function LogRatingSlider({
 	const avatarGroupRef = useRef<HTMLDivElement>(null);
 	const labelId = useId();
 	const [isDragging, setIsDragging] = useState(false);
+	/** Live pointer value while dragging — defers 0 commits so parent state stays stable. */
+	const [dragValue, setDragValue] = useState<number | null>(null);
+	const isDraggingRef = useRef(false);
+	const dragValueRef = useRef<number | null>(null);
+	const dragRectRef = useRef<DOMRect | null>(null);
+
+	const displayValue = isDragging && dragValue != null ? dragValue : value;
 
 	/** transitions.dev avatar-group-hover — comb lift across chevron | track | chevron. */
 	const setAvatarShifts = useCallback(
@@ -222,20 +344,54 @@ export function LogRatingSlider({
 		[],
 	);
 
-	const fillPct = `${(value / 10) * 100}%`;
+	const fillPct = `${(displayValue / 10) * 100}%`;
 	const avgPct =
 		averageRating != null && Number.isFinite(averageRating)
 			? `${(clampLogRatingDisplay(averageRating) / 10) * 100}%`
 			: null;
 
+	const commitDragValue = useCallback(
+		(next: number) => {
+			dragValueRef.current = next;
+			setDragValue(next);
+			// Hold rating in parent while scrubbing through zero — clear only on release.
+			if (next > 0) {
+				onChange(next);
+			}
+		},
+		[onChange],
+	);
+
 	const setFromPointer = useCallback(
 		(clientX: number) => {
 			const el = trackRef.current;
 			if (!el) return;
-			const rect = el.getBoundingClientRect();
-			onChange(ratingFromClientX(rect, clientX));
+			const rect = dragRectRef.current ?? el.getBoundingClientRect();
+			commitDragValue(ratingFromClientX(rect, clientX));
 		},
-		[onChange],
+		[commitDragValue],
+	);
+
+	const finishDrag = useCallback(
+		(pointerId: number) => {
+			if (!isDraggingRef.current) return;
+			const el = trackRef.current;
+			const finalValue = dragValueRef.current ?? value;
+			isDraggingRef.current = false;
+			dragValueRef.current = null;
+			setIsDragging(false);
+			setDragValue(null);
+			dragRectRef.current = null;
+			if (finalValue <= 0) {
+				onChange(0);
+			} else {
+				onChange(finalValue);
+			}
+			if (el?.hasPointerCapture(pointerId)) {
+				el.releasePointerCapture(pointerId);
+			}
+		},
+		[onChange, value],
 	);
 
 	function onTrackPointerDown(e: ReactPointerEvent<HTMLDivElement>) {
@@ -243,31 +399,137 @@ export function LogRatingSlider({
 		e.preventDefault();
 		const el = trackRef.current;
 		if (!el) return;
+		dragRectRef.current = el.getBoundingClientRect();
+		isDraggingRef.current = true;
 		setIsDragging(true);
 		el.setPointerCapture(e.pointerId);
 		setFromPointer(e.clientX);
+	}
 
-		const onMove = (ev: PointerEvent) => setFromPointer(ev.clientX);
-		const onUp = () => {
-			setIsDragging(false);
-			el.releasePointerCapture(e.pointerId);
-			window.removeEventListener("pointermove", onMove);
-			window.removeEventListener("pointerup", onUp);
-			window.removeEventListener("pointercancel", onUp);
-		};
-		window.addEventListener("pointermove", onMove);
-		window.addEventListener("pointerup", onUp);
-		window.addEventListener("pointercancel", onUp);
+	function onTrackPointerMove(e: ReactPointerEvent<HTMLDivElement>) {
+		if (!isDraggingRef.current) return;
+		setFromPointer(e.clientX);
+	}
+
+	function onTrackPointerUp(e: ReactPointerEvent<HTMLDivElement>) {
+		finishDrag(e.pointerId);
+	}
+
+	function onTrackPointerCancel(e: ReactPointerEvent<HTMLDivElement>) {
+		finishDrag(e.pointerId);
 	}
 
 	function stepBy(delta: number) {
-		onChange(clampLogRatingDisplay(value + delta));
+		onChange(clampLogRatingDisplay(displayValue + delta));
 	}
 
 	const stepBtnClass =
 		"log-rating-slider__step inline-flex size-12 shrink-0 items-center justify-center rounded-2xl text-muted-foreground transition-[color,box-shadow] duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-35 [@media(hover:hover)]:hover:text-foreground motion-reduce:transition-none";
 
 	const fillMotion = isDragging ? undefined : TRACK_FILL_MOTION_CLASS;
+
+	const trackNode = (
+		<div
+			className={cn(
+				"relative flex min-w-0 flex-1 flex-col",
+				variant === "default" && "t-avatar",
+			)}
+		>
+			<div
+				ref={trackRef}
+				role="slider"
+				tabIndex={0}
+				aria-labelledby={labelId}
+				aria-valuemin={0}
+				aria-valuemax={10}
+				aria-valuenow={displayValue}
+				aria-valuetext={`${formatLogRatingDisplay(displayValue)} out of 10`}
+				className={cn(
+					"log-rating-slider__track relative isolate w-full cursor-grab touch-none select-none overflow-hidden [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+					variant === "compact"
+						? "h-10 min-h-10 rounded-xl focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+						: "h-14 rounded-2xl focus-visible:ring-offset-2 focus-visible:ring-offset-card",
+					isDragging && "cursor-grabbing",
+				)}
+				onPointerDown={onTrackPointerDown}
+				onPointerMove={onTrackPointerMove}
+				onPointerUp={onTrackPointerUp}
+				onPointerCancel={onTrackPointerCancel}
+				onMouseEnter={
+					variant === "default" ? () => setAvatarShifts(1, "in") : undefined
+				}
+				onKeyDown={(e) => {
+					if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+						e.preventDefault();
+						stepBy(-0.1);
+					}
+					if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+						e.preventDefault();
+						stepBy(0.1);
+					}
+				}}
+			>
+				{avgPct ? (
+					<span
+						className={cn(
+							"log-rating-slider__avg pointer-events-none absolute inset-y-0 left-0 z-1",
+							fillMotion,
+						)}
+						style={{ width: avgPct }}
+						aria-hidden
+					/>
+				) : null}
+				<span
+					className={cn(
+						"log-rating-slider__tail pointer-events-none absolute inset-y-0 right-0 z-1",
+						fillMotion,
+					)}
+					style={{ left: fillPct }}
+					aria-hidden
+				/>
+				<span
+					className={cn(
+						"log-rating-slider__fill pointer-events-none absolute inset-y-0 left-0 z-2",
+						fillMotion,
+					)}
+					style={{ width: fillPct }}
+					aria-hidden
+				/>
+				<span
+					className={cn(
+						"log-rating-slider__thumb pointer-events-none absolute z-4 rounded-full",
+						variant === "compact"
+							? "top-1.5 bottom-1.5 w-1"
+							: "top-1.5 bottom-1.5 w-[3px]",
+						fillMotion,
+					)}
+					style={{
+						left: fillPct,
+						transform: "translateX(-50%)",
+					}}
+					aria-hidden
+				/>
+			</div>
+			<span
+				className={cn(
+					"pointer-events-none absolute inset-y-0 z-10 flex items-center",
+					variant === "compact" ? "right-2.5" : "right-4",
+				)}
+				aria-hidden
+			>
+				<LogRatingScoreDigits
+					value={displayValue}
+					isDragging={isDragging}
+					placeholderWhenZero={variant === "compact" ? "Rate" : undefined}
+					className={cn(
+						"log-rating-slider__score",
+						variant === "compact" &&
+							"font-semibold text-sm tabular-nums tracking-tight",
+					)}
+				/>
+			</span>
+		</div>
+	);
 
 	// Keep grabbing cursor if the pointer leaves the track mid-drag.
 	useEffect(() => {
@@ -288,6 +550,21 @@ export function LogRatingSlider({
 		return () => root.removeEventListener("mouseleave", onLeave);
 	}, [setAvatarShifts]);
 
+	if (variant === "compact") {
+		return (
+			<div
+				className={cn("log-rating-slider w-full touch-manipulation", className)}
+				data-theme={appTheme}
+				data-variant="compact"
+			>
+				{trackNode}
+				<p id={labelId} className="sr-only">
+					Your rating: {formatLogRatingDisplay(displayValue)} out of 10
+				</p>
+			</div>
+		);
+	}
+
 	return (
 		<div
 			className={cn(
@@ -304,7 +581,7 @@ export function LogRatingSlider({
 					<DetailMotionButton
 						className={stepBtnClass}
 						aria-label="Decrease rating by 1"
-						disabled={value <= 0}
+						disabled={displayValue <= 0}
 						onMouseEnter={() => setAvatarShifts(0, "in")}
 						onClick={() => stepBy(-1)}
 					>
@@ -313,93 +590,13 @@ export function LogRatingSlider({
 				</div>
 
 				{/* Track column — score sits outside overflow-hidden so digit pop-in is not clipped. */}
-				<div className="t-avatar relative flex min-w-0 flex-1 flex-col">
-					<div
-						ref={trackRef}
-						role="slider"
-						tabIndex={0}
-						aria-labelledby={labelId}
-						aria-valuemin={0}
-						aria-valuemax={10}
-						aria-valuenow={value}
-						aria-valuetext={`${formatLogRatingDisplay(value)} out of 10`}
-						className={cn(
-							"log-rating-slider__track relative isolate h-14 w-full cursor-grab touch-none select-none overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
-							isDragging && "cursor-grabbing",
-						)}
-						onPointerDown={onTrackPointerDown}
-						onMouseEnter={() => setAvatarShifts(1, "in")}
-						onKeyDown={(e) => {
-							if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
-								e.preventDefault();
-								stepBy(-0.1);
-							}
-							if (e.key === "ArrowRight" || e.key === "ArrowUp") {
-								e.preventDefault();
-								stepBy(0.1);
-							}
-						}}
-					>
-						{/*
-						 * Layering (back → front): shell bg, static average 0→avg, tail from thumb→end,
-						 * then user fill 0→thumb so the rated stripe always meets the accent thumb.
-						 * Average does not move — only the thumb does.
-						 */}
-						{avgPct ? (
-							<span
-								className={cn(
-									"log-rating-slider__avg pointer-events-none absolute inset-y-0 left-0 z-1",
-									fillMotion,
-								)}
-								style={{ width: avgPct }}
-								aria-hidden
-							/>
-						) : null}
-						<span
-							className={cn(
-								"log-rating-slider__tail pointer-events-none absolute inset-y-0 right-0 z-1",
-								fillMotion,
-							)}
-							style={{ left: fillPct }}
-							aria-hidden
-						/>
-						<span
-							className={cn(
-								"log-rating-slider__fill pointer-events-none absolute inset-y-0 left-0 z-2",
-								fillMotion,
-							)}
-							style={{ width: fillPct }}
-							aria-hidden
-						/>
-						<span
-							className={cn(
-								"log-rating-slider__thumb pointer-events-none absolute top-1.5 bottom-1.5 z-4 w-[3px] rounded-full",
-								fillMotion,
-							)}
-							style={{
-								left: fillPct,
-								transform: "translateX(-50%)",
-							}}
-							aria-hidden
-						/>
-					</div>
-					<span
-						className="pointer-events-none absolute inset-y-0 right-4 z-10 flex items-center"
-						aria-hidden
-					>
-						<LogRatingScoreDigits
-							value={value}
-							isDragging={isDragging}
-							className="log-rating-slider__score"
-						/>
-					</span>
-				</div>
+				{trackNode}
 
 				<div className="t-avatar flex h-14 shrink-0 items-center">
 					<DetailMotionButton
 						className={stepBtnClass}
 						aria-label="Increase rating by 1"
-						disabled={value >= 10}
+						disabled={displayValue >= 10}
 						onMouseEnter={() => setAvatarShifts(2, "in")}
 						onClick={() => stepBy(1)}
 					>
@@ -409,7 +606,7 @@ export function LogRatingSlider({
 			</div>
 
 			<p id={labelId} className="sr-only">
-				Your rating: {formatLogRatingDisplay(value)} out of 10
+				Your rating: {formatLogRatingDisplay(displayValue)} out of 10
 				{averageRating != null
 					? `; average from other viewers ${formatLogRatingDisplay(averageRating)}`
 					: ""}

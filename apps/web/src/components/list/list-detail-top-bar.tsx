@@ -11,6 +11,7 @@ import {
 	DetailMotionButton,
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
+import { listShareCopiedToastMessage } from "@/lib/list-share-toast";
 
 /**
  * List detail sticky header — same shell as `ProfileTopBar` / `MovieDetailTopBar`.
@@ -50,7 +51,7 @@ export function ListDetailTopBar({
 		try {
 			await navigator.clipboard.writeText(href);
 			setShareCopied(true);
-			toast.success("Link copied");
+			toast.success(listShareCopiedToastMessage(title));
 			window.setTimeout(() => setShareCopied(false), 1600);
 		} catch {
 			toast.error("Couldn't copy link");

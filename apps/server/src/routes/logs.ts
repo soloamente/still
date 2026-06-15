@@ -35,12 +35,16 @@ import { makeId } from "../lib/cuid";
 import {
 	diaryOffset,
 	diaryTotalPages,
+	diaryWatchedAtInPeriodCondition,
 	parseDiaryLimit,
 	parseDiaryMedia,
 	parseDiaryOrder,
 	parseDiaryPage,
 	parseDiaryVenue,
+	parseDiaryWatchDecade,
+	parseDiaryWatchYear,
 } from "../lib/diary-log-query";
+import { fetchDiaryWatchPeriods } from "../lib/diary-watch-periods";
 import { ensureMovieCached } from "../lib/ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
 import { hit } from "../lib/rate-limit";
@@ -485,6 +489,14 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 			const page = parseDiaryPage(query.page);
 			const limit = parseDiaryLimit(query.limit);
 			const offset = diaryOffset(page, limit);
+			const watchYear = parseDiaryWatchYear(query.year);
+			const watchDecade =
+				watchYear != null ? null : parseDiaryWatchDecade(query.decade);
+			const periodWhere = diaryWatchedAtInPeriodCondition(
+				log.watchedAt,
+				watchYear,
+				watchDecade,
+			);
 
 			// Venue filter: legacy/unset venue matches both slices (mirrors the web
 			// `diaryLogMatchesDiaryLobbyVenue` rule).
@@ -523,12 +535,19 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				tv: Number(tvCountRow[0]?.total ?? 0),
 			};
 
+			const watchPeriodsPromise = fetchDiaryWatchPeriods(
+				user.id,
+				media,
+				showAdultContent,
+			);
+
 			if (media === "movie") {
 				const where = and(
 					eq(log.userId, user.id),
 					isNull(log.removedAt),
 					isNotNull(log.movieId),
 					venueWhere,
+					periodWhere,
 					movieNotAdultSql(showAdultContent),
 				);
 				const orderBy =
@@ -538,7 +557,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 							? [asc(movie.title), desc(log.watchedAt), desc(log.id)]
 							: [desc(log.watchedAt), desc(log.createdAt), desc(log.id)];
 
-				const [rows, totalRow] = await Promise.all([
+				const [rows, totalRow, watchPeriods] = await Promise.all([
 					db
 						.select({
 							id: log.id,
@@ -563,6 +582,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 						.from(log)
 						.innerJoin(movie, eq(log.movieId, movie.tmdbId))
 						.where(where),
+					watchPeriodsPromise,
 				]);
 
 				const total = Number(totalRow[0]?.total ?? 0);
@@ -587,6 +607,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					total_pages: diaryTotalPages(total, limit),
 					total_results: total,
 					tabCounts,
+					watchPeriods,
 				};
 			}
 
@@ -608,6 +629,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 						eq(log.userId, user.id),
 						isNull(log.removedAt),
 						isNotNull(log.tvId),
+						periodWhere,
 						tvNotAdultSql(showAdultContent),
 					),
 				)
@@ -632,7 +654,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 						? [asc(deduped.title), asc(deduped.tmdbId)]
 						: [desc(deduped.watchedAt), desc(deduped.tmdbId)];
 
-			const [rows, totalRow] = await Promise.all([
+			const [rows, totalRow, watchPeriods] = await Promise.all([
 				db
 					.select({
 						tmdbId: deduped.tmdbId,
@@ -646,6 +668,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					.limit(limit)
 					.offset(offset),
 				db.select({ total: count() }).from(deduped).where(outerVenueWhere),
+				watchPeriodsPromise,
 			]);
 
 			// Per-show log count + most-specific scope, scoped to the page's shows.
@@ -733,6 +756,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				total_pages: diaryTotalPages(total, limit),
 				total_results: total,
 				tabCounts,
+				watchPeriods,
 			};
 		},
 		{
@@ -740,6 +764,8 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				media: t.Optional(t.String()),
 				order: t.Optional(t.String()),
 				venue: t.Optional(t.String()),
+				year: t.Optional(t.String()),
+				decade: t.Optional(t.String()),
 				page: t.Optional(t.String()),
 				limit: t.Optional(t.String()),
 			}),

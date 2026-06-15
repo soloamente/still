@@ -41,6 +41,25 @@ describe("buildDiaryLobbyHref", () => {
 			}),
 		).toBe("/diary?tab=tv&order=earliest&venue=theaters");
 	});
+
+	test("preserves year and decade query params", () => {
+		expect(
+			buildDiaryLobbyHref({
+				tab: "movies",
+				order: "latest_seen",
+				venue: "streaming",
+				year: 2024,
+			}),
+		).toBe("/diary?tab=movies&year=2024");
+		expect(
+			buildDiaryLobbyHref({
+				tab: "movies",
+				order: "latest_seen",
+				venue: "streaming",
+				decade: 2010,
+			}),
+		).toBe("/diary?tab=movies&decade=2010");
+	});
 });
 
 describe("filterDiaryLogsForLedgerTab", () => {

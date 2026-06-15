@@ -16,8 +16,11 @@ import {
 	buildDiaryLobbyHref,
 	type DiaryLedgerTabId,
 	type DiaryLobbyOrder,
+	type DiaryWatchPeriods,
 	parseDiaryLobbyOrder,
 	parseDiaryLobbyVenue,
+	parseDiaryWatchDecade,
+	parseDiaryWatchYear,
 	resolveDiaryLedgerTab,
 } from "@/lib/diary-lobby-order";
 import type { HomeVenue } from "@/lib/home-venue";
@@ -26,22 +29,33 @@ interface DiaryLobbySnapshot {
 	order: DiaryLobbyOrder;
 	venue: HomeVenue;
 	ledgerTab: DiaryLedgerTabId;
+	year: number | null;
+	decade: number | null;
 }
 
 interface DiaryLobbyParamsContextValue extends DiaryLobbySnapshot {
+	watchPeriods: DiaryWatchPeriods;
 	selectOrder: (order: DiaryLobbyOrder) => void;
 	selectVenue: (venue: HomeVenue) => void;
 	selectTab: (tab: DiaryLedgerTabId) => void;
+	selectYear: (year: number) => void;
+	selectDecade: (decade: number) => void;
+	clearWatchPeriod: () => void;
 }
 
 const DiaryLobbyParamsContext =
 	createContext<DiaryLobbyParamsContextValue | null>(null);
+
+const EMPTY_WATCH_PERIODS: DiaryWatchPeriods = { years: [], decades: [] };
 
 function snapshotFromSearchParams(
 	searchParams: URLSearchParams,
 	movieCount: number,
 	tvCount: number,
 ): DiaryLobbySnapshot {
+	const year = parseDiaryWatchYear(searchParams.get("year"));
+	const decade =
+		year != null ? null : parseDiaryWatchDecade(searchParams.get("decade"));
 	return {
 		order: parseDiaryLobbyOrder(searchParams.get("order")),
 		venue: parseDiaryLobbyVenue(searchParams.get("venue")),
@@ -50,18 +64,23 @@ function snapshotFromSearchParams(
 			movieCount,
 			tvCount,
 		),
+		year,
+		decade,
 	};
 }
 
 export function DiaryLobbyParamsProvider({
 	movieCount,
 	tvCount,
+	watchPeriods = EMPTY_WATCH_PERIODS,
 	children,
 }: {
 	/** Listed diary rows with a movie join — drives default `?tab=`. */
 	movieCount: number;
 	/** Listed diary rows with a TV join — drives default `?tab=`. */
 	tvCount: number;
+	/** Distinct watch years/decades for period chips (RSC seed per tab). */
+	watchPeriods?: DiaryWatchPeriods;
 	children: ReactNode;
 }) {
 	const searchParams = useSearchParams();
@@ -84,7 +103,9 @@ export function DiaryLobbyParamsProvider({
 		if (
 			pending.order === urlState.order &&
 			pending.venue === urlState.venue &&
-			pending.ledgerTab === urlState.ledgerTab
+			pending.ledgerTab === urlState.ledgerTab &&
+			pending.year === urlState.year &&
+			pending.decade === urlState.decade
 		) {
 			setPending(null);
 		}
@@ -100,6 +121,8 @@ export function DiaryLobbyParamsProvider({
 					order: next.order,
 					venue: next.venue,
 					tab: next.ledgerTab,
+					year: next.year,
+					decade: next.decade,
 				}),
 			);
 		},
@@ -127,16 +150,49 @@ export function DiaryLobbyParamsProvider({
 		[active, applySnapshot],
 	);
 
+	const selectYear = useCallback(
+		(year: number) => {
+			applySnapshot({ ...active, year, decade: null });
+		},
+		[active, applySnapshot],
+	);
+
+	const selectDecade = useCallback(
+		(decade: number) => {
+			applySnapshot({ ...active, decade, year: null });
+		},
+		[active, applySnapshot],
+	);
+
+	const clearWatchPeriod = useCallback(() => {
+		applySnapshot({ ...active, year: null, decade: null });
+	}, [active, applySnapshot]);
+
 	const value = useMemo(
 		(): DiaryLobbyParamsContextValue => ({
 			order: active.order,
 			venue: active.venue,
 			ledgerTab: active.ledgerTab,
+			year: active.year,
+			decade: active.decade,
+			watchPeriods,
 			selectOrder,
 			selectVenue,
 			selectTab,
+			selectYear,
+			selectDecade,
+			clearWatchPeriod,
 		}),
-		[active, selectOrder, selectVenue, selectTab],
+		[
+			active,
+			watchPeriods,
+			selectOrder,
+			selectVenue,
+			selectTab,
+			selectYear,
+			selectDecade,
+			clearWatchPeriod,
+		],
 	);
 
 	return (

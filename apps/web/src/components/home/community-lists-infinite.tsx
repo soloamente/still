@@ -42,7 +42,9 @@ export function CommunityListsInfinite({
 				signal,
 			});
 			if (raw == null) return { error: true as const };
-			const items = raw.map((r) => listBoardRowToLobbySeed(toListBoardRow(r)));
+			const items = raw.items.map((r) =>
+				listBoardRowToLobbySeed(toListBoardRow(r)),
+			);
 			return {
 				items,
 				nextCursor: items.length >= COMMUNITY_LISTS_LIMIT ? page + 1 : null,

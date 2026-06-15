@@ -37,6 +37,12 @@ export const SEARCH_GO_TO_SHORTCUTS: readonly SearchGoToShortcut[] = [
 		icon: Compass,
 		href: buildHomeLobbyHref({ browse: "movies", sort: "latest" }),
 	},
+	{
+		id: "journal",
+		label: "Journal",
+		icon: Newspaper,
+		href: "/journal",
+	},
 	{ id: "news", label: "News", icon: Newspaper, href: "/news" },
 	{
 		id: "achievements",

@@ -3,6 +3,7 @@
  * `HomeStickyChrome`, `HomeCatalogViewModeToolbar`, and the same poster grid stack as `/home`.
  */
 import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
+import { formatWatchlistStreamingPill } from "@/lib/watchlist-streaming-display";
 
 export type WatchlistLobbyOrder =
 	| "latest_added"
@@ -23,6 +24,8 @@ export type WatchlistLobbyRow = {
 	};
 	movie: { tmdbId: number; title: string; posterPath: string | null } | null;
 	tv: { tmdbId: number; title: string; posterPath: string | null } | null;
+	/** First flatrate provider in the patron's watch region, when cached on the listing. */
+	streaming_provider_name?: string | null;
 };
 
 export type WatchlistLobbyRowWithListing =
@@ -81,5 +84,8 @@ export function watchlistRowToPopularSeed(
 		title: listing.title,
 		poster_url,
 		listingKind: row.tv != null ? "tv" : "movie",
+		watchlistStreamingLabel: row.streaming_provider_name
+			? formatWatchlistStreamingPill(row.streaming_provider_name)
+			: null,
 	};
 }

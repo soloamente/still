@@ -1,3 +1,4 @@
+import { APP_NAME } from "@/lib/app-brand";
 import { roleLabel, roleWithArticle } from "@/lib/staff-role-labels";
 
 export type RoleChangeDirection = "promoted" | "demoted";
@@ -19,7 +20,7 @@ export function roleChangeDialogCopy(
 		return {
 			title: "It's official!",
 			headline: `You're now ${roleWithArticle(newRole)}`,
-			subtext: "You've got new staff permissions on Still.",
+			subtext: `You've got new staff permissions on ${APP_NAME}.`,
 			pillLabel,
 			showStaffPanelCta: true,
 		};

@@ -27,9 +27,9 @@ export function buildCsv(
 	return `${lines.join("\n")}\n`;
 }
 
-/** Stored `log.rating` / `review.rating` (tenths 0–100 or legacy 1–10) → 0–10 display. */
+/** Stored `log.rating` / `review.rating` (tenths 0–100) → 0–10 display. */
 export function storedRatingToDisplayTen(stored: number): number {
-	return stored > 10 ? stored / 10 : stored;
+	return stored / 10;
 }
 
 /** 0–10 display score → Letterboxd 0.5–5 stars, rounded to the nearest half star. */

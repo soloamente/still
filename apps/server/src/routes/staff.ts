@@ -483,13 +483,28 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 			const { type, id, op } = params as {
 				type: string;
 				id: string;
-				op: "hide" | "delete" | "restore";
+				op: "hide" | "delete" | "restore" | "mark-spoiler" | "unmark-spoiler";
 			};
 			if (!(type in CONTENT_TABLES)) return status(400, "Unknown content type");
-			if (!["hide", "delete", "restore"].includes(op)) {
+			const isSpoilerOp = op === "mark-spoiler" || op === "unmark-spoiler";
+			if (
+				![
+					"hide",
+					"delete",
+					"restore",
+					"mark-spoiler",
+					"unmark-spoiler",
+				].includes(op)
+			) {
 				return status(400, "Unknown operation");
 			}
-			const permAction = op === "restore" ? "restore" : op;
+			if (isSpoilerOp && type !== "review") {
+				return status(400, "Spoiler marking only applies to reviews");
+			}
+			// Spoiler flags use the same staff gate as hide — support can mask
+			// unmarked spoiler reviews without delete/restore powers.
+			const permAction =
+				op === "restore" ? "restore" : isSpoilerOp ? "hide" : op;
 			try {
 				await requirePermission({ user: viewer }, { content: [permAction] });
 			} catch (e) {
@@ -498,6 +513,27 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 			if (!viewer) return status(401, "Sign in");
 			if (!hit(`staff:mod:${viewer.id}`, { limit: 60, windowMs: 60_000 }).ok) {
 				return status(429, "Slow down");
+			}
+			if (isSpoilerOp) {
+				const containsSpoilers = op === "mark-spoiler";
+				const updated = await db
+					.update(review)
+					.set({ containsSpoilers })
+					.where(eq(review.id, id))
+					.returning({
+						id: review.id,
+						containsSpoilers: review.containsSpoilers,
+					});
+				if (updated.length === 0) return status(404, "Content not found");
+				await writeAuditLog({
+					actorId: viewer.id,
+					action: `content.${op}`,
+					targetType: "review",
+					targetId: id,
+					reason: body.reason ?? null,
+					metadata: { containsSpoilers },
+				});
+				return { ok: true, containsSpoilers };
 			}
 			const table: ContentTable = CONTENT_TABLES[type as ContentType];
 			const setValues =

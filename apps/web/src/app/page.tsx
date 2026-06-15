@@ -6,10 +6,12 @@ import {
 	APP_NAME,
 } from "@/lib/app-brand";
 import { authServer } from "@/lib/auth-server";
+import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import {
 	OG_HOME_PATH,
 	ogImageMetadataFields,
 } from "@/lib/og/og-image-metadata";
+import { patronNeedsOnboarding } from "@/lib/onboarding-gate";
 import { serverApi } from "@/lib/server-api";
 import { getSiteOrigin } from "@/lib/site-origin";
 import { LandingFeatures } from "./_marketing/landing-features";
@@ -48,7 +50,16 @@ export default async function LandingPage() {
 	// Validate the session server-side — a stale cookie after account deletion
 	// must not bounce patrons into the authenticated `/home` shell.
 	const session = await authServer();
-	if (session) redirect("/home");
+	if (session) {
+		const profileResult = await fetchMeProfile();
+		if (
+			profileResult !== PROFILE_FETCH_FAILED &&
+			patronNeedsOnboarding(profileResult)
+		) {
+			redirect("/onboarding");
+		}
+		redirect("/home");
+	}
 
 	const api = await serverApi();
 	const popular = await api.api.movies.popular

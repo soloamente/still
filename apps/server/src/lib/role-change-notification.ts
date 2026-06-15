@@ -1,5 +1,5 @@
 import { db, notification } from "@still/db";
-
+import { APP_NAME } from "./app-brand";
 import { makeId } from "./cuid";
 import { rankOf } from "./staff-rank";
 
@@ -46,7 +46,7 @@ export function roleChangeNotificationContent(
 	if (direction === "promoted") {
 		return {
 			title: `You're now ${roleWithArticle(newRole)}`,
-			body: "You've got new staff permissions on Still.",
+			body: `You've got new staff permissions on ${APP_NAME}.`,
 		};
 	}
 	if (newRole === "user") {

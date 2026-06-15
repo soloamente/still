@@ -1,5 +1,13 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Letterboxd pillars roadmap (2026-06-13)
+
+**Brainstorm complete — Approach B approved (`b`).** Spec: `docs/superpowers/specs/2026-06-13-letterboxd-pillars-roadmap-design.md` (**approved**). Plan: `docs/superpowers/plans/2026-06-13-letterboxd-pillars-roadmap.md`. **Shipped (Tasks 1–21, human `ok` 2026-06-15):** showcase · post-log ritual · viral reviews · journal · members · detail counts · Wrapped · streaming alerts · motion polish · list discovery · taste-rail caption centering. **Task 20 catalogue stat line** reverted per Agentation (user remove on `/home`). **Deferred:** catalogue stat line (not in product). **Next track:** Planner picks — Phase 8 polish, Track B follow-ups, or new spec.
+
+## Sense sound layer — micro-feedback → voice reviews (2026-06-13)
+
+**Spec approved (2026-06-13).** Spec: `docs/superpowers/specs/2026-06-13-sense-sound-layer-design.md`. Plan: `docs/superpowers/plans/2026-06-13-sense-sound-layer.md`. **Phase D complete (Tasks 1–5).** **Task 6 done:** migration `0027_review_audio` + Drizzle `review.audio_*` columns. **Task 7 done:** `review-audio.ts`, `vercel-blob-audio-put.ts`, `POST /api/reviews/:id/audio` (owner-only, 10/hr), relaxed create (`hasVoiceAttachment`) + PATCH body rules — 9/9 server tests pass. **Task 8 done:** `app/api/reviews/[id]/audio/route.ts` multipart proxy + `upload-review-audio.ts` client helper. **Task 9 done:** `review-audio-limits.ts`, `ReviewAudioPlayer`, `ReviewAudioRecorder`. **Task 10 done:** `review-composer.tsx` — Text · Voice · Both toolbar, recorder, upload-after-create. **Phase B complete (Tasks 6–11).** Planner/human sign-off **2026-06-13** (`k`). Sense sound layer (Phase D + Phase B) **shipped** — manual QA optional follow-up on mobile Safari voice playback. **Post-ship UI (2026-06-13):** `ReviewAudioRecorder` + composer mount polished per make-interfaces-feel-better (staggered enter, icon swap, progress bar, scale-on-press); removed composer `min-h-[22rem]` workaround after measured format pill fix.
+
 ## Diary metal tier avatars (2026-06-10)
 
 **Implementation complete (2026-06-10).** Spec: `docs/superpowers/specs/2026-06-10-diary-metal-tier-avatars-design.md`. Thresholds: 100 silver · 500 gold · 1000+ chromatic (total diary logs). Server: `diary-metal-tier.ts`, `serializePatronProfileForClient(..., logsCount)` → `diaryMetalTier` on profiles, feed, search, leaderboards, reviews, following-ratings, etc. Web: `metal-fx` + `PatronPortraitWithMetalTier` (shader or static ring on reduced motion / software GPU); all patron avatar call sites migrated. Tests: server 20 pass (diary-metal-tier, profile-media, feed-rating-divergence, movie-following-ratings); web 2 pass; `bun run build` green after `MeProfile` typing on diary/lists/watchlist + following-ratings payload types. **Human verify:** patron with ≥100 logs shows silver ring in nav/feed/profile; 500/1000 upgrades; reduced motion → static ring only; <100 → no ring.
@@ -644,6 +652,182 @@ existing cinematic identity rather than replacing it.
 - [x] B.7 Planner / human sign-off on Track B _(Planner note 2026-05-14 — see Executor; staging “daily return” bar met for shipped scope, follow-ups listed)_
 
 ## Executor's Feedback or Assistance Requests
+
+### 2026-06-14 — Onboarding wizard v3 Task 9 (wizard state machine)
+
+**Shipped:** `onboarding-wizard.tsx` — full step machine (welcome → identity → verify gate → taste → favorites → done), abbreviated **Maybe later** / **Finish later** paths, `runOnboardingFinish` wiring, email-verify auto-advance + `EMAIL_VERIFICATION_REQUIRED` toast fallback. `onboarding/page.tsx` updated to full-bleed `OnboardingWizardLayout`; deleted legacy `onboarding-flow.tsx`.
+
+**Tests:** onboarding lib suite **11/11 pass** (`onboarding-handle-validation`, `onboarding-taste-state`, `onboarding-finish`).
+
+**Manual verify on `/onboarding`:**
+1. **Set up now** — avatar → name → handle → bio → (verify if unverified) → quick-rate (≥8) → favorites → done → `/home`
+2. **Maybe later** — name + handle only → `/home` with `markOnboarded`
+3. **Finish later** on identity steps — jumps to missing name/handle or saves when valid
+4. Unverified email — hard stop on verify before taste; resend + refresh advances to taste
+5. Desktop live preview + mobile strip on identity steps; preview hidden on taste
+6. Reduced motion — instant step transitions (no slide)
+
+Reply **`ok`** to proceed to **Task 10** (final QA + spec status).
+
+### 2026-06-14 — Onboarding wizard v3 Task 10 (in progress)
+
+**Taste step split layout (Executor):**
+- `taste-step.tsx` — `useTasteStepData` hook + `TasteStepControls` (left) + `TasteStepGridPanel` (right / mobile stack)
+- `onboarding-wizard.tsx` — taste grid in layout preview column on `lg+`; controls stay in ~400px shell; mobile stacks chrome then grid (no preview strip)
+- `onboarding-wizard-layout.tsx` — `previewClassName` for stretch alignment on taste
+
+**Taste UX v2 (2026-06-14, approved `go`):**
+- Recoverable skips — skipped titles animate out of grid; search can unskip or add films
+- `TasteFilmSearchPopover` — mention-style picker on left (no rated pills shelf)
+- **0–10 sliders** — per-title `LogRatingSlider` `variant="compact"` replaces 6–10 chips; commit on change when **> 0**; drag to 0 clears rating
+- **Pool load fix** — parallel `Promise.all` for 12 pool IDs + shimmer skeleton grid until first paint (no empty catalogue stall)
+- `log-rating-slider.tsx` — shared `compact` track-only variant for narrow tiles
+
+**Automated tests:** onboarding suite **14/14 pass** on gate/taste-state/finish (full suite 21/21 prior).
+
+**Manual verify on `/onboarding` (Task 10 checklist):**
+1. **Set up now** — full path through taste (≥8 ratings) → favorites → done → `/home`
+2. **Maybe later** — name + handle only → `/home`; cannot bypass full setup without `onboardedAt`
+3. **Taste desktop** — left: title, progress, search; right: poster grid with compact sliders + **Haven't seen**; skeleton on first load
+4. **Taste mobile** — controls then full-width grid below; no profile preview strip
+5. Rate below 6 via slider; skip then search to recover a title
+6. Own saved handle shows available (not “taken”); handle helper colors (emerald / destructive)
+7. Verify step — preview at full opacity; light theme BrandMark readable on auth/onboarding
+8. Legacy patron with diary — not forced back to `/onboarding`
+
+Reply **`ok`** after manual QA to mark Task 10 shipped + update spec status.
+
+### 2026-06-14 — Onboarding gate hotfix (legacy patrons forced to re-onboard)
+
+**Cause:** v3 gate required `onboardedAt`, but pre-v3 patrons only had `handle` (old gate) — never received `onboarded_at`.
+
+**Fix:** Legacy grandfather when `handle` + any of: `createdAt` before 2026-06-14, diary logs, taste signature, or favorites. `GET /profiles/me` lazy-sets `onboardedAt`; migration `0030_onboarding_grandfather_backfill.sql` for bulk backfill. Mid-wizard v3 (same-day signup, handle only) stays gated.
+
+**Run:** `bun run db:migrate` (optional if API lazy backfill is enough — refresh `/home` once).
+
+### 2026-06-13 — Letterboxd pillars Task 7 (diary year/decade chips)
+
+**Shipped:** `GET /api/logs/me/diary` accepts `?year=` / `?decade=` (watch date filter on `watchedAt`); returns `watchPeriods: { years, decades }`. Server: `diary-log-query.ts` parsers + `diary-watch-periods.ts`. Web: `DiaryWatchPeriodChips` above filter row, URL/context wiring, period-specific empty state. Tests: server `diary-log-query.test.ts` (10 pass), web `diary-lobby-order.test.ts` (9 pass).
+
+**Manual verify on `/diary`:**
+1. Decade row (e.g. **2010s**) filters grid in place; **All** clears
+2. Year chip (e.g. **2024**) filters; decade + year are mutually exclusive
+3. Empty year/decade shows **No films logged in …** + **Show all years**
+4. Switch Movies / TV — period chips refresh per ledger tab
+5. Infinite scroll keeps year/decade filter on page 2+
+
+Reply **`ok`** to proceed to **Task 8** (per plan).
+
+### 2026-06-13 — Letterboxd pillars Task 9 fix (`ViralReviewRailCard`)
+
+**Root cause:** `FeedListingThumb` `layout="card"` is built for **horizontal** review rows (`self-stretch` + fixed width), not vertical rail tiles — poster stretched/collapsed inside `w-46` cards.
+
+**Fix:** `home-viral-reviews-rail.tsx` — dedicated top `aspect-2/3` poster, vertical stack (title → optional body → likes), `items-stretch` rail, concentric radius (`rounded-2xl` card / `rounded-xl` poster / `p-3`).
+
+**Width fix (2026-06-13):** Removed `max-w-2xl` cap — rail now `w-full` with `flex-1 basis-0` cells (same pattern as taste-matched rail) so cards grow across the lobby on wide viewports; horizontal scroll + edge fades when the row overflows.
+
+**Manual verify on `/home?browse=community&sort=reviews`:**
+1. **Most liked reviews** rail — each card shows full-width poster, readable title (e.g. “Would you kill…”), like count pinned at bottom
+2. Tap card → review reader opens
+3. **All reviews · Most liked** chips still switch feed correctly
+
+Reply **`ok`** on Tasks 8–9 to proceed to **Task 10** (Journal schema).
+
+### 2026-06-13 — Letterboxd pillars Task 10 (Journal schema + public routes)
+
+**Shipped:** migration `0029_journal_post` + `journal.ts` schema; `apps/server/src/routes/journal.ts` (`GET /api/journal`, `GET /api/journal/sitemap`, `GET /api/journal/:slug`, staff `POST/PATCH/DELETE`); public web `/journal`, `/journal/[slug]`; `og/journal/[slug]`; sitemap + `robots` allow `/journal/`; seed `packages/db/src/seeds/journal-posts.sql` (4 articles). Tests: `journal-post.test.ts` (7 pass), `og-image-metadata.test.ts` updated.
+
+**Manual verify:**
+1. `bun run db:migrate` then `bun run db:seed-journal` (no `psql` needed on Windows)
+2. Incognito `/journal` — lists 4 articles; open an article — markdown renders
+3. Draft slug returns 404 on public `GET /api/journal/:slug`
+4. `/sitemap.xml` includes `/journal` + article URLs
+
+Reply **`ok`** to proceed to **Task 11** (staff journal panel + home rail).
+
+### 2026-06-13 — Letterboxd pillars Task 11 (staff journal panel + home rail)
+
+**Shipped:** `GET /api/journal/manage` (staff list incl. drafts); `StaffJournalPanel` on `/staff` (create/edit/publish/delete); `HomeJournalRail` on `/home` Movies lobby (latest 3 published); Journal nav — desktop sticky shortcut, account menu, mobile You sheet, Go to dialog (⌘⇧K); `JournalReadTracker` fires `journal.read` on article view. Tests: `mobile-nav.test.ts` updated (9 pass).
+
+**Manual verify:**
+1. `/staff` as owner/admin — Journal section lists seeded posts; edit + **Publish now** updates live `/journal/[slug]`
+2. `/home?browse=movies` — **From the journal** rail shows up to 3 cards; links open articles
+3. Desktop header Journal icon + mobile **You → Journal** + account menu **Journal** → `/journal`
+4. Open article — network `POST /api/product-events` with `journal.read` (signed in)
+
+Reply **`ok`** to proceed to **Task 12** (Members leaderboard API).
+
+### 2026-06-13 — Letterboxd pillars Task 12 (Members leaderboard API)
+
+**Shipped:** `apps/server/src/lib/members-leaderboard-query.ts` — sorts `popular` (diary logs by `watchedAt`), `reviews`, `lists` (excludes Favorites system list), `likes` (review likes received in period); reuses `resolveLeaderboardWindow`; public profiles only; blocks excluded for signed-in viewer; pagination + `diaryMetalTier` + `viewerFollows`. Route `GET /api/members/leaderboard` in `apps/server/src/routes/members.ts`; registered in `app.ts`. Tests: `members-leaderboard-query.test.ts` (6 pass). Curl verified `sort=popular&period=month&limit=3`.
+
+**Manual verify:**
+1. `GET /api/members/leaderboard?sort=popular&period=month` — ranked public patrons with counts
+2. Try `sort=reviews`, `sort=lists`, `sort=likes` — different orderings
+3. `period=week|year|all` — window metadata in response
+4. Signed in — `viewerFollows` true for followed patrons
+
+Reply **`ok`** to proceed to **Task 13** (`/members` page).
+
+### 2026-06-13 — Letterboxd pillars Task 13 (Members in Community Ranks)
+
+**Shipped (refactor):** Patron contribution leaderboards live under **Community → Ranks** center chips — **Films · Shows · Reviews** (`?browse=community&sort=ranks&rank=`). **Reviews** uses `GET /api/members/leaderboard`; **Films/Shows** keep diary podium boards. Removed standalone Members Community tab + `HomeCommunityMembersSortToolbar`. Legacy `/members`, `?sort=members`, and retired `?rank=popular|lists|likes` redirect/canonicalize to Ranks (retired patron ranks → **Reviews**). **Reviews rank:** podium + list from #4, count → ledger drawer → review reader; film poster + title render **above** hero still in reader. Components: `MembersLeaderboard`, `PatronMembersLedgerDrawer`, `MembersFollowButton`, `members.followed` analytics.
+
+**Manual verify:**
+1. `/home?browse=community&sort=ranks` — center rail shows **Films · Shows · Reviews**
+2. Tap **Reviews** — patron podium + rows; tap count → ledger → poster opens review reader (poster/title above still)
+3. Tap **Films · Shows** — existing diary podium + list from #4
+4. `/members?sort=reviews` → redirects to `…&sort=ranks&rank=reviews`
+5. Signed in — **Follow** on patron rank rows; `members.followed` event
+
+Reply **`ok`** to proceed to **Task 14** (watches + watchlist counts on detail).
+
+### 2026-06-13 — Letterboxd pillars Task 14 (Detail social proof counts)
+
+**Shipped:** `listing-community-stats.ts` — distinct public diary **watches** + **watchlist** totals; counts hidden when &lt;3 (`LISTING_COMMUNITY_ENGAGEMENT_MIN_COUNT`). Extended `GET /api/movies|tv/:id` → `community.watchesCount` / `community.watchlistCount`. `MovieDetailCommunityRatingHero` compact line: `{n} watches · {m} on watchlists` under public ratings (movie + TV detail pages). Tests: `listing-community-stats.test.ts` (4 pass).
+
+**Manual verify:**
+1. Open a film with ≥3 public diary logs — hero shows watches line when threshold met
+2. Same for watchlist count on a popular title
+3. TV detail `/tv/[id]` — same meta under community score
+4. Title with &lt;3 watches and &lt;3 watchlist rows — no engagement line (privacy)
+
+Reply **`ok`** to proceed to **Task 15** (Year in Review compute).
+
+### 2026-06-13 — Letterboxd pillars Task 15 (Year in Review compute)
+
+**Shipped:** `year-in-review.ts` — `computeYearInReviewFromRows`, `fetchYearInReviewForUser`, `parseYearInReviewYear`; UTC calendar year on `log.watchedAt` / `review.publishedAt`; `eligible` when ≥5 diary logs (`YEAR_IN_REVIEW_MIN_LOGS`). Payload: `totalLogs`, `averageRating`, `topGenres` (top 3), `topDecade`, `busiestMonth`, `topTitles` (max 5 by rating), `longestStreakInYear`, `reviewCount`. Route `GET /api/me/year/:year` in `me-data.ts` (auth-only; 400 invalid year). Tests: `year-in-review.test.ts` (2 pass), `me-data.test.ts` year route (3 pass).
+
+**Manual verify:**
+1. Signed in — `GET /api/me/year/2024` returns JSON with `year`, `eligible`, stats
+2. Year with &lt;5 diary logs — `eligible: false`, empty stats arrays
+3. Invalid year (`/api/me/year/foo`) — 400
+4. Signed out — 401
+
+Reply **`ok`** to proceed to **Task 16** (Wrapped pages + OG).
+
+### 2026-06-13 — Letterboxd pillars Task 16 (Wrapped pages + OG)
+
+**Shipped:** `/me/year/[year]` Wrapped page (stats, top posters, copy link + download card); public share shell `/year/[handle]/[year]` with OG metadata; `GET /og/year/[handle]/[year]` Satori card (avatar, stats, poster thumbs; private/ineligible → default OG); `GET /api/profiles/:handle/year/:year` for public previews; **Your {year} in film** card on Achievements; `wrapped.viewed` / `wrapped.shared` analytics. Tests: `year-in-review-display.test.ts` (3 pass).
+
+**Manual verify:**
+1. Achievements — **Your 2026 in film** card when ≥5 diary logs this year
+2. `/me/year/2026` — stats, top picks, share preview
+3. **Copy link** → `/year/adgv/2026` previews OG in Slack/iMessage
+4. Private profile OG → Sense default card
+5. Signed-in owner opening share link redirects to `/me/year/2026`
+
+Reply **`ok`** to proceed to **Task 17** (streaming alerts snapshot).
+
+**Shipped:** `ProfileShowcaseStrip` (horizontal scroll + edge fades, **Showcase** label, owner edit pencil + 4 fixed slots with dashed **Add**), `ProfileShowcaseEditSheet` (`DetailVaulSheet`, Film · TV · Review picker, `PATCH /api/profiles/me/showcase`), `apps/web/src/lib/profile-showcase.ts` + 5 tests pass. Profile page parses `showcaseResolved` from API.
+
+**Manual verify:**
+1. Own profile — legacy `favoriteMovieIds` appear in Showcase without re-saving
+2. Edit sheet — add film + TV + review → refresh persists
+3. Public visitor profile — sees strip; private non-owner — section hidden
+4. Fifth item rejected in edit sheet / API
+
+Reply **`ok`** to proceed to **Task 5** (review reader **Add to showcase**).
 
 ### 2026-06-04 — Home catalogue search commit _(Executor — Task 1/8)_
 
@@ -2096,7 +2280,8 @@ Symptom **B** (frozen full page) on chip taps — root cause is `<Link>` + `forc
 
 - [x] **LR.1** Patron-facing **Sense** rebrand sweep — **code shipped** (2026-05-29): `APP_NAME` / `APP_MEMBER_LABEL` / `APP_COMMUNITY_AVERAGE_LABEL` in `app-brand.ts`; ~30 patron surfaces updated (nav, auth, marketing, detail, community copy). **Email domain** `hello@still.app` unchanged until domain cutover.
 - [ ] **LR.1 QA** — human: no “Still” in signed-in UI, auth, marketing, movie/TV detail, account menu
-- [ ] **LR.2** Launch gate QA — roadmap §Testing “Launch blockers QA” (7 scenarios)
+- [x] **LR.2 prep** — production build green + automated taste/import/rebrand tests pass (2026-06-15)
+- [ ] **LR.2** Launch gate QA — roadmap §Testing “Launch blockers QA” (7 scenarios — human)
 - [ ] **SN.12.5** Human: `bun run db:migrate`; verify `product_event` rows
 - [ ] **SN.14.6** Human: Pro themes on profile (needs `is_pro` in DB)
 
@@ -2154,4 +2339,59 @@ Reply **`ok`** when signed off, or report counts / missing titles.
 
 **Executor (2026-06-09, impersonate admin target):** Owner could not impersonate users with role `admin`/`owner` — better-auth blocks impersonating `adminRoles` accounts unless the actor holds `user:impersonate-admins`. Added `impersonate-admins` to AC statement + Owner bundle only (`packages/auth/src/permissions.ts`).
 
-**Executor (2026-06-09, data settings export/clear/delete):** Shipped **Settings → Data** (`/me/settings/data`; `/me/settings/imports` redirects). Server: `GET /api/me/export` (in-memory ZIP, 3/hour), `DELETE /api/me/library` (single transaction via `clear-user-library.ts`); Better Auth delete-user + Resend email from Tasks 1–2. Web: Letterboxd/Anilist import panels retained, `MeDataExportPanel`, danger zone (`MeClearLibraryDialog`, `MeDeleteAccountDialog` with type-to-confirm). Spec/plan: `docs/superpowers/specs/2026-06-09-data-settings-export-clear-delete-design.md`, `docs/superpowers/plans/2026-06-09-data-settings-export-clear-delete.md`. Commits: `36eb9eb`, `dfa00f2`, `341c717` (on top of export/auth commits `0e7109a`–`6d12554`). **Verify (Executor):** `cd apps/server && bun test` → **508 pass**; `cd apps/web && bun run build` → green (`/me/settings/data` route listed). **Cascade audit (Task 10):** user FKs use `onDelete: "cascade"` (chat refs + `listItem.addedById` intentionally `set null`). **Lessons:** route tests that hit rate limits need an injected `rateLimitHit` when other suites mock `../lib/rate-limit`; test `deriveUser` must use `{ as: "global" }` after other suites register `context`. **Pending human QA:** Settings → Data → export ZIP opens with diary/likes CSVs; clear library wipes diary/watchlist/TV progress but keeps reviews/lists/social; delete account sends email (dev: link in server console when Resend unset).
+**Executor (2026-06-13, taste rail watchlist exclusion):** Spec `docs/superpowers/specs/2026-06-13-taste-rail-watchlist-exclusion-design.md`. Server: `fetchWatchlistMovieTmdbIds` + `buildTasteMatchExcludeIds` merged into `scoreTasteMatchCandidatesForUser` exclude pool. Client: `handleTitleConsumed` (log + watchlist add backfill); taste-rail watchlist add calls `onActionComplete` explicitly. Tests: `taste-watchlist-exclusion.test.ts` **2 pass**. **Pending human QA:** `/home?browse=movies` — watchlisted titles absent from taste rail; RMB → Add to watchlist removes tile + backfills; main catalogue grid unchanged.
+
+**Executor (2026-06-14, favorite quotes — Task 1):** Spec approved `docs/superpowers/specs/2026-06-14-favorite-quotes-design.md`; plan `docs/superpowers/plans/2026-06-14-favorite-quotes.md`. Shipped migration **`0032_listing_quotes`** (`listing_quote`, `listing_quote_upvote`, `listing_quote_save`, `quote_submission` + enums); Drizzle `packages/db/src/schema/quote.ts`; journaled; **`bun run db:migrate`** OK. **Next:** Task 2 server helpers + tests — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 2):** `apps/server/src/lib/listing-quote.ts` — body/speaker validation, movie/TV scope, timestamp format/parse, sort/limit parsers, `toListingQuoteItem` DTO mapper. Tests: `listing-quote.test.ts` **17 pass**. **Next:** Task 3 quotes API routes — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 3):** Quotes catalog + engagement API. `listing-quotes-query.ts` — fetch movie/TV pages (sort `upvotes|newest`, `hasMore` pagination), viewer upvote/save flags, toggle upvote, save/patch/delete bookmark. Routes: `quotes.ts` (`GET /api/quotes/:id`, `POST …/upvote`, `POST …/save`, `PATCH|DELETE /api/quotes/saves/:id`); nested `GET /api/movies/:id/quotes`, `GET /api/tv/:id/quotes?season=&episode=` (400 when missing); registered in `app.ts`. Tests: `listing-quotes-query.test.ts` **6 pass**, `quotes.test.ts` **7 pass** (31 total with Task 2 helpers). **Next:** Task 4 submit + staff moderation — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 4):** Patron submit + staff moderation + notifications. `quote-submission.ts` — parse/validate submit payload, create pending row, staff list/approve/reject, catalog insert on approve (`source: patron`), `quoteSubmissionNotificationHref`. Routes on `quotes.ts`: `POST /api/quotes/submit` (5/24h rate limit), `GET /api/quotes/submissions`, `POST …/approve`, `POST …/reject` (`requireStaff`). Notification kinds `quote.submission.approved|rejected` in registry + inbox href fallback for approved. Tests: `quote-submission.test.ts` **4 pass**, `quotes.test.ts` **12 pass**, `notification-delivery.test.ts` updated. **Next:** Task 5 product events + saved quotes API — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 5):** Product events + saved quotes API. Kinds `quote.upvote|save|unsave|submit` in server + web `product-event-kinds.ts`; wired in `quotes.ts` on toggle/save/unsave/submit. `listing-quote-saves-query.ts` — paginated lobby payload (quote + listing thumb, filters `kind` + `visibility`). `GET /api/me/quotes/saved` on `me-data.ts`; `GET /api/profiles/:handle/quotes` (public saves, 404 private profile). Tests: `listing-quote-saves-query.test.ts` **4 pass**, `product-event-kinds.test.ts` updated. **Pending human QA:** save quotes → `/api/me/quotes/saved`; public saves on profile handle. **Next:** Task 6 detail four-tab IA — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 6):** Detail IA — four top tabs **About · Streaming · Community · Quotes**. `movie-detail-top-bar.tsx` — original `bg-card` sliding pill track (not SegmentedPillToolbar). Related catalogue stays on **About**; Community is reviews/lists only. Notification deep links → `?view=quotes`. Community rating hero fix — API average is 0–10 display scale (no double `/10`). Tests: `movie-detail-view.test.ts` **9 pass**. **Pending human QA:** tab order + related on About. **Next:** Task 7 quotes tab UI — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 7):** Quotes tab UI + suggest sheet. `movie-detail-quotes-panel.tsx` — fetch `GET .../quotes`, TV season/episode picker + URL sync, empty state + footer CTA. `quote-row.tsx` — body/speaker/timestamp, upvote toggle (`t-digit-group` pop-in), save bookmark (`t-icon-swap`). `quote-suggest-sheet.tsx` — DetailVaulSheet form → `POST /api/quotes/submit`. `quote-timestamp.ts` + test **6 pass**. Wired on movie + TV detail pages (stub removed). **Pending human QA:** Quotes tab list/upvote/save; suggest sheet submit (signed in); TV episode scope + URL. **Next:** Task 8 `/quotes` lobby + profile strip — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 7 polish):** Fixed duplicate **Suggest a quote** when empty (footer CTA only when `items.length > 0`). Redesigned `quote-suggest-sheet.tsx` to match create-list / review composer chrome (`DetailDrawerScrollBody`, scroll scrims, centered labels, `SHEET_FIELD_*`, Cancel + primary pill footer). `QuoteSuggestCta` — `DetailMotionButtonWrap`, primary pill in empty state, card pill when list has rows. Empty state uses full-height centered layout. **Pending human QA:** empty Quotes tab shows one CTA; suggest sheet matches Quick Log / create-list feel.
+
+**Executor (2026-06-14, favorite quotes — Task 8):** `/quotes` lobby — `HomeStickyChrome`, All · Films · Shows filter chips, saved list with poster/title/excerpt/visibility, infinite scroll via `GET /api/me/quotes/saved`. `ProfileSavedQuotesStrip` — up to 3 recent saves under showcase (public-only for visitors; owner sees visibility chips + **View all** → `/quotes`). `notification-href.ts` — quote approval deep links with `?view=quotes` (+ season/episode for TV). `/quotes` auth-gated in `proxy.ts`; mobile You sheet link. Tests: `quotes-lobby.test.ts`, `notification-href.test.ts`, `mobile-nav.test.ts` pass. **Pending human QA:** save quote → `/quotes` lobby; profile strip owner vs visitor; tap quote approval notification. **Next:** Task 9 staff panel + import — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 9):** Staff quotes on `/staff`. `StaffQuotesPanel` — **Queue** (pending submissions, approve/reject + optional note) and **Publish** (direct staff catalog insert, Film/Show + TMDb id + TV episode picker). `POST /api/quotes/staff` → `createStaffListingQuote` (`source: staff`, no submission row). Import adapter: `quote-provider.ts` (env `QUOTE_API_PROVIDER`, stub until licensed provider), `quote-import.ts` (upsert by `externalProvider`/`externalId`, `shouldProtectQuoteFromImportOverwrite` skips staff/patron). Exported `assertListingCached` from `quote-submission.ts`. Tests: `quote-import.test.ts` **4 pass**, `quotes.test.ts` staff route **2 new pass** (18 total in file). **Pending human QA:** staff Publish → visible on title Quotes tab; queue approve/reject; confirm patron lines stay `source: patron` after approve. **Next:** Task 10 verification + changelog — reply **`go`** to continue.
+
+**Executor (2026-06-14, favorite quotes — Task 10):** Verification complete. Server quote suite **50 pass** (`listing-quote`, `listing-quotes-query`, `listing-quote-saves-query`, `quote-submission`, `quote-import`, `quotes` routes). Web **33 pass** (`quote-timestamp`, `quotes-lobby`, `notification-href`, `mobile-nav`, `movie-detail-view`). Changelog **0.2.8** `2026-06-14-favorite-quotes` + What's New slides bumped. Copy polish: suggest drawer button **Submit**, toast **Submitted for review**. **Pending human E2E:** submit quote → staff approve → notification → Quotes tab; save → `/quotes` lobby → profile strip; staff direct publish. **Favorite quotes plan Tasks 1–10 complete** — Planner sign-off on manual QA.
+
+**Executor (2026-06-14, favorite quotes — external import):** MovieQuotes.rocks provider (`moviequotes-provider.ts`) — maps cached TMDb title → `?movie=` slug, paginates up to 5 pages, upserts `source: external_api`. Env: `QUOTE_API_PROVIDER=moviequotes`, `MOVIQUOTES_API_KEY`, `QUOTE_IMPORT_ENABLED=true`. Lazy import on first `GET /api/movies/:id/quotes` page 1; staff `POST /api/quotes/import` + **Import from provider** on `/staff` Publish tab. TV import deferred (provider is film-only). Get API key: https://moviequotes.rocks API docs form.
+
+**Executor (2026-06-15, favorite quotes — post-QA polish):** **Quote attribution** — shared `QuoteAttribution` + `resolveQuoteAttribution`; speaker always shown when present (`— Character`), timestamp right-aligned mono when present; reverted brief hide of import-only speakers. **Detail 404 fix** — `requireListingDetailApiData` (`eden-api-error.ts`): transient API/503 → route `error.tsx` retry UI, not Next generic 404 (dev cold-start). Re-verification: server quote suite **57 pass**, web quote suite **41 pass**. **Human `ok` (2026-06-15):** manual E2E signed off — Favorite Quotes **shipped** (Tasks 1–10 + moviefamous import). Planner: mark spec/plan complete unless follow-ups requested (TV import, licensed timestamp provider).
+
+**Executor (2026-06-15, Letterboxd pillars — Task 17):** Streaming alerts snapshot + diff job. Migration **`0033_watchlist_streaming_snapshot`** (`watchlist_streaming_snapshot` table); `watchlist-streaming-alerts.ts` — flatrate diff per patron `catalogTmdbWatchRegion`, baseline on first pass, `watchlist_now_streaming` notification + `streaming_alert.sent` product event, dedupe per title+provider; `readWatchlistStreamingAlertsPref` (default **true**, Task 18 Settings UI); daily job in `local.ts` (`WATCHLIST_STREAMING_ALERTS_ENABLED`, default on). Notification registry + inbox **Play** icon. Tests: `watchlist-streaming-alerts.test.ts` **11 pass**. **Pending human QA:** add title to watchlist with cached providers → run job twice (or wait 24h) → second pass after provider appears in TMDb cache should bell; toggle `preferences.watchlistStreamingAlerts: false` manually in DB until Task 18 — no notification. **Next:** Task 18 Settings toggle + watchlist **Now on {service}** pill — reply **`go`** to continue.
+
+**Executor (2026-06-15, Letterboxd pillars — Task 18):** Settings + watchlist pill + Pro email. **Settings → Catalogue** toggle **Notify when watchlisted titles stream near me** (`preferences.watchlistStreamingAlerts`, default on). **Notifications** tab adds **Watchlist streaming** inbox kind (`watchlist_now_streaming`). **`GET /api/watchlist`** enriches each row with `streaming_provider_name` from cached TMDb flatrate in patron watch region; lobby maps to poster scrim **Now on {service}**. Pro patrons get Resend email on new availability (`buildWatchlistStreamingAlertEmailContent`, dev console fallback). Tests: server `watchlist-streaming-alerts.test.ts` **13 pass**; web `watchlist-streaming-display.test.ts` + `watchlist-lobby-order.test.ts` **4 pass**. **Pending human QA:** `/me/settings/catalogue` toggle saves + disables job notifications; `/watchlist` shows pill when title has flatrate in your region; Pro email in dev logs on second sync pass. **Next:** Task 19 motion polish — reply **`go`** to continue.
+
+**Executor (2026-06-15, Letterboxd pillars — Task 19):** transitions.dev polish on new surfaces. **`profile-showcase-strip`** — `t-avatar-group` comb hover via shared `useAvatarGroupHover`. **`quick-log-celebration-strip`** — already shipped `t-digit` pop-in (no diff). **`reactions-bar`** — `t-icon-swap` on review like (header, sheet, inline). **`journal/[slug]`** — `JournalArticleReveal` + `t-panel-slide` on hero/body mount. **`year-in-review-page-content`** — `t-success-check` on Copy link. CSS in `packages/ui/src/styles/globals.css` (`t-panel-slide`, `t-success-check`, `.profile-showcase-strip` token overrides). **Pending human QA:** hover showcase posters on own profile; like a review in reader; open journal article; copy Wrapped link. **Next:** Task 20 catalogue stat line — reply **`go`** to continue.
+
+**Executor (2026-06-15, Letterboxd pillars — Task 20):** Catalogue stat line on `/home` Movies/TV lobbies. **`GET /api/catalogue/stats`** — cached `movie` + `tv` row counts (`catalogue-stats.ts` server lib, `catalogue.ts` route). Web **`fetchCatalogueStatsServer`** — `revalidate: 86400`; **`formatCatalogueStatsLine`** — `{N} films · {M} shows in Sense`; **`HomeCatalogueStatLine`** under `HomeLobbyFilterRow` (hidden on Community + active catalogue search). Tests: web `catalogue-stats.test.ts` **2 pass**. **Pending human QA:** `/home?browse=movies` and `browse=tv` show quiet centered stat line below chips; line absent on Community. **Next:** Task 21 list discovery polish — reply **`go`** to continue.
+
+**Executor (2026-06-15, home QA feedback):** Removed catalogue stat line entirely (user Agentation — **remove** on `/home?sort=latest`). Reverted Task 20 web + server surface. **`HomeTasteMatchedRail`** heading — `text-center` on **Because you gravitate toward…** h2.
+
+**Executor (2026-06-15, Letterboxd pillars — Task 21):** List discovery polish (Pillars 4–5). **`GET /api/lists`** returns `{ items, total }` for Community period lobby. **`CommunityListsHeader`** — `{n} popular lists` above curator spotlights. List share toasts — **`Copied link · {title}`** (`list-share-toast.ts`) on detail top bars + lists lobby radial copy. Search people empty-state label **Patrons on Sense** (not “Suggested for you”). List detail hero title already **`text-balance font-semibold`** at hero scale — verified, no diff. Changelog **0.2.9** + What's New **`2026-06-15-list-discovery-polish`**. Tests: `community-lists-header.test.ts` + `list-share-toast.test.ts` **5 pass**. **Pending human QA:** `/home?browse=community&sort=lists` shows count header; copy list link shows title in toast; search People tab label. **Next:** Letterboxd pillars M6 polish complete — Planner sign-off on roadmap bundle.
+
+**Executor (2026-06-15, taste rail QA):** Centered poster title captions (`text-center` on rail cells) + matching skeleton shimmer (`mx-auto`). Heading already centered from prior pass. Tests: polish + taste rail title helpers **7 pass**. **Roadmap:** no Task 22 — Executor idle until Planner names next track or **`ok`** on M6 bundle.
+
+**Planner (2026-06-15):** Human **`ok`** — Letterboxd pillars roadmap **closed** (M5 Wrapped + M6 polish verified: Tasks 16–21 incl. streaming alerts, motion, list discovery, taste rail). Task 20 stat line remains **out** by design. **Next track (2026-06-15):** **LR.1** launch rebrand QA sweep — Executor on **`go`**.
+
+**Executor (2026-06-15, LR.1):** Remaining patron-facing **Still** → **Sense** in staff role-change copy (web dialog + server notification). Added `apps/server/src/lib/app-brand.ts` (mirrors web). Tests: `role-change-dialog-copy.test.ts` + `role-change-notification.test.ts` pass. **Pending human QA:** promote a test user in staff panel → dialog + inbox say **Sense**; spot-check signed-in UI for stray **Still** (LR.1 QA checklist). **Next:** LR.1 human **`ok`** or **`go`** for LR.2 launch gate doc.
+
+**Executor (2026-06-15, LR.2 prep):** **`bun run build` in `apps/web` — GREEN** after type fixes: `journal.ts` staff `viewer` narrow + `PATCH/DELETE` moved to `/api/journal/posts/:id` (disambiguate from `GET /:slug`); `home/page.tsx` legacy `memberSort` from `spRaw`; journal OG metadata spread order; onboarding profile types; quick-log celebration `movieId` narrow; onboarding preview `showFavorites`; quotes saved fetch via `fetchMySavedQuotes` (Eden lacks `/api/me/*` types); `ShowcaseItem` type in `profile-showcase.ts` (no `@still/db` in web); staff journal/quotes cast fixes. Automated gates: taste signature + Letterboxd import + rebrand copy tests **33 pass** (server 21 + web 12). **LR.2 human QA checklist (roadmap §Testing):**
+1. **New account** — quick-rate → taste on profile → Community home not empty
+2. **Letterboxd import 500+** — no dupes; signature updates; profile loads &lt;3s
+3. **Zero follows** — editorial feed scrollable 30s+
+4. **Taste card share** — OG personal; link opens profile
+5. **Log flow** — search → rate → diary &lt;30s
+6. **Sense branding** — no “Still” in patron UI (LR.1)
+7. **Home nav** — Movies ↔ Community pill instant (no full-page freeze)
+
+**Pending:** human runs checklist on dev (web **3001**, API **3000**). Reply **`ok`** per scenario or **`go`** for next track after QA.

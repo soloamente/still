@@ -15,6 +15,7 @@ import { HomeCatalogSortChips } from "@/components/home/home-catalog-sort-chips"
 import { HomeCatalogViewModeToolbar } from "@/components/home/home-catalog-view-mode-toolbar";
 import { HomeCatalogueSearchInfinite } from "@/components/home/home-catalogue-search-infinite";
 import { HomeCommunityPatronBody } from "@/components/home/home-community-patron-shell";
+import { HomeCommunityRankKindToolbar } from "@/components/home/home-community-rank-kind-toolbar";
 import { HomeCommunityRscPayload } from "@/components/home/home-community-rsc-payload";
 import { HomeCommunityTrailingToolbar } from "@/components/home/home-community-trailing-toolbar";
 import { HomeContinueWatchingRail } from "@/components/home/home-continue-watching-rail";
@@ -75,7 +76,7 @@ import {
 	OG_HOME_PATH,
 	ogImageMetadataFields,
 } from "@/lib/og/og-image-metadata";
-import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
+import { buildPatronNavUserOrNull } from "@/lib/patron-nav-user";
 import {
 	catalogWatchRegionToApiQuery,
 	readCatalogMonochromePeersOnHoverPref,
@@ -126,8 +127,10 @@ export default async function HomePage({
 		run?: string;
 		animeSeason?: string;
 		period?: string;
-		/** Films vs TV when `sort=ranks`. */
+		/** Films vs TV vs patron contribution when `sort=ranks`. */
 		rank?: string;
+		/** Legacy — maps to `?rank=` on Ranks. */
+		memberSort?: string;
 		search?: string;
 		genre?: string;
 		monetization?: string;
@@ -207,7 +210,45 @@ export default async function HomePage({
 	const sort = parseHomeCatalogSort(sp.sort, browse);
 	const communityFeed = parseHomeCommunityFeed(sp.sort);
 	const communityPeriod = parseHomeCommunityPeriod(sp.period);
-	const communityRankKind = parseHomeCommunityRankKind(sp.rank, sp.sort);
+	const communityRankKind = parseHomeCommunityRankKind(
+		sp.rank,
+		sp.sort,
+		spRaw.memberSort,
+	);
+	/** Canonicalize legacy `?sort=members` → Ranks + `?rank=`. */
+	if (
+		browse === "community" &&
+		(communityDiarySort === "members" || communityDiarySort === "member")
+	) {
+		redirect(
+			buildHomeLobbyHref({
+				browse: "community",
+				sort: "ranks",
+				rankKind: communityRankKind,
+				period: communityPeriod,
+			}),
+		);
+	}
+	/** Retired patron rank slices — map bookmarked URLs to Reviews. */
+	const retiredPatronRank = sp.rank?.trim().toLowerCase();
+	if (
+		browse === "community" &&
+		communityFeed === "ranks" &&
+		(retiredPatronRank === "popular" ||
+			retiredPatronRank === "lists" ||
+			retiredPatronRank === "list" ||
+			retiredPatronRank === "likes" ||
+			retiredPatronRank === "like")
+	) {
+		redirect(
+			buildHomeLobbyHref({
+				browse: "community",
+				sort: "ranks",
+				rankKind: "reviews",
+				period: communityPeriod,
+			}),
+		);
+	}
 	const movieVenue =
 		browse === "movies" ? parseHomeVenue(sp.venue, sort) : null;
 	const tvVenue =
@@ -488,22 +529,7 @@ export default async function HomePage({
 
 	const monochromePeersOnHover = readCatalogMonochromePeersOnHoverPref(mePrefs);
 
-	const stickyUser =
-		session && profileData?.handle
-			? {
-					id: session.user.id,
-					name: session.user.name ?? profileData.displayName ?? "You",
-					image: session.user.image ?? null,
-					handle: profileData.handle,
-					email: session.user.email ?? null,
-					isPro: Boolean(profileData.isPro),
-					avatarIsAnimated: resolvePatronAvatarIsAnimated(
-						session.user.image ?? null,
-						profileData.preferences ?? null,
-					),
-					diaryMetalTier: profileData.diaryMetalTier ?? null,
-				}
-			: null;
+	const stickyUser = buildPatronNavUserOrNull(session, profileData);
 
 	const payload = (data ?? null) as MovieSheetPayload | null;
 	const seedMovies = payload?.results ?? [];
@@ -703,6 +729,13 @@ export default async function HomePage({
 											<Suspense fallback={<LobbyCatalogChipFallback />}>
 												<HomeCatalogSortChips catalogBrowse="community" />
 											</Suspense>
+										}
+										center={
+											communityFeed === "ranks" ? (
+												<Suspense fallback={null}>
+													<HomeCommunityRankKindToolbar />
+												</Suspense>
+											) : undefined
 										}
 										trailing={
 											<Suspense fallback={<LobbyVenueChipFallback />}>

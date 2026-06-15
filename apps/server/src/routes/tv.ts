@@ -19,6 +19,11 @@ import {
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
+import { fetchListingCommunityEngagementStats } from "../lib/listing-community-stats";
+import {
+	fetchListingQuotesForTv,
+	parseTvQuoteEpisodeParams,
+} from "../lib/listing-quotes-query";
 import {
 	getTvMalEnrichment,
 	syncTvMalIdFromDetail,
@@ -480,6 +485,40 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)
+	/** Published dialogue quotes for a TV episode — season + episode required. */
+	.get(
+		"/:id/quotes",
+		async ({ params, query, user, status }) => {
+			const tvId = Number(params.id);
+			if (!Number.isFinite(tvId)) return status(400, "Invalid id");
+			const episode = parseTvQuoteEpisodeParams(query);
+			if (!episode) {
+				return status(
+					400,
+					"season and episode query params are required for TV quotes",
+				);
+			}
+			return fetchListingQuotesForTv({
+				tvId,
+				seasonNumber: episode.seasonNumber,
+				episodeNumber: episode.episodeNumber,
+				sort: query.sort,
+				page: query.page,
+				limit: query.limit,
+				viewerUserId: user?.id ?? null,
+			});
+		},
+		{
+			params: t.Object({ id: t.String() }),
+			query: t.Object({
+				season: t.Optional(t.String()),
+				episode: t.Optional(t.String()),
+				sort: t.Optional(t.String()),
+				page: t.Optional(t.String()),
+				limit: t.Optional(t.String()),
+			}),
+		},
+	)
 	/** Latest rated/favorited diary rows from patrons the viewer follows (TV detail community). */
 	.get(
 		"/:id/following-ratings",
@@ -535,6 +574,11 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				const fullImagesBundle = normalizeTmdbImagesBundle(
 					imagesFromDedicated ?? detail.images,
 				);
+				const [communityRatings, communityEngagement] = await Promise.all([
+					fetchPublicDiaryCommunityStats({ tvId: id }),
+					fetchListingCommunityEngagementStats({ tvId: id }),
+				]);
+				const community = { ...communityRatings, ...communityEngagement };
 				const y = detail.first_air_date?.trim().slice(0, 4);
 				const yearNum =
 					y && y.length === 4 && /^\d{4}$/.test(y) ? Number(y) : null;
@@ -571,7 +615,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					paletteAccent: null,
 					paletteMuted: null,
 					paletteForeground: null,
-					community: await fetchPublicDiaryCommunityStats({ tvId: id }),
+					community,
 					malEnrichment,
 					tmdbJson: detail as unknown as Record<string, unknown>,
 				};

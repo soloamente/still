@@ -44,6 +44,10 @@ import {
 	isPublicContentVisibility,
 } from "../lib/require-verified-email";
 import {
+	assertReviewAudioUpload,
+	buildReviewAudioBlobKey,
+} from "../lib/review-audio";
+import {
 	assertValidReviewStillSlideKey,
 	fetchReviewMovieScreenshots,
 	resolveReviewStillSlide,
@@ -55,6 +59,11 @@ import {
 	removeViewerReviewReaction,
 } from "../lib/review-reactions";
 import { routeBody } from "../lib/route-body";
+import { vercelBlobAudioPut } from "../lib/vercel-blob-audio-put";
+import {
+	parseViralReviewsLimit,
+	viralReviewCandidateSql,
+} from "../lib/viral-reviews-query";
 
 const reviewRatingSchema = t.Optional(
 	t.Union([t.Integer({ minimum: 0, maximum: 100 }), t.Null()]),
@@ -65,6 +74,8 @@ type CreateReviewBody = {
 	logId?: string;
 	title?: string;
 	body: string;
+	/** When true, empty body is allowed — client uploads voice in a follow-up POST. */
+	hasVoiceAttachment?: boolean;
 	rating?: number;
 	containsSpoilers?: boolean;
 	visibility?: ContentVisibility;
@@ -127,6 +138,15 @@ export const reviewsRoute = new Elysia({
 				return status(400, "Invalid rating");
 			}
 
+			const bodyText = body.body.trim();
+			const hasVoiceAttachment = body.hasVoiceAttachment === true;
+			if (!hasVoiceAttachment && bodyText.length === 0) {
+				return status(400, "Review body required");
+			}
+			if (bodyText.length > 20_000) {
+				return status(400, "Review body too long");
+			}
+
 			const stillSlideKey = body.stillSlideKey ?? null;
 			if (stillSlideKey) {
 				const valid = await assertValidReviewStillSlideKey(
@@ -166,7 +186,7 @@ export const reviewsRoute = new Elysia({
 					movieId: body.movieId,
 					logId,
 					title: body.title ?? null,
-					body: body.body,
+					body: bodyText,
 					containsSpoilers: body.containsSpoilers ?? false,
 					visibility,
 					rating,
@@ -186,13 +206,114 @@ export const reviewsRoute = new Elysia({
 				movieId: t.Number(),
 				logId: t.Optional(t.String()),
 				title: t.Optional(t.String({ maxLength: 200 })),
-				body: t.String({ minLength: 1, maxLength: 20_000 }),
+				body: t.String({ maxLength: 20_000 }),
+				hasVoiceAttachment: t.Optional(t.Boolean()),
 				rating: reviewRatingSchema,
 				containsSpoilers: t.Optional(t.Boolean()),
 				visibility: t.Optional(visibilitySchema),
 				stillSlideKey: t.Optional(t.Union([t.String(), t.Null()])),
 			}),
 		},
+	)
+	.post(
+		"/:id/audio",
+		async ({ params, request, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			if (
+				!hit(`reviews:audio:${user.id}`, {
+					limit: 10,
+					windowMs: 3_600_000,
+				}).ok
+			) {
+				return status(429, "Slow down");
+			}
+
+			const [existing] = await db
+				.select()
+				.from(review)
+				.where(and(eq(review.id, params.id), isNull(review.removedAt)))
+				.limit(1);
+			if (!existing || existing.userId !== user.id) {
+				return status(404, "Not found");
+			}
+
+			if (isPublicContentVisibility(existing.visibility)) {
+				try {
+					assertEmailVerified(user);
+				} catch (e) {
+					if (e instanceof EmailVerificationRequiredError) {
+						return status(403, emailVerificationRequiredBody());
+					}
+					throw e;
+				}
+			}
+
+			const formData = await request.formData();
+			const file = formData.get("file");
+			if (!(file instanceof File)) return status(400, "Missing file");
+
+			const durationRaw = formData.get("durationMs");
+			const durationMs =
+				typeof durationRaw === "string"
+					? Number.parseInt(durationRaw, 10)
+					: Number.NaN;
+			if (!Number.isFinite(durationMs)) {
+				return status(400, "Invalid durationMs");
+			}
+
+			const uploadCheck = assertReviewAudioUpload({
+				size: file.size,
+				type: file.type,
+				durationMs,
+			});
+			if (!uploadCheck.ok) {
+				return status(400, {
+					error: uploadCheck.message,
+					code: uploadCheck.code,
+				});
+			}
+
+			const key = buildReviewAudioBlobKey(
+				user.id,
+				existing.id,
+				uploadCheck.mimeType,
+			);
+			const uploaded = await vercelBlobAudioPut(key, file, durationMs);
+			if ("error" in uploaded) {
+				const code = uploaded.code;
+				if (code === "BLOB_UNCONFIGURED" || code === "BLOB_ACCESS_MISMATCH") {
+					return status(code === "BLOB_UNCONFIGURED" ? 503 : 502, {
+						error: uploaded.error,
+						code,
+						hint: uploaded.hint,
+					});
+				}
+				return status(502, { error: uploaded.error, code });
+			}
+
+			const [updated] = await db
+				.update(review)
+				.set({
+					audioUrl: uploaded.url,
+					audioDurationMs: durationMs,
+					audioMimeType: uploaded.mimeType,
+				})
+				.where(eq(review.id, params.id))
+				.returning({
+					audioUrl: review.audioUrl,
+					audioDurationMs: review.audioDurationMs,
+					audioMimeType: review.audioMimeType,
+				});
+
+			return (
+				updated ?? {
+					audioUrl: uploaded.url,
+					audioDurationMs: durationMs,
+					audioMimeType: uploaded.mimeType,
+				}
+			);
+		},
+		{ params: t.Object({ id: t.String() }) },
 	)
 	.patch(
 		"/:id",
@@ -226,6 +347,15 @@ export const reviewsRoute = new Elysia({
 			if (nextRating != null && !isValidReviewRatingStored(nextRating)) {
 				return status(400, "Invalid rating");
 			}
+			if (body.body !== undefined) {
+				const nextBody = body.body.trim();
+				if (nextBody.length === 0 && !existing.audioUrl) {
+					return status(400, "Review body required without voice attachment");
+				}
+				if (nextBody.length > 20_000) {
+					return status(400, "Review body too long");
+				}
+			}
 			if (body.stillSlideKey !== undefined && body.stillSlideKey !== null) {
 				const valid = await assertValidReviewStillSlideKey(
 					existing.movieId,
@@ -237,7 +367,7 @@ export const reviewsRoute = new Elysia({
 				.update(review)
 				.set({
 					title: body.title ?? existing.title,
-					body: body.body ?? existing.body,
+					body: body.body !== undefined ? body.body.trim() : existing.body,
 					containsSpoilers: body.containsSpoilers ?? existing.containsSpoilers,
 					visibility: body.visibility ?? existing.visibility,
 					rating: nextRating,
@@ -308,6 +438,53 @@ export const reviewsRoute = new Elysia({
 			return { ok: true };
 		},
 		{ params: t.Object({ id: t.String() }) },
+	)
+	// Engagement-ranked wit-sized reviews for the Community viral rail.
+	.get(
+		"/viral",
+		async ({ query, user: currentUser }) => {
+			const limit = parseViralReviewsLimit(query.limit);
+			const { start, end } = resolveCommunityPeriodQuery(query);
+			const rows = await db
+				.select({ review, movie, user, profile })
+				.from(review)
+				.leftJoin(movie, eq(review.movieId, movie.tmdbId))
+				.leftJoin(user, eq(review.userId, user.id))
+				.leftJoin(profile, eq(review.userId, profile.userId))
+				.where(
+					and(
+						contentVisibilityWhere(
+							currentUser?.id ?? null,
+							review.userId,
+							review.visibility,
+						),
+						isNull(review.removedAt),
+						withinCommunityPeriod(review.publishedAt, start, end),
+						viralReviewCandidateSql(),
+					),
+				)
+				.orderBy(
+					desc(reviewEngagementOrderSql()),
+					desc(review.publishedAt),
+					desc(review.id),
+				)
+				.limit(limit);
+			return rows;
+		},
+		{
+			query: t.Object({
+				limit: t.Optional(t.String()),
+				period: t.Optional(
+					t.Union([
+						t.Literal("week"),
+						t.Literal("month"),
+						t.Literal("year"),
+						t.Literal("all"),
+					]),
+				),
+				tz: t.Optional(t.String()),
+			}),
+		},
 	)
 	.get(
 		"/:id",

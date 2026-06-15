@@ -106,6 +106,42 @@ async function withNavigationHints(
 				};
 			}
 		}
+		if (r.kind === "quote.submission.approved") {
+			const href = base.href;
+			if (typeof href === "string") return r;
+			const movieId = base.movieId;
+			const tvId = base.tvId;
+			const seasonNumber = base.seasonNumber;
+			const episodeNumber = base.episodeNumber;
+			if (typeof movieId === "number" && Number.isFinite(movieId)) {
+				return {
+					...r,
+					payload: {
+						...base,
+						href: `/movies/${movieId}?view=quotes`,
+					},
+				};
+			}
+			if (
+				typeof tvId === "number" &&
+				Number.isFinite(tvId) &&
+				typeof seasonNumber === "number" &&
+				typeof episodeNumber === "number"
+			) {
+				const params = new URLSearchParams({
+					view: "quotes",
+					season: String(seasonNumber),
+					episode: String(episodeNumber),
+				});
+				return {
+					...r,
+					payload: {
+						...base,
+						href: `/tv/${tvId}?${params.toString()}`,
+					},
+				};
+			}
+		}
 		return r;
 	});
 }

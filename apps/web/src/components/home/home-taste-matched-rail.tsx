@@ -133,8 +133,8 @@ export function HomeTasteMatchedRail({
 		[movies],
 	);
 
-	/** After quick log, drop the title immediately and backfill from a fresh for-you fetch. */
-	const handleLogged = useCallback(
+	/** After quick log or watchlist add, drop the title and backfill from for-you. */
+	const handleTitleConsumed = useCallback(
 		async (tmdbId: number) => {
 			const snapshot = movies;
 			const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
@@ -184,7 +184,7 @@ export function HomeTasteMatchedRail({
 			aria-label="Films matched to your taste"
 			className="w-full min-w-0 space-y-2.5"
 		>
-			<h2 className="text-balance font-medium text-muted-foreground text-xs tracking-wide">
+			<h2 className="text-balance text-center font-medium text-muted-foreground text-xs tracking-wide">
 				{tasteMatchedRailTitle(genrePhrase)}
 			</h2>
 			<div ref={trackRef} className={HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME}>
@@ -208,7 +208,7 @@ export function HomeTasteMatchedRail({
 								frameClassName={RAIL_POSTER_FRAME_CLASSNAME}
 								hoverEffect="elevation"
 								listingKind="movie"
-								onActionComplete={() => void handleLogged(film.tmdbId)}
+								onActionComplete={() => void handleTitleConsumed(film.tmdbId)}
 								onNotInterested={handleNotInterested}
 								posterUrl={tmdbPosterUrl(film.posterPath)}
 								priority={index < 4}
@@ -216,7 +216,7 @@ export function HomeTasteMatchedRail({
 								title={film.title}
 								tmdbId={film.tmdbId}
 							/>
-							<p className="mt-1.5 line-clamp-2 w-full text-[11px] text-muted-foreground leading-snug">
+							<p className="mt-1.5 line-clamp-2 w-full text-center text-[11px] text-muted-foreground leading-snug">
 								{film.title}
 							</p>
 						</motion.div>

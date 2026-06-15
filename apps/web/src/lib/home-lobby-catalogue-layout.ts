@@ -18,6 +18,17 @@ export const HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME =
 export const HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME =
 	"rounded-[3rem] border-0 bg-background";
 
+/** Centered auto-fill poster wall — onboarding taste + favorites (matches `/home` lobby tracks). */
+export const ONBOARDING_CATALOGUE_GRID_CLASSNAME =
+	"mx-auto grid w-full max-w-6xl justify-items-center gap-x-3 gap-y-8 sm:gap-x-4 [grid-template-columns:repeat(auto-fill,minmax(6.75rem,1fr))] sm:[grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr))] md:[grid-template-columns:repeat(auto-fill,minmax(8.25rem,1fr))] lg:[grid-template-columns:repeat(auto-fill,minmax(9rem,1fr))] xl:[grid-template-columns:repeat(auto-fill,minmax(10rem,1fr))]";
+
+/** One onboarding catalogue tile — poster + centered title under the frame. */
+export const ONBOARDING_CATALOGUE_CELL_CLASSNAME =
+	"flex w-full max-w-[11rem] flex-col items-center text-center";
+
+export const ONBOARDING_CATALOGUE_TITLE_CLASSNAME =
+	"mt-2 line-clamp-2 w-full max-w-full text-pretty text-center font-medium text-foreground text-xs leading-snug sm:text-sm";
+
 /** Grayscale non-hovered tiles when one lobby poster is focused/hovered (`:has()`). */
 export const HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME =
 	"[&_a>.poster-art]:transition-[filter] [&_a>.poster-art]:duration-200 [&_a>.poster-art]:ease-out motion-reduce:[&_a>.poster-art]:transition-none [@media(hover:hover)]:[&:has(a:hover)_a:not(:hover)>.poster-art]:grayscale [&:has(a:focus-within)_a:not(:focus-within)>.poster-art]:grayscale";

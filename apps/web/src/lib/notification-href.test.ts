@@ -25,6 +25,24 @@ describe("notification-href", () => {
 		).toBe("/movies/42?review=rev_1");
 	});
 
+	test("builds quote approval href for movie when href missing", () => {
+		expect(
+			notificationPayloadHref({
+				movieId: 281957,
+			}),
+		).toBe("/movies/281957?view=quotes");
+	});
+
+	test("builds quote approval href for TV episode when href missing", () => {
+		expect(
+			notificationPayloadHref({
+				tvId: 1399,
+				seasonNumber: 1,
+				episodeNumber: 1,
+			}),
+		).toBe("/tv/1399?view=quotes&season=1&episode=1");
+	});
+
 	test("profileTasteCompareFromSearch", () => {
 		expect(profileTasteCompareFromSearch("?tasteCompare=1")).toBe(true);
 		expect(profileTasteCompareFromSearch("?tasteCompare=true")).toBe(true);

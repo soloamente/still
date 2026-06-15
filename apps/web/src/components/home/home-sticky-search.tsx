@@ -105,7 +105,7 @@ const CATALOG_SEARCH_DIALOG_ID = "still-catalog-search-dialog";
 const BROWSE_PREVIEW_HEADING: Record<SearchDialogBrowseCategory, string> = {
 	movies: "Popular",
 	tv: "Popular",
-	people: "Suggested for you",
+	people: "Patrons on Sense",
 };
 
 function browseCategoryFromSurface(

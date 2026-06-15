@@ -8,6 +8,7 @@ import IconAwardFill from "@still/ui/icons/award-fill";
 import IconGear from "@still/ui/icons/gear";
 import IconLockFill from "@still/ui/icons/lock-fill";
 import { cn } from "@still/ui/lib/utils";
+import { Newspaper, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
@@ -154,6 +155,20 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 					>
 						<IconAwardFill size="20px" className="size-5 shrink-0 opacity-90" />
 						Achievements
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className={accountMenuPrimaryOnBackgroundClassName}
+						onClick={() => go("/year")}
+					>
+						<Sparkles className="size-5 shrink-0 opacity-90" aria-hidden />
+						Year in film
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className={accountMenuItemOnBackgroundClassName}
+						onClick={() => go("/journal")}
+					>
+						<Newspaper className="size-5 shrink-0 opacity-80" aria-hidden />
+						Journal
 					</DropdownMenuItem>
 					<DropdownMenuItem
 						className={accountMenuItemOnBackgroundClassName}

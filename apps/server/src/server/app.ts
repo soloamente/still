@@ -12,10 +12,12 @@ import { commentsRoute } from "../routes/comments";
 import { feedRoute } from "../routes/feed";
 import { followsRoute } from "../routes/follows";
 import { importRoute } from "../routes/import";
+import { journalRoute } from "../routes/journal";
 import { leaderboardRoute } from "../routes/leaderboard";
 import { listsRoute } from "../routes/lists";
 import { logsRoute } from "../routes/logs";
 import { meDataRoute } from "../routes/me-data";
+import { membersRoute } from "../routes/members";
 import { moviesRoute } from "../routes/movies";
 import { newsRoute } from "../routes/news";
 import { notificationsRoute } from "../routes/notifications";
@@ -23,6 +25,7 @@ import { peopleRoute } from "../routes/people";
 import { postsRoute } from "../routes/posts";
 import { productEventsRoute } from "../routes/product-events";
 import { profilesRoute } from "../routes/profiles";
+import { quotesRoute } from "../routes/quotes";
 import { reviewsRoute } from "../routes/reviews";
 import { staffRoute } from "../routes/staff";
 import { streaksRoute } from "../routes/streaks";
@@ -90,6 +93,7 @@ export const app = new Elysia()
 	.use(peopleRoute)
 	.use(logsRoute)
 	.use(reviewsRoute)
+	.use(quotesRoute)
 	.use(watchlistRoute)
 	.use(listsRoute)
 	.use(profilesRoute)
@@ -102,11 +106,13 @@ export const app = new Elysia()
 	.use(followsRoute)
 	.use(feedRoute)
 	.use(leaderboardRoute)
+	.use(membersRoute)
 	.use(postsRoute)
 	.use(commentsRoute)
 	.use(badgesRoute)
 	.use(achievementsRoute)
 	.use(newsRoute)
+	.use(journalRoute)
 	.use(chatRoute)
 	.use(notificationsRoute)
 	.use(staffRoute)

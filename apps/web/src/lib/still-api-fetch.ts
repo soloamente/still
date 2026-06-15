@@ -2,6 +2,10 @@ import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinit
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import type { HomeVenue } from "@/lib/home-venue";
+import type {
+	MembersLeaderboardPayload,
+	MembersLeaderboardSort,
+} from "@/lib/members-leaderboard-types";
 import { stillApiOrigin } from "@/lib/still-api-origin";
 import type {
 	TvEpisodeSummary,
@@ -650,6 +654,31 @@ export async function fetchProfileHandleAvailable(
 	};
 }
 
+/** Signed-in saved quotes lobby — Eden Treaty does not type `/api/me/*` yet. */
+export async function fetchMySavedQuotes(
+	opts: {
+		page?: number;
+		limit?: number;
+		kind?: string;
+		visibility?: string;
+	},
+	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
+) {
+	const url = new URL("/api/me/quotes/saved", stillApiOrigin());
+	if (opts.page != null) url.searchParams.set("page", String(opts.page));
+	if (opts.limit != null) url.searchParams.set("limit", String(opts.limit));
+	if (opts.kind) url.searchParams.set("kind", opts.kind);
+	if (opts.visibility) url.searchParams.set("visibility", opts.visibility);
+	const { cookieHeader, signal, cache } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		cache: cache ?? "no-store",
+		signal,
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	return finishStillApiPagedGet(response);
+}
+
 /** Current-user diary rows for one TMDb title — canonical for “already logged?” on movie pages. */
 export async function fetchMyLogsForMovie(
 	movieId: number,
@@ -988,11 +1017,15 @@ export type DiaryResultRow = DiaryMovieResultRow | DiaryTvGroupResultRow;
 
 export type DiaryTabCounts = { movies: number; tv: number };
 
+export type DiaryWatchPeriods = { years: number[]; decades: number[] };
+
 export type FetchMyDiaryOpts = {
 	media: "movie" | "tv";
 	order: "latest" | "earliest" | "title";
 	/** Omit / null = all venues. */
 	venue?: "theaters" | "streaming" | null;
+	year?: number | null;
+	decade?: number | null;
 	signal?: AbortSignal;
 };
 
@@ -1012,6 +1045,9 @@ export async function fetchMyDiary(
 	url.searchParams.set("media", opts.media);
 	url.searchParams.set("order", opts.order);
 	if (opts.venue) url.searchParams.set("venue", opts.venue);
+	if (opts.year != null) url.searchParams.set("year", String(opts.year));
+	else if (opts.decade != null)
+		url.searchParams.set("decade", String(opts.decade));
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	const response = await fetch(url, {
 		credentials: "include",
@@ -1395,16 +1431,57 @@ function communityPeriodSearchParams({
 
 export const COMMUNITY_LISTS_LIMIT = 24;
 export const COMMUNITY_REVIEWS_LIMIT = 20;
+export const COMMUNITY_VIRAL_REVIEWS_LIMIT = 6;
 export const COMMUNITY_ACTIVITY_LIMIT = 40;
+
+export type CommunityListsPage = {
+	items: unknown[];
+	total: number;
+};
+
+function parseCommunityListsPayload(
+	payload: unknown,
+): CommunityListsPage | null {
+	if (payload == null || typeof payload !== "object") return null;
+	const record = payload as { items?: unknown; total?: unknown };
+	if (!Array.isArray(record.items)) return null;
+	const total =
+		typeof record.total === "number" && Number.isFinite(record.total)
+			? record.total
+			: record.items.length;
+	return { items: record.items, total };
+}
 
 /** Public lists lobby — respects community period window. */
 export async function fetchCommunityLists(
 	period: HomeLeaderboardPeriod,
 	tz: string,
 	opts?: { page?: number; signal?: AbortSignal },
-): Promise<unknown[] | null> {
+): Promise<CommunityListsPage | null> {
 	const url = new URL("/api/lists", stillApiOrigin());
 	url.searchParams.set("limit", String(COMMUNITY_LISTS_LIMIT));
+	if (opts?.page && opts.page > 1)
+		url.searchParams.set("page", String(opts.page));
+	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
+		url.searchParams.set(key, value);
+	}
+	const response = await fetch(url, {
+		credentials: "include",
+		cache: "no-store",
+		signal: opts?.signal,
+	});
+	if (!response.ok) return null;
+	return parseCommunityListsPayload(await response.json());
+}
+
+/** Recent public reviews — respects community period window. */
+export async function fetchCommunityReviewsRecent(
+	period: HomeLeaderboardPeriod,
+	tz: string,
+	opts?: { page?: number; signal?: AbortSignal },
+): Promise<unknown[] | null> {
+	const url = new URL("/api/reviews/recent", stillApiOrigin());
+	url.searchParams.set("limit", String(COMMUNITY_REVIEWS_LIMIT));
 	if (opts?.page && opts.page > 1)
 		url.searchParams.set("page", String(opts.page));
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
@@ -1419,16 +1496,17 @@ export async function fetchCommunityLists(
 	return (await response.json()) as unknown[];
 }
 
-/** Recent public reviews — respects community period window. */
-export async function fetchCommunityReviewsRecent(
+/** Engagement-ranked wit-sized reviews for the Community viral rail. */
+export async function fetchCommunityReviewsViral(
 	period: HomeLeaderboardPeriod,
 	tz: string,
-	opts?: { page?: number; signal?: AbortSignal },
+	opts?: { limit?: number; signal?: AbortSignal },
 ): Promise<unknown[] | null> {
-	const url = new URL("/api/reviews/recent", stillApiOrigin());
-	url.searchParams.set("limit", String(COMMUNITY_REVIEWS_LIMIT));
-	if (opts?.page && opts.page > 1)
-		url.searchParams.set("page", String(opts.page));
+	const url = new URL("/api/reviews/viral", stillApiOrigin());
+	url.searchParams.set(
+		"limit",
+		String(opts?.limit ?? COMMUNITY_VIRAL_REVIEWS_LIMIT),
+	);
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
 	}
@@ -1493,4 +1571,33 @@ export async function fetchCommunityLeaderboard(
 	});
 	if (!response.ok) return null;
 	return (await response.json()) as LeaderboardPayload;
+}
+
+/** Members directory — client refetch with patron IANA `tz` and optional paging. */
+export async function fetchMembersLeaderboard(
+	sort: MembersLeaderboardSort,
+	period: HomeLeaderboardPeriod,
+	options?: {
+		tz?: string;
+		page?: number;
+		limit?: number;
+		signal?: AbortSignal;
+	},
+): Promise<MembersLeaderboardPayload | null> {
+	const url = new URL("/api/members/leaderboard", stillApiOrigin());
+	url.searchParams.set("sort", sort);
+	url.searchParams.set("period", period);
+	if (options?.tz) url.searchParams.set("tz", options.tz);
+	if (options?.page != null) {
+		url.searchParams.set("page", String(options.page));
+	}
+	if (options?.limit != null) {
+		url.searchParams.set("limit", String(options.limit));
+	}
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: options?.signal,
+	});
+	if (!response.ok) return null;
+	return (await response.json()) as MembersLeaderboardPayload;
 }

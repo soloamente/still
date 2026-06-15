@@ -263,6 +263,8 @@ export function CataloguePosterTile({
 	const toggleWatchlist = useCallback(async () => {
 		if (watchlistBusy) return;
 		setWatchlistBusy(true);
+		// Taste rail only removes tiles on add — not on remove-from-watchlist.
+		const wasInWatchlist = inWatchlist;
 		try {
 			if (inWatchlist) {
 				const result = isMovie
@@ -286,7 +288,11 @@ export function CataloguePosterTile({
 				setInWatchlist(true);
 			}
 			onOpenChange(false);
-			if (surface !== "home") refreshAfterMutation();
+			if (surface === "taste-rail") {
+				if (!wasInWatchlist) onActionComplete?.();
+			} else if (surface !== "home") {
+				refreshAfterMutation();
+			}
 		} catch {
 			toast.error("Couldn't update watchlist");
 		} finally {
@@ -295,6 +301,7 @@ export function CataloguePosterTile({
 	}, [
 		inWatchlist,
 		isMovie,
+		onActionComplete,
 		onOpenChange,
 		refreshAfterMutation,
 		surface,

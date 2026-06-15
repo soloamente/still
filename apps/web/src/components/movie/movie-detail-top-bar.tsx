@@ -18,27 +18,39 @@ import {
 import { useMovieDetailReturn } from "@/components/movie/use-movie-detail-return";
 import {
 	buildMovieDetailViewHref,
+	type MovieDetailListingKind,
 	type MovieDetailView,
 } from "@/lib/movie-detail-view";
 
+const DETAIL_VIEW_TABS: readonly {
+	id: MovieDetailView;
+	label: string;
+}[] = [
+	{ id: "about", label: "About" },
+	{ id: "streaming", label: "Streaming" },
+	{ id: "community", label: "Community" },
+	{ id: "quotes", label: "Quotes" },
+];
+
 /**
- * Track B film header — dynamic back pill (last lobby / diary / watchlist) in the leading
- * column; About/Streaming use the same **sliding `layoutId` pill** as `/home` sort chips.
- * Back + Share use hero-row spring press; tabs keep color-only transitions (no scale).
+ * Film/TV detail header — dynamic back pill, four tabs on the raised `bg-card` track
+ * with a sliding `layoutId` pill (same chip language as pre–Task 6 detail), and share.
  */
 export function MovieDetailTopBar({
 	movieId,
 	title,
 	view,
-	/** Defaults to `/movies/[id]`; TV detail passes `/tv/[id]`. */
 	detailBasePath,
-	/** Optimistic tab highlight while `router.replace` runs (detail view shell). */
+	listingKind = "movie",
+	tvQuoteEpisode,
 	onViewChange,
 }: {
 	movieId: number;
 	title: string;
 	view: MovieDetailView;
 	detailBasePath?: string;
+	listingKind?: MovieDetailListingKind;
+	tvQuoteEpisode?: { season: number; episode: number } | null;
 	onViewChange?: (view: MovieDetailView) => void;
 }) {
 	const basePath = detailBasePath ?? `/movies/${movieId}`;
@@ -47,7 +59,6 @@ export function MovieDetailTopBar({
 	const reduceMotion = useReducedMotion();
 	const pathname = usePathname();
 	const back = useMovieDetailReturn();
-	/** Same scroll seam treatment as `/home` sticky chrome — gradient scrim, no backdrop blur. */
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [shareCopied, setShareCopied] = useState(false);
 
@@ -69,22 +80,27 @@ export function MovieDetailTopBar({
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	/** Raised pill on canvas — matches `/home` sticky shortcut chips (`bg-card`). */
 	const pill = cn(
 		"inline-flex min-h-10 items-center gap-2 rounded-full px-4 py-2 font-medium text-sm transition-colors duration-200 ease-out",
 		"bg-card text-foreground [@media(hover:hover)]:hover:bg-muted/35",
 		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 	);
-	/** Narrow viewports: square icon targets; label copy stays on `sm+`. */
 	const pillIconOnlyMobile =
 		"max-sm:size-10 max-sm:justify-center max-sm:gap-0 max-sm:p-0";
 
-	/** Copies the current page URL — no native share sheet. */
+	function buildViewHref(nextView: MovieDetailView) {
+		return buildMovieDetailViewHref(basePath, nextView, {
+			listingKind,
+			season: tvQuoteEpisode?.season,
+			episode: tvQuoteEpisode?.episode,
+		});
+	}
+
 	async function handleShare() {
 		const href =
 			typeof window !== "undefined"
-				? `${window.location.origin}${pathname}`
-				: `${basePath}${view === "streaming" ? "?view=streaming" : ""}`;
+				? `${window.location.origin}${pathname}${window.location.search}`
+				: `${basePath}${view === "about" ? "" : buildViewHref(view).slice(basePath.length)}`;
 
 		try {
 			await navigator.clipboard.writeText(href);
@@ -96,20 +112,20 @@ export function MovieDetailTopBar({
 		}
 	}
 
+	function handleViewSelect(nextView: MovieDetailView) {
+		onViewChange?.(nextView);
+		if (lobbyNav) {
+			lobbyNav.navigate(buildViewHref(nextView));
+		}
+	}
+
 	const segLink = (active: boolean) =>
 		cn(
-			"relative inline-flex min-h-10 items-center justify-center rounded-full px-5 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
+			"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-4",
 			active
 				? "text-foreground"
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
 		);
-
-	function handleViewSelect(nextView: MovieDetailView) {
-		onViewChange?.(nextView);
-		if (lobbyNav) {
-			lobbyNav.navigate(buildMovieDetailViewHref(basePath, nextView));
-		}
-	}
 
 	function ViewTab({
 		tabView,
@@ -141,7 +157,7 @@ export function MovieDetailTopBar({
 			);
 		}
 
-		const href = buildMovieDetailViewHref(basePath, tabView);
+		const href = buildViewHref(tabView);
 		return (
 			<Link
 				href={href}
@@ -164,7 +180,6 @@ export function MovieDetailTopBar({
 		<header
 			className={cn(
 				"sticky top-0 z-30 w-full overflow-visible bg-background",
-				// Match `/home` sticky chrome: opaque bar + long gradient below the seam when scrolled.
 				"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-300 after:ease-out after:content-[''] motion-reduce:after:transition-none",
 				isScrolled && "after:opacity-100",
 			)}
@@ -181,11 +196,12 @@ export function MovieDetailTopBar({
 					</DetailMotionLink>
 				</div>
 				<nav
-					aria-label="Film detail"
-					className="flex shrink-0 gap-1 rounded-full bg-card p-1"
+					aria-label="Title detail"
+					className="flex max-w-[min(100vw-7.5rem,22rem)] shrink-0 gap-1 overflow-x-auto rounded-full bg-card p-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:max-w-none [&::-webkit-scrollbar]:hidden"
 				>
-					<ViewTab tabView="about" label="About" />
-					<ViewTab tabView="streaming" label="Streaming" />
+					{DETAIL_VIEW_TABS.map((tab) => (
+						<ViewTab key={tab.id} tabView={tab.id} label={tab.label} />
+					))}
 				</nav>
 				<div className="flex min-w-0 justify-end">
 					<DetailMotionButton

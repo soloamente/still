@@ -42,6 +42,8 @@ export type PopularMovieSeed = {
 	listingKind?: "movie" | "tv";
 	/** Diary TV scope chip — e.g. `S02E04` on poster overlay. */
 	scopeLabel?: string | null;
+	/** Watchlist lobby — `Now on Netflix` when flatrate providers exist in patron region. */
+	watchlistStreamingLabel?: string | null;
 	/** Profile filmography — patron log id for radial edit/favorite on own profile. */
 	patronLogId?: string;
 	patronLogLiked?: boolean;
@@ -520,7 +522,7 @@ export function PopularMoviesInfinite({
 						frameClassName={posterFrameClassName}
 						hoverEffect={posterHoverEffect}
 						listingKind={listingKind}
-						posterCaption={m.scopeLabel}
+						posterCaption={m.scopeLabel ?? m.watchlistStreamingLabel}
 						posterUrl={m.poster_url}
 						priority={index < 6}
 						surface={catalogueRadialSurface}
@@ -538,7 +540,7 @@ export function PopularMoviesInfinite({
 					movieId={m.id}
 					posterUrl={m.poster_url}
 					priority={index < 6}
-					posterCaption={m.scopeLabel}
+					posterCaption={m.scopeLabel ?? m.watchlistStreamingLabel}
 					showTitle={showTitle}
 					title={m.title}
 				/>

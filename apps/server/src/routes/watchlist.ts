@@ -1,4 +1,4 @@
-import { db, log, movie, tv, watchlistItem } from "@still/db";
+import { db, log, movie, profile, tv, watchlistItem } from "@still/db";
 import {
 	and,
 	asc,
@@ -25,6 +25,11 @@ import {
 	watchlistOffset,
 	watchlistTotalPages,
 } from "../lib/watchlist-query-args";
+import {
+	flatrateProvidersForRegion,
+	readCatalogWatchRegionPref,
+	watchProvidersFromTmdbJson,
+} from "../lib/watchlist-streaming-alerts";
 
 type WatchlistUpsertBody = {
 	movieId?: number;
@@ -52,6 +57,15 @@ export const watchlistRoute = new Elysia({
 			const limit = parseWatchlistLimit(query.limit);
 			const order = parseWatchlistOrder(query.order);
 			const offset = watchlistOffset(page, limit);
+
+			const [prefRow] = await db
+				.select({ preferences: profile.preferences })
+				.from(profile)
+				.where(eq(profile.userId, user.id))
+				.limit(1);
+			const watchRegion = readCatalogWatchRegionPref(
+				(prefRow?.preferences as Record<string, unknown> | null) ?? null,
+			);
 
 			// Hide-watched (Letterbox-shaped): drop any saved title with a diary log.
 			// As a SQL clause so LIMIT/OFFSET apply *after* filtering.
@@ -116,7 +130,31 @@ export const watchlistRoute = new Elysia({
 
 			const total = Number(totals[0]?.total ?? 0);
 			return {
-				results: rows,
+				results: rows.map(({ item, movie: movieRow, tv: tvRow }) => {
+					const tmdbJson = movieRow?.tmdbJson ?? tvRow?.tmdbJson;
+					const providers = flatrateProvidersForRegion(
+						watchProvidersFromTmdbJson(tmdbJson),
+						watchRegion,
+					);
+					return {
+						item,
+						movie: movieRow
+							? {
+									tmdbId: movieRow.tmdbId,
+									title: movieRow.title,
+									posterPath: movieRow.posterPath,
+								}
+							: null,
+						tv: tvRow
+							? {
+									tmdbId: tvRow.tmdbId,
+									title: tvRow.title,
+									posterPath: tvRow.posterPath,
+								}
+							: null,
+						streaming_provider_name: providers[0]?.providerName ?? null,
+					};
+				}),
 				total_pages: watchlistTotalPages(total, limit),
 				total_results: total,
 			};

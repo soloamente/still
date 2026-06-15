@@ -8,6 +8,7 @@ import { Fraunces, Geist_Mono, Outfit } from "next/font/google";
 import localFont from "next/font/local";
 
 import "../index.css";
+import { ThemeFlashGuardScript } from "@/components/app/theme-flash-guard-script";
 import Providers from "@/components/providers";
 import {
 	APP_METADATA_DEFAULT_TITLE,
@@ -20,7 +21,6 @@ import {
 	ogImageMetadataFields,
 } from "@/lib/og/og-image-metadata";
 import { getSiteOrigin } from "@/lib/site-origin";
-import { buildThemeFlashGuardScript } from "@/lib/theme-flash-guard";
 
 /**
  * UI sans: **SF Pro Rounded** from `public/fonts/SF_Pro_Rounded` (next/font `localFont`),
@@ -150,15 +150,8 @@ export default function RootLayout({
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head>
-				{/* Inline bootstrap — must not use next/script inside React tree (Next 16). */}
-				<script
-					id="still-theme-flash-guard"
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: tiny inline bootstrap only
-					dangerouslySetInnerHTML={{ __html: buildThemeFlashGuardScript() }}
-				/>
-			</head>
 			<body className="bg-background text-foreground antialiased">
+				<ThemeFlashGuardScript />
 				{/* DialKit dev panel: sibling of app tree (does not wrap {children}). */}
 				<Providers htmlFontClass={htmlFontClass}>{children}</Providers>
 				{process.env.NODE_ENV === "development" ? <Agentation /> : null}

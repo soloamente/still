@@ -39,6 +39,9 @@
 			"cache": false,
 			"persistent": true
 		},
+		"db:seed-journal": {
+			"cache": false
+		},
 		"db:baseline": {
 			"cache": false
 		},

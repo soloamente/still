@@ -53,8 +53,7 @@ export function logMediaKey(
 
 /** Normalise stored rating to 0–10 display scale (matches web `logRatingToDisplay`). */
 export function storedRatingToDisplayTen(stored: number): number {
-	if (stored > 10) return stored / 10;
-	return stored;
+	return stored / 10;
 }
 
 /** Keep the newest log per title when building overlap maps. */

@@ -5,12 +5,16 @@ import { AdultContentBlockedState } from "@/components/detail/adult-content-bloc
 import { ListingDetailHeroSynopsis } from "@/components/detail/listing-detail-hero-synopsis";
 import { MovieDetailAboutAsync } from "@/components/movie/movie-detail-about-async";
 import { MovieDetailAboutFallback } from "@/components/movie/movie-detail-about-fallback";
+import { MovieDetailCommunityFallback } from "@/components/movie/movie-detail-community-fallback";
+import { MovieDetailCommunityPanel } from "@/components/movie/movie-detail-community-panel";
 import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailPrimaryActions } from "@/components/movie/movie-detail-primary-actions";
+import { MovieDetailQuotesPanel } from "@/components/movie/movie-detail-quotes-panel";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { accentFromGenres } from "@/lib/cinema-accents";
+import { requireListingDetailApiData } from "@/lib/eden-api-error";
 import { formatRuntime } from "@/lib/format";
 import { listingDetailHeroSynopsisBlurb } from "@/lib/listing-detail-hero-synopsis";
 import {
@@ -30,7 +34,7 @@ import {
 	festivalAndAwardKeywordNames,
 	mergeMoreLikeThis,
 } from "@/lib/movie-detail-tmdb";
-import { parseMovieDetailView } from "@/lib/movie-detail-view";
+import { parseMovieDetailViewFromSearchParams } from "@/lib/movie-detail-view";
 import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
 import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
 import {
@@ -72,6 +76,8 @@ export async function generateMetadata({
 type CommunityShape = {
 	averageRating: number | null;
 	ratingsCount: number;
+	watchesCount?: number | null;
+	watchlistCount?: number | null;
 };
 
 /** SQL aggregates may deserialize as strings — normalize before `.toFixed` / `Math.round`. */
@@ -175,19 +181,27 @@ export default async function MoviePage({
 	searchParams,
 }: {
 	params: Promise<Params>;
-	searchParams: Promise<{ view?: string }>;
+	searchParams: Promise<{
+		view?: string;
+		tab?: string;
+		season?: string;
+		episode?: string;
+	}>;
 }) {
 	const { id } = await params;
 	const sp = await searchParams;
-	const view = parseMovieDetailView(sp.view);
+	const view = parseMovieDetailViewFromSearchParams(sp);
 	const numericId = Number(id);
 	if (!Number.isFinite(numericId)) notFound();
 
 	const api = await serverApi();
 	const res = await api.api.movies({ id }).get();
-	const data =
-		(res.data as (Detail & { adultBlocked?: boolean }) | null) ?? null;
-	if (!data) notFound();
+	const data = requireListingDetailApiData(
+		res as {
+			data: (Detail & { adultBlocked?: boolean }) | null;
+			error: unknown;
+		},
+	);
 
 	if (data.adultBlocked) {
 		const { accent: blockedAccent } = accentFromGenres(null);
@@ -238,6 +252,10 @@ export default async function MoviePage({
 		0,
 		Math.floor(toFiniteNumber(data.community?.ratingsCount) ?? 0),
 	);
+	const communityWatchesCount =
+		toFiniteNumber(data.community?.watchesCount) ?? null;
+	const communityWatchlistCount =
+		toFiniteNumber(data.community?.watchlistCount) ?? null;
 
 	const primaryGenre = j?.genres?.[0]?.name ?? null;
 	const heroMetaBits: string[] = [];
@@ -295,6 +313,8 @@ export default async function MoviePage({
 				variant="compact"
 				communityAverage={communityAverage}
 				communityRatingsCount={communityRatingsCount}
+				communityWatchesCount={communityWatchesCount}
+				communityWatchlistCount={communityWatchlistCount}
 			/>
 			<div className="mt-8 flex w-full justify-center">
 				<MovieDetailPrimaryActions
@@ -330,9 +350,7 @@ export default async function MoviePage({
 				about={
 					<Suspense fallback={<MovieDetailAboutFallback />}>
 						<MovieDetailAboutAsync
-							id={id}
 							tmdbId={data.tmdbId}
-							numericId={numericId}
 							title={data.title}
 							year={data.year}
 							directors={directors}
@@ -341,14 +359,31 @@ export default async function MoviePage({
 							fullCast={fullCast}
 							creditsCrewRows={creditsCrewRows}
 							crewCrawlLines={crewCrawlLines}
-							moreLikeThis={moreLikeThis}
-							moviePosterUrl={data.poster_url}
 							imdbId={data.imdbId}
 							festivalKeywords={festivalKeywords}
 							premiereRows={premiereRows}
 							screenshots={data.screenshots ?? []}
+							moreLikeThis={moreLikeThis}
 						/>
 					</Suspense>
+				}
+				community={
+					<Suspense fallback={<MovieDetailCommunityFallback />}>
+						<MovieDetailCommunityPanel
+							id={id}
+							tmdbId={data.tmdbId}
+							numericId={numericId}
+							title={data.title}
+						/>
+					</Suspense>
+				}
+				quotes={
+					<MovieDetailQuotesPanel
+						listingKind="movie"
+						listingId={id}
+						tmdbId={data.tmdbId}
+						basePath={detailBasePath}
+					/>
 				}
 			/>
 		</MovieThemeProvider>

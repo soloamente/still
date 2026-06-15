@@ -29,6 +29,10 @@ export const PROFILE_PREF_CATALOG_TMDB_LANGUAGE =
 export const PROFILE_PREF_CATALOG_TMDB_WATCH_REGION =
 	"catalogTmdbWatchRegion" as const;
 
+/** Opt-in for watchlist streaming inbox alerts — default on (Task 18 Settings toggle). */
+export const PROFILE_PREF_WATCHLIST_STREAMING_ALERTS =
+	"watchlistStreamingAlerts" as const;
+
 /** Named shell palette class on `<html>` (see `app-themes.ts`). */
 export const PROFILE_PREF_APP_THEME = "appTheme" as const;
 
@@ -77,6 +81,16 @@ export function readCatalogTmdbWatchRegionPref(
 	if (s === "ALL" || s === "ANY" || s === "WORLD") return "ALL";
 	if (s.length === 2 && /^[A-Z]{2}$/.test(s)) return s;
 	return null;
+}
+
+/** Watchlist streaming notifications — default on unless patron disables in Settings. */
+export function readWatchlistStreamingAlertsPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	if (preferences == null) return true;
+	const raw = preferences[PROFILE_PREF_WATCHLIST_STREAMING_ALERTS];
+	if (typeof raw === "boolean") return raw;
+	return true;
 }
 
 /**

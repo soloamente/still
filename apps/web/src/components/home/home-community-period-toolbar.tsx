@@ -10,11 +10,11 @@ import { cn } from "@still/ui/lib/utils";
 import { useState } from "react";
 
 import { useHomeCommunityLobbyParams } from "@/components/home/home-community-lobby-params-context";
+import { homeCommunityRankKindSectionLabel } from "@/components/home/home-community-rank-kind-toolbar";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import {
 	HOME_COMMUNITY_RANK_KINDS,
 	type HomeCommunityRankKind,
-	homeCommunityRankKindLabel,
 	isHomeLeaderboardFeed,
 } from "@/lib/home-community-feed";
 import {
@@ -37,7 +37,10 @@ export function HomeCommunityPeriodToolbar() {
 	const [open, setOpen] = useState(false);
 	const periodLabel = leaderboardPeriodLabel(period);
 	const onRanks = isHomeLeaderboardFeed(feed);
-	const rankKindLabel = homeCommunityRankKindLabel(rankKind);
+	const rankKindLabel = homeCommunityRankKindSectionLabel(rankKind);
+	const filtersSummary = onRanks
+		? `${rankKindLabel} · ${periodLabel}`
+		: periodLabel;
 
 	return (
 		<>
@@ -62,16 +65,8 @@ export function HomeCommunityPeriodToolbar() {
 					<PopoverTrigger
 						type="button"
 						className={HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME}
-						aria-label={
-							onRanks
-								? `Community filters — ${rankKindLabel}, ${periodLabel}`
-								: `Community filters — ${periodLabel}`
-						}
-						title={
-							onRanks
-								? `Community filters — ${rankKindLabel}, ${periodLabel}`
-								: `Community filters — ${periodLabel}`
-						}
+						aria-label={`Community filters — ${filtersSummary}`}
+						title={`Community filters — ${filtersSummary}`}
 					>
 						<IconSlider
 							size="1.125rem"
@@ -92,17 +87,17 @@ export function HomeCommunityPeriodToolbar() {
 									Filters
 								</p>
 								<p className="mt-0.5 text-pretty text-muted-foreground text-sm leading-snug">
-									{onRanks ? `${rankKindLabel} · ${periodLabel}` : periodLabel}
+									{filtersSummary}
 								</p>
 							</div>
 							{onRanks ? (
 								<div>
 									<p className="mb-2 px-0.5 font-medium text-muted-foreground text-xs tracking-wide">
-										Catalogue
+										Rankings
 									</p>
 									<SegmentedPillToolbar
 										layoutId="home-community-rank-kind-pill-mobile"
-										aria-label="Rankings catalogue"
+										aria-label="Rankings"
 										compact
 										value={rankKind}
 										onChange={(next: HomeCommunityRankKind) => {

@@ -7,7 +7,13 @@ import { serverApi } from "@/lib/server-api";
 export type MeProfile = {
 	handle: string;
 	displayName: string;
+	/** Fresh portrait URL from `user.image` (nav uses this over stale session). */
+	image?: string | null;
 	isPro: boolean;
+	onboardedAt?: string | Date | null;
+	createdAt?: string | Date | null;
+	tasteSignatureComputedAt?: string | Date | null;
+	favoriteMovieIds?: readonly unknown[] | null;
 	preferences: Record<string, unknown> | null;
 	diaryMetalTier?: DiaryMetalTier | null;
 } | null;

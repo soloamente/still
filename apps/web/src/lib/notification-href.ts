@@ -1,3 +1,4 @@
+import { buildQuoteSubmissionNotificationHref } from "@/lib/quotes-lobby";
 import {
 	buildMovieReviewHref,
 	parseLegacyReviewPagePath,
@@ -29,6 +30,9 @@ export function notificationPayloadHref(
 	) {
 		return buildMovieReviewHref(movieId, reviewId);
 	}
+
+	const quoteHref = buildQuoteSubmissionNotificationHref(payload);
+	if (quoteHref) return quoteHref;
 
 	return undefined;
 }

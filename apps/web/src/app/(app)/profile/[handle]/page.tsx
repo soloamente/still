@@ -11,6 +11,7 @@ import { authServer } from "@/lib/auth-server";
 import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { fetchProfileFilmographyServer } from "@/lib/fetch-profile-filmography-server";
+import { fetchProfileSavedQuotesPreview } from "@/lib/fetch-profile-saved-quotes-server";
 import { toListBoardRow } from "@/lib/list-board-row";
 import {
 	OG_DEFAULT_PATH,
@@ -31,6 +32,10 @@ import {
 	readCatalogMonochromePeersOnHoverPref,
 	readProfilePortraitGrayscaleUntilHoverPref,
 } from "@/lib/profile-preferences";
+import {
+	type ProfileShowcaseTile,
+	parseProfileShowcaseResolved,
+} from "@/lib/profile-showcase";
 import { parseTasteSignatureJson } from "@/lib/sense-taste-signature";
 import { serverApi } from "@/lib/server-api";
 
@@ -105,6 +110,7 @@ type ProfileData = {
 	};
 	recentReviews: ProfileReviewRow[];
 	pinnedReviews: ProfileReviewRow[];
+	showcaseResolved?: { items: ProfileShowcaseTile[] };
 	lists: {
 		id: string;
 		title: string;
@@ -207,6 +213,12 @@ export default async function ProfilePage({
 		favorites: favoritesOnly,
 	});
 
+	const savedQuotesPreviewPage = await fetchProfileSavedQuotesPreview({
+		handle: profile.handle,
+		isOwner: isMe,
+		limit: 3,
+	});
+
 	const socialTabs = PROFILE_TOOLBAR_SOCIAL_ORDER.filter((sec) => {
 		if (sec === "favorites") return counts.likedMovies + counts.likedTv > 0;
 		if (sec === "reviews")
@@ -237,6 +249,9 @@ export default async function ProfilePage({
 	const bannerIsAnimated = inferAnimatedFromProfileUrl(bannerUrl, bannerFlag);
 	const profilePortraitGrayscaleUntilHover =
 		readProfilePortraitGrayscaleUntilHoverPref(profile.preferences);
+	const showcaseItems = parseProfileShowcaseResolved(
+		data.showcaseResolved,
+	).items;
 
 	return (
 		<ProfilePatronLobbyShell
@@ -262,6 +277,9 @@ export default async function ProfilePage({
 			filmographyCounts={counts}
 			recentReviews={data.recentReviews}
 			pinnedReviews={data.pinnedReviews ?? []}
+			showcaseItems={showcaseItems}
+			savedQuotesPreview={savedQuotesPreviewPage.items}
+			savedQuotesHasMore={savedQuotesPreviewPage.hasMore}
 			lists={data.lists.map((l) => toListBoardRow(l))}
 			socialTabs={socialTabs}
 			earnedBadges={earnedBadges}

@@ -12,6 +12,7 @@ import {
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
 import { APP_NAME } from "@/lib/app-brand";
+import { listShareCopiedToastMessage } from "@/lib/list-share-toast";
 
 /**
  * Public list detail header — back to marketing home; share uses the SEO `/l/` URL.
@@ -51,7 +52,7 @@ export function ListDetailPublicTopBar({
 		try {
 			await navigator.clipboard.writeText(href);
 			setShareCopied(true);
-			toast.success("Link copied");
+			toast.success(listShareCopiedToastMessage(title));
 			window.setTimeout(() => setShareCopied(false), 1600);
 		} catch {
 			toast.error("Couldn't copy link");

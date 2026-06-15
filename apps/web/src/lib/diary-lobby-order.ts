@@ -102,6 +102,12 @@ export type DiaryLobbyOrder = "latest_seen" | "earliest_seen" | "title_az";
 /** Movies vs TV ledger — mirrors profile `?tab=movies|tv`. */
 export type DiaryLedgerTabId = "movies" | "tv";
 
+/** Distinct watch years + decade starts for diary period chips (from API). */
+export type DiaryWatchPeriods = {
+	years: number[];
+	decades: number[];
+};
+
 const DIARY_LEDGER_TABS = new Set<string>(["movies", "tv"]);
 
 /** Resolves `?tab=` on `/diary` — defaults to Movies when both exist. */
@@ -251,6 +257,30 @@ export function parseDiaryLobbyOrder(
 	return "latest_seen";
 }
 
+/** Calendar year from `?year=` — filters on `watchedAt`. */
+export function parseDiaryWatchYear(
+	raw: string | undefined | null,
+): number | null {
+	if (!raw?.trim()) return null;
+	const n = Number(raw);
+	if (!Number.isInteger(n) || n < 1900 || n > 2100) return null;
+	return n;
+}
+
+/** Decade start from `?decade=` (e.g. `2010` → 2010s). */
+export function parseDiaryWatchDecade(
+	raw: string | undefined | null,
+): number | null {
+	if (!raw?.trim()) return null;
+	const n = Number(raw);
+	if (!Number.isInteger(n) || n % 10 !== 0 || n < 1900 || n > 2100) return null;
+	return n;
+}
+
+export function formatDiaryDecadeLabel(decadeStart: number): string {
+	return `${decadeStart}s`;
+}
+
 /**
  * Builds `/diary` query links — omits default **`order`** and default **`venue`** so shareable
  * URLs stay short (`/diary`, `/diary?venue=theaters`, `/diary?order=earliest&venue=theaters`, …).
@@ -259,6 +289,8 @@ export function buildDiaryLobbyHref(input: {
 	order: DiaryLobbyOrder;
 	venue: HomeVenue;
 	tab: DiaryLedgerTabId;
+	year?: number | null;
+	decade?: number | null;
 }): string {
 	const params = new URLSearchParams();
 	params.set("tab", input.tab);
@@ -268,6 +300,11 @@ export function buildDiaryLobbyHref(input: {
 	const defaultVenue = defaultHomeVenueForSort(DIARY_LOBBY_VENUE_SORT_AS);
 	if (input.venue !== defaultVenue) {
 		params.set("venue", input.venue);
+	}
+	if (input.year != null) {
+		params.set("year", String(input.year));
+	} else if (input.decade != null) {
+		params.set("decade", String(input.decade));
 	}
 	return `/diary?${params.toString()}`;
 }

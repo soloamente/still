@@ -1,6 +1,42 @@
 import { describe, expect, test } from "bun:test";
 
-import { inferAnimatedFromProfileUrl } from "./profile-media";
+import {
+	assertProfilePortraitUploadAllowed,
+	inferAnimatedFromProfileUrl,
+	isAnimatedGifUpload,
+	PRO_ANIMATED_PORTRAIT_MESSAGE,
+} from "./profile-media";
+
+describe("isAnimatedGifUpload", () => {
+	test("detects image/gif mime", () => {
+		const file = { type: "image/gif", name: "x.bin" } as File;
+		expect(isAnimatedGifUpload(file)).toBe(true);
+	});
+
+	test("detects .gif extension", () => {
+		const file = { type: "image/png", name: "loop.GIF" } as File;
+		expect(isAnimatedGifUpload(file)).toBe(true);
+	});
+
+	test("returns false for static images", () => {
+		const file = { type: "image/png", name: "still.png" } as File;
+		expect(isAnimatedGifUpload(file)).toBe(false);
+	});
+});
+
+describe("assertProfilePortraitUploadAllowed", () => {
+	test("allows GIF when patron is Pro", () => {
+		const file = { type: "image/gif", name: "loop.gif" } as File;
+		expect(() => assertProfilePortraitUploadAllowed(file, true)).not.toThrow();
+	});
+
+	test("blocks GIF when patron is not Pro", () => {
+		const file = { type: "image/gif", name: "loop.gif" } as File;
+		expect(() => assertProfilePortraitUploadAllowed(file, false)).toThrow(
+			PRO_ANIMATED_PORTRAIT_MESSAGE,
+		);
+	});
+});
 
 describe("inferAnimatedFromProfileUrl", () => {
 	test("returns true when flag is true", () => {

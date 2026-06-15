@@ -24,6 +24,7 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { LogWatchedDatePicker } from "@/components/log/log-watched-date-picker";
+import { QuickLogCelebrationStrip } from "@/components/log/quick-log-celebration-strip";
 import { QuickLogRemoveConfirmDialog } from "@/components/log/quick-log-remove-confirm-dialog";
 import { TvLogScopePicker } from "@/components/log/tv-log-scope-picker";
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
@@ -34,6 +35,7 @@ import {
 } from "@/components/movie/detail-motion-pressable";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
+import { useReviewComposer } from "@/components/review/review-composer";
 import {
 	type ContentVisibility,
 	VisibilitySelect,
@@ -152,6 +154,16 @@ export type QuickLogArgs = {
 	onSuccess?: () => void;
 };
 
+/** Post-log micro-moment — keeps the sheet open after a successful create. */
+type QuickLogCelebrationState = {
+	logId: string;
+	title: string;
+	movieId: number | null;
+	posterUrl: string | null;
+	averageRating: number | null;
+	ratingStored: number | null;
+};
+
 type Store = {
 	isOpen: boolean;
 	args: QuickLogArgs | null;
@@ -241,6 +253,7 @@ function resolvePriorTitleFavorited(
 
 export function QuickLogRoot() {
 	const { isOpen, args, close } = useQuickLog();
+	const openReviewComposer = useReviewComposer((s) => s.open);
 	const isMobileVaul = useMobileQuickLogVaul();
 	const router = useRouter();
 	const pathname = usePathname();
@@ -268,6 +281,8 @@ export function QuickLogRoot() {
 		args?.visibility ?? "public",
 	);
 	const [visibilityTouched, setVisibilityTouched] = useState(false);
+	const [celebration, setCelebration] =
+		useState<QuickLogCelebrationState | null>(null);
 
 	const [searchQuery, setSearchQuery] = useState("");
 	const [searchResults, setSearchResults] = useState<MovieHit[]>([]);
@@ -420,6 +435,7 @@ export function QuickLogRoot() {
 			setSearchHint(null);
 			setVisibility("public");
 			setVisibilityTouched(false);
+			setCelebration(null);
 			tvScopeEffectReady.current = false;
 		}
 	}, [isOpen]);
@@ -594,6 +610,24 @@ export function QuickLogRoot() {
 		close();
 	}, [close]);
 
+	const handleCelebrationDismiss = useCallback(() => {
+		handleClose();
+	}, [handleClose]);
+
+	const handleCelebrationWriteReview = useCallback(() => {
+		const movieId = celebration?.movieId;
+		if (!celebration || movieId == null) return;
+		handleClose();
+		openReviewComposer({
+			movieId,
+			movieTitle: celebration.title,
+			posterUrl: celebration.posterUrl,
+			averageRating: celebration.averageRating,
+			diaryLogId: celebration.logId,
+			diaryRatingStored: celebration.ratingStored,
+		});
+	}, [celebration, handleClose, openReviewComposer]);
+
 	useEffect(() => {
 		if (!isOpen || isMobileVaul) return;
 		const onKey = (e: KeyboardEvent) => {
@@ -683,7 +717,15 @@ export function QuickLogRoot() {
 			if (shouldRefreshRouteAfterMutation(pathname)) {
 				router.refresh();
 			}
-			handleClose();
+			const created = result.data as { id?: string };
+			setCelebration({
+				logId: typeof created?.id === "string" ? created.id : "",
+				title: movieTitle,
+				movieId,
+				posterUrl,
+				averageRating,
+				ratingStored: storedRating,
+			});
 		} catch (err) {
 			console.error(err);
 			toast.error(
@@ -1056,6 +1098,19 @@ export function QuickLogRoot() {
 		/>
 	) : null;
 
+	const quickLogPanelBody = celebration ? (
+		<QuickLogCelebrationStrip
+			logId={celebration.logId}
+			title={celebration.title}
+			ratingStored={celebration.ratingStored}
+			canWriteReview={celebration.movieId != null}
+			onWriteReview={handleCelebrationWriteReview}
+			onDismiss={handleCelebrationDismiss}
+		/>
+	) : (
+		quickLogFormFields
+	);
+
 	if (isMobileVaul) {
 		return (
 			<>
@@ -1072,8 +1127,8 @@ export function QuickLogRoot() {
 						<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
 							<DetailDrawerScrollBody scrollRef={scrollRef}>
 								<div className="mx-auto w-full max-w-xl pt-2 pb-10">
-									{quickLogFormFields}
-									{quickLogFooter("inline")}
+									{quickLogPanelBody}
+									{celebration ? null : quickLogFooter("inline")}
 								</div>
 							</DetailDrawerScrollBody>
 							<SheetScrollScrims
@@ -1130,7 +1185,7 @@ export function QuickLogRoot() {
 
 							<div className="relative">
 								<div ref={scrollRef} className={MODAL_SHEET_SCROLL_CLASS}>
-									{quickLogFormFields}
+									{quickLogPanelBody}
 								</div>
 								<ModalSheetScrollScrims
 									showHeaderFade={showHeaderFade}
@@ -1138,7 +1193,7 @@ export function QuickLogRoot() {
 								/>
 							</div>
 
-							{quickLogFooter("modal")}
+							{celebration ? null : quickLogFooter("modal")}
 						</motion.div>
 					</motion.div>
 				) : null}

@@ -15,6 +15,8 @@ import { APP_NAME, APP_TAGLINE } from "@/lib/app-brand";
 export function BrandMark({
 	size = "md",
 	wordmarkFont = "display",
+	/** `surface`: theme foreground on card/canvas. `inverse`: white over imagery (auth). */
+	tone = "surface",
 	withTagline = false,
 	href = "/",
 	className,
@@ -23,6 +25,7 @@ export function BrandMark({
 	size?: "sm" | "md" | "lg";
 	/** `display`: Fraunces. `sans`: SF Pro Rounded stack — use beside quote-only Fraunces. */
 	wordmarkFont?: "display" | "sans";
+	tone?: "surface" | "inverse";
 	withTagline?: boolean;
 	/** Logged-in app shell uses `/home`; marketing and auth stay on `/`. */
 	href?: string;
@@ -34,6 +37,9 @@ export function BrandMark({
 		md: "text-xl",
 		lg: "text-2xl",
 	}[size];
+
+	const wordmarkToneClass =
+		tone === "inverse" ? "text-pure-white" : "text-foreground";
 
 	return (
 		<Link
@@ -48,7 +54,8 @@ export function BrandMark({
 				className={cn(
 					wordmarkFont === "sans" ? "font-sans" : "font-display",
 					sizeClass,
-					"font-medium text-pure-white tracking-[-0.02em]",
+					"font-medium tracking-[-0.02em]",
+					wordmarkToneClass,
 				)}
 			>
 				{APP_NAME}

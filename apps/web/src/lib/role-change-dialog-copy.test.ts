@@ -1,4 +1,5 @@
 import { describe, expect, it } from "bun:test";
+import { APP_NAME } from "@/lib/app-brand";
 import { roleChangeDialogCopy } from "./role-change-dialog-copy";
 
 describe("roleChangeDialogCopy", () => {
@@ -6,7 +7,7 @@ describe("roleChangeDialogCopy", () => {
 		const c = roleChangeDialogCopy("promoted", "moderator");
 		expect(c.title).toBe("It's official!");
 		expect(c.headline).toBe("You're now a Moderator");
-		expect(c.subtext).toBe("You've got new staff permissions on Still.");
+		expect(c.subtext).toBe(`You've got new staff permissions on ${APP_NAME}.`);
 		expect(c.pillLabel).toBe("Moderator");
 		expect(c.showStaffPanelCta).toBe(true);
 	});

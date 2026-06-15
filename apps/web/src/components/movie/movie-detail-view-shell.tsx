@@ -13,33 +13,41 @@ import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-ca
 import type { MovieDetailSectionNavItem } from "@/lib/movie-detail-sections";
 import { MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS } from "@/lib/movie-detail-sections";
 import {
+	type MovieDetailListingKind,
 	type MovieDetailView,
-	parseMovieDetailView,
+	parseMovieDetailTvQuoteEpisode,
+	parseMovieDetailViewFromSearchParams,
 } from "@/lib/movie-detail-view";
 import type { MovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
 
 /**
- * Client shell for film/TV detail — instant About/Streaming tab switches without
- * freezing sticky chrome; About body streams in via RSC Suspense sibling.
+ * Client shell for film/TV detail — instant tab switches without freezing sticky
+ * chrome; About/Community stream in via RSC Suspense siblings from the page.
  */
 export function MovieDetailViewShell({
 	initialView,
 	basePath,
 	movieId,
 	title,
+	listingKind = "movie",
 	sectionNavItems,
 	hero,
 	watchProviders,
 	about,
+	community,
+	quotes,
 }: {
 	initialView: MovieDetailView;
 	basePath: string;
 	movieId: number;
 	title: string;
+	listingKind?: MovieDetailListingKind;
 	sectionNavItems: MovieDetailSectionNavItem[];
 	hero: ReactNode;
 	watchProviders: MovieWatchProvidersViewModel;
 	about: ReactNode;
+	community: ReactNode;
+	quotes: ReactNode;
 }) {
 	return (
 		<LobbyNavigationProvider>
@@ -48,10 +56,13 @@ export function MovieDetailViewShell({
 				basePath={basePath}
 				movieId={movieId}
 				title={title}
+				listingKind={listingKind}
 				sectionNavItems={sectionNavItems}
 				hero={hero}
 				watchProviders={watchProviders}
 				about={about}
+				community={community}
+				quotes={quotes}
 			/>
 		</LobbyNavigationProvider>
 	);
@@ -62,22 +73,35 @@ function MovieDetailViewShellBody({
 	basePath,
 	movieId,
 	title,
+	listingKind,
 	sectionNavItems,
 	hero,
 	watchProviders,
 	about,
+	community,
+	quotes,
 }: {
 	initialView: MovieDetailView;
 	basePath: string;
 	movieId: number;
 	title: string;
+	listingKind: MovieDetailListingKind;
 	sectionNavItems: MovieDetailSectionNavItem[];
 	hero: ReactNode;
 	watchProviders: MovieWatchProvidersViewModel;
 	about: ReactNode;
+	community: ReactNode;
+	quotes: ReactNode;
 }) {
 	const searchParams = useSearchParams();
-	const urlView = parseMovieDetailView(searchParams.get("view") ?? initialView);
+	const urlView = parseMovieDetailViewFromSearchParams({
+		view: searchParams.get("view") ?? initialView,
+		tab: searchParams.get("tab"),
+	});
+	const tvQuoteEpisode = parseMovieDetailTvQuoteEpisode({
+		season: searchParams.get("season"),
+		episode: searchParams.get("episode"),
+	});
 	const [view, setView] = useState<MovieDetailView>(urlView);
 
 	useEffect(() => {
@@ -94,6 +118,8 @@ function MovieDetailViewShellBody({
 				title={title}
 				view={view}
 				detailBasePath={basePath}
+				listingKind={listingKind}
+				tvQuoteEpisode={tvQuoteEpisode}
 				onViewChange={setView}
 			/>
 			{showSectionNav ? (
@@ -114,7 +140,6 @@ function MovieDetailViewShellBody({
 				>
 					{hero}
 
-					{/* Keep both panels mounted so Streaming ↔ About is instant after first paint. */}
 					<div
 						className="mx-auto flex w-full max-w-2xl flex-col px-2.5 pt-6 pb-8 sm:px-3 sm:pt-8 sm:pb-10"
 						hidden={view !== "streaming"}
@@ -122,6 +147,8 @@ function MovieDetailViewShellBody({
 						<MovieDetailStreaming watchProviders={watchProviders} />
 					</div>
 					<div hidden={view !== "about"}>{about}</div>
+					<div hidden={view !== "community"}>{community}</div>
+					<div hidden={view !== "quotes"}>{quotes}</div>
 				</article>
 			</section>
 		</div>

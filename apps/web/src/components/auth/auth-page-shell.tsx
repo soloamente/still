@@ -44,8 +44,11 @@ export function AuthPageShell({
 		};
 	}, []);
 
+	// Hide the auth chrome once we know the patron is signed in, but keep
+	// `AuthSessionRedirect` mounted — an early `return null` here prevented the
+	// redirect effect from ever running, leaving `/sign-in` permanently blank.
 	if (!isPending && session) {
-		return null;
+		return <AuthSessionRedirect />;
 	}
 
 	const routeContent = (
@@ -90,7 +93,7 @@ export function AuthPageShell({
 				)}
 			>
 				<div className="absolute isolate z-10 flex max-w-[calc(100%-1.25rem)] items-center max-md:pointer-events-none max-md:top-[max(1rem,env(safe-area-inset-top))] max-md:left-1/2 max-md:-translate-x-1/2 max-md:justify-center md:pointer-events-auto md:top-6 md:left-6 md:translate-x-0 md:justify-start">
-					<BrandMark href="/" size="lg" wordmarkFont="sans" />
+					<BrandMark href="/" size="lg" tone="inverse" wordmarkFont="sans" />
 				</div>
 
 				<div className="relative isolate z-10 flex min-h-0 w-full min-w-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-[2rem] bg-card font-medium shadow-lg md:h-[calc(100dvh-1.25rem)] md:w-1/2 md:max-w-[50%] md:flex-none">

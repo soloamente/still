@@ -49,7 +49,6 @@ function CommunityListsFeedSkeleton() {
 	);
 }
 
-/** Feed-row silhouette — activity + reviews share the same max-width stack. */
 function CommunityFeedRowSkeleton({ label }: { label: string }) {
 	return (
 		<div

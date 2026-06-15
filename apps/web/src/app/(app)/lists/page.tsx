@@ -21,7 +21,7 @@ import {
 	parseListsLobbyOrder,
 	sortListsLobbyRows,
 } from "@/lib/lists-lobby-order";
-import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
+import { buildPatronNavUserOrNull } from "@/lib/patron-nav-user";
 import { readCatalogMonochromePeersOnHoverPref } from "@/lib/profile-preferences";
 import { serverApi } from "@/lib/server-api";
 
@@ -47,22 +47,7 @@ export default async function ListsPage({
 	const mePrefs = profileData?.preferences ?? null;
 	const monochromePeersOnHover = readCatalogMonochromePeersOnHoverPref(mePrefs);
 
-	const stickyUser =
-		session && profileData?.handle
-			? {
-					id: session.user.id,
-					name: session.user.name ?? profileData.displayName ?? "You",
-					image: session.user.image ?? null,
-					handle: profileData.handle,
-					email: session.user.email ?? null,
-					isPro: Boolean(profileData.isPro),
-					avatarIsAnimated: resolvePatronAvatarIsAnimated(
-						session.user.image ?? null,
-						profileData.preferences ?? null,
-					),
-					diaryMetalTier: profileData.diaryMetalTier ?? null,
-				}
-			: null;
+	const stickyUser = buildPatronNavUserOrNull(session, profileData);
 
 	const raw = ((mineRes.data as unknown[]) ?? []).map(toListBoardRow);
 	const lobbyRows = sortListsLobbyRows(raw, lobbyOrder);

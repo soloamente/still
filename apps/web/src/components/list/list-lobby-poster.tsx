@@ -34,6 +34,7 @@ import {
 	isListCoverProxySrc,
 	resolveListCoverImageSrc,
 } from "@/lib/list-cover-image";
+import { listShareCopiedToastMessage } from "@/lib/list-share-toast";
 import type { ListLobbySeed } from "@/lib/lists-lobby-order";
 import { uploadListCover } from "@/lib/upload-list-cover";
 
@@ -107,12 +108,12 @@ export function ListLobbyPoster({
 				: listHref;
 		try {
 			await navigator.clipboard.writeText(href);
-			toast.success("Link copied");
+			toast.success(listShareCopiedToastMessage(list.title));
 			onOpenChange(false);
 		} catch {
 			toast.error("Couldn't copy link");
 		}
-	}, [listHref, onOpenChange]);
+	}, [listHref, list.title, onOpenChange]);
 
 	const handleTogglePrivacy = useCallback(async () => {
 		if (isFavoritesList || togglingPrivacy) return;

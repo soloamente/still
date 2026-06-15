@@ -106,7 +106,7 @@ export function PatronWatchLedgerPanel({
 	);
 	const titleCount = items.length;
 	const periodLabel = leaderboardPeriodLabel(seed.period);
-	const kindLabel = seed.kind === "tv" ? "TV" : "Films";
+	const kindLabel = seed.kind === "tv" ? "Shows" : "Films";
 
 	return (
 		<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">

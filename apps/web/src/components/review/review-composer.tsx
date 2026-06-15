@@ -14,6 +14,7 @@ import { create } from "zustand";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
+import { ReviewAudioRecorder } from "@/components/review/review-audio-recorder";
 import { ReviewListingMentionTextarea } from "@/components/review/review-listing-mention-textarea";
 import { ReviewReaderStillSection } from "@/components/review/review-reader-still-section";
 import {
@@ -32,7 +33,13 @@ import {
 	logRatingToDisplay,
 	logRatingToStored,
 } from "@/lib/log-rating";
+import {
+	formatReviewAudioDurationLabel,
+	REVIEW_AUDIO_MAX_DURATION_MS,
+	REVIEW_AUDIO_MIN_DURATION_MS,
+} from "@/lib/review-audio-limits";
 import { shouldRefreshRouteAfterMutation } from "@/lib/router-refresh-after-mutation";
+import { uploadReviewAudio } from "@/lib/upload-review-audio";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 const BODY_MAX = 20_000;
@@ -45,6 +52,9 @@ const SHEET_DIALOG_CLASS =
 	"relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10";
 
 type ComposerStep = "compose" | "spoilers";
+
+/** New reviews can be text-only, voice-only, or both — edit flow stays text-only for v1. */
+type ReviewContentMode = "text" | "voice" | "both";
 
 type ComposerArgs = {
 	movieId: number;
@@ -111,6 +121,9 @@ export function ReviewComposerRoot() {
 	>([]);
 	const [screenshotsLoading, setScreenshotsLoading] = useState(false);
 	const [selectedStillKey, setSelectedStillKey] = useState<string | null>(null);
+	const [contentMode, setContentMode] = useState<ReviewContentMode>("text");
+	const [voiceBlob, setVoiceBlob] = useState<Blob | null>(null);
+	const [voiceDurationMs, setVoiceDurationMs] = useState(0);
 	const scrollRef = useRef<HTMLDivElement>(null);
 
 	const handleClose = useCallback(() => {
@@ -137,8 +150,21 @@ export function ReviewComposerRoot() {
 			setMovieScreenshots([]);
 			setScreenshotsLoading(false);
 			setSelectedStillKey(null);
+			setContentMode("text");
+			setVoiceBlob(null);
+			setVoiceDurationMs(0);
 		}
 	}, [args]);
+
+	const handleVoiceRecorded = useCallback((blob: Blob, durationMs: number) => {
+		setVoiceBlob(blob);
+		setVoiceDurationMs(durationMs);
+	}, []);
+
+	const handleVoiceClear = useCallback(() => {
+		setVoiceBlob(null);
+		setVoiceDurationMs(0);
+	}, []);
 
 	useEffect(() => {
 		if (!isOpen || !args) return;
@@ -153,6 +179,10 @@ export function ReviewComposerRoot() {
 			setContainsSpoilers(args.initialContainsSpoilers ?? false);
 			setVisibility(args.initialVisibility ?? "public");
 			setVisibilityTouched(true);
+		} else {
+			setContentMode("text");
+			setVoiceBlob(null);
+			setVoiceDurationMs(0);
 		}
 	}, [isOpen, args]);
 
@@ -193,7 +223,7 @@ export function ReviewComposerRoot() {
 	const usesDiaryRating = Boolean(args?.diaryLogId);
 	const isEdit = Boolean(args?.reviewId);
 
-	const composeScrollKey = `${usesDiaryRating}-${posterUrl ?? ""}-${selectedStillKey ?? ""}-${movieScreenshots.length}-${body.length}`;
+	const composeScrollKey = `${usesDiaryRating}-${posterUrl ?? ""}-${selectedStillKey ?? ""}-${movieScreenshots.length}-${body.length}-${contentMode}-${voiceDurationMs}`;
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		isOpen && step === "compose",
@@ -217,12 +247,37 @@ export function ReviewComposerRoot() {
 
 	const canPublish = useMemo(() => {
 		if (!args) return false;
-		const trimmed = body.trim();
-		if (!trimmed) return false;
-		if (body.length > BODY_MAX) return false;
 		if (title.length > TITLE_MAX) return false;
-		return true;
-	}, [args, body, title.length]);
+		if (body.length > BODY_MAX) return false;
+
+		const trimmed = body.trim();
+		const hasValidText = trimmed.length > 0;
+		const hasValidVoice =
+			voiceBlob != null && voiceDurationMs >= REVIEW_AUDIO_MIN_DURATION_MS;
+
+		if (isEdit) return hasValidText;
+
+		switch (contentMode) {
+			case "text":
+				return hasValidText;
+			case "voice":
+				return hasValidVoice;
+			case "both":
+				return hasValidText || hasValidVoice;
+			default: {
+				const exhaustive: never = contentMode;
+				return exhaustive;
+			}
+		}
+	}, [
+		args,
+		body,
+		title.length,
+		isEdit,
+		contentMode,
+		voiceBlob,
+		voiceDurationMs,
+	]);
 
 	const stepTransition = reduceMotion
 		? { duration: 0 }
@@ -266,7 +321,15 @@ export function ReviewComposerRoot() {
 				const rating = usesDiaryRating
 					? (args.diaryRatingStored ?? undefined)
 					: (logRatingToStored(ratingDisplay) ?? undefined);
-				await api.api.reviews.post({
+				const willUploadVoice =
+					voiceBlob != null &&
+					voiceDurationMs >= REVIEW_AUDIO_MIN_DURATION_MS &&
+					contentMode !== "text";
+				const hasVoiceAttachment =
+					contentMode === "voice" ||
+					(contentMode === "both" && willUploadVoice);
+
+				const res = await api.api.reviews.post({
 					movieId: args.movieId,
 					logId: args.diaryLogId,
 					title: title.trim() || undefined,
@@ -275,8 +338,28 @@ export function ReviewComposerRoot() {
 					containsSpoilers,
 					...(visibilityTouched ? { visibility } : {}),
 					...stillPayload,
+					...(hasVoiceAttachment ? { hasVoiceAttachment: true } : {}),
 				});
-				toast.success("Review published");
+				const created = res.data as { id?: string } | null;
+				const reviewId = created?.id;
+
+				if (willUploadVoice && reviewId && voiceBlob) {
+					try {
+						await uploadReviewAudio({
+							reviewId,
+							blob: voiceBlob,
+							durationMs: voiceDurationMs,
+						});
+						toast.success("Review published");
+					} catch (uploadErr) {
+						console.error(uploadErr);
+						toast.error(
+							"Review saved, but the voice note could not upload — try again later",
+						);
+					}
+				} else {
+					toast.success("Review published");
+				}
 			}
 			if (shouldRefreshRouteAfterMutation(pathname)) {
 				router.refresh();
@@ -394,6 +477,30 @@ export function ReviewComposerRoot() {
 									/>
 								</fieldset>
 
+								{!isEdit ? (
+									<fieldset className="mb-6 flex flex-col items-center space-y-2 border-0 p-0 text-sm">
+										<legend className="w-full text-center text-muted-foreground text-xs">
+											Format
+										</legend>
+										{/* layoutRoot + nowrap keeps the sliding pill inside the track when body/recorder swap below */}
+										<SegmentedPillToolbar
+											layoutId="review-composer-format"
+											aria-label="Review format"
+											value={contentMode}
+											onChange={(next) => {
+												setContentMode(next);
+												if (next === "text") handleVoiceClear();
+											}}
+											options={[
+												{ id: "text", label: "Text" },
+												{ id: "voice", label: "Voice" },
+												{ id: "both", label: "Both" },
+											]}
+											className="mx-auto w-max max-w-full flex-nowrap"
+										/>
+									</fieldset>
+								) : null}
+
 								<div className="mb-5 space-y-2">
 									<Label
 										htmlFor="review-title"
@@ -406,40 +513,79 @@ export function ReviewComposerRoot() {
 										value={title}
 										onChange={(e) => setTitle(e.target.value)}
 										maxLength={TITLE_MAX}
-										placeholder="A line for your take"
+										placeholder={
+											contentMode === "voice" && !isEdit
+												? "A line for your voice note"
+												: "A line for your take"
+										}
 										autoComplete="off"
 										spellCheck
 										className={fieldClass}
 									/>
 								</div>
 
-								<div className="mb-5 space-y-2">
-									<Label
-										htmlFor="review-body"
-										className="w-full justify-center text-center text-muted-foreground text-xs"
-									>
-										Your review
-									</Label>
-									<ReviewListingMentionTextarea
-										id="review-body"
-										value={body}
-										onChange={setBody}
-										rows={6}
-										placeholder="What stayed with you? Type @ to tag another film or show."
-										maxLength={BODY_MAX}
-										className={cn(
-											fieldClass,
-											"min-h-[10rem] resize-y py-3 leading-relaxed",
-										)}
-									/>
-									<p className="text-center text-muted-foreground text-xs">
-										Type <span className="font-medium">@</span> to link other
-										films or TV shows in your review.
-									</p>
-									<p className="text-right text-muted-foreground text-xs tabular-nums">
-										{body.length.toLocaleString()} / {BODY_MAX.toLocaleString()}
-									</p>
-								</div>
+								{(contentMode !== "voice" || isEdit) && (
+									<div className="mb-5 space-y-2">
+										<Label
+											htmlFor="review-body"
+											className="w-full justify-center text-center text-muted-foreground text-xs"
+										>
+											Your review
+										</Label>
+										<ReviewListingMentionTextarea
+											id="review-body"
+											value={body}
+											onChange={setBody}
+											rows={6}
+											placeholder="What stayed with you? Type @ to tag another film or show."
+											maxLength={BODY_MAX}
+											className={cn(
+												fieldClass,
+												"min-h-[10rem] resize-y py-3 leading-relaxed",
+											)}
+										/>
+										<p className="text-center text-muted-foreground text-xs">
+											Type <span className="font-medium">@</span> to link other
+											films or TV shows in your review.
+										</p>
+										<p className="text-right text-muted-foreground text-xs tabular-nums">
+											{body.length.toLocaleString()} /{" "}
+											{BODY_MAX.toLocaleString()}
+										</p>
+									</div>
+								)}
+
+								<AnimatePresence initial={false}>
+									{!isEdit && contentMode !== "text" ? (
+										<motion.div
+											key="review-voice-recorder"
+											initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
+											animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+											exit={{ opacity: 0, y: -6, filter: "blur(4px)" }}
+											transition={stepTransition}
+											className="mb-5 space-y-2"
+										>
+											<Label className="w-full justify-center text-center text-muted-foreground text-xs">
+												Voice note
+											</Label>
+											<p className="text-pretty text-center text-muted-foreground text-xs">
+												Up to{" "}
+												{formatReviewAudioDurationLabel(
+													REVIEW_AUDIO_MAX_DURATION_MS,
+												)}
+												. Record at least{" "}
+												{formatReviewAudioDurationLabel(
+													REVIEW_AUDIO_MIN_DURATION_MS,
+												)}{" "}
+												to publish.
+											</p>
+											<ReviewAudioRecorder
+												onRecorded={handleVoiceRecorded}
+												onClear={handleVoiceClear}
+											/>
+										</motion.div>
+									) : null}
+								</AnimatePresence>
 							</motion.div>
 						) : (
 							<motion.div

@@ -35,6 +35,7 @@ import { authClient } from "@/lib/auth-client";
 import { NOTIFICATION_KIND_SETTINGS } from "@/lib/notification-preferences";
 import { inferProfileAccentFromHex } from "@/lib/profile-appearance";
 import { resolveCatalogTmdbLanguage } from "@/lib/profile-preferences";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 function SettingsSectionPage({ children }: { children: ReactNode }) {
 	return (
@@ -222,6 +223,8 @@ export function SettingsCatalogueSection() {
 		setCatalogTmdbWatchRegion,
 		catalogTmdbLanguage,
 		setCatalogTmdbLanguage,
+		watchlistStreamingAlerts,
+		setWatchlistStreamingAlerts,
 		catalogMonochromePeersOnHover,
 		setCatalogMonochromePeersOnHover,
 		showAdultContent,
@@ -258,6 +261,13 @@ export function SettingsCatalogueSection() {
 							onChange={setCatalogTmdbWatchRegion}
 						/>
 					</MeFormField>
+					<MePreferenceToggle
+						id="watchlist-streaming-alerts"
+						checked={watchlistStreamingAlerts}
+						onChange={setWatchlistStreamingAlerts}
+						title="Notify when watchlisted titles stream near me"
+						description="Uses your watch region above. Sense checks cached streaming data daily and pings your inbox when a saved title lands on a new service."
+					/>
 					<MeFormField
 						id="catalogTmdbLanguage"
 						label="Catalogue language"
@@ -368,13 +378,18 @@ export function SettingsDataSection() {
 
 export function SettingsExperienceSection() {
 	const {
-		theaterAudio,
-		setTheaterAudio,
+		profileAudioEnabled,
+		setProfileAudioEnabled,
+		profileAudioAtmosphere,
+		setProfileAudioAtmosphere,
+		profileAudioFeedback,
+		setProfileAudioFeedback,
 		smoothScroll,
 		setSmoothScroll,
 		castCrewMonochromeOnHover,
 		setCastCrewMonochromeOnHover,
 	} = useSettingsForm();
+	const prefersReducedMotion = usePrefersReducedMotion();
 
 	return (
 		<SettingsSectionPage>
@@ -397,13 +412,39 @@ export function SettingsExperienceSection() {
 						title="Monochrome cast & crew"
 						description="On film and TV detail pages, cast and crew headshots stay grayscale until you hover. Off by default — previews show full color."
 					/>
-					<MePreferenceToggle
-						id="theater-audio"
-						checked={theaterAudio}
-						onChange={setTheaterAudio}
-						title="Theater audio (experimental)"
-						description="Projector hum on film detail pages plus a reel clack when you finish logging. Mutes automatically with reduced motion. Disabled by default; nothing autoplays without a gesture from you."
-					/>
+					<div className="space-y-6">
+						<MePreferenceToggle
+							id="sense-audio-enabled"
+							checked={profileAudioEnabled}
+							onChange={setProfileAudioEnabled}
+							title="Sense audio (experimental)"
+							description="Optional cinema atmosphere and milestone feedback. Disabled by default; nothing autoplays without a gesture from you."
+						/>
+						{profileAudioEnabled ? (
+							<div className="space-y-6 border-border/60 border-l pl-5">
+								<MePreferenceToggle
+									id="sense-audio-atmosphere"
+									checked={profileAudioAtmosphere}
+									onChange={setProfileAudioAtmosphere}
+									title="Atmosphere"
+									description="Looping projector hum on film and TV detail pages."
+								/>
+								<MePreferenceToggle
+									id="sense-audio-feedback"
+									checked={profileAudioFeedback}
+									onChange={setProfileAudioFeedback}
+									title="Feedback"
+									description="Soft reel clack when you log, plus chimes for prestige badges and streak milestones."
+								/>
+							</div>
+						) : null}
+						{prefersReducedMotion ? (
+							<p className="text-pretty text-muted-foreground text-sm">
+								Reduced motion is on — audio cues stay muted until you turn it
+								off in system settings.
+							</p>
+						) : null}
+					</div>
 				</MeSettingsPanel>
 			</MeSettingsSection>
 		</SettingsSectionPage>

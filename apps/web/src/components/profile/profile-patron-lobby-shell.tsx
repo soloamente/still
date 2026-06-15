@@ -28,6 +28,8 @@ import type { ListBoardRow } from "@/lib/list-board-row";
 import type { ProfileBannerFrameId } from "@/lib/profile-appearance";
 import { profileInitials } from "@/lib/profile-lobby-derive";
 import { buildProfileLobbyHref } from "@/lib/profile-lobby-order";
+import type { ProfileShowcaseTile } from "@/lib/profile-showcase";
+import type { SavedQuoteLobbyItem } from "@/lib/quote-saved-types";
 import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
 
 export interface ProfilePatronLobbyShellProps {
@@ -65,6 +67,9 @@ export interface ProfilePatronLobbyShellProps {
 	monochromePeersOnHover: boolean;
 	tasteSignature?: TasteSignatureJson | null;
 	pinnedReviews?: ProfileReviewRow[];
+	showcaseItems?: ProfileShowcaseTile[];
+	savedQuotesPreview?: SavedQuoteLobbyItem[];
+	savedQuotesHasMore?: boolean;
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
 	curatorHeadline?: string | null;
@@ -104,6 +109,9 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		monochromePeersOnHover,
 		tasteSignature,
 		pinnedReviews = [],
+		showcaseItems = [],
+		savedQuotesPreview = [],
+		savedQuotesHasMore = false,
 		canCompareTaste,
 		initialTasteCompareOpen,
 		curatorHeadline,
@@ -202,6 +210,9 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 					tvCount={tvAllCount}
 					tasteSignature={tasteSignature}
 					pinnedReviews={pinnedReviews}
+					showcaseItems={showcaseItems}
+					savedQuotesPreview={savedQuotesPreview}
+					savedQuotesHasMore={savedQuotesHasMore}
 					canCompareTaste={canCompareTaste}
 					initialTasteCompareOpen={initialTasteCompareOpen}
 					avatarIsAnimated={avatarIsAnimated}

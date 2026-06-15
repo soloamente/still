@@ -98,7 +98,9 @@ export function useTvDetailUserState(
 			seasonNumber: scope?.seasonNumber,
 			episodeNumber: scope?.episodeNumber,
 			onSuccess: () => {
-				void play("reel-clack").catch(() => undefined);
+				void play("reel-clack", { category: "feedback" }).catch(
+					() => undefined,
+				);
 				void refreshUserState();
 			},
 		});
@@ -127,7 +129,9 @@ export function useTvDetailUserState(
 			episodeNumber: log.episodeNumber ?? undefined,
 			...(log.visibility ? { visibility: log.visibility } : {}),
 			onSuccess: () => {
-				void play("reel-clack").catch(() => undefined);
+				void play("reel-clack", { category: "feedback" }).catch(
+					() => undefined,
+				);
 				void refreshUserState();
 			},
 		});
@@ -184,7 +188,9 @@ export function useTvDetailUserState(
 					toast.error("Couldn't like this show yet");
 					return;
 				}
-				void play("reel-clack").catch(() => undefined);
+				void play("reel-clack", { category: "feedback" }).catch(
+					() => undefined,
+				);
 				toast.success("Marked as liked");
 				await refreshUserState();
 				return;

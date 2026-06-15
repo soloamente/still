@@ -1,22 +1,24 @@
 /**
  * Diary score on a **0.0–10.0** scale (one decimal in the log sheet UI).
  *
- * Stored in `log.rating` as integer **tenths** (0–100). Legacy rows with values
- * `1..10` are treated as whole scores on the same 0–10 scale (half-star era).
+ * Stored in `log.rating` as integer **tenths** (0–100): display = stored / 10
+ * (e.g. `87` → `8.7`, `8` → `0.8`, `100` → `10`).
+ *
+ * Migration **`0031_log_rating_tenths_backfill`** multiplies legacy whole rows
+ * `1..10` by 10 so old `8` (8.0) becomes `80` — do not read 1–10 as whole scores.
  */
 
 const TENTHS_MAX = 100;
 
-/** API / DB integer → display score (e.g. `72` → `7.2`, legacy `9` → `9`). */
+/** API / DB integer tenths → display score on 0–10. */
 export function logRatingToDisplay(
 	stored: number | null | undefined,
 ): number | null {
 	if (stored == null || !Number.isFinite(stored)) return null;
-	if (stored <= 10) return stored;
-	return Math.round(stored) / 10;
+	return stored / 10;
 }
 
-/** UI score → integer tenths for POST/PATCH (e.g. `7.2` → `72`). */
+/** UI score → integer tenths for POST/PATCH (e.g. `7.2` → `72`, `0.8` → `8`). */
 export function logRatingToStored(
 	display: number | null | undefined,
 ): number | null {
@@ -29,10 +31,8 @@ export function clampLogRatingDisplay(value: number): number {
 	return Math.min(10, Math.max(0, Math.round(value * 10) / 10));
 }
 
-export function formatLogRatingDisplay(value: number): string {
-	// Accept API tenths (e.g. `100`) or legacy whole scores before clamping for display.
-	const display = logRatingToDisplay(value);
-	if (display == null) return "0.0";
+/** Format a **0–10 display** score for UI copy (slider readout, labels). */
+export function formatLogRatingDisplay(display: number): string {
 	const clamped = clampLogRatingDisplay(display);
 	// Patron scale tops out at 10 — show a clean integer at the ceiling (not 10.0).
 	if (Math.round(clamped * 10) >= 100) return "10";
@@ -46,7 +46,7 @@ export function formatPatronScoreTickerLabel(display: number): string {
 	return clamped.toFixed(1);
 }
 
-/** Format API/DB `log.rating` / `review.rating` (tenths or legacy 1–10) for UI copy. */
+/** Format API/DB `log.rating` / `review.rating` (tenths 0–100) for UI copy. */
 export function formatStoredLogRatingDisplay(
 	stored: number | null | undefined,
 ): string | null {

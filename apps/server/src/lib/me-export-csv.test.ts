@@ -45,9 +45,13 @@ describe("rating conversions", () => {
 		expect(storedRatingToDisplayTen(72)).toBe(7.2);
 		expect(storedRatingToDisplayTen(100)).toBe(10);
 	});
-	test("legacy whole 1–10 passes through", () => {
-		expect(storedRatingToDisplayTen(7)).toBe(7);
-		expect(storedRatingToDisplayTen(10)).toBe(10);
+	test("sub-unit tenths normalize to 0–10 display", () => {
+		expect(storedRatingToDisplayTen(8)).toBe(0.8);
+		expect(storedRatingToDisplayTen(10)).toBe(1);
+	});
+	test("migrated legacy whole scores use tenths band", () => {
+		expect(storedRatingToDisplayTen(70)).toBe(7);
+		expect(storedRatingToDisplayTen(100)).toBe(10);
 	});
 	test("display 0–10 maps to Letterboxd half-stars", () => {
 		expect(displayTenToLetterboxdStars(7.2)).toBe(3.5);

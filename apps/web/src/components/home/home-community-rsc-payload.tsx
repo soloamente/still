@@ -2,11 +2,13 @@ import type { ReactNode } from "react";
 
 import { HomeCommunityPatronProviders } from "@/components/home/home-community-patron-shell";
 import { authServer } from "@/lib/auth-server";
+import { fetchMembersLeaderboardServer } from "@/lib/fetch-members-leaderboard-server";
 import { fetchHomeCommunityFeedSeed } from "@/lib/home-community-core-fetch";
 import type {
 	HomeCommunityFeed,
 	HomeCommunityRankKind,
 } from "@/lib/home-community-feed";
+import { isMembersRankKind } from "@/lib/home-community-feed";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import { serverApi } from "@/lib/server-api";
 
@@ -26,7 +28,16 @@ export async function HomeCommunityRscPayload({
 }) {
 	const api = await serverApi();
 	const session = await authServer();
-	const seed = await fetchHomeCommunityFeedSeed({ api, session, feed, period });
+	const [seed, membersLeaderboard] = await Promise.all([
+		fetchHomeCommunityFeedSeed({ api, session, feed, period }),
+		feed === "ranks" && isMembersRankKind(rankKind)
+			? fetchMembersLeaderboardServer({
+					sort: rankKind,
+					period,
+					tz: "UTC",
+				})
+			: Promise.resolve(null),
+	]);
 
 	return (
 		<HomeCommunityPatronProviders
@@ -34,6 +45,7 @@ export async function HomeCommunityRscPayload({
 			feed={feed}
 			period={period}
 			rankKind={rankKind}
+			membersLeaderboard={membersLeaderboard}
 			signedIn={Boolean(session?.user)}
 		>
 			{children}

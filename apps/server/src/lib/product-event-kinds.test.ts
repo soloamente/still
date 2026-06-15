@@ -1,23 +1,24 @@
 import { describe, expect, test } from "bun:test";
+import { isProductEventKind, PRODUCT_EVENT_KINDS } from "./product-event-kinds";
 
-import {
-	isClientProductEventKind,
-	isProductEventKind,
-} from "./product-event-kinds";
-
-describe("product-event-kinds", () => {
-	test("accepts server funnel kinds", () => {
-		expect(isProductEventKind("log.first_created")).toBe(true);
-		expect(isProductEventKind("import.letterboxd.completed")).toBe(true);
-		expect(isProductEventKind("import.anilist.completed")).toBe(true);
-	});
-
-	test("rejects unknown kinds", () => {
-		expect(isProductEventKind("log.created")).toBe(false);
-	});
-
-	test("client subset is narrower", () => {
-		expect(isClientProductEventKind("taste_card.shared")).toBe(true);
-		expect(isClientProductEventKind("log.first_created")).toBe(false);
+describe("letterboxd pillar kinds", () => {
+	test("includes showcase and wrapped kinds", () => {
+		for (const kind of [
+			"showcase.edited",
+			"post_log.celebrate",
+			"viral_review.tapped",
+			"journal.read",
+			"wrapped.viewed",
+			"wrapped.shared",
+			"members.followed",
+			"streaming_alert.sent",
+			"quote.upvote",
+			"quote.save",
+			"quote.unsave",
+			"quote.submit",
+		]) {
+			expect(PRODUCT_EVENT_KINDS).toContain(kind);
+			expect(isProductEventKind(kind)).toBe(true);
+		}
 	});
 });

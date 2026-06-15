@@ -17,6 +17,7 @@ export default function robots(): MetadataRoute.Robots {
 			allow: [
 				"/",
 				"/l/",
+				"/journal/",
 				"/og/",
 				"/movies/",
 				"/tv/",

@@ -11,6 +11,11 @@ describe("isShareableAppPath", () => {
 		expect(isShareableAppPath("/people/287")).toBe(true);
 	});
 
+	test("allows journal index and articles for crawlers", () => {
+		expect(isShareableAppPath("/journal")).toBe(true);
+		expect(isShareableAppPath("/journal/why-taste-maps-matter")).toBe(true);
+	});
+
 	test("blocks authenticated-only app routes", () => {
 		expect(isShareableAppPath("/home")).toBe(false);
 		expect(isShareableAppPath("/diary")).toBe(false);

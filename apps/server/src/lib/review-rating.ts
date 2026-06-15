@@ -1,7 +1,6 @@
-/** Matches web `logRatingToDisplay` — tenths or legacy 1–10 whole. */
+/** Matches web `logRatingToDisplay` — stored tenths 0–100, display = stored / 10. */
 export function reviewRatingToDisplay(stored: number): number {
-	if (stored > 10) return stored / 10;
-	return stored;
+	return stored / 10;
 }
 
 export function isValidReviewRatingStored(stored: number): boolean {
@@ -10,5 +9,5 @@ export function isValidReviewRatingStored(stored: number): boolean {
 
 /** SQL expression: average review rating on 0–10 display scale. */
 export function reviewRatingDisplayAvgSql(column: string): string {
-	return `avg(CASE WHEN ${column} > 10 THEN ${column}::float / 10 ELSE ${column} END)`;
+	return `avg(${column}::float / 10)`;
 }

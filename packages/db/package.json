@@ -1,32 +1,33 @@
 {
-  "name": "@still/db",
-  "type": "module",
-  "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
-  },
-  "scripts": {
-    "db:push": "drizzle-kit push",
-    "db:generate": "drizzle-kit generate",
-    "db:studio": "drizzle-kit studio",
-    "db:migrate": "bun run ./src/migrate.ts",
-    "db:baseline": "bun run ./src/baseline-migrations.ts"
-  },
-  "dependencies": {
-    "@neondatabase/serverless": "^1.0.2",
-    "@still/env": "workspace:*",
-    "dotenv": "catalog:",
-    "drizzle-orm": "^0.45.1",
-    "pg": "^8.20.0",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
-    "@still/config": "workspace:*",
-    "drizzle-kit": "^0.31.8",
-    "typescript": "^6"
-  }
+	"name": "@still/db",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {
+		"db:push": "drizzle-kit push",
+		"db:generate": "drizzle-kit generate",
+		"db:studio": "drizzle-kit studio",
+		"db:migrate": "bun run ./src/migrate.ts",
+		"db:seed-journal": "bun run ./src/seed-journal-posts.ts",
+		"db:baseline": "bun run ./src/baseline-migrations.ts"
+	},
+	"dependencies": {
+		"@neondatabase/serverless": "^1.0.2",
+		"@still/env": "workspace:*",
+		"dotenv": "catalog:",
+		"drizzle-orm": "^0.45.1",
+		"pg": "^8.20.0",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@still/config": "workspace:*",
+		"drizzle-kit": "^0.31.8",
+		"typescript": "^6"
+	}
 }

@@ -1,10 +1,10 @@
 import { cn } from "@still/ui/lib/utils";
-import type { ReactNode } from "react";
 
 import { CreditsCrawl } from "@/components/cinema/credits-crawl";
 import { CreditsFooter } from "@/components/cinema/credits-footer";
 import { MovieCastCrewArc } from "@/components/movie/movie-cast-crew-arc";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
+import { MovieDetailRelatedCatalogue } from "@/components/movie/movie-detail-explore-tabs";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailStillsSection } from "@/components/movie/movie-detail-stills-carousel";
 import { MoviePremieresFestivals } from "@/components/movie/movie-premieres-festivals";
@@ -19,11 +19,12 @@ import {
 import type {
 	buildCrewRows,
 	CreditsCrawlLineSeed,
+	TmdbMovieSummary,
 } from "@/lib/movie-detail-tmdb";
 import type { FestivalRecognitionEntry } from "@/lib/movie-festival-recognition";
 import type { TvMalEnrichment } from "@/lib/tv-mal-enrichment";
 
-/** TV About tab body — cast/progress/credits; community streams via `TvDetailCommunityAsync`. */
+/** TV About tab — cast, progress, awards, stills, credits (community is its own tab). */
 export function TvDetailAboutPanel({
 	tvId,
 	title,
@@ -37,9 +38,9 @@ export function TvDetailAboutPanel({
 	crewCrawlLines,
 	recognitionEntries,
 	recognitionPresent,
-	community,
 	malEnrichment,
 	screenshots = [],
+	moreLikeThis,
 }: {
 	tvId: number;
 	title: string;
@@ -58,10 +59,9 @@ export function TvDetailAboutPanel({
 	crewCrawlLines: CreditsCrawlLineSeed[];
 	recognitionEntries: FestivalRecognitionEntry[];
 	recognitionPresent: boolean;
-	/** Community lists + followed ratings (Suspense boundary from the TV page). */
-	community: ReactNode;
 	malEnrichment?: TvMalEnrichment | null;
 	screenshots?: MovieDetailHeroSlide[];
+	moreLikeThis: TmdbMovieSummary[];
 }) {
 	return (
 		<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
@@ -100,7 +100,7 @@ export function TvDetailAboutPanel({
 
 			<MovieDetailStillsSection screenshots={screenshots} title={title} />
 
-			{community}
+			<MovieDetailRelatedCatalogue movies={moreLikeThis} listingKind="tv" />
 
 			{crewCrawlLines.length ? (
 				<MovieDetailBodySection

@@ -9,7 +9,7 @@ import { WatchlistPatronLobbyShell } from "@/components/watchlist/watchlist-patr
 import { authServer } from "@/lib/auth-server";
 import type { MeProfile } from "@/lib/fetch-me-profile";
 import { fetchMyWatchlistServer } from "@/lib/fetch-my-watchlist-server";
-import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
+import { buildPatronNavUserOrNull } from "@/lib/patron-nav-user";
 import {
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbWatchRegionPref,
@@ -35,22 +35,7 @@ const loadWatchlistChromeContext = cache(async () => {
 	const profileData = profileRes.data as Exclude<MeProfile, null> | null;
 
 	const mePrefs = profileData?.preferences ?? null;
-	const stickyUser =
-		session && profileData?.handle
-			? {
-					id: session.user.id,
-					name: session.user.name ?? profileData.displayName ?? "You",
-					image: session.user.image ?? null,
-					handle: profileData.handle,
-					email: session.user.email ?? null,
-					isPro: Boolean(profileData.isPro),
-					avatarIsAnimated: resolvePatronAvatarIsAnimated(
-						session.user.image ?? null,
-						profileData.preferences ?? null,
-					),
-					diaryMetalTier: profileData.diaryMetalTier ?? null,
-				}
-			: null;
+	const stickyUser = buildPatronNavUserOrNull(session, profileData);
 
 	return {
 		signedIn: Boolean(session),

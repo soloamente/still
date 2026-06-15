@@ -25,13 +25,18 @@ export type MeAccountSettingsDraftPayload = {
 	location: string;
 	website: string;
 	isPrivate: boolean;
-	theaterAudio: boolean;
+	/** Legacy draft field — mirrored from senseAudioEnabled for older session drafts. */
+	theaterAudio?: boolean;
+	senseAudioEnabled?: boolean;
+	senseAudioAtmosphere?: boolean;
+	senseAudioFeedback?: boolean;
 	smoothScroll: boolean;
 	castCrewMonochromeOnHover: boolean;
 	profilePortraitGrayscaleUntilHover: boolean;
 	catalogMonochromePeersOnHover: boolean;
 	catalogTmdbWatchRegion: string;
 	catalogTmdbLanguage: string;
+	watchlistStreamingAlerts?: boolean;
 	showAdultContent?: boolean;
 	birthDate?: string;
 	showBirthDateOnProfile?: boolean;

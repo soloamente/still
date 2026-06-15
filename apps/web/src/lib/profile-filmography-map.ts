@@ -5,6 +5,8 @@ import type { PersonFilmographyRow } from "@/lib/person-filmography";
 /** TMDb still path → absolute URL for profile tiles and catalogue grids. */
 export function profilePosterUrlFromPath(path: string | null): string | null {
 	if (!path?.length) return null;
+	// Some legacy rows store a full CDN URL instead of a `/path.jpg` fragment.
+	if (path.startsWith("http")) return path;
 	const fragment = path.startsWith("/") ? path : `/${path}`;
 	return `https://image.tmdb.org/t/p/w780${fragment}`;
 }

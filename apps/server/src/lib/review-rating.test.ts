@@ -8,8 +8,17 @@ describe("reviewRatingToDisplay", () => {
 	test("tenths", () => {
 		expect(reviewRatingToDisplay(87)).toBe(8.7);
 	});
-	test("legacy whole", () => {
-		expect(reviewRatingToDisplay(9)).toBe(9);
+
+	test("sub-unit", () => {
+		expect(reviewRatingToDisplay(8)).toBe(0.8);
+	});
+
+	test("migrated legacy whole 9", () => {
+		expect(reviewRatingToDisplay(90)).toBe(9);
+	});
+
+	test("max", () => {
+		expect(reviewRatingToDisplay(100)).toBe(10);
 	});
 });
 

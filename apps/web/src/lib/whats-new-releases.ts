@@ -23,33 +23,18 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-11-taste-mobile",
+	id: "2026-06-15-list-discovery-polish",
 	fullReleaseHref: "/changelog",
 	slides: [
 		{
-			title: "What's new in Sense",
+			title: "Popular lists on Community",
 			description:
-				"For you suggestions follow your ratings more closely, and film detail, home, and profile feel sharper on your phone.",
+				"The Lists tab shows how many public lists are trending in your period — ranked by likes, with curator spotlights below.",
 		},
 		{
-			title: "Picks tuned to your taste",
+			title: "List share copy",
 			description:
-				"The Movies For you rail weighs what you scored highly, spreads across genres and eras, and learns when you tap Not interested.",
-		},
-		{
-			title: "From patrons like you",
-			description:
-				"Titles highly rated by people you follow — or patrons with overlapping taste — can surface when you have not logged them yet.",
-		},
-		{
-			title: "Film detail on mobile",
-			description:
-				"Back and Share stay icon-only in the header, reviews and stills load centered with lighter edge fades, and Cast & Crew shows fewer, larger portraits.",
-		},
-		{
-			title: "Browse & profile polish",
-			description:
-				"Home sort and venue filters fit on one row, the bottom tab bar is compact, and long profile names truncate cleanly in the sticky header.",
+				"Copying a list link now confirms with the list title — so you know exactly what you shared.",
 		},
 	],
 };

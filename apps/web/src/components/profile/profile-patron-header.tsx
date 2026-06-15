@@ -7,6 +7,8 @@ import { openProfileFollows } from "@/components/profile/profile-follows-drawer"
 import { ProfilePatronActions } from "@/components/profile/profile-patron-actions";
 import { ProfilePinnedReviewsStrip } from "@/components/profile/profile-pinned-reviews-strip";
 import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
+import { ProfileSavedQuotesStrip } from "@/components/profile/profile-saved-quotes-strip";
+import { ProfileShowcaseStrip } from "@/components/profile/profile-showcase-strip";
 import { ProfileStatCell } from "@/components/profile/profile-stat-cell";
 import { ProfileStreakStatCell } from "@/components/profile/profile-streak-stat-cell";
 import { ProfileTasteSignature } from "@/components/profile/profile-taste-signature";
@@ -17,6 +19,8 @@ import {
 } from "@/lib/profile-appearance";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
 import { profileMediaCacheKey } from "@/lib/profile-media-cache-key";
+import type { ProfileShowcaseTile } from "@/lib/profile-showcase";
+import type { SavedQuoteLobbyItem } from "@/lib/quote-saved-types";
 import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
 
 /** Horizontal gutters for lobby body content on `bg-card` (matches profile page `p-6 sm:p-8`). */
@@ -43,6 +47,9 @@ type ProfilePatronHeaderProps = {
 	tvCount: number;
 	tasteSignature?: TasteSignatureJson | null;
 	pinnedReviews?: ProfileReviewRow[];
+	showcaseItems?: ProfileShowcaseTile[];
+	savedQuotesPreview?: SavedQuoteLobbyItem[];
+	savedQuotesHasMore?: boolean;
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
 	avatarIsAnimated?: boolean;
@@ -74,6 +81,9 @@ export function ProfilePatronHeader({
 	tvCount,
 	tasteSignature,
 	pinnedReviews = [],
+	showcaseItems = [],
+	savedQuotesPreview = [],
+	savedQuotesHasMore = false,
 	canCompareTaste,
 	initialTasteCompareOpen,
 	avatarIsAnimated,
@@ -99,6 +109,7 @@ export function ProfilePatronHeader({
 				{bannerSrc ? (
 					bannerIsAnimated ? (
 						// Animated GIF/WebP must use native <img> so frames play.
+						// biome-ignore lint/performance/noImgElement: Next Image does not animate GIF/WebP frames
 						<img
 							src={bannerSrc}
 							alt=""
@@ -172,6 +183,21 @@ export function ProfilePatronHeader({
 					tasteSignature={tasteSignature ?? null}
 					perspective={isMe ? "self" : "visitor"}
 					className="mt-4"
+				/>
+
+				<ProfileShowcaseStrip
+					handle={handle}
+					isMe={isMe}
+					items={showcaseItems}
+					className="mt-4"
+				/>
+
+				<ProfileSavedQuotesStrip
+					items={savedQuotesPreview}
+					isMe={isMe}
+					showViewAll={
+						isMe && (savedQuotesHasMore || savedQuotesPreview.length > 0)
+					}
 				/>
 
 				{/* Stats row — equal metric cells (films · shows · followers · following · streak) */}

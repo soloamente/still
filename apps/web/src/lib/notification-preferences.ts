@@ -11,7 +11,8 @@ export type NotificationKind =
 	| "challenge.completed"
 	| "review.liked"
 	| "chat.message"
-	| "tv.new_episode";
+	| "tv.new_episode"
+	| "watchlist_now_streaming";
 
 /** Mirrors server registry for Settings labels (keep ids in sync with `notification-delivery.ts`). */
 export const NOTIFICATION_KIND_SETTINGS: ReadonlyArray<{
@@ -78,6 +79,12 @@ export const NOTIFICATION_KIND_SETTINGS: ReadonlyArray<{
 		id: "tv.new_episode",
 		label: "New TV episodes",
 		description: "When a show you track airs a new episode.",
+		defaultEnabled: true,
+	},
+	{
+		id: "watchlist_now_streaming",
+		label: "Watchlist streaming",
+		description: "When a watchlisted title starts streaming in your region.",
 		defaultEnabled: true,
 	},
 ];

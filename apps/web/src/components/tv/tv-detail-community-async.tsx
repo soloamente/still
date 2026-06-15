@@ -1,6 +1,6 @@
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
 import type { MovieDetailFollowingRating } from "@/components/movie/movie-detail-following-ratings";
-import type { TmdbMovieSummary } from "@/lib/movie-detail-tmdb";
+import { MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME } from "@/lib/movie-detail-sections";
 import { serverApi } from "@/lib/server-api";
 
 type TvListRow = {
@@ -23,12 +23,10 @@ export async function TvDetailCommunityAsync({
 	tvId,
 	tvTitle,
 	tvPosterUrl: _tvPosterUrl,
-	moreLikeThis,
 }: {
 	tvId: string;
 	tvTitle: string;
 	tvPosterUrl: string | null;
-	moreLikeThis: TmdbMovieSummary[];
 }) {
 	const api = await serverApi();
 
@@ -51,17 +49,20 @@ export async function TvDetailCommunityAsync({
 		};
 
 	return (
-		<MovieDetailExploreTabs
-			layout="stacked"
-			lists={tvLists}
-			followingRatings={followingRatingsPayload.entries}
-			followingRatingsMoreCount={followingRatingsPayload.moreCount}
-			reviews={[]}
-			moreLikeThis={moreLikeThis}
-			relatedListingKind="tv"
-			listCountLabel="titles"
-			movieTitle={tvTitle}
-			listingTmdbId={Number(tvId)}
-		/>
+		<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
+			<MovieDetailExploreTabs
+				layout="stacked"
+				showRelated={false}
+				lists={tvLists}
+				followingRatings={followingRatingsPayload.entries}
+				followingRatingsMoreCount={followingRatingsPayload.moreCount}
+				reviews={[]}
+				moreLikeThis={[]}
+				relatedListingKind="tv"
+				listCountLabel="titles"
+				movieTitle={tvTitle}
+				listingTmdbId={Number(tvId)}
+			/>
+		</div>
 	);
 }

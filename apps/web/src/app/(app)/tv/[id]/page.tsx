@@ -5,6 +5,7 @@ import { AdultContentBlockedState } from "@/components/detail/adult-content-bloc
 import { ListingDetailHeroSynopsis } from "@/components/detail/listing-detail-hero-synopsis";
 import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
+import { MovieDetailQuotesPanel } from "@/components/movie/movie-detail-quotes-panel";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { TvDetailAboutPanel } from "@/components/tv/tv-detail-about-panel";
@@ -13,6 +14,7 @@ import { TvDetailCommunityAsync } from "@/components/tv/tv-detail-community-asyn
 import { TvDetailCommunityFallback } from "@/components/tv/tv-detail-community-fallback";
 import { TvDetailPrimaryActions } from "@/components/tv/tv-detail-primary-actions";
 import { accentFromGenres } from "@/lib/cinema-accents";
+import { requireListingDetailApiData } from "@/lib/eden-api-error";
 import { formatRuntime } from "@/lib/format";
 import { listingDetailHeroSynopsisBlurb } from "@/lib/listing-detail-hero-synopsis";
 import {
@@ -33,7 +35,7 @@ import {
 	tvDetailKeywordList,
 	tvNameRowsToMovieSummaries,
 } from "@/lib/movie-detail-tmdb";
-import { parseMovieDetailView } from "@/lib/movie-detail-view";
+import { parseMovieDetailViewFromSearchParams } from "@/lib/movie-detail-view";
 import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
 import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
 import {
@@ -112,6 +114,8 @@ type TmdbJsonShape = {
 type CommunityShape = {
 	averageRating: number | null;
 	ratingsCount: number;
+	watchesCount?: number | null;
+	watchlistCount?: number | null;
 };
 
 type TvDetail = {
@@ -179,19 +183,27 @@ export default async function TvShowPage({
 	searchParams,
 }: {
 	params: Promise<Params>;
-	searchParams: Promise<{ view?: string }>;
+	searchParams: Promise<{
+		view?: string;
+		tab?: string;
+		season?: string;
+		episode?: string;
+	}>;
 }) {
 	const { id } = await params;
 	const sp = await searchParams;
-	const view = parseMovieDetailView(sp.view);
+	const view = parseMovieDetailViewFromSearchParams(sp);
 	const numericId = Number(id);
 	if (!Number.isFinite(numericId)) notFound();
 
 	const api = await serverApi();
 	const res = await api.api.tv({ id }).get();
-	const data =
-		(res.data as (TvDetail & { adultBlocked?: boolean }) | null) ?? null;
-	if (!data) notFound();
+	const data = requireListingDetailApiData(
+		res as {
+			data: (TvDetail & { adultBlocked?: boolean }) | null;
+			error: unknown;
+		},
+	);
 	if (
 		(data as { code?: string }).code === "TMDB_UNCONFIGURED" &&
 		typeof (data as { hint?: string }).hint === "string"
@@ -289,6 +301,10 @@ export default async function TvShowPage({
 		0,
 		Math.floor(toFiniteNumber(data.community?.ratingsCount) ?? 0),
 	);
+	const communityWatchesCount =
+		toFiniteNumber(data.community?.watchesCount) ?? null;
+	const communityWatchlistCount =
+		toFiniteNumber(data.community?.watchlistCount) ?? null;
 
 	const hero = (
 		<div
@@ -327,6 +343,8 @@ export default async function TvShowPage({
 				variant="compact"
 				communityAverage={communityAverage}
 				communityRatingsCount={communityRatingsCount}
+				communityWatchesCount={communityWatchesCount}
+				communityWatchlistCount={communityWatchlistCount}
 			/>
 			<div className="mt-8 flex w-full justify-center">
 				<TvDetailPrimaryActions />
@@ -352,6 +370,7 @@ export default async function TvShowPage({
 					basePath={detailBasePath}
 					movieId={data.tmdbId}
 					title={data.title}
+					listingKind="tv"
 					sectionNavItems={sectionNavItems}
 					hero={hero}
 					watchProviders={watchProviders}
@@ -371,16 +390,24 @@ export default async function TvShowPage({
 							recognitionPresent={recognitionPresent}
 							malEnrichment={data.malEnrichment ?? null}
 							screenshots={data.screenshots ?? []}
-							community={
-								<Suspense fallback={<TvDetailCommunityFallback />}>
-									<TvDetailCommunityAsync
-										tvId={id}
-										tvTitle={data.title}
-										tvPosterUrl={data.poster_url}
-										moreLikeThis={moreLikeThis}
-									/>
-								</Suspense>
-							}
+							moreLikeThis={moreLikeThis}
+						/>
+					}
+					community={
+						<Suspense fallback={<TvDetailCommunityFallback />}>
+							<TvDetailCommunityAsync
+								tvId={id}
+								tvTitle={data.title}
+								tvPosterUrl={data.poster_url}
+							/>
+						</Suspense>
+					}
+					quotes={
+						<MovieDetailQuotesPanel
+							listingKind="tv"
+							listingId={id}
+							tmdbId={data.tmdbId}
+							basePath={detailBasePath}
 						/>
 					}
 				/>

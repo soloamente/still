@@ -67,7 +67,12 @@ describe("notification-delivery", () => {
 		const prefs = readNotificationPrefs({
 			notifications: { "not.a.kind": true },
 		});
-		const kinds: NotificationKind[] = ["follow.created", "badge.awarded"];
+		const kinds: NotificationKind[] = [
+			"follow.created",
+			"badge.awarded",
+			"quote.submission.approved",
+			"quote.submission.rejected",
+		];
 		for (const k of kinds) expect(typeof prefs[k]).toBe("boolean");
 	});
 });

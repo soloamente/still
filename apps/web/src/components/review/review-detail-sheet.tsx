@@ -20,6 +20,8 @@ import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { ReviewAddToShowcaseButton } from "@/components/review/review-add-to-showcase-button";
+import { ReviewVoiceAttachment } from "@/components/review/review-audio-player";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import { useReviewComposer } from "@/components/review/review-composer";
 import { ReviewDeleteConfirmDialog } from "@/components/review/review-delete-confirm-dialog";
@@ -36,6 +38,7 @@ import {
 	ReactionsBar,
 	type ReviewReactionSnapshot,
 } from "@/components/social/reactions-bar";
+import { StaffContentActions } from "@/components/staff/staff-content-actions";
 import { api } from "@/lib/api";
 import { APP_MEMBER_LABEL } from "@/lib/app-brand";
 import { authClient } from "@/lib/auth-client";
@@ -44,6 +47,7 @@ import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
+import { shouldShowReviewBody } from "@/lib/review-audio-fields";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 import { useViewerHasWatchedMovie } from "@/lib/use-viewer-has-watched-movie";
 
@@ -73,6 +77,8 @@ export type ReviewAuthorPreview = {
 /** Card / list preview fields — shown instantly while the sheet loads full detail. */
 export type ReviewPreview = {
 	id: string;
+	/** Author id — enables owner actions before full detail finishes loading. */
+	userId?: string;
 	title: string | null;
 	body: string;
 	rating: number | null;
@@ -80,6 +86,8 @@ export type ReviewPreview = {
 	commentsCount: number;
 	publishedAt: string;
 	containsSpoilers?: boolean;
+	audioUrl?: string | null;
+	audioDurationMs?: number | null;
 	author?: ReviewAuthorPreview | null;
 };
 
@@ -153,6 +161,8 @@ type ReviewDetailPayload = {
 		containsSpoilers: boolean;
 		publishedAt: string;
 		stillSlideKey?: string | null;
+		audioUrl?: string | null;
+		audioDurationMs?: number | null;
 		visibility?: "public" | "followers" | "friends" | "private";
 	};
 	movie: {
@@ -327,10 +337,11 @@ export function ReviewDetailRoot() {
 	}, [detail, openComposer, handleClose]);
 
 	const handleConfirmDelete = useCallback(async () => {
-		if (!detail?.review) return;
+		const reviewId = detail?.review?.id ?? args?.reviewId;
+		if (!reviewId) return;
 		setDeleting(true);
 		try {
-			await api.api.reviews({ id: detail.review.id }).delete();
+			await api.api.reviews({ id: reviewId }).delete();
 			toast.success("Review deleted");
 			setDeleteOpen(false);
 			handleClose();
@@ -341,7 +352,7 @@ export function ReviewDetailRoot() {
 		} finally {
 			setDeleting(false);
 		}
-	}, [detail, handleClose, router]);
+	}, [args?.reviewId, detail, handleClose, router]);
 
 	const handleSelectStill = useCallback(
 		async (slideKey: string) => {
@@ -403,6 +414,27 @@ export function ReviewDetailRoot() {
 			});
 		}
 	}, []);
+
+	const handleStaffSpoilerChanged = useCallback(
+		(nextContainsSpoilers: boolean) => {
+			setDetail((current) =>
+				current
+					? {
+							...current,
+							review: {
+								...current.review,
+								containsSpoilers: nextContainsSpoilers,
+							},
+						}
+					: current,
+			);
+			if (!nextContainsSpoilers) {
+				setSpoilerRevealed(false);
+			}
+			router.refresh();
+		},
+		[router],
+	);
 
 	useEffect(() => {
 		if (!args) {
@@ -466,13 +498,20 @@ export function ReviewDetailRoot() {
 		detail?.movie?.tmdbId ?? detail?.review?.movieId ?? args?.movieId ?? null;
 	const { hasWatched: hasWatchedMovie } =
 		useViewerHasWatchedMovie(movieIdForWatchCheck);
+	// Prefer loaded detail, then card/carousel preview — owner chrome must not wait on GET.
+	const reviewUserId = review?.userId ?? preview?.userId ?? null;
 	const isReviewOwner = Boolean(
-		session?.user?.id && review?.userId && session.user.id === review.userId,
+		session?.user?.id && reviewUserId && session.user.id === reviewUserId,
 	);
+	const viewerRole = session?.user?.role ?? "user";
+	const activeReviewId = review?.id ?? args?.reviewId ?? "";
 	const containsSpoilers =
 		review?.containsSpoilers ?? preview?.containsSpoilers ?? false;
 	const displayTitle = review?.title ?? preview?.title ?? null;
 	const displayBody = review?.body ?? preview?.body ?? "";
+	const displayAudioUrl = review?.audioUrl ?? preview?.audioUrl ?? null;
+	const displayAudioDurationMs =
+		review?.audioDurationMs ?? preview?.audioDurationMs ?? null;
 	const displayRating = review?.rating ?? preview?.rating ?? null;
 	const displayLikes = review?.likesCount ?? preview?.likesCount ?? 0;
 	const displayDislikes = review?.dislikesCount ?? 0;
@@ -490,10 +529,20 @@ export function ReviewDetailRoot() {
 	const displayAuthor = resolveReviewAuthor(detail, preview);
 	const movieScreenshots = detail?.screenshots ?? [];
 	const selectedStillKey = review?.stillSlideKey ?? null;
+	const showStillSection = Boolean(detail) && movieScreenshots.length > 0;
+	const showFilmContext =
+		showMovieContext &&
+		Boolean(posterUrl) &&
+		Boolean(movieTitleLine) &&
+		Boolean(detail?.movie?.tmdbId);
+	/** Poster + title sit above the still when both are shown (not below it). */
+	const showFilmContextAboveStill = showFilmContext && showStillSection;
+	const showStandaloneFilmContext = showFilmContext && !showStillSection;
 	const publishedAgoLabel = `${formatDistanceToNowStrict(new Date(displayPublishedAt))} ago`;
 	const hasDisplayRating =
 		displayRating != null &&
 		formatStoredLogRatingDisplay(displayRating) != null;
+	const showReviewBody = shouldShowReviewBody({ body: displayBody });
 
 	if (!args) return null;
 
@@ -550,22 +599,36 @@ export function ReviewDetailRoot() {
 	const handleTrailing = args ? (
 		<TooltipProvider>
 			<div className="flex shrink-0 items-center gap-1">
-				{isReviewOwner && review ? (
+				{isReviewOwner ? (
 					<>
-						<ReviewPinToProfileButton
-							reviewId={review.id}
-							reviewUserId={review.userId}
-							variant="icon"
-							iconButtonClassName={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
-						/>
+						{reviewUserId ? (
+							<ReviewPinToProfileButton
+								reviewId={activeReviewId}
+								reviewUserId={reviewUserId}
+								variant="icon"
+								iconButtonClassName={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
+							/>
+						) : null}
+						{reviewUserId ? (
+							<ReviewAddToShowcaseButton
+								reviewId={activeReviewId}
+								reviewUserId={reviewUserId}
+								iconButtonClassName={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
+							/>
+						) : null}
 						<DetailMotionButtonWrap>
-							<DetailIconTooltip label="Edit">
+							<DetailIconTooltip
+								label={
+									detail?.review && detail.movie ? "Edit" : "Loading review…"
+								}
+							>
 								<Button
 									type="button"
 									variant="ghost"
 									size="icon-pill"
 									className={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
 									aria-label="Edit review"
+									disabled={!detail?.review || !detail.movie}
 									onClick={handleEdit}
 								>
 									<IconPen2Fill
@@ -595,7 +658,22 @@ export function ReviewDetailRoot() {
 							</DetailIconTooltip>
 						</DetailMotionButtonWrap>
 					</>
-				) : null}
+				) : (
+					<StaffContentActions
+						variant="header"
+						type="review"
+						id={activeReviewId}
+						role={viewerRole}
+						containsSpoilers={detail?.review.containsSpoilers ?? false}
+						isRemoved={false}
+						onChanged={handleClose}
+						onSpoilerChanged={handleStaffSpoilerChanged}
+						headerIconButtonClassName={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
+						headerDeleteIconButtonClassName={
+							REVIEW_READER_HEADER_DELETE_ICON_BUTTON_CLASS
+						}
+					/>
+				)}
 				<ReactionsBar
 					appearance="header"
 					targetKind="review"
@@ -624,7 +702,38 @@ export function ReviewDetailRoot() {
 				<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
 					<DetailDrawerScrollBody scrollRef={scrollRef}>
 						<div className="mx-auto w-full max-w-xl pt-2 pb-10">
-							{detail && movieScreenshots.length > 0 ? (
+							{showFilmContextAboveStill && posterUrl ? (
+								<div className="mx-auto mb-3 flex justify-center">
+									<Link
+										href={`/movies/${detail?.movie?.tmdbId}`}
+										onClick={handleClose}
+										className="relative block aspect-[2/3] w-[7.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg transition-transform duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none"
+									>
+										<Image
+											src={posterUrl}
+											alt=""
+											fill
+											sizes="120px"
+											className="object-cover"
+											unoptimized
+										/>
+									</Link>
+								</div>
+							) : null}
+
+							{showFilmContextAboveStill && movieTitleLine ? (
+								<p className="mb-4 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+									<Link
+										href={`/movies/${detail?.movie?.tmdbId}`}
+										className="text-foreground/90 hover:text-desert-orange"
+										onClick={handleClose}
+									>
+										{movieTitleLine}
+									</Link>
+								</p>
+							) : null}
+
+							{showStillSection ? (
 								<ReviewReaderStillSection
 									slides={movieScreenshots}
 									selectedKey={selectedStillKey}
@@ -636,7 +745,7 @@ export function ReviewDetailRoot() {
 								<Skeleton className="mb-6 aspect-video w-full rounded-[1.5rem] bg-background" />
 							) : null}
 
-							{showMovieContext && posterUrl ? (
+							{showStandaloneFilmContext && posterUrl ? (
 								<div className="mx-auto mb-5 flex justify-center">
 									<Link
 										href={`/movies/${detail?.movie?.tmdbId}`}
@@ -655,7 +764,7 @@ export function ReviewDetailRoot() {
 								</div>
 							) : null}
 
-							{showMovieContext && movieTitleLine ? (
+							{showStandaloneFilmContext && movieTitleLine ? (
 								<p className="mb-5 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
 									<Link
 										href={`/movies/${detail?.movie?.tmdbId}`}
@@ -699,7 +808,9 @@ export function ReviewDetailRoot() {
 										{hasDisplayRating ? (
 											<div
 												className={
-													showMovieContext && posterUrl ? "mt-3" : "mt-6"
+													showStandaloneFilmContext && posterUrl
+														? "mt-3"
+														: "mt-6"
 												}
 											>
 												<ReviewEditorialPatronScore rating={displayRating} />
@@ -722,17 +833,26 @@ export function ReviewDetailRoot() {
 											</h2>
 										)}
 
-										<p
-											data-review-body=""
-											className={cn(
-												"w-full max-w-prose whitespace-pre-wrap px-2 py-1 text-center tracking-tight outline-none",
-												displayTitle
-													? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
-													: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
-											)}
-										>
-											<ReviewBodyWithMentions body={displayBody} />
-										</p>
+										<ReviewVoiceAttachment
+											audioUrl={displayAudioUrl}
+											audioDurationMs={displayAudioDurationMs}
+											className="mt-4"
+											stopPropagation
+										/>
+
+										{showReviewBody ? (
+											<p
+												data-review-body=""
+												className={cn(
+													"w-full max-w-prose whitespace-pre-wrap px-2 py-1 text-center tracking-tight outline-none",
+													displayTitle
+														? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
+														: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
+												)}
+											>
+												<ReviewBodyWithMentions body={displayBody} />
+											</p>
+										) : null}
 									</div>
 								</ReviewSpoilerGuard>
 								{loading && !detail ? (

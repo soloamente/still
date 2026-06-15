@@ -93,7 +93,9 @@ export function useMovieDetailUserState(
 			priorLiked: myLogs.some((row) => row.liked),
 			rewatch: isRewatch,
 			onSuccess: () => {
-				void play("reel-clack").catch(() => undefined);
+				void play("reel-clack", { category: "feedback" }).catch(
+					() => undefined,
+				);
 				void refreshUserState();
 			},
 		});
@@ -120,7 +122,9 @@ export function useMovieDetailUserState(
 			watchVenue,
 			...(log.visibility ? { visibility: log.visibility } : {}),
 			onSuccess: () => {
-				void play("reel-clack").catch(() => undefined);
+				void play("reel-clack", { category: "feedback" }).catch(
+					() => undefined,
+				);
 				void refreshUserState();
 			},
 		});
@@ -172,7 +176,9 @@ export function useMovieDetailUserState(
 					toast.error("Couldn't like this film yet");
 					return;
 				}
-				void play("reel-clack").catch(() => undefined);
+				void play("reel-clack", { category: "feedback" }).catch(
+					() => undefined,
+				);
 				toast.success("Marked as liked");
 				await refreshUserState();
 				return;

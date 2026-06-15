@@ -25,8 +25,16 @@ export function ogListPath(id: string): string {
 	return `/og/list/${encodeURIComponent(id)}`;
 }
 
+export function ogJournalPath(slug: string): string {
+	return `/og/journal/${encodeURIComponent(slug)}`;
+}
+
 export function ogComparePath(viewer: string, target: string): string {
 	return `/og/compare/${encodeURIComponent(viewer.toLowerCase())}/${encodeURIComponent(target.toLowerCase())}`;
+}
+
+export function ogYearInReviewPath(handle: string, year: number): string {
+	return `/og/year/${encodeURIComponent(handle.toLowerCase())}/${year}`;
 }
 
 /** Patron-facing share URL — HTML page with compare OG metadata (not the raw image route). */

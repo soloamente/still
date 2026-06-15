@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import {
 	clampLogRatingDisplay,
 	formatPatronScoreTickerLabel,
-	logRatingToDisplay,
 } from "@/lib/log-rating";
 
 /** Patron score spring — matches prior Motion+ ticker feel without motion-plus. */
@@ -23,13 +22,9 @@ const PATRON_SCORE_SPRING = {
 	bounce: 0.12,
 };
 
-function toPatronDisplayScore(storedOrAverage: number): number {
-	const display = logRatingToDisplay(storedOrAverage);
-	return clampLogRatingDisplay(display ?? storedOrAverage);
-}
-
 /**
  * Sense 0–10 patron score with a smooth numeric tween (community average, hero metrics).
+ * `value` is on the **display** scale (0–10), not stored log tenths.
  */
 export function StillAnimateRatingNumber({
 	value,
@@ -41,7 +36,7 @@ export function StillAnimateRatingNumber({
 	"aria-hidden"?: boolean;
 }) {
 	const reducedMotion = useReducedMotion();
-	const displayScore = toPatronDisplayScore(value);
+	const displayScore = clampLogRatingDisplay(value);
 	const motionScore = useMotionValue(displayScore);
 	const label = useTransform(motionScore, (current) =>
 		formatPatronScoreTickerLabel(clampLogRatingDisplay(current)),

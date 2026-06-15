@@ -4,13 +4,28 @@
  */
 export type HomeCommunityFeed = "lists" | "reviews" | "activity" | "ranks";
 
-/** Film vs TV diary logs when `sort=ranks` — `?rank=` on the URL. */
-export type HomeCommunityRankKind = "films" | "tv";
+/** Ranks slice when `sort=ranks` — film/show diary boards or patron review rank. */
+export type HomeCommunityRankKind = "films" | "tv" | "reviews";
+
+export type FilmTvRankKind = "films" | "tv";
 
 export const HOME_COMMUNITY_RANK_KINDS = [
-	{ id: "films", label: "Films" },
-	{ id: "tv", label: "TV" },
-] as const satisfies readonly { id: HomeCommunityRankKind; label: string }[];
+	{ id: "films", label: "Films", title: "Most film diary logs in this period" },
+	{
+		id: "tv",
+		label: "Shows",
+		title: "Most show diary logs in this period",
+	},
+	{
+		id: "reviews",
+		label: "Reviews",
+		title: "Most published reviews in this period",
+	},
+] as const satisfies readonly {
+	id: HomeCommunityRankKind;
+	label: string;
+	title: string;
+}[];
 
 export const DEFAULT_HOME_COMMUNITY_RANK_KIND: HomeCommunityRankKind = "films";
 
@@ -20,17 +35,29 @@ export function isHomeLeaderboardFeed(
 	return feed === "ranks";
 }
 
+export function isFilmTvRankKind(
+	kind: HomeCommunityRankKind,
+): kind is FilmTvRankKind {
+	return kind === "films" || kind === "tv";
+}
+
+export function isMembersRankKind(
+	kind: HomeCommunityRankKind,
+): kind is "reviews" {
+	return kind === "reviews";
+}
+
 export function homeCommunityRankKindLabel(
 	kind: HomeCommunityRankKind,
 ): string {
-	return kind === "tv" ? "TV" : "Films";
+	return (
+		HOME_COMMUNITY_RANK_KINDS.find((chip) => chip.id === kind)?.label ?? "Films"
+	);
 }
 
 export const HOME_COMMUNITY_FEEDS: readonly {
 	id: HomeCommunityFeed;
-	/** Short chip label */
 	label: string;
-	/** Tooltip + screen-reader context */
 	hint: string;
 }[] = [
 	{
@@ -51,20 +78,12 @@ export const HOME_COMMUNITY_FEEDS: readonly {
 	{
 		id: "ranks",
 		label: "Ranks",
-		hint: "Patrons ranked by diary logs in this period — switch Films or TV on the right",
+		hint: "Patron leaderboards — Films, Shows, or Reviews",
 	},
 ];
 
-/** Default community tab — matches omitted `sort` in {@link buildHomeLobbyHref}. */
 export const DEFAULT_HOME_COMMUNITY_FEED: HomeCommunityFeed = "lists";
 
-/**
- * Reads `?sort=` for the community lobby. TMDb values (`latest`, `popular`) normalize
- * to {@link DEFAULT_HOME_COMMUNITY_FEED} when users switch from Movies/TV.
- *
- * Legacy `film-ranks` / `tv-ranks` normalize to `ranks` — pair with
- * {@link parseHomeCommunityRankKind} for the film/TV slice.
- */
 export function parseHomeCommunityFeed(
 	raw: string | undefined | null,
 ): HomeCommunityFeed {
@@ -78,8 +97,9 @@ export function parseHomeCommunityFeed(
 		s === "diaries" ||
 		s === "logs" ||
 		s === "log"
-	)
+	) {
 		return "activity";
+	}
 	if (
 		s === "ranks" ||
 		s === "rank" ||
@@ -87,7 +107,9 @@ export function parseHomeCommunityFeed(
 		s === "film-rank" ||
 		s === "films" ||
 		s === "tv-ranks" ||
-		s === "tv-rank"
+		s === "tv-rank" ||
+		s === "members" ||
+		s === "member"
 	) {
 		return "ranks";
 	}
@@ -95,19 +117,42 @@ export function parseHomeCommunityFeed(
 }
 
 /**
- * Reads `?rank=` when `sort=ranks`. Legacy `?sort=film-ranks|tv-ranks` still imply kind.
+ * Reads `?rank=` when `sort=ranks`. Legacy `?sort=film-ranks|tv-ranks|members` and
+ * `?memberSort=` still resolve to a rank slice.
  */
 export function parseHomeCommunityRankKind(
 	rankParam: string | undefined | null,
 	sortParam: string | undefined | null,
+	memberSortParam?: string | undefined | null,
 ): HomeCommunityRankKind {
 	const sort = sortParam?.trim().toLowerCase() ?? "";
+	if (sort === "members" || sort === "member") {
+		return parseMembersRankKindFromParam(memberSortParam);
+	}
 	if (sort === "tv-ranks" || sort === "tv-rank") return "tv";
 	if (sort === "film-ranks" || sort === "film-rank" || sort === "films") {
 		return "films";
 	}
 
+	if (!rankParam?.trim() && memberSortParam?.trim()) {
+		return parseMembersRankKindFromParam(memberSortParam);
+	}
+
 	const rank = rankParam?.trim().toLowerCase() ?? "";
 	if (rank === "tv" || rank === "shows" || rank === "tv-shows") return "tv";
+	if (rank === "films" || rank === "film" || rank === "movies") return "films";
+	if (rank === "popular") return "reviews";
+	if (rank === "lists" || rank === "list") return "reviews";
+	if (rank === "likes" || rank === "like") return "reviews";
+	if (rank === "reviews" || rank === "review") return "reviews";
 	return DEFAULT_HOME_COMMUNITY_RANK_KIND;
+}
+
+function parseMembersRankKindFromParam(
+	raw: string | undefined | null,
+): HomeCommunityRankKind {
+	const s = raw?.trim().toLowerCase() ?? "";
+	if (s === "reviews" || s === "review") return "reviews";
+	// Retired patron rank slices — fold into Reviews for now.
+	return "reviews";
 }

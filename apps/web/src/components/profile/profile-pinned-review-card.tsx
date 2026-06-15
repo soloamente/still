@@ -3,7 +3,7 @@
 import { cn } from "@still/ui/lib/utils";
 import { Film, Heart, MessageCircle, Tv } from "lucide-react";
 import Image from "next/image";
-
+import { ReviewVoiceAttachment } from "@/components/review/review-audio-player";
 import type { ReviewCardListing } from "@/components/review/review-card";
 import {
 	type ReviewPreview,
@@ -13,8 +13,10 @@ import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { isListCoverProxySrc } from "@/lib/list-cover-image";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
+import { shouldShowReviewBody } from "@/lib/review-audio-fields";
 
 type ProfilePinnedReview = ReviewPreview & {
+	userId?: string;
 	listing?: ReviewCardListing;
 };
 
@@ -67,6 +69,7 @@ export function ProfilePinnedReviewCard({
 }) {
 	const openReviewDetail = useReviewDetail((s) => s.open);
 	const listing = review.listing;
+	const showReviewBody = shouldShowReviewBody(review);
 
 	return (
 		<button
@@ -83,12 +86,15 @@ export function ProfilePinnedReviewCard({
 					reviewId: review.id,
 					preview: {
 						id: review.id,
+						userId: review.userId,
 						title: review.title,
 						body: review.body,
 						rating: review.rating,
 						likesCount: review.likesCount,
 						commentsCount: review.commentsCount,
 						publishedAt: review.publishedAt,
+						audioUrl: review.audioUrl,
+						audioDurationMs: review.audioDurationMs,
 					},
 				})
 			}
@@ -120,9 +126,18 @@ export function ProfilePinnedReviewCard({
 					</h3>
 				) : null}
 
-				<p className="line-clamp-2 text-pretty font-editorial text-[11px] text-foreground/75 leading-relaxed">
-					{review.body}
-				</p>
+				<ReviewVoiceAttachment
+					audioUrl={review.audioUrl}
+					audioDurationMs={review.audioDurationMs}
+					className="mt-2"
+					stopPropagation
+				/>
+
+				{showReviewBody ? (
+					<p className="line-clamp-2 text-pretty font-editorial text-[11px] text-foreground/75 leading-relaxed">
+						{review.body}
+					</p>
+				) : null}
 
 				<footer className="mt-auto flex items-center gap-2 text-[10px] text-muted-foreground tabular-nums">
 					<span className="inline-flex items-center gap-1">

@@ -19,6 +19,36 @@ import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 
 type Kind = "review" | "list" | "post";
 
+function ReviewLikeIconSwap({ liked }: { liked: boolean }) {
+	return (
+		<span className="t-icon-swap" data-state={liked ? "b" : "a"} aria-hidden>
+			<span className="t-icon" data-icon="a">
+				<IconHeart size="20px" className="shrink-0 opacity-90" aria-hidden />
+			</span>
+			<span className="t-icon" data-icon="b">
+				<IconHeartFilled
+					size="20px"
+					className="shrink-0 opacity-90"
+					aria-hidden
+				/>
+			</span>
+		</span>
+	);
+}
+
+function ReviewLikeIconSwapCompact({ liked }: { liked: boolean }) {
+	return (
+		<span className="t-icon-swap" data-state={liked ? "b" : "a"} aria-hidden>
+			<span className="t-icon" data-icon="a">
+				<IconHeart className="size-5" aria-hidden />
+			</span>
+			<span className="t-icon" data-icon="b">
+				<IconHeartFilled className="size-5" aria-hidden />
+			</span>
+		</span>
+	);
+}
+
 export type ReviewReactionSnapshot = {
 	liked: boolean;
 	likes: number;
@@ -212,19 +242,7 @@ export function ReactionsBar({
 							aria-label={`${likeLabel}. ${likesLabel}.`}
 							onClick={() => void toggleLike()}
 						>
-							{liked ? (
-								<IconHeartFilled
-									size="20px"
-									className="shrink-0 opacity-90"
-									aria-hidden
-								/>
-							) : (
-								<IconHeart
-									size="20px"
-									className="shrink-0 opacity-90"
-									aria-hidden
-								/>
-							)}
+							<ReviewLikeIconSwap liked={liked} />
 							<span className="font-medium text-sm tabular-nums">{likes}</span>
 						</Button>
 					</DetailIconTooltip>
@@ -280,11 +298,7 @@ export function ReactionsBar({
 					aria-label={likeLabel}
 					onClick={() => void toggleLike()}
 				>
-					{liked ? (
-						<IconHeartFilled className="size-5" aria-hidden />
-					) : (
-						<IconHeart className="size-5" aria-hidden />
-					)}
+					<ReviewLikeIconSwapCompact liked={liked} />
 				</DetailMotionButton>
 				<p className="text-muted-foreground text-xs tabular-nums">
 					{likes} {likes === 1 ? "like" : "likes"}
@@ -300,13 +314,17 @@ export function ReactionsBar({
 			disabled={likeBusy}
 			className="inline-flex items-center gap-1 text-sm transition-colors hover:text-desert-orange"
 		>
-			<Heart
-				className={
-					liked
-						? "size-3.5 fill-desert-orange text-desert-orange"
-						: "size-3.5 text-current"
-				}
-			/>
+			<span className="t-icon-swap" data-state={liked ? "b" : "a"} aria-hidden>
+				<span className="t-icon" data-icon="a">
+					<Heart className="size-3.5 text-current" aria-hidden />
+				</span>
+				<span className="t-icon" data-icon="b">
+					<Heart
+						className="size-3.5 fill-desert-orange text-desert-orange"
+						aria-hidden
+					/>
+				</span>
+			</span>
 			{likes}
 		</button>
 	);

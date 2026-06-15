@@ -69,7 +69,7 @@ export function HomeCommunityLeaderboard({
 					title={
 						kind === "films"
 							? "No film logs this period"
-							: "No TV logs this period"
+							: "No show logs this period"
 					}
 					description="When patrons log watches in this window, rankings show up here."
 					primaryHref="/home?browse=movies"

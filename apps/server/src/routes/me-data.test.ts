@@ -4,6 +4,7 @@ import { unzipSync } from "fflate";
 const state = {
 	clearCalls: [] as string[],
 	exportCalls: [] as string[],
+	yearCalls: [] as { userId: string; year: number }[],
 };
 
 mock.module("../lib/me-export-data", () => ({
@@ -45,6 +46,33 @@ mock.module("../lib/clear-user-library", () => ({
 	},
 }));
 
+mock.module("../lib/year-in-review", () => ({
+	YEAR_IN_REVIEW_MIN_LOGS: 5,
+	parseYearInReviewYear: (raw: string) => {
+		const year = Number.parseInt(raw, 10);
+		if (!Number.isInteger(year) || year < 1900 || year > 2100) return null;
+		return year;
+	},
+	fetchYearInReviewForUser: async (userId: string, year: number) => {
+		state.yearCalls.push({ userId, year });
+		return {
+			year,
+			eligible: true,
+			totalLogs: 12,
+			averageRating: 8.4,
+			topGenres: [{ genreId: 18, label: "Drama", count: 6 }],
+			topDecade: 2010,
+			busiestMonth: 7,
+			topTitles: [],
+			longestStreakInYear: 5,
+			reviewCount: 3,
+		};
+	},
+	computeYearInReviewFromRows: () => {
+		throw new Error("not mocked for route tests");
+	},
+}));
+
 import { buildMeDataRoute } from "./me-data";
 
 /** Isolated limiter — lists/posts/staff tests mock the shared `rate-limit` module. */
@@ -83,6 +111,7 @@ function makeApp(user: { id: string } | null) {
 beforeEach(() => {
 	state.clearCalls = [];
 	state.exportCalls = [];
+	state.yearCalls = [];
 });
 
 describe("GET /api/me/export", () => {
@@ -144,5 +173,37 @@ describe("DELETE /api/me/library", () => {
 		expect(body.ok).toBe(true);
 		expect(body.counts.logs).toBe(3);
 		expect(state.clearCalls).toEqual(["user_2"]);
+	});
+});
+
+describe("GET /api/me/year/:year", () => {
+	test("401 when signed out", async () => {
+		const res = await makeApp(null).handle(
+			new Request("http://test/api/me/year/2024"),
+		);
+		expect(res.status).toBe(401);
+	});
+
+	test("400 for invalid year", async () => {
+		const res = await makeApp({ id: "user_3" }).handle(
+			new Request("http://test/api/me/year/not-a-year"),
+		);
+		expect(res.status).toBe(400);
+	});
+
+	test("returns wrapped stats for a valid year", async () => {
+		const res = await makeApp({ id: "user_4" }).handle(
+			new Request("http://test/api/me/year/2024"),
+		);
+		expect(res.status).toBe(200);
+		const body = (await res.json()) as {
+			year: number;
+			eligible: boolean;
+			totalLogs: number;
+		};
+		expect(body.year).toBe(2024);
+		expect(body.eligible).toBe(true);
+		expect(body.totalLogs).toBe(12);
+		expect(state.yearCalls).toEqual([{ userId: "user_4", year: 2024 }]);
 	});
 });

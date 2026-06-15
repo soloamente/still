@@ -20,10 +20,14 @@ import type {
 	HomeCommunityFeed,
 	HomeCommunityRankKind,
 } from "@/lib/home-community-feed";
-import { isHomeLeaderboardFeed } from "@/lib/home-community-feed";
+import {
+	isFilmTvRankKind,
+	isHomeLeaderboardFeed,
+} from "@/lib/home-community-feed";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+import type { MembersLeaderboardPayload } from "@/lib/members-leaderboard-types";
 
 interface HomeCommunityLobbySnapshot {
 	feed: HomeCommunityFeed;
@@ -38,6 +42,7 @@ interface HomeCommunityLobbyParamsContextValue
 	committedRankKind: HomeCommunityRankKind;
 	seed: CommunityFeedSeed;
 	leaderboard: LeaderboardPayload | null;
+	membersLeaderboard: MembersLeaderboardPayload | null;
 	leaderboardsLoading: boolean;
 	leaderboardsFailed: boolean;
 	retryLeaderboards: () => void;
@@ -54,6 +59,7 @@ export function HomeCommunityLobbyParamsProvider({
 	feed,
 	period,
 	rankKind,
+	membersLeaderboard,
 	signedIn: _signedIn,
 	children,
 }: {
@@ -61,6 +67,7 @@ export function HomeCommunityLobbyParamsProvider({
 	feed: HomeCommunityFeed;
 	period: HomeLeaderboardPeriod;
 	rankKind: HomeCommunityRankKind;
+	membersLeaderboard: MembersLeaderboardPayload | null;
 	signedIn: boolean;
 	children: ReactNode;
 }) {
@@ -70,7 +77,7 @@ export function HomeCommunityLobbyParamsProvider({
 		null,
 	);
 
-	// Leaderboards are always client-fetched now — the RSC never ships them.
+	// Film/show diary boards are client-deferred — the RSC never ships them.
 	const deferLeaderboards = true;
 
 	const [filmLeaderboardsByPeriod, setFilmLeaderboardsByPeriod] = useState<
@@ -90,12 +97,13 @@ export function HomeCommunityLobbyParamsProvider({
 		setLeaderboardsFailed(false);
 		setLeaderboardsLoading(true);
 		setLeaderboardFetchGeneration((n) => n + 1);
-	}, [deferLeaderboards]);
+	}, []);
 
 	useEffect(() => {
 		if (!deferLeaderboards) return;
+		// Retry bumps generation — must stay in the dependency list for a refetch.
+		void leaderboardFetchGeneration;
 
-		// Background fetch may have finished while patron was on Lists/Activity.
 		if (
 			!homeLeaderboardMapsAreEmpty(
 				filmLeaderboardsByPeriod,
@@ -135,8 +143,6 @@ export function HomeCommunityLobbyParamsProvider({
 		tvLeaderboardsByPeriod,
 	]);
 
-	// Committed state is the URL-resolved feed/period props from the RSC; `pending`
-	// is the optimistic overlay so chip navigation feels instant.
 	const committed = useMemo<HomeCommunityLobbySnapshot>(
 		() => ({ feed, period, rankKind }),
 		[feed, period, rankKind],
@@ -156,6 +162,7 @@ export function HomeCommunityLobbyParamsProvider({
 
 	const leaderboard = useMemo(() => {
 		if (!isHomeLeaderboardFeed(active.feed)) return null;
+		if (!isFilmTvRankKind(active.rankKind)) return null;
 		if (active.rankKind === "tv") {
 			return tvLeaderboardsByPeriod[active.period] ?? null;
 		}
@@ -227,6 +234,7 @@ export function HomeCommunityLobbyParamsProvider({
 			committedRankKind: rankKind,
 			seed,
 			leaderboard,
+			membersLeaderboard,
 			leaderboardsLoading,
 			leaderboardsFailed,
 			retryLeaderboards,
@@ -243,6 +251,7 @@ export function HomeCommunityLobbyParamsProvider({
 			rankKind,
 			seed,
 			leaderboard,
+			membersLeaderboard,
 			leaderboardsLoading,
 			leaderboardsFailed,
 			retryLeaderboards,

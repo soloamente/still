@@ -14,6 +14,8 @@ import {
 	DEFAULT_HOME_COMMUNITY_FEED,
 	DEFAULT_HOME_COMMUNITY_RANK_KIND,
 } from "@/lib/home-community-feed";
+import type { HomeCommunityReviewSort } from "@/lib/home-community-review-sort";
+import { serializeHomeCommunityReviewSort } from "@/lib/home-community-review-sort";
 import {
 	DEFAULT_HOME_LEADERBOARD_PERIOD,
 	type HomeLeaderboardPeriod,
@@ -54,8 +56,10 @@ export function buildHomeLobbyHref(input: {
 	animeSeason?: boolean;
 	/** Time window for Community tabs (`lists`, `activity`, ranks, …). */
 	period?: HomeLeaderboardPeriod;
-	/** Film vs TV logs when `sort=ranks`. */
+	/** Film/show diary vs patron contribution when `sort=ranks`. */
 	rankKind?: HomeCommunityRankKind;
+	/** Wit-sized engagement leaders when `sort=reviews`. */
+	reviewSort?: HomeCommunityReviewSort;
 	/** Discover refinements — movies lobby filter popover. */
 	genreId?: number | null;
 	monetization?: string | null;
@@ -76,6 +80,14 @@ export function buildHomeLobbyHref(input: {
 			const rankKind = input.rankKind ?? DEFAULT_HOME_COMMUNITY_RANK_KIND;
 			if (rankKind !== DEFAULT_HOME_COMMUNITY_RANK_KIND) {
 				params.set("rank", rankKind);
+			}
+		}
+		if (feed === "reviews") {
+			const reviewSortParam = serializeHomeCommunityReviewSort(
+				input.reviewSort ?? "all",
+			);
+			if (reviewSortParam) {
+				params.set("reviewSort", reviewSortParam);
 			}
 		}
 	} else {

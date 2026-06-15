@@ -6,6 +6,7 @@ import {
 	OG_HOME_PATH,
 	ogComparePath,
 	ogImageMetadataFields,
+	ogJournalPath,
 	ogListPath,
 	ogTastePath,
 	ogTitleMoviePath,
@@ -20,6 +21,9 @@ describe("og image metadata", () => {
 		expect(ogTitleTvPath("1399")).toBe("/og/title/tv/1399");
 		expect(ogTastePath("Ada")).toBe("/og/taste/ada");
 		expect(ogListPath("lst_abc")).toBe("/og/list/lst_abc");
+		expect(ogJournalPath("why-taste-maps-matter")).toBe(
+			"/og/journal/why-taste-maps-matter",
+		);
 		expect(ogComparePath("Ada", "Bob")).toBe("/og/compare/ada/bob");
 		expect(compareSharePath("Ada", "Bob")).toBe("/compare/ada/bob");
 	});

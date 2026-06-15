@@ -12,8 +12,7 @@ import {
 } from "@/lib/home-community-feed";
 
 /**
- * Films · TV — right-rail slice when Community sort is Ranks (desktop inline).
- * Mobile uses the filters popover in {@link HomeCommunityPeriodToolbar}.
+ * Films · Shows · Reviews — centered rail on Community Ranks.
  */
 export function HomeCommunityRankKindToolbar({
 	className,
@@ -27,10 +26,15 @@ export function HomeCommunityRankKindToolbar({
 	if (!isHomeLeaderboardFeed(feed)) return null;
 
 	return (
-		<div className={cn("hidden shrink-0 sm:block", className)}>
+		<div
+			className={cn(
+				"min-w-0 shrink-0 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+				className,
+			)}
+		>
 			<SegmentedPillToolbar
 				layoutId={layoutId}
-				aria-label="Rankings catalogue"
+				aria-label="Rankings"
 				compact
 				value={rankKind}
 				onChange={(next: HomeCommunityRankKind) => selectRankKind(next)}
@@ -40,7 +44,6 @@ export function HomeCommunityRankKindToolbar({
 	);
 }
 
-/** Mobile filters panel copy for the rank-kind section. */
 export function homeCommunityRankKindSectionLabel(
 	rankKind: HomeCommunityRankKind,
 ): string {

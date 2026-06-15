@@ -1,29 +1,37 @@
 "use client";
 
 import { Button } from "@still/ui/components/button";
+import { useSearchParams } from "next/navigation";
 
 import { CommunityActivityInfinite } from "@/components/home/community-activity-infinite";
+import { CommunityListsHeader } from "@/components/home/community-lists-header";
 import { CommunityListsInfinite } from "@/components/home/community-lists-infinite";
 import { CommunityRanksSkeleton } from "@/components/home/community-ranks-skeleton";
 import { CommunityReviewsInfinite } from "@/components/home/community-reviews-infinite";
 import { HomeCommunityEmpty } from "@/components/home/home-community-empty";
 import { HomeCommunityLeaderboard } from "@/components/home/home-community-leaderboard";
 import { useHomeCommunityLobbyParams } from "@/components/home/home-community-lobby-params-context";
+import { HomeCommunityReviewSortChips } from "@/components/home/home-community-review-sort-chips";
 import { HomeCuratorSpotlights } from "@/components/home/home-curator-spotlights";
 import { HomeEditorialHighlights } from "@/components/home/home-editorial-highlights";
+import { HomeViralReviewsRail } from "@/components/home/home-viral-reviews-rail";
+import { MembersLeaderboard } from "@/components/members/members-leaderboard";
 import { APP_NAME } from "@/lib/app-brand";
 import type { CommunityFeedSeed } from "@/lib/home-community-core-fetch";
 import {
 	type HomeCommunityFeed,
 	type HomeCommunityRankKind,
 	isHomeLeaderboardFeed,
+	isMembersRankKind,
 } from "@/lib/home-community-feed";
+import { parseHomeCommunityReviewSort } from "@/lib/home-community-review-sort";
 import {
 	type HomeLeaderboardPeriod,
 	leaderboardPeriodLabel,
 } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+import type { MembersLeaderboardPayload } from "@/lib/members-leaderboard-types";
 
 function HomeCommunityLobbyRanksFallback({
 	periodLabel,
@@ -87,6 +95,7 @@ export function HomeCommunityLobby({
 	rankKind,
 	seed,
 	leaderboard,
+	membersLeaderboard,
 	monochromePeersOnHover,
 	signedIn,
 	viewerUserId,
@@ -96,13 +105,32 @@ export function HomeCommunityLobby({
 	rankKind: HomeCommunityRankKind;
 	seed: CommunityFeedSeed;
 	leaderboard: LeaderboardPayload | null;
+	membersLeaderboard: MembersLeaderboardPayload | null;
 	monochromePeersOnHover: boolean;
 	signedIn: boolean;
 	viewerUserId: string | null;
 }) {
 	const periodLabel = leaderboardPeriodLabel(period).toLowerCase();
+	const searchParams = useSearchParams();
+	const reviewSort = parseHomeCommunityReviewSort(
+		searchParams.get("reviewSort"),
+	);
+	const mostLikedReviews = reviewSort === "most-liked";
 
 	if (isHomeLeaderboardFeed(feed)) {
+		if (isMembersRankKind(rankKind)) {
+			return (
+				<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+					<MembersLeaderboard
+						initialData={membersLeaderboard}
+						memberSort={rankKind}
+						period={period}
+						viewerUserId={viewerUserId}
+					/>
+				</div>
+			);
+		}
+
 		if (!leaderboard) {
 			return (
 				<HomeCommunityLobbyRanksFallback
@@ -140,6 +168,7 @@ export function HomeCommunityLobby({
 		}
 		return (
 			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+				<CommunityListsHeader total={seed.listTotalCount} />
 				<HomeCuratorSpotlights patrons={seed.curatorSpotlights} />
 				<CommunityListsInfinite
 					seeds={seed.listSeeds}
@@ -152,11 +181,22 @@ export function HomeCommunityLobby({
 	}
 
 	if (feed === "reviews") {
-		if (seed.reviews.length === 0) {
+		const reviewsEmpty = mostLikedReviews
+			? seed.viralReviews.length === 0
+			: seed.reviews.length === 0;
+		if (reviewsEmpty) {
 			return (
 				<HomeCommunityEmpty
-					title={`No published reviews ${period === "all" ? "yet" : `this ${periodLabel}`}`}
-					description="Written reviews from the community land here once members publish from a film page in this window."
+					title={
+						mostLikedReviews
+							? `No viral reviews ${period === "all" ? "yet" : `this ${periodLabel}`}`
+							: `No published reviews ${period === "all" ? "yet" : `this ${periodLabel}`}`
+					}
+					description={
+						mostLikedReviews
+							? "Short, highly liked reviews from the community show up here once members publish and engage in this window."
+							: "Written reviews from the community land here once members publish from a film page in this window."
+					}
 					primaryHref={buildHomeLobbyHref({
 						browse: "movies",
 						sort: "popular",
@@ -169,10 +209,15 @@ export function HomeCommunityLobby({
 		}
 		return (
 			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+				<HomeCommunityReviewSortChips />
+				{!mostLikedReviews && seed.viralReviews.length > 0 ? (
+					<HomeViralReviewsRail reviews={seed.viralReviews} />
+				) : null}
 				<CommunityReviewsInfinite
-					seeds={seed.reviews}
-					initialCursor={seed.initialReviewCursor}
+					seeds={mostLikedReviews ? seed.viralReviews : seed.reviews}
+					initialCursor={mostLikedReviews ? null : seed.initialReviewCursor}
 					period={period}
+					reviewSort={reviewSort}
 				/>
 			</div>
 		);
@@ -196,8 +241,12 @@ export function HomeCommunityLobby({
 							? "Follow people whose logs and lists you want here — the feed lights up when they post in this window."
 							: "Your following feed shows logs, reviews, and lists from people you follow. Browse public highlights after you join."
 					}
-					primaryHref={signedIn ? "/home" : "/sign-in"}
-					primaryLabel={signedIn ? "Discover members" : "Sign in"}
+					primaryHref={buildHomeLobbyHref({
+						browse: "community",
+						sort: "ranks",
+						rankKind: "reviews",
+					})}
+					primaryLabel={signedIn ? "Discover members" : "Browse members"}
 					secondaryHref={buildHomeLobbyHref({
 						browse: "movies",
 						sort: "popular",

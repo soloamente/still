@@ -1,9 +1,9 @@
 import { env } from "@still/env/web";
 
+import type { ClientProductEventKind } from "@/lib/product-event-kinds";
+
 /** Client-allowed kinds — must match `CLIENT_PRODUCT_EVENT_KINDS` on the server. */
-export type SenseClientProductEventKind =
-	| "onboarding.completed"
-	| "taste_card.shared";
+export type SenseClientProductEventKind = ClientProductEventKind;
 
 /**
  * Fire-and-forget product funnel event. No-ops when unauthenticated or offline.

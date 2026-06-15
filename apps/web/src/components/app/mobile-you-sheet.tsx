@@ -8,6 +8,7 @@ import IconPlaylistOutline from "@still/ui/icons/playlist-outline";
 import IconTicket from "@still/ui/icons/ticket";
 import IconTicketFilled from "@still/ui/icons/ticket-filled";
 import { cn } from "@still/ui/lib/utils";
+import { Newspaper, Sparkles } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useRef } from "react";
 
@@ -40,6 +41,9 @@ function renderDestinationLeadingIcon(
 ): ReactNode {
 	if (href === "/achievements") {
 		return <IconAwardFill size="20px" className="size-5 shrink-0 opacity-90" />;
+	}
+	if (href === "/year") {
+		return <Sparkles className="size-5 shrink-0 opacity-80" aria-hidden />;
 	}
 
 	switch (href) {
@@ -79,6 +83,8 @@ function renderDestinationLeadingIcon(
 					aria-hidden
 				/>
 			);
+		case "/journal":
+			return <Newspaper className={DESTINATION_ICON_CLASS} aria-hidden />;
 		default:
 			return null;
 	}
