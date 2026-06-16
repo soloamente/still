@@ -2,7 +2,7 @@
 
 ## Presence AFK status — orange dot (2026-06-16)
 
-**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Tasks 1–7 done.** Task 7: `PatronOnlineDot` `presenceState` prop, `presenceDotSurfaceClass`, emerald/desert-orange + micro-pop; tests **2/2** pass. **Pending human `go` for Task 8** (wire portraits + listing presence).
+**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Tasks 1–8 done.** Task 8: `usePatronPresenceState` on portraits; listing row/drawer pass `presenceState` from snapshot; `formatPatronPresenceDotLabel`; copy tests **10/10** pass. **Pending human `go` for Task 9** (full verification + docs).
 
 ## Presence online visibility controls — movie/TV detail (2026-06-16)
 
@@ -683,7 +683,30 @@ existing cinematic identity rather than replacing it.
 
 **Tests:** `bun test src/lib/patron-activity-tracker.test.ts src/lib/fetch-patron-online.test.ts` → **6/6 pass**.
 
-**Ready for next milestone:** reply **`go`** for **Task 7** — `PatronOnlineDot` green/orange + micro-pop animation.
+**Ready for next milestone:** reply **`go`** for **Task 9** (full verification + docs).
+
+### 2026-06-16 — Presence AFK Task 8 (complete)
+
+**Shipped:** wired `presenceState` to portraits and listing presence.
+- `PatronPortraitWithMetalTier` — `usePatronPresenceState` for global surfaces; optional `presenceState` prop for listing snapshot (skips batch lookup)
+- `formatPatronPresenceDotLabel` — `@handle online now` vs `@handle away`
+- Listing presence row + drawer — `showOnlineStatus` + `presenceState={patron.presenceState}`
+
+**Tests:** `bun test src/lib/listing-presence-copy.test.ts` → **10/10 pass**.
+
+**Ready for next milestone:** reply **`go`** for **Task 9**.
+
+### 2026-06-16 — Presence AFK Task 7 (complete)
+
+**Shipped:** `PatronOnlineDot` green/orange + micro-pop.
+- `presenceState: "active" | "away" | null` replaces `visible`
+- `presenceDotSurfaceClass` — `bg-emerald-400` vs `bg-desert-orange`
+- Mount/unmount `AnimatePresence` unchanged; active↔away micro-pop `scale [1, 1.12, 1]` ~180ms (skipped when reduced motion)
+- Portrait bridge: `presenceState={isOnline ? "active" : null}` until Task 8 wires `usePatronPresenceState`
+
+**Tests:** `bun test src/components/profile/patron-online-dot.test.ts` → **2/2 pass**.
+
+**Ready for next milestone:** reply **`go`** for **Task 8**.
 
 ### 2026-06-16 — Presence online visibility Task 1 (complete)
 

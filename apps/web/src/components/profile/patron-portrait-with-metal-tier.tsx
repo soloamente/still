@@ -4,25 +4,32 @@ import { cn } from "@still/ui/lib/utils";
 import { BorderBeam } from "border-beam";
 import {
 	PatronOnlineDot,
+	type PatronPresenceDotState,
 	resolvePatronOnlineDotSize,
 } from "@/components/profile/patron-online-dot";
 import {
 	PatronPortraitAvatar,
 	type PatronPortraitAvatarProps,
 } from "@/components/profile/patron-portrait-avatar";
-import { usePatronOnlineStatus } from "@/components/realtime/patron-online-provider";
+import { usePatronPresenceState } from "@/components/realtime/patron-online-provider";
 import {
 	DIARY_METAL_BORDER_BEAM_STRENGTH,
 	type DiaryMetalTier,
 	diaryMetalBorderBeamColorVariant,
 	isCircularPatronPortraitClass,
 } from "@/lib/diary-metal-tier";
+import { formatPatronPresenceDotLabel } from "@/lib/listing-presence-copy";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 export type PatronPortraitWithMetalTierProps = PatronPortraitAvatarProps & {
 	diaryMetalTier?: DiaryMetalTier | null;
 	/** When false, skip the global online-now badge (e.g. decorative placeholders). */
 	showOnlineStatus?: boolean;
+	/**
+	 * Listing snapshot state — when provided, renders the dot from server data
+	 * instead of the global batch online lookup.
+	 */
+	presenceState?: PatronPresenceDotState | null;
 };
 
 /**
@@ -35,16 +42,29 @@ export function PatronPortraitWithMetalTier({
 	width = 72,
 	height = 72,
 	showOnlineStatus = true,
+	presenceState: presenceStateProp,
 	handle,
 	style,
 	...avatarProps
 }: PatronPortraitWithMetalTierProps) {
 	const reducedMotion = usePrefersReducedMotion();
 	const circularPortrait = isCircularPatronPortraitClass(className);
-	const isOnline = usePatronOnlineStatus(
-		showOnlineStatus ? handle : undefined,
-		showOnlineStatus,
+	const useGlobalPresence = showOnlineStatus && presenceStateProp === undefined;
+	const globalPresenceState = usePatronPresenceState(
+		useGlobalPresence ? handle : undefined,
+		useGlobalPresence,
 	);
+
+	const resolvedPresenceState: PatronPresenceDotState | null = !showOnlineStatus
+		? null
+		: presenceStateProp !== undefined
+			? presenceStateProp
+			: globalPresenceState;
+
+	const dotLabel =
+		resolvedPresenceState && handle
+			? formatPatronPresenceDotLabel(handle, resolvedPresenceState)
+			: "";
 
 	const innerPortraitClassName = cn(
 		"size-full object-cover",
@@ -90,8 +110,8 @@ export function PatronPortraitWithMetalTier({
 		>
 			{portrait}
 			<PatronOnlineDot
-				presenceState={isOnline ? "active" : null}
-				label={`@${handle} online now`}
+				presenceState={resolvedPresenceState}
+				label={dotLabel}
 				size={resolvePatronOnlineDotSize(width)}
 			/>
 		</span>
