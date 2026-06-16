@@ -1,9 +1,6 @@
 import { patronAppRoomId } from "@still/realtime";
 
-import {
-	normalizePatronOnlineHandle,
-	type PatronPresenceSnapshot,
-} from "@/lib/patron-online-presence";
+import type { PatronPresenceSnapshot } from "@/lib/patron-online-presence";
 import { isFetchAbortError } from "@/lib/still-api-fetch";
 import { stillApiOrigin } from "@/lib/still-api-origin";
 
