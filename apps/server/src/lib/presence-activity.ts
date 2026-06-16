@@ -47,3 +47,17 @@ export async function readActivityStateForUser(
 	const raw = await redis.hget(presenceActivityRedisKey(), userId);
 	return normalizeActivityState(raw);
 }
+
+/** Batch-read activity states for patron chips (defaults missing fields to active). */
+export async function readActivityStatesForUserIds(
+	redis: Pick<PresenceActivityRedis, "hget">,
+	userIds: readonly string[],
+): Promise<Map<string, PatronActivityState>> {
+	const states = new Map<string, PatronActivityState>();
+	await Promise.all(
+		userIds.map(async (userId) => {
+			states.set(userId, await readActivityStateForUser(redis, userId));
+		}),
+	);
+	return states;
+}

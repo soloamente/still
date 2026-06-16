@@ -190,15 +190,37 @@ describe("listing-presence", () => {
 			displayName: "Alice",
 			avatarIsAnimated: true,
 			diaryMetalTier: "gold",
-			isOnlineNow: true,
+			presenceState: "active",
 		});
 		expect(patrons[1]).toMatchObject({
 			userId: "usr_c",
 			handle: "carol",
 			displayName: "Carol",
 			diaryMetalTier: "silver",
-			isOnlineNow: true,
+			presenceState: "active",
 		});
+	});
+
+	test("pickListingPresenceViewingPatrons maps activity state per user", () => {
+		const rows = [
+			{
+				userId: "usr_a",
+				handle: "alice",
+				displayName: "Alice",
+				name: null,
+				image: null,
+				preferences: null,
+				isMutualWithViewer: true,
+			},
+		];
+		const patrons = pickListingPresenceViewingPatrons(
+			rows,
+			new Map(),
+			8,
+			new Map([["usr_a", "away"]]),
+		);
+
+		expect(patrons[0]?.presenceState).toBe("away");
 	});
 
 	test("pickListingPresenceViewingPatrons default limit matches fetch cap", () => {

@@ -10,6 +10,7 @@ import {
 import {
 	clearActivityStateForUser,
 	type PatronActivityState,
+	readActivityStatesForUserIds,
 	writeActivityStateForUser,
 } from "./presence-activity";
 import {
@@ -56,7 +57,7 @@ export type ListingPresenceViewingPatron = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
-	isOnlineNow: true;
+	presenceState: PatronActivityState;
 };
 
 export type ListingPresenceSnapshot = {
@@ -196,6 +197,7 @@ export function pickListingPresenceViewingPatrons(
 	rows: MutualPatronRow[],
 	logCounts: ReadonlyMap<string, number> = new Map(),
 	limit: number = LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
+	activityByUserId: ReadonlyMap<string, PatronActivityState> = new Map(),
 ): ListingPresenceViewingPatron[] {
 	const patrons: ListingPresenceViewingPatron[] = [];
 
@@ -217,7 +219,7 @@ export function pickListingPresenceViewingPatrons(
 			image: row.image,
 			avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
 			diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
-			isOnlineNow: true,
+			presenceState: activityByUserId.get(row.userId) ?? "active",
 		});
 		if (patrons.length >= limit) break;
 	}
@@ -232,6 +234,7 @@ export function pickListingPresenceViewingPatrons(
 export async function fetchViewingPatronsInRoom(
 	viewerId: string,
 	activeUserIds: string[],
+	redis: ListingPresenceRedis | null = null,
 ): Promise<ListingPresenceViewingPatron[]> {
 	const candidateIds = activeUserIds.filter((id) => id !== viewerId);
 	if (candidateIds.length === 0) return [];
@@ -271,12 +274,18 @@ export async function fetchViewingPatronsInRoom(
 	const logCounts = await fetchDiaryLogCountsForUserIds(
 		rows.map((row) => row.userId),
 	);
+	const activityByUserId =
+		redis && typeof redis.hget === "function"
+			? await readActivityStatesForUserIds(redis, candidateIds)
+			: new Map<string, PatronActivityState>();
 	return pickListingPresenceViewingPatrons(
 		rows.map((row) => ({
 			...row,
 			isMutualWithViewer: mutualIds.has(row.userId),
 		})),
 		logCounts,
+		LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
+		activityByUserId,
 	);
 }
 
@@ -304,6 +313,7 @@ export async function getListingPresenceSnapshot(
 	const viewingPatrons = await fetchViewingPatronsInRoom(
 		viewerId,
 		activeUserIds,
+		redis,
 	);
 
 	return { viewerCount, viewingPatrons };
