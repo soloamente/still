@@ -2,7 +2,7 @@
 
 ## Presence AFK status — orange dot (2026-06-16)
 
-**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Tasks 1–8 done.** Task 8: `usePatronPresenceState` on portraits; listing row/drawer pass `presenceState` from snapshot; `formatPatronPresenceDotLabel`; copy tests **10/10** pass. **Pending human `go` for Task 9** (full verification + docs).
+**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Shipped (Tasks 1–9, 2026-06-16).** **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop on `active` ↔ `away`; privacy unchanged (`friends`/`public`). **Automated verification:** server **41/41** · web **17/17** pass. **Pending optional human QA:** tab-away orange dot, 5 min idle, return-to-active green micro-pop, reduced-motion instant swap, listing corner + drawer parity.
 
 ## Presence online visibility controls — movie/TV detail (2026-06-16)
 
@@ -672,6 +672,21 @@ existing cinematic identity rather than replacing it.
 - [x] B.7 Planner / human sign-off on Track B _(Planner note 2026-05-14 — see Executor; staging “daily return” bar met for shipped scope, follow-ups listed)_
 
 ## Executor's Feedback or Assistance Requests
+
+### 2026-06-16 — Presence AFK Task 9 (complete — plan shipped)
+
+**Automated verification:**
+- Server: `bun test src/lib/presence-activity.test.ts src/lib/listing-presence.test.ts src/lib/patron-presence.test.ts src/routes/realtime-presence.test.ts` → **41/41 pass**
+- Web: `bun test src/lib/patron-activity-tracker.test.ts src/components/profile/patron-online-dot.test.ts src/lib/listing-presence-copy.test.ts` → **17/17 pass**
+
+**Manual QA checklist (optional):**
+1. Tab away → other patron sees orange dot within ~25s (or sooner on heartbeat flip)
+2. 5 min idle on visible tab → orange
+3. Mouse move / tab focus return → green micro-pop
+4. `prefers-reduced-motion` → color swap only, no scale/blur
+5. Movie/TV listing corner pill + presence drawer dots match global portrait badges
+
+**Planner:** AFK presence plan **complete** — reply **`ok`** after manual QA or to close the track.
 
 ### 2026-06-16 — Presence AFK Task 6 (complete)
 
