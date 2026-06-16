@@ -2,7 +2,7 @@
 
 ## Presence AFK status — orange dot (2026-06-16)
 
-**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Pending:** human spec review → implementation plan (`writing-plans`).
+**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Pending:** human `go` on Task 1 (Executor).
 
 ## Presence online visibility controls — movie/TV detail (2026-06-16)
 
