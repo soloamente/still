@@ -50,9 +50,15 @@ function createTestPresenceRedis() {
 			return members.slice(start, end);
 		},
 		async expire() {},
-		async hset(key, field, value) {
+		async hset(key, fieldOrMap, value?) {
 			const hash = hashes.get(key) ?? new Map<string, string>();
-			hash.set(field, value);
+			if (typeof fieldOrMap === "object") {
+				for (const [field, fieldValue] of Object.entries(fieldOrMap)) {
+					hash.set(field, fieldValue);
+				}
+			} else if (typeof fieldOrMap === "string" && value !== undefined) {
+				hash.set(fieldOrMap, value);
+			}
 			hashes.set(key, hash);
 		},
 		async hget(key, field) {

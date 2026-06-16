@@ -40,7 +40,7 @@ export type ListingPresenceRedis = {
 	zcard: (key: string) => Promise<number>;
 	zrange: (key: string, start: number, stop: number) => Promise<string[]>;
 	expire: (key: string, seconds: number) => Promise<unknown>;
-	hset?: (key: string, field: string, value: string) => Promise<unknown>;
+	hset?: (key: string, values: Record<string, string>) => Promise<unknown>;
 	hget?: (key: string, field: string) => Promise<string | null>;
 	hdel?: (key: string, field: string) => Promise<unknown>;
 };
@@ -134,7 +134,7 @@ export function viewerCountExcludingSelf(
 function hasPresenceActivityRedis(
 	redis: ListingPresenceRedis,
 ): redis is ListingPresenceRedis & {
-	hset: (key: string, field: string, value: string) => Promise<unknown>;
+	hset: (key: string, values: Record<string, string>) => Promise<unknown>;
 	hget: (key: string, field: string) => Promise<string | null>;
 	hdel: (key: string, field: string) => Promise<unknown>;
 } {

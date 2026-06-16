@@ -17,7 +17,8 @@ export function normalizeActivityState(
 }
 
 export type PresenceActivityRedis = {
-	hset: (key: string, field: string, value: string) => Promise<unknown>;
+	/** Upstash requires `hset(key, { field: value })` — variadic 3-arg form is a no-op. */
+	hset: (key: string, values: Record<string, string>) => Promise<unknown>;
 	hget: (key: string, field: string) => Promise<string | null>;
 	hdel: (key: string, field: string) => Promise<unknown>;
 };
@@ -28,7 +29,7 @@ export async function writeActivityStateForUser(
 	userId: string,
 	state: PatronActivityState,
 ): Promise<void> {
-	await redis.hset(presenceActivityRedisKey(), userId, state);
+	await redis.hset(presenceActivityRedisKey(), { [userId]: state });
 }
 
 /** Drop activity metadata when the patron leaves all presence rooms. */

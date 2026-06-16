@@ -4,6 +4,7 @@ import {
 	normalizeActivityState,
 	presenceActivityRedisKey,
 	readActivityStateForUser,
+	writeActivityStateForUser,
 } from "./presence-activity";
 
 describe("normalizeActivityState", () => {
@@ -38,4 +39,22 @@ describe("readActivityStateForUser", () => {
 
 test("presenceActivityRedisKey is stable", () => {
 	expect(presenceActivityRedisKey()).toBe("sense:presence:activity");
+});
+
+describe("writeActivityStateForUser", () => {
+	test("persists away via object-form hset (Upstash contract)", async () => {
+		const writes: Array<Record<string, string>> = [];
+		const redis = {
+			hset: async (_key: string, values: Record<string, string>) => {
+				writes.push(values);
+			},
+			hget: async (_key: string, field: string) =>
+				writes.at(-1)?.[field] ?? null,
+			hdel: async () => {},
+		};
+
+		await writeActivityStateForUser(redis, "usr_1", "away");
+		expect(writes).toEqual([{ usr_1: "away" }]);
+		expect(await readActivityStateForUser(redis, "usr_1")).toBe("away");
+	});
 });
