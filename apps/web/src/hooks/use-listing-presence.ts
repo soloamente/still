@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
 import {
 	usePatronActivityFlipHeartbeat,
-	useReadPatronActivityState,
+	useReadAggregatePatronActivityState,
 } from "@/hooks/use-patron-activity-tracker";
 import { useRealtimeConnection } from "@/hooks/use-realtime-connection";
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
@@ -16,7 +16,7 @@ import {
 	leaveListingPresenceClient,
 	touchListingPresenceClient,
 } from "@/lib/fetch-listing-presence";
-import { resolvePresenceHeartbeatActivityState } from "@/lib/patron-activity-tracker";
+import { createPresenceHeartbeatScheduler } from "@/lib/presence-heartbeat-scheduler";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 
 const HEARTBEAT_MS = 25_000;
@@ -64,7 +64,11 @@ export function useListingPresence({
 		roomIdProp ?? resolveListingPresenceRoomId(listingKind, listingId);
 	const connected = useRealtimeConnection();
 	const active = enabled && Boolean(roomId) && realtimeClientEnabled();
-	const readPatronActivityState = useReadPatronActivityState();
+	const readAggregatePatronActivityState =
+		useReadAggregatePatronActivityState();
+	const heartbeatSchedulerRef = useRef<ReturnType<
+		typeof createPresenceHeartbeatScheduler
+	> | null>(null);
 
 	const [snapshot, setSnapshot] =
 		useState<ListingPresenceSnapshot>(EMPTY_SNAPSHOT);
@@ -112,10 +116,7 @@ export function useListingPresence({
 
 	usePatronActivityFlipHeartbeat((state) => {
 		if (!active || leftRef.current) return;
-		const heartbeatState = resolvePresenceHeartbeatActivityState(state);
-		void touchListingPresenceClient(roomId, heartbeatState, {
-			keepalive: typeof document !== "undefined" && document.hidden,
-		});
+		heartbeatSchedulerRef.current?.onActivityChange(state);
 	}, active);
 
 	useRegisterRealtimeRoom(active ? roomId : null);
@@ -142,35 +143,37 @@ export function useListingPresence({
 		let unmounted = false;
 		const abort = new AbortController();
 
-		const runHeartbeat = async () => {
-			const heartbeatState = resolvePresenceHeartbeatActivityState(
-				readPatronActivityState(),
-			);
-			const ok = await touchListingPresenceClient(roomId, heartbeatState, {
-				keepalive: typeof document !== "undefined" && document.hidden,
-			});
-			if (!ok || unmounted) return;
+		const scheduler = createPresenceHeartbeatScheduler(
+			readAggregatePatronActivityState,
+			async (state, opts) => {
+				const ok = await touchListingPresenceClient(roomId, state, opts);
+				if (!ok || unmounted) return false;
 
-			if (!joinedRef.current) {
-				joinedRef.current = true;
-				trackSenseProductEvent("realtime.presence.join", {
-					surface: listingKind,
-					listingId: String(listingId),
-				});
-			}
+				if (!joinedRef.current) {
+					joinedRef.current = true;
+					trackSenseProductEvent("realtime.presence.join", {
+						surface: listingKind,
+						listingId: String(listingId),
+					});
+				}
 
-			await refetchSnapshot(abort.signal);
-		};
+				await refetchSnapshot(abort.signal);
+				return true;
+			},
+		);
+		heartbeatSchedulerRef.current = scheduler;
+		void scheduler.tick();
 
-		void runHeartbeat();
 		const heartbeatTimer = setInterval(() => {
-			void runHeartbeat();
+			if (!unmounted) void scheduler.tick();
 		}, HEARTBEAT_MS);
 
 		return () => {
 			unmounted = true;
 			abort.abort();
 			clearInterval(heartbeatTimer);
+			scheduler.dispose();
+			heartbeatSchedulerRef.current = null;
 			if (refetchTimerRef.current) {
 				clearTimeout(refetchTimerRef.current);
 				refetchTimerRef.current = null;
@@ -182,7 +185,7 @@ export function useListingPresence({
 		leavePresence,
 		listingId,
 		listingKind,
-		readPatronActivityState,
+		readAggregatePatronActivityState,
 		refetchSnapshot,
 		roomId,
 	]);

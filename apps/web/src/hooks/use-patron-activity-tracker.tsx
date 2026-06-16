@@ -12,7 +12,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-
+import { PatronActivityTabSync } from "@/lib/patron-activity-tab-sync";
 import {
 	derivePatronActivityState,
 	PATRON_ACTIVITY_INPUT_EVENTS,
@@ -25,9 +25,12 @@ import {
 type ActivityFlipHandler = (state: PatronActivityState) => void;
 
 type PatronActivityContextValue = {
+	/** This tab only — hidden or idle on this tab. */
 	activityState: PatronActivityState;
-	/** Synchronous read — updated inside visibilitychange before React re-renders. */
+	/** All Sense tabs — active if any tab is active (used for presence heartbeats). */
+	aggregateActivityState: PatronActivityState;
 	readPatronActivityState: () => PatronActivityState;
+	readAggregatePatronActivityState: () => PatronActivityState;
 	registerActivityFlipHandler: (handler: ActivityFlipHandler) => () => void;
 };
 
@@ -37,51 +40,39 @@ const PatronActivityContext = createContext<PatronActivityContextValue | null>(
 
 function usePatronActivityTracker(
 	enabled: boolean,
-	flipHandlersRef: RefObject<Set<ActivityFlipHandler>>,
-	activityStateRef: RefObject<PatronActivityState>,
+	localStateRef: RefObject<PatronActivityState>,
+	tabSyncRef: RefObject<PatronActivityTabSync | null>,
 ): PatronActivityState {
 	const lastInputRef = useRef(Date.now());
-	const prevStateRef = useRef<PatronActivityState | null>(null);
+	const prevLocalStateRef = useRef<PatronActivityState | null>(null);
 	const [activityState, setActivityState] =
 		useState<PatronActivityState>("active");
 
 	useEffect(() => {
 		if (!enabled) {
-			prevStateRef.current = null;
-			activityStateRef.current = "active";
+			prevLocalStateRef.current = null;
+			localStateRef.current = "active";
 			setActivityState("active");
 			return;
 		}
 
 		let throttleTimer: ReturnType<typeof setTimeout> | null = null;
 
-		const notifyFlipHandlers = (next: PatronActivityState) => {
-			for (const handler of flipHandlersRef.current) {
-				handler(next);
-			}
-		};
-
-		// Recompute synchronously — heartbeats must fire inside visibilitychange
-		// before the browser throttles background-tab React effects.
 		const recompute = () => {
 			const next = derivePatronActivityState({
 				nowMs: Date.now(),
 				lastInputAtMs: lastInputRef.current,
 				documentHidden: document.hidden,
 			});
-			const prev = prevStateRef.current;
+			const prev = prevLocalStateRef.current;
 			if (prev === next) return;
 
-			prevStateRef.current = next;
-			activityStateRef.current = next;
+			prevLocalStateRef.current = next;
+			localStateRef.current = next;
 			setActivityState(next);
-
-			if (shouldEmitPatronActivityFlip(prev, next)) {
-				notifyFlipHandlers(next);
-			}
+			tabSyncRef.current?.publishLocalState(next);
 		};
 
-		// Bump last-input time on patron interaction; throttle noisy events.
 		const bumpInput = () => {
 			lastInputRef.current = Date.now();
 			recompute();
@@ -108,10 +99,10 @@ function usePatronActivityTracker(
 			document.removeEventListener("visibilitychange", onVisibility);
 			clearInterval(interval);
 			if (throttleTimer) clearTimeout(throttleTimer);
-			prevStateRef.current = null;
-			activityStateRef.current = "active";
+			prevLocalStateRef.current = null;
+			localStateRef.current = "active";
 		};
-	}, [activityStateRef, enabled, flipHandlersRef]);
+	}, [enabled, localStateRef, tabSyncRef]);
 
 	return activityState;
 }
@@ -119,15 +110,66 @@ function usePatronActivityTracker(
 /** Single app-wide activity tracker — shared by global + listing presence heartbeats. */
 export function PatronActivityProvider({ children }: { children: ReactNode }) {
 	const flipHandlersRef = useRef(new Set<ActivityFlipHandler>());
-	const activityStateRef = useRef<PatronActivityState>("active");
-	const readPatronActivityState = useCallback(
-		() => activityStateRef.current,
+	const localStateRef = useRef<PatronActivityState>("active");
+	const aggregateStateRef = useRef<PatronActivityState>("active");
+	const tabSyncRef = useRef<PatronActivityTabSync | null>(null);
+	const [aggregateActivityState, setAggregateActivityState] =
+		useState<PatronActivityState>("active");
+
+	if (tabSyncRef.current === null && typeof window !== "undefined") {
+		tabSyncRef.current = new PatronActivityTabSync();
+	}
+
+	const readPatronActivityState = useCallback(() => localStateRef.current, []);
+	const readAggregatePatronActivityState = useCallback(
+		() => aggregateStateRef.current,
 		[],
 	);
+
+	const notifyAggregateFlip = useCallback((next: PatronActivityState) => {
+		const prev = aggregateStateRef.current;
+		if (prev === next) return;
+		aggregateStateRef.current = next;
+		setAggregateActivityState(next);
+		if (!shouldEmitPatronActivityFlip(prev, next)) return;
+		for (const handler of flipHandlersRef.current) {
+			handler(next);
+		}
+	}, []);
+
+	useEffect(() => {
+		const sync = tabSyncRef.current;
+		if (!sync) return;
+
+		const initial = sync.readAggregateState();
+		aggregateStateRef.current = initial;
+		setAggregateActivityState(initial);
+
+		return sync.subscribe((next) => {
+			notifyAggregateFlip(next);
+		});
+	}, [notifyAggregateFlip]);
+
+	useEffect(() => {
+		const sync = tabSyncRef.current;
+		if (!sync) return;
+
+		const onPageHide = () => {
+			sync.publishLeave();
+		};
+
+		window.addEventListener("pagehide", onPageHide);
+		return () => {
+			window.removeEventListener("pagehide", onPageHide);
+			sync.destroy();
+			tabSyncRef.current = null;
+		};
+	}, []);
+
 	const activityState = usePatronActivityTracker(
 		true,
-		flipHandlersRef,
-		activityStateRef,
+		localStateRef,
+		tabSyncRef,
 	);
 
 	const registerActivityFlipHandler = useCallback(
@@ -143,10 +185,18 @@ export function PatronActivityProvider({ children }: { children: ReactNode }) {
 	const contextValue = useMemo(
 		() => ({
 			activityState,
+			aggregateActivityState,
 			readPatronActivityState,
+			readAggregatePatronActivityState,
 			registerActivityFlipHandler,
 		}),
-		[activityState, readPatronActivityState, registerActivityFlipHandler],
+		[
+			activityState,
+			aggregateActivityState,
+			readPatronActivityState,
+			readAggregatePatronActivityState,
+			registerActivityFlipHandler,
+		],
 	);
 
 	return (
@@ -156,21 +206,33 @@ export function PatronActivityProvider({ children }: { children: ReactNode }) {
 	);
 }
 
-/** Current local active/away state for presence heartbeats. */
+/** Current local active/away state for this tab. */
 export function usePatronActivityState(): PatronActivityState {
 	const context = useContext(PatronActivityContext);
 	return context?.activityState ?? "active";
 }
 
-/** Synchronous activity read — safe inside visibilitychange / heartbeat timers. */
+/** User-global activity across all Sense tabs (for presence heartbeats). */
+export function useAggregatePatronActivityState(): PatronActivityState {
+	const context = useContext(PatronActivityContext);
+	return context?.aggregateActivityState ?? "active";
+}
+
+/** Synchronous local activity read — safe inside visibilitychange. */
 export function useReadPatronActivityState(): () => PatronActivityState {
 	const context = useContext(PatronActivityContext);
 	return context?.readPatronActivityState ?? (() => "active" as const);
 }
 
+/** Synchronous aggregate read — use before posting presence heartbeats. */
+export function useReadAggregatePatronActivityState(): () => PatronActivityState {
+	const context = useContext(PatronActivityContext);
+	return context?.readAggregatePatronActivityState ?? (() => "active" as const);
+}
+
 /**
- * Fire presence heartbeats synchronously on active ↔ away flips (not via React
- * effects) so tab-away updates reach the server before background throttling.
+ * Fire presence heartbeats on aggregate active ↔ away flips (all tabs), not per-tab
+ * noise during rapid visibility churn.
  */
 export function usePatronActivityFlipHeartbeat(
 	onFlip: (state: PatronActivityState) => void,
