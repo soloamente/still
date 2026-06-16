@@ -1996,7 +1996,7 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 
 ## Lessons
 
-- **Track B.6 motion budget:** `--aker-duration` / `--aker-duration-slow` in `packages/ui/src/styles/globals.css` are **0.2s** max for tokenized UI transitions; hero iris, projector flicker, and view-transition durations stay **explicit longer values** where cinematic. Framer **`useReducedMotion`** should gate decorative stagger (e.g. marketing poster rail) and snap onboarding step transitions when the OS requests reduced motion.
+- **Presence AFK realtime:** `touchListingPresence` must set `changed: true` when **activity state** flips (not only ZSET occupancy) so `publishRealtimeEvent` fires `presence.updated`; global portrait badges need **`PatronOnlineProvider`** subscribed to **`patron:app`** SSE (`resolveStaticRealtimeRoomAccess` must allow that room). `--aker-duration` / `--aker-duration-slow` in `packages/ui/src/styles/globals.css` are **0.2s** max for tokenized UI transitions; hero iris, projector flicker, and view-transition durations stay **explicit longer values** where cinematic. Framer **`useReducedMotion`** should gate decorative stagger (e.g. marketing poster rail) and snap onboarding step transitions when the OS requests reduced motion.
 - `packages/db/src/migrate.ts` must load `.env` with **`../../../apps/server/.env`**
   (from `src/`), matching how `drizzle.config.ts` resolves `../../apps/server/.env`
   from the `packages/db/` cwd.

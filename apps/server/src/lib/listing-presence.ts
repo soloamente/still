@@ -10,6 +10,7 @@ import {
 import {
 	clearActivityStateForUser,
 	type PatronActivityState,
+	readActivityStateForUser,
 	readActivityStatesForUserIds,
 	writeActivityStateForUser,
 } from "./presence-activity";
@@ -158,14 +159,20 @@ export async function touchListingPresence(
 
 	await redis.zadd(key, { score: nowMs, member: userId });
 	await redis.expire(key, LISTING_PRESENCE_KEY_TTL_SEC);
+
+	let activityChanged = false;
 	if (hasPresenceActivityRedis(redis)) {
+		const previousState = await readActivityStateForUser(redis, userId);
+		if (previousState !== activityState) {
+			activityChanged = true;
+		}
 		await writeActivityStateForUser(redis, userId, activityState);
 	}
 
 	const afterCount = await redis.zcard(key);
 	return {
 		occupantCount: afterCount,
-		changed: afterCount !== beforeCount,
+		changed: afterCount !== beforeCount || activityChanged,
 	};
 }
 

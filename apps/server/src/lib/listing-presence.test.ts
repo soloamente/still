@@ -119,6 +119,30 @@ describe("listing-presence", () => {
 		expect(await redis.hget("sense:presence:activity", "usr_a")).toBeNull();
 	});
 
+	test("touch reports changed when activity flips without occupancy change", async () => {
+		const redis = createTestPresenceRedis();
+		const roomId = "listing:movie:99";
+
+		await touchListingPresence(redis, roomId, "usr_a", 1_000, "active");
+		const away = await touchListingPresence(
+			redis,
+			roomId,
+			"usr_a",
+			2_000,
+			"away",
+		);
+		expect(away).toEqual({ occupantCount: 1, changed: true });
+
+		const awayAgain = await touchListingPresence(
+			redis,
+			roomId,
+			"usr_a",
+			3_000,
+			"away",
+		);
+		expect(awayAgain).toEqual({ occupantCount: 1, changed: false });
+	});
+
 	test("prune drops stale heartbeats before counting", async () => {
 		const redis = createTestPresenceRedis();
 		const roomId = "listing:movie:42";

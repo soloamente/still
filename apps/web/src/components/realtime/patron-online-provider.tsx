@@ -1,5 +1,6 @@
 "use client";
 
+import { patronAppRoomId } from "@still/realtime";
 import {
 	createContext,
 	type ReactNode,
@@ -10,7 +11,9 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
 import { usePatronActivityState } from "@/hooks/use-patron-activity-tracker";
+import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
 import {
 	fetchPatronOnlineHandles,
 	leavePatronAppPresenceClient,
@@ -66,6 +69,9 @@ export function PatronOnlineProvider({
 	const registerRefreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
 		null,
 	);
+	const presenceEventDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(
+		null,
+	);
 	const [presenceByHandle, setPresenceByHandle] = useState<
 		ReadonlyMap<string, "active" | "away">
 	>(() => new Map());
@@ -80,6 +86,27 @@ export function PatronOnlineProvider({
 			refreshOnlineHandlesRef.current?.();
 		}, REGISTER_REFRESH_DEBOUNCE_MS);
 	}, []);
+
+	const scheduleRefreshFromPresenceEvent = useCallback(() => {
+		if (presenceEventDebounceRef.current) {
+			clearTimeout(presenceEventDebounceRef.current);
+		}
+		presenceEventDebounceRef.current = setTimeout(() => {
+			presenceEventDebounceRef.current = null;
+			refreshOnlineHandlesRef.current?.();
+		}, REGISTER_REFRESH_DEBOUNCE_MS);
+	}, []);
+
+	useRegisterRealtimeRoom(active ? patronAppRoomId() : null);
+
+	useRealtimeSubscription({
+		room: patronAppRoomId(),
+		enabled: active,
+		onEvent: (event) => {
+			if (event.type !== "presence.updated") return;
+			scheduleRefreshFromPresenceEvent();
+		},
+	});
 
 	const registerHandle = useCallback(
 		(rawHandle: string) => {
@@ -208,6 +235,10 @@ export function PatronOnlineProvider({
 			if (registerRefreshTimerRef.current) {
 				clearTimeout(registerRefreshTimerRef.current);
 				registerRefreshTimerRef.current = null;
+			}
+			if (presenceEventDebounceRef.current) {
+				clearTimeout(presenceEventDebounceRef.current);
+				presenceEventDebounceRef.current = null;
 			}
 			abort.abort();
 			clearInterval(pollTimer);
