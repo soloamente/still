@@ -2,7 +2,7 @@
 
 ## Presence AFK status — orange dot (2026-06-16)
 
-**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Tasks 1–6 done.** Task 6: `PatronActivityProvider` + `buildPresenceHeartbeatBody`; heartbeats send `activityState`; immediate POST on active↔away flip; web tests **6/6** pass. **Pending human `go` for Task 7** (`PatronOnlineDot` green/orange + micro-pop).
+**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Tasks 1–7 done.** Task 7: `PatronOnlineDot` `presenceState` prop, `presenceDotSurfaceClass`, emerald/desert-orange + micro-pop; tests **2/2** pass. **Pending human `go` for Task 8** (wire portraits + listing presence).
 
 ## Presence online visibility controls — movie/TV detail (2026-06-16)
 
