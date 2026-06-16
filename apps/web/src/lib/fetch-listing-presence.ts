@@ -47,12 +47,14 @@ export async function fetchListingPresenceSnapshot(
 export async function touchListingPresenceClient(
 	roomId: string,
 	activityState: PatronActivityState = "active",
+	opts?: { keepalive?: boolean },
 ): Promise<boolean> {
 	const response = await fetch(presenceApiUrl(), {
 		method: "POST",
 		credentials: "include",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(buildPresenceHeartbeatBody(roomId, activityState)),
+		keepalive: opts?.keepalive ?? false,
 	});
 
 	return response.ok;

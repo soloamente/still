@@ -41,4 +41,12 @@ export function buildPresenceHeartbeatBody(
 	return { room, activityState };
 }
 
+/** Pure guard — skip the initial mount and no-op recomputes. */
+export function shouldEmitPatronActivityFlip(
+	previous: PatronActivityState | null,
+	next: PatronActivityState,
+): boolean {
+	return previous !== null && previous !== next;
+}
+
 export { INPUT_EVENTS as PATRON_ACTIVITY_INPUT_EVENTS };

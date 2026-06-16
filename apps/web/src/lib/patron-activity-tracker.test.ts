@@ -4,6 +4,7 @@ import {
 	buildPresenceHeartbeatBody,
 	derivePatronActivityState,
 	PATRON_AFK_IDLE_MS,
+	shouldEmitPatronActivityFlip,
 } from "./patron-activity-tracker";
 
 describe("derivePatronActivityState", () => {
@@ -47,6 +48,24 @@ describe("derivePatronActivityState", () => {
 				documentHidden: false,
 			}),
 		).toBe("active");
+	});
+});
+
+describe("shouldEmitPatronActivityFlip", () => {
+	test("skips initial mount", () => {
+		expect(shouldEmitPatronActivityFlip(null, "active")).toBe(false);
+	});
+
+	test("emits on active to away", () => {
+		expect(shouldEmitPatronActivityFlip("active", "away")).toBe(true);
+	});
+
+	test("emits on away to active", () => {
+		expect(shouldEmitPatronActivityFlip("away", "active")).toBe(true);
+	});
+
+	test("skips duplicate state", () => {
+		expect(shouldEmitPatronActivityFlip("away", "away")).toBe(false);
 	});
 });
 

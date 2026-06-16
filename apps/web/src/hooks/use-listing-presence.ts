@@ -4,7 +4,10 @@ import { listingMovieRoomId, listingTvRoomId } from "@still/realtime";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
-import { usePatronActivityState } from "@/hooks/use-patron-activity-tracker";
+import {
+	usePatronActivityFlipHeartbeat,
+	usePatronActivityState,
+} from "@/hooks/use-patron-activity-tracker";
 import { useRealtimeConnection } from "@/hooks/use-realtime-connection";
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
 import {
@@ -63,7 +66,6 @@ export function useListingPresence({
 	const activityState = usePatronActivityState();
 	const activityStateRef = useRef(activityState);
 	activityStateRef.current = activityState;
-	const prevActivityRef = useRef<typeof activityState | null>(null);
 
 	const [snapshot, setSnapshot] =
 		useState<ListingPresenceSnapshot>(EMPTY_SNAPSHOT);
@@ -108,6 +110,13 @@ export function useListingPresence({
 		},
 		[listingId, listingKind, roomId],
 	);
+
+	usePatronActivityFlipHeartbeat((state) => {
+		if (!active || leftRef.current) return;
+		void touchListingPresenceClient(roomId, state, {
+			keepalive: typeof document !== "undefined" && document.hidden,
+		});
+	}, active);
 
 	useRegisterRealtimeRoom(active ? roomId : null);
 
@@ -167,16 +176,6 @@ export function useListingPresence({
 			leavePresence();
 		};
 	}, [active, leavePresence, listingId, listingKind, refetchSnapshot, roomId]);
-
-	// Immediate heartbeat when local activity flips active ↔ away.
-	useEffect(() => {
-		if (!active) return;
-		if (prevActivityRef.current === activityState) return;
-		const isInitial = prevActivityRef.current === null;
-		prevActivityRef.current = activityState;
-		if (isInitial) return;
-		void touchListingPresenceClient(roomId, activityState);
-	}, [active, activityState, roomId]);
 
 	// Keepalive leave when the tab closes before React cleanup runs.
 	useEffect(() => {

@@ -49,6 +49,7 @@ export async function fetchPatronOnlineHandles(
 /** App-wide heartbeat — marks the patron as active anywhere in `(app)`. */
 export async function touchPatronAppPresenceClient(
 	activityState: PatronActivityState = "active",
+	opts?: { keepalive?: boolean },
 ): Promise<boolean> {
 	try {
 		const response = await fetch(presenceApiUrl(), {
@@ -58,6 +59,7 @@ export async function touchPatronAppPresenceClient(
 			body: JSON.stringify(
 				buildPresenceHeartbeatBody(patronAppRoomId(), activityState),
 			),
+			keepalive: opts?.keepalive ?? false,
 		});
 		return response.ok;
 	} catch {

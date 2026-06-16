@@ -3,8 +3,12 @@
 import {
 	createContext,
 	type ReactNode,
+	type RefObject,
+	useCallback,
 	useContext,
 	useEffect,
+	useLayoutEffect,
+	useMemo,
 	useRef,
 	useState,
 } from "react";
@@ -15,30 +19,61 @@ import {
 	PATRON_ACTIVITY_INPUT_THROTTLE_MS,
 	PATRON_ACTIVITY_RECOMPUTE_MS,
 	type PatronActivityState,
+	shouldEmitPatronActivityFlip,
 } from "@/lib/patron-activity-tracker";
 
-const PatronActivityContext = createContext<PatronActivityState>("active");
+type ActivityFlipHandler = (state: PatronActivityState) => void;
 
-function usePatronActivityTracker(enabled = true): PatronActivityState {
+type PatronActivityContextValue = {
+	activityState: PatronActivityState;
+	registerActivityFlipHandler: (handler: ActivityFlipHandler) => () => void;
+};
+
+const PatronActivityContext = createContext<PatronActivityContextValue | null>(
+	null,
+);
+
+function usePatronActivityTracker(
+	enabled: boolean,
+	flipHandlersRef: RefObject<Set<ActivityFlipHandler>>,
+): PatronActivityState {
 	const lastInputRef = useRef(Date.now());
+	const prevStateRef = useRef<PatronActivityState | null>(null);
 	const [activityState, setActivityState] =
 		useState<PatronActivityState>("active");
 
 	useEffect(() => {
 		if (!enabled) {
+			prevStateRef.current = null;
 			setActivityState("active");
 			return;
 		}
 
 		let throttleTimer: ReturnType<typeof setTimeout> | null = null;
 
+		const notifyFlipHandlers = (next: PatronActivityState) => {
+			for (const handler of flipHandlersRef.current) {
+				handler(next);
+			}
+		};
+
+		// Recompute synchronously — heartbeats must fire inside visibilitychange
+		// before the browser throttles background-tab React effects.
 		const recompute = () => {
 			const next = derivePatronActivityState({
 				nowMs: Date.now(),
 				lastInputAtMs: lastInputRef.current,
 				documentHidden: document.hidden,
 			});
+			const prev = prevStateRef.current;
+			if (prev === next) return;
+
+			prevStateRef.current = next;
 			setActivityState(next);
+
+			if (shouldEmitPatronActivityFlip(prev, next)) {
+				notifyFlipHandlers(next);
+			}
 		};
 
 		// Bump last-input time on patron interaction; throttle noisy events.
@@ -68,18 +103,38 @@ function usePatronActivityTracker(enabled = true): PatronActivityState {
 			document.removeEventListener("visibilitychange", onVisibility);
 			clearInterval(interval);
 			if (throttleTimer) clearTimeout(throttleTimer);
+			prevStateRef.current = null;
 		};
-	}, [enabled]);
+	}, [enabled, flipHandlersRef]);
 
 	return activityState;
 }
 
 /** Single app-wide activity tracker — shared by global + listing presence heartbeats. */
 export function PatronActivityProvider({ children }: { children: ReactNode }) {
-	const activityState = usePatronActivityTracker(true);
+	const flipHandlersRef = useRef(new Set<ActivityFlipHandler>());
+	const activityState = usePatronActivityTracker(true, flipHandlersRef);
+
+	const registerActivityFlipHandler = useCallback(
+		(handler: ActivityFlipHandler) => {
+			flipHandlersRef.current.add(handler);
+			return () => {
+				flipHandlersRef.current.delete(handler);
+			};
+		},
+		[],
+	);
+
+	const contextValue = useMemo(
+		() => ({
+			activityState,
+			registerActivityFlipHandler,
+		}),
+		[activityState, registerActivityFlipHandler],
+	);
 
 	return (
-		<PatronActivityContext.Provider value={activityState}>
+		<PatronActivityContext.Provider value={contextValue}>
 			{children}
 		</PatronActivityContext.Provider>
 	);
@@ -87,5 +142,27 @@ export function PatronActivityProvider({ children }: { children: ReactNode }) {
 
 /** Current local active/away state for presence heartbeats. */
 export function usePatronActivityState(): PatronActivityState {
-	return useContext(PatronActivityContext);
+	const context = useContext(PatronActivityContext);
+	return context?.activityState ?? "active";
+}
+
+/**
+ * Fire presence heartbeats synchronously on active ↔ away flips (not via React
+ * effects) so tab-away updates reach the server before background throttling.
+ */
+export function usePatronActivityFlipHeartbeat(
+	onFlip: (state: PatronActivityState) => void,
+	enabled = true,
+): void {
+	const context = useContext(PatronActivityContext);
+	const onFlipRef = useRef(onFlip);
+	onFlipRef.current = onFlip;
+
+	useLayoutEffect(() => {
+		if (!context || !enabled) return;
+
+		return context.registerActivityFlipHandler((state) => {
+			onFlipRef.current(state);
+		});
+	}, [context, enabled]);
 }

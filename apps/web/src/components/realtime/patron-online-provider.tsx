@@ -12,7 +12,10 @@ import {
 	useState,
 } from "react";
 import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
-import { usePatronActivityState } from "@/hooks/use-patron-activity-tracker";
+import {
+	usePatronActivityFlipHeartbeat,
+	usePatronActivityState,
+} from "@/hooks/use-patron-activity-tracker";
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
 import {
 	fetchPatronOnlineHandles,
@@ -59,7 +62,6 @@ export function PatronOnlineProvider({
 	const activityState = usePatronActivityState();
 	const activityStateRef = useRef(activityState);
 	activityStateRef.current = activityState;
-	const prevActivityRef = useRef<typeof activityState | null>(null);
 	const viewerHandleKey = viewerHandle
 		? normalizePatronOnlineHandle(viewerHandle)
 		: null;
@@ -148,6 +150,14 @@ export function PatronOnlineProvider({
 		void leavePatronAppPresenceClient({ keepalive: opts?.keepalive });
 	}, []);
 
+	// Synchronous flip heartbeats — must not wait for a background-tab React effect.
+	usePatronActivityFlipHeartbeat((state) => {
+		if (!active || leftRef.current) return;
+		void touchPatronAppPresenceClient(state, {
+			keepalive: typeof document !== "undefined" && document.hidden,
+		});
+	}, active);
+
 	// Global heartbeat while the signed-in app shell is mounted.
 	useEffect(() => {
 		if (!active) return;
@@ -171,16 +181,6 @@ export function PatronOnlineProvider({
 			leavePresence();
 		};
 	}, [active, leavePresence]);
-
-	// Push activity flips immediately so peers see orange/green without waiting for the interval.
-	useEffect(() => {
-		if (!active) return;
-		if (prevActivityRef.current === activityState) return;
-		const isInitial = prevActivityRef.current === null;
-		prevActivityRef.current = activityState;
-		if (isInitial) return;
-		void touchPatronAppPresenceClient(activityState);
-	}, [active, activityState]);
 
 	useEffect(() => {
 		if (!active) return;
