@@ -7,7 +7,10 @@ import {
 	leaveListingPresence,
 	touchListingPresence,
 } from "./listing-presence";
-import type { PatronActivityState } from "./presence-activity";
+import {
+	type PatronActivityState,
+	readActivityStatesForUserIds,
+} from "./presence-activity";
 import {
 	PROFILE_PRIVACY_PRESENCE_VISIBILITY_PUBLIC,
 	readProfilePresenceVisibilityPref,
@@ -25,16 +28,22 @@ type PatronPresenceRow = {
 	isMutualWithViewer: boolean;
 };
 
+export type VisiblePatronPresence = {
+	handle: string;
+	state: PatronActivityState;
+};
+
 /**
- * Handles the viewer may see as online now — respects presence visibility prefs
- * and excludes the viewer's own handle.
+ * Patrons the viewer may see as online — respects presence visibility prefs,
+ * excludes the viewer, and attaches active/away state from Redis.
  */
-export function pickVisibleOnlineHandles(
+export function pickVisiblePresenceForViewer(
 	viewerId: string,
 	rows: PatronPresenceRow[],
 	activeUserIds: ReadonlySet<string>,
-): string[] {
-	const handles: string[] = [];
+	activityByUserId: ReadonlyMap<string, PatronActivityState> = new Map(),
+): VisiblePatronPresence[] {
+	const presence: VisiblePatronPresence[] = [];
 
 	for (const row of rows) {
 		if (row.userId === viewerId) continue;
@@ -51,10 +60,27 @@ export function pickVisibleOnlineHandles(
 			row.isMutualWithViewer;
 		if (!visibleToViewer) continue;
 
-		handles.push(handle.toLowerCase());
+		presence.push({
+			handle: handle.toLowerCase(),
+			state: activityByUserId.get(row.userId) ?? "active",
+		});
 	}
 
-	return handles;
+	return presence;
+}
+
+/**
+ * Handles the viewer may see as online now — respects presence visibility prefs
+ * and excludes the viewer's own handle.
+ */
+export function pickVisibleOnlineHandles(
+	viewerId: string,
+	rows: PatronPresenceRow[],
+	activeUserIds: ReadonlySet<string>,
+): string[] {
+	return pickVisiblePresenceForViewer(viewerId, rows, activeUserIds).map(
+		(row) => row.handle,
+	);
 }
 
 /** Normalize and cap client-supplied handle batches. */
@@ -99,15 +125,14 @@ export async function leavePatronAppPresence(
 }
 
 /**
- * Batch resolve which requested handles are online now for the viewer.
- * Returns lowercase handles the viewer is allowed to see as online.
+ * Batch resolve which requested handles are online for the viewer with state.
  */
-export async function resolveVisibleOnlineHandlesForViewer(
+export async function resolveVisiblePresenceForViewer(
 	viewerId: string,
 	requestedHandles: string[],
 	redis: ListingPresenceRedis | null,
 	nowMs: number = Date.now(),
-): Promise<string[]> {
+): Promise<VisiblePatronPresence[]> {
 	const handles = normalizePatronOnlineHandleBatch(requestedHandles);
 	if (handles.length === 0 || !redis) return [];
 
@@ -148,12 +173,37 @@ export async function resolveVisibleOnlineHandlesForViewer(
 		);
 	const mutualIds = new Set(mutualRows.map((row) => row.userId));
 
-	return pickVisibleOnlineHandles(
+	const activityByUserId =
+		typeof redis.hget === "function"
+			? await readActivityStatesForUserIds(redis, candidateIds)
+			: new Map<string, PatronActivityState>();
+
+	return pickVisiblePresenceForViewer(
 		viewerId,
 		rows.map((row) => ({
 			...row,
 			isMutualWithViewer: mutualIds.has(row.userId),
 		})),
 		activeUserIds,
+		activityByUserId,
 	);
+}
+
+/**
+ * Batch resolve which requested handles are online now for the viewer.
+ * Returns lowercase handles the viewer is allowed to see as online.
+ */
+export async function resolveVisibleOnlineHandlesForViewer(
+	viewerId: string,
+	requestedHandles: string[],
+	redis: ListingPresenceRedis | null,
+	nowMs: number = Date.now(),
+): Promise<string[]> {
+	const presence = await resolveVisiblePresenceForViewer(
+		viewerId,
+		requestedHandles,
+		redis,
+		nowMs,
+	);
+	return presence.map((row) => row.handle);
 }

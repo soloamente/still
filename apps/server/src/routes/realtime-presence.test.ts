@@ -24,6 +24,10 @@ const getListingPresenceSnapshotMock = mock(async () => ({
 	],
 }));
 
+const resolveVisiblePresenceForViewerMock = mock(async () => [
+	{ handle: "friend", state: "active" as const },
+]);
+
 const publishRealtimeEventMock = mock(async () => {});
 
 mock.module("../lib/realtime-publish", () => ({
@@ -45,6 +49,12 @@ mock.module("../lib/listing-presence", () => ({
 	touchListingPresence: touchListingPresenceMock,
 	leaveListingPresence: leaveListingPresenceMock,
 	getListingPresenceSnapshot: getListingPresenceSnapshotMock,
+}));
+
+mock.module("../lib/patron-presence", () => ({
+	touchPatronAppPresence: touchListingPresenceMock,
+	leavePatronAppPresence: leaveListingPresenceMock,
+	resolveVisiblePresenceForViewer: resolveVisiblePresenceForViewerMock,
 }));
 
 mock.module("@still/auth", () => ({
@@ -75,6 +85,7 @@ function makeApp() {
 async function postPresence(input: {
 	userId?: string;
 	room: string;
+	activityState?: "active" | "away";
 }): Promise<Response> {
 	return makeApp().handle(
 		new Request("http://localhost/api/realtime/presence", {
@@ -83,7 +94,10 @@ async function postPresence(input: {
 				"content-type": "application/json",
 				...(input.userId ? { "x-user-id": input.userId } : {}),
 			},
-			body: JSON.stringify({ room: input.room }),
+			body: JSON.stringify({
+				room: input.room,
+				...(input.activityState ? { activityState: input.activityState } : {}),
+			}),
 		}),
 	);
 }
@@ -153,11 +167,9 @@ describe("POST /api/realtime/presence", () => {
 		expect(response.status).toBe(200);
 		expect(await response.json()).toEqual({ ok: true });
 		expect(touchListingPresenceMock).toHaveBeenCalledTimes(1);
-		expect(touchListingPresenceMock).toHaveBeenCalledWith(
-			{},
-			VALID_ROOM,
-			"usr_a",
-		);
+		expect(touchListingPresenceMock.mock.calls[0]?.[1]).toBe(VALID_ROOM);
+		expect(touchListingPresenceMock.mock.calls[0]?.[2]).toBe("usr_a");
+		expect(touchListingPresenceMock.mock.calls[0]?.[4]).toBe("active");
 		expect(publishRealtimeEventMock).toHaveBeenCalledTimes(1);
 		expect(publishRealtimeEventMock).toHaveBeenCalledWith(VALID_ROOM, {
 			type: "presence.updated",
@@ -177,6 +189,17 @@ describe("POST /api/realtime/presence", () => {
 
 		expect(response.status).toBe(200);
 		expect(publishRealtimeEventMock).not.toHaveBeenCalled();
+	});
+
+	test("forwards away activity state on heartbeat", async () => {
+		const response = await postPresence({
+			userId: "usr_a",
+			room: VALID_ROOM,
+			activityState: "away",
+		});
+
+		expect(response.status).toBe(200);
+		expect(touchListingPresenceMock.mock.calls.at(-1)?.[4]).toBe("away");
 	});
 });
 
@@ -220,6 +243,39 @@ describe("DELETE /api/realtime/presence", () => {
 		expect(publishRealtimeEventMock).toHaveBeenCalledWith(VALID_ROOM, {
 			type: "presence.updated",
 		});
+	});
+});
+
+describe("GET /api/realtime/presence/online", () => {
+	beforeEach(() => {
+		resolveVisiblePresenceForViewerMock.mockClear();
+	});
+
+	test("requires sign-in", async () => {
+		const url = new URL("http://localhost/api/realtime/presence/online");
+		url.searchParams.set("handles", "friend");
+		const response = await makeApp().handle(new Request(url));
+		expect(response.status).toBe(401);
+	});
+
+	test("returns presence rows with state", async () => {
+		const url = new URL("http://localhost/api/realtime/presence/online");
+		url.searchParams.set("handles", "friend");
+		const response = await makeApp().handle(
+			new Request(url, {
+				headers: { "x-user-id": "usr_a" },
+			}),
+		);
+
+		expect(response.status).toBe(200);
+		expect(await response.json()).toEqual({
+			presence: [{ handle: "friend", state: "active" }],
+		});
+		expect(resolveVisiblePresenceForViewerMock).toHaveBeenCalledWith(
+			"usr_a",
+			["friend"],
+			{},
+		);
 	});
 });
 
