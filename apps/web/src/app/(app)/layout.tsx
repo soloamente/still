@@ -5,7 +5,11 @@ import { AppShell } from "@/components/app/app-shell";
 import { AppThemeShell } from "@/components/app/app-theme-shell";
 import { PublicShareShell } from "@/components/app/public-share-shell";
 import { VerifyEmailBanner } from "@/components/auth/verify-email-banner";
+import { InboxRealtimeSubscriber } from "@/components/notifications/inbox-realtime-subscriber";
+import { PatronOnlineProvider } from "@/components/realtime/patron-online-provider";
+import { RealtimeRootProvider } from "@/components/realtime/realtime-root-provider";
 import { ImpersonationBanner } from "@/components/staff/impersonation-banner";
+import { PatronActivityProvider } from "@/hooks/use-patron-activity-tracker";
 import { authServer } from "@/lib/auth-server";
 import {
 	fetchMeProfile,
@@ -60,7 +64,14 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 			{impersonatedBy ? <ImpersonationBanner name={impersonatedName} /> : null}
 			<VerifyEmailBanner session={session} />
 			<AppShell user={buildPatronNavUser(session, profile)}>
-				{children}
+				<RealtimeRootProvider userId={session.user.id}>
+					<PatronActivityProvider>
+						<PatronOnlineProvider viewerHandle={profile?.handle}>
+							<InboxRealtimeSubscriber userId={session.user.id} />
+							{children}
+						</PatronOnlineProvider>
+					</PatronActivityProvider>
+				</RealtimeRootProvider>
 			</AppShell>
 		</AppThemeShell>
 	);

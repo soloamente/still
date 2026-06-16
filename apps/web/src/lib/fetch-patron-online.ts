@@ -1,5 +1,7 @@
 import { patronAppRoomId } from "@still/realtime";
 
+import type { PatronActivityState } from "@/lib/patron-activity-tracker";
+import { buildPresenceHeartbeatBody } from "@/lib/patron-activity-tracker";
 import type { PatronPresenceSnapshot } from "@/lib/patron-online-presence";
 import { isFetchAbortError } from "@/lib/still-api-fetch";
 import { stillApiOrigin } from "@/lib/still-api-origin";
@@ -45,13 +47,17 @@ export async function fetchPatronOnlineHandles(
 }
 
 /** App-wide heartbeat — marks the patron as active anywhere in `(app)`. */
-export async function touchPatronAppPresenceClient(): Promise<boolean> {
+export async function touchPatronAppPresenceClient(
+	activityState: PatronActivityState = "active",
+): Promise<boolean> {
 	try {
 		const response = await fetch(presenceApiUrl(), {
 			method: "POST",
 			credentials: "include",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ room: patronAppRoomId() }),
+			body: JSON.stringify(
+				buildPresenceHeartbeatBody(patronAppRoomId(), activityState),
+			),
 		});
 		return response.ok;
 	} catch {

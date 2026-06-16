@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	buildPresenceHeartbeatBody,
 	derivePatronActivityState,
 	PATRON_AFK_IDLE_MS,
 } from "./patron-activity-tracker";
@@ -46,5 +47,14 @@ describe("derivePatronActivityState", () => {
 				documentHidden: false,
 			}),
 		).toBe("active");
+	});
+});
+
+describe("buildPresenceHeartbeatBody", () => {
+	test("includes activityState in heartbeat payload", () => {
+		expect(buildPresenceHeartbeatBody("patron:app", "away")).toEqual({
+			room: "patron:app",
+			activityState: "away",
+		});
 	});
 });

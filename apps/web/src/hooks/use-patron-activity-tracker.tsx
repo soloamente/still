@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+	createContext,
+	type ReactNode,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 
 import {
 	derivePatronActivityState,
@@ -10,11 +17,9 @@ import {
 	type PatronActivityState,
 } from "@/lib/patron-activity-tracker";
 
-/**
- * Tracks local patron input + tab visibility to derive active/away for heartbeats.
- * Shared by app-shell and listing presence providers.
- */
-export function usePatronActivityTracker(enabled = true): PatronActivityState {
+const PatronActivityContext = createContext<PatronActivityState>("active");
+
+function usePatronActivityTracker(enabled = true): PatronActivityState {
 	const lastInputRef = useRef(Date.now());
 	const [activityState, setActivityState] =
 		useState<PatronActivityState>("active");
@@ -67,4 +72,20 @@ export function usePatronActivityTracker(enabled = true): PatronActivityState {
 	}, [enabled]);
 
 	return activityState;
+}
+
+/** Single app-wide activity tracker — shared by global + listing presence heartbeats. */
+export function PatronActivityProvider({ children }: { children: ReactNode }) {
+	const activityState = usePatronActivityTracker(true);
+
+	return (
+		<PatronActivityContext.Provider value={activityState}>
+			{children}
+		</PatronActivityContext.Provider>
+	);
+}
+
+/** Current local active/away state for presence heartbeats. */
+export function usePatronActivityState(): PatronActivityState {
+	return useContext(PatronActivityContext);
 }

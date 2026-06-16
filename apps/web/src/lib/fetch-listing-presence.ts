@@ -1,29 +1,22 @@
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
-
+import type { PatronActivityState } from "@/lib/patron-activity-tracker";
+import { buildPresenceHeartbeatBody } from "@/lib/patron-activity-tracker";
 import { stillApiOrigin } from "@/lib/still-api-origin";
 
 /** Public-profile patron chip returned by GET /api/realtime/presence. */
-
 export type ListingPresenceViewingPatron = {
 	userId: string;
-
 	handle: string;
-
 	displayName: string;
-
 	image: string | null;
-
 	avatarIsAnimated: boolean;
-
 	diaryMetalTier: DiaryMetalTier | null;
-
 	/** Explicit server signal used to render online-now badges. */
 	presenceState: "active" | "away";
 };
 
 export type ListingPresenceSnapshot = {
 	viewerCount: number;
-
 	viewingPatrons: ListingPresenceViewingPatron[];
 };
 
@@ -32,21 +25,16 @@ function presenceApiUrl(): string {
 }
 
 /** Server-filtered occupancy snapshot for a listing room. */
-
 export async function fetchListingPresenceSnapshot(
 	roomId: string,
-
 	signal?: AbortSignal,
 ): Promise<ListingPresenceSnapshot | null> {
 	const url = new URL(presenceApiUrl());
-
 	url.searchParams.set("room", roomId);
 
 	const response = await fetch(url, {
 		credentials: "include",
-
 		cache: "no-store",
-
 		signal,
 	});
 
@@ -56,39 +44,30 @@ export async function fetchListingPresenceSnapshot(
 }
 
 /** Heartbeat — registers the patron in the listing room ZSET. */
-
 export async function touchListingPresenceClient(
 	roomId: string,
+	activityState: PatronActivityState = "active",
 ): Promise<boolean> {
 	const response = await fetch(presenceApiUrl(), {
 		method: "POST",
-
 		credentials: "include",
-
 		headers: { "Content-Type": "application/json" },
-
-		body: JSON.stringify({ room: roomId }),
+		body: JSON.stringify(buildPresenceHeartbeatBody(roomId, activityState)),
 	});
 
 	return response.ok;
 }
 
 /** Leave on unmount; `keepalive` survives abrupt tab close via `pagehide`. */
-
 export async function leaveListingPresenceClient(
 	roomId: string,
-
 	opts?: { keepalive?: boolean },
 ): Promise<boolean> {
 	const response = await fetch(presenceApiUrl(), {
 		method: "DELETE",
-
 		credentials: "include",
-
 		headers: { "Content-Type": "application/json" },
-
 		body: JSON.stringify({ room: roomId }),
-
 		keepalive: opts?.keepalive ?? false,
 	});
 

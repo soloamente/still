@@ -1,0 +1,205 @@
+"use client";
+
+import { listingMovieRoomId, listingTvRoomId } from "@still/realtime";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
+import { usePatronActivityState } from "@/hooks/use-patron-activity-tracker";
+import { useRealtimeConnection } from "@/hooks/use-realtime-connection";
+import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
+import {
+	fetchListingPresenceSnapshot,
+	type ListingPresenceSnapshot,
+	leaveListingPresenceClient,
+	touchListingPresenceClient,
+} from "@/lib/fetch-listing-presence";
+import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
+
+const HEARTBEAT_MS = 25_000;
+const POLL_MS = 20_000;
+const REFETCH_DEBOUNCE_MS = 300;
+
+export type ListingPresenceSurface = "movie" | "tv";
+
+const EMPTY_SNAPSHOT: ListingPresenceSnapshot = {
+	viewerCount: 0,
+	viewingPatrons: [],
+};
+
+function realtimeClientEnabled(): boolean {
+	return process.env.NEXT_PUBLIC_REALTIME_ENABLED !== "false";
+}
+
+/** Build the listing SSE room id from kind + TMDb id when `roomId` is omitted. */
+export function resolveListingPresenceRoomId(
+	listingKind: ListingPresenceSurface,
+	listingId: number | string,
+): string {
+	return listingKind === "movie"
+		? listingMovieRoomId(listingId)
+		: listingTvRoomId(listingId);
+}
+
+/**
+ * Heartbeat + leave lifecycle for movie/TV detail presence.
+ * Registers the listing room on the app-shell SSE socket and refetches on
+ * `presence.updated`; polls when disconnected.
+ */
+export function useListingPresence({
+	roomId: roomIdProp,
+	listingKind,
+	listingId,
+	enabled = true,
+}: {
+	roomId?: string;
+	listingKind: ListingPresenceSurface;
+	listingId: number | string;
+	enabled?: boolean;
+}): ListingPresenceSnapshot {
+	const roomId =
+		roomIdProp ?? resolveListingPresenceRoomId(listingKind, listingId);
+	const connected = useRealtimeConnection();
+	const active = enabled && Boolean(roomId) && realtimeClientEnabled();
+	const activityState = usePatronActivityState();
+	const activityStateRef = useRef(activityState);
+	activityStateRef.current = activityState;
+	const prevActivityRef = useRef<typeof activityState | null>(null);
+
+	const [snapshot, setSnapshot] =
+		useState<ListingPresenceSnapshot>(EMPTY_SNAPSHOT);
+
+	const joinedRef = useRef(false);
+	const leftRef = useRef(false);
+	const refetchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+	const refetchSnapshot = useCallback(
+		async (signal?: AbortSignal) => {
+			const next = await fetchListingPresenceSnapshot(roomId, signal);
+			if (!next) return;
+			setSnapshot(next);
+		},
+		[roomId],
+	);
+
+	const scheduleRefetch = useCallback(() => {
+		if (refetchTimerRef.current) clearTimeout(refetchTimerRef.current);
+		refetchTimerRef.current = setTimeout(() => {
+			refetchTimerRef.current = null;
+			void refetchSnapshot();
+		}, REFETCH_DEBOUNCE_MS);
+	}, [refetchSnapshot]);
+
+	const leavePresence = useCallback(
+		(opts?: { keepalive?: boolean; trackLeave?: boolean }) => {
+			if (leftRef.current) return;
+			leftRef.current = true;
+
+			if (opts?.trackLeave !== false && joinedRef.current) {
+				joinedRef.current = false;
+				trackSenseProductEvent("realtime.presence.leave", {
+					surface: listingKind,
+					listingId: String(listingId),
+				});
+			}
+
+			void leaveListingPresenceClient(roomId, {
+				keepalive: opts?.keepalive,
+			});
+		},
+		[listingId, listingKind, roomId],
+	);
+
+	useRegisterRealtimeRoom(active ? roomId : null);
+
+	useRealtimeSubscription({
+		room: roomId,
+		enabled: active,
+		onEvent: (event) => {
+			if (event.type !== "presence.updated") return;
+			scheduleRefetch();
+		},
+	});
+
+	// Initial snapshot, heartbeat loop, and cleanup leave.
+	useEffect(() => {
+		if (!active) {
+			setSnapshot(EMPTY_SNAPSHOT);
+			joinedRef.current = false;
+			leftRef.current = false;
+			return;
+		}
+
+		leftRef.current = false;
+		let unmounted = false;
+		const abort = new AbortController();
+
+		const runHeartbeat = async () => {
+			const ok = await touchListingPresenceClient(
+				roomId,
+				activityStateRef.current,
+			);
+			if (!ok || unmounted) return;
+
+			if (!joinedRef.current) {
+				joinedRef.current = true;
+				trackSenseProductEvent("realtime.presence.join", {
+					surface: listingKind,
+					listingId: String(listingId),
+				});
+			}
+
+			await refetchSnapshot(abort.signal);
+		};
+
+		void runHeartbeat();
+		const heartbeatTimer = setInterval(() => {
+			void runHeartbeat();
+		}, HEARTBEAT_MS);
+
+		return () => {
+			unmounted = true;
+			abort.abort();
+			clearInterval(heartbeatTimer);
+			if (refetchTimerRef.current) {
+				clearTimeout(refetchTimerRef.current);
+				refetchTimerRef.current = null;
+			}
+			leavePresence();
+		};
+	}, [active, leavePresence, listingId, listingKind, refetchSnapshot, roomId]);
+
+	// Immediate heartbeat when local activity flips active ↔ away.
+	useEffect(() => {
+		if (!active) return;
+		if (prevActivityRef.current === activityState) return;
+		const isInitial = prevActivityRef.current === null;
+		prevActivityRef.current = activityState;
+		if (isInitial) return;
+		void touchListingPresenceClient(roomId, activityState);
+	}, [active, activityState, roomId]);
+
+	// Keepalive leave when the tab closes before React cleanup runs.
+	useEffect(() => {
+		if (!active) return;
+
+		const onPageHide = () => {
+			leavePresence({ keepalive: true, trackLeave: false });
+		};
+
+		window.addEventListener("pagehide", onPageHide);
+		return () => window.removeEventListener("pagehide", onPageHide);
+	}, [active, leavePresence]);
+
+	// Poll fallback while SSE is disconnected.
+	useEffect(() => {
+		if (!active || connected) return;
+
+		const pollTimer = setInterval(() => {
+			void refetchSnapshot();
+		}, POLL_MS);
+
+		return () => clearInterval(pollTimer);
+	}, [active, connected, refetchSnapshot]);
+
+	return snapshot;
+}

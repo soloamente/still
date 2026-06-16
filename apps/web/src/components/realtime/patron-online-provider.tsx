@@ -10,7 +10,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-
+import { usePatronActivityState } from "@/hooks/use-patron-activity-tracker";
 import {
 	fetchPatronOnlineHandles,
 	leavePatronAppPresenceClient,
@@ -53,6 +53,10 @@ export function PatronOnlineProvider({
 	viewerHandle?: string | null;
 }) {
 	const active = realtimeClientEnabled();
+	const activityState = usePatronActivityState();
+	const activityStateRef = useRef(activityState);
+	activityStateRef.current = activityState;
+	const prevActivityRef = useRef<typeof activityState | null>(null);
 	const viewerHandleKey = viewerHandle
 		? normalizePatronOnlineHandle(viewerHandle)
 		: null;
@@ -126,7 +130,7 @@ export function PatronOnlineProvider({
 
 		const runHeartbeat = async () => {
 			if (unmounted) return;
-			await touchPatronAppPresenceClient();
+			await touchPatronAppPresenceClient(activityStateRef.current);
 		};
 
 		void runHeartbeat();
@@ -140,6 +144,16 @@ export function PatronOnlineProvider({
 			leavePresence();
 		};
 	}, [active, leavePresence]);
+
+	// Push activity flips immediately so peers see orange/green without waiting for the interval.
+	useEffect(() => {
+		if (!active) return;
+		if (prevActivityRef.current === activityState) return;
+		const isInitial = prevActivityRef.current === null;
+		prevActivityRef.current = activityState;
+		if (isInitial) return;
+		void touchPatronAppPresenceClient(activityState);
+	}, [active, activityState]);
 
 	useEffect(() => {
 		if (!active) return;

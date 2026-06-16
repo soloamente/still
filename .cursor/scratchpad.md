@@ -2,7 +2,7 @@
 
 ## Presence AFK status — orange dot (2026-06-16)
 
-**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Pending:** human `go` on Task 1 (Executor).
+**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on existing `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop animation on `active` ↔ `away` (+ existing mount pop); privacy unchanged (`friends`/`public`). **Tasks 1–6 done.** Task 6: `PatronActivityProvider` + `buildPresenceHeartbeatBody`; heartbeats send `activityState`; immediate POST on active↔away flip; web tests **6/6** pass. **Pending human `go` for Task 7** (`PatronOnlineDot` green/orange + micro-pop).
 
 ## Presence online visibility controls — movie/TV detail (2026-06-16)
 
@@ -672,6 +672,18 @@ existing cinematic identity rather than replacing it.
 - [x] B.7 Planner / human sign-off on Track B _(Planner note 2026-05-14 — see Executor; staging “daily return” bar met for shipped scope, follow-ups listed)_
 
 ## Executor's Feedback or Assistance Requests
+
+### 2026-06-16 — Presence AFK Task 6 (complete)
+
+**Shipped:** wired local activity state into presence heartbeats.
+- `PatronActivityProvider` in `use-patron-activity-tracker.tsx` (single DOM listener set for app shell)
+- `buildPresenceHeartbeatBody` + `activityState` on `touchPatronAppPresenceClient` / `touchListingPresenceClient`
+- `PatronOnlineProvider` + `useListingPresence` pass `activityState` on 25s heartbeat; immediate POST on active↔away flip (skips duplicate on mount)
+- `(app)/layout.tsx` wraps `PatronActivityProvider` around `PatronOnlineProvider`
+
+**Tests:** `bun test src/lib/patron-activity-tracker.test.ts src/lib/fetch-patron-online.test.ts` → **6/6 pass**.
+
+**Ready for next milestone:** reply **`go`** for **Task 7** — `PatronOnlineDot` green/orange + micro-pop animation.
 
 ### 2026-06-16 — Presence online visibility Task 1 (complete)
 

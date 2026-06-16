@@ -33,4 +33,12 @@ export function derivePatronActivityState(
 	return "active";
 }
 
+/** JSON body for POST /api/realtime/presence heartbeats. */
+export function buildPresenceHeartbeatBody(
+	room: string,
+	activityState: PatronActivityState = "active",
+) {
+	return { room, activityState };
+}
+
 export { INPUT_EVENTS as PATRON_ACTIVITY_INPUT_EVENTS };
