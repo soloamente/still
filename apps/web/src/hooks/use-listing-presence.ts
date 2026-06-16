@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
 import {
 	usePatronActivityFlipHeartbeat,
-	usePatronActivityState,
+	useReadPatronActivityState,
 } from "@/hooks/use-patron-activity-tracker";
 import { useRealtimeConnection } from "@/hooks/use-realtime-connection";
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
@@ -16,6 +16,7 @@ import {
 	leaveListingPresenceClient,
 	touchListingPresenceClient,
 } from "@/lib/fetch-listing-presence";
+import { resolvePresenceHeartbeatActivityState } from "@/lib/patron-activity-tracker";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 
 const HEARTBEAT_MS = 25_000;
@@ -63,9 +64,7 @@ export function useListingPresence({
 		roomIdProp ?? resolveListingPresenceRoomId(listingKind, listingId);
 	const connected = useRealtimeConnection();
 	const active = enabled && Boolean(roomId) && realtimeClientEnabled();
-	const activityState = usePatronActivityState();
-	const activityStateRef = useRef(activityState);
-	activityStateRef.current = activityState;
+	const readPatronActivityState = useReadPatronActivityState();
 
 	const [snapshot, setSnapshot] =
 		useState<ListingPresenceSnapshot>(EMPTY_SNAPSHOT);
@@ -113,7 +112,8 @@ export function useListingPresence({
 
 	usePatronActivityFlipHeartbeat((state) => {
 		if (!active || leftRef.current) return;
-		void touchListingPresenceClient(roomId, state, {
+		const heartbeatState = resolvePresenceHeartbeatActivityState(state);
+		void touchListingPresenceClient(roomId, heartbeatState, {
 			keepalive: typeof document !== "undefined" && document.hidden,
 		});
 	}, active);
@@ -143,10 +143,12 @@ export function useListingPresence({
 		const abort = new AbortController();
 
 		const runHeartbeat = async () => {
-			const ok = await touchListingPresenceClient(
-				roomId,
-				activityStateRef.current,
+			const heartbeatState = resolvePresenceHeartbeatActivityState(
+				readPatronActivityState(),
 			);
+			const ok = await touchListingPresenceClient(roomId, heartbeatState, {
+				keepalive: typeof document !== "undefined" && document.hidden,
+			});
 			if (!ok || unmounted) return;
 
 			if (!joinedRef.current) {
@@ -175,7 +177,15 @@ export function useListingPresence({
 			}
 			leavePresence();
 		};
-	}, [active, leavePresence, listingId, listingKind, refetchSnapshot, roomId]);
+	}, [
+		active,
+		leavePresence,
+		listingId,
+		listingKind,
+		readPatronActivityState,
+		refetchSnapshot,
+		roomId,
+	]);
 
 	// Keepalive leave when the tab closes before React cleanup runs.
 	useEffect(() => {

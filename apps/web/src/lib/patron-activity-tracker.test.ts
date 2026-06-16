@@ -4,6 +4,7 @@ import {
 	buildPresenceHeartbeatBody,
 	derivePatronActivityState,
 	PATRON_AFK_IDLE_MS,
+	resolvePresenceHeartbeatActivityState,
 	shouldEmitPatronActivityFlip,
 } from "./patron-activity-tracker";
 
@@ -75,5 +76,18 @@ describe("buildPresenceHeartbeatBody", () => {
 			room: "patron:app",
 			activityState: "away",
 		});
+	});
+});
+
+describe("resolvePresenceHeartbeatActivityState", () => {
+	test("hidden document forces away", () => {
+		expect(resolvePresenceHeartbeatActivityState("active", true)).toBe("away");
+	});
+
+	test("visible document keeps tracked state", () => {
+		expect(resolvePresenceHeartbeatActivityState("active", false)).toBe(
+			"active",
+		);
+		expect(resolvePresenceHeartbeatActivityState("away", false)).toBe("away");
 	});
 });

@@ -26,6 +26,8 @@ type ActivityFlipHandler = (state: PatronActivityState) => void;
 
 type PatronActivityContextValue = {
 	activityState: PatronActivityState;
+	/** Synchronous read — updated inside visibilitychange before React re-renders. */
+	readPatronActivityState: () => PatronActivityState;
 	registerActivityFlipHandler: (handler: ActivityFlipHandler) => () => void;
 };
 
@@ -36,6 +38,7 @@ const PatronActivityContext = createContext<PatronActivityContextValue | null>(
 function usePatronActivityTracker(
 	enabled: boolean,
 	flipHandlersRef: RefObject<Set<ActivityFlipHandler>>,
+	activityStateRef: RefObject<PatronActivityState>,
 ): PatronActivityState {
 	const lastInputRef = useRef(Date.now());
 	const prevStateRef = useRef<PatronActivityState | null>(null);
@@ -45,6 +48,7 @@ function usePatronActivityTracker(
 	useEffect(() => {
 		if (!enabled) {
 			prevStateRef.current = null;
+			activityStateRef.current = "active";
 			setActivityState("active");
 			return;
 		}
@@ -69,6 +73,7 @@ function usePatronActivityTracker(
 			if (prev === next) return;
 
 			prevStateRef.current = next;
+			activityStateRef.current = next;
 			setActivityState(next);
 
 			if (shouldEmitPatronActivityFlip(prev, next)) {
@@ -104,8 +109,9 @@ function usePatronActivityTracker(
 			clearInterval(interval);
 			if (throttleTimer) clearTimeout(throttleTimer);
 			prevStateRef.current = null;
+			activityStateRef.current = "active";
 		};
-	}, [enabled, flipHandlersRef]);
+	}, [activityStateRef, enabled, flipHandlersRef]);
 
 	return activityState;
 }
@@ -113,7 +119,16 @@ function usePatronActivityTracker(
 /** Single app-wide activity tracker — shared by global + listing presence heartbeats. */
 export function PatronActivityProvider({ children }: { children: ReactNode }) {
 	const flipHandlersRef = useRef(new Set<ActivityFlipHandler>());
-	const activityState = usePatronActivityTracker(true, flipHandlersRef);
+	const activityStateRef = useRef<PatronActivityState>("active");
+	const readPatronActivityState = useCallback(
+		() => activityStateRef.current,
+		[],
+	);
+	const activityState = usePatronActivityTracker(
+		true,
+		flipHandlersRef,
+		activityStateRef,
+	);
 
 	const registerActivityFlipHandler = useCallback(
 		(handler: ActivityFlipHandler) => {
@@ -128,9 +143,10 @@ export function PatronActivityProvider({ children }: { children: ReactNode }) {
 	const contextValue = useMemo(
 		() => ({
 			activityState,
+			readPatronActivityState,
 			registerActivityFlipHandler,
 		}),
-		[activityState, registerActivityFlipHandler],
+		[activityState, readPatronActivityState, registerActivityFlipHandler],
 	);
 
 	return (
@@ -144,6 +160,12 @@ export function PatronActivityProvider({ children }: { children: ReactNode }) {
 export function usePatronActivityState(): PatronActivityState {
 	const context = useContext(PatronActivityContext);
 	return context?.activityState ?? "active";
+}
+
+/** Synchronous activity read — safe inside visibilitychange / heartbeat timers. */
+export function useReadPatronActivityState(): () => PatronActivityState {
+	const context = useContext(PatronActivityContext);
+	return context?.readPatronActivityState ?? (() => "active" as const);
 }
 
 /**

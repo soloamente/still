@@ -49,4 +49,18 @@ export function shouldEmitPatronActivityFlip(
 	return previous !== null && previous !== next;
 }
 
+/**
+ * Heartbeat payload state — hidden tabs are always away even when React state
+ * has not re-rendered yet (background tabs throttle effects).
+ */
+export function resolvePresenceHeartbeatActivityState(
+	trackedState: PatronActivityState,
+	documentHidden: boolean = typeof document !== "undefined"
+		? document.hidden
+		: false,
+): PatronActivityState {
+	if (documentHidden) return "away";
+	return trackedState;
+}
+
 export { INPUT_EVENTS as PATRON_ACTIVITY_INPUT_EVENTS };

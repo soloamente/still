@@ -3,6 +3,7 @@ import { patronAppRoomId } from "@still/realtime";
 import type { PatronActivityState } from "@/lib/patron-activity-tracker";
 import { buildPresenceHeartbeatBody } from "@/lib/patron-activity-tracker";
 import type { PatronPresenceSnapshot } from "@/lib/patron-online-presence";
+import { postPresenceHeartbeat } from "@/lib/presence-heartbeat-post";
 import { isFetchAbortError } from "@/lib/still-api-fetch";
 import { stillApiOrigin } from "@/lib/still-api-origin";
 
@@ -51,20 +52,10 @@ export async function touchPatronAppPresenceClient(
 	activityState: PatronActivityState = "active",
 	opts?: { keepalive?: boolean },
 ): Promise<boolean> {
-	try {
-		const response = await fetch(presenceApiUrl(), {
-			method: "POST",
-			credentials: "include",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(
-				buildPresenceHeartbeatBody(patronAppRoomId(), activityState),
-			),
-			keepalive: opts?.keepalive ?? false,
-		});
-		return response.ok;
-	} catch {
-		return false;
-	}
+	return postPresenceHeartbeat(
+		buildPresenceHeartbeatBody(patronAppRoomId(), activityState),
+		opts,
+	);
 }
 
 /** Leave global online set on unmount / tab close. */

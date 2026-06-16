@@ -1,6 +1,7 @@
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { PatronActivityState } from "@/lib/patron-activity-tracker";
 import { buildPresenceHeartbeatBody } from "@/lib/patron-activity-tracker";
+import { postPresenceHeartbeat } from "@/lib/presence-heartbeat-post";
 import { stillApiOrigin } from "@/lib/still-api-origin";
 
 /** Public-profile patron chip returned by GET /api/realtime/presence. */
@@ -49,15 +50,10 @@ export async function touchListingPresenceClient(
 	activityState: PatronActivityState = "active",
 	opts?: { keepalive?: boolean },
 ): Promise<boolean> {
-	const response = await fetch(presenceApiUrl(), {
-		method: "POST",
-		credentials: "include",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(buildPresenceHeartbeatBody(roomId, activityState)),
-		keepalive: opts?.keepalive ?? false,
-	});
-
-	return response.ok;
+	return postPresenceHeartbeat(
+		buildPresenceHeartbeatBody(roomId, activityState),
+		opts,
+	);
 }
 
 /** Leave on unmount; `keepalive` survives abrupt tab close via `pagehide`. */

@@ -14,7 +14,7 @@ import {
 import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
 import {
 	usePatronActivityFlipHeartbeat,
-	usePatronActivityState,
+	useReadPatronActivityState,
 } from "@/hooks/use-patron-activity-tracker";
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
 import {
@@ -24,6 +24,7 @@ import {
 	normalizePatronPresenceSnapshot,
 	touchPatronAppPresenceClient,
 } from "@/lib/fetch-patron-online";
+import { resolvePresenceHeartbeatActivityState } from "@/lib/patron-activity-tracker";
 
 const HEARTBEAT_MS = 25_000;
 const POLL_MS = 20_000;
@@ -59,9 +60,7 @@ export function PatronOnlineProvider({
 	viewerHandle?: string | null;
 }) {
 	const active = realtimeClientEnabled();
-	const activityState = usePatronActivityState();
-	const activityStateRef = useRef(activityState);
-	activityStateRef.current = activityState;
+	const readPatronActivityState = useReadPatronActivityState();
 	const viewerHandleKey = viewerHandle
 		? normalizePatronOnlineHandle(viewerHandle)
 		: null;
@@ -153,10 +152,30 @@ export function PatronOnlineProvider({
 	// Synchronous flip heartbeats — must not wait for a background-tab React effect.
 	usePatronActivityFlipHeartbeat((state) => {
 		if (!active || leftRef.current) return;
-		void touchPatronAppPresenceClient(state, {
+		const heartbeatState = resolvePresenceHeartbeatActivityState(state);
+		void touchPatronAppPresenceClient(heartbeatState, {
 			keepalive: typeof document !== "undefined" && document.hidden,
 		});
 	}, active);
+
+	// Belt-and-suspenders: post away immediately on tab hide (sendBeacon path).
+	useEffect(() => {
+		if (!active) return;
+
+		const onVisibility = () => {
+			if (leftRef.current) return;
+			if (document.hidden) {
+				void touchPatronAppPresenceClient("away", { keepalive: true });
+				return;
+			}
+			void touchPatronAppPresenceClient(
+				resolvePresenceHeartbeatActivityState(readPatronActivityState()),
+			);
+		};
+
+		document.addEventListener("visibilitychange", onVisibility);
+		return () => document.removeEventListener("visibilitychange", onVisibility);
+	}, [active, readPatronActivityState]);
 
 	// Global heartbeat while the signed-in app shell is mounted.
 	useEffect(() => {
@@ -167,7 +186,12 @@ export function PatronOnlineProvider({
 
 		const runHeartbeat = async () => {
 			if (unmounted) return;
-			await touchPatronAppPresenceClient(activityStateRef.current);
+			const heartbeatState = resolvePresenceHeartbeatActivityState(
+				readPatronActivityState(),
+			);
+			await touchPatronAppPresenceClient(heartbeatState, {
+				keepalive: typeof document !== "undefined" && document.hidden,
+			});
 		};
 
 		void runHeartbeat();
@@ -180,7 +204,7 @@ export function PatronOnlineProvider({
 			clearInterval(heartbeatTimer);
 			leavePresence();
 		};
-	}, [active, leavePresence]);
+	}, [active, leavePresence, readPatronActivityState]);
 
 	useEffect(() => {
 		if (!active) return;
