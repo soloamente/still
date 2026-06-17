@@ -16,11 +16,15 @@ import { api } from "@/lib/api";
 import { subscribeNotificationsInboxLive } from "@/lib/notifications-inbox-live";
 import {
 	computeNotificationsUnreadCount,
+	decrementUnread,
 	NOTIFICATIONS_INBOX_FETCH_LIMIT,
 	NOTIFICATIONS_INBOX_POLL_INTERVAL_MS,
 	shouldRunNotificationsInboxPoll,
 } from "@/lib/notifications-inbox-poll";
-import { postNotificationRead } from "@/lib/still-api-fetch";
+import {
+	fetchNotificationsUnreadCount,
+	postNotificationRead,
+} from "@/lib/still-api-fetch";
 
 export type NotificationsInboxContextValue = {
 	rows: NotificationPreviewRow[];
@@ -41,6 +45,7 @@ export function NotificationsInboxProvider({
 	children: ReactNode;
 }) {
 	const [rows, setRows] = useState<NotificationPreviewRow[]>([]);
+	const [unreadCount, setUnreadCount] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const inFlight = useRef(new Set<string>());
 	const rowsRef = useRef(rows);
@@ -58,6 +63,7 @@ export function NotificationsInboxProvider({
 		try {
 			const data = await fetchNotifications();
 			setRows(data);
+			setUnreadCount(computeNotificationsUnreadCount(data));
 		} catch {
 			// Keep last good inbox on transient failure.
 		} finally {
@@ -68,24 +74,24 @@ export function NotificationsInboxProvider({
 	useEffect(() => {
 		let cancelled = false;
 
-		const loadQuiet = async () => {
+		const loadCount = async () => {
 			try {
-				const data = await fetchNotifications();
-				if (!cancelled) setRows(data);
+				const count = await fetchNotificationsUnreadCount();
+				if (!cancelled) setUnreadCount(count);
 			} catch {
-				// Keep the last good inbox on a transient failure.
+				// Best-effort — keep last known count on transient failure.
 			}
 		};
 
-		void loadQuiet();
+		void loadCount();
 
-		// SSE invalidation + safety poll — always on while tab is visible (never gated on SSE connected).
+		// SSE invalidation is primary; this poll is just a slow safety net.
 		let timer: ReturnType<typeof setInterval> | null = null;
 		const startPoll = () => {
 			if (timer != null) return;
 			timer = setInterval(() => {
 				if (shouldRunNotificationsInboxPoll(document.visibilityState)) {
-					void loadQuiet();
+					void loadCount();
 				}
 			}, NOTIFICATIONS_INBOX_POLL_INTERVAL_MS);
 		};
@@ -94,19 +100,12 @@ export function NotificationsInboxProvider({
 			clearInterval(timer);
 			timer = null;
 		};
-		const syncPoll = () => {
-			if (shouldRunNotificationsInboxPoll(document.visibilityState)) {
-				startPoll();
-			} else {
-				stopPoll();
-			}
-		};
 
-		syncPoll();
+		if (shouldRunNotificationsInboxPoll(document.visibilityState)) startPoll();
 
 		const onVisibility = () => {
 			if (document.visibilityState === "visible") {
-				void loadQuiet();
+				void loadCount();
 				startPoll();
 			} else {
 				stopPoll();
@@ -116,7 +115,7 @@ export function NotificationsInboxProvider({
 
 		const unsubLive = subscribeNotificationsInboxLive(() => {
 			if (shouldRunNotificationsInboxPoll(document.visibilityState)) {
-				void loadQuiet();
+				void loadCount();
 			}
 		});
 
@@ -126,7 +125,7 @@ export function NotificationsInboxProvider({
 			unsubLive();
 			document.removeEventListener("visibilitychange", onVisibility);
 		};
-	}, [fetchNotifications]);
+	}, []);
 
 	const markOneRead = useCallback(async (row: NotificationPreviewRow) => {
 		if (row.readAt || inFlight.current.has(row.id)) return;
@@ -137,6 +136,7 @@ export function NotificationsInboxProvider({
 				r.id === row.id ? { ...r, readAt: new Date().toISOString() } : r,
 			),
 		);
+		if (!previousReadAt) setUnreadCount((c) => decrementUnread(c));
 		const res = await postNotificationRead(row.id);
 		if (!res.ok) {
 			setRows((prev) =>
@@ -144,6 +144,7 @@ export function NotificationsInboxProvider({
 					r.id === row.id ? { ...r, readAt: previousReadAt } : r,
 				),
 			);
+			if (!previousReadAt) setUnreadCount((c) => c + 1);
 		}
 		inFlight.current.delete(row.id);
 	}, []);
@@ -157,15 +158,11 @@ export function NotificationsInboxProvider({
 					readAt: r.readAt ?? new Date().toISOString(),
 				})),
 			);
+			setUnreadCount(0);
 		} catch {
 			// Best-effort.
 		}
 	}, []);
-
-	const unreadCount = useMemo(
-		() => computeNotificationsUnreadCount(rows),
-		[rows],
-	);
 
 	const value = useMemo<NotificationsInboxContextValue>(
 		() => ({
