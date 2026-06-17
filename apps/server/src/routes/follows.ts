@@ -9,6 +9,7 @@ import {
 	annotateViewerFollows,
 	fetchViewerFollowingIds,
 } from "../lib/follow-list";
+import { invalidateMutualFollowCache } from "../lib/mutual-follow-cache";
 import { deliverNotification } from "../lib/notification-delivery";
 import { serializePatronProfileForClient } from "../lib/profile-media";
 import { hit } from "../lib/rate-limit";
@@ -108,6 +109,7 @@ export const followsRoute = new Elysia({
 				kind: "follow.created",
 				payload: { followingId: params.userId },
 			});
+			await invalidateMutualFollowCache(viewer.id, params.userId);
 			return { following: true };
 		},
 		{ params: t.Object({ userId: t.String() }) },
@@ -134,6 +136,7 @@ export const followsRoute = new Elysia({
 						eq(follow.followingId, viewer.id),
 					),
 				);
+			await invalidateMutualFollowCache(viewer.id, params.userId);
 			return { following: false };
 		},
 		{ params: t.Object({ userId: t.String() }) },
