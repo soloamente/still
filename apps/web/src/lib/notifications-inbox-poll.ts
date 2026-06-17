@@ -1,5 +1,5 @@
-/** How often the global inbox refetches while the tab is foregrounded (safety net with SSE). */
-export const NOTIFICATIONS_INBOX_POLL_INTERVAL_MS = 60_000;
+/** How often the global inbox refetches the unread count while foregrounded (SSE is primary). */
+export const NOTIFICATIONS_INBOX_POLL_INTERVAL_MS = 300_000;
 
 export const NOTIFICATIONS_INBOX_FETCH_LIMIT = 80;
 
@@ -15,4 +15,9 @@ export function shouldRunNotificationsInboxPoll(
 	visibilityState: DocumentVisibilityState,
 ): boolean {
 	return visibilityState === "visible";
+}
+
+/** Optimistic unread-badge decrement when marking a single row read (never negative). */
+export function decrementUnread(current: number): number {
+	return Math.max(0, current - 1);
 }
