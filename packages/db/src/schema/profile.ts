@@ -183,6 +183,7 @@ export const block = pgTable(
 	(table) => [
 		primaryKey({ columns: [table.blockerId, table.blockedId] }),
 		index("block_blocked_idx").on(table.blockedId),
+		index("block_blocker_idx").on(table.blockerId),
 	],
 );
 

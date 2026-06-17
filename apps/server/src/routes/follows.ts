@@ -59,6 +59,16 @@ export const followsRoute = new Elysia({
 				.values({ followerId: viewer.id, followingId: params.userId })
 				.onConflictDoNothing();
 
+			// Increment denormalized counts — best-effort, stats recompute on next full profile load if stale.
+			await Promise.all([
+				db.execute(
+					sql`UPDATE profile SET stats_cache = jsonb_set(stats_cache, '{followers}', to_jsonb(COALESCE((stats_cache->>'followers')::int, 0) + 1)) WHERE user_id = ${params.userId}`,
+				),
+				db.execute(
+					sql`UPDATE profile SET stats_cache = jsonb_set(stats_cache, '{following}', to_jsonb(COALESCE((stats_cache->>'following')::int, 0) + 1)) WHERE user_id = ${viewer.id}`,
+				),
+			]);
+
 			// Reciprocal flag (mutual follow).
 			const [reciprocal] = await db
 				.select()
@@ -136,6 +146,16 @@ export const followsRoute = new Elysia({
 						eq(follow.followingId, viewer.id),
 					),
 				);
+
+			// Decrement denormalized counts (floor at 0).
+			await Promise.all([
+				db.execute(
+					sql`UPDATE profile SET stats_cache = jsonb_set(stats_cache, '{followers}', to_jsonb(GREATEST(COALESCE((stats_cache->>'followers')::int, 0) - 1, 0))) WHERE user_id = ${params.userId}`,
+				),
+				db.execute(
+					sql`UPDATE profile SET stats_cache = jsonb_set(stats_cache, '{following}', to_jsonb(GREATEST(COALESCE((stats_cache->>'following')::int, 0) - 1, 0))) WHERE user_id = ${viewer.id}`,
+				),
+			]);
 			await invalidateMutualFollowCache(viewer.id, params.userId);
 			return { following: false };
 		},

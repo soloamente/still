@@ -38,6 +38,7 @@ type WatchlistUpsertBody = {
 	note?: string;
 };
 
+import { invalidateListingCommunityStatsCache } from "../lib/listing-community-stats-cache";
 import {
 	upsertMovieWatchlistItem,
 	upsertTvWatchlistItem,
@@ -187,6 +188,7 @@ export const watchlistRoute = new Elysia({
 					note: body.note ?? null,
 					priority: body.priority ?? 50,
 				});
+				void invalidateListingCommunityStatsCache({ movieId }).catch(() => {});
 				return row;
 			}
 			if (tvId != null && movieId == null) {
@@ -194,6 +196,7 @@ export const watchlistRoute = new Elysia({
 					note: body.note ?? null,
 					priority: body.priority ?? 50,
 				});
+				void invalidateListingCommunityStatsCache({ tvId }).catch(() => {});
 				return row;
 			}
 			return status(400, "Send exactly one of movieId or tvId");
@@ -211,15 +214,17 @@ export const watchlistRoute = new Elysia({
 		"/:movieId",
 		async ({ params, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			const movieId = Number(params.movieId);
 			await db
 				.delete(watchlistItem)
 				.where(
 					and(
 						eq(watchlistItem.userId, user.id),
-						eq(watchlistItem.movieId, Number(params.movieId)),
+						eq(watchlistItem.movieId, movieId),
 						isNotNull(watchlistItem.movieId),
 					),
 				);
+			void invalidateListingCommunityStatsCache({ movieId }).catch(() => {});
 			return { ok: true };
 		},
 		{ params: t.Object({ movieId: t.String() }) },
@@ -229,15 +234,17 @@ export const watchlistRoute = new Elysia({
 		"/tv/:tvId",
 		async ({ params, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			const tvId = Number(params.tvId);
 			await db
 				.delete(watchlistItem)
 				.where(
 					and(
 						eq(watchlistItem.userId, user.id),
-						eq(watchlistItem.tvId, Number(params.tvId)),
+						eq(watchlistItem.tvId, tvId),
 						isNotNull(watchlistItem.tvId),
 					),
 				);
+			void invalidateListingCommunityStatsCache({ tvId }).catch(() => {});
 			return { ok: true };
 		},
 		{ params: t.Object({ tvId: t.String() }) },

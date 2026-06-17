@@ -33,10 +33,10 @@ import {
 } from "./diary-metal-tier";
 import { withCoverPosterPaths } from "./list-cover-posters";
 import {
-	fetchListingCommunityEngagementStats,
 	type ListingCommunityEngagementStats,
 	watchlistPatronHasNotWatchedTitle,
 } from "./listing-community-stats";
+import { fetchCachedListingCommunityStats } from "./listing-community-stats-cache";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type ListingEngagementKind =
@@ -403,7 +403,7 @@ async function fetchEngagementWatchesPage(args: {
 			blockedIds,
 			args.likedOnly,
 		),
-		fetchListingCommunityEngagementStats(args.listing),
+		fetchCachedListingCommunityStats(args.listing),
 	]);
 
 	return {
@@ -506,7 +506,7 @@ async function fetchEngagementListsPage(args: {
 
 	const [totalVisible, globalStats] = await Promise.all([
 		fetchVisibleListCount(args.listing, args.viewerId),
-		fetchListingCommunityEngagementStats(args.listing),
+		fetchCachedListingCommunityStats(args.listing),
 	]);
 
 	return {
@@ -585,7 +585,7 @@ async function fetchEngagementWatchlistPage(args: {
 
 	const [totalVisible, globalStats] = await Promise.all([
 		fetchVisibleWatchlistCount(args.listing, blockedIds),
-		fetchListingCommunityEngagementStats(args.listing),
+		fetchCachedListingCommunityStats(args.listing),
 	]);
 
 	return {
@@ -659,5 +659,5 @@ export async function fetchListingEngagementWatchlist(args: {
 export async function fetchListingEngagementGlobalStats(
 	listing: ListingEngagementListingRef,
 ): Promise<ListingCommunityEngagementStats> {
-	return fetchListingCommunityEngagementStats(listing);
+	return fetchCachedListingCommunityStats(listing);
 }

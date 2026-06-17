@@ -15,6 +15,7 @@ import { TvDetailCommunityFallback } from "@/components/tv/tv-detail-community-f
 import { TvDetailPrimaryActions } from "@/components/tv/tv-detail-primary-actions";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { requireListingDetailApiData } from "@/lib/eden-api-error";
+import { fetchTvDetailServer } from "@/lib/fetch-tv-detail-server";
 import { formatRuntime } from "@/lib/format";
 import { listingDetailHeroSynopsisBlurb } from "@/lib/listing-detail-hero-synopsis";
 import {
@@ -42,7 +43,6 @@ import {
 	ogImageMetadataFields,
 	ogTitleTvPath,
 } from "@/lib/og/og-image-metadata";
-import { serverApi } from "@/lib/server-api";
 import { TV_DETAIL_SECTION } from "@/lib/tv-detail-sections";
 
 export const dynamic = "force-dynamic";
@@ -166,12 +166,7 @@ export async function generateMetadata({
 	params: Promise<Params>;
 }) {
 	const { id } = await params;
-	const api = await serverApi();
-	const res = await api.api
-		.tv({ id })
-		?.get?.()
-		.catch(() => ({ data: null }));
-	const data = res?.data as {
+	const data = (await fetchTvDetailServer(id)) as {
 		title?: string;
 		tagline?: string | null;
 		overview?: string | null;
@@ -204,14 +199,11 @@ export default async function TvShowPage({
 	const numericId = Number(id);
 	if (!Number.isFinite(numericId)) notFound();
 
-	const api = await serverApi();
-	const res = await api.api.tv({ id }).get();
-	const data = requireListingDetailApiData(
-		res as {
-			data: (TvDetail & { adultBlocked?: boolean }) | null;
-			error: unknown;
-		},
-	);
+	const res = await fetchTvDetailServer(id);
+	const data = requireListingDetailApiData({
+		data: res as (TvDetail & { adultBlocked?: boolean }) | null,
+		error: null,
+	});
 	if (
 		(data as { code?: string }).code === "TMDB_UNCONFIGURED" &&
 		typeof (data as { hint?: string }).hint === "string"

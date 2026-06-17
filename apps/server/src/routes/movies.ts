@@ -25,14 +25,18 @@ import {
 	fetchDiaryLogCountsForUserIds,
 	resolveDiaryMetalTier,
 } from "../lib/diary-metal-tier";
-import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
 import {
 	buildHeroArtworkSlides,
 	buildScreenshotSlides,
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
-import { fetchListingCommunityEngagementStats } from "../lib/listing-community-stats";
+import { fetchCachedListingCommunityStats } from "../lib/listing-community-stats-cache";
+import {
+	getCachedMovieDetail,
+	invalidateMovieDetailCache,
+	setCachedMovieDetail,
+} from "../lib/listing-detail-cache";
 import { fetchListingQuotesForMovie } from "../lib/listing-quotes-query";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
 import { readAvatarIsAnimatedPref } from "../lib/profile-media";
@@ -279,6 +283,7 @@ async function cacheDetail(detail: TmdbMovieDetail) {
 	}
 
 	await syncMoviePosterPalette(detail.id, detail.poster_path);
+	void invalidateMovieDetailCache(detail.id).catch(() => {});
 }
 
 /**
@@ -742,15 +747,34 @@ export const moviesRoute = new Elysia({
 			}),
 		},
 	)
-	// Movie detail. We check the local cache first; if stale or missing,
-	// fetch from TMDb and upsert.
+	// Movie detail. Redis cache → local DB cache → TMDb.
+	// Community stats are fetched fresh (with their own Redis cache) and merged last
+	// so counts stay accurate without busting the whole detail cache.
 	.get(
 		"/:id",
 		async ({ params, status, user }) => {
 			const id = Number(params.id);
 			if (!Number.isFinite(id)) return status(400, "Invalid id");
 
-			const language = await getTmdbLanguageForUser(user?.id);
+			const [language, showAdultContent] = await Promise.all([
+				getTmdbLanguageForUser(user?.id),
+				getShowAdultContentForUser(user?.id),
+			]);
+
+			// Redis cache hit — skip DB + TMDB entirely for fresh movies.
+			const cached = await getCachedMovieDetail<Record<string, unknown>>(
+				id,
+				language,
+			);
+			if (cached) {
+				if (shouldBlockAdultDetail(showAdultContent, Boolean(cached.adult))) {
+					return buildAdultBlockedMoviePayload(id, String(cached.title ?? ""));
+				}
+				const community = await fetchCachedListingCommunityStats({
+					movieId: id,
+				});
+				return { ...cached, community };
+			}
 
 			const [existing] = await db
 				.select()
@@ -780,7 +804,6 @@ export const moviesRoute = new Elysia({
 				.limit(1);
 			if (!row) return status(404, "Movie not found");
 
-			const showAdultContent = await getShowAdultContentForUser(user?.id);
 			if (shouldBlockAdultDetail(showAdultContent, isMovieAdult(row))) {
 				return buildAdultBlockedMoviePayload(id, row.title);
 			}
@@ -796,8 +819,16 @@ export const moviesRoute = new Elysia({
 					images?: { posters?: unknown[]; backdrops?: unknown[] };
 				}
 			)?.images;
-			// Dedicated `/images` returns the full backdrop set (append + locale can filter).
-			const imagesForRailPromise = tmdbApi.movieImages(id).catch(() => null);
+			// Skip the extra TMDB call when the movie was already fresh and cached images exist.
+			const hasCachedImages =
+				cachedImages != null &&
+				(Array.isArray((cachedImages as { backdrops?: unknown[] }).backdrops)
+					? (cachedImages as { backdrops: unknown[] }).backdrops.length > 0
+					: false);
+			const imagesForRailPromise =
+				isStale || !hasCachedImages
+					? tmdbApi.movieImages(id).catch(() => null)
+					: Promise.resolve(null);
 			let imagesSourceForHero = normalizeTmdbImagesBundle(
 				detail?.images ?? cachedImages,
 			);
@@ -823,18 +854,15 @@ export const moviesRoute = new Elysia({
 				}
 			}
 
-			const [communityRatings, communityEngagement, imagesFromDedicated] =
-				await Promise.all([
-					fetchPublicDiaryCommunityStats({ movieId: id }),
-					fetchListingCommunityEngagementStats({ movieId: id }),
-					imagesForRailPromise,
-				]);
-			const community = { ...communityRatings, ...communityEngagement };
+			const [community, imagesFromDedicated] = await Promise.all([
+				fetchCachedListingCommunityStats({ movieId: id }),
+				imagesForRailPromise,
+			]);
 			const fullImagesBundle = normalizeTmdbImagesBundle(
 				imagesFromDedicated ?? detail?.images ?? cachedImages,
 			);
 
-			return {
+			const response = {
 				...row,
 				title,
 				tagline,
@@ -852,8 +880,12 @@ export const moviesRoute = new Elysia({
 					backdropPath: backdropPathForUrl,
 					images: fullImagesBundle,
 				}),
-				community,
 			};
+
+			// Cache without community so counts stay independently fresh.
+			void setCachedMovieDetail(id, language, response).catch(() => {});
+
+			return { ...response, community };
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

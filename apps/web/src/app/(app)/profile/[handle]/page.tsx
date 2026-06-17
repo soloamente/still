@@ -37,8 +37,6 @@ import {
 	parseProfileShowcaseResolved,
 } from "@/lib/profile-showcase";
 import { parseTasteSignatureJson } from "@/lib/sense-taste-signature";
-import { serverApi } from "@/lib/server-api";
-
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
@@ -51,9 +49,8 @@ export async function generateMetadata({
 	const title = `@${normalized}`;
 
 	try {
-		const api = await serverApi();
-		const res = await api.api.profiles({ handle: normalized }).get();
-		const data = res.data as {
+		const res = await fetchProfileDetailServer(normalized);
+		const data = res as {
 			profile?: { displayName?: string; isPrivate?: boolean };
 			user?: { name?: string | null };
 		} | null;
@@ -150,9 +147,8 @@ export default async function ProfilePage({
 	const { handle } = await params;
 	const sp = await searchParams;
 	const session = await authServer();
-	const api = await serverApi();
-	const res = await api.api.profiles({ handle }).get();
-	const data = res.data as ProfileData | null;
+	const res = await fetchProfileDetailServer(handle);
+	const data = res as ProfileData | null;
 	if (!data) notFound();
 	const { profile, user, stats } = data;
 	const isMe = session?.user.id === user.id;

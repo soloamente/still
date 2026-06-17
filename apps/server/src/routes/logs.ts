@@ -47,6 +47,7 @@ import {
 import { fetchDiaryWatchPeriods } from "../lib/diary-watch-periods";
 import { ensureMovieCached } from "../lib/ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
+import { invalidateListingCommunityStatsCache } from "../lib/listing-community-stats-cache";
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
@@ -173,10 +174,12 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					? body.watchVenue
 					: "streaming";
 
-			const [{ priorLogCount }] = await db
-				.select({ priorLogCount: count() })
+			const [priorLogRow] = await db
+				.select({ id: log.id })
 				.from(log)
-				.where(eq(log.userId, user.id));
+				.where(eq(log.userId, user.id))
+				.limit(1);
+			const priorLogCount = priorLogRow ? 1 : 0;
 
 			let visibility = body.visibility ?? null;
 			if (!visibility) {
@@ -271,6 +274,18 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					tvId: tvId ?? undefined,
 				});
 			}
+
+			if (movieId != null) {
+				void invalidateListingCommunityStatsCache({ movieId }).catch(() => {});
+			} else if (tvId != null) {
+				void invalidateListingCommunityStatsCache({ tvId }).catch(() => {});
+			}
+
+			void db
+				.execute(
+					sql`UPDATE profile SET stats_cache = jsonb_set(COALESCE(stats_cache, '{}'), '{logCount}', to_jsonb(COALESCE((stats_cache->>'logCount')::int, 0) + 1)) WHERE user_id = ${user.id}`,
+				)
+				.catch(() => {});
 
 			return row;
 		},
@@ -448,6 +463,20 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 			void backfillWatchStreakFromLogs(user.id).catch((err) => {
 				console.error("[logs] watch streak backfill (delete) failed", err);
 			});
+			if (existing.movieId != null) {
+				void invalidateListingCommunityStatsCache({
+					movieId: existing.movieId,
+				}).catch(() => {});
+			} else if (existing.tvId != null) {
+				void invalidateListingCommunityStatsCache({
+					tvId: existing.tvId,
+				}).catch(() => {});
+			}
+			void db
+				.execute(
+					sql`UPDATE profile SET stats_cache = jsonb_set(COALESCE(stats_cache, '{}'), '{logCount}', to_jsonb(GREATEST(COALESCE((stats_cache->>'logCount')::int, 0) - 1, 0))) WHERE user_id = ${user.id}`,
+				)
+				.catch(() => {});
 			return { ok: true };
 		},
 		{ params: t.Object({ id: t.String() }) },

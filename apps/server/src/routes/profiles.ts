@@ -1290,6 +1290,16 @@ export const profilesRoute = new Elysia({
 				likedTv: Number(ltv[0]?.c ?? 0),
 			}));
 
+			const cachedStats = row.profile.statsCache as {
+				followers?: number;
+				following?: number;
+				logCount?: number;
+			} | null;
+			const hasCachedFollowCounts =
+				cachedStats != null &&
+				typeof cachedStats.followers === "number" &&
+				typeof cachedStats.following === "number";
+
 			const [
 				followCount,
 				followingCount,
@@ -1303,20 +1313,24 @@ export const profilesRoute = new Elysia({
 				earnedBadges,
 				unlockedAchievements,
 			] = await Promise.all([
-				db
-					.select({
-						followers: sql<number>`count(distinct ${follow.followerId})`,
-					})
-					.from(follow)
-					.where(eq(follow.followingId, targetUserId))
-					.then((r) => r[0]),
-				db
-					.select({
-						following: sql<number>`count(distinct ${follow.followingId})`,
-					})
-					.from(follow)
-					.where(eq(follow.followerId, targetUserId))
-					.then((r) => r[0]),
+				hasCachedFollowCounts
+					? Promise.resolve({ followers: cachedStats!.followers! })
+					: db
+							.select({
+								followers: sql<number>`count(distinct ${follow.followerId})`,
+							})
+							.from(follow)
+							.where(eq(follow.followingId, targetUserId))
+							.then((r) => r[0]),
+				hasCachedFollowCounts
+					? Promise.resolve({ following: cachedStats!.following! })
+					: db
+							.select({
+								following: sql<number>`count(distinct ${follow.followingId})`,
+							})
+							.from(follow)
+							.where(eq(follow.followerId, targetUserId))
+							.then((r) => r[0]),
 				// Is the viewer following this profile?
 				viewerId
 					? db
@@ -1407,11 +1421,17 @@ export const profilesRoute = new Elysia({
 				row.profile.tasteSignature,
 			);
 
-			const [logCountRow] = await db
-				.select({ c: count(log.id) })
-				.from(log)
-				.where(and(eq(log.userId, targetUserId), isNull(log.removedAt)));
-			const diaryMetalTier = resolveDiaryMetalTier(Number(logCountRow?.c ?? 0));
+			const cachedLogCount =
+				typeof cachedStats?.logCount === "number" ? cachedStats.logCount : null;
+			const diaryLogCount =
+				cachedLogCount !== null
+					? cachedLogCount
+					: await db
+							.select({ c: count(log.id) })
+							.from(log)
+							.where(and(eq(log.userId, targetUserId), isNull(log.removedAt)))
+							.then((r) => Number(r[0]?.c ?? 0));
+			const diaryMetalTier = resolveDiaryMetalTier(diaryLogCount);
 
 			const birthIso = profileBirthDateToIso(row.profile.birthDate);
 			const showBirthday = readShowBirthDateOnProfilePref(

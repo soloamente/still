@@ -128,6 +128,7 @@ export const review = pgTable(
 		index("review_movie_idx").on(table.movieId),
 		index("review_published_idx").on(table.publishedAt),
 		index("review_likes_idx").on(table.likesCount),
+		index("review_log_idx").on(table.logId),
 	],
 );
 
@@ -165,6 +166,8 @@ export const watchlistItem = pgTable(
 			.on(table.userId, table.tvId)
 			.where(sql`${table.tvId} IS NOT NULL`),
 		index("watchlist_user_added_idx").on(table.userId, table.addedAt),
+		index("watchlist_movie_idx").on(table.movieId),
+		index("watchlist_tv_idx").on(table.tvId),
 	],
 );
 

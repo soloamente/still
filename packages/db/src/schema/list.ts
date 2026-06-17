@@ -66,6 +66,7 @@ export const list = pgTable(
 	},
 	(table) => [
 		index("list_user_idx").on(table.userId),
+		index("list_user_public_idx").on(table.userId, table.isPublic),
 		index("list_public_updated_idx").on(table.isPublic, table.updatedAt),
 		index("list_likes_idx").on(table.likesCount),
 		uniqueIndex("list_user_favorites_uk")

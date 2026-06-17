@@ -57,6 +57,7 @@ export const tvWatch = pgTable(
 	(table) => [
 		uniqueIndex("tv_watch_user_tv_uk").on(table.userId, table.tvId),
 		index("tv_watch_user_status_idx").on(table.userId, table.status),
+		index("tv_watch_tv_idx").on(table.tvId),
 	],
 );
 

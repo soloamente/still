@@ -15,6 +15,7 @@ import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { requireListingDetailApiData } from "@/lib/eden-api-error";
+import { fetchMovieDetailServer } from "@/lib/fetch-movie-detail-server";
 import { formatRuntime } from "@/lib/format";
 import { listingDetailHeroSynopsisBlurb } from "@/lib/listing-detail-hero-synopsis";
 import {
@@ -41,7 +42,6 @@ import {
 	ogImageMetadataFields,
 	ogTitleMoviePath,
 } from "@/lib/og/og-image-metadata";
-import { serverApi } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
 
@@ -53,12 +53,7 @@ export async function generateMetadata({
 	params: Promise<Params>;
 }) {
 	const { id } = await params;
-	const api = await serverApi();
-	const res = await api.api
-		.movies({ id })
-		?.get?.()
-		.catch(() => ({ data: null }));
-	const data = res?.data as {
+	const data = (await fetchMovieDetailServer(id)) as {
 		title?: string;
 		tagline?: string | null;
 		overview?: string | null;
@@ -202,14 +197,11 @@ export default async function MoviePage({
 	const numericId = Number(id);
 	if (!Number.isFinite(numericId)) notFound();
 
-	const api = await serverApi();
-	const res = await api.api.movies({ id }).get();
-	const data = requireListingDetailApiData(
-		res as {
-			data: (Detail & { adultBlocked?: boolean }) | null;
-			error: unknown;
-		},
-	);
+	const res = await fetchMovieDetailServer(id);
+	const data = requireListingDetailApiData({
+		data: res as (Detail & { adultBlocked?: boolean }) | null,
+		error: null,
+	});
 
 	if (data.adultBlocked) {
 		const { accent: blockedAccent } = accentFromGenres(null);

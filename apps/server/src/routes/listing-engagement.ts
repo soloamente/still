@@ -1,7 +1,7 @@
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
-import { fetchListingCommunityEngagementStats } from "../lib/listing-community-stats";
+import { fetchCachedListingCommunityStats } from "../lib/listing-community-stats-cache";
 import {
 	fetchListingEngagementFavorites,
 	fetchListingEngagementLists,
@@ -76,7 +76,7 @@ function createEngagementListHandler(
 /** Shared engagement drawer routes for movie and TV detail. */
 export function createListingEngagementRoutes(listingKind: "movie" | "tv") {
 	// Chain `.get()` fluently — reassigning `plugin` breaks Eden/App inference when
-	// the web app type-checks this module via `@still/api-client` → `server/app`.
+	// the web app type-checks this module via `@still/api-client` -> `server/app`.
 	return new Elysia({ name: `listing-engagement-${listingKind}` })
 		.use(context)
 		.get(
@@ -87,7 +87,7 @@ export function createListingEngagementRoutes(listingKind: "movie" | "tv") {
 				const listing = parseListingId(listingKind, params.id);
 				if (!listing) return status(400, "Invalid id");
 
-				return fetchListingCommunityEngagementStats(listing);
+				return fetchCachedListingCommunityStats(listing);
 			},
 			{ params: t.Object({ id: t.String() }) },
 		)

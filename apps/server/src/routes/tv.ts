@@ -12,14 +12,17 @@ import {
 	shouldBlockAdultDetail,
 } from "../lib/adult-content-policy";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
-import { fetchPublicDiaryCommunityStats } from "../lib/fetch-public-diary-community-stats";
 import {
 	buildHeroArtworkSlides,
 	buildScreenshotSlides,
 	normalizeTmdbImagesBundle,
 } from "../lib/hero-artwork-slides";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
-import { fetchListingCommunityEngagementStats } from "../lib/listing-community-stats";
+import { fetchCachedListingCommunityStats } from "../lib/listing-community-stats-cache";
+import {
+	getCachedTvDetail,
+	setCachedTvDetail,
+} from "../lib/listing-detail-cache";
 import {
 	fetchListingQuotesForTv,
 	parseTvQuoteEpisodeParams,
@@ -545,8 +548,23 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					...TMDB_UNCONFIGURED,
 				};
 			}
-			const language = await getTmdbLanguageForUser(user?.id);
-			const showAdultContent = await getShowAdultContentForUser(user?.id);
+			const [language, showAdultContent] = await Promise.all([
+				getTmdbLanguageForUser(user?.id),
+				getShowAdultContentForUser(user?.id),
+			]);
+
+			// Redis cache hit — skip TMDB entirely for fresh shows.
+			const cachedTv = await getCachedTvDetail<Record<string, unknown>>(
+				id,
+				language,
+			);
+			if (cachedTv) {
+				if (shouldBlockAdultDetail(showAdultContent, Boolean(cachedTv.adult))) {
+					return buildAdultBlockedTvPayload(id, String(cachedTv.title ?? ""));
+				}
+				const community = await fetchCachedListingCommunityStats({ tvId: id });
+				return { ...cachedTv, community };
+			}
 
 			await ensureTvCached(id);
 			await ensureTvAdultClassification(id);
@@ -576,15 +594,12 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				const fullImagesBundle = normalizeTmdbImagesBundle(
 					imagesFromDedicated ?? detail.images,
 				);
-				const [communityRatings, communityEngagement] = await Promise.all([
-					fetchPublicDiaryCommunityStats({ tvId: id }),
-					fetchListingCommunityEngagementStats({ tvId: id }),
-				]);
-				const community = { ...communityRatings, ...communityEngagement };
+				const community = await fetchCachedListingCommunityStats({ tvId: id });
 				const y = detail.first_air_date?.trim().slice(0, 4);
 				const yearNum =
 					y && y.length === 4 && /^\d{4}$/.test(y) ? Number(y) : null;
-				return {
+
+				const response = {
 					tmdbId: id,
 					title: detail.name,
 					originalTitle: detail.original_name ?? null,
@@ -617,10 +632,14 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					paletteAccent: null,
 					paletteMuted: null,
 					paletteForeground: null,
-					community,
 					malEnrichment,
 					tmdbJson: detail as unknown as Record<string, unknown>,
 				};
+
+				// Cache without community so counts stay independently fresh.
+				void setCachedTvDetail(id, language, response).catch(() => {});
+
+				return { ...response, community };
 			} catch (err) {
 				console.error("[tv] detail failed", err);
 				return status(404, "TV show not found");

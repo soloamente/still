@@ -1,6 +1,7 @@
 import { db, tv } from "@still/db";
 import { eq } from "drizzle-orm";
 
+import { invalidateTvDetailCache } from "./listing-detail-cache";
 import { tmdbApi } from "./tmdb";
 
 /**
@@ -41,6 +42,7 @@ export async function ensureTvCached(tmdbId: number): Promise<boolean> {
 				lastSyncedAt: new Date(),
 			})
 			.onConflictDoNothing();
+		void invalidateTvDetailCache(detail.id).catch(() => {});
 	} catch (err) {
 		console.error("[tv-cache] failed to cache series from TMDb", err);
 	}

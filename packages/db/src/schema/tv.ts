@@ -39,6 +39,7 @@ export const tv = pgTable(
 	(table) => [
 		index("tv_title_idx").on(table.title),
 		index("tv_year_idx").on(table.year),
+		index("tv_popularity_idx").on(table.popularity),
 	],
 );
 
