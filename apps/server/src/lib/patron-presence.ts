@@ -175,7 +175,7 @@ export async function resolveVisiblePresenceForViewer(
 
 	const activityByUserId =
 		typeof redis.hget === "function"
-			? await readActivityStatesForUserIds(redis, candidateIds)
+			? await readActivityStatesForUserIds({ hget: redis.hget }, candidateIds)
 			: new Map<string, PatronActivityState>();
 
 	return pickVisiblePresenceForViewer(

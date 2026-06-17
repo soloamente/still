@@ -283,7 +283,7 @@ export async function fetchViewingPatronsInRoom(
 	);
 	const activityByUserId =
 		redis && typeof redis.hget === "function"
-			? await readActivityStatesForUserIds(redis, candidateIds)
+			? await readActivityStatesForUserIds({ hget: redis.hget }, candidateIds)
 			: new Map<string, PatronActivityState>();
 	return pickListingPresenceViewingPatrons(
 		rows.map((row) => ({
