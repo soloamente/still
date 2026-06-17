@@ -1,4 +1,4 @@
-import { db, follow, profile, user } from "@still/db";
+import { db, profile, user } from "@still/db";
 import { parseListingMovieRoomId, parseListingTvRoomId } from "@still/realtime";
 import { and, asc, eq, inArray, isNotNull } from "drizzle-orm";
 
@@ -7,6 +7,7 @@ import {
 	fetchDiaryLogCountsForUserIds,
 	resolveDiaryMetalTier,
 } from "./diary-metal-tier";
+import { fetchMutualFollowingIds } from "./mutual-follow-cache";
 import {
 	clearActivityStateForUser,
 	type PatronActivityState,
@@ -245,17 +246,10 @@ export async function fetchViewingPatronsInRoom(
 ): Promise<ListingPresenceViewingPatron[]> {
 	const candidateIds = activeUserIds.filter((id) => id !== viewerId);
 	if (candidateIds.length === 0) return [];
-	const mutualRows = await db
-		.select({ userId: follow.followingId })
-		.from(follow)
-		.where(
-			and(
-				eq(follow.followerId, viewerId),
-				eq(follow.isMutual, true),
-				inArray(follow.followingId, candidateIds),
-			),
-		);
-	const mutualIds = new Set(mutualRows.map((row) => row.userId));
+	const mutualAll = await fetchMutualFollowingIds(viewerId);
+	const mutualIds = new Set(
+		candidateIds.filter((id) => mutualAll.includes(id)),
+	);
 
 	const rows = await db
 		.select({
