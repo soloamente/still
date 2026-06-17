@@ -1,0 +1,225 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"label": "quotes-kind-chips.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "quotes_quotes_kind_chips_kind_options",
+			"label": "KIND_OPTIONS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L15"
+		},
+		{
+			"id": "quotes_quotes_kind_chips_quoteskindchips",
+			"label": "QuotesKindChips()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L25"
+		},
+		{
+			"id": "quotes_quotes_kind_chips_quoteslobbybrowselink",
+			"label": "QuotesLobbyBrowseLink()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L57"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_lobby_lobby_navigation_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "lobby_lobby_navigation_provider_uselobbynavigationoptional",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_segmented_pill_toolbar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "ui_segmented_pill_toolbar_segmentedpilltoolbar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "lib_quotes_lobby_buildquoteslobbyhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "lib_quotes_lobby_parsequoteslobbykind",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "lib_quotes_lobby_quoteslobbykind",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "quotes_quotes_kind_chips_kind_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "quotes_quotes_kind_chips_quoteskindchips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_quotes_quotes_kind_chips_tsx",
+			"target": "quotes_quotes_kind_chips_quoteslobbybrowselink",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L57",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "quotes_quotes_kind_chips_quoteskindchips",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "quotes_quotes_kind_chips_quoteskindchips",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "quotes_quotes_kind_chips_quoteskindchips",
+			"callee": "useLobbyNavigationOptional",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "quotes_quotes_kind_chips_quoteskindchips",
+			"callee": "parseQuotesLobbyKind",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "quotes_quotes_kind_chips_quoteskindchips",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "quotes_quotes_kind_chips_quoteskindchips",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\quotes\\quotes-kind-chips.tsx",
+			"source_location": "L43"
+		}
+	]
+}

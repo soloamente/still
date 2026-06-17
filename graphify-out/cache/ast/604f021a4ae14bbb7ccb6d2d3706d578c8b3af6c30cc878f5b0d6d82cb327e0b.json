@@ -1,0 +1,687 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_15_sense_realtime_redis_sse_md",
+			"label": "2026-06-15-sense-realtime-redis-sse.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"label": "Sense Realtime (Redis + SSE) Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_conventions",
+			"label": "Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_create",
+			"label": "Create",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_modify",
+			"label": "Modify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_delete_after_replacements_wired",
+			"label": "Delete (after replacements wired)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_1_phase_0_remove_liveblocks_watermark",
+			"label": "Task 1: Phase 0 \u2014 Remove Liveblocks watermark",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_1",
+			"label": "code:block1 (NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_2",
+			"label": "code:block2 (LIVEBLOCKS_SECRET_KEY=)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_2_rename_still_liveblocks_still_realtime",
+			"label": "Task 2: Rename `@still/liveblocks` \u2192 `@still/realtime`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_3",
+			"label": "code:bash (git mv packages/liveblocks packages/realtime)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_4",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_5",
+			"label": "code:bash (# From repo root \u2014 verify diff after)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_6",
+			"label": "code:bash (cd packages/realtime && bun test)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L155"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_3_upstash_env_redis_client_helpers",
+			"label": "Task 3: Upstash env + Redis client helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L169"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_7",
+			"label": "code:ts (UPSTASH_REDIS_REST_URL: optionalUrl(),)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L179"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_8",
+			"label": "code:ts (import { Redis } from \"@upstash/redis\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L194"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_9",
+			"label": "code:json (\"@upstash/redis\": \"^1.34.0\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_4_realtime_publish_ts_server",
+			"label": "Task 4: `realtime-publish.ts` (server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L237"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_10",
+			"label": "code:ts (import { describe, expect, mock, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L246"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_11",
+			"label": "code:bash (cd apps/server && bun test src/lib/realtime-publish.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L300"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_12",
+			"label": "code:ts (import type { RealtimeEvent } from \"@still/realtime\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L308"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_13",
+			"label": "code:ts (import { publishRealtimeEvent } from \"../lib/realtime-publis)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L341"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_5_rename_room_access_sse_helpers",
+			"label": "Task 5: Rename room access + SSE helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L354"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_14",
+			"label": "code:ts (export function encodeSseData(payload: unknown): string {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L370"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_15",
+			"label": "code:bash (cd apps/web && bun test src/lib/realtime-room-access.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L403"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_6_sse_stream_route",
+			"label": "Task 6: SSE stream route",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L411"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_16",
+			"label": "code:ts (const streamKeys = allowedRooms.map(realtimeStreamKey);)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L430"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_17",
+			"label": "code:bash (curl -N -H \"Cookie: ...\" \"http://localhost:3000/api/realtime)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L452"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_7_client_realtimerootprovider_hooks",
+			"label": "Task 7: Client `RealtimeRootProvider` + hooks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L462"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_18",
+			"label": "code:tsx (<RealtimeRootProvider userId={session.user.id}>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L484"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_8_notification_bell_live_inbox_poll_fallback",
+			"label": "Task 8: Notification bell \u2014 live inbox + poll fallback",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L500"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_19",
+			"label": "code:ts (useRealtimeSubscription({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L510"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_20",
+			"label": "code:ts (const realtimeConnected = useRealtimeConnection();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L524"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_9_review_reader_live_comments_reactions",
+			"label": "Task 9: Review reader \u2014 live comments + reactions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L544"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_21",
+			"label": "code:ts (setLikesCount(event.likesCount);)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L569"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_10_remove_liveblocks_ui_list_collab",
+			"label": "Task 10: Remove Liveblocks UI + list collab",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L586"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_task_11_verification_docs",
+			"label": "Task 11: Verification + docs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L616"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_22",
+			"label": "code:bash (cd packages/realtime && bun test                    # 11/11 )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L624"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_spec_coverage_self_review",
+			"label": "Spec coverage self-review",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L652"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_out_of_scope_no_tasks",
+			"label": "Out of scope (no tasks)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L670"
+		},
+		{
+			"id": "plans_2026_06_15_sense_realtime_redis_sse_human_setup_before_task_6_manual_qa",
+			"label": "Human setup (before Task 6 manual QA)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L679"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_15_sense_realtime_redis_sse_md",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_file_structure",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_create",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_file_structure",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_modify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_file_structure",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_delete_after_replacements_wired",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_1_phase_0_remove_liveblocks_watermark",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_1_phase_0_remove_liveblocks_watermark",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_1_phase_0_remove_liveblocks_watermark",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_2_rename_still_liveblocks_still_realtime",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_2_rename_still_liveblocks_still_realtime",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_2_rename_still_liveblocks_still_realtime",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_2_rename_still_liveblocks_still_realtime",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_2_rename_still_liveblocks_still_realtime",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L155",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_3_upstash_env_redis_client_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_3_upstash_env_redis_client_helpers",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L179",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_3_upstash_env_redis_client_helpers",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_3_upstash_env_redis_client_helpers",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_4_realtime_publish_ts_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L237",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_4_realtime_publish_ts_server",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L246",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_4_realtime_publish_ts_server",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_4_realtime_publish_ts_server",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L308",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_4_realtime_publish_ts_server",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L341",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_5_rename_room_access_sse_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L354",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_5_rename_room_access_sse_helpers",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L370",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_5_rename_room_access_sse_helpers",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L403",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_6_sse_stream_route",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L411",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_6_sse_stream_route",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L430",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_6_sse_stream_route",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L452",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_7_client_realtimerootprovider_hooks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L462",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_7_client_realtimerootprovider_hooks",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L484",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_8_notification_bell_live_inbox_poll_fallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L500",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_8_notification_bell_live_inbox_poll_fallback",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L510",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_8_notification_bell_live_inbox_poll_fallback",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L524",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_9_review_reader_live_comments_reactions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L544",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_9_review_reader_live_comments_reactions",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L569",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_10_remove_liveblocks_ui_list_collab",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L586",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_task_11_verification_docs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L616",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_task_11_verification_docs",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L624",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_spec_coverage_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L652",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_out_of_scope_no_tasks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L670",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_sense_realtime_redis_sse_sense_realtime_redis_sse_implementation_plan",
+			"target": "plans_2026_06_15_sense_realtime_redis_sse_human_setup_before_task_6_manual_qa",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-sense-realtime-redis-sse.md",
+			"source_location": "L679",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

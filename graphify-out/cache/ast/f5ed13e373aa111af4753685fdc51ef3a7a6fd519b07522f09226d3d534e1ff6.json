@@ -1,0 +1,54 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_review_audio_playback_ts",
+			"label": "review-audio-playback.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-audio-playback.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_review_audio_playback_claimreviewaudioplayback",
+			"label": "claimReviewAudioPlayback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-audio-playback.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_review_audio_playback_releasereviewaudioplayback",
+			"label": "releaseReviewAudioPlayback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-audio-playback.ts",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_review_audio_playback_ts",
+			"target": "lib_review_audio_playback_claimreviewaudioplayback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-audio-playback.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_review_audio_playback_ts",
+			"target": "lib_review_audio_playback_releasereviewaudioplayback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-audio-playback.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_review_audio_playback_claimreviewaudioplayback",
+			"callee": "pause",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\review-audio-playback.ts",
+			"source_location": "L10"
+		}
+	]
+}

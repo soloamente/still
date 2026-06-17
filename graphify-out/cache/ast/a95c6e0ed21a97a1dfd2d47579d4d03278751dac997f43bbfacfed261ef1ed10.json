@@ -1,0 +1,278 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"label": "patron-online-dot.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_patron_online_dot_patrononlinedotsize",
+			"label": "PatronOnlineDotSize",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "profile_patron_online_dot_patronpresencedotstate",
+			"label": "PatronPresenceDotState",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "profile_patron_online_dot_resolvepatrononlinedotsize",
+			"label": "resolvePatronOnlineDotSize()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L14"
+		},
+		{
+			"id": "profile_patron_online_dot_dot_size_class",
+			"label": "DOT_SIZE_CLASS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L20"
+		},
+		{
+			"id": "profile_patron_online_dot_dot_position_class",
+			"label": "DOT_POSITION_CLASS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L27"
+		},
+		{
+			"id": "profile_patron_online_dot_presencedotsurfaceclass",
+			"label": "presenceDotSurfaceClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L37"
+		},
+		{
+			"id": "profile_patron_online_dot_dot_motion_transition",
+			"label": "DOT_MOTION_TRANSITION",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L45"
+		},
+		{
+			"id": "profile_patron_online_dot_dot_state_flip_transition",
+			"label": "DOT_STATE_FLIP_TRANSITION",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L51"
+		},
+		{
+			"id": "profile_patron_online_dot_patrononlinedot",
+			"label": "PatronOnlineDot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L61"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_prefers_reduced_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "lib_use_prefers_reduced_motion_useprefersreducedmotion",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_patrononlinedotsize",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_patronpresencedotstate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_resolvepatrononlinedotsize",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_dot_size_class",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_dot_position_class",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_presencedotsurfaceclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_dot_motion_transition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_dot_state_flip_transition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_patron_online_dot_tsx",
+			"target": "profile_patron_online_dot_patrononlinedot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "profile_patron_online_dot_patrononlinedot",
+			"target": "profile_patron_online_dot_presencedotsurfaceclass",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L129",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_patron_online_dot_presencedotsurfaceclass",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "profile_patron_online_dot_patrononlinedot",
+			"callee": "usePrefersReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "profile_patron_online_dot_patrononlinedot",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "profile_patron_online_dot_patrononlinedot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "profile_patron_online_dot_patrononlinedot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "profile_patron_online_dot_patrononlinedot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "profile_patron_online_dot_patrononlinedot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\patron-online-dot.tsx",
+			"source_location": "L127"
+		}
+	]
+}

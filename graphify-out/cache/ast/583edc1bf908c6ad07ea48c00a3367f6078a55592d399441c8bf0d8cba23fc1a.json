@@ -1,0 +1,286 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"label": "fetch-journal.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_fetch_journal_journallistitem",
+			"label": "JournalListItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_fetch_journal_journalauthor",
+			"label": "JournalAuthor",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_fetch_journal_journalpostdetail",
+			"label": "JournalPostDetail",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_fetch_journal_journallistresponse",
+			"label": "JournalListResponse",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L30"
+		},
+		{
+			"id": "lib_fetch_journal_journalsitemapentry",
+			"label": "JournalSitemapEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L37"
+		},
+		{
+			"id": "lib_fetch_journal_journalapiurl",
+			"label": "journalApiUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_fetch_journal_fetchjournalposts",
+			"label": "fetchJournalPosts()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L53"
+		},
+		{
+			"id": "lib_fetch_journal_fetchjournalpostbyslug",
+			"label": "fetchJournalPostBySlug()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L75"
+		},
+		{
+			"id": "lib_fetch_journal_fetchjournalsitemapentries",
+			"label": "fetchJournalSitemapEntries()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L91"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "web",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_journallistitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_journalauthor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_journalpostdetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_journallistresponse",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_journalsitemapentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_journalapiurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_fetchjournalposts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_fetchjournalpostbyslug",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_journal_ts",
+			"target": "lib_fetch_journal_fetchjournalsitemapentries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_journal_fetchjournalposts",
+			"target": "lib_fetch_journal_journalapiurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_journal_fetchjournalpostbyslug",
+			"target": "lib_fetch_journal_journalapiurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_journal_fetchjournalsitemapentries",
+			"target": "lib_fetch_journal_journalapiurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L94",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_fetch_journal_journalapiurl",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_journalapiurl",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalposts",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalposts",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalposts",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalposts",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalpostbyslug",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalpostbyslug",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalpostbyslug",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L84"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalsitemapentries",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "lib_fetch_journal_fetchjournalsitemapentries",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-journal.ts",
+			"source_location": "L99"
+		}
+	]
+}

@@ -1,0 +1,163 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"label": "realtime-redis.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_realtime_redis_isrealtimepublishenabled",
+			"label": "isRealtimePublishEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_realtime_redis_isrealtimestreamavailable",
+			"label": "isRealtimeStreamAvailable()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "lib_realtime_redis_getrealtimeredis",
+			"label": "getRealtimeRedis()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_realtime_redis_realtimestreamkey",
+			"label": "realtimeStreamKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L31"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "web",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "redis",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_dev_bus_shoulduserealtimedevbus",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_redis_isrealtimepublishenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_redis_isrealtimestreamavailable",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_redis_getrealtimeredis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_redis_realtimestreamkey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_redis_isrealtimestreamavailable",
+			"target": "lib_realtime_redis_isrealtimepublishenabled",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_redis_getrealtimeredis",
+			"target": "lib_realtime_redis_isrealtimepublishenabled",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_realtime_redis_isrealtimepublishenabled",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_realtime_redis_isrealtimestreamavailable",
+			"callee": "shouldUseRealtimeDevBus",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-redis.ts",
+			"source_location": "L17"
+		}
+	]
+}

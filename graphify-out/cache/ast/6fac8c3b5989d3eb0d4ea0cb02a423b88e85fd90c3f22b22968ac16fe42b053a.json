@@ -1,0 +1,96 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"label": "welcome-step.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "onboarding_steps_welcome_step_welcomestepprops",
+			"label": "WelcomeStepProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L10"
+		},
+		{
+			"id": "onboarding_steps_welcome_step_welcomestep",
+			"label": "WelcomeStep()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L17"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingprimarybutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingsecondarybutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_onboarding_step_header_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"target": "onboarding_steps_onboarding_step_header_onboardingstepheader",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"target": "onboarding_steps_welcome_step_welcomestepprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"target": "onboarding_steps_welcome_step_welcomestep",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\welcome-step.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

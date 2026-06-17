@@ -1,0 +1,815 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_13_letterboxd_pillars_roadmap_design_md",
+			"label": "2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"label": "Sense \u2014 Letterboxd Pillars Roadmap Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_brainstorm_decisions_locked",
+			"label": "Brainstorm decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_inventory_shipped_vs_gap",
+			"label": "Pillar inventory \u2014 shipped vs gap",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_architecture_four_parallel_tracks",
+			"label": "Architecture \u2014 four parallel tracks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_codeblock_1",
+			"label": "code:text (Track Identity     Showcase strip \u2192 profile hierarchy \u2192 Year)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_wave_0_shared_prerequisites",
+			"label": "Wave 0 \u2014 Shared prerequisites",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_1_identity_through_taste_profile_showcase_strip",
+			"label": "Pillar 1 \u2014 Identity through taste (Profile Showcase Strip)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_pinned_mix_showcase",
+			"label": "Design \u2014 pinned-mix showcase",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_codeblock_2",
+			"label": "code:typescript (// profile.showcase_items jsonb \u2014 max 4)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L126"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_out_of_scope_pillar_1_v1",
+			"label": "Out of scope (Pillar 1 v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_2_diary_as_ritual",
+			"label": "Pillar 2 \u2014 Diary as ritual",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L139"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_problem_141",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_post_log_micro_moment",
+			"label": "Design \u2014 post-log micro-moment",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_160",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_3_wit_as_currency",
+			"label": "Pillar 3 \u2014 Wit as currency",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L168"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_problem_170",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L170"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design",
+			"label": "Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_185",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L185"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_4_lists_as_creative_expression",
+			"label": "Pillar 4 \u2014 Lists as creative expression",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L193"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_5_peer_driven_discovery",
+			"label": "Pillar 5 \u2014 Peer-driven discovery",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L205"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_6_film_page_compact_community_summary",
+			"label": "Pillar 6 \u2014 Film page (compact community summary)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L217"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_additions",
+			"label": "Additions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L221"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_227",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_7_browse_and_discovery_filters",
+			"label": "Pillar 7 \u2014 Browse and discovery filters",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L234"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_8_journal_in_app_cultural_voice",
+			"label": "Pillar 8 \u2014 Journal (in-app cultural voice)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L244"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_problem_246",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L246"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_journal_mvp",
+			"label": "Design \u2014 Journal MVP",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L250"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_265",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L265"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_out_of_scope_journal_v1",
+			"label": "Out of scope (Journal v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L271"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_9_year_in_review_wrapped",
+			"label": "Pillar 9 \u2014 Year in Review / Wrapped",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L280"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_282",
+			"label": "Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L282"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_308",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L308"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_out_of_scope_wrapped_v1",
+			"label": "Out of scope (Wrapped v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L314"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_10_cinematic_design_motion_polish",
+			"label": "Pillar 10 \u2014 Cinematic design + motion polish",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L321"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_11_members_directory",
+			"label": "Pillar 11 \u2014 Members directory",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L337"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_339",
+			"label": "Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L339"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_353",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L353"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_12_streaming_availability_alerts",
+			"label": "Pillar 12 \u2014 Streaming availability alerts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L361"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_363",
+			"label": "Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L363"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_375",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L375"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_out_of_scope_v1",
+			"label": "Out of scope (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L381"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_build_waves_approach_b",
+			"label": "Build waves (Approach B)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L388"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_metrics",
+			"label": "Success metrics",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L406"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_explicit_non_goals",
+			"label": "Explicit non-goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L418"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_relationship_to_existing_roadmap",
+			"label": "Relationship to existing roadmap",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L427"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_testing_strategy",
+			"label": "Testing strategy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L433"
+		},
+		{
+			"id": "specs_2026_06_13_letterboxd_pillars_roadmap_design_open_questions_resolve_at_implementation",
+			"label": "Open questions (resolve at implementation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L444"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_13_letterboxd_pillars_roadmap_design_md",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_brainstorm_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_inventory_shipped_vs_gap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_architecture_four_parallel_tracks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_architecture_four_parallel_tracks",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_architecture_four_parallel_tracks",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_wave_0_shared_prerequisites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_1_identity_through_taste_profile_showcase_strip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_1_identity_through_taste_profile_showcase_strip",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_1_identity_through_taste_profile_showcase_strip",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_pinned_mix_showcase",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_pinned_mix_showcase",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_1_identity_through_taste_profile_showcase_strip",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L126",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_1_identity_through_taste_profile_showcase_strip",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_out_of_scope_pillar_1_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_2_diary_as_ritual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_2_diary_as_ritual",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_problem_141",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_2_diary_as_ritual",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_post_log_micro_moment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_2_diary_as_ritual",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_160",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_3_wit_as_currency",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_3_wit_as_currency",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_problem_170",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_3_wit_as_currency",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_3_wit_as_currency",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_185",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L185",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_4_lists_as_creative_expression",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L193",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_5_peer_driven_discovery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L205",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_6_film_page_compact_community_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_6_film_page_compact_community_summary",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_additions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L221",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_6_film_page_compact_community_summary",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_227",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_7_browse_and_discovery_filters",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L234",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_8_journal_in_app_cultural_voice",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L244",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_8_journal_in_app_cultural_voice",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_problem_246",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L246",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_8_journal_in_app_cultural_voice",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_journal_mvp",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L250",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_8_journal_in_app_cultural_voice",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_265",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L265",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_8_journal_in_app_cultural_voice",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_out_of_scope_journal_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L271",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_9_year_in_review_wrapped",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L280",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_9_year_in_review_wrapped",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_282",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L282",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_9_year_in_review_wrapped",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_308",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L308",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_9_year_in_review_wrapped",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_out_of_scope_wrapped_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L314",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_10_cinematic_design_motion_polish",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L321",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_11_members_directory",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L337",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_11_members_directory",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_339",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L339",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_11_members_directory",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_353",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L353",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_12_streaming_availability_alerts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L361",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_12_streaming_availability_alerts",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_design_363",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L363",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_12_streaming_availability_alerts",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_criteria_375",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L375",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_pillar_12_streaming_availability_alerts",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_out_of_scope_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L381",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_build_waves_approach_b",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L388",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_success_metrics",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L406",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_explicit_non_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L418",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_relationship_to_existing_roadmap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L427",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_testing_strategy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L433",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_letterboxd_pillars_roadmap_design_sense_letterboxd_pillars_roadmap_design",
+			"target": "specs_2026_06_13_letterboxd_pillars_roadmap_design_open_questions_resolve_at_implementation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-letterboxd-pillars-roadmap-design.md",
+			"source_location": "L444",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

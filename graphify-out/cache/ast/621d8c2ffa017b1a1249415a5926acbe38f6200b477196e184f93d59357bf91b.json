@@ -1,0 +1,206 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"label": "community-feed-skeleton.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_community_feed_skeleton_community_list_poster_skeleton_keys",
+			"label": "COMMUNITY_LIST_POSTER_SKELETON_KEYS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L12"
+		},
+		{
+			"id": "home_community_feed_skeleton_community_feed_row_skeleton_keys",
+			"label": "COMMUNITY_FEED_ROW_SKELETON_KEYS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L27"
+		},
+		{
+			"id": "home_community_feed_skeleton_communitylistsfeedskeleton",
+			"label": "CommunityListsFeedSkeleton()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L36"
+		},
+		{
+			"id": "home_community_feed_skeleton_communityfeedrowskeleton",
+			"label": "CommunityFeedRowSkeleton()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L52"
+		},
+		{
+			"id": "home_community_feed_skeleton_communityfeedskeleton",
+			"label": "CommunityFeedSkeleton()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L77"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_skeleton_shimmer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "components_skeleton_shimmer_shimmerbone",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_community_ranks_skeleton_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "home_community_ranks_skeleton_communityranksskeleton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "lib_home_community_feed_homecommunityfeed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "lib_home_community_feed_ishomeleaderboardfeed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_catalogue_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_grid_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "home_community_feed_skeleton_community_list_poster_skeleton_keys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "home_community_feed_skeleton_community_feed_row_skeleton_keys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "home_community_feed_skeleton_communitylistsfeedskeleton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "home_community_feed_skeleton_communityfeedrowskeleton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_community_feed_skeleton_tsx",
+			"target": "home_community_feed_skeleton_communityfeedskeleton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L77",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_community_feed_skeleton_communitylistsfeedskeleton",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "home_community_feed_skeleton_communityfeedrowskeleton",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "home_community_feed_skeleton_communityfeedskeleton",
+			"callee": "isHomeLeaderboardFeed",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\community-feed-skeleton.tsx",
+			"source_location": "L78"
+		}
+	]
+}

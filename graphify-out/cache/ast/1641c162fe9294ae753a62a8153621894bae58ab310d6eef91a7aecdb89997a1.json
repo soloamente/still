@@ -1,0 +1,177 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"label": "listing-engagement.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "routes_listing_engagement_test_fetchlistingengagementwatches",
+			"label": "fetchListingEngagementWatches",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "routes_listing_engagement_test_fetchlistingengagementlists",
+			"label": "fetchListingEngagementLists",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "routes_listing_engagement_test_fetchlistingengagementfavorites",
+			"label": "fetchListingEngagementFavorites",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "routes_listing_engagement_test_fetchlistingengagementwatchlist",
+			"label": "fetchListingEngagementWatchlist",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "routes_listing_engagement_test_fetchlistingcommunityengagementstats",
+			"label": "fetchListingCommunityEngagementStats",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "routes_listing_engagement_test_id",
+			"label": "id",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L54"
+		},
+		{
+			"id": "routes_listing_engagement_test_makemovieapp",
+			"label": "makeMovieApp()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L69"
+		},
+		{
+			"id": "routes_listing_engagement_test_body",
+			"label": "body",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L114"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "elysia",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "routes_listing_engagement_test_fetchlistingengagementwatches",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "routes_listing_engagement_test_fetchlistingengagementlists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "routes_listing_engagement_test_fetchlistingengagementfavorites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "routes_listing_engagement_test_fetchlistingengagementwatchlist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "routes_listing_engagement_test_fetchlistingcommunityengagementstats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "routes_listing_engagement_test_id",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "routes_listing_engagement_test_makemovieapp",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_listing_engagement_test_ts",
+			"target": "routes_listing_engagement_test_body",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L114",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "routes_listing_engagement_test_makemovieapp",
+			"callee": "use",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "routes_listing_engagement_test_makemovieapp",
+			"callee": "use",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\listing-engagement.test.ts",
+			"source_location": "L70"
+		}
+	]
+}

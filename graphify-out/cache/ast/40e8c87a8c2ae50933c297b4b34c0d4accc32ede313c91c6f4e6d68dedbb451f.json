@@ -1,0 +1,254 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"label": "quote-provider.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_quote_provider_normalizedquote",
+			"label": "NormalizedQuote",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_quote_provider_quoteprovider",
+			"label": "QuoteProvider",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L20"
+		},
+		{
+			"id": "lib_quote_provider_stubquoteprovider",
+			"label": "stubQuoteProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "lib_quote_provider_quoteproviderslugfromenv",
+			"label": "quoteProviderSlugFromEnv()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L40"
+		},
+		{
+			"id": "lib_quote_provider_isquoteimportenabled",
+			"label": "isQuoteImportEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "lib_quote_provider_resolvequoteprovider",
+			"label": "resolveQuoteProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L53"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_createmoviefamousquoteprovider",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_moviefamous_provider_slug",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_moviequotes_provider_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_moviequotes_provider_createmoviequotesprovider",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_moviequotes_provider_moviquotes_provider_slug",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_quote_provider_normalizedquote",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_quote_provider_quoteprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_quote_provider_stubquoteprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_quote_provider_quoteproviderslugfromenv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_quote_provider_isquoteimportenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"target": "lib_quote_provider_resolvequoteprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_quote_provider_resolvequoteprovider",
+			"target": "lib_quote_provider_quoteproviderslugfromenv",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L54",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_quote_provider_quoteproviderslugfromenv",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_quote_provider_quoteproviderslugfromenv",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_quote_provider_isquoteimportenabled",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_quote_provider_isquoteimportenabled",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_quote_provider_resolvequoteprovider",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_quote_provider_resolvequoteprovider",
+			"callee": "warn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_quote_provider_resolvequoteprovider",
+			"callee": "createMovieQuotesProvider",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_quote_provider_resolvequoteprovider",
+			"callee": "createMoviefamousQuoteProvider",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "lib_quote_provider_resolvequoteprovider",
+			"callee": "warn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\quote-provider.ts",
+			"source_location": "L71"
+		}
+	]
+}

@@ -1,0 +1,150 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_review_review_voice_play_icon_tsx",
+			"label": "review-voice-play-icon.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "review_review_voice_play_icon_reviewvoiceplayicon",
+			"label": "ReviewVoicePlayIcon()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L4"
+		},
+		{
+			"id": "review_review_voice_play_icon_reviewvoicepauseicon",
+			"label": "ReviewVoicePauseIcon()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L22"
+		},
+		{
+			"id": "review_review_voice_play_icon_reviewvoicerecordicon",
+			"label": "ReviewVoiceRecordIcon()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L44"
+		},
+		{
+			"id": "review_review_voice_play_icon_reviewvoicestopicon",
+			"label": "ReviewVoiceStopIcon()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L63"
+		},
+		{
+			"id": "review_review_voice_play_icon_reviewvoiceretryicon",
+			"label": "ReviewVoiceRetryIcon()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L86"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_voice_play_icon_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_voice_play_icon_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_voice_play_icon_tsx",
+			"target": "review_review_voice_play_icon_reviewvoiceplayicon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_voice_play_icon_tsx",
+			"target": "review_review_voice_play_icon_reviewvoicepauseicon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_voice_play_icon_tsx",
+			"target": "review_review_voice_play_icon_reviewvoicerecordicon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_voice_play_icon_tsx",
+			"target": "review_review_voice_play_icon_reviewvoicestopicon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_voice_play_icon_tsx",
+			"target": "review_review_voice_play_icon_reviewvoiceretryicon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L86",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "review_review_voice_play_icon_reviewvoiceplayicon",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "review_review_voice_play_icon_reviewvoicepauseicon",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "review_review_voice_play_icon_reviewvoicerecordicon",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "review_review_voice_play_icon_reviewvoicestopicon",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "review_review_voice_play_icon_reviewvoiceretryicon",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-voice-play-icon.tsx",
+			"source_location": "L92"
+		}
+	]
+}

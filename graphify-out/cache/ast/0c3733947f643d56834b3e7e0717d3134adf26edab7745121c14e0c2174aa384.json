@@ -1,0 +1,383 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_16_notifications_inbox_realtime_design_md",
+			"label": "2026-06-16-notifications-inbox-realtime-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"label": "Sense \u2014 Global notifications inbox (realtime badge)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_locked_decisions_brainstorm",
+			"label": "Locked decisions (brainstorm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_observed_behavior_locale_produzione",
+			"label": "Observed behavior (locale + produzione)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_why_opening_the_menu_fixes_it",
+			"label": "Why opening the menu \u201cfixes\u201d it",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_technical_gaps",
+			"label": "Technical gaps",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_codeblock_1",
+			"label": "code:text (Today:)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_codeblock_2",
+			"label": "code:text ((app)/layout.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_hybrid_transport",
+			"label": "Hybrid transport",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_unread_count",
+			"label": "Unread count",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L92"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_ui_surfaces",
+			"label": "UI surfaces",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L96"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_homenotificationsmenu",
+			"label": "`HomeNotificationsMenu`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_notificationsbellcompact_new",
+			"label": "`NotificationsBellCompact` (new)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_mobiletabbar",
+			"label": "`MobileTabBar`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_notifications_page",
+			"label": "`/notifications` page",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_env_and_dev_parity",
+			"label": "Env and dev parity",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L138"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L154"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "specs_2026_06_16_notifications_inbox_realtime_design_files_implementation_hint",
+			"label": "Files (implementation hint)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L168"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_16_notifications_inbox_realtime_design_md",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_locked_decisions_brainstorm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_problem",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_observed_behavior_locale_produzione",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_problem",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_why_opening_the_menu_fixes_it",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_problem",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_technical_gaps",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_technical_gaps",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_architecture",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_architecture",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_hybrid_transport",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_architecture",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_unread_count",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L92",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_ui_surfaces",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_ui_surfaces",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_homenotificationsmenu",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_ui_surfaces",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_notificationsbellcompact_new",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_ui_surfaces",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_mobiletabbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_ui_surfaces",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_notifications_page",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_env_and_dev_parity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_notifications_inbox_realtime_design_sense_global_notifications_inbox_realtime_badge",
+			"target": "specs_2026_06_16_notifications_inbox_realtime_design_files_implementation_hint",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-notifications-inbox-realtime-design.md",
+			"source_location": "L168",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

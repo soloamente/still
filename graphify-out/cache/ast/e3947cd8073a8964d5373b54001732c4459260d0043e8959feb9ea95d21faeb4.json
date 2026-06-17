@@ -1,0 +1,1516 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"label": "members-leaderboard-query.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_members_leaderboard_query_membersleaderboardsort",
+			"label": "MembersLeaderboardSort",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "lib_members_leaderboard_query_membersleaderboardentry",
+			"label": "MembersLeaderboardEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L43"
+		},
+		{
+			"id": "lib_members_leaderboard_query_membersleaderboardresult",
+			"label": "MembersLeaderboardResult",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L55"
+		},
+		{
+			"id": "lib_members_leaderboard_query_aggregatedrow",
+			"label": "AggregatedRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L65"
+		},
+		{
+			"id": "lib_members_leaderboard_query_parsemembersleaderboardsort",
+			"label": "parseMembersLeaderboardSort()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L76"
+		},
+		{
+			"id": "lib_members_leaderboard_query_parsemembersleaderboardlimit",
+			"label": "parseMembersLeaderboardLimit()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L86"
+		},
+		{
+			"id": "lib_members_leaderboard_query_iseligiblemembersleaderboardprofile",
+			"label": "isEligibleMembersLeaderboardProfile()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L93"
+		},
+		{
+			"id": "lib_members_leaderboard_query_rankmembersleaderboardrows",
+			"label": "rankMembersLeaderboardRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L100"
+		},
+		{
+			"id": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"label": "blockedUserIdsForViewer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L113"
+		},
+		{
+			"id": "lib_members_leaderboard_query_publicprofileconditions",
+			"label": "publicProfileConditions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L129"
+		},
+		{
+			"id": "lib_members_leaderboard_query_fetchpopularrows",
+			"label": "fetchPopularRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L137"
+		},
+		{
+			"id": "lib_members_leaderboard_query_fetchreviewrows",
+			"label": "fetchReviewRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L190"
+		},
+		{
+			"id": "lib_members_leaderboard_query_fetchlistrows",
+			"label": "fetchListRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L243"
+		},
+		{
+			"id": "lib_members_leaderboard_query_fetchlikerows",
+			"label": "fetchLikeRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L300"
+		},
+		{
+			"id": "lib_members_leaderboard_query_fetchsortrows",
+			"label": "fetchSortRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L358"
+		},
+		{
+			"id": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"label": "fetchMembersLeaderboard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L385"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_community_page_args_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_community_page_args_communityoffset",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_community_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_community_period_withincommunityperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_diary_metal_tier_fetchdiarylogcountsforuserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_diary_metal_tier_resolvediarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_follow_list_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_follow_list_annotateviewerfollows",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_follow_list_fetchviewerfollowingids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_leaderboard_period_leaderboardperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_leaderboard_period_resolveleaderboardwindow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_profile_media_readavatarisanimatedpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_membersleaderboardsort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_membersleaderboardentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_membersleaderboardresult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_aggregatedrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_parsemembersleaderboardsort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_parsemembersleaderboardlimit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_iseligiblemembersleaderboardprofile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_rankmembersleaderboardrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_publicprofileconditions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_fetchpopularrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_fetchreviewrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_fetchlistrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_fetchlikerows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_fetchsortrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L358",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_members_leaderboard_query_ts",
+			"target": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L385",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchpopularrows",
+			"target": "lib_members_leaderboard_query_publicprofileconditions",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchreviewrows",
+			"target": "lib_members_leaderboard_query_publicprofileconditions",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchlistrows",
+			"target": "lib_members_leaderboard_query_publicprofileconditions",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L272",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchlikerows",
+			"target": "lib_members_leaderboard_query_publicprofileconditions",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L330",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchsortrows",
+			"target": "lib_members_leaderboard_query_fetchpopularrows",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L368",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchsortrows",
+			"target": "lib_members_leaderboard_query_fetchreviewrows",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L370",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchsortrows",
+			"target": "lib_members_leaderboard_query_fetchlistrows",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L372",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchsortrows",
+			"target": "lib_members_leaderboard_query_fetchlikerows",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L374",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"target": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L403",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"target": "lib_members_leaderboard_query_fetchsortrows",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L406",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"target": "lib_members_leaderboard_query_rankmembersleaderboardrows",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L420",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_members_leaderboard_query_parsemembersleaderboardsort",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_parsemembersleaderboardsort",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_parsemembersleaderboardlimit",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L87"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_parsemembersleaderboardlimit",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_parsemembersleaderboardlimit",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_parsemembersleaderboardlimit",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_rankmembersleaderboardrows",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_rankmembersleaderboardrows",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_rankmembersleaderboardrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"callee": "or",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_blockeduseridsforviewer",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_publicprofileconditions",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_publicprofileconditions",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_publicprofileconditions",
+			"callee": "notInArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "offset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "groupBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L149"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L151"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L158"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L159"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "gte",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "lt",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L161"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "asc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "asc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L174"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchpopularrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "offset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "groupBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L204"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L209"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L211"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L212"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L213"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "withinCommunityPeriod",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L214"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "asc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L226"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L226"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "asc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L227"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchreviewrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L232"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "offset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "groupBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L255"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L257"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L258"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L261"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L262"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L264"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L265"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L266"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "or",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L267"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L268"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "ne",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L269"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "withinCommunityPeriod",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L271"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L282"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L282"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "asc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L283"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L283"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "asc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L284"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlistrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L289"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "offset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "groupBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L312"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L314"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L315"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L320"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L320"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L320"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L322"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L323"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L325"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L326"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "withinCommunityPeriod",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L327"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L328"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L340"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L340"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "asc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L341"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L341"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "asc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L342"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchlikerows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L347"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "communityOffset",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L396"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "resolveLeaderboardWindow",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L397"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L415"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "fetchDiaryLogCountsForUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L417"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L418"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "fetchViewerFollowingIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L423"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L425"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "annotateViewerFollows",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L429"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L430"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L448"
+		},
+		{
+			"caller_nid": "lib_members_leaderboard_query_fetchmembersleaderboard",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\members-leaderboard-query.ts",
+			"source_location": "L448"
+		}
+	]
+}

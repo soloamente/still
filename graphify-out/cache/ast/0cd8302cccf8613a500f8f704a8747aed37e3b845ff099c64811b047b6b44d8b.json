@@ -1,0 +1,152 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"label": "list-realtime-subscriber.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "realtime_list_realtime_subscriber_realtimeclientenabled",
+			"label": "realtimeClientEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L9"
+		},
+		{
+			"id": "realtime_list_realtime_subscriber_listrealtimesubscriber",
+			"label": "ListRealtimeSubscriber()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L17"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"target": "realtime_realtime_root_provider_useregisterrealtimeroom",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_realtime_subscription_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"target": "hooks_use_realtime_subscription_userealtimesubscription",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"target": "realtime_list_realtime_subscriber_realtimeclientenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_list_realtime_subscriber_tsx",
+			"target": "realtime_list_realtime_subscriber_listrealtimesubscriber",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "realtime_list_realtime_subscriber_listrealtimesubscriber",
+			"target": "realtime_list_realtime_subscriber_realtimeclientenabled",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L29",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "realtime_list_realtime_subscriber_listrealtimesubscriber",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "realtime_list_realtime_subscriber_listrealtimesubscriber",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "realtime_list_realtime_subscriber_listrealtimesubscriber",
+			"callee": "listRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "realtime_list_realtime_subscriber_listrealtimesubscriber",
+			"callee": "useRegisterRealtimeRoom",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "realtime_list_realtime_subscriber_listrealtimesubscriber",
+			"callee": "useRealtimeSubscription",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\list-realtime-subscriber.tsx",
+			"source_location": "L34"
+		}
+	]
+}

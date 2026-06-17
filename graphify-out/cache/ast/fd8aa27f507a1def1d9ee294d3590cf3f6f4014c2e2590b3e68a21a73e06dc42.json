@@ -1,0 +1,303 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_14_favorite_quotes_md",
+			"label": "2026-06-14-favorite-quotes.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"label": "Favorite Quotes Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_conventions",
+			"label": "Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_1_migration_drizzle_schema",
+			"label": "Task 1: Migration + Drizzle schema",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_codeblock_1",
+			"label": "code:sql (CREATE TYPE \"listing_quote_source\" AS ENUM ('external_api', )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_codeblock_2",
+			"label": "code:bash (cd packages/db && bun run db:migrate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_2_server_helpers_catalog_query_tests",
+			"label": "Task 2: Server helpers + catalog query tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L171"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_codeblock_3",
+			"label": "code:bash (cd apps/server && bun test src/lib/listing-quote.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L189"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_3_quotes_api_routes_catalog_engagement",
+			"label": "Task 3: Quotes API routes (catalog + engagement)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L197"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_4_submit_staff_moderation_notifications",
+			"label": "Task 4: Submit + staff moderation + notifications",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L219"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_5_product_events_profile_public_saves_api",
+			"label": "Task 5: Product events + profile/public saves API",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L242"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_6_detail_view_ia_four_top_tabs",
+			"label": "Task 6: Detail view IA \u2014 four top tabs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L259"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_7_quotes_tab_ui_suggest_sheet",
+			"label": "Task 7: Quotes tab UI + suggest sheet",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L282"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_8_quotes_lobby_profile_strip",
+			"label": "Task 8: `/quotes` lobby + profile strip",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L302"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_9_staff_panel_import_adapter_env_gated",
+			"label": "Task 9: Staff panel + import adapter (env-gated)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L320"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_task_10_verification_changelog",
+			"label": "Task 10: Verification + changelog",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L338"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L350"
+		},
+		{
+			"id": "plans_2026_06_14_favorite_quotes_execution_handoff",
+			"label": "Execution handoff",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L368"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_14_favorite_quotes_md",
+			"target": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_1_migration_drizzle_schema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_task_1_migration_drizzle_schema",
+			"target": "plans_2026_06_14_favorite_quotes_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_task_1_migration_drizzle_schema",
+			"target": "plans_2026_06_14_favorite_quotes_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_2_server_helpers_catalog_query_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L171",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_task_2_server_helpers_catalog_query_tests",
+			"target": "plans_2026_06_14_favorite_quotes_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L189",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_3_quotes_api_routes_catalog_engagement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L197",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_4_submit_staff_moderation_notifications",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L219",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_5_product_events_profile_public_saves_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L242",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_6_detail_view_ia_four_top_tabs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_7_quotes_tab_ui_suggest_sheet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L282",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_8_quotes_lobby_profile_strip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L302",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_9_staff_panel_import_adapter_env_gated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L320",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_task_10_verification_changelog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L338",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L350",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_favorite_quotes_favorite_quotes_implementation_plan",
+			"target": "plans_2026_06_14_favorite_quotes_execution_handoff",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-favorite-quotes.md",
+			"source_location": "L368",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

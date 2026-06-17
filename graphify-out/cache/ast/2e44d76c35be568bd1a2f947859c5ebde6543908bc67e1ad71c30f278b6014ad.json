@@ -1,0 +1,78 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_quote_types_ts",
+			"label": "quote-types.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_quote_types_listing_quote_sources",
+			"label": "LISTING_QUOTE_SOURCES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_quote_types_listingquotesource",
+			"label": "ListingQuoteSource",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_quote_types_listingquoteitem",
+			"label": "ListingQuoteItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_quote_types_listingquotespage",
+			"label": "ListingQuotesPage",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L24"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_types_ts",
+			"target": "lib_quote_types_listing_quote_sources",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_types_ts",
+			"target": "lib_quote_types_listingquotesource",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_types_ts",
+			"target": "lib_quote_types_listingquoteitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_types_ts",
+			"target": "lib_quote_types_listingquotespage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-types.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

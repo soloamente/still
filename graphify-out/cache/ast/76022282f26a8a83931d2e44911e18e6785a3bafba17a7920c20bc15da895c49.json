@@ -1,0 +1,271 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"label": "route.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "year_route_flexcol",
+			"label": "flexCol",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "year_route_get",
+			"label": "GET()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L24"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "og",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_brand_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "lib_app_brand_app_name",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "lib_fetch_year_in_review_server_fetchyearinreviewforhandleserver",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_og_og_satori_layout_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "og_og_satori_layout_og_image_response_size",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "og_og_satori_layout_ogdefaultcard",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tmdb_poster_url_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "lib_tmdb_poster_url_tmdbposterurlfrompath",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_display_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "lib_year_in_review_display_formatyearinreviewaveragerating",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "lib_year_in_review_display_formatyearinreviewdecade",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "lib_year_in_review_display_parseyearinreviewyearparam",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "year_route_flexcol",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_og_year_handle_year_route_tsx",
+			"target": "year_route_get",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "year_route_get",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "parseYearInReviewYearParam",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "fetchYearInReviewForHandleServer",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "formatYearInReviewAverageRating",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "formatYearInReviewDecade",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "year_route_get",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\og\\year\\[handle]\\[year]\\route.tsx",
+			"source_location": "L125"
+		}
+	]
+}

@@ -1,0 +1,287 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"label": "fetch-listing-presence.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_fetch_listing_presence_listingpresenceviewingpatron",
+			"label": "ListingPresenceViewingPatron",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_fetch_listing_presence_listingpresencesnapshot",
+			"label": "ListingPresenceSnapshot",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_fetch_listing_presence_presenceapiurl",
+			"label": "presenceApiUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_fetch_listing_presence_fetchlistingpresencesnapshot",
+			"label": "fetchListingPresenceSnapshot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L29"
+		},
+		{
+			"id": "lib_fetch_listing_presence_touchlistingpresenceclient",
+			"label": "touchListingPresenceClient()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L48"
+		},
+		{
+			"id": "lib_fetch_listing_presence_leavelistingpresenceclient",
+			"label": "leaveListingPresenceClient()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L60"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_activity_tracker_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_patron_activity_tracker_patronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_activity_tracker_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_patron_activity_tracker_buildpresenceheartbeatbody",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_presence_heartbeat_post_postpresenceheartbeat",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_still_api_origin_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_still_api_origin_stillapiorigin",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_listingpresenceviewingpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_listingpresencesnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_presenceapiurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_fetchlistingpresencesnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_touchlistingpresenceclient",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_leavelistingpresenceclient",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_listing_presence_fetchlistingpresencesnapshot",
+			"target": "lib_fetch_listing_presence_presenceapiurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_listing_presence_leavelistingpresenceclient",
+			"target": "lib_fetch_listing_presence_presenceapiurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L64",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_fetch_listing_presence_presenceapiurl",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_fetch_listing_presence_fetchlistingpresencesnapshot",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "lib_fetch_listing_presence_fetchlistingpresencesnapshot",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_fetch_listing_presence_fetchlistingpresencesnapshot",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_fetch_listing_presence_touchlistingpresenceclient",
+			"callee": "postPresenceHeartbeat",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_fetch_listing_presence_touchlistingpresenceclient",
+			"callee": "buildPresenceHeartbeatBody",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_fetch_listing_presence_leavelistingpresenceclient",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "lib_fetch_listing_presence_leavelistingpresenceclient",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-listing-presence.ts",
+			"source_location": "L68"
+		}
+	]
+}

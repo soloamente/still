@@ -1,0 +1,587 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"label": "profile-showcase-strip.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_profile_showcase_strip_showcaseposter",
+			"label": "ShowcasePoster()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L43"
+		},
+		{
+			"id": "profile_profile_showcase_strip_listinghittotile",
+			"label": "listingHitToTile()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L73"
+		},
+		{
+			"id": "profile_profile_showcase_strip_showcasetilebutton",
+			"label": "ShowcaseTileButton()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L83"
+		},
+		{
+			"id": "profile_profile_showcase_strip_showcase_slot_ids",
+			"label": "SHOWCASE_SLOT_IDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L160"
+		},
+		{
+			"id": "profile_profile_showcase_strip_profileshowcasestrip",
+			"label": "ProfileShowcaseStrip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L166"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_person_credit_portrait_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "movie_person_credit_portrait_personcreditportrait",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_listing_picker_popover_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "profile_profile_showcase_listing_picker_popover_profileshowcaselistingpickerpopover",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_review_review_detail_sheet_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "review_review_detail_sheet_usereviewdetail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_profile_showcase_max_showcase_items",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_profile_showcase_profileshowcasetile",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_profile_showcase_showcasefilledcount",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_profile_showcase_showcaseitemkey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_profile_showcase_showcaselistinghref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_profile_showcase_showcaseposterurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_profile_showcase_tilestoshowcaseitems",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_avatar_group_hover_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_use_avatar_group_hover_useavatargrouphover",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_horizontal_scroll_fades_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_use_horizontal_scroll_fades_horizontal_overflow_rail_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_listing_mention_search_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "lib_use_listing_mention_search_listingmentionsearchhit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "profile_profile_showcase_strip_showcaseposter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "profile_profile_showcase_strip_listinghittotile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "profile_profile_showcase_strip_showcasetilebutton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "profile_profile_showcase_strip_showcase_slot_ids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_showcase_strip_tsx",
+			"target": "profile_profile_showcase_strip_profileshowcasestrip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L166",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_profile_showcase_strip_showcasetilebutton",
+			"callee": "showcasePosterUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_showcasetilebutton",
+			"callee": "showcaseListingHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_showcasetilebutton",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_showcasetilebutton",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_showcasetilebutton",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useAvatarGroupHover",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L180"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "showcaseFilledCount",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L195"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L196"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L196"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useHorizontalScrollFades",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L200"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useReviewDetail",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L207"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L237"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L254"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L293"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L314"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L322"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L330"
+		},
+		{
+			"caller_nid": "profile_profile_showcase_strip_profileshowcasestrip",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-showcase-strip.tsx",
+			"source_location": "L377"
+		}
+	]
+}

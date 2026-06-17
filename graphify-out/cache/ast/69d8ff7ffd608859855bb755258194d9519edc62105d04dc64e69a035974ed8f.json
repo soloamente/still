@@ -1,0 +1,4384 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"label": "still-api-fetch.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_still_api_fetch_stillapipagedgetresult",
+			"label": "StillApiPagedGetResult",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L35"
+		},
+		{
+			"id": "lib_still_api_fetch_isfetchaborterror",
+			"label": "isFetchAbortError()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_still_api_fetch_readstillapijsonbody",
+			"label": "readStillApiJsonBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L54"
+		},
+		{
+			"id": "lib_still_api_fetch_finishstillapipagedget",
+			"label": "finishStillApiPagedGet()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L66"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmoviessearch",
+			"label": "fetchMoviesSearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L83"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchprofilesearch",
+			"label": "fetchProfileSearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L117"
+		},
+		{
+			"id": "lib_still_api_fetch_followsuggestionrow",
+			"label": "FollowSuggestionRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L140"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtastesuggestedpatrons",
+			"label": "fetchTasteSuggestedPatrons()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L149"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchfollowsuggestions",
+			"label": "fetchFollowSuggestions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L166"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchlistssearch",
+			"label": "fetchListsSearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L183"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvsearch",
+			"label": "fetchTvSearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L207"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmoviespopular",
+			"label": "fetchMoviesPopular()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L243"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"label": "fetchMoviesNowPlaying()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L260"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmoviesupcoming",
+			"label": "fetchMoviesUpcoming()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L277"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmoviesdiscover",
+			"label": "fetchMoviesDiscover()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L302"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvontheair",
+			"label": "fetchTvOnTheAir()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L400"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvpopular",
+			"label": "fetchTvPopular()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L424"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvdiscover",
+			"label": "fetchTvDiscover()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L441"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvgenres",
+			"label": "fetchTvGenres()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L530"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmoviegenres",
+			"label": "fetchMovieGenres()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L556"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmoviestudios",
+			"label": "fetchMovieStudios()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L581"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchbadgesrecent",
+			"label": "fetchBadgesRecent()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L600"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchachievementschallengescatalog",
+			"label": "fetchAchievementsChallengesCatalog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L613"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchprofilehandleavailable",
+			"label": "fetchProfileHandleAvailable()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L633"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmysavedquotes",
+			"label": "fetchMySavedQuotes()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L658"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmylogsformovie",
+			"label": "fetchMyLogsForMovie()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L683"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmylogsfortv",
+			"label": "fetchMyLogsForTv()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L701"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchlistsmemedia",
+			"label": "FetchListsMeMedia",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L718"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchlistsme",
+			"label": "fetchListsMe()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L723"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchwatchlistcheck",
+			"label": "fetchWatchlistCheck()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L746"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchwatchlistchecktv",
+			"label": "fetchWatchlistCheckTv()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L764"
+		},
+		{
+			"id": "lib_still_api_fetch_deletewatchlistitem",
+			"label": "deleteWatchlistItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L781"
+		},
+		{
+			"id": "lib_still_api_fetch_deletewatchlisttvitem",
+			"label": "deleteWatchlistTvItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L795"
+		},
+		{
+			"id": "lib_still_api_fetch_deletelog",
+			"label": "deleteLog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L809"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchpersonfilmography",
+			"label": "fetchPersonFilmography()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L827"
+		},
+		{
+			"id": "lib_still_api_fetch_parsejsonblob",
+			"label": "parseJsonBlob()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L847"
+		},
+		{
+			"id": "lib_still_api_fetch_postlog",
+			"label": "postLog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L858"
+		},
+		{
+			"id": "lib_still_api_fetch_patchlog",
+			"label": "patchLog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L894"
+		},
+		{
+			"id": "lib_still_api_fetch_postwatchlistadd",
+			"label": "postWatchlistAdd()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L935"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmywatchlist",
+			"label": "fetchMyWatchlist()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L960"
+		},
+		{
+			"id": "lib_still_api_fetch_diarymovieresultrow",
+			"label": "DiaryMovieResultRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L990"
+		},
+		{
+			"id": "lib_still_api_fetch_diarytvgroupresultrow",
+			"label": "DiaryTvGroupResultRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1004"
+		},
+		{
+			"id": "lib_still_api_fetch_diaryresultrow",
+			"label": "DiaryResultRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1016"
+		},
+		{
+			"id": "lib_still_api_fetch_diarytabcounts",
+			"label": "DiaryTabCounts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1018"
+		},
+		{
+			"id": "lib_still_api_fetch_diarywatchperiods",
+			"label": "DiaryWatchPeriods",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1020"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmydiaryopts",
+			"label": "FetchMyDiaryOpts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1022"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmydiary",
+			"label": "fetchMyDiary()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1033"
+		},
+		{
+			"id": "lib_still_api_fetch_deletelistitem",
+			"label": "deleteListItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1078"
+		},
+		{
+			"id": "lib_still_api_fetch_patchlistitemnote",
+			"label": "patchListItemNote()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1103"
+		},
+		{
+			"id": "lib_still_api_fetch_postlistreorder",
+			"label": "postListReorder()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1133"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvwatchme",
+			"label": "fetchTvWatchMe()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1163"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvwatchbytv",
+			"label": "fetchTvWatchByTv()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1184"
+		},
+		{
+			"id": "lib_still_api_fetch_posttvwatchstart",
+			"label": "postTvWatchStart()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1201"
+		},
+		{
+			"id": "lib_still_api_fetch_patchtvwatch",
+			"label": "patchTvWatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1223"
+		},
+		{
+			"id": "lib_still_api_fetch_posttvwatchmarkepisode",
+			"label": "postTvWatchMarkEpisode()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1252"
+		},
+		{
+			"id": "lib_still_api_fetch_deletetvwatchepisode",
+			"label": "deleteTvWatchEpisode()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1281"
+		},
+		{
+			"id": "lib_still_api_fetch_posttvwatchcompleteseason",
+			"label": "postTvWatchCompleteSeason()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1311"
+		},
+		{
+			"id": "lib_still_api_fetch_posttvwatchmarknext",
+			"label": "postTvWatchMarkNext()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1335"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvseasons",
+			"label": "fetchTvSeasons()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1357"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchtvseasondetail",
+			"label": "fetchTvSeasonDetail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1375"
+		},
+		{
+			"id": "lib_still_api_fetch_postnotificationread",
+			"label": "postNotificationRead()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1398"
+		},
+		{
+			"id": "lib_still_api_fetch_communityperiodquery",
+			"label": "CommunityPeriodQuery",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1417"
+		},
+		{
+			"id": "lib_still_api_fetch_communityperiodsearchparams",
+			"label": "communityPeriodSearchParams()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1422"
+		},
+		{
+			"id": "lib_still_api_fetch_communitylistspage",
+			"label": "CommunityListsPage",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1437"
+		},
+		{
+			"id": "lib_still_api_fetch_parsecommunitylistspayload",
+			"label": "parseCommunityListsPayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1442"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchcommunitylists",
+			"label": "fetchCommunityLists()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1456"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"label": "fetchCommunityReviewsRecent()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1478"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"label": "fetchCommunityReviewsViral()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1500"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchcommunityactivity",
+			"label": "fetchCommunityActivity()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1523"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchcommunityleaderboard",
+			"label": "fetchCommunityLeaderboard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1559"
+		},
+		{
+			"id": "lib_still_api_fetch_fetchmembersleaderboard",
+			"label": "fetchMembersLeaderboard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1577"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_popular_movies_infinite_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "movie_popular_movies_infinite_popularmovieseed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_home_leaderboard_period_homeleaderboardperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_home_leaderboard_types_leaderboardpayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_venue_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_home_venue_homevenue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_members_leaderboard_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_members_leaderboard_types_membersleaderboardpayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_members_leaderboard_types_membersleaderboardsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_still_api_origin_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_origin_stillapiorigin",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_watch_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_tv_watch_types_tvepisodesummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_tv_watch_types_tvprogressmode",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_tv_watch_types_tvseasonsummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_tv_watch_types_tvwatchbundle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_tv_watch_types_tvwatchstatus",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_watchlist_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_watchlist_lobby_order_iswatchlistrowwithlisting",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_watchlist_lobby_order_watchlistlobbyrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_watchlist_lobby_order_watchlistrowtopopularseed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_stillapipagedgetresult",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_isfetchaborterror",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_readstillapijsonbody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmoviessearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchprofilesearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_followsuggestionrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtastesuggestedpatrons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L149",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchfollowsuggestions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L166",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchlistssearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvsearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L207",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmoviespopular",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L260",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmoviesupcoming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L277",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmoviesdiscover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L302",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvontheair",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L400",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvpopular",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L424",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvdiscover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L441",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvgenres",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L530",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmoviegenres",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L556",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmoviestudios",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L581",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchbadgesrecent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L600",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchachievementschallengescatalog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L613",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchprofilehandleavailable",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L633",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmysavedquotes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L658",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmylogsformovie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L683",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmylogsfortv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L701",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchlistsmemedia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L718",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchlistsme",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L723",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchwatchlistcheck",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L746",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchwatchlistchecktv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L764",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_deletewatchlistitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L781",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_deletewatchlisttvitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L795",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_deletelog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L809",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchpersonfilmography",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L827",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L847",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_postlog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L858",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_patchlog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L894",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_postwatchlistadd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L935",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmywatchlist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L960",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_diarymovieresultrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L990",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_diarytvgroupresultrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1004",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_diaryresultrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1016",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_diarytabcounts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1018",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_diarywatchperiods",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1020",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmydiaryopts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1022",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmydiary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1033",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_deletelistitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1078",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_patchlistitemnote",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1103",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_postlistreorder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1133",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvwatchme",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1163",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvwatchbytv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1184",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_posttvwatchstart",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1201",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_patchtvwatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1223",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_posttvwatchmarkepisode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1252",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_deletetvwatchepisode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1281",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_posttvwatchcompleteseason",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1311",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_posttvwatchmarknext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1335",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvseasons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1357",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchtvseasondetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1375",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_postnotificationread",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1398",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_communityperiodquery",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1417",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_communityperiodsearchparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1422",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_communitylistspage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1437",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_parsecommunitylistspayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1442",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchcommunitylists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1456",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1478",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1500",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchcommunityactivity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1523",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchcommunityleaderboard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1559",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"target": "lib_still_api_fetch_fetchmembersleaderboard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1577",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_finishstillapipagedget",
+			"target": "lib_still_api_fetch_readstillapijsonbody",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchmoviespopular",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L273",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchmoviesupcoming",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L298",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchmoviesdiscover",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L393",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchtvontheair",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L420",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchtvpopular",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L437",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchtvdiscover",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L526",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchmysavedquotes",
+			"target": "lib_still_api_fetch_finishstillapipagedget",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L679",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchpersonfilmography",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L839",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_postlog",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L884",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_patchlog",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L925",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_postwatchlistadd",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L947",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_deletelistitem",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1093",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_patchlistitemnote",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1124",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_postlistreorder",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1149",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_posttvwatchstart",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1214",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_patchtvwatch",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1243",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_posttvwatchmarkepisode",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1272",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_deletetvwatchepisode",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1301",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_posttvwatchcompleteseason",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1326",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_posttvwatchmarknext",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1347",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_postnotificationread",
+			"target": "lib_still_api_fetch_parsejsonblob",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1408",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchcommunitylists",
+			"target": "lib_still_api_fetch_communityperiodsearchparams",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1465",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchcommunitylists",
+			"target": "lib_still_api_fetch_parsecommunitylistspayload",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1474",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"target": "lib_still_api_fetch_communityperiodsearchparams",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1487",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"target": "lib_still_api_fetch_communityperiodsearchparams",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1510",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_still_api_fetch_fetchcommunityactivity",
+			"target": "lib_still_api_fetch_communityperiodsearchparams",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1544",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_still_api_fetch_readstillapijsonbody",
+			"callee": "text",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_readstillapijsonbody",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_readstillapijsonbody",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviessearch",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L121"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L125"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilesearch",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtastesuggestedpatrons",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtastesuggestedpatrons",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtastesuggestedpatrons",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchfollowsuggestions",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L169"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchfollowsuggestions",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchfollowsuggestions",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L174"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L188"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L189"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L191"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L194"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistssearch",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L198"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L215"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L216"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L216"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L218"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L219"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L219"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L219"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L222"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L223"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L223"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L223"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L226"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvsearch",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L231"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviespopular",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L247"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviespopular",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L248"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviespopular",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L248"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviespopular",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L248"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviespopular",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L248"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviespopular",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L264"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L265"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L265"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L265"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L265"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesnowplaying",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L267"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L285"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L286"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L286"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L286"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L286"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L288"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L288"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L289"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L290"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesupcoming",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L292"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L328"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L330"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L334"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L336"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L336"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L340"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L341"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L341"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L341"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L344"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L348"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L350"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L350"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L354"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L355"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L355"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L355"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L357"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L359"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L362"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L364"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L364"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L366"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L368"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L368"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L370"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L371"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L372"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L374"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L374"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L375"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L376"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L378"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L379"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L380"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L382"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L384"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviesdiscover",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L387"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvontheair",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L407"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvontheair",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L408"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvontheair",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L408"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvontheair",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L408"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvontheair",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L408"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvontheair",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L409"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvontheair",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L411"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvontheair",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L414"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvpopular",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L428"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvpopular",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L429"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvpopular",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L429"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvpopular",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L429"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvpopular",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L429"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvpopular",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L431"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L460"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L461"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L461"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L461"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L461"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L462"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L466"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L468"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L468"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L472"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L473"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L473"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L473"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L476"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L480"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L482"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L482"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L488"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L491"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L491"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L491"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L493"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L495"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L497"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L498"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L499"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L501"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L501"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L503"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "toUpperCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L505"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L505"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L507"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L508"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L509"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L511"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L511"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L513"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L515"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L517"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvdiscover",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L520"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvgenres",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L537"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvgenres",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L538"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvgenres",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L539"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvgenres",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L541"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvgenres",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L547"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviegenres",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L562"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviegenres",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L563"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviegenres",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L564"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviegenres",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L566"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviegenres",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L572"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviestudios",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L584"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviestudios",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L586"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmoviestudios",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L592"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchbadgesrecent",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L601"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchbadgesrecent",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L602"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchbadgesrecent",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L603"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchbadgesrecent",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L604"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchachievementschallengescatalog",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L616"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchachievementschallengescatalog",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L618"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchachievementschallengescatalog",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L624"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilehandleavailable",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L637"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilehandleavailable",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L637"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilehandleavailable",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L639"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilehandleavailable",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L640"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilehandleavailable",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L642"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchprofilehandleavailable",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L646"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmysavedquotes",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L667"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmysavedquotes",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L668"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmysavedquotes",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L668"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmysavedquotes",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L669"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmysavedquotes",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L669"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmysavedquotes",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L670"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmysavedquotes",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L671"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmysavedquotes",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L673"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmylogsformovie",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L687"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmylogsformovie",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L688"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmylogsformovie",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L692"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmylogsfortv",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L705"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmylogsfortv",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L706"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmylogsfortv",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L710"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L727"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L728"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L729"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L729"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L730"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L731"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L731"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L733"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchlistsme",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L737"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchwatchlistcheck",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L750"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchwatchlistcheck",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L751"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchwatchlistcheck",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L755"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchwatchlistchecktv",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L768"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchwatchlistchecktv",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L769"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchwatchlistchecktv",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L773"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletewatchlistitem",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L782"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletewatchlistitem",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L783"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletewatchlistitem",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L787"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletewatchlistitem",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L787"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletewatchlisttvitem",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L796"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletewatchlisttvitem",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L797"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletewatchlisttvitem",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L801"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletewatchlisttvitem",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L801"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelog",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L811"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelog",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L812"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelog",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L814"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelog",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L818"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelog",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L818"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchpersonfilmography",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L832"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchpersonfilmography",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L832"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchpersonfilmography",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L833"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchpersonfilmography",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L835"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_parsejsonblob",
+			"callee": "text",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L848"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_parsejsonblob",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L851"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postlog",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L875"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postlog",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L875"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postlog",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L882"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlog",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L913"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlog",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L914"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlog",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L914"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlog",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L922"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postwatchlistadd",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L938"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postwatchlistadd",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L938"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postwatchlistadd",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L945"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L966"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L967"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L967"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L967"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L967"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L968"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L969"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L975"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L975"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L979"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L980"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmywatchlist",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L980"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1044"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1045"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1046"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1047"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1048"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1048"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1050"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1050"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1051"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1051"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1051"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1051"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1052"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1058"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1058"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmydiary",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1063"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelistitem",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1086"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelistitem",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1087"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelistitem",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1088"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletelistitem",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1088"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlistitemnote",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1108"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlistitemnote",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1109"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlistitemnote",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1111"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlistitemnote",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1111"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlistitemnote",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1112"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchlistitemnote",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1121"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postlistreorder",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1134"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postlistreorder",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1136"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postlistreorder",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1137"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postlistreorder",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1146"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchme",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1166"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchme",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1167"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchme",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1169"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchme",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1169"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchme",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1169"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchme",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1171"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchme",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1175"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchbytv",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1188"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchbytv",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1189"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvwatchbytv",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1193"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchstart",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1205"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchstart",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1205"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchstart",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1212"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchtvwatch",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1231"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchtvwatch",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1232"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchtvwatch",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1232"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_patchtvwatch",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1240"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchmarkepisode",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1257"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchmarkepisode",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1259"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchmarkepisode",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1260"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchmarkepisode",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1269"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletetvwatchepisode",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1286"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletetvwatchepisode",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1288"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletetvwatchepisode",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1289"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_deletetvwatchepisode",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1298"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchcompleteseason",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1315"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchcompleteseason",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1317"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchcompleteseason",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1318"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchmarknext",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1336"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchmarknext",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1338"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_posttvwatchmarknext",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1339"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvseasons",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1361"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvseasons",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1362"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvseasons",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1366"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvseasondetail",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1382"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvseasondetail",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1384"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchtvseasondetail",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1388"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postnotificationread",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1400"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postnotificationread",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1401"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_postnotificationread",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1403"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_communityperiodsearchparams",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1427"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_communityperiodsearchparams",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1428"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_parsecommunitylistspayload",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1447"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_parsecommunitylistspayload",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1449"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunitylists",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1461"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunitylists",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1462"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunitylists",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1462"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunitylists",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1464"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunitylists",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1464"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunitylists",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1466"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunitylists",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1468"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunitylists",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1474"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1483"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1484"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1484"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1486"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1486"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1488"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1490"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsrecent",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1496"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1505"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1506"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1508"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1511"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1513"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityreviewsviral",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1519"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1537"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1538"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1538"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1540"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1541"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1542"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1545"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1547"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityactivity",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1553"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityleaderboard",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1565"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityleaderboard",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1566"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityleaderboard",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1567"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityleaderboard",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1568"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchcommunityleaderboard",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1573"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1587"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1588"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1589"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1590"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1592"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1592"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1595"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1595"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1597"
+		},
+		{
+			"caller_nid": "lib_still_api_fetch_fetchmembersleaderboard",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-fetch.ts",
+			"source_location": "L1602"
+		}
+	]
+}

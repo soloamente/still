@@ -1,0 +1,453 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"label": "use-patron-activity-tracker.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_activityfliphandler",
+			"label": "ActivityFlipHandler",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L25"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_patronactivitycontextvalue",
+			"label": "PatronActivityContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L27"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_patronactivitycontext",
+			"label": "PatronActivityContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L37"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_usepatronactivitytracker",
+			"label": "usePatronActivityTracker()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L41"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"label": "PatronActivityProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L111"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_usepatronactivitystate",
+			"label": "usePatronActivityState()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L210"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_useaggregatepatronactivitystate",
+			"label": "useAggregatePatronActivityState()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L216"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_usereadpatronactivitystate",
+			"label": "useReadPatronActivityState()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L222"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_usereadaggregatepatronactivitystate",
+			"label": "useReadAggregatePatronActivityState()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L228"
+		},
+		{
+			"id": "hooks_use_patron_activity_tracker_usepatronactivityflipheartbeat",
+			"label": "usePatronActivityFlipHeartbeat()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L237"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_activity_tab_sync_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "lib_patron_activity_tab_sync_patronactivitytabsync",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_activity_tracker_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "lib_patron_activity_tracker_derivepatronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "lib_patron_activity_tracker_patron_activity_input_events",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "lib_patron_activity_tracker_patron_activity_input_throttle_ms",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "lib_patron_activity_tracker_patron_activity_recompute_ms",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "lib_patron_activity_tracker_patronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "lib_patron_activity_tracker_shouldemitpatronactivityflip",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_activityfliphandler",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_patronactivitycontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_patronactivitycontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_usepatronactivitytracker",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_usepatronactivitystate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L210",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_useaggregatepatronactivitystate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L216",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_usereadpatronactivitystate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L222",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_usereadaggregatepatronactivitystate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L228",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"target": "hooks_use_patron_activity_tracker_usepatronactivityflipheartbeat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L237",
+			"weight": 1.0
+		},
+		{
+			"source": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"target": "hooks_use_patron_activity_tracker_usepatronactivitytracker",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L169",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivitytracker",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivitytracker",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivitytracker",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivitytracker",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivitytracker",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L115"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L117"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_patronactivityprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivitystate",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L211"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_useaggregatepatronactivitystate",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L217"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usereadpatronactivitystate",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L223"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usereadaggregatepatronactivitystate",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L229"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivityflipheartbeat",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L241"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivityflipheartbeat",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L242"
+		},
+		{
+			"caller_nid": "hooks_use_patron_activity_tracker_usepatronactivityflipheartbeat",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-patron-activity-tracker.tsx",
+			"source_location": "L245"
+		}
+	]
+}

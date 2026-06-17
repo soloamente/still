@@ -1,0 +1,56 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_onboarding_step_header_tsx",
+			"label": "onboarding-step-header.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\onboarding-step-header.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "onboarding_steps_onboarding_step_header_onboardingstepheaderprops",
+			"label": "OnboardingStepHeaderProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\onboarding-step-header.tsx",
+			"source_location": "L3"
+		},
+		{
+			"id": "onboarding_steps_onboarding_step_header_onboardingstepheader",
+			"label": "OnboardingStepHeader()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\onboarding-step-header.tsx",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_onboarding_step_header_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\onboarding-step-header.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_onboarding_step_header_tsx",
+			"target": "onboarding_steps_onboarding_step_header_onboardingstepheaderprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\onboarding-step-header.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_onboarding_step_header_tsx",
+			"target": "onboarding_steps_onboarding_step_header_onboardingstepheader",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-steps\\onboarding-step-header.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

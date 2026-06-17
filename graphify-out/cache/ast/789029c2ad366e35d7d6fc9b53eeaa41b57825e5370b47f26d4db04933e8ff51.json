@@ -1,0 +1,187 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"label": "onboarding-letter-reveal.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "onboarding_onboarding_letter_reveal_textsegment",
+			"label": "TextSegment",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L6"
+		},
+		{
+			"id": "onboarding_onboarding_letter_reveal_splittextsegments",
+			"label": "splitTextSegments()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "onboarding_onboarding_letter_reveal_lettertoken",
+			"label": "LetterToken",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L31"
+		},
+		{
+			"id": "onboarding_onboarding_letter_reveal_lettertokensforsegment",
+			"label": "letterTokensForSegment()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L36"
+		},
+		{
+			"id": "onboarding_onboarding_letter_reveal_onboardingletterrevealprops",
+			"label": "OnboardingLetterRevealProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L47"
+		},
+		{
+			"id": "onboarding_onboarding_letter_reveal_onboardingletterreveal",
+			"label": "OnboardingLetterReveal()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L58"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"target": "onboarding_onboarding_letter_reveal_textsegment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"target": "onboarding_onboarding_letter_reveal_splittextsegments",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"target": "onboarding_onboarding_letter_reveal_lettertoken",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"target": "onboarding_onboarding_letter_reveal_lettertokensforsegment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"target": "onboarding_onboarding_letter_reveal_onboardingletterrevealprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_letter_reveal_tsx",
+			"target": "onboarding_onboarding_letter_reveal_onboardingletterreveal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L58",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "onboarding_onboarding_letter_reveal_splittextsegments",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_letter_reveal_splittextsegments",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_letter_reveal_splittextsegments",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_letter_reveal_lettertokensforsegment",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_letter_reveal_onboardingletterreveal",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_letter_reveal_onboardingletterreveal",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_letter_reveal_onboardingletterreveal",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_letter_reveal_onboardingletterreveal",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-letter-reveal.tsx",
+			"source_location": "L73"
+		}
+	]
+}

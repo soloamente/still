@@ -1,0 +1,189 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"label": "realtime-sse.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_realtime_sse_realtimessemessage",
+			"label": "RealtimeSseMessage",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_realtime_sse_encoderealtimessemessage",
+			"label": "encodeRealtimeSseMessage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_realtime_sse_parserealtimessemessage",
+			"label": "parseRealtimeSseMessage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_realtime_sse_roomidfromstreamkey",
+			"label": "roomIdFromStreamKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L29"
+		},
+		{
+			"id": "lib_realtime_sse_encodessedata",
+			"label": "encodeSseData()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L37"
+		},
+		{
+			"id": "lib_realtime_sse_encodessekeepalive",
+			"label": "encodeSseKeepalive()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_realtime_sse_parsestreamentrydata",
+			"label": "parseStreamEntryData()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L47"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"target": "lib_realtime_sse_realtimessemessage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"target": "lib_realtime_sse_encoderealtimessemessage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"target": "lib_realtime_sse_parserealtimessemessage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"target": "lib_realtime_sse_roomidfromstreamkey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"target": "lib_realtime_sse_encodessedata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"target": "lib_realtime_sse_encodessekeepalive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"target": "lib_realtime_sse_parsestreamentrydata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_sse_encoderealtimessemessage",
+			"target": "lib_realtime_sse_encodessedata",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_realtime_sse_parserealtimessemessage",
+			"callee": "parseRealtimeEvent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_realtime_sse_roomidfromstreamkey",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_realtime_sse_roomidfromstreamkey",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_realtime_sse_encodessedata",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_realtime_sse_encodessekeepalive",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_realtime_sse_parsestreamentrydata",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-sse.ts",
+			"source_location": "L51"
+		}
+	]
+}

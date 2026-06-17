@@ -1,0 +1,127 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"label": "role-change-dialog-copy.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_role_change_dialog_copy_rolechangedirection",
+			"label": "RoleChangeDirection",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_role_change_dialog_copy_rolechangedialogcopy",
+			"label": "RoleChangeDialogCopy",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L6"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_brand_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"target": "lib_app_brand_app_name",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_staff_role_labels_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"target": "lib_staff_role_labels_rolelabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"target": "lib_staff_role_labels_rolewitharticle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"target": "lib_role_change_dialog_copy_rolechangedirection",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"target": "lib_role_change_dialog_copy_rolechangedialogcopy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_role_change_dialog_copy_ts",
+			"target": "lib_role_change_dialog_copy_rolechangedialogcopy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_role_change_dialog_copy_rolechangedialogcopy",
+			"callee": "roleLabel",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_role_change_dialog_copy_rolechangedialogcopy",
+			"callee": "roleWithArticle",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "lib_role_change_dialog_copy_rolechangedialogcopy",
+			"callee": "roleWithArticle",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\role-change-dialog-copy.ts",
+			"source_location": "L39"
+		}
+	]
+}

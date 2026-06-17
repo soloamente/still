@@ -1,0 +1,365 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"label": "detail-editorial-rail-snap.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_detail_editorial_rail_snap_editorial_rail_snap_tween",
+			"label": "EDITORIAL_RAIL_SNAP_TWEEN",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_detail_editorial_rail_snap_slidetargetscrollleft",
+			"label": "slideTargetScrollLeft()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_detail_editorial_rail_snap_resolvesnapslideindex",
+			"label": "resolveSnapSlideIndex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "lib_detail_editorial_rail_snap_readactiveslideindex",
+			"label": "readActiveSlideIndex()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L55"
+		},
+		{
+			"id": "lib_detail_editorial_rail_snap_wheeldeltapixels",
+			"label": "wheelDeltaPixels()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L62"
+		},
+		{
+			"id": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"label": "useDetailEditorialRailSnap()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L76"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"target": "lib_detail_editorial_rail_snap_editorial_rail_snap_tween",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"target": "lib_detail_editorial_rail_snap_slidetargetscrollleft",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"target": "lib_detail_editorial_rail_snap_resolvesnapslideindex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"target": "lib_detail_editorial_rail_snap_readactiveslideindex",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"target": "lib_detail_editorial_rail_snap_wheeldeltapixels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_detail_editorial_rail_snap_ts",
+			"target": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_detail_editorial_rail_snap_readactiveslideindex",
+			"target": "lib_detail_editorial_rail_snap_resolvesnapslideindex",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_resolvesnapslideindex",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_resolvesnapslideindex",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_resolvesnapslideindex",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_readactiveslideindex",
+			"callee": "querySelectorAll",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_readactiveslideindex",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L84"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L87"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L115"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L130"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L189"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L206"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L220"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L245"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L249"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L254"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L260"
+		},
+		{
+			"caller_nid": "lib_detail_editorial_rail_snap_usedetaileditorialrailsnap",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\detail-editorial-rail-snap.ts",
+			"source_location": "L405"
+		}
+	]
+}

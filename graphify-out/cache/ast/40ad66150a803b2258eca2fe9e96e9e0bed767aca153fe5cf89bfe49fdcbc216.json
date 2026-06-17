@@ -1,0 +1,185 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"label": "onboarding-gate.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_onboarding_gate_onboardinggateprofile",
+			"label": "OnboardingGateProfile",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_onboarding_gate_onboarding_v3_launch_at",
+			"label": "ONBOARDING_V3_LAUNCH_AT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_onboarding_gate_todate",
+			"label": "toDate()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_onboarding_gate_favoritemoviecount",
+			"label": "favoriteMovieCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "lib_onboarding_gate_islegacyonboardingcomplete",
+			"label": "isLegacyOnboardingComplete()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "lib_onboarding_gate_patronneedsonboarding",
+			"label": "patronNeedsOnboarding()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L73"
+		},
+		{
+			"id": "lib_onboarding_gate_resolveonboardingresumestep",
+			"label": "resolveOnboardingResumeStep()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L83"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"target": "lib_onboarding_gate_onboardinggateprofile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"target": "lib_onboarding_gate_onboarding_v3_launch_at",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"target": "lib_onboarding_gate_todate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"target": "lib_onboarding_gate_favoritemoviecount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"target": "lib_onboarding_gate_islegacyonboardingcomplete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"target": "lib_onboarding_gate_patronneedsonboarding",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"target": "lib_onboarding_gate_resolveonboardingresumestep",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_onboarding_gate_islegacyonboardingcomplete",
+			"target": "lib_onboarding_gate_todate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_onboarding_gate_islegacyonboardingcomplete",
+			"target": "lib_onboarding_gate_favoritemoviecount",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_onboarding_gate_patronneedsonboarding",
+			"target": "lib_onboarding_gate_islegacyonboardingcomplete",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_onboarding_gate_todate",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_onboarding_gate_todate",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_onboarding_gate_islegacyonboardingcomplete",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_onboarding_gate_resolveonboardingresumestep",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-gate.ts",
+			"source_location": "L86"
+		}
+	]
+}

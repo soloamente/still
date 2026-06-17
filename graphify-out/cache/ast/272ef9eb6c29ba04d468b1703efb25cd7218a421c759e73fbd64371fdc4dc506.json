@@ -1,0 +1,84 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_chip_copy_ts",
+			"label": "listing-engagement-chip-copy.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_engagement_chip_copy_listingengagementchipkind",
+			"label": "ListingEngagementChipKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_engagement_chip_copy_formatlistingengagementchiptooltip",
+			"label": "formatListingEngagementChipTooltip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_listing_engagement_chip_copy_formatlistingengagementchiparialabel",
+			"label": "formatListingEngagementChipAriaLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L35"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_chip_copy_ts",
+			"target": "lib_listing_engagement_chip_copy_listingengagementchipkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_chip_copy_ts",
+			"target": "lib_listing_engagement_chip_copy_formatlistingengagementchiptooltip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_chip_copy_ts",
+			"target": "lib_listing_engagement_chip_copy_formatlistingengagementchiparialabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_listing_engagement_chip_copy_formatlistingengagementchiptooltip",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_chip_copy_formatlistingengagementchiptooltip",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_chip_copy_formatlistingengagementchiptooltip",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-chip-copy.ts",
+			"source_location": "L13"
+		}
+	]
+}

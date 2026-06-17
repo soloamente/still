@@ -1,0 +1,77 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_quote_attribution_ts",
+			"label": "quote-attribution.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_quote_attribution_quoteattributionfields",
+			"label": "QuoteAttributionFields",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_quote_attribution_resolvedquoteattribution",
+			"label": "ResolvedQuoteAttribution",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_quote_attribution_resolvequoteattribution",
+			"label": "resolveQuoteAttribution()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_attribution_ts",
+			"target": "lib_quote_attribution_quoteattributionfields",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_attribution_ts",
+			"target": "lib_quote_attribution_resolvedquoteattribution",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_attribution_ts",
+			"target": "lib_quote_attribution_resolvequoteattribution",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_quote_attribution_resolvequoteattribution",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "lib_quote_attribution_resolvequoteattribution",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-attribution.ts",
+			"source_location": "L17"
+		}
+	]
+}

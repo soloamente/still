@@ -1,0 +1,239 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_16_listing_engagement_stats_md",
+			"label": "2026-06-16-listing-engagement-stats.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_listing_engagement_stats_movie_tv_detail_implementation_plan",
+			"label": "Listing Engagement Stats (Movie / TV Detail) Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_conventions",
+			"label": "Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_milestone_1a_chip_row_counts_no_drawers",
+			"label": "Milestone 1a \u2014 Chip row + counts (no drawers)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_1_extend_engagement_stats_lib",
+			"label": "Task 1: Extend engagement stats lib",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_2_wire_counts_through_movie_tv_get",
+			"label": "Task 2: Wire counts through movie/TV GET",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_3_abbrev_tooltip_copy_helpers",
+			"label": "Task 3: Abbrev + tooltip copy helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_4_engagement_chips_ui",
+			"label": "Task 4: Engagement chips UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_milestone_1b_drawers_engagement_routes",
+			"label": "Milestone 1b \u2014 Drawers + engagement routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_5_engagement_query_lib",
+			"label": "Task 5: Engagement query lib",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L96"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_6_elysia_engagement_routes",
+			"label": "Task 6: Elysia engagement routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_7_web_fetch_drawer_shell",
+			"label": "Task 7: Web fetch + drawer shell",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_8_wire_chips_drawers",
+			"label": "Task 8: Wire chips \u2192 drawers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_task_9_verification_docs",
+			"label": "Task 9: Verification + docs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "plans_2026_06_16_listing_engagement_stats_manual_qa_checklist",
+			"label": "Manual QA checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L173"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_16_listing_engagement_stats_md",
+			"target": "plans_2026_06_16_listing_engagement_stats_listing_engagement_stats_movie_tv_detail_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_listing_engagement_stats_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_engagement_stats_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_listing_engagement_stats_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_engagement_stats_milestone_1a_chip_row_counts_no_drawers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1a_chip_row_counts_no_drawers",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_1_extend_engagement_stats_lib",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1a_chip_row_counts_no_drawers",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_2_wire_counts_through_movie_tv_get",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1a_chip_row_counts_no_drawers",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_3_abbrev_tooltip_copy_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1a_chip_row_counts_no_drawers",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_4_engagement_chips_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_listing_engagement_stats_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_engagement_stats_milestone_1b_drawers_engagement_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1b_drawers_engagement_routes",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_5_engagement_query_lib",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1b_drawers_engagement_routes",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_6_elysia_engagement_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1b_drawers_engagement_routes",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_7_web_fetch_drawer_shell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1b_drawers_engagement_routes",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_8_wire_chips_drawers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_milestone_1b_drawers_engagement_routes",
+			"target": "plans_2026_06_16_listing_engagement_stats_task_9_verification_docs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_engagement_stats_listing_engagement_stats_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_engagement_stats_manual_qa_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-engagement-stats.md",
+			"source_location": "L173",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

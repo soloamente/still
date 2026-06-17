@@ -1,0 +1,292 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"label": "onboarding-form-controls.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboarding_textarea_class",
+			"label": "ONBOARDING_TEXTAREA_CLASS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboardingfieldinputprops",
+			"label": "OnboardingFieldInputProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboardingfieldinput",
+			"label": "OnboardingFieldInput()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L24"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboardingfieldtextareaprops",
+			"label": "OnboardingFieldTextareaProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L38"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboardingfieldtextarea",
+			"label": "OnboardingFieldTextarea()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L44"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboardingactionbuttonprops",
+			"label": "OnboardingActionButtonProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L61"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboardingprimarybutton",
+			"label": "OnboardingPrimaryButton()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L80"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboardingsecondarybuttonprops",
+			"label": "OnboardingSecondaryButtonProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L106"
+		},
+		{
+			"id": "onboarding_onboarding_form_controls_onboardingsecondarybutton",
+			"label": "OnboardingSecondaryButton()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L112"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_auth_auth_motion_field_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "auth_auth_motion_field_auth_input_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "auth_auth_motion_field_authmotioninput",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboarding_textarea_class",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingfieldinputprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingfieldinput",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingfieldtextareaprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingfieldtextarea",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingactionbuttonprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingprimarybutton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingsecondarybuttonprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingsecondarybutton",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L112",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingfieldinput",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingfieldtextarea",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingfieldtextarea",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingprimarybutton",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L87"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingprimarybutton",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingprimarybutton",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingsecondarybutton",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingsecondarybutton",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L121"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_form_controls_onboardingsecondarybutton",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-form-controls.tsx",
+			"source_location": "L125"
+		}
+	]
+}

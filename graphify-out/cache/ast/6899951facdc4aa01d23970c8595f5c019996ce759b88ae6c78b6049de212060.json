@@ -1,0 +1,111 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_live_tsx",
+			"label": "notifications-list-live.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "notifications_notifications_list_live_notificationrow",
+			"label": "NotificationRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L7"
+		},
+		{
+			"id": "notifications_notifications_list_live_notificationslistlive",
+			"label": "NotificationsListLive()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_live_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_live_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_live_tsx",
+			"target": "notifications_notifications_inbox_provider_usenotificationsinbox",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_live_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_live_tsx",
+			"target": "notifications_notifications_list_notificationslist",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_live_tsx",
+			"target": "notifications_notifications_list_live_notificationrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_list_live_tsx",
+			"target": "notifications_notifications_list_live_notificationslistlive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "notifications_notifications_list_live_notificationslistlive",
+			"callee": "useNotificationsInbox",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "notifications_notifications_list_live_notificationslistlive",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-list-live.tsx",
+			"source_location": "L25"
+		}
+	]
+}

@@ -1,0 +1,143 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_16_presence_online_visibility_md",
+			"label": "2026-06-16-presence-online-visibility.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"label": "Presence Online Visibility Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_16_presence_online_visibility_task_1_presence_visibility_preference_contract",
+			"label": "Task 1: Presence visibility preference contract",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plans_2026_06_16_presence_online_visibility_task_2_server_snapshot_filtering_by_visibility",
+			"label": "Task 2: Server snapshot filtering by visibility",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "plans_2026_06_16_presence_online_visibility_task_3_presence_api_contract_coverage",
+			"label": "Task 3: Presence API contract coverage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "plans_2026_06_16_presence_online_visibility_task_4_settings_privacy_control",
+			"label": "Task 4: Settings Privacy control",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "plans_2026_06_16_presence_online_visibility_task_5_row_drawer_online_badges",
+			"label": "Task 5: Row + drawer online badges",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "plans_2026_06_16_presence_online_visibility_task_6_end_to_end_verification_and_docs_updates",
+			"label": "Task 6: End-to-end verification and docs updates",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L169"
+		},
+		{
+			"id": "plans_2026_06_16_presence_online_visibility_manual_qa_checklist",
+			"label": "Manual QA checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L197"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_16_presence_online_visibility_md",
+			"target": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"target": "plans_2026_06_16_presence_online_visibility_task_1_presence_visibility_preference_contract",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"target": "plans_2026_06_16_presence_online_visibility_task_2_server_snapshot_filtering_by_visibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"target": "plans_2026_06_16_presence_online_visibility_task_3_presence_api_contract_coverage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"target": "plans_2026_06_16_presence_online_visibility_task_4_settings_privacy_control",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"target": "plans_2026_06_16_presence_online_visibility_task_5_row_drawer_online_badges",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"target": "plans_2026_06_16_presence_online_visibility_task_6_end_to_end_verification_and_docs_updates",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_presence_online_visibility_presence_online_visibility_implementation_plan",
+			"target": "plans_2026_06_16_presence_online_visibility_manual_qa_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-presence-online-visibility.md",
+			"source_location": "L197",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

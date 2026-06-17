@@ -1,0 +1,77 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_community_review_sort_ts",
+			"label": "home-community-review-sort.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_community_review_sort_homecommunityreviewsort",
+			"label": "HomeCommunityReviewSort",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_home_community_review_sort_parsehomecommunityreviewsort",
+			"label": "parseHomeCommunityReviewSort()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_home_community_review_sort_serializehomecommunityreviewsort",
+			"label": "serializeHomeCommunityReviewSort()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L17"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_review_sort_ts",
+			"target": "lib_home_community_review_sort_homecommunityreviewsort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_review_sort_ts",
+			"target": "lib_home_community_review_sort_parsehomecommunityreviewsort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_review_sort_ts",
+			"target": "lib_home_community_review_sort_serializehomecommunityreviewsort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_community_review_sort_parsehomecommunityreviewsort",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_home_community_review_sort_parsehomecommunityreviewsort",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-review-sort.ts",
+			"source_location": "L10"
+		}
+	]
+}

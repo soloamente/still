@@ -1,0 +1,326 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"label": "notifications-inbox-provider.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "notifications_notifications_inbox_provider_notificationsinboxcontextvalue",
+			"label": "NotificationsInboxContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L25"
+		},
+		{
+			"id": "notifications_notifications_inbox_provider_notificationsinboxcontext",
+			"label": "NotificationsInboxContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L34"
+		},
+		{
+			"id": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"label": "NotificationsInboxProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L38"
+		},
+		{
+			"id": "notifications_notifications_inbox_provider_usenotificationsinbox",
+			"label": "useNotificationsInbox()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L190"
+		},
+		{
+			"id": "notifications_notifications_inbox_provider_usenotificationsinboxoptional",
+			"label": "useNotificationsInboxOptional()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L201"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_dropdown_panel_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "notifications_notifications_dropdown_panel_notificationpreviewrow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_notifications_inbox_live_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "lib_notifications_inbox_live_subscribenotificationsinboxlive",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_notifications_inbox_poll_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "lib_notifications_inbox_poll_computenotificationsunreadcount",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "lib_notifications_inbox_poll_notifications_inbox_fetch_limit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "lib_notifications_inbox_poll_notifications_inbox_poll_interval_ms",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "lib_notifications_inbox_poll_shouldrunnotificationsinboxpoll",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "lib_still_api_fetch_postnotificationread",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "notifications_notifications_inbox_provider_notificationsinboxcontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "notifications_notifications_inbox_provider_notificationsinboxcontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "notifications_notifications_inbox_provider_usenotificationsinbox",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_notifications_inbox_provider_tsx",
+			"target": "notifications_notifications_inbox_provider_usenotificationsinboxoptional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L201",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L151"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L165"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_notificationsinboxprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_usenotificationsinbox",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L191"
+		},
+		{
+			"caller_nid": "notifications_notifications_inbox_provider_usenotificationsinboxoptional",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\notifications-inbox-provider.tsx",
+			"source_location": "L202"
+		}
+	]
+}

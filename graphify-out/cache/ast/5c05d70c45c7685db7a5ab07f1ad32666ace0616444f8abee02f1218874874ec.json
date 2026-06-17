@@ -1,0 +1,52 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_community_lists_header_ts",
+			"label": "community-lists-header.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-lists-header.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_community_lists_header_formatcommunitylistsheader",
+			"label": "formatCommunityListsHeader()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-lists-header.ts",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_community_lists_header_ts",
+			"target": "lib_community_lists_header_formatcommunitylistsheader",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-lists-header.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_community_lists_header_formatcommunitylistsheader",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-lists-header.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_community_lists_header_formatcommunitylistsheader",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-lists-header.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_community_lists_header_formatcommunitylistsheader",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\community-lists-header.ts",
+			"source_location": "L4"
+		}
+	]
+}

@@ -1,0 +1,367 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_13_sense_sound_layer_design_md",
+			"label": "2026-06-13-sense-sound-layer-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"label": "Sense \u2014 Sound layer (micro-feedback \u2192 voice reviews)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_locked_decisions_brainstorm",
+			"label": "Locked decisions (brainstorm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_approaches_considered",
+			"label": "Approaches considered",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_1_monolithic_theateraudio_more_play_calls_minimal",
+			"label": "1. Monolithic `theaterAudio` + more `play()` calls (minimal)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_2_nested_preferences_audio_extended_cinemasoundprovider_recommended",
+			"label": "2. Nested `preferences.audio` + extended `CinemaSoundProvider` (recommended)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_3_unified_senseaudio_facade_html5_for_all_media",
+			"label": "3. Unified `SenseAudio` facade + HTML5 for all media",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_preference_model",
+			"label": "Preference model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_codeblock_1",
+			"label": "code:ts (type ProfileAudioPreferences = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_phase_d_clip_registry",
+			"label": "Phase D \u2014 Clip registry",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_phase_b_data_model",
+			"label": "Phase B \u2014 Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L108"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_phase_b_upload_pipeline",
+			"label": "Phase B \u2014 Upload pipeline",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L126"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_phase_b_recording_ui",
+			"label": "Phase B \u2014 Recording UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L138"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_phase_b_playback_ui",
+			"label": "Phase B \u2014 Playback UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L174"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_metrics_instrument_later",
+			"label": "Metrics (instrument later)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_out_of_scope_future_tracks",
+			"label": "Out of scope (future tracks)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L192"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_implementation_phases_for_planning_doc",
+			"label": "Implementation phases (for planning doc)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L202"
+		},
+		{
+			"id": "specs_2026_06_13_sense_sound_layer_design_changelog_what_s_new",
+			"label": "Changelog / What's New",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L212"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_13_sense_sound_layer_design_md",
+			"target": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"target": "specs_2026_06_13_sense_sound_layer_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"target": "specs_2026_06_13_sense_sound_layer_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"target": "specs_2026_06_13_sense_sound_layer_design_locked_decisions_brainstorm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"target": "specs_2026_06_13_sense_sound_layer_design_approaches_considered",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_approaches_considered",
+			"target": "specs_2026_06_13_sense_sound_layer_design_1_monolithic_theateraudio_more_play_calls_minimal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_approaches_considered",
+			"target": "specs_2026_06_13_sense_sound_layer_design_2_nested_preferences_audio_extended_cinemasoundprovider_recommended",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_approaches_considered",
+			"target": "specs_2026_06_13_sense_sound_layer_design_3_unified_senseaudio_facade_html5_for_all_media",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"target": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_preference_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_preference_model",
+			"target": "specs_2026_06_13_sense_sound_layer_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_phase_d_clip_registry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_phase_b_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_phase_b_upload_pipeline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L126",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_phase_b_recording_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L138",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_phase_b_playback_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L174",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_architecture",
+			"target": "specs_2026_06_13_sense_sound_layer_design_metrics_instrument_later",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"target": "specs_2026_06_13_sense_sound_layer_design_out_of_scope_future_tracks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"target": "specs_2026_06_13_sense_sound_layer_design_implementation_phases_for_planning_doc",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L202",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_sense_sound_layer_design_sense_sound_layer_micro_feedback_voice_reviews",
+			"target": "specs_2026_06_13_sense_sound_layer_design_changelog_what_s_new",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-sense-sound-layer-design.md",
+			"source_location": "L212",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

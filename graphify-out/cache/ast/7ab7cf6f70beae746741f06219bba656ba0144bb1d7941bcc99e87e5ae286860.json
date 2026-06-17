@@ -1,0 +1,114 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_eden_api_error_ts",
+			"label": "eden-api-error.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_eden_api_error_edenapierrorstatus",
+			"label": "edenApiErrorStatus()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_eden_api_error_edenapierrormessage",
+			"label": "edenApiErrorMessage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_eden_api_error_requirelistingdetailapidata",
+			"label": "requireListingDetailApiData()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L26"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_eden_api_error_ts",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_eden_api_error_ts",
+			"target": "lib_eden_api_error_edenapierrorstatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_eden_api_error_ts",
+			"target": "lib_eden_api_error_edenapierrormessage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_eden_api_error_ts",
+			"target": "lib_eden_api_error_requirelistingdetailapidata",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_eden_api_error_requirelistingdetailapidata",
+			"target": "lib_eden_api_error_edenapierrorstatus",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_eden_api_error_requirelistingdetailapidata",
+			"target": "lib_eden_api_error_edenapierrormessage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_eden_api_error_edenapierrormessage",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_eden_api_error_requirelistingdetailapidata",
+			"callee": "notFound",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_eden_api_error_requirelistingdetailapidata",
+			"callee": "notFound",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\eden-api-error.ts",
+			"source_location": "L40"
+		}
+	]
+}

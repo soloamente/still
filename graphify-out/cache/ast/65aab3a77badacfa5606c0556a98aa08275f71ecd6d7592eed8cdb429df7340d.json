@@ -1,0 +1,90 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_test_ts",
+			"label": "listing-presence-copy.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_presence_copy_test_viewingpatron",
+			"label": "viewingPatron",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L62"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_test_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_test_ts",
+			"target": "lib_listing_presence_copy_buildlistingpresencedrawercopy",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_test_ts",
+			"target": "lib_listing_presence_copy_formatlistingpresenceviewingline",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_test_ts",
+			"target": "lib_listing_presence_copy_formatpatronpresencedotlabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_test_ts",
+			"target": "lib_listing_presence_copy_resolvelistingpresencerowdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_presence_copy_test_ts",
+			"target": "lib_listing_presence_copy_test_viewingpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-presence-copy.test.ts",
+			"source_location": "L62",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

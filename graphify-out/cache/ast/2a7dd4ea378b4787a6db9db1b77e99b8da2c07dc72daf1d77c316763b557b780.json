@@ -1,0 +1,102 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"label": "quote-saved-types.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_quote_saved_types_savedquotelistingthumb",
+			"label": "SavedQuoteListingThumb",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_quote_saved_types_savedquotelobbyitem",
+			"label": "SavedQuoteLobbyItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_quote_saved_types_savedquotespage",
+			"label": "SavedQuotesPage",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L26"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_components_review_visibility_select_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"target": "review_visibility_select_contentvisibility",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_quote_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"target": "lib_quote_types_listingquoteitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"target": "lib_quote_saved_types_savedquotelistingthumb",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"target": "lib_quote_saved_types_savedquotelobbyitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"target": "lib_quote_saved_types_savedquotespage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quote-saved-types.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

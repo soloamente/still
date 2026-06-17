@@ -1,0 +1,249 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"label": "fetch-year-in-review-server.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_fetch_year_in_review_server_readyearinreviewjson",
+			"label": "readYearInReviewJson()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_fetch_year_in_review_server_cookieheaderfromrequest",
+			"label": "cookieHeaderFromRequest()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "lib_fetch_year_in_review_server_fetchmyyearinreviewserver",
+			"label": "fetchMyYearInReviewServer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "lib_fetch_year_in_review_server_fetchyearinreviewforhandleserver",
+			"label": "fetchYearInReviewForHandleServer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L41"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "headers",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_still_api_origin_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "lib_still_api_origin_stillapiorigin",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "lib_year_in_review_types_yearinreviewpayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "lib_fetch_year_in_review_server_readyearinreviewjson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "lib_fetch_year_in_review_server_cookieheaderfromrequest",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "lib_fetch_year_in_review_server_fetchmyyearinreviewserver",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_year_in_review_server_ts",
+			"target": "lib_fetch_year_in_review_server_fetchyearinreviewforhandleserver",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_year_in_review_server_fetchmyyearinreviewserver",
+			"target": "lib_fetch_year_in_review_server_readyearinreviewjson",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_year_in_review_server_fetchmyyearinreviewserver",
+			"target": "lib_fetch_year_in_review_server_cookieheaderfromrequest",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_year_in_review_server_fetchyearinreviewforhandleserver",
+			"target": "lib_fetch_year_in_review_server_readyearinreviewjson",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_year_in_review_server_fetchyearinreviewforhandleserver",
+			"target": "lib_fetch_year_in_review_server_cookieheaderfromrequest",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_readyearinreviewjson",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_readyearinreviewjson",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_cookieheaderfromrequest",
+			"callee": "cookies",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_cookieheaderfromrequest",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_cookieheaderfromrequest",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_cookieheaderfromrequest",
+			"callee": "getAll",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_fetchmyyearinreviewserver",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_fetchyearinreviewforhandleserver",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_fetchyearinreviewforhandleserver",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_fetch_year_in_review_server_fetchyearinreviewforhandleserver",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-year-in-review-server.ts",
+			"source_location": "L47"
+		}
+	]
+}

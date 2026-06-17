@@ -1,0 +1,365 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"label": "moviefamous-quotes-provider.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_moviefamous_quotes_provider_moviefamouscatalogentry",
+			"label": "MoviefamousCatalogEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_moviefamous_quotes_provider_moviefamouscatalogresponse",
+			"label": "MoviefamousCatalogResponse",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_moviefamous_quotes_provider_resetmoviefamouscatalogcache",
+			"label": "resetMoviefamousCatalogCache()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_moviefamous_quotes_provider_fetchmoviefamouscatalog",
+			"label": "fetchMoviefamousCatalog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "lib_moviefamous_quotes_provider_matchmoviefamouscatalogentry",
+			"label": "matchMoviefamousCatalogEntry()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L54"
+		},
+		{
+			"id": "lib_moviefamous_quotes_provider_mapmoviefamousentrytoquotes",
+			"label": "mapMoviefamousEntryToQuotes()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L72"
+		},
+		{
+			"id": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"label": "fetchMovieQuotesFromMoviefamous()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L89"
+		},
+		{
+			"id": "lib_moviefamous_quotes_provider_createmoviefamousquoteprovider",
+			"label": "createMoviefamousQuoteProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L106"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_quote_provider_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_quote_provider_normalizedquote",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_quote_provider_quoteprovider",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_quote_title_match_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_quote_title_match_normalizetitleforquotematch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_quote_title_match_parsespeakerprefixedquoteline",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_moviefamouscatalogentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_moviefamouscatalogresponse",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_resetmoviefamouscatalogcache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_fetchmoviefamouscatalog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_matchmoviefamouscatalogentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_mapmoviefamousentrytoquotes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviefamous_quotes_provider_ts",
+			"target": "lib_moviefamous_quotes_provider_createmoviefamousquoteprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"target": "lib_moviefamous_quotes_provider_fetchmoviefamouscatalog",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"target": "lib_moviefamous_quotes_provider_matchmoviefamouscatalogentry",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"target": "lib_moviefamous_quotes_provider_mapmoviefamousentrytoquotes",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L103",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviefamouscatalog",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviefamouscatalog",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviefamouscatalog",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviefamouscatalog",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviefamouscatalog",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_matchmoviefamouscatalogentry",
+			"callee": "normalizeTitleForQuoteMatch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_matchmoviefamouscatalogentry",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_matchmoviefamouscatalogentry",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_matchmoviefamouscatalogentry",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_mapmoviefamousentrytoquotes",
+			"callee": "parseSpeakerPrefixedQuoteLine",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_mapmoviefamousentrytoquotes",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "lib_moviefamous_quotes_provider_fetchmoviequotesfrommoviefamous",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviefamous-quotes-provider.ts",
+			"source_location": "L95"
+		}
+	]
+}

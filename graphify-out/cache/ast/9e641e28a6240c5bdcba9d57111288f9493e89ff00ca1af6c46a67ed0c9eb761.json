@@ -1,0 +1,271 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_16_presence_online_visibility_design_md",
+			"label": "2026-06-16-presence-online-visibility-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"label": "Sense \u2014 Presence online visibility controls (movie / TV detail)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_locked_decisions",
+			"label": "Locked decisions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_product_behavior",
+			"label": "Product behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_data_model",
+			"label": "Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_api_and_server_logic",
+			"label": "API and server logic",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_existing_presence_snapshot_endpoint",
+			"label": "Existing presence snapshot endpoint",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_visibility_filtering",
+			"label": "Visibility filtering",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_realtime_behavior",
+			"label": "Realtime behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_ui_design",
+			"label": "UI design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_compact_row_listingpresencerow",
+			"label": "Compact row (`ListingPresenceRow`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_drawer_rows",
+			"label": "Drawer rows",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L82"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_settings_design",
+			"label": "Settings design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_error_handling_and_fallbacks",
+			"label": "Error handling and fallbacks",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "specs_2026_06_16_presence_online_visibility_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L122"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_16_presence_online_visibility_design_md",
+			"target": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_locked_decisions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_product_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_api_and_server_logic",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_api_and_server_logic",
+			"target": "specs_2026_06_16_presence_online_visibility_design_existing_presence_snapshot_endpoint",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_api_and_server_logic",
+			"target": "specs_2026_06_16_presence_online_visibility_design_visibility_filtering",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_api_and_server_logic",
+			"target": "specs_2026_06_16_presence_online_visibility_design_realtime_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_ui_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_ui_design",
+			"target": "specs_2026_06_16_presence_online_visibility_design_compact_row_listingpresencerow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_ui_design",
+			"target": "specs_2026_06_16_presence_online_visibility_design_drawer_rows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_settings_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_error_handling_and_fallbacks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_presence_online_visibility_design_sense_presence_online_visibility_controls_movie_tv_detail",
+			"target": "specs_2026_06_16_presence_online_visibility_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-presence-online-visibility-design.md",
+			"source_location": "L122",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

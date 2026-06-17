@@ -1,0 +1,126 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_share_ts",
+			"label": "year-in-review-share.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_year_in_review_share_currentwrappedyear",
+			"label": "currentWrappedYear()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_year_in_review_share_yearinreviewpagepath",
+			"label": "yearInReviewPagePath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_year_in_review_share_yearinreviewlobbypath",
+			"label": "yearInReviewLobbyPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_year_in_review_share_yearinreviewsharepath",
+			"label": "yearInReviewSharePath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_year_in_review_share_yearinreviewmepath",
+			"label": "yearInReviewMePath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L22"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_share_ts",
+			"target": "lib_year_in_review_share_currentwrappedyear",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_share_ts",
+			"target": "lib_year_in_review_share_yearinreviewpagepath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_share_ts",
+			"target": "lib_year_in_review_share_yearinreviewlobbypath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_share_ts",
+			"target": "lib_year_in_review_share_yearinreviewsharepath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_share_ts",
+			"target": "lib_year_in_review_share_yearinreviewmepath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_year_in_review_share_yearinreviewmepath",
+			"target": "lib_year_in_review_share_yearinreviewpagepath",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_year_in_review_share_currentwrappedyear",
+			"callee": "getUTCFullYear",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_year_in_review_share_yearinreviewsharepath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_year_in_review_share_yearinreviewsharepath",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-share.ts",
+			"source_location": "L18"
+		}
+	]
+}

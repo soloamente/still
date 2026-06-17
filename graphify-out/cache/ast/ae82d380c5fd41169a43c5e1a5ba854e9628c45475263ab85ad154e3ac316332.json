@@ -1,0 +1,141 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"label": "presence-heartbeat-post.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_presence_heartbeat_post_presenceheartbeatbody",
+			"label": "PresenceHeartbeatBody",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_presence_heartbeat_post_presenceapiurl",
+			"label": "presenceApiUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L9"
+		},
+		{
+			"id": "lib_presence_heartbeat_post_postpresenceheartbeat",
+			"label": "postPresenceHeartbeat()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L17"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_activity_tracker_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"target": "lib_patron_activity_tracker_patronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_still_api_origin_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"target": "lib_still_api_origin_stillapiorigin",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"target": "lib_presence_heartbeat_post_presenceheartbeatbody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"target": "lib_presence_heartbeat_post_presenceapiurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_post_ts",
+			"target": "lib_presence_heartbeat_post_postpresenceheartbeat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_heartbeat_post_postpresenceheartbeat",
+			"target": "lib_presence_heartbeat_post_presenceapiurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_presence_heartbeat_post_presenceapiurl",
+			"callee": "stillApiOrigin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_presence_heartbeat_post_postpresenceheartbeat",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "lib_presence_heartbeat_post_postpresenceheartbeat",
+			"callee": "sendBeacon",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_presence_heartbeat_post_postpresenceheartbeat",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-post.ts",
+			"source_location": "L37"
+		}
+	]
+}

@@ -1,0 +1,383 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_16_listing_engagement_stats_design_md",
+			"label": "2026-06-16-listing-engagement-stats-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"label": "Sense \u2014 Listing engagement stats (movie / TV detail)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_locked_decisions_brainstorm",
+			"label": "Locked decisions (brainstorm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_codeblock_1",
+			"label": "code:text (GET /api/movies|tv/:id)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_api_contracts",
+			"label": "API contracts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_extended_community_on_get_api_movies_id_and_get_api_tv_id",
+			"label": "Extended `community` on `GET /api/movies/:id` and `GET /api/tv/:id`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_codeblock_2",
+			"label": "code:ts (community: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_watches_and_tv_twin",
+			"label": "`GET /api/movies/:id/engagement/watches` (and TV twin)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_codeblock_3",
+			"label": "code:ts ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_lists",
+			"label": "`GET /api/movies/:id/engagement/lists`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_favorites",
+			"label": "`GET /api/movies/:id/engagement/favorites`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L114"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_watchlist",
+			"label": "`GET /api/movies/:id/engagement/watchlist`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_ui",
+			"label": "UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L128"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_moviedetailengagementchips",
+			"label": "`MovieDetailEngagementChips`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_moviedetailengagementdrawer",
+			"label": "`MovieDetailEngagementDrawer`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_placement_in_moviedetailcommunityratinghero",
+			"label": "Placement in `MovieDetailCommunityRatingHero`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L153"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_codeblock_4",
+			"label": "code:text ([ laurel score laurel ])",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L155"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_privacy_safety",
+			"label": "Privacy & safety",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L163"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "specs_2026_06_16_listing_engagement_stats_design_related_docs",
+			"label": "Related docs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L190"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_16_listing_engagement_stats_design_md",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_locked_decisions_brainstorm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_architecture",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_api_contracts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_api_contracts",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_extended_community_on_get_api_movies_id_and_get_api_tv_id",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_extended_community_on_get_api_movies_id_and_get_api_tv_id",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_api_contracts",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_watches_and_tv_twin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_watches_and_tv_twin",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_api_contracts",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_lists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_api_contracts",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_favorites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_api_contracts",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_get_api_movies_id_engagement_watchlist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_ui",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_moviedetailengagementchips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_ui",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_moviedetailengagementdrawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_ui",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_placement_in_moviedetailcommunityratinghero",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_placement_in_moviedetailcommunityratinghero",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L155",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_privacy_safety",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_16_listing_engagement_stats_design_sense_listing_engagement_stats_movie_tv_detail",
+			"target": "specs_2026_06_16_listing_engagement_stats_design_related_docs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-16-listing-engagement-stats-design.md",
+			"source_location": "L190",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

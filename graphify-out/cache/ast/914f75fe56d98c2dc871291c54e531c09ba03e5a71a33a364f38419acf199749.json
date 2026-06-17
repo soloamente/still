@@ -1,0 +1,62 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_types_ts",
+			"label": "year-in-review-types.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_year_in_review_types_yearinreviewtoptitle",
+			"label": "YearInReviewTopTitle",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-types.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_year_in_review_types_yearinreviewgenrestat",
+			"label": "YearInReviewGenreStat",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-types.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_year_in_review_types_yearinreviewpayload",
+			"label": "YearInReviewPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-types.ts",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_types_ts",
+			"target": "lib_year_in_review_types_yearinreviewtoptitle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-types.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_types_ts",
+			"target": "lib_year_in_review_types_yearinreviewgenrestat",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-types.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_year_in_review_types_ts",
+			"target": "lib_year_in_review_types_yearinreviewpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\year-in-review-types.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

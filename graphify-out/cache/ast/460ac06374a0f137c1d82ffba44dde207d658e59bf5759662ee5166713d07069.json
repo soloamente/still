@@ -1,0 +1,448 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"label": "use-listing-presence.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "hooks_use_listing_presence_listingpresencesurface",
+			"label": "ListingPresenceSurface",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "hooks_use_listing_presence_empty_snapshot",
+			"label": "EMPTY_SNAPSHOT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "hooks_use_listing_presence_realtimeclientenabled",
+			"label": "realtimeClientEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L33"
+		},
+		{
+			"id": "hooks_use_listing_presence_resolvelistingpresenceroomid",
+			"label": "resolveListingPresenceRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "hooks_use_listing_presence_uselistingpresence",
+			"label": "useListingPresence()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L52"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "realtime_realtime_root_provider_useregisterrealtimeroom",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_patron_activity_tracker_usepatronactivityflipheartbeat",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_patron_activity_tracker_usereadaggregatepatronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_realtime_connection_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_realtime_connection_userealtimeconnection",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_realtime_subscription_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_realtime_subscription_userealtimesubscription",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_presence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_fetchlistingpresencesnapshot",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_listingpresencesnapshot",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_leavelistingpresenceclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "lib_fetch_listing_presence_touchlistingpresenceclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_scheduler_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "lib_presence_heartbeat_scheduler_createpresenceheartbeatscheduler",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "lib_sense_product_analytics_tracksenseproductevent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_listing_presence_listingpresencesurface",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_listing_presence_empty_snapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_listing_presence_realtimeclientenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_listing_presence_resolvelistingpresenceroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"target": "hooks_use_listing_presence_uselistingpresence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "hooks_use_listing_presence_uselistingpresence",
+			"target": "hooks_use_listing_presence_resolvelistingpresenceroomid",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "hooks_use_listing_presence_uselistingpresence",
+			"target": "hooks_use_listing_presence_realtimeclientenabled",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L66",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "hooks_use_listing_presence_resolvelistingpresenceroomid",
+			"callee": "listingMovieRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_resolvelistingpresenceroomid",
+			"callee": "listingTvRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useRealtimeConnection",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useReadAggregatePatronActivityState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L80"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "usePatronActivityFlipHeartbeat",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L117"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useRegisterRealtimeRoom",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useRealtimeSubscription",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L134"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L194"
+		},
+		{
+			"caller_nid": "hooks_use_listing_presence_uselistingpresence",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-presence.ts",
+			"source_location": "L206"
+		}
+	]
+}

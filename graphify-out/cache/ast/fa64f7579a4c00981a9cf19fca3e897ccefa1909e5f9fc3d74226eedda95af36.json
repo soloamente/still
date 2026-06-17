@@ -1,0 +1,339 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"label": "profile-media.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_media_profile_pref_avatar_is_animated",
+			"label": "PROFILE_PREF_AVATAR_IS_ANIMATED",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_profile_media_profile_pref_banner_is_animated",
+			"label": "PROFILE_PREF_BANNER_IS_ANIMATED",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_profile_media_profile_pref_profile_portrait_grayscale_until_hover",
+			"label": "PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_profile_media_profile_pref_privacy_presence_visibility",
+			"label": "PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_profile_media_profile_privacy_presence_visibility_friends",
+			"label": "PROFILE_PRIVACY_PRESENCE_VISIBILITY_FRIENDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_profile_media_profile_privacy_presence_visibility_public",
+			"label": "PROFILE_PRIVACY_PRESENCE_VISIBILITY_PUBLIC",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_profile_media_profilepresencevisibility",
+			"label": "ProfilePresenceVisibility",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_profile_media_pro_animated_media_required",
+			"label": "PRO_ANIMATED_MEDIA_REQUIRED",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_profile_media_isanimatedgifupload",
+			"label": "isAnimatedGifUpload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_profile_media_readavatarisanimatedpref",
+			"label": "readAvatarIsAnimatedPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_profile_media_serializepatronprofileforclient",
+			"label": "serializePatronProfileForClient()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "lib_profile_media_readbannerisanimatedpref",
+			"label": "readBannerIsAnimatedPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L63"
+		},
+		{
+			"id": "lib_profile_media_readprofileportraitgrayscaleuntilhoverpref",
+			"label": "readProfilePortraitGrayscaleUntilHoverPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L72"
+		},
+		{
+			"id": "lib_profile_media_readprofilepresencevisibilitypref",
+			"label": "readProfilePresenceVisibilityPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L84"
+		},
+		{
+			"id": "lib_profile_media_mergeavataranimationpref",
+			"label": "mergeAvatarAnimationPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L100"
+		},
+		{
+			"id": "lib_profile_media_mergebanneranimationpref",
+			"label": "mergeBannerAnimationPref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L107"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_diary_metal_tier_resolvediarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_profile_pref_avatar_is_animated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_profile_pref_banner_is_animated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_profile_pref_profile_portrait_grayscale_until_hover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_profile_pref_privacy_presence_visibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_profile_privacy_presence_visibility_friends",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_profile_privacy_presence_visibility_public",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_profilepresencevisibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_pro_animated_media_required",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_isanimatedgifupload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_readavatarisanimatedpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_serializepatronprofileforclient",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_readbannerisanimatedpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_readprofileportraitgrayscaleuntilhoverpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_readprofilepresencevisibilitypref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_mergeavataranimationpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"target": "lib_profile_media_mergebanneranimationpref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_media_serializepatronprofileforclient",
+			"target": "lib_profile_media_readavatarisanimatedpref",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_media_isanimatedgifupload",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_profile_media_isanimatedgifupload",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_profile_media_isanimatedgifupload",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_profile_media_serializepatronprofileforclient",
+			"callee": "resolveDiaryMetalTier",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-media.ts",
+			"source_location": "L59"
+		}
+	]
+}

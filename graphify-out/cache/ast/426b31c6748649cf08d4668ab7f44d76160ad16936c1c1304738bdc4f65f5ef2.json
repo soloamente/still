@@ -1,0 +1,68 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_first_run_prompt_keys_ts",
+			"label": "first-run-prompt-keys.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\first-run-prompt-keys.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_first_run_prompt_keys_iswatchregionpromptactive",
+			"label": "isWatchRegionPromptActive()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\first-run-prompt-keys.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_first_run_prompt_keys_setwatchregionpromptactive",
+			"label": "setWatchRegionPromptActive()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\first-run-prompt-keys.ts",
+			"source_location": "L14"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_first_run_prompt_keys_ts",
+			"target": "lib_first_run_prompt_keys_iswatchregionpromptactive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\first-run-prompt-keys.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_first_run_prompt_keys_ts",
+			"target": "lib_first_run_prompt_keys_setwatchregionpromptactive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\first-run-prompt-keys.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_first_run_prompt_keys_iswatchregionpromptactive",
+			"callee": "getItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\first-run-prompt-keys.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_first_run_prompt_keys_setwatchregionpromptactive",
+			"callee": "setItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\first-run-prompt-keys.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_first_run_prompt_keys_setwatchregionpromptactive",
+			"callee": "removeItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\first-run-prompt-keys.ts",
+			"source_location": "L20"
+		}
+	]
+}

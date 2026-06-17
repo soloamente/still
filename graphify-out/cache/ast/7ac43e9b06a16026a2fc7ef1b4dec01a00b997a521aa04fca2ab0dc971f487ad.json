@@ -1,0 +1,218 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"label": "presence-activity.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_presence_activity_patronactivitystate",
+			"label": "PatronActivityState",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_presence_activity_presenceactivityrediskey",
+			"label": "presenceActivityRedisKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_presence_activity_normalizeactivitystate",
+			"label": "normalizeActivityState()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_presence_activity_presenceactivityredis",
+			"label": "PresenceActivityRedis",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_presence_activity_writeactivitystateforuser",
+			"label": "writeActivityStateForUser()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_presence_activity_clearactivitystateforuser",
+			"label": "clearActivityStateForUser()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "lib_presence_activity_readactivitystateforuser",
+			"label": "readActivityStateForUser()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L44"
+		},
+		{
+			"id": "lib_presence_activity_readactivitystatesforuserids",
+			"label": "readActivityStatesForUserIds()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L53"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"target": "lib_presence_activity_patronactivitystate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"target": "lib_presence_activity_presenceactivityrediskey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"target": "lib_presence_activity_normalizeactivitystate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"target": "lib_presence_activity_presenceactivityredis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"target": "lib_presence_activity_writeactivitystateforuser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"target": "lib_presence_activity_clearactivitystateforuser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"target": "lib_presence_activity_readactivitystateforuser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"target": "lib_presence_activity_readactivitystatesforuserids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_activity_writeactivitystateforuser",
+			"target": "lib_presence_activity_presenceactivityrediskey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_activity_clearactivitystateforuser",
+			"target": "lib_presence_activity_presenceactivityrediskey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_activity_readactivitystateforuser",
+			"target": "lib_presence_activity_presenceactivityrediskey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_activity_readactivitystateforuser",
+			"target": "lib_presence_activity_normalizeactivitystate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_presence_activity_writeactivitystateforuser",
+			"callee": "hset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_presence_activity_clearactivitystateforuser",
+			"callee": "hdel",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_presence_activity_readactivitystateforuser",
+			"callee": "hget",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_presence_activity_readactivitystatesforuserids",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_presence_activity_readactivitystatesforuserids",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-activity.ts",
+			"source_location": "L59"
+		}
+	]
+}

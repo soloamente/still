@@ -1,0 +1,602 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"label": "listing-quote-saves-query.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_savedquotelistingkind",
+			"label": "SavedQuoteListingKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_savedquotelistingthumb",
+			"label": "SavedQuoteListingThumb",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_savedquotelobbyitem",
+			"label": "SavedQuoteLobbyItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_savedquotespage",
+			"label": "SavedQuotesPage",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L35"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_parsesavedquoteskind",
+			"label": "parseSavedQuotesKind()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L43"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_parsesavedquotesvisibility",
+			"label": "parseSavedQuotesVisibility()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L51"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_buildlistingthumb",
+			"label": "buildListingThumb()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L65"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_mapsavedquoterow",
+			"label": "mapSavedQuoteRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L104"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"label": "fetchSavedQuotesPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L137"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_fetchmysavedquotes",
+			"label": "fetchMySavedQuotes()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L193"
+		},
+		{
+			"id": "lib_listing_quote_saves_query_fetchprofilepublicsavedquotes",
+			"label": "fetchProfilePublicSavedQuotes()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L211"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_community_page_args_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_community_page_args_communityoffset",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_community_page_args_parsecommunitypage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_listingquoteitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_parselistingquotelimit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_tolistingquoteitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_tmdb_tmdbimg",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_savedquotelistingkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_savedquotelistingthumb",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_savedquotelobbyitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_savedquotespage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_parsesavedquoteskind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_parsesavedquotesvisibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_buildlistingthumb",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_mapsavedquoterow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_fetchmysavedquotes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L193",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_saves_query_ts",
+			"target": "lib_listing_quote_saves_query_fetchprofilepublicsavedquotes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L211",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_quote_saves_query_mapsavedquoterow",
+			"target": "lib_listing_quote_saves_query_buildlistingthumb",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L114",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"target": "lib_listing_quote_saves_query_parsesavedquoteskind",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_quote_saves_query_fetchmysavedquotes",
+			"target": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_quote_saves_query_fetchmysavedquotes",
+			"target": "lib_listing_quote_saves_query_parsesavedquotesvisibility",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L205",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_quote_saves_query_fetchprofilepublicsavedquotes",
+			"target": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L217",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_listing_quote_saves_query_buildlistingthumb",
+			"callee": "poster",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_buildlistingthumb",
+			"callee": "poster",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_mapsavedquoterow",
+			"callee": "toListingQuoteItem",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "parseCommunityPage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "parseListingQuoteLimit",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "communityOffset",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L147"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L150"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L154"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L154"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "offset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L184"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "lib_listing_quote_saves_query_fetchsavedquotespage",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote-saves-query.ts",
+			"source_location": "L185"
+		}
+	]
+}

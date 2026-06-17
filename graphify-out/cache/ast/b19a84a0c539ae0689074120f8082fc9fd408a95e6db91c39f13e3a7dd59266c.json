@@ -1,0 +1,44 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_realtime_src_event_types_test_ts",
+			"label": "event-types.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\event-types.test.ts",
+			"source_location": "L1"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_event_types_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\event-types.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_event_types_test_ts",
+			"target": "c_users_utente_documents_still_packages_realtime_src_event_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\event-types.test.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_event_types_test_ts",
+			"target": "src_event_types_parserealtimeevent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\event-types.test.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

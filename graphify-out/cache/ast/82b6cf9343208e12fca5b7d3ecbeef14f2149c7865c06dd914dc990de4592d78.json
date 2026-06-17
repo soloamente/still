@@ -1,0 +1,172 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_journal_journal_markdown_body_tsx",
+			"label": "journal-markdown-body.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "journal_journal_markdown_body_formatjournalinline",
+			"label": "formatJournalInline()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L5"
+		},
+		{
+			"id": "journal_journal_markdown_body_journalmarkdownbody",
+			"label": "JournalMarkdownBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L71"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_journal_journal_markdown_body_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_journal_journal_markdown_body_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_journal_journal_markdown_body_tsx",
+			"target": "journal_journal_markdown_body_formatjournalinline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_journal_journal_markdown_body_tsx",
+			"target": "journal_journal_markdown_body_journalmarkdownbody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L71",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "exec",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "exec",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_formatjournalinline",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_journalmarkdownbody",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_journalmarkdownbody",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "journal_journal_markdown_body_journalmarkdownbody",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-markdown-body.tsx",
+			"source_location": "L76"
+		}
+	]
+}

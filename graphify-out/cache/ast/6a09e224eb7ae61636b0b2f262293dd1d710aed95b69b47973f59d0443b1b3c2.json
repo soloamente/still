@@ -1,0 +1,390 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"label": "me-account-session-context.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_me_account_session_context_meaccountsettingsdraftpayload",
+			"label": "MeAccountSettingsDraftPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "profile_me_account_session_context_meaccountpendingimage",
+			"label": "MeAccountPendingImage",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L47"
+		},
+		{
+			"id": "profile_me_account_session_context_readstoredsettingsdraft",
+			"label": "readStoredSettingsDraft()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L49"
+		},
+		{
+			"id": "profile_me_account_session_context_writestoredsettingsdraft",
+			"label": "writeStoredSettingsDraft()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L60"
+		},
+		{
+			"id": "profile_me_account_session_context_clearstoredsettingsdraft",
+			"label": "clearStoredSettingsDraft()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L73"
+		},
+		{
+			"id": "profile_me_account_session_context_meaccountsessioncontextvalue",
+			"label": "MeAccountSessionContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L81"
+		},
+		{
+			"id": "profile_me_account_session_context_meaccountsessioncontext",
+			"label": "MeAccountSessionContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L115"
+		},
+		{
+			"id": "profile_me_account_session_context_meaccountsessionprovider",
+			"label": "MeAccountSessionProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L118"
+		},
+		{
+			"id": "profile_me_account_session_context_usemeaccountsession",
+			"label": "useMeAccountSession()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L279"
+		},
+		{
+			"id": "profile_me_account_session_context_usemeaccountsessionoptional",
+			"label": "useMeAccountSessionOptional()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L290"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_leave_confirm_dialog_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_leave_confirm_dialog_meaccountleaveconfirmdialog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_meaccountsettingsdraftpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_meaccountpendingimage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_readstoredsettingsdraft",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_writestoredsettingsdraft",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_clearstoredsettingsdraft",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_meaccountsessioncontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_meaccountsessioncontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_meaccountsessionprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_usemeaccountsession",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L279",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_me_account_session_context_tsx",
+			"target": "profile_me_account_session_context_usemeaccountsessionoptional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L290",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_me_account_session_context_readstoredsettingsdraft",
+			"callee": "getItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_readstoredsettingsdraft",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_writestoredsettingsdraft",
+			"callee": "setItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_writestoredsettingsdraft",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_clearstoredsettingsdraft",
+			"callee": "removeItem",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L125"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L133"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L184"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L188"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L200"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L207"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L218"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L222"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L230"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_meaccountsessionprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L240"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_usemeaccountsession",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L280"
+		},
+		{
+			"caller_nid": "profile_me_account_session_context_usemeaccountsessionoptional",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\me-account-session-context.tsx",
+			"source_location": "L291"
+		}
+	]
+}

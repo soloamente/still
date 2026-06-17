@@ -1,0 +1,287 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"label": "og-image-metadata.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "og_og_image_metadata_ogtitlemoviepath",
+			"label": "ogTitleMoviePath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "og_og_image_metadata_ogtitletvpath",
+			"label": "ogTitleTvPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "og_og_image_metadata_ogtastepath",
+			"label": "ogTastePath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L20"
+		},
+		{
+			"id": "og_og_image_metadata_oglistpath",
+			"label": "ogListPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "og_og_image_metadata_ogjournalpath",
+			"label": "ogJournalPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "og_og_image_metadata_ogcomparepath",
+			"label": "ogComparePath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "og_og_image_metadata_ogyearinreviewpath",
+			"label": "ogYearInReviewPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "og_og_image_metadata_comparesharepath",
+			"label": "compareSharePath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "og_og_image_metadata_ogimagemetadatafields",
+			"label": "ogImageMetadataFields()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L46"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "next",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_brand_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "lib_app_brand_app_name",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_ogtitlemoviepath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_ogtitletvpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_ogtastepath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_oglistpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_ogjournalpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_ogcomparepath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_ogyearinreviewpath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_comparesharepath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_og_og_image_metadata_ts",
+			"target": "og_og_image_metadata_ogimagemetadatafields",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "og_og_image_metadata_ogtastepath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_ogtastepath",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_oglistpath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_ogjournalpath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_ogcomparepath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_ogcomparepath",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_ogcomparepath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_ogcomparepath",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_ogyearinreviewpath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_ogyearinreviewpath",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_comparesharepath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_comparesharepath",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_comparesharepath",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "og_og_image_metadata_comparesharepath",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\og\\og-image-metadata.ts",
+			"source_location": "L42"
+		}
+	]
+}

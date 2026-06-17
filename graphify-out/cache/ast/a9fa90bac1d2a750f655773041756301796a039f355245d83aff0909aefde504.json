@@ -1,0 +1,3151 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_scratchpad_md",
+			"label": "scratchpad.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"label": "Still \u2014 70mm Cinematic Direction Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "cursor_scratchpad_presence_afk_status_orange_dot_2026_06_16",
+			"label": "Presence AFK status \u2014 orange dot (2026-06-16)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "cursor_scratchpad_presence_online_visibility_controls_movie_tv_detail_2026_06_16",
+			"label": "Presence online visibility controls \u2014 movie/TV detail (2026-06-16)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "cursor_scratchpad_listing_engagement_stats_movie_tv_detail_2026_06_16",
+			"label": "Listing engagement stats \u2014 movie/TV detail (2026-06-16)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "cursor_scratchpad_listing_presence_phase_b_2026_06_16",
+			"label": "Listing presence \u2014 Phase B (2026-06-16)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "cursor_scratchpad_liveblocks_realtime_layer_2026_06_15",
+			"label": "Liveblocks realtime layer (2026-06-15)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "cursor_scratchpad_letterboxd_pillars_roadmap_2026_06_13",
+			"label": "Letterboxd pillars roadmap (2026-06-13)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "cursor_scratchpad_sense_sound_layer_micro_feedback_voice_reviews_2026_06_13",
+			"label": "Sense sound layer \u2014 micro-feedback \u2192 voice reviews (2026-06-13)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "cursor_scratchpad_diary_metal_tier_avatars_2026_06_10",
+			"label": "Diary metal tier avatars (2026-06-10)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "cursor_scratchpad_background_and_motivation",
+			"label": "Background and Motivation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "cursor_scratchpad_secondary_initiative_2026_05_14_product_design_system_screen_ia",
+			"label": "Secondary initiative (2026-05-14): product design system & screen IA",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "cursor_scratchpad_key_challenges_and_analysis",
+			"label": "Key Challenges and Analysis",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "cursor_scratchpad_1_typography_is_the_single_biggest_gap",
+			"label": "1. Typography is the single biggest gap",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "cursor_scratchpad_2_per_film_color_world_requires_sync_time_work",
+			"label": "2. Per-film color world requires sync-time work",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "cursor_scratchpad_3_page_transitions_next_16_view_transitions_api_is_the_right_tool",
+			"label": "3. Page transitions: Next 16 view-transitions API is the right tool",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "cursor_scratchpad_4_audio_is_the_riskiest_ingredient",
+			"label": "4. Audio is the riskiest ingredient",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "cursor_scratchpad_5_scope_is_large_must_phase_aggressively",
+			"label": "5. Scope is large \u2014 must phase aggressively",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L125"
+		},
+		{
+			"id": "cursor_scratchpad_6_existing_arthouse_preset_is_conceptually_fine_but_underused",
+			"label": "6. Existing \"arthouse\" preset is conceptually fine but underused",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L130"
+		},
+		{
+			"id": "cursor_scratchpad_7_design_system_reboot_vs_cinematic_maximalism_2026_05_14",
+			"label": "7. Design system reboot vs. cinematic maximalism (2026-05-14)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "cursor_scratchpad_high_level_task_breakdown",
+			"label": "High-level Task Breakdown",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L152"
+		},
+		{
+			"id": "cursor_scratchpad_phase_1_foundation_editorial_type_true_black_letterbox_primitive",
+			"label": "Phase 1 \u2014 Foundation: editorial type, true black, letterbox primitive",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L158"
+		},
+		{
+			"id": "cursor_scratchpad_phase_2_per_film_color_world",
+			"label": "Phase 2 \u2014 Per-film color world",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L216"
+		},
+		{
+			"id": "cursor_scratchpad_phase_3_scene_cut_transitions_projector_boot",
+			"label": "Phase 3 \u2014 Scene-cut transitions + projector boot",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L261"
+		},
+		{
+			"id": "cursor_scratchpad_codeblock_1",
+			"label": "code:css (@media not (prefers-reduced-motion: reduce) {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L268"
+		},
+		{
+			"id": "cursor_scratchpad_phase_4_film_stock_detail",
+			"label": "Phase 4 \u2014 Film stock detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L309"
+		},
+		{
+			"id": "cursor_scratchpad_phase_5_credits_patterns",
+			"label": "Phase 5 \u2014 Credits patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L341"
+		},
+		{
+			"id": "cursor_scratchpad_phase_6_watchlist_ticket_primitive",
+			"label": "Phase 6 \u2014 Watchlist + ticket primitive",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L371"
+		},
+		{
+			"id": "cursor_scratchpad_phase_7_audio_opt_in",
+			"label": "Phase 7 \u2014 Audio (opt-in)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L399"
+		},
+		{
+			"id": "cursor_scratchpad_phase_8_polish_verify",
+			"label": "Phase 8 \u2014 Polish + verify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L423"
+		},
+		{
+			"id": "cursor_scratchpad_track_b_design_system_screen_ia_mobbin_informed_2026_05_14",
+			"label": "Track B \u2014 Design system & screen IA (Mobbin-informed, 2026-05-14)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L431"
+		},
+		{
+			"id": "cursor_scratchpad_project_status_board",
+			"label": "Project Status Board",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L544"
+		},
+		{
+			"id": "cursor_scratchpad_phase_1_foundation",
+			"label": "Phase 1 \u2014 Foundation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L546"
+		},
+		{
+			"id": "cursor_scratchpad_phase_2_per_film_color_world_556",
+			"label": "Phase 2 \u2014 Per-film color world",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L556"
+		},
+		{
+			"id": "cursor_scratchpad_phase_3_scene_cut_transitions",
+			"label": "Phase 3 \u2014 Scene-cut transitions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L563"
+		},
+		{
+			"id": "cursor_scratchpad_phase_4_film_stock_detail_569",
+			"label": "Phase 4 \u2014 Film stock detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L569"
+		},
+		{
+			"id": "cursor_scratchpad_phase_5_credits_patterns_575",
+			"label": "Phase 5 \u2014 Credits patterns",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L575"
+		},
+		{
+			"id": "cursor_scratchpad_phase_6_watchlist_ticket_primitive_581",
+			"label": "Phase 6 \u2014 Watchlist + ticket primitive",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L581"
+		},
+		{
+			"id": "cursor_scratchpad_phase_7_audio_opt_in_587",
+			"label": "Phase 7 \u2014 Audio (opt-in)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L587"
+		},
+		{
+			"id": "cursor_scratchpad_phase_8_polish_verify_592",
+			"label": "Phase 8 \u2014 Polish + verify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L592"
+		},
+		{
+			"id": "cursor_scratchpad_phase_8_1_prep_cross_browser_smoke_checklist_executor_2026_05_16",
+			"label": "Phase 8.1 prep \u2014 Cross-browser smoke checklist _(Executor 2026-05-16)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L603"
+		},
+		{
+			"id": "cursor_scratchpad_phase_8_3_prep_lighthouse_mobile_perf_executor_2026_05_16",
+			"label": "Phase 8.3 prep \u2014 Lighthouse mobile perf _(Executor 2026-05-16)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L619"
+		},
+		{
+			"id": "cursor_scratchpad_phase_8_4_prep_per_film_palette_contrast_executor_2026_05_16",
+			"label": "Phase 8.4 prep \u2014 Per-film palette contrast _(Executor 2026-05-16)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L639"
+		},
+		{
+			"id": "cursor_scratchpad_radialtoolkit_catalogue_lobbies_scope_a",
+			"label": "RadialToolkit \u2014 Catalogue lobbies (Scope A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L653"
+		},
+		{
+			"id": "cursor_scratchpad_track_b_design_system_screen_ia_b_1_b_7_b_5_1_b_5_9_human_verified_per_scratchpad_where_shipped_phase_8_manual_qa_still_open",
+			"label": "Track B \u2014 Design system & screen IA _(**B.1\u2013B.7** + **B.5.1\u2013B.5.9** human-verified per scratchpad where shipped; Phase 8 manual QA still open)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L664"
+		},
+		{
+			"id": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"label": "Executor's Feedback or Assistance Requests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L674"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_afk_task_9_complete_plan_shipped",
+			"label": "2026-06-16 \u2014 Presence AFK Task 9 (complete \u2014 plan shipped)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L676"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_afk_task_6_complete",
+			"label": "2026-06-16 \u2014 Presence AFK Task 6 (complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L691"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_afk_task_8_complete",
+			"label": "2026-06-16 \u2014 Presence AFK Task 8 (complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L703"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_afk_task_7_complete",
+			"label": "2026-06-16 \u2014 Presence AFK Task 7 (complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L714"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_1_complete",
+			"label": "2026-06-16 \u2014 Presence online visibility Task 1 (complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L726"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_2_complete",
+			"label": "2026-06-16 \u2014 Presence online visibility Task 2 (complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L739"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_3_complete",
+			"label": "2026-06-16 \u2014 Presence online visibility Task 3 (complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L752"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_4_complete",
+			"label": "2026-06-16 \u2014 Presence online visibility Task 4 (complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L761"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_5_partial_complete",
+			"label": "2026-06-16 \u2014 Presence online visibility Task 5 (partial complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L776"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_6_complete",
+			"label": "2026-06-16 \u2014 Presence online visibility Task 6 (complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L789"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_online_visibility_follow_up_drawer_rows_added",
+			"label": "2026-06-16 \u2014 Presence online visibility follow-up (drawer rows added)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L806"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_16_presence_drawer_copy_test_coverage",
+			"label": "2026-06-16 \u2014 Presence drawer copy test coverage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L818"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_14_onboarding_wizard_v3_task_9_wizard_state_machine",
+			"label": "2026-06-14 \u2014 Onboarding wizard v3 Task 9 (wizard state machine)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L830"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_14_onboarding_wizard_v3_task_10_in_progress",
+			"label": "2026-06-14 \u2014 Onboarding wizard v3 Task 10 (in progress)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L846"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_14_onboarding_gate_hotfix_legacy_patrons_forced_to_re_onboard",
+			"label": "2026-06-14 \u2014 Onboarding gate hotfix (legacy patrons forced to re-onboard)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L874"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_7_diary_year_decade_chips",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 7 (diary year/decade chips)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L882"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_9_fix_viralreviewrailcard",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 9 fix (`ViralReviewRailCard`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L895"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_10_journal_schema_public_routes",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 10 (Journal schema + public routes)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L910"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_11_staff_journal_panel_home_rail",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 11 (staff journal panel + home rail)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L922"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_12_members_leaderboard_api",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 12 (Members leaderboard API)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L934"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_13_members_in_community_ranks",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 13 (Members in Community Ranks)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L946"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_14_detail_social_proof_counts",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 14 (Detail social proof counts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L959"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_15_year_in_review_compute",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 15 (Year in Review compute)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L971"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_16_wrapped_pages_og",
+			"label": "2026-06-13 \u2014 Letterboxd pillars Task 16 (Wrapped pages + OG)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L983"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_1_8",
+			"label": "2026-06-04 \u2014 Home catalogue search commit _(Executor \u2014 Task 1/8)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1006"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_2_8",
+			"label": "2026-06-04 \u2014 Home catalogue search commit _(Executor \u2014 Task 2/8)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1014"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_3_8",
+			"label": "2026-06-04 \u2014 Home catalogue search commit _(Executor \u2014 Task 3/8)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1022"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_4_8",
+			"label": "2026-06-04 \u2014 Home catalogue search commit _(Executor \u2014 Task 4/8)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1030"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_5_8",
+			"label": "2026-06-04 \u2014 Home catalogue search commit _(Executor \u2014 Task 5/8)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1038"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_6_8",
+			"label": "2026-06-04 \u2014 Home catalogue search commit _(Executor \u2014 Task 6/8)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1044"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_7_8",
+			"label": "2026-06-04 \u2014 Home catalogue search commit _(Executor \u2014 Task 7/8)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1052"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_search_enter_vs_tab_executor_fix",
+			"label": "2026-06-04 \u2014 Search Enter vs Tab _(Executor fix)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1058"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_8_8",
+			"label": "2026-06-04 \u2014 Home catalogue search commit _(Executor \u2014 Task 8/8)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1062"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_04_aborterror_on_committed_search_grid_executor_fix",
+			"label": "2026-06-04 \u2014 AbortError on committed search grid _(Executor fix)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1070"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_05_lists_tooltip_hover_delay_bell_executor",
+			"label": "2026-06-05 \u2014 `/lists` tooltip hover delay + bell _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1074"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_05_pro_status_missing_on_lobby_chrome_executor",
+			"label": "2026-06-05 \u2014 Pro status missing on lobby chrome _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1084"
+		},
+		{
+			"id": "cursor_scratchpad_2026_06_03_review_rating_tenths_detail_sheet_edit_delete_executor",
+			"label": "2026-06-03 \u2014 Review rating tenths + detail sheet edit/delete _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1092"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_28_list_detail_cover_dialog_redesign_follow_up_executor",
+			"label": "2026-05-28 \u2014 List detail cover dialog redesign follow-up _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1100"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_28_list_detail_owner_controls_polish_lists_id_executor",
+			"label": "2026-05-28 \u2014 List detail owner controls polish (`/lists/[id]`) _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1108"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_22_app_themes_theater_lobby_light_noir_executor",
+			"label": "2026-05-22 \u2014 App themes (Theater \u00b7 Lobby Light \u00b7 Noir) _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1116"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_22_radialtoolkit_catalogue_lobbies_scope_a_executor",
+			"label": "2026-05-22 \u2014 RadialToolkit catalogue lobbies (Scope A) _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1126"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_auto_favorites_list_profile_filter_executor",
+			"label": "2026-05-20 \u2014 Auto Favorites list + profile filter _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1132"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_search_dialog_catalogue_tags_v2_1_executor",
+			"label": "2026-05-20 \u2014 Search dialog catalogue tags **V2.1** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1138"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_search_dialog_catalogue_tags_v2_5_v2_2_v2_4_executor",
+			"label": "2026-05-20 \u2014 Search dialog catalogue tags **V2.5 + V2.2/V2.4** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1148"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_tv_watching_progress_planner_brainstorm_complete",
+			"label": "2026-05-20 \u2014 TV watching progress _(Planner \u2014 brainstorm complete)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1156"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_tv_watching_progress_w_1_executor",
+			"label": "2026-05-20 \u2014 TV watching progress **W.1** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1169"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_tv_watching_progress_w_2_executor",
+			"label": "2026-05-20 \u2014 TV watching progress **W.2** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1175"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_tv_watching_progress_w_3_executor",
+			"label": "2026-05-20 \u2014 TV watching progress **W.3** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1181"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_diary_tv_grouping_in_place_expand_executor",
+			"label": "2026-05-20 \u2014 Diary TV grouping (in-place expand) _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1187"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_tv_watching_progress_w_4_executor",
+			"label": "2026-05-20 \u2014 TV watching progress **W.4** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1193"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_search_v2_5_recents_locale_round_trip_executor",
+			"label": "2026-05-20 \u2014 Search V2.5 recents locale round-trip _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1207"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_tv_lobby_ongoing_completed_right_rail_executor",
+			"label": "2026-05-20 \u2014 TV lobby **Ongoing / Completed** right rail _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1213"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_22_community_watch_leaderboards_executor",
+			"label": "2026-05-22 \u2014 Community watch leaderboards _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1221"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_21_community_lobby_on_home_executor",
+			"label": "2026-05-21 \u2014 Community lobby on `/home` _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1227"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_21_community_reviews_activity_polish_executor",
+			"label": "2026-05-21 \u2014 Community Reviews + Activity polish _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1233"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_21_community_feed_polish_borders_ratings_avatars_executor",
+			"label": "2026-05-21 \u2014 Community feed polish: borders, ratings, avatars _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1239"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_21_build_green_type_fixes_executor",
+			"label": "2026-05-21 \u2014 Build green + type fixes _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1245"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_21_achievements_lobby_verify_prep_executor",
+			"label": "2026-05-21 \u2014 `/achievements` lobby verify prep _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1251"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_21_continue_watching_tv_browse_only_executor",
+			"label": "2026-05-21 \u2014 Continue watching: TV browse only _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1257"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_search_dialog_catalogue_tags_v2_5_planned_planner",
+			"label": "2026-05-20 \u2014 Search dialog catalogue tags **V2.5 planned** _(Planner)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1263"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_search_dialog_tagged_query_phases_2_3_executor",
+			"label": "2026-05-20 \u2014 Search dialog tagged query **Phases 2\u20133** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1267"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_search_dialog_tagged_query_phase_4_closure_executor",
+			"label": "2026-05-20 \u2014 Search dialog tagged query **Phase 4 + closure** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1273"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_search_dialog_tagged_query_phase_1_executor",
+			"label": "2026-05-20 \u2014 Search dialog tagged query **Phase 1** _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1281"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_achievements_lobby_remake_executor",
+			"label": "2026-05-20 \u2014 `/achievements` lobby remake _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1285"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_20_marketing_landing_mobbin_pattern_remake_executor",
+			"label": "2026-05-20 \u2014 Marketing landing: Mobbin-pattern remake _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1291"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_19_tv_diary_watchlist_parity_executor",
+			"label": "2026-05-19 \u2014 TV diary + watchlist parity _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1299"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_17_home_lobby_streaming_vs_theatrical_overlap_executor",
+			"label": "2026-05-17 \u2014 Home lobby: streaming vs theatrical overlap _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1313"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_18_diary_lobby_in_cinemas_at_home_stay_on_diary_executor",
+			"label": "2026-05-18 \u2014 `/diary` lobby: **In cinemas / At home** stay on diary _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1321"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_executor_section_kicker_quiet_mobbin_style_labels_executor",
+			"label": "2026-05-15 \u2014 User `executor`: Section kicker \u2014 quiet Mobbin-style labels _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1329"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_16_user_go_catalogue_lobby_a11y_comment_parity_executor",
+			"label": "2026-05-16 \u2014 User `go`: Catalogue **\u2190 Lobby** a11y + comment parity _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1337"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_16_user_go_phase_8_board_prep_cross_links_executor",
+			"label": "2026-05-16 \u2014 User `go`: Phase 8 board \u2194 prep cross-links _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1345"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_16_user_go_phase_8_3_8_4_manual_prep_executor",
+			"label": "2026-05-16 \u2014 User `go`: Phase 8.3 + 8.4 manual prep _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1351"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_16_user_go_phase_8_1_prep_regression_executor",
+			"label": "2026-05-16 \u2014 User `go`: Phase 8.1 prep + regression _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1357"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_track_b_5_9_settings_account_sub_nav_human_verified_2026_05_15",
+			"label": "2026-05-15 \u2014 Track B.5.9: Settings account sub-nav _(human verified 2026-05-15)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1363"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_command_palette_discover_launcher_executor",
+			"label": "2026-05-15 \u2014 Command palette: Discover launcher _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1378"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_go_monorepo_verify_executor",
+			"label": "2026-05-15 \u2014 User `go`: monorepo verify _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1386"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_go_turbo_build_outputs_for_wxt_executor",
+			"label": "2026-05-15 \u2014 User `go`: Turbo `build` outputs for WXT _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1392"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_go_wxt_runner_webext_executor",
+			"label": "2026-05-15 \u2014 User `go`: WXT `runner` \u2192 `webExt` _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1398"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_go_tsdown_noexternal_deps_alwaysbundle_executor",
+			"label": "2026-05-15 \u2014 User `go`: tsdown `noExternal` \u2192 `deps.alwaysBundle` _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1404"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_go_tsdown_quiet_onlybundle_hint_executor",
+			"label": "2026-05-15 \u2014 User `go`: tsdown quiet `onlyBundle` hint _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1410"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_go_catalogue_lobby_link_touch_safe_hover_executor",
+			"label": "2026-05-15 \u2014 User `go`: catalogue Lobby link touch-safe hover _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1416"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_go_catalogue_pages_drop_useless_fragments_executor",
+			"label": "2026-05-15 \u2014 User `go`: catalogue pages drop useless fragments _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1422"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_user_go_post_b_5_regression_gate_executor",
+			"label": "2026-05-15 \u2014 User `go`: post\u2013B.5 regression gate _(Executor)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1428"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_follow_up_notifications_nav_parity_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 Track B follow-up: notifications nav parity _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1434"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_notifications_nav_parity_signed_off",
+			"label": "2026-05-14 \u2014 Human: notifications nav parity signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1446"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_b_6_signed_off_track_b_7_planner_sign_off",
+			"label": "2026-05-14 \u2014 Human: B.6 signed off + Track B.7 Planner sign-off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1450"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_6_motion_budget_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 Track B.6: Motion budget _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1463"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_b_5_8_signed_off",
+			"label": "2026-05-14 \u2014 Human: B.5.8 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1482"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_5_8_notifications_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 Track B.5.8: Notifications _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1486"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_b_5_7_signed_off",
+			"label": "2026-05-14 \u2014 Human: B.5.7 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1502"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_b_5_6_signed_off",
+			"label": "2026-05-14 \u2014 Human: B.5.6 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1506"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_5_6_lists_index_savee_rows_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 Track B.5.6: Lists index (Savee rows) _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1510"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_5_7_profile_layout_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 Track B.5.7: Profile layout _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1519"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_b_5_4_b_5_5_signed_off",
+			"label": "2026-05-14 \u2014 Human: B.5.4 + B.5.5 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1530"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_5_5_diary_layout_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 Track B.5.5: Diary layout _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1534"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_5_4_quick_log_sheet_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 Track B.5.4: Quick log sheet _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1544"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_b_3_signed_off",
+			"label": "2026-05-14 \u2014 Human: B.3 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1555"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_5_3_film_detail_human_verified_2026_05_15",
+			"label": "2026-05-14 \u2014 Track B.5.3: Film detail _(human verified 2026-05-15)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1559"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_5_2_discover_human_verified_2026_05_15",
+			"label": "2026-05-14 \u2014 Track B.5.2: Discover _(human verified 2026-05-15)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1575"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_15_human_b_5_2_b_5_3_b_5_9_signed_off",
+			"label": "2026-05-15 \u2014 Human: B.5.2 / B.5.3 / B.5.9 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1591"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_b_5_1_signed_off",
+			"label": "2026-05-14 \u2014 Human: B.5.1 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1595"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_16_human_b_1_b_2_signed_off",
+			"label": "2026-05-16 \u2014 Human: B.1 / B.2 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1599"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_track_b_5_1_home_following_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 Track B.5.1: Home / following _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1603"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_human_b_4_signed_off",
+			"label": "2026-05-14 \u2014 Human: B.4 signed off",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1618"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_b_4_complete_search_browse_primitives_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 B.4 complete: search + browse primitives _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1622"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_planner_track_b_design_system_added",
+			"label": "2026-05-14 \u2014 Planner: Track B (design system) added",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1637"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_b_3_complete_appshell_nav_contract_human_verified_2026_05_14",
+			"label": "2026-05-14 \u2014 B.3 complete: `AppShell` + nav contract _(human verified 2026-05-14)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1647"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_b_2_complete_token_elevation_ladder_human_verified_2026_05_16",
+			"label": "2026-05-14 \u2014 B.2 complete: token & elevation ladder _(human verified 2026-05-16)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1666"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_b_1_complete_route_audit_principles_human_verified_2026_05_16",
+			"label": "2026-05-14 \u2014 B.1 complete: route audit + principles _(human verified 2026-05-16)_",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1694"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_movies_id_hero_taps_log_watchlist_overlap",
+			"label": "2026-05-13 \u2014 `/movies/[id]` hero taps (Log / Watchlist / overlap)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1742"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_phase_5_executor_pass_planner_confirm",
+			"label": "2026-05-13 \u2014 Phase 5 Executor pass (Planner confirm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1750"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_phase_6_executor_pass_planner_confirm",
+			"label": "2026-05-13 \u2014 Phase 6 Executor pass (Planner confirm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1766"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_phase_7_executor_pass_planner_confirm",
+			"label": "2026-05-13 \u2014 Phase 7 Executor pass (Planner confirm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1778"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_phase_8_executor_pass_partial_automation",
+			"label": "2026-05-14 \u2014 Phase 8 Executor pass (partial automation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1792"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_14_production_build_unblock_executor",
+			"label": "2026-05-14 \u2014 Production build unblock (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1802"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_db_migrate_fix_pg_env_path_baseline_hint",
+			"label": "2026-05-13 \u2014 `db:migrate` fix (pg + env path + baseline hint)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1816"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_task_1_1_complete_awaiting_manual_verify",
+			"label": "2026-05-13 \u2014 Task 1.1 complete, awaiting manual verify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1822"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_task_1_2_complete_awaiting_manual_verify",
+			"label": "2026-05-13 \u2014 Task 1.2 complete, awaiting manual verify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1867"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_tasks_1_3_1_4_1_5_complete_phase_1_foundation",
+			"label": "2026-05-13 \u2014 Tasks 1.3, 1.4, 1.5 complete (Phase 1 foundation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1949"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_13_phase_2_per_film_color_world_implemented",
+			"label": "2026-05-13 \u2014 Phase 2 (per-film color world) implemented",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1964"
+		},
+		{
+			"id": "cursor_scratchpad_open_questions_for_the_planner_before_execution_begins",
+			"label": "Open questions for the Planner before execution begins",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1975"
+		},
+		{
+			"id": "cursor_scratchpad_lessons",
+			"label": "Lessons",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1997"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_27_tv_on_lists_planner",
+			"label": "2026-05-27 \u2014 TV on lists (Planner)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2039"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_27_tv_diary_rewatch_scope_executor",
+			"label": "2026-05-27 \u2014 TV diary rewatch scope (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2055"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_27_instant_lobby_navigation_perceived_performance_planner",
+			"label": "2026-05-27 \u2014 Instant lobby navigation / perceived performance (Planner)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2074"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_unified_k_search_people_planner",
+			"label": "2026-05-29 \u2014 Unified \u2318K search + people (Planner)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2100"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_home_browse_instant_navigation_planner",
+			"label": "2026-05-29 \u2014 Home browse instant navigation (Planner)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2108"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_28_home_sticky_icon_tooltips_executor",
+			"label": "2026-05-28 \u2014 Home sticky icon tooltips (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2129"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_28_ranked_list_drag_reorder_planner",
+			"label": "2026-05-28 \u2014 Ranked list drag reorder (Planner)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2139"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_28_landing_hero_mobbin_layout_on_dark_canvas_executor",
+			"label": "2026-05-28 \u2014 Landing hero Mobbin layout on dark canvas (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2167"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_product_roadmap_phase_1_launch_blockers_planner_executor",
+			"label": "2026-05-29 \u2014 Sense product roadmap + Phase 1 launch blockers (Planner \u2192 Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2173"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_tier_1_rare_badge_pass_executor",
+			"label": "2026-05-29 \u2014 Sense Tier 1: rare badge pass (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2185"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_tier_1_rivalry_taste_overlap_executor",
+			"label": "2026-05-29 \u2014 Sense Tier 1: rivalry / taste overlap (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2194"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_tier_1_completionist_challenges_executor",
+			"label": "2026-05-29 \u2014 Sense Tier 1: completionist challenges (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2204"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_tier_1_streaks_protection_executor_in_progress",
+			"label": "2026-05-29 \u2014 Sense Tier 1: streaks + protection (Executor, in progress)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2219"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_tier_1_optional_anime_wedge_executor_in_progress",
+			"label": "2026-05-29 \u2014 Sense Tier 1: optional anime wedge (Executor, in progress)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2236"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_tier_1_notification_quality_planner_sn_9_brainstorm_complete",
+			"label": "2026-05-29 \u2014 Sense Tier 1: notification quality (Planner \u2014 SN.9 brainstorm complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2251"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_tier_1_list_quality_executor_sn_10",
+			"label": "2026-05-29 \u2014 Sense Tier 1: list quality (Executor \u2014 SN.10)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2268"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_tier_1_creator_recognition_v1_executor_sn_11",
+			"label": "2026-05-29 \u2014 Sense Tier 1: creator recognition v1 (Executor \u2014 SN.11)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2278"
+		},
+		{
+			"id": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"label": "Sense Tier 2 \u2014 Months 3\u20136 (Planner 2026-05-29)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2296"
+		},
+		{
+			"id": "cursor_scratchpad_project_status_board_tier_2",
+			"label": "Project Status Board \u2014 Tier 2",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2312"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_strategy_plan_closure_phase_0_metrics_planner_executor",
+			"label": "2026-05-29 \u2014 Strategy plan closure + Phase 0 metrics (Planner + Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2357"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sn_13_creator_analytics_v1_executor",
+			"label": "2026-05-29 \u2014 SN.13 Creator analytics v1 (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2378"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sn_14_profile_themes_pro_executor",
+			"label": "2026-05-29 \u2014 SN.14 Profile themes (Pro) (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2389"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sense_theme_display_names_set_a_executor",
+			"label": "2026-05-29 \u2014 Sense theme display names Set A (Executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2398"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sn_15_collaborative_lists_executor_complete",
+			"label": "2026-05-29 \u2014 SN.15 Collaborative lists (Executor, complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2404"
+		},
+		{
+			"id": "cursor_scratchpad_2026_05_29_sn_16_advanced_taste_matching_executor_code_complete",
+			"label": "2026-05-29 \u2014 SN.16 Advanced taste matching (Executor, code complete)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2413"
+		},
+		{
+			"id": "cursor_scratchpad_sn_17_anime_depth_wave_e_spec_approved",
+			"label": "SN.17 \u2014 Anime depth (Wave E) \u2014 spec approved",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2421"
+		},
+		{
+			"id": "cursor_scratchpad_post_tier_3_launch_readiness_strategy_continuation_planner_2026_05_29",
+			"label": "Post\u2013Tier 3 \u2014 Launch readiness & strategy continuation (Planner 2026-05-29)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2434"
+		},
+		{
+			"id": "cursor_scratchpad_project_status_board_launch_readiness_lr",
+			"label": "Project Status Board \u2014 Launch readiness (LR)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2453"
+		},
+		{
+			"id": "cursor_scratchpad_k_tag_search_fix_track_b_plan_ready",
+			"label": "\u2318K tag search fix (Track B) \u2014 plan ready",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2464"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_scratchpad_md",
+			"target": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_presence_afk_status_orange_dot_2026_06_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_presence_online_visibility_controls_movie_tv_detail_2026_06_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_listing_engagement_stats_movie_tv_detail_2026_06_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_listing_presence_phase_b_2026_06_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_liveblocks_realtime_layer_2026_06_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_letterboxd_pillars_roadmap_2026_06_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_sense_sound_layer_micro_feedback_voice_reviews_2026_06_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_diary_metal_tier_avatars_2026_06_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_background_and_motivation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_background_and_motivation",
+			"target": "cursor_scratchpad_secondary_initiative_2026_05_14_product_design_system_screen_ia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_key_challenges_and_analysis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_key_challenges_and_analysis",
+			"target": "cursor_scratchpad_1_typography_is_the_single_biggest_gap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_key_challenges_and_analysis",
+			"target": "cursor_scratchpad_2_per_film_color_world_requires_sync_time_work",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_key_challenges_and_analysis",
+			"target": "cursor_scratchpad_3_page_transitions_next_16_view_transitions_api_is_the_right_tool",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_key_challenges_and_analysis",
+			"target": "cursor_scratchpad_4_audio_is_the_riskiest_ingredient",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_key_challenges_and_analysis",
+			"target": "cursor_scratchpad_5_scope_is_large_must_phase_aggressively",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_key_challenges_and_analysis",
+			"target": "cursor_scratchpad_6_existing_arthouse_preset_is_conceptually_fine_but_underused",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_key_challenges_and_analysis",
+			"target": "cursor_scratchpad_7_design_system_reboot_vs_cinematic_maximalism_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_high_level_task_breakdown",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_phase_1_foundation_editorial_type_true_black_letterbox_primitive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_phase_2_per_film_color_world",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L216",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_phase_3_scene_cut_transitions_projector_boot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L261",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_phase_3_scene_cut_transitions_projector_boot",
+			"target": "cursor_scratchpad_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L268",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_phase_4_film_stock_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L309",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_phase_5_credits_patterns",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L341",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_phase_6_watchlist_ticket_primitive",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L371",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_phase_7_audio_opt_in",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L399",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_phase_8_polish_verify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L423",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_high_level_task_breakdown",
+			"target": "cursor_scratchpad_track_b_design_system_screen_ia_mobbin_informed_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L431",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_project_status_board",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L544",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_1_foundation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L546",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_2_per_film_color_world_556",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L556",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_3_scene_cut_transitions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L563",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_4_film_stock_detail_569",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L569",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_5_credits_patterns_575",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L575",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_6_watchlist_ticket_primitive_581",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L581",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_7_audio_opt_in_587",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L587",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_8_polish_verify_592",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L592",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_8_1_prep_cross_browser_smoke_checklist_executor_2026_05_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L603",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_8_3_prep_lighthouse_mobile_perf_executor_2026_05_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L619",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_phase_8_4_prep_per_film_palette_contrast_executor_2026_05_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L639",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_radialtoolkit_catalogue_lobbies_scope_a",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L653",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_project_status_board",
+			"target": "cursor_scratchpad_track_b_design_system_screen_ia_b_1_b_7_b_5_1_b_5_9_human_verified_per_scratchpad_where_shipped_phase_8_manual_qa_still_open",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L664",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L674",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_afk_task_9_complete_plan_shipped",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L676",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_afk_task_6_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L691",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_afk_task_8_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L703",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_afk_task_7_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L714",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_1_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L726",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_2_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L739",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_3_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L752",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_4_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L761",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_5_partial_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L776",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_online_visibility_task_6_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L789",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_online_visibility_follow_up_drawer_rows_added",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L806",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_16_presence_drawer_copy_test_coverage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L818",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_14_onboarding_wizard_v3_task_9_wizard_state_machine",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L830",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_14_onboarding_wizard_v3_task_10_in_progress",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L846",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_14_onboarding_gate_hotfix_legacy_patrons_forced_to_re_onboard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L874",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_7_diary_year_decade_chips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L882",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_9_fix_viralreviewrailcard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L895",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_10_journal_schema_public_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L910",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_11_staff_journal_panel_home_rail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L922",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_12_members_leaderboard_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L934",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_13_members_in_community_ranks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L946",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_14_detail_social_proof_counts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L959",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_15_year_in_review_compute",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L971",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_13_letterboxd_pillars_task_16_wrapped_pages_og",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L983",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_1_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1006",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_2_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1014",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_3_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1022",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_4_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1030",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_5_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1038",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_6_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1044",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_7_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1052",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_search_enter_vs_tab_executor_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1058",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_home_catalogue_search_commit_executor_task_8_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1062",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_04_aborterror_on_committed_search_grid_executor_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1070",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_05_lists_tooltip_hover_delay_bell_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1074",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_05_pro_status_missing_on_lobby_chrome_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1084",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_06_03_review_rating_tenths_detail_sheet_edit_delete_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1092",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_28_list_detail_cover_dialog_redesign_follow_up_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1100",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_28_list_detail_owner_controls_polish_lists_id_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1108",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_22_app_themes_theater_lobby_light_noir_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1116",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_22_radialtoolkit_catalogue_lobbies_scope_a_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1126",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_auto_favorites_list_profile_filter_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1132",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_search_dialog_catalogue_tags_v2_1_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1138",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_search_dialog_catalogue_tags_v2_5_v2_2_v2_4_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1148",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_tv_watching_progress_planner_brainstorm_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1156",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_tv_watching_progress_w_1_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1169",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_tv_watching_progress_w_2_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1175",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_tv_watching_progress_w_3_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1181",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_diary_tv_grouping_in_place_expand_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1187",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_tv_watching_progress_w_4_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1193",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_search_v2_5_recents_locale_round_trip_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1207",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_tv_lobby_ongoing_completed_right_rail_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1213",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_22_community_watch_leaderboards_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1221",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_21_community_lobby_on_home_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1227",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_21_community_reviews_activity_polish_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1233",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_21_community_feed_polish_borders_ratings_avatars_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1239",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_21_build_green_type_fixes_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1245",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_21_achievements_lobby_verify_prep_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1251",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_21_continue_watching_tv_browse_only_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1257",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_search_dialog_catalogue_tags_v2_5_planned_planner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1263",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_search_dialog_tagged_query_phases_2_3_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1267",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_search_dialog_tagged_query_phase_4_closure_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1273",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_search_dialog_tagged_query_phase_1_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1281",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_achievements_lobby_remake_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1285",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_20_marketing_landing_mobbin_pattern_remake_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1291",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_19_tv_diary_watchlist_parity_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1299",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_17_home_lobby_streaming_vs_theatrical_overlap_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1313",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_18_diary_lobby_in_cinemas_at_home_stay_on_diary_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1321",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_executor_section_kicker_quiet_mobbin_style_labels_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1329",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_16_user_go_catalogue_lobby_a11y_comment_parity_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1337",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_16_user_go_phase_8_board_prep_cross_links_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1345",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_16_user_go_phase_8_3_8_4_manual_prep_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1351",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_16_user_go_phase_8_1_prep_regression_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1357",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_track_b_5_9_settings_account_sub_nav_human_verified_2026_05_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1363",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_command_palette_discover_launcher_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1378",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_go_monorepo_verify_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1386",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_go_turbo_build_outputs_for_wxt_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1392",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_go_wxt_runner_webext_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1398",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_go_tsdown_noexternal_deps_alwaysbundle_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1404",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_go_tsdown_quiet_onlybundle_hint_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1410",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_go_catalogue_lobby_link_touch_safe_hover_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1416",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_go_catalogue_pages_drop_useless_fragments_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1422",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_user_go_post_b_5_regression_gate_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1428",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_follow_up_notifications_nav_parity_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1434",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_notifications_nav_parity_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1446",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_b_6_signed_off_track_b_7_planner_sign_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1450",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_6_motion_budget_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1463",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_b_5_8_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1482",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_5_8_notifications_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1486",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_b_5_7_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1502",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_b_5_6_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1506",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_5_6_lists_index_savee_rows_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1510",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_5_7_profile_layout_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1519",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_b_5_4_b_5_5_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1530",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_5_5_diary_layout_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1534",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_5_4_quick_log_sheet_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1544",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_b_3_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1555",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_5_3_film_detail_human_verified_2026_05_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1559",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_5_2_discover_human_verified_2026_05_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1575",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_15_human_b_5_2_b_5_3_b_5_9_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1591",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_b_5_1_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1595",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_16_human_b_1_b_2_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1599",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_track_b_5_1_home_following_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1603",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_human_b_4_signed_off",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1618",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_b_4_complete_search_browse_primitives_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1622",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_planner_track_b_design_system_added",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1637",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_b_3_complete_appshell_nav_contract_human_verified_2026_05_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1647",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_b_2_complete_token_elevation_ladder_human_verified_2026_05_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1666",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_b_1_complete_route_audit_principles_human_verified_2026_05_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1694",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_movies_id_hero_taps_log_watchlist_overlap",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1742",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_phase_5_executor_pass_planner_confirm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1750",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_phase_6_executor_pass_planner_confirm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1766",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_phase_7_executor_pass_planner_confirm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1778",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_phase_8_executor_pass_partial_automation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1792",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_14_production_build_unblock_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1802",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_db_migrate_fix_pg_env_path_baseline_hint",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1816",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_task_1_1_complete_awaiting_manual_verify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1822",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_task_1_2_complete_awaiting_manual_verify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1867",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_tasks_1_3_1_4_1_5_complete_phase_1_foundation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1949",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_2026_05_13_phase_2_per_film_color_world_implemented",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1964",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_executor_s_feedback_or_assistance_requests",
+			"target": "cursor_scratchpad_open_questions_for_the_planner_before_execution_begins",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1975",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_lessons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L1997",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_27_tv_on_lists_planner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2039",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_27_tv_diary_rewatch_scope_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2055",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_27_instant_lobby_navigation_perceived_performance_planner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2074",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_unified_k_search_people_planner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2100",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_home_browse_instant_navigation_planner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2108",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_28_home_sticky_icon_tooltips_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2129",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_28_ranked_list_drag_reorder_planner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2139",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_28_landing_hero_mobbin_layout_on_dark_canvas_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2167",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_product_roadmap_phase_1_launch_blockers_planner_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2173",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_tier_1_rare_badge_pass_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2185",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_tier_1_rivalry_taste_overlap_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2194",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_tier_1_completionist_challenges_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2204",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_tier_1_streaks_protection_executor_in_progress",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2219",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_tier_1_optional_anime_wedge_executor_in_progress",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2236",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_tier_1_notification_quality_planner_sn_9_brainstorm_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2251",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_tier_1_list_quality_executor_sn_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2268",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_lessons",
+			"target": "cursor_scratchpad_2026_05_29_sense_tier_1_creator_recognition_v1_executor_sn_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2278",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_still_70mm_cinematic_direction_plan",
+			"target": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2296",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_project_status_board_tier_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2312",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_2026_05_29_strategy_plan_closure_phase_0_metrics_planner_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2357",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_2026_05_29_sn_13_creator_analytics_v1_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2378",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_2026_05_29_sn_14_profile_themes_pro_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2389",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_2026_05_29_sense_theme_display_names_set_a_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2398",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_2026_05_29_sn_15_collaborative_lists_executor_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2404",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_2026_05_29_sn_16_advanced_taste_matching_executor_code_complete",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2413",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_sn_17_anime_depth_wave_e_spec_approved",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2421",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_post_tier_3_launch_readiness_strategy_continuation_planner_2026_05_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2434",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_project_status_board_launch_readiness_lr",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2453",
+			"weight": 1.0
+		},
+		{
+			"source": "cursor_scratchpad_sense_tier_2_months_3_6_planner_2026_05_29",
+			"target": "cursor_scratchpad_k_tag_search_fix_track_b_plan_ready",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\scratchpad.md",
+			"source_location": "L2464",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

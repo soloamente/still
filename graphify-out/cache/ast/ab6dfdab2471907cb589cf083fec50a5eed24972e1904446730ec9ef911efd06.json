@@ -1,0 +1,328 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"label": "route.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "stream_route_get",
+			"label": "GET()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L31"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_auth_server_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_auth_server_authserver",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_dev_bus_shoulduserealtimedevbus",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_dev_bus_subscriberealtimedevbus",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_realtime_redis_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_redis_getrealtimeredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_redis_isrealtimestreamavailable",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_redis_realtimestreamkey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_realtime_room_access_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_room_access_resolverealtimeroomaccess",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_sse_encoderealtimessemessage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_sse_encodessekeepalive",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_sse_parsestreamentrydata",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_sse_roomidfromstreamkey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_realtime_stream_rate_limit_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_stream_rate_limit_hitrealtimestreamratelimit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_realtime_stream_read_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_stream_read_parserealtimestreamroomsparam",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "lib_realtime_stream_read_readrealtimestreambatch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_realtime_stream_route_ts",
+			"target": "stream_route_get",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "authServer",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "hitRealtimeStreamRateLimit",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "isRealtimeStreamAvailable",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "shouldUseRealtimeDevBus",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "getRealtimeRedis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "parseRealtimeStreamRoomsParam",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "resolveRealtimeRoomAccess",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "fromEntries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "stream_route_get",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\realtime\\stream\\route.ts",
+			"source_location": "L71"
+		}
+	]
+}

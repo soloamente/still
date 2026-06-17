@@ -1,0 +1,203 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"label": "room-ids.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_room_ids_listingmovieroomid",
+			"label": "listingMovieRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "src_room_ids_listingtvroomid",
+			"label": "listingTvRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "src_room_ids_parselistingmovieroomid",
+			"label": "parseListingMovieRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "src_room_ids_parselistingtvroomid",
+			"label": "parseListingTvRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "src_room_ids_listroomid",
+			"label": "listRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "src_room_ids_reviewroomid",
+			"label": "reviewRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L29"
+		},
+		{
+			"id": "src_room_ids_patronapproomid",
+			"label": "patronAppRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L37"
+		},
+		{
+			"id": "src_room_ids_ispatronapproomid",
+			"label": "isPatronAppRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "src_room_ids_userinboxroomid",
+			"label": "userInboxRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "src_room_ids_chatroomid",
+			"label": "chatRoomId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L52"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_listingmovieroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_listingtvroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_parselistingmovieroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_parselistingtvroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_listroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_reviewroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_patronapproomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_ispatronapproomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_userinboxroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"target": "src_room_ids_chatroomid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_room_ids_parselistingmovieroomid",
+			"callee": "exec",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "src_room_ids_parselistingmovieroomid",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "src_room_ids_parselistingtvroomid",
+			"callee": "exec",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "src_room_ids_parselistingtvroomid",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\room-ids.ts",
+			"source_location": "L20"
+		}
+	]
+}

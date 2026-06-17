@@ -1,0 +1,258 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"label": "log-rating.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_log_rating_logratingtodisplay",
+			"label": "logRatingToDisplay()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_log_rating_logratingtostored",
+			"label": "logRatingToStored()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_log_rating_clamplogratingdisplay",
+			"label": "clampLogRatingDisplay()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L30"
+		},
+		{
+			"id": "lib_log_rating_formatlogratingdisplay",
+			"label": "formatLogRatingDisplay()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L35"
+		},
+		{
+			"id": "lib_log_rating_formatpatronscoretickerlabel",
+			"label": "formatPatronScoreTickerLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L43"
+		},
+		{
+			"id": "lib_log_rating_formatstoredlogratingdisplay",
+			"label": "formatStoredLogRatingDisplay()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L50"
+		},
+		{
+			"id": "lib_log_rating_isvalidstoredlograting",
+			"label": "isValidStoredLogRating()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L58"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"target": "lib_log_rating_logratingtodisplay",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"target": "lib_log_rating_logratingtostored",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"target": "lib_log_rating_clamplogratingdisplay",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"target": "lib_log_rating_formatlogratingdisplay",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"target": "lib_log_rating_formatpatronscoretickerlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"target": "lib_log_rating_formatstoredlogratingdisplay",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"target": "lib_log_rating_isvalidstoredlograting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_log_rating_formatlogratingdisplay",
+			"target": "lib_log_rating_clamplogratingdisplay",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_log_rating_formatpatronscoretickerlabel",
+			"target": "lib_log_rating_clamplogratingdisplay",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_log_rating_formatstoredlogratingdisplay",
+			"target": "lib_log_rating_logratingtodisplay",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_log_rating_formatstoredlogratingdisplay",
+			"target": "lib_log_rating_formatlogratingdisplay",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_log_rating_logratingtodisplay",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_log_rating_logratingtostored",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_log_rating_logratingtostored",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_log_rating_logratingtostored",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_log_rating_logratingtostored",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_log_rating_clamplogratingdisplay",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_log_rating_clamplogratingdisplay",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_log_rating_clamplogratingdisplay",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_log_rating_formatlogratingdisplay",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_log_rating_formatlogratingdisplay",
+			"callee": "toFixed",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_log_rating_formatpatronscoretickerlabel",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_log_rating_formatpatronscoretickerlabel",
+			"callee": "toFixed",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_log_rating_isvalidstoredlograting",
+			"callee": "isInteger",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\log-rating.ts",
+			"source_location": "L59"
+		}
+	]
+}

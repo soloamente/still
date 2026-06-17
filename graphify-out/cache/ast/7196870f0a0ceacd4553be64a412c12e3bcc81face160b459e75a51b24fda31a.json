@@ -1,0 +1,975 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_13_letterboxd_pillars_roadmap_md",
+			"label": "2026-06-13-letterboxd-pillars-roadmap.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"label": "Letterboxd Pillars Roadmap Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_conventions",
+			"label": "Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"label": "File structure (by wave)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_0",
+			"label": "Wave 0",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1a_profile_showcase",
+			"label": "Wave 1a \u2014 Profile Showcase",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1b_post_log_ritual",
+			"label": "Wave 1b \u2014 Post-log ritual",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1c_viral_reviews",
+			"label": "Wave 1c \u2014 Viral reviews",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2a_journal",
+			"label": "Wave 2a \u2014 Journal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2b_members_directory",
+			"label": "Wave 2b \u2014 Members directory",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2c_detail_social_proof",
+			"label": "Wave 2c \u2014 Detail social proof",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3a_year_in_review",
+			"label": "Wave 3a \u2014 Year in Review",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3b_streaming_alerts",
+			"label": "Wave 3b \u2014 Streaming alerts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3c_4_polish_catalogue",
+			"label": "Wave 3c / 4 \u2014 Polish + catalogue",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_0_shared_prerequisites",
+			"label": "Wave 0 \u2014 Shared prerequisites",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_1_showcase_items_migration_schema",
+			"label": "Task 1: `showcase_items` migration + schema",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_1",
+			"label": "code:sql (-- packages/db/src/migrations/0028_profile_showcase_items.sq)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L152"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_2",
+			"label": "code:typescript (export type ShowcaseItem =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_2_product_event_kinds",
+			"label": "Task 2: Product event kinds",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_3",
+			"label": "code:typescript (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L191"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_4",
+			"label": "code:typescript (export const PRODUCT_EVENT_KINDS = [)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L221"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1a_profile_showcase_strip",
+			"label": "Wave 1a \u2014 Profile Showcase Strip",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L250"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_3_server_showcase_validation_legacy_migration",
+			"label": "Task 3: Server showcase validation + legacy migration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L252"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_5",
+			"label": "code:typescript (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L260"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_6",
+			"label": "code:typescript (import type { ShowcaseItem } from \"@still/db/schema/profile\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L320"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_4_web_showcase_strip_edit_sheet",
+			"label": "Task 4: Web showcase strip + edit sheet",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L377"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_7",
+			"label": "code:typescript (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L388"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_8",
+			"label": "code:tsx (<ProfileShowcaseStrip)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L415"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_5_review_reader_add_to_showcase",
+			"label": "Task 5: Review reader \"Add to showcase\"",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L433"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1b_post_log_micro_moment",
+			"label": "Wave 1b \u2014 Post-log micro-moment",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L446"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_6_celebration_strip_in_quick_log",
+			"label": "Task 6: Celebration strip in Quick Log",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L448"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_9",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L458"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_7_diary_year_decade_chips",
+			"label": "Task 7: Diary year/decade chips",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L489"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1c_viral_reviews_503",
+			"label": "Wave 1c \u2014 Viral reviews",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L503"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_8_get_api_reviews_viral",
+			"label": "Task 8: `GET /api/reviews/viral`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L505"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_10",
+			"label": "code:typescript (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L514"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_9_homeviralreviewsrail",
+			"label": "Task 9: `HomeViralReviewsRail`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L538"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2a_journal_mvp",
+			"label": "Wave 2a \u2014 Journal MVP",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L553"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_10_journal_post_schema_public_routes",
+			"label": "Task 10: `journal_post` schema + public routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L555"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_11",
+			"label": "code:sql (CREATE TABLE IF NOT EXISTS \"journal_post\" ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L565"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_11_staff_journal_panel_home_rail",
+			"label": "Task 11: Staff journal panel + home rail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L599"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2b_members_directory_614",
+			"label": "Wave 2b \u2014 Members directory",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L614"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_12_members_leaderboard_api",
+			"label": "Task 12: Members leaderboard API",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L616"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_12",
+			"label": "code:typescript (describe(\"membersLeaderboardSort\", () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L625"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_13_members_page",
+			"label": "Task 13: `/members` page",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L645"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2c_detail_social_proof_counts",
+			"label": "Wave 2c \u2014 Detail social proof counts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L659"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_14_watches_watchlist_counts_on_detail",
+			"label": "Task 14: Watches + watchlist counts on detail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L661"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3a_year_in_review_wrapped",
+			"label": "Wave 3a \u2014 Year in Review / Wrapped",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L680"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_15_computeyearinreview",
+			"label": "Task 15: `computeYearInReview`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L682"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_16_wrapped_pages_og",
+			"label": "Task 16: Wrapped pages + OG",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L700"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3b_streaming_availability_alerts",
+			"label": "Wave 3b \u2014 Streaming availability alerts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L719"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_17_provider_snapshot_diff_job",
+			"label": "Task 17: Provider snapshot + diff job",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L721"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_18_settings_toggle_watchlist_pill",
+			"label": "Task 18: Settings toggle + watchlist pill",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L740"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3c_motion_polish_pass",
+			"label": "Wave 3c \u2014 Motion polish pass",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L759"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_19_apply_transitions_dev_to_new_surfaces",
+			"label": "Task 19: Apply `transitions-dev` to new surfaces",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L761"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_4_catalogue_stat_list_polish",
+			"label": "Wave 4 \u2014 Catalogue stat + list polish",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L778"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_20_catalogue_stat_line",
+			"label": "Task 20: Catalogue stat line",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L780"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_task_21_list_discovery_polish_pillars_4_5",
+			"label": "Task 21: List discovery polish (Pillars 4\u20135)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L794"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_spec_coverage_checklist_self_review",
+			"label": "Spec coverage checklist (self-review)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L813"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_suggested_execution_order_single_executor",
+			"label": "Suggested execution order (single executor)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L835"
+		},
+		{
+			"id": "plans_2026_06_13_letterboxd_pillars_roadmap_human_verification_milestones",
+			"label": "Human verification milestones",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L850"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_13_letterboxd_pillars_roadmap_md",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_0",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1a_profile_showcase",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1b_post_log_ritual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1c_viral_reviews",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2a_journal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2b_members_directory",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2c_detail_social_proof",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3a_year_in_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3b_streaming_alerts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_file_structure_by_wave",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3c_4_polish_catalogue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_0_shared_prerequisites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_0_shared_prerequisites",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_1_showcase_items_migration_schema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_1_showcase_items_migration_schema",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_1_showcase_items_migration_schema",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_0_shared_prerequisites",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_2_product_event_kinds",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_2_product_event_kinds",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L191",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_2_product_event_kinds",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L221",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1a_profile_showcase_strip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L250",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1a_profile_showcase_strip",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_3_server_showcase_validation_legacy_migration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L252",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_3_server_showcase_validation_legacy_migration",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L260",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_3_server_showcase_validation_legacy_migration",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L320",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1a_profile_showcase_strip",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_4_web_showcase_strip_edit_sheet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L377",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_4_web_showcase_strip_edit_sheet",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L388",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_4_web_showcase_strip_edit_sheet",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L415",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1a_profile_showcase_strip",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_5_review_reader_add_to_showcase",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L433",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1b_post_log_micro_moment",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L446",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1b_post_log_micro_moment",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_6_celebration_strip_in_quick_log",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L448",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_6_celebration_strip_in_quick_log",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L458",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1b_post_log_micro_moment",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_7_diary_year_decade_chips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L489",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1c_viral_reviews_503",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L503",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1c_viral_reviews_503",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_8_get_api_reviews_viral",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L505",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_8_get_api_reviews_viral",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L514",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_1c_viral_reviews_503",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_9_homeviralreviewsrail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L538",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2a_journal_mvp",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L553",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2a_journal_mvp",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_10_journal_post_schema_public_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L555",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_10_journal_post_schema_public_routes",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L565",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2a_journal_mvp",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_11_staff_journal_panel_home_rail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L599",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2b_members_directory_614",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L614",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2b_members_directory_614",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_12_members_leaderboard_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L616",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_task_12_members_leaderboard_api",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L625",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2b_members_directory_614",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_13_members_page",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L645",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2c_detail_social_proof_counts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L659",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_2c_detail_social_proof_counts",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_14_watches_watchlist_counts_on_detail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L661",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3a_year_in_review_wrapped",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L680",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3a_year_in_review_wrapped",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_15_computeyearinreview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L682",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3a_year_in_review_wrapped",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_16_wrapped_pages_og",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L700",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3b_streaming_availability_alerts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L719",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3b_streaming_availability_alerts",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_17_provider_snapshot_diff_job",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L721",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3b_streaming_availability_alerts",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_18_settings_toggle_watchlist_pill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L740",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3c_motion_polish_pass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L759",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_3c_motion_polish_pass",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_19_apply_transitions_dev_to_new_surfaces",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L761",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_4_catalogue_stat_list_polish",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L778",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_4_catalogue_stat_list_polish",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_20_catalogue_stat_line",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L780",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_wave_4_catalogue_stat_list_polish",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_task_21_list_discovery_polish_pillars_4_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L794",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_spec_coverage_checklist_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L813",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_suggested_execution_order_single_executor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L835",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_13_letterboxd_pillars_roadmap_letterboxd_pillars_roadmap_implementation_plan",
+			"target": "plans_2026_06_13_letterboxd_pillars_roadmap_human_verification_milestones",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-13-letterboxd-pillars-roadmap.md",
+			"source_location": "L850",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

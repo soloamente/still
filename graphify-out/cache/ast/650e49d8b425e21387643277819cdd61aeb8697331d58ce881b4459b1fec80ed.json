@@ -1,0 +1,66 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_scheduler_ts",
+			"label": "presence-heartbeat-scheduler.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-scheduler.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_presence_heartbeat_scheduler_presenceheartbeatposter",
+			"label": "PresenceHeartbeatPoster",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-scheduler.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_presence_heartbeat_scheduler_createpresenceheartbeatscheduler",
+			"label": "createPresenceHeartbeatScheduler()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-scheduler.ts",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_scheduler_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_activity_tracker_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-scheduler.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_scheduler_ts",
+			"target": "lib_patron_activity_tracker_patronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-scheduler.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_scheduler_ts",
+			"target": "lib_presence_heartbeat_scheduler_presenceheartbeatposter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-scheduler.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_scheduler_ts",
+			"target": "lib_presence_heartbeat_scheduler_createpresenceheartbeatscheduler",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\presence-heartbeat-scheduler.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

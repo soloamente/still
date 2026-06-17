@@ -1,0 +1,495 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_14_onboarding_wizard_design_md",
+			"label": "2026-06-14-onboarding-wizard-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"label": "Sense \u2014 Animated onboarding wizard design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_brainstorm_decisions_locked",
+			"label": "Brainstorm decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_goals",
+			"label": "Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_non_goals_v1",
+			"label": "Non-goals (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_1_flow_gates_sign_up",
+			"label": "1. Flow, gates & sign-up",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_entry_routes",
+			"label": "Entry routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_sign_up_change",
+			"label": "Sign-up change",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_wizard_steps",
+			"label": "Wizard steps",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_maybe_later",
+			"label": "\u201cMaybe later\u201d",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L76"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_email_verification_gate",
+			"label": "Email verification gate",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_quick_rate_rules",
+			"label": "Quick-rate rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_2_layout_motion_live_preview",
+			"label": "2. Layout, motion & live preview",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_page_shell",
+			"label": "Page shell",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_motion_track_b_6",
+			"label": "Motion (Track B.6)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_live_preview_panel",
+			"label": "Live preview panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_taste_step_layout",
+			"label": "Taste step layout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L148"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_component_files",
+			"label": "Component files",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L155"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_codeblock_1",
+			"label": "code:block1 (apps/web/src/components/onboarding/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_3_data_flow_api_finish_behavior",
+			"label": "3. Data flow, API & finish behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L179"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_client_state",
+			"label": "Client state",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_codeblock_2",
+			"label": "code:ts (type WizardStep =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L183"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_server_touchpoints",
+			"label": "Server touchpoints",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L199"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_finish_sequence_favorites_done",
+			"label": "Finish sequence (favorites \u2192 done)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L211"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_codeblock_3",
+			"label": "code:ts (POST /api/logs {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L215"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L231"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_4_migration_cleanup",
+			"label": "4. Migration & cleanup",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L243"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_5_testing",
+			"label": "5. Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L259"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_6_success_criteria",
+			"label": "6. Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L279"
+		},
+		{
+			"id": "specs_2026_06_14_onboarding_wizard_design_7_open_follow_ups_post_v1",
+			"label": "7. Open follow-ups (post-v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L293"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_14_onboarding_wizard_design_md",
+			"target": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_brainstorm_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_non_goals_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_1_flow_gates_sign_up",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_1_flow_gates_sign_up",
+			"target": "specs_2026_06_14_onboarding_wizard_design_entry_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_1_flow_gates_sign_up",
+			"target": "specs_2026_06_14_onboarding_wizard_design_sign_up_change",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_1_flow_gates_sign_up",
+			"target": "specs_2026_06_14_onboarding_wizard_design_wizard_steps",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_1_flow_gates_sign_up",
+			"target": "specs_2026_06_14_onboarding_wizard_design_maybe_later",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_1_flow_gates_sign_up",
+			"target": "specs_2026_06_14_onboarding_wizard_design_email_verification_gate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_1_flow_gates_sign_up",
+			"target": "specs_2026_06_14_onboarding_wizard_design_quick_rate_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_2_layout_motion_live_preview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_2_layout_motion_live_preview",
+			"target": "specs_2026_06_14_onboarding_wizard_design_page_shell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_2_layout_motion_live_preview",
+			"target": "specs_2026_06_14_onboarding_wizard_design_motion_track_b_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_2_layout_motion_live_preview",
+			"target": "specs_2026_06_14_onboarding_wizard_design_live_preview_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_2_layout_motion_live_preview",
+			"target": "specs_2026_06_14_onboarding_wizard_design_taste_step_layout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L148",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_2_layout_motion_live_preview",
+			"target": "specs_2026_06_14_onboarding_wizard_design_component_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L155",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_component_files",
+			"target": "specs_2026_06_14_onboarding_wizard_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_3_data_flow_api_finish_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L179",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_3_data_flow_api_finish_behavior",
+			"target": "specs_2026_06_14_onboarding_wizard_design_client_state",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_client_state",
+			"target": "specs_2026_06_14_onboarding_wizard_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L183",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_3_data_flow_api_finish_behavior",
+			"target": "specs_2026_06_14_onboarding_wizard_design_server_touchpoints",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L199",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_3_data_flow_api_finish_behavior",
+			"target": "specs_2026_06_14_onboarding_wizard_design_finish_sequence_favorites_done",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L211",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_finish_sequence_favorites_done",
+			"target": "specs_2026_06_14_onboarding_wizard_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_3_data_flow_api_finish_behavior",
+			"target": "specs_2026_06_14_onboarding_wizard_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L231",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_4_migration_cleanup",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_5_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_6_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L279",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_14_onboarding_wizard_design_sense_animated_onboarding_wizard_design",
+			"target": "specs_2026_06_14_onboarding_wizard_design_7_open_follow_ups_post_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-14-onboarding-wizard-design.md",
+			"source_location": "L293",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,95 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_notifications_inbox_realtime_subscriber_tsx",
+			"label": "inbox-realtime-subscriber.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "notifications_inbox_realtime_subscriber_inboxrealtimesubscriber",
+			"label": "InboxRealtimeSubscriber()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_inbox_realtime_subscriber_tsx",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_inbox_realtime_subscriber_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_realtime_subscription_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_inbox_realtime_subscriber_tsx",
+			"target": "hooks_use_realtime_subscription_userealtimesubscription",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_inbox_realtime_subscriber_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_notifications_inbox_live_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_inbox_realtime_subscriber_tsx",
+			"target": "lib_notifications_inbox_live_emitnotificationsinboxlive",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_notifications_inbox_realtime_subscriber_tsx",
+			"target": "notifications_inbox_realtime_subscriber_inboxrealtimesubscriber",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "notifications_inbox_realtime_subscriber_inboxrealtimesubscriber",
+			"callee": "useRealtimeSubscription",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "notifications_inbox_realtime_subscriber_inboxrealtimesubscriber",
+			"callee": "userInboxRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\notifications\\inbox-realtime-subscriber.tsx",
+			"source_location": "L13"
+		}
+	]
+}

@@ -1,0 +1,188 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"label": "realtime-dev-bus.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_realtime_dev_bus_devbuslistener",
+			"label": "DevBusListener",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_realtime_dev_bus_devbus",
+			"label": "DevBus",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_realtime_dev_bus_globalfordevbus",
+			"label": "globalForDevBus",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_realtime_dev_bus_getdevbus",
+			"label": "getDevBus()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_realtime_dev_bus_emitrealtimedevbusevent",
+			"label": "emitRealtimeDevBusEvent()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L40"
+		},
+		{
+			"id": "lib_realtime_dev_bus_subscriberealtimedevbus",
+			"label": "subscribeRealtimeDevBus()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L48"
+		},
+		{
+			"id": "lib_realtime_dev_bus_shoulduserealtimedevbus",
+			"label": "shouldUseRealtimeDevBus()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L53"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "server_only",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "lib_realtime_dev_bus_devbuslistener",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "lib_realtime_dev_bus_devbus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "lib_realtime_dev_bus_globalfordevbus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "lib_realtime_dev_bus_getdevbus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "lib_realtime_dev_bus_emitrealtimedevbusevent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "lib_realtime_dev_bus_subscriberealtimedevbus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_realtime_dev_bus_ts",
+			"target": "lib_realtime_dev_bus_shoulduserealtimedevbus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_dev_bus_emitrealtimedevbusevent",
+			"target": "lib_realtime_dev_bus_getdevbus",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_dev_bus_subscriberealtimedevbus",
+			"target": "lib_realtime_dev_bus_getdevbus",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_realtime_dev_bus_emitrealtimedevbusevent",
+			"callee": "emit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_realtime_dev_bus_subscriberealtimedevbus",
+			"callee": "subscribe",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_realtime_dev_bus_shoulduserealtimedevbus",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\realtime-dev-bus.ts",
+			"source_location": "L56"
+		}
+	]
+}

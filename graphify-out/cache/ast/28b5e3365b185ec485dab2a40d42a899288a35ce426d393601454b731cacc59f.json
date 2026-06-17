@@ -1,0 +1,314 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"label": "realtime-root-provider.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "realtime_realtime_root_provider_realtimelistener",
+			"label": "RealtimeListener",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "realtime_realtime_root_provider_realtimecontextvalue",
+			"label": "RealtimeContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L26"
+		},
+		{
+			"id": "realtime_realtime_root_provider_realtimeroomsregistrationcontextvalue",
+			"label": "RealtimeRoomsRegistrationContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L34"
+		},
+		{
+			"id": "realtime_realtime_root_provider_realtimecontext",
+			"label": "RealtimeContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L38"
+		},
+		{
+			"id": "realtime_realtime_root_provider_realtimeroomsregistrationcontext",
+			"label": "RealtimeRoomsRegistrationContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L40"
+		},
+		{
+			"id": "realtime_realtime_root_provider_realtimeclientenabled",
+			"label": "realtimeClientEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L43"
+		},
+		{
+			"id": "realtime_realtime_root_provider_buildrealtimestreamurl",
+			"label": "buildRealtimeStreamUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L48"
+		},
+		{
+			"id": "realtime_realtime_root_provider_useregisterrealtimeroom",
+			"label": "useRegisterRealtimeRoom()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L54"
+		},
+		{
+			"id": "realtime_realtime_root_provider_realtimerootprovider",
+			"label": "RealtimeRootProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L67"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_realtime_sse_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "lib_realtime_sse_parserealtimessemessage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_realtimelistener",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_realtimecontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_realtimeroomsregistrationcontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_realtimecontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_realtimeroomsregistrationcontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_realtimeclientenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_buildrealtimestreamurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_useregisterrealtimeroom",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"target": "realtime_realtime_root_provider_realtimerootprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L67",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "realtime_realtime_root_provider_buildrealtimestreamurl",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_buildrealtimestreamurl",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_useregisterrealtimeroom",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_useregisterrealtimeroom",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L81"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L182"
+		},
+		{
+			"caller_nid": "realtime_realtime_root_provider_realtimerootprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\realtime-root-provider.tsx",
+			"source_location": "L187"
+		}
+	]
+}

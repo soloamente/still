@@ -1,0 +1,211 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"label": "use-listing-engagement-counts.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"label": "normalizeEngagementCounts()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "hooks_use_listing_engagement_counts_uselistingengagementcounts",
+			"label": "useListingEngagementCounts()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L27"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_chips_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "movie_movie_detail_engagement_chips_listingengagementcounts",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_engagement_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "lib_fetch_listing_engagement_fetchlistingengagementsummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_invalidate_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "lib_listing_engagement_invalidate_listing_engagement_invalidate_event",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "lib_listing_engagement_invalidate_listingengagementinvalidatedetail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_engagement_counts_ts",
+			"target": "hooks_use_listing_engagement_counts_uselistingengagementcounts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_normalizeengagementcounts",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_uselistingengagementcounts",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_uselistingengagementcounts",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_uselistingengagementcounts",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "hooks_use_listing_engagement_counts_uselistingengagementcounts",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\hooks\\use-listing-engagement-counts.ts",
+			"source_location": "L53"
+		}
+	]
+}

@@ -1,0 +1,158 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"label": "patron-members-ledger-order-chips.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_patron_members_ledger_order_chips_order_chips",
+			"label": "ORDER_CHIPS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L13"
+		},
+		{
+			"id": "home_patron_members_ledger_order_chips_patronmembersledgerorderchips",
+			"label": "PatronMembersLedgerOrderChips()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L37"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_members_leaderboard_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "lib_members_leaderboard_types_membersleaderboardsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_members_ledger_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "lib_patron_members_ledger_order_default_patron_members_ledger_order",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "lib_patron_members_ledger_order_patronmembersledgerorder",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "lib_patron_members_ledger_order_patronmembersledgerorderlabels",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "home_patron_members_ledger_order_chips_order_chips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_order_chips_tsx",
+			"target": "home_patron_members_ledger_order_chips_patronmembersledgerorderchips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_patron_members_ledger_order_chips_patronmembersledgerorderchips",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "home_patron_members_ledger_order_chips_patronmembersledgerorderchips",
+			"callee": "patronMembersLedgerOrderLabels",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "home_patron_members_ledger_order_chips_patronmembersledgerorderchips",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\patron-members-ledger-order-chips.tsx",
+			"source_location": "L78"
+		}
+	]
+}

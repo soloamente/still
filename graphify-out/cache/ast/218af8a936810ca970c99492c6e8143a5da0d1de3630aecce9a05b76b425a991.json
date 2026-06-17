@@ -1,0 +1,62 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_onboarding_types_ts",
+			"label": "onboarding-types.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_onboarding_types_wizardstep",
+			"label": "WizardStep",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-types.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_onboarding_types_wizardskipmode",
+			"label": "WizardSkipMode",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-types.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_onboarding_types_onboardingmovie",
+			"label": "OnboardingMovie",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-types.ts",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_types_ts",
+			"target": "lib_onboarding_types_wizardstep",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-types.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_types_ts",
+			"target": "lib_onboarding_types_wizardskipmode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-types.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_onboarding_types_ts",
+			"target": "lib_onboarding_types_onboardingmovie",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\onboarding-types.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

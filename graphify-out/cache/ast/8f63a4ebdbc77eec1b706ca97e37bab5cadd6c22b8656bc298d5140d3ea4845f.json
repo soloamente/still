@@ -1,0 +1,82 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_drawer_copy_ts",
+			"label": "listing-engagement-drawer-copy.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_engagement_drawer_copy_listingengagementdrawertitle",
+			"label": "listingEngagementDrawerTitle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_listing_engagement_drawer_copy_listingengagementdrawerdescription",
+			"label": "listingEngagementDrawerDescription()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_listing_engagement_drawer_copy_listingengagementdraweremptycopy",
+			"label": "listingEngagementDrawerEmptyCopy()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L44"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_drawer_copy_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_chip_copy_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_drawer_copy_ts",
+			"target": "lib_listing_engagement_chip_copy_listingengagementchipkind",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_drawer_copy_ts",
+			"target": "lib_listing_engagement_drawer_copy_listingengagementdrawertitle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_drawer_copy_ts",
+			"target": "lib_listing_engagement_drawer_copy_listingengagementdrawerdescription",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_listing_engagement_drawer_copy_ts",
+			"target": "lib_listing_engagement_drawer_copy_listingengagementdraweremptycopy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\listing-engagement-drawer-copy.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,75 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_journal_journal_read_tracker_tsx",
+			"label": "journal-read-tracker.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-read-tracker.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "journal_journal_read_tracker_journalreadtracker",
+			"label": "JournalReadTracker()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-read-tracker.tsx",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_journal_journal_read_tracker_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-read-tracker.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_journal_journal_read_tracker_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-read-tracker.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_journal_journal_read_tracker_tsx",
+			"target": "lib_sense_product_analytics_tracksenseproductevent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-read-tracker.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_journal_journal_read_tracker_tsx",
+			"target": "journal_journal_read_tracker_journalreadtracker",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-read-tracker.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "journal_journal_read_tracker_journalreadtracker",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-read-tracker.tsx",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "journal_journal_read_tracker_journalreadtracker",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\journal\\journal-read-tracker.tsx",
+			"source_location": "L19"
+		}
+	]
+}

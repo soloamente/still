@@ -1,0 +1,63 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_16_notifications_inbox_realtime_md",
+			"label": "2026-06-16-notifications-inbox-realtime.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-notifications-inbox-realtime.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_16_notifications_inbox_realtime_global_notifications_inbox_realtime_badge_implementation_plan",
+			"label": "Global Notifications Inbox (Realtime Badge) Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-notifications-inbox-realtime.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_16_notifications_inbox_realtime_status_shipped_2026_06_16",
+			"label": "Status: Shipped (2026-06-16)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-notifications-inbox-realtime.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_16_notifications_inbox_realtime_env_checklist",
+			"label": "Env checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-notifications-inbox-realtime.md",
+			"source_location": "L26"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_16_notifications_inbox_realtime_md",
+			"target": "plans_2026_06_16_notifications_inbox_realtime_global_notifications_inbox_realtime_badge_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-notifications-inbox-realtime.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_notifications_inbox_realtime_global_notifications_inbox_realtime_badge_implementation_plan",
+			"target": "plans_2026_06_16_notifications_inbox_realtime_status_shipped_2026_06_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-notifications-inbox-realtime.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_notifications_inbox_realtime_global_notifications_inbox_realtime_badge_implementation_plan",
+			"target": "plans_2026_06_16_notifications_inbox_realtime_env_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-notifications-inbox-realtime.md",
+			"source_location": "L26",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

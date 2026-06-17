@@ -1,0 +1,159 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_16_listing_presence_md",
+			"label": "2026-06-16-listing-presence.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"label": "Listing Presence (Movie / TV Detail) Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_conventions",
+			"label": "Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_task_1_event_type_redis_helpers",
+			"label": "Task 1: Event type + Redis helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L26"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_task_2_mutual_follow_snapshot_query",
+			"label": "Task 2: Mutual-follow snapshot query",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_task_3_elysia_routes",
+			"label": "Task 3: Elysia routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_task_4_web_fetch_hook",
+			"label": "Task 4: Web fetch + hook",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_task_5_ui_row_page_wiring",
+			"label": "Task 5: UI row + page wiring",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_task_6_verification_docs",
+			"label": "Task 6: Verification + docs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "plans_2026_06_16_listing_presence_manual_qa_checklist",
+			"label": "Manual QA checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L120"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_16_listing_presence_md",
+			"target": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_presence_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_presence_task_1_event_type_redis_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_presence_task_2_mutual_follow_snapshot_query",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_presence_task_3_elysia_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_presence_task_4_web_fetch_hook",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_presence_task_5_ui_row_page_wiring",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_presence_task_6_verification_docs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_16_listing_presence_listing_presence_movie_tv_detail_implementation_plan",
+			"target": "plans_2026_06_16_listing_presence_manual_qa_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-16-listing-presence.md",
+			"source_location": "L120",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

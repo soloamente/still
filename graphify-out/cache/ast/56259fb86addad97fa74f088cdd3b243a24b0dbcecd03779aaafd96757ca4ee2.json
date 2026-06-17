@@ -1,0 +1,161 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"label": "profile-media.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_media_isanimatedgifupload",
+			"label": "isAnimatedGifUpload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_profile_media_assertprofileportraituploadallowed",
+			"label": "assertProfilePortraitUploadAllowed()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_profile_media_inferanimatedfromprofileurl",
+			"label": "inferAnimatedFromProfileUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "lib_profile_media_resolvepatronavatarisanimated",
+			"label": "resolvePatronAvatarIsAnimated()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L43"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_preferences_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"target": "lib_profile_preferences_readavatarisanimatedpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"target": "lib_profile_media_isanimatedgifupload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"target": "lib_profile_media_assertprofileportraituploadallowed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"target": "lib_profile_media_inferanimatedfromprofileurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"target": "lib_profile_media_resolvepatronavatarisanimated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_media_assertprofileportraituploadallowed",
+			"target": "lib_profile_media_isanimatedgifupload",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_media_resolvepatronavatarisanimated",
+			"target": "lib_profile_media_inferanimatedfromprofileurl",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_media_isanimatedgifupload",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_profile_media_isanimatedgifupload",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_profile_media_isanimatedgifupload",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_profile_media_inferanimatedfromprofileurl",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_profile_media_inferanimatedfromprofileurl",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_profile_media_resolvepatronavatarisanimated",
+			"callee": "readAvatarIsAnimatedPref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-media.ts",
+			"source_location": "L49"
+		}
+	]
+}

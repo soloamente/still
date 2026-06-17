@@ -1,0 +1,80 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_moviequotes_slug_ts",
+			"label": "moviequotes-slug.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_moviequotes_slug_titletomoviequotesslug",
+			"label": "titleToMovieQuotesSlug()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L7"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_moviequotes_slug_ts",
+			"target": "lib_moviequotes_slug_titletomoviequotesslug",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_moviequotes_slug_titletomoviequotesslug",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_moviequotes_slug_titletomoviequotesslug",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_moviequotes_slug_titletomoviequotesslug",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_moviequotes_slug_titletomoviequotesslug",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_moviequotes_slug_titletomoviequotesslug",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_moviequotes_slug_titletomoviequotesslug",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "lib_moviequotes_slug_titletomoviequotesslug",
+			"callee": "normalize",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\moviequotes-slug.ts",
+			"source_location": "L8"
+		}
+	]
+}

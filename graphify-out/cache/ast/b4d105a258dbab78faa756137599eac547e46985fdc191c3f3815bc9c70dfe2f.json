@@ -1,0 +1,55 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_avatar_group_hover_ts",
+			"label": "use-avatar-group-hover.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-avatar-group-hover.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_avatar_group_hover_useavatargrouphover",
+			"label": "useAvatarGroupHover()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-avatar-group-hover.ts",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_avatar_group_hover_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-avatar-group-hover.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_avatar_group_hover_ts",
+			"target": "lib_use_avatar_group_hover_useavatargrouphover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-avatar-group-hover.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_avatar_group_hover_useavatargrouphover",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-avatar-group-hover.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "lib_use_avatar_group_hover_useavatargrouphover",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-avatar-group-hover.ts",
+			"source_location": "L51"
+		}
+	]
+}

@@ -1,0 +1,324 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"label": "profile-showcase.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_showcase_showcaseitem",
+			"label": "ShowcaseItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_profile_showcase_profileshowcasetile",
+			"label": "ProfileShowcaseTile",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_profile_showcase_profileshowcaseresolved",
+			"label": "ProfileShowcaseResolved",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_profile_showcase_showcasefilledcount",
+			"label": "showcaseFilledCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_profile_showcase_showcaseitemkey",
+			"label": "showcaseItemKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L34"
+		},
+		{
+			"id": "lib_profile_showcase_parseprofileshowcaseresolved",
+			"label": "parseProfileShowcaseResolved()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "lib_profile_showcase_tilestoshowcaseitems",
+			"label": "tilesToShowcaseItems()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L74"
+		},
+		{
+			"id": "lib_profile_showcase_parseshowcaseitemsfromprofile",
+			"label": "parseShowcaseItemsFromProfile()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L86"
+		},
+		{
+			"id": "lib_profile_showcase_isshowcaseitempresent",
+			"label": "isShowcaseItemPresent()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L106"
+		},
+		{
+			"id": "lib_profile_showcase_appendshowcaseitem",
+			"label": "appendShowcaseItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L115"
+		},
+		{
+			"id": "lib_profile_showcase_showcaseposterurl",
+			"label": "showcasePosterUrl()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L129"
+		},
+		{
+			"id": "lib_profile_showcase_showcaselistinghref",
+			"label": "showcaseListingHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L134"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_filmography_map_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_filmography_map_profileposterurlfrompath",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_showcaseitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_profileshowcasetile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_profileshowcaseresolved",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_showcasefilledcount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_showcaseitemkey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_parseprofileshowcaseresolved",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_tilestoshowcaseitems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_parseshowcaseitemsfromprofile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_isshowcaseitempresent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_appendshowcaseitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_showcaseposterurl",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_showcaselistinghref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_isshowcaseitempresent",
+			"target": "lib_profile_showcase_showcaseitemkey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L110",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_appendshowcaseitem",
+			"target": "lib_profile_showcase_isshowcaseitempresent",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L122",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_showcase_parseprofileshowcaseresolved",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseprofileshowcaseresolved",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseprofileshowcaseresolved",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_tilestoshowcaseitems",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitemsfromprofile",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L87"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitemsfromprofile",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitemsfromprofile",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitemsfromprofile",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitemsfromprofile",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_isshowcaseitempresent",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_showcaseposterurl",
+			"callee": "profilePosterUrlFromPath",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase.ts",
+			"source_location": "L130"
+		}
+	]
+}

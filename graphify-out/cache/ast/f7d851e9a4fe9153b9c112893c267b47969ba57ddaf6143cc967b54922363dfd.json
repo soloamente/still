@@ -1,0 +1,591 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_14_onboarding_wizard_md",
+			"label": "2026-06-14-onboarding-wizard.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_animated_onboarding_wizard_implementation_plan",
+			"label": "Animated Onboarding Wizard Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_1_dependencies_shared_types",
+			"label": "Task 1: Dependencies + shared types",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_1",
+			"label": "code:bash (cd apps/web && bun add react-use-measure)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_2",
+			"label": "code:ts (/** Wizard steps for Sense onboarding v3. */)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L69"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_2_handle_validation_helpers_tdd",
+			"label": "Task 2: Handle validation helpers (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_3",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_4",
+			"label": "code:bash (cd apps/web && bun test src/lib/onboarding-handle-validation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_5",
+			"label": "code:ts (/** Mirror `apps/server/src/lib/handle-re.ts` for client val)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_6",
+			"label": "code:bash (cd apps/web && bun test src/lib/onboarding-handle-validation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_3_taste_state_helpers_tdd",
+			"label": "Task 3: Taste state helpers (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_7",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L200"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_8",
+			"label": "code:bash (cd apps/web && bun test src/lib/onboarding-taste-state.test.)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L248"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_9",
+			"label": "code:ts (import { ONBOARDING_TASTE_MIN_RATED } from \"./onboarding-typ)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L256"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_10",
+			"label": "code:bash (cd apps/web && bun test src/lib/onboarding-taste-state.test.)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L284"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_4_finish_orchestration_tdd",
+			"label": "Task 4: Finish orchestration (TDD)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L290"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_11",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L300"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_12",
+			"label": "code:bash (cd apps/web && bun test src/lib/onboarding-finish.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L343"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_13",
+			"label": "code:ts (import type { OnboardingMovie } from \"./onboarding-types\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L351"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_14",
+			"label": "code:ts (uploadAvatar: (file) => uploadProfileMeAsset(\"/api/profiles/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L408"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_15",
+			"label": "code:bash (cd apps/web && bun test src/lib/onboarding-finish.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L417"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_16",
+			"label": "code:bash (cd apps/web && bun test src/lib/onboarding-handle-validation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L423"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_5_slim_sign_up_form",
+			"label": "Task 5: Slim sign-up form",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L431"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_17",
+			"label": "code:bash (cd apps/web && bun run build)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L450"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_6_motion_shell_letter_reveal_layout",
+			"label": "Task 6: Motion shell + letter reveal + layout",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L458"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_18",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L473"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_7_live_preview_panel",
+			"label": "Task 7: Live preview panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L542"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_19",
+			"label": "code:ts (type OnboardingPreviewPanelProps = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L551"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_8_step_components",
+			"label": "Task 8: Step components",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L579"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_9_wizard_state_machine",
+			"label": "Task 9: Wizard state machine",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L622"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_20",
+			"label": "code:ts (export function OnboardingWizard({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L631"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_21",
+			"label": "code:bash (cd apps/web && bun run build)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L673"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_task_10_verification_manual_qa",
+			"label": "Task 10: Verification + manual QA",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L681"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_codeblock_22",
+			"label": "code:bash (cd apps/web && bun test src/lib/onboarding-handle-validation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L687"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_spec_coverage_self_review",
+			"label": "Spec coverage self-review",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L707"
+		},
+		{
+			"id": "plans_2026_06_14_onboarding_wizard_execution_handoff",
+			"label": "Execution handoff",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L726"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_14_onboarding_wizard_md",
+			"target": "plans_2026_06_14_onboarding_wizard_animated_onboarding_wizard_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_animated_onboarding_wizard_implementation_plan",
+			"target": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_1_dependencies_shared_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_1_dependencies_shared_types",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_1_dependencies_shared_types",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_2_handle_validation_helpers_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_2_handle_validation_helpers_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_2_handle_validation_helpers_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_2_handle_validation_helpers_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_2_handle_validation_helpers_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_3_taste_state_helpers_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_3_taste_state_helpers_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_3_taste_state_helpers_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L248",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_3_taste_state_helpers_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_3_taste_state_helpers_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L284",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_4_finish_orchestration_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L290",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_4_finish_orchestration_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_4_finish_orchestration_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L343",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_4_finish_orchestration_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L351",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_4_finish_orchestration_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L408",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_4_finish_orchestration_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L417",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_4_finish_orchestration_tdd",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L423",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_5_slim_sign_up_form",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L431",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_5_slim_sign_up_form",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L450",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_6_motion_shell_letter_reveal_layout",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L458",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_6_motion_shell_letter_reveal_layout",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L473",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_7_live_preview_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L542",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_7_live_preview_panel",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L551",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_8_step_components",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L579",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_9_wizard_state_machine",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L622",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_9_wizard_state_machine",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L631",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_9_wizard_state_machine",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L673",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_file_structure",
+			"target": "plans_2026_06_14_onboarding_wizard_task_10_verification_manual_qa",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L681",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_task_10_verification_manual_qa",
+			"target": "plans_2026_06_14_onboarding_wizard_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L687",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_animated_onboarding_wizard_implementation_plan",
+			"target": "plans_2026_06_14_onboarding_wizard_spec_coverage_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L707",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_14_onboarding_wizard_animated_onboarding_wizard_implementation_plan",
+			"target": "plans_2026_06_14_onboarding_wizard_execution_handoff",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-14-onboarding-wizard.md",
+			"source_location": "L726",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,45 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_vaul_drawer_heal_ts",
+			"label": "vaul-drawer-heal.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\vaul-drawer-heal.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_vaul_drawer_heal_healstuckvaulpointereventslock",
+			"label": "healStuckVaulPointerEventsLock()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\vaul-drawer-heal.ts",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_vaul_drawer_heal_ts",
+			"target": "lib_vaul_drawer_heal_healstuckvaulpointereventslock",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\vaul-drawer-heal.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_vaul_drawer_heal_healstuckvaulpointereventslock",
+			"callee": "querySelectorAll",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\vaul-drawer-heal.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_vaul_drawer_heal_healstuckvaulpointereventslock",
+			"callee": "removeProperty",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\vaul-drawer-heal.ts",
+			"source_location": "L7"
+		}
+	]
+}

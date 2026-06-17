@@ -1,0 +1,831 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_15_liveblocks_realtime_md",
+			"label": "2026-06-15-liveblocks-realtime.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"label": "Liveblocks Realtime Layer Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_conventions",
+			"label": "Conventions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_file_structure",
+			"label": "File structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L31"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_create",
+			"label": "Create",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_modify",
+			"label": "Modify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_wave_0_foundation",
+			"label": "Wave 0 \u2014 Foundation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_1_still_liveblocks_package_room_ids_event_types",
+			"label": "Task 1: `@still/liveblocks` package (room IDs + event types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L85"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_1",
+			"label": "code:ts (// packages/liveblocks/src/room-ids.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_2",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_3",
+			"label": "code:ts (export function listingMovieRoomId(tmdbId: number | string):)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L146"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_4",
+			"label": "code:ts (import { z } from \"zod\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L184"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_2_environment_variables_dependencies",
+			"label": "Task 2: Environment variables + dependencies",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L229"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_5",
+			"label": "code:ts (LIVEBLOCKS_SECRET_KEY: optionalNonEmptyString(),)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L239"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_6",
+			"label": "code:ts (NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY: z.string().min(1).optiona)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L245"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_7",
+			"label": "code:bash (bun add @liveblocks/node --filter server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L255"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_8",
+			"label": "code:block8 (LIVEBLOCKS_SECRET_KEY=sk_dev_...)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L271"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_3_server_broadcast_helper",
+			"label": "Task 3: Server broadcast helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L278"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_9",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L286"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_10",
+			"label": "code:ts (import { Liveblocks } from \"@liveblocks/node\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L299"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_4_liveblocks_auth_api_route",
+			"label": "Task 4: Liveblocks auth API route",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L337"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_11",
+			"label": "code:ts (import { Liveblocks } from \"@liveblocks/node\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L365"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_5_liveblocksrootprovider_in_app_shell",
+			"label": "Task 5: `LiveblocksRootProvider` in app shell",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L407"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_12",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L416"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_13",
+			"label": "code:tsx (<LiveblocksRootProvider enabled={Boolean(session)}>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L447"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_6_product_event_kinds",
+			"label": "Task 6: Product event kinds",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L461"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_14",
+			"label": "code:ts (\"realtime.presence.join\",)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L468"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_15",
+			"label": "code:ts (\"realtime.presence.join\",)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L479"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_wave_1_liveness_title_detail_presence",
+			"label": "Wave 1 \u2014 Liveness (title detail presence)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L492"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_7_listing_presence_row_movie_tv",
+			"label": "Task 7: Listing presence row (movie + TV)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L494"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_16",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L502"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_17",
+			"label": "code:tsx (<ListingPresenceRoom listingKind=\"movie\" listingId={id}>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L537"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_wave_1_co_creation_collaborative_lists",
+			"label": "Wave 1 \u2014 Co-creation (collaborative lists)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L551"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_8_list_collab_room_livelist_flush",
+			"label": "Task 8: List collab room + LiveList flush",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L553"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_18",
+			"label": "code:ts (type Storage = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L563"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_19",
+			"label": "code:tsx (<ListCollabRoom listId={id} canEdit={canReorder} initialItem)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L593"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_wave_1_instant_feedback_hybrid_broadcast",
+			"label": "Wave 1 \u2014 Instant feedback (hybrid broadcast)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L610"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_9_server_broadcasts_after_writes",
+			"label": "Task 9: Server broadcasts after writes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L612"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_20",
+			"label": "code:ts (import { reviewRoomId } from \"@still/liveblocks\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L623"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_21",
+			"label": "code:ts (void broadcastRealtimeEvent(reviewRoomId(params.id), {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L640"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_22",
+			"label": "code:ts (import { userInboxRoomId } from \"@still/liveblocks\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L652"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_10_review_reader_live_updates",
+			"label": "Task 10: Review reader live updates",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L668"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_23",
+			"label": "code:ts (useEventListener(({ event }) => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L678"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_11_notification_bell_live_inbox",
+			"label": "Task 11: Notification bell live inbox",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L702"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_24",
+			"label": "code:ts (const liveblocksConnected = useLiveblocksConnection();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L718"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_wave_1_verification",
+			"label": "Wave 1 \u2014 Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L736"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_task_12_automated_manual_verification",
+			"label": "Task 12: Automated + manual verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L738"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_25",
+			"label": "code:bash (bun test packages/liveblocks/src)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L742"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_26",
+			"label": "code:bash (bun run check-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L751"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_codeblock_27",
+			"label": "code:bash (bun run build --filter=web)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L757"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_wave_2_preview_separate_plan_do_not_start_until_wave_1_shipped",
+			"label": "Wave 2 preview (separate plan \u2014 do not start until Wave 1 shipped)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L781"
+		},
+		{
+			"id": "plans_2026_06_15_liveblocks_realtime_plan_self_review",
+			"label": "Plan self-review",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L793"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_15_liveblocks_realtime_md",
+			"target": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_file_structure",
+			"target": "plans_2026_06_15_liveblocks_realtime_create",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_file_structure",
+			"target": "plans_2026_06_15_liveblocks_realtime_modify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_wave_0_foundation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_0_foundation",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_1_still_liveblocks_package_room_ids_event_types",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L85",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_1_still_liveblocks_package_room_ids_event_types",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_1_still_liveblocks_package_room_ids_event_types",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_1_still_liveblocks_package_room_ids_event_types",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L146",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_1_still_liveblocks_package_room_ids_event_types",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L184",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_0_foundation",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_2_environment_variables_dependencies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L229",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_2_environment_variables_dependencies",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L239",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_2_environment_variables_dependencies",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L245",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_2_environment_variables_dependencies",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L255",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_2_environment_variables_dependencies",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L271",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_0_foundation",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_3_server_broadcast_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L278",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_3_server_broadcast_helper",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L286",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_3_server_broadcast_helper",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L299",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_0_foundation",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_4_liveblocks_auth_api_route",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L337",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_4_liveblocks_auth_api_route",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L365",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_0_foundation",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_5_liveblocksrootprovider_in_app_shell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L407",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_5_liveblocksrootprovider_in_app_shell",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L416",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_5_liveblocksrootprovider_in_app_shell",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L447",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_0_foundation",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_6_product_event_kinds",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L461",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_6_product_event_kinds",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L468",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_6_product_event_kinds",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L479",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_wave_1_liveness_title_detail_presence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L492",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_1_liveness_title_detail_presence",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_7_listing_presence_row_movie_tv",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L494",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_7_listing_presence_row_movie_tv",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L502",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_7_listing_presence_row_movie_tv",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L537",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_wave_1_co_creation_collaborative_lists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L551",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_1_co_creation_collaborative_lists",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_8_list_collab_room_livelist_flush",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L553",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_8_list_collab_room_livelist_flush",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L563",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_8_list_collab_room_livelist_flush",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L593",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_wave_1_instant_feedback_hybrid_broadcast",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L610",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_1_instant_feedback_hybrid_broadcast",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_9_server_broadcasts_after_writes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L612",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_9_server_broadcasts_after_writes",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L623",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_9_server_broadcasts_after_writes",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L640",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_9_server_broadcasts_after_writes",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L652",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_1_instant_feedback_hybrid_broadcast",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_10_review_reader_live_updates",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L668",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_10_review_reader_live_updates",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L678",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_1_instant_feedback_hybrid_broadcast",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_11_notification_bell_live_inbox",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L702",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_11_notification_bell_live_inbox",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L718",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_wave_1_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L736",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_wave_1_verification",
+			"target": "plans_2026_06_15_liveblocks_realtime_task_12_automated_manual_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L738",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_12_automated_manual_verification",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L742",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_12_automated_manual_verification",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L751",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_task_12_automated_manual_verification",
+			"target": "plans_2026_06_15_liveblocks_realtime_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L757",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_wave_2_preview_separate_plan_do_not_start_until_wave_1_shipped",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L781",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_15_liveblocks_realtime_liveblocks_realtime_layer_implementation_plan",
+			"target": "plans_2026_06_15_liveblocks_realtime_plan_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-15-liveblocks-realtime.md",
+			"source_location": "L793",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

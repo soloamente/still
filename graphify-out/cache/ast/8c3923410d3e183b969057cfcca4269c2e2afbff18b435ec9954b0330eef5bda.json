@@ -1,0 +1,105 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"label": "sense-product-analytics.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_sense_product_analytics_senseclientproducteventkind",
+			"label": "SenseClientProductEventKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_sense_product_analytics_tracksenseproductevent",
+			"label": "trackSenseProductEvent()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"target": "web",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_product_event_kinds_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"target": "lib_product_event_kinds_clientproducteventkind",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"target": "lib_sense_product_analytics_senseclientproducteventkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"target": "lib_sense_product_analytics_tracksenseproductevent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_sense_product_analytics_tracksenseproductevent",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_sense_product_analytics_tracksenseproductevent",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_sense_product_analytics_tracksenseproductevent",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_sense_product_analytics_tracksenseproductevent",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\sense-product-analytics.ts",
+			"source_location": "L22"
+		}
+	]
+}

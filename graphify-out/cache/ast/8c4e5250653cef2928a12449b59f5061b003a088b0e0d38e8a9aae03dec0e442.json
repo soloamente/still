@@ -1,0 +1,309 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"label": "quick-log-celebration-strip.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "log_quick_log_celebration_strip_splitratinglabeldigits",
+			"label": "splitRatingLabelDigits()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L12"
+		},
+		{
+			"id": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"label": "readDigitPopInDurationMs()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L25"
+		},
+		{
+			"id": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"label": "QuickLogCelebrationStrip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L37"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "components_button_button",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "lib_log_rating_formatlogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "lib_log_rating_logratingtodisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_sense_product_analytics_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "lib_sense_product_analytics_tracksenseproductevent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_sheet_chrome_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "lib_sheet_chrome_sheet_primary_pill_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "log_quick_log_celebration_strip_splitratinglabeldigits",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_log_quick_log_celebration_strip_tsx",
+			"target": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"target": "log_quick_log_celebration_strip_splitratinglabeldigits",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L86",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "log_quick_log_celebration_strip_splitratinglabeldigits",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_splitratinglabeldigits",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"callee": "getComputedStyle",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"callee": "parseFloat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"callee": "getPropertyValue",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"callee": "parseFloat",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_readdigitpopindurationms",
+			"callee": "getPropertyValue",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "logRatingToDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "formatLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "log_quick_log_celebration_strip_quicklogcelebrationstrip",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\log\\quick-log-celebration-strip.tsx",
+			"source_location": "L111"
+		}
+	]
+}

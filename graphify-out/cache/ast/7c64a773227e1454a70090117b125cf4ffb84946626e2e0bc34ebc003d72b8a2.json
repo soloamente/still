@@ -1,0 +1,116 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"label": "realtime-redis.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_realtime_redis_resetrealtimeredisclientfortests",
+			"label": "resetRealtimeRedisClientForTests()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_realtime_redis_isrealtimepublishenabled",
+			"label": "isRealtimePublishEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_realtime_redis_getrealtimeredis",
+			"label": "getRealtimeRedis()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_realtime_redis_realtimestreamkey",
+			"label": "realtimeStreamKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L27"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"target": "redis",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_redis_resetrealtimeredisclientfortests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_redis_isrealtimepublishenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_redis_getrealtimeredis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"target": "lib_realtime_redis_realtimestreamkey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_redis_getrealtimeredis",
+			"target": "lib_realtime_redis_isrealtimepublishenabled",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_realtime_redis_isrealtimepublishenabled",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-redis.ts",
+			"source_location": "L13"
+		}
+	]
+}

@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_13_taste_rail_watchlist_exclusion_design_md",
+			"label": "2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"label": "Taste Rail \u2014 Watchlist Exclusion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_user_stories",
+			"label": "User stories",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_server_behavior",
+			"label": "Server behavior",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_scoretastematchcandidatesforuser_userid",
+			"label": "`scoreTasteMatchCandidatesForUser(userId)`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_codeblock_1",
+			"label": "code:ts (const excludeIds = [)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_helper_fetchwatchlistmovietmdbids_userid",
+			"label": "Helper: `fetchWatchlistMovieTmdbIds(userId)`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_api_shape",
+			"label": "API shape",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L64"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_tests_server",
+			"label": "Tests (server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_client_architecture",
+			"label": "Client architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L75"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_hometastematchedrail",
+			"label": "`HomeTasteMatchedRail`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_cataloguepostertile",
+			"label": "`CataloguePosterTile`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_motion",
+			"label": "Motion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_action_matrix_update_taste_rail",
+			"label": "Action matrix update (taste-rail)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_edge_cases",
+			"label": "Edge cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_verification",
+			"label": "Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_references",
+			"label": "References",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L126"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_13_taste_rail_watchlist_exclusion_design_md",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_user_stories",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_server_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_server_behavior",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_scoretastematchcandidatesforuser_userid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_scoretastematchcandidatesforuser_userid",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_server_behavior",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_helper_fetchwatchlistmovietmdbids_userid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_server_behavior",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_api_shape",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_server_behavior",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_tests_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_client_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_client_architecture",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_hometastematchedrail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_client_architecture",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_cataloguepostertile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_client_architecture",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_motion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_action_matrix_update_taste_rail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_edge_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_taste_rail_watchlist_exclusion",
+			"target": "specs_2026_06_13_taste_rail_watchlist_exclusion_design_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-13-taste-rail-watchlist-exclusion-design.md",
+			"source_location": "L126",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

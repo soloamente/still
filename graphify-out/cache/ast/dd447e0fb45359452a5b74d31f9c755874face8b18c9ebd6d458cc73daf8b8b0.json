@@ -1,0 +1,181 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_journal_post_ts",
+			"label": "journal-post.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_journal_post_journal_status_draft",
+			"label": "JOURNAL_STATUS_DRAFT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_journal_post_journal_status_published",
+			"label": "JOURNAL_STATUS_PUBLISHED",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_journal_post_journalstatus",
+			"label": "JournalStatus",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_journal_post_normalizejournalslug",
+			"label": "normalizeJournalSlug()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_journal_post_isvalidjournalslug",
+			"label": "isValidJournalSlug()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_journal_post_parsejournalpagelimit",
+			"label": "parseJournalPageLimit()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L26"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_journal_post_ts",
+			"target": "lib_journal_post_journal_status_draft",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_journal_post_ts",
+			"target": "lib_journal_post_journal_status_published",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_journal_post_ts",
+			"target": "lib_journal_post_journalstatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_journal_post_ts",
+			"target": "lib_journal_post_normalizejournalslug",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_journal_post_ts",
+			"target": "lib_journal_post_isvalidjournalslug",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_journal_post_ts",
+			"target": "lib_journal_post_parsejournalpagelimit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_journal_post_normalizejournalslug",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_journal_post_normalizejournalslug",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_journal_post_normalizejournalslug",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_journal_post_normalizejournalslug",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_journal_post_normalizejournalslug",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_journal_post_isvalidjournalslug",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_journal_post_parsejournalpagelimit",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_journal_post_parsejournalpagelimit",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_journal_post_parsejournalpagelimit",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_journal_post_parsejournalpagelimit",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\journal-post.ts",
+			"source_location": "L29"
+		}
+	]
+}

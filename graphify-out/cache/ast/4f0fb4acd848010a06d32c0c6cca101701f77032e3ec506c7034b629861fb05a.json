@@ -1,0 +1,110 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_patron_online_presence_ts",
+			"label": "patron-online-presence.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_patron_online_presence_patronpresencerow",
+			"label": "PatronPresenceRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_patron_online_presence_patronpresencesnapshot",
+			"label": "PatronPresenceSnapshot",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_patron_online_presence_normalizepatrononlinehandle",
+			"label": "normalizePatronOnlineHandle()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_patron_online_presence_normalizepatronpresencesnapshot",
+			"label": "normalizePatronPresenceSnapshot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_online_presence_ts",
+			"target": "lib_patron_online_presence_patronpresencerow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_online_presence_ts",
+			"target": "lib_patron_online_presence_patronpresencesnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_online_presence_ts",
+			"target": "lib_patron_online_presence_normalizepatrononlinehandle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_online_presence_ts",
+			"target": "lib_patron_online_presence_normalizepatronpresencesnapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_online_presence_normalizepatronpresencesnapshot",
+			"target": "lib_patron_online_presence_normalizepatrononlinehandle",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_patron_online_presence_normalizepatrononlinehandle",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_patron_online_presence_normalizepatrononlinehandle",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_patron_online_presence_normalizepatronpresencesnapshot",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-online-presence.ts",
+			"source_location": "L21"
+		}
+	]
+}

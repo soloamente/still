@@ -1,0 +1,278 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"label": "home-community-feed.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_community_feed_homecommunityfeed",
+			"label": "HomeCommunityFeed",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_home_community_feed_homecommunityrankkind",
+			"label": "HomeCommunityRankKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_home_community_feed_filmtvrankkind",
+			"label": "FilmTvRankKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_home_community_feed_ishomeleaderboardfeed",
+			"label": "isHomeLeaderboardFeed()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "lib_home_community_feed_isfilmtvrankkind",
+			"label": "isFilmTvRankKind()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "lib_home_community_feed_ismembersrankkind",
+			"label": "isMembersRankKind()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L44"
+		},
+		{
+			"id": "lib_home_community_feed_homecommunityrankkindlabel",
+			"label": "homeCommunityRankKindLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L50"
+		},
+		{
+			"id": "lib_home_community_feed_home_community_feeds",
+			"label": "HOME_COMMUNITY_FEEDS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L58"
+		},
+		{
+			"id": "lib_home_community_feed_parsehomecommunityfeed",
+			"label": "parseHomeCommunityFeed()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L87"
+		},
+		{
+			"id": "lib_home_community_feed_parsehomecommunityrankkind",
+			"label": "parseHomeCommunityRankKind()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L123"
+		},
+		{
+			"id": "lib_home_community_feed_parsemembersrankkindfromparam",
+			"label": "parseMembersRankKindFromParam()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L151"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_homecommunityfeed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_homecommunityrankkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_filmtvrankkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_ishomeleaderboardfeed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_isfilmtvrankkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_ismembersrankkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_homecommunityrankkindlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_home_community_feeds",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_parsehomecommunityfeed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_parsehomecommunityrankkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_community_feed_ts",
+			"target": "lib_home_community_feed_parsemembersrankkindfromparam",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_home_community_feed_parsehomecommunityrankkind",
+			"target": "lib_home_community_feed_parsemembersrankkindfromparam",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L130",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_home_community_feed_homecommunityrankkindlabel",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsehomecommunityfeed",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsehomecommunityfeed",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsehomecommunityrankkind",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsehomecommunityrankkind",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsehomecommunityrankkind",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsehomecommunityrankkind",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsehomecommunityrankkind",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L141"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsehomecommunityrankkind",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L141"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsemembersrankkindfromparam",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L154"
+		},
+		{
+			"caller_nid": "lib_home_community_feed_parsemembersrankkindfromparam",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-community-feed.ts",
+			"source_location": "L154"
+		}
+	]
+}

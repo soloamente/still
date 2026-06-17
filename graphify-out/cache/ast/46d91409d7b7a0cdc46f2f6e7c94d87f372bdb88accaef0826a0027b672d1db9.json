@@ -1,0 +1,622 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"label": "listing-quote.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_quote_listing_quote_sorts",
+			"label": "LISTING_QUOTE_SORTS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_listing_quote_listingquotesort",
+			"label": "ListingQuoteSort",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_listing_quote_listingquotescope",
+			"label": "ListingQuoteScope",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_listing_quote_listingquotescopeinput",
+			"label": "ListingQuoteScopeInput",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L20"
+		},
+		{
+			"id": "lib_listing_quote_listing_quote_sources",
+			"label": "LISTING_QUOTE_SOURCES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_listing_quote_listingquotesource",
+			"label": "ListingQuoteSource",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L32"
+		},
+		{
+			"id": "lib_listing_quote_listingquoteitem",
+			"label": "ListingQuoteItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L35"
+		},
+		{
+			"id": "lib_listing_quote_listingquoterow",
+			"label": "ListingQuoteRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L49"
+		},
+		{
+			"id": "lib_listing_quote_validatequotebody",
+			"label": "validateQuoteBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L61"
+		},
+		{
+			"id": "lib_listing_quote_splitquotebodyforimport",
+			"label": "splitQuoteBodyForImport()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L78"
+		},
+		{
+			"id": "lib_listing_quote_validatequotespeaker",
+			"label": "validateQuoteSpeaker()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L108"
+		},
+		{
+			"id": "lib_listing_quote_validatelistingquotescope",
+			"label": "validateListingQuoteScope()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L123"
+		},
+		{
+			"id": "lib_listing_quote_formatquotetimestampms",
+			"label": "formatQuoteTimestampMs()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L165"
+		},
+		{
+			"id": "lib_listing_quote_parsequotetimestampinput",
+			"label": "parseQuoteTimestampInput()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L188"
+		},
+		{
+			"id": "lib_listing_quote_quotetimestamplabel",
+			"label": "quoteTimestampLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L223"
+		},
+		{
+			"id": "lib_listing_quote_parselistingquotesort",
+			"label": "parseListingQuoteSort()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L230"
+		},
+		{
+			"id": "lib_listing_quote_parselistingquotelimit",
+			"label": "parseListingQuoteLimit()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L236"
+		},
+		{
+			"id": "lib_listing_quote_tolistingquoteitem",
+			"label": "toListingQuoteItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L243"
+		},
+		{
+			"id": "lib_listing_quote_parsepositiveint",
+			"label": "parsePositiveInt()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L264"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_listing_quote_sorts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_listingquotesort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_listingquotescope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_listingquotescopeinput",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_listing_quote_sources",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_listingquotesource",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_listingquoteitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_listingquoterow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_validatequotebody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_splitquotebodyforimport",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_validatequotespeaker",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_validatelistingquotescope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_formatquotetimestampms",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L165",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_parsequotetimestampinput",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L188",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_quotetimestamplabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L223",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_parselistingquotesort",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L230",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_parselistingquotelimit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_tolistingquoteitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L243",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_quote_ts",
+			"target": "lib_listing_quote_parsepositiveint",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L264",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_quote_validatelistingquotescope",
+			"target": "lib_listing_quote_parsepositiveint",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_quote_quotetimestamplabel",
+			"target": "lib_listing_quote_formatquotetimestampms",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_quote_tolistingquoteitem",
+			"target": "lib_listing_quote_quotetimestamplabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L252",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_listing_quote_validatequotebody",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L82"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "lastIndexOf",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "lastIndexOf",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_listing_quote_splitquotebodyforimport",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "lib_listing_quote_validatequotespeaker",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "lib_listing_quote_validatelistingquotescope",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_listing_quote_validatelistingquotescope",
+			"callee": "trunc",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_listing_quote_validatelistingquotescope",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "lib_listing_quote_validatelistingquotescope",
+			"callee": "trunc",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "isInteger",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L174"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L177"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L178"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L180"
+		},
+		{
+			"caller_nid": "lib_listing_quote_formatquotetimestampms",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L180"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parsequotetimestampinput",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L189"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parsequotetimestampinput",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parsequotetimestampinput",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parsequotetimestampinput",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parselistingquotelimit",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L237"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parselistingquotelimit",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L238"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parselistingquotelimit",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L239"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parselistingquotelimit",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L239"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parsepositiveint",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L265"
+		},
+		{
+			"caller_nid": "lib_listing_quote_parsepositiveint",
+			"callee": "trunc",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-quote.ts",
+			"source_location": "L268"
+		}
+	]
+}

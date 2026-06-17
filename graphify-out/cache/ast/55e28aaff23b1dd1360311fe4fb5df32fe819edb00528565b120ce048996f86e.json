@@ -1,0 +1,389 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"label": "members-leaderboard-podium.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "members_members_leaderboard_podium_podiumslot",
+			"label": "PodiumSlot",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L25"
+		},
+		{
+			"id": "members_members_leaderboard_podium_podiumslotsurfaceclass",
+			"label": "podiumSlotSurfaceClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L28"
+		},
+		{
+			"id": "members_members_leaderboard_podium_memberspodiumtile",
+			"label": "MembersPodiumTile()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L43"
+		},
+		{
+			"id": "members_members_leaderboard_podium_membersleaderboardpodium",
+			"label": "MembersLeaderboardPodium()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L131"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_patron_members_ledger_drawer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "home_patron_members_ledger_drawer_buildpatronmembersledgerseed",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "home_patron_members_ledger_drawer_openpatronmembersledger",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "lib_home_leaderboard_interactive_leaderboardcountbuttonclassname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "lib_home_leaderboard_interactive_leaderboardhandlelinkclassname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "lib_home_leaderboard_period_homeleaderboardperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_members_leaderboard_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "lib_members_leaderboard_membersleaderboardstatnoun",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_members_leaderboard_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "lib_members_leaderboard_types_membersleaderboardentry",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "lib_members_leaderboard_types_membersleaderboardsort",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "lib_profile_media_inferanimatedfromprofileurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "members_members_leaderboard_podium_podiumslot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "members_members_leaderboard_podium_podiumslotsurfaceclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "members_members_leaderboard_podium_memberspodiumtile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_members_members_leaderboard_podium_tsx",
+			"target": "members_members_leaderboard_podium_membersleaderboardpodium",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "members_members_leaderboard_podium_memberspodiumtile",
+			"target": "members_members_leaderboard_podium_podiumslotsurfaceclass",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L64",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "members_members_leaderboard_podium_memberspodiumtile",
+			"callee": "membersLeaderboardStatNoun",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_memberspodiumtile",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_memberspodiumtile",
+			"callee": "inferAnimatedFromProfileUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L89"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_memberspodiumtile",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_memberspodiumtile",
+			"callee": "leaderboardHandleLinkClassName",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_memberspodiumtile",
+			"callee": "leaderboardCountButtonClassName",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_membersleaderboardpodium",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_membersleaderboardpodium",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_membersleaderboardpodium",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "members_members_leaderboard_podium_membersleaderboardpodium",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\members\\members-leaderboard-podium.tsx",
+			"source_location": "L174"
+		}
+	]
+}

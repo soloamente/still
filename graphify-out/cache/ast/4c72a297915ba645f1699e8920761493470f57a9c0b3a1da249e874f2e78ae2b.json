@@ -1,0 +1,198 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"label": "quotes-lobby.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_quotes_lobby_quoteslobbykind",
+			"label": "QuotesLobbyKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_quotes_lobby_parsequoteslobbykind",
+			"label": "parseQuotesLobbyKind()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_quotes_lobby_buildquoteslobbyhref",
+			"label": "buildQuotesLobbyHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_quotes_lobby_savedquotelistinghref",
+			"label": "savedQuoteListingHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_quotes_lobby_buildquotesubmissionnotificationhref",
+			"label": "buildQuoteSubmissionNotificationHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L38"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_movie_detail_view_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "lib_movie_detail_view_buildmoviedetailviewhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_quote_saved_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "lib_quote_saved_types_savedquotelistingthumb",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "lib_quotes_lobby_quoteslobbykind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "lib_quotes_lobby_parsequoteslobbykind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "lib_quotes_lobby_buildquoteslobbyhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "lib_quotes_lobby_savedquotelistinghref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_quotes_lobby_ts",
+			"target": "lib_quotes_lobby_buildquotesubmissionnotificationhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_quotes_lobby_buildquoteslobbyhref",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "lib_quotes_lobby_buildquoteslobbyhref",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_quotes_lobby_savedquotelistinghref",
+			"callee": "buildMovieDetailViewHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_quotes_lobby_buildquotesubmissionnotificationhref",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_quotes_lobby_buildquotesubmissionnotificationhref",
+			"callee": "buildMovieDetailViewHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_quotes_lobby_buildquotesubmissionnotificationhref",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_quotes_lobby_buildquotesubmissionnotificationhref",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "lib_quotes_lobby_buildquotesubmissionnotificationhref",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_quotes_lobby_buildquotesubmissionnotificationhref",
+			"callee": "buildMovieDetailViewHref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\quotes-lobby.ts",
+			"source_location": "L59"
+		}
+	]
+}
