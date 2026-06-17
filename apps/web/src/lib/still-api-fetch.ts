@@ -609,6 +609,17 @@ export async function fetchBadgesRecent(sinceIso: string) {
 	};
 }
 
+/** Cheap unread-badge count — avoids downloading the full inbox on every poll. */
+export async function fetchNotificationsUnreadCount(): Promise<number> {
+	const url = new URL("/api/notifications/unread-count", stillApiOrigin());
+	const response = await fetch(url, {
+		credentials: "include",
+	});
+	if (!response.ok) return 0;
+	const data = (await response.json()) as { count?: number };
+	return typeof data.count === "number" ? data.count : 0;
+}
+
 /** Completionist challenge catalog — `GET /api/challenges/catalog`. */
 export async function fetchAchievementsChallengesCatalog(
 	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
