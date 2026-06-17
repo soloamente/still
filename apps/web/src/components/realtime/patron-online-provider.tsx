@@ -27,7 +27,7 @@ import {
 import { createPresenceHeartbeatScheduler } from "@/lib/presence-heartbeat-scheduler";
 
 const HEARTBEAT_MS = 25_000;
-const POLL_MS = 20_000;
+const POLL_MS = 30_000;
 /** Coalesce portrait registrations into one batch lookup. */
 const REGISTER_REFRESH_DEBOUNCE_MS = 200;
 

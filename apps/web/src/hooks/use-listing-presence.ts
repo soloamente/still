@@ -20,7 +20,7 @@ import { createPresenceHeartbeatScheduler } from "@/lib/presence-heartbeat-sched
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 
 const HEARTBEAT_MS = 25_000;
-const POLL_MS = 20_000;
+const POLL_MS = 30_000;
 const REFETCH_DEBOUNCE_MS = 300;
 
 export type ListingPresenceSurface = "movie" | "tv";
