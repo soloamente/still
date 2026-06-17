@@ -1,4 +1,4 @@
-import { db, follow, profile } from "@still/db";
+import { db, profile } from "@still/db";
 import { patronAppRoomId } from "@still/realtime";
 import { and, eq, inArray, isNotNull } from "drizzle-orm";
 import {
@@ -7,6 +7,7 @@ import {
 	leaveListingPresence,
 	touchListingPresence,
 } from "./listing-presence";
+import { fetchMutualFollowingIds } from "./mutual-follow-cache";
 import {
 	type PatronActivityState,
 	readActivityStatesForUserIds,
@@ -161,17 +162,10 @@ export async function resolveVisiblePresenceForViewer(
 		.filter((id) => activeUserIds.has(id));
 	if (candidateIds.length === 0) return [];
 
-	const mutualRows = await db
-		.select({ userId: follow.followingId })
-		.from(follow)
-		.where(
-			and(
-				eq(follow.followerId, viewerId),
-				eq(follow.isMutual, true),
-				inArray(follow.followingId, candidateIds),
-			),
-		);
-	const mutualIds = new Set(mutualRows.map((row) => row.userId));
+	const mutualAll = await fetchMutualFollowingIds(viewerId);
+	const mutualIds = new Set(
+		candidateIds.filter((id) => mutualAll.includes(id)),
+	);
 
 	const activityByUserId =
 		typeof redis.hget === "function"
