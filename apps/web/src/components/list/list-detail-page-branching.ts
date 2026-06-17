@@ -1,5 +1,8 @@
 import type { ListDetailFilmRow } from "@/components/list/list-detail-films-grid";
-import type { RankedListReorderRow } from "@/components/list/ranked-list-reorder-grid";
+
+export type RankedListReorderRow = ListDetailFilmRow & {
+	item: ListDetailFilmRow["item"] & { id: string };
+};
 
 export function canReorderRankedList({
 	isRanked,
@@ -25,4 +28,9 @@ export function toRankedReorderRows(
 			row.item.id.length > 0 &&
 			(row.movie != null || row.tv != null),
 	);
+}
+
+/** Stable list item ids for ranked reorder payloads. */
+export function itemIdsFromRows(rows: RankedListReorderRow[]): string[] {
+	return rows.map((row) => row.item.id);
 }

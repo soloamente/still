@@ -48,7 +48,7 @@ export function FeedPersonAvatar({
 				"relative isolate shrink-0 rounded-full",
 				hasMetalTier
 					? "overflow-visible bg-transparent"
-					: "overflow-hidden bg-muted",
+					: "overflow-visible bg-muted",
 				"transition-[transform,colors] duration-[var(--aker-duration)] ease-[var(--aker-ease)]",
 				"[@media(hover:hover)]:hover:bg-foreground/10",
 				"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-desert-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background",

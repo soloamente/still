@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { useCinematicAudio } from "@/components/cinema/sound-provider";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
+import { dispatchListingEngagementInvalidate } from "@/lib/listing-engagement-invalidate";
 import {
 	deleteWatchlistItem,
 	fetchMyLogsForMovie,
@@ -53,6 +54,14 @@ export function useMovieDetailUserState(
 
 	const latestLog = useMemo(() => myLogs[0] ?? null, [myLogs]);
 
+	/** Engagement chips listen for this to refetch community totals after mutations. */
+	const notifyEngagementInvalidate = useCallback(() => {
+		dispatchListingEngagementInvalidate({
+			listingKind: "movie",
+			listingId: movieId,
+		});
+	}, [movieId]);
+
 	/** Refetch authoritative flags after mutations (cheap — two tiny GETs). */
 	const refreshUserState = useCallback(async () => {
 		const [logsRes, wlRes] = await Promise.all([
@@ -97,6 +106,7 @@ export function useMovieDetailUserState(
 					() => undefined,
 				);
 				void refreshUserState();
+				notifyEngagementInvalidate();
 			},
 		});
 	}
@@ -126,6 +136,7 @@ export function useMovieDetailUserState(
 					() => undefined,
 				);
 				void refreshUserState();
+				notifyEngagementInvalidate();
 			},
 		});
 	}
@@ -155,6 +166,7 @@ export function useMovieDetailUserState(
 				setInWatchlist(true);
 			}
 			await refreshUserState();
+			notifyEngagementInvalidate();
 		} catch (err) {
 			console.error(err);
 			toast.error("Couldn't update your watchlist");
@@ -181,6 +193,7 @@ export function useMovieDetailUserState(
 				);
 				toast.success("Marked as liked");
 				await refreshUserState();
+				notifyEngagementInvalidate();
 				return;
 			}
 			const flipped = !latestLog.liked;
@@ -191,6 +204,7 @@ export function useMovieDetailUserState(
 			}
 			toast.success(flipped ? "Marked as liked" : "Removed like");
 			await refreshUserState();
+			notifyEngagementInvalidate();
 		} catch (err) {
 			console.error(err);
 			toast.error("Couldn't update");

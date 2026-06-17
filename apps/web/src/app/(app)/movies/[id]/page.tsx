@@ -76,12 +76,20 @@ export async function generateMetadata({
 type CommunityShape = {
 	averageRating: number | null;
 	ratingsCount: number;
-	watchesCount?: number | null;
-	watchlistCount?: number | null;
+	watchesCount?: number;
+	listsCount?: number;
+	favoritesCount?: number;
+	watchlistCount?: number;
 };
 
-/** SQL aggregates may deserialize as strings — normalize before `.toFixed` / `Math.round`. */
-function toFiniteNumber(value: unknown): number | null {
+/** SQL aggregates may deserialize as strings — normalize before display. */
+function toFiniteNumber(value: unknown): number {
+	if (value == null) return 0;
+	const n = typeof value === "number" ? value : Number(value);
+	return Number.isFinite(n) ? Math.max(0, Math.floor(n)) : 0;
+}
+
+function toNullableFiniteNumber(value: unknown): number | null {
 	if (value == null) return null;
 	const n = typeof value === "number" ? value : Number(value);
 	return Number.isFinite(n) ? n : null;
@@ -247,15 +255,16 @@ export default async function MoviePage({
 
 	const { accent: movieAccent } = accentFromGenres(j?.genres);
 	const tmdbAvg = toFiniteNumber(data.voteAverage);
-	const communityAverage = toFiniteNumber(data.community?.averageRating);
-	const communityRatingsCount = Math.max(
-		0,
-		Math.floor(toFiniteNumber(data.community?.ratingsCount) ?? 0),
+	const communityAverage = toNullableFiniteNumber(
+		data.community?.averageRating,
 	);
-	const communityWatchesCount =
-		toFiniteNumber(data.community?.watchesCount) ?? null;
-	const communityWatchlistCount =
-		toFiniteNumber(data.community?.watchlistCount) ?? null;
+	const communityRatingsCount = toFiniteNumber(data.community?.ratingsCount);
+	const engagementCounts = {
+		watchesCount: toFiniteNumber(data.community?.watchesCount),
+		listsCount: toFiniteNumber(data.community?.listsCount),
+		favoritesCount: toFiniteNumber(data.community?.favoritesCount),
+		watchlistCount: toFiniteNumber(data.community?.watchlistCount),
+	};
 
 	const primaryGenre = j?.genres?.[0]?.name ?? null;
 	const heroMetaBits: string[] = [];
@@ -313,8 +322,10 @@ export default async function MoviePage({
 				variant="compact"
 				communityAverage={communityAverage}
 				communityRatingsCount={communityRatingsCount}
-				communityWatchesCount={communityWatchesCount}
-				communityWatchlistCount={communityWatchlistCount}
+				engagementCounts={engagementCounts}
+				listingKind="movie"
+				listingId={data.tmdbId}
+				movieId={data.tmdbId}
 			/>
 			<div className="mt-8 flex w-full justify-center">
 				<MovieDetailPrimaryActions

@@ -102,12 +102,7 @@ export function HomeFriendActivityRail({
 								href={`/profile/${e.handle}`}
 								className="flex gap-2 rounded-xl p-2 transition-colors hover:bg-surface-overlay/50"
 							>
-								<span
-									className={cn(
-										"relative size-9 shrink-0 rounded-full bg-muted",
-										e.diaryMetalTier ? "overflow-visible" : "overflow-hidden",
-									)}
-								>
+								<span className="relative size-9 shrink-0 overflow-visible rounded-full bg-muted">
 									<PatronPortraitWithMetalTier
 										handle={e.handle}
 										avatarUrl={e.image}

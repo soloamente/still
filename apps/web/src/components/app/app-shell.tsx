@@ -5,8 +5,6 @@ import { GoToDialogRoot } from "@/components/app/go-to-dialog-root";
 import { MobileTabBar } from "@/components/app/mobile-tab-bar";
 import { SoftwareGpuDocumentProbe } from "@/components/app/software-gpu-document-probe";
 import { WhatsNewDialogRoot } from "@/components/app/whats-new-dialog-root";
-import { BadgeWatcher } from "@/components/gamification/badge-watcher";
-import { StreakAudioWatcher } from "@/components/gamification/streak-audio-watcher";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
 import { PatronMembersLedgerDrawerRoot } from "@/components/home/patron-members-ledger-drawer";
 import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledger-drawer";
@@ -91,8 +89,6 @@ export function AppShell({
 			<CreateListDrawerRoot />
 			<PatronWatchLedgerDrawerRoot />
 			<PatronMembersLedgerDrawerRoot />
-			<BadgeWatcher />
-			<StreakAudioWatcher />
 			<WhatsNewDialogRoot userId={user.id} />
 			<RoleChangeDialogRoot />
 			<MobileTabBar

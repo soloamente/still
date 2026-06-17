@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
 
 /** Spring for hero + chrome pressables — matches `MovieDetailPrimaryActions`. */
 export const DETAIL_BUTTON_SPRING = { stiffness: 400, damping: 20 } as const;
@@ -34,28 +35,37 @@ export const DETAIL_CANVAS_ON_CARD_HOVER_CLASS =
  */
 export function useDetailActionMotion() {
 	const reduceMotion = useReducedMotion();
+	// Motion reads reduced-motion + applies inline styles only after mount — keep SSR and
+	// the first client paint identical so detail chrome (list/movie top bars, section nav) hydrates cleanly.
+	const [motionReady, setMotionReady] = useState(false);
+
+	useEffect(() => {
+		setMotionReady(true);
+	}, []);
+
+	const motionEnabled = motionReady && !reduceMotion;
 
 	return {
-		hover: reduceMotion ? undefined : { scale: 1.05 },
-		tap: reduceMotion ? undefined : { scale: 0.95 },
-		style: reduceMotion
-			? undefined
-			: {
+		hover: motionEnabled ? { scale: 1.05 } : undefined,
+		tap: motionEnabled ? { scale: 0.95 } : undefined,
+		style: motionEnabled
+			? {
 					transformOrigin: "center center",
 					originX: 0.5 as const,
 					originY: 0.5 as const,
-				},
-		buttonTransition: reduceMotion
-			? { duration: 0 }
-			: { type: "spring" as const, ...DETAIL_BUTTON_SPRING },
-		swapTransition: reduceMotion
-			? { duration: 0 }
-			: { type: "spring" as const, ...DETAIL_SWAP_SPRING },
-		swapInitial: reduceMotion ? false : detailSwapChildVariants.initial,
-		swapAnimate: reduceMotion ? undefined : detailSwapChildVariants.animate,
-		swapExit: reduceMotion ? undefined : detailSwapChildVariants.exit,
-		presenceInitial: reduceMotion ? false : { opacity: 0, scale: 0.88 },
-		presenceAnimate: reduceMotion ? undefined : { opacity: 1, scale: 1 },
-		presenceExit: reduceMotion ? undefined : { opacity: 0, scale: 0.88 },
+				}
+			: undefined,
+		buttonTransition: motionEnabled
+			? { type: "spring" as const, ...DETAIL_BUTTON_SPRING }
+			: { duration: 0 },
+		swapTransition: motionEnabled
+			? { type: "spring" as const, ...DETAIL_SWAP_SPRING }
+			: { duration: 0 },
+		swapInitial: motionEnabled ? detailSwapChildVariants.initial : false,
+		swapAnimate: motionEnabled ? detailSwapChildVariants.animate : undefined,
+		swapExit: motionEnabled ? detailSwapChildVariants.exit : undefined,
+		presenceInitial: motionEnabled ? { opacity: 0, scale: 0.88 } : false,
+		presenceAnimate: motionEnabled ? { opacity: 1, scale: 1 } : undefined,
+		presenceExit: motionEnabled ? { opacity: 0, scale: 0.88 } : undefined,
 	};
 }

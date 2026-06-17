@@ -826,8 +826,8 @@ export function QuickLogRoot() {
 							/>
 							<div
 								ref={searchResultsScrollRef}
-								className="scrollbar-none max-h-48 min-h-0 overflow-y-auto overscroll-y-contain p-1 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-								data-lenis-prevent-wheel
+								className="scrollbar-none max-h-48 min-h-0 touch-pan-y overflow-y-auto overscroll-y-contain p-1 [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
+								data-lenis-prevent
 							>
 								<ul className="space-y-0.5">
 									{searchResults.map((m) => (

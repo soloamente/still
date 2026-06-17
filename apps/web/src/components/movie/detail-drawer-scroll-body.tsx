@@ -24,7 +24,8 @@ export function DetailDrawerScrollBody({
 		<div
 			ref={scrollRef}
 			data-vaul-no-drag
-			data-lenis-prevent-wheel
+			// Lenis calls preventDefault on touch while stopped (drawer open); wheel-only is not enough on mobile.
+			data-lenis-prevent
 			className={cn(
 				nested
 					? MOVIE_DETAIL_NESTED_DRAWER_SCROLL_CLASSNAME

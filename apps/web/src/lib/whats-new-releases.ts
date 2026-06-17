@@ -23,18 +23,23 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-15-list-discovery-polish",
+	id: "2026-06-17-detail-social-live",
 	fullReleaseHref: "/changelog",
 	slides: [
 		{
-			title: "Popular lists on Community",
+			title: "See how a title lands with patrons",
 			description:
-				"The Lists tab shows how many public lists are trending in your period — ranked by likes, with curator spotlights below.",
+				"Film and show pages now show Watched, Lists, Favorited, and Watchlist chips under the community score. Tap any chip to browse who logged it, which lists include it, or who saved it.",
 		},
 		{
-			title: "List share copy",
+			title: "Who else is on this page",
 			description:
-				"Copying a list link now confirms with the list title — so you know exactly what you shared.",
+				"When other patrons are viewing the same film or show, you'll see their avatars in the corner. Tap for the full list — and choose in Settings who can see you when you're browsing a title.",
+		},
+		{
+			title: "Updates without refreshing",
+			description:
+				"Notifications, ranked list order, and review likes now stay in sync as things happen. Bottom sheets like Cast & crew also scroll properly on your phone again.",
 		},
 	],
 };

@@ -67,6 +67,8 @@ type ReactionsBarProps = {
 	appearance?: "default" | "sheet" | "header";
 	iconButtonClassName?: string;
 	onReactionChange?: (state: ReviewReactionSnapshot) => void;
+	/** Counts from another patron via SSE — preserves viewer liked/disliked state. */
+	liveReactionCounts?: { likesCount: number; dislikesCount: number } | null;
 };
 
 type ApiReviewReactionSnapshot = {
@@ -105,6 +107,7 @@ export function ReactionsBar({
 	appearance = "default",
 	iconButtonClassName,
 	onReactionChange,
+	liveReactionCounts = null,
 }: ReactionsBarProps) {
 	const [likes, setLikes] = useState(initialLikes);
 	const [liked, setLiked] = useState(initialLiked);
@@ -122,6 +125,13 @@ export function ReactionsBar({
 		setDislikes(initialDislikes);
 		setDisliked(initialDisliked);
 	}, [initialDislikes, initialDisliked, initialLiked, initialLikes]);
+
+	// Another patron reacted while this reader is open — patch counts only.
+	useEffect(() => {
+		if (!liveReactionCounts) return;
+		setLikes(liveReactionCounts.likesCount);
+		setDislikes(liveReactionCounts.dislikesCount);
+	}, [liveReactionCounts]);
 
 	function publish(state: ReviewReactionSnapshot) {
 		setLiked(state.liked);

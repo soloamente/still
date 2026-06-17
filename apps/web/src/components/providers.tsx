@@ -3,7 +3,6 @@
 import { Toaster } from "@still/ui/components/sonner";
 import { RootHtmlClassSync } from "@/components/app/root-html-class-sync";
 import { RootHtmlFontClassProvider } from "@/components/app/root-html-font-class-context";
-import { CinemaSoundProvider } from "@/components/cinema/sound-provider";
 import { LenisProvider } from "@/components/lenis-provider";
 import {
 	APP_THEME_CLASS_EMBER,
@@ -57,9 +56,8 @@ export default function Providers({
 			>
 				{/* Lenis: opt-in smooth wheel via Settings; native scroll by default. */}
 				<LenisProvider>
-					{/* Theater audio persists via profile JSON but still hydrates lazily behind gestures. */}
 					<RootHtmlClassSync />
-					<CinemaSoundProvider>{children}</CinemaSoundProvider>
+					{children}
 				</LenisProvider>
 				{/* Pill chrome + chip helpers in `@still/ui`; toasts default to bottom-center. */}
 				<Toaster position="bottom-center" />

@@ -107,7 +107,7 @@ function RecentSearchChip({
 			<button
 				type="button"
 				aria-label={`Remove “${entry.label}” from recent searches`}
-				className="inline-flex size-7 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-200 ease-out motion-reduce:transition-none [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground"
+				className="inline-flex size-6 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-200 ease-out motion-reduce:transition-none [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground"
 				onClick={(event) => {
 					event.stopPropagation();
 					onRemove();

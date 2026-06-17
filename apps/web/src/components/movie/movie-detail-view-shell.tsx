@@ -8,6 +8,7 @@ import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-pro
 import { MovieDetailSectionNav } from "@/components/movie/movie-detail-section-nav";
 import { MovieDetailStreaming } from "@/components/movie/movie-detail-streaming";
 import { MovieDetailTopBar } from "@/components/movie/movie-detail-top-bar";
+import { ListingPresenceProvider } from "@/components/realtime/listing-presence-provider";
 import { MovieReviewDeepLinkOpener } from "@/components/review/movie-review-deep-link-opener";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { MovieDetailSectionNavItem } from "@/lib/movie-detail-sections";
@@ -129,9 +130,13 @@ function MovieDetailViewShellBody({
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"flex-1 overflow-x-clip overflow-y-visible",
+					"relative flex-1 overflow-x-clip overflow-y-visible",
 				)}
 			>
+				<ListingPresenceProvider
+					listingKind={listingKind}
+					listingId={movieId}
+				/>
 				<article
 					className={cn(
 						"flex flex-1 flex-col",
@@ -148,7 +153,8 @@ function MovieDetailViewShellBody({
 					</div>
 					<div hidden={view !== "about"}>{about}</div>
 					<div hidden={view !== "community"}>{community}</div>
-					<div hidden={view !== "quotes"}>{quotes}</div>
+					{/* Unmount quotes off-tab — TV episode picker auto-defaults sync ?view=quotes. */}
+					{view === "quotes" ? quotes : null}
 				</article>
 			</section>
 		</div>

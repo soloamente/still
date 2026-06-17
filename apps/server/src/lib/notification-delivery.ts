@@ -1,7 +1,9 @@
 import { db, follow, notification, profile } from "@still/db";
+import { userInboxRoomId } from "@still/realtime";
 import { and, eq } from "drizzle-orm";
 
 import { makeId } from "./cuid";
+import { publishRealtimeEvent } from "./realtime-publish";
 import { movieReviewNotificationHref } from "./review-notification-href";
 
 /** Nested key on `profile.preferences` for per-kind inbox toggles. */
@@ -201,13 +203,19 @@ export async function deliverNotification(
 		) {
 			return;
 		}
+		const notificationId = makeId("ntf");
 		await db.insert(notification).values({
-			id: makeId("ntf"),
+			id: notificationId,
 			userId: input.userId,
 			kind: input.kind,
 			title: input.title,
 			body: input.body ?? null,
 			payload: input.payload ?? {},
+		});
+		void publishRealtimeEvent(userInboxRoomId(input.userId), {
+			type: "notification.created",
+			notificationId,
+			kind: input.kind,
 		});
 	} catch (err) {
 		console.error("[notification-delivery]", input.kind, err);

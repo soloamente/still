@@ -121,14 +121,16 @@ export function PatronMembersLedgerPanel({
 				<div className="mx-auto w-full max-w-4xl">
 					<header className="mx-auto mb-8 max-w-md text-center">
 						<div className="mx-auto mb-4 flex justify-center">
-							<div className="relative aspect-2/3 w-22 overflow-hidden rounded-2xl bg-muted/30 shadow-lg sm:w-24">
+							<div className="relative aspect-2/3 w-22 sm:w-24">
+								<div
+									className="pointer-events-none absolute inset-0 rounded-2xl bg-muted/30 shadow-lg"
+									aria-hidden
+								/>
 								<PatronPortraitWithMetalTier
 									handle={handle}
 									avatarUrl={avatarImage}
 									name={displayName}
 									className="size-full rounded-2xl"
-									width={96}
-									height={144}
 									isAnimated={inferAnimatedFromProfileUrl(
 										avatarImage,
 										avatarIsAnimated,

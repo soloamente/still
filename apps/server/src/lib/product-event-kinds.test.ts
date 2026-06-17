@@ -1,5 +1,9 @@
 import { describe, expect, test } from "bun:test";
-import { isProductEventKind, PRODUCT_EVENT_KINDS } from "./product-event-kinds";
+import {
+	isClientProductEventKind,
+	isProductEventKind,
+	PRODUCT_EVENT_KINDS,
+} from "./product-event-kinds";
 
 describe("letterboxd pillar kinds", () => {
 	test("includes showcase and wrapped kinds", () => {
@@ -20,5 +24,35 @@ describe("letterboxd pillar kinds", () => {
 			expect(PRODUCT_EVENT_KINDS).toContain(kind);
 			expect(isProductEventKind(kind)).toBe(true);
 		}
+	});
+});
+
+describe("liveblocks realtime kinds", () => {
+	test("includes server-recorded realtime funnel kinds", () => {
+		for (const kind of [
+			"realtime.presence.join",
+			"realtime.presence.leave",
+			"realtime.list.coedit",
+			"realtime.comment.received_live",
+			"realtime.notification.push_received",
+			"realtime.list.sync_conflict",
+		]) {
+			expect(PRODUCT_EVENT_KINDS).toContain(kind);
+			expect(isProductEventKind(kind)).toBe(true);
+		}
+	});
+
+	test("allows client-emitted presence and push kinds only", () => {
+		for (const kind of [
+			"realtime.presence.join",
+			"realtime.presence.leave",
+			"realtime.comment.received_live",
+			"realtime.notification.push_received",
+		]) {
+			expect(isClientProductEventKind(kind)).toBe(true);
+		}
+
+		expect(isClientProductEventKind("realtime.list.coedit")).toBe(false);
+		expect(isClientProductEventKind("realtime.list.sync_conflict")).toBe(false);
 	});
 });

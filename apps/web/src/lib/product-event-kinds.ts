@@ -19,6 +19,12 @@ export const PRODUCT_EVENT_KINDS = [
 	"quote.save",
 	"quote.unsave",
 	"quote.submit",
+	"realtime.presence.join",
+	"realtime.presence.leave",
+	"realtime.list.coedit",
+	"realtime.comment.received_live",
+	"realtime.notification.push_received",
+	"realtime.list.sync_conflict",
 ] as const;
 
 export type ProductEventKind = (typeof PRODUCT_EVENT_KINDS)[number];
@@ -33,6 +39,10 @@ export const CLIENT_PRODUCT_EVENT_KINDS = [
 	"wrapped.viewed",
 	"wrapped.shared",
 	"members.followed",
+	"realtime.presence.join",
+	"realtime.presence.leave",
+	"realtime.comment.received_live",
+	"realtime.notification.push_received",
 ] as const;
 
 export type ClientProductEventKind =

@@ -10,6 +10,7 @@ import {
 	review,
 	user,
 } from "@still/db";
+import { reviewRoomId } from "@still/realtime";
 import { and, count, desc, eq, isNotNull, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
@@ -37,6 +38,7 @@ import {
 import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { removePinnedReviewId } from "../lib/profile-pinned-reviews";
 import { hit } from "../lib/rate-limit";
+import { publishRealtimeEvent } from "../lib/realtime-publish";
 import {
 	assertEmailVerified,
 	EmailVerificationRequiredError,
@@ -90,6 +92,20 @@ type PatchReviewBody = {
 	visibility?: ContentVisibility;
 	stillSlideKey?: string | null;
 };
+
+/** Fan out updated like/dislike counters to review reader subscribers. */
+async function broadcastAndReturnReviewReactionSnapshot(
+	reviewId: string,
+	viewerId: string,
+) {
+	const snapshot = await readReviewReactionSnapshot(reviewId, viewerId);
+	void publishRealtimeEvent(reviewRoomId(reviewId), {
+		type: "reaction.updated",
+		likesCount: snapshot.likesCount,
+		dislikesCount: snapshot.dislikesCount,
+	});
+	return snapshot;
+}
 
 export const reviewsRoute = new Elysia({
 	prefix: "/api/reviews",
@@ -606,11 +622,8 @@ export const reviewsRoute = new Elysia({
 						withinCommunityPeriod(review.publishedAt, start, end),
 					),
 				)
-				.orderBy(
-					desc(reviewEngagementOrderSql()),
-					desc(review.publishedAt),
-					desc(review.id),
-				)
+				// Default Community **All reviews** feed — chronological; engagement lives on `/viral`.
+				.orderBy(desc(review.publishedAt), desc(review.id))
 				.limit(limit)
 				.offset(communityOffset(page, limit));
 			return rows;
@@ -675,7 +688,7 @@ export const reviewsRoute = new Elysia({
 				.limit(1);
 			if (existing) {
 				await removeViewerReviewReaction(user.id, params.id, "like");
-				return readReviewReactionSnapshot(params.id, user.id);
+				return broadcastAndReturnReviewReactionSnapshot(params.id, user.id);
 			}
 
 			// Like and dislike are mutually exclusive on reviews.
@@ -734,7 +747,7 @@ export const reviewsRoute = new Elysia({
 				});
 			}
 
-			return readReviewReactionSnapshot(params.id, user.id);
+			return broadcastAndReturnReviewReactionSnapshot(params.id, user.id);
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)
@@ -761,7 +774,7 @@ export const reviewsRoute = new Elysia({
 				.limit(1);
 			if (existing) {
 				await removeViewerReviewReaction(user.id, params.id, "dislike");
-				return readReviewReactionSnapshot(params.id, user.id);
+				return broadcastAndReturnReviewReactionSnapshot(params.id, user.id);
 			}
 
 			await removeViewerReviewReaction(user.id, params.id, "like");
@@ -777,7 +790,7 @@ export const reviewsRoute = new Elysia({
 				.set({ dislikesCount: sql`${review.dislikesCount} + 1` })
 				.where(eq(review.id, params.id));
 
-			return readReviewReactionSnapshot(params.id, user.id);
+			return broadcastAndReturnReviewReactionSnapshot(params.id, user.id);
 		},
 		{ params: t.Object({ id: t.String() }) },
 	);

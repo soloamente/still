@@ -40,6 +40,7 @@ export type MeAccountSettingsDraftPayload = {
 	showAdultContent?: boolean;
 	birthDate?: string;
 	showBirthDateOnProfile?: boolean;
+	presenceVisibility?: "friends" | "public";
 	appTheme?: string;
 };
 

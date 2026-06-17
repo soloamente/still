@@ -65,6 +65,8 @@ export function SettingsProfileSection() {
 		setBirthDate,
 		showBirthDateOnProfile,
 		setShowBirthDateOnProfile,
+		presenceVisibility,
+		setPresenceVisibility,
 		isPrivate,
 		setIsPrivate,
 		saving,
@@ -183,6 +185,19 @@ export function SettingsProfileSection() {
 							checked={isPrivate}
 							onChange={setIsPrivate}
 						/>
+						<div className="w-full pt-3">
+							<MePreferenceToggle
+								id="presence-visibility"
+								checked={presenceVisibility === "public"}
+								onChange={(next) =>
+									setPresenceVisibility(next ? "public" : "friends")
+								}
+								title="Who can see when I'm online?"
+								description="Choose whether your online-now status across Sense is visible to Friends only or everyone."
+								onLabel="Public"
+								offLabel="Friends only"
+							/>
+						</div>
 					</div>
 				</MeSettingsPanel>
 			</MeSettingsSection>

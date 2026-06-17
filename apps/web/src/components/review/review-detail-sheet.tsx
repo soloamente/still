@@ -1,5 +1,6 @@
 "use client";
 
+import type { RealtimeEvent } from "@still/realtime";
 import { Button } from "@still/ui/components/button";
 import { Skeleton } from "@still/ui/components/skeleton";
 import { TooltipProvider } from "@still/ui/components/tooltip";
@@ -28,11 +29,13 @@ import { ReviewDeleteConfirmDialog } from "@/components/review/review-delete-con
 import { ReviewEditorialPatronScore } from "@/components/review/review-editorial-patron-score";
 import { ReviewPinToProfileButton } from "@/components/review/review-pin-to-profile-button";
 import { ReviewReaderStillSection } from "@/components/review/review-reader-still-section";
+import { ReviewRealtimeSubscriber } from "@/components/review/review-realtime-subscriber";
 import { ReviewSpoilerGuard } from "@/components/review/review-spoiler-guard";
 import { VisibilityChip } from "@/components/review/visibility-chip";
 import {
 	type CommentRow,
 	CommentsThread,
+	normalizeCommentRows,
 } from "@/components/social/comments-thread";
 import {
 	ReactionsBar,
@@ -48,6 +51,7 @@ import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 import { shouldShowReviewBody } from "@/lib/review-audio-fields";
+import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 import { useViewerHasWatchedMovie } from "@/lib/use-viewer-has-watched-movie";
 
@@ -225,31 +229,6 @@ function normalizeReviewDetailPayload(
 	};
 }
 
-/** Normalize comment API rows — likes + viewer state may be absent on older payloads. */
-function normalizeCommentRows(rows: unknown): CommentRow[] {
-	if (!Array.isArray(rows)) return [];
-	return rows.map((row) => {
-		const entry = row as Partial<CommentRow> & {
-			comment?: Partial<CommentRow["comment"]>;
-		};
-		return {
-			comment: {
-				id: entry.comment?.id ?? "",
-				userId: entry.comment?.userId ?? "",
-				body: entry.comment?.body ?? "",
-				createdAt: entry.comment?.createdAt ?? new Date().toISOString(),
-				replyToId: entry.comment?.replyToId ?? null,
-				likesCount: entry.comment?.likesCount ?? 0,
-				dislikesCount: entry.comment?.dislikesCount ?? 0,
-			},
-			user: entry.user ?? null,
-			profile: entry.profile ?? null,
-			liked: entry.liked ?? false,
-			disliked: entry.disliked ?? false,
-		};
-	});
-}
-
 function posterSrcFromPath(path: string | null | undefined): string | null {
 	if (!path) return null;
 	if (path.startsWith("http")) return path;
@@ -284,15 +263,25 @@ export function ReviewDetailRoot() {
 	const openComposer = useReviewComposer((s) => s.open);
 	const { data: session } = authClient.useSession();
 	const [detail, setDetail] = useState<ReviewDetailPayload | null>(null);
-	const [comments, setComments] = useState<CommentRow[]>([]);
+	/** Seed for CommentsThread mount only — never updated after load (avoids parent/child echo wipe). */
+	const [threadSeedComments, setThreadSeedComments] = useState<CommentRow[]>(
+		[],
+	);
 	const [loading, setLoading] = useState(false);
 	const [loadError, setLoadError] = useState<string | null>(null);
 	const [deleteOpen, setDeleteOpen] = useState(false);
 	const [deleting, setDeleting] = useState(false);
 	const [savingStill, setSavingStill] = useState(false);
 	const [spoilerRevealed, setSpoilerRevealed] = useState(false);
+	const [liveCommentSignal, setLiveCommentSignal] = useState(0);
+	const [liveCommentId, setLiveCommentId] = useState<string | null>(null);
+	const [liveReactionCounts, setLiveReactionCounts] = useState<{
+		likesCount: number;
+		dislikesCount: number;
+	} | null>(null);
+	const liveCommentTrackedRef = useRef(false);
 	const scrollRef = useRef<HTMLDivElement>(null);
-	const reviewScrollKey = `${detail?.review.id ?? ""}-${comments.length}-${loading}-${loadError ?? ""}`;
+	const reviewScrollKey = `${detail?.review.id ?? ""}-${detail?.review.commentsCount ?? 0}-${loading}-${loadError ?? ""}`;
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		isOpen,
@@ -439,7 +428,7 @@ export function ReviewDetailRoot() {
 	useEffect(() => {
 		if (!args) {
 			setDetail(null);
-			setComments([]);
+			setThreadSeedComments([]);
 			setLoading(false);
 			setLoadError(null);
 			setSpoilerRevealed(false);
@@ -474,7 +463,7 @@ export function ReviewDetailRoot() {
 					return;
 				}
 				setDetail(payload);
-				setComments(normalizeCommentRows(commentsRes.data));
+				setThreadSeedComments(normalizeCommentRows(commentsRes.data));
 			} catch (err) {
 				console.error(err);
 				if (!cancelled) {
@@ -505,6 +494,81 @@ export function ReviewDetailRoot() {
 	);
 	const viewerRole = session?.user?.role ?? "user";
 	const activeReviewId = review?.id ?? args?.reviewId ?? "";
+
+	useEffect(() => {
+		if (isOpen) return;
+		liveCommentTrackedRef.current = false;
+		setLiveCommentSignal(0);
+		setLiveCommentId(null);
+		setLiveReactionCounts(null);
+	}, [isOpen]);
+
+	const handleCommentsChange = useCallback((next: CommentRow[]) => {
+		setDetail((current) =>
+			current
+				? {
+						...current,
+						review: {
+							...current.review,
+							commentsCount: next.length,
+						},
+					}
+				: current,
+		);
+		const reviewId = useReviewDetail.getState().args?.reviewId ?? null;
+		if (reviewId) {
+			const existing =
+				useReviewDetail.getState().engagementByReviewId[reviewId];
+			useReviewDetail.getState().setReviewEngagement(reviewId, {
+				likesCount: existing?.likesCount ?? 0,
+				dislikesCount: existing?.dislikesCount,
+				commentsCount: next.length,
+			});
+		}
+	}, []);
+
+	const handleReviewRealtimeEvent = useCallback(
+		(event: RealtimeEvent) => {
+			if (event.type === "comment.created") {
+				if (!liveCommentTrackedRef.current) {
+					liveCommentTrackedRef.current = true;
+					trackSenseProductEvent("realtime.comment.received_live", {
+						reviewId: activeReviewId,
+					});
+				}
+				setLiveCommentId(event.commentId);
+				setLiveCommentSignal((current) => current + 1);
+				return;
+			}
+
+			if (event.type === "reaction.updated") {
+				setLiveReactionCounts({
+					likesCount: event.likesCount,
+					dislikesCount: event.dislikesCount,
+				});
+				setDetail((current) =>
+					current
+						? {
+								...current,
+								review: {
+									...current.review,
+									likesCount: event.likesCount,
+									dislikesCount: event.dislikesCount,
+								},
+							}
+						: current,
+				);
+				if (activeReviewId) {
+					useReviewDetail.getState().setReviewEngagement(activeReviewId, {
+						likesCount: event.likesCount,
+						dislikesCount: event.dislikesCount,
+					});
+				}
+			}
+		},
+		[activeReviewId],
+	);
+
 	const containsSpoilers =
 		review?.containsSpoilers ?? preview?.containsSpoilers ?? false;
 	const displayTitle = review?.title ?? preview?.title ?? null;
@@ -682,6 +746,7 @@ export function ReviewDetailRoot() {
 					initialLiked={displayLiked}
 					initialDislikes={displayDislikes}
 					initialDisliked={displayDisliked}
+					liveReactionCounts={liveReactionCounts}
 					iconButtonClassName={REVIEW_READER_HEADER_ICON_BUTTON_CLASS}
 					onReactionChange={handleReactionChange}
 				/>
@@ -691,6 +756,13 @@ export function ReviewDetailRoot() {
 
 	return (
 		<>
+			{isOpen && activeReviewId ? (
+				<ReviewRealtimeSubscriber
+					reviewId={activeReviewId}
+					enabled={Boolean(session?.user)}
+					onEvent={handleReviewRealtimeEvent}
+				/>
+			) : null}
 			<DetailVaulSheet
 				open={isOpen}
 				onOpenChange={handleOpenChange}
@@ -878,10 +950,15 @@ export function ReviewDetailRoot() {
 								</div>
 								{detail ? (
 									<CommentsThread
+										key={detail.review.id}
 										appearance="sheet"
 										targetKind="review"
 										targetId={detail.review.id}
-										initialComments={comments}
+										initialComments={threadSeedComments}
+										scrollRootRef={scrollRef}
+										liveRefreshSignal={liveCommentSignal}
+										liveRefreshCommentId={liveCommentId}
+										onCommentsChange={handleCommentsChange}
 									/>
 								) : loading ? (
 									<ul className="space-y-3" aria-hidden>

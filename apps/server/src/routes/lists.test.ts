@@ -250,6 +250,12 @@ mock.module("../lib/list-collaborators", () => ({
 	removeListCollaborator: async () => ({ ok: true as const }),
 }));
 
+const publishRealtimeEventMock = mock(async () => {});
+
+mock.module("../lib/realtime-publish", () => ({
+	publishRealtimeEvent: publishRealtimeEventMock,
+}));
+
 // lists.ts imports this module for owner diary scores — avoid pulling `log` from the db mock.
 mock.module("../lib/list-owner-log-scores", () => ({
 	fetchOwnerLogScoresForListItems: async () => new Map(),
@@ -373,6 +379,10 @@ describe("GET /api/lists/:id", () => {
 });
 
 describe("POST /api/lists/:id/reorder", () => {
+	beforeEach(() => {
+		publishRealtimeEventMock.mockClear();
+	});
+
 	test("allows owner reorder and normalizes positions deterministically", async () => {
 		const response = await postReorder({
 			userId: "owner-1",
@@ -390,6 +400,11 @@ describe("POST /api/lists/:id/reorder", () => {
 			"lit-2",
 		]);
 		expect(payload.items.map((row) => row.item.position)).toEqual([0, 1, 2]);
+		expect(publishRealtimeEventMock).toHaveBeenCalledTimes(1);
+		expect(publishRealtimeEventMock).toHaveBeenCalledWith("list:lst-1", {
+			type: "list.reordered",
+			itemIds: ["lit-3", "lit-1", "lit-2"],
+		});
 	});
 
 	test("allows collaborative editor reorder", async () => {

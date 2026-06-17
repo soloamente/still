@@ -203,7 +203,7 @@ export function MovieDetailTopBar({
 						<ViewTab key={tab.id} tabView={tab.id} label={tab.label} />
 					))}
 				</nav>
-				<div className="flex min-w-0 justify-end">
+				<div className="flex min-w-0 items-center justify-end gap-2">
 					<DetailMotionButton
 						type="button"
 						className={cn(pill, pillIconOnlyMobile, "pr-3 max-sm:pr-0")}

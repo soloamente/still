@@ -67,6 +67,9 @@ const serverEnv = {
 	RESEND_API_KEY: optionalNonEmptyString(),
 	// Verified Resend sender, e.g. "Sense <noreply@updates.example.com>".
 	EMAIL_FROM: optionalNonEmptyString(),
+	// Upstash Redis REST — optional in dev; realtime publish/SSE no-op when unset.
+	UPSTASH_REDIS_REST_URL: optionalUrl(),
+	UPSTASH_REDIS_REST_TOKEN: optionalNonEmptyString(),
 };
 
 export const env = createEnv<undefined, typeof serverEnv>({

@@ -26,6 +26,7 @@ import { postsRoute } from "../routes/posts";
 import { productEventsRoute } from "../routes/product-events";
 import { profilesRoute } from "../routes/profiles";
 import { quotesRoute } from "../routes/quotes";
+import { realtimePresenceRoute } from "../routes/realtime-presence";
 import { reviewsRoute } from "../routes/reviews";
 import { staffRoute } from "../routes/staff";
 import { streaksRoute } from "../routes/streaks";
@@ -115,6 +116,7 @@ export const app = new Elysia()
 	.use(journalRoute)
 	.use(chatRoute)
 	.use(notificationsRoute)
+	.use(realtimePresenceRoute)
 	.use(staffRoute)
 	.use(wsRoute)
 	.onError(({ error, code }) => {

@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { NotificationTasteChallengeRow } from "@/components/notifications/notification-taste-challenge-row";
@@ -88,6 +88,11 @@ export function NotificationsList({ items }: { items: Row[] }) {
 	const [rows, setRows] = useState(items);
 	/** Prevents duplicate POST /read while a row is in flight (e.g. rapid clicks). */
 	const inFlight = useRef(new Set<string>());
+
+	// Keep in sync when the global inbox provider pushes fresher rows.
+	useEffect(() => {
+		setRows(items);
+	}, [items]);
 
 	const sections = useMemo(() => {
 		const map = new Map<string, Row[]>();

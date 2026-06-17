@@ -20,7 +20,10 @@ import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@still/ui/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import type { ListDetailFilmRow } from "@/components/list/list-detail-films-grid";
+import {
+	itemIdsFromRows,
+	type RankedListReorderRow,
+} from "@/components/list/list-detail-page-branching";
 import { ListDetailPosterTile } from "@/components/list/list-detail-poster-tile";
 import { ListItemNoteControl } from "@/components/list/list-item-note-control";
 import { ListItemNoteDisplay } from "@/components/list/list-item-note-display";
@@ -31,13 +34,16 @@ import {
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 	LIST_DETAIL_FILMS_GRID_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
+import {
+	broadcastListReordered,
+	filmRowOrderKey,
+} from "@/lib/list-reorder-live-sync";
 import { rankedListPosterLabels } from "@/lib/patron-log-poster-caption";
 import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
 import { postListReorder } from "@/lib/still-api-fetch";
 
-export type RankedListReorderRow = ListDetailFilmRow & {
-	item: ListDetailFilmRow["item"] & { id: string };
-};
+export type { RankedListReorderRow } from "@/components/list/list-detail-page-branching";
+export { itemIdsFromRows } from "@/components/list/list-detail-page-branching";
 
 type SaveOrderFn = (
 	listId: string,
@@ -69,10 +75,6 @@ export function moveRankedRows(
 	if (!moved) return rows;
 	next.splice(toIndex, 0, moved);
 	return next;
-}
-
-export function itemIdsFromRows(rows: RankedListReorderRow[]): string[] {
-	return rows.map((row) => row.item.id);
 }
 
 /**
@@ -212,6 +214,7 @@ export function RankedListReorderGrid({
 	canEditNotes?: boolean;
 }) {
 	const canonicalAllItemIds = allItemIds ?? itemIdsFromRows(items);
+	const itemsOrderKey = filmRowOrderKey(items);
 	const [rows, setRows] = useState<RankedListReorderRow[]>(items);
 	const [isSaving, setIsSaving] = useState(false);
 	const isSavingRef = useRef(false);
@@ -234,6 +237,12 @@ export function RankedListReorderGrid({
 		isSavingRef.current = isSaving;
 	}, [isSaving]);
 
+	// Track order key — parent may pass a new array reference with the same ids.
+	useEffect(() => {
+		setRows(items);
+		committedRowsRef.current = cloneRows(items);
+	}, [itemsOrderKey, items]);
+
 	const persistReorder = useCallback(
 		async (
 			nextRows: RankedListReorderRow[],
@@ -248,8 +257,14 @@ export function RankedListReorderGrid({
 				}),
 			);
 			if (response.ok) {
+				const payloadIds = buildReorderPayloadIds({
+					reorderedVisibleIds: itemIdsFromRows(nextRows),
+					allItemIds: canonicalAllItemIds,
+				});
 				committedRowsRef.current = cloneRows(nextRows);
 				undoRowsRef.current = cloneRows(previousRows);
+				// Same-browser tabs may miss dev-bus SSE — fan out locally too.
+				broadcastListReordered(listId, payloadIds);
 				toast.success("Ranking updated", {
 					actionButtonStyle: { borderRadius: 9999 },
 					action: {

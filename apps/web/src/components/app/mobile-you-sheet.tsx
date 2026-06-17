@@ -5,10 +5,13 @@ import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import IconGear from "@still/ui/icons/gear";
 import IconListPlay from "@still/ui/icons/list-play";
 import IconPlaylistOutline from "@still/ui/icons/playlist-outline";
+import IconQuotes from "@still/ui/icons/quotes";
+import IconQuotesFilled from "@still/ui/icons/quotes-filled";
 import IconTicket from "@still/ui/icons/ticket";
 import IconTicketFilled from "@still/ui/icons/ticket-filled";
+import IconYearInFilm from "@still/ui/icons/year-in-film";
 import { cn } from "@still/ui/lib/utils";
-import { Newspaper, Sparkles } from "lucide-react";
+import { Newspaper } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useRef } from "react";
 
@@ -43,7 +46,9 @@ function renderDestinationLeadingIcon(
 		return <IconAwardFill size="20px" className="size-5 shrink-0 opacity-90" />;
 	}
 	if (href === "/year") {
-		return <Sparkles className="size-5 shrink-0 opacity-80" aria-hidden />;
+		return (
+			<IconYearInFilm size="20px" className="size-5 shrink-0 opacity-80" />
+		);
 	}
 
 	switch (href) {
@@ -85,6 +90,12 @@ function renderDestinationLeadingIcon(
 			);
 		case "/journal":
 			return <Newspaper className={DESTINATION_ICON_CLASS} aria-hidden />;
+		case "/quotes":
+			return pathname === "/quotes" || pathname.startsWith("/quotes/") ? (
+				<IconQuotesFilled size="20px" className={DESTINATION_ICON_CLASS} />
+			) : (
+				<IconQuotes size="20px" className={DESTINATION_ICON_CLASS} />
+			);
 		default:
 			return null;
 	}

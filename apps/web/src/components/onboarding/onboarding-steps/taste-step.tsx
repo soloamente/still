@@ -11,8 +11,9 @@ import {
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { MoviePoster } from "@/components/movie/movie-poster";
+import { OnboardingFieldInput } from "@/components/onboarding/onboarding-form-controls";
 import { OnboardingStepHeader } from "@/components/onboarding/onboarding-steps/onboarding-step-header";
-import { TasteFilmSearchPopover } from "@/components/onboarding/onboarding-steps/taste-film-search-popover";
+import { ListingMentionPickerRow } from "@/components/review/review-body-with-mentions";
 import { api } from "@/lib/api";
 import {
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
@@ -258,7 +259,7 @@ export function useTasteStepData({
 	};
 }
 
-/** Left column — title, search popover, progress only (ratings live on the right grid). */
+/** Left column — title, inline search, progress (ratings live on the right grid). */
 export function TasteStepControls({ model }: { model: TasteStepModel }) {
 	const {
 		ratedCount,
@@ -272,6 +273,12 @@ export function TasteStepControls({ model }: { model: TasteStepModel }) {
 		pickSearchFilm,
 	} = model;
 
+	const trimmed = search.trim();
+	const pickableResults = useMemo(
+		() => searchResults.filter((movie) => !hiddenPickerMovieIds.has(movie.id)),
+		[hiddenPickerMovieIds, searchResults],
+	);
+
 	return (
 		<div className="flex flex-col gap-6">
 			<OnboardingStepHeader
@@ -280,15 +287,42 @@ export function TasteStepControls({ model }: { model: TasteStepModel }) {
 				title="What have you loved lately?"
 			/>
 
-			<TasteFilmSearchPopover
-				hiddenMovieIds={hiddenPickerMovieIds}
-				loading={searchLoading}
-				onPickFilm={pickSearchFilm}
-				onSearchChange={setSearch}
-				results={searchResults}
-				search={search}
-				tmdbHint={tmdbHint}
+			<OnboardingFieldInput
+				onChange={(e) => setSearch(e.target.value)}
+				placeholder="Search films you've seen…"
+				spellCheck={false}
+				type="search"
+				value={search}
 			/>
+
+			{trimmed ? (
+				searchLoading ? (
+					<p className="text-muted-foreground text-sm" role="status">
+						Searching…
+					</p>
+				) : pickableResults.length === 0 ? (
+					<p className="text-muted-foreground text-sm" role="status">
+						{tmdbHint ?? `No films match “${trimmed}”`}
+					</p>
+				) : (
+					<div
+						className="scrollbar-none max-h-56 min-h-0 overflow-y-auto overscroll-y-contain rounded-2xl bg-background p-1 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+						role="listbox"
+						aria-label="Search films"
+					>
+						{pickableResults.map((hit) => (
+							<ListingMentionPickerRow
+								key={hit.id}
+								active={false}
+								onSelect={() => pickSearchFilm(hit)}
+								posterUrl={tmdbPosterUrlFromPath(hit.poster_url, "w92")}
+								subtitle="Film"
+								title={hit.title}
+							/>
+						))}
+					</div>
+				)
+			) : null}
 		</div>
 	);
 }

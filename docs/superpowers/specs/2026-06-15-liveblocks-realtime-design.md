@@ -1,6 +1,6 @@
 # Sense — Liveblocks realtime layer
 
-**Status:** Approved — implementation plan ready (2026-06-15)  
+**Status:** Superseded for Wave 0–1 by [`2026-06-15-sense-realtime-redis-sse-design.md`](./2026-06-15-sense-realtime-redis-sse-design.md) (2026-06-15) — retained for historical context and partial implementation reference only.  
 **Date:** 2026-06-15  
 **Topic:** Managed realtime (presence, collaborative lists, hybrid social push, chat migration) on Vercel  
 **Parent:** [`2026-05-29-sense-product-roadmap-design.md`](./2026-05-29-sense-product-roadmap-design.md), [`sense-media-platform-strategy.md`](../../../sense-media-platform-strategy.md) (habit loop, social proof, Tier 3 collaborative lists)  

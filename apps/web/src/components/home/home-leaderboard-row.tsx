@@ -40,7 +40,7 @@ export function HomeLeaderboardRow({
 			</span>
 			<Link
 				href={`/profile/${entry.handle}`}
-				className="shrink-0 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
+				className="relative shrink-0 overflow-visible rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
 			>
 				<PatronPortraitWithMetalTier
 					handle={entry.handle}

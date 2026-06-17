@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { NotificationsList } from "@/components/notifications/notifications-list";
+import { NotificationsListLive } from "@/components/notifications/notifications-list-live";
 import { Section } from "@/components/ui/section";
 import { serverApi } from "@/lib/server-api";
 
@@ -26,7 +26,7 @@ export default async function NotificationsPage() {
 			title="Notifications"
 			subtitle="Replies, likes, new followers, and badges you've earned."
 		>
-			<NotificationsList items={items} />
+			<NotificationsListLive initialItems={items} />
 		</Section>
 	);
 }

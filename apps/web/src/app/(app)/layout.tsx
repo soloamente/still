@@ -1,11 +1,13 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
+import { AppPatronAudioScope } from "@/components/app/app-patron-audio-scope";
 import { AppShell } from "@/components/app/app-shell";
 import { AppThemeShell } from "@/components/app/app-theme-shell";
 import { PublicShareShell } from "@/components/app/public-share-shell";
 import { VerifyEmailBanner } from "@/components/auth/verify-email-banner";
 import { InboxRealtimeSubscriber } from "@/components/notifications/inbox-realtime-subscriber";
+import { NotificationsInboxProvider } from "@/components/notifications/notifications-inbox-provider";
 import { PatronOnlineProvider } from "@/components/realtime/patron-online-provider";
 import { RealtimeRootProvider } from "@/components/realtime/realtime-root-provider";
 import { ImpersonationBanner } from "@/components/staff/impersonation-banner";
@@ -32,7 +34,9 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	if (!session && isPublicShareRoute) {
 		return (
 			<AppThemeShell initialAppearance={null} isPro={false}>
-				<PublicShareShell>{children}</PublicShareShell>
+				<AppPatronAudioScope>
+					<PublicShareShell>{children}</PublicShareShell>
+				</AppPatronAudioScope>
 			</AppThemeShell>
 		);
 	}
@@ -63,16 +67,20 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 		>
 			{impersonatedBy ? <ImpersonationBanner name={impersonatedName} /> : null}
 			<VerifyEmailBanner session={session} />
-			<AppShell user={buildPatronNavUser(session, profile)}>
-				<RealtimeRootProvider userId={session.user.id}>
-					<PatronActivityProvider>
-						<PatronOnlineProvider viewerHandle={profile?.handle}>
+			<AppPatronAudioScope gamificationWatchers>
+				<NotificationsInboxProvider>
+					<AppShell user={buildPatronNavUser(session, profile)}>
+						<RealtimeRootProvider userId={session.user.id}>
 							<InboxRealtimeSubscriber userId={session.user.id} />
-							{children}
-						</PatronOnlineProvider>
-					</PatronActivityProvider>
-				</RealtimeRootProvider>
-			</AppShell>
+							<PatronActivityProvider>
+								<PatronOnlineProvider viewerHandle={profile?.handle}>
+									{children}
+								</PatronOnlineProvider>
+							</PatronActivityProvider>
+						</RealtimeRootProvider>
+					</AppShell>
+				</NotificationsInboxProvider>
+			</AppPatronAudioScope>
 		</AppThemeShell>
 	);
 }

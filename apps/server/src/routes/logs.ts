@@ -64,6 +64,7 @@ import {
 	backfillWatchStreakFromLogs,
 	syncWatchStreakForUser,
 } from "../lib/watch-streak-sync";
+import { clearWatchlistItemForUserTitle } from "../lib/watchlist-upsert";
 
 /** `inArray` wrapper that no-ops to a false predicate on an empty list. */
 function inArrayTvIds(col: typeof log.tvId, ids: number[]) {
@@ -239,6 +240,13 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 					tvId: row.tvId,
 					liked: true,
 				});
+			}
+
+			// Watched titles leave the personal watchlist (lobby + engagement chip parity).
+			if (movieId != null) {
+				await clearWatchlistItemForUserTitle(user.id, { movieId });
+			} else if (tvId != null) {
+				await clearWatchlistItemForUserTitle(user.id, { tvId });
 			}
 
 			void recomputeUserTasteSignature(user.id).catch((err) => {

@@ -13,8 +13,9 @@ import {
 	canReorderRankedList,
 	toRankedReorderRows,
 } from "@/components/list/list-detail-page-branching";
+import { ListDetailRankedFilmsLive } from "@/components/list/list-detail-ranked-films-live";
+import { ListDetailRankedLive } from "@/components/list/list-detail-ranked-live";
 import { ListDetailTopBar } from "@/components/list/list-detail-top-bar";
-import { RankedListReorderGrid } from "@/components/list/ranked-list-reorder-grid";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { MovieDetailSectionNav } from "@/components/movie/movie-detail-section-nav";
 import { authServer } from "@/lib/auth-server";
@@ -239,15 +240,26 @@ export default async function ListDetailPage({
 							}
 							className="pt-2 pb-2"
 						>
-							{canReorder && rankedRows ? (
-								<RankedListReorderGrid
-									listId={data.id}
-									items={rankedRows}
-									allItemIds={data.items.map((entry) => entry.item.id)}
-									canEditNotes={canEditListNotes}
-									systemKind={data.systemKind ?? null}
-									viewerCanEdit={viewerCanEdit}
-								/>
+							{data.isRanked ? (
+								canReorder && rankedRows ? (
+									<ListDetailRankedLive
+										listId={data.id}
+										initialRows={rankedRows}
+										allItemIds={data.items.map((entry) => entry.item.id)}
+										canEditNotes={canEditListNotes}
+										systemKind={data.systemKind ?? null}
+										viewerCanEdit={viewerCanEdit}
+									/>
+								) : (
+									<ListDetailRankedFilmsLive
+										listId={data.id}
+										initialItems={filmRows}
+										isRanked={data.isRanked}
+										canEditNotes={canEditListNotes}
+										systemKind={data.systemKind ?? null}
+										viewerCanEdit={viewerCanEdit}
+									/>
+								)
 							) : (
 								<ListDetailFilmsGrid
 									items={filmRows}

@@ -37,6 +37,7 @@ import {
 	getTvSeasonDetailCached,
 	getTvSeasonsCached,
 } from "../lib/tv-season-cache";
+import { tvListingEngagementRoutes } from "./listing-engagement";
 
 /** Returned when `TMDB_API_KEY` is missing so the UI can explain empty rails. */
 const TMDB_UNCONFIGURED = {
@@ -136,6 +137,7 @@ async function discoverCompanyTvMatchingTitle(
 
 export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 	.use(context)
+	.use(tvListingEngagementRoutes)
 	// Text search — TMDb passthrough (same contract as `/api/movies/search` for the web dialog).
 	.get(
 		"/search",

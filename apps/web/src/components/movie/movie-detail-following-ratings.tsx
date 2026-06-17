@@ -79,12 +79,7 @@ function FollowingRatingChip({ entry }: { entry: MovieDetailFollowingRating }) {
 				"transition-[transform,background-color] duration-(--aker-duration) ease-(--aker-ease)",
 			)}
 		>
-			<span
-				className={cn(
-					"relative isolate size-11 rounded-full bg-muted active:scale-[0.96] motion-reduce:active:scale-100 [@media(hover:hover)]:group-hover:bg-foreground/10",
-					entry.diaryMetalTier ? "overflow-visible" : "overflow-hidden",
-				)}
-			>
+			<span className="relative isolate size-11 overflow-visible rounded-full bg-muted active:scale-[0.96] motion-reduce:active:scale-100 [@media(hover:hover)]:group-hover:bg-foreground/10">
 				<PatronPortraitWithMetalTier
 					handle={entry.handle}
 					avatarUrl={entry.image}

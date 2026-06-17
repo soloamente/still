@@ -73,9 +73,6 @@ export function CommunityReviewsInfinite({
 
 	return (
 		<>
-			<p className="mx-auto mb-4 max-w-2xl text-center text-muted-foreground text-xs leading-relaxed">
-				Ranked by likes and replies in this period — not review length.
-			</p>
 			<ul className="mx-auto flex w-full max-w-2xl flex-col gap-3">
 				{items.map((review) => (
 					<li key={review.id}>

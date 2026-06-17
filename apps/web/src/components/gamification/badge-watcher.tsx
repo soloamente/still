@@ -11,7 +11,7 @@ import { fetchBadgesRecent } from "@/lib/still-api-fetch";
  * Polls /badges/me/recent every minute and fires a toast whenever the
  * server hands us a newly-awarded badge. Cheap (single small query)
  * and gives the user the same "you got something!" feedback Letterboxd
- * lacks. Mount once in the (app)/layout.
+ * lacks. Mounted from `AppPatronAudioScope` in `(app)/layout`.
  */
 export function BadgeWatcher() {
 	const { play } = useCinematicAudio();

@@ -15,6 +15,8 @@ import {
 import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import IconListPlay from "@still/ui/icons/list-play";
 import IconPlaylistOutline from "@still/ui/icons/playlist-outline";
+import IconQuotes from "@still/ui/icons/quotes";
+import IconQuotesFilled from "@still/ui/icons/quotes-filled";
 import IconTicket from "@still/ui/icons/ticket";
 import IconTicketFilled from "@still/ui/icons/ticket-filled";
 import { cn } from "@still/ui/lib/utils";
@@ -87,6 +89,9 @@ export function HomeStickyChrome({
 		pathname === "/watchlist" || pathname.startsWith("/watchlist/");
 	/** Lists shortcut — filled on `/lists`, outline elsewhere (same pattern as diary ticket). */
 	const isListsRoute = pathname === "/lists" || pathname.startsWith("/lists/");
+	/** Saved quotes shortcut — filled on `/quotes`, outline elsewhere. */
+	const isQuotesRoute =
+		pathname === "/quotes" || pathname.startsWith("/quotes/");
 	/** `?browse=` only applies on `/home` — on `/diary` we must not treat missing params as “Movies active” or the sliding pill stays left. */
 	const isHomeLobby = pathname === "/home" || pathname.startsWith("/home/");
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -362,6 +367,44 @@ export function HomeStickyChrome({
 									className={HOME_STICKY_SHORTCUT_TOOLTIP_CLASS}
 								>
 									Diary
+								</TooltipContent>
+							</Tooltip>
+							<Tooltip>
+								<TooltipTrigger
+									render={
+										<Link
+											href="/quotes"
+											className={stickyLobbyShortcutLinkClass}
+											aria-label="Your saved quotes"
+											aria-current={isQuotesRoute ? "page" : undefined}
+											title="Lines you have saved"
+										>
+											{isQuotesRoute ? (
+												<motion.span
+													layoutId="home-sticky-browse-pill"
+													className="absolute inset-0 z-0 rounded-full bg-card"
+													transition={browsePillTransition}
+												/>
+											) : null}
+											<span className="relative z-10">
+												{isQuotesRoute ? (
+													<IconQuotesFilled
+														className={HOME_STICKY_HEADER_ICON_CLASS}
+													/>
+												) : (
+													<IconQuotes
+														className={HOME_STICKY_HEADER_ICON_CLASS}
+													/>
+												)}
+											</span>
+										</Link>
+									}
+								/>
+								<TooltipContent
+									sideOffset={2}
+									className={HOME_STICKY_SHORTCUT_TOOLTIP_CLASS}
+								>
+									Quotes
 								</TooltipContent>
 							</Tooltip>
 							<HomeNotificationsMenu authenticated={Boolean(user)} />

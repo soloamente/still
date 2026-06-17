@@ -9,6 +9,7 @@ import {
 	tv,
 } from "@still/db";
 import { env } from "@still/env/server";
+import { listRoomId } from "@still/realtime";
 import { get } from "@vercel/blob";
 import {
 	and,
@@ -56,6 +57,7 @@ import {
 } from "../lib/list-quality";
 import { canViewList } from "../lib/list-view-access";
 import { hit } from "../lib/rate-limit";
+import { publishRealtimeEvent } from "../lib/realtime-publish";
 import {
 	assertEmailVerified,
 	EmailVerificationRequiredError,
@@ -792,6 +794,12 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 					),
 				)
 				.orderBy(asc(listItem.position), asc(listItem.addedAt));
+
+			void publishRealtimeEvent(listRoomId(params.id), {
+				type: "list.reordered",
+				itemIds: requestedIds,
+			});
+
 			return { ok: true, items };
 		},
 		{

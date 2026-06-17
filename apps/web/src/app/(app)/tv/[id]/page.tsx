@@ -56,6 +56,12 @@ function toFiniteNumber(value: unknown): number | null {
 	return Number.isFinite(n) ? n : null;
 }
 
+/** Engagement chip counts always render (including zero). */
+function toEngagementCount(value: unknown): number {
+	const n = toFiniteNumber(value);
+	return n != null ? Math.max(0, Math.floor(n)) : 0;
+}
+
 type TmdbJsonShape = {
 	genres?: { id: number; name: string }[];
 	credits?: {
@@ -114,8 +120,10 @@ type TmdbJsonShape = {
 type CommunityShape = {
 	averageRating: number | null;
 	ratingsCount: number;
-	watchesCount?: number | null;
-	watchlistCount?: number | null;
+	watchesCount?: number;
+	listsCount?: number;
+	favoritesCount?: number;
+	watchlistCount?: number;
 };
 
 type TvDetail = {
@@ -301,10 +309,12 @@ export default async function TvShowPage({
 		0,
 		Math.floor(toFiniteNumber(data.community?.ratingsCount) ?? 0),
 	);
-	const communityWatchesCount =
-		toFiniteNumber(data.community?.watchesCount) ?? null;
-	const communityWatchlistCount =
-		toFiniteNumber(data.community?.watchlistCount) ?? null;
+	const engagementCounts = {
+		watchesCount: toEngagementCount(data.community?.watchesCount),
+		listsCount: toEngagementCount(data.community?.listsCount),
+		favoritesCount: toEngagementCount(data.community?.favoritesCount),
+		watchlistCount: toEngagementCount(data.community?.watchlistCount),
+	};
 
 	const hero = (
 		<div
@@ -343,8 +353,9 @@ export default async function TvShowPage({
 				variant="compact"
 				communityAverage={communityAverage}
 				communityRatingsCount={communityRatingsCount}
-				communityWatchesCount={communityWatchesCount}
-				communityWatchlistCount={communityWatchlistCount}
+				engagementCounts={engagementCounts}
+				listingKind="tv"
+				listingId={data.tmdbId}
 			/>
 			<div className="mt-8 flex w-full justify-center">
 				<TvDetailPrimaryActions />

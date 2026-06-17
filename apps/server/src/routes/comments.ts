@@ -7,6 +7,7 @@ import {
 	review,
 	user,
 } from "@still/db";
+import { reviewRoomId } from "@still/realtime";
 import { and, asc, eq, inArray, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
@@ -20,6 +21,7 @@ import { fetchDiaryLogCountsForUserIds } from "../lib/diary-metal-tier";
 import { notifyOnReviewComment } from "../lib/notification-delivery";
 import { serializePatronProfileForClient } from "../lib/profile-media";
 import { hit } from "../lib/rate-limit";
+import { publishRealtimeEvent } from "../lib/realtime-publish";
 import { routeBody } from "../lib/route-body";
 
 type CreateCommentBody = {
@@ -114,6 +116,12 @@ export const commentsRoute = new Elysia({
 						reviewTitle: reviewRow.title,
 					});
 				}
+
+				void publishRealtimeEvent(reviewRoomId(body.parentId), {
+					type: "comment.created",
+					commentId: id,
+					preview: body.body.slice(0, 120),
+				});
 			}
 
 			return row;
@@ -151,6 +159,39 @@ export const commentsRoute = new Elysia({
 			return { ok: true };
 		},
 		{ params: t.Object({ id: t.String() }) },
+	)
+	.patch(
+		"/:id",
+		async ({ params, body: rawBody, user: viewer, status }) => {
+			if (!viewer) return status(401, "Sign in");
+			if (!hit(`comment-edit:${viewer.id}`, { limit: 60, windowMs: 60_000 }).ok)
+				return status(429, "Slow down");
+			const body = routeBody<{ body: string }>(rawBody);
+			const trimmed = body.body.trim();
+			if (!trimmed) return status(400, "Empty comment");
+
+			const [existing] = await db
+				.select()
+				.from(comment)
+				.where(eq(comment.id, params.id))
+				.limit(1);
+			if (!existing || existing.userId !== viewer.id || existing.deletedAt)
+				return status(404, "Not found");
+
+			const [row] = await db
+				.update(comment)
+				.set({ body: trimmed, editedAt: new Date() })
+				.where(eq(comment.id, params.id))
+				.returning();
+
+			return row;
+		},
+		{
+			params: t.Object({ id: t.String() }),
+			body: t.Object({
+				body: t.String({ minLength: 1, maxLength: 4000 }),
+			}),
+		},
 	)
 	.get(
 		"/of/:parentType/:parentId",

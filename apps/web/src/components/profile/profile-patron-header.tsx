@@ -144,26 +144,31 @@ export function ProfilePatronHeader({
 			<div className="relative mx-auto -mt-14 max-w-lg px-2 text-center sm:-mt-16 sm:px-4">
 				{/* Portrait */}
 				<div className="mx-auto mb-4 flex justify-center">
-					<div className="relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 shadow-lg ring-4 ring-card sm:w-24">
+					<div className="relative aspect-[2/3] w-[5.5rem] sm:w-24">
+						{/* Poster chrome behind the portrait; overflow stays visible so the online dot is not clipped. */}
+						<div
+							className="pointer-events-none absolute inset-0 rounded-2xl bg-muted/30 shadow-lg ring-4 ring-card"
+							aria-hidden
+						/>
 						{hasPortrait ? (
 							<PatronPortraitWithMetalTier
 								handle={handle}
 								avatarUrl={avatarUrl}
 								name={displayName || initials}
-								width={192}
-								height={288}
 								isAnimated={avatarIsAnimated}
 								grayscaleUntilHover={profilePortraitGrayscaleUntilHover ?? true}
 								className="size-full rounded-2xl"
 								diaryMetalTier={diaryMetalTier}
 							/>
 						) : (
-							<PersonCreditPortrait
-								name={displayName || initials}
-								profilePath={null}
-								grayscale
-								sizes="96px"
-							/>
+							<div className="size-full overflow-hidden rounded-2xl">
+								<PersonCreditPortrait
+									name={displayName || initials}
+									profilePath={null}
+									grayscale
+									sizes="96px"
+								/>
+							</div>
 						)}
 					</div>
 				</div>

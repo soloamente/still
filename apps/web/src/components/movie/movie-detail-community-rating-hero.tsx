@@ -3,9 +3,18 @@
 import IconPatronScoreLeafLeft from "@still/ui/icons/patron-score-leaf-left";
 import IconPatronScoreLeafRight from "@still/ui/icons/patron-score-leaf-right";
 import { cn } from "@still/ui/lib/utils";
+import { useState } from "react";
 
+import {
+	type ListingEngagementCounts,
+	MovieDetailEngagementChips,
+} from "@/components/movie/movie-detail-engagement-chips";
+import { MovieDetailEngagementDrawer } from "@/components/movie/movie-detail-engagement-drawer";
 import { StillAnimateRatingNumber } from "@/components/ui/still-animate-rating-number";
+import { useListingEngagementCounts } from "@/hooks/use-listing-engagement-counts";
 import { APP_COMMUNITY_AVERAGE_LABEL } from "@/lib/app-brand";
+import { authClient } from "@/lib/auth-client";
+import type { ListingEngagementChipKind } from "@/lib/listing-engagement-chip-copy";
 import {
 	clampLogRatingDisplay,
 	formatLogRatingDisplay,
@@ -22,19 +31,26 @@ function formatPatronRatingsCountLine(count: number): string {
 	return `${count} public ${count === 1 ? "rating" : "ratings"}`;
 }
 
-/** Watches + watchlist totals — only non-null counts are included. */
-function formatListingEngagementMetaLine(
-	watchesCount: number | null,
-	watchlistCount: number | null,
-): string | null {
-	const parts: string[] = [];
-	if (watchesCount != null) {
-		parts.push(`${watchesCount} ${watchesCount === 1 ? "watch" : "watches"}`);
-	}
-	if (watchlistCount != null) {
-		parts.push(`${watchlistCount} on watchlists`);
-	}
-	return parts.length > 0 ? parts.join(" · ") : null;
+/** Live chip row — isolated so the engagement hook only runs with a valid listing id. */
+function MovieDetailLiveEngagementChips({
+	listingKind,
+	listingId,
+	initial,
+	onChipPress,
+}: {
+	listingKind: "movie" | "tv";
+	listingId: number;
+	initial?: Partial<ListingEngagementCounts>;
+	onChipPress: (kind: ListingEngagementChipKind) => void;
+}) {
+	const counts = useListingEngagementCounts({
+		listingKind,
+		listingId,
+		initial,
+	});
+	return (
+		<MovieDetailEngagementChips counts={counts} onChipPress={onChipPress} />
+	);
 }
 
 /**
@@ -43,18 +59,29 @@ function formatListingEngagementMetaLine(
 export function MovieDetailCommunityRatingHero({
 	communityAverage,
 	communityRatingsCount,
-	communityWatchesCount = null,
-	communityWatchlistCount = null,
+	engagementCounts,
+	listingKind,
+	listingId,
+	movieId,
 	variant = "featured",
 	className,
 }: {
 	communityAverage: number | null;
 	communityRatingsCount: number;
-	communityWatchesCount?: number | null;
-	communityWatchlistCount?: number | null;
+	engagementCounts?: Partial<ListingEngagementCounts>;
+	listingKind?: "movie" | "tv";
+	listingId?: number;
+	/** Review reader deep link — movie detail only today. */
+	movieId?: number;
 	variant?: "featured" | "compact";
 	className?: string;
 }) {
+	const { data: session } = authClient.useSession();
+	const signedIn = Boolean(session?.user);
+	const [drawerKind, setDrawerKind] =
+		useState<ListingEngagementChipKind | null>(null);
+	const [drawerOpen, setDrawerOpen] = useState(false);
+
 	const hasAverage =
 		communityAverage != null &&
 		communityRatingsCount > 0 &&
@@ -70,95 +97,112 @@ export function MovieDetailCommunityRatingHero({
 			: "No patron score yet";
 	const emptyDescription = "Log this title with a score.";
 	const isCompact = variant === "compact";
-	const engagementMeta = formatListingEngagementMetaLine(
-		communityWatchesCount,
-		communityWatchlistCount,
-	);
+	const showEngagementChips =
+		isCompact && signedIn && listingKind != null && listingId != null;
 
-	if (isCompact && !hasAverage && !engagementMeta) return null;
+	const handleChipPress = (kind: ListingEngagementChipKind) => {
+		setDrawerKind(kind);
+		setDrawerOpen(true);
+	};
+
+	if (isCompact && !hasAverage && !showEngagementChips) return null;
 
 	const leafClass = isCompact
 		? "h-10 w-auto shrink-0 text-foreground/55 sm:h-11"
 		: "h-20 w-auto shrink-0 text-foreground/55 sm:h-24";
 
 	return (
-		<section
-			className={cn(
-				isCompact
-					? "mt-4 flex w-full flex-col items-center gap-1.5 text-center"
-					: "mx-auto flex w-full max-w-md flex-col items-center px-4 py-10 text-center sm:max-w-lg sm:py-12",
-				className,
-			)}
-			aria-label="Community rating"
-		>
-			{/* Score row — laurels frame the primary metric like Airbnb guest-favorite. */}
-			{hasAverage ? (
-				<div
-					className={cn(
-						"flex items-center justify-center",
-						isCompact ? "gap-2 sm:gap-2.5" : "gap-2 sm:gap-4",
-					)}
-				>
-					<IconPatronScoreLeafLeft className={leafClass} />
-					{hasAverage && displayAverage != null ? (
+		<>
+			<section
+				className={cn(
+					isCompact
+						? "mt-4 flex w-full flex-col items-center gap-1.5 text-center"
+						: "mx-auto flex w-full max-w-md flex-col items-center px-4 py-10 text-center sm:max-w-lg sm:py-12",
+					className,
+				)}
+				aria-label="Community rating"
+			>
+				{/* Score row — laurels frame the primary metric like Airbnb guest-favorite. */}
+				{hasAverage ? (
+					<div className="flex w-full flex-col items-center gap-1">
 						<div
 							className={cn(
-								"font-sans font-semibold text-foreground tabular-nums tracking-tight",
-								isCompact ? "text-xl sm:text-2xl" : "text-5xl sm:text-6xl",
+								"flex items-center justify-center",
+								isCompact ? "gap-2 sm:gap-2.5" : "gap-2 sm:gap-4",
 							)}
 						>
-							<span className="sr-only">
-								{APP_COMMUNITY_AVERAGE_LABEL}{" "}
-								{formatLogRatingDisplay(displayAverage)} out of 10
-							</span>
-							{isCompact ? (
-								formatLogRatingDisplay(displayAverage)
-							) : (
-								<StillAnimateRatingNumber
-									value={displayAverage}
-									className="text-5xl sm:text-6xl"
-								/>
-							)}
+							<IconPatronScoreLeafLeft className={leafClass} />
+							{hasAverage && displayAverage != null ? (
+								<div
+									className={cn(
+										"font-sans font-semibold text-foreground tabular-nums tracking-tight",
+										isCompact ? "text-xl sm:text-2xl" : "text-5xl sm:text-6xl",
+									)}
+								>
+									<span className="sr-only">
+										{APP_COMMUNITY_AVERAGE_LABEL}{" "}
+										{formatLogRatingDisplay(displayAverage)} out of 10
+									</span>
+									{isCompact ? (
+										formatLogRatingDisplay(displayAverage)
+									) : (
+										<StillAnimateRatingNumber
+											value={displayAverage}
+											className="text-5xl sm:text-6xl"
+										/>
+									)}
+								</div>
+							) : null}
+							<IconPatronScoreLeafRight className={leafClass} />
 						</div>
-					) : null}
-					<IconPatronScoreLeafRight className={leafClass} />
-				</div>
-			) : null}
-
-			{isCompact ? (
-				<div className="flex flex-col items-center gap-1">
-					{hasAverage ? (
-						<p className="text-balance font-sans text-muted-foreground text-sm tabular-nums">
-							{formatPatronRatingsCountLine(communityRatingsCount)}
-						</p>
-					) : null}
-					{engagementMeta ? (
-						<p className="text-balance font-sans text-muted-foreground text-sm tabular-nums">
-							{engagementMeta}
-						</p>
-					) : null}
-				</div>
-			) : (
-				<>
-					<h3 className="mt-5 font-sans font-semibold text-foreground text-lg tracking-tight sm:text-xl">
-						{title}
-					</h3>
-					<p className="mt-2 max-w-md text-balance font-sans text-muted-foreground text-sm leading-relaxed sm:text-[15px]">
-						{hasAverage ? (
-							<span className="text-foreground/80 tabular-nums">
+						{isCompact ? (
+							<p className="text-balance font-sans text-muted-foreground text-xs tabular-nums">
 								{formatPatronRatingsCountLine(communityRatingsCount)}
-							</span>
-						) : (
-							emptyDescription
-						)}
-					</p>
-					{engagementMeta ? (
-						<p className="mt-2 max-w-md text-balance font-sans text-muted-foreground text-sm tabular-nums sm:text-[15px]">
-							{engagementMeta}
+							</p>
+						) : null}
+					</div>
+				) : null}
+
+				{showEngagementChips ? (
+					<MovieDetailLiveEngagementChips
+						listingKind={listingKind}
+						listingId={listingId}
+						initial={engagementCounts}
+						onChipPress={handleChipPress}
+					/>
+				) : null}
+
+				{isCompact ? null : (
+					<>
+						<h3 className="mt-5 font-sans font-semibold text-foreground text-lg tracking-tight sm:text-xl">
+							{title}
+						</h3>
+						<p className="mt-2 max-w-md text-balance font-sans text-muted-foreground text-sm leading-relaxed sm:text-[15px]">
+							{hasAverage ? (
+								<span className="text-foreground/80 tabular-nums">
+									{formatPatronRatingsCountLine(communityRatingsCount)}
+								</span>
+							) : (
+								emptyDescription
+							)}
 						</p>
-					) : null}
-				</>
-			)}
-		</section>
+					</>
+				)}
+			</section>
+
+			{listingKind != null && listingId != null ? (
+				<MovieDetailEngagementDrawer
+					open={drawerOpen}
+					onOpenChange={(next) => {
+						setDrawerOpen(next);
+						if (!next) setDrawerKind(null);
+					}}
+					listingKind={listingKind}
+					listingId={listingId}
+					kind={drawerKind}
+					movieId={movieId}
+				/>
+			) : null}
+		</>
 	);
 }

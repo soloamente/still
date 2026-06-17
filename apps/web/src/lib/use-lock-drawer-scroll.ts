@@ -3,9 +3,13 @@
 import { useLenis } from "lenis/react";
 import { useEffect } from "react";
 
+import { healStuckVaulPointerEventsLock } from "@/lib/vaul-drawer-heal";
+
 /**
  * While a bottom sheet is open on Lenis-backed pages (e.g. movie detail), pause smooth
  * window scroll and lock `html`/`body` so wheel / trackpad stays inside the sheet.
+ * Drawer scrollports must carry `data-lenis-prevent` — stopped Lenis still blocks touch
+ * unless that attribute is on the event path.
  */
 export function useLockDrawerScroll(open: boolean) {
 	const lenis = useLenis();
@@ -13,6 +17,7 @@ export function useLockDrawerScroll(open: boolean) {
 	useEffect(() => {
 		if (!open) return;
 
+		healStuckVaulPointerEventsLock();
 		lenis?.stop();
 
 		const html = document.documentElement;

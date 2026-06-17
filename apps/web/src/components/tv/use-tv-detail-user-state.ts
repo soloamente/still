@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { useCinematicAudio } from "@/components/cinema/sound-provider";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
+import { dispatchListingEngagementInvalidate } from "@/lib/listing-engagement-invalidate";
 import type { MyTvLog } from "@/lib/my-tv-log";
 import {
 	deleteWatchlistTvItem,
@@ -40,6 +41,13 @@ export function useTvDetailUserState(
 	const [busy, setBusy] = useState<null | "watchlist" | "like">(null);
 
 	const latestLog = useMemo(() => myLogs[0] ?? null, [myLogs]);
+
+	const notifyEngagementInvalidate = useCallback(() => {
+		dispatchListingEngagementInvalidate({
+			listingKind: "tv",
+			listingId: tvId,
+		});
+	}, [tvId]);
 
 	const refreshUserState = useCallback(async () => {
 		const [logsRes, wlRes] = await Promise.all([
@@ -102,6 +110,7 @@ export function useTvDetailUserState(
 					() => undefined,
 				);
 				void refreshUserState();
+				notifyEngagementInvalidate();
 			},
 		});
 	}
@@ -133,6 +142,7 @@ export function useTvDetailUserState(
 					() => undefined,
 				);
 				void refreshUserState();
+				notifyEngagementInvalidate();
 			},
 		});
 	}
@@ -167,6 +177,7 @@ export function useTvDetailUserState(
 				setInWatchlist(true);
 			}
 			await refreshUserState();
+			notifyEngagementInvalidate();
 		} catch (err) {
 			console.error(err);
 			toast.error("Couldn't update your watchlist");
@@ -193,6 +204,7 @@ export function useTvDetailUserState(
 				);
 				toast.success("Marked as liked");
 				await refreshUserState();
+				notifyEngagementInvalidate();
 				return;
 			}
 			const flipped = !latestLog.liked;
@@ -203,6 +215,7 @@ export function useTvDetailUserState(
 			}
 			toast.success(flipped ? "Marked as liked" : "Removed like");
 			await refreshUserState();
+			notifyEngagementInvalidate();
 		} catch (err) {
 			console.error(err);
 			toast.error("Couldn't update");

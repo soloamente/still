@@ -68,7 +68,7 @@ function PodiumTile({
 			</p>
 			<Link
 				href={`/profile/${entry.handle}`}
-				className="mt-2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
+				className="relative mt-2 overflow-visible rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
 			>
 				<PatronPortraitWithMetalTier
 					handle={entry.handle}

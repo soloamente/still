@@ -248,20 +248,12 @@ export function WhatsNewDialog({
 										key={slideIndex}
 										id={descriptionId}
 										initial={
-											reduceMotion
-												? { opacity: 0 }
-												: { opacity: 0, x: 12, filter: "blur(2px)" }
+											reduceMotion ? { opacity: 0 } : { opacity: 0, x: 12 }
 										}
 										animate={
-											reduceMotion
-												? { opacity: 1 }
-												: { opacity: 1, x: 0, filter: "blur(0px)" }
+											reduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }
 										}
-										exit={
-											reduceMotion
-												? { opacity: 0 }
-												: { opacity: 0, x: -8, filter: "blur(2px)" }
-										}
+										exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -8 }}
 										transition={slideTransition}
 										className="flex min-h-0 flex-1 flex-col"
 									>

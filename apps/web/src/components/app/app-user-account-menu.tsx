@@ -7,8 +7,10 @@ import {
 import IconAwardFill from "@still/ui/icons/award-fill";
 import IconGear from "@still/ui/icons/gear";
 import IconLockFill from "@still/ui/icons/lock-fill";
+import IconQuotesFilled from "@still/ui/icons/quotes-filled";
+import IconYearInFilm from "@still/ui/icons/year-in-film";
 import { cn } from "@still/ui/lib/utils";
-import { Newspaper, Sparkles } from "lucide-react";
+import { Newspaper } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
@@ -112,15 +114,15 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 					/>
 					<div className="min-w-0 flex-1">
 						<div className="flex flex-col gap-0">
-							<div className="flex flex-wrap items-center gap-2 leading-none">
+							<div className="flex min-w-0 items-center gap-2 leading-none">
 								<p
-									className="truncate font-semibold text-base text-foreground"
+									className="min-w-0 flex-1 truncate font-semibold text-base text-foreground"
 									title={user.name}
 								>
 									{user.name || "Member"}
 								</p>
 								{user.isPro ? (
-									<span className="rounded-full bg-foreground px-2 py-0.5 font-semibold text-[10px] text-background uppercase tracking-wide">
+									<span className="shrink-0 rounded-full bg-foreground px-2 py-0.5 font-semibold text-[10px] text-background uppercase tracking-wide">
 										Pro
 									</span>
 								) : null}
@@ -160,7 +162,10 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 						className={accountMenuPrimaryOnBackgroundClassName}
 						onClick={() => go("/year")}
 					>
-						<Sparkles className="size-5 shrink-0 opacity-90" aria-hidden />
+						<IconYearInFilm
+							size="20px"
+							className="size-5 shrink-0 opacity-90"
+						/>
 						Year in film
 					</DropdownMenuItem>
 					<DropdownMenuItem

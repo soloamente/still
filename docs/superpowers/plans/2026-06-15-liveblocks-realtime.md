@@ -1,5 +1,7 @@
 # Liveblocks Realtime Layer Implementation Plan
 
+> **SUPERSEDED** by [`2026-06-15-sense-realtime-redis-sse.md`](./2026-06-15-sense-realtime-redis-sse.md) (2026-06-15). Do not execute remaining Liveblocks tasks.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Ship Wave 0–1 Liveblocks realtime — viewing presence on title detail, collaborative list reorder, and hybrid instant comments/reactions/notifications — while Postgres remains the source of truth.

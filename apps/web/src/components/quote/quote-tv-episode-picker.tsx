@@ -23,7 +23,7 @@ export function QuoteTvEpisodePicker({
 	seasonNumber: number | null;
 	episodeNumber: number | null;
 	onSeasonChange: (season: number) => void;
-	onEpisodeChange: (episode: number) => void;
+	onEpisodeChange: (episode: number, options?: { syncUrl?: boolean }) => void;
 	disabled?: boolean;
 	layout?: "inline" | "sheet";
 }) {
@@ -84,12 +84,12 @@ export function QuoteTvEpisodePicker({
 		};
 	}, [seasonNumber, tvId]);
 
-	// Default to first episode once season episodes load.
+	// Default to first episode once season episodes load (no URL sync — user picks explicitly).
 	useEffect(() => {
 		if (episodesLoading || episodes.length === 0 || seasonNumber == null)
 			return;
 		if (episodeNumber != null) return;
-		onEpisodeChange(episodes[0]?.episode_number ?? 1);
+		onEpisodeChange(episodes[0]?.episode_number ?? 1, { syncUrl: false });
 	}, [episodeNumber, episodes, episodesLoading, onEpisodeChange, seasonNumber]);
 
 	const seasonSelectOptions = seasonOptions.map((s) => ({
@@ -146,7 +146,9 @@ export function QuoteTvEpisodePicker({
 					<StillPopoverSelect
 						id="quote-tv-episode"
 						value={episodeNumber != null ? String(episodeNumber) : ""}
-						onChange={(next) => onEpisodeChange(Number(next))}
+						onChange={(next) =>
+							onEpisodeChange(Number(next), { syncUrl: true })
+						}
 						options={episodeSelectOptions}
 						placeholder="Episode"
 						listAriaLabel="Choose episode"

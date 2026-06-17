@@ -300,7 +300,8 @@ export function ProfileShowcaseStrip({
 				Showcase
 			</p>
 
-			<div className="relative min-w-0 overflow-hidden">
+			{/* No overflow-hidden — avatar-group hover lift/scale must paint above the rail. */}
+			<div className="relative min-w-0">
 				<div
 					aria-hidden
 					className={cn(
@@ -321,7 +322,8 @@ export function ProfileShowcaseStrip({
 					className={cn(
 						"t-avatar-group",
 						HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
-						"items-start justify-center gap-3 px-1 pb-0.5",
+						// Inset padding keeps comb lift + scale inside the x-scrollport.
+						"items-start justify-center gap-3 px-2 pt-3 pb-1",
 					)}
 				>
 					{isMe

@@ -27,6 +27,44 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-06-17-detail-social-live",
+		versionLabel: "0.3.0",
+		dateLabel: "June 17, 2026",
+		headline: "Film detail social & live updates",
+		summary:
+			"See how patrons engage with a title, spot who else is on the same page, and get fresher notifications and list order — plus smoother scrolling in mobile sheets.",
+		items: [
+			{
+				title: "Watched · Lists · Favorited · Watchlist",
+				body: "Film and show pages show four chips under the community score — how many patrons logged, listed, favorited, or saved the title. Tap a chip to browse names, open lists, or jump to a profile.",
+			},
+			{
+				title: "Who's viewing now",
+				body: "When other patrons are on the same film or show page, their avatars appear in the corner with a count. Tap to see the full list. A green dot means they're active; orange means they stepped away.",
+			},
+			{
+				title: "Choose who sees you viewing",
+				body: "Settings → Profile → Presence visibility lets you stay visible to friends only (default) or show up to anyone with a public profile when you're on a title page.",
+			},
+			{
+				title: "Notifications that stay current",
+				body: "The bell menu fills in new activity as it arrives — follows, likes, list updates, and more — without refreshing the page.",
+			},
+			{
+				title: "Ranked lists update together",
+				body: "When you drag to reorder a ranked list, anyone else on that list page sees the new order right away.",
+			},
+			{
+				title: "Review reactions in sync",
+				body: "Liking or disliking a review in the reader updates the count on the film detail carousel at the same time.",
+			},
+			{
+				title: "Sheets scroll on your phone",
+				body: "Cast & crew, filmography, engagement lists, and other bottom sheets scroll normally on mobile again — no more stuck drawers.",
+			},
+		],
+	},
+	{
 		id: "2026-06-15-list-discovery-polish",
 		versionLabel: "0.2.9",
 		dateLabel: "June 15, 2026",

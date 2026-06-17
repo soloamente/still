@@ -65,12 +65,13 @@ export function normalizeActivitySignaturePayload(
 	};
 }
 
+/** Emerald quartile fills — keep in sync with profile heatmap cells. */
 export const ACTIVITY_SIGNATURE_LEVEL_CLASS: Record<number, string> = {
-	0: "bg-muted/40",
-	1: "bg-muted-foreground/25",
-	2: "bg-muted-foreground/40",
-	3: "bg-foreground/50",
-	4: "bg-foreground/75",
+	0: "bg-muted/50",
+	1: "bg-emerald-900/80",
+	2: "bg-emerald-700",
+	3: "bg-emerald-500",
+	4: "bg-emerald-400",
 };
 
 /** Row labels — one letter per weekday, aligned to each heatmap row. */

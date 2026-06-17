@@ -2,7 +2,7 @@
 
 ## Presence AFK status — orange dot (2026-06-16)
 
-**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Shipped (Tasks 1–9, 2026-06-16).** **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop on `active` ↔ `away`; privacy unchanged (`friends`/`public`). **Automated verification:** server **41/41** · web **17/17** pass. **Pending optional human QA:** tab-away orange dot, 5 min idle, return-to-active green micro-pop, reduced-motion instant swap, listing corner + drawer parity.
+**Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Shipped (Tasks 1–9, 2026-06-16).** **Human verified (2026-06-16):** tab-away orange, return-to-active green, rapid tab-switch stability (BroadcastChannel + away debounce). **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop on `active` ↔ `away`; privacy unchanged (`friends`/`public`). **Automated verification:** server **41/41** · web **17/17** pass. **Pending optional human QA:** tab-away orange dot, 5 min idle, return-to-active green micro-pop, reduced-motion instant swap, listing corner + drawer parity.
 
 ## Presence online visibility controls — movie/TV detail (2026-06-16)
 
@@ -686,7 +686,7 @@ existing cinematic identity rather than replacing it.
 4. `prefers-reduced-motion` → color swap only, no scale/blur
 5. Movie/TV listing corner pill + presence drawer dots match global portrait badges
 
-**Planner:** AFK presence plan **complete** — reply **`ok`** after manual QA or to close the track.
+**Planner:** AFK presence plan **complete** — human **`bene`** on tab-switch fix (2026-06-16).
 
 ### 2026-06-16 — Presence AFK Task 6 (complete)
 

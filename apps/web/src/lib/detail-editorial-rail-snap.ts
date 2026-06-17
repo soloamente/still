@@ -97,6 +97,8 @@ export function useDetailEditorialRailSnap({
 	const scrollVelocityRef = useRef(0);
 	const animationRef = useRef<ReturnType<typeof animate> | null>(null);
 	const activeIndexFrameRef = useRef<number | null>(null);
+	/** Blocks scroll-settle snap while a programmatic ease is running or settling. */
+	const allowScrollSettleRef = useRef(true);
 	const reduceMotion = useReducedMotion();
 
 	const getSlides = useCallback(
@@ -122,6 +124,7 @@ export function useDetailEditorialRailSnap({
 		animationRef.current?.stop();
 		animationRef.current = null;
 		snapLockRef.current = false;
+		allowScrollSettleRef.current = true;
 	}, []);
 
 	const easeToSlideIndex = useCallback(
@@ -137,12 +140,33 @@ export function useDetailEditorialRailSnap({
 			if (Math.abs(rail.scrollLeft - targetLeft) < 1.5) return;
 
 			cancelSnapAnimation();
+			// Programmatic nav — ignore scroll velocity so CSS snap cannot cascade slides.
+			allowScrollSettleRef.current = false;
+			scrollVelocityRef.current = 0;
+			if (scrollEndTimerRef.current) {
+				clearTimeout(scrollEndTimerRef.current);
+				scrollEndTimerRef.current = null;
+			}
+
 			snapLockRef.current = true;
 			setActiveSlideIndex(index);
+
+			const releaseScrollSettle = () => {
+				scrollVelocityRef.current = 0;
+				if (scrollEndTimerRef.current) {
+					clearTimeout(scrollEndTimerRef.current);
+					scrollEndTimerRef.current = null;
+				}
+				// Let CSS scroll-snap finish without velocity-biased re-snaps.
+				window.setTimeout(() => {
+					allowScrollSettleRef.current = true;
+				}, EDITORIAL_RAIL_SNAP_SETTLE_MS);
+			};
 
 			if (reduceMotion) {
 				rail.scrollLeft = targetLeft;
 				snapLockRef.current = false;
+				releaseScrollSettle();
 				return;
 			}
 
@@ -155,6 +179,7 @@ export function useDetailEditorialRailSnap({
 					animationRef.current = null;
 					snapLockRef.current = false;
 					syncActiveSlideIndex();
+					releaseScrollSettle();
 				},
 			});
 		},
@@ -179,7 +204,13 @@ export function useDetailEditorialRailSnap({
 	}, [easeToSlideIndex, getSlides]);
 
 	const scheduleSnapToSettledSlide = useCallback(() => {
-		if (snapLockRef.current || pointerDownRef.current) return;
+		if (
+			snapLockRef.current ||
+			pointerDownRef.current ||
+			!allowScrollSettleRef.current
+		) {
+			return;
+		}
 		if (scrollEndTimerRef.current) clearTimeout(scrollEndTimerRef.current);
 		scrollEndTimerRef.current = setTimeout(() => {
 			snapToSettledSlide();
@@ -235,6 +266,8 @@ export function useDetailEditorialRailSnap({
 		const handleScroll = () => {
 			if (snapLockRef.current) {
 				lastScrollLeftRef.current = rail.scrollLeft;
+				// Ignore animated scroll deltas — they must not bias post-ease snaps.
+				scrollVelocityRef.current = 0;
 				return;
 			}
 

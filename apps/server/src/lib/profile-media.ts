@@ -5,6 +5,13 @@ export const PROFILE_PREF_AVATAR_IS_ANIMATED = "avatarIsAnimated" as const;
 export const PROFILE_PREF_BANNER_IS_ANIMATED = "bannerIsAnimated" as const;
 export const PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER =
 	"profilePortraitGrayscaleUntilHover" as const;
+export const PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY =
+	"presenceVisibility" as const;
+export const PROFILE_PRIVACY_PRESENCE_VISIBILITY_FRIENDS = "friends" as const;
+export const PROFILE_PRIVACY_PRESENCE_VISIBILITY_PUBLIC = "public" as const;
+export type ProfilePresenceVisibility =
+	| typeof PROFILE_PRIVACY_PRESENCE_VISIBILITY_FRIENDS
+	| typeof PROFILE_PRIVACY_PRESENCE_VISIBILITY_PUBLIC;
 
 /** Returned when a patron uploads animated media without Pro entitlement. */
 export const PRO_ANIMATED_MEDIA_REQUIRED =
@@ -69,6 +76,25 @@ export function readProfilePortraitGrayscaleUntilHoverPref(
 	const raw = preferences[PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER];
 	if (raw === false) return false;
 	return true;
+}
+
+/**
+ * Listing presence identity visibility defaults to friends-only unless explicitly public.
+ */
+export function readProfilePresenceVisibilityPref(
+	preferences: Record<string, unknown> | null | undefined,
+): ProfilePresenceVisibility {
+	const privacy = preferences?.privacy;
+	if (!privacy || typeof privacy !== "object") {
+		return PROFILE_PRIVACY_PRESENCE_VISIBILITY_FRIENDS;
+	}
+	const raw = (privacy as Record<string, unknown>)[
+		PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY
+	];
+	if (raw === PROFILE_PRIVACY_PRESENCE_VISIBILITY_PUBLIC) {
+		return PROFILE_PRIVACY_PRESENCE_VISIBILITY_PUBLIC;
+	}
+	return PROFILE_PRIVACY_PRESENCE_VISIBILITY_FRIENDS;
 }
 
 export function mergeAvatarAnimationPref(

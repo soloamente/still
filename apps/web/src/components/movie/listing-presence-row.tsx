@@ -90,9 +90,8 @@ function PresenceStackAvatar({
 			>
 				<span
 					className={cn(
-						"block size-8 rounded-full bg-muted",
+						"block size-8 overflow-visible rounded-full bg-muted",
 						ringClass,
-						patron.diaryMetalTier ? "overflow-visible" : "overflow-hidden",
 					)}
 				>
 					<PatronPortraitWithMetalTier

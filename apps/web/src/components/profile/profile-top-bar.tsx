@@ -88,7 +88,7 @@ export function ProfileTopBar({
 						{displayName}
 					</p>
 				</div>
-				<div className="flex min-w-0 justify-end">
+				<div className="flex min-w-0 items-center justify-end gap-2">
 					<DetailMotionButton
 						type="button"
 						className={cn(pill, "pr-3")}

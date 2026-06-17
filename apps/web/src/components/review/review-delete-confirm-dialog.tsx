@@ -8,15 +8,14 @@ import { useCallback, useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import {
+	DELETE_CONFIRM_BACKDROP_CLASS,
+	DELETE_CONFIRM_OVERLAY_CLASS,
+} from "@/components/social/delete-confirm-overlay-classes";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import { healStuckVaulPointerEventsLock } from "@/lib/vaul-drawer-heal";
 
 const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
-
-const DELETE_CONFIRM_OVERLAY_CLASS =
-	"pointer-events-auto fixed inset-0 z-[250] isolate grid min-h-[100dvh] touch-none place-items-center overflow-y-auto overscroll-contain px-4 py-8";
-
-const DELETE_CONFIRM_BACKDROP_CLASS =
-	"absolute inset-0 bg-absolute-black/78 backdrop-blur-sm";
 
 /** Confirms deleting a review from the review detail sheet. */
 export function ReviewDeleteConfirmDialog({
@@ -40,28 +39,8 @@ export function ReviewDeleteConfirmDialog({
 	}, []);
 
 	useEffect(() => {
-		if (!open) return;
-		const prev = document.body.style.overflow;
-		document.body.style.overflow = "hidden";
-		return () => {
-			document.body.style.overflow = prev;
-		};
-	}, [open]);
-
-	// Vaul drawers stay interactive under portaled modals — block hits on the sheet while confirming.
-	useEffect(() => {
-		if (!open) return;
-		const drawerLayers = document.querySelectorAll<HTMLElement>(
-			"[data-vaul-drawer], [data-vaul-overlay]",
-		);
-		for (const layer of drawerLayers) {
-			layer.style.pointerEvents = "none";
-		}
-		return () => {
-			for (const layer of drawerLayers) {
-				layer.style.pointerEvents = "";
-			}
-		};
+		if (open) return;
+		healStuckVaulPointerEventsLock();
 	}, [open]);
 
 	const handleKey = useCallback(
@@ -87,7 +66,7 @@ export function ReviewDeleteConfirmDialog({
 	if (!mounted) return null;
 
 	return createPortal(
-		<AnimatePresence>
+		<AnimatePresence initial={false}>
 			{open ? (
 				<motion.div
 					key="review-delete-overlay"

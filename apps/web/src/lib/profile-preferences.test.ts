@@ -9,10 +9,13 @@ import {
 	PROFILE_PREF_SHOW_ADULT_CONTENT,
 	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
 	PROFILE_PREF_SMOOTH_SCROLL,
+	PROFILE_PRESENCE_VISIBILITY_FRIENDS,
+	PROFILE_PRESENCE_VISIBILITY_PUBLIC,
 	readAvatarIsAnimatedPref,
 	readCastCrewMonochromeOnHoverPref,
 	readCatalogTmdbLanguagePref,
 	readProfilePortraitGrayscaleUntilHoverPref,
+	readProfilePresenceVisibilityPref,
 	readShowAdultContentPref,
 	readShowBirthDateOnProfilePref,
 	readSmoothScrollPref,
@@ -143,5 +146,32 @@ describe("readAvatarIsAnimatedPref", () => {
 				[PROFILE_PREF_AVATAR_IS_ANIMATED]: true,
 			}),
 		).toBe(true);
+	});
+});
+
+describe("readProfilePresenceVisibilityPref", () => {
+	test("defaults to friends when missing", () => {
+		expect(readProfilePresenceVisibilityPref(null)).toBe(
+			PROFILE_PRESENCE_VISIBILITY_FRIENDS,
+		);
+		expect(readProfilePresenceVisibilityPref({})).toBe(
+			PROFILE_PRESENCE_VISIBILITY_FRIENDS,
+		);
+	});
+
+	test("reads public when explicitly set", () => {
+		expect(
+			readProfilePresenceVisibilityPref({
+				privacy: { presenceVisibility: "public" },
+			}),
+		).toBe(PROFILE_PRESENCE_VISIBILITY_PUBLIC);
+	});
+
+	test("falls back to friends for invalid values", () => {
+		expect(
+			readProfilePresenceVisibilityPref({
+				privacy: { presenceVisibility: "everyone" },
+			}),
+		).toBe(PROFILE_PRESENCE_VISIBILITY_FRIENDS);
 	});
 });

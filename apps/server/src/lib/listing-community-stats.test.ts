@@ -1,42 +1,37 @@
 import { describe, expect, test } from "bun:test";
 
-import {
-	coerceListingCommunityEngagementStats,
-	LISTING_COMMUNITY_ENGAGEMENT_MIN_COUNT,
-	publicListingEngagementCount,
-} from "./listing-community-stats";
-
-describe("publicListingEngagementCount", () => {
-	test("hides counts below privacy threshold", () => {
-		expect(publicListingEngagementCount(0)).toBeNull();
-		expect(publicListingEngagementCount(1)).toBeNull();
-		expect(publicListingEngagementCount(2)).toBeNull();
-	});
-
-	test("shows counts at or above threshold", () => {
-		expect(
-			publicListingEngagementCount(LISTING_COMMUNITY_ENGAGEMENT_MIN_COUNT),
-		).toBe(3);
-		expect(publicListingEngagementCount(12)).toBe(12);
-	});
-});
+import { coerceListingCommunityEngagementStats } from "./listing-community-stats";
 
 describe("coerceListingCommunityEngagementStats", () => {
-	test("maps raw SQL aggregates to nullable public counts", () => {
+	test("maps raw SQL aggregates to non-negative integers", () => {
 		expect(
 			coerceListingCommunityEngagementStats({
 				watchesRaw: "5",
+				listsRaw: "12",
+				favoritesRaw: "3",
 				watchlistRaw: "2",
 			}),
-		).toEqual({ watchesCount: 5, watchlistCount: null });
+		).toEqual({
+			watchesCount: 5,
+			listsCount: 12,
+			favoritesCount: 3,
+			watchlistCount: 2,
+		});
 	});
 
-	test("returns nulls when both aggregates are below threshold", () => {
+	test("returns zeros for empty or invalid aggregates", () => {
 		expect(
 			coerceListingCommunityEngagementStats({
 				watchesRaw: 0,
-				watchlistRaw: 1,
+				listsRaw: null,
+				favoritesRaw: undefined,
+				watchlistRaw: -4,
 			}),
-		).toEqual({ watchesCount: null, watchlistCount: null });
+		).toEqual({
+			watchesCount: 0,
+			listsCount: 0,
+			favoritesCount: 0,
+			watchlistCount: 0,
+		});
 	});
 });

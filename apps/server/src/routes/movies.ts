@@ -48,6 +48,7 @@ import {
 } from "../lib/tmdb";
 import { parseCommaIntList } from "../lib/tmdb-discover-params";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
+import { movieListingEngagementRoutes } from "./listing-engagement";
 
 /** Returned when `TMDB_API_KEY` is missing so the UI can explain empty rails/search. */
 const TMDB_UNCONFIGURED = {
@@ -301,6 +302,7 @@ export const moviesRoute = new Elysia({
 	tags: ["movies"],
 })
 	.use(context)
+	.use(movieListingEngagementRoutes)
 	// Search — TMDb passthrough, paged. We don't cache search hits to keep
 	// the local DB clean of one-off lookups.
 	.get(

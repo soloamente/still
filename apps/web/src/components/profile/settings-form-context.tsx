@@ -59,17 +59,20 @@ import {
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
 	PROFILE_PREF_CATALOG_TMDB_LANGUAGE,
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
+	PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY,
 	PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER,
 	PROFILE_PREF_SHOW_ADULT_CONTENT,
 	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
 	PROFILE_PREF_SMOOTH_SCROLL,
 	PROFILE_PREF_WATCHLIST_STREAMING_ALERTS,
+	type ProfilePresenceVisibilityPref,
 	readAppThemePref,
 	readCastCrewMonochromeOnHoverPref,
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbLanguagePref,
 	readCatalogTmdbWatchRegionPref,
 	readProfilePortraitGrayscaleUntilHoverPref,
+	readProfilePresenceVisibilityPref,
 	readShowAdultContentPref,
 	readShowBirthDateOnProfilePref,
 	readSmoothScrollPref,
@@ -124,6 +127,8 @@ type SettingsFormContextValue = {
 	setBirthDate: (value: string) => void;
 	showBirthDateOnProfile: boolean;
 	setShowBirthDateOnProfile: (value: boolean) => void;
+	presenceVisibility: ProfilePresenceVisibilityPref;
+	setPresenceVisibility: (value: ProfilePresenceVisibilityPref) => void;
 	isPrivate: boolean;
 	setIsPrivate: (value: boolean) => void;
 	profileAudioEnabled: boolean;
@@ -196,6 +201,10 @@ export function SettingsFormProvider({
 	const [showBirthDateOnProfile, setShowBirthDateOnProfile] = useState(() =>
 		readShowBirthDateOnProfilePref(profile.preferences ?? null),
 	);
+	const [presenceVisibility, setPresenceVisibility] =
+		useState<ProfilePresenceVisibilityPref>(() =>
+			readProfilePresenceVisibilityPref(profile.preferences ?? null),
+		);
 	const [isPrivate, setIsPrivate] = useState(Boolean(profile.isPrivate));
 	const [profileAudio, setProfileAudio] = useState(() =>
 		readProfileAudioPreferences(profile.preferences ?? null),
@@ -277,6 +286,13 @@ export function SettingsFormProvider({
 			typeof stored.showBirthDateOnProfile === "boolean"
 				? stored.showBirthDateOnProfile
 				: readShowBirthDateOnProfilePref(profile.preferences ?? null),
+		);
+		setPresenceVisibility(
+			stored.presenceVisibility === "public"
+				? "public"
+				: stored.presenceVisibility === "friends"
+					? "friends"
+					: readProfilePresenceVisibilityPref(profile.preferences ?? null),
 		);
 		setIsPrivate(
 			typeof stored.isPrivate === "boolean"
@@ -392,6 +408,8 @@ export function SettingsFormProvider({
 			birthDate !== (profile.birthDate ?? "") ||
 			showBirthDateOnProfile !==
 				readShowBirthDateOnProfilePref(profile.preferences ?? null) ||
+			presenceVisibility !==
+				readProfilePresenceVisibilityPref(profile.preferences ?? null) ||
 			isPrivate !== Boolean(profile.isPrivate) ||
 			profileAudio.enabled !== audioFromProfile.enabled ||
 			profileAudio.atmosphere !== audioFromProfile.atmosphere ||
@@ -427,6 +445,7 @@ export function SettingsFormProvider({
 		website,
 		birthDate,
 		showBirthDateOnProfile,
+		presenceVisibility,
 		isPrivate,
 		profileAudio,
 		smoothScroll,
@@ -458,6 +477,9 @@ export function SettingsFormProvider({
 		setBirthDate(profile.birthDate ?? "");
 		setShowBirthDateOnProfile(
 			readShowBirthDateOnProfilePref(profile.preferences ?? null),
+		);
+		setPresenceVisibility(
+			readProfilePresenceVisibilityPref(profile.preferences ?? null),
 		);
 		setIsPrivate(Boolean(profile.isPrivate));
 		setProfileAudio(readProfileAudioPreferences(profile.preferences ?? null));
@@ -524,6 +546,7 @@ export function SettingsFormProvider({
 				website,
 				birthDate,
 				showBirthDateOnProfile,
+				presenceVisibility,
 				isPrivate,
 				senseAudioEnabled: profileAudio.enabled,
 				senseAudioAtmosphere: profileAudio.atmosphere,
@@ -550,6 +573,7 @@ export function SettingsFormProvider({
 				website,
 				birthDate,
 				showBirthDateOnProfile,
+				presenceVisibility,
 				isPrivate,
 				senseAudioEnabled: profileAudio.enabled,
 				senseAudioAtmosphere: profileAudio.atmosphere,
@@ -575,6 +599,7 @@ export function SettingsFormProvider({
 		website,
 		birthDate,
 		showBirthDateOnProfile,
+		presenceVisibility,
 		isPrivate,
 		profileAudio,
 		smoothScroll,
@@ -672,6 +697,13 @@ export function SettingsFormProvider({
 							}
 						: {}),
 				};
+				const nextPrivacy =
+					prefs.privacy && typeof prefs.privacy === "object"
+						? { ...(prefs.privacy as Record<string, unknown>) }
+						: {};
+				nextPrivacy[PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY] =
+					presenceVisibility;
+				prefs.privacy = nextPrivacy;
 				if (catalogTmdbLanguage.trim() !== "") {
 					prefs[PROFILE_PREF_CATALOG_TMDB_LANGUAGE] =
 						catalogTmdbLanguage.trim();
@@ -780,6 +812,7 @@ export function SettingsFormProvider({
 			showAdultContent,
 			birthDate,
 			showBirthDateOnProfile,
+			presenceVisibility,
 			catalogTmdbWatchRegion,
 			catalogTmdbLanguage,
 			watchlistStreamingAlerts,
@@ -838,7 +871,9 @@ export function SettingsFormProvider({
 			birthDate,
 			setBirthDate,
 			showBirthDateOnProfile,
+			presenceVisibility,
 			setShowBirthDateOnProfile,
+			setPresenceVisibility,
 			isPrivate,
 			setIsPrivate,
 			profileAudioEnabled: profileAudio.enabled,

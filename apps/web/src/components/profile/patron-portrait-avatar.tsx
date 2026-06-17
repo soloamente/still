@@ -59,6 +59,9 @@ export function PatronPortraitAvatar({
 		className,
 	);
 
+	/** Profile lobby poster tile passes `size-full` — use fill layout, not fixed width/height. */
+	const fillsContainer = Boolean(className?.includes("size-full"));
+
 	if (portraitSrc) {
 		// Animated avatars need a native <img> — Next/Image can strip or freeze GIF frames.
 		if (isAnimated) {
@@ -72,11 +75,23 @@ export function PatronPortraitAvatar({
 				<img
 					src={portraitSrc}
 					alt=""
-					width={width}
-					height={height}
-					style={style}
+					{...(fillsContainer ? {} : { width, height })}
+					style={fillsContainer ? undefined : style}
 					data-reduced-motion={reducedMotionActive ? "" : undefined}
+					className={cn(fillsContainer && "block size-full", portraitClassName)}
+				/>
+			);
+		}
+
+		if (fillsContainer) {
+			return (
+				<Image
+					src={portraitSrc}
+					alt=""
+					fill
+					unoptimized
 					className={portraitClassName}
+					sizes="96px"
 				/>
 			);
 		}

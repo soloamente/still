@@ -99,3 +99,27 @@ export async function upsertTvWatchlistItem(
 		.returning();
 	return row;
 }
+
+/** Drop saved watchlist row after a diary log — aligns lobby hide-watched with engagement chips. */
+export async function clearWatchlistItemForUserTitle(
+	userId: string,
+	input: { movieId: number } | { tvId: number },
+) {
+	if ("movieId" in input) {
+		await db
+			.delete(watchlistItem)
+			.where(
+				and(
+					eq(watchlistItem.userId, userId),
+					eq(watchlistItem.movieId, input.movieId),
+				),
+			);
+		return;
+	}
+
+	await db
+		.delete(watchlistItem)
+		.where(
+			and(eq(watchlistItem.userId, userId), eq(watchlistItem.tvId, input.tvId)),
+		);
+}

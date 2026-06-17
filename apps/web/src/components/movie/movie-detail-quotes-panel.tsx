@@ -115,17 +115,19 @@ export function MovieDetailQuotesPanel({
 		void fetchQuotes();
 	}, [fetchQuotes]);
 
-	function handleSeasonChange(season: number) {
+	const handleSeasonChange = useCallback((season: number) => {
 		setSeasonNumber(season);
 		setEpisodeNumber(null);
-	}
+	}, []);
 
-	function handleEpisodeChange(episode: number) {
-		setEpisodeNumber(episode);
-		if (seasonNumber != null) {
+	const handleEpisodeChange = useCallback(
+		(episode: number, options?: { syncUrl?: boolean }) => {
+			setEpisodeNumber(episode);
+			if (options?.syncUrl === false || seasonNumber == null) return;
 			syncTvEpisodeUrl(seasonNumber, episode);
-		}
-	}
+		},
+		[seasonNumber, syncTvEpisodeUrl],
+	);
 
 	const showTvPicker = listingKind === "tv";
 	const tvReady =

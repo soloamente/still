@@ -13,6 +13,7 @@ import { isActive, shouldHideMobileTabBar } from "@/components/app/mobile-nav";
 import { MobileYouSheet } from "@/components/app/mobile-you-sheet";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
+import { useNotificationsInbox } from "@/components/notifications/notifications-inbox-provider";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 import { DETAIL_MOTION_PRESSABLE_CLASS } from "@/lib/detail-action-motion";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
@@ -82,6 +83,8 @@ function MobileTabSlot({
 export function MobileTabBar({ user }: { user: TabUser }) {
 	const pathname = usePathname();
 	const reduceMotion = useReducedMotion();
+	const { unreadCount } = useNotificationsInbox();
+	const hasUnreadInbox = unreadCount > 0;
 	const requestCatalogSearch = useCatalogSearchDialog((s) => s.requestOpen);
 	const openQuickLog = useQuickLog((s) => s.open);
 	const [youOpen, setYouOpen] = useState(false);
@@ -163,7 +166,9 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 						<Link
 							href="/notifications"
 							aria-current={inboxActive ? "page" : undefined}
-							aria-label="Inbox"
+							aria-label={
+								hasUnreadInbox ? "Inbox, unread notifications" : "Inbox"
+							}
 							className={DETAIL_MOTION_PRESSABLE_CLASS}
 						>
 							<MobileTabSlot
@@ -171,7 +176,19 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 								label="Inbox"
 								reduceMotion={reduceMotion}
 							>
-								<IconBell size="20px" className="size-5 shrink-0" aria-hidden />
+								<span className="relative">
+									<IconBell
+										size="20px"
+										className="size-5 shrink-0"
+										aria-hidden
+									/>
+									{hasUnreadInbox ? (
+										<span
+											className="absolute top-0 right-0 size-2 rounded-full bg-desert-orange ring-2 ring-background"
+											aria-hidden
+										/>
+									) : null}
+								</span>
 							</MobileTabSlot>
 						</Link>
 

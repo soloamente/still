@@ -907,7 +907,7 @@ export default async function HomePage({
 						)}
 					</HomeLobbyBodyGate>
 				</section>
-				{/* First-run streaming region modal; closes after `router.refresh()` saves prefs. */}
+				{/* First-run streaming region modal; closes client-side after prefs save. */}
 				{session ? (
 					<CatalogWatchRegionPrompt open={needsCatalogWatchRegionPrompt} />
 				) : null}

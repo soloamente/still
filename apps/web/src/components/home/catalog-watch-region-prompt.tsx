@@ -7,7 +7,6 @@ import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "sonner";
@@ -21,6 +20,7 @@ import {
 } from "@/lib/app-modal-layer";
 import { CATALOG_WATCH_REGION_OPTIONS } from "@/lib/catalog-watch-region-options";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import { setWatchRegionPromptActive } from "@/lib/first-run-prompt-keys";
 import { PROFILE_PREF_CATALOG_TMDB_WATCH_REGION } from "@/lib/profile-preferences";
 
 const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
@@ -34,26 +34,37 @@ const REGION_SELECT_OPTIONS = CATALOG_WATCH_REGION_OPTIONS.map(
  * `catalogTmdbWatchRegion` yet — same modal shell as list delete / account leave confirms.
  */
 export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
-	const router = useRouter();
 	const reduceMotion = useReducedMotion();
 	const titleId = useId();
 	const descriptionId = useId();
 	const [mounted, setMounted] = useState(false);
 	const [country, setCountry] = useState("US");
 	const [pending, setPending] = useState<"ALL" | "country" | null>(null);
+	/** Client dismiss — avoid `router.refresh()` on save (first `/home` RSC can error while prefs already persisted). */
+	const [visible, setVisible] = useState(open);
 
 	useEffect(() => {
 		setMounted(true);
 	}, []);
 
 	useEffect(() => {
-		if (!open) return;
+		if (open) setVisible(true);
+	}, [open]);
+
+	useEffect(() => {
+		if (!visible) return;
+		setWatchRegionPromptActive(true);
+		return () => setWatchRegionPromptActive(false);
+	}, [visible]);
+
+	useEffect(() => {
+		if (!visible) return;
 		const prev = document.body.style.overflow;
 		document.body.style.overflow = "hidden";
 		return () => {
 			document.body.style.overflow = prev;
 		};
-	}, [open]);
+	}, [visible]);
 
 	async function persist(value: string, kind: "ALL" | "country") {
 		setPending(kind);
@@ -66,7 +77,7 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 					? "Streaming catalogues will follow all regions."
 					: "Catalogue region saved.",
 			);
-			router.refresh();
+			setVisible(false);
 		} catch (err) {
 			console.error(err);
 			toast.error("Could not save — try Account settings.");
@@ -86,7 +97,7 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 
 	const portal = (
 		<AnimatePresence>
-			{open ? (
+			{visible ? (
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}

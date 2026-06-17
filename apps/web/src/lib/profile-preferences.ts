@@ -62,6 +62,13 @@ export const PROFILE_PREF_AVATAR_IS_ANIMATED = "avatarIsAnimated" as const;
 
 /** Banner GIF playback — opt-in when patron uploads animated media. */
 export const PROFILE_PREF_BANNER_IS_ANIMATED = "bannerIsAnimated" as const;
+export const PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY =
+	"presenceVisibility" as const;
+export const PROFILE_PRESENCE_VISIBILITY_FRIENDS = "friends" as const;
+export const PROFILE_PRESENCE_VISIBILITY_PUBLIC = "public" as const;
+export type ProfilePresenceVisibilityPref =
+	| typeof PROFILE_PRESENCE_VISIBILITY_FRIENDS
+	| typeof PROFILE_PRESENCE_VISIBILITY_PUBLIC;
 
 /** `null` = patron has not chosen yet (home shows one-time region prompt when signed in). */
 export type CatalogTmdbWatchRegionPref = "ALL" | string | null;
@@ -213,4 +220,24 @@ export function readBannerIsAnimatedPref(
 	preferences: Record<string, unknown> | null | undefined,
 ): boolean {
 	return preferences?.[PROFILE_PREF_BANNER_IS_ANIMATED] === true;
+}
+
+/**
+ * Presence identity visibility is nested under `preferences.privacy` and defaults
+ * to friends-only when missing or malformed.
+ */
+export function readProfilePresenceVisibilityPref(
+	preferences: Record<string, unknown> | null | undefined,
+): ProfilePresenceVisibilityPref {
+	const privacy = preferences?.privacy;
+	if (!privacy || typeof privacy !== "object") {
+		return PROFILE_PRESENCE_VISIBILITY_FRIENDS;
+	}
+	const raw = (privacy as Record<string, unknown>)[
+		PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY
+	];
+	if (raw === PROFILE_PRESENCE_VISIBILITY_PUBLIC) {
+		return PROFILE_PRESENCE_VISIBILITY_PUBLIC;
+	}
+	return PROFILE_PRESENCE_VISIBILITY_FRIENDS;
 }

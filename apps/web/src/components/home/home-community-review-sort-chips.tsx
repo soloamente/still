@@ -20,7 +20,7 @@ const REVIEW_SORT_CHIPS: readonly {
 	{ id: "most-liked", label: "Most liked" },
 ];
 
-/** Secondary sort on Community **Reviews** — all engagement-ranked vs wit-sized leaders. */
+/** Secondary sort on Community **Reviews** — chronological vs engagement-ranked leaders. */
 export function HomeCommunityReviewSortChips() {
 	const searchParams = useSearchParams();
 	const { feed, period, rankKind } = useHomeCommunityLobbyParams();

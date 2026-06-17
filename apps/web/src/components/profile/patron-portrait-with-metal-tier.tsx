@@ -49,6 +49,7 @@ export function PatronPortraitWithMetalTier({
 }: PatronPortraitWithMetalTierProps) {
 	const reducedMotion = usePrefersReducedMotion();
 	const circularPortrait = isCircularPatronPortraitClass(className);
+	const fillsParent = Boolean(className?.includes("size-full"));
 	const useGlobalPresence = showOnlineStatus && presenceStateProp === undefined;
 	const globalPresenceState = usePatronPresenceState(
 		useGlobalPresence ? handle : undefined,
@@ -104,15 +105,24 @@ export function PatronPortraitWithMetalTier({
 		<span
 			className={cn(
 				"relative inline-flex shrink-0 overflow-visible",
+				fillsParent && "size-full",
 				className,
 			)}
-			style={style ?? { width, height }}
+			style={style ?? (fillsParent ? undefined : { width, height })}
 		>
-			{portrait}
+			{/* Clip portrait to rounded tile; keep outer overflow visible so the status dot can sit on the rim. */}
+			<span
+				className={cn(
+					"size-full overflow-hidden",
+					circularPortrait ? "rounded-full" : "rounded-[inherit]",
+				)}
+			>
+				{portrait}
+			</span>
 			<PatronOnlineDot
 				presenceState={resolvedPresenceState}
 				label={dotLabel}
-				size={resolvePatronOnlineDotSize(width)}
+				size={resolvePatronOnlineDotSize(fillsParent ? 96 : width)}
 			/>
 		</span>
 	);
