@@ -38,41 +38,40 @@ export function StaffPlansShell() {
 			.finally(() => setLoading(false));
 	}, []);
 
-	if (loading) {
-		return (
-			<div className="flex min-h-64 items-center justify-center text-muted-foreground text-sm">
-				Loading…
-			</div>
-		);
-	}
-
 	return (
-		<>
-			<div className="rounded-2xl border border-border bg-background">
-				<StaffPlansTopbar
-					viewingPatrons={snapshot.viewingPatrons}
-					viewerCount={snapshot.viewerCount}
-					view={view}
-					onViewChange={setView}
-				/>
-				<div className="p-5">
-					{view === "grid" ? (
-						<StaffPlansGridView
-							tiers={tiers}
-							features={features}
-							onFeaturesChange={setFeatures}
-						/>
-					) : (
-						<StaffPlansDetailsView
-							tiers={tiers}
-							features={features}
-							onFeaturesChange={setFeatures}
-						/>
-					)}
+		<section className="mb-10">
+			<StaffPlansTopbar
+				viewingPatrons={snapshot.viewingPatrons}
+				viewerCount={snapshot.viewerCount}
+				view={view}
+				onViewChange={setView}
+			/>
+
+			{loading ? (
+				<div className="py-8 text-center text-muted-foreground text-sm">
+					Loading…
 				</div>
-			</div>
+			) : features.length === 0 ? (
+				<div className="rounded-2xl bg-background py-12 text-center">
+					<p className="text-muted-foreground text-sm">
+						No features yet — add the first one.
+					</p>
+				</div>
+			) : view === "grid" ? (
+				<StaffPlansGridView
+					tiers={tiers}
+					features={features}
+					onFeaturesChange={setFeatures}
+				/>
+			) : (
+				<StaffPlansDetailsView
+					tiers={tiers}
+					features={features}
+					onFeaturesChange={setFeatures}
+				/>
+			)}
 
 			<PlanFeatureCreateDrawerRoot tiers={tiers} onCreated={setFeatures} />
-		</>
+		</section>
 	);
 }

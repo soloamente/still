@@ -1,12 +1,14 @@
-﻿"use client";
+"use client";
 
 import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
+import { Label } from "@still/ui/components/label";
 import { Textarea } from "@still/ui/components/textarea";
 import { cn } from "@still/ui/lib/utils";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { toast } from "sonner";
 
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import {
 	type PlanFeature,
 	type PlanTier,
@@ -14,6 +16,11 @@ import {
 } from "@/lib/staff-plan-features-api";
 
 const TIER_ORDER = ["still", "attuned", "immersed", "devoted"] as const;
+
+const STATUS_OPTIONS = [
+	{ id: "exists" as const, label: "Exists" },
+	{ id: "planned" as const, label: "Planned" },
+];
 
 export function PlanFeatureInlineEdit({
 	feature,
@@ -26,6 +33,7 @@ export function PlanFeatureInlineEdit({
 	onSaved: (features: PlanFeature[]) => void;
 	onCancel: () => void;
 }) {
+	const fieldId = useId();
 	const [name, setName] = useState(feature.name);
 	const [description, setDescription] = useState(feature.description);
 	const [buildStatus, setBuildStatus] = useState<"exists" | "planned">(
@@ -69,64 +77,40 @@ export function PlanFeatureInlineEdit({
 	).filter(Boolean) as PlanTier[];
 
 	return (
-		<div className="space-y-4 rounded-2xl bg-muted/30 p-4">
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-				<div className="space-y-1.5">
-					<label
-						htmlFor={`edit-name-${feature.id}`}
-						className="font-semibold text-muted-foreground text-xs uppercase tracking-widest"
-					>
-						Feature name
-					</label>
+		<div className="space-y-4 rounded-2xl bg-background p-4">
+			<div className="grid gap-4 sm:grid-cols-2">
+				<div className="space-y-2">
+					<Label htmlFor={`${fieldId}-name`}>Feature name</Label>
 					<Input
-						id={`edit-name-${feature.id}`}
+						id={`${fieldId}-name`}
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
 				</div>
 
-				<div className="space-y-1.5">
-					<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
-						Build status
-					</p>
-					<div className="flex gap-2">
-						{(["exists", "planned"] as const).map((s) => (
-							<button
-								key={s}
-								type="button"
-								onClick={() => setBuildStatus(s)}
-								className={cn(
-									"rounded-full border px-3 py-1 font-semibold text-xs transition-colors",
-									buildStatus === s
-										? "border-foreground/20 bg-foreground/10 text-foreground"
-										: "border-muted text-muted-foreground hover:border-foreground/20 hover:text-foreground",
-								)}
-							>
-								{s}
-							</button>
-						))}
-					</div>
+				<div className="space-y-2">
+					<p className="font-medium text-sm">Build status</p>
+					<SegmentedPillToolbar
+						layoutId={`${fieldId}-status`}
+						aria-label="Build status"
+						value={buildStatus}
+						onChange={setBuildStatus}
+						options={STATUS_OPTIONS}
+					/>
 				</div>
 
-				<div className="space-y-1.5 sm:col-span-2">
-					<label
-						htmlFor={`edit-desc-${feature.id}`}
-						className="font-semibold text-muted-foreground text-xs uppercase tracking-widest"
-					>
-						Description
-					</label>
+				<div className="space-y-2 sm:col-span-2">
+					<Label htmlFor={`${fieldId}-desc`}>Description</Label>
 					<Textarea
-						id={`edit-desc-${feature.id}`}
+						id={`${fieldId}-desc`}
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 						className="min-h-20 resize-none"
 					/>
 				</div>
 
-				<div className="space-y-1.5 sm:col-span-2">
-					<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
-						Available in
-					</p>
+				<div className="space-y-2 sm:col-span-2">
+					<p className="font-medium text-sm">Available in</p>
 					<div className="flex flex-wrap gap-2">
 						{orderedTiers.map((tier) => (
 							<button
@@ -134,10 +118,10 @@ export function PlanFeatureInlineEdit({
 								type="button"
 								onClick={() => toggleTier(tier.id)}
 								className={cn(
-									"rounded-full border px-3 py-1 font-semibold text-xs transition-colors",
+									"rounded-full border px-3 py-1 font-medium text-xs transition-colors duration-200",
 									selectedTierIds.includes(tier.id)
-										? "border-foreground/20 bg-foreground/10 text-foreground"
-										: "border-muted text-muted-foreground hover:border-foreground/20 hover:text-foreground",
+										? "border-foreground/20 bg-card text-foreground"
+										: "border-transparent bg-muted/40 text-muted-foreground [@media(hover:hover)]:hover:bg-muted/70 [@media(hover:hover)]:hover:text-foreground",
 								)}
 							>
 								{tier.name}
@@ -151,18 +135,12 @@ export function PlanFeatureInlineEdit({
 				<Button
 					variant="outline"
 					size="sm"
-					className="rounded-full"
 					onClick={onCancel}
 					disabled={saving}
 				>
 					Cancel
 				</Button>
-				<Button
-					size="sm"
-					className="rounded-full"
-					onClick={handleSave}
-					disabled={saving}
-				>
+				<Button size="sm" onClick={handleSave} disabled={saving}>
 					{saving ? "Saving…" : "Save"}
 				</Button>
 			</div>

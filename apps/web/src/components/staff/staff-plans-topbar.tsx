@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Button } from "@still/ui/components/button";
 import {
@@ -8,8 +8,10 @@ import {
 	TooltipTrigger,
 } from "@still/ui/components/tooltip";
 import { cn } from "@still/ui/lib/utils";
+import { Plus } from "lucide-react";
 
 import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import type { ListingPresenceViewingPatron } from "@/lib/fetch-listing-presence";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
@@ -18,6 +20,11 @@ import { openPlanFeatureDrawer } from "./use-plan-feature-drawer";
 const MAX_AVATARS = 5;
 
 export type PlansView = "grid" | "details";
+
+const VIEW_OPTIONS = [
+	{ id: "grid" as const, label: "Grid" },
+	{ id: "details" as const, label: "Details" },
+];
 
 export function StaffPlansTopbar({
 	viewingPatrons,
@@ -34,18 +41,17 @@ export function StaffPlansTopbar({
 	const overflow = viewerCount - visible.length;
 
 	return (
-		<div className="flex items-center gap-3 border-border border-b px-4 py-3">
-			<nav className="flex items-center gap-1 text-muted-foreground text-sm">
-				<span>Staff</span>
-				<span className="text-muted-foreground/40">/</span>
-				<span className="font-medium text-foreground">Plans</span>
-			</nav>
+		<div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+			<div>
+				<h2 className="font-medium text-lg">Plans</h2>
+				<p className="text-muted-foreground text-sm">
+					Subscription tier feature catalogue. Changes are live immediately.
+				</p>
+			</div>
 
-			<div className="flex-1" />
-
-			{viewerCount > 0 && (
-				<div className="flex items-center gap-2">
-					<span className="text-muted-foreground text-xs">Viewing now</span>
+			<div className="flex items-center gap-3">
+				{/* Live presence */}
+				{viewerCount > 0 && (
 					<TooltipProvider delay={0}>
 						<div className="flex items-center">
 							{visible.map((patron, i) => (
@@ -54,7 +60,7 @@ export function StaffPlansTopbar({
 										render={
 											<span
 												className={cn(
-													"block size-7 shrink-0 cursor-pointer rounded-full ring-2 ring-background",
+													"block size-7 shrink-0 cursor-default rounded-full ring-2 ring-background",
 													i > 0 && "-ml-2",
 												)}
 											/>
@@ -100,34 +106,26 @@ export function StaffPlansTopbar({
 							)}
 						</div>
 					</TooltipProvider>
-				</div>
-			)}
+				)}
 
-			<div className="flex rounded-full border border-border bg-background p-0.5">
-				{(["grid", "details"] as PlansView[]).map((v) => (
-					<button
-						key={v}
-						type="button"
-						onClick={() => onViewChange(v)}
-						className={cn(
-							"rounded-full px-3 py-1 font-medium text-xs capitalize transition-colors",
-							view === v
-								? "bg-foreground text-background"
-								: "text-muted-foreground hover:text-foreground",
-						)}
-					>
-						{v}
-					</button>
-				))}
+				<SegmentedPillToolbar
+					layoutId="staff-plans-view"
+					aria-label="Plans view"
+					value={view}
+					onChange={onViewChange}
+					options={VIEW_OPTIONS}
+				/>
+
+				<Button
+					type="button"
+					variant="secondary"
+					size="sm"
+					onClick={openPlanFeatureDrawer}
+				>
+					<Plus className="mr-1.5 size-3.5" />
+					New feature
+				</Button>
 			</div>
-
-			<Button
-				size="sm"
-				className="rounded-full"
-				onClick={openPlanFeatureDrawer}
-			>
-				+ Add feature
-			</Button>
 		</div>
 	);
 }

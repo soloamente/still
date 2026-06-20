@@ -9,15 +9,15 @@ import { PlanFeatureInlineEdit } from "./plan-feature-inline-edit";
 
 const TIER_ORDER = ["still", "attuned", "immersed", "devoted"] as const;
 
-function StatusDot({ status }: { status: string }) {
+function BuildStatusDot({ status }: { status: string }) {
 	return (
 		<span
 			role="img"
-			className={cn(
-				"mt-1 inline-block size-1.5 shrink-0 rounded-full",
-				status === "exists" ? "bg-emerald-700" : "bg-amber-700",
-			)}
 			aria-label={status}
+			className={cn(
+				"mt-[5px] inline-block size-1.5 shrink-0 rounded-full",
+				status === "exists" ? "bg-emerald-600/70" : "bg-amber-500/70",
+			)}
 		/>
 	);
 }
@@ -38,7 +38,7 @@ export function StaffPlansDetailsView({
 	).filter(Boolean) as PlanTier[];
 
 	return (
-		<div className="space-y-10">
+		<div className="space-y-8">
 			{orderedTiers.map((tier) => {
 				const tierFeatures = features.filter((f) =>
 					f.tierIds.includes(tier.id),
@@ -46,70 +46,67 @@ export function StaffPlansDetailsView({
 
 				return (
 					<section key={tier.id}>
-						<div className="mb-4 flex items-center gap-3 border-border border-b pb-3">
-							<span className="rounded-full bg-muted px-3 py-1 font-semibold text-muted-foreground text-xs uppercase tracking-wider">
-								{tier.name}
-							</span>
-							<span className="text-muted-foreground/50 text-sm">
-								{tier.tagline}
-							</span>
-							<span className="ml-auto text-muted-foreground/40 text-xs">
+						{/* Tier header */}
+						<div className="mb-2 flex items-baseline gap-3 border-border border-b pb-2">
+							<h3 className="font-medium text-sm">{tier.name}</h3>
+							<p className="text-muted-foreground text-xs">{tier.tagline}</p>
+							<span className="ml-auto text-muted-foreground text-xs tabular-nums">
 								{tier.priceYearly == null
 									? "Free"
 									: `$${(tier.priceYearly / 100).toFixed(0)}/yr`}
 							</span>
 						</div>
 
-						<div className="space-y-1">
-							{tierFeatures.length === 0 && (
-								<p className="text-muted-foreground/50 text-sm">
-									No features assigned to this tier yet.
-								</p>
-							)}
-							{tierFeatures.map((feature) => (
-								<div key={feature.id}>
-									<button
-										type="button"
-										className={cn(
-											"group grid w-full cursor-pointer grid-cols-[160px_1fr_20px] items-start gap-4 rounded-xl px-3 py-2.5 text-left transition-colors hover:bg-muted/30",
-											expandedId === feature.id && "bg-muted/30",
-										)}
-										onClick={() =>
-											setExpandedId(
-												expandedId === feature.id ? null : feature.id,
-											)
-										}
-									>
-										<div className="flex items-start gap-2 pt-0.5">
-											<StatusDot status={feature.buildStatus} />
-											<span className="font-medium text-foreground/80 text-sm leading-snug">
-												{feature.name}
-											</span>
-										</div>
-										<p className="text-muted-foreground text-sm leading-relaxed">
-											{feature.description}
-										</p>
-										<span className="pt-0.5 text-muted-foreground/30 text-xs opacity-0 transition-opacity group-hover:opacity-100">
-											✎
-										</span>
-									</button>
+						{tierFeatures.length === 0 ? (
+							<p className="px-3 py-2 text-muted-foreground text-sm">
+								No features assigned yet.
+							</p>
+						) : (
+							<ul className="space-y-0.5">
+								{tierFeatures.map((feature) => (
+									<li key={feature.id}>
+										<button
+											type="button"
+											className={cn(
+												"group flex w-full items-start gap-3 rounded-xl px-3 py-2 text-left transition-colors duration-200",
+												expandedId === feature.id
+													? "bg-card"
+													: "[@media(hover:hover)]:hover:bg-card/60",
+											)}
+											onClick={() =>
+												setExpandedId(
+													expandedId === feature.id ? null : feature.id,
+												)
+											}
+										>
+											<BuildStatusDot status={feature.buildStatus} />
+											<div className="min-w-0 flex-1">
+												<p className="font-medium text-sm leading-snug">
+													{feature.name}
+												</p>
+												<p className="mt-0.5 text-muted-foreground text-xs leading-relaxed">
+													{feature.description}
+												</p>
+											</div>
+										</button>
 
-									{expandedId === feature.id && (
-										<div className="mt-1 px-3 pb-2">
-											<PlanFeatureInlineEdit
-												feature={feature}
-												tiers={tiers}
-												onSaved={(updated) => {
-													onFeaturesChange(updated);
-													setExpandedId(null);
-												}}
-												onCancel={() => setExpandedId(null)}
-											/>
-										</div>
-									)}
-								</div>
-							))}
-						</div>
+										{expandedId === feature.id && (
+											<div className="mt-1 px-3 pb-2">
+												<PlanFeatureInlineEdit
+													feature={feature}
+													tiers={tiers}
+													onSaved={(updated) => {
+														onFeaturesChange(updated);
+														setExpandedId(null);
+													}}
+													onCancel={() => setExpandedId(null)}
+												/>
+											</div>
+										)}
+									</li>
+								))}
+							</ul>
+						)}
 					</section>
 				);
 			})}

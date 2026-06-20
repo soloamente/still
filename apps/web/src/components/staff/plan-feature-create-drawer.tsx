@@ -1,13 +1,15 @@
-﻿"use client";
+"use client";
 
 import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
+import { Label } from "@still/ui/components/label";
 import { Textarea } from "@still/ui/components/textarea";
 import { cn } from "@still/ui/lib/utils";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { toast } from "sonner";
 
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import {
 	createPlanFeature,
 	type PlanFeature,
@@ -18,6 +20,11 @@ import { usePlanFeatureDrawer } from "./use-plan-feature-drawer";
 
 const TIER_ORDER = ["still", "attuned", "immersed", "devoted"] as const;
 
+const STATUS_OPTIONS = [
+	{ id: "planned" as const, label: "Planned" },
+	{ id: "exists" as const, label: "Exists" },
+];
+
 export function PlanFeatureCreateDrawerRoot({
 	tiers,
 	onCreated,
@@ -25,6 +32,7 @@ export function PlanFeatureCreateDrawerRoot({
 	tiers: PlanTier[];
 	onCreated: (features: PlanFeature[]) => void;
 }) {
+	const fieldId = useId();
 	const { isOpen, close } = usePlanFeatureDrawer();
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
@@ -86,45 +94,33 @@ export function PlanFeatureCreateDrawerRoot({
 		<DetailVaulSheet
 			open={isOpen}
 			onOpenChange={handleOpenChange}
-			title="Add feature"
-			description="New feature will appear in the grid and details view immediately."
+			title="New feature"
+			description="Appears in the grid and details view immediately."
 		>
-			<div className="mx-auto w-full max-w-lg space-y-5 px-4 pt-2 pb-10 sm:max-w-xl">
-				<div className="space-y-1.5">
-					<label
-						htmlFor="create-feature-name"
-						className="font-semibold text-muted-foreground text-xs uppercase tracking-widest"
-					>
-						Feature name
-					</label>
+			<div className="mx-auto w-full max-w-lg space-y-4 px-4 pt-2 pb-10 sm:max-w-xl">
+				<div className="space-y-2">
+					<Label htmlFor={`${fieldId}-name`}>Feature name</Label>
 					<Input
-						id="create-feature-name"
+						id={`${fieldId}-name`}
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 						placeholder="e.g. Taste overlap scores"
 					/>
 				</div>
 
-				<div className="space-y-1.5">
-					<label
-						htmlFor="create-feature-desc"
-						className="font-semibold text-muted-foreground text-xs uppercase tracking-widest"
-					>
-						Description
-					</label>
+				<div className="space-y-2">
+					<Label htmlFor={`${fieldId}-desc`}>Description</Label>
 					<Textarea
-						id="create-feature-desc"
+						id={`${fieldId}-desc`}
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
-						placeholder="Plain language explanation shown on the pricing page and details view…"
+						placeholder="Plain-language explanation shown on the pricing page…"
 						className="min-h-24 resize-none"
 					/>
 				</div>
 
-				<div className="space-y-1.5">
-					<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
-						Available in
-					</p>
+				<div className="space-y-2">
+					<p className="font-medium text-sm">Available in</p>
 					<div className="flex flex-wrap gap-2">
 						{orderedTiers.map((tier) => (
 							<button
@@ -132,10 +128,10 @@ export function PlanFeatureCreateDrawerRoot({
 								type="button"
 								onClick={() => toggleTier(tier.id)}
 								className={cn(
-									"rounded-full border px-3 py-1 font-semibold text-xs transition-colors",
+									"rounded-full border px-3 py-1 font-medium text-xs transition-colors duration-200",
 									selectedTierIds.includes(tier.id)
-										? "border-foreground/20 bg-foreground/10 text-foreground"
-										: "border-muted text-muted-foreground hover:border-foreground/20 hover:text-foreground",
+										? "border-foreground/20 bg-card text-foreground"
+										: "border-transparent bg-muted/40 text-muted-foreground [@media(hover:hover)]:hover:bg-muted/70 [@media(hover:hover)]:hover:text-foreground",
 								)}
 							>
 								{tier.name}
@@ -144,43 +140,26 @@ export function PlanFeatureCreateDrawerRoot({
 					</div>
 				</div>
 
-				<div className="space-y-1.5">
-					<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
-						Build status
-					</p>
-					<div className="flex gap-2">
-						{(["exists", "planned"] as const).map((s) => (
-							<button
-								key={s}
-								type="button"
-								onClick={() => setBuildStatus(s)}
-								className={cn(
-									"rounded-full border px-3 py-1 font-semibold text-xs transition-colors",
-									buildStatus === s
-										? "border-foreground/20 bg-foreground/10 text-foreground"
-										: "border-muted text-muted-foreground hover:border-foreground/20 hover:text-foreground",
-								)}
-							>
-								{s}
-							</button>
-						))}
-					</div>
+				<div className="space-y-2">
+					<p className="font-medium text-sm">Build status</p>
+					<SegmentedPillToolbar
+						layoutId={`${fieldId}-status`}
+						aria-label="Build status"
+						value={buildStatus}
+						onChange={setBuildStatus}
+						options={STATUS_OPTIONS}
+					/>
 				</div>
 
 				<div className="flex gap-2 pt-2">
 					<Button
 						variant="outline"
-						className="rounded-full"
 						onClick={() => handleOpenChange(false)}
 						disabled={saving}
 					>
 						Cancel
 					</Button>
-					<Button
-						className="flex-1 rounded-full"
-						onClick={handleSubmit}
-						disabled={saving}
-					>
+					<Button className="flex-1" onClick={handleSubmit} disabled={saving}>
 						{saving ? "Creating…" : "Create feature"}
 					</Button>
 				</div>

@@ -9,15 +9,15 @@ import { PlanFeatureInlineEdit } from "./plan-feature-inline-edit";
 
 const TIER_ORDER = ["still", "attuned", "immersed", "devoted"] as const;
 
-function StatusDot({ status }: { status: string }) {
+function BuildStatusDot({ status }: { status: string }) {
 	return (
 		<span
 			role="img"
+			aria-label={status}
 			className={cn(
 				"inline-block size-1.5 shrink-0 rounded-full",
-				status === "exists" ? "bg-emerald-700" : "bg-amber-700",
+				status === "exists" ? "bg-emerald-600/70" : "bg-amber-500/70",
 			)}
-			aria-label={status}
 		/>
 	);
 }
@@ -38,79 +38,76 @@ export function StaffPlansGridView({
 	).filter(Boolean) as PlanTier[];
 
 	return (
-		<div className="overflow-x-auto">
-			<table className="w-full min-w-[640px] border-collapse text-sm">
-				<thead>
-					<tr className="border-border border-b">
-						<th className="py-2 pr-4 text-left font-semibold text-muted-foreground text-xs uppercase tracking-wider">
-							Feature
-						</th>
-						{orderedTiers.map((tier) => (
-							<th
-								key={tier.id}
-								className="w-24 py-2 text-center font-semibold text-muted-foreground text-xs uppercase tracking-wider"
-							>
-								{tier.name}
-							</th>
-						))}
-					</tr>
-				</thead>
-				<tbody>
-					{features.map((feature) => (
-						<Fragment key={feature.id}>
-							<tr
+		<div className="rounded-2xl bg-background">
+			{/* Header row */}
+			<div className="grid grid-cols-[1fr_repeat(4,5.5rem)] border-border border-b px-3 py-2">
+				<p className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
+					Feature
+				</p>
+				{orderedTiers.map((tier) => (
+					<p
+						key={tier.id}
+						className="text-center font-medium text-muted-foreground text-xs uppercase tracking-wider"
+					>
+						{tier.name}
+					</p>
+				))}
+			</div>
+
+			{/* Feature rows */}
+			<ul className="divide-y divide-border">
+				{features.map((feature) => (
+					<Fragment key={feature.id}>
+						<li>
+							<button
+								type="button"
 								className={cn(
-									"group cursor-pointer border-border/50 border-b transition-colors hover:bg-muted/30",
-									expandedId === feature.id && "bg-muted/30",
+									"grid w-full grid-cols-[1fr_repeat(4,5.5rem)] items-center px-3 py-2.5 text-left transition-colors duration-200",
+									expandedId === feature.id
+										? "bg-card text-foreground"
+										: "text-foreground [@media(hover:hover)]:hover:bg-card/60",
 								)}
 								onClick={() =>
 									setExpandedId(expandedId === feature.id ? null : feature.id)
 								}
 							>
-								<td className="py-2.5 pr-4">
-									<span className="flex items-center gap-2">
-										<StatusDot status={feature.buildStatus} />
-										<span className="text-foreground/80 text-sm">
-											{feature.name}
-										</span>
-										<span className="ml-auto text-muted-foreground/40 text-xs opacity-0 transition-opacity group-hover:opacity-100">
-											✎
-										</span>
-									</span>
-								</td>
+								<span className="flex min-w-0 items-center gap-2">
+									<BuildStatusDot status={feature.buildStatus} />
+									<span className="truncate text-sm">{feature.name}</span>
+								</span>
 								{orderedTiers.map((tier) => (
-									<td
+									<span
 										key={tier.id}
-										className="py-2.5 text-center text-muted-foreground"
+										className="flex items-center justify-center"
 									>
 										{feature.tierIds.includes(tier.id) ? (
-											<span className="text-base text-emerald-700">✓</span>
-										) : (
-											<span className="text-muted-foreground/20">—</span>
-										)}
-									</td>
+											<span
+												role="img"
+												aria-label="included"
+												className="size-1.5 rounded-full bg-foreground/40"
+											/>
+										) : null}
+									</span>
 								))}
-							</tr>
+							</button>
 
 							{expandedId === feature.id && (
-								<tr key={`${feature.id}-edit`}>
-									<td colSpan={orderedTiers.length + 1} className="pt-1 pb-3">
-										<PlanFeatureInlineEdit
-											feature={feature}
-											tiers={tiers}
-											onSaved={(updated) => {
-												onFeaturesChange(updated);
-												setExpandedId(null);
-											}}
-											onCancel={() => setExpandedId(null)}
-										/>
-									</td>
-								</tr>
+								<div className="border-border border-t px-3 pt-2 pb-3">
+									<PlanFeatureInlineEdit
+										feature={feature}
+										tiers={tiers}
+										onSaved={(updated) => {
+											onFeaturesChange(updated);
+											setExpandedId(null);
+										}}
+										onCancel={() => setExpandedId(null)}
+									/>
+								</div>
 							)}
-						</Fragment>
-					))}
-				</tbody>
-			</table>
+						</li>
+					</Fragment>
+				))}
+			</ul>
 		</div>
 	);
 }
