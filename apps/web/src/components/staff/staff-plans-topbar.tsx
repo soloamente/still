@@ -43,10 +43,7 @@ export function StaffPlansTopbar({
 	return (
 		<div className="mb-4 flex flex-wrap items-center justify-between gap-3">
 			<div>
-				<h2 className="font-medium text-lg">Plans</h2>
-				<p className="text-muted-foreground text-sm">
-					Subscription tier feature catalogue. Changes are live immediately.
-				</p>
+				<h2 className="font-medium text-lg">Features</h2>
 			</div>
 
 			<div className="flex items-center gap-3">

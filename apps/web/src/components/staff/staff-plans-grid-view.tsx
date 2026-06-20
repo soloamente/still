@@ -38,9 +38,9 @@ export function StaffPlansGridView({
 	).filter(Boolean) as PlanTier[];
 
 	return (
-		<div className="rounded-2xl bg-background">
+		<div className="rounded-md border border-border">
 			{/* Header row */}
-			<div className="grid grid-cols-[1fr_repeat(4,5.5rem)] border-border border-b px-3 py-2">
+			<div className="grid grid-cols-[1fr_repeat(4,5.5rem)] border-border border-b px-4 py-2">
 				<p className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
 					Feature
 				</p>
@@ -62,7 +62,7 @@ export function StaffPlansGridView({
 							<button
 								type="button"
 								className={cn(
-									"grid w-full grid-cols-[1fr_repeat(4,5.5rem)] items-center px-3 py-2.5 text-left transition-colors duration-200",
+									"grid w-full grid-cols-[1fr_repeat(4,5.5rem)] items-center px-4 py-3 text-left transition-colors duration-200",
 									expandedId === feature.id
 										? "bg-card text-foreground"
 										: "text-foreground [@media(hover:hover)]:hover:bg-card/60",
@@ -92,7 +92,7 @@ export function StaffPlansGridView({
 							</button>
 
 							{expandedId === feature.id && (
-								<div className="border-border border-t px-3 pt-2 pb-3">
+								<div className="border-border border-t px-4 pt-3 pb-4">
 									<PlanFeatureInlineEdit
 										feature={feature}
 										tiers={tiers}
