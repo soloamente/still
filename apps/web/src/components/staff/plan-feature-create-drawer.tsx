@@ -1,29 +1,24 @@
 "use client";
 
-import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
-import { Label } from "@still/ui/components/label";
 import { Textarea } from "@still/ui/components/textarea";
-import { cn } from "@still/ui/lib/utils";
 import { useId, useState } from "react";
 import { toast } from "sonner";
 
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
-import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
+import { MeFormField } from "@/components/profile/me-form-field";
+import { MeSaveButton } from "@/components/profile/me-save-button";
+import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
 import {
 	createPlanFeature,
 	type PlanFeature,
 	type PlanTier,
 } from "@/lib/staff-plan-features-api";
 
+import { PlanBuildStatusChipFilter } from "./plan-build-status-chip-filter";
+import { planFieldControlClass } from "./plan-field-control-class";
+import { PlanTierChipPicker } from "./plan-tier-chip-picker";
 import { usePlanFeatureDrawer } from "./use-plan-feature-drawer";
-
-const TIER_ORDER = ["still", "attuned", "immersed", "devoted"] as const;
-
-const STATUS_OPTIONS = [
-	{ id: "planned" as const, label: "Planned" },
-	{ id: "exists" as const, label: "Exists" },
-];
 
 export function PlanFeatureCreateDrawerRoot({
 	tiers,
@@ -86,10 +81,6 @@ export function PlanFeatureCreateDrawerRoot({
 		}
 	}
 
-	const orderedTiers = TIER_ORDER.map((id) =>
-		tiers.find((t) => t.id === id),
-	).filter(Boolean) as PlanTier[];
-
 	return (
 		<DetailVaulSheet
 			open={isOpen}
@@ -97,71 +88,66 @@ export function PlanFeatureCreateDrawerRoot({
 			title="New feature"
 			description="Appears in the grid and details view immediately."
 		>
-			<div className="mx-auto w-full max-w-lg space-y-4 px-4 pt-2 pb-10 sm:max-w-xl">
-				<div className="space-y-2">
-					<Label htmlFor={`${fieldId}-name`}>Feature name</Label>
+			<div className="mx-auto w-full max-w-lg space-y-5 px-4 pt-2 pb-10 sm:max-w-xl">
+				<MeFormField id={`${fieldId}-name`} label="Feature name">
 					<Input
 						id={`${fieldId}-name`}
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 						placeholder="e.g. Taste overlap scores"
+						className={planFieldControlClass()}
 					/>
-				</div>
+				</MeFormField>
 
-				<div className="space-y-2">
-					<Label htmlFor={`${fieldId}-desc`}>Description</Label>
+				<MeFormField id={`${fieldId}-desc`} label="Description">
 					<Textarea
 						id={`${fieldId}-desc`}
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 						placeholder="Plain-language explanation shown on the pricing page…"
-						className="min-h-24 resize-none"
+						className={planFieldControlClass("min-h-24 resize-none py-3")}
+					/>
+				</MeFormField>
+
+				<div className="space-y-2">
+					<p className="font-medium text-foreground text-sm">Available in</p>
+					<PlanTierChipPicker
+						tiers={tiers}
+						selectedTierIds={selectedTierIds}
+						onToggle={toggleTier}
+						disabled={saving}
 					/>
 				</div>
 
 				<div className="space-y-2">
-					<p className="font-medium text-sm">Available in</p>
-					<div className="flex flex-wrap gap-2">
-						{orderedTiers.map((tier) => (
-							<button
-								key={tier.id}
-								type="button"
-								onClick={() => toggleTier(tier.id)}
-								className={cn(
-									"rounded-full border px-3 py-1 font-medium text-xs transition-colors duration-200",
-									selectedTierIds.includes(tier.id)
-										? "border-foreground/20 bg-card text-foreground"
-										: "border-transparent bg-muted/40 text-muted-foreground [@media(hover:hover)]:hover:bg-muted/70 [@media(hover:hover)]:hover:text-foreground",
-								)}
-							>
-								{tier.name}
-							</button>
-						))}
-					</div>
-				</div>
-
-				<div className="space-y-2">
-					<p className="font-medium text-sm">Build status</p>
-					<SegmentedPillToolbar
-						layoutId={`${fieldId}-status`}
-						aria-label="Build status"
+					<p className="font-medium text-foreground text-sm">Build status</p>
+					<PlanBuildStatusChipFilter
 						value={buildStatus}
 						onChange={setBuildStatus}
-						options={STATUS_OPTIONS}
+						disabled={saving}
 					/>
 				</div>
 
 				<div className="flex gap-2 pt-2">
-					<Button
-						variant="outline"
+					<MeSecondaryButton
+						type="button"
+						size="compact"
 						onClick={() => handleOpenChange(false)}
 						disabled={saving}
 					>
 						Cancel
-					</Button>
-					<Button className="flex-1" onClick={handleSubmit} disabled={saving}>
-						{saving ? "Creating…" : "Create feature"}
-					</Button>
+					</MeSecondaryButton>
+					<div className="flex flex-1 justify-stretch [&>button]:w-full">
+						<MeSaveButton
+							type="button"
+							size="compact"
+							loading={saving}
+							disabled={saving}
+							onClick={() => void handleSubmit()}
+						>
+							{saving ? "Creating…" : "Create feature"}
+						</MeSaveButton>
+					</div>
 				</div>
 			</div>
 		</DetailVaulSheet>

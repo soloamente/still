@@ -2284,6 +2284,13 @@ html[data-software-gpu] .modal-overlay-scrim {
 	}
 }
 
+/* Staff plans row expand — shorter travel than journal article reveal. */
+.staff-plans-feature-expand {
+	--panel-translate-y: 12px;
+	--panel-open-dur: 320ms;
+	--panel-close-dur: 240ms;
+}
+
 /* ---------------------------------------------------------------------------
  * transitions.dev — success check (`YearInReviewPageContent` share copy).
  * --------------------------------------------------------------------------- */

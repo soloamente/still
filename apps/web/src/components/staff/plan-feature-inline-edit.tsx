@@ -1,37 +1,37 @@
 "use client";
 
-import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
-import { Label } from "@still/ui/components/label";
 import { Textarea } from "@still/ui/components/textarea";
 import { cn } from "@still/ui/lib/utils";
 import { useId, useState } from "react";
 import { toast } from "sonner";
 
-import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
+import { MeFormField } from "@/components/profile/me-form-field";
+import { MeSaveButton } from "@/components/profile/me-save-button";
+import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
 import {
 	type PlanFeature,
 	type PlanTier,
 	updatePlanFeature,
 } from "@/lib/staff-plan-features-api";
 
-const TIER_ORDER = ["still", "attuned", "immersed", "devoted"] as const;
-
-const STATUS_OPTIONS = [
-	{ id: "exists" as const, label: "Exists" },
-	{ id: "planned" as const, label: "Planned" },
-];
+import { PlanBuildStatusChipFilter } from "./plan-build-status-chip-filter";
+import { planFieldControlClass } from "./plan-field-control-class";
+import { PlanTierChipPicker } from "./plan-tier-chip-picker";
 
 export function PlanFeatureInlineEdit({
 	feature,
 	tiers,
 	onSaved,
 	onCancel,
+	embedded = false,
 }: {
 	feature: PlanFeature;
 	tiers: PlanTier[];
 	onSaved: (features: PlanFeature[]) => void;
 	onCancel: () => void;
+	/** Grid/details expanders — form sits inside the active row card without a nested panel. */
+	embedded?: boolean;
 }) {
 	const fieldId = useId();
 	const [name, setName] = useState(feature.name);
@@ -72,77 +72,75 @@ export function PlanFeatureInlineEdit({
 		}
 	}
 
-	const orderedTiers = TIER_ORDER.map((id) =>
-		tiers.find((t) => t.id === id),
-	).filter(Boolean) as PlanTier[];
-
 	return (
-		<div className="space-y-4 rounded-2xl bg-background p-4">
-			<div className="grid gap-4 sm:grid-cols-2">
-				<div className="space-y-2">
-					<Label htmlFor={`${fieldId}-name`}>Feature name</Label>
+		<div
+			className={cn(
+				embedded
+					? "space-y-3 px-3 pt-1 pb-3"
+					: "space-y-4 rounded-2xl bg-background p-4 sm:p-5",
+			)}
+		>
+			<div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+				<MeFormField id={`${fieldId}-name`} label="Feature name">
 					<Input
 						id={`${fieldId}-name`}
 						value={name}
 						onChange={(e) => setName(e.target.value)}
+						className={planFieldControlClass()}
 					/>
-				</div>
+				</MeFormField>
 
 				<div className="space-y-2">
-					<p className="font-medium text-sm">Build status</p>
-					<SegmentedPillToolbar
-						layoutId={`${fieldId}-status`}
-						aria-label="Build status"
+					<p className="font-medium text-foreground text-sm">Build status</p>
+					<PlanBuildStatusChipFilter
 						value={buildStatus}
 						onChange={setBuildStatus}
-						options={STATUS_OPTIONS}
+						disabled={saving}
 					/>
 				</div>
 
-				<div className="space-y-2 sm:col-span-2">
-					<Label htmlFor={`${fieldId}-desc`}>Description</Label>
+				<MeFormField
+					id={`${fieldId}-desc`}
+					label="Description"
+					className="sm:col-span-2"
+				>
 					<Textarea
 						id={`${fieldId}-desc`}
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
-						className="min-h-20 resize-none"
+						className={planFieldControlClass("min-h-20 resize-none py-3")}
 					/>
-				</div>
+				</MeFormField>
 
 				<div className="space-y-2 sm:col-span-2">
-					<p className="font-medium text-sm">Available in</p>
-					<div className="flex flex-wrap gap-2">
-						{orderedTiers.map((tier) => (
-							<button
-								key={tier.id}
-								type="button"
-								onClick={() => toggleTier(tier.id)}
-								className={cn(
-									"rounded-full border px-3 py-1 font-medium text-xs transition-colors duration-200",
-									selectedTierIds.includes(tier.id)
-										? "border-foreground/20 bg-card text-foreground"
-										: "border-transparent bg-muted/40 text-muted-foreground [@media(hover:hover)]:hover:bg-muted/70 [@media(hover:hover)]:hover:text-foreground",
-								)}
-							>
-								{tier.name}
-							</button>
-						))}
-					</div>
+					<p className="font-medium text-foreground text-sm">Available in</p>
+					<PlanTierChipPicker
+						tiers={tiers}
+						selectedTierIds={selectedTierIds}
+						onToggle={toggleTier}
+						disabled={saving}
+					/>
 				</div>
 			</div>
 
-			<div className="flex justify-end gap-2">
-				<Button
-					variant="outline"
-					size="sm"
+			<div className="flex justify-end gap-2 pt-1">
+				<MeSecondaryButton
+					type="button"
+					size="compact"
 					onClick={onCancel}
 					disabled={saving}
 				>
 					Cancel
-				</Button>
-				<Button size="sm" onClick={handleSave} disabled={saving}>
-					{saving ? "Saving…" : "Save"}
-				</Button>
+				</MeSecondaryButton>
+				<MeSaveButton
+					type="button"
+					size="compact"
+					loading={saving}
+					disabled={saving}
+					onClick={() => void handleSave()}
+				>
+					Save
+				</MeSaveButton>
 			</div>
 		</div>
 	);

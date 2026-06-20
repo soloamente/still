@@ -6,6 +6,7 @@ import { useState } from "react";
 import type { PlanFeature, PlanTier } from "@/lib/staff-plan-features-api";
 
 import { PlanFeatureInlineEdit } from "./plan-feature-inline-edit";
+import { PlanFeatureRowExpandPanel } from "./plan-feature-row-expand-panel";
 
 const TIER_ORDER = ["still", "attuned", "immersed", "devoted"] as const;
 
@@ -38,17 +39,21 @@ export function StaffPlansDetailsView({
 	).filter(Boolean) as PlanTier[];
 
 	return (
-		<div className="space-y-8">
+		<div className="space-y-4">
 			{orderedTiers.map((tier) => {
 				const tierFeatures = features.filter((f) =>
 					f.tierIds.includes(tier.id),
 				);
 
 				return (
-					<section key={tier.id}>
-						{/* Tier header */}
-						<div className="mb-2 flex items-baseline gap-3 border-border border-b pb-2">
-							<h3 className="font-medium text-sm">{tier.name}</h3>
+					<section
+						key={tier.id}
+						className="rounded-2xl bg-background p-3 sm:p-4"
+					>
+						<div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 px-1">
+							<h3 className="font-medium text-foreground text-sm">
+								{tier.name}
+							</h3>
 							<p className="text-muted-foreground text-xs">{tier.tagline}</p>
 							<span className="ml-auto text-muted-foreground text-xs tabular-nums">
 								{tier.priceYearly == null
@@ -58,53 +63,65 @@ export function StaffPlansDetailsView({
 						</div>
 
 						{tierFeatures.length === 0 ? (
-							<p className="px-3 py-2 text-muted-foreground text-sm">
+							<p className="px-3 py-4 text-center text-muted-foreground text-sm">
 								No features assigned yet.
 							</p>
 						) : (
-							<ul className="space-y-0.5">
-								{tierFeatures.map((feature) => (
-									<li key={feature.id}>
-										<button
-											type="button"
-											className={cn(
-												"group flex w-full items-start gap-3 rounded-xl px-3 py-2 text-left transition-colors duration-200",
-												expandedId === feature.id
-													? "bg-card"
-													: "[@media(hover:hover)]:hover:bg-card/60",
-											)}
-											onClick={() =>
-												setExpandedId(
-													expandedId === feature.id ? null : feature.id,
-												)
-											}
-										>
-											<BuildStatusDot status={feature.buildStatus} />
-											<div className="min-w-0 flex-1">
-												<p className="font-medium text-sm leading-snug">
-													{feature.name}
-												</p>
-												<p className="mt-0.5 text-muted-foreground text-xs leading-relaxed">
-													{feature.description}
-												</p>
-											</div>
-										</button>
+							<ul className="space-y-1">
+								{tierFeatures.map((feature) => {
+									const isExpanded = expandedId === feature.id;
 
-										{expandedId === feature.id && (
-											<div className="mt-1 px-3 pb-2">
-												<PlanFeatureInlineEdit
-													feature={feature}
-													tiers={tiers}
-													onSaved={(updated) => {
-														onFeaturesChange(updated);
-														setExpandedId(null);
-													}}
-													onCancel={() => setExpandedId(null)}
-												/>
-											</div>
-										)}
-									</li>
-								))}
+									return (
+										<li
+											key={feature.id}
+											className={cn(
+												"rounded-xl transition-colors duration-200",
+												isExpanded
+													? "overflow-hidden bg-card"
+													: "overflow-visible",
+											)}
+										>
+											<button
+												type="button"
+												aria-expanded={isExpanded}
+												className={cn(
+													"group flex min-h-10 w-full select-none items-start gap-3 px-3 py-2.5 text-left transition-colors duration-200",
+													isExpanded
+														? "font-medium text-foreground"
+														: "[@media(hover:hover)]:hover:bg-card/60",
+												)}
+												onClick={() =>
+													setExpandedId(isExpanded ? null : feature.id)
+												}
+											>
+												<BuildStatusDot status={feature.buildStatus} />
+												<div className="min-w-0 flex-1">
+													<p className="font-medium text-sm leading-snug">
+														{feature.name}
+													</p>
+													<p className="mt-0.5 text-muted-foreground text-xs leading-relaxed">
+														{feature.description}
+													</p>
+												</div>
+											</button>
+
+											{isExpanded ? (
+												<PlanFeatureRowExpandPanel>
+													<PlanFeatureInlineEdit
+														embedded
+														feature={feature}
+														tiers={tiers}
+														onSaved={(updated) => {
+															onFeaturesChange(updated);
+															setExpandedId(null);
+														}}
+														onCancel={() => setExpandedId(null)}
+													/>
+												</PlanFeatureRowExpandPanel>
+											) : null}
+										</li>
+									);
+								})}
 							</ul>
 						)}
 					</section>

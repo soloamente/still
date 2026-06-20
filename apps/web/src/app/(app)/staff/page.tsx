@@ -32,9 +32,9 @@ export default async function StaffPage() {
 			<div className="mb-6 flex gap-3">
 				<Link
 					href="/staff/plans"
-					className="rounded-full border border-border px-4 py-1.5 font-medium text-muted-foreground text-sm transition-colors hover:border-foreground/30 hover:text-foreground"
+					className="inline-flex min-h-10 items-center rounded-full bg-background px-4 py-2 font-medium text-foreground text-sm transition-colors duration-200 [@media(hover:hover)]:hover:bg-foreground/10"
 				>
-					Plans →
+					Plans
 				</Link>
 			</div>
 			<StaffUsersTab currentRole={role} />
