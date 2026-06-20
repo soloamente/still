@@ -52,3 +52,10 @@ export function userInboxRoomId(userId: string): string {
 export function chatRoomId(threadId: string): string {
 	return `chat:${threadId}`;
 }
+
+/** Staff plans collaboration room — presence for /staff/plans. */
+export const STAFF_PLANS_ROOM = "staff:plans";
+
+export function staffPlansRoomId(): string {
+	return STAFF_PLANS_ROOM;
+}
