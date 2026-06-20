@@ -46,33 +46,35 @@ export function StaffPlansTopbar({
 			{viewerCount > 0 && (
 				<div className="flex items-center gap-2">
 					<span className="text-muted-foreground text-xs">Viewing now</span>
-					<TooltipProvider delayDuration={0}>
+					<TooltipProvider delay={0}>
 						<div className="flex items-center">
 							{visible.map((patron, i) => (
 								<Tooltip key={patron.userId}>
-									<TooltipTrigger asChild>
-										<span
-											className={cn(
-												"block size-7 shrink-0 cursor-pointer rounded-full ring-2 ring-background",
-												i > 0 && "-ml-2",
-											)}
-										>
-											<PatronPortraitWithMetalTier
-												handle={patron.handle}
-												avatarUrl={patron.image}
-												name={patron.displayName || patron.handle}
-												className="size-full rounded-full"
-												width={28}
-												height={28}
-												showOnlineStatus
-												presenceState={patron.presenceState}
-												isAnimated={inferAnimatedFromProfileUrl(
-													patron.image,
-													patron.avatarIsAnimated,
+									<TooltipTrigger
+										render={
+											<span
+												className={cn(
+													"block size-7 shrink-0 cursor-pointer rounded-full ring-2 ring-background",
+													i > 0 && "-ml-2",
 												)}
-												diaryMetalTier={patron.diaryMetalTier}
 											/>
-										</span>
+										}
+									>
+										<PatronPortraitWithMetalTier
+											handle={patron.handle}
+											avatarUrl={patron.image}
+											name={patron.displayName || patron.handle}
+											className="size-full rounded-full"
+											width={28}
+											height={28}
+											showOnlineStatus
+											presenceState={patron.presenceState}
+											isAnimated={inferAnimatedFromProfileUrl(
+												patron.image,
+												patron.avatarIsAnimated,
+											)}
+											diaryMetalTier={patron.diaryMetalTier}
+										/>
 									</TooltipTrigger>
 									<TooltipContent side="bottom" sideOffset={6}>
 										<p className="text-xs">
