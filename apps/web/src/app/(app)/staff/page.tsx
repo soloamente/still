@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { StaffAuditTab } from "@/components/staff/staff-audit-tab";
@@ -28,6 +29,14 @@ export default async function StaffPage() {
 			<p className="mb-6 text-muted-foreground text-sm">
 				Signed in as {session.user.email} · role: {role}
 			</p>
+			<div className="mb-6 flex gap-3">
+				<Link
+					href="/staff/plans"
+					className="rounded-full border border-border px-4 py-1.5 font-medium text-muted-foreground text-sm transition-colors hover:border-foreground/30 hover:text-foreground"
+				>
+					Plans →
+				</Link>
+			</div>
 			<StaffUsersTab currentRole={role} />
 			<StaffJournalPanel />
 			<StaffQuotesPanel />
