@@ -253,6 +253,13 @@
 			"when": 1750291200000,
 			"tag": "0035_stats_cache_backfill",
 			"breakpoints": true
+		},
+		{
+			"idx": 36,
+			"version": "7",
+			"when": 1750377600000,
+			"tag": "0036_plan_tables",
+			"breakpoints": true
 		}
 	]
 }

@@ -10,6 +10,7 @@ export * from "./list";
 export * from "./movie";
 export * from "./news";
 export * from "./notification";
+export * from "./plan";
 export * from "./product-event";
 export * from "./profile";
 export * from "./quote";
