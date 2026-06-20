@@ -10,6 +10,7 @@ import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolba
 import { authServer } from "@/lib/auth-server";
 import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import { fetchProfileDetailServer } from "@/lib/fetch-profile-detail-server";
 import { fetchProfileFilmographyServer } from "@/lib/fetch-profile-filmography-server";
 import { fetchProfileSavedQuotesPreview } from "@/lib/fetch-profile-saved-quotes-server";
 import { toListBoardRow } from "@/lib/list-board-row";
