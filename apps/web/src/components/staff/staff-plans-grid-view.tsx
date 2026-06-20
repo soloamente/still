@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import type { PlanFeature, PlanTier } from "@/lib/staff-plan-features-api";
 
@@ -57,9 +57,8 @@ export function StaffPlansGridView({
 				</thead>
 				<tbody>
 					{features.map((feature) => (
-						<>
+						<Fragment key={feature.id}>
 							<tr
-								key={feature.id}
 								className={cn(
 									"group cursor-pointer border-border/50 border-b transition-colors hover:bg-muted/30",
 									expandedId === feature.id && "bg-muted/30",
@@ -108,7 +107,7 @@ export function StaffPlansGridView({
 									</td>
 								</tr>
 							)}
-						</>
+						</Fragment>
 					))}
 				</tbody>
 			</table>
