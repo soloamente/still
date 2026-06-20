@@ -1,0 +1,131 @@
+﻿"use client";
+
+import { Button } from "@still/ui/components/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@still/ui/components/tooltip";
+import { cn } from "@still/ui/lib/utils";
+
+import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import type { ListingPresenceViewingPatron } from "@/lib/fetch-listing-presence";
+import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
+
+import { openPlanFeatureDrawer } from "./use-plan-feature-drawer";
+
+const MAX_AVATARS = 5;
+
+export type PlansView = "grid" | "details";
+
+export function StaffPlansTopbar({
+	viewingPatrons,
+	viewerCount,
+	view,
+	onViewChange,
+}: {
+	viewingPatrons: ListingPresenceViewingPatron[];
+	viewerCount: number;
+	view: PlansView;
+	onViewChange: (v: PlansView) => void;
+}) {
+	const visible = viewingPatrons.slice(0, MAX_AVATARS);
+	const overflow = viewerCount - visible.length;
+
+	return (
+		<div className="flex items-center gap-3 border-border border-b px-4 py-3">
+			<nav className="flex items-center gap-1 text-muted-foreground text-sm">
+				<span>Staff</span>
+				<span className="text-muted-foreground/40">/</span>
+				<span className="font-medium text-foreground">Plans</span>
+			</nav>
+
+			<div className="flex-1" />
+
+			{viewerCount > 0 && (
+				<div className="flex items-center gap-2">
+					<span className="text-muted-foreground text-xs">Viewing now</span>
+					<TooltipProvider delayDuration={0}>
+						<div className="flex items-center">
+							{visible.map((patron, i) => (
+								<Tooltip key={patron.userId}>
+									<TooltipTrigger asChild>
+										<span
+											className={cn(
+												"block size-7 shrink-0 cursor-pointer rounded-full ring-2 ring-background",
+												i > 0 && "-ml-2",
+											)}
+										>
+											<PatronPortraitWithMetalTier
+												handle={patron.handle}
+												avatarUrl={patron.image}
+												name={patron.displayName || patron.handle}
+												className="size-full rounded-full"
+												width={28}
+												height={28}
+												showOnlineStatus
+												presenceState={patron.presenceState}
+												isAnimated={inferAnimatedFromProfileUrl(
+													patron.image,
+													patron.avatarIsAnimated,
+												)}
+												diaryMetalTier={patron.diaryMetalTier}
+											/>
+										</span>
+									</TooltipTrigger>
+									<TooltipContent side="bottom" sideOffset={6}>
+										<p className="text-xs">
+											{patron.displayName}
+											{patron.handle ? (
+												<span className="ml-1 text-muted-foreground">
+													· @{patron.handle}
+												</span>
+											) : null}
+										</p>
+									</TooltipContent>
+								</Tooltip>
+							))}
+							{overflow > 0 && (
+								<span
+									className={cn(
+										"-ml-2 flex size-7 shrink-0 items-center justify-center rounded-full bg-muted ring-2 ring-background",
+										"font-semibold text-muted-foreground text-xs tabular-nums",
+									)}
+								>
+									+{overflow}
+								</span>
+							)}
+						</div>
+					</TooltipProvider>
+				</div>
+			)}
+
+			<div className="flex rounded-full border border-border bg-background p-0.5">
+				{(["grid", "details"] as PlansView[]).map((v) => (
+					<button
+						key={v}
+						type="button"
+						onClick={() => onViewChange(v)}
+						className={cn(
+							"rounded-full px-3 py-1 font-medium text-xs capitalize transition-colors",
+							view === v
+								? "bg-foreground text-background"
+								: "text-muted-foreground hover:text-foreground",
+						)}
+					>
+						{v}
+					</button>
+				))}
+			</div>
+
+			<Button
+				size="sm"
+				className="rounded-full"
+				onClick={openPlanFeatureDrawer}
+			>
+				+ Add feature
+			</Button>
+		</div>
+	);
+}
