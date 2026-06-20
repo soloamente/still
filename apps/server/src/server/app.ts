@@ -22,6 +22,7 @@ import { moviesRoute } from "../routes/movies";
 import { newsRoute } from "../routes/news";
 import { notificationsRoute } from "../routes/notifications";
 import { peopleRoute } from "../routes/people";
+import { planFeaturesRoute } from "../routes/plan-features";
 import { postsRoute } from "../routes/posts";
 import { productEventsRoute } from "../routes/product-events";
 import { profilesRoute } from "../routes/profiles";
@@ -118,6 +119,7 @@ export const app = new Elysia()
 	.use(notificationsRoute)
 	.use(realtimePresenceRoute)
 	.use(staffRoute)
+	.use(planFeaturesRoute)
 	.use(wsRoute)
 	.onError(({ error, code }) => {
 		console.error(`[server] error code=${code}`, error);
