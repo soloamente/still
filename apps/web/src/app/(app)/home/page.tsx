@@ -313,36 +313,6 @@ export default async function HomePage({
 		profileDataEarly?.preferences ?? null,
 	);
 
-	const [continueWatching, tasteMatchedRail, committedSearchPayload] =
-		await Promise.all([
-			// Personal TV progress rail — skip while committed search replaces the grid.
-			session && browse === "tv" && !catalogueSearchActive
-				? fetchTvWatchMeServer(api, {
-						status: "watching,rewatching",
-						limit: 12,
-					})
-				: Promise.resolve([]),
-			// Taste rail — skip during committed search (Movies lobby hidden).
-			session && browse === "movies" && !catalogueSearchActive
-				? api.api.taste["for-you"]
-						.get()
-						.then((res) => {
-							if (res.error || !res.data) return null;
-							return res.data as TasteMatchedDiscoveryPayload;
-						})
-						.catch(() => null)
-				: Promise.resolve(null),
-			catalogueSearchActive && committedSearchRaw
-				? loadCommittedCatalogueSearchSeeds({
-						searchRaw: committedSearchRaw,
-						browse: browse === "tv" ? "tv" : "movies",
-						sort: catalogueSearchSort ?? "popular",
-						cookieHeader,
-						catalogLanguage,
-					})
-				: Promise.resolve(null),
-		]);
-
 	const profileData =
 		profileResult === PROFILE_FETCH_FAILED ? null : profileResult;
 	const mePrefs = profileData?.preferences ?? null;
@@ -371,18 +341,46 @@ export default async function HomePage({
 		(tvFilterGenreId != null ||
 			(tvVenue === "streaming" && tvFilterMonetization !== "flatrate"));
 
-	let lobbyResult: {
-		data: unknown;
-		error: { status: number; nonJson?: boolean } | null;
-	};
-
-	if (catalogueSearchActive) {
-		// Browse TMDb list is unused — search grid seeds load in parallel above.
-		lobbyResult = { data: null, error: null };
-	} else {
-		try {
-			lobbyResult =
-				browse === "community"
+	const [
+		continueWatching,
+		tasteMatchedRail,
+		committedSearchPayload,
+		lobbyResult,
+	] = await Promise.all([
+		// Personal TV progress rail — skip while committed search replaces the grid.
+		session && browse === "tv" && !catalogueSearchActive
+			? fetchTvWatchMeServer(api, {
+					status: "watching,rewatching",
+					limit: 12,
+				})
+			: Promise.resolve([]),
+		// Taste rail — skip during committed search (Movies lobby hidden).
+		session && browse === "movies" && !catalogueSearchActive
+			? api.api.taste["for-you"]
+					.get()
+					.then((res) => {
+						if (res.error || !res.data) return null;
+						return res.data as TasteMatchedDiscoveryPayload;
+					})
+					.catch(() => null)
+			: Promise.resolve(null),
+		catalogueSearchActive && committedSearchRaw
+			? loadCommittedCatalogueSearchSeeds({
+					searchRaw: committedSearchRaw,
+					browse: browse === "tv" ? "tv" : "movies",
+					sort: catalogueSearchSort ?? "popular",
+					cookieHeader,
+					catalogLanguage,
+				})
+			: Promise.resolve(null),
+		// Lobby catalogue fetch — runs concurrently with the personal rails above.
+		(async (): Promise<{
+			data: unknown;
+			error: { status: number; nonJson?: boolean } | null;
+		}> => {
+			if (catalogueSearchActive) return { data: null, error: null };
+			try {
+				return browse === "community"
 					? { data: null, error: null }
 					: browse === "tv"
 						? animeSeasonActive
@@ -521,11 +519,12 @@ export default async function HomePage({
 													: await fetchMoviesNowPlaying(SEED_PAGE, {
 															cookieHeader,
 														});
-		} catch (err) {
-			console.error("[home] catalogue fetch failed", err);
-			lobbyResult = { data: null, error: { status: 0 } };
-		}
-	}
+			} catch (err) {
+				console.error("[home] catalogue fetch failed", err);
+				return { data: null, error: { status: 0 } };
+			}
+		})(),
+	]);
 
 	const { data, error } = lobbyResult;
 
