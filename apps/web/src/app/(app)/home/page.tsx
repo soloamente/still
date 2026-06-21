@@ -303,8 +303,10 @@ export default async function HomePage({
 		.join("; ");
 
 	const api = await serverApi();
-	const session = await authServer();
-	const profileResult = await fetchMeProfile();
+	const [session, profileResult] = await Promise.all([
+		authServer(),
+		fetchMeProfile(),
+	]);
 	const profileDataEarly =
 		profileResult === PROFILE_FETCH_FAILED ? null : profileResult;
 	const catalogLanguage = resolveCatalogTmdbLanguage(
