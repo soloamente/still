@@ -31,6 +31,13 @@ const HEARTBEAT_MS = 25_000;
 const POLL_MS = 30_000;
 /** Coalesce portrait registrations into one batch lookup. */
 const REGISTER_REFRESH_DEBOUNCE_MS = 200;
+/**
+ * Hard floor between presence-event-driven `/online` refetches. The global
+ * `patron:app` room emits `presence.updated` many times per second across all
+ * users; without this throttle each event would fire its own server→Worker→Neon
+ * round-trip (a ~3 req/s storm). Throttling keeps the live feel while capping load.
+ */
+const PRESENCE_EVENT_REFRESH_THROTTLE_MS = 10_000;
 
 type PatronOnlineContextValue = {
 	registerHandle: (handle: string) => () => void;
@@ -79,6 +86,7 @@ export function PatronOnlineProvider({
 	const presenceEventDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(
 		null,
 	);
+	const lastPresenceRefreshRef = useRef(0);
 	const [presenceByHandle, setPresenceByHandle] = useState<
 		ReadonlyMap<string, "active" | "away">
 	>(() => new Map());
@@ -94,14 +102,19 @@ export function PatronOnlineProvider({
 		}, REGISTER_REFRESH_DEBOUNCE_MS);
 	}, []);
 
+	// Throttle (not debounce): coalesce the steady stream of `presence.updated`
+	// events into at most one `/online` refetch per PRESENCE_EVENT_REFRESH_THROTTLE_MS.
+	// A debounce would never settle under a continuous event stream; a min-interval
+	// throttle guarantees a hard ceiling on refetch rate.
 	const scheduleRefreshFromPresenceEvent = useCallback(() => {
-		if (presenceEventDebounceRef.current) {
-			clearTimeout(presenceEventDebounceRef.current);
-		}
+		if (presenceEventDebounceRef.current) return;
+		const elapsed = Date.now() - lastPresenceRefreshRef.current;
+		const delay = Math.max(0, PRESENCE_EVENT_REFRESH_THROTTLE_MS - elapsed);
 		presenceEventDebounceRef.current = setTimeout(() => {
 			presenceEventDebounceRef.current = null;
+			lastPresenceRefreshRef.current = Date.now();
 			refreshOnlineHandlesRef.current?.();
-		}, REGISTER_REFRESH_DEBOUNCE_MS);
+		}, delay);
 	}, []);
 
 	useRegisterRealtimeRoom(active ? patronAppRoomId() : null);

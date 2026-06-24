@@ -24,7 +24,13 @@ import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 
 const HEARTBEAT_MS = 25_000;
 const POLL_MS = 30_000;
-const REFETCH_DEBOUNCE_MS = 300;
+/**
+ * Hard floor between presence-event-driven snapshot refetches. A popular title's
+ * room emits `presence.updated` repeatedly as viewers flip active/away; a debounce
+ * never settles under a continuous stream, so use a min-interval throttle to cap
+ * the server→Worker→Neon refetch rate.
+ */
+const REFETCH_THROTTLE_MS = 8_000;
 
 export type ListingPresenceSurface = "movie" | "tv";
 
@@ -80,6 +86,7 @@ export function useListingPresence({
 	const joinedRef = useRef(false);
 	const leftRef = useRef(false);
 	const refetchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const lastRefetchRef = useRef(0);
 
 	const refetchSnapshot = useCallback(
 		async (signal?: AbortSignal) => {
@@ -90,12 +97,17 @@ export function useListingPresence({
 		[roomId],
 	);
 
+	// Throttle (not debounce): one refetch per REFETCH_THROTTLE_MS regardless of how
+	// many presence.updated events arrive, guaranteeing a hard ceiling on refetch rate.
 	const scheduleRefetch = useCallback(() => {
-		if (refetchTimerRef.current) clearTimeout(refetchTimerRef.current);
+		if (refetchTimerRef.current) return;
+		const elapsed = Date.now() - lastRefetchRef.current;
+		const delay = Math.max(0, REFETCH_THROTTLE_MS - elapsed);
 		refetchTimerRef.current = setTimeout(() => {
 			refetchTimerRef.current = null;
+			lastRefetchRef.current = Date.now();
 			void refetchSnapshot();
-		}, REFETCH_DEBOUNCE_MS);
+		}, delay);
 	}, [refetchSnapshot]);
 
 	const leavePresence = useCallback(
