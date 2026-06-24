@@ -243,6 +243,7 @@ export async function fetchViewingPatronsInRoom(
 	viewerId: string,
 	activeUserIds: string[],
 	redis: ListingPresenceRedis | null = null,
+	activityOverride?: ReadonlyMap<string, PatronActivityState>,
 ): Promise<ListingPresenceViewingPatron[]> {
 	const candidateIds = activeUserIds.filter((id) => id !== viewerId);
 	if (candidateIds.length === 0) return [];
@@ -276,9 +277,10 @@ export async function fetchViewingPatronsInRoom(
 		rows.map((row) => row.userId),
 	);
 	const activityByUserId =
-		redis && typeof redis.hget === "function"
+		activityOverride ??
+		(redis && typeof redis.hget === "function"
 			? await readActivityStatesForUserIds({ hget: redis.hget }, candidateIds)
-			: new Map<string, PatronActivityState>();
+			: new Map<string, PatronActivityState>());
 	return pickListingPresenceViewingPatrons(
 		rows.map((row) => ({
 			...row,
@@ -288,6 +290,33 @@ export async function fetchViewingPatronsInRoom(
 		LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
 		activityByUserId,
 	);
+}
+
+/** Personalized listing presence snapshot sourced from DO occupancy entries instead of Upstash ZSET. */
+export async function getListingPresenceSnapshotFromOccupancy(
+	viewerId: string,
+	roomId: string,
+	entries: { userId: string; activityState: PatronActivityState }[],
+): Promise<ListingPresenceSnapshot> {
+	if (!isListingPresenceRoom(roomId)) {
+		return { viewerCount: 0, viewingPatrons: [] };
+	}
+	const activeUserIds = entries.map((e) => e.userId);
+	const activityOverride = new Map(
+		entries.map((e) => [e.userId, e.activityState] as const),
+	);
+	const viewerCount = viewerCountExcludingSelf(
+		activeUserIds.length,
+		viewerId,
+		activeUserIds,
+	);
+	const viewingPatrons = await fetchViewingPatronsInRoom(
+		viewerId,
+		activeUserIds,
+		null,
+		activityOverride,
+	);
+	return { viewerCount, viewingPatrons };
 }
 
 /** Personalized presence snapshot for the signed-in viewer on a title detail page. */

@@ -8,7 +8,10 @@ import {
 	usePatronActivityFlipHeartbeat,
 	useReadAggregatePatronActivityState,
 } from "@/hooks/use-patron-activity-tracker";
-import { useRealtimeConnection } from "@/hooks/use-realtime-connection";
+import {
+	useRealtimeConnection,
+	useRealtimeHeartbeat,
+} from "@/hooks/use-realtime-connection";
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
 import {
 	fetchListingPresenceSnapshot,
@@ -63,6 +66,7 @@ export function useListingPresence({
 	const roomId =
 		roomIdProp ?? resolveListingPresenceRoomId(listingKind, listingId);
 	const connected = useRealtimeConnection();
+	const { transport, sendHeartbeat } = useRealtimeHeartbeat();
 	const active = enabled && Boolean(roomId) && realtimeClientEnabled();
 	const readAggregatePatronActivityState =
 		useReadAggregatePatronActivityState();
@@ -146,6 +150,19 @@ export function useListingPresence({
 		const scheduler = createPresenceHeartbeatScheduler(
 			readAggregatePatronActivityState,
 			async (state, opts) => {
+				if (transport === "ws" && !opts?.keepalive) {
+					if (sendHeartbeat(roomId, state)) {
+						if (!joinedRef.current) {
+							joinedRef.current = true;
+							trackSenseProductEvent("realtime.presence.join", {
+								surface: listingKind,
+								listingId: String(listingId),
+							});
+						}
+						await refetchSnapshot(abort.signal);
+						return true;
+					}
+				}
 				const ok = await touchListingPresenceClient(roomId, state, opts);
 				if (!ok || unmounted) return false;
 
@@ -188,6 +205,8 @@ export function useListingPresence({
 		readAggregatePatronActivityState,
 		refetchSnapshot,
 		roomId,
+		sendHeartbeat,
+		transport,
 	]);
 
 	// Keepalive leave when the tab closes before React cleanup runs.

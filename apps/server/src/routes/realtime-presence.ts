@@ -1,9 +1,10 @@
-import { isPatronAppRoomId } from "@still/realtime";
+import { isPatronAppRoomId, patronAppRoomId } from "@still/realtime";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import {
 	getListingPresenceSnapshot,
+	getListingPresenceSnapshotFromOccupancy,
 	isListingPresenceRoom,
 	type ListingPresenceRedis,
 	leaveListingPresence,
@@ -12,10 +13,12 @@ import {
 import {
 	leavePatronAppPresence,
 	resolveVisiblePresenceForViewer,
+	resolveVisiblePresenceFromOccupancy,
 	touchPatronAppPresence,
 } from "../lib/patron-presence";
 import { normalizeActivityState } from "../lib/presence-activity";
 import { hit } from "../lib/rate-limit";
+import { fetchWorkerOccupancy } from "../lib/realtime-occupancy";
 import { publishRealtimeEvent } from "../lib/realtime-publish";
 import { getRealtimeRedis } from "../lib/realtime-redis";
 
@@ -115,11 +118,19 @@ export const realtimePresenceRoute = new Elysia({
 				.split(",")
 				.map((handle) => handle.trim())
 				.filter(Boolean);
-			const presence = await resolveVisiblePresenceForViewer(
-				user.id,
-				handles,
-				presenceRedis(),
-			);
+
+			const workerEntries = await fetchWorkerOccupancy(patronAppRoomId());
+			const presence = workerEntries
+				? await resolveVisiblePresenceFromOccupancy(
+						user.id,
+						handles,
+						workerEntries,
+					)
+				: await resolveVisiblePresenceForViewer(
+						user.id,
+						handles,
+						presenceRedis(),
+					);
 
 			return { presence };
 		},
@@ -137,6 +148,14 @@ export const realtimePresenceRoute = new Elysia({
 				return status(403, "Invalid room");
 			}
 
+			const workerEntries = await fetchWorkerOccupancy(query.room);
+			if (workerEntries) {
+				return getListingPresenceSnapshotFromOccupancy(
+					user.id,
+					query.room,
+					workerEntries,
+				);
+			}
 			return getListingPresenceSnapshot(user.id, query.room, presenceRedis());
 		},
 		{

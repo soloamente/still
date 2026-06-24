@@ -153,8 +153,10 @@ function MovieDetailViewShellBody({
 					</div>
 					<div hidden={view !== "about"}>{about}</div>
 					<div hidden={view !== "community"}>{community}</div>
-					{/* Unmount quotes off-tab — TV episode picker auto-defaults sync ?view=quotes. */}
-					{view === "quotes" ? quotes : null}
+					{/* Unmount quotes off-tab — TV episode picker auto-defaults sync ?view=quotes.
+					    Wrap in a stable div so the RSC-passed element is never a conditional
+					    direct sibling in the array (avoids React key warning in Turbopack). */}
+					<div>{view === "quotes" ? quotes : null}</div>
 				</article>
 			</section>
 		</div>

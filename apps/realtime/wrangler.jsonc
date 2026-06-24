@@ -1,0 +1,23 @@
+{
+	"name": "realtime-still",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-06-01",
+	"durable_objects": {
+		"bindings": [
+			{ "name": "HUB", "class_name": "RealtimeHub" }
+		]
+	},
+	"migrations": [
+		{ "tag": "v1", "new_sqlite_classes": ["RealtimeHub"] }
+	],
+	"vars": {
+		// Production values. Local `wrangler dev` overrides these via .dev.vars
+		// (SERVER_ORIGIN=http://localhost:3000, ALLOWED_ORIGINS="" = dev mode).
+		"SERVER_ORIGIN": "https://cue-server-lac.vercel.app",
+		// Comma-separated allowlist for browser WS Origin checks.
+		"ALLOWED_ORIGINS": "https://cinema.sense.fans"
+	}
+	// Secrets (set via `wrangler secret put`):
+	//   REALTIME_JWT_SECRET       — shared with server; signs connect tokens
+	//   REALTIME_INTERNAL_SECRET  — shared with server; gates /publish + /occupancy
+}

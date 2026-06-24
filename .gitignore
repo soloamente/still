@@ -50,5 +50,9 @@ coverage
 tmp
 temp
 
+# Cloudflare Worker local secrets
+.dev.vars
+.wrangler
+
 # Superpowers brainstorm scratch
 .superpowers/

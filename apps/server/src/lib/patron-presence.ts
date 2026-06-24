@@ -184,6 +184,59 @@ export async function resolveVisiblePresenceForViewer(
 }
 
 /**
+ * Resolve visible presence using DO occupancy entries instead of Upstash ZSET.
+ * Same DB joins as resolveVisiblePresenceForViewer, but activeUserIds come from DO.
+ */
+export async function resolveVisiblePresenceFromOccupancy(
+	viewerId: string,
+	requestedHandles: string[],
+	entries: { userId: string; activityState: PatronActivityState }[],
+): Promise<VisiblePatronPresence[]> {
+	const handles = normalizePatronOnlineHandleBatch(requestedHandles);
+	if (handles.length === 0 || entries.length === 0) return [];
+
+	const activeUserIds = new Set(entries.map((e) => e.userId));
+	const activityByUserId = new Map(
+		entries.map((e) => [e.userId, e.activityState] as const),
+	);
+
+	const rows = await db
+		.select({
+			userId: profile.userId,
+			handle: profile.handle,
+			preferences: profile.preferences,
+		})
+		.from(profile)
+		.where(
+			and(
+				inArray(profile.handle, handles),
+				eq(profile.isPrivate, false),
+				isNotNull(profile.handle),
+			),
+		);
+
+	const candidateIds = rows
+		.map((row) => row.userId)
+		.filter((id) => activeUserIds.has(id));
+	if (candidateIds.length === 0) return [];
+
+	const mutualAll = await fetchMutualFollowingIds(viewerId);
+	const mutualIds = new Set(
+		candidateIds.filter((id) => mutualAll.includes(id)),
+	);
+
+	return pickVisiblePresenceForViewer(
+		viewerId,
+		rows.map((row) => ({
+			...row,
+			isMutualWithViewer: mutualIds.has(row.userId),
+		})),
+		activeUserIds,
+		activityByUserId,
+	);
+}
+
+/**
  * Batch resolve which requested handles are online now for the viewer.
  * Returns lowercase handles the viewer is allowed to see as online.
  */

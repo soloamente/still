@@ -1,5 +1,6 @@
 "use client";
 
+import { chatRoomId } from "@still/realtime";
 import { Button } from "@still/ui/components/button";
 import { Input } from "@still/ui/components/input";
 import { cn } from "@still/ui/lib/utils";
@@ -7,6 +8,9 @@ import { ArrowLeft, Send } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
+import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
+import { useRealtimeHeartbeat } from "@/hooks/use-realtime-connection";
+import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
 import { api } from "@/lib/api";
 import { formatDistanceToNowStrict } from "@/lib/format";
 
@@ -66,6 +70,21 @@ export function ChatPane({ threads: initialThreads }: { threads: Thread[] }) {
 		[threads, activeId],
 	);
 
+	// WS transport: deliver chat over the shared app-shell socket instead of a
+	// dedicated `/ws/chat` connection. SSE transport keeps the legacy socket below.
+	const { transport } = useRealtimeHeartbeat();
+	const chatRoom = activeId ? chatRoomId(activeId) : null;
+	useRegisterRealtimeRoom(transport === "ws" ? chatRoom : null);
+	useRealtimeSubscription({
+		room: chatRoom ?? "",
+		enabled: transport === "ws" && Boolean(chatRoom),
+		onEvent: (event) => {
+			if (event.type !== "chat.message") return;
+			if (event.message.threadId !== activeId) return;
+			setMessages((m) => [...m, event.message]);
+		},
+	});
+
 	// On wide screens the two-pane split is always visible, so auto-select the
 	// most recent thread to fill the conversation pane. On mobile we leave it
 	// null so the list shows first (single-pane master/detail).
@@ -76,9 +95,11 @@ export function ChatPane({ threads: initialThreads }: { threads: Thread[] }) {
 	}, [threads]);
 
 	// Open a single WS connection on mount. Re-joining a thread is a cheap
-	// client-side message — no reconnects.
+	// client-side message — no reconnects. (SSE transport only; the WS transport
+	// uses the shared app-shell socket above.)
 	useEffect(() => {
 		if (typeof window === "undefined") return;
+		if (transport !== "sse") return;
 		const apiUrl =
 			process.env.NEXT_PUBLIC_SERVER_URL ??
 			`${window.location.protocol}//${window.location.host}`;
@@ -111,11 +132,12 @@ export function ChatPane({ threads: initialThreads }: { threads: Thread[] }) {
 		// every thread switch is wasteful. Joining/leaving rooms uses a
 		// separate effect below.
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [transport]);
 
 	// Tell the server which thread we're focused on so it only delivers
 	// events for it.
 	useEffect(() => {
+		if (transport !== "sse") return;
 		if (!activeId) return;
 		const ws = wsRef.current;
 		if (!ws) return;
@@ -128,7 +150,7 @@ export function ChatPane({ threads: initialThreads }: { threads: Thread[] }) {
 				ws.send(JSON.stringify({ type: "leave", threadId: activeId }));
 			} catch {}
 		};
-	}, [activeId]);
+	}, [activeId, transport]);
 
 	// Hydrate messages whenever the active thread switches.
 	useEffect(() => {

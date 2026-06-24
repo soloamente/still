@@ -70,6 +70,10 @@ const serverEnv = {
 	// Upstash Redis REST — optional in dev; realtime publish/SSE no-op when unset.
 	UPSTASH_REDIS_REST_URL: optionalUrl(),
 	UPSTASH_REDIS_REST_TOKEN: optionalNonEmptyString(),
+	// Cloudflare Realtime Worker — optional; when unset, Upstash SSE is used.
+	REALTIME_WORKER_URL: optionalUrl(),
+	REALTIME_JWT_SECRET: optionalNonEmptyString(),
+	REALTIME_INTERNAL_SECRET: optionalNonEmptyString(),
 };
 
 export const env = createEnv<undefined, typeof serverEnv>({

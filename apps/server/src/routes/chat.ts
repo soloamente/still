@@ -13,6 +13,7 @@ import { context } from "../context";
 import { makeId } from "../lib/cuid";
 import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
+import { publishRealtimeEvent } from "../lib/realtime-publish";
 import { routeBody } from "../lib/route-body";
 import { broadcast } from "../ws/hub";
 
@@ -239,8 +240,22 @@ export const chatRoute = new Elysia({ prefix: "/api/chat", tags: ["chat"] })
 				});
 			}
 
-			// Broadcast over WS. Best-effort; messages persist either way.
+			// Fan out the new message. Best-effort; messages persist either way.
+			// Legacy in-process hub (SSE-mode `/ws/chat`) + Cloudflare realtime
+			// Worker (WS transport). Dual-broadcast keeps cutover reversible.
 			broadcast(params.id, { kind: "message", payload: row });
+			if (row) {
+				void publishRealtimeEvent(chatRoomId(params.id), {
+					type: "chat.message",
+					message: {
+						id: row.id,
+						threadId: row.threadId,
+						userId: row.userId,
+						body: row.body,
+						createdAt: row.createdAt.toISOString(),
+					},
+				});
+			}
 
 			return row;
 		},

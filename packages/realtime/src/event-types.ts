@@ -32,12 +32,25 @@ export const realtimePresenceUpdatedEventSchema = z.object({
 	type: z.literal("presence.updated"),
 });
 
+/** Broadcast after a chat message is persisted — delivered to thread members. */
+export const realtimeChatMessageEventSchema = z.object({
+	type: z.literal("chat.message"),
+	message: z.object({
+		id: z.string(),
+		threadId: z.string(),
+		userId: z.string(),
+		body: z.string().nullable(),
+		createdAt: z.string(),
+	}),
+});
+
 export const realtimeEventSchema = z.discriminatedUnion("type", [
 	realtimeCommentCreatedEventSchema,
 	realtimeReactionUpdatedEventSchema,
 	realtimeNotificationCreatedEventSchema,
 	realtimeListReorderedEventSchema,
 	realtimePresenceUpdatedEventSchema,
+	realtimeChatMessageEventSchema,
 ]);
 
 export type RealtimeEvent = z.infer<typeof realtimeEventSchema>;

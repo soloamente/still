@@ -16,6 +16,7 @@ import {
 	usePatronActivityFlipHeartbeat,
 	useReadAggregatePatronActivityState,
 } from "@/hooks/use-patron-activity-tracker";
+import { useRealtimeHeartbeat } from "@/hooks/use-realtime-connection";
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
 import {
 	fetchPatronOnlineHandles,
@@ -60,6 +61,7 @@ export function PatronOnlineProvider({
 	viewerHandle?: string | null;
 }) {
 	const active = realtimeClientEnabled();
+	const { transport, sendHeartbeat } = useRealtimeHeartbeat();
 	const readAggregatePatronActivityState =
 		useReadAggregatePatronActivityState();
 	const heartbeatSchedulerRef = useRef<ReturnType<
@@ -168,7 +170,12 @@ export function PatronOnlineProvider({
 
 		const scheduler = createPresenceHeartbeatScheduler(
 			readAggregatePatronActivityState,
-			touchPatronAppPresenceClient,
+			async (state, opts) => {
+				if (transport === "ws" && !opts?.keepalive) {
+					if (sendHeartbeat(patronAppRoomId(), state)) return true;
+				}
+				return touchPatronAppPresenceClient(state, opts);
+			},
 		);
 		heartbeatSchedulerRef.current = scheduler;
 		void scheduler.tick();

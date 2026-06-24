@@ -27,11 +27,15 @@ export const env = createEnv({
 	},
 	client: {
 		NEXT_PUBLIC_SERVER_URL: z.url(),
+		NEXT_PUBLIC_REALTIME_WS_URL: optionalUrl(),
+		NEXT_PUBLIC_REALTIME_TRANSPORT: z.enum(["sse", "ws"]).optional(),
 	},
 	runtimeEnv: {
 		UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
 		UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
 		NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
+		NEXT_PUBLIC_REALTIME_WS_URL: process.env.NEXT_PUBLIC_REALTIME_WS_URL,
+		NEXT_PUBLIC_REALTIME_TRANSPORT: process.env.NEXT_PUBLIC_REALTIME_TRANSPORT,
 	},
 	emptyStringAsUndefined: true,
 });

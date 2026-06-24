@@ -1,0 +1,2 @@
+REALTIME_JWT_SECRET=replace-with-a-random-32-byte-base64-secret
+REALTIME_INTERNAL_SECRET=replace-with-a-different-random-32-byte-base64-secret
