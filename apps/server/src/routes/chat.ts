@@ -6,6 +6,7 @@ import {
 	profile,
 	user,
 } from "@still/db";
+import { chatRoomId } from "@still/realtime";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
