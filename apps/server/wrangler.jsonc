@@ -13,6 +13,13 @@
 			// Used by `wrangler dev` only — point at Neon directly for local runs.
 			"localConnectionString": "postgres://USER:PASS@HOST/DB?sslmode=require"
 		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "ASSETS",
+			// bucket_name is created in Plan 1D via `wrangler r2 bucket create`.
+			"bucket_name": "cue-assets"
+		}
 	]
 	// Secrets (set in Plan 1D via `wrangler secret put`):
 	//   DATABASE_URL (neon-http fallback), BETTER_AUTH_SECRET, BETTER_AUTH_URL,
