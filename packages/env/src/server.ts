@@ -74,6 +74,9 @@ const serverEnv = {
 	REALTIME_WORKER_URL: optionalUrl(),
 	REALTIME_JWT_SECRET: optionalNonEmptyString(),
 	REALTIME_INTERNAL_SECRET: optionalNonEmptyString(),
+	// Public base URL of the R2 media bucket (review audio), e.g.
+	// https://media.sense.fans. When unset, audio falls back to Vercel Blob.
+	MEDIA_PUBLIC_BASE: optionalUrl(),
 };
 
 export const env = createEnv<undefined, typeof serverEnv>({
