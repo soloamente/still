@@ -15,7 +15,6 @@ import {
 	userBadge,
 } from "@still/db";
 import { env } from "@still/env/server";
-import { get, put } from "@vercel/blob";
 import {
 	and,
 	asc,
@@ -40,6 +39,7 @@ import { patronMeetsAdultAgeGate } from "../lib/adult-content-age-gate";
 import { readShowAdultContentPref } from "../lib/adult-content-policy";
 import { movieNotAdultSql, tvNotAdultSql } from "../lib/adult-content-sql";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
+import { getImageAsset, putImageAsset } from "../lib/asset-store";
 import { backfillMissingListingPosters } from "../lib/backfill-listing-posters";
 import {
 	contentVisibilityWhere,
@@ -580,50 +580,29 @@ export const profilesRoute = new Elysia({
 		}
 
 		const key = `banners/${user.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
-		let blob: { url: string };
-		try {
-			// Access must match the Blob *store* access (public vs private) or `put` rejects.
-			blob = await put(key, file, {
-				access: env.BLOB_STORE_ACCESS,
-				addRandomSuffix: false,
-				token: env.BLOB_READ_WRITE_TOKEN,
+		const upload = await putImageAsset(key, file);
+		if ("error" in upload) {
+			console.error("[profiles/me/banner] upload failed", upload);
+			return status(502, {
+				error: upload.error,
+				code: upload.code,
+				hint: upload.hint,
 			});
-		} catch (err) {
-			const msg = err instanceof Error ? err.message : String(err);
-			console.error("[profiles/me/banner] put failed", err);
-			if (msg.includes("private store")) {
-				return status(502, {
-					error:
-						"Blob store is private but upload used public access (or the reverse).",
-					code: "BLOB_ACCESS_MISMATCH",
-					hint: "Set BLOB_STORE_ACCESS=private in apps/server .env to match a private Vercel Blob store (default in env is public).",
-				});
-			}
-			if (msg.includes("public store") || msg.includes("public access")) {
-				return status(502, {
-					error: msg,
-					code: "BLOB_ACCESS_MISMATCH",
-					hint: "Set BLOB_STORE_ACCESS=public in apps/server .env if your Blob store is public, or use a private store with BLOB_STORE_ACCESS=private.",
-				});
-			}
-			return status(502, { error: "Blob upload failed" });
 		}
 
-		// Persist banner URL and animation flag together so prefs never lag the asset.
 		const mergedPrefs = mergeBannerAnimationPref(
 			(profileRow.preferences as Record<string, unknown>) ?? {},
 			wantsAnimated,
 		);
 		const [updated] = await db
 			.update(profile)
-			.set({ bannerUrl: blob.url, preferences: mergedPrefs })
+			.set({ bannerUrl: upload.value, preferences: mergedPrefs })
 			.where(eq(profile.userId, user.id))
 			.returning({ bannerUrl: profile.bannerUrl });
 		if (!updated?.bannerUrl) {
 			console.error("[profiles/me/banner] profile row not updated", user.id);
 			return status(500, { error: "Failed to save banner to profile" });
 		}
-
 		return { url: updated.bannerUrl };
 	})
 	/**
@@ -668,37 +647,19 @@ export const profilesRoute = new Elysia({
 		}
 
 		const key = `avatars/${authUser.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
-		let blob: { url: string };
-		try {
-			blob = await put(key, file, {
-				access: env.BLOB_STORE_ACCESS,
-				addRandomSuffix: false,
-				token: env.BLOB_READ_WRITE_TOKEN,
+		const upload = await putImageAsset(key, file);
+		if ("error" in upload) {
+			console.error("[profiles/me/avatar] upload failed", upload);
+			return status(502, {
+				error: upload.error,
+				code: upload.code,
+				hint: upload.hint,
 			});
-		} catch (err) {
-			const msg = err instanceof Error ? err.message : String(err);
-			console.error("[profiles/me/avatar] put failed", err);
-			if (msg.includes("private store")) {
-				return status(502, {
-					error:
-						"Blob store is private but upload used public access (or the reverse).",
-					code: "BLOB_ACCESS_MISMATCH",
-					hint: "Set BLOB_STORE_ACCESS=private in apps/server .env to match a private Vercel Blob store (default in env is public).",
-				});
-			}
-			if (msg.includes("public store") || msg.includes("public access")) {
-				return status(502, {
-					error: msg,
-					code: "BLOB_ACCESS_MISMATCH",
-					hint: "Set BLOB_STORE_ACCESS=public in apps/server .env if your Blob store is public, or use a private store with BLOB_STORE_ACCESS=private.",
-				});
-			}
-			return status(502, { error: "Blob upload failed" });
 		}
 
 		const [updated] = await db
 			.update(user)
-			.set({ image: blob.url })
+			.set({ image: upload.value })
 			.where(eq(user.id, authUser.id))
 			.returning({ image: user.image });
 		if (!updated?.image) {
@@ -732,28 +693,14 @@ export const profilesRoute = new Elysia({
 			.limit(1);
 		if (!row?.image) return status(404, "No avatar");
 
-		if (!env.BLOB_READ_WRITE_TOKEN) {
-			return status(503, "BLOB_READ_WRITE_TOKEN is not set");
-		}
-
-		try {
-			const result = await get(row.image, {
-				access: env.BLOB_STORE_ACCESS,
-				token: env.BLOB_READ_WRITE_TOKEN,
-			});
-			if (!result || result.statusCode !== 200 || !result.stream) {
-				return status(404, "Avatar not found");
-			}
-			return new Response(result.stream, {
-				headers: {
-					"Content-Type": result.blob.contentType,
-					"Cache-Control": "private, no-cache",
-				},
-			});
-		} catch (err) {
-			console.error("[profiles/me/avatar] get failed", err);
-			return status(502, "Avatar load failed");
-		}
+		const asset = await getImageAsset(row.image);
+		if (!asset) return status(404, "Avatar not found");
+		return new Response(asset.body, {
+			headers: {
+				"Content-Type": asset.contentType,
+				"Cache-Control": "private, no-cache",
+			},
+		});
 	})
 	/**
 	 * Streams the profile banner for `handle`. Required for **private** Blob
@@ -770,28 +717,14 @@ export const profilesRoute = new Elysia({
 				.limit(1);
 			if (!row?.bannerUrl) return status(404, "No banner");
 
-			if (!env.BLOB_READ_WRITE_TOKEN) {
-				return status(503, "BLOB_READ_WRITE_TOKEN is not set");
-			}
-
-			try {
-				const result = await get(row.bannerUrl, {
-					access: env.BLOB_STORE_ACCESS,
-					token: env.BLOB_READ_WRITE_TOKEN,
-				});
-				if (!result || result.statusCode !== 200 || !result.stream) {
-					return status(404, "Banner not found");
-				}
-				return new Response(result.stream, {
-					headers: {
-						"Content-Type": result.blob.contentType,
-						"Cache-Control": "public, max-age=3600, s-maxage=86400",
-					},
-				});
-			} catch (err) {
-				console.error("[profiles/banner] get failed", err);
-				return status(502, "Banner load failed");
-			}
+			const asset = await getImageAsset(row.bannerUrl);
+			if (!asset) return status(404, "Banner not found");
+			return new Response(asset.body, {
+				headers: {
+					"Content-Type": asset.contentType,
+					"Cache-Control": "public, max-age=3600, s-maxage=86400",
+				},
+			});
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)
@@ -813,51 +746,14 @@ export const profilesRoute = new Elysia({
 			const imageUrl = row?.image?.trim();
 			if (!imageUrl) return status(404, "No avatar");
 
-			const looksLikeVercelBlob = imageUrl.includes("blob.vercel-storage.com");
-
-			if (looksLikeVercelBlob) {
-				if (!env.BLOB_READ_WRITE_TOKEN) {
-					return status(503, "BLOB_READ_WRITE_TOKEN is not set");
-				}
-				try {
-					const result = await get(imageUrl, {
-						access: env.BLOB_STORE_ACCESS,
-						token: env.BLOB_READ_WRITE_TOKEN,
-					});
-					if (!result || result.statusCode !== 200 || !result.stream) {
-						return status(404, "Avatar not found");
-					}
-					return new Response(result.stream, {
-						headers: {
-							"Content-Type": result.blob.contentType,
-							"Cache-Control": "public, max-age=3600, s-maxage=86400",
-						},
-					});
-				} catch (err) {
-					console.error("[profiles/avatar] blob get failed", err);
-					return status(502, "Avatar load failed");
-				}
-			}
-
-			if (imageUrl.startsWith("https://") || imageUrl.startsWith("http://")) {
-				try {
-					const upstream = await fetch(imageUrl);
-					if (!upstream.ok) return status(404, "Avatar not found");
-					const contentType =
-						upstream.headers.get("content-type") ?? "image/jpeg";
-					return new Response(upstream.body, {
-						headers: {
-							"Content-Type": contentType,
-							"Cache-Control": "public, max-age=3600, s-maxage=86400",
-						},
-					});
-				} catch (err) {
-					console.error("[profiles/avatar] fetch failed", err);
-					return status(502, "Avatar load failed");
-				}
-			}
-
-			return status(404, "Avatar not found");
+			const asset = await getImageAsset(imageUrl);
+			if (!asset) return status(404, "Avatar not found");
+			return new Response(asset.body, {
+				headers: {
+					"Content-Type": asset.contentType,
+					"Cache-Control": "public, max-age=3600, s-maxage=86400",
+				},
+			});
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)
