@@ -2,6 +2,8 @@ import { setDbConnectionString } from "@still/db";
 
 import type { AssetsBucket } from "./lib/asset-store";
 import { setAssetsBucket } from "./lib/asset-store";
+import type { MediaBucket } from "./lib/audio-store";
+import { setMediaBucket } from "./lib/audio-store";
 import { app } from "./server/app";
 
 /**
@@ -13,12 +15,14 @@ import { app } from "./server/app";
 export interface Env {
 	HYPERDRIVE?: { connectionString: string };
 	ASSETS?: AssetsBucket;
+	MEDIA?: MediaBucket;
 }
 
 export default {
 	async fetch(request: Request, env: Env): Promise<Response> {
 		setDbConnectionString(env.HYPERDRIVE?.connectionString);
 		setAssetsBucket(env.ASSETS ?? null);
+		setMediaBucket(env.MEDIA ?? null);
 		return app.fetch(request);
 	},
 };

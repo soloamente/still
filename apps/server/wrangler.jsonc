@@ -15,12 +15,13 @@
 		}
 	],
 	"r2_buckets": [
-		{
-			"binding": "ASSETS",
-			// bucket_name is created in Plan 1D via `wrangler r2 bucket create`.
-			"bucket_name": "cue-assets"
-		}
-	]
+		{ "binding": "ASSETS", "bucket_name": "cue-assets" },
+		{ "binding": "MEDIA", "bucket_name": "cue-media" }
+	],
+	"vars": {
+		// Public custom domain of the cue-media bucket; bound in Plan 1D.
+		"MEDIA_PUBLIC_BASE": "https://media.sense.fans"
+	}
 	// Secrets (set in Plan 1D via `wrangler secret put`):
 	//   DATABASE_URL (neon-http fallback), BETTER_AUTH_SECRET, BETTER_AUTH_URL,
 	//   CORS_ORIGIN, REALTIME_JWT_SECRET, REALTIME_INTERNAL_SECRET,
