@@ -1,6 +1,6 @@
 import { expo } from "@better-auth/expo";
 import { checkout, polar, portal } from "@polar-sh/better-auth";
-import { createDb } from "@still/db";
+import { db } from "@still/db";
 import * as schema from "@still/db/schema/auth";
 import { env } from "@still/env/server";
 import { type BetterAuthPlugin, betterAuth } from "better-auth";
@@ -59,7 +59,6 @@ function buildPolarPlugin(): BetterAuthPlugin | null {
 }
 
 export function createAuth() {
-	const db = createDb();
 	const polarPlugin = buildPolarPlugin();
 
 	return betterAuth({
