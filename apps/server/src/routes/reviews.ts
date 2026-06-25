@@ -14,6 +14,7 @@ import { reviewRoomId } from "@still/realtime";
 import { and, count, desc, eq, isNotNull, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
+import { putAudioAsset } from "../lib/audio-store";
 import {
 	communityOffset,
 	parseCommunityPage,
@@ -61,7 +62,6 @@ import {
 	removeViewerReviewReaction,
 } from "../lib/review-reactions";
 import { routeBody } from "../lib/route-body";
-import { vercelBlobAudioPut } from "../lib/vercel-blob-audio-put";
 import {
 	parseViralReviewsLimit,
 	viralReviewCandidateSql,
@@ -294,7 +294,7 @@ export const reviewsRoute = new Elysia({
 				existing.id,
 				uploadCheck.mimeType,
 			);
-			const uploaded = await vercelBlobAudioPut(key, file, durationMs);
+			const uploaded = await putAudioAsset(key, file, durationMs);
 			if ("error" in uploaded) {
 				const code = uploaded.code;
 				if (code === "BLOB_UNCONFIGURED" || code === "BLOB_ACCESS_MISMATCH") {
