@@ -1,8 +1,8 @@
-import { timingSafeEqual } from "node:crypto";
 import { chatMember, db, list, review } from "@still/db";
 import { env } from "@still/env/server";
 import {
 	classifyRoom,
+	constantTimeEqual,
 	parseChatRoomId,
 	parseListRoomId,
 	parseReviewRoomId,
@@ -19,14 +19,7 @@ function checkInternalSecret(authHeader: string | null): boolean {
 	if (!env.REALTIME_INTERNAL_SECRET) return false;
 	if (!authHeader?.startsWith("Bearer ")) return false;
 	const provided = authHeader.slice(7);
-	try {
-		return timingSafeEqual(
-			Buffer.from(provided, "utf8"),
-			Buffer.from(env.REALTIME_INTERNAL_SECRET, "utf8"),
-		);
-	} catch {
-		return false;
-	}
+	return constantTimeEqual(provided, env.REALTIME_INTERNAL_SECRET);
 }
 
 async function isDynamicRoomAllowed(
