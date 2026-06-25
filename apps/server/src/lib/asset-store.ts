@@ -98,3 +98,14 @@ export async function getImageAsset(value: string): Promise<ImageBody | null> {
 
 	return null;
 }
+
+/** Migration helper: write raw bytes to the bound R2 bucket. False when no bucket. */
+export async function putRawToR2(
+	key: string,
+	bytes: ArrayBuffer,
+	contentType: string,
+): Promise<boolean> {
+	if (!_bucket) return false;
+	await _bucket.put(key, bytes, { httpMetadata: { contentType } });
+	return true;
+}

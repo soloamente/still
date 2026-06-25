@@ -5,6 +5,7 @@ import { env } from "@still/env/server";
 import { sql } from "drizzle-orm";
 import { Elysia } from "elysia";
 
+import { adminAssetsRoute } from "../routes/admin-assets";
 import { achievementsRoute, badgesRoute } from "../routes/badges";
 import { challengesRoute } from "../routes/challenges";
 import { chatRoute } from "../routes/chat";
@@ -120,6 +121,7 @@ export const app = new Elysia()
 	.use(realtimePresenceRoute)
 	.use(realtimeConnectRoute)
 	.use(staffRoute)
+	.use(adminAssetsRoute)
 	.use(planFeaturesRoute)
 	.onError(({ error, code }) => {
 		console.error(`[server] error code=${code}`, error);
