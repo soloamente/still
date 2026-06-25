@@ -119,10 +119,12 @@
         "zod": "catalog:",
       },
       "devDependencies": {
+        "@cloudflare/workers-types": "^4.20250617.0",
         "@still/config": "workspace:*",
         "@types/bun": "catalog:",
         "tsdown": "^0.21.9",
         "typescript": "^6",
+        "wrangler": "^4.40.0",
       },
     },
     "apps/web": {

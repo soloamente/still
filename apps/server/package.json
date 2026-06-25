@@ -9,6 +9,8 @@
 	"scripts": {
 		"build": "tsdown",
 		"build:vercel": "bun build ./src/server/app.ts --outfile ./src/index.mjs --target node --minify",
+		"cf:dev": "wrangler dev",
+		"cf:dry-run": "wrangler deploy --dry-run --outdir .wrangler-dryrun",
 		"check-types": "tsc -b",
 		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/local.ts --outfile server",
 		"dev": "bun run --hot src/local.ts",
@@ -34,9 +36,11 @@
 		"zod": "catalog:"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250617.0",
 		"@still/config": "workspace:*",
 		"@types/bun": "catalog:",
 		"tsdown": "^0.21.9",
-		"typescript": "^6"
+		"typescript": "^6",
+		"wrangler": "^4.40.0"
 	}
 }

@@ -1,0 +1,24 @@
+{
+	"name": "cue-server",
+	"main": "src/worker.ts",
+	// process.env is populated from vars/secrets under nodejs_compat for
+	// compatibility dates >= 2025-04-01.
+	"compatibility_date": "2025-06-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"hyperdrive": [
+		{
+			"binding": "HYPERDRIVE",
+			// id is set in Plan 1D after `wrangler hyperdrive create`.
+			"id": "REPLACE_IN_1D",
+			// Used by `wrangler dev` only — point at Neon directly for local runs.
+			"localConnectionString": "postgres://USER:PASS@HOST/DB?sslmode=require"
+		}
+	]
+	// Secrets (set in Plan 1D via `wrangler secret put`):
+	//   DATABASE_URL (neon-http fallback), BETTER_AUTH_SECRET, BETTER_AUTH_URL,
+	//   CORS_ORIGIN, REALTIME_JWT_SECRET, REALTIME_INTERNAL_SECRET,
+	//   RESEND_API_KEY, EMAIL_FROM, TMDB_API_KEY, POLAR_ACCESS_TOKEN,
+	//   POLAR_SUCCESS_URL, BLOB_READ_WRITE_TOKEN (until 1C), UPSTASH_REDIS_REST_URL,
+	//   UPSTASH_REDIS_REST_TOKEN.
+	// Custom domain route (api.sense.fans) is bound in Plan 1D.
+}
