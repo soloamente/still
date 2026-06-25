@@ -1,9 +1,6 @@
 import { env } from "@still/env/server";
 
-import {
-	assertReviewAudioUpload,
-	type ReviewAudioMimeType,
-} from "./review-audio";
+import { assertReviewAudioUpload } from "./review-audio";
 import { vercelBlobAudioPut } from "./vercel-blob-audio-put";
 
 /** Minimal public-R2 surface (write-only; reads happen at the custom domain). */
@@ -28,7 +25,7 @@ export function mediaPublicUrl(base: string, key: string): string {
 }
 
 export type PutAudioResult =
-	| { url: string; mimeType: ReviewAudioMimeType }
+	| { url: string; mimeType: string }
 	| { error: string; code: string; hint?: string };
 
 /**
