@@ -8,9 +8,7 @@ import {
 	reaction,
 	tv,
 } from "@still/db";
-import { env } from "@still/env/server";
 import { listRoomId } from "@still/realtime";
-import { get } from "@vercel/blob";
 import {
 	and,
 	asc,
@@ -27,6 +25,7 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
+import { getImageAsset, putImageAsset } from "../lib/asset-store";
 import {
 	communityOffset,
 	parseCommunityPage,
@@ -66,7 +65,6 @@ import {
 import { routeBody } from "../lib/route-body";
 import { logMediaKey } from "../lib/sense-taste-overlap";
 import { ensureTvCached } from "../lib/tv-cache";
-import { vercelBlobImagePut } from "../lib/vercel-blob-image-put";
 
 type CreateListBody = {
 	title: string;
@@ -371,47 +369,16 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			const coverImageUrl = row.coverImageUrl?.trim();
 			if (!coverImageUrl) return status(404, "No cover");
 
-			if (!coverImageUrl.includes("blob.vercel-storage.com")) {
-				try {
-					const upstream = await fetch(coverImageUrl);
-					if (!upstream.ok) return status(404, "Cover not found");
-					const contentType =
-						upstream.headers.get("content-type") ?? "image/jpeg";
-					return new Response(upstream.body, {
-						headers: {
-							"Content-Type": contentType,
-							"Cache-Control": "public, max-age=3600, s-maxage=86400",
-						},
-					});
-				} catch (err) {
-					console.error("[lists/cover-image] fetch failed", err);
-					return status(502, "Cover load failed");
-				}
-			}
-
-			if (!env.BLOB_READ_WRITE_TOKEN) {
-				return status(503, "BLOB_READ_WRITE_TOKEN is not set");
-			}
-			try {
-				const result = await get(coverImageUrl, {
-					access: env.BLOB_STORE_ACCESS,
-					token: env.BLOB_READ_WRITE_TOKEN,
-				});
-				if (!result || result.statusCode !== 200 || !result.stream) {
-					return status(404, "Cover not found");
-				}
-				return new Response(result.stream, {
-					headers: {
-						"Content-Type": result.blob.contentType,
-						"Cache-Control": row?.isPublic
-							? "public, max-age=3600, s-maxage=86400"
-							: "private, no-cache",
-					},
-				});
-			} catch (err) {
-				console.error("[lists/cover-image] blob get failed", err);
-				return status(502, "Cover load failed");
-			}
+			const asset = await getImageAsset(coverImageUrl);
+			if (!asset) return status(404, "Cover not found");
+			return new Response(asset.body, {
+				headers: {
+					"Content-Type": asset.contentType,
+					"Cache-Control": row?.isPublic
+						? "public, max-age=3600, s-maxage=86400"
+						: "private, no-cache",
+				},
+			});
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)
@@ -675,23 +642,19 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			if (file.size > 5_000_000) return status(413, "File too large (max 5MB)");
 
 			const key = `list-covers/${existing.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
-			const uploaded = await vercelBlobImagePut(key, file);
+			const uploaded = await putImageAsset(key, file);
 			if ("error" in uploaded) {
-				const code = uploaded.code;
-				if (code === "BLOB_UNCONFIGURED" || code === "BLOB_ACCESS_MISMATCH") {
-					return status(code === "BLOB_UNCONFIGURED" ? 503 : 502, {
-						error: uploaded.error,
-						code,
-						hint: uploaded.hint,
-					});
-				}
-				return status(502, { error: uploaded.error });
+				return status(502, {
+					error: uploaded.error,
+					code: uploaded.code,
+					hint: uploaded.hint,
+				});
 			}
 
 			const [updated] = await db
 				.update(list)
 				.set({
-					coverImageUrl: uploaded.url,
+					coverImageUrl: uploaded.value,
 					coverMovieId: null,
 					coverTvId: null,
 				})
