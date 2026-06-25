@@ -12,6 +12,7 @@
 		"check-types": "tsc -b",
 		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/local.ts --outfile server",
 		"dev": "bun run --hot src/local.ts",
+		"palette:backfill": "bun run ./scripts/backfill-movie-palette.ts",
 		"start": "bun run dist/local.mjs"
 	},
 	"dependencies": {

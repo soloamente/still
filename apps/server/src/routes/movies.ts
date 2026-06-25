@@ -43,7 +43,6 @@ import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { fetchReviewMovieScreenshots } from "../lib/review-movie-screenshots";
 import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
-import { syncMoviePosterPalette } from "../lib/sync-movie-palette";
 import {
 	type TmdbMovieDetail,
 	type TmdbMovieSummary,
@@ -282,7 +281,6 @@ async function cacheDetail(detail: TmdbMovieDetail) {
 		console.error("[movies] failed to cache credits", err);
 	}
 
-	await syncMoviePosterPalette(detail.id, detail.poster_path);
 	void invalidateMovieDetailCache(detail.id).catch(() => {});
 }
 
