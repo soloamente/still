@@ -6,6 +6,7 @@ import { refreshStaleMovies, syncTmdbFeeds } from "./jobs/tmdb-sync";
 import { syncTvNewEpisodeNotifications } from "./jobs/tv-new-episode-sync";
 import { syncWatchlistStreamingAlerts } from "./lib/watchlist-streaming-alerts";
 import { app } from "./server/app";
+import { wsRoute } from "./ws";
 
 export type { App } from "./server/app";
 
@@ -19,6 +20,9 @@ try {
 		err,
 	);
 }
+
+// Local-only: the Elysia WebSocket chat route runs on Bun, not Workers.
+app.use(wsRoute);
 
 app.listen(3000, () => {
 	console.log("Server listening on http://localhost:3000");

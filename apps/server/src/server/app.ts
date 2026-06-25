@@ -36,7 +36,6 @@ import { tasteRoute } from "../routes/taste";
 import { tvRoute } from "../routes/tv";
 import { tvWatchRoute } from "../routes/tv-watch";
 import { watchlistRoute } from "../routes/watchlist";
-import { wsRoute } from "../ws";
 
 /**
  * Pure Elysia app — no `listen`, no schedulers. Importable by clients
@@ -122,7 +121,6 @@ export const app = new Elysia()
 	.use(realtimeConnectRoute)
 	.use(staffRoute)
 	.use(planFeaturesRoute)
-	.use(wsRoute)
 	.onError(({ error, code }) => {
 		console.error(`[server] error code=${code}`, error);
 		return {
