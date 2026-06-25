@@ -1,6 +1,14 @@
-import { afterEach, describe, expect, test } from "bun:test";
+import { afterEach, describe, expect, mock, test } from "bun:test";
 
-import { getImageAsset, isR2Key, setAssetsBucket } from "./asset-store";
+// Hermetic: stub env so importing ./asset-store (and its transitive
+// vercel-blob-image-put) does not trigger env-schema validation at load.
+mock.module("@still/env/server", () => ({
+	env: { BLOB_READ_WRITE_TOKEN: undefined, BLOB_STORE_ACCESS: "public" },
+}));
+
+const { getImageAsset, isR2Key, setAssetsBucket } = await import(
+	"./asset-store"
+);
 
 afterEach(() => setAssetsBucket(null));
 

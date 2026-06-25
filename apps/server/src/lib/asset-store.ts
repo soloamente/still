@@ -1,6 +1,7 @@
-// NOTE: @vercel/blob and @still/env/server are imported lazily inside functions
-// so that this module can be loaded in test environments (and on Workers) without
-// triggering env-schema validation at module init time.
+import { env } from "@still/env/server";
+import { get as vercelGet } from "@vercel/blob";
+
+import { vercelBlobImagePut } from "./vercel-blob-image-put";
 
 /** Minimal R2 surface we use (typed locally so the Bun/Node tsconfig stays clean). */
 export interface AssetsBucket {
@@ -51,7 +52,6 @@ export async function putImageAsset(
 			return { error: "Asset upload failed", code: "R2_UPLOAD_FAILED" };
 		}
 	}
-	const { vercelBlobImagePut } = await import("./vercel-blob-image-put");
 	const fallback = await vercelBlobImagePut(key, file);
 	if ("error" in fallback) return fallback;
 	return { value: fallback.url };
@@ -78,9 +78,7 @@ export async function getImageAsset(value: string): Promise<ImageBody | null> {
 	}
 
 	if (trimmed.includes("blob.vercel-storage.com")) {
-		const { env } = await import("@still/env/server");
 		if (!env.BLOB_READ_WRITE_TOKEN) return null;
-		const { get: vercelGet } = await import("@vercel/blob");
 		const result = await vercelGet(trimmed, {
 			access: env.BLOB_STORE_ACCESS,
 			token: env.BLOB_READ_WRITE_TOKEN,
