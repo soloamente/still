@@ -48,7 +48,9 @@ import { watchlistRoute } from "../routes/watchlist";
  * Compose order matters: CORS first, then the auth pass-through, then
  * the typed route tree, then the WebSocket endpoint.
  */
-export const app = new Elysia()
+// `aot: false` disables Elysia's `new Function()` codegen optimizer, which
+// Cloudflare Workers forbid ("Code generation from strings disallowed").
+export const app = new Elysia({ aot: false })
 	.use(
 		cors({
 			origin: env.CORS_ORIGIN,
