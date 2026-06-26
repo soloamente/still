@@ -16,8 +16,9 @@
 		{ "binding": "MEDIA", "bucket_name": "cue-media" }
 	],
 	"vars": {
-		// Public custom domain of the cue-media bucket; bound in Plan 1D.
-		"MEDIA_PUBLIC_BASE": "https://media.sense.fans"
+		// Public r2.dev URL of the cue-media bucket (fallback while sense.fans DNS
+		// is on Vercel; move to a media.sense.fans custom domain after the zone move).
+		"MEDIA_PUBLIC_BASE": "https://pub-3bcc9fa9f22d42dfa0660fdd6a6a96fc.r2.dev"
 	}
 	// Secrets (set in Plan 1D via `wrangler secret put`):
 	//   DATABASE_URL (neon-http fallback), BETTER_AUTH_SECRET, BETTER_AUTH_URL,
