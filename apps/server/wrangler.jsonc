@@ -8,10 +8,7 @@
 	"hyperdrive": [
 		{
 			"binding": "HYPERDRIVE",
-			// id is set in Plan 1D after `wrangler hyperdrive create`.
-			"id": "REPLACE_IN_1D",
-			// Used by `wrangler dev` only — point at Neon directly for local runs.
-			"localConnectionString": "postgres://USER:PASS@HOST/DB?sslmode=require"
+			"id": "8a086f427f53403e8d2dc23f18faf826"
 		}
 	],
 	"r2_buckets": [
