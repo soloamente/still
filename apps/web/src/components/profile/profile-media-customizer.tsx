@@ -109,6 +109,18 @@ export function ProfileMediaCustomizer({
 
 	const portraitSrc = pendingAvatar?.previewUrl ?? committedPortraitSrc;
 
+	// Replacing an existing avatar keeps `initialHasAvatar` true, so the RSC
+	// refetch on save won't bump the cache key via the effect above. Bump it when
+	// a staged avatar is cleared (i.e. just uploaded) so the committed portrait
+	// reloads in place instead of showing the cached old image.
+	const hadPendingAvatarRef = useRef(false);
+	useEffect(() => {
+		if (hadPendingAvatarRef.current && !pendingAvatar) {
+			setAvatarRevision((r) => r + 1);
+		}
+		hadPendingAvatarRef.current = Boolean(pendingAvatar);
+	}, [pendingAvatar]);
+
 	useEffect(() => {
 		syncCustomizationDirty(mediaDirty);
 	}, [mediaDirty, syncCustomizationDirty]);
