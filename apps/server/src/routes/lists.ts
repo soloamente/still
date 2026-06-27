@@ -57,6 +57,7 @@ import {
 import { canViewList } from "../lib/list-view-access";
 import { hit } from "../lib/rate-limit";
 import { publishRealtimeEvent } from "../lib/realtime-publish";
+import { formField } from "../lib/request-form";
 import {
 	assertEmailVerified,
 	EmailVerificationRequiredError,
@@ -623,7 +624,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	)
 	.post(
 		"/:id/cover",
-		async ({ params, request, user, status }) => {
+		async ({ params, body, user, status }) => {
 			if (!user) return status(401, "Sign in");
 			const [existing] = await db
 				.select()
@@ -635,8 +636,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			if (!hit(`list:cover:${user.id}`, { limit: 10, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
 
-			const formData = await request.formData();
-			const file = formData.get("file");
+			const file = formField(body, "file");
 			if (!(file instanceof File)) return status(400, "Missing file");
 			if (!file.type.startsWith("image/")) return status(400, "Image only");
 			if (file.size > 5_000_000) return status(413, "File too large (max 5MB)");

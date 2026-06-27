@@ -12,6 +12,7 @@ import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
+import { formField } from "../lib/request-form";
 import { resolveAnilistMediaToTmdbTvId } from "../lib/resolve-anilist-tv-tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 import { ensureTvCached } from "../lib/tv-cache";
@@ -25,7 +26,7 @@ export const importRoute = new Elysia({
 	tags: ["import"],
 })
 	.use(context)
-	.post("/letterboxd", async ({ request, user, status }) => {
+	.post("/letterboxd", async ({ body, user, status }) => {
 		if (!user) return status(401, "Sign in");
 		if (
 			!hit(`import:letterboxd:${user.id}`, {
@@ -36,15 +37,16 @@ export const importRoute = new Elysia({
 			return status(429, "Import limit reached — try again later");
 		}
 
-		const formData = await request.formData();
 		const csvFiles: File[] = [];
-		const multi = formData.getAll("files");
-		if (multi.length > 0) {
+		const multi = formField(body, "files");
+		if (Array.isArray(multi)) {
 			for (const entry of multi) {
 				if (entry instanceof File) csvFiles.push(entry);
 			}
+		} else if (multi instanceof File) {
+			csvFiles.push(multi);
 		}
-		const single = formData.get("file");
+		const single = formField(body, "file");
 		if (single instanceof File) csvFiles.push(single);
 
 		if (csvFiles.length === 0) return status(400, "Missing CSV file(s)");
@@ -189,7 +191,7 @@ export const importRoute = new Elysia({
 			profileHandle: prof?.handle ?? null,
 		};
 	})
-	.post("/anilist", async ({ request, user, status }) => {
+	.post("/anilist", async ({ body, user, status }) => {
 		try {
 			if (!user) return status(401, "Sign in");
 			if (
@@ -201,8 +203,7 @@ export const importRoute = new Elysia({
 				return status(429, "Import limit reached — try again later");
 			}
 
-			const formData = await request.formData();
-			const file = formData.get("file");
+			const file = formField(body, "file");
 			if (!(file instanceof File)) {
 				return status(400, "Missing JSON file");
 			}

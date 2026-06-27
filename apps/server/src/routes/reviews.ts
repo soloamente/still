@@ -40,6 +40,7 @@ import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { removePinnedReviewId } from "../lib/profile-pinned-reviews";
 import { hit } from "../lib/rate-limit";
 import { publishRealtimeEvent } from "../lib/realtime-publish";
+import { formField } from "../lib/request-form";
 import {
 	assertEmailVerified,
 	EmailVerificationRequiredError,
@@ -233,7 +234,7 @@ export const reviewsRoute = new Elysia({
 	)
 	.post(
 		"/:id/audio",
-		async ({ params, request, user, status }) => {
+		async ({ params, body, user, status }) => {
 			if (!user) return status(401, "Sign in");
 			if (
 				!hit(`reviews:audio:${user.id}`, {
@@ -264,11 +265,10 @@ export const reviewsRoute = new Elysia({
 				}
 			}
 
-			const formData = await request.formData();
-			const file = formData.get("file");
+			const file = formField(body, "file");
 			if (!(file instanceof File)) return status(400, "Missing file");
 
-			const durationRaw = formData.get("durationMs");
+			const durationRaw = formField(body, "durationMs");
 			const durationMs =
 				typeof durationRaw === "string"
 					? Number.parseInt(durationRaw, 10)
