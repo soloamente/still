@@ -13,7 +13,7 @@
 	"vars": {
 		// Production values. Local `wrangler dev` overrides these via .dev.vars
 		// (SERVER_ORIGIN=http://localhost:3000, ALLOWED_ORIGINS="" = dev mode).
-		"SERVER_ORIGIN": "https://cue-server-lac.vercel.app",
+		"SERVER_ORIGIN": "https://cue-server.contatta-av.workers.dev",
 		// Comma-separated allowlist for browser WS Origin checks.
 		"ALLOWED_ORIGINS": "https://cinema.sense.fans"
 	}
