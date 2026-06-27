@@ -105,6 +105,7 @@ import {
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
+import { formField } from "../lib/request-form";
 import {
 	assertEmailVerified,
 	EmailVerificationRequiredError,
@@ -547,7 +548,7 @@ export const profilesRoute = new Elysia({
 	 * Banner upload: multipart form with field `file`. Uses Vercel Blob with
 	 * `BLOB_READ_WRITE_TOKEN` from **server** env (apps/server/.env), not Next.js.
 	 */
-	.post("/me/banner", async ({ request, user, status }) => {
+	.post("/me/banner", async ({ body, user, status }) => {
 		if (!user) return status(401, "Sign in");
 		if (!env.BLOB_READ_WRITE_TOKEN) {
 			return status(503, {
@@ -559,8 +560,7 @@ export const profilesRoute = new Elysia({
 		if (!hit(`profile:banner:${user.id}`, { limit: 10, windowMs: 60_000 }).ok)
 			return status(429, "Slow down");
 
-		const formData = await request.formData();
-		const file = formData.get("file");
+		const file = formField(body, "file");
 		if (!(file instanceof File)) return status(400, "Missing file");
 		if (!file.type.startsWith("image/")) return status(400, "Image only");
 		if (file.size > 4_000_000) return status(413, "File too large (max 4MB)");
@@ -612,7 +612,7 @@ export const profilesRoute = new Elysia({
 	 * Avatar upload: multipart form with field `file`. Persists to Vercel Blob
 	 * and updates the auth `user.image` column (shown on profile + nav).
 	 */
-	.post("/me/avatar", async ({ request, user: authUser, status }) => {
+	.post("/me/avatar", async ({ body, user: authUser, status }) => {
 		if (!authUser) return status(401, "Sign in");
 		if (!env.BLOB_READ_WRITE_TOKEN) {
 			return status(503, {
@@ -626,8 +626,7 @@ export const profilesRoute = new Elysia({
 		)
 			return status(429, "Slow down");
 
-		const formData = await request.formData();
-		const file = formData.get("file");
+		const file = formField(body, "file");
 		if (!(file instanceof File)) return status(400, "Missing file");
 		if (!file.type.startsWith("image/")) return status(400, "Image only");
 		if (file.size > 4_000_000) return status(413, "File too large (max 4MB)");
