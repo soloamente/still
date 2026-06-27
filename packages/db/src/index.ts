@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from "node:async_hooks";
 import { neon } from "@neondatabase/serverless";
 import { env } from "@still/env/server";
 import { drizzle as drizzleHttp } from "drizzle-orm/neon-http";
@@ -16,6 +17,36 @@ export type Database = ReturnType<typeof drizzleHttp<Schema>>;
 let _hyperdriveConnString: string | undefined;
 let _db: Database | null = null;
 let _driverName: "neon-http" | "postgres-js" | null = null;
+
+/**
+ * Request-scoped db override. On Cloudflare Workers we create a fresh postgres-js
+ * client per request (Hyperdrive pools the real Neon connections server-side) and
+ * close it via `ctx.waitUntil` — reusing one module-scoped pool across requests
+ * goes stale ("Failed query") and isn't concurrency-safe. The `db` proxy reads
+ * this store first, so all 113 call sites transparently use the per-request client.
+ */
+const requestDbStore = new AsyncLocalStorage<Database>();
+
+/** Build a per-request postgres-js drizzle client + its closer (Workers entry). */
+export function createRequestDb(connectionString: string): {
+	db: Database;
+	close: () => Promise<void>;
+} {
+	const client = postgres(connectionString, {
+		max: 5,
+		prepare: false,
+		fetch_types: false,
+	});
+	return {
+		db: drizzlePg(client, { schema }) as unknown as Database,
+		close: () => client.end({ timeout: 5 }),
+	};
+}
+
+/** Bind a request-scoped db for the duration of `fn` (and its async chain). */
+export function runWithRequestDb<T>(database: Database, fn: () => T): T {
+	return requestDbStore.run(database, fn);
+}
 
 /**
  * Called once per request from the Workers entry, before `app.fetch`. Idempotent.
@@ -51,7 +82,8 @@ function init(): Database {
  * `import { db } from "@still/db"` singleton API stable across 113 call sites.
  */
 export const db: Database = new Proxy({} as Database, {
-	get: (_target, prop) => Reflect.get(init() as object, prop),
+	get: (_target, prop) =>
+		Reflect.get((requestDbStore.getStore() ?? init()) as object, prop),
 });
 
 /** Build a standalone client (tests, Node backfill, auth bootstrap fallback). */
