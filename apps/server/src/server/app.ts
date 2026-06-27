@@ -59,24 +59,14 @@ export const app = new Elysia({ aot: false })
 			credentials: true,
 		}),
 	)
-	// Better Auth handler — uses its own internal router.
+	// Better Auth handler — uses its own internal router. On Workers this route is
+	// bypassed: `worker.ts` routes `/api/auth/*` to `auth.handler` before Elysia,
+	// so the body stream isn't consumed. This handles the Bun local-dev entry.
 	.all("/api/auth/*", async (ctx) => {
-		const { request } = ctx;
-		if (request.method !== "POST" && request.method !== "GET") {
-			return ctx.status(405);
+		if (["POST", "GET"].includes(ctx.request.method)) {
+			return auth.handler(ctx.request);
 		}
-		// On Cloudflare Workers, request bodies are single-use streams and Elysia
-		// has already consumed it into `ctx.body`. Rebuild the Request so Better
-		// Auth can read the body itself (Bun tolerated re-reads; workerd does not).
-		const init: RequestInit = {
-			method: request.method,
-			headers: request.headers,
-		};
-		if (request.method === "POST" && ctx.body != null) {
-			init.body =
-				typeof ctx.body === "string" ? ctx.body : JSON.stringify(ctx.body);
-		}
-		return auth.handler(new Request(request.url, init));
+		return ctx.status(405);
 	})
 	// Liveness probe.
 	.get("/", () => ({ ok: true, name: "still-server", version: "0.1.0" }))

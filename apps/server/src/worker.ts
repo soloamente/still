@@ -1,3 +1,4 @@
+import { auth } from "@still/auth";
 import { setDbConnectionString } from "@still/db";
 
 import type { AssetsBucket } from "./lib/asset-store";
@@ -23,6 +24,13 @@ export default {
 		setDbConnectionString(env.HYPERDRIVE?.connectionString);
 		setAssetsBucket(env.ASSETS ?? null);
 		setMediaBucket(env.MEDIA ?? null);
+		// Hand Better Auth the raw request BEFORE Elysia — Elysia consumes the
+		// body to populate `ctx.body`, and on workerd request bodies are
+		// single-use, which breaks `auth.handler` ("Body has already been used").
+		const url = new URL(request.url);
+		if (url.pathname.startsWith("/api/auth/")) {
+			return auth.handler(request);
+		}
 		return app.fetch(request);
 	},
 };
