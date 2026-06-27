@@ -740,13 +740,19 @@ export function SettingsFormProvider({
 					).streakMilestonesCelebrated,
 				});
 
+				// Only send birthDate when the user actually changed it — otherwise an
+				// unrelated save (e.g. setting an avatar) would clear/re-send the DOB
+				// and trip the age-gate validation.
+				const birthDateChanged = birthDate !== (profile.birthDate ?? "");
 				const saveRes = await api.api.profiles.me.patch({
 					displayName: displayName.trim(),
 					bio: bio.trim() || undefined,
 					pronouns: pronouns.trim() || undefined,
 					location: location.trim() || undefined,
 					website: website.trim() || undefined,
-					birthDate: birthDate.trim() === "" ? null : birthDate.trim(),
+					...(birthDateChanged
+						? { birthDate: birthDate.trim() === "" ? null : birthDate.trim() }
+						: {}),
 					isPrivate,
 					defaultVisibility:
 						(profile.defaultVisibility as ContentVisibility) ?? "public",

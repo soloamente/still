@@ -231,10 +231,13 @@ export const profilesRoute = new Elysia({
 			if (body.birthDate !== undefined) {
 				if (body.birthDate === null || body.birthDate === "") {
 					if (adultPrefOn) {
-						return status(
-							400,
-							"Disable adult content before clearing date of birth",
-						);
+						// Clearing the date of birth removes the age-gate basis, so turn
+						// adult content off rather than rejecting the whole update — a
+						// hard 400 here deadlocks saving anything else (e.g. an avatar).
+						preferencesForUpdate = {
+							...effectivePreferences,
+							showAdultContent: false,
+						};
 					}
 					birthDateForUpdate = null;
 				} else {
