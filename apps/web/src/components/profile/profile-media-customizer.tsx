@@ -5,9 +5,10 @@ import { Upload } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-
+import { ImageCropDialog } from "@/components/profile/image-crop-dialog";
 import { useMeAccountSession } from "@/components/profile/me-account-session-context";
 import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
+import { cropImageToFile } from "@/lib/crop-image";
 import { profilePatronAvatarImageUrl } from "@/lib/profile-avatar";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
 import {
@@ -54,6 +55,15 @@ export function ProfileMediaCustomizer({
 	const bannerFileRef = useRef<HTMLInputElement>(null);
 	const avatarFileRef = useRef<HTMLInputElement>(null);
 
+	// Locked crop aspects (width / height) — must match the display slots.
+	const BANNER_ASPECT = 3 / 1;
+	const AVATAR_ASPECT = 2 / 3;
+
+	const [cropState, setCropState] = useState<{
+		src: string;
+		target: "banner" | "avatar";
+	} | null>(null);
+
 	const hasBanner = Boolean(bannerUrl?.trim());
 	const bannerSrc =
 		handle && hasBanner
@@ -81,8 +91,12 @@ export function ProfileMediaCustomizer({
 				toast.error(err instanceof Error ? err.message : "File too large");
 				return;
 			}
-			const previewUrl = URL.createObjectURL(file);
-			setPendingBanner({ file, previewUrl });
+			// GIFs upload raw to preserve animation (canvas crop would flatten them).
+			if (file.type === "image/gif") {
+				setPendingBanner({ file, previewUrl: URL.createObjectURL(file) });
+				return;
+			}
+			setCropState({ src: URL.createObjectURL(file), target: "banner" });
 		},
 		[setPendingBanner],
 	);
@@ -95,10 +109,54 @@ export function ProfileMediaCustomizer({
 				toast.error(err instanceof Error ? err.message : "File too large");
 				return;
 			}
-			const previewUrl = URL.createObjectURL(file);
-			setPendingAvatar({ file, previewUrl });
+			if (file.type === "image/gif") {
+				setPendingAvatar({ file, previewUrl: URL.createObjectURL(file) });
+				return;
+			}
+			setCropState({ src: URL.createObjectURL(file), target: "avatar" });
 		},
 		[setPendingAvatar],
+	);
+
+	const closeCrop = useCallback(() => {
+		setCropState((prev) => {
+			if (prev) URL.revokeObjectURL(prev.src);
+			return null;
+		});
+	}, []);
+
+	const onCropConfirm = useCallback(
+		async (areaPixels: {
+			x: number;
+			y: number;
+			width: number;
+			height: number;
+		}) => {
+			if (!cropState) return;
+			const isBanner = cropState.target === "banner";
+			try {
+				const cropped = await cropImageToFile(cropState.src, areaPixels, {
+					maxWidth: isBanner ? 1600 : 800,
+					maxHeight: isBanner ? 533 : 1200,
+					fileName: isBanner ? "banner.webp" : "avatar.webp",
+					quality: 0.9,
+				});
+				assertProfileMediaUploadSize(cropped);
+				const previewUrl = URL.createObjectURL(cropped);
+				if (isBanner) {
+					setPendingBanner({ file: cropped, previewUrl });
+				} else {
+					setPendingAvatar({ file: cropped, previewUrl });
+				}
+			} catch (err) {
+				toast.error(
+					err instanceof Error ? err.message : "Couldn't process image",
+				);
+			} finally {
+				closeCrop();
+			}
+		},
+		[cropState, setPendingBanner, setPendingAvatar, closeCrop],
 	);
 
 	// Stream committed portrait when not editing a pending pick.
@@ -259,6 +317,18 @@ export function ProfileMediaCustomizer({
 					if (file) onPickAvatarFile(file);
 					e.target.value = "";
 				}}
+			/>
+			<ImageCropDialog
+				open={cropState !== null}
+				src={cropState?.src ?? null}
+				aspect={cropState?.target === "banner" ? BANNER_ASPECT : AVATAR_ASPECT}
+				title={
+					cropState?.target === "banner"
+						? "Position your banner"
+						: "Position your photo"
+				}
+				onCancel={closeCrop}
+				onConfirm={onCropConfirm}
 			/>
 		</header>
 	);
