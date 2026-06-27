@@ -39,6 +39,7 @@
 		"pasito": "^0.1.3",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",
+		"react-easy-crop": "^5.4.1",
 		"react-use-measure": "^2.1.7",
 		"sonner": "catalog:",
 		"vaul": "^1.1.2",
