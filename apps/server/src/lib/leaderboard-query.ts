@@ -21,6 +21,7 @@ import {
 	fetchDiaryLogCountsForUserIds,
 	resolveDiaryMetalTier,
 } from "./diary-metal-tier";
+import { clampHiddenCount } from "./leaderboard-hidden-count";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
 import { readAvatarIsAnimatedPref } from "./profile-media";
@@ -317,6 +318,7 @@ export async function fetchLeaderboardLogs(opts: {
 	period: LeaderboardPeriod;
 	window: { start: string; end: string };
 	items: LeaderboardLogItem[];
+	hiddenCount: number;
 } | null> {
 	const [row] = await db
 		.select({
@@ -374,6 +376,23 @@ export async function fetchLeaderboardLogs(opts: {
 			)
 			.orderBy(desc(log.watchedAt));
 
+		const [totalRow] = await db
+			.select({ total: count() })
+			.from(log)
+			.where(
+				and(
+					eq(log.userId, opts.userId),
+					isNull(log.removedAt),
+					isNotNull(log.movieId),
+					gte(log.watchedAt, start),
+					lt(log.watchedAt, end),
+				),
+			);
+		const hiddenCount = clampHiddenCount(
+			Number(totalRow?.total ?? 0),
+			logs.length,
+		);
+
 		return {
 			user: {
 				handle: row.handle,
@@ -386,6 +405,7 @@ export async function fetchLeaderboardLogs(opts: {
 			},
 			period: opts.period,
 			window: { start: start.toISOString(), end: end.toISOString() },
+			hiddenCount,
 			items: annotateLeaderboardLogItems(
 				logs.map((l) => ({
 					logId: l.logId,
@@ -429,6 +449,23 @@ export async function fetchLeaderboardLogs(opts: {
 		)
 		.orderBy(desc(log.watchedAt));
 
+	const [tvTotalRow] = await db
+		.select({ total: count() })
+		.from(log)
+		.where(
+			and(
+				eq(log.userId, opts.userId),
+				isNull(log.removedAt),
+				isNotNull(log.tvId),
+				gte(log.watchedAt, start),
+				lt(log.watchedAt, end),
+			),
+		);
+	const tvHiddenCount = clampHiddenCount(
+		Number(tvTotalRow?.total ?? 0),
+		logs.length,
+	);
+
 	return {
 		user: {
 			handle: row.handle,
@@ -441,6 +478,7 @@ export async function fetchLeaderboardLogs(opts: {
 		},
 		period: opts.period,
 		window: { start: start.toISOString(), end: end.toISOString() },
+		hiddenCount: tvHiddenCount,
 		items: annotateLeaderboardLogItems(
 			logs.map((l) => ({
 				logId: l.logId,
