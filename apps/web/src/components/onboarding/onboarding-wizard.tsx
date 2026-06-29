@@ -275,7 +275,6 @@ export function OnboardingWizard({
 							movieId,
 							rating,
 							watchedAt: new Date().toISOString(),
-							visibility: "private",
 							watchVenue: "streaming",
 						});
 						if (res.error) {
