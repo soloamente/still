@@ -104,7 +104,8 @@ export function PatronWatchLedgerPanel({
 		() => sortPatronWatchLedgerItems(items, order),
 		[items, order],
 	);
-	const titleCount = items.length;
+	const hiddenCount = payload?.hiddenCount ?? 0;
+	const titleCount = items.length + hiddenCount;
 	const periodLabel = leaderboardPeriodLabel(seed.period);
 	const kindLabel = seed.kind === "tv" ? "Shows" : "Films";
 
@@ -186,7 +187,11 @@ export function PatronWatchLedgerPanel({
 					) : null}
 
 					{!loading && !error ? (
-						<PatronWatchLedgerGrid items={sortedItems} kind={seed.kind} />
+						<PatronWatchLedgerGrid
+							items={sortedItems}
+							kind={seed.kind}
+							hiddenCount={payload?.hiddenCount ?? 0}
+						/>
 					) : null}
 				</div>
 			</DetailDrawerScrollBody>

@@ -46,4 +46,5 @@ export type LeaderboardLogsPayload = {
 	period: HomeLeaderboardPeriod;
 	window: { start: string; end: string };
 	items: LeaderboardLogItem[];
+	hiddenCount: number;
 };

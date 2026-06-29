@@ -1,5 +1,6 @@
 "use client";
 
+import { Lock } from "lucide-react";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import type { LeaderboardLogItem } from "@/lib/home-leaderboard-types";
 import { patronWatchLedgerPosterLabels } from "@/lib/patron-watch-ledger-poster-labels";
@@ -14,11 +15,13 @@ const LEDGER_POSTER_FRAME_CLASSNAME = "rounded-2xl border-0";
 export function PatronWatchLedgerGrid({
 	items,
 	kind,
+	hiddenCount = 0,
 }: {
 	items: LeaderboardLogItem[];
 	kind: "films" | "tv";
+	hiddenCount?: number;
 }) {
-	if (!items.length) {
+	if (!items.length && hiddenCount === 0) {
 		return (
 			<p
 				className="rounded-2xl bg-muted/25 p-8 text-center text-muted-foreground text-sm"
@@ -62,6 +65,18 @@ export function PatronWatchLedgerGrid({
 					</div>
 				);
 			})}
+			{Array.from({ length: hiddenCount }).map((_, index) => (
+				// biome-ignore lint/suspicious/noArrayIndexKey: anonymous placeholder tiles — no identity, no state, never reordered
+				<div key={`private-${index}`} className="min-w-0 text-center">
+					<div
+						className="relative flex aspect-2/3 items-center justify-center rounded-2xl bg-muted/40"
+						role="img"
+						aria-label="Private title"
+					>
+						<Lock className="size-5 text-muted-foreground/70" aria-hidden />
+					</div>
+				</div>
+			))}
 		</div>
 	);
 }
