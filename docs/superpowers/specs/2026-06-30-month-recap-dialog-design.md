@@ -1,7 +1,7 @@
 # Month Recap Dialog — Design
 
 **Date:** 2026-06-30  
-**Status:** Draft (pending review)  
+**Status:** Approved  
 **Apps:** `apps/web`, `apps/server`
 
 ## Context

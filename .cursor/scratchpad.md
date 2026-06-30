@@ -1,5 +1,9 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Month recap dialog — community winners (2026-06-30)
+
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-06-30-month-recap-dialog-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-06-30-month-recap-dialog.md`. **Locked:** first signed-in visit each calendar month (patron TZ) celebrates prior month; slides = most film logs · most TV logs · most reviews; skip empty categories; all signed-in patrons; What's New first then recap; localStorage seen per `YYYY-MM`; new files only + `app-shell.tsx` mount (no person-detail overlap). **Next:** Executor Task 1 (previous month window helper).
+
 ## Presence AFK status — orange dot (2026-06-16)
 
 **Brainstorm approved (human `si`).** Spec: `docs/superpowers/specs/2026-06-16-presence-afk-status-design.md`. Plan: `docs/superpowers/plans/2026-06-16-presence-afk-status.md`. **Shipped (Tasks 1–9, 2026-06-16).** **Human verified (2026-06-16):** tab-away orange, return-to-active green, rapid tab-switch stability (BroadcastChannel + away debounce). **Locked:** `away` when tab hidden (immediate) OR no input ≥ **5 min**; global on all `PatronOnlineDot` surfaces; `activityState` on `POST /api/realtime/presence`; Redis HASH `sense:presence:activity`; green = active, orange = away; micro-pop on `active` ↔ `away`; privacy unchanged (`friends`/`public`). **Automated verification:** server **41/41** · web **17/17** pass. **Pending optional human QA:** tab-away orange dot, 5 min idle, return-to-active green micro-pop, reduced-motion instant swap, listing corner + drawer parity.
