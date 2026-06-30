@@ -1,14 +1,19 @@
 import { Calendar, Clapperboard } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { appShellMainContentMinHeightStyle } from "@/components/app/app-shell";
 import { MoviePoster } from "@/components/movie/movie-poster";
+import {
+	PERSON_PAGE_PILL_CLASS,
+	PersonPageBackPill,
+} from "@/components/people/person-page-back-pill";
 import { Section } from "@/components/ui/section";
 import { formatDate } from "@/lib/format";
-import { filmographyReleaseYear } from "@/lib/person-filmography";
+import {
+	filmographyReleaseYear,
+	sortFilmographyByYearDesc,
+} from "@/lib/person-filmography";
 import { serverApi } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
@@ -78,13 +83,11 @@ export default async function PersonPage({
 
 	if (data.code === "TMDB_UNCONFIGURED") {
 		return (
-			<div
-				className="flex w-full flex-col justify-center"
-				style={appShellMainContentMinHeightStyle}
-			>
-				<div className="mx-auto max-w-lg text-center">
-					<p className="text-muted-foreground text-sm">{data.hint}</p>
-				</div>
+			<div className="mx-auto w-full max-w-5xl px-1 pt-6 pb-12">
+				<PersonPageBackPill />
+				<p className="mx-auto mt-16 max-w-lg text-center text-muted-foreground text-sm">
+					{data.hint}
+				</p>
 			</div>
 		);
 	}
@@ -102,112 +105,97 @@ export default async function PersonPage({
 					.join(" — ")
 			: null;
 
-	// Horizontal: narrower column centered in `max-w-7xl`.
-	// Vertical: flex + min-height aligns short pages in the band above the bottom nav (`(app)` layout).
-	return (
-		<div
-			className="flex w-full flex-col justify-center"
-			style={appShellMainContentMinHeightStyle}
-		>
-			<article className="mx-auto w-full max-w-5xl space-y-10 pt-6 pb-12">
-				<header className="flex flex-col gap-6 sm:flex-row sm:items-start">
-					<div className="relative mx-auto aspect-[2/3] w-48 shrink-0 overflow-hidden rounded-md border border-border bg-card sm:mx-0 sm:w-40 md:w-44">
-						{person.profileUrl ? (
-							<Image
-								src={person.profileUrl}
-								alt={person.name}
-								fill
-								className="object-cover"
-								sizes="176px"
-								priority
-							/>
-						) : (
-							<div className="grid size-full place-items-center text-muted-foreground">
-								<Clapperboard className="size-10" aria-hidden />
-							</div>
-						)}
-					</div>
-					<div className="min-w-0 flex-1 space-y-3 text-center sm:text-left">
-						{person.knownForDepartment ? (
-							<p className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
-								{person.knownForDepartment}
-							</p>
-						) : null}
-						<h1 className="font-editorial font-medium text-3xl text-foreground tracking-tight md:text-4xl">
-							{person.name}
-						</h1>
-						{lifeSpan ? (
-							<p className="flex items-center justify-center gap-2 text-muted-foreground text-sm sm:justify-start">
-								<Calendar className="size-4 shrink-0" aria-hidden />
-								{lifeSpan}
-							</p>
-						) : null}
-						{person.biography?.trim() ? (
-							<p className="line-clamp-6 max-w-3xl text-pretty text-foreground/85 text-sm leading-relaxed sm:line-clamp-none">
-								{person.biography.trim()}
-							</p>
-						) : null}
-						<p className="text-muted-foreground text-xs">
-							Credits from{" "}
-							<a
-								href={`https://www.themoviedb.org/person/${person.id}`}
-								className="underline underline-offset-2 hover:text-foreground"
-								target="_blank"
-								rel="noreferrer"
-							>
-								TMDb
-							</a>
-							.
-						</p>
-					</div>
-				</header>
+	const filmography = sortFilmographyByYearDesc(data.filmography);
 
-				<Section
-					title="Filmography"
-					subtitle={`${data.filmography.length} film and TV title${data.filmography.length === 1 ? "" : "s"} with this person in cast or crew.`}
+	return (
+		<article className="mx-auto w-full max-w-5xl space-y-8 pt-6 pb-12">
+			<div className="flex items-center justify-between gap-3 px-1">
+				<PersonPageBackPill />
+				<a
+					href={`https://www.themoviedb.org/person/${person.id}`}
+					className={PERSON_PAGE_PILL_CLASS}
+					target="_blank"
+					rel="noreferrer"
 				>
-					{data.filmography.length === 0 ? (
-						<p className="rounded-2xl border border-border border-dashed bg-card/40 p-10 text-center text-muted-foreground text-sm">
-							No film credits loaded yet. Try again after the API syncs with
-							TMDb.
-						</p>
+					View on TMDb
+				</a>
+			</div>
+
+			<header className="flex flex-col gap-6 sm:flex-row sm:items-start">
+				<div className="relative mx-auto aspect-[2/3] w-48 shrink-0 overflow-hidden rounded-2xl border border-border bg-card sm:mx-0 sm:w-40 md:w-44">
+					{person.profileUrl ? (
+						<Image
+							src={person.profileUrl}
+							alt={person.name}
+							fill
+							className="object-cover"
+							sizes="176px"
+							priority
+						/>
 					) : (
-						<div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-							{data.filmography.map((m) => {
-								const yearLabel = filmographyReleaseYear(m.releaseDate);
-								return (
-									<div key={`${m.mediaKind}-${m.tmdbId}`} className="min-w-0">
-										<MoviePoster
-											movieId={m.tmdbId}
-											title={m.title}
-											posterUrl={m.posterUrl}
-											listingKind={m.mediaKind === "tv" ? "tv" : "movie"}
-											showTitle
-										/>
-										<p className="mt-1 line-clamp-3 text-[10px] text-muted-foreground leading-snug">
-											{m.roles.join(" · ")}
-										</p>
-										{yearLabel ? (
-											<p className="mt-0.5 text-[10px] text-muted-foreground/80 tabular-nums">
-												{yearLabel}
-											</p>
-										) : null}
-									</div>
-								);
-							})}
+						<div className="grid size-full place-items-center text-muted-foreground">
+							<Clapperboard className="size-10" aria-hidden />
 						</div>
 					)}
-				</Section>
+				</div>
+				<div className="min-w-0 flex-1 space-y-3 text-center sm:text-left">
+					{person.knownForDepartment ? (
+						<p className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
+							{person.knownForDepartment}
+						</p>
+					) : null}
+					<h1 className="font-editorial font-medium text-3xl text-foreground tracking-tight md:text-4xl">
+						{person.name}
+					</h1>
+					{lifeSpan ? (
+						<p className="flex items-center justify-center gap-2 text-muted-foreground text-sm sm:justify-start">
+							<Calendar className="size-4 shrink-0" aria-hidden />
+							{lifeSpan}
+						</p>
+					) : null}
+					{person.biography?.trim() ? (
+						<p className="line-clamp-6 max-w-3xl text-pretty text-foreground/85 text-sm leading-relaxed">
+							{person.biography.trim()}
+						</p>
+					) : null}
+				</div>
+			</header>
 
-				<p className="text-center text-muted-foreground text-xs">
-					<Link
-						href="/home"
-						className="underline underline-offset-2 hover:text-foreground"
-					>
-						Search films
-					</Link>
-				</p>
-			</article>
-		</div>
+			<Section
+				title="Filmography"
+				subtitle={`${filmography.length} film and TV title${filmography.length === 1 ? "" : "s"} with this person in cast or crew.`}
+			>
+				{filmography.length === 0 ? (
+					<p className="rounded-2xl bg-card/40 p-10 text-center text-muted-foreground text-sm">
+						No film credits loaded yet. Try again after the API syncs with TMDb.
+					</p>
+				) : (
+					<div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+						{filmography.map((m) => {
+							const yearLabel = filmographyReleaseYear(m.releaseDate);
+							return (
+								<div key={`${m.mediaKind}-${m.tmdbId}`} className="min-w-0">
+									<MoviePoster
+										movieId={m.tmdbId}
+										title={m.title}
+										posterUrl={m.posterUrl}
+										listingKind={m.mediaKind === "tv" ? "tv" : "movie"}
+										showTitle
+									/>
+									<p className="mt-1 line-clamp-3 text-[10px] text-muted-foreground leading-snug">
+										{m.roles.join(" · ")}
+									</p>
+									{yearLabel ? (
+										<p className="mt-0.5 text-[10px] text-muted-foreground/80 tabular-nums">
+											{yearLabel}
+										</p>
+									) : null}
+								</div>
+							);
+						})}
+					</div>
+				)}
+			</Section>
+		</article>
 	);
 }
