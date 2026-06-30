@@ -3,6 +3,7 @@ import { AppScrollToTop } from "@/components/app/app-scroll-to-top";
 import { DetailReturnCapture } from "@/components/app/detail-return-capture";
 import { GoToDialogRoot } from "@/components/app/go-to-dialog-root";
 import { MobileTabBar } from "@/components/app/mobile-tab-bar";
+import { MonthRecapDialogRoot } from "@/components/app/month-recap-dialog-root";
 import { SoftwareGpuDocumentProbe } from "@/components/app/software-gpu-document-probe";
 import { WhatsNewDialogRoot } from "@/components/app/whats-new-dialog-root";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
@@ -90,6 +91,7 @@ export function AppShell({
 			<PatronWatchLedgerDrawerRoot />
 			<PatronMembersLedgerDrawerRoot />
 			<WhatsNewDialogRoot userId={user.id} />
+			<MonthRecapDialogRoot userId={user.id} />
 			<RoleChangeDialogRoot />
 			<MobileTabBar
 				user={{
