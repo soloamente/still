@@ -4,7 +4,7 @@ import { Button } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useCallback, useEffect, useId, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { MonthRecapPodium } from "@/components/app/month-recap-podium";
@@ -29,21 +29,49 @@ const footerNavButtonClass = cn(
 /** Celebrated month kicker — same track as What's New release pill. */
 function MonthRecapMonthPill({ label }: { label: string }) {
 	return (
-		<span className="mb-3 inline-flex min-h-7 items-center rounded-full bg-background px-3.5 py-1 font-medium text-[11px] text-muted-foreground tabular-nums tracking-wide">
+		<span className="inline-flex min-h-7 items-center rounded-full bg-background px-3.5 py-1 font-medium text-[11px] text-muted-foreground tabular-nums tracking-wide">
 			{label}
 		</span>
 	);
 }
 
-function MonthRecapSlidePanel({
+/** Opening cover — month + headline only; category podiums start on slide 2. */
+function MonthRecapCoverPanel({ monthLabel }: { monthLabel: string }) {
+	const reduceMotion = useReducedMotion();
+	const itemTransition = reduceMotion
+		? { duration: 0 }
+		: { duration: 0.2, ease: PANEL_EASE };
+
+	return (
+		<div className="flex min-h-0 flex-1 flex-col items-center justify-center text-center">
+			<motion.div
+				initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ ...itemTransition, delay: reduceMotion ? 0 : 0.06 }}
+				className="flex flex-col items-center"
+			>
+				<MonthRecapMonthPill label={monthLabel} />
+				<h2 className="mt-3 text-balance font-semibold text-foreground text-xl tracking-tight sm:text-2xl">
+					Community highlights
+				</h2>
+			</motion.div>
+			<motion.p
+				initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ ...itemTransition, delay: reduceMotion ? 0 : 0.12 }}
+				className="mt-3 max-w-prose text-pretty text-muted-foreground text-sm leading-relaxed sm:text-base"
+			>
+				See who led Sense last month — most films watched, most TV, and most
+				reviews published.
+			</motion.p>
+		</div>
+	);
+}
+
+function MonthRecapCategoryPanel({
 	category,
-	monthLabel,
-	showIntroSubtitle,
 }: {
 	category: MonthRecapCategory;
-	monthLabel: string;
-	/** First slide only — community celebration kicker. */
-	showIntroSubtitle: boolean;
 }) {
 	const reduceMotion = useReducedMotion();
 	const itemTransition = reduceMotion
@@ -58,12 +86,6 @@ function MonthRecapSlidePanel({
 				transition={{ ...itemTransition, delay: reduceMotion ? 0 : 0.06 }}
 				className="flex w-full flex-col items-center"
 			>
-				<MonthRecapMonthPill label={monthLabel} />
-				{showIntroSubtitle ? (
-					<p className="mb-2 text-muted-foreground text-sm">
-						Community highlights
-					</p>
-				) : null}
 				<h2 className="text-balance font-semibold text-foreground text-xl tracking-tight sm:text-2xl">
 					{category.title}
 				</h2>
@@ -79,6 +101,31 @@ function MonthRecapSlidePanel({
 			</motion.div>
 		</div>
 	);
+}
+
+type MonthRecapSlide =
+	| { kind: "cover"; key: "cover"; title: "Community highlights" }
+	| {
+			kind: "category";
+			key: MonthRecapCategory["id"];
+			category: MonthRecapCategory;
+	  };
+
+function buildMonthRecapSlides(
+	categories: MonthRecapCategory[],
+): MonthRecapSlide[] {
+	return [
+		{ kind: "cover", key: "cover", title: "Community highlights" },
+		...categories.map((category) => ({
+			kind: "category" as const,
+			key: category.id,
+			category,
+		})),
+	];
+}
+
+function monthRecapSlideLabel(slide: MonthRecapSlide): string {
+	return slide.kind === "cover" ? slide.title : slide.category.title;
 }
 
 /**
@@ -99,7 +146,10 @@ export function MonthRecapDialog({
 	const [mounted, setMounted] = useState(false);
 	const [slideIndex, setSlideIndex] = useState(0);
 
-	const slides = payload.categories;
+	const slides = useMemo(
+		() => buildMonthRecapSlides(payload.categories),
+		[payload.categories],
+	);
 	const slideCount = slides.length;
 	const slide = slides[slideIndex];
 	const isLastSlide = slideIndex >= slideCount - 1;
@@ -201,7 +251,7 @@ export function MonthRecapDialog({
 							<div className="flex min-h-0 flex-1 flex-col px-6 pt-12 pb-14 sm:px-8 sm:pt-14 sm:pb-16">
 								<AnimatePresence mode="wait" initial={false}>
 									<motion.div
-										key={slide.id}
+										key={slide.key}
 										id={descriptionId}
 										initial={
 											reduceMotion ? { opacity: 0 } : { opacity: 0, x: 12 }
@@ -214,13 +264,13 @@ export function MonthRecapDialog({
 										className="flex min-h-0 flex-1 flex-col"
 									>
 										<span id={titleId} className="sr-only">
-											{slide.title}
+											{monthRecapSlideLabel(slide)}
 										</span>
-										<MonthRecapSlidePanel
-											category={slide}
-											monthLabel={payload.monthLabel}
-											showIntroSubtitle={slideIndex === 0}
-										/>
+										{slide.kind === "cover" ? (
+											<MonthRecapCoverPanel monthLabel={payload.monthLabel} />
+										) : (
+											<MonthRecapCategoryPanel category={slide.category} />
+										)}
 									</motion.div>
 								</AnimatePresence>
 
@@ -232,11 +282,11 @@ export function MonthRecapDialog({
 									>
 										{slides.map((s, index) => (
 											<button
-												key={s.id}
+												key={s.key}
 												type="button"
 												role="tab"
 												aria-selected={index === slideIndex}
-												aria-label={`Slide ${index + 1} of ${slideCount}: ${s.title}`}
+												aria-label={`Slide ${index + 1} of ${slideCount}: ${monthRecapSlideLabel(s)}`}
 												className={cn(
 													"min-h-10 min-w-10 rounded-full px-2 py-2 transition-colors duration-200 ease-out motion-reduce:transition-none",
 													index === slideIndex
