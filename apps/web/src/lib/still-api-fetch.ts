@@ -236,6 +236,31 @@ export async function fetchTvSearch(
 	};
 }
 
+/** TMDb person search proxy — rows are slim `PeopleSearchRow`s ({id,name,profileUrl,knownForDepartment,knownForTitles}). */
+export async function fetchPeopleSearch(
+	qRaw: string,
+	init?: Pick<RequestInit, "signal"> & { page?: number; cookieHeader?: string },
+) {
+	const url = new URL("/api/people/search", stillApiOrigin());
+	url.searchParams.set("q", qRaw.trim());
+	const page = init?.page;
+	if (page !== undefined && Number.isFinite(page) && page >= 1) {
+		url.searchParams.set("page", String(Math.floor(page)));
+	}
+	const { cookieHeader, signal } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		signal,
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
 /**
  * TMDb `/movie/popular` — page is 1-based; newest/most-famous first per provider sort.
  * Optional `cookieHeader` forwards Better Auth cookies from an RSC (browser calls omit it).
