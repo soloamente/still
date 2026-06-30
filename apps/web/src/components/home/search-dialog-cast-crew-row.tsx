@@ -7,9 +7,12 @@ import { castCrewMetaLine } from "@/lib/cast-crew-search-query";
 /** One TMDb person row in the unified search dialog "Cast & Crew" section. */
 export function SearchDialogCastCrewRow({
 	hit,
+	rank,
 	onSelect,
 }: {
 	hit: CastCrewSearchHit;
+	/** 1-based popularity rank among the current results, shown left of the avatar. */
+	rank: number;
 	onSelect: () => void;
 }) {
 	const meta = castCrewMetaLine(hit);
@@ -25,6 +28,9 @@ export function SearchDialogCastCrewRow({
 					"focus-visible:bg-background focus-visible:outline-none",
 				)}
 			>
+				<span className="w-4 shrink-0 text-right font-semibold text-muted-foreground text-xs tabular-nums">
+					{rank}
+				</span>
 				{hit.profileUrl ? (
 					// biome-ignore lint/performance/noImgElement: remote TMDb host, small avatar
 					<img

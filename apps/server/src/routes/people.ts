@@ -44,8 +44,13 @@ export const peopleRoute = new Elysia({
 				language,
 				showAdultContent,
 			});
+			// Sort by TMDb popularity (desc) so the web row index is a true
+			// popularity rank (1 = most popular among the matches).
+			const ranked = [...data.results].sort(
+				(a, b) => (b.popularity ?? 0) - (a.popularity ?? 0),
+			);
 			return {
-				results: data.results.map(mapTmdbPersonToSearchRow),
+				results: ranked.map(mapTmdbPersonToSearchRow),
 				page: data.page,
 				total_pages: data.total_pages,
 				total_results: data.total_results,

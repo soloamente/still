@@ -32,10 +32,11 @@ export function SearchDialogCastCrewResults({
 				Cast & Crew
 			</div>
 			<ul className="space-y-0.5">
-				{results.map((hit) => (
+				{results.map((hit, index) => (
 					<SearchDialogCastCrewRow
 						key={hit.id}
 						hit={hit}
+						rank={index + 1}
 						onSelect={() => onSelect(hit.id)}
 					/>
 				))}
