@@ -390,15 +390,14 @@ export async function fetchMembersLeaderboard(opts: {
 	page?: number;
 	limit?: number;
 	now?: Date;
+	/** When set, skips `resolveLeaderboardWindow` (month-recap, backfills). */
+	window?: { start: Date; end: Date };
 }): Promise<MembersLeaderboardResult> {
 	const page = opts.page ?? 1;
 	const limit = opts.limit ?? MEMBERS_LEADERBOARD_DEFAULT_LIMIT;
 	const offset = communityOffset(page, limit);
-	const { start, end } = resolveLeaderboardWindow(
-		opts.period,
-		opts.tz,
-		opts.now,
-	);
+	const { start, end } =
+		opts.window ?? resolveLeaderboardWindow(opts.period, opts.tz, opts.now);
 	const blockedIds = opts.viewerId
 		? await blockedUserIdsForViewer(opts.viewerId)
 		: [];

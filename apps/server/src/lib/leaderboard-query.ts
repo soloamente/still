@@ -164,12 +164,14 @@ export async function fetchLeaderboard(opts: {
 	tz: string | undefined;
 	viewerId: string | null;
 	now?: Date;
+	/** When set, skips `resolveLeaderboardWindow` (month-recap, backfills). */
+	window?: { start: Date; end: Date };
+	/** Max rows returned — default 50 (Community ranks). */
+	limit?: number;
 }): Promise<LeaderboardResult> {
-	const { start, end } = resolveLeaderboardWindow(
-		opts.period,
-		opts.tz,
-		opts.now,
-	);
+	const limit = opts.limit ?? 50;
+	const { start, end } =
+		opts.window ?? resolveLeaderboardWindow(opts.period, opts.tz, opts.now);
 	const blockedIds = opts.viewerId
 		? await blockedUserIdsForViewer(opts.viewerId)
 		: [];
@@ -199,7 +201,7 @@ export async function fetchLeaderboard(opts: {
 			asc(sql`max(${log.watchedAt})`),
 			asc(profile.handle),
 		)
-		.limit(50);
+		.limit(limit);
 
 	const logCounts = await fetchDiaryLogCountsForUserIds(
 		rows.map((row) => row.userId),
