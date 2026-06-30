@@ -1,6 +1,6 @@
 # Person page redesign (`/people/[id]`)
 
-**Status:** Approved (brainstorm 2026-06-30; human **ok go**)
+**Status:** Superseded by [2026-06-30-person-detail-shell-design.md](./2026-06-30-person-detail-shell-design.md) (movie-detail shell parity)
 **Date:** 2026-06-30
 **Scope:** Realign the actor/crew detail page to the site's detail-page design patterns: top-aligned layout with a back-pill chrome (same pill language as the film detail top bar), a hero (portrait + key info) using site tokens, and a filmography section sorted newest-first using the standard `Section`/`MoviePoster` components. Remove the ad-hoc bits (vertical centering, bottom "Search films" link, inline TMDb footer, dashed empty state).
 **Out of scope (YAGNI):** Cinematic backdrop hero, sticky section-nav tabs, accent theming, grouping filmography by role (acting vs directing), any new data from the server.
