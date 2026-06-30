@@ -1,8 +1,11 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	celebratedMonthKeyFromWindow,
+	celebratedMonthLabel,
 	parseLeaderboardPeriod,
 	resolveLeaderboardWindow,
+	resolvePreviousCalendarMonthWindow,
 } from "./leaderboard-period";
 
 describe("parseLeaderboardPeriod", () => {
@@ -45,5 +48,34 @@ describe("resolveLeaderboardWindow", () => {
 		const w = resolveLeaderboardWindow("all", "UTC", now);
 		expect(w.start.getTime()).toBe(0);
 		expect(w.end.getTime()).toBe(now.getTime());
+	});
+});
+
+describe("resolvePreviousCalendarMonthWindow", () => {
+	test("July visit in Europe/Rome celebrates June", () => {
+		const now = new Date("2026-07-02T10:00:00Z");
+		const w = resolvePreviousCalendarMonthWindow("Europe/Rome", now);
+		expect(w.start.toISOString()).toBe("2026-05-31T22:00:00.000Z");
+		expect(w.end.toISOString()).toBe("2026-06-30T22:00:00.000Z");
+		expect(celebratedMonthKeyFromWindow(w.start, "Europe/Rome")).toBe(
+			"2026-06",
+		);
+		expect(celebratedMonthLabel("2026-06")).toBe("June 2026");
+	});
+
+	test("January celebrates prior December", () => {
+		const now = new Date("2026-01-15T12:00:00Z");
+		const w = resolvePreviousCalendarMonthWindow("UTC", now);
+		expect(w.start.toISOString()).toBe("2025-12-01T00:00:00.000Z");
+		expect(w.end.toISOString()).toBe("2026-01-01T00:00:00.000Z");
+		expect(celebratedMonthKeyFromWindow(w.start, "UTC")).toBe("2025-12");
+		expect(celebratedMonthLabel("2025-12")).toBe("December 2025");
+	});
+
+	test("invalid tz falls back to UTC", () => {
+		const now = new Date("2026-03-01T00:00:00Z");
+		const w = resolvePreviousCalendarMonthWindow("Not/AZone", now);
+		expect(w.start.toISOString()).toBe("2026-02-01T00:00:00.000Z");
+		expect(w.end.toISOString()).toBe("2026-03-01T00:00:00.000Z");
 	});
 });

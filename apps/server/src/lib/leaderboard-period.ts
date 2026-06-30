@@ -197,3 +197,74 @@ export function resolveLeaderboardWindow(
 
 	return { start, end };
 }
+
+/**
+ * Half-open window for the calendar month immediately before `now` in `tz`.
+ * Used by the month-recap dialog (e.g. first July visit → celebrate all of June).
+ */
+export function resolvePreviousCalendarMonthWindow(
+	tzRaw: string | undefined,
+	now = new Date(),
+): { start: Date; end: Date } {
+	const timeZone = normalizeLeaderboardTimeZone(tzRaw);
+	const parts = getZonedParts(now, timeZone);
+	const celebrated = addMonths(parts.year, parts.month, -1);
+	const startWall = {
+		year: celebrated.year,
+		month: celebrated.month,
+		day: 1,
+	};
+	const endWall = endOfPeriodInZone("month", startWall);
+
+	const start = wallTimeToUtc(
+		startWall.year,
+		startWall.month,
+		startWall.day,
+		0,
+		0,
+		0,
+		timeZone,
+	);
+	const end = wallTimeToUtc(
+		endWall.year,
+		endWall.month,
+		endWall.day,
+		0,
+		0,
+		0,
+		timeZone,
+	);
+
+	return { start, end };
+}
+
+/** `YYYY-MM` key for the celebrated month (from window start in `tz`). */
+export function celebratedMonthKeyFromWindow(
+	start: Date,
+	tzRaw: string | undefined,
+): string {
+	const timeZone = normalizeLeaderboardTimeZone(tzRaw);
+	const parts = getZonedParts(start, timeZone);
+	const month = String(parts.month).padStart(2, "0");
+	return `${parts.year}-${month}`;
+}
+
+/** Human label for a `YYYY-MM` month key — e.g. `June 2026`. */
+export function celebratedMonthLabel(monthKey: string): string {
+	const match = /^(\d{4})-(\d{2})$/.exec(monthKey.trim());
+	if (!match) return monthKey;
+	const year = Number(match[1]);
+	const month = Number(match[2]);
+	if (
+		!Number.isFinite(year) ||
+		!Number.isFinite(month) ||
+		month < 1 ||
+		month > 12
+	) {
+		return monthKey;
+	}
+	return new Intl.DateTimeFormat("en-US", {
+		month: "long",
+		year: "numeric",
+	}).format(new Date(year, month - 1, 1, 12, 0, 0));
+}
