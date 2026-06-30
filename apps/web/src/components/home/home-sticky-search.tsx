@@ -26,6 +26,7 @@ import {
 } from "react";
 import { createPortal, flushSync } from "react-dom";
 
+import { SearchDialogCastCrewResults } from "@/components/home/search-dialog-cast-crew-results";
 import { SearchDialogListResults } from "@/components/home/search-dialog-list-results";
 import { SearchDialogPeopleResults } from "@/components/home/search-dialog-people-results";
 import { SearchDialogPeopleSuggestions } from "@/components/home/search-dialog-people-suggestions";
@@ -76,6 +77,7 @@ import {
 	type SearchTag,
 	upsertTag,
 } from "@/lib/search-query-tags";
+import { useCastCrewSearch } from "@/lib/use-cast-crew-search";
 import {
 	type CatalogTextSearchListingKind,
 	useCatalogTextSearch,
@@ -527,6 +529,14 @@ export function CatalogSearchDialogRoot({
 		[beginClose],
 	);
 
+	const handlePersonSelect = useCallback(
+		(id: number) => {
+			pendingNavigationRef.current = `/people/${id}`;
+			beginClose();
+		},
+		[beginClose],
+	);
+
 	/** Browse chrome only when there are no pills and no active text token. */
 	const isEmptyDraft = searchTags.length === 0 && trimmedDraft === "";
 	const hasStudioTag = searchTags.some((t) => t.kind === "studio");
@@ -690,6 +700,11 @@ export function CatalogSearchDialogRoot({
 		Boolean(viewer) && profileSearchQuery.length >= 1 && showSheet;
 	const { hits: profileSearchHits, loading: profileSearchLoading } =
 		useProfileSearch(trimmedDraft, peopleSearchEnabled);
+	const castCrewSearchEnabled = trimmedDraft.length >= 1 && showSheet;
+	const { results: castCrewHits, loading: castCrewLoading } = useCastCrewSearch(
+		trimmedDraft,
+		castCrewSearchEnabled,
+	);
 	/** Screen reader status for active search (result count or empty state). */
 	const searchResultsStatusMessage = useMemo(() => {
 		if (isEmptyDraft) return "";
@@ -1104,6 +1119,13 @@ export function CatalogSearchDialogRoot({
 										hits={profileSearchHits}
 										loading={profileSearchLoading}
 										onSelect={handleProfileSelect}
+									/>
+								) : null}
+								{!isEmptyDraft ? (
+									<SearchDialogCastCrewResults
+										results={castCrewHits}
+										loading={castCrewLoading}
+										onSelect={handlePersonSelect}
 									/>
 								) : null}
 
