@@ -2,6 +2,8 @@ import { env } from "@still/env/server";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
+import { mapTmdbPersonToSearchRow } from "../lib/people-search-row";
 import { tmdbApi, tmdbImg } from "../lib/tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 
@@ -21,6 +23,41 @@ export const peopleRoute = new Elysia({
 	tags: ["people"],
 })
 	.use(context)
+	.get(
+		"/search",
+		async ({ query, user }) => {
+			const q = (query.q ?? "").trim();
+			if (!q) return { results: [], page: 1, total_pages: 0, total_results: 0 };
+			if (!env.TMDB_API_KEY) {
+				return {
+					...TMDB_UNCONFIGURED,
+					results: [],
+					page: 1,
+					total_pages: 0,
+					total_results: 0,
+				};
+			}
+			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
+			const page = Number(query.page ?? 1) || 1;
+			const data = await tmdbApi.searchPerson(q, page, {
+				language,
+				showAdultContent,
+			});
+			return {
+				results: data.results.map(mapTmdbPersonToSearchRow),
+				page: data.page,
+				total_pages: data.total_pages,
+				total_results: data.total_results,
+			};
+		},
+		{
+			query: t.Object({
+				q: t.Optional(t.String()),
+				page: t.Optional(t.String()),
+			}),
+		},
+	)
 	.get(
 		"/:id",
 		async ({ params, status, user }) => {
