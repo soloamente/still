@@ -47,3 +47,25 @@ export function filmographyReleaseYear(raw: unknown): string | null {
 	}
 	return null;
 }
+
+/**
+ * Returns a new array sorted by release year descending (newest first).
+ * Entries with no parseable year sort last; equal years keep input order.
+ */
+export function sortFilmographyByYearDesc<
+	T extends { releaseDate: string | null },
+>(items: T[]): T[] {
+	return items
+		.map((item, index) => ({ item, index }))
+		.sort((a, b) => {
+			const ya = Number(
+				filmographyReleaseYear(a.item.releaseDate) ?? Number.NEGATIVE_INFINITY,
+			);
+			const yb = Number(
+				filmographyReleaseYear(b.item.releaseDate) ?? Number.NEGATIVE_INFINITY,
+			);
+			if (yb !== ya) return yb - ya;
+			return a.index - b.index;
+		})
+		.map(({ item }) => item);
+}
