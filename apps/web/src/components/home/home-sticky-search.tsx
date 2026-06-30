@@ -26,9 +26,9 @@ import {
 } from "react";
 import { createPortal, flushSync } from "react-dom";
 
-import { SearchDialogCastCrewResults } from "@/components/home/search-dialog-cast-crew-results";
+import { SearchDialogCategoryBody } from "@/components/home/search-dialog-category-body";
+import { SearchDialogCategoryPills } from "@/components/home/search-dialog-category-pills";
 import { SearchDialogListResults } from "@/components/home/search-dialog-list-results";
-import { SearchDialogPeopleResults } from "@/components/home/search-dialog-people-results";
 import { SearchDialogPeopleSuggestions } from "@/components/home/search-dialog-people-suggestions";
 import { SearchDialogRecentSearches } from "@/components/home/search-dialog-recent-searches";
 import {
@@ -71,13 +71,17 @@ import {
 	restoreFromHomeSearchRecent,
 } from "@/lib/home-search-recent-storage";
 import { normalizeProfileSearchQuery } from "@/lib/profile-search-query";
+import {
+	enabledCategories,
+	resolveActiveCategory,
+	type SearchCategory,
+} from "@/lib/search-active-category";
 import { findSearchDialogStudio } from "@/lib/search-dialog-studios";
 import {
 	deriveSearchState,
 	type SearchTag,
 	upsertTag,
 } from "@/lib/search-query-tags";
-import { useCastCrewSearch } from "@/lib/use-cast-crew-search";
 import {
 	type CatalogTextSearchListingKind,
 	useCatalogTextSearch,
@@ -85,6 +89,7 @@ import {
 import { useCatalogTmdbLanguage } from "@/lib/use-catalog-tmdb-language";
 import { useCatalogueTagSearch } from "@/lib/use-catalogue-tag-search";
 import { useProfileSearch } from "@/lib/use-profile-search";
+import { useSearchCategoryResults } from "@/lib/use-search-category-results";
 import {
 	type SearchDialogBrowseCategory,
 	type SearchDialogBrowsePreviewItem,
@@ -698,13 +703,48 @@ export function CatalogSearchDialogRoot({
 	const profileSearchQuery = normalizeProfileSearchQuery(trimmedDraft);
 	const peopleSearchEnabled =
 		Boolean(viewer) && profileSearchQuery.length >= 1 && showSheet;
-	const { hits: profileSearchHits, loading: profileSearchLoading } =
-		useProfileSearch(trimmedDraft, peopleSearchEnabled);
-	const castCrewSearchEnabled = trimmedDraft.length >= 1 && showSheet;
-	const { results: castCrewHits, loading: castCrewLoading } = useCastCrewSearch(
+	const { hits: profileSearchHits } = useProfileSearch(
 		trimmedDraft,
-		castCrewSearchEnabled,
+		peopleSearchEnabled,
 	);
+	const signedIn = Boolean(viewer);
+	const categoryEnabled = useMemo(
+		() => enabledCategories(signedIn),
+		[signedIn],
+	);
+	/** Free text only drives categories when there are no tags. */
+	const categoryQuery = searchTags.length === 0 ? freeText : "";
+	const categorySearch = useSearchCategoryResults(categoryQuery, signedIn);
+	const [activeCategory, setActiveCategory] = useState<SearchCategory>("films");
+	const [manualCategory, setManualCategory] = useState<SearchCategory | null>(
+		null,
+	);
+	// New query text = fresh auto-switch (drop the manual pin).
+	// biome-ignore lint/correctness/useExhaustiveDependencies: reset only when the typed text changes
+	useEffect(() => {
+		setManualCategory(null);
+	}, [categoryQuery]);
+	useEffect(() => {
+		setActiveCategory((current) =>
+			resolveActiveCategory({
+				current,
+				manualCategory,
+				counts: {
+					films: categorySearch.categories.films.count,
+					tv: categorySearch.categories.tv.count,
+					castcrew: categorySearch.categories.castcrew.count,
+					lists: categorySearch.categories.lists.count,
+					members: categorySearch.categories.members.count,
+				},
+				priority: categoryEnabled,
+				anyLoading: categorySearch.anyLoading,
+			}),
+		);
+	}, [categorySearch, manualCategory, categoryEnabled]);
+	const handleCategorySelect = useCallback((category: SearchCategory) => {
+		setManualCategory(category);
+		setActiveCategory(category);
+	}, []);
 	/** Screen reader status for active search (result count or empty state). */
 	const searchResultsStatusMessage = useMemo(() => {
 		if (isEmptyDraft) return "";
@@ -1092,8 +1132,17 @@ export function CatalogSearchDialogRoot({
 							</p>
 						) : null}
 
-						{/* Films vs TV — only while searching; empty-state browse rail already implies the next query’s catalogue. */}
-						{!isEmptyDraft && !hasMediaTag ? (
+						{!isEmptyDraft && searchTags.length === 0 ? (
+							<fieldset className="min-w-0 shrink-0 border-0 px-4 pb-2">
+								<legend className="sr-only">Show</legend>
+								<SearchDialogCategoryPills
+									enabled={categoryEnabled}
+									active={activeCategory}
+									categories={categorySearch.categories}
+									onSelect={handleCategorySelect}
+								/>
+							</fieldset>
+						) : !isEmptyDraft && !hasMediaTag ? (
 							<fieldset className="min-w-0 shrink-0 border-0 px-4 pb-2">
 								<legend className="sr-only">Show</legend>
 								<SearchDialogListingKindChips
@@ -1114,19 +1163,18 @@ export function CatalogSearchDialogRoot({
 								data-lenis-prevent-wheel
 								className="scrollbar-none contain-[paint] min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch]"
 							>
-								{!isEmptyDraft && viewer ? (
-									<SearchDialogPeopleResults
-										hits={profileSearchHits}
-										loading={profileSearchLoading}
-										onSelect={handleProfileSelect}
-									/>
-								) : null}
-								{!isEmptyDraft ? (
-									<SearchDialogCastCrewResults
-										results={castCrewHits}
-										loading={castCrewLoading}
-										onSelect={handlePersonSelect}
-									/>
+								{!isEmptyDraft && searchTags.length === 0 ? (
+									<div aria-live="polite" aria-busy={categorySearch.anyLoading}>
+										<SearchDialogCategoryBody
+											active={activeCategory}
+											search={categorySearch}
+											query={trimmedDraft}
+											onPickCatalog={(id) => handleCatalogSearchPick(id)}
+											onSelectPerson={handlePersonSelect}
+											onSelectProfile={handleProfileSelect}
+											onPickList={() => beginClose()}
+										/>
+									</div>
 								) : null}
 
 								{isEmptyDraft && recentQueries.length > 0 ? (
@@ -1138,231 +1186,234 @@ export function CatalogSearchDialogRoot({
 									/>
 								) : null}
 
-								{isEmptyDraft ? (
-									<div className="flex min-w-0 max-w-full flex-col gap-5 px-4 pb-4 sm:flex-row sm:items-start sm:gap-8">
-										{/* Left rail — category picks update the preview column. */}
-										<nav
-											aria-labelledby={`${titleId}-browse-heading`}
-											className="flex w-full min-w-0 shrink-0 flex-col gap-0.5 sm:w-42"
-										>
-											<div
-												id={`${titleId}-browse-heading`}
-												className="mb-1 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider"
+								{isEmptyDraft || searchTags.length > 0 ? (
+									isEmptyDraft ? (
+										<div className="flex min-w-0 max-w-full flex-col gap-5 px-4 pb-4 sm:flex-row sm:items-start sm:gap-8">
+											{/* Left rail — category picks update the preview column. */}
+											<nav
+												aria-labelledby={`${titleId}-browse-heading`}
+												className="flex w-full min-w-0 shrink-0 flex-col gap-0.5 sm:w-42"
 											>
-												Browse
-											</div>
-											<SearchDialogBrowseCategoryNav
-												browseCategory={browseCategory}
-												onSelectCategory={setBrowseCategory}
-											/>
-										</nav>
+												<div
+													id={`${titleId}-browse-heading`}
+													className="mb-1 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider"
+												>
+													Browse
+												</div>
+												<SearchDialogBrowseCategoryNav
+													browseCategory={browseCategory}
+													onSelectCategory={setBrowseCategory}
+												/>
+											</nav>
 
-										{/* Right column — studio logos, suggested posters, or patrons. */}
-										<div
-											className="min-w-0 max-w-full flex-1"
-											aria-live="polite"
-											aria-busy={
-												browseCategory === "people"
-													? false
-													: browsePreviewLoading || browseStudiosLoading
-											}
-										>
-											{browseCategory === "people" ? (
-												<>
-													<div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
-														<div
-															id={`${titleId}-people-heading`}
-															className="font-semibold text-[10px] text-muted-foreground uppercase tracking-wider"
-														>
-															{browsePreviewHeading}
-														</div>
-													</div>
-													{viewer ? (
-														<SearchDialogPeopleSuggestions
-															enabled={peopleBrowseEnabled}
-															onSelect={handleProfileSelect}
-															showEmptyState
-														/>
-													) : (
-														<p className="text-muted-foreground text-xs leading-relaxed">
-															<Link
-																href="/sign-in"
-																className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
-																onClick={() => beginClose()}
+											{/* Right column — studio logos, suggested posters, or patrons. */}
+											<div
+												className="min-w-0 max-w-full flex-1"
+												aria-live="polite"
+												aria-busy={
+													browseCategory === "people"
+														? false
+														: browsePreviewLoading || browseStudiosLoading
+												}
+											>
+												{browseCategory === "people" ? (
+													<>
+														<div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
+															<div
+																id={`${titleId}-people-heading`}
+																className="font-semibold text-[10px] text-muted-foreground uppercase tracking-wider"
 															>
-																Sign in
-															</Link>{" "}
-															to see suggested patrons.
-														</p>
-													)}
-												</>
-											) : (
-												<>
-													{(browseCategory === "movies" ||
-														browseCategory === "tv") &&
-													!hasStudioTag ? (
-														<SearchDialogStudioRail
-															studios={browseStudios}
-															selectedStudioId={tagState.studioId}
-															onSelectStudio={handleStudioRailSelect}
-															loading={browseStudiosLoading}
-															listingKind={
-																browseCategory === "tv" ? "tv" : "movie"
-															}
-														/>
-													) : null}
-													<div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
-														<div
-															id={`${titleId}-popular-heading`}
-															className="font-semibold text-[10px] text-muted-foreground uppercase tracking-wider"
-														>
-															{browsePreviewHeading}
+																{browsePreviewHeading}
+															</div>
 														</div>
-													</div>
-													{browsePreviewLoading ? (
-														<>
-															<span className="sr-only">
-																Loading suggestions
-															</span>
-															<SearchDialogBrowsePreviewSkeleton />
-														</>
-													) : browsePreviewItems.length > 0 ? (
-														<div className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-4">
-															{browsePreviewItems.map((item) => (
-																<button
-																	key={`${browseCategory}-${item.listingKind}-${item.id}`}
-																	type="button"
-																	className="min-w-0 cursor-pointer rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
-																	onClick={() => handlePreviewPick(item)}
+														{viewer ? (
+															<SearchDialogPeopleSuggestions
+																enabled={peopleBrowseEnabled}
+																onSelect={handleProfileSelect}
+																showEmptyState
+															/>
+														) : (
+															<p className="text-muted-foreground text-xs leading-relaxed">
+																<Link
+																	href="/sign-in"
+																	className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
+																	onClick={() => beginClose()}
 																>
-																	<MoviePoster
-																		movieId={item.id}
-																		title={item.title}
-																		posterUrl={item.posterUrl}
-																		size="md"
-																		showTitle
-																		titleLines={1}
-																		linkable={false}
-																		listingKind={item.listingKind}
-																		frameClassName="rounded-2xl"
-																	/>
-																</button>
-															))}
+																	Sign in
+																</Link>{" "}
+																to see suggested patrons.
+															</p>
+														)}
+													</>
+												) : (
+													<>
+														{(browseCategory === "movies" ||
+															browseCategory === "tv") &&
+														!hasStudioTag ? (
+															<SearchDialogStudioRail
+																studios={browseStudios}
+																selectedStudioId={tagState.studioId}
+																onSelectStudio={handleStudioRailSelect}
+																loading={browseStudiosLoading}
+																listingKind={
+																	browseCategory === "tv" ? "tv" : "movie"
+																}
+															/>
+														) : null}
+														<div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
+															<div
+																id={`${titleId}-popular-heading`}
+																className="font-semibold text-[10px] text-muted-foreground uppercase tracking-wider"
+															>
+																{browsePreviewHeading}
+															</div>
 														</div>
-													) : (
-														<p className="text-muted-foreground text-xs leading-relaxed">
-															No suggestions right now — try again in a moment.
-														</p>
-													)}
-												</>
+														{browsePreviewLoading ? (
+															<>
+																<span className="sr-only">
+																	Loading suggestions
+																</span>
+																<SearchDialogBrowsePreviewSkeleton />
+															</>
+														) : browsePreviewItems.length > 0 ? (
+															<div className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-4">
+																{browsePreviewItems.map((item) => (
+																	<button
+																		key={`${browseCategory}-${item.listingKind}-${item.id}`}
+																		type="button"
+																		className="min-w-0 cursor-pointer rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+																		onClick={() => handlePreviewPick(item)}
+																	>
+																		<MoviePoster
+																			movieId={item.id}
+																			title={item.title}
+																			posterUrl={item.posterUrl}
+																			size="md"
+																			showTitle
+																			titleLines={1}
+																			linkable={false}
+																			listingKind={item.listingKind}
+																			frameClassName="rounded-2xl"
+																		/>
+																	</button>
+																))}
+															</div>
+														) : (
+															<p className="text-muted-foreground text-xs leading-relaxed">
+																No suggestions right now — try again in a
+																moment.
+															</p>
+														)}
+													</>
+												)}
+											</div>
+										</div>
+									) : tagState.resultMode === "lists" ? (
+										<div
+											className="flex flex-col px-4 pb-4"
+											aria-live="polite"
+											aria-busy={searchLoading}
+										>
+											{searchResultsStatusMessage ? (
+												<span className="sr-only">
+													{searchResultsStatusMessage}
+												</span>
+											) : null}
+											{structuredSearch.needsSignIn ? (
+												<p className="text-muted-foreground text-xs leading-relaxed">
+													<Link
+														href="/sign-in"
+														className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
+														onClick={() => beginClose()}
+													>
+														Sign in
+													</Link>{" "}
+													to search your lists.
+												</p>
+											) : searchLoading &&
+												structuredSearch.listResults.length === 0 ? (
+												<SearchDialogListSkeleton />
+											) : structuredSearch.listResults.length > 0 ? (
+												<div className={cn(searchLoading && "opacity-55")}>
+													<SearchDialogListResults
+														lists={structuredSearch.listResults}
+														onPick={() => beginClose()}
+													/>
+												</div>
+											) : (
+												<p className="text-muted-foreground text-xs leading-relaxed">
+													{trimmedDraft
+														? `No lists match “${trimmedDraft}”.`
+														: "You have no lists yet."}
+												</p>
 											)}
 										</div>
-									</div>
-								) : tagState.resultMode === "lists" ? (
-									<div
-										className="flex flex-col px-4 pb-4"
-										aria-live="polite"
-										aria-busy={searchLoading}
-									>
-										{searchResultsStatusMessage ? (
-											<span className="sr-only">
-												{searchResultsStatusMessage}
-											</span>
-										) : null}
-										{structuredSearch.needsSignIn ? (
-											<p className="text-muted-foreground text-xs leading-relaxed">
-												<Link
-													href="/sign-in"
-													className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
-													onClick={() => beginClose()}
+									) : (
+										<div
+											className="flex flex-col px-4 pb-4"
+											aria-live="polite"
+											aria-busy={searchLoading}
+										>
+											{searchResultsStatusMessage ? (
+												<span className="sr-only">
+													{searchResultsStatusMessage}
+												</span>
+											) : null}
+											{searchLoading && dialogSearchResults.length === 0 ? (
+												<SearchDialogPosterSkeletonGrid />
+											) : null}
+											{dialogSearchResults.length > 0 ? (
+												// Scrolling is handled by the sheet body above; keep a plain grid so one
+												// scroll container receives wheel / touch gestures predictably.
+												<div
+													className={cn(
+														"mt-2 grid auto-rows-min grid-cols-3 gap-3 pb-1 sm:grid-cols-4",
+														searchLoading && "opacity-55",
+													)}
 												>
-													Sign in
-												</Link>{" "}
-												to search your lists.
-											</p>
-										) : searchLoading &&
-											structuredSearch.listResults.length === 0 ? (
-											<SearchDialogListSkeleton />
-										) : structuredSearch.listResults.length > 0 ? (
-											<div className={cn(searchLoading && "opacity-55")}>
-												<SearchDialogListResults
-													lists={structuredSearch.listResults}
-													onPick={() => beginClose()}
-												/>
-											</div>
-										) : (
-											<p className="text-muted-foreground text-xs leading-relaxed">
-												{trimmedDraft
-													? `No lists match “${trimmedDraft}”.`
-													: "You have no lists yet."}
-											</p>
-										)}
-									</div>
-								) : (
-									<div
-										className="flex flex-col px-4 pb-4"
-										aria-live="polite"
-										aria-busy={searchLoading}
-									>
-										{searchResultsStatusMessage ? (
-											<span className="sr-only">
-												{searchResultsStatusMessage}
-											</span>
-										) : null}
-										{searchLoading && dialogSearchResults.length === 0 ? (
-											<SearchDialogPosterSkeletonGrid />
-										) : null}
-										{dialogSearchResults.length > 0 ? (
-											// Scrolling is handled by the sheet body above; keep a plain grid so one
-											// scroll container receives wheel / touch gestures predictably.
-											<div
-												className={cn(
-													"mt-2 grid auto-rows-min grid-cols-3 gap-3 pb-1 sm:grid-cols-4",
-													searchLoading && "opacity-55",
-												)}
-											>
-												{dialogSearchResults.map((hit) => (
-													<button
-														key={`${effectiveListingKind}-${hit.id}`}
-														type="button"
-														className="min-w-0 cursor-pointer rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
-														onClick={() => handleCatalogSearchPick(hit.id)}
-													>
-														<MoviePoster
-															movieId={hit.id}
-															title={hit.title}
-															posterUrl={hit.poster_url}
-															size="md"
-															showTitle
-															titleLines={1}
-															linkable={false}
-															listingKind={
-																effectiveListingKind === "tv" ? "tv" : "movie"
-															}
-															frameClassName="rounded-2xl"
-														/>
-													</button>
-												))}
-											</div>
-										) : !searchLoading ? (
-											<p className="text-muted-foreground text-xs leading-relaxed">
-												{setupHint ??
-													(catalogueTagsActive && !trimmedDraft ? (
-														"Nothing matched all filters — try removing a tag."
-													) : (
-														<>
-															No{" "}
-															{effectiveListingKind === "tv"
-																? "TV shows"
-																: "films"}{" "}
-															found
-															{trimmedDraft ? ` for “${trimmedDraft}”` : ""}.
-														</>
+													{dialogSearchResults.map((hit) => (
+														<button
+															key={`${effectiveListingKind}-${hit.id}`}
+															type="button"
+															className="min-w-0 cursor-pointer rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+															onClick={() => handleCatalogSearchPick(hit.id)}
+														>
+															<MoviePoster
+																movieId={hit.id}
+																title={hit.title}
+																posterUrl={hit.poster_url}
+																size="md"
+																showTitle
+																titleLines={1}
+																linkable={false}
+																listingKind={
+																	effectiveListingKind === "tv" ? "tv" : "movie"
+																}
+																frameClassName="rounded-2xl"
+															/>
+														</button>
 													))}
-											</p>
-										) : null}
-									</div>
-								)}
+												</div>
+											) : !searchLoading ? (
+												<p className="text-muted-foreground text-xs leading-relaxed">
+													{setupHint ??
+														(catalogueTagsActive && !trimmedDraft ? (
+															"Nothing matched all filters — try removing a tag."
+														) : (
+															<>
+																No{" "}
+																{effectiveListingKind === "tv"
+																	? "TV shows"
+																	: "films"}{" "}
+																found
+																{trimmedDraft ? ` for “${trimmedDraft}”` : ""}.
+															</>
+														))}
+												</p>
+											) : null}
+										</div>
+									)
+								) : null}
 							</div>
 						</div>
 					</motion.div>
