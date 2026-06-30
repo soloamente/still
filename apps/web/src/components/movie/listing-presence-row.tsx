@@ -168,6 +168,9 @@ export function ListingPresenceRow({
 
 	const countLabel = occupancyLabel;
 
+	const isAloneWithSelf =
+		snapshot.viewerCount === 0 && snapshot.viewingPatrons.length > 0;
+
 	return (
 		<section
 			className={cn(
@@ -182,9 +185,11 @@ export function ListingPresenceRow({
 				className,
 			)}
 			aria-label={
-				occupancyLabel
-					? `Other patrons viewing this title: ${occupancyLabel}`
-					: "Other patrons viewing this title"
+				isAloneWithSelf
+					? "You are viewing this title"
+					: occupancyLabel
+						? `Other patrons viewing this title: ${occupancyLabel}`
+						: "Other patrons viewing this title"
 			}
 		>
 			<div className={PRESENCE_PILL_CLASS}>

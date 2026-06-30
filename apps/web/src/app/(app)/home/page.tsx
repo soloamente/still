@@ -29,6 +29,7 @@ import {
 	HomeTmdbCatalogueGrid,
 	HomeTmdbLobbyChrome,
 } from "@/components/home/home-tmdb-lobby-chrome";
+import { TmdbLobbySkeleton } from "@/components/home/tmdb-lobby-skeleton";
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
 import { APP_NAME } from "@/lib/app-brand";
 import { authServer } from "@/lib/auth-server";
@@ -117,32 +118,29 @@ type MovieSheetPayload = {
 	hint?: string;
 };
 
-export default async function HomePage({
-	searchParams,
-}: {
-	searchParams: Promise<{
-		sort?: string;
-		browse?: string;
-		venue?: string;
-		run?: string;
-		animeSeason?: string;
-		period?: string;
-		/** Films vs TV vs patron contribution when `sort=ranks`. */
-		rank?: string;
-		/** Legacy — maps to `?rank=` on Ranks. */
-		memberSort?: string;
-		search?: string;
-		genre?: string;
-		monetization?: string;
-	}>;
-}) {
-	const spRaw = await searchParams;
-	const jar = await cookies();
-	/** Bare `/home` — restore chips from cookie so we do not `redirect()` (307) on every visit. */
-	const sp = isBareHomeLobbySearchParams(spRaw)
-		? (parseHomeLobbyHrefCookie(jar.get(HOME_LOBBY_HREF_COOKIE)?.value) ??
-			spRaw)
-		: spRaw;
+type HomeSearchParams = {
+	sort?: string;
+	browse?: string;
+	venue?: string;
+	run?: string;
+	animeSeason?: string;
+	period?: string;
+	/** Films vs TV vs patron contribution when `sort=ranks`. */
+	rank?: string;
+	/** Legacy — maps to `?rank=` on Ranks. */
+	memberSort?: string;
+	search?: string;
+	genre?: string;
+	monetization?: string;
+};
+
+/**
+ * Pure, synchronous derivation of every lobby parameter from the (already
+ * cookie-restored) search params. Extracted so the page shell can render and
+ * flush immediately while the data-fetching body streams in behind a Suspense
+ * boundary — none of this touches the network.
+ */
+function deriveHomeLobbyParams(sp: HomeSearchParams, spRaw: HomeSearchParams) {
 	const browse = parseHomeBrowseSurface(sp.browse);
 	/** Committed ⌘K search — URL is source of truth; use raw params (not cookie restore). */
 	const committedSearchParams = new URLSearchParams();
@@ -174,15 +172,6 @@ export default async function HomePage({
 		: null;
 	/** Retired community **Diary** tab — same feed as **Activity**; canonicalize old links. */
 	const communityDiarySort = (sp.sort ?? "").trim().toLowerCase();
-	if (
-		browse === "community" &&
-		(communityDiarySort === "diary" ||
-			communityDiarySort === "diaries" ||
-			communityDiarySort === "logs" ||
-			communityDiarySort === "log")
-	) {
-		redirect(buildHomeLobbyHref({ browse: "community", sort: "activity" }));
-	}
 	/** Legacy TV `?sort=ongoing|upcoming` → matching `?run=` + Popular. */
 	const sortRaw = sp.sort?.trim().toLowerCase() ?? "";
 	const catalogRunRaw =
@@ -215,40 +204,8 @@ export default async function HomePage({
 		sp.sort,
 		spRaw.memberSort,
 	);
-	/** Canonicalize legacy `?sort=members` → Ranks + `?rank=`. */
-	if (
-		browse === "community" &&
-		(communityDiarySort === "members" || communityDiarySort === "member")
-	) {
-		redirect(
-			buildHomeLobbyHref({
-				browse: "community",
-				sort: "ranks",
-				rankKind: communityRankKind,
-				period: communityPeriod,
-			}),
-		);
-	}
 	/** Retired patron rank slices — map bookmarked URLs to Reviews. */
 	const retiredPatronRank = sp.rank?.trim().toLowerCase();
-	if (
-		browse === "community" &&
-		communityFeed === "ranks" &&
-		(retiredPatronRank === "popular" ||
-			retiredPatronRank === "lists" ||
-			retiredPatronRank === "list" ||
-			retiredPatronRank === "likes" ||
-			retiredPatronRank === "like")
-	) {
-		redirect(
-			buildHomeLobbyHref({
-				browse: "community",
-				sort: "ranks",
-				rankKind: "reviews",
-				period: communityPeriod,
-			}),
-		);
-	}
 	const movieVenue =
 		browse === "movies" ? parseHomeVenue(sp.venue, sort) : null;
 	const tvVenue =
@@ -296,7 +253,177 @@ export default async function HomePage({
 	/** TV **Upcoming** run + In cinemas — first air dates from today (all networks). */
 	const tvLobbyTheatersUpcoming =
 		browse === "tv" && catalogRun === "upcoming" && tvVenue === "theaters";
+
+	return {
+		browse,
+		committedSearchRaw,
+		catalogueSearchActive,
+		catalogueSearchSort,
+		communityDiarySort,
+		catalogRun,
+		animeSeasonActive,
+		sort,
+		communityFeed,
+		communityPeriod,
+		communityRankKind,
+		retiredPatronRank,
+		movieVenue,
+		tvVenue,
+		catalogFilters,
+		catalogReleaseFloorUtc,
+		movieLobbyStreamingCatalog,
+		movieLobbyStreamingUpcoming,
+		movieLobbyTheatersUpcoming,
+		movieLobbyUsesNowPlaying,
+		movieLobbyUsesNowPlayingWithGenre,
+		movieLobbyTheatersLatestDiscover,
+		tvLobbyStreamingUpcoming,
+		tvLobbyTheatersUpcoming,
+	};
+}
+
+type HomeLobbyParams = ReturnType<typeof deriveHomeLobbyParams>;
+
+/** Shell-matching placeholder shown while {@link HomeLobbyBody} streams in. */
+function HomeLobbyShellFallback({
+	browse,
+}: {
+	browse: HomeLobbyParams["browse"];
+}) {
+	return (
+		<>
+			<LobbyStickyChromeFallback />
+			<section
+				className={cn(
+					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
+					"overflow-visible",
+				)}
+			>
+				{browse === "community" ? (
+					<CommunityLobbySkeleton />
+				) : (
+					<TmdbLobbySkeleton />
+				)}
+			</section>
+		</>
+	);
+}
+
+export default async function HomePage({
+	searchParams,
+}: {
+	searchParams: Promise<HomeSearchParams>;
+}) {
+	const spRaw = await searchParams;
+	const jar = await cookies();
+	/** Bare `/home` — restore chips from cookie so we do not `redirect()` (307) on every visit. */
+	const sp = isBareHomeLobbySearchParams(spRaw)
+		? (parseHomeLobbyHrefCookie(jar.get(HOME_LOBBY_HREF_COOKIE)?.value) ??
+			spRaw)
+		: spRaw;
+
+	const params = deriveHomeLobbyParams(sp, spRaw);
+	const {
+		browse,
+		communityDiarySort,
+		communityFeed,
+		communityPeriod,
+		communityRankKind,
+		retiredPatronRank,
+	} = params;
+
+	// Legacy URL canonicalization — run before render so these stay clean 307s
+	// (a redirect mid-stream cannot set the response status cleanly).
+	/** Retired community **Diary** tab — same feed as **Activity**; canonicalize old links. */
+	if (
+		browse === "community" &&
+		(communityDiarySort === "diary" ||
+			communityDiarySort === "diaries" ||
+			communityDiarySort === "logs" ||
+			communityDiarySort === "log")
+	) {
+		redirect(buildHomeLobbyHref({ browse: "community", sort: "activity" }));
+	}
+	/** Canonicalize legacy `?sort=members` → Ranks + `?rank=`. */
+	if (
+		browse === "community" &&
+		(communityDiarySort === "members" || communityDiarySort === "member")
+	) {
+		redirect(
+			buildHomeLobbyHref({
+				browse: "community",
+				sort: "ranks",
+				rankKind: communityRankKind,
+				period: communityPeriod,
+			}),
+		);
+	}
+	/** Retired patron rank slices — map bookmarked URLs to Reviews. */
+	if (
+		browse === "community" &&
+		communityFeed === "ranks" &&
+		(retiredPatronRank === "popular" ||
+			retiredPatronRank === "lists" ||
+			retiredPatronRank === "list" ||
+			retiredPatronRank === "likes" ||
+			retiredPatronRank === "like")
+	) {
+		redirect(
+			buildHomeLobbyHref({
+				browse: "community",
+				sort: "ranks",
+				rankKind: "reviews",
+				period: communityPeriod,
+			}),
+		);
+	}
+
+	return (
+		// Fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve) — do not use `min-h-svh` here or the card ignores shell padding above the nav inset.
+		<div className="flex flex-1 flex-col overflow-visible bg-background">
+			<HomeLobbyNavigationRoot>
+				<HomeLobbySessionRestore />
+				{/*
+					Data-heavy body streams behind Suspense so the shell + skeleton
+					flush on the first byte instead of blocking on the auth, profile,
+					and catalogue round-trips (remote DB ⇒ this matters a lot).
+				*/}
+				<Suspense fallback={<HomeLobbyShellFallback browse={browse} />}>
+					<HomeLobbyBody params={params} />
+				</Suspense>
+			</HomeLobbyNavigationRoot>
+		</div>
+	);
+}
+
+async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
+	const {
+		browse,
+		committedSearchRaw,
+		catalogueSearchActive,
+		catalogueSearchSort,
+		catalogRun,
+		animeSeasonActive,
+		sort,
+		communityFeed,
+		communityPeriod,
+		communityRankKind,
+		movieVenue,
+		tvVenue,
+		catalogFilters,
+		catalogReleaseFloorUtc,
+		movieLobbyStreamingCatalog,
+		movieLobbyStreamingUpcoming,
+		movieLobbyTheatersUpcoming,
+		movieLobbyUsesNowPlaying,
+		movieLobbyUsesNowPlayingWithGenre,
+		movieLobbyTheatersLatestDiscover,
+		tvLobbyStreamingUpcoming,
+		tvLobbyTheatersUpcoming,
+	} = params;
+
 	/** Forward session cookies so RSC `fetch` hits the API as the signed-in user (mirrors other catalogue pages). */
+	const jar = await cookies();
 	const cookieHeader = jar
 		.getAll()
 		.map((c) => `${c.name}=${c.value}`)
@@ -691,228 +818,224 @@ export default async function HomePage({
 									: "latest";
 
 	return (
-		// Fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve) — do not use `min-h-svh` here or the card ignores shell padding above the nav inset.
-		<div className="flex flex-1 flex-col overflow-visible bg-background">
-			<HomeLobbyNavigationRoot>
-				<HomeLobbySessionRestore />
-				{/*
+		<>
+			{/*
 				Middle column `minmax(20rem, 56rem)` gives the search a real width band;
 				`1fr auto 1fr` + `auto` alone shrink-wraps to input min-content so width
 				never grew past the old `48rem` cap even when `max-w-*` increased.
 			*/}
-				<Suspense fallback={<LobbyStickyChromeFallback />}>
-					<HomeStickyChrome user={stickyUser} />
-				</Suspense>
+			<Suspense fallback={<LobbyStickyChromeFallback />}>
+				<HomeStickyChrome user={stickyUser} />
+			</Suspense>
 
-				<section
-					className={cn(
-						/* `flex-1` + `min-h-0` lets this card fill the viewport under the sticky chrome so community can center a true empty state. */
-						HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-						/* Community feeds use side actions + poster thumbs — avoid clipping with `overflow-hidden`. */
-						"overflow-visible",
-					)}
-				>
-					{/*
-						`useSearchParams` — keep inside Suspense so the home RSC shell can still
-						stream; the bar is tiny so a short fallback is acceptable.
-					*/}
-					<HomeLobbyBodyGate serverBrowse={browse}>
-						{browse === "community" ? (
-							<Suspense fallback={<CommunityLobbySkeleton />}>
-								<HomeCommunityRscPayload
-									feed={communityFeed}
-									period={communityPeriod}
-									rankKind={communityRankKind}
-								>
-									<HomeLobbyFilterRow
-										leadingScrollKey={`community-${communityFeed}-${communityRankKind}`}
-										leading={
-											<Suspense fallback={<LobbyCatalogChipFallback />}>
-												<HomeCatalogSortChips catalogBrowse="community" />
-											</Suspense>
-										}
-										center={
-											communityFeed === "ranks" ? (
-												<Suspense fallback={null}>
-													<HomeCommunityRankKindToolbar />
-												</Suspense>
-											) : undefined
-										}
-										trailing={
-											<Suspense fallback={<LobbyVenueChipFallback />}>
-												<HomeCommunityTrailingToolbar />
-											</Suspense>
-										}
-									/>
-									<HomeCommunityPatronBody
-										monochromePeersOnHover={monochromePeersOnHover}
-										signedIn={Boolean(session)}
-										viewerUserId={session?.user?.id ?? null}
-									/>
-								</HomeCommunityRscPayload>
-							</Suspense>
-						) : (
-							<HomeTmdbLobbyChrome>
+			<section
+				className={cn(
+					/* `flex-1` + `min-h-0` lets this card fill the viewport under the sticky chrome so community can center a true empty state. */
+					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
+					/* Community feeds use side actions + poster thumbs — avoid clipping with `overflow-hidden`. */
+					"overflow-visible",
+				)}
+			>
+				{/*
+					`useSearchParams` — keep inside Suspense so the home RSC shell can still
+					stream; the bar is tiny so a short fallback is acceptable.
+				*/}
+				<HomeLobbyBodyGate serverBrowse={browse}>
+					{browse === "community" ? (
+						<Suspense fallback={<CommunityLobbySkeleton />}>
+							<HomeCommunityRscPayload
+								feed={communityFeed}
+								period={communityPeriod}
+								rankKind={communityRankKind}
+							>
 								<HomeLobbyFilterRow
-									leadingScrollKey={`${browse}-${sort}-${catalogRun ?? ""}`}
+									leadingScrollKey={`community-${communityFeed}-${communityRankKind}`}
 									leading={
 										<Suspense fallback={<LobbyCatalogChipFallback />}>
-											<HomeCatalogSortChips catalogBrowse={browse} />
+											<HomeCatalogSortChips catalogBrowse="community" />
 										</Suspense>
+									}
+									center={
+										communityFeed === "ranks" ? (
+											<Suspense fallback={null}>
+												<HomeCommunityRankKindToolbar />
+											</Suspense>
+										) : undefined
 									}
 									trailing={
 										<Suspense fallback={<LobbyVenueChipFallback />}>
-											<HomeCatalogViewModeToolbar />
+											<HomeCommunityTrailingToolbar />
 										</Suspense>
 									}
 								/>
+								<HomeCommunityPatronBody
+									monochromePeersOnHover={monochromePeersOnHover}
+									signedIn={Boolean(session)}
+									viewerUserId={session?.user?.id ?? null}
+								/>
+							</HomeCommunityRscPayload>
+						</Suspense>
+					) : (
+						<HomeTmdbLobbyChrome>
+							<HomeLobbyFilterRow
+								leadingScrollKey={`${browse}-${sort}-${catalogRun ?? ""}`}
+								leading={
+									<Suspense fallback={<LobbyCatalogChipFallback />}>
+										<HomeCatalogSortChips catalogBrowse={browse} />
+									</Suspense>
+								}
+								trailing={
+									<Suspense fallback={<LobbyVenueChipFallback />}>
+										<HomeCatalogViewModeToolbar />
+									</Suspense>
+								}
+							/>
 
-								{!catalogueSearchActive &&
-								session &&
-								browse === "tv" &&
-								continueWatching.length > 0 ? (
-									<HomeContinueWatchingRail items={continueWatching} />
-								) : null}
+							{!catalogueSearchActive &&
+							session &&
+							browse === "tv" &&
+							continueWatching.length > 0 ? (
+								<HomeContinueWatchingRail items={continueWatching} />
+							) : null}
 
-								{!catalogueSearchActive && session && browse === "movies" ? (
-									<HomeTasteMatchedRail initial={tasteMatchedRail} />
-								) : null}
+							{!catalogueSearchActive && session && browse === "movies" ? (
+								<HomeTasteMatchedRail initial={tasteMatchedRail} />
+							) : null}
 
-								{catalogueSearchActive && committedSearchRaw ? (
-									<HomeCatalogueSearchInfinite
-										browse={browse === "tv" ? "tv" : "movies"}
+							{catalogueSearchActive && committedSearchRaw ? (
+								<HomeCatalogueSearchInfinite
+									browse={browse === "tv" ? "tv" : "movies"}
+									signedIn={Boolean(session)}
+									monochromePeersOnHover={monochromePeersOnHover}
+									searchRaw={committedSearchRaw}
+									searchSort={catalogueSearchSort ?? "popular"}
+									searchWaveKey={
+										committedSearchPayload?.searchWaveKey ??
+										`${browse}:${catalogueSearchSort ?? "popular"}:${committedSearchRaw}`
+									}
+									seedMovies={committedSearchPayload?.seeds ?? []}
+									totalPages={committedSearchPayload?.totalPages ?? 0}
+									initialError={committedSearchPayload?.error ?? false}
+								/>
+							) : blockedReason ? (
+								<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-12">
+									<p
+										className="max-w-md text-center text-muted-foreground text-sm"
+										role="status"
+									>
+										{blockedReason}
+									</p>
+								</div>
+							) : (
+								<HomeTmdbCatalogueGrid>
+									<PopularMoviesInfinite
+										key={lobbyCatalogueResetKey}
+										catalogueRadialSurface="home"
 										signedIn={Boolean(session)}
-										monochromePeersOnHover={monochromePeersOnHover}
-										searchRaw={committedSearchRaw}
-										searchSort={catalogueSearchSort ?? "popular"}
-										searchWaveKey={
-											committedSearchPayload?.searchWaveKey ??
-											`${browse}:${catalogueSearchSort ?? "popular"}:${committedSearchRaw}`
+										blockedReason={blockedReason}
+										catalogKind={catalogKindForInfinite}
+										catalogLabel={catalogLabelForLobby}
+										catalogMedia={browse === "tv" ? "tv" : "movie"}
+										discoverWatchRegion={discoverWatchRegionForInfinite}
+										discoverAirDateGte={discoverAirDateGteForInfinite}
+										discoverGenreId={discoverGenreIdForInfinite}
+										discoverMonetization={discoverMonetizationForInfinite}
+										discoverReleaseGte={discoverReleaseGteForInfinite}
+										discoverReleaseRegion={discoverReleaseRegionForInfinite}
+										discoverSortBy={discoverSortForLobby}
+										discoverTvStatus={discoverTvStatusForInfinite}
+										discoverVenue={discoverVenueForInfinite}
+										upcomingReleaseRegion={
+											movieLobbyTheatersUpcoming
+												? (patronCatalogTheatricalRegion ?? null)
+												: null
 										}
-										seedMovies={committedSearchPayload?.seeds ?? []}
-										totalPages={committedSearchPayload?.totalPages ?? 0}
-										initialError={committedSearchPayload?.error ?? false}
+										gridClassName={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}
+										posterFrameClassName={
+											HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME
+										}
+										posterHoverEffect="elevation"
+										posterLinkClassName={
+											HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME
+										}
+										monochromePeersOnHover={monochromePeersOnHover}
+										seedMovies={seedMovies}
+										seedPage={SEED_PAGE}
+										showTitle={false}
+										staggerPosterEntrance
+										totalPages={totalPages}
+										totalResults={totalResults}
 									/>
-								) : blockedReason ? (
-									<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-12">
-										<p
-											className="max-w-md text-center text-muted-foreground text-sm"
-											role="status"
-										>
-											{blockedReason}
+									{browse === "movies" &&
+									(movieLobbyUsesNowPlaying ||
+										movieLobbyTheatersLatestDiscover ||
+										movieLobbyTheatersUpcoming) ? (
+										<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
+											In cinemas — from TMDb’s theatrical lists. Many titles
+											also stream at home the same week; use Streaming for
+											subscription availability in your region.
 										</p>
-									</div>
-								) : (
-									<HomeTmdbCatalogueGrid>
-										<PopularMoviesInfinite
-											key={lobbyCatalogueResetKey}
-											catalogueRadialSurface="home"
-											signedIn={Boolean(session)}
-											blockedReason={blockedReason}
-											catalogKind={catalogKindForInfinite}
-											catalogLabel={catalogLabelForLobby}
-											catalogMedia={browse === "tv" ? "tv" : "movie"}
-											discoverWatchRegion={discoverWatchRegionForInfinite}
-											discoverAirDateGte={discoverAirDateGteForInfinite}
-											discoverGenreId={discoverGenreIdForInfinite}
-											discoverMonetization={discoverMonetizationForInfinite}
-											discoverReleaseGte={discoverReleaseGteForInfinite}
-											discoverReleaseRegion={discoverReleaseRegionForInfinite}
-											discoverSortBy={discoverSortForLobby}
-											discoverTvStatus={discoverTvStatusForInfinite}
-											discoverVenue={discoverVenueForInfinite}
-											upcomingReleaseRegion={
-												movieLobbyTheatersUpcoming
-													? (patronCatalogTheatricalRegion ?? null)
-													: null
-											}
-											gridClassName={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}
-											posterFrameClassName={
-												HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME
-											}
-											posterHoverEffect="elevation"
-											posterLinkClassName={
-												HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME
-											}
-											monochromePeersOnHover={monochromePeersOnHover}
-											seedMovies={seedMovies}
-											seedPage={SEED_PAGE}
-											showTitle={false}
-											staggerPosterEntrance
-											totalPages={totalPages}
-											totalResults={totalResults}
-										/>
-										{browse === "movies" &&
-										(movieLobbyUsesNowPlaying ||
-											movieLobbyTheatersLatestDiscover ||
-											movieLobbyTheatersUpcoming) ? (
-											<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
-												In cinemas — from TMDb’s theatrical lists. Many titles
-												also stream at home the same week; use Streaming for
-												subscription availability in your region.
-											</p>
-										) : null}
-										{browse === "movies" &&
-										(movieLobbyStreamingCatalog ||
-											movieLobbyStreamingUpcoming) ? (
-											<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
-												At home — titles TMDb lists with subscription streaming
-												in the catalogue region. You can set your streaming
-												region (or all regions) in{" "}
-												<Link
-													href="/me/settings"
-													className="underline underline-offset-2 hover:text-foreground"
-												>
-													Settings
-												</Link>
-												.
-											</p>
-										) : null}
-										{browse === "tv" &&
-										catalogRun === "upcoming" &&
-										tvLobbyStreamingUpcoming ? (
-											<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
-												At home — shows TMDb lists with subscription streaming
-												in the catalogue region from today’s first-air dates
-												onward. Set your streaming region (or all regions) in{" "}
-												<Link
-													href="/me/settings"
-													className="underline underline-offset-2 hover:text-foreground"
-												>
-													Settings
-												</Link>
-												.
-											</p>
-										) : null}
-										{browse === "tv" && catalogRun === "ongoing" ? (
-											<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
-												Ongoing — TMDb Returning Series (still in production or
-												awaiting new episodes). Ended shows sit under Completed
-												only. Open{" "}
-												<Link
-													href={buildHomeLobbyHref({
-														browse: "tv",
-														sort: "popular",
-														run: "ongoing",
-													})}
-													className="underline underline-offset-2 hover:text-foreground"
-												>
-													the full returning catalogue
-												</Link>{" "}
-												to scroll beyond this grid.
-											</p>
-										) : null}
-									</HomeTmdbCatalogueGrid>
-								)}
-							</HomeTmdbLobbyChrome>
-						)}
-					</HomeLobbyBodyGate>
-				</section>
-				{/* First-run streaming region modal; closes client-side after prefs save. */}
-				{session ? (
-					<CatalogWatchRegionPrompt open={needsCatalogWatchRegionPrompt} />
-				) : null}
-			</HomeLobbyNavigationRoot>
-		</div>
+									) : null}
+									{browse === "movies" &&
+									(movieLobbyStreamingCatalog ||
+										movieLobbyStreamingUpcoming) ? (
+										<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
+											At home — titles TMDb lists with subscription streaming in
+											the catalogue region. You can set your streaming region
+											(or all regions) in{" "}
+											<Link
+												href="/me/settings"
+												className="underline underline-offset-2 hover:text-foreground"
+											>
+												Settings
+											</Link>
+											.
+										</p>
+									) : null}
+									{browse === "tv" &&
+									catalogRun === "upcoming" &&
+									tvLobbyStreamingUpcoming ? (
+										<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
+											At home — shows TMDb lists with subscription streaming in
+											the catalogue region from today’s first-air dates onward.
+											Set your streaming region (or all regions) in{" "}
+											<Link
+												href="/me/settings"
+												className="underline underline-offset-2 hover:text-foreground"
+											>
+												Settings
+											</Link>
+											.
+										</p>
+									) : null}
+									{browse === "tv" && catalogRun === "ongoing" ? (
+										<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
+											Ongoing — TMDb Returning Series (still in production or
+											awaiting new episodes). Ended shows sit under Completed
+											only. Open{" "}
+											<Link
+												href={buildHomeLobbyHref({
+													browse: "tv",
+													sort: "popular",
+													run: "ongoing",
+												})}
+												className="underline underline-offset-2 hover:text-foreground"
+											>
+												the full returning catalogue
+											</Link>{" "}
+											to scroll beyond this grid.
+										</p>
+									) : null}
+								</HomeTmdbCatalogueGrid>
+							)}
+						</HomeTmdbLobbyChrome>
+					)}
+				</HomeLobbyBodyGate>
+			</section>
+			{/* First-run streaming region modal; closes client-side after prefs save. */}
+			{session ? (
+				<CatalogWatchRegionPrompt open={needsCatalogWatchRegionPrompt} />
+			) : null}
+		</>
 	);
 }

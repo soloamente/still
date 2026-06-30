@@ -14,13 +14,17 @@ export const LISTING_PRESENCE_COMPACT_VIEWING_LABEL = "other viewing";
 export function formatPatronPresenceDotLabel(
 	handle: string,
 	state: "active" | "away",
+	opts?: { perspective?: "self" | "other" },
 ): string {
+	if (opts?.perspective === "self") {
+		return state === "active" ? "You are online now" : "You are away";
+	}
 	return state === "active" ? `@${handle} online now` : `@${handle} away`;
 }
 
 /**
- * Visible occupancy line for title detail presence row (excludes self).
- * Returns empty string when alone — caller hides the row.
+ * Visible occupancy line for title detail presence row (others only, excludes self).
+ * Returns empty string when no other patrons are viewing.
  */
 export function formatListingPresenceViewingLine(viewerCount: number): string {
 	if (viewerCount <= 0) return "";
@@ -71,7 +75,8 @@ export function resolveListingPresenceRowDisplay(
 ): ListingPresenceRowDisplay | null {
 	const { viewerCount, viewingPatrons } = snapshot;
 
-	if (viewerCount <= 0) return null;
+	// Alone-with-self: viewerCount is 0 but server prepends the viewer to viewingPatrons.
+	if (viewerCount <= 0 && viewingPatrons.length === 0) return null;
 
 	const visibleViewingPatrons = viewingPatrons.slice(
 		0,

@@ -45,6 +45,7 @@ type PatronOnlineContextValue = {
 	getPresenceState: (
 		handle: string | null | undefined,
 	) => "active" | "away" | null;
+	viewerHandle: string | null;
 };
 
 const PatronOnlineContext = createContext<PatronOnlineContextValue | null>(
@@ -64,7 +65,7 @@ export function PatronOnlineProvider({
 	viewerHandle,
 }: {
 	children: ReactNode;
-	/** Hide the viewer's own online badge on their portrait surfaces. */
+	/** Normalized handle for self presence labels and batch registration. */
 	viewerHandle?: string | null;
 }) {
 	const active = realtimeClientEnabled();
@@ -149,10 +150,10 @@ export function PatronOnlineProvider({
 		(rawHandle: string | null | undefined) => {
 			if (!rawHandle) return null;
 			const handle = normalizePatronOnlineHandle(rawHandle);
-			if (!handle || handle === viewerHandleKey) return null;
+			if (!handle) return null;
 			return presenceByHandle.get(handle) ?? null;
 		},
-		[presenceByHandle, viewerHandleKey],
+		[presenceByHandle],
 	);
 
 	const isOnline = useCallback(
@@ -217,6 +218,12 @@ export function PatronOnlineProvider({
 		return () => window.removeEventListener("pagehide", onPageHide);
 	}, [active, leavePresence]);
 
+	// Keep the viewer handle in batch lookups so self dot uses server mirror state.
+	useEffect(() => {
+		if (!viewerHandleKey) return;
+		return registerHandle(viewerHandleKey);
+	}, [registerHandle, viewerHandleKey]);
+
 	// Batch-resolve online handles for every portrait that registered interest.
 	useEffect(() => {
 		if (!active) {
@@ -274,8 +281,9 @@ export function PatronOnlineProvider({
 			registerHandle,
 			isOnline,
 			getPresenceState,
+			viewerHandle: viewerHandleKey,
 		}),
-		[registerHandle, isOnline, getPresenceState],
+		[registerHandle, isOnline, getPresenceState, viewerHandleKey],
 	);
 
 	return (
@@ -315,4 +323,9 @@ export function usePatronPresenceState(
 
 	if (!context || !enabled || !handle?.trim()) return null;
 	return context.getPresenceState(handle);
+}
+
+/** Normalized signed-in viewer handle for self presence labels. */
+export function useViewerHandleForPresence(): string | null {
+	return useContext(PatronOnlineContext)?.viewerHandle ?? null;
 }

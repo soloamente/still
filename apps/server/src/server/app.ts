@@ -63,10 +63,24 @@ export const app = new Elysia({ aot: false })
 	// bypassed: `worker.ts` routes `/api/auth/*` to `auth.handler` before Elysia,
 	// so the body stream isn't consumed. This handles the Bun local-dev entry.
 	.all("/api/auth/*", async (ctx) => {
-		if (["POST", "GET"].includes(ctx.request.method)) {
-			return auth.handler(ctx.request);
+		const { request } = ctx;
+		if (request.method !== "POST" && request.method !== "GET") {
+			return ctx.status(405);
 		}
-		return ctx.status(405);
+		// `aot: false` (required for Workers) puts Elysia in dynamic mode, which
+		// eagerly drains the request body into `ctx.body` before this handler
+		// runs. Request bodies are single-use, so passing the original `request`
+		// to Better Auth throws "Body already used". Rebuild the Request from the
+		// parsed body so Better Auth can read it itself.
+		const init: RequestInit = {
+			method: request.method,
+			headers: request.headers,
+		};
+		if (request.method === "POST" && ctx.body != null) {
+			init.body =
+				typeof ctx.body === "string" ? ctx.body : JSON.stringify(ctx.body);
+		}
+		return auth.handler(new Request(request.url, init));
 	})
 	// Liveness probe.
 	.get("/", () => ({ ok: true, name: "still-server", version: "0.1.0" }))

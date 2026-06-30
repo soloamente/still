@@ -10,6 +10,7 @@ import {
 	type ListingPresenceRedis,
 	leaveListingPresence,
 	pickListingPresenceViewingPatrons,
+	prependViewerSelfToViewingPatrons,
 	presenceRedisKey,
 	pruneStaleListingPresence,
 	touchListingPresence,
@@ -331,8 +332,53 @@ describe("listing-presence", () => {
 			now + 2,
 		);
 
-		// viewerCount excludes self; viewingPatrons may be empty without DB in unit tests.
+		// viewerCount excludes self; viewingPatrons may include self when DB returns viewer row.
 		expect(snapshot.viewerCount).toBe(1);
 		expect(Array.isArray(snapshot.viewingPatrons)).toBe(true);
+	});
+});
+
+describe("prependViewerSelfToViewingPatrons", () => {
+	const selfPatron = {
+		userId: "usr_viewer",
+		handle: "viewer",
+		displayName: "Viewer",
+		image: null,
+		avatarIsAnimated: false,
+		diaryMetalTier: null,
+		presenceState: "active" as const,
+	};
+
+	const otherPatron = {
+		userId: "usr_friend",
+		handle: "friend",
+		displayName: "Friend",
+		image: null,
+		avatarIsAnimated: false,
+		diaryMetalTier: null,
+		presenceState: "away" as const,
+	};
+
+	test("prepends self before others", () => {
+		expect(
+			prependViewerSelfToViewingPatrons(selfPatron, [otherPatron], 8),
+		).toEqual([selfPatron, otherPatron]);
+	});
+
+	test("returns others only when self is null", () => {
+		expect(prependViewerSelfToViewingPatrons(null, [otherPatron], 8)).toEqual([
+			otherPatron,
+		]);
+	});
+
+	test("respects limit including self", () => {
+		const patrons = Array.from({ length: 8 }, (_, i) => ({
+			...otherPatron,
+			userId: `usr_${i}`,
+			handle: `friend_${i}`,
+		}));
+		const result = prependViewerSelfToViewingPatrons(selfPatron, patrons, 8);
+		expect(result).toHaveLength(8);
+		expect(result[0]).toEqual(selfPatron);
 	});
 });

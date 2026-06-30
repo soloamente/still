@@ -19,6 +19,20 @@ describe("formatPatronPresenceDotLabel", () => {
 	});
 });
 
+describe("formatPatronPresenceDotLabel self perspective", () => {
+	test("active self label", () => {
+		expect(
+			formatPatronPresenceDotLabel("me", "active", { perspective: "self" }),
+		).toBe("You are online now");
+	});
+
+	test("away self label", () => {
+		expect(
+			formatPatronPresenceDotLabel("me", "away", { perspective: "self" }),
+		).toBe("You are away");
+	});
+});
+
 describe("formatListingPresenceViewingLine", () => {
 	test("returns empty when alone", () => {
 		expect(formatListingPresenceViewingLine(0)).toBe("");
@@ -34,10 +48,34 @@ describe("formatListingPresenceViewingLine", () => {
 });
 
 describe("resolveListingPresenceRowDisplay", () => {
-	test("returns null when viewer is alone on the title", () => {
+	test("returns null when no patrons are in the room", () => {
 		expect(
 			resolveListingPresenceRowDisplay({ viewerCount: 0, viewingPatrons: [] }),
 		).toBeNull();
+	});
+
+	test("returns display when only self is viewing", () => {
+		const selfPatron = {
+			userId: "usr_me",
+			handle: "me",
+			displayName: "Me",
+			image: null,
+			avatarIsAnimated: false,
+			diaryMetalTier: null,
+			presenceState: "active" as const,
+		};
+
+		expect(
+			resolveListingPresenceRowDisplay({
+				viewerCount: 0,
+				viewingPatrons: [selfPatron],
+			}),
+		).toEqual({
+			visibleViewingPatrons: [selfPatron],
+			viewingMoreCount: 0,
+			unidentifiedCount: 0,
+			countLine: "",
+		});
 	});
 
 	test("anonymous count when no public viewers are present", () => {

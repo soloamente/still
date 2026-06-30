@@ -11,7 +11,10 @@ import {
 	PatronPortraitAvatar,
 	type PatronPortraitAvatarProps,
 } from "@/components/profile/patron-portrait-avatar";
-import { usePatronPresenceState } from "@/components/realtime/patron-online-provider";
+import {
+	usePatronPresenceState,
+	useViewerHandleForPresence,
+} from "@/components/realtime/patron-online-provider";
 import {
 	DIARY_METAL_BORDER_BEAM_STRENGTH,
 	type DiaryMetalTier,
@@ -19,6 +22,7 @@ import {
 	isCircularPatronPortraitClass,
 } from "@/lib/diary-metal-tier";
 import { formatPatronPresenceDotLabel } from "@/lib/listing-presence-copy";
+import { normalizePatronOnlineHandle } from "@/lib/patron-online-presence";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 export type PatronPortraitWithMetalTierProps = PatronPortraitAvatarProps & {
@@ -48,6 +52,7 @@ export function PatronPortraitWithMetalTier({
 	...avatarProps
 }: PatronPortraitWithMetalTierProps) {
 	const reducedMotion = usePrefersReducedMotion();
+	const viewerHandle = useViewerHandleForPresence();
 	const circularPortrait = isCircularPatronPortraitClass(className);
 	const fillsParent = Boolean(className?.includes("size-full"));
 	const useGlobalPresence = showOnlineStatus && presenceStateProp === undefined;
@@ -62,9 +67,17 @@ export function PatronPortraitWithMetalTier({
 			? presenceStateProp
 			: globalPresenceState;
 
+	const normalizedHandle = handle?.trim() ?? "";
+	const isViewerSelf =
+		normalizedHandle.length > 0 &&
+		Boolean(viewerHandle) &&
+		normalizePatronOnlineHandle(normalizedHandle) === viewerHandle;
+
 	const dotLabel =
 		resolvedPresenceState && handle
-			? formatPatronPresenceDotLabel(handle, resolvedPresenceState)
+			? formatPatronPresenceDotLabel(handle, resolvedPresenceState, {
+					perspective: isViewerSelf ? "self" : "other",
+				})
 			: "";
 
 	const innerPortraitClassName = cn(

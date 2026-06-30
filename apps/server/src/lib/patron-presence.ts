@@ -70,6 +70,65 @@ export function pickVisiblePresenceForViewer(
 	return presence;
 }
 
+/** Append the viewer's own online row when they requested their handle and are active. */
+export function appendViewerSelfPresence(input: {
+	viewerId: string;
+	viewerHandle: string | null | undefined;
+	requestedHandles: readonly string[];
+	activeUserIds: ReadonlySet<string>;
+	activityByUserId: ReadonlyMap<string, PatronActivityState>;
+	presence: VisiblePatronPresence[];
+}): VisiblePatronPresence[] {
+	const handle = input.viewerHandle?.trim().toLowerCase();
+	if (!handle) return input.presence;
+	if (!input.requestedHandles.includes(handle)) return input.presence;
+	if (!input.activeUserIds.has(input.viewerId)) return input.presence;
+	if (input.presence.some((row) => row.handle === handle)) {
+		return input.presence;
+	}
+	return [
+		...input.presence,
+		{
+			handle,
+			state: input.activityByUserId.get(input.viewerId) ?? "active",
+		},
+	];
+}
+
+/** Resolve viewer handle for self presence — not gated by isPrivate. */
+async function fetchViewerHandleByUserId(
+	viewerId: string,
+): Promise<string | null> {
+	const rows = await db
+		.select({ handle: profile.handle })
+		.from(profile)
+		.where(and(eq(profile.userId, viewerId), isNotNull(profile.handle)))
+		.limit(1);
+	return rows[0]?.handle?.trim().toLowerCase() ?? null;
+}
+
+async function resolveViewerSelfPresenceAppend(input: {
+	viewerId: string;
+	requestedHandles: readonly string[];
+	activeUserIds: ReadonlySet<string>;
+	activityByUserId: ReadonlyMap<string, PatronActivityState>;
+	presence: VisiblePatronPresence[];
+	viewerHandleFromRows: string | null | undefined;
+}): Promise<VisiblePatronPresence[]> {
+	const viewerHandle =
+		input.viewerHandleFromRows?.trim().toLowerCase() ??
+		(await fetchViewerHandleByUserId(input.viewerId));
+
+	return appendViewerSelfPresence({
+		viewerId: input.viewerId,
+		viewerHandle,
+		requestedHandles: input.requestedHandles,
+		activeUserIds: input.activeUserIds,
+		activityByUserId: input.activityByUserId,
+		presence: input.presence,
+	});
+}
+
 /**
  * Handles the viewer may see as online now — respects presence visibility prefs
  * and excludes the viewer's own handle.
@@ -160,19 +219,28 @@ export async function resolveVisiblePresenceForViewer(
 	const candidateIds = rows
 		.map((row) => row.userId)
 		.filter((id) => activeUserIds.has(id));
-	if (candidateIds.length === 0) return [];
 
 	const mutualAll = await fetchMutualFollowingIds(viewerId);
 	const mutualIds = new Set(
 		candidateIds.filter((id) => mutualAll.includes(id)),
 	);
 
+	const activityUserIds = [
+		...new Set([
+			...candidateIds,
+			...(activeUserIds.has(viewerId) ? [viewerId] : []),
+		]),
+	];
+
 	const activityByUserId =
-		typeof redis.hget === "function"
-			? await readActivityStatesForUserIds({ hget: redis.hget }, candidateIds)
+		typeof redis.hget === "function" && activityUserIds.length > 0
+			? await readActivityStatesForUserIds(
+					{ hget: redis.hget },
+					activityUserIds,
+				)
 			: new Map<string, PatronActivityState>();
 
-	return pickVisiblePresenceForViewer(
+	const presence = pickVisiblePresenceForViewer(
 		viewerId,
 		rows.map((row) => ({
 			...row,
@@ -181,6 +249,18 @@ export async function resolveVisiblePresenceForViewer(
 		activeUserIds,
 		activityByUserId,
 	);
+
+	const viewerHandleFromRows =
+		rows.find((row) => row.userId === viewerId)?.handle ?? null;
+
+	return resolveViewerSelfPresenceAppend({
+		viewerId,
+		requestedHandles: handles,
+		activeUserIds,
+		activityByUserId,
+		presence,
+		viewerHandleFromRows,
+	});
 }
 
 /**
@@ -218,14 +298,13 @@ export async function resolveVisiblePresenceFromOccupancy(
 	const candidateIds = rows
 		.map((row) => row.userId)
 		.filter((id) => activeUserIds.has(id));
-	if (candidateIds.length === 0) return [];
 
 	const mutualAll = await fetchMutualFollowingIds(viewerId);
 	const mutualIds = new Set(
 		candidateIds.filter((id) => mutualAll.includes(id)),
 	);
 
-	return pickVisiblePresenceForViewer(
+	const presence = pickVisiblePresenceForViewer(
 		viewerId,
 		rows.map((row) => ({
 			...row,
@@ -234,6 +313,18 @@ export async function resolveVisiblePresenceFromOccupancy(
 		activeUserIds,
 		activityByUserId,
 	);
+
+	const viewerHandleFromRows =
+		rows.find((row) => row.userId === viewerId)?.handle ?? null;
+
+	return resolveViewerSelfPresenceAppend({
+		viewerId,
+		requestedHandles: handles,
+		activeUserIds,
+		activityByUserId,
+		presence,
+		viewerHandleFromRows,
+	});
 }
 
 /**

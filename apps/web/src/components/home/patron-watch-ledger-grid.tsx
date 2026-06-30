@@ -68,12 +68,15 @@ export function PatronWatchLedgerGrid({
 			{Array.from({ length: hiddenCount }).map((_, index) => (
 				// biome-ignore lint/suspicious/noArrayIndexKey: anonymous placeholder tiles — no identity, no state, never reordered
 				<div key={`private-${index}`} className="min-w-0 text-center">
-					<div
-						className="relative flex aspect-2/3 items-center justify-center rounded-2xl bg-muted/40"
-						role="img"
-						aria-label="Private title"
-					>
-						<Lock className="size-5 text-muted-foreground/70" aria-hidden />
+					{/* bg-background reads as a tile on the drawer's bg-card surface (muted ≈ card on Calm). */}
+					<div className="relative flex aspect-2/3 flex-col items-center justify-center gap-1.5 rounded-2xl bg-background px-2">
+						<Lock
+							className="size-5 shrink-0 text-muted-foreground/70"
+							aria-hidden
+						/>
+						<p className="text-balance text-center text-[10px] text-muted-foreground leading-snug">
+							Private title
+						</p>
 					</div>
 				</div>
 			))}

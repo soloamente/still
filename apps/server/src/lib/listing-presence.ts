@@ -235,6 +235,82 @@ export function pickListingPresenceViewingPatrons(
 	return patrons;
 }
 
+/** Prepend viewer to visible patrons; self counts toward limit. */
+export function prependViewerSelfToViewingPatrons(
+	viewerSelf: ListingPresenceViewingPatron | null,
+	others: ListingPresenceViewingPatron[],
+	limit: number = LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
+): ListingPresenceViewingPatron[] {
+	if (!viewerSelf) return others.slice(0, limit);
+	return [viewerSelf, ...others].slice(0, limit);
+}
+
+/** Viewer row for listing presence — not gated by isPrivate or presenceVisibility. */
+export async function fetchViewerSelfPatronInRoom(
+	viewerId: string,
+	activeUserIds: string[],
+	redis: ListingPresenceRedis | null = null,
+	activityOverride?: ReadonlyMap<string, PatronActivityState>,
+): Promise<ListingPresenceViewingPatron | null> {
+	if (!activeUserIds.includes(viewerId)) return null;
+
+	const rows = await db
+		.select({
+			userId: profile.userId,
+			handle: profile.handle,
+			displayName: profile.displayName,
+			name: user.name,
+			image: user.image,
+			preferences: profile.preferences,
+		})
+		.from(profile)
+		.innerJoin(user, eq(profile.userId, user.id))
+		.where(and(eq(profile.userId, viewerId), isNotNull(profile.handle)))
+		.limit(1);
+
+	const row = rows[0];
+	const handle = row?.handle?.trim();
+	if (!row || !handle) return null;
+
+	const logCounts = await fetchDiaryLogCountsForUserIds([viewerId]);
+	const activityByUserId =
+		activityOverride ??
+		(redis && typeof redis.hget === "function"
+			? await readActivityStatesForUserIds({ hget: redis.hget }, [viewerId])
+			: new Map<string, PatronActivityState>());
+
+	return {
+		userId: row.userId,
+		handle,
+		displayName: row.displayName?.trim() || row.name?.trim() || handle,
+		image: row.image,
+		avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
+		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(viewerId) ?? 0),
+		presenceState: activityByUserId.get(viewerId) ?? "active",
+	};
+}
+
+async function composeListingPresenceViewingPatrons(
+	viewerId: string,
+	activeUserIds: string[],
+	redis: ListingPresenceRedis | null,
+	activityOverride?: ReadonlyMap<string, PatronActivityState>,
+): Promise<ListingPresenceViewingPatron[]> {
+	const others = await fetchViewingPatronsInRoom(
+		viewerId,
+		activeUserIds,
+		redis,
+		activityOverride,
+	);
+	const viewerSelf = await fetchViewerSelfPatronInRoom(
+		viewerId,
+		activeUserIds,
+		redis,
+		activityOverride,
+	);
+	return prependViewerSelfToViewingPatrons(viewerSelf, others);
+}
+
 /**
  * Public-profile patrons currently in the listing room (excludes viewer).
  * Private profiles stay count-only on the client.
@@ -310,7 +386,7 @@ export async function getListingPresenceSnapshotFromOccupancy(
 		viewerId,
 		activeUserIds,
 	);
-	const viewingPatrons = await fetchViewingPatronsInRoom(
+	const viewingPatrons = await composeListingPresenceViewingPatrons(
 		viewerId,
 		activeUserIds,
 		null,
@@ -340,7 +416,7 @@ export async function getListingPresenceSnapshot(
 		viewerId,
 		activeUserIds,
 	);
-	const viewingPatrons = await fetchViewingPatronsInRoom(
+	const viewingPatrons = await composeListingPresenceViewingPatrons(
 		viewerId,
 		activeUserIds,
 		redis,

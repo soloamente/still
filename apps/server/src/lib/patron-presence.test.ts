@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	appendViewerSelfPresence,
 	normalizePatronOnlineHandleBatch,
 	PATRON_ONLINE_HANDLE_BATCH_LIMIT,
 	pickVisibleOnlineHandles,
@@ -96,6 +97,58 @@ describe("pickVisibleOnlineHandles", () => {
 			new Set(),
 		);
 		expect(handles).toEqual([]);
+	});
+});
+
+describe("appendViewerSelfPresence", () => {
+	const VIEWER = "viewer_1";
+
+	test("appends self when handle requested and active", () => {
+		const result = appendViewerSelfPresence({
+			viewerId: VIEWER,
+			viewerHandle: "MeUser",
+			requestedHandles: ["meuser", "friend"],
+			activeUserIds: new Set([VIEWER]),
+			activityByUserId: new Map([[VIEWER, "away"]]),
+			presence: [],
+		});
+		expect(result).toEqual([{ handle: "meuser", state: "away" }]);
+	});
+
+	test("skips self when handle not in requested batch", () => {
+		const result = appendViewerSelfPresence({
+			viewerId: VIEWER,
+			viewerHandle: "meuser",
+			requestedHandles: ["friend"],
+			activeUserIds: new Set([VIEWER]),
+			activityByUserId: new Map(),
+			presence: [],
+		});
+		expect(result).toEqual([]);
+	});
+
+	test("skips self when not heartbeat-active", () => {
+		const result = appendViewerSelfPresence({
+			viewerId: VIEWER,
+			viewerHandle: "meuser",
+			requestedHandles: ["meuser"],
+			activeUserIds: new Set(),
+			activityByUserId: new Map(),
+			presence: [],
+		});
+		expect(result).toEqual([]);
+	});
+
+	test("does not duplicate when already present", () => {
+		const result = appendViewerSelfPresence({
+			viewerId: VIEWER,
+			viewerHandle: "meuser",
+			requestedHandles: ["meuser"],
+			activeUserIds: new Set([VIEWER]),
+			activityByUserId: new Map([[VIEWER, "active"]]),
+			presence: [{ handle: "meuser", state: "active" }],
+		});
+		expect(result).toEqual([{ handle: "meuser", state: "active" }]);
 	});
 });
 
