@@ -267,6 +267,12 @@ export function SearchTokenField({
 							onFocus={() => {
 								if (suggestions.length > 0) setPanelOpen(true);
 							}}
+							onBlur={() => {
+								// Dismiss when focus leaves the field (click elsewhere, tab away).
+								// Suggestion buttons preventDefault on mousedown, so selecting one
+								// keeps focus and never triggers this blur.
+								setPanelOpen(false);
+							}}
 							onKeyDown={handleKeyDown}
 						/>
 					</div>
