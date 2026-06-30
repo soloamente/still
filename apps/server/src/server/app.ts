@@ -19,6 +19,7 @@ import { listsRoute } from "../routes/lists";
 import { logsRoute } from "../routes/logs";
 import { meDataRoute } from "../routes/me-data";
 import { membersRoute } from "../routes/members";
+import { monthRecapRoute } from "../routes/month-recap";
 import { moviesRoute } from "../routes/movies";
 import { newsRoute } from "../routes/news";
 import { notificationsRoute } from "../routes/notifications";
@@ -128,6 +129,7 @@ export const app = new Elysia({ aot: false })
 	.use(feedRoute)
 	.use(leaderboardRoute)
 	.use(membersRoute)
+	.use(monthRecapRoute)
 	.use(postsRoute)
 	.use(commentsRoute)
 	.use(badgesRoute)
