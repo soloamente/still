@@ -17,7 +17,7 @@ export function SearchDialogPeopleResults({
 		return (
 			<div className="px-4 pb-2">
 				<div className="mb-1 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider">
-					People
+					Members
 				</div>
 				<SearchDialogListSkeleton />
 			</div>
@@ -29,7 +29,7 @@ export function SearchDialogPeopleResults({
 	return (
 		<div className="px-4 pb-2">
 			<div className="mb-1 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider">
-				People
+				Members
 			</div>
 			<ul className="space-y-0.5">
 				{hits.map((hit) => (
