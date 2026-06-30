@@ -972,7 +972,10 @@ export function CatalogSearchDialogRoot({
 		);
 	};
 
-	const handleCatalogSearchPick = (id: number) => {
+	const handleCatalogSearchPick = (
+		id: number,
+		kindOverride?: "movie" | "tv",
+	) => {
 		if (trimmedDraft || searchTags.length > 0) {
 			setRecentQueries(
 				recordHomeSearchRecent(
@@ -983,8 +986,11 @@ export function CatalogSearchDialogRoot({
 				),
 			);
 		}
+		// Category body passes the row's own kind; legacy catalog grid relies on
+		// effectiveListingKind (driven by the Films/TV chip / media tag).
+		const kind = kindOverride ?? effectiveListingKind;
 		pendingNavigationRef.current =
-			effectiveListingKind === "tv" ? `/tv/${id}` : `/movies/${id}`;
+			kind === "tv" ? `/tv/${id}` : `/movies/${id}`;
 		beginClose();
 	};
 
@@ -1169,7 +1175,9 @@ export function CatalogSearchDialogRoot({
 											active={activeCategory}
 											search={categorySearch}
 											query={trimmedDraft}
-											onPickCatalog={(id) => handleCatalogSearchPick(id)}
+											onPickCatalog={(id, kind) =>
+												handleCatalogSearchPick(id, kind)
+											}
 											onSelectPerson={handlePersonSelect}
 											onSelectProfile={handleProfileSelect}
 											onPickList={() => beginClose()}
