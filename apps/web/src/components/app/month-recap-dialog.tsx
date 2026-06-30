@@ -4,6 +4,7 @@ import { Button } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import Link from "next/link";
 import { useCallback, useEffect, useId, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -14,8 +15,10 @@ import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 } from "@/lib/detail-action-motion";
+import { leaderboardHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import type {
 	MonthRecapCategory,
+	MonthRecapEntry,
 	MonthRecapPayload,
 } from "@/lib/month-recap-types";
 
@@ -68,6 +71,49 @@ function MonthRecapCoverPanel({ monthLabel }: { monthLabel: string }) {
 	);
 }
 
+/** Ordered podium handles for congratulatory byline — 1st, then 2nd, then 3rd. */
+function monthRecapPodiumEntries(
+	entries: MonthRecapEntry[],
+): MonthRecapEntry[] {
+	return entries.slice().sort((a, b) => a.rank - b.rank);
+}
+
+function MonthRecapCongratulationsByline({
+	entries,
+}: {
+	entries: MonthRecapEntry[];
+}) {
+	const ordered = monthRecapPodiumEntries(entries);
+	if (ordered.length === 0) return null;
+
+	return (
+		<p className="mt-2 max-w-prose text-pretty text-muted-foreground text-sm leading-relaxed sm:text-base">
+			<span>Congratulations to </span>
+			{ordered.map((entry, index) => {
+				const isLast = index === ordered.length - 1;
+				const isFirst = index === 0;
+				let separator: string | null = null;
+				if (!isFirst) {
+					separator = isLast ? ", and " : ", ";
+				}
+
+				return (
+					<span key={entry.userId}>
+						{separator}
+						<Link
+							href={`/profile/${entry.handle}`}
+							className={leaderboardHandleLinkClassName("text-foreground/90")}
+						>
+							@{entry.handle}
+						</Link>
+					</span>
+				);
+			})}
+			<span>!</span>
+		</p>
+	);
+}
+
 function MonthRecapCategoryPanel({
 	category,
 }: {
@@ -89,6 +135,7 @@ function MonthRecapCategoryPanel({
 				<h2 className="text-balance font-semibold text-foreground text-xl tracking-tight sm:text-2xl">
 					{category.title}
 				</h2>
+				<MonthRecapCongratulationsByline entries={category.entries} />
 			</motion.div>
 
 			<motion.div
