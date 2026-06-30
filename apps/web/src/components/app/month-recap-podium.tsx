@@ -18,7 +18,7 @@ type PodiumSlot = "second" | "first" | "third";
 function podiumSlotSurfaceClass(slot: PodiumSlot): string {
 	switch (slot) {
 		case "first":
-			return "bg-[color-mix(in_oklab,oklch(0.7_0.17_78)_32%,var(--background))]";
+			return "bg-[color-mix(in_oklab,oklch(0.7_0.17_78)_42%,var(--background))]";
 		case "second":
 			return "bg-[color-mix(in_oklab,oklch(0.76_0.06_258)_28%,var(--background))]";
 		case "third":
@@ -49,6 +49,66 @@ function monthRecapStatNoun(
 	}
 }
 
+/** Resolve podium slots by rank — API order is not guaranteed. */
+function resolvePodiumEntries(entries: MonthRecapEntry[]): {
+	first: MonthRecapEntry | undefined;
+	second: MonthRecapEntry | undefined;
+	third: MonthRecapEntry | undefined;
+} {
+	const ordered = entries.slice().sort((a, b) => a.rank - b.rank);
+	return {
+		first: ordered.find((entry) => entry.rank === 1) ?? ordered[0],
+		second: ordered.find((entry) => entry.rank === 2) ?? ordered[1],
+		third: ordered.find((entry) => entry.rank === 3) ?? ordered[2],
+	};
+}
+
+function podiumTileLayoutClass(slot: PodiumSlot): string {
+	switch (slot) {
+		case "first":
+			return "z-10 min-w-0 max-w-[10rem] flex-[1.35] -translate-y-5 px-2.5 py-4 sm:max-w-[11rem]";
+		case "second":
+			return "min-w-0 max-w-[6.25rem] flex-1 translate-y-0 px-2 py-2.5 opacity-90 sm:max-w-[7rem]";
+		case "third":
+			return "min-w-0 max-w-[6.25rem] flex-1 translate-y-3 px-2 py-2.5 opacity-85 sm:max-w-[7rem]";
+		default: {
+			const _exhaustive: never = slot;
+			return _exhaustive;
+		}
+	}
+}
+
+function podiumPortraitClass(slot: PodiumSlot): string {
+	switch (slot) {
+		case "first":
+			return "size-[4.5rem] sm:size-20";
+		case "second":
+		case "third":
+			return "size-11 sm:size-12";
+		default: {
+			const _exhaustive: never = slot;
+			return _exhaustive;
+		}
+	}
+}
+
+function podiumPortraitDimensions(slot: PodiumSlot): {
+	width: number;
+	height: number;
+} {
+	switch (slot) {
+		case "first":
+			return { width: 80, height: 80 };
+		case "second":
+		case "third":
+			return { width: 48, height: 48 };
+		default: {
+			const _exhaustive: never = slot;
+			return _exhaustive;
+		}
+	}
+}
+
 function MonthRecapPodiumTile({
 	entry,
 	slot,
@@ -62,13 +122,14 @@ function MonthRecapPodiumTile({
 }) {
 	const rankLabel =
 		slot === "first" ? "1st" : slot === "second" ? "2nd" : "3rd";
+	const portraitSize = podiumPortraitDimensions(slot);
 
 	return (
 		<motion.div
 			className={cn(
-				"flex min-w-0 max-w-[7.5rem] flex-1 flex-col items-center rounded-2xl px-2 py-3 sm:max-w-[8.5rem]",
+				"flex flex-col items-center rounded-2xl",
+				podiumTileLayoutClass(slot),
 				podiumSlotSurfaceClass(slot),
-				slot === "first" && "-translate-y-2.5",
 			)}
 			initial={reduceMotion ? false : { opacity: 0, y: 8 }}
 			animate={{ opacity: 1, y: 0 }}
@@ -78,7 +139,14 @@ function MonthRecapPodiumTile({
 				delay: slot === "first" ? 0.1 : slot === "second" ? 0 : 0.2,
 			}}
 		>
-			<p className="font-medium text-muted-foreground text-xs tracking-wide">
+			<p
+				className={cn(
+					"font-medium tracking-wide",
+					slot === "first"
+						? "text-foreground text-sm"
+						: "text-muted-foreground text-xs",
+				)}
+			>
 				{rankLabel}
 			</p>
 			<Link
@@ -89,9 +157,12 @@ function MonthRecapPodiumTile({
 					handle={entry.handle}
 					avatarUrl={entry.image}
 					name={entry.displayName}
-					className="size-14 rounded-full bg-card object-cover font-medium text-foreground sm:size-16"
-					width={64}
-					height={64}
+					className={cn(
+						"rounded-full bg-card object-cover font-medium text-foreground",
+						podiumPortraitClass(slot),
+					)}
+					width={portraitSize.width}
+					height={portraitSize.height}
 					isAnimated={inferAnimatedFromProfileUrl(
 						entry.image,
 						entry.avatarIsAnimated,
@@ -99,26 +170,44 @@ function MonthRecapPodiumTile({
 					diaryMetalTier={entry.diaryMetalTier}
 				/>
 			</Link>
-			<p className="mt-2 max-w-full truncate font-semibold text-foreground text-sm">
+			<p
+				className={cn(
+					"mt-2 max-w-full truncate font-semibold text-foreground",
+					slot === "first" ? "text-base" : "text-sm",
+				)}
+			>
 				{entry.displayName?.trim() || entry.handle}
 			</p>
 			<Link
 				href={`/profile/${entry.handle}`}
 				className={leaderboardHandleLinkClassName(
-					"mt-0.5 max-w-full truncate text-xs",
+					cn(
+						"mt-0.5 max-w-full truncate",
+						slot === "first" ? "text-sm" : "text-xs",
+					),
 				)}
 				title={`Open @${entry.handle}'s profile`}
 			>
 				@{entry.handle}
 			</Link>
-			<p className="mt-1 font-semibold text-foreground text-xl tabular-nums">
+			<p
+				className={cn(
+					"mt-1 font-semibold text-foreground tabular-nums",
+					slot === "first" ? "text-2xl" : "text-lg",
+				)}
+			>
 				{entry.count}
 				<span className="sr-only">
 					{" "}
 					{monthRecapStatNoun(categoryId, entry.count)}
 				</span>
 			</p>
-			<p className="text-muted-foreground text-xs">
+			<p
+				className={cn(
+					"text-muted-foreground",
+					slot === "first" ? "text-xs" : "text-[11px]",
+				)}
+			>
 				{monthRecapStatNoun(categoryId, entry.count)}
 			</p>
 		</motion.div>
@@ -134,42 +223,38 @@ export function MonthRecapPodium({
 	categoryId: MonthRecapCategoryId;
 }) {
 	const reduceMotion = useReducedMotion();
-	const first = entries[0];
-	const second = entries[1];
-	const third = entries[2];
+	const { first, second, third } = resolvePodiumEntries(entries);
 
 	if (!first) return null;
 
 	return (
-		<div className="w-full rounded-2xl bg-background p-4 sm:p-5">
-			<div className="flex items-end justify-center gap-2 sm:gap-3">
-				{second ? (
-					<MonthRecapPodiumTile
-						entry={second}
-						slot="second"
-						categoryId={categoryId}
-						reduceMotion={Boolean(reduceMotion)}
-					/>
-				) : (
-					<div className="min-w-0 flex-1" aria-hidden />
-				)}
+		<div className="flex w-full items-end justify-center gap-1.5 sm:gap-2">
+			{second ? (
 				<MonthRecapPodiumTile
-					entry={first}
-					slot="first"
+					entry={second}
+					slot="second"
 					categoryId={categoryId}
 					reduceMotion={Boolean(reduceMotion)}
 				/>
-				{third ? (
-					<MonthRecapPodiumTile
-						entry={third}
-						slot="third"
-						categoryId={categoryId}
-						reduceMotion={Boolean(reduceMotion)}
-					/>
-				) : (
-					<div className="min-w-0 flex-1" aria-hidden />
-				)}
-			</div>
+			) : (
+				<div className="min-w-0 flex-1" aria-hidden />
+			)}
+			<MonthRecapPodiumTile
+				entry={first}
+				slot="first"
+				categoryId={categoryId}
+				reduceMotion={Boolean(reduceMotion)}
+			/>
+			{third ? (
+				<MonthRecapPodiumTile
+					entry={third}
+					slot="third"
+					categoryId={categoryId}
+					reduceMotion={Boolean(reduceMotion)}
+				/>
+			) : (
+				<div className="min-w-0 flex-1" aria-hidden />
+			)}
 		</div>
 	);
 }

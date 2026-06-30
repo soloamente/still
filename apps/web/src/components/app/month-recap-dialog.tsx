@@ -18,6 +18,7 @@ import {
 import { leaderboardHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import type {
 	MonthRecapCategory,
+	MonthRecapCategoryId,
 	MonthRecapEntry,
 	MonthRecapPayload,
 } from "@/lib/month-recap-types";
@@ -71,45 +72,50 @@ function MonthRecapCoverPanel({ monthLabel }: { monthLabel: string }) {
 	);
 }
 
-/** Ordered podium handles for congratulatory byline — 1st, then 2nd, then 3rd. */
-function monthRecapPodiumEntries(
+/** 1st-place patron for the congratulatory byline under the category title. */
+function monthRecapFirstPlaceEntry(
 	entries: MonthRecapEntry[],
-): MonthRecapEntry[] {
-	return entries.slice().sort((a, b) => a.rank - b.rank);
+): MonthRecapEntry | null {
+	const ordered = entries.slice().sort((a, b) => a.rank - b.rank);
+	return ordered.find((entry) => entry.rank === 1) ?? ordered[0] ?? null;
+}
+
+function monthRecapWinnerAchievement(categoryId: MonthRecapCategoryId): string {
+	switch (categoryId) {
+		case "films":
+			return "logged the most films this month";
+		case "tv":
+			return "logged the most TV this month";
+		case "reviews":
+			return "published the most reviews this month";
+		default: {
+			const _exhaustive: never = categoryId;
+			return _exhaustive;
+		}
+	}
 }
 
 function MonthRecapCongratulationsByline({
-	entries,
+	category,
 }: {
-	entries: MonthRecapEntry[];
+	category: MonthRecapCategory;
 }) {
-	const ordered = monthRecapPodiumEntries(entries);
-	if (ordered.length === 0) return null;
+	const winner = monthRecapFirstPlaceEntry(category.entries);
+	if (!winner) return null;
+
+	const displayName = winner.displayName?.trim() || winner.handle;
 
 	return (
-		<p className="mt-2 max-w-prose text-pretty text-muted-foreground text-sm leading-relaxed sm:text-base">
-			<span>Congratulations to </span>
-			{ordered.map((entry, index) => {
-				const isLast = index === ordered.length - 1;
-				const isFirst = index === 0;
-				let separator: string | null = null;
-				if (!isFirst) {
-					separator = isLast ? ", and " : ", ";
-				}
-
-				return (
-					<span key={entry.userId}>
-						{separator}
-						<Link
-							href={`/profile/${entry.handle}`}
-							className={leaderboardHandleLinkClassName("text-foreground/90")}
-						>
-							@{entry.handle}
-						</Link>
-					</span>
-				);
-			})}
-			<span>!</span>
+		<p className="mt-3 max-w-prose text-pretty text-muted-foreground text-sm leading-relaxed sm:mt-3.5 sm:text-base">
+			<span className="font-medium text-foreground">{displayName}</span>
+			{" · "}
+			<Link
+				href={`/profile/${winner.handle}`}
+				className={leaderboardHandleLinkClassName("text-foreground/90")}
+			>
+				@{winner.handle}
+			</Link>
+			<span> — {monthRecapWinnerAchievement(category.id)}.</span>
 		</p>
 	);
 }
@@ -135,14 +141,14 @@ function MonthRecapCategoryPanel({
 				<h2 className="text-balance font-semibold text-foreground text-xl tracking-tight sm:text-2xl">
 					{category.title}
 				</h2>
-				<MonthRecapCongratulationsByline entries={category.entries} />
+				<MonthRecapCongratulationsByline category={category} />
 			</motion.div>
 
 			<motion.div
 				initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ ...itemTransition, delay: reduceMotion ? 0 : 0.14 }}
-				className="mt-6 w-full"
+				className="mt-10 w-full sm:mt-12"
 			>
 				<MonthRecapPodium entries={category.entries} categoryId={category.id} />
 			</motion.div>
