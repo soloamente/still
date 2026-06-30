@@ -44,6 +44,21 @@ export type TmdbTvSummary = {
 	adult?: boolean;
 };
 
+/** TMDb `/search/person` row — `known_for` mixes movie (`title`) and TV (`name`) entries. */
+export type TmdbPersonSummary = {
+	id: number;
+	name: string;
+	profile_path: string | null;
+	known_for_department?: string;
+	popularity?: number;
+	known_for?: Array<{
+		id?: number;
+		title?: string;
+		name?: string;
+		media_type?: "movie" | "tv";
+	}>;
+};
+
 export type TmdbMovieDetail = TmdbMovieSummary & {
 	imdb_id?: string;
 	tagline?: string;
@@ -327,6 +342,18 @@ export const tmdbApi = {
 	searchTv(query: string, page = 1, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<TmdbPaged<TmdbTvSummary>>(
 			"/search/tv",
+			{
+				query,
+				page,
+				include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent),
+			},
+			fetchOpts,
+		);
+	},
+	/** TMDb `/search/person` — rows carry `known_for` (notable titles) and `known_for_department`. */
+	searchPerson(query: string, page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbPersonSummary>>(
+			"/search/person",
 			{
 				query,
 				page,
