@@ -416,10 +416,68 @@ export async function getListingPresenceSnapshot(
 		viewerId,
 		activeUserIds,
 	);
+	return { viewerCount, viewingPatrons };
+}
+
+type ListingOccupancyEntry = {
+	userId: string;
+	activityState: PatronActivityState;
+};
+
+/**
+ * Listing presence — merges Worker DO occupancy with Upstash Redis heartbeats.
+ * SSE clients only touch Redis; an empty DO list must not hide Redis occupants.
+ */
+export async function getListingPresenceSnapshotMerged(
+	viewerId: string,
+	roomId: string,
+	redis: ListingPresenceRedis | null,
+	workerEntries: ListingOccupancyEntry[] | null,
+	nowMs: number = Date.now(),
+): Promise<ListingPresenceSnapshot> {
+	if (!workerEntries || workerEntries.length === 0) {
+		return getListingPresenceSnapshot(viewerId, roomId, redis, nowMs);
+	}
+
+	if (!redis || !isListingPresenceRoom(roomId)) {
+		return getListingPresenceSnapshotFromOccupancy(
+			viewerId,
+			roomId,
+			workerEntries,
+		);
+	}
+
+	const redisActiveIds = await activeListingPresenceUserIds(
+		redis,
+		roomId,
+		nowMs,
+	);
+	const activeUserIds = [
+		...new Set([
+			...redisActiveIds,
+			...workerEntries.map((entry) => entry.userId),
+		]),
+	];
+
+	const redisActivity =
+		typeof redis.hget === "function"
+			? await readActivityStatesForUserIds({ hget: redis.hget }, activeUserIds)
+			: new Map<string, PatronActivityState>();
+	const activityByUserId = new Map(redisActivity);
+	for (const entry of workerEntries) {
+		activityByUserId.set(entry.userId, entry.activityState);
+	}
+
+	const viewerCount = viewerCountExcludingSelf(
+		activeUserIds.length,
+		viewerId,
+		activeUserIds,
+	);
 	const viewingPatrons = await composeListingPresenceViewingPatrons(
 		viewerId,
 		activeUserIds,
 		redis,
+		activityByUserId,
 	);
 
 	return { viewerCount, viewingPatrons };

@@ -3,8 +3,7 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import {
-	getListingPresenceSnapshot,
-	getListingPresenceSnapshotFromOccupancy,
+	getListingPresenceSnapshotMerged,
 	isListingPresenceRoom,
 	type ListingPresenceRedis,
 	leaveListingPresence,
@@ -12,8 +11,7 @@ import {
 } from "../lib/listing-presence";
 import {
 	leavePatronAppPresence,
-	resolveVisiblePresenceForViewer,
-	resolveVisiblePresenceFromOccupancy,
+	resolveOnlinePresenceForViewer,
 	touchPatronAppPresence,
 } from "../lib/patron-presence";
 import { normalizeActivityState } from "../lib/presence-activity";
@@ -120,17 +118,12 @@ export const realtimePresenceRoute = new Elysia({
 				.filter(Boolean);
 
 			const workerEntries = await fetchWorkerOccupancy(patronAppRoomId());
-			const presence = workerEntries
-				? await resolveVisiblePresenceFromOccupancy(
-						user.id,
-						handles,
-						workerEntries,
-					)
-				: await resolveVisiblePresenceForViewer(
-						user.id,
-						handles,
-						presenceRedis(),
-					);
+			const presence = await resolveOnlinePresenceForViewer(
+				user.id,
+				handles,
+				presenceRedis(),
+				workerEntries,
+			);
 
 			return { presence };
 		},
@@ -149,14 +142,12 @@ export const realtimePresenceRoute = new Elysia({
 			}
 
 			const workerEntries = await fetchWorkerOccupancy(query.room);
-			if (workerEntries) {
-				return getListingPresenceSnapshotFromOccupancy(
-					user.id,
-					query.room,
-					workerEntries,
-				);
-			}
-			return getListingPresenceSnapshot(user.id, query.room, presenceRedis());
+			return getListingPresenceSnapshotMerged(
+				user.id,
+				query.room,
+				presenceRedis(),
+				workerEntries,
+			);
 		},
 		{
 			query: t.Object({

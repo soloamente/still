@@ -9,7 +9,7 @@ const leaveListingPresenceMock = mock(async () => ({
 	occupantCount: 0,
 	changed: true,
 }));
-const getListingPresenceSnapshotMock = mock(async () => ({
+const getListingPresenceSnapshotMergedMock = mock(async () => ({
 	viewerCount: 2,
 	viewingPatrons: [
 		{
@@ -24,7 +24,7 @@ const getListingPresenceSnapshotMock = mock(async () => ({
 	],
 }));
 
-const resolveVisiblePresenceForViewerMock = mock(async () => [
+const resolveOnlinePresenceForViewerMock = mock(async () => [
 	{ handle: "friend", state: "active" as const },
 ]);
 
@@ -48,13 +48,13 @@ mock.module("../lib/listing-presence", () => ({
 		/^listing:movie:\d+$/.test(roomId) || /^listing:tv:\d+$/.test(roomId),
 	touchListingPresence: touchListingPresenceMock,
 	leaveListingPresence: leaveListingPresenceMock,
-	getListingPresenceSnapshot: getListingPresenceSnapshotMock,
+	getListingPresenceSnapshotMerged: getListingPresenceSnapshotMergedMock,
 }));
 
 mock.module("../lib/patron-presence", () => ({
 	touchPatronAppPresence: touchListingPresenceMock,
 	leavePatronAppPresence: leaveListingPresenceMock,
-	resolveVisiblePresenceForViewer: resolveVisiblePresenceForViewerMock,
+	resolveOnlinePresenceForViewer: resolveOnlinePresenceForViewerMock,
 }));
 
 mock.module("@still/auth", () => ({
@@ -248,7 +248,7 @@ describe("DELETE /api/realtime/presence", () => {
 
 describe("GET /api/realtime/presence/online", () => {
 	beforeEach(() => {
-		resolveVisiblePresenceForViewerMock.mockClear();
+		resolveOnlinePresenceForViewerMock.mockClear();
 	});
 
 	test("requires sign-in", async () => {
@@ -271,17 +271,18 @@ describe("GET /api/realtime/presence/online", () => {
 		expect(await response.json()).toEqual({
 			presence: [{ handle: "friend", state: "active" }],
 		});
-		expect(resolveVisiblePresenceForViewerMock).toHaveBeenCalledWith(
+		expect(resolveOnlinePresenceForViewerMock).toHaveBeenCalledWith(
 			"usr_a",
 			["friend"],
 			{},
+			null,
 		);
 	});
 });
 
 describe("GET /api/realtime/presence", () => {
 	beforeEach(() => {
-		getListingPresenceSnapshotMock.mockClear();
+		getListingPresenceSnapshotMergedMock.mockClear();
 	});
 
 	test("requires sign-in", async () => {
@@ -295,7 +296,7 @@ describe("GET /api/realtime/presence", () => {
 			room: INVALID_ROOM,
 		});
 		expect(response.status).toBe(403);
-		expect(getListingPresenceSnapshotMock).not.toHaveBeenCalled();
+		expect(getListingPresenceSnapshotMergedMock).not.toHaveBeenCalled();
 	});
 
 	test("returns server-filtered snapshot", async () => {
@@ -319,10 +320,11 @@ describe("GET /api/realtime/presence", () => {
 				},
 			],
 		});
-		expect(getListingPresenceSnapshotMock).toHaveBeenCalledWith(
+		expect(getListingPresenceSnapshotMergedMock).toHaveBeenCalledWith(
 			"usr_a",
 			VALID_ROOM,
 			{},
+			null,
 		);
 	});
 });

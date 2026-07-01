@@ -17,6 +17,12 @@ import {
 	readProfilePresenceVisibilityPref,
 } from "./profile-media";
 
+/** Worker DO occupancy row — shared shape with realtime-occupancy.ts. */
+export type PatronOnlineOccupancyEntry = {
+	userId: string;
+	activityState: PatronActivityState;
+};
+
 /** Max handles per batch online-status lookup. */
 export const PATRON_ONLINE_HANDLE_BATCH_LIMIT = 64;
 
@@ -93,6 +99,20 @@ export function appendViewerSelfPresence(input: {
 			state: input.activityByUserId.get(input.viewerId) ?? "active",
 		},
 	];
+}
+
+/**
+ * Union batch online rows — worker (primary) wins on duplicate handles; Redis
+ * fills patrons on SSE transport when the DO occupancy list is empty or partial.
+ */
+export function mergeVisiblePatronPresence(
+	primary: VisiblePatronPresence[],
+	secondary: VisiblePatronPresence[],
+): VisiblePatronPresence[] {
+	const byHandle = new Map<string, VisiblePatronPresence>();
+	for (const row of secondary) byHandle.set(row.handle, row);
+	for (const row of primary) byHandle.set(row.handle, row);
+	return [...byHandle.values()];
 }
 
 /** Resolve viewer handle for self presence — not gated by isPrivate. */
@@ -344,4 +364,36 @@ export async function resolveVisibleOnlineHandlesForViewer(
 		nowMs,
 	);
 	return presence.map((row) => row.handle);
+}
+
+/**
+ * `/online` resolver — merges Worker DO occupancy with Upstash when both exist.
+ * SSE clients heartbeat Redis; WS clients heartbeat the DO. An empty DO array must
+ * not skip Redis (production self-dot regression when only Redis has the viewer).
+ */
+export async function resolveOnlinePresenceForViewer(
+	viewerId: string,
+	requestedHandles: string[],
+	redis: ListingPresenceRedis | null,
+	workerEntries: PatronOnlineOccupancyEntry[] | null,
+	nowMs: number = Date.now(),
+): Promise<VisiblePatronPresence[]> {
+	const fromRedis = await resolveVisiblePresenceForViewer(
+		viewerId,
+		requestedHandles,
+		redis,
+		nowMs,
+	);
+
+	if (!workerEntries || workerEntries.length === 0) {
+		return fromRedis;
+	}
+
+	const fromWorker = await resolveVisiblePresenceFromOccupancy(
+		viewerId,
+		requestedHandles,
+		workerEntries,
+	);
+
+	return mergeVisiblePatronPresence(fromWorker, fromRedis);
 }

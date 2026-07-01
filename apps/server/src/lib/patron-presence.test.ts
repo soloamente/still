@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	appendViewerSelfPresence,
+	mergeVisiblePatronPresence,
 	normalizePatronOnlineHandleBatch,
 	PATRON_ONLINE_HANDLE_BATCH_LIMIT,
 	pickVisibleOnlineHandles,
@@ -200,5 +201,31 @@ describe("normalizePatronOnlineHandleBatch", () => {
 		expect(normalizePatronOnlineHandleBatch(handles)).toHaveLength(
 			PATRON_ONLINE_HANDLE_BATCH_LIMIT,
 		);
+	});
+});
+
+describe("mergeVisiblePatronPresence", () => {
+	test("fills Redis-only rows when worker list is empty", () => {
+		const redis = [{ handle: "me", state: "active" as const }];
+		expect(mergeVisiblePatronPresence([], redis)).toEqual(redis);
+	});
+
+	test("worker row wins on duplicate handle", () => {
+		const merged = mergeVisiblePatronPresence(
+			[{ handle: "friend", state: "away" }],
+			[{ handle: "friend", state: "active" }],
+		);
+		expect(merged).toEqual([{ handle: "friend", state: "away" }]);
+	});
+
+	test("unions distinct handles from both sources", () => {
+		const merged = mergeVisiblePatronPresence(
+			[{ handle: "worker", state: "active" }],
+			[{ handle: "redis", state: "away" }],
+		);
+		expect(merged).toEqual([
+			{ handle: "redis", state: "away" },
+			{ handle: "worker", state: "active" },
+		]);
 	});
 });
