@@ -416,6 +416,12 @@ export async function getListingPresenceSnapshot(
 		viewerId,
 		activeUserIds,
 	);
+	const viewingPatrons = await composeListingPresenceViewingPatrons(
+		viewerId,
+		activeUserIds,
+		redis,
+	);
+
 	return { viewerCount, viewingPatrons };
 }
 
