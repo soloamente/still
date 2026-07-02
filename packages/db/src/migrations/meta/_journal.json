@@ -243,22 +243,36 @@
 		{
 			"idx": 34,
 			"version": "7",
-			"when": 1750204800000,
+			"when": 1779203000000,
 			"tag": "0034_perf_indexes",
 			"breakpoints": true
 		},
 		{
 			"idx": 35,
 			"version": "7",
-			"when": 1750291200000,
+			"when": 1779203100000,
 			"tag": "0035_stats_cache_backfill",
 			"breakpoints": true
 		},
 		{
 			"idx": 36,
 			"version": "7",
-			"when": 1750377600000,
+			"when": 1779203200000,
 			"tag": "0036_plan_tables",
+			"breakpoints": true
+		},
+		{
+			"idx": 37,
+			"version": "7",
+			"when": 1779203300000,
+			"tag": "0037_pinned_quote_save_ids",
+			"breakpoints": true
+		},
+		{
+			"idx": 38,
+			"version": "7",
+			"when": 1779203400000,
+			"tag": "0038_patron_feedback",
 			"breakpoints": true
 		}
 	]
