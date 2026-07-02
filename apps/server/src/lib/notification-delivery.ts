@@ -95,6 +95,13 @@ export const NOTIFICATION_KIND_REGISTRY = [
 		requiresOptIn: false,
 	},
 	{
+		id: "feedback.replied",
+		label: "Feedback replies",
+		description: "When the Sense team replies to feedback you sent.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
 		id: "watchlist_now_streaming",
 		label: "Watchlist streaming",
 		description: "When a watchlisted title starts streaming in your region.",
