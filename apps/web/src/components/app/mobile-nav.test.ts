@@ -46,7 +46,6 @@ describe("MOBILE_YOU_DESTINATIONS", () => {
 			"/watchlist",
 			"/quotes",
 			"/lists",
-			"/journal",
 			"/achievements",
 			"/year",
 		]);

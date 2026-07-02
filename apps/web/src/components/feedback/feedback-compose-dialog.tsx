@@ -21,7 +21,11 @@ import {
 	type PatronFeedbackCategory,
 	patronFeedbackPlaceholder,
 } from "@/lib/patron-feedback-client";
-import { SHEET_FIELD_CLASS, SHEET_FIELD_LABEL_CLASS } from "@/lib/sheet-chrome";
+import {
+	SHEET_FIELD_CLASS,
+	SHEET_FIELD_LABEL_CLASS,
+	SHEET_PRIMARY_PILL_CLASS,
+} from "@/lib/sheet-chrome";
 
 const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
 const FEEDBACK_BODY_MIN = 10;
@@ -154,7 +158,7 @@ export function FeedbackComposeDialog({
 						exit={{ opacity: 0, y: 10, scale: 0.98 }}
 						transition={panelTransition}
 						onClick={(event) => event.stopPropagation()}
-						className="relative flex w-full max-w-md flex-col overflow-hidden rounded-[2rem] bg-card text-foreground shadow-mobbin-xl sm:rounded-[2.25rem]"
+						className="relative flex w-full max-w-xl flex-col overflow-hidden rounded-[2rem] bg-card text-foreground shadow-mobbin-xl sm:rounded-[2.25rem]"
 					>
 						<div className="absolute top-3 right-3 sm:top-4 sm:right-4">
 							<Button
@@ -173,22 +177,22 @@ export function FeedbackComposeDialog({
 							</Button>
 						</div>
 
-						<div className="px-6 pt-8 pb-6 sm:px-8">
+						<div className="px-6 pt-10 pb-6 sm:px-8">
 							<h2
 								id={titleId}
-								className="text-balance font-semibold text-foreground text-xl"
+								className="text-balance text-center font-semibold text-foreground text-xl"
 							>
 								Send feedback
 							</h2>
 							<p
 								id={descriptionId}
-								className="mt-2 text-pretty text-muted-foreground text-sm leading-relaxed"
+								className="mt-2 text-pretty text-center text-muted-foreground text-sm leading-relaxed"
 							>
 								Report a bug, share an idea, or tell us what could be better.
 							</p>
 
 							{thanksVisible ? (
-								<p className="mt-6 font-medium text-foreground text-sm">
+								<p className="mt-6 text-center font-medium text-foreground text-sm">
 									Thanks — we&apos;ll read this soon.
 								</p>
 							) : (
@@ -206,6 +210,7 @@ export function FeedbackComposeDialog({
 											onChange={setCategory}
 											options={PATRON_FEEDBACK_CATEGORY_OPTIONS}
 											disabled={submitting}
+											className="mx-auto w-fit max-w-full flex-nowrap"
 										/>
 									</div>
 
@@ -242,14 +247,14 @@ export function FeedbackComposeDialog({
 										</p>
 									</div>
 
-									<div className="flex items-center justify-end gap-3 pt-1">
+									<footer className="flex items-center justify-between gap-3 px-1 pt-1">
 										<DetailMotionButtonWrap>
 											<Button
 												type="button"
 												variant="ghost"
 												size="pill"
 												className={cn(
-													"h-auto min-h-10 border-transparent bg-background text-muted-foreground",
+													"!px-4 h-auto min-h-10 min-w-[5.5rem] border-transparent bg-background py-2.5 text-base text-muted-foreground",
 													DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 												)}
 												disabled={submitting}
@@ -264,19 +269,22 @@ export function FeedbackComposeDialog({
 												form={FORM_ID}
 												variant="default"
 												size="pill"
-												className="min-h-10 min-w-[7.5rem] font-semibold"
+												className={cn(
+													SHEET_PRIMARY_PILL_CLASS,
+													"!px-4 min-w-[5.5rem]",
+												)}
 												disabled={!canSubmit || submitting}
 											>
 												{submitting ? (
 													<Loader2
-														className="size-4 animate-spin"
+														className="size-3.5 animate-spin"
 														aria-hidden
 													/>
 												) : null}
 												{submitting ? "Sending…" : "Send"}
 											</Button>
 										</DetailMotionButtonWrap>
-									</div>
+									</footer>
 								</form>
 							)}
 						</div>

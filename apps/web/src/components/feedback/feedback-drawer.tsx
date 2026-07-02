@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@still/ui/components/button";
+import { cn } from "@still/ui/lib/utils";
 import { ChevronLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -9,6 +10,7 @@ import { toast } from "sonner";
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
+import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	fetchPatronFeedbackDetail,
 	fetchPatronFeedbackList,
@@ -125,7 +127,10 @@ export function FeedbackDrawer({
 						type="button"
 						variant="ghost"
 						size="icon"
-						className="size-10 rounded-full bg-background"
+						className={cn(
+							"size-10 rounded-full bg-background text-foreground",
+							DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+						)}
 						aria-label="Back to feedback list"
 						onClick={onBackToList}
 					>
@@ -224,7 +229,10 @@ function FeedbackListRow({
 		<li>
 			<button
 				type="button"
-				className="w-full rounded-[1.25rem] bg-background px-4 py-3 text-left transition-colors duration-200 [@media(hover:hover)]:hover:bg-card"
+				className={cn(
+					"w-full rounded-[1.25rem] bg-background px-4 py-3 text-left transition-colors duration-200 ease-out motion-reduce:transition-none",
+					DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+				)}
 				onClick={onSelect}
 			>
 				<div className="flex items-start gap-2">

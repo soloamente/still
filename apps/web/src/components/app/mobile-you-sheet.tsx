@@ -2,6 +2,8 @@
 
 import IconAwardFill from "@still/ui/icons/award-fill";
 import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
+import IconFeedbackInbox from "@still/ui/icons/feedback-inbox";
+import IconFeedbackSend from "@still/ui/icons/feedback-send";
 import IconGear from "@still/ui/icons/gear";
 import IconListPlay from "@still/ui/icons/list-play";
 import IconPlaylistOutline from "@still/ui/icons/playlist-outline";
@@ -11,7 +13,6 @@ import IconTicket from "@still/ui/icons/ticket";
 import IconTicketFilled from "@still/ui/icons/ticket-filled";
 import IconYearInFilm from "@still/ui/icons/year-in-film";
 import { cn } from "@still/ui/lib/utils";
-import { MessageSquare, Newspaper } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useRef } from "react";
 
@@ -89,8 +90,6 @@ function renderDestinationLeadingIcon(
 					aria-hidden
 				/>
 			);
-		case "/journal":
-			return <Newspaper className={DESTINATION_ICON_CLASS} aria-hidden />;
 		case "/quotes":
 			return pathname === "/quotes" || pathname.startsWith("/quotes/") ? (
 				<IconQuotesFilled size="20px" className={DESTINATION_ICON_CLASS} />
@@ -229,9 +228,9 @@ export function MobileYouSheet({
 								className={rowClass}
 								onClick={openFeedbackCompose}
 							>
-								<MessageSquare
+								<IconFeedbackSend
+									size="20px"
 									className="size-5 shrink-0 opacity-80"
-									aria-hidden
 								/>
 								Send feedback
 							</button>
@@ -240,9 +239,9 @@ export function MobileYouSheet({
 								className={rowClass}
 								onClick={openFeedbackHistory}
 							>
-								<MessageSquare
+								<IconFeedbackInbox
+									size="20px"
 									className="size-5 shrink-0 opacity-80"
-									aria-hidden
 								/>
 								My feedback
 							</button>

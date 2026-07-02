@@ -5,12 +5,13 @@ import {
 	DropdownMenuItem,
 } from "@still/ui/components/dropdown-menu";
 import IconAwardFill from "@still/ui/icons/award-fill";
+import IconFeedbackInbox from "@still/ui/icons/feedback-inbox";
+import IconFeedbackSend from "@still/ui/icons/feedback-send";
 import IconGear from "@still/ui/icons/gear";
 import IconLockFill from "@still/ui/icons/lock-fill";
 import IconQuotesFilled from "@still/ui/icons/quotes-filled";
 import IconYearInFilm from "@still/ui/icons/year-in-film";
 import { cn } from "@still/ui/lib/utils";
-import { MessageSquare, Newspaper } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
@@ -172,13 +173,6 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 					</DropdownMenuItem>
 					<DropdownMenuItem
 						className={accountMenuItemOnBackgroundClassName}
-						onClick={() => go("/journal")}
-					>
-						<Newspaper className="size-5 shrink-0 opacity-80" aria-hidden />
-						Journal
-					</DropdownMenuItem>
-					<DropdownMenuItem
-						className={accountMenuItemOnBackgroundClassName}
 						onClick={() => go("/me/settings")}
 					>
 						<IconGear size="20px" className="size-5 shrink-0 opacity-80" />
@@ -188,14 +182,20 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 						className={accountMenuItemOnBackgroundClassName}
 						onClick={() => openCompose()}
 					>
-						<MessageSquare className="size-5 shrink-0 opacity-80" aria-hidden />
+						<IconFeedbackSend
+							size="20px"
+							className="size-5 shrink-0 opacity-80"
+						/>
 						Send feedback
 					</DropdownMenuItem>
 					<DropdownMenuItem
 						className={accountMenuItemOnBackgroundClassName}
 						onClick={() => openFeedbackList()}
 					>
-						<MessageSquare className="size-5 shrink-0 opacity-80" aria-hidden />
+						<IconFeedbackInbox
+							size="20px"
+							className="size-5 shrink-0 opacity-80"
+						/>
 						My feedback
 					</DropdownMenuItem>
 					{isStaff ? (
