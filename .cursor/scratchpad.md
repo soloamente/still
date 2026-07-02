@@ -677,6 +677,21 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-07-02 — Vercel typecheck blocker fix (patron feedback Date vs string)
+
+**Shipped:** patched `apps/web/src/lib/fetch-patron-feedback-client.ts` to remove unsafe API casting and explicitly normalize feedback payloads.
+- Added timestamp normalizers: `asIsoString` / `asNullableIsoString`
+- Added runtime mappers: `normalizeFeedbackListItem` and `normalizeFeedbackDetail`
+- Converted list/detail fetchers to map server payload (`Date | string`) into client contract (`string` timestamps) instead of force-casting
+
+**Why:** Vercel failed on:
+- `Conversion ... may be a mistake`
+- `createdAt` mismatch (`Date` from server type vs `string` in web client type)
+
+**Verification status:**
+- Local build remains blocked by an existing machine dependency issue (`aws4fetch` resolution), unrelated to this feedback typing fix.
+- Ready for Vercel re-run to confirm this specific typecheck error is cleared.
+
 ### 2026-07-02 — Vercel build blocker fix (BlobPart / Uint8Array mismatch)
 
 **Shipped:** patched `apps/server/src/lib/r2-dev-assets.ts` in `bodyFromBytes`.
@@ -2019,6 +2034,7 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 
 ## Lessons
 
+- **Client API typing bridge:** when Eden/web consumes server DTOs containing `Date` fields but client view-model expects `string`, do not cast arrays directly (`as PatronFeedbackListItem[]`). Normalize payload timestamps explicitly (`Date -> toISOString`) in fetch adapters to satisfy strict TS and avoid cross-package type drift.
 - **Next 16/TS 5.5 DOM typing:** `new Blob([bytes])` can fail when `bytes` is `Uint8Array<ArrayBufferLike>` (because `BlobPart` expects `ArrayBuffer`-compatible views). Normalize with `Uint8Array.from(bytes)` and pass `normalizedBytes.buffer` to `Blob` in strict monorepo typechecks.
 - **Presence AFK realtime:** `touchListingPresence` must set `changed: true` when **activity state** flips (not only ZSET occupancy) so `publishRealtimeEvent` fires `presence.updated`; global portrait badges need **`PatronOnlineProvider`** subscribed to **`patron:app`** SSE (`resolveStaticRealtimeRoomAccess` must allow that room). **Tab-away heartbeats** must fire **synchronously inside `visibilitychange`** (`usePatronActivityFlipHeartbeat`) with `fetch` **`keepalive`** — background tabs throttle React `useEffect`, so away POSTs never ran. **Upstash `hset`:** use **`hset(key, { [userId]: state })`** — the 3-arg `hset(key, field, value)` form is a **silent no-op** on `@upstash/redis`, so away never persisted and every read fell back to `active`. **Rapid tab churn:** coordinate with **`BroadcastChannel`** (`PatronActivityTabSync`) — patron stays **active** if **any** Sense tab is visible; debounce **away** heartbeats ~400ms (`createPresenceHeartbeatScheduler`); remove duplicate per-tab `visibilitychange` POSTs that raced sendBeacon vs active. `--aker-duration` / `--aker-duration-slow` in `packages/ui/src/styles/globals.css` are **0.2s** max for tokenized UI transitions; hero iris, projector flicker, and view-transition durations stay **explicit longer values** where cinematic. Framer **`useReducedMotion`** should gate decorative stagger (e.g. marketing poster rail) and snap onboarding step transitions when the OS requests reduced motion.
 - `packages/db/src/migrate.ts` must load `.env` with **`../../../apps/server/.env`**
