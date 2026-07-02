@@ -1,3 +1,7 @@
+import {
+	buildFeedbackNotificationHref,
+	feedbackIdFromNotificationPayload,
+} from "@/lib/feedback-notification-href";
 import { buildQuoteSubmissionNotificationHref } from "@/lib/quotes-lobby";
 import {
 	buildMovieReviewHref,
@@ -33,6 +37,9 @@ export function notificationPayloadHref(
 
 	const quoteHref = buildQuoteSubmissionNotificationHref(payload);
 	if (quoteHref) return quoteHref;
+
+	const feedbackId = feedbackIdFromNotificationPayload(payload);
+	if (feedbackId) return buildFeedbackNotificationHref(feedbackId);
 
 	return undefined;
 }

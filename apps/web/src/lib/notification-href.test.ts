@@ -43,6 +43,23 @@ describe("notification-href", () => {
 		).toBe("/tv/1399?view=quotes&season=1&episode=1");
 	});
 
+	test("feedbackId in payload resolves to home deep link", () => {
+		expect(
+			notificationPayloadHref({
+				feedbackId: "fb_1",
+				href: "/home?feedback=fb_1",
+			}),
+		).toBe("/home?feedback=fb_1");
+	});
+
+	test("feedbackId alone builds home deep link", () => {
+		expect(
+			notificationPayloadHref({
+				feedbackId: "fb_abc",
+			}),
+		).toBe("/home?feedback=fb_abc");
+	});
+
 	test("profileTasteCompareFromSearch", () => {
 		expect(profileTasteCompareFromSearch("?tasteCompare=1")).toBe(true);
 		expect(profileTasteCompareFromSearch("?tasteCompare=true")).toBe(true);
