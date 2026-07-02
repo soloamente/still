@@ -10,37 +10,13 @@ import {
 	pickTitleLogoPath,
 	type TmdbTitleLogoRow,
 } from "./tmdb-title-logo";
+import {
+	pickTrailerFromTmdbJson,
+	pickTrailerFromVideoResults,
+} from "./tmdb-trailer-pick";
 
-type TmdbVideoRow = {
-	key: string;
-	site: string;
-	type: string;
-};
-
-/** First official trailer/teaser on YouTube or Vimeo from a TMDb videos payload. */
-function pickTrailerFromVideoResults(
-	results: TmdbVideoRow[] | null | undefined,
-): { key: string; site: string } | null {
-	if (!results?.length) return null;
-
-	const trailer =
-		results.find(
-			(row) =>
-				row.type === "Trailer" &&
-				(row.site === "YouTube" || row.site === "Vimeo"),
-		) ?? results.find((row) => row.site === "YouTube" || row.site === "Vimeo");
-	if (!trailer?.key) return null;
-	return { key: trailer.key, site: trailer.site };
-}
-
-/** First official trailer/teaser on YouTube or Vimeo from cached TMDb JSON. */
-function pickTrailerFromTmdbJson(
-	tmdbJson: Record<string, unknown> | null | undefined,
-): { key: string; site: string } | null {
-	const results = (tmdbJson?.videos as { results?: TmdbVideoRow[] } | undefined)
-		?.results;
-	return pickTrailerFromVideoResults(results);
-}
+/** Poster-rail titles that can become spotlight — enrich logos/trailers for each. */
+const TASTE_HERO_ENRICH_LIMIT = 12;
 
 /** Lightweight festival mark for the home spotlight — keyword names only. */
 function pickFestivalIconFromTmdbJson(
@@ -58,6 +34,64 @@ function pickFestivalIconFromTmdbJson(
 	if (/telluride/i.test(blob)) return "telluride";
 	if (/oscar|academy award/i.test(blob)) return "oscars";
 	return null;
+}
+
+async function enrichTasteMatchMovieRow(
+	entry: TasteMatchMovie,
+	cached:
+		| {
+				backdropPath: string | null;
+				tmdbJson: unknown;
+		  }
+		| undefined,
+	options: { includeCommunity: boolean },
+): Promise<TasteMatchMovie> {
+	const backdropPath = cached?.backdropPath ?? entry.backdropPath ?? null;
+	const tmdbJson = cached?.tmdbJson as
+		| Record<string, unknown>
+		| null
+		| undefined;
+
+	let trailer = pickTrailerFromTmdbJson(tmdbJson);
+	if (!trailer && env.TMDB_API_KEY) {
+		try {
+			const videos = await tmdbApi.movieVideos(entry.tmdbId);
+			trailer = pickTrailerFromVideoResults(videos?.results);
+		} catch {
+			// Best-effort — hero still plays the still backdrop.
+		}
+	}
+
+	let logoPath = pickTitleLogoFromTmdbJson(tmdbJson);
+	if (!logoPath && env.TMDB_API_KEY) {
+		try {
+			const images = await tmdbApi.movieImages(entry.tmdbId);
+			logoPath = pickTitleLogoPath(
+				(images as { logos?: TmdbTitleLogoRow[] } | null | undefined)?.logos,
+			);
+		} catch {
+			// Best-effort — hero falls back to the text title.
+		}
+	}
+
+	const community = options.includeCommunity
+		? await fetchCachedListingCommunityStats({ movieId: entry.tmdbId })
+		: null;
+
+	return {
+		...entry,
+		backdropPath,
+		logoPath,
+		communityAverage:
+			community?.averageRating ?? entry.communityAverage ?? null,
+		communityRatingsCount:
+			community?.ratingsCount ?? entry.communityRatingsCount,
+		trailerKey: trailer?.key ?? null,
+		trailerSite: trailer?.site ?? null,
+		festivalIcon: options.includeCommunity
+			? pickFestivalIconFromTmdbJson(tmdbJson)
+			: (entry.festivalIcon ?? null),
+	};
 }
 
 /**
@@ -86,56 +120,13 @@ export async function enrichTasteMatchMovies(
 			const cached = rowById.get(entry.tmdbId);
 			const backdropPath = cached?.backdropPath ?? entry.backdropPath ?? null;
 
-			// Poster stack rows only need backdrop — spotlight alone gets scores, logos, and TMDB calls.
-			if (index > 0) {
+			if (index >= TASTE_HERO_ENRICH_LIMIT) {
 				return { ...entry, backdropPath };
 			}
 
-			const tmdbJson = cached?.tmdbJson as
-				| Record<string, unknown>
-				| null
-				| undefined;
-			let trailer = pickTrailerFromTmdbJson(tmdbJson);
-
-			// Catalogue rows often lack `videos` on `tmdbJson` — one lightweight fetch for the spotlight.
-			if (!trailer && env.TMDB_API_KEY) {
-				try {
-					const videos = await tmdbApi.movieVideos(entry.tmdbId);
-					trailer = pickTrailerFromVideoResults(videos?.results);
-				} catch {
-					// Best-effort — hero still plays the still backdrop.
-				}
-			}
-
-			let logoPath = pickTitleLogoFromTmdbJson(tmdbJson);
-
-			// Title logos live on `/images`, not the detail append bundle — one fetch for the spotlight.
-			if (!logoPath && env.TMDB_API_KEY) {
-				try {
-					const images = await tmdbApi.movieImages(entry.tmdbId);
-					logoPath = pickTitleLogoPath(
-						(images as { logos?: TmdbTitleLogoRow[] } | null | undefined)
-							?.logos,
-					);
-				} catch {
-					// Best-effort — hero falls back to the text title.
-				}
-			}
-
-			const community = await fetchCachedListingCommunityStats({
-				movieId: entry.tmdbId,
+			return enrichTasteMatchMovieRow(entry, cached, {
+				includeCommunity: index === 0,
 			});
-
-			return {
-				...entry,
-				backdropPath,
-				logoPath,
-				communityAverage: community.averageRating,
-				communityRatingsCount: community.ratingsCount,
-				trailerKey: trailer?.key ?? null,
-				trailerSite: trailer?.site ?? null,
-				festivalIcon: pickFestivalIconFromTmdbJson(tmdbJson),
-			};
 		}),
 	);
 }

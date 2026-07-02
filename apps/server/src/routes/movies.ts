@@ -40,6 +40,7 @@ import {
 import { fetchListingQuotesForMovie } from "../lib/listing-quotes-query";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
 import { resolveMovieTitleLogoPath } from "../lib/movie-title-logo-resolve";
+import { resolveMovieTrailer } from "../lib/movie-trailer-resolve";
 import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { fetchReviewMovieScreenshots } from "../lib/review-movie-screenshots";
 import { routeBody } from "../lib/route-body";
@@ -753,6 +754,16 @@ export const moviesRoute = new Elysia({
 		if (!Number.isFinite(id) || id <= 0) return status(400, "Invalid id");
 		const logoPath = await resolveMovieTitleLogoPath(id);
 		return { logoPath };
+	})
+	/** TMDb trailer key for lobby heroes — lightweight vs full movie detail. */
+	.get("/:id/trailer", async ({ params, status }) => {
+		const id = Number(params.id);
+		if (!Number.isFinite(id) || id <= 0) return status(400, "Invalid id");
+		const trailer = await resolveMovieTrailer(id);
+		return {
+			trailerKey: trailer?.trailerKey ?? null,
+			trailerSite: trailer?.trailerSite ?? null,
+		};
 	})
 	// Movie detail. Redis cache → local DB cache → TMDb.
 	// Community stats are fetched fresh (with their own Redis cache) and merged last

@@ -8,25 +8,20 @@ import {
 	HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
 	HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
-	HOME_TASTE_HERO_TOP_OFFSET_CLASSNAME,
 } from "@/lib/home-taste-hero-layout";
 
 /** Cinematic taste hero placeholder — reserves lobby height before for-you loads. */
 export function HomeTasteMatchedHeroSkeleton() {
 	return (
 		<div
-			className={cn(
-				"w-full min-w-0",
-				HOME_TASTE_HERO_TOP_OFFSET_CLASSNAME,
-				HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
-			)}
+			className={cn("w-full min-w-0", HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME)}
 			role="status"
 			aria-busy
 			aria-live="polite"
 			aria-label="Loading taste-matched spotlight"
 		>
 			<p className="sr-only">Loading films matched to your taste…</p>
-			<div className="relative overflow-hidden rounded-[2rem] bg-background">
+			<div className="relative overflow-hidden rounded-[2rem] bg-transparent">
 				<ShimmerBone className="absolute inset-0 rounded-none bg-card" />
 				<div
 					className={cn(

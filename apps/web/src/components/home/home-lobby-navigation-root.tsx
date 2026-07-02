@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 
 import { HomeBrowseSurfaceProvider } from "@/components/home/home-browse-surface-context";
-import { HomeTasteHeroTrailerProvider } from "@/components/home/home-taste-hero-trailer-context";
 import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-provider";
 
 /**
@@ -13,9 +12,7 @@ import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-pro
 export function HomeLobbyNavigationRoot({ children }: { children: ReactNode }) {
 	return (
 		<LobbyNavigationProvider>
-			<HomeBrowseSurfaceProvider>
-				<HomeTasteHeroTrailerProvider>{children}</HomeTasteHeroTrailerProvider>
-			</HomeBrowseSurfaceProvider>
+			<HomeBrowseSurfaceProvider>{children}</HomeBrowseSurfaceProvider>
 		</LobbyNavigationProvider>
 	);
 }

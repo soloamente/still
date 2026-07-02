@@ -733,6 +733,33 @@ export async function fetchMovieTitleLogoPath(
 		: null;
 }
 
+/** TMDb trailer key — hydrates the taste hero when for-you rows omit `videos`. */
+export async function fetchMovieTrailer(
+	movieId: number,
+	init?: Pick<RequestInit, "signal">,
+): Promise<{ trailerKey: string; trailerSite: string } | null> {
+	const url = new URL(`/api/movies/${movieId}/trailer`, stillApiOrigin());
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	if (!response.ok) return null;
+	const data = (await response.json()) as {
+		trailerKey?: string | null;
+		trailerSite?: string | null;
+	};
+	if (typeof data.trailerKey !== "string" || data.trailerKey.length === 0) {
+		return null;
+	}
+	return {
+		trailerKey: data.trailerKey,
+		trailerSite:
+			typeof data.trailerSite === "string" && data.trailerSite.length > 0
+				? data.trailerSite
+				: "YouTube",
+	};
+}
+
 /** Current-user diary rows for one TMDb title — canonical for “already logged?” on movie pages. */
 export async function fetchMyLogsForMovie(
 	movieId: number,

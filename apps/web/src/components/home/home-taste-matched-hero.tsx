@@ -7,11 +7,10 @@ import IconTrashXmarkFill from "@still/ui/icons/trash-xmark-fill";
 import { cn } from "@still/ui/lib/utils";
 import { Plus } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { useHomeTasteHeroTrailer } from "@/components/home/home-taste-hero-trailer-context";
+import { HomeTasteHeroMediaLayer } from "@/components/home/home-taste-hero-media-layer";
 import { HomeTasteMatchedHeroSkeleton } from "@/components/home/home-taste-matched-hero-skeleton";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
 import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
@@ -28,8 +27,8 @@ import {
 	HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
 	HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
-	HOME_TASTE_HERO_TOP_OFFSET_CLASSNAME,
 } from "@/lib/home-taste-hero-layout";
+import { buildTasteHeroTrailerBackgroundSrc } from "@/lib/home-taste-hero-trailer-src";
 import {
 	clampLogRatingDisplay,
 	formatLogRatingDisplay,
@@ -37,6 +36,7 @@ import {
 import type { FestivalIconId } from "@/lib/movie-festival-recognition";
 import {
 	fetchMovieTitleLogoPath,
+	fetchMovieTrailer,
 	fetchMyLogsForMovie,
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
@@ -70,17 +70,6 @@ function tasteHeroIsEmpty(movies: TasteMatchMovie[]): boolean {
 	return movies.length < TASTE_MATCH_MIN_RESULTS;
 }
 
-function buildTrailerBackgroundSrc(
-	site: string | null | undefined,
-	key: string,
-): string | null {
-	if (!key) return null;
-	if (site === "Vimeo") {
-		return `https://player.vimeo.com/video/${key}?background=1&autoplay=1&muted=1&loop=1&badge=0&byline=0&title=0`;
-	}
-	return `https://www.youtube-nocookie.com/embed/${key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${key}&iv_load_policy=3&disablekb=1`;
-}
-
 function formatHeroRatingsCountValue(count: number): string {
 	return count.toLocaleString();
 }
@@ -97,7 +86,6 @@ export function HomeTasteMatchedHero({
 	const reduceMotion = useReducedMotion();
 	const motionProps = useDetailActionMotion();
 	const openQuickLog = useQuickLog((s) => s.open);
-	const { setTrailer, trailer } = useHomeTasteHeroTrailer();
 	const [payload, setPayload] = useState<TasteMatchedDiscoveryPayload | null>(
 		initial ?? null,
 	);
@@ -114,6 +102,10 @@ export function HomeTasteMatchedHero({
 	const [spotlightLogoPath, setSpotlightLogoPath] = useState<string | null>(
 		null,
 	);
+	const [resolvedTrailer, setResolvedTrailer] = useState<{
+		trailerKey: string;
+		trailerSite: string;
+	} | null>(null);
 	const posterRailRef = useRef<HTMLDivElement>(null);
 	const posterRailContentKey = movies.map((film) => film.tmdbId).join(",");
 	// Posters lose opacity at clipped edges — no horizontal blur/gradient scrim.
@@ -190,16 +182,50 @@ export function HomeTasteMatchedHero({
 		}
 		if (spotlight.logoPath) {
 			setSpotlightLogoPath(spotlight.logoPath);
-			return;
+		} else {
+			setSpotlightLogoPath(null);
 		}
 		let cancelled = false;
-		setSpotlightLogoPath(null);
 		void fetchMovieTitleLogoPath(spotlight.tmdbId).then((logoPath) => {
 			if (cancelled || !logoPath) return;
 			setSpotlightLogoPath(logoPath);
 			setMovies((prev) =>
 				prev.map((film) =>
 					film.tmdbId === spotlight.tmdbId ? { ...film, logoPath } : film,
+				),
+			);
+		});
+		return () => {
+			cancelled = true;
+		};
+	}, [spotlight]);
+
+	useEffect(() => {
+		if (!spotlight) {
+			setResolvedTrailer(null);
+			return;
+		}
+		if (spotlight.trailerKey) {
+			setResolvedTrailer({
+				trailerKey: spotlight.trailerKey,
+				trailerSite: spotlight.trailerSite ?? "YouTube",
+			});
+		} else {
+			setResolvedTrailer(null);
+		}
+		let cancelled = false;
+		void fetchMovieTrailer(spotlight.tmdbId).then((row) => {
+			if (cancelled || !row?.trailerKey) return;
+			setResolvedTrailer(row);
+			setMovies((prev) =>
+				prev.map((film) =>
+					film.tmdbId === spotlight.tmdbId
+						? {
+								...film,
+								trailerKey: row.trailerKey,
+								trailerSite: row.trailerSite,
+							}
+						: film,
 				),
 			);
 		});
@@ -345,43 +371,26 @@ export function HomeTasteMatchedHero({
 			window.removeEventListener(TASTE_TITLE_CONSUMED_EVENT, onConsumed);
 	}, [handleTitleConsumed]);
 
-	// Trailer + still backdrop play on the lobby `bg-card` shell — publish for `HomeLobbyTasteTrailerBackground`.
-	useEffect(() => {
-		if (
-			loading ||
-			!spotlight ||
-			!payload ||
-			payload.coldStart ||
-			tasteHeroIsEmpty(movies)
-		) {
-			setTrailer(null);
-			return;
-		}
-
-		const backdropUrl =
-			tmdbBackdropUrlFromPath(spotlight.backdropPath ?? null, "w1280") ??
-			tmdbPosterUrlFromPath(spotlight.posterPath, "w780");
-
-		const trailerSrc =
-			spotlight.trailerKey && !reduceMotion
-				? buildTrailerBackgroundSrc(spotlight.trailerSite, spotlight.trailerKey)
-				: null;
-
-		setTrailer({
-			tmdbId: spotlight.tmdbId,
-			trailerSrc,
-			backdropUrl,
-		});
-		return () => {
-			setTrailer(null);
-		};
-	}, [loading, movies, payload, reduceMotion, setTrailer, spotlight]);
-
 	if (loading) return <HomeTasteMatchedHeroSkeleton />;
 	if (!payload || payload.coldStart || tasteHeroIsEmpty(movies) || !spotlight) {
 		return null;
 	}
 
+	const backdropUrl =
+		tmdbBackdropUrlFromPath(spotlight.backdropPath ?? null, "w1280") ??
+		tmdbPosterUrlFromPath(spotlight.posterPath, "w780");
+	const trailerKey =
+		spotlight.trailerKey ?? resolvedTrailer?.trailerKey ?? null;
+	const trailerSite =
+		spotlight.trailerSite ?? resolvedTrailer?.trailerSite ?? null;
+	const trailerSrc =
+		trailerKey && !reduceMotion
+			? buildTasteHeroTrailerBackgroundSrc(
+					trailerSite,
+					trailerKey,
+					typeof window !== "undefined" ? window.location.origin : undefined,
+				)
+			: null;
 	const titleLogoUrl = tmdbLogoUrlFromPath(
 		spotlightLogoPath ?? spotlight.logoPath ?? null,
 		"w500",
@@ -397,23 +406,21 @@ export function HomeTasteMatchedHero({
 		| FestivalIconId
 		| null
 		| undefined;
-	const lobbyMediaActive = trailer?.tmdbId === spotlight.tmdbId;
 
 	return (
 		<section
 			aria-label="Films matched to your taste"
 			className={cn(
-				"w-full min-w-0",
-				HOME_TASTE_HERO_TOP_OFFSET_CLASSNAME,
+				"relative isolate w-full min-w-0",
 				HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
 			)}
 		>
-			<div
-				className={cn(
-					"relative overflow-visible rounded-[2rem]",
-					lobbyMediaActive ? "bg-transparent" : "bg-background",
-				)}
-			>
+			<HomeTasteHeroMediaLayer
+				tmdbId={spotlight.tmdbId}
+				backdropUrl={backdropUrl}
+				trailerSrc={trailerSrc}
+			/>
+			<div className="relative z-10 overflow-visible rounded-[2rem] bg-transparent">
 				<div
 					className={cn(
 						"relative z-10 flex min-h-0 flex-col overflow-visible",
@@ -456,14 +463,11 @@ export function HomeTasteMatchedHero({
 							>
 								{titleLogoUrl ? (
 									<div className="relative mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-full max-w-[min(100%,14rem)] sm:mx-0 sm:max-w-[min(100%,32rem)]">
-										<Image
+										{/* biome-ignore lint/performance/noImgElement: TMDb wordmark — native img avoids Next optimizer edge cases on remote logos. */}
+										<img
 											src={titleLogoUrl}
 											alt=""
-											fill
-											priority
-											sizes="(max-width: 768px) 80vw, 32rem"
-											className="object-contain object-center drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:object-left"
-											unoptimized={titleLogoUrl.includes("image.tmdb.org")}
+											className="mx-auto size-full max-h-full max-w-full object-contain object-center drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:mx-0 sm:object-left"
 										/>
 										<span className="sr-only">{spotlight.title}</span>
 									</div>
