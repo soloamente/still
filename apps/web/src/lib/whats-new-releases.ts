@@ -23,23 +23,18 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-06-17-detail-social-live",
+	id: "2026-07-02-patron-feedback",
 	fullReleaseHref: "/changelog",
 	slides: [
 		{
-			title: "See how a title lands with patrons",
+			title: "Send feedback from your account menu",
 			description:
-				"Film and show pages now show Watched, Lists, Favorited, and Watchlist chips under the community score. Tap any chip to browse who logged it, which lists include it, or who saved it.",
+				"Report a bug, share an idea, or tell us what could be better — without leaving the page you're on. Open the account menu and tap Send feedback.",
 		},
 		{
-			title: "Who else is on this page",
+			title: "Follow replies in My feedback",
 			description:
-				"When other patrons are viewing the same film or show, you'll see their avatars in the corner. Tap for the full list — and choose in Settings who can see you when you're browsing a title.",
-		},
-		{
-			title: "Updates without refreshing",
-			description:
-				"Notifications, ranked list order, and review likes now stay in sync as things happen. Bottom sheets like Cast & crew also scroll properly on your phone again.",
+				"Every submission lives in My feedback. When the Sense team responds, you'll get a notification and can read the full thread in one place.",
 		},
 	],
 };

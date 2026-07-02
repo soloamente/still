@@ -27,6 +27,24 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-07-02-patron-feedback",
+		versionLabel: "0.3.1",
+		dateLabel: "July 2, 2026",
+		headline: "Send feedback to Sense",
+		summary:
+			"Report bugs, share ideas, and follow replies from the team — right from your account menu.",
+		items: [
+			{
+				title: "Send feedback",
+				body: "Open your account menu and choose Send feedback to file a bug, idea, or general note. We capture the page you were on so we can reproduce issues faster.",
+			},
+			{
+				title: "My feedback",
+				body: "See every submission and thread in My feedback. When the team replies, you get an inbox notification and can jump straight back to the conversation.",
+			},
+		],
+	},
+	{
 		id: "2026-06-17-detail-social-live",
 		versionLabel: "0.3.0",
 		dateLabel: "June 17, 2026",
