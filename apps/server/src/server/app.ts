@@ -11,6 +11,7 @@ import { challengesRoute } from "../routes/challenges";
 import { chatRoute } from "../routes/chat";
 import { commentsRoute } from "../routes/comments";
 import { feedRoute } from "../routes/feed";
+import { feedbackRoute } from "../routes/feedback";
 import { followsRoute } from "../routes/follows";
 import { importRoute } from "../routes/import";
 import { journalRoute } from "../routes/journal";
@@ -127,6 +128,7 @@ export const app = new Elysia({ aot: false })
 	.use(meDataRoute)
 	.use(followsRoute)
 	.use(feedRoute)
+	.use(feedbackRoute)
 	.use(leaderboardRoute)
 	.use(membersRoute)
 	.use(monthRecapRoute)
