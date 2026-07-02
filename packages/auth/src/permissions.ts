@@ -30,6 +30,7 @@ export const statement = {
 	],
 	content: ["hide", "delete", "restore"],
 	audit: ["read"],
+	feedback: ["read", "reply"],
 } as const;
 
 export const ac = createAccessControl(statement);
@@ -48,12 +49,14 @@ export const owner = ac.newRole({
 	],
 	content: ["hide", "delete", "restore"],
 	audit: ["read"],
+	feedback: ["read", "reply"],
 });
 
 export const admin = ac.newRole({
 	user: ["list", "ban", "unban", "edit", "note", "pro"],
 	content: ["hide", "delete", "restore"],
 	audit: ["read"],
+	feedback: ["read", "reply"],
 });
 
 export const moderator = ac.newRole({
@@ -64,6 +67,7 @@ export const moderator = ac.newRole({
 export const support = ac.newRole({
 	user: ["list"],
 	content: ["hide"],
+	feedback: ["read"],
 });
 
 /**
@@ -76,7 +80,12 @@ export const support = ac.newRole({
  * compatible with the plugin's `roles` map type. An empty `newRole({})` infers
  * its resource key as `never`, which the admin plugin's `roles` option rejects.
  */
-export const user = ac.newRole({ user: [], content: [], audit: [] });
+export const user = ac.newRole({
+	user: [],
+	content: [],
+	audit: [],
+	feedback: [],
+});
 
 /** Map consumed by the better-auth `admin` plugin `roles` option. */
 export const roles = { owner, admin, moderator, support, user };

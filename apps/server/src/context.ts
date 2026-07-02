@@ -51,7 +51,7 @@ export function requireUser<T extends { user: unknown }>(
 	}
 }
 
-type Resource = "user" | "content" | "audit";
+type Resource = "user" | "content" | "audit" | "feedback";
 
 type HasPermissionOptions = Parameters<typeof auth.api.userHasPermission>[0];
 

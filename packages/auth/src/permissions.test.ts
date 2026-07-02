@@ -114,4 +114,24 @@ describe("staff permission matrix", () => {
 	it("ac includes the better-auth default user statements", () => {
 		expect(ac.statements.user).toContain("ban");
 	});
+
+	it("owner and admin can read and reply to feedback", () => {
+		expect(roles.owner.authorize({ feedback: ["read"] }).success).toBe(true);
+		expect(roles.owner.authorize({ feedback: ["reply"] }).success).toBe(true);
+		expect(roles.admin.authorize({ feedback: ["read"] }).success).toBe(true);
+		expect(roles.admin.authorize({ feedback: ["reply"] }).success).toBe(true);
+	});
+
+	it("support can read feedback but not reply", () => {
+		expect(roles.support.authorize({ feedback: ["read"] }).success).toBe(true);
+		expect(
+			roles.support.authorize({ feedback: ["reply"] } as never).success,
+		).toBe(false);
+	});
+
+	it("moderator has no feedback access", () => {
+		expect(
+			roles.moderator.authorize({ feedback: ["read"] } as never).success,
+		).toBe(false);
+	});
 });

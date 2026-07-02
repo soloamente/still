@@ -22,6 +22,7 @@ export const ACTION_LABELS: Record<string, Record<string, string>> = {
 		unban: "Unban users",
 		"set-role": "Change a user's staff role",
 		impersonate: "Impersonate a user's account",
+		"impersonate-admins": "Impersonate owner and admin accounts",
 		edit: "Edit a user's profile",
 		note: "Leave internal notes on a user",
 		pro: "Grant or revoke complimentary Pro",
@@ -33,6 +34,10 @@ export const ACTION_LABELS: Record<string, Record<string, string>> = {
 	},
 	audit: {
 		read: "Read the staff audit log",
+	},
+	feedback: {
+		read: "View patron feedback inbox",
+		reply: "Reply to feedback and change ticket status",
 	},
 };
 

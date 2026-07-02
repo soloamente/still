@@ -34,11 +34,11 @@ describe("permissionSummary", () => {
 		]);
 	});
 
-	it("support gets list + hide only", () => {
+	it("support gets list + hide + feedback read only", () => {
 		const actions = permissionSummary("support").map(
 			(e) => `${e.resource}:${e.action}`,
 		);
-		expect(actions).toEqual(["user:list", "content:hide"]);
+		expect(actions).toEqual(["user:list", "content:hide", "feedback:read"]);
 	});
 
 	it("a plain user gets nothing", () => {
