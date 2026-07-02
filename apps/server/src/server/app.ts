@@ -34,6 +34,7 @@ import { realtimeConnectRoute } from "../routes/realtime-connect";
 import { realtimePresenceRoute } from "../routes/realtime-presence";
 import { reviewsRoute } from "../routes/reviews";
 import { staffRoute } from "../routes/staff";
+import { staffFeedbackRoute } from "../routes/staff-feedback";
 import { streaksRoute } from "../routes/streaks";
 import { tasteRoute } from "../routes/taste";
 import { tvRoute } from "../routes/tv";
@@ -143,6 +144,7 @@ export const app = new Elysia({ aot: false })
 	.use(realtimePresenceRoute)
 	.use(realtimeConnectRoute)
 	.use(staffRoute)
+	.use(staffFeedbackRoute)
 	.use(adminAssetsRoute)
 	.use(planFeaturesRoute)
 	.onError(({ error, code }) => {
