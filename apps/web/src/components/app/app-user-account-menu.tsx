@@ -10,10 +10,11 @@ import IconLockFill from "@still/ui/icons/lock-fill";
 import IconQuotesFilled from "@still/ui/icons/quotes-filled";
 import IconYearInFilm from "@still/ui/icons/year-in-film";
 import { cn } from "@still/ui/lib/utils";
-import { Newspaper } from "lucide-react";
+import { MessageSquare, Newspaper } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
+import { useFeedbackDrawer } from "@/components/feedback/feedback-drawer-provider";
 import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
@@ -86,6 +87,7 @@ const STAFF_ROLES = ["owner", "admin", "moderator", "support"];
 export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 	const router = useRouter();
 	const { data: session } = authClient.useSession();
+	const { openCompose, openFeedbackList } = useFeedbackDrawer();
 	const isStaff = STAFF_ROLES.includes(session?.user?.role ?? "user");
 
 	const go = (path: string) => {
@@ -181,6 +183,20 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 					>
 						<IconGear size="20px" className="size-5 shrink-0 opacity-80" />
 						Settings
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className={accountMenuItemOnBackgroundClassName}
+						onClick={() => openCompose()}
+					>
+						<MessageSquare className="size-5 shrink-0 opacity-80" aria-hidden />
+						Send feedback
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className={accountMenuItemOnBackgroundClassName}
+						onClick={() => openFeedbackList()}
+					>
+						<MessageSquare className="size-5 shrink-0 opacity-80" aria-hidden />
+						My feedback
 					</DropdownMenuItem>
 					{isStaff ? (
 						<DropdownMenuItem

@@ -11,13 +11,14 @@ import IconTicket from "@still/ui/icons/ticket";
 import IconTicketFilled from "@still/ui/icons/ticket-filled";
 import IconYearInFilm from "@still/ui/icons/year-in-film";
 import { cn } from "@still/ui/lib/utils";
-import { Newspaper } from "lucide-react";
+import { MessageSquare, Newspaper } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useRef } from "react";
 
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
 import { MOBILE_YOU_DESTINATIONS } from "@/components/app/mobile-nav";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
+import { useFeedbackDrawer } from "@/components/feedback/feedback-drawer-provider";
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
@@ -126,6 +127,7 @@ export function MobileYouSheet({
 }) {
 	const router = useRouter();
 	const pathname = usePathname();
+	const { openCompose, openFeedbackList } = useFeedbackDrawer();
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
@@ -136,6 +138,17 @@ export function MobileYouSheet({
 	const go = (path: string) => {
 		onClose();
 		router.push(path);
+	};
+
+	// Close the You sheet before opening global feedback surfaces (dialog / drawer).
+	const openFeedbackCompose = () => {
+		onClose();
+		openCompose();
+	};
+
+	const openFeedbackHistory = () => {
+		onClose();
+		openFeedbackList();
 	};
 
 	const secondaryLine = user.email?.trim() || `@${user.handle}`;
@@ -210,6 +223,28 @@ export function MobileYouSheet({
 							>
 								<IconGear size="20px" className="size-5 shrink-0 opacity-80" />
 								Settings
+							</button>
+							<button
+								type="button"
+								className={rowClass}
+								onClick={openFeedbackCompose}
+							>
+								<MessageSquare
+									className="size-5 shrink-0 opacity-80"
+									aria-hidden
+								/>
+								Send feedback
+							</button>
+							<button
+								type="button"
+								className={rowClass}
+								onClick={openFeedbackHistory}
+							>
+								<MessageSquare
+									className="size-5 shrink-0 opacity-80"
+									aria-hidden
+								/>
+								My feedback
 							</button>
 						</div>
 

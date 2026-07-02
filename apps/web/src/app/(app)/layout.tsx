@@ -1,13 +1,11 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
-import { Suspense } from "react";
 import { AppPatronAudioScope } from "@/components/app/app-patron-audio-scope";
 import { AppShell } from "@/components/app/app-shell";
 import { AppThemeShell } from "@/components/app/app-theme-shell";
 import { PublicShareShell } from "@/components/app/public-share-shell";
 import { VerifyEmailBanner } from "@/components/auth/verify-email-banner";
-import { FeedbackDrawerProvider } from "@/components/feedback/feedback-drawer-provider";
 import { InboxRealtimeSubscriber } from "@/components/notifications/inbox-realtime-subscriber";
 import { NotificationsInboxProvider } from "@/components/notifications/notifications-inbox-provider";
 import { PatronOnlineProvider } from "@/components/realtime/patron-online-provider";
@@ -76,9 +74,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 							<InboxRealtimeSubscriber userId={session.user.id} />
 							<PatronActivityProvider>
 								<PatronOnlineProvider viewerHandle={profile?.handle}>
-									<Suspense fallback={null}>
-										<FeedbackDrawerProvider>{children}</FeedbackDrawerProvider>
-									</Suspense>
+									{children}
 								</PatronOnlineProvider>
 							</PatronActivityProvider>
 						</RealtimeRootProvider>

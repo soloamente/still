@@ -6,6 +6,7 @@ import { MobileTabBar } from "@/components/app/mobile-tab-bar";
 import { MonthRecapDialogRoot } from "@/components/app/month-recap-dialog-root";
 import { SoftwareGpuDocumentProbe } from "@/components/app/software-gpu-document-probe";
 import { WhatsNewDialogRoot } from "@/components/app/whats-new-dialog-root";
+import { FeedbackDrawerProvider } from "@/components/feedback/feedback-drawer-provider";
 import { CatalogSearchDialogRoot } from "@/components/home/home-sticky-search";
 import { PatronMembersLedgerDrawerRoot } from "@/components/home/patron-members-ledger-drawer";
 import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledger-drawer";
@@ -64,47 +65,53 @@ export function AppShell({
 	children: ReactNode;
 }) {
 	return (
-		<div className="relative flex min-h-svh flex-col bg-background">
-			<SoftwareGpuDocumentProbe />
-			<Suspense fallback={null}>
-				<DetailReturnCapture />
-			</Suspense>
-			{/*
+		<Suspense fallback={null}>
+			<FeedbackDrawerProvider>
+				<div className="relative flex min-h-svh flex-col bg-background">
+					<SoftwareGpuDocumentProbe />
+					<Suspense fallback={null}>
+						<DetailReturnCapture />
+					</Suspense>
+					{/*
 				`min-h-svh` gives `<main>` a definite block axis so `flex-1` children (e.g. `/home`)
 				fill the **content** box; bottom padding lives in `globals.css` `#main-content`
 				(same literal as `APP_SHELL_BOTTOM_RESERVE_CSS`) so it cannot be lost to RSC style quirks.
 			*/}
-			<main
-				id="main-content"
-				className="relative z-[36] flex min-h-svh flex-1 flex-col px-2.5 pt-0"
-			>
-				{children}
-			</main>
-			<AppScrollToTop />
-			<CatalogSearchDialogRoot viewer={{ id: user.id, handle: user.handle }} />
-			<GoToDialogRoot />
-			<QuickLogRoot />
-			<ReviewComposerRoot />
-			<ReviewDetailRoot />
-			<PersonFilmographyDrawerRoot />
-			<CreateListDrawerRoot />
-			<PatronWatchLedgerDrawerRoot />
-			<PatronMembersLedgerDrawerRoot />
-			<WhatsNewDialogRoot userId={user.id} />
-			<MonthRecapDialogRoot userId={user.id} />
-			<RoleChangeDialogRoot />
-			<MobileTabBar
-				user={{
-					id: user.id,
-					name: user.name,
-					image: user.image,
-					handle: user.handle,
-					email: user.email,
-					isPro: user.isPro,
-					avatarIsAnimated: user.avatarIsAnimated,
-					diaryMetalTier: user.diaryMetalTier ?? null,
-				}}
-			/>
-		</div>
+					<main
+						id="main-content"
+						className="relative z-[36] flex min-h-svh flex-1 flex-col px-2.5 pt-0"
+					>
+						{children}
+					</main>
+					<AppScrollToTop />
+					<CatalogSearchDialogRoot
+						viewer={{ id: user.id, handle: user.handle }}
+					/>
+					<GoToDialogRoot />
+					<QuickLogRoot />
+					<ReviewComposerRoot />
+					<ReviewDetailRoot />
+					<PersonFilmographyDrawerRoot />
+					<CreateListDrawerRoot />
+					<PatronWatchLedgerDrawerRoot />
+					<PatronMembersLedgerDrawerRoot />
+					<WhatsNewDialogRoot userId={user.id} />
+					<MonthRecapDialogRoot userId={user.id} />
+					<RoleChangeDialogRoot />
+					<MobileTabBar
+						user={{
+							id: user.id,
+							name: user.name,
+							image: user.image,
+							handle: user.handle,
+							email: user.email,
+							isPro: user.isPro,
+							avatarIsAnimated: user.avatarIsAnimated,
+							diaryMetalTier: user.diaryMetalTier ?? null,
+						}}
+					/>
+				</div>
+			</FeedbackDrawerProvider>
+		</Suspense>
 	);
 }
