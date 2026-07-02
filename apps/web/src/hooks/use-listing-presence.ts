@@ -162,18 +162,10 @@ export function useListingPresence({
 		const scheduler = createPresenceHeartbeatScheduler(
 			readAggregatePatronActivityState,
 			async (state, opts) => {
+				// WS updates the Worker DO; HTTP POST updates Upstash Redis — always
+				// mirror patron-online-provider and post both when WS is connected.
 				if (transport === "ws" && !opts?.keepalive) {
-					if (sendHeartbeat(roomId, state)) {
-						if (!joinedRef.current) {
-							joinedRef.current = true;
-							trackSenseProductEvent("realtime.presence.join", {
-								surface: listingKind,
-								listingId: String(listingId),
-							});
-						}
-						await refetchSnapshot(abort.signal);
-						return true;
-					}
+					sendHeartbeat(roomId, state);
 				}
 				const ok = await touchListingPresenceClient(roomId, state, opts);
 				if (!ok || unmounted) return false;

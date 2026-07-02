@@ -25,6 +25,8 @@ import {
 } from "@/lib/detail-action-motion";
 import {
 	HOME_TASTE_HERO_BAND_CLASSNAME,
+	HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
+	HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
 	HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
 	HOME_TASTE_HERO_TOP_OFFSET_CLASSNAME,
 } from "@/lib/home-taste-hero-layout";
@@ -179,7 +181,7 @@ export function HomeTasteMatchedHero({
 			inline: "nearest",
 			block: "nearest",
 		});
-	}, [reduceMotion, safeActiveIndex, posterRailContentKey]);
+	}, [reduceMotion, safeActiveIndex]);
 
 	useEffect(() => {
 		if (!spotlight) {
@@ -204,7 +206,7 @@ export function HomeTasteMatchedHero({
 		return () => {
 			cancelled = true;
 		};
-	}, [spotlight?.logoPath, spotlight?.tmdbId]);
+	}, [spotlight]);
 
 	useEffect(() => {
 		if (!spotlight) {
@@ -224,7 +226,7 @@ export function HomeTasteMatchedHero({
 		return () => {
 			cancelled = true;
 		};
-	}, [spotlight?.tmdbId]);
+	}, [spotlight]);
 
 	const handleNotInterested = useCallback(
 		async (tmdbId: number) => {
@@ -453,14 +455,16 @@ export function HomeTasteMatchedHero({
 
 				<div
 					className={cn(
-						"relative z-10 flex min-h-0 flex-col justify-end overflow-visible",
+						"relative z-10 flex min-h-0 flex-col overflow-visible",
 						HOME_TASTE_HERO_BAND_CLASSNAME,
+						HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
 					)}
 				>
 					<div
 						className={cn(
 							"relative z-20 mt-auto flex min-h-0 w-full flex-col gap-2 overflow-visible px-3 pb-1 sm:mt-0",
-							"sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:px-6 sm:pt-6 sm:pb-3",
+							HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
+							"sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:px-6",
 						)}
 					>
 						<div className="mx-auto min-w-0 max-w-[min(100%,34rem)] space-y-2 text-center sm:mx-0 sm:space-y-3 sm:text-left">

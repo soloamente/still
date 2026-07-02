@@ -116,7 +116,7 @@ describe("appendViewerSelfPresence", () => {
 		expect(result).toEqual([{ handle: "meuser", state: "away" }]);
 	});
 
-	test("skips self when handle not in requested batch", () => {
+	test("includes self when active even if only other handles were requested", () => {
 		const result = appendViewerSelfPresence({
 			viewerId: VIEWER,
 			viewerHandle: "meuser",
@@ -125,7 +125,7 @@ describe("appendViewerSelfPresence", () => {
 			activityByUserId: new Map(),
 			presence: [],
 		});
-		expect(result).toEqual([]);
+		expect(result).toEqual([{ handle: "meuser", state: "active" }]);
 	});
 
 	test("skips self when not heartbeat-active", () => {

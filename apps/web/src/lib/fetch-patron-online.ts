@@ -12,6 +12,7 @@ export type {
 	PatronPresenceSnapshot,
 } from "@/lib/patron-online-presence";
 export {
+	isPatronPresenceHandle,
 	normalizePatronOnlineHandle,
 	normalizePatronPresenceSnapshot,
 } from "@/lib/patron-online-presence";

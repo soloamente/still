@@ -26,11 +26,11 @@ export function createPresenceHeartbeatScheduler(
 		awayTimer = null;
 	};
 
-	const postNow = (state: PatronActivityState) => {
+	const postNow = async (state: PatronActivityState): Promise<boolean> => {
 		lastPosted = state;
 		const hidden =
 			typeof document !== "undefined" && document.hidden && state === "away";
-		void post(state, hidden ? { keepalive: true } : undefined);
+		return post(state, hidden ? { keepalive: true } : undefined);
 	};
 
 	return {
@@ -39,7 +39,7 @@ export function createPresenceHeartbeatScheduler(
 			if (state === "active") {
 				clearAwayTimer();
 				if (lastPosted === "active") return;
-				postNow("active");
+				void postNow("active");
 				return;
 			}
 
@@ -48,21 +48,20 @@ export function createPresenceHeartbeatScheduler(
 				awayTimer = null;
 				if (readState() !== "away") return;
 				if (lastPosted === "away") return;
-				postNow("away");
+				void postNow("away");
 			}, awayDebounceMs);
 		},
 
 		/** Periodic heartbeat — only reinforces settled state (no away while debouncing). */
-		tick() {
+		async tick(): Promise<boolean> {
 			const state = readState();
 			if (state === "active") {
 				clearAwayTimer();
-				postNow("active");
-				return;
+				return postNow("active");
 			}
-			if (awayTimer) return;
-			if (lastPosted === "away") return;
-			postNow("away");
+			if (awayTimer) return false;
+			if (lastPosted === "away") return false;
+			return postNow("away");
 		},
 
 		dispose() {

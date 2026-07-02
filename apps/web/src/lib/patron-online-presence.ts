@@ -12,6 +12,12 @@ export function normalizePatronOnlineHandle(handle: string): string {
 	return handle.trim().toLowerCase();
 }
 
+/** Profile handles are 2–24 chars (a-z, 0-9, _, ., -) — reject auth user ids. */
+export function isPatronPresenceHandle(handle: string): boolean {
+	const normalized = normalizePatronOnlineHandle(handle);
+	return /^[a-z0-9._-]{2,24}$/.test(normalized);
+}
+
 /** Build a handle → state map from the batch presence payload. */
 export function normalizePatronPresenceSnapshot(
 	snapshot: PatronPresenceSnapshot,

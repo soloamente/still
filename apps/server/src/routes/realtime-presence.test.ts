@@ -38,9 +38,8 @@ mock.module("../lib/rate-limit", () => ({
 	hit: () => ({ ok: true }),
 }));
 
-mock.module("../lib/realtime-redis", () => ({
-	getRealtimeRedis: () => ({}),
-	isRealtimePublishEnabled: () => true,
+mock.module("../lib/presence-redis", () => ({
+	getPresenceRedis: () => ({}),
 }));
 
 mock.module("../lib/listing-presence", () => ({

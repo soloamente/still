@@ -5,6 +5,8 @@ import { cn } from "@still/ui/lib/utils";
 
 import {
 	HOME_TASTE_HERO_BAND_CLASSNAME,
+	HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
+	HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
 	HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
 	HOME_TASTE_HERO_TOP_OFFSET_CLASSNAME,
 } from "@/lib/home-taste-hero-layout";
@@ -27,9 +29,18 @@ export function HomeTasteMatchedHeroSkeleton() {
 			<div className="relative overflow-hidden rounded-[2rem] bg-background">
 				<ShimmerBone className="absolute inset-0 rounded-none bg-card" />
 				<div
-					className={`relative flex min-h-0 flex-col justify-end ${HOME_TASTE_HERO_BAND_CLASSNAME}`}
+					className={cn(
+						"relative flex min-h-0 flex-col",
+						HOME_TASTE_HERO_BAND_CLASSNAME,
+						HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
+					)}
 				>
-					<div className="relative z-10 mt-auto flex w-full flex-col justify-end gap-2 px-3 pb-1 sm:mt-0 sm:p-6">
+					<div
+						className={cn(
+							"relative z-10 mt-auto flex w-full flex-col justify-end gap-2 px-3 sm:mt-0 sm:px-6",
+							HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
+						)}
+					>
 						<ShimmerBone className="mx-auto h-3.5 w-48 max-w-[70%] rounded-md bg-card sm:mx-0 sm:h-4 sm:w-56" />
 						<ShimmerBone className="mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-[min(100%,14rem)] rounded-lg bg-card sm:mx-0 sm:max-w-[min(100%,16rem)]" />
 						<div className="flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">

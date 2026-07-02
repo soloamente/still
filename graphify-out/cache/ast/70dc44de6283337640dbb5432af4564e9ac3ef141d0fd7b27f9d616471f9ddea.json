@@ -1,0 +1,483 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"label": "presence-dev-store.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_presence_dev_store_zsetentry",
+			"label": "ZsetEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_presence_dev_store_globalforpresencedev",
+			"label": "globalForPresenceDev",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore",
+			"label": "PresenceDevStore",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_zadd",
+			"label": ".zadd()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_zremrangebyscore",
+			"label": ".zremrangebyscore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L30"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_zrem",
+			"label": ".zrem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L43"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_zcard",
+			"label": ".zcard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L52"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_zrange",
+			"label": ".zrange()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L56"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_expire",
+			"label": ".expire()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L63"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_hset",
+			"label": ".hset()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L65"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_hget",
+			"label": ".hget()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L73"
+		},
+		{
+			"id": "lib_presence_dev_store_presencedevstore_hdel",
+			"label": ".hdel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L77"
+		},
+		{
+			"id": "lib_presence_dev_store_getpresencedevstore",
+			"label": "getPresenceDevStore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L82"
+		},
+		{
+			"id": "lib_presence_dev_store_shouldusepresencedevstore",
+			"label": "shouldUsePresenceDevStore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L90"
+		},
+		{
+			"id": "lib_presence_dev_store_getpresencedevstoreifenabled",
+			"label": "getPresenceDevStoreIfEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L97"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "lib_listing_presence_listingpresenceredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "lib_realtime_redis_isrealtimepublishenabled",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "lib_presence_dev_store_zsetentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "lib_presence_dev_store_globalforpresencedev",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "lib_presence_dev_store_presencedevstore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_zadd",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_zremrangebyscore",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_zrem",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_zcard",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_zrange",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_expire",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_hset",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_hget",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_presencedevstore",
+			"target": "lib_presence_dev_store_presencedevstore_hdel",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "lib_presence_dev_store_getpresencedevstore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "lib_presence_dev_store_shouldusepresencedevstore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_presence_dev_store_ts",
+			"target": "lib_presence_dev_store_getpresencedevstoreifenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_getpresencedevstoreifenabled",
+			"target": "lib_presence_dev_store_shouldusepresencedevstore",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_presence_dev_store_getpresencedevstoreifenabled",
+			"target": "lib_presence_dev_store_getpresencedevstore",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L99",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zadd",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zadd",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zadd",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zadd",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zadd",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zremrangebyscore",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zremrangebyscore",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zremrangebyscore",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zrem",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zrem",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zrem",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zcard",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zrange",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zrange",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_zrange",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_hset",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_hset",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_hset",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_hset",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_hget",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_hget",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_hdel",
+			"callee": "delete",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_presencedevstore_hdel",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "lib_presence_dev_store_shouldusepresencedevstore",
+			"callee": "isRealtimePublishEnabled",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\presence-dev-store.ts",
+			"source_location": "L92"
+		}
+	]
+}

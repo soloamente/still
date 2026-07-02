@@ -15,14 +15,14 @@ import {
 	touchPatronAppPresence,
 } from "../lib/patron-presence";
 import { normalizeActivityState } from "../lib/presence-activity";
+import { getPresenceRedis } from "../lib/presence-redis";
 import { hit } from "../lib/rate-limit";
 import { fetchWorkerOccupancy } from "../lib/realtime-occupancy";
 import { publishRealtimeEvent } from "../lib/realtime-publish";
-import { getRealtimeRedis } from "../lib/realtime-redis";
 
-/** Upstash client implements the ZSET surface used by listing presence. */
+/** Upstash (or local dev in-memory shim) for presence ZSET + activity HASH. */
 function presenceRedis(): ListingPresenceRedis | null {
-	return getRealtimeRedis() as ListingPresenceRedis | null;
+	return getPresenceRedis();
 }
 
 /** POST/DELETE rooms — listing detail occupancy or app-wide patron heartbeat. */
@@ -44,7 +44,8 @@ export const realtimePresenceRoute = new Elysia({
 		"/",
 		async ({ body, user, status }) => {
 			if (!user) return status(401, "Sign in");
-			if (!hit(`presence:${user.id}`, { limit: 6, windowMs: 60_000 }).ok) {
+			// ~2.4 heartbeats/min at 25s + active/away flips — 6/min was dropping patrons offline.
+			if (!hit(`presence:${user.id}`, { limit: 30, windowMs: 60_000 }).ok) {
 				return status(429, "Slow down");
 			}
 			if (!isWritablePresenceRoom(body.room)) {
@@ -52,7 +53,14 @@ export const realtimePresenceRoute = new Elysia({
 			}
 
 			const redis = presenceRedis();
-			if (!redis) return { ok: true };
+			if (!redis) {
+				if (process.env.NODE_ENV === "production") {
+					console.error(
+						"[presence] UPSTASH_REDIS_REST_URL/TOKEN unset — heartbeats are no-ops",
+					);
+				}
+				return { ok: true };
+			}
 
 			const activityState = normalizeActivityState(body.activityState);
 
@@ -92,7 +100,14 @@ export const realtimePresenceRoute = new Elysia({
 			}
 
 			const redis = presenceRedis();
-			if (!redis) return { ok: true };
+			if (!redis) {
+				if (process.env.NODE_ENV === "production") {
+					console.error(
+						"[presence] UPSTASH_REDIS_REST_URL/TOKEN unset — heartbeats are no-ops",
+					);
+				}
+				return { ok: true };
+			}
 
 			const result = isPatronAppRoomId(body.room)
 				? await leavePatronAppPresence(redis, user.id)

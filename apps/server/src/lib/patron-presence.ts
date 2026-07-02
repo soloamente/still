@@ -76,7 +76,7 @@ export function pickVisiblePresenceForViewer(
 	return presence;
 }
 
-/** Append the viewer's own online row when they requested their handle and are active. */
+/** Append the viewer's own online row when they are active in the room. */
 export function appendViewerSelfPresence(input: {
 	viewerId: string;
 	viewerHandle: string | null | undefined;
@@ -87,11 +87,12 @@ export function appendViewerSelfPresence(input: {
 }): VisiblePatronPresence[] {
 	const handle = input.viewerHandle?.trim().toLowerCase();
 	if (!handle) return input.presence;
-	if (!input.requestedHandles.includes(handle)) return input.presence;
 	if (!input.activeUserIds.has(input.viewerId)) return input.presence;
 	if (input.presence.some((row) => row.handle === handle)) {
 		return input.presence;
 	}
+	// Include self whenever the viewer is active and asked for a batch lookup
+	// (their handle may be registered separately from portrait handles).
 	return [
 		...input.presence,
 		{

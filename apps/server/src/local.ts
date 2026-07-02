@@ -4,6 +4,7 @@ import { ingestRss } from "./jobs/rss-ingest";
 import { seedCatalog } from "./jobs/seed";
 import { refreshStaleMovies, syncTmdbFeeds } from "./jobs/tmdb-sync";
 import { syncTvNewEpisodeNotifications } from "./jobs/tv-new-episode-sync";
+import { shouldUsePresenceDevStore } from "./lib/presence-dev-store";
 import { syncWatchlistStreamingAlerts } from "./lib/watchlist-streaming-alerts";
 import { app } from "./server/app";
 import { wsRoute } from "./ws";
@@ -30,6 +31,11 @@ app.listen(3000, () => {
 		console.info(
 			"[boot] Profile banners/avatars use R2 keys — local dev reads via wrangler (slow first load) or R2_ACCESS_KEY_ID in apps/server/.env",
 		);
+		if (shouldUsePresenceDevStore()) {
+			console.info(
+				"[boot] Presence uses in-process dev store (set UPSTASH_REDIS_* in apps/server/.env to mirror production)",
+			);
+		}
 	}
 });
 

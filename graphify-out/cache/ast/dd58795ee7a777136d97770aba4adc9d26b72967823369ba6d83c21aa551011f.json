@@ -1,0 +1,551 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"label": "r2-dev-assets.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_r2_dev_assets_server_root",
+			"label": "SERVER_ROOT",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_r2_dev_assets_devclicache",
+			"label": "devCliCache",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_r2_dev_assets_inferimagecontenttype",
+			"label": "inferImageContentType()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_r2_dev_assets_r2keycandidates",
+			"label": "r2KeyCandidates()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_r2_dev_assets_bodyfrombytes",
+			"label": "bodyFromBytes()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L55"
+		},
+		{
+			"id": "lib_r2_dev_assets_r2s3credentials",
+			"label": "r2S3Credentials()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L65"
+		},
+		{
+			"id": "lib_r2_dev_assets_fetchr2assetvias3",
+			"label": "fetchR2AssetViaS3()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L87"
+		},
+		{
+			"id": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"label": "fetchR2AssetViaWranglerCli()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L130"
+		},
+		{
+			"id": "lib_r2_dev_assets_fetchr2assetdevfallback",
+			"label": "fetchR2AssetDevFallback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L192"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "node_path",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "node_url",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "aws4fetch",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_asset_store_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_asset_store_imagebody",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_server_root",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_devclicache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_inferimagecontenttype",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_r2keycandidates",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_bodyfrombytes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_r2s3credentials",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_fetchr2assetvias3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_r2_dev_assets_ts",
+			"target": "lib_r2_dev_assets_fetchr2assetdevfallback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L192",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_r2_dev_assets_fetchr2assetvias3",
+			"target": "lib_r2_dev_assets_r2s3credentials",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_r2_dev_assets_fetchr2assetvias3",
+			"target": "lib_r2_dev_assets_r2keycandidates",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_r2_dev_assets_fetchr2assetvias3",
+			"target": "lib_r2_dev_assets_inferimagecontenttype",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"target": "lib_r2_dev_assets_r2keycandidates",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"target": "lib_r2_dev_assets_bodyfrombytes",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"target": "lib_r2_dev_assets_inferimagecontenttype",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_r2_dev_assets_fetchr2assetdevfallback",
+			"target": "lib_r2_dev_assets_fetchr2assetvias3",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L195",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_r2_dev_assets_fetchr2assetdevfallback",
+			"target": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L197",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_r2_dev_assets_inferimagecontenttype",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_inferimagecontenttype",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_inferimagecontenttype",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_inferimagecontenttype",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_inferimagecontenttype",
+			"callee": "endsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "add",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "add",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "decodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L45"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "add",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "replaceAll",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "add",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2keycandidates",
+			"callee": "replaceAll",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_bodyfrombytes",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_bodyfrombytes",
+			"callee": "stream",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2s3credentials",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2s3credentials",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2s3credentials",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_r2s3credentials",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetvias3",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetvias3",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetvias3",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetvias3",
+			"callee": "fetch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L116"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetvias3",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L121"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "spawn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L162"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "arrayBuffer",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "text",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L164"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "warn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L169"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "lib_r2_dev_assets_fetchr2assetviawranglercli",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\r2-dev-assets.ts",
+			"source_location": "L181"
+		}
+	]
+}

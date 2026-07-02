@@ -13,6 +13,7 @@ import {
 } from "react";
 import { useRegisterRealtimeRoom } from "@/components/realtime/realtime-root-provider";
 import {
+	useAggregatePatronActivityState,
 	usePatronActivityFlipHeartbeat,
 	useReadAggregatePatronActivityState,
 } from "@/hooks/use-patron-activity-tracker";
@@ -20,6 +21,7 @@ import { useRealtimeHeartbeat } from "@/hooks/use-realtime-connection";
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription";
 import {
 	fetchPatronOnlineHandles,
+	isPatronPresenceHandle,
 	leavePatronAppPresenceClient,
 	normalizePatronOnlineHandle,
 	normalizePatronPresenceSnapshot,
@@ -70,6 +72,7 @@ export function PatronOnlineProvider({
 }) {
 	const active = realtimeClientEnabled();
 	const { transport, sendHeartbeat } = useRealtimeHeartbeat();
+	const aggregateActivityState = useAggregatePatronActivityState();
 	const readAggregatePatronActivityState =
 		useReadAggregatePatronActivityState();
 	const heartbeatSchedulerRef = useRef<ReturnType<
@@ -132,12 +135,17 @@ export function PatronOnlineProvider({
 	const registerHandle = useCallback(
 		(rawHandle: string) => {
 			const handle = normalizePatronOnlineHandle(rawHandle);
-			if (!handle) return () => {};
+			if (!handle || !isPatronPresenceHandle(handle)) return () => {};
 
 			const alreadyRegistered = registeredRef.current.has(handle);
 			registeredRef.current.add(handle);
 			if (!alreadyRegistered) {
 				scheduleRegisterRefresh();
+				// Portraits mount after this provider's effects — nudge an immediate
+				// batch lookup instead of waiting for the debounce/poll window.
+				queueMicrotask(() => {
+					refreshOnlineHandlesRef.current?.();
+				});
 			}
 			return () => {
 				registeredRef.current.delete(handle);
@@ -151,9 +159,16 @@ export function PatronOnlineProvider({
 			if (!rawHandle) return null;
 			const handle = normalizePatronOnlineHandle(rawHandle);
 			if (!handle) return null;
-			return presenceByHandle.get(handle) ?? null;
+			const serverState = presenceByHandle.get(handle);
+			if (serverState) return serverState;
+			// Self dot: show local active/away immediately while the server mirror
+			// catches up after the first heartbeat (avoids mount race with /online).
+			if (viewerHandleKey && handle === viewerHandleKey) {
+				return aggregateActivityState;
+			}
+			return null;
 		},
-		[presenceByHandle],
+		[presenceByHandle, viewerHandleKey, aggregateActivityState],
 	);
 
 	const isOnline = useCallback(
@@ -190,14 +205,23 @@ export function PatronOnlineProvider({
 				if (transport === "ws" && !opts?.keepalive) {
 					sendHeartbeat(patronAppRoomId(), state);
 				}
-				return touchPatronAppPresenceClient(state, opts);
+				const ok = await touchPatronAppPresenceClient(state, opts);
+				if (ok) {
+					refreshOnlineHandlesRef.current?.();
+				}
+				return ok;
 			},
 		);
 		heartbeatSchedulerRef.current = scheduler;
-		void scheduler.tick();
+		void (async () => {
+			await scheduler.tick();
+			if (!unmounted) {
+				refreshOnlineHandlesRef.current?.();
+			}
+		})();
 
 		const heartbeatTimer = setInterval(() => {
-			if (!unmounted) scheduler.tick();
+			if (!unmounted) void scheduler.tick();
 		}, HEARTBEAT_MS);
 
 		return () => {
@@ -228,7 +252,7 @@ export function PatronOnlineProvider({
 
 	// Keep the viewer handle in batch lookups so self dot uses server mirror state.
 	useEffect(() => {
-		if (!viewerHandleKey) return;
+		if (!viewerHandleKey || !isPatronPresenceHandle(viewerHandleKey)) return;
 		return registerHandle(viewerHandleKey);
 	}, [registerHandle, viewerHandleKey]);
 
@@ -245,8 +269,9 @@ export function PatronOnlineProvider({
 
 		const refreshOnlineHandles = async () => {
 			const handles = Array.from(registeredRef.current);
+			// Portraits register in child effects after this provider mounts — an empty
+			// batch on first paint must not wipe optimistic self state.
 			if (handles.length === 0) {
-				if (!unmounted) setPresenceByHandle(new Map());
 				return;
 			}
 
