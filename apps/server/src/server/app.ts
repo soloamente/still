@@ -4,7 +4,6 @@ import { db } from "@still/db";
 import { env } from "@still/env/server";
 import { sql } from "drizzle-orm";
 import { Elysia } from "elysia";
-
 import { adminAssetsRoute } from "../routes/admin-assets";
 import { achievementsRoute, badgesRoute } from "../routes/badges";
 import { challengesRoute } from "../routes/challenges";
@@ -40,6 +39,7 @@ import { tasteRoute } from "../routes/taste";
 import { tvRoute } from "../routes/tv";
 import { tvWatchRoute } from "../routes/tv-watch";
 import { watchlistRoute } from "../routes/watchlist";
+import { mapElysiaErrorStatus } from "./app-on-error";
 
 /**
  * Pure Elysia app — no `listen`, no schedulers. Importable by clients
@@ -147,8 +147,10 @@ export const app = new Elysia({ aot: false })
 	.use(staffFeedbackRoute)
 	.use(adminAssetsRoute)
 	.use(planFeaturesRoute)
-	.onError(({ error, code }) => {
+	.onError(({ error, code, set }) => {
 		console.error(`[server] error code=${code}`, error);
+		// Map Elysia codes to HTTP status so clients do not treat NOT_FOUND as 200 OK.
+		set.status = mapElysiaErrorStatus(code);
 		return {
 			error: error instanceof Error ? error.message : String(error),
 			code,

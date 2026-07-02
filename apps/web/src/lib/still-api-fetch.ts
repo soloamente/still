@@ -6,6 +6,7 @@ import type {
 	MembersLeaderboardPayload,
 	MembersLeaderboardSort,
 } from "@/lib/members-leaderboard-types";
+import { isStillApiErrorPayload } from "@/lib/still-api-error-payload";
 import { stillApiOrigin } from "@/lib/still-api-origin";
 import { dispatchTasteTitleConsumed } from "@/lib/taste-title-consumed-events";
 import type {
@@ -727,9 +728,11 @@ export async function fetchMovieTitleLogoPath(
 		signal: init?.signal,
 	});
 	if (!response.ok) return null;
-	const data = (await response.json()) as { logoPath?: string | null };
-	return typeof data.logoPath === "string" && data.logoPath.length > 0
-		? data.logoPath
+	const data = (await response.json()) as unknown;
+	if (isStillApiErrorPayload(data)) return null;
+	const payload = data as { logoPath?: string | null };
+	return typeof payload.logoPath === "string" && payload.logoPath.length > 0
+		? payload.logoPath
 		: null;
 }
 
@@ -744,18 +747,23 @@ export async function fetchMovieTrailer(
 		signal: init?.signal,
 	});
 	if (!response.ok) return null;
-	const data = (await response.json()) as {
+	const data = (await response.json()) as unknown;
+	if (isStillApiErrorPayload(data)) return null;
+	const payload = data as {
 		trailerKey?: string | null;
 		trailerSite?: string | null;
 	};
-	if (typeof data.trailerKey !== "string" || data.trailerKey.length === 0) {
+	if (
+		typeof payload.trailerKey !== "string" ||
+		payload.trailerKey.length === 0
+	) {
 		return null;
 	}
 	return {
-		trailerKey: data.trailerKey,
+		trailerKey: payload.trailerKey,
 		trailerSite:
-			typeof data.trailerSite === "string" && data.trailerSite.length > 0
-				? data.trailerSite
+			typeof payload.trailerSite === "string" && payload.trailerSite.length > 0
+				? payload.trailerSite
 				: "YouTube",
 	};
 }
