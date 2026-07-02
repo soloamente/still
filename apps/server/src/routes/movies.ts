@@ -296,6 +296,7 @@ function tmdbJsonNeedsEnrichment(tmdbJson: unknown): boolean {
 	if (!("keywords" in o)) return true;
 	if (!("recommendations" in o)) return true;
 	if (!("images" in o)) return true;
+	if (!("videos" in o)) return true;
 	return false;
 }
 

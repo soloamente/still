@@ -1,0 +1,1099 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"label": "patron-presence.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_patron_presence_patrononlineoccupancyentry",
+			"label": "PatronOnlineOccupancyEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_patron_presence_patronpresencerow",
+			"label": "PatronPresenceRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L31"
+		},
+		{
+			"id": "lib_patron_presence_visiblepatronpresence",
+			"label": "VisiblePatronPresence",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"label": "pickVisiblePresenceForViewer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L47"
+		},
+		{
+			"id": "lib_patron_presence_appendviewerselfpresence",
+			"label": "appendViewerSelfPresence()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L80"
+		},
+		{
+			"id": "lib_patron_presence_mergevisiblepatronpresence",
+			"label": "mergeVisiblePatronPresence()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L109"
+		},
+		{
+			"id": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"label": "fetchViewerHandleByUserId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L120"
+		},
+		{
+			"id": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"label": "resolveViewerSelfPresenceAppend()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L131"
+		},
+		{
+			"id": "lib_patron_presence_pickvisibleonlinehandles",
+			"label": "pickVisibleOnlineHandles()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L157"
+		},
+		{
+			"id": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"label": "normalizePatronOnlineHandleBatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L168"
+		},
+		{
+			"id": "lib_patron_presence_touchpatronapppresence",
+			"label": "touchPatronAppPresence()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L184"
+		},
+		{
+			"id": "lib_patron_presence_leavepatronapppresence",
+			"label": "leavePatronAppPresence()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L200"
+		},
+		{
+			"id": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"label": "resolveVisiblePresenceForViewer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L211"
+		},
+		{
+			"id": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"label": "resolveVisiblePresenceFromOccupancy()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L291"
+		},
+		{
+			"id": "lib_patron_presence_resolvevisibleonlinehandlesforviewer",
+			"label": "resolveVisibleOnlineHandlesForViewer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L355"
+		},
+		{
+			"id": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"label": "resolveOnlinePresenceForViewer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L375"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_listing_presence_activelistingpresenceuserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_listing_presence_listingpresenceredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_listing_presence_leavelistingpresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_listing_presence_touchlistingpresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_mutual_follow_cache_fetchmutualfollowingids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_presence_activity_patronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_presence_activity_readactivitystatesforuserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_profile_media_profile_privacy_presence_visibility_public",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_profile_media_readprofilepresencevisibilitypref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_patrononlineoccupancyentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_patronpresencerow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_visiblepatronpresence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_appendviewerselfpresence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_mergevisiblepatronpresence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_pickvisibleonlinehandles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_touchpatronapppresence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L184",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_leavepatronapppresence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L200",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L211",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L291",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_resolvevisibleonlinehandlesforviewer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L355",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"target": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L375",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"target": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"target": "lib_patron_presence_appendviewerselfpresence",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_pickvisibleonlinehandles",
+			"target": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"target": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L217",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"target": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L264",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"target": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L277",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"target": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L296",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"target": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L328",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"target": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L341",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolvevisibleonlinehandlesforviewer",
+			"target": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L361",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"target": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L382",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"target": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L385",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"target": "lib_patron_presence_mergevisiblepatronpresence",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L394",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"target": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L395",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"target": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L432",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"callee": "readProfilePresenceVisibilityPref",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L71"
+		},
+		{
+			"caller_nid": "lib_patron_presence_pickvisiblepresenceforviewer",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "lib_patron_presence_appendviewerselfpresence",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_patron_presence_appendviewerselfpresence",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "lib_patron_presence_appendviewerselfpresence",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "lib_patron_presence_appendviewerselfpresence",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_patron_presence_appendviewerselfpresence",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "lib_patron_presence_mergevisiblepatronpresence",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_patron_presence_mergevisiblepatronpresence",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L115"
+		},
+		{
+			"caller_nid": "lib_patron_presence_mergevisiblepatronpresence",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L116"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_patron_presence_fetchviewerhandlebyuserid",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolveviewerselfpresenceappend",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "lib_patron_presence_pickvisibleonlinehandles",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L162"
+		},
+		{
+			"caller_nid": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L174"
+		},
+		{
+			"caller_nid": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L175"
+		},
+		{
+			"caller_nid": "lib_patron_presence_normalizepatrononlinehandlebatch",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "lib_patron_presence_touchpatronapppresence",
+			"callee": "touchListingPresence",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L190"
+		},
+		{
+			"caller_nid": "lib_patron_presence_touchpatronapppresence",
+			"callee": "patronAppRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L192"
+		},
+		{
+			"caller_nid": "lib_patron_presence_leavepatronapppresence",
+			"callee": "leaveListingPresence",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_patron_presence_leavepatronapppresence",
+			"callee": "patronAppRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "activeListingPresenceUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L221"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "patronAppRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L221"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L233"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L234"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L235"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L236"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L240"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L240"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "fetchMutualFollowingIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L244"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L246"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L252"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "readActivityStatesForUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L258"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L266"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresenceforviewer",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L275"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L299"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L301"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L304"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L304"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L304"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L312"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L313"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L314"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L315"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L319"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L319"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "fetchMutualFollowingIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L323"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L325"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L330"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisiblepresencefromoccupancy",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L339"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolvevisibleonlinehandlesforviewer",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L367"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"callee": "activeListingPresenceUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L407"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"callee": "patronAppRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L407"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L411"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"callee": "readActivityStatesForUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L420"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L425"
+		},
+		{
+			"caller_nid": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\patron-presence.ts",
+			"source_location": "L429"
+		}
+	]
+}

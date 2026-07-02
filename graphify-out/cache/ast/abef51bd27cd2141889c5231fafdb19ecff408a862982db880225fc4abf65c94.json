@@ -1,0 +1,347 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"label": "realtime-presence.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "routes_realtime_presence_presenceredis",
+			"label": "presenceRedis()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "routes_realtime_presence_iswritablepresenceroom",
+			"label": "isWritablePresenceRoom()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L29"
+		},
+		{
+			"id": "routes_realtime_presence_publishpresenceupdated",
+			"label": "publishPresenceUpdated()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L34"
+		},
+		{
+			"id": "routes_realtime_presence_realtimepresenceroute",
+			"label": "realtimePresenceRoute",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L38"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "elysia",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_context_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "src_context_context",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_listing_presence_getlistingpresencesnapshotmerged",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_listing_presence_islistingpresenceroom",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_listing_presence_listingpresenceredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_listing_presence_leavelistingpresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_listing_presence_touchlistingpresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_patron_presence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_patron_presence_leavepatronapppresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_patron_presence_resolveonlinepresenceforviewer",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_patron_presence_touchpatronapppresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_presence_activity_normalizeactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_presence_redis_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_presence_redis_getpresenceredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_rate_limit_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_rate_limit_hit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_realtime_occupancy_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_realtime_occupancy_fetchworkeroccupancy",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "lib_realtime_publish_publishrealtimeevent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "routes_realtime_presence_presenceredis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "routes_realtime_presence_iswritablepresenceroom",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "routes_realtime_presence_publishpresenceupdated",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_presence_ts",
+			"target": "routes_realtime_presence_realtimepresenceroute",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "routes_realtime_presence_presenceredis",
+			"callee": "getPresenceRedis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "routes_realtime_presence_iswritablepresenceroom",
+			"callee": "isListingPresenceRoom",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "routes_realtime_presence_iswritablepresenceroom",
+			"callee": "isPatronAppRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "routes_realtime_presence_publishpresenceupdated",
+			"callee": "publishRealtimeEvent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-presence.ts",
+			"source_location": "L35"
+		}
+	]
+}

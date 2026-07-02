@@ -403,6 +403,10 @@ export const tmdbApi = {
 			fetchOpts,
 		);
 	},
+	/** Trailers/teasers — lightweight vs full detail when cache rows omit `videos`. */
+	movieVideos(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ results: TmdbVideo[] }>(`/movie/${id}/videos`, {}, fetchOpts);
+	},
 	/** Full TMDb image bundle — used when cached detail lacks backdrops (legacy rows). */
 	movieImages(id: number, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<TmdbMovieDetail["images"]>(

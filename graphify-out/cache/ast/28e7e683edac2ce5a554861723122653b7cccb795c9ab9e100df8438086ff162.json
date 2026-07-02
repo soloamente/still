@@ -1,0 +1,133 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_taste_hero_trailer_context_tsx",
+			"label": "home-taste-hero-trailer-context.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_taste_hero_trailer_context_hometasteherotrailerstate",
+			"label": "HomeTasteHeroTrailerState",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L12"
+		},
+		{
+			"id": "home_home_taste_hero_trailer_context_hometasteherotrailercontextvalue",
+			"label": "HomeTasteHeroTrailerContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L21"
+		},
+		{
+			"id": "home_home_taste_hero_trailer_context_hometasteherotrailercontext",
+			"label": "HomeTasteHeroTrailerContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L26"
+		},
+		{
+			"id": "home_home_taste_hero_trailer_context_hometasteherotrailerprovider",
+			"label": "HomeTasteHeroTrailerProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L30"
+		},
+		{
+			"id": "home_home_taste_hero_trailer_context_usehometasteherotrailer",
+			"label": "useHomeTasteHeroTrailer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L50"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_taste_hero_trailer_context_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_taste_hero_trailer_context_tsx",
+			"target": "home_home_taste_hero_trailer_context_hometasteherotrailerstate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_taste_hero_trailer_context_tsx",
+			"target": "home_home_taste_hero_trailer_context_hometasteherotrailercontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_taste_hero_trailer_context_tsx",
+			"target": "home_home_taste_hero_trailer_context_hometasteherotrailercontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_taste_hero_trailer_context_tsx",
+			"target": "home_home_taste_hero_trailer_context_hometasteherotrailerprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_taste_hero_trailer_context_tsx",
+			"target": "home_home_taste_hero_trailer_context_usehometasteherotrailer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L50",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_taste_hero_trailer_context_hometasteherotrailerprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "home_home_taste_hero_trailer_context_hometasteherotrailerprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "home_home_taste_hero_trailer_context_hometasteherotrailerprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "home_home_taste_hero_trailer_context_usehometasteherotrailer",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-taste-hero-trailer-context.tsx",
+			"source_location": "L51"
+		}
+	]
+}

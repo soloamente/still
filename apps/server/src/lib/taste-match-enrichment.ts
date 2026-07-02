@@ -17,12 +17,10 @@ type TmdbVideoRow = {
 	type: string;
 };
 
-/** First official trailer/teaser on YouTube or Vimeo from cached TMDb JSON. */
-function pickTrailerFromTmdbJson(
-	tmdbJson: Record<string, unknown> | null | undefined,
+/** First official trailer/teaser on YouTube or Vimeo from a TMDb videos payload. */
+function pickTrailerFromVideoResults(
+	results: TmdbVideoRow[] | null | undefined,
 ): { key: string; site: string } | null {
-	const results = (tmdbJson?.videos as { results?: TmdbVideoRow[] } | undefined)
-		?.results;
 	if (!results?.length) return null;
 
 	const trailer =
@@ -33,6 +31,15 @@ function pickTrailerFromTmdbJson(
 		) ?? results.find((row) => row.site === "YouTube" || row.site === "Vimeo");
 	if (!trailer?.key) return null;
 	return { key: trailer.key, site: trailer.site };
+}
+
+/** First official trailer/teaser on YouTube or Vimeo from cached TMDb JSON. */
+function pickTrailerFromTmdbJson(
+	tmdbJson: Record<string, unknown> | null | undefined,
+): { key: string; site: string } | null {
+	const results = (tmdbJson?.videos as { results?: TmdbVideoRow[] } | undefined)
+		?.results;
+	return pickTrailerFromVideoResults(results);
 }
 
 /** Lightweight festival mark for the home spotlight — keyword names only. */
@@ -88,7 +95,18 @@ export async function enrichTasteMatchMovies(
 				| Record<string, unknown>
 				| null
 				| undefined;
-			const trailer = pickTrailerFromTmdbJson(tmdbJson);
+			let trailer = pickTrailerFromTmdbJson(tmdbJson);
+
+			// Catalogue rows often lack `videos` on `tmdbJson` — one lightweight fetch for the spotlight.
+			if (!trailer && env.TMDB_API_KEY) {
+				try {
+					const videos = await tmdbApi.movieVideos(entry.tmdbId);
+					trailer = pickTrailerFromVideoResults(videos?.results);
+				} catch {
+					// Best-effort — hero still plays the still backdrop.
+				}
+			}
+
 			let logoPath = pickTitleLogoFromTmdbJson(tmdbJson);
 
 			// Title logos live on `/images`, not the detail append bundle — one fetch for the spotlight.

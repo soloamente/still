@@ -10,10 +10,12 @@ import {
 } from "react";
 
 export type HomeTasteHeroTrailerState = {
-	/** YouTube/Vimeo background embed URL for the lobby card. */
-	src: string;
-	/** Spotlight TMDb id — remount iframe when the hero swaps titles. */
+	/** Spotlight TMDb id — remount media when the hero swaps titles. */
 	tmdbId: number;
+	/** YouTube/Vimeo background embed URL — null when reduced motion or no trailer. */
+	trailerSrc: string | null;
+	/** Still backdrop under the trailer — full-bleed lobby shell when video is absent or blocked. */
+	backdropUrl: string | null;
 } | null;
 
 type HomeTasteHeroTrailerContextValue = {

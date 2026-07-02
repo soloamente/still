@@ -345,7 +345,7 @@ export function HomeTasteMatchedHero({
 			window.removeEventListener(TASTE_TITLE_CONSUMED_EVENT, onConsumed);
 	}, [handleTitleConsumed]);
 
-	// Trailer plays on the lobby `bg-card` shell — publish src for `HomeLobbyTasteTrailerBackground`.
+	// Trailer + still backdrop play on the lobby `bg-card` shell — publish for `HomeLobbyTasteTrailerBackground`.
 	useEffect(() => {
 		if (
 			loading ||
@@ -358,17 +358,20 @@ export function HomeTasteMatchedHero({
 			return;
 		}
 
-		const src =
+		const backdropUrl =
+			tmdbBackdropUrlFromPath(spotlight.backdropPath ?? null, "w1280") ??
+			tmdbPosterUrlFromPath(spotlight.posterPath, "w780");
+
+		const trailerSrc =
 			spotlight.trailerKey && !reduceMotion
 				? buildTrailerBackgroundSrc(spotlight.trailerSite, spotlight.trailerKey)
 				: null;
 
-		if (!src) {
-			setTrailer(null);
-			return;
-		}
-
-		setTrailer({ src, tmdbId: spotlight.tmdbId });
+		setTrailer({
+			tmdbId: spotlight.tmdbId,
+			trailerSrc,
+			backdropUrl,
+		});
 		return () => {
 			setTrailer(null);
 		};
@@ -379,9 +382,6 @@ export function HomeTasteMatchedHero({
 		return null;
 	}
 
-	const backdropUrl =
-		tmdbBackdropUrlFromPath(spotlight.backdropPath ?? null, "w1280") ??
-		tmdbPosterUrlFromPath(spotlight.posterPath, "w780");
 	const titleLogoUrl = tmdbLogoUrlFromPath(
 		spotlightLogoPath ?? spotlight.logoPath ?? null,
 		"w500",
@@ -397,7 +397,7 @@ export function HomeTasteMatchedHero({
 		| FestivalIconId
 		| null
 		| undefined;
-	const lobbyTrailerActive = trailer?.tmdbId === spotlight.tmdbId;
+	const lobbyMediaActive = trailer?.tmdbId === spotlight.tmdbId;
 
 	return (
 		<section
@@ -411,48 +411,9 @@ export function HomeTasteMatchedHero({
 			<div
 				className={cn(
 					"relative overflow-visible rounded-[2rem]",
-					lobbyTrailerActive ? "bg-transparent" : "bg-background",
+					lobbyMediaActive ? "bg-transparent" : "bg-background",
 				)}
 			>
-				{/* Still backdrop — skip when the lobby shell is playing the trailer. */}
-				{!lobbyTrailerActive ? (
-					<>
-						<div
-							className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[2rem]"
-							aria-hidden
-						>
-							{backdropUrl ? (
-								<Image
-									key={spotlight.tmdbId}
-									src={backdropUrl}
-									alt=""
-									fill
-									priority
-									sizes="(max-width: 768px) 100vw, 80vw"
-									className="object-cover object-center"
-									unoptimized={backdropUrl.includes("image.tmdb.org")}
-								/>
-							) : (
-								<div className="size-full bg-background" />
-							)}
-						</div>
-						{/* Cinematic scrims over the still — same stack as pre-trailer hero. */}
-						<div
-							className="pointer-events-none absolute inset-0 z-[1] rounded-[2rem] bg-linear-to-t from-absolute-black/92 via-absolute-black/45 to-absolute-black/15"
-							aria-hidden
-						/>
-						<div
-							className="pointer-events-none absolute inset-0 z-[1] rounded-[2rem] bg-linear-to-r from-absolute-black/70 via-absolute-black/20 to-absolute-black/55"
-							aria-hidden
-						/>
-						{/* Card fade — parity with lobby trailer (`from-card/0 to-card`). */}
-						<div
-							className="pointer-events-none absolute inset-0 z-[2] rounded-[2rem] bg-linear-to-b from-card/0 to-card"
-							aria-hidden
-						/>
-					</>
-				) : null}
-
 				<div
 					className={cn(
 						"relative z-10 flex min-h-0 flex-col overflow-visible",
